@@ -69,7 +69,8 @@ Button {
 <Button disabled className="Button">
 ```
 
-Sometimes, you can't use a **pseudo-class**, as the state doesn't exist in the web specification. Vamos pegar o componente menu item e o estado *selected* como exemplo. You can use the `. Mui-selected` global class name to customize the special state of the `MenuItem` component:
+Sometimes, you can't use a **pseudo-class**, as the state doesn't exist in the web specification. Vamos pegar o componente menu item e o estado *selected* como exemplo. You can use the `.
+Mui-selected` global class name to customize the special state of the `MenuItem` component:
 
 ```css
 . MenuItem {
@@ -88,7 +89,7 @@ Sometimes, you can't use a **pseudo-class**, as the state doesn't exist in the w
 
 #### Por que preciso aumentar a especificidade para sobrescrever um estado do componente?
 
-Por padrão, a especificação CSS faz com que as pseudo-classes aumentem a especificidade. Por padrão, a especificação CSS faz com que as pseudo-classes aumentem a especificidade. Isso tem uma vantagem importante, permitir que você escolha o estado que deseja customizar.
+Por padrão, a especificação CSS faz com que as pseudo-classes aumentem a especificidade. For consistency with native elements, MUI increases the specificity of its custom state classes. Isso tem uma vantagem importante, permitir que você escolha o estado que deseja customizar.
 
 #### What custom pseudo-classes are available in Material-UI?
 
@@ -98,12 +99,13 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 |:------------- |:--------------------- |
 | active        | `.Mui-active`         |
 | checked       | `. Mui-checked`       |
+| completed     | `.Mui-completed`      |
 | disabled      | `. Mui-disabled`      |
 | error         | `. Mui-error`         |
-| focused       | `. Mui-focused`       |
-| focus visible | `. Mui-focusVisible`  |
-| required      | `. Mui-required`      |
 | expanded      | `. Mui-expanded`      |
+| focus visible | `. Mui-focusVisible`  |
+| focused       | `. Mui-focused`       |
+| required      | `. Mui-required`      |
 | selected      | `. Mui-selected`      |
 
 > ⚠️ Never style these pseudo-class class names directly:
@@ -178,7 +180,7 @@ Please take a look at the theme's [global overrides page](/customization/theme-c
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 
 ```css
-.MuiButton-root {
+. MuiButton-root {
   font-size: 1rem;
 }
 ```
@@ -192,3 +194,26 @@ If you just want to add some global baseline styles for some of the HTML element
 If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
 
 {{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}
+
+> Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+
+```diff
+ import * as React from 'react';
+ import GlobalStyles from '@mui/material/GlobalStyles';
+
++const inputGlobalStyles = <GlobalStyles styles={...} />;
+
+ const Input = (props) => {
+   return (
+     <React.Fragment>
+-      <GlobalStyles styles={...} />
++      {inputGlobalStyles}
+       <input {...props} />
+     </React.Fragment>
+   )
+ }
+```
+
+## 6. Custom class name
+
+Check out [ClassName Generator](/guides/classname-generator/) section for more details.

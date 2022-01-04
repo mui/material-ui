@@ -1,6 +1,6 @@
 ---
 title: React Text Field（文本框）组件
-components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
 githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
@@ -13,9 +13,9 @@ materialDesign: https://material.io/components/text-fields
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic TextField
+## 基础文本框
 
-The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard.
+The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard. It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
@@ -29,13 +29,13 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## 校验
 
-The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
+The `error` prop toggles the error state. The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
 ## 多行属性
 
-`multiline` 属性将文本字段转换为 [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) 元素。 除非设置了 `rows` 属性，否则文本字段的高度会动态匹配其内容（使用 [TextareaAutosize](/components/textarea-autosize/) 时）。 You can use the `minRows` and `maxRows` props to bound it.
+`multiline` 属性将文本框转换为 [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) 元素。 除非设置了 `rows` 属性，否则文本框的高度会动态匹配其内容（当你使用 [TextareaAutosize](/components/textarea-autosize/) 属性时）。 You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
@@ -53,7 +53,7 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ### 修饰输入框
 
-一个主流的方法是使用 `InputAdornment` 组件。 This can be used to add a prefix, a suffix, or an action to an input. 例如，可以用一个图标按钮来隐藏或者显示输入框里的密码。
+一个主流的方法是使用 `InputAdornment` 组件。 This can be used to add a prefix, a suffix, or an action to an input. 例如，可以用一个图标按钮来隐藏或者显示输入框里的密码。 例如，可以用一个图标按钮来隐藏或者显示输入框里的密码。
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -69,7 +69,7 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ## Margin
 
-The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
+The `margin` prop can be used to alter the vertical spacing of the text field. The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
@@ -113,11 +113,11 @@ Customization does not stop at CSS. You can use composition to build custom comp
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/text-field/)。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field/).
 
 ## `useFormControl`
 
-For advanced customization use cases, a `useFormControl()` hook is exposed. This hook returns the context value of the parent `FormControl` component.
+For advanced customization use cases, a `useFormControl()` hook is exposed. For advanced customization use cases, a `useFormControl()` hook is exposed. This hook returns the context value of the parent `FormControl` component.
 
 **API**
 
@@ -172,7 +172,7 @@ import { useFormControl } from '@material-ui/core/FormControl';
 
 ### 悬浮的标签
 
-The floating label is absolutely positioned. It won't impact the layout of the page. Make sure that the input is larger than the label to display correctly.
+The floating label is absolutely positioned. It won't impact the layout of the page. The floating label is absolutely positioned. It won't impact the layout of the page. Make sure that the input is larger than the label to display correctly.
 
 ### type="number"
 
@@ -193,11 +193,11 @@ type="number" 的输入存在潜在的可用性问题。
 
 ### 辅助文本
 
-助手文本属性会影响文本字段的高度。 如果两个文本字段并排放置，一个有辅助文本，另一个没有，那么它们的高度就会不同。 例如:
+助手文本属性会影响文本框的高度。 如果两个文本框并排放置，一个有辅助文本，另一个没有，那么它们的高度就会不同。 例如:
 
 {{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 
-您可以使用 `error` 属性来切换错误的状态，同时也可以使用 `helperText` 属性来给用户提供错误的提示信息。
+This can be fixed by passing a space character to the `helperText` prop:
 
 {{"demo": "pages/components/text-fields/HelperTextAligned.js"}}
 
@@ -257,8 +257,8 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 </div>
 ```
 
-- 如果您使用的是 `TextField` 组件，那您只需提供独特的 `id`。
-- 如果您正在构造一个组件：
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
+- If you are composing the component:
 
 ```jsx
 <FormControl>
@@ -273,6 +273,24 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/)：用于表单验证的 React 钩子。
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用于 [formik](https://formik.org/) 和 Material-UI 捆绑使用。
+- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material-UI 捆绑使用。
 - [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material-UI 捆绑使用。
+
+## Unstyled
+
+For advanced customization scenarios, you can use the unstyled primitives.
+
+The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
+
+### Unstyled component
+
+The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead.
+
+{{"demo": "pages/components/text-fields/UnstyledInput.js"}}
+
+### Hook
+
+The `useInput` hook is the headless version of the `InputUnstyled` component. Use it for even greater control over the rendered output.
+
+{{"demo": "pages/components/text-fields/UseInput.js"}}

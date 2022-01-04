@@ -4,7 +4,7 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-5 to UTC+4).
+- Location: Remote (preference for UTC-6 to UTC+3).
 - Type of work: Full-time (contractor or employee [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
@@ -12,7 +12,7 @@
 
 ## About us
 
-See the [careers](/careers/) and [about us](/about/) pages.
+See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
 ### Why we're hiring
 
@@ -25,16 +25,16 @@ Our users are continuously providing feedback on the most important [pains they 
 
 ### Why this is interesting
 
-Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 We are the second most used UI library in the world, after Bootstrap.
 
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
 
 ## About the role
 
-You will be joining the advanced components team.
-
 ### What you'll do on a day-to-day basis
+
+Depending on the day, you'll:
 
 - You will coordinate with the engineering to ensure that the product being delivered at each iteration solves the problem.
   This involves growing a deep understanding of our technical choices and constraints.
@@ -60,7 +60,9 @@ You will be joining the advanced components team.
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile and location. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
+Competitive compensation depending on the profile and location.
+We are ready to pay top market rates for a person that can significantly push the mission forward.
+You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 

@@ -78,7 +78,7 @@ Introduzimos uma nova propriedade **requerida**, `renderInput`. Isso simplifica 
 Anteriormente, propriedades eram espalhadas no componentes `<TextField />`. De agora em diante você precisará usar a nova propriedade `renderInput` para fornecer as propriedades:
 
 ```diff
-<DatePicker
+ <DatePicker
 - label="Date"
 - helperText="Something"
 + renderInput={props => <TextField label="Date" helperText="Something" /> }
@@ -115,8 +115,8 @@ Máscara já não é necessária. Além disso, se a máscara fornecida não for 
 ## E muito mais
 
 - ```diff <DatePicker
-  - format="DD-MMM-YYYY"
-  + inputFormat="DD-MMM-YYYY" ```
+  -  format="DD-MMM-YYYY"
+  +  inputFormat="DD-MMM-YYYY" ```
 
 Há muitas mudanças, tenha cuidado, certifique-se de que seus testes e build passe. No evento em que você tem um uso avançado do seletor de data, provavelmente será mais simples reescrevê-lo.
 

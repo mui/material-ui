@@ -15,36 +15,36 @@ Embora incluído aqui como um componente independente, o uso mais comum será em
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic chip
+## Chip básico
 
-The `Chip` component supports outlined and filled styling.
+O componente `Chip` oferece suporte a estilos contornados e preenchidos.
 
 {{"demo": "pages/components/chips/BasicChips.js"}}
 
-## Chip actions
+## Ações do Chip
 
-You can use the following actions.
+Você pode usar as seguintes ações.
 
-- Chips with the `onClick` prop defined change appearance on focus, hover, and click.
-- Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover.
+- Chips com a propriedade `onClick` definida, mudará a aparência com foco, ao passar por cima e com clique.
+- Chips com a propriedade `onDelete` definida irá exibir um ícone de remoção, no qual modificará a aparência ao passar por cima.
 
-### Clickeable
+### Clicável
 
 {{"demo": "pages/components/chips/ClickeableChips.js"}}
 
-### Deleteable
+### Deletável
 
 {{"demo": "pages/components/chips/DeleteableChips.js"}}
 
-### Clickeable and deleteable
+### Clicável e deletável
 
 {{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
 
-### Clickeable link
+### Link clicável
 
 {{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
 
-### Custom delete icon
+### Ícone de exclusão personalizado
 
 {{"demo": "pages/components/chips/CustomDeleteIconChips.js"}}
 

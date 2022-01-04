@@ -101,8 +101,9 @@ export default function AppFooter() {
               <Box
                 sx={{
                   px: 0.5,
-                  py: 0.3,
+                  py: '3px',
                   ml: 1,
+                  mb: '1px',
                   borderRadius: 0.5,
                   fontSize: (theme) => theme.typography.pxToRem(9),
                   fontWeight: 700,
@@ -151,7 +152,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/material-ui"
+              href="https://stackoverflow.com/questions/tagged/mui"
               aria-label="Stack Overflow"
               title="Stack Overflow"
               size="small"

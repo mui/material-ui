@@ -1,22 +1,26 @@
+- - -
+@material-ui/core/styles 的 API 参考文档。
+- - -
+
 # API
 
-<p class="description">@material-ui/core/styles 的 API 参考文档。</p>
+<p class="description">一个返回 <a href="https://cssinjs.org/jss-api/#generate-your-class-names"> 类名称生成器函数 </a> 的函数。</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
-一个返回 [ 类名称生成器函数 ](https://cssinjs.org/jss-api/#generate-your-class-names) 的函数。
+返回 [ 类名称生成器函数 ](https://cssinjs.org/jss-api/#generate-your-class-names) 的函数。
 
 ### 参数
 
 1. `options` (_object_ [optional]):
 
-   - `options.disableGlobal` (_bool_ [optional]): Defaults to `false`. 阻止生成确定性的类名。
+   - `options.disableGlobal` (_bool_ [optional])：默认值是 `false`。 阻止生成确定性的类名。
    - `options.seed` (*string* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 字符串用来在生产中对类名称加上前缀。
    - `options.seed` (_string_ [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 用于唯一标识生成器的字符串。 在同一个文档中使用多个生成器时，它可用于避免类名冲突。
 
 ### 返回结果
 
-`类名生成器`：应该将生成器提供给 JSS。
+`类名生成器`：应该将生成器提供给JSS。
 
 ### 例子
 
@@ -35,7 +39,7 @@ export default function App() {
 
 ## `createStyles(styles) => styles`
 
-在运行的时候，这个函数并没有真正“做任何事”，它一个只是认证函数。 它的唯一目的是，当向 `Theme` 的 `makeStyles`/`withStyles` 功能提供样式的规则时， 可以阻止 **TypeScript** 的类型扩展。
+这个函数在运行时并没有真正“做任何事”，它只是身份 函数。 它的唯一目的是，当向 `Theme` 的 `makeStyles`/`withStyles` 功能提供样式的规则时， 可以阻止 **TypeScript** 的类型扩展。
 
 ### 参数
 
@@ -76,12 +80,12 @@ export default function MyComponent {
 
 - `options.defaultTheme`（*object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.name` (*string* [optional]): 样式表的名称。 适合调试。
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
 
-`hook` ： 一个 hook。 该 hook 可以在一个功能组件中使用。 文档通常会调用这个回调 hook `useStyles`。 它接受一个参数：在样式表中用于 “插值（interpolation）”的属性。
+`hook` ： 一个钩子。 该钩子可以用在功能组件中。 文档通常会调用这个回调 hook `useStyles`。 它接受一个参数：在样式表中用于 “插值（interpolation）”的属性。
 
 ### 例子
 
@@ -158,14 +162,14 @@ const response = `
 3. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（*object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional]): Defaults to `false`. 将 `theme` 对象作为属性提供给组件。
-- `options.name` (*string* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
+- `options.name` (*string* [optional]): 样式表的名称。 Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
 
-`Component` ：已创建的新组建。
+`Component`: The new component created.
 
 ### 例子
 
@@ -197,9 +201,9 @@ export default function StyledComponents() {
 
 ## `StylesProvider`
 
-此组件允许您调整样式方案的行为。 多亏了 context，选项可以在 React 树下层使用。
+此组件允许您更改样式解决方案的行为。 多亏了 context，选项可以在 React 树下层使用。
 
-最好在**您的组件树的根目录**中使用它。
+It should preferably be used at **the root of your component tree**.
 
 ### 属性
 
@@ -254,7 +258,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `useTheme() => theme`
 
-此 hook 返回了一个 `theme` 对象，你可以在函数组件中使用它。
+该钩子返回`theme`对象因此可以在函数组件中使用。
 
 ### 返回结果
 
@@ -275,9 +279,9 @@ export default function MyComponent() {
 
 ## `withStyles(styles, [options]) => higher-order component`
 
-链路的样式表有分量利用**higher-order component**的模式。 它不会修改传递给它的组件；相反，它返回一个具有`classes`属性的新组件。 这个 `classes` 对象包含了在 DOM 中注入的类名（class names ）。
+链路的样式表有分量利用**higher-order component**的模式。 它不会修改传递给它的组件；相反，它返回一个具有`classes`属性的新组件。 这个`classes`对象包含DOM中注入的class名称。
 
-你可能会注意到一些有趣的细节：
+一些可能有趣的实现细节：
 
 - 它添加了一个 `classes` 属性，因此您可以从外部覆盖注入的类名。
 - 它将 refs 转发给内部的组件。
@@ -289,9 +293,9 @@ export default function MyComponent() {
 2. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（*object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional]): Defaults to `false`. 将 `theme` 对象作为属性提供给组件。
-- `options.name` (*string* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 Provide the `theme` object to the component as a prop.
+- `options.name` (*string* [optional]): 样式表的名称。 Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
@@ -317,7 +321,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-此外，您还也可以这样使用 [ decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)：
+此外, 还可以像这样使用 [修饰器](https://babeljs.io/docs/en/babel-plugin-proposal-decorators):
 
 ```jsx
 import * as React from 'react';
@@ -341,7 +345,7 @@ export default MyComponent;
 
 ## `withTheme(Component) => Component`
 
-提供 `theme` 对象作为输入组件的属性，因此可以在 render 方法中使用 。
+此 hook 返回了一个 `theme` 对象，你可以在函数组件中使用它。
 
 ### 参数
 

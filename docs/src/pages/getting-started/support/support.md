@@ -11,7 +11,9 @@ The community is your first stop for questions and advice about the framework. W
 For crowdsourced answers from expert MUI developers in our community.
 StackOverflow is also visited from time to time by the maintainers of MUI.
 
-[Post a question](https://stackoverflow.com/questions/tagged/material-ui)
+[Post a question](https://stackoverflow.com/questions/tagged/mui)
+
+> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
 
 ### GitHub
 
@@ -34,7 +36,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 
 Stay up to date with the development of the library by following the blog.
 
-[Read the latest posts](https://medium.com/material-ui/)
+[Read the latest posts](https://medium.com/material-ui)
 
 ### Resources 📖
 

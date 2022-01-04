@@ -9361,7 +9361,7 @@ Here are some highlights ✨:
   - We have reduced the size of the bundle by ~8 kB gzipped.
   - The propTypes runtime checks are back. You might experience new warnings.
 - We have introduced 4 breaking changes.
-- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [OpenCollective](https://opencollective.com/material-ui) (#9460).
+- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [OpenCollective](https://opencollective.com/mui) (#9460).
   Blog posts are coming.
 - And many more bug fixes and documentation improvements.
 
@@ -10658,7 +10658,7 @@ If you want to avoid the default browser required property handling, you can add
 ###### _Aug 20, 2017_
 
 A big shout-out to @sebald for our first TypeScript coverage.
-Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/zeit/next.js), it's twice as fast as before 🚀.
+Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/vercel/next.js), it's twice as fast as before 🚀.
 
 A big thanks to the 9 contributors who made this release possible.
 

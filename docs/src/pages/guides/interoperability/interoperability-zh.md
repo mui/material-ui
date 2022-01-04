@@ -1,6 +1,6 @@
 # 样式库的互通性
 
-<p class="description">虽然你可以使用 Material-UI 提供的基于 emotion 的样式解决方案来自定义你的应用程序，但你也可以使用你已知和喜欢的方案（从普通的 CSS 到 styled-components）。</p>
+<p class="description">虽然您可以使用 Material-UI 提供的基于 emotion 的样式解决方案来自定义您的程序，但也可以使用您喜欢的其他方案（从普通的 CSS 到 styled-components）。</p>
 
 本指南旨在归档当前比较流行的一些替代方案，但是您会发现在这里运用的法则，也可以在其他库里适用。 我们为以下的样式方案提供了一些示例：
 
@@ -49,22 +49,22 @@ export default function PlainCssSlider() {
 
 ### CSS 注入顺序⚠️
 
-**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in Material-UI:
+如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 **注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 Here's a demo of how it can be done in Material-UI:
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 export default function GlobalCssPriority() {
   return (
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+      {/* 您的组件树。 现在您可以覆盖 Material-UI 的样式。 */}
     </StyledEngineProvider>
   );
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
+**注意：** 如果您使用的是 emotion 并且在您的程序中自定义了缓存，那么这将会覆盖 MUI 的缓存。 为了使注入顺序仍然正确，您需要添加前缀选项。 下面是一个示例：
 
 ```jsx
 import * as React from 'react';
@@ -79,13 +79,13 @@ const cache = createCache({
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {这里编写你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
+      {这里编写你的组件树。 Now you can override MUI's styles. */}
     </CacheProvider>
   );
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@mui/styled-engine-sc` package.
 
 ### 更深层的元素
 
@@ -199,7 +199,7 @@ export default function GlobalCssSlider() {
 
 ### CSS 注入顺序⚠️
 
-**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in Material-UI:
+如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 **注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 Here's a demo of how it can be done in Material-UI:
 
 ```jsx
 import * as React from 'react';
@@ -211,10 +211,13 @@ export default function GlobalCssPriority() {
       {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
     </StyledEngineProvider>
   );
+} Now you can override MUI's styles. */}
+    </StyledEngineProvider>
+  );
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例： In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -229,17 +232,17 @@ const cache = createCache({
 export default function GlobalCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* 这里编写你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
+      {/* 这里编写你的组件树。 Now you can override MUI's styles. */}
     </CacheProvider>
   );
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package. 如果您想知道它是如何完成的，您可以查看 `@mui/styled-engine-sc` 包中的 `StylesProvider` 实现。
 
 ### 更深层的元素
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 When writing overrides, you need to do the same.
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
@@ -279,9 +282,16 @@ export default function GlobalCssSliderDeep() {
 
 ### 改变默认的样式引擎
 
-默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 但是，如果你想使用 `styled-components` 的话，那么你可以参考这个 [示例项目](https://github.com/mui-org/material-ui/blob/HEAD/examples/create-react-app-with-styled-components) 来配置你的应用程序。 按照这种方法来配置的话，则可以减少捆绑包的大小，并且无需配置 CSS 注入顺序。
+默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 If, however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
+
+<!-- #default-branch-switch -->
+
+- [Create React App with styled-components](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
+- [Create React App with styled-components and typescript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
 
 After the style engine is configured properly, you can use the [`styled()`](/system/styled/) utility from `@material-ui/core/styles` and have direct access to the theme.
+
+After the style engine is configured properly, you can use the [`styled()`](/system/styled/) utility from `@mui/material/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -313,7 +323,7 @@ export default function StyledComponents() {
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": true}}
 
-上面的演示依赖于 [默认的`className`值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
+通过使用 Material-UI 主题提供者（theme provider），该主题也可以在样式引擎的主题上下文中可用（emotion 或 styled-components，取决于你的配置）。
 
 ```jsx
 import * as React from 'react';
@@ -346,11 +356,11 @@ export default function StyledComponentsDeep2() {
 
 ### 主题
 
-通过使用 Material-UI 主题提供者（theme provider），该主题也可以在样式引擎的主题上下文中可用（emotion 或 styled-components，取决于你的配置）。
-
-> ⚠️如果你**已经**使用了 styled-component 或 emotion 驱动的自定义主题，那么它可能会不兼容 Material-UI 的主题规范。 如果它不兼容，那么你需要<b>先</b>渲染 Material-UI 的 ThemeProvider。 这样做就可以确保主题结构的隔离。 这对于想要在代码库中渐进式地使用 Material-UI 组件是非常理想的。
-
 我们鼓励你在 Material-UI 和你项目的其他部分之间共享相同的主题对象。
+
+> ⚠️如果你**已经**使用了 styled-component 或 emotion 驱动的自定义主题，那么它可能会不兼容 Material-UI 的主题规范。 如果它不兼容，那么你需要<b>先</b>渲染 Material-UI 的 ThemeProvider。 这样做就可以确保主题结构的隔离。 This is ideal for the progressive adoption of MUI's components in the codebase.
+
+You are encouraged to share the same theme object between MUI and the rest of your project.
 
 ```jsx
 const CustomizedSlider = styled(Slider)(
@@ -364,13 +374,13 @@ const CustomizedSlider = styled(Slider)(
 );
 ```
 
-{{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
+{{“demo”：“pages/guides/interoperability/StyledComponentsTheme.js”}}
 
 ### Portals（传送门组件）
 
 [传送门组件](/components/portal/)提供了一种一流的方法，它将子元素渲染在其父组件的 DOM 层次结构之外的 DOM 节点中。 当您使用这样的 styled-components 规范其 CSS 的方式时，可能会遇到一些无法附着样式的问题。
 
-For example, if you attempt to style the `tooltip` generated by the [Tooltip](/components/tooltips/) component, you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy. 下面的示例演示了一个变通办法：
+For example, if you attempt to style the `tooltip` generated by the [Tooltip](/components/tooltips/) component, you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy. 下面的示例演示了一个变通办法： 下面的示例演示了一个变通办法：
 
 ```jsx
 import * as React from 'react';
@@ -393,7 +403,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
-鉴于它全权依赖于大家使用的打包方案，我们很难得知 [此种样式方案](https://github.com/css-modules/css-modules) 的市场占有率。
+鉴于它全权依赖于大家使用的打包方案，我们很难得知[此种样式方案](https://github.com/css-modules/css-modules)的市场占有率。
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -435,7 +445,7 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -446,7 +456,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例： In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -458,16 +468,16 @@ const cache = createCache({
   prepend: true,
 });
 
-export default function CssModulesPriority() {
+export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* 这里编写你的组件 现在你可以覆盖 Material-UI 的样式。 */}
+      {这里编写你的组件树。 Now you can override MUI's styles. */}
     </CacheProvider>
   );
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@mui/styled-engine-sc` package.
 
 ### 更深层的元素
 

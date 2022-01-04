@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix';
-import { useContext } from 'react';
-import StylesContext from './src/StylesContext';
 import theme from './src/theme';
 
 import Layout from './src/Layout';
 
 function Document({ children, title }: { children: React.ReactNode; title?: string }) {
-  const styleData = useContext(StylesContext);
-
   return (
     <html lang="en">
       <head>
@@ -22,14 +18,7 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         />
-        {styleData?.map(({ key, ids, css }) => (
-          <style
-            key={key}
-            data-emotion={`${key} ${ids.join(' ')}`}
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: css }}
-          />
-        ))}
+        <meta name="emotion-insertion-point" content="emotion-insertion-point" />
       </head>
       <body>
         {children}

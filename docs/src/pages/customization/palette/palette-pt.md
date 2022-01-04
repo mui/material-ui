@@ -118,7 +118,7 @@ Observe que "contrastThreshold" segue uma curva não linear.
 
 ### Adicionando novas cores
 
-Você pode adicionar novas cores dentro e fora da paleta do tema da seguinte maneira:
+You can add new colors inside and outside the palette of the theme as follows:
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -142,7 +142,7 @@ const theme = createTheme({
 
 Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
-<!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
+<!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
 declare module '@material-ui/core/styles/createTheme' {
@@ -176,58 +176,4 @@ Precisa de inspiração? A equipe do Material Design construiu uma [ferramenta d
 
 ## Modo escuro
 
-Material-UI comes with two palette modes: light (the default) and dark. Você pode deixar o tema escuro definindo `mode: 'dark'`.
-
-```js
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-```
-
-While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following:
-
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
-
-### Toggling color mode
-
-You can use the React context to toggle the mode with a button inside your page.
-
-{{"demo": "pages/customization/palette/ToggleColorMode.js", "defaultCodeOpen": false}}
-
-### System preference
-
-Usuários podem especificar uma preferência por um tema claro ou escuro. O método pelo qual o usuário expressa a sua preferência pode variar. Pode ser uma configuração de sistema exposta pelo Sistema Operacional, ou uma configuração controlada pelo Agente de Usuário.
-
-Você pode utilizar essa preferência dinamicamente com o hook [useMediaQuery](/components/use-media-query/) e a consulta de mídia [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
-
-Por exemplo, você pode ativar o modo escuro automaticamente:
-
-```jsx
-import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
-function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline/>
-      <Routes />
-    </ThemeProvider>
-  );
-}
-```
+Você pode deixar o tema escuro definindo `mode: 'dark'`.

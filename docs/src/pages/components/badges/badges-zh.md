@@ -18,6 +18,12 @@ githubLabel: 'component: Badge'
 
 ## 自定义徽章
 
+Use `color` prop to apply theme palette to component.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
+## 徽章组件的可见性
+
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
@@ -46,7 +52,7 @@ githubLabel: 'component: Badge'
 
 ## 徽章组件的 overlap 属性
 
-你可以使用 `overlap` 属性来将徽章组件放置到到封装的元素一个相对位置的角落。
+你可以使用 `anchorOrigin` 属性移把徽章组件移动到封装的元素的任何角落。
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
@@ -58,16 +64,16 @@ githubLabel: 'component: Badge'
 
 ## Unstyled
 
-The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+Badge组件还有一个无样式的版本。 It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 ```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
 
-## 无障碍设计
+## Accessibility
 
-You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`: 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
 
 {{"demo": "pages/components/badges/AccessibleBadges.js"}}

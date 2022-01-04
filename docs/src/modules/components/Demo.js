@@ -106,7 +106,7 @@ const DemoRoot = styled('div', {
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
     backgroundColor: theme.palette.background.paper,
-    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+    border: `1px solid ${alpha(theme.palette.action.active, 0.1)}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
   }),

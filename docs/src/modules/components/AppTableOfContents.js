@@ -1,19 +1,21 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => {
   return {
-    top: 70,
+    top: 60,
     // Fix IE11 position sticky issue.
-    marginTop: 70,
-    width: 210,
+    marginTop: 60,
+    width: 240,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
@@ -29,11 +31,13 @@ const Nav = styled('nav')(({ theme }) => {
 const NavLabel = styled(Typography)(({ theme }) => {
   return {
     marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1),
     paddingLeft: theme.spacing(1.5),
-    fontSize: theme.typography.pxToRem(12),
+    fontSize: theme.typography.pxToRem(11),
     fontWeight: theme.typography.fontWeightBold,
-    color:
-      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
+    textTransform: 'uppercase',
+    letterSpacing: '.08rem',
+    color: theme.palette.grey[600],
   };
 });
 
@@ -49,27 +53,31 @@ const NavItem = styled(Link, {
   const activeStyles = {
     borderLeftColor:
       theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+    '&:hover': {
+      borderLeftColor:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+      color:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+    },
   };
 
   return {
     fontSize: theme.typography.pxToRem(13),
-    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
+    padding: theme.spacing(0, 1, 0, secondary ? 2.5 : '10px'),
     margin: theme.spacing(0.5, 0, 1, 0),
-    borderLeft: `2px solid transparent`,
+    borderLeft: `1px solid transparent`,
     boxSizing: 'border-box',
     fontWeight: theme.typography.fontWeightMedium,
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
-      color:
-        theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
+        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[600] : theme.palette.grey[200],
     },
     ...(!active && {
-      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.text.primary,
     }),
     // TODO: We probably want `aria-current="location"` instead.
-    // If so, are we sure "current" and "active" states should have the same styles?
     ...(active && activeStyles),
     '&:active': activeStyles,
   };
@@ -114,10 +122,10 @@ function flatten(headings) {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
+  const router = useRouter();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
 
-  const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -196,7 +204,8 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      href={`${activePage.linkProps?.linkAs ?? activePage.pathname}#${item.hash}`}
+      // always replace the #* in the url because `router.asPath` might contain previous #
+      href={`${router.asPath.replace(/#.*/, '')}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
@@ -208,6 +217,9 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
+      <NoSsr>
+        <TableOfContentsBanner />
+      </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>
           <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>

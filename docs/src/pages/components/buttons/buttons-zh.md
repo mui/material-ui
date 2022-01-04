@@ -12,23 +12,22 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 按钮可以展示用户能进行的操作。 他们通常直接放置在您的用户界面中，例如：
 
-- Dialogs 对话框
-- Modal windows 模态窗口
-- Forms 表单
-- Cards 卡片
-- Toolbars 工具栏
+- Modal windows（模态窗口）
+- Forms（表单）
+- Cards（卡片）
+- Toolbars（工具栏)
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic Button
 
-The `Button` comes with three variants: text (default), contained, and outlined.
+`Button`（按钮）组件有三种形式：文本（默认值）、实心，以及描边。
 
 {{"demo": "pages/components/buttons/BasicButtons.js"}}
 
 ### 文本按钮
 
-[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. 在卡片中，文本按钮有助于强调卡片的内容。
+[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. 在卡片中，文本按钮有助于强调卡片的内容。 在卡片中，文本按钮有助于强调卡片的内容。
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
@@ -44,7 +43,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 ### 描边按钮
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。
 
 你也可以将描边按钮作为比实心按钮次要一点的替代方案，或者用来作为比文本按钮重要一点的展示。
 
@@ -70,7 +69,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
 ## 尺寸
 
@@ -98,9 +97,15 @@ For larger or smaller buttons, use the `size` prop.
 
 ### 尺寸
 
-For larger or smaller icon buttons, use the `size` prop.
+如果需要更大或者更小的图标按钮，请使用`size`属性。
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
+### Cursor 鼠标悬浮的禁用
+
+使用 `color`属性来把调色板应用到组件上。
+
+{{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
 ## Customized Buttons（自定义按钮）
 
@@ -108,7 +113,7 @@ For larger or smaller icon buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/button/)。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
 
 ## 载入按钮（Loading buttons）
 
@@ -128,7 +133,7 @@ The loading buttons can show loading state and disable interactions.
 
 ## Third-party routing library（第三方路由库）
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `ButtonBase` 组件提供了 `component` 属性来处理此用例。 Here is a [more detailed guide](/guides/routing/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `ButtonBase` 组件提供了 `component` 属性来处理此用例。 `ButtonBase` 组件提供了 `component` 属性来处理此用例。 Here is a [more detailed guide](/guides/routing/#button).
 
 ## 设计局限
 
@@ -138,7 +143,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 若您希望使用 `not-allowed`， 您有以下两种选择：
 
-1. **仅使用 CSS**。 You can remove the pointer-events style on the disabled state of the `<button>` element:
+1. **仅使用 CSS**。 当 `<button>` 元素在处于禁用的状态时，你可以移除其鼠标样式。
 
 ```css
 .MuiButtonBase-root:disabled {
@@ -163,3 +168,41 @@ One frequent use case is to perform navigation on the client only, without an HT
 ```
 
 这个方法能支持任何元素，例如，一个 `<a>` 元素。
+
+## Unstyled
+
+The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```js
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+```
+
+{{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
+
+#### Customizing the root element
+
+By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
+
+{{"demo": "pages/components/buttons/UnstyledButtonsSpan.js"}}
+
+Compare the attributes on the span with the button from the previous demo.
+
+#### Complex customization
+
+You are not limited to using HTML elements for the button structure. SVG elements, even with complex structure, are equally acceptable.
+
+{{"demo": "pages/components/buttons/UnstyledButtonCustom.js"}}
+
+### useButton hook
+
+```js
+import { useButton } from '@mui/base/ButtonUnstyled';
+```
+
+If you need to use Button's functionality in another component, you can use the `useButton` hook. It returns props to be placed on a custom button element and fields representing the internal state of the button.
+
+The `useButton` hook requires the ref of the element it'll be used on. Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
+
+{{"demo": "pages/components/buttons/UseButton.js"}}

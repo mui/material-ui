@@ -256,6 +256,19 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
 
+  const monthPickerProps = {
+    className,
+    date,
+    disabled: other.disabled,
+    disablePast,
+    disableFuture,
+    onChange,
+    minDate,
+    maxDate,
+    onMonthChange,
+    readOnly: other.readOnly,
+  };
+
   return (
     <CalendarPickerRoot ref={ref} className={clsx(classes.root, className)} ownerState={ownerState}>
       <PickersCalendarHeader
@@ -294,16 +307,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
             />
           )}
 
-          {openView === 'month' && (
-            <MonthPicker
-              {...other}
-              date={date}
-              onChange={onChange}
-              minDate={minDate}
-              maxDate={maxDate}
-              onMonthChange={onMonthChange}
-            />
-          )}
+          {openView === 'month' && <MonthPicker {...monthPickerProps} />}
 
           {openView === 'day' && (
             <PickersCalendar

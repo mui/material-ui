@@ -70,7 +70,6 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### Ferramentas da comunidade
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
 - [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
 

@@ -10,13 +10,13 @@ O Material-UI suporta as versões mais recentes e estáveis de todos os principa
 
 | Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE                   |
 |:----- |:------- |:------ |:-------------- |:------------ |:-------------------- |
-| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.1      | 11 (partial support) |
+| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.1      | 11 (suporte parcial) |
 
 <!-- #default-branch-switch -->
 
 An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L12-L27) (check the `stable` entry).
 
-Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o conteúdo da página, é essencial que o Material-UI o suporte. [O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Você pode esperar que os componentes do Material-UI sejam renderizados sem grandes problemas.
+[O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). [O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Você pode esperar que os componentes do Material-UI sejam renderizados sem grandes problemas.
 
 ### IE 11
 
@@ -48,8 +48,8 @@ O CSS exibido nesta documentação é processado com [`autoprefixer`](https://ww
 
 <!-- #react-peer-version -->
 
-Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). Dê uma olhada nas [versões](https://material-ui.com/versions/) mais antigas para compatibilidade.
+Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). Dê uma olhada nas [versões](https://mui.com/versions/) mais antigas para compatibilidade.
 
 ## TypeScript
 
-Material-UI requires a minimum version of TypeScript 3.5.
+Material-UI requires a minimum version of TypeScript 3.5. This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { GlobalStyles } from '@mui/styled-engine';
-import { deepmerge } from '@mui/utils';
+import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import createSpacing from '../createTheme/createSpacing';
 import createBreakpoints from '../createTheme/createBreakpoints';
 import cssVarsParser from './cssVarsParser';
@@ -12,6 +12,7 @@ import getInitColorSchemeScript, {
   DEFAULT_MODE_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
+import createGetThemeVar from './createGetThemeVar';
 
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
@@ -66,7 +67,7 @@ export default function createCssVarsProvider(options) {
 
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
-    const hasMounted = React.useRef(null);
+    const hasMounted = React.useRef(false);
 
     // eslint-disable-next-line prefer-const
     let { components = {}, ...mergedTheme } = deepmerge(restBaseTheme, restThemeProp);
@@ -121,6 +122,7 @@ export default function createCssVarsProvider(options) {
       breakpoints: themeProp.breakpoints
         ? createBreakpoints(themeProp.breakpoints)
         : systemBreakpoints,
+      getThemeVar: createGetThemeVar(prefix),
     };
 
     const styleSheet = {};
@@ -155,7 +157,7 @@ export default function createCssVarsProvider(options) {
       }
     }, [colorScheme, attribute]);
 
-    React.useEffect(() => {
+    useEnhancedEffect(() => {
       if (!mode || !enableColorScheme) {
         return undefined;
       }
@@ -194,6 +196,9 @@ export default function createCssVarsProvider(options) {
 
     React.useEffect(() => {
       hasMounted.current = true;
+      return () => {
+        hasMounted.current = false;
+      };
     }, []);
 
     return (

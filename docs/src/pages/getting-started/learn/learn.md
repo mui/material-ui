@@ -30,14 +30,14 @@ Here are some recommended resources, some of which are free.
 - **Customize MUI for your project**: a look at how you can customize MUI to align with your company identity (design system) and products
   - 📹 [The videos](https://www.youtube.com/watch?v=bDkB3LoQKxs)
 - **Meet MUI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of MUI.
-  - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
+  - 📝 [The blog post](https://www.freecodecamp.org/news/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c/)
 - **Learn React & MUI**: a series of videos covering all the important MUI components.
   - 📹 [The videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
 - **Getting Started With MUI For React**: a blog post that guides you in building a simple card list.
   - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
 - **Elegant UX in React with MUI**: a blog post covering some important MUI concepts.
-  - 📝 [The blog post](https://alligator.io/react/material-ui/)
+  - 📝 [The blog post](https://www.digitalocean.com/community/tutorials/react-material-ui)
 
 ### Paid
 
@@ -48,7 +48,7 @@ Here are some recommended resources, some of which are free.
 - **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using MUI and React.
 
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
-  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react/)
 
 - **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using MUI.
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/)

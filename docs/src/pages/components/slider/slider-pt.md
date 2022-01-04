@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 
 <p class="description">Sliders permitem que os usuários façam seleções a partir de um intervalo de valores.</p>
 
-Os [Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
+[Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -126,12 +126,12 @@ Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em
 
 <!-- #default-branch-switch -->
 
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@material-ui/unstyled@next)
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 ```
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}
@@ -152,7 +152,7 @@ O componente lida com a maior parte do trabalho necessário para torná-lo acess
 The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
-.MuiSlider-valueLabel {
+. MuiSlider-valueLabel {
   left: calc(-50% - 4px);
 }
 ```

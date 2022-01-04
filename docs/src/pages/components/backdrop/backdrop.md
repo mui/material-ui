@@ -19,9 +19,9 @@ In its simplest form, the backdrop component will add a dimmed layer over your a
 
 ## Unstyled
 
-The backdrop also comes with the unstyled package.
+The backdrop also comes with the Base package.
 It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import Backdrop from '@mui/base/Backdrop';
+import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 ```

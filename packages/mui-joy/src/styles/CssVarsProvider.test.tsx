@@ -283,7 +283,7 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('palette-background').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-palette-background-default)',
+          body: 'var(--joy-palette-background-body)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',
@@ -316,7 +316,6 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('font-size').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontSize-default)',
           xs: 'var(--joy-fontSize-xs)',
           sm: 'var(--joy-fontSize-sm)',
           md: 'var(--joy-fontSize-md)',
@@ -331,7 +330,7 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('font-family').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontFamily-default)',
+          body: 'var(--joy-fontFamily-body)',
           display: 'var(--joy-fontFamily-display)',
           code: 'var(--joy-fontFamily-code)',
           fallback: 'var(--joy-fontFamily-fallback)',
@@ -339,7 +338,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('font-weight').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontWeight-default)',
           xs: 'var(--joy-fontWeight-xs)',
           sm: 'var(--joy-fontWeight-sm)',
           md: 'var(--joy-fontWeight-md)',
@@ -349,7 +347,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('line-height').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-lineHeight-default)',
           sm: 'var(--joy-lineHeight-sm)',
           md: 'var(--joy-lineHeight-md)',
           lg: 'var(--joy-lineHeight-lg)',
@@ -357,7 +354,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('letter-spacing').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-letterSpacing-default)',
           sm: 'var(--joy-letterSpacing-sm)',
           md: 'var(--joy-letterSpacing-md)',
           lg: 'var(--joy-letterSpacing-lg)',
@@ -370,7 +366,7 @@ describe('[Joy] CssVarsProvider', () => {
         const theme = useTheme();
         return (
           <div>
-            <div data-testid="border-radius">{JSON.stringify(theme.vars.borderRadius)}</div>
+            <div data-testid="radius">{JSON.stringify(theme.vars.radius)}</div>
           </div>
         );
       };
@@ -381,25 +377,24 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('border-radius').textContent).to.equal(
+      expect(screen.getByTestId('radius').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-borderRadius-default)',
-          xs: 'var(--joy-borderRadius-xs)',
-          sm: 'var(--joy-borderRadius-sm)',
-          md: 'var(--joy-borderRadius-md)',
-          lg: 'var(--joy-borderRadius-lg)',
-          xl: 'var(--joy-borderRadius-xl)',
+          xs: 'var(--joy-radius-xs)',
+          sm: 'var(--joy-radius-sm)',
+          md: 'var(--joy-radius-md)',
+          lg: 'var(--joy-radius-lg)',
+          xl: 'var(--joy-radius-xl)',
         }),
       );
     });
 
-    it('elevation ring & channel', () => {
+    it('shadow ring & channel', () => {
       const Vars = () => {
         const theme = useTheme();
         return (
           <div>
-            <div data-testid="elevation-ring">{theme.vars.elevationRing}</div>
-            <div data-testid="elevation-channel">{theme.vars.elevationChannel}</div>
+            <div data-testid="shadow-ring">{theme.vars.shadowRing}</div>
+            <div data-testid="shadow-channel">{theme.vars.shadowChannel}</div>
           </div>
         );
       };
@@ -410,10 +405,8 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('elevation-ring').textContent).to.equal('var(--joy-elevationRing)');
-      expect(screen.getByTestId('elevation-channel').textContent).to.equal(
-        'var(--joy-elevationChannel)',
-      );
+      expect(screen.getByTestId('shadow-ring').textContent).to.equal('var(--joy-shadowRing)');
+      expect(screen.getByTestId('shadow-channel').textContent).to.equal('var(--joy-shadowChannel)');
     });
   });
 

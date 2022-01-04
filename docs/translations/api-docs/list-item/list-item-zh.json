@@ -47,7 +47,7 @@
     },
     "disabled": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the inner `component` element",
+      "nodeName": "内部的`组件`元素",
       "conditions": "<code>disabled={true}</code>"
     },
     "divider": {

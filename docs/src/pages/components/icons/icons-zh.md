@@ -17,7 +17,7 @@ Material-UI 通过以下三种方式来支持图标的使用：
 
 ## Material Icons
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below). 对于每个 SVG 图标，我们从 `@material-ui/icons` 包中导出相应的 React 组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
+Google has created over 1,900 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
 ### 安装
 
@@ -25,22 +25,22 @@ Google has created over 1,700 official Material icons, each in five different "t
 
 ```sh
 // 使用 npm 安装
-npm install @material-ui/icons@next
+npm install @mui/icons-material
 
 // 使用 yarn 安装
-yarn add @material-ui/icons@next
+yarn add @mui/icons-material
 ```
 
 这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
-如果你的项目中还没有使用 Material-UI，那么你可以用以下方法添加它：
+如果你的项目中还没有使用 MUI，那么你可以用以下方法添加它：
 
 ```sh
-// 用 npm 安装
-npm install @material-ui/core@next
+// 使用 npm 安装
+npm install @mui/material
 
-// 用 yarn 安装
-yarn add @material-ui/core@next
+// 使用 yarn 安装
+yarn add @mui/material
 ```
 
 ### 使用
@@ -50,14 +50,14 @@ yarn add @material-ui/core@next
 - 方法 1:
 
   ```jsx
-  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
   ```
 
 - 方法 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
 对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。
@@ -66,11 +66,11 @@ yarn add @material-ui/core@next
 
 - 导出为 Filled 主题（默认值）：`@material-ui/icons/Delete`，
 - 导出为 Outlined 主题：`@material-ui/icons/DeleteOutlined`，
-- 导出为 Rounded 主题：`@material-ui/icons/DeleteRounded `，
-- 导出为 Twotone 主题：`@material-ui/icons/DeleteTwoTone `，
-- 导出为 Sharp 主题：`@material-ui/icons/DeleteSharp `，
+- 导出为 Rounded 主题：`@material-ui/icons/DeleteRounded`，
+- 导出为 Twotone 主题：`@material-ui/icons/DeleteTwoTone`，
+- 导出为 Sharp 主题：`@material-ui/icons/DeleteSharp`，
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
@@ -79,7 +79,7 @@ yarn add @material-ui/core@next
 出于测试目的，每个从 `@material-ui/icons` 暴露的图标都有一个 `data-testid` 属性，这其中包含了图标的名称。 就像这样：
 
 ```jsx
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
 一旦挂载后，它就具有以下属性：
@@ -93,7 +93,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
-- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 （使用 `viewBox` 属性，您可以随意自定义）。
+- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 (This can be customized with the `viewBox` attribute, to inherit `viewBox` value from original image `inheritViewBox` attribute can be used).
 - 默认情况下，此组件会继承当前的颜色。 当然，通过 `color` 这个属性，你可以让图标使用主题里的颜色。
 
 ```jsx
@@ -116,7 +116,7 @@ function HomeIcon(props) {
 
 ### 组件属性
 
-即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 通过 [svgr](https://github.com/gregberge/svgr) 提供的加载器，您可以导入 SVG 文件，并以 React 组件形式使用。 譬如，使用 webpack ：
+即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. 譬如，使用 webpack ：
 
 ```jsx
 // webpack.config.js
@@ -204,13 +204,13 @@ import Icon from '@material-ui/core/Icon';
 对于其他字体，你可以使用 `baseClassName` 属性来自定义基线类名。 例如，你可以使用 Material Design 显示 two-tone 图标：
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
-  // 引入 MD 的 two tones 变体                                   ^^^^^^^^
-/>
+  // Import the two tones MD variant                           ^^^^^^^^
+/>;
 ```
 
 {{"demo": "pages/components/icons/TwoToneIcons.js"}}
@@ -225,6 +225,11 @@ const theme = createTheme({
     MuiIcon: {
       defaultProps: {
         // Replace the `material-icons` default value.
+        baseClassName: 'material-icons-two-tone',
+      },
+    },
+  },
+});
         baseClassName: 'material-icons-two-tone',
       },
     },
@@ -301,6 +306,12 @@ import SvgIcon from '@material-ui/core/SvgIcon';
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
 </IconButton>;
+
+<IconButton aria-label="delete">
+  <SvgIcon>
+    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+  </SvgIcon>
+</IconButton>;
 ```
 
 #### 语义化的 font icons
@@ -308,6 +319,12 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 你需要提供一个只有辅助技术才能看到的文本替代方案：
 
 ```jsx
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
+import { visuallyHidden } from '@mui/utils';
+
+// ...
+
 import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
 import { visuallyHidden } from '@material-ui/utils';
@@ -320,4 +337,4 @@ import { visuallyHidden } from '@material-ui/utils';
 
 #### 参考
 
-- https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
+- https://www.tpgi.com/using-aria-enhance-svg-accessibility/

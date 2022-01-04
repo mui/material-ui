@@ -2,6 +2,8 @@
 
 <p class="description">Esta seção aborda o uso mais avançado de @material-ui/core/styles.</p>
 
+> **Note**: `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+
 ## Temas
 
 Adicione um `ThemeProvider` para o nível superior de sua aplicação para passar um tema pela árvore de componentes do React. Dessa maneira, você poderá acessar o objeto de tema em funções de estilo.
@@ -273,7 +275,7 @@ A ordem de chamada do hook e a ordem de concatenação da classe **não importam
 
 ### Ponto de inserção (insertionPoint)
 
-JSS [fornece um mecanismo](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) para controlar esta situação. Adicionando um `ponto de inserção` dentro do HTML, você pode [ controlar a ordem](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) que as regras CSS são aplicadas aos seus componentes.
+JSS [fornece um mecanismo](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) para controlar esta situação. By adding an `insertionPoint` within the HTML you can [control the order](https://cssinjs.org/jss-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 #### Comentário HTML
 
@@ -287,12 +289,12 @@ A abordagem mais simples é adicionar um comentário HTML no `<head>` que determ
 ```
 
 ```jsx
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+insertionPoint: 'jss-insertion-point',
+});
 
-const jss = create({
-  ...jssPreset(),
-  // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -313,12 +315,12 @@ export default function App() {
 ```
 
 ```jsx
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+insertionPoint: 'jss-insertion-point',
+});
 
-const jss = create({
-  ...jssPreset(),
-  // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
@@ -332,21 +334,18 @@ export default function App() {
 codesandbox.io impede o acesso ao elemento `<head>`. Para contornar esse comportamento, você pode usar a API JavaScript `document.createComment()`:
 
 ```jsx
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
-
-const styleNode = document.createComment('jss-insertion-point');
-document.head.insertBefore(styleNode, document.head.firstChild);
-
-const jss = create({
-  ...jssPreset(),
-  // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
-  insertionPoint: 'jss-insertion-point',
+insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
 export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
+  import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+
+const jss = create({
+  ...jssPreset(),
+  // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
 ```
 
 ## Renderização do lado servidor
@@ -385,13 +384,15 @@ Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-mate
 
 <!-- #default-branch-switch -->
 
-Consulte [este exemplo de projeto Gatsby](https://github.com/mui-org/material-ui/blob/HEAD/examples/gatsby) para um exemplo de uso atualizado.
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
 Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
 
-Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/HEAD/examples/nextjs).
+<!-- #default-branch-switch -->
+
+Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## Nomes de classes
 
@@ -432,85 +433,11 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### Com `@material-ui/core`
-
-Os nomes de classe gerados dos componentes do pacote `@material-ui/core` se comportam de maneira diferente. Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
+Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
 
 - Apenas um provedor de tema é usado (**Sem aninhamento de tema **)
 - A folha de estilo tem um nome que começa com `Mui` (todos os componentes do Material-UI).
 - A opção `disableGlobal` do [gerador de nome de classe](/styles/api/#creategenerateclassname-options-class-name-generator) é `false` (o padrão).
-
-Essas condições são atendidas com a situação de uso mais comum de `@material-ui/core`. Por exemplo, esta folha de estilo:
-
-```jsx
-const useStyles = makeStyles(
-  {
-    root: {
-      /* … */
-    },
-    label: {
-      /* … */
-    },
-    outlined: {
-      /* … Mui-disabled { /* … */ }
-. */
-      },
-    },
-    outlinedPrimary: {
-      /* … */
-      '&:hover': {
-        /* … */
-      },
-    },
-    disabled: {},
-  },
-  { name: 'MuiButton' },
-);
-```
-
-gera os seguintes nomes de classe que você pode sobrescrever:
-
-```css
-. MuiButton-root { /* … */ }
-. MuiButton-label { /* … */ }
-. MuiButton-outlined { /* … */ }
-. MuiButton-outlined. */
-}
-.MuiButton-outlined.Mui-disabled {
-  /* … */
-}
-.muibutton-outlinedprimary: {
-  /* … MuiButton-outlinedPrimary:hover { /* … */ } */
-}
-```
-
-_Esta é uma simplificação da folha de estilo do componente `@material-ui/core/Button`._
-
-A customização de campos de texto pode ser incômoda com a [API `classes`](#overriding-styles-classes-prop), onde você tem que definir a propriedade classes. É mais fácil usar os valores padrão, conforme descrito acima. Por exemplo:
-
-```jsx
-import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
-
-const StyledTextField = styled(TextField)`
-  label.focused {
-    color: green; 💚
-  }
-  .MuiOutlinedInput-root {
-    fieldset {
-      border-color: red; 💔
-    }
-    &:hover fieldset {
-      border-color: yellow; 💛
-    }
-    &.Mui-focused fieldset {
-      border-color: green; 💚
-    }
-  }
-`;
-```
-
-{{"demo": "pages/styles/advanced/GlobalClassName.js"}}
 
 ## CSS global
 
@@ -528,4 +455,199 @@ Você também pode combinar nomes de classe gerados pelo JSS com nomes globais.
 
 ## Prefixos CSS
 
-O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui-org/material-ui/issues/9293) se você não ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa dele.
+O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui-org/material-ui/issues/9293) se você não conseguir ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa disso.
+
+## TypeScript usage
+
+Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há alguns utilitários que tornam a experiência menos dolorosa possível.
+
+### Utilizando `createStyles` para evitar a ampliação de tipo (type widening)
+
+A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/literal-type-widening-in-typescript), which causes this example not to work as expected:
+
+```ts
+const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  }
+};
+
+withStyles(styles);
+//         ^^^^^^
+//         Os tipos de propriedade 'flexDirection' são incompatíveis.
+//           Tipo 'string' não pode ser atribuído para o tipo '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
+```
+
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. Para corrigir isto, você pode passar o objeto de estilos diretamente para `withStyles`:
+
+```ts
+withStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
+```
+
+No entanto, a ampliação de tipos continuará a causar dores de cabeça se você tentar fazer com que os estilos dependam do tema:
+
+```ts
+withStyles(({ palette, spacing }) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: spacing.unit,
+    backgroundColor: palette.background.default,
+    color: palette.primary.main,
+  },
+}));
+```
+
+Isso ocorre pois o TypeScript [amplia o retorno de tipos de expressões de função](https://github.com/Microsoft/TypeScript/issues/241).
+
+Por causa disso, é recomendado usar a função utilitária `createStyles` para construir seu objeto de regras de estilo:
+
+```ts
+// Estilos sem dependência
+const styles = createStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
+
+// Estilos com dependência do tema
+const styles = ({ palette, spacing }: Theme) => createStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: spacing.unit,
+    backgroundColor: palette.background.default,
+    color: palette.primary.main,
+  },
+});
+```
+
+`createStyles` é apenas a identidade da função; ela não "faz nada" em tempo de execução, apenas auxilia a inferência de tipos em tempo de compilação.
+
+### Consultas de Mídia (Media queries)
+
+`withStyles` permite utilizar um objeto de estilos de nível superior com consultas de mídia assim:
+
+```ts
+const styles = createStyles({
+  root: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    root: {
+      display: 'flex',
+    },
+  },
+});
+```
+
+To allow these styles to pass TypeScript however, the definitions have to be unambiguous concerning the names for CSS classes and actual CSS property names. Due to this, class names that are equal to CSS properties should be avoided.
+
+```ts
+// erro porque TypeScript acha que `@media (min-width: 960px)` é o nome da classe
+// e `content` é a propriedade css
+const ambiguousStyles = createStyles({
+  content: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    content: {
+      display: 'flex',
+    },
+  },
+});
+
+// funciona corretamente
+const ambiguousStyles = createStyles({
+  contentClass: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    contentClass: {
+      display: 'flex',
+    },
+  },
+});
+```
+
+### Incrementando suas propriedades utilizando `WithStyles`
+
+Desde que um componente seja decorado com `withStyles(styles)`, ele recebe uma propriedade injetada `classes`, você pode querer definir estas propriedades de acordo com:
+
+```ts
+const styles = (theme: Theme) => createStyles({
+  root: { /* ... */ },
+  paper: { /* ... */ },
+  button: { /* ... */ },
+});
+
+interface Props {
+  // non-style props
+  foo: number;
+  bar: boolean;
+  // injected style props
+  classes: {
+    root: string;
+    paper: string;
+    button: string;
+  };
+}
+```
+
+No entanto isto não é muito elegante de acordo com o princípio de software [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), porque requer que você mantenha os nomes das classes (`'root'`, `'paper'`, `'button'`, ...) em dois locais diferentes. Nós fornecemos um operador de tipo `WithStyles` para ajudar com isso, assim você pode apenas escrever:
+
+```ts
+import styled from 'styled-components';
+import { TextField } from '@material-ui/core';
+
+const StyledTextField = styled(TextField)`
+  label.focused {
+    color: green; 💚
+  }
+  . MuiOutlinedInput-root {
+    fieldset {
+      border-color: red; 💔
+    }
+    &:hover fieldset {
+      border-color: yellow; 💛
+    }
+    &. Mui-focused fieldset {
+      border-color: green; 💚
+    }
+  }
+`;
+```
+
+### Decorando componentes
+
+Aplicando `withStyles(styles)` como uma função, nos dá o resultado como o esperado:
+
+```tsx
+const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
+  <Typography variant={type} color={color} classes={classes}>
+    {text}
+  </Typography>
+));
+
+const DecoratedClass = withStyles(styles)(
+  class extends React.Component<Props> {
+    render() {
+      const { text, type, color, classes } = this.props;
+      return (
+        <Typography variant={type} color={color} classes={classes}>
+          {text}
+        </Typography>
+      );
+    }
+  },
+);
+```
+
+Infelizmente devido a uma [limitação atual dos decoradores do TypeScript](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` não pode ser usado como decorador no TypeScript.

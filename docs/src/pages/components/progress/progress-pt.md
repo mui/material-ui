@@ -30,7 +30,7 @@ Indicador **determinado** mostra quanto tempo uma operação vai demorar.
 
 ### Circular determinado
 
-{{"demo": "pages/components/progress/CircularIntegration.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Integração interativa
 

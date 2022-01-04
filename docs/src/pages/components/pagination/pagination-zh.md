@@ -36,6 +36,12 @@ githubLabel: 'component: Pagination'
 
 你可以使用 `siblingRange` 属性来指定当前页面两侧显示的数字多少，并使用`boundaryRange`属性来调整在起始和结束页码旁边显示的位数。
 
+{{"demo": "pages/components/pagination/CustomIcons.js"}}
+
+## 分页范围
+
+你可以使用 `siblingRange` 属性来指定当前页面两侧显示的数字多少，并使用`boundaryRange`属性来调整在起始和结束页码旁边显示的位数。
+
 {{"demo": "pages/components/pagination/PaginationRanges.js"}}
 
 ## 可控制的分页
@@ -48,7 +54,7 @@ githubLabel: 'component: Pagination'
 
 ## `usePagination`
 
-For advanced customization use cases, a headless `usePagination()` hook is exposed. 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 The Pagination component is built on this hook.
+For advanced customization use cases, a headless `usePagination()` hook is exposed. 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 The Pagination component is built on this hook.
 
 ```jsx
 import { usePagination } from '@material-ui/core/Pagination';
@@ -68,7 +74,7 @@ import { usePagination } from '@material-ui/core/Pagination';
 
 您可以在文档的 [表格部分](/components/tables/#custom-pagination-options) 中了解更多关于此用例的信息。
 
-## 无障碍设计
+## Accessibility
 
 ### ARIA
 
