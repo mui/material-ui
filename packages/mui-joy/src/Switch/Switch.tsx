@@ -32,30 +32,34 @@ const SwitchRoot = styled('span', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
   return {
-    '--joy-Switch-track-radius': theme.vars.radius.lg,
-    '--joy-Switch-track-width': '48px',
-    '--joy-Switch-track-height': '24px',
-    '--joy-Switch-thumb-size': '16px',
+    [theme.getThemeVar('Switch-track-radius')]: theme.vars.radius.lg,
+    [theme.getThemeVar('Switch-track-width')]: '48px',
+    [theme.getThemeVar('Switch-track-height')]: '24px',
+    [theme.getThemeVar('Switch-thumb-size')]: '16px',
     ...(ownerState.size === 'sm' && {
-      '--joy-Switch-track-width': '40px',
-      '--joy-Switch-track-height': '20px',
-      '--joy-Switch-thumb-size': '12px',
+      [theme.getThemeVar('Switch-track-width')]: '40px',
+      [theme.getThemeVar('Switch-track-height')]: '20px',
+      [theme.getThemeVar('Switch-thumb-size')]: '12px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--joy-Switch-track-width': '64px',
-      '--joy-Switch-track-height': '32px',
-      '--joy-Switch-thumb-size': '24px',
+      [theme.getThemeVar('Switch-track-width')]: '64px',
+      [theme.getThemeVar('Switch-track-height')]: '32px',
+      [theme.getThemeVar('Switch-thumb-size')]: '24px',
     }),
-    '--joy-Switch-thumb-radius': 'calc(var(--joy-Switch-track-radius) - 2px)',
-    '--joy-Switch-thumb-width': 'var(--joy-Switch-thumb-size)',
-    '--joy-Switch-thumb-offset':
-      'max((var(--joy-Switch-track-height) - var(--joy-Switch-thumb-size)) / 2, 0px)',
+    [theme.getThemeVar('Switch-thumb-radius')]: `calc(${theme.getThemeVar(
+      'Switch-track-radius',
+    )} - 2px)`,
+    [theme.getThemeVar('Switch-thumb-width')]: theme.getThemeVar('Switch-thumb-size'),
+    [theme.getThemeVar('Switch-thumb-offset')]: `max((${theme.getThemeVar(
+      'Switch-track-height',
+    )} - ${theme.getThemeVar('Switch-thumb-size')}) / 2, 0px)`,
     display: 'inline-block',
-    width: 'var(--joy-Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
-    borderRadius: 'var(--joy-Switch-track-radius)',
+    width: `${theme.getThemeVar('Switch-track-width')}`, // should have the same width as track because flex parent can stretch SwitchRoot.
+    borderRadius: `${theme.getThemeVar('Switch-track-radius')}`,
     position: 'relative',
-    padding:
-      'calc((var(--joy-Switch-thumb-size) / 2) - (var(--joy-Switch-track-height) / 2)) calc(-1 * var(--joy-Switch-thumb-offset))',
+    padding: `calc((${theme.getThemeVar('Switch-thumb-size')} / 2) - (${theme.getThemeVar(
+      'Switch-track-height',
+    )} / 2)) calc(-1 * ${theme.getThemeVar('Switch-thumb-offset')})`,
     color: theme.vars.palette.neutral.containedBg,
     '&:hover': {
       color: theme.vars.palette.neutral.containedBg,
@@ -96,32 +100,36 @@ const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(() => ({
+})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(({ theme }) => ({
   position: 'relative',
   color: 'inherit',
-  height: 'var(--joy-Switch-track-height)',
-  width: 'var(--joy-Switch-track-width)',
+  height: theme.getThemeVar('Switch-track-height'),
+  width: theme.getThemeVar('Switch-track-width'),
   display: 'block',
   backgroundColor: 'currentColor',
-  borderRadius: 'var(--joy-Switch-track-radius)',
+  borderRadius: theme.getThemeVar('Switch-track-radius'),
 }));
 
 const SwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})<{ ownerState: SwitchProps }>(() => ({
+})<{ ownerState: SwitchProps }>(({ theme }) => ({
   transition: 'left 0.2s',
   position: 'absolute',
   top: '50%',
-  left: 'calc(50% - var(--joy-Switch-track-width) / 2 + var(--joy-Switch-thumb-width) / 2 + var(--joy-Switch-thumb-offset))',
+  left: `calc(50% - ${theme.getThemeVar('Switch-track-width')} / 2 + ${theme.getThemeVar(
+    'Switch-thumb-width',
+  )} / 2 + ${theme.getThemeVar('Switch-thumb-offset')})`,
   transform: 'translate(-50%, -50%)',
-  width: 'var(--joy-Switch-thumb-width)',
-  height: 'var(--joy-Switch-thumb-size)',
-  borderRadius: 'var(--joy-Switch-thumb-radius)',
+  width: theme.getThemeVar('Switch-thumb-width'),
+  height: theme.getThemeVar('Switch-thumb-size'),
+  borderRadius: theme.getThemeVar('Switch-thumb-radius'),
   backgroundColor: '#fff',
   [`&.${switchClasses.checked}`]: {
-    left: 'calc(50% + var(--joy-Switch-track-width) / 2 - var(--joy-Switch-thumb-width) / 2 - var(--joy-Switch-thumb-offset))',
+    left: `calc(50% + ${theme.getThemeVar('Switch-track-width')} / 2 - ${theme.getThemeVar(
+      'Switch-thumb-width',
+    )} / 2 - ${theme.getThemeVar('Switch-thumb-offset')})`,
   },
 }));
 
