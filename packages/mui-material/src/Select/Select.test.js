@@ -294,8 +294,8 @@ describe('<Select />', () => {
 
   describe('prop: defaultOpen', () => {
     it('should be open on mount', () => {
-      render(<Select defaultOpen value="" />);
-      expect(document.querySelector('div[role="button"]')).to.have.attribute(
+      const { getByRole } = render(<Select defaultOpen value="" />);
+      expect(getByRole('button')).to.have.attribute(
         'aria-expanded',
         'true',
       );
