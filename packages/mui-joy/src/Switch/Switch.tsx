@@ -32,16 +32,16 @@ const SwitchRoot = styled('span', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
   return {
-    '--joy-Switch-track-radius': theme.vars.borderRadius[ownerState.roundness!],
+    '--joy-Switch-track-radius': theme.vars.radius.lg,
     '--joy-Switch-track-width': '48px',
     '--joy-Switch-track-height': '24px',
     '--joy-Switch-thumb-size': '16px',
-    ...(ownerState.size === 'small' && {
+    ...(ownerState.size === 'sm' && {
       '--joy-Switch-track-width': '40px',
       '--joy-Switch-track-height': '20px',
       '--joy-Switch-thumb-size': '12px',
     }),
-    ...(ownerState.size === 'large' && {
+    ...(ownerState.size === 'lg' && {
       '--joy-Switch-track-width': '64px',
       '--joy-Switch-track-height': '32px',
       '--joy-Switch-thumb-size': '24px',
@@ -56,9 +56,6 @@ const SwitchRoot = styled('span', {
     position: 'relative',
     padding:
       'calc((var(--joy-Switch-thumb-size) / 2) - (var(--joy-Switch-track-height) / 2)) calc(-1 * var(--joy-Switch-thumb-offset))',
-    ...(ownerState.elevation && {
-      boxShadow: theme.vars.elevation[ownerState.elevation],
-    }),
     color: theme.vars.palette.neutral.containedBg,
     '&:hover': {
       color: theme.vars.palette.neutral.containedBg,
@@ -143,8 +140,6 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     readOnly: readOnlyProp,
     required,
     color = 'primary',
-    elevation,
-    roundness = 'default',
     size,
     ...otherProps
   } = props;
@@ -169,8 +164,6 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     focusVisible,
     readOnly,
     color,
-    elevation,
-    roundness,
     size,
   };
 

@@ -84,7 +84,6 @@ const ColorSchemePicker = () => {
   }
 
   return (
-    // @ts-expect-error wait for Button theme PR
     <Button
       variant="outlined"
       onClick={() => {
@@ -102,10 +101,8 @@ const ColorSchemePicker = () => {
 };
 
 const props = {
-  size: ['small', undefined, 'large'],
+  size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
-  roundness: ['xs', 'sm', 'md', 'lg', 'xl'],
-  elevation: ['xs', 'sm', 'md', 'lg', 'xl'],
 } as const;
 
 export default function JoySwitch() {
@@ -124,7 +121,7 @@ export default function JoySwitch() {
               <Typography sx={{ textDecoration: 'underline' }}>{propName}</Typography>
               {propValue.map((value) => (
                 <Box>
-                  <Switch {...{ [propName]: value }} />
+                  <Switch defaultChecked {...{ [propName]: value }} />
                   {value && (
                     <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                       {value}
