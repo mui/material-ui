@@ -1,10 +1,10 @@
-# 属性
+# Properties 属性
 
 <p class="description">本页列出了所有的自定义系统属性，解释了它们是如何与主题链接的，以及它们所计算的 CSS 属性。 所有其他常规的 CSS 属性和选择器也被支持。</p>
 
 ## 属性参考表
 
-请注意，此表仅列出自定义属性，支持所有其他常规的 CSS 属性和选择器。 You can check out the [legend](/system/properties/#legend) below.
+请注意，此表仅列出自定义属性，支持所有其他常规的 CSS 属性和选择器。 您可以参考下面的 [图例](/system/properties/#legend)。
 
 | 系统键                   | CSS 属性                                                                                       | 系统样式函数                                                       | 主题映射                                                                                    |
 |:--------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |:--------------------------------------------------------------------------------------- |
@@ -62,6 +62,12 @@
 | `mt`, `marginTop`     | `margin-top`                                                                                 | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
 | `mx`, `marginX`       | `margin-left`, `margin-right`                                                                | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
 | `my`, `marginY`       | `margin-top`, `margin-bottom`                                                                | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `marginInline`        | `margin-inline`                                                                              | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `marginInlineStart`   | `margin-inline-start`                                                                        | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `marginInlineEnd`     | `margin-inline-end`                                                                          | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `marginBlock`         | `margin-block`                                                                               | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `marginBlockStart`    | `margin-block-start`                                                                         | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `marginBlockEnd`      | `margin-block-end`                                                                           | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
 | `p`, `padding`        | `padding`                                                                                    | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
 | `pb`, `paddingBottom` | `padding-bottom`                                                                             | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
 | `pl`, `paddingLeft`   | `padding-left`                                                                               | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
@@ -69,6 +75,12 @@
 | `pt`, `paddingTop`    | `padding-top`                                                                                | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
 | `px`, `paddingX`      | `padding-left`, `padding-right`                                                              | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
 | `py`, `paddingY`      | `padding-top`, `padding-bottom`                                                              | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `paddingInline`       | `padding-inline`                                                                             | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `paddingInlineStart`  | `padding-inline-start`                                                                       | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `paddingInlineEnd`    | `padding-inline-end`                                                                         | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `paddingBlock`        | `padding-block`                                                                              | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `paddingBlockStart`   | `padding-block-start`                                                                        | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
+| `paddingBlockEnd`     | `padding-block-end`                                                                          | [`spacing`](/system/spacing/)                                | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing)           |
 | `typography`          | `font-family`, `font-weight`, `font-size`, `line-height`, `letter-spacing`, `text-transform` | [`typography`](/system/typography/#variant)                  | [`theme.typography[value]`](/customization/default-theme/?expand-path=$.typography)     |
 | `fontFamily`          | `font-family`                                                                                | [`fontFamily`](/system/typography/#font-family)              | [`theme.typography[value]`](/customization/default-theme/?expand-path=$.typography)     |
 | `fontSize`            | `font-size`                                                                                  | [`fontSize`](/system/typography/#font-size)                  | [`theme.typography[value]`](/customization/default-theme/?expand-path=$.typography)     |
@@ -108,7 +120,7 @@ and detail each column:
   }
   ```
 
-- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. 函数可以从 `@material-ui/system` 导入。 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
+- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
 - **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 
@@ -117,7 +129,7 @@ and detail each column:
 ```jsx
 <Button sx={{ mb: 3 }} />
 
-// is equivalent to
+// 等同于
 <Button sx={{ marginBottom: theme => theme.spacing(3)}} />
 ```
 

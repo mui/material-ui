@@ -43,7 +43,7 @@ Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`
 </List>
 ```
 
-Esse padrão é muito poderoso e permite uma grande flexibilidade, além de uma maneira de interoperar com outras bibliotecas, como a sua biblioteca de formulários ou roteamento favorita. Mas também **vem com algumas advertências!**
+Esse padrão é muito poderoso e permite uma grande flexibilidade, além de uma maneira de interoperar com outras bibliotecas, como a sua biblioteca de formulários ou roteamento favorita. Mas também **vem com uma pequena advertência!**
 
 ### Advertência com o uso de funções em linha
 
@@ -114,13 +114,54 @@ import { Link } from 'react-router-dom';
 
 ### Usando TypeScript
 
-Você pode encontrar os detalhes no [guia TypeScript](/guides/typescript/#usage-of-component-prop).
+Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Por exemplo, o nó raiz de um Button pode ser substituído por um Link do React Router, e quaisquer propriedades adicionais que são passados para o Button, como `to`, serão propagadas para o componente Link. Para um exemplo de código relativo ao Button e o react-router-dom veja [estas demonstrações](/guides/routing/#component-prop).
+
+To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
+
+Os exemplos abaixo usam `TypographyProps` mas o mesmo funcionará para qualquer componente que tenha propriedades definidas com `OverrideProps`.
+
+O componente `CustomComponent` a seguir tem as mesmas propriedades que o componente `Typography`.
+
+```ts
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
+<Button component={MyButton} />;
+```
+
+Agora o `CustomComponent` pode ser usado com uma propriedade `component` que deve ser definida para `'a'`. Além disso, o `CustomComponent` terá todas as propriedades de um elemento HTML `<a>`. As outras propriedades do componente `Typography` também estarão presentes nas propriedades do `CustomComponent`.
+
+It is possible to have generic `CustomComponent` which will accept any React component, custom, and HTML elements.
+
+```ts
+-const SomeContent = props => <div {...props}>Olá, Mundo!</div>;
++const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
+<Tooltip title="Olá, de novo."><SomeContent /></Tooltip>;
+```
+
+If the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
+
+```ts
+function ThirdPartyComponent({ prop1 } : { prop1: string }) {
+  return <div />
+}
+// ...
+function ThirdPartyComponent({ prop1 }: { prop1: string }) {
+  return <div />;
+}
+// ...
+```
+
+A `prop1` tornou-se necessária para o `GenericCustomComponent` como o `ThirdPartyComponent` tem ela como um requisito.
+
+Nem todos os componentes suportam totalmente qualquer tipo de componente que você passe. If you encounter a component that rejects its `component` props in TypeScript, please open an issue. Há um esforço contínuo para corrigir isso fazendo com que a propriedade component seja genérica.
 
 ## Advertência com refs
 
 Esta seção aborda advertências ao usar um componente customizado como `children` ou para a propriedade `component`.
 
-Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função se tornou obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
+Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função está obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
 
 - Qualquer componente do Material-UI
 - Componentes de classe, ou seja, `React.Component` ou `React.PureComponent`
@@ -129,7 +170,7 @@ Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era poss�
 - [Componentes React.lazy](https://pt-br.reactjs.org/docs/react-api.html#reactlazy)
 - [Componentes React.memo](https://pt-br.reactjs.org/docs/react-api.html#reactmemo)
 
-Se você não usar um dos tipos acima ao usar seus componentes em conjunto com o Material-UI, poderá ver um aviso do React no seu console semelhante a:
+If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
@@ -137,30 +178,32 @@ Note que você ainda receberá este aviso para componentes `lazy` ou `memo` se e
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-Só as duas formas de utilização mais comuns são cobertas aqui. Para mais informações, consulte [esta seção na documentação oficial do React](https://pt-br.reactjs.org/docs/forwarding-refs.html).
+Só as duas formas de utilização mais comuns são cobertas aqui. Para mais informações, consulte [esta seção na documentação oficial do React](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 -const MyButton = () => <div role="button" />;
 +const MyButton = React.forwardRef((props, ref) =>
 +  <div role="button" {...props} ref={ref} />);
 
-<Button component={MyButton} />;
+ <Button component={MyButton} />;
 ```
 
 ```diff
--const SomeContent = props => <div {...props}>Olá, Mundo!</div>;
-+const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
-<Tooltip title="Olá, de novo."><SomeContent /></Tooltip>;
+-const SomeContent = props => <div {...props}>Hello, World!</div>;
++const SomeContent = React.forwardRef((props, ref) =>
++  <div {...props} ref={ref}>Hello, World!</div>);
+
+ <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
 Para descobrir se o componente de Material-UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
 
 ### Advertência com StrictMode
 
-Se você usar componentes de classe para os casos descritos acima, ainda verá avisos em `React.StrictMode`. `ReactDOM.findDOMNode` é usado internamente para compatibilidade com versões anteriores. Você pode usar `React.forwardRef` e uma propriedade designada em seu componente de classe para encaminhar o `ref` para um componente DOM. Fazendo isso não deve acionar mais nenhum aviso relacionado à depreciação de uso de `ReactDOM.findDOMNode`.
+Se você usar componentes de classe para os casos descritos acima, ainda verá avisos em `React. StrictMode`. `ReactDOM.findDOMNode` é usado internamente para compatibilidade com versões anteriores. Você pode usar `React.forwardRef` e uma propriedade designada em seu componente de classe para encaminhar o `ref` para um componente DOM. Fazendo isso não deve acionar mais nenhum aviso relacionado à depreciação de uso de `ReactDOM.findDOMNode`.
 
 ```diff
-class Component extends React.Component {
+ class Component extends React. Component {
   render() {
 -   const { props } = this;
 +   const { forwardedRef, ...props } = this.props;

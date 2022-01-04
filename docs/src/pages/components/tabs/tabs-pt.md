@@ -1,6 +1,6 @@
 ---
 title: Componente React Abas
-components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
@@ -16,7 +16,7 @@ As [abas](https://material.io/design/components/tabs.html) organizam e permitem 
 
 ## Abas simples
 
-A basic example with tab panels.
+Um exemplo básico com painéis de guias.
 
 {{"demo": "pages/components/tabs/BasicTabs.js"}}
 
@@ -28,11 +28,11 @@ O `@material-ui/lab` oferece componentes auxiliares que injetam propriedades par
 
 ## Rótulos com quebras
 
-Os rótulos longos serão quebrados automaticamente nas abas. If the label is too long for the tab, it will overflow, and the text will not be visible.
+Os rótulos longos serão quebrados automaticamente nas abas. Os rótulos longos serão quebrados automaticamente nas abas.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
-## Colored tab
+## Abas coloridas
 
 {{"demo": "pages/components/tabs/ColorTabs.js"}}
 
@@ -104,13 +104,13 @@ O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
 Note que você pode restaurar a barra de rolagem com `visibleScrollbar`.
 
-## Nav tabs
+## Guias de navegação
 
-By default, tabs use a `button` element, but you can provide your custom tag or component. Veja um exemplo de implementação da navegação por abas:
+Por padrão, as guias usam um elemento `botão`, mas você pode fornecer sua tag ou componente personalizado. Veja um exemplo de implementação da navegação por abas:
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 
-## Icon tabs
+## Abas com ícones
 
 O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
@@ -120,9 +120,15 @@ O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
 ## Biblioteca de roteamento de terceiros
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
+By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
+
+{{"demo": "pages/components/tabs/IconPositionTabs.js"}}
 
 ## Acessibilidade
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Aba` fornece o `componente` prop para lidar com este caso de uso. Aqui está um [guia mais detalhado](/guides/routing/#tabs).
+
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
@@ -154,3 +160,26 @@ As duas demonstrações seguintes diferem apenas no seu comportamento de navega�
 ```
 
 {{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}
+
+## Unstyled
+
+The Tabs also come with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```js
+import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabUnstyled';
+import TabUnstyled from '@mui/base/TabUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+```
+
+{{"demo": "pages/components/tabs/UnstyledTabsBasic.js"}}
+
+#### Customizing the root element
+
+By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
+
+The `TabPanelUnstyled` on the other hand renders a native `div` element by default. You are free to override this as well by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+
+{{"demo": "pages/components/tabs/UnstyledTabsCustomized.js"}}

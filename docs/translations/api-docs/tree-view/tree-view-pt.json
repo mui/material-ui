@@ -3,8 +3,8 @@
   "propDescriptions": {
     "children": "O conteúdo do componente.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
-    "defaultCollapseIcon": "The default icon used to collapse the node.",
-    "defaultEndIcon": "The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem <code>icon</code> prop.",
+    "defaultCollapseIcon": "O ícone padrão usado para recolher o nó.",
+    "defaultEndIcon": "O ícone padrão mostrado perto do fim do nó. Isso é aplicado para todas os nós de árvores e pode ser substituído pelo ThreeItem <code>icon</code>.",
     "defaultExpanded": "Expanded node ids. (Uncontrolled)",
     "defaultExpandIcon": "The default icon used to expand the node.",
     "defaultParentIcon": "The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem <code>icon</code> prop.",

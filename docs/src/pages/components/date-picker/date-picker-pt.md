@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">Seletores de data permitem que o usuário selecione uma data.</p>
 
-Seletores de data permitem que o usuário selecione uma data. Seletores de data permitem que o usuário selecione uma data.
+Date pickers let the user select a date. Seletores de data permitem que o usuário selecione uma data.
 
 - Diálogos em dispositivos móveis
 - Menu suspenso com campo de texto em desktop
@@ -111,3 +111,9 @@ Os dias exibidos são customizados com uma função na propriedade `renderDay`. 
 Às vezes, pode ser necessário exibir informação adicional diretamente no calendário. Aqui está um exemplo de pré-busca e exibição de dados do servidor usando as propriedades `onMonthChange`, `loading`, e `renderDay`.
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
+
+## Helper text
+
+Você pode mostrar um texto de ajuda com o formato de data aceito.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}

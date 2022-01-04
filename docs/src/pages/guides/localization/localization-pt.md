@@ -34,7 +34,9 @@ const theme = createTheme(
 
 | Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
 |:----------------------- |:------------------------- |:------------------ |
-| Árabe (Egito)           | ar-EG                     | `arEG`             |
+| Amharic                 | am-ET                     | `amET`             |
+| Arabic (Egypt)          | ar-EG                     | `arEG`             |
+| Arabic (Sudan)          | ar-SD                     | `arSD`             |
 | Armênio                 | hy-AM                     | `hyAM`             |
 | Azerbaijano             | az-AZ                     | `azAZ`             |
 | Bangla                  | bn-BD                     | `bnBD`             |
@@ -44,39 +46,42 @@ const theme = createTheme(
 | Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
 | Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
 | Tcheco                  | cs-CZ                     | `csCZ`             |
-| Holandês                | nl-NL                     | `nlNL`             |
-| Inglês (Estados Unidos) | en-US                     | `enUS`             |
-| Estoniano               | et-EE                     | `etEE`             |
-| Finlandês               | fi-FI                     | `fiFI`             |
-| Francês                 | fr-FR                     | `frFR`             |
-| Alemão                  | de-DE                     | `deDE`             |
-| Hebraico                | el-GR                     | `elGR`             |
-| Hebraico                | he-IL                     | `heIL`             |
+| Danish                  | da-DK                     | `daDK`             |
+| Dutch                   | nl-NL                     | `nlNL`             |
+| English (United States) | en-US                     | `enUS`             |
+| Estonian                | et-EE                     | `etEE`             |
+| Finnish                 | fi-FI                     | `fiFI`             |
+| French                  | fr-FR                     | `frFR`             |
+| German                  | de-DE                     | `deDE`             |
+| Greek                   | el-GR                     | `elGR`             |
+| Hebrew                  | he-IL                     | `heIL`             |
 | Hindi                   | hi-IN                     | `hiIN`             |
-| Húngaro                 | hu-HU                     | `huHU`             |
-| Islandês                | is-IS                     | `isIS`             |
-| Indonésio               | id-ID                     | `idID`             |
-| Italiano                | it-IT                     | `itIT`             |
-| Japonês                 | ja-JP                     | `jaJP`             |
-| Cazaque                 | kz-KZ                     | `kzKZ`             |
-| Coreano                 | ko-KR                     | `koKR`             |
-| Persa                   | fa-IR                     | `faIR`             |
-| Polonês                 | pl-PL                     | `plPL`             |
-| Português (Brasil)      | pt-BR                     | `ptBR`             |
-| Português (Europeu)     | pt-PT                     | `ptPT`             |
-| Romeno                  | ro-RO                     | `roRO`             |
-| Russo                   | ru-RU                     | `ruRU`             |
-| Eslovaco                | sk-SK                     | `skSK`             |
-| Espanhol                | es-ES                     | `esES`             |
-| Sueco                   | sv-SE                     | `svSE`             |
-| Turco                   | tr-TR                     | `trTR`             |
-| Vietnamita              | th-TH                     | `thTH`             |
-| Ucraniano               | uk-UA                     | `ukUA`             |
-| Vietnamita              | vi-VN                     | `viVN`             |
+| Hungarian               | hu-HU                     | `huHU`             |
+| Icelandic               | is-IS                     | `isIS`             |
+| Indonesian              | id-ID                     | `idID`             |
+| Italian                 | it-IT                     | `itIT`             |
+| Japanese                | ja-JP                     | `jaJP`             |
+| Khmer                   | kh-KH                     | `khKH`             |
+| Kazakh                  | kz-KZ                     | `kzKZ`             |
+| Korean                  | ko-KR                     | `koKR`             |
+| Persian                 | fa-IR                     | `faIR`             |
+| Polish                  | pl-PL                     | `plPL`             |
+| Portuguese              | pt-PT                     | `ptPT`             |
+| Portuguese (Brazil)     | pt-BR                     | `ptBR`             |
+| Romanian                | ro-RO                     | `roRO`             |
+| Russian                 | ru-RU                     | `ruRU`             |
+| Sinhalese               | si-LK                     | `siLK`             |
+| Slovak                  | sk-SK                     | `skSK`             |
+| Spanish                 | es-ES                     | `esES`             |
+| Swedish                 | sv-SE                     | `svSE`             |
+| Thai                    | th-TH                     | `thTH`             |
+| Turkish                 | tr-TR                     | `trTR`             |
+| Ukrainian               | uk-UA                     | `ukUA`             |
+| Vietnamese              | vi-VN                     | `viVN`             |
 
 <!-- #default-branch-switch -->
 
-Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/HEAD/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
+Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
 
 Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 

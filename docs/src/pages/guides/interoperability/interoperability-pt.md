@@ -6,9 +6,9 @@ Este guia tem como objetivo documentar as alternativas mais populares, mas você
 
 - [CSS puro](#plain-css)
 - [CSS global](#global-css)
-- [Styled Components](#styled-components)
-- [Módulos CSS](#css-modules)
-- [Emotion](#emotion)
+- [Styled Components](#global-css)
+- [Módulos CSS](#styled-components)
+- [Emotion](#css-modules)
 
 ## CSS puro
 
@@ -49,15 +49,15 @@ export default function PlainCssSlider() {
 
 ### Ordem de injeção do CSS ⚠️
 
-**Nota:** A maioria das soluções CSS-in-JS injetam seus estilos na parte inferior do HTML `<head>`, que dá precedência ao Material-UI sobre seus estilos customizados. Para remover a necessidade de **!important**, você precisa alterar a ordem de injeção do CSS. Here's a demo of how it can be done in Material-UI:
+Para remover a necessidade de **!important**, você precisa alterar a ordem de injeção do CSS. **Nota:** A maioria das soluções CSS-in-JS injetam seus estilos na parte inferior do HTML `<head>`, que dá precedência ao Material-UI sobre seus estilos customizados. Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
+Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
-    <StyledEngineProvider injectFirst>
+    <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -85,7 +85,10 @@ import { StylesProvider } from '@material-ui/core';
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
+      {/* Your component tree. */}
+    </StylesProvider>
+  );
+} import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
@@ -97,10 +100,7 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
-    </StylesProvider>
-  );
-}
+      {/* Sua árvore de componentes.
 ```
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
@@ -217,7 +217,7 @@ export default function GlobalCssSlider() {
 
 ### Ordem de injeção do CSS ⚠️
 
-**Nota:** A maioria das soluções CSS-in-JS injetam seus estilos na parte inferior do HTML `<head>`, que dá precedência ao Material-UI sobre seus estilos customizados. Para remover a necessidade de **!important**, você precisa alterar a ordem de injeção do CSS. Here's a demo of how it can be done in Material-UI:
+Para remover a necessidade de **!important**, você precisa alterar a ordem de injeção do CSS. **Nota:** A maioria das soluções CSS-in-JS injetam seus estilos na parte inferior do HTML `<head>`, que dá precedência ao Material-UI sobre seus estilos customizados. Here's a demo of how it can be done in Material-UI:
 
 ```jsx
 import * as React from 'react';
@@ -226,19 +226,7 @@ import { StyledEngineProvider } from '@material-ui/core/styles';
 export default function GlobalCssPriority() {
   return (
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function CssModulesPriority() {
-  return (
-    <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
+      {/* Your component tree. Now you can override MUI's styles. */}
     </CacheProvider>
   );
 }
@@ -248,18 +236,15 @@ export default function CssModulesPriority() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
-    <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. import * as React from 'react';
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. */}
+    </StylesProvider>
+  );
+} import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
@@ -271,10 +256,7 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
-    </StylesProvider>
-  );
-}
+      {/* Sua árvore de componentes.
 ```
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
@@ -321,9 +303,16 @@ export default function GlobalCssSliderDeep() {
 
 ### Alterar o motor de estilo padrão
 
-Por padrão, os componentes do Material-UI vêm com emotion como seu motor de estilo. Se, no entanto, você gostaria de usar `styled-components`, você pode configurar sua aplicação seguindo este [projeto de exemplo](https://github.com/mui-org/material-ui/blob/HEAD/examples/create-react-app-with-styled-components). Seguir esta abordagem reduz o tamanho do pacote e remove a necessidade de configurar a ordem de injeção de CSS.
+Por padrão, os componentes do Material-UI vêm com emotion como seu motor de estilo. Se, no entanto, você gostaria de usar `styled-components`, você pode configurar sua aplicação seguindo este [projeto de exemplo](https://github.com/mui-org/material-ui/blob/HEAD/examples/create-react-app-with-styled-components).
+
+<!-- #default-branch-switch -->
+
+- [Create React App with styled-components](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
+- [Create React App with styled-components and typescript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
 
 After the style engine is configured properly, you can use the [`styled()`](/system/styled/) utility from `@material-ui/core/styles` and have direct access to the theme.
+
+After the style engine is configured properly, you can use the [`styled()`](/system/styled/) utility from `@mui/material/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -355,7 +344,7 @@ Os exemplos a seguir substituem o estilo de `thumb` do controle slider, além do
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": true}}
 
-A demonstração acima depende dos [valores padrão de `className`](/styles/advanced/#with-material-ui-core), mas você pode fornecer seu próprio nome de classe com a API `componentsProps`.
+Ao usar o provedor de tema do Material-UI, o tema estará disponível no contexto do tema do motor de estilo também (emotion ou styled-components, dependendo da sua configuração).
 
 ```jsx
 import * as React from 'react';
@@ -388,11 +377,11 @@ export default function StyledComponentsDeep2() {
 
 ### Tema
 
-Ao usar o provedor de tema do Material-UI, o tema estará disponível no contexto do tema do motor de estilo também (emotion ou styled-components, dependendo da sua configuração).
+Você é encorajado a compartilhar o mesmo objeto de tema entre Material-UI e o resto de seu projeto.
 
 > ⚠️ Se você já **estiver** usando um tema customizando com styled-components ou emotion, ele pode não ser compatível com a especificação do tema do Material-UI. Se ele não é compatível, você precisa renderizar o ThemeProvider  do Material-UI <b>primeiro</b>. Isto irá garantir que as estruturas do tema estejam isoladas. Isso é ideal para a adoção progrressiva dos componentes da base de código do Material-UI.
 
-Você é encorajado a compartilhar o mesmo objeto de tema entre Material-UI e o resto de seu projeto.
+You are encouraged to share the same theme object between MUI and the rest of your project.
 
 ```jsx
 const CustomizedSlider = styled(Slider)(
@@ -410,7 +399,7 @@ const CustomizedSlider = styled(Slider)(
 
 ### Portais
 
-O [Portal](/components/portal/) fornece uma maneira de elegante para renderizar filhos em um nó DOM que existe fora da hierarquia DOM do componente pai. Devido a maneira como o escopo de CSS do styled-components funciona, você pode encontrar problemas nos quais o estilo não é aplicado.
+O [Portal](/components/portal/) fornece uma maneira de primeira classe para renderizar filhos em um nó DOM que existe fora da hierarquia DOM do componente pai. Devido a maneira como o escopo de CSS do styled-components funciona, você pode encontrar problemas nos quais o estilo não é aplicado.
 
 For example, if you attempt to style the `tooltip` generated by the [Tooltip](/components/tooltips/) component, you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy. O exemplo a seguir mostra uma solução alternativa:
 
@@ -423,7 +412,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 const StyledTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))`
-  & .MuiTooltip-tooltip {
+  & . MuiTooltip-tooltip {
     background: navy;
   }
 `;
@@ -482,19 +471,7 @@ import { StyledEngineProvider } from '@material-ui/core/styles';
 export default function GlobalCssPriority() {
   return (
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function CssModulesPriority() {
-  return (
-    <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
+      {/* Your component tree. Now you can override MUI's styles. */}
     </CacheProvider>
   );
 }
@@ -504,18 +481,12 @@ export default function CssModulesPriority() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function PlainCssPriority() {
+export default function GlobalCssPriority() {
   return (
-    <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. import * as React from 'react';
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. Now you can override MUI's styles. import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
@@ -527,10 +498,7 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
-    </StylesProvider>
-  );
-}
+      {/* Sua árvore de componentes.
 ```
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.

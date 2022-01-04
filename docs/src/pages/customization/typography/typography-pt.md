@@ -77,7 +77,7 @@ return (
 );
 ```
 
-Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
+Observe que se você deseja adicionar declarações `@font-face` adicionais, você precisa usar a sintaxe de string do modelo CSS para adicionar substituições de estilo, de modo que as declarações `@font-face` previamente definidas não serão substituídas.
 
 ## Tamanho da fonte
 
@@ -97,9 +97,14 @@ const theme = createTheme({
 
 O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
-<img src="/static/images/font-size.png" alt="cálculo do tamanho da fonte" style="width: 458px;" />
+<div class="only-light-mode">
+  <img alt="cálculo do tamanho da fonte" style="width: 458px;" src="/static/images/font-size.svg" />
+</div>
+<div class="only-dark-mode">
+  <img alt="cálculo do tamanho da fonte" style="width: 458px;" src="/static/images/font-size-dark.svg" />
+</div>
 
-<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
+<!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### Tamanhos de fonte responsivo
 
@@ -125,7 +130,7 @@ Para automatizar estas configurações, você pode usar a função auxiliar [`re
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-Você pode ver isso em ação no exemplo abaixo. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Você pode ver isso em ação no exemplo abaixo. Ajuste o tamanho da janela do navegador e observe como o tamanho da fonte muda à medida que a largura cruza os diferentes [pontos de quebra](/customization/breakpoints/):
 
 ```js
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -146,7 +151,7 @@ Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por e
 
 > ⚠️ Alterar o tamanho da fonte pode prejudicar a acessibilidade ♿️. A maioria dos navegadores concordou com o tamanho padrão de 16 pixels, mas o usuário pode alterá-lo. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-Uma propriedade de tema `htmlFontSize` é fornecida para estas situações, que informa ao Material-UI qual é o tamanho da fonte no elemento `<html>`. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
+Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
 
 ```js
 const theme = createTheme({
@@ -159,7 +164,7 @@ const theme = createTheme({
 
 ```css
 html {
-  font-size: 62.5%; /* 62.5% of 16px = 10px */
+  font-size: 62.5%; /* 62.5% de 16px = 10px */
 }
 ```
 
@@ -227,7 +232,7 @@ const theme = createTheme({
 
 > If you aren't using TypeScript you should skip this step.
 
-You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
+Você precisa ter certeza de que as tipagens para as variantes da propriedade `typography` e a `variant` `Typography`'s reflete o novo conjunto de variantes.
 
 <!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 

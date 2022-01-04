@@ -1,6 +1,6 @@
 # API 的设计方法
 
-<p class="description">我们在如何使用 Material-UI 方面学到了很多相关的只是，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
+<p class="description">我们在如何使用 Material-UI 方面学到了很多相关的知识，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
 
 > API 设计的难点在于你可以让一些复杂的东西看起来简单，也可能把简单的东西搞得复杂。
 
@@ -38,13 +38,13 @@
 
 ### CSS classes
 
-为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) 属性。 The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
+为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 类设计兼顾两个约束： 使类结构尽可能简单，同时足以实现 Material Design 指南。
 
 - 应用于根元素的类始终称为 `root`。
 - 所有默认样式都分组在单个类中。
 - 应用于非根元素的类则以元素的名称为前缀，例如， Dialog 组件中的 `paperWidthXs`。
-- 由布尔属性应用的variants **不是** 前缀，例如 `rounded` 类由 `rounded` 属性应用
-- 由 enum 属性应用的variants ** 是 ** 前缀, 例如 `colorPrimary` 类 应用的 `color = "primary"` 属性。
+- 由布尔属性赋值的variants **不添加** 前缀，例如 `rounded` 类由 `rounded` 属性赋值。
+- 由枚举属性赋值的variants**添加**前缀，例如，`colorPrimary` 类使用 `color="primary"` 属性赋值。
 - Variant具有 ** 一个特定级别 **。 `color`和`variant`属性被视为variant。 样式特异性越低，它就越容易被覆盖。
 - 我们增加了变体修饰符（variant modifier）的特异性。 我们已经 ** 必须这样做 ** 为伪类 (`:hover`, `:focus` 等)。 以更多模板为代价，它才会开放更多的控制权。 我们也希望，它也能更加直观。
 
@@ -71,12 +71,16 @@ const styles = {
 
 ### 属性名称
 
-应根据 ** 默认值 ** 选择布尔属性的名称。 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。 此选项允许简写的表示：
+应根据 ** 默认值 ** 选择布尔属性的名称。 此选项允许简写的表示：
 
-```diff
--<Input enabled={false} />
+- the shorthand notation. 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。
+
+  ```jsx
+  -<Input enabled={false} />
 +<Input disabled />
-```
+  ```
+
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
 
 ### 受控的组件
 
@@ -86,7 +90,7 @@ const styles = {
 
 为组件的变体设计API有两种选择：使用* boolean*; 或者使用* enum *。 比如说，我们选取了一个有着不同类型的按钮组件。 每个选项都有其优缺点：
 
-- 选项 1 * 布尔值(boolean) *:
+- 选项 1 _布尔值（boolean）_：
 
   ```tsx
   type Props = {
@@ -97,7 +101,7 @@ const styles = {
 
   该 API 启用了简写的表示法：`<Button>`，`<Button contained />`，`<Button fab />`。
 
-- 选项2 *枚举(enum)*
+- 选项 2 _枚举（enum）_：
 
   ```tsx
   type Props = {
@@ -105,14 +109,14 @@ const styles = {
   };
   ```
 
-  这个 API 会更加详细：`<Button>`，`<Button variant="contained">`， `<Button variant="fab">`。
+  这个API更详细： `<Button>`,`<Button variant="contained">`,`<Button variant="fab">`。
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
 Material-UI 组件根据以下规则将两种方法结合使用：
 
 - 当需要 **2** 个可能的值时，我们使用 _boolean_。
-- 当需要 **> 2** 个可能的值时，或者如果将来有可能需要更多的可能值时，就会使用 _enum_。
+- **host element**：`react-dom` 中的一个 DOM 节点，例如 `window.HTMLDivElement` 的实例。
 
 若回到之前的按钮组件示例；因为它需要 3 个可能的值，所以我们使用了 _enum_。
 

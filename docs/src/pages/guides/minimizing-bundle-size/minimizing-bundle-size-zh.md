@@ -4,11 +4,11 @@
 
 ## 打包文件的大小是很重要的
 
-Material-UI 的打包文件大小至关重要。 每一次提交代码时，我们都会对每个包和这些包的关键部分进行大小快照（size snapshots)（[查看最新的快照](/size-snapshot)）。 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) 。
+The bundle size of MUI is taken very seriously. 每一次提交代码时，我们都会对每个包和这些包的关键部分进行大小快照（size snapshots)（[查看最新的快照](/size-snapshot)）。 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) 。
 
 ## 何时以及如何使用 tree-shaking?
 
-在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会提供出其完整的 API。 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
+Tree-shaking of MUI works out of the box in modern frameworks. MUI exposes its full API on the top-level `@mui` imports. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -93,7 +93,7 @@ import { Button, TextField } from '@material-ui/core';
 
 请在以下插件中选择一个：
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 的配置如下：
+- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
 
   `yarn add -D babel-plugin-import`
 
@@ -196,7 +196,21 @@ module.exports = override(useBabelRc());
 
 考虑到一些 [支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
 
-⚠️为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。
+⚠️为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。 Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+
+```js
+{
+  resolve: {
+    alias: {
+      '@mui/base': '@mui/base/legacy',
+      '@mui/lab': '@mui/lab/legacy',
+      '@mui/material': '@mui/material/legacy',
+      '@mui/styled-engine': '@mui/styled-engine/legacy',
+      '@mui/system': '@mui/system/legacy',
+    }
+  }
+}
+```
 
 ### 现代的捆绑包
 

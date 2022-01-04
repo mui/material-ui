@@ -819,6 +819,18 @@ describe('<Select />', () => {
       expect(getByRole('button')).to.have.text('Ten, Twenty, Thirty');
     });
 
+    it('should not throw an error if `value` is an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={[]} />);
+      }).not.to.throw();
+    });
+
+    it('should not throw an error if `value` is not an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={['foo']} />);
+      }).not.to.throw();
+    });
+
     it('selects value based on their stringified equality when theyre not objects', () => {
       const { getAllByRole } = render(
         <Select multiple open value={['10', '20']}>

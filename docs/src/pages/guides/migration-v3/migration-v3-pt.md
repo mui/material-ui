@@ -12,7 +12,7 @@ Esta é uma referência para atualizar seu site de Material-UI v3 para v4. Embor
 
 ## Por que você deve migrar
 
-Esta página de documentação cobre o *como* migrar da v3 para a v4. O *porque* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+Esta página de documentação cobre o **como** migrar da v3 para a v4. O **porque** é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Atualizando suas dependências
 
@@ -73,7 +73,7 @@ yarn add @material-ui/styles
 - ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
 - Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
 
-  Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
+  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);

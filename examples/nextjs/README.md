@@ -22,11 +22,13 @@ or:
 
 <!-- #default-branch-switch -->
 
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui-org/material-ui/tree/master/examples/nextjs)
+
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs)
 
 ## The idea behind the example
 
-The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps.
+The project uses [Next.js](https://github.com/vercel/next.js), which is a framework for server-rendered React apps.
 It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in MUI v5.
 If you prefer, you can [use styled-components instead](https://mui.com/guides/interoperability/#styled-components).
 

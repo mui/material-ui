@@ -50,9 +50,9 @@ You can use the following actions.
 
 ## Chip adornments
 
-You can add ornaments to the beginning of the component.
+您可以在组件的开头添加修饰。
 
-Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
+使用`avatar`属性来添加一个头像，或是使用`icon`属性添加一个图标。
 
 ### Avatar chip
 
@@ -76,7 +76,7 @@ You can use the `color` prop to define a primary or secondary color.
 
 ## 纸片阵列
 
-An example of rendering multiple chips from an array of values. 删除一个纸片元素，则会将其从纸片组的数组中删除。 Note that since no `onClick` prop is defined, the `Chip` can be focused, but does not gain depth while clicked or touched.
+An example of rendering multiple chips from an array of values. 删除一个纸片元素，则会将其从纸片组的数组中删除。 删除一个纸片元素，则会将其从纸片组的数组中删除。 Note that since no `onClick` prop is defined, the `Chip` can be focused, but does not gain depth while clicked or touched.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 

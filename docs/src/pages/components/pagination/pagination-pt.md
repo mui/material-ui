@@ -36,6 +36,12 @@ Você pode habilitar opcionalmente  os botões de primeira página e de última 
 
 Você pode especificar quantos dígitos exibir a qualquer lado da página atual com a propriedade `siblingRange`, e adjacente ao número da página inicial e final com a propriedade `boundaryRange`.
 
+{{"demo": "pages/components/pagination/CustomIcons.js"}}
+
+## Intervalos de paginação
+
+Você pode especificar quantos dígitos exibir a qualquer lado da página atual com a propriedade `siblingRange`, e adjacente ao número da página inicial e final com a propriedade `boundaryRange`.
+
 {{"demo": "pages/components/pagination/PaginationRanges.js"}}
 
 ## Paginação controlada
@@ -48,7 +54,7 @@ Você pode especificar quantos dígitos exibir a qualquer lado da página atual 
 
 ## `usePagination`
 
-For advanced customization use cases, a headless `usePagination()` hook is exposed. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. The Pagination component is built on this hook.
+For advanced customization use cases, a headless `usePagination()` hook is exposed. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX.
 
 ```jsx
 import { usePagination } from '@material-ui/core/Pagination';
@@ -68,7 +74,7 @@ Para a paginação de um conjunto grande de dados tabulares, você deve usar o c
 
 Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
 
-## Acessibilidade
+## Accessibility
 
 ### ARIA
 

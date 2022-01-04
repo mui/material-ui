@@ -25,7 +25,7 @@ O último item da demonstração anterior mostra como você pode renderizar um l
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
+Você pode encontrar uma [demonstração com React Router seguindo esta seção](/guides/routing/#list) da documentação.
 
 ## Lista Aninhada
 
@@ -47,7 +47,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Alinhar itens da lista
 
-Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, alterando a propriedade `alignItems="flex-start"`.
+When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
@@ -79,13 +79,13 @@ Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até 
 
 ## Item de lista encaixado
 
-The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
+A propriedade `inset` habilita um item de lista, que não tenha um ícone principal ou um avatar, para alinhar corretamente os itens que possuem.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
 ## Lista sem espaçamentos
 
-When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+Ao renderizar uma lista dentro de um componente que define seus próprios espaços, o espaçamento do `ListItem` pode ser desabilitado com `disableGutters`.
 
 {{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
@@ -103,6 +103,4 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/lists/CustomizedList.js"}}
 
-## Customização
-
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/list-item/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item/).

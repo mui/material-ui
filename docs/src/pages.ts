@@ -172,7 +172,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/data-grid/localization' },
           { pathname: '/components/data-grid/virtualization' },
           { pathname: '/components/data-grid/accessibility' },
-          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
+          { pathname: '/components/data-grid/group-pivot', title: 'Group & Pivot' },
         ],
       },
       {
@@ -344,7 +344,7 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: 'https://material-ui.com/store/',
+    pathname: 'https://mui.com/store/',
     title: 'Templates',
     icon: 'ReaderIcon',
     linkProps: {

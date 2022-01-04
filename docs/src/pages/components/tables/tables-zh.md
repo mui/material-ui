@@ -1,8 +1,8 @@
 ---
 title: React Table（表格）组件
-components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
 githubLabel: 'component: Table'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#table
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -28,7 +28,7 @@ materialDesign: https://material.io/components/data-tables
 
 `Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
 
 {{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
@@ -70,13 +70,13 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ### 自定义表格分页操作
 
-`TablePagination` 组件的 ` ActionsComponent ` 属性能够让您实现一些自定义的行为。
+`TablePagination` 组件的 `ActionsComponent` 属性能够让您实现一些自定义的行为。
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
 ## Sticky header
 
-Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
+Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support) It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
@@ -111,12 +111,22 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
-## 无障碍设计
+## Unstyled table
 
-（WAI 教程：<https://www.w3.org/WAI/tutorials/tables/>）
+If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
+
+{{"demo": "pages/components/tables/TableUnstyled.js"}}
+
+#### Customized look and feel
+
+{{"demo": "pages/components/tables/TableCustomized.js"}}
+
+## Accessibility
+
+(WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
 ### Caption 字幕
 
-字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 标题可以帮助用户找到表格，了解表格的内容，决定是否要阅读。
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

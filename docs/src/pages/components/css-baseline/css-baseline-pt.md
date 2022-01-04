@@ -56,6 +56,7 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 - A margem é removida em todos navegadores.
 - A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
+- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`.
 
 ### Leiaute
 
@@ -63,25 +64,41 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 ### Barras de rolagem
 
+> This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
-import darkScrollbar from '@material-ui/core/darkScrollbar';
+darkScrollbar() : null,
+      },
+    },
+  },
+}); import darkScrollbar from '@material-ui/core/darkScrollbar';
 
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
-      },
-    },
-  },
-});
+        body: theme.palette.mode === 'dark' ?
 ```
 
-This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
 ### Tipografia
+
+This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows:
+
+```jsx
+<CssBaseline enableColorScheme />
+
+// or
+
+<ScopedCssBaseline enableColorScheme >
+  {/* The rest of your application using color-scheme*/}
+</ScopedCssBaseline>
+```
+
+### Typography
 
 - Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/customization/typography/#typography-html-font-size).
 - Define o estilo `theme.typography.body1` no elemento `<body>`.

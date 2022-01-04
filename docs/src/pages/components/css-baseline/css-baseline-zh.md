@@ -29,7 +29,7 @@ export default function MyApp() {
 
 ## 作用于子组件
 
-然而，您可能会逐步将一个网站迁移到 Material-UI，若选择全局重置，那可能不是一个妥善的选项。 通过使用 `ScopedCsseline` 组件，是有可能将基线只应用于子组件。
+However, you might be progressively migrating a website to MUI, using a global reset might not be an option. 通过使用 `ScopedCsseline` 组件，是有可能将基线只应用于子组件。
 
 ```jsx
 import * as React from 'react';
@@ -55,7 +55,8 @@ export default function MyApp() {
 我们更新了 `<html>` 和 `<body>` 元素以提供更好的页面范围的默认值。 具体来说：
 
 - 所有浏览器中的边距将会被删除。
-- Material Design 的背景颜色会默认地被应用。 它在标准设备上使用的是 [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) ，而打印设备上使用的是白色背景。
+- 默认使用Material Design的背景颜色。 它在标准设备上使用的是 [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) ，而打印设备上使用的是白色背景。
+- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`.
 
 ### 布局
 
@@ -63,7 +64,9 @@ export default function MyApp() {
 
 ### 滚动条
 
-The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
+> This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+
+The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode).
 
 ```jsx
 import darkScrollbar from '@material-ui/core/darkScrollbar';
@@ -76,12 +79,30 @@ const theme = createTheme({
       },
     },
   },
+}); darkScrollbar() : null,
+      },
+    },
+  },
 });
 ```
 
 This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
 ### 文字铸排
+
+This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows:
+
+```jsx
+<CssBaseline enableColorScheme />
+
+// or
+
+<ScopedCssBaseline enableColorScheme >
+  {/* The rest of your application using color-scheme*/}
+</ScopedCssBaseline>
+```
+
+### Typography
 
 - 在 `<html>` 里面不会声明基础的 font-size，但是我们假设是 16px (浏览器的默认设置)。 您可以在 [主题文档](/customization/typography/#typography-html-font-size) 页面中了解更多有关更改 `<html>` 默认字体大小的影响 。
 - 在 `theme.typography.body1` 元素上设置 `<body>` 样式。

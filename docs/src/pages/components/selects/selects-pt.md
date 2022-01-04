@@ -14,7 +14,7 @@ githubLabel: 'component: Select'
 
 Os menus são posicionados sobre seus elementos emissores, de modo que o item de menu atualmente selecionado apareça na parte superior do elemento emissor.
 
-O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
+{{"demo": "pages/components/selects/BasicSelect.js"}}
 
 ## Recursos avançados
 
@@ -34,6 +34,8 @@ O componente seleção é implementado como um elemento `<input>` personalizado 
 
 {{"demo": "pages/components/selects/SelectLabels.js"}}
 
+> ⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+
 ### Largura automática
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
@@ -46,7 +48,7 @@ O componente seleção é implementado como um elemento `<input>` personalizado 
 
 Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select/).
+{{"demo": "pages/components/selects/NativeSelect.js"}}
 
 ## TextField
 

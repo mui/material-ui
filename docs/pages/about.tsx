@@ -28,7 +28,7 @@ import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import SurveyBanner from 'docs/src/components/home/SurveyBanner';
+import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 interface Profile {
   /**
@@ -724,7 +724,7 @@ function AboutContent() {
                 All funds donated are managed transparently, and Sponsors receive recognition in the
                 README and on the MUI home page.
               </Typography>
-              <Link href="https://opencollective.com/material-ui" variant="body2">
+              <Link href="https://opencollective.com/mui" variant="body2">
                 See Open Collective{' '}
                 <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
@@ -745,7 +745,7 @@ export default function About() {
         title="About us - MUI"
         description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
-      <SurveyBanner />
+      <AppHeaderBanner />
       <AppHeader />
       <main>
         <AboutContent />

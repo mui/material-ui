@@ -25,7 +25,7 @@ materialDesign: https://material.io/components/lists
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
+你可以从这里查看 [React Router与文档此部分结合使用的相关样例](/guides/routing/#list)。
 
 ## 嵌套列表
 
@@ -47,7 +47,7 @@ You can find a [demo with React Router following this section](/guides/routing/#
 
 ## 对齐列表项
 
-若想显示 3 行或者更多行时，你应该改变列表项的对齐方式，将 `alignItems` 属性值设置为 "flex-start"。
+When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
@@ -79,13 +79,13 @@ You can find a [demo with React Router following this section](/guides/routing/#
 
 ## 对齐列表项
 
-The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
+`inset` 属性可以让没有前导（leading）图标或头像的列表项与有前导图标或头像的项正确对齐。
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
 ## 没有边距的列表
 
-When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+当在一个定义了边距（gutters）的组件中渲染列表时，可以通过 `disableGutters` 来禁用 `ListItem` 的边距。
 
 {{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
@@ -103,6 +103,4 @@ When rendering a list within a component that defines its own gutters, `ListItem
 
 {{"demo": "pages/components/lists/CustomizedList.js"}}
 
-## Customization 个性化
-
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/list-item/)。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item/).

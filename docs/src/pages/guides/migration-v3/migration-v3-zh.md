@@ -8,11 +8,11 @@
 
 ## 简介
 
-当您将站点从 Material-UI 的 v3 版本升级到 v4 版本时，此篇会给您提供一些参考。 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
+This is a reference for upgrading your site from MUI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
 
 ## 为什么您需要迁移呢
 
-此文档介绍了 _如何_ 从 v3 版本迁移到 v4 版本。 关于 _为什么_ 需要迁移，我们在 [Medium 上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) 来详细说明。
+此文档介绍了**如何**从 v3 版本迁移到 v4 版本。 关于迁移的**原因**，我们则在 [Medium上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)来详细解说。
 
 ## 更新您的依赖包
 
@@ -70,10 +70,10 @@ yarn add @material-ui/styles
 
 ### Styles（样式表单）
 
-- ⚠️ Material-UI 依赖于 JSS 的 v10 版本。 JSS v10 版本与 v9 版本不向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
+- ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
 - 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是为从未出现的可能的未来选项的一个占位符。）
 
-  它与 [emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
+  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -146,7 +146,7 @@ yarn add @material-ui/styles
 
   ```diff
     /**
-     * 在类别为 `item` 的组件之间定义间距。
+     * 在类别为`item` 组件之间定义间距。
      * 它只能用于类型为 `container` 的组件。
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),

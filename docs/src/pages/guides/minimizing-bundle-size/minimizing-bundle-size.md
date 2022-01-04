@@ -12,7 +12,7 @@ Combined with [dangerJS](https://danger.systems/js/) we can inspect
 ## When and how to use tree-shaking?
 
 Tree-shaking of MUI works out of the box in modern frameworks.
-MUI exposes its full API on the top-level `material-ui` import.
+MUI exposes its full API on the top-level `@mui` imports.
 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
@@ -106,7 +106,7 @@ However, you need to apply the two following steps correctly.
 
 Pick one of the following plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
+- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
 
   `yarn add -D babel-plugin-import`
 

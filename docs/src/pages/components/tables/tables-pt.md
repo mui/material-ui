@@ -1,8 +1,8 @@
 ---
 title: Componente React Tabela
-components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
 githubLabel: 'component: Table'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#table
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">Tabelas exibem conjuntos de dados. Elas podem ser totalmente customizadas.</p>
 
-Tables display information in a way that's easy to scan, so that users can look for patterns and insights. Elas podem ser incorporadas no conteúdo principal, assim como cartões. Elas podem incluir:
+As tabelas apresentam informação de uma forma que é fácil de digitalizar, para que os utilizadores possam procurar padrões e informações. Elas podem ser incorporadas no conteúdo principal, assim como cartões. Elas podem incluir:
 
 - Uma visualização correspondente
 - Navegação
@@ -28,7 +28,7 @@ Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes d
 
 O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
+O [componente `DataGrid`](/components/data-grid/) é projetado para casos de uso que se concentram em lidar com grandes quantidades de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
 
 {{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
@@ -74,9 +74,9 @@ A propriedade `ActionsComponent` do componente `TablePagination` permite a imple
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
-## Sticky header
+## Cabeçalho fixo
 
-Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
+Aqui está um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ela aproveita a propriedade `stickyHeader`. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
@@ -111,12 +111,22 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
-## Acessibilidade
+## Unstyled table
+
+If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
+
+{{"demo": "pages/components/tables/TableUnstyled.js"}}
+
+#### Customized look and feel
+
+{{"demo": "pages/components/tables/TableCustomized.js"}}
+
+## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
 ### Caption
 
-Um caption funciona como um título para uma tabela. A maioria dos leitores de tela anunciam o conteúdo dos captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

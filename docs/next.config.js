@@ -27,7 +27,7 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Motivated by https://github.com/zeit/next.js/issues/7687
+    // Motivated by https://github.com/vercel/next.js/issues/7687
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
@@ -99,7 +99,7 @@ module.exports = {
             oneOf: [
               {
                 resourceQuery: /@mui\/markdown/,
-                use: require.resolve('@mui/markdown/loader'),
+                use: [options.defaultLoaders.babel, require.resolve('@mui/markdown/loader')],
               },
               {
                 // used in some /getting-started/templates
@@ -185,7 +185,10 @@ module.exports = {
           return;
         }
         if (!page.children) {
-          map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
+          // map api-docs to api
+          // i: /api-docs/* > /api/* (old structure)
+          // ii: /*/api-docs/* > /*/api/* (for new structure)
+          map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
             page: page.pathname,
             query: {
               userLanguage,

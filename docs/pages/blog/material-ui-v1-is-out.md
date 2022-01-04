@@ -44,11 +44,11 @@ We know the ease of use is a critical part of user acquisition. The more user we
 - **Onboarding**. We have reduced the onboarding friction as much as possible. We know the onboarding is a critical step for user acquisition. The onboarding friction comes in different flavors:
   We have reduced the number of installation steps needed. It should be as simple as 1. npm install @mui/material and 2. import Button from '@mui/material/Button'; . We don't ask for polyfill, custom webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
 
-- **Examples**. We are hosting [example projects](https://github.com/mui-org/material-ui/tree/master/examples) with the most popular solutions to start a project: [create-react-app](https://github.com/facebook/create-react-app), [Next.js](https://github.com/zeit/next.js), [Gatsby](https://github.com/gatsbyjs/gatsby), and CDN.
+- **Examples**. We are hosting [example projects](https://github.com/mui-org/material-ui/tree/master/examples) with the most popular solutions to start a project: [create-react-app](https://github.com/facebook/create-react-app), [Next.js](https://github.com/vercel/next.js), [Gatsby](https://github.com/gatsbyjs/gatsby), and CDN.
 
 - **Isolation**. Our components now work in isolation. You should be able to use a single MUI component in an existing codebase without any side effect. No global CSS override needed, no bundle size bloat.
 
-- **Documentation**. We have made a huge investment in the documentation. We use [Next.js](https://github.com/zeit/next.js) for a blazingly fast navigation experience. It's also allowing us to provide a first server-side support for the components. We had added a search bar powered by [Algolia's DocSearch](https://community.algolia.com/docsearch/). (don't miss the s shortcut to focus the search bar). We have added many new documentation sections: guides, FAQ, etc. We have made the demos more interactive thanks to a direct integration with [CodeSandbox](https://codesandbox.io/s/4j7m47vlm4).
+- **Documentation**. We have made a huge investment in the documentation. We use [Next.js](https://github.com/vercel/next.js) for a blazingly fast navigation experience. It's also allowing us to provide a first server-side support for the components. We had added a search bar powered by [Algolia's DocSearch](https://community.algolia.com/docsearch/). (don't miss the s shortcut to focus the search bar). We have added many new documentation sections: guides, FAQ, etc. We have made the demos more interactive thanks to a direct integration with [CodeSandbox](https://codesandbox.io/s/4j7m47vlm4).
 
 - **DOM**. We have focused on providing low-level components, in this v1 rewrite. By low-level, we mean components as close as possible to the underlying DOM structure and as stateless as possible. It should help reduce the mental overhead of using the components, encourage interoperability, and simplify customizability. For instance with the TextField. The component was broken down into 4 components. Our Input exposes the same API than a native input. You can switch one for the other. Leveraging this structural choice, we were able to demonstrate 3 autocomplete integration example with [Downshift](https://github.com/downshift-js/downshift), [react-autosuggest](https://github.com/moroshko/react-autosuggest), and [react-select](https://github.com/JedWatson/react-select).
 
@@ -85,7 +85,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 - New documentation
 - Right-To-Left support
 - First class server-side support
-- [Premium themes](https://material-ui.com/store/)
+- [Premium themes](https://mui.com/store/)
 - First class TypeScript support
 - **And much, much more**
 
@@ -104,7 +104,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 ## Premium themes
 
-We have shipped the long-awaited MUI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://material-ui.com/store/) from [Creative Tim](https://material-ui.com/store/contributors/creative-tim/). More are coming.
+We have shipped the long-awaited MUI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://mui.com/store/) from [Creative Tim](https://mui.com/store/contributors/creative-tim/). More are coming.
 
 ![Creative Tim themes](https://cdn-images-1.medium.com/max/2000/1*jPOu6n1EMsqv4Gh652MtPA.png)
 
@@ -122,7 +122,7 @@ I'm so excited at the idea we are making it stable, but rest assured, it's just 
 MUI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). If you'd like to join them, please consider:
 
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
+- [Become a backer or sponsor on OpenCollective](https://opencollective.com/mui).
 
 ![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
 
