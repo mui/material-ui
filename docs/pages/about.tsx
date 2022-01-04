@@ -346,7 +346,7 @@ const teamMembers: Array<Profile> = [
     location: 'Augsburg, Germany',
     country: 'br',
     about: 'Art, fiction',
-    twitter: 'joserodolfofreitas',
+    github: 'joserodolfofreitas',
   },
 ];
 
