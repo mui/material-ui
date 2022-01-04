@@ -124,7 +124,7 @@ _Head to the [sizing page](/system/sizing/) for more details._
 
 ### Spacing
 
-The spacing properties: `margin`, `padding` and their corresponding shorthand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
+The spacing properties: `margin`, `padding` and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
 ```jsx
 <Box sx={{ margin: 2 }} />
