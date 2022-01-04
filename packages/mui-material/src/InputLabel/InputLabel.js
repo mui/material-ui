@@ -81,7 +81,6 @@ const InputLabelRoot = styled(FormLabel, {
     // the input field is drawn last and hides the label with an opaque background color.
     // zIndex: 1 will raise the label above opaque background-colors of input.
     zIndex: 1,
-    pointerEvents: 'none',
     transform: 'translate(12px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
     ...(ownerState.size === 'small' && {
@@ -98,7 +97,6 @@ const InputLabelRoot = styled(FormLabel, {
   ...(ownerState.variant === 'outlined' && {
     // see comment above on filled.zIndex
     zIndex: 1,
-    pointerEvents: 'none',
     transform: 'translate(14px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
     ...(ownerState.size === 'small' && {
