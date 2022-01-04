@@ -88,7 +88,7 @@ function getDescription(markdown) {
     return undefined;
   }
 
-  return matches[1].trim();
+  return matches[1].trim().replace(/`/g, '');
 }
 
 /**
