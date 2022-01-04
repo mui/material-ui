@@ -8,21 +8,44 @@ export default function WhiteSpace() {
         component="div"
         sx={{
           whiteSpace: 'nowrap',
+          overflowX: 'auto',
           my: 2,
-          bgcolor: 'background.paper',
+          p: 1,
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
-        White Space Nowrap. White Space Nowrap.
+        Lorem Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s.
       </Box>
       <Box
         component="div"
         sx={{
           whiteSpace: 'normal',
           my: 2,
-          bgcolor: 'background.paper',
+          p: 1,
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
-        White Space Normal. White Space Normal.
+        Lorem Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s.
       </Box>
     </div>
   );

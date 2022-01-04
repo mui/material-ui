@@ -653,13 +653,16 @@ function AboutContent() {
                 structured feedback, you&apos;re always invited to participate to share your
                 thoughts.
               </Typography>
-              <Link
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
                 href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
-                variant="body2"
+                endIcon={<KeyboardArrowRightRounded />}
               >
                 Leave your feedback{' '}
-                <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              </Button>
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
@@ -705,9 +708,16 @@ function AboutContent() {
                   <Link href="https://stackoverflow.com/questions/tagged/mui">StackOverflow</Link>.
                 </li>
               </Box>
-              <Link href="https://github.com/mui-org/material-ui" variant="body2">
-                See the repository <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
+                href="https://github.com/mui-org/material-ui"
+                endIcon={<KeyboardArrowRightRounded />}
+              >
+                See the repository
+              </Button>
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
@@ -724,10 +734,16 @@ function AboutContent() {
                 All funds donated are managed transparently, and Sponsors receive recognition in the
                 README and on the MUI home page.
               </Typography>
-              <Link href="https://opencollective.com/mui" variant="body2">
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
+                href="https://opencollective.com/mui"
+                endIcon={<KeyboardArrowRightRounded />}
+              >
                 See Open Collective{' '}
-                <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              </Button>
             </Widget>
           </Grid>
         </Grid>

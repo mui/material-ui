@@ -62,9 +62,9 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
-    paddingTop: theme.spacing(1.6),
-    paddingBottom: theme.spacing(1.6),
-    paddingLeft: theme.spacing(3),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -174,7 +174,7 @@ function AppNavDrawer(props) {
           <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
               <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
-                <SvgMuiLogo width={30} />
+                <SvgMuiLogo width={28} />
               </Box>
             </NextLink>
             {process.env.LIB_VERSION ? (
@@ -187,6 +187,8 @@ function AppNavDrawer(props) {
                   variant="outlined"
                   endIcon={<ArrowDropDownRoundedIcon fontSize="small" />}
                   sx={{
+                    py: 0.4,
+                    px: 1,
                     border: (theme) =>
                       `1px solid ${
                         theme.palette.mode === 'dark'
@@ -217,54 +219,6 @@ function AppNavDrawer(props) {
                   anchorEl={anchorEl}
                   open={Boolean(anchorEl)}
                   onClose={() => setAnchorEl(null)}
-                  PaperProps={{
-                    variant: 'outlined',
-                    elevation: 0,
-                    sx: {
-                      mt: 0.5,
-                      minWidth: 180,
-                      backgroundImage: 'none',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                      bgcolor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                      boxShadow: (theme) =>
-                        `0px 4px 20px ${
-                          theme.palette.mode === 'dark'
-                            ? 'rgba(0, 0, 0, 0.5)'
-                            : 'rgba(170, 180, 190, 0.3)'
-                        }`,
-                      '& .MuiMenuItem-root': {
-                        fontSize: (theme) => theme.typography.pxToRem(14),
-                        fontWeight: 500,
-                        '&:hover': {
-                          color: (theme) =>
-                            theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
-                          backgroundColor: (theme) =>
-                            theme.palette.mode === 'dark'
-                              ? alpha(theme.palette.primaryDark[700], 0.4)
-                              : theme.palette.grey[50],
-                        },
-                        '&:focus': {
-                          backgroundColor: (theme) =>
-                            theme.palette.mode === 'dark'
-                              ? alpha(theme.palette.primaryDark[700], 0.4)
-                              : theme.palette.grey[50],
-                        },
-                        '&.Mui-selected': {
-                          fontWeight: 500,
-                          color: (theme) =>
-                            theme.palette.mode === 'dark'
-                              ? theme.palette.primary[300]
-                              : theme.palette.primary[600],
-                          backgroundColor: (theme) =>
-                            theme.palette.mode === 'dark'
-                              ? theme.palette.primaryDark[700]
-                              : alpha(theme.palette.primary[100], 0.6),
-                        },
-                      },
-                    },
-                  }}
                 >
                   <MenuItem selected onClick={() => setAnchorEl(null)}>
                     {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
@@ -292,14 +246,7 @@ function AppNavDrawer(props) {
             ) : null}
           </ToolbarDiv>
         </ToolbarIE11>
-        <Divider
-          sx={{
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[100],
-          }}
-        />
+        <Divider />
         <DiamondSponsors spot="drawer" />
         {navItems}
         <Box sx={{ height: 40 }} />

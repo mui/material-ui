@@ -6,6 +6,7 @@
     m: 1,
     bgcolor: 'background.paper',
     height: 124,
+    borderRadius: 1,
   }}
 >
   <Item>Item 1</Item>
