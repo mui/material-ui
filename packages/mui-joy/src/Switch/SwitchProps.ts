@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { SwitchClasses } from './switchClasses';
-import { ColorPaletteProp } from '../styles';
+import { ColorPaletteProp, SxProps } from '../styles';
 
 export interface SwitchPropsColorOverrides {}
 
@@ -16,7 +16,6 @@ export interface SwitchProps extends UseSwitchProps {
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
   component?: React.ElementType;
   /**
@@ -36,4 +35,8 @@ export interface SwitchProps extends UseSwitchProps {
    * @default 'md'
    */
   size?: OverridableStringUnion<'sm' | 'md' | 'lg', SwitchPropsSizeOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps;
 }

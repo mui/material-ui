@@ -173,6 +173,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     <SwitchRoot
       ref={ref}
       {...otherProps}
+      as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
     >
