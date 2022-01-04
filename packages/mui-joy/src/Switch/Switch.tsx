@@ -202,9 +202,13 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'primary'
+   */
+  color: PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+  /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
   component: PropTypes.elementType,
   /**
@@ -243,6 +247,11 @@ Switch.propTypes /* remove-proptypes */ = {
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
+  /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
 } as any;
 
 export default Switch;
