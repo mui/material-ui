@@ -340,12 +340,13 @@ const teamMembers: Array<Profile> = [
     twitter: 'gprakhar123',
   },
   {
-    src: '/static/branding/about/prakhar.png',
+    src: '/static/branding/about/jose.png',
     name: 'José Freitas',
     title: 'Advanced components team',
     location: 'Augsburg, Germany',
     country: 'br',
     about: 'Art, fiction',
+    twitter: 'zehdefreitas',
     github: 'joserodolfofreitas',
   },
 ];
