@@ -10,7 +10,7 @@ export default function StaticDatePickerLandscape() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <StaticDatePicker<Date>
+      <StaticDatePicker
         orientation="landscape"
         openTo="day"
         value={value}
