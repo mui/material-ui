@@ -9,7 +9,7 @@ import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
@@ -252,7 +252,7 @@ function AppFrame(props) {
             onClick={handleNavDrawerOpen}
             sx={{ ml: '1px' }}
           >
-            <MenuIcon fontSize="small" />
+            <SvgHamburgerMenu />
           </NavIconButton>
           <GrowingDiv />
           <Stack direction="row" spacing={1.3}>

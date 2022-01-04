@@ -308,14 +308,16 @@ export function getThemedComponents(theme: Theme) {
               borderColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[400]
-                  : theme.palette.grey[200],
+                  : theme.palette.grey[300],
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
                   : theme.palette.grey[50],
-              ...theme.typography.body2,
               fontFamily: theme.typography.fontFamilyCode,
-              fontWeight: 600,
+              fontWeight: 400,
+              fontSize: defaultTheme.typography.pxToRem(13), // 14px
+              lineHeight: 21 / 14,
+              letterSpacing: 0,
               WebkitFontSmoothing: 'subpixel-antialiased',
               '&:hover, &.Mui-focusVisible': {
                 borderColor: theme.palette.primary.main,
@@ -530,14 +532,16 @@ export function getThemedComponents(theme: Theme) {
             display: 'block',
             borderColor:
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[400]
+                ? theme.palette.primaryDark[500]
                 : theme.palette.grey[200],
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: theme.palette.primaryDark[700],
             }),
             'a&, button&': {
               '&:hover': {
-                boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
+                boxShadow: `0px 4px 20px ${
+                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+                }`,
               },
             },
           },
