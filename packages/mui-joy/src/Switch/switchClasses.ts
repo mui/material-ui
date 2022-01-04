@@ -27,30 +27,12 @@ export interface SwitchClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `elevation="xs"`. */
-  elevationXs: string;
-  /** Styles applied to the root element if `elevation="sm"`. */
-  elevationSm: string;
-  /** Styles applied to the root element if `elevation="md"`. */
-  elevationMd: string;
-  /** Styles applied to the root element if `elevation="lg"`. */
-  elevationLg: string;
-  /** Styles applied to the root element if `elevation="xl"`. */
-  elevationXl: string;
-  /** Styles applied to the root element if `roundness="xs"`. */
-  roundnessXs: string;
-  /** Styles applied to the root element if `roundness="sm"`. */
-  roundnessSm: string;
-  /** Styles applied to the root element if `roundness="md"`. */
-  roundnessMd: string;
-  /** Styles applied to the root element if `roundness="lg"`. */
-  roundnessLg: string;
-  /** Styles applied to the root element if `roundness="xl"`. */
-  roundnessXl: string;
-  /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string;
-  /** Styles applied to the root element if `size="large"`. */
-  sizeLarge: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
 export type SwitchClassKey = keyof SwitchClasses;
@@ -73,18 +55,9 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
-  'elevationXs',
-  'elevationSm',
-  'elevationMd',
-  'elevationLg',
-  'elevationXl',
-  'roundnessXs',
-  'roundnessSm',
-  'roundnessMd',
-  'roundnessLg',
-  'roundnessXl',
-  'sizeSmall',
-  'sizeLarge',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
 export default switchClasses;

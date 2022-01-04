@@ -17,10 +17,17 @@ describe('<Switch />', () => {
       { slotName: 'input', slotClassName: classes.input },
     ],
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'classesRoot',
+      'propsSpread',
+      'themeDefaultProps',
+      'themeVariants',
+    ],
   }));
 
-  it('should have the classes required for SwitchBase', () => {
+  it('should have the classes required for Switch', () => {
     expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
   });
 
@@ -33,7 +40,7 @@ describe('<Switch />', () => {
     expect(root.childNodes[0]).to.have.class(classes.track);
   });
 
-  it('renders a `role="checkbox"` with the Unechecked state by default', () => {
+  it('renders a `role="checkbox"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Switch />);
 
     expect(getByRole('checkbox')).to.have.property('checked', false);

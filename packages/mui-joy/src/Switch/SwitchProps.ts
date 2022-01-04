@@ -2,7 +2,8 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { SwitchClasses } from './switchClasses';
-import { ColorPaletteProp, SxProps } from '../styles';
+import { SxProps } from '../styles/defaultTheme';
+import { ColorPaletteProp } from '../styles/types';
 
 export interface SwitchPropsColorOverrides {}
 
