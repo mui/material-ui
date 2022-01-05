@@ -1,55 +1,24 @@
-import { mkdirSync, readFileSync } from 'fs';
+import { mkdirSync } from 'fs';
 import * as fse from 'fs-extra';
 import path from 'path';
-import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
-import { ReactDocgenApi } from 'react-docgen';
-import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import { getHeaders } from '@mui/markdown';
-import { Styles } from 'docs/src/modules/utils/parseStyles';
 import * as ttp from 'typescript-to-proptypes';
-import { getGeneralPathInfo, getMaterialPathInfo, getBasePathInfo } from './buildApiUtils';
-import buildComponentApi, { writePrettifiedFile } from './ApiBuilders/ComponentApiBuilder';
+import { findPages, findComponents } from 'docs/src/modules/utils/find';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import {
+  ComponentInfo,
+  getGenericComponentInfo,
+  getMaterialComponentInfo,
+  getBaseComponentInfo,
+  extractApiPage,
+} from 'docs/scripts/buildApiUtils';
+import buildComponentApi, {
+  writePrettifiedFile,
+  ReactApi,
+} from 'docs/scripts/ApiBuilders/ComponentApiBuilder';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
-
-interface ReactApi extends ReactDocgenApi {
-  /**
-   * list of page pathnames
-   * @example ['/components/Accordion']
-   */
-  demos: readonly string[];
-  EOL: string;
-  filename: string;
-  apiUrl: string;
-  forwardsRefTo: string | undefined;
-  inheritance: { component: string; pathname: string } | null;
-  /**
-   * react component name
-   * @example 'Accordion'
-   */
-  name: string;
-  description: string;
-  spread: boolean | undefined;
-  /**
-   * result of path.readFileSync from the `filename` in utf-8
-   */
-  src: string;
-  styles: Styles;
-  propsTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-  }>;
-  translations: {
-    componentDescription: string;
-    propDescriptions: { [key: string]: string | undefined };
-    classDescriptions: { [key: string]: { description: string; conditions?: string } };
-  };
-}
 
 async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]): Promise<void> {
   const componentDirectories = new Set<string>();
@@ -82,39 +51,71 @@ async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]
   );
 }
 
+const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
+  const files = fse.readdirSync(dirPath);
+
+  files.forEach((file) => {
+    if (fse.statSync(`${dirPath}/${file}`).isDirectory()) {
+      arrayOfFiles = getAllFiles(`${dirPath}/${file}`, arrayOfFiles);
+    } else {
+      arrayOfFiles.push(path.join(__dirname, dirPath, '/', file));
+    }
+  });
+
+  return arrayOfFiles;
+};
+
+function findApiPages(relativeFolder: string) {
+  let pages: Array<{ pathname: string }> = [];
+  let filePaths = [];
+  try {
+    filePaths = getAllFiles(path.join(process.cwd(), relativeFolder));
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+    return [];
+  }
+  filePaths.forEach((itemPath) => {
+    if (itemPath.endsWith('.js')) {
+      const data = extractApiPage(itemPath);
+
+      pages.push({ pathname: data.apiPathname });
+    }
+  });
+
+  // sort by pathnames without '-' so that e.g. card comes before card-action
+  pages = pages.sort((a, b) => {
+    const pathnameA = a.pathname.replace(/-/g, '');
+    const pathnameB = b.pathname.replace(/-/g, '');
+    if (pathnameA < pathnameB) {
+      return -1;
+    }
+    if (pathnameA > pathnameB) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return pages;
+}
+
 interface Settings {
   input: {
     /**
      * Component directories to be used to generate API
      */
     libDirectory: string[];
-    /**
-     * The directory to get api pathnames to generate pagesApi
-     */
-    pageDirectory: string;
-    /**
-     * The directory that contains markdown files to be used to find demos
-     * related to the processed component
-     */
-    markdownDirectory: string;
   };
   output: {
-    /**
-     * API page + json content output directory
-     */
-    pagesDirectory: string;
     /**
      * The output path of `pagesApi` generated from `input.pageDirectory`
      */
     apiManifestPath: string;
   };
-  productUrlPrefix: string;
-  getPathInfo: (filename: string) => { apiUrl: string; demoUrl: string };
+  getApiPages: () => Array<{ pathname: string }>;
+  getComponentInfo: (filename: string) => ComponentInfo;
 }
 
-/**
- * This is the refactored version of the current API building process, nothing's changed.
- */
 const BEFORE_MIGRATION_SETTINGS: Settings[] = [
   {
     input: {
@@ -123,87 +124,68 @@ const BEFORE_MIGRATION_SETTINGS: Settings[] = [
         path.join(process.cwd(), 'packages/mui-material/src'),
         path.join(process.cwd(), 'packages/mui-lab/src'),
       ],
-      pageDirectory: path.join(process.cwd(), 'docs/pages'),
-      markdownDirectory: path.join(process.cwd(), 'docs/src/pages'),
     },
     output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
     },
-    productUrlPrefix: '',
-    getPathInfo: getGeneralPathInfo,
+    getApiPages: () => {
+      const pages = findPages({ front: true }, path.join(process.cwd(), 'docs/pages'));
+      return pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children ?? [];
+    },
+    getComponentInfo: getGenericComponentInfo,
   },
 ];
 
-/**
- * Once the preparation is done (as described in https://github.com/mui-org/material-ui/issues/30091), swithc to this settings.
- * It will generate API for the current & `/material` paths, then set the redirect to link `/api/*` to `/material/api/*`
- * At this point, `mui-base` content is still live in with `mui-material`.
- */
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MIGRATION_SETTINGS: Settings[] = [
-  ...BEFORE_MIGRATION_SETTINGS,
   {
+    input: {
+      libDirectory: [
+        path.join(process.cwd(), 'packages/mui-material/src'),
+        path.join(process.cwd(), 'packages/mui-lab/src'),
+      ],
+    },
+    output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
+    },
+    getApiPages: () => findApiPages('docs/pages/material/api'),
+    getComponentInfo: getMaterialComponentInfo,
+  },
+  {
+    input: {
+      libDirectory: [path.join(process.cwd(), 'packages/mui-base/src')],
+    },
+    output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
+    },
+    getApiPages: () => findApiPages('docs/pages/base/api'),
+    getComponentInfo: getBaseComponentInfo,
+  },
+  // add other products, eg. joy, data-grid, ...etc
+  {
+    // use old config so that component type definition does not change by `annotateComponentDefinition`
+    // TODO: remove this setting at cleanup phase
     input: {
       libDirectory: [
         path.join(process.cwd(), 'packages/mui-base/src'),
         path.join(process.cwd(), 'packages/mui-material/src'),
         path.join(process.cwd(), 'packages/mui-lab/src'),
       ],
-      pageDirectory: path.join(process.cwd(), 'docs/pages/material'),
-      markdownDirectory: path.join(process.cwd(), 'docs/data'),
     },
     output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
-      apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
+      apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
     },
-    productUrlPrefix: '/material',
-    getPathInfo: getMaterialPathInfo,
+    getApiPages: () => {
+      const pages = findPages({ front: true }, path.join(process.cwd(), 'docs/pages'));
+      return pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children ?? [];
+    },
+    getComponentInfo: getGenericComponentInfo,
   },
 ];
 
-/**
- * Once redirects are stable
- * - Create `mui-base` content in `docs/pages/base/*` and switch to this settings.
- * - Remove old content directories, eg. `docs/pages/components/*`, ...etc
- */
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const POST_MIGRATION_SETTINGS: Settings[] = [
-  {
-    input: {
-      libDirectory: [
-        path.join(process.cwd(), 'packages/mui-material/src'),
-        path.join(process.cwd(), 'packages/mui-lab/src'),
-      ],
-      pageDirectory: path.join(process.cwd(), 'docs/pages/material'),
-      markdownDirectory: path.join(process.cwd(), 'docs/data'),
-    },
-    output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
-      apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
-    },
-    productUrlPrefix: '/material',
-    getPathInfo: getMaterialPathInfo,
-  },
-  {
-    input: {
-      libDirectory: [path.join(process.cwd(), 'packages/mui-base/src')],
-      pageDirectory: path.join(process.cwd(), 'docs/pages/base'),
-      markdownDirectory: path.join(process.cwd(), 'docs/data'),
-    },
-    output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/base/api-docs'),
-      apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
-    },
-    productUrlPrefix: '/base',
-    getPathInfo: getBasePathInfo,
-  },
-  // add other products, eg. joy, data-grid, ...etc
-];
-
-const ACTIVE_SETTINGS = BEFORE_MIGRATION_SETTINGS;
+// TODO: Switch to MIGRATION_SETTINGS once ready to migrate content
+const ACTIVE_SETTINGS = FEATURE_TOGGLE.enable_product_scope
+  ? MIGRATION_SETTINGS
+  : BEFORE_MIGRATION_SETTINGS;
 
 type CommandOptions = { grep?: string };
 
@@ -211,40 +193,18 @@ async function run(argv: CommandOptions) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await ACTIVE_SETTINGS.reduce(async (resolvedPromise, setting) => {
+    await resolvedPromise;
     const workspaceRoot = path.resolve(__dirname, '../../');
     /**
      * @type {string[]}
      */
     const componentDirectories = setting.input.libDirectory;
     const apiPagesManifestPath = setting.output.apiManifestPath;
-    const pagesDirectory = setting.output.pagesDirectory;
 
-    mkdirSync(pagesDirectory, { mode: 0o777, recursive: true });
     const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
     if (manifestDir) {
       mkdirSync(manifestDir, { recursive: true });
     }
-
-    /**
-     * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
-     *
-     * e.g.:
-     * [{
-     *   pathname: '/components/accordion',
-     *   filename: '/Users/user/Projects/material-ui/docs/src/pages/components/badges/accordion-ja.md',
-     *   components: [ 'Accordion', 'AccordionActions', 'AccordionDetails', 'AccordionSummary' ]
-     * }, ...]
-     */
-    const pagesMarkdown = findPagesMarkdown(setting.input.markdownDirectory)
-      .map((markdown) => {
-        const markdownSource = readFileSync(markdown.filename, 'utf8');
-        return {
-          ...markdown,
-          pathname: setting.getPathInfo(markdown.filename).demoUrl,
-          components: getHeaders(markdownSource).components,
-        };
-      })
-      .filter((markdown) => markdown.components.length > 0);
 
     /**
      * components: Array<{ filename: string }>
@@ -284,15 +244,11 @@ async function run(argv: CommandOptions) {
     const componentBuilds = components.map(async (component) => {
       try {
         const { filename } = component;
-        const pathInfo = setting.getPathInfo(filename);
+        const componentInfo = setting.getComponentInfo(filename);
 
-        return buildComponentApi(filename, {
-          ttpProgram: program,
-          pagesMarkdown,
-          apiUrl: pathInfo.apiUrl,
-          productUrlPrefix: setting.productUrlPrefix,
-          outputPagesDirectory: setting.output.pagesDirectory,
-        });
+        mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+
+        return buildComponentApi(componentInfo, program);
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
         throw error;
@@ -314,16 +270,9 @@ async function run(argv: CommandOptions) {
 
     allBuilds = [...allBuilds, ...builds];
 
-    const pages = findPages({ front: true }, setting.input.pageDirectory);
-    const apiPages = pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children;
-    if (apiPages === undefined) {
-      throw new TypeError('Unable to find pages under /api');
-    }
-
-    const source = `module.exports = ${JSON.stringify(apiPages)}`;
+    const source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
     writePrettifiedFile(apiPagesManifestPath, source);
-
-    await resolvedPromise;
+    return Promise.resolve();
   }, Promise.resolve());
 
   if (grep === null) {
