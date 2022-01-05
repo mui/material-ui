@@ -86,11 +86,20 @@ describe('replaceUrl', () => {
     expect(replaceUrl(`/guides/minimizing-bundle-size/`, '/material/react-buttons')).to.equal(
       `/material/guides/minimizing-bundle-size/`,
     );
+    expect(
+      replaceUrl(`/components/data-grid/getting-started/#main-content`, '/x/react-data-grid'),
+    ).to.equal(`/x/react-data-grid/getting-started/#main-content`);
+    expect(replaceUrl(`/api/button-unstyled`, '/base/api/mui-base/button-unstyled')).to.equal(
+      `/base/api/mui-base/button-unstyled`,
+    );
   });
 
   it('does not replace for old routes', () => {
     expect(replaceUrl(`/guides/minimizing-bundle-size/`, '/components/buttons')).to.equal(
       `/guides/minimizing-bundle-size/`,
     );
+    expect(
+      replaceUrl(`/components/data-grid/getting-started/#main-content`, '/components/buttons'),
+    ).to.equal(`/components/data-grid/getting-started/#main-content`);
   });
 });
