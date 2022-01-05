@@ -1,4 +1,4 @@
-# `@material-ui/styled-engine`
+# `@mui/styled-engine`
 
 <p class="description">配置您首选的样式库。</p>
 
