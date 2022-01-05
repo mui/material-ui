@@ -205,7 +205,9 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
 
 const ACTIVE_SETTINGS = BEFORE_MIGRATION_SETTINGS;
 
-async function run(argv: { grep?: string }) {
+type CommandOptions = { grep?: string };
+
+async function run(argv: CommandOptions) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await ACTIVE_SETTINGS.reduce(async (resolvedPromise, setting) => {
@@ -337,7 +339,7 @@ async function run(argv: { grep?: string }) {
 }
 
 yargs
-  .command({
+  .command<CommandOptions>({
     command: '$0',
     describe: 'formats codebase',
     builder: (command) => {
