@@ -86,3 +86,4 @@ const DateRangePickerToolbar = ({
 };
 
 export default DateRangePickerToolbar;
+export type { DateRangePickerToolbarProps };
