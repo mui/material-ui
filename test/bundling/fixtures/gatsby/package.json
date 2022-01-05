@@ -16,7 +16,7 @@
     "@mui/styles": "5.0.0-alpha.33",
     "@mui/system": "5.0.0-alpha.34",
     "@mui/utils": "5.0.0-alpha.33",
-    "gatsby": "3.14.6",
+    "gatsby": "3.4.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-is": "17.0.2"
