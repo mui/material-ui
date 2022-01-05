@@ -70,10 +70,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 
 ```jsx
 <Box component="div" sx={{ overflow: 'hidden' }}>
-  Estouro oculto
+  Not scrollable, overflow is hidden
 </Box>
-<Box component="div" sx={{ overflow: 'visible' }}>
-  Estouro visível
+<Box component="div" sx={{ overflow: 'auto' }}>
+  Try scrolling this overflow auto box
 </Box>
 ```
 
@@ -83,10 +83,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 
 ```jsx
 <Box component="div" sx={{ textOverflow: 'clip' }}>
-  Estouro de texto com corte
+  Lorem Ipsum is simply dummy text
 </Box>
 <Box component="div" sx={{ textOverflow: 'ellipsis' }}>
-  Estouro de texto com reticências
+  Lorem Ipsum is simply dummy text
 </Box>
 ```
 
@@ -96,10 +96,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 
 ```jsx
 <Box component="div" sx={{ visibility: 'visible' }}>
-  Visibilidade visível
+  Visible container
 </Box>
 <Box component="div" sx={{ visibility: 'hidden' }}>
-  Visibilidade oculta
+  Invisible container
 </Box>
 ```
 
@@ -109,10 +109,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 
 ```jsx
 <Box component="div" sx={{ whiteSpace: 'nowrap' }}>
-  Espaço em branco sem quebra
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 </Box>
 <Box component="div" sx={{ whiteSpace: 'normal' }}>
-  Espaço em branco normal
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 </Box>
 ```
 
