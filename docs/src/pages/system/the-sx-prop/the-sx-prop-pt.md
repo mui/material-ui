@@ -67,7 +67,7 @@ As propriedades `color` e `backgroundColor` podem receber uma string, que repres
 // equivalent to color: theme => theme.palette.primary.main
 ```
 
-The `backgroundColor` property is also available trough its alias `bgcolor`.
+The `backgroundColor` property is also available through its alias `bgcolor`.
 
 ```jsx
 <Box sx={{ bgcolor: 'primary.main' }} />
@@ -163,7 +163,7 @@ The same can be achieved by omitting the CSS property prefix `fontWeight`.
 //equivalente à fontWeight: theme.typography.fontWeightLight
 ```
 
-There is additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
+There is an additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
 
 ```jsx
 <Box sx={{ typography: 'body1' }} />
