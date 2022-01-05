@@ -116,7 +116,7 @@ function reduceChildRoutes(context) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
-    const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}/`) === 0 : false;
+    const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}`) === 0 : false;
 
     items.push(
       <AppNavDrawerItem

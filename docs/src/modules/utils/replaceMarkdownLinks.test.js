@@ -105,7 +105,7 @@ describe('replaceMarkdownLinks', () => {
     <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
 <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
 <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-<li><a href="/material/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+<li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
 <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
 <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
 <li><a href="/x/api/mui-data-grid/data-grid/">DataGrid</a></li>
@@ -122,7 +122,7 @@ describe('replaceMarkdownLinks', () => {
       <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
   <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
   <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-  <li><a href="/material/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+  <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
   <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
   <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
   </ul>
@@ -131,7 +131,7 @@ describe('replaceMarkdownLinks', () => {
       <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
   <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
   <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-  <li><a href="/material/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+  <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
   <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
   <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
   </ul>
@@ -172,7 +172,7 @@ describe('replaceMarkdownLinks', () => {
     <li><a href="/x/react-data-grid/demo/">Demo</a></li>
     <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
     <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-    <li><a href="/material/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+    <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
     <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
     <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/x/api/mui-data-grid/data-grid/">DataGrid</a></li>

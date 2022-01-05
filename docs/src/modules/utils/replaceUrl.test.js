@@ -55,7 +55,7 @@ describe('replaceUrl', () => {
   it('replace correct API links', () => {
     expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/mui-material/button/`);
     expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(
-      `/material/api/mui-base/button-unstyled/`,
+      `/base/api/mui-base/button-unstyled/`,
     );
     expect(replaceAPILinks(`/api/loading-button/`)).to.equal(
       `/material/api/mui-lab/loading-button/`,
@@ -71,8 +71,8 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/material/api/mui-material/button/`)).to.equal(
       `/material/api/mui-material/button/`,
     );
-    expect(replaceAPILinks(`/material/api/mui-base/button-unstyled/`)).to.equal(
-      `/material/api/mui-base/button-unstyled/`,
+    expect(replaceAPILinks(`/base/api/mui-base/button-unstyled/`)).to.equal(
+      `/base/api/mui-base/button-unstyled/`,
     );
     expect(replaceAPILinks(`/material/api/mui-lab/loading-button/`)).to.equal(
       `/material/api/mui-lab/loading-button/`,
