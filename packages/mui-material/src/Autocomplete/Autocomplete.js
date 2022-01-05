@@ -720,7 +720,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    clearIndicator: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
