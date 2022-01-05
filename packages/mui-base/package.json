@@ -56,7 +56,7 @@
     "@mui/utils": "^5.2.3",
     "@popperjs/core": "^2.4.4",
     "clsx": "^1.1.1",
-    "prop-types": "^15.7.2",
+    "prop-types": "^15.8.1",
     "react-is": "^17.0.2"
   },
   "devDependencies": {
