@@ -247,3 +247,5 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default ClickAwayListener;
+
+export const dummy = 1;
