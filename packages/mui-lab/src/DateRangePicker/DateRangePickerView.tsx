@@ -4,7 +4,7 @@ import { isRangeValid } from '../internal/pickers/date-utils';
 import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { calculateRangeChange } from './date-range-manager';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
-import DateRangePickerToolbar from './DateRangePickerToolbar';
+import DateRangePickerToolbar, { DateRangePickerToolbarProps } from './DateRangePickerToolbar';
 import { useCalendarState } from '../CalendarPicker/useCalendarState';
 import { DateRangePickerViewMobile } from './DateRangePickerViewMobile';
 import {
@@ -31,7 +31,10 @@ type BaseCalendarPropsToReuse<TDate> = Omit<
 export interface ExportedDateRangePickerViewProps<TDate>
   extends BaseCalendarPropsToReuse<TDate>,
     ExportedDesktopDateRangeCalendarProps<TDate>,
-    Omit<BasePickerProps<RangeInput<TDate>, DateRange<TDate>>, 'value' | 'onChange'> {
+    Omit<
+      BasePickerProps<RangeInput<TDate>, DateRange<TDate>>,
+      'value' | 'onChange' | 'ToolbarComponent'
+    > {
   /**
    * If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false
@@ -42,6 +45,11 @@ export interface ExportedDateRangePickerViewProps<TDate>
    * @default 'Select date range'
    */
   toolbarTitle?: React.ReactNode;
+  /**
+   * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
+   */
+  ToolbarComponent?: React.JSXElementConstructor<DateRangePickerToolbarProps>;
 }
 
 interface DateRangePickerViewProps<TDate>
@@ -90,6 +98,7 @@ export function DateRangePickerView<TDate>(props: DateRangePickerViewProps<TDate
     showToolbar,
     startText,
     toggleMobileKeyboardView,
+    ToolbarComponent,
     toolbarFormat,
     toolbarTitle,
     ...other
@@ -217,11 +226,11 @@ export function DateRangePickerView<TDate>(props: DateRangePickerViewProps<TDate
       }
     }
   };
-
+  const Toolbar = ToolbarComponent ?? DateRangePickerToolbar;
   return (
     <div className={className}>
       {toShowToolbar && (
-        <DateRangePickerToolbar
+        <Toolbar
           date={date}
           isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
           toggleMobileKeyboardView={toggleMobileKeyboardView}
