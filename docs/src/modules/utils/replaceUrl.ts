@@ -1,13 +1,17 @@
+function isNewLocation(url: string) {
+  return url.startsWith('/x') || url.startsWith('/material') || url.startsWith('/base');
+}
+
 export const replaceMaterialLinks = (url: string) => {
   const routes = 'guides|customization|getting-started|discover-more';
-  if (url.startsWith('/material')) {
+  if (isNewLocation(url)) {
     return url;
   }
   return url.replace(new RegExp(`(${routes})`), 'material/$1');
 };
 
 export const replaceComponentLinks = (url: string) => {
-  if (url.startsWith('/x') || url.startsWith('/material')) {
+  if (isNewLocation(url)) {
     return url;
   }
   return url
@@ -16,12 +20,7 @@ export const replaceComponentLinks = (url: string) => {
 };
 
 export const replaceAPILinks = (url: string) => {
-  if (
-    url.startsWith('/x') ||
-    url.startsWith('/material') ||
-    url.startsWith('/base/') ||
-    !url.startsWith('/api')
-  ) {
+  if (isNewLocation(url) || !url.startsWith('/api')) {
     return url;
   }
   url = url
@@ -32,14 +31,14 @@ export const replaceAPILinks = (url: string) => {
     )
     .replace(/\/api\/([^/]+-unstyled)(.*)/, '/base/api/mui-base/$1$2');
 
-  if (url.startsWith('/x') || url.startsWith('/material') || url.startsWith('/base/')) {
+  if (isNewLocation(url)) {
     return url;
   }
   return url.replace(/\/api\/(.*)/, '/material/api/mui-material/$1');
 };
 
 export default function replaceUrl(url: string, asPath: string) {
-  if (asPath.startsWith('/material/') || asPath.startsWith('/x/') || asPath.startsWith('/base/')) {
+  if (isNewLocation(asPath)) {
     return replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(url)));
   }
   return url;
