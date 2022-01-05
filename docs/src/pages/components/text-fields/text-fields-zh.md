@@ -29,7 +29,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## 校验
 
-`error` 参数用于切换错误状态。 `helperText` 参数通常用于向用户提供错误信息。
+`error` 属性用于切换错误状态。 `helperText` 属性通常用于向用户提供错误信息。
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
