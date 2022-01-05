@@ -62,7 +62,6 @@ async function createModulePackages({ from, to }) {
         fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.main)),
         fse.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
       ]);
-      console.log(`written ${packageJsonPath}`);
 
       const manifestErrorMessages = [];
       if (!typingsEntryExist) {

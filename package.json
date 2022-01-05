@@ -103,6 +103,7 @@
     "@typescript-eslint/parser": "^5.8.0",
     "argos-cli": "^0.3.3",
     "babel-loader": "^8.2.3",
+    "babel-plugin-add-import-extension": "^1.6.0",
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-module-resolver": "^4.1.0",
