@@ -12,7 +12,7 @@ githubLabel: 'component: Select'
 
 ## 基础的选择器
 
-Menus are positioned under their emitting elements, unless they are close to the bottom of the viewport.
+我们通常将菜单（Menus）放置在其所点击的元素上，这样的话能够确保当前选定的菜单项显示在点击的元素之上。
 
 {{"demo": "pages/components/selects/BasicSelect.js"}}
 
@@ -34,6 +34,8 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 {{"demo": "pages/components/selects/SelectLabels.js"}}
 
+> ⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+
 ### 自动宽度
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
@@ -52,11 +54,11 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 `TextField` wrapper 组件是一个完整的表单控件，它包括了标签，输入和帮助文本。 您可以在 [在此章节中](/components/text-fields/#select) 查看使用 select 模式的示例。
 
-## Customization 个性化
+## 自定义选择器
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
-首先，需要设置 `InputBase` 组件的样式。 一旦设置好了样式，您就可以直接将其用作文本字段，也可以将其作为一个 `select` 字段提供给 select 组件的 `input` 属性。 Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
+首先，需要设置 `InputBase` 组件的样式。 一旦设置好了样式，您就可以直接使用文本框组件，也可以将其作为一个 `select` 的字段提供给 select 组件的 `input` 属性。 Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -64,7 +66,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 多重选择
 
-`Select` 组件也支持多项选择。 你可以通过使用 `multiple` 属性来启用它。
+`Select` 组件也支持多项选择。 `Select` 组件也支持多项选择。
 
 与单项选择一样，您可以通过访问 `onChange` 的回调函数中的 `event.target.value ` 来提取新的值。 它总是以一个数组的形式出现。
 

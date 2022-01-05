@@ -7,7 +7,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 
 # Navegação estrutural
 
-<p class="description">Navegação estrutural permite aos usuários fazer seleções em um intervalo de caminhos.</p>
+<p class="description">Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -23,7 +23,7 @@ Mantendo o último caminho de navegação interativo.
 
 ## Separador customizado
 
-In the following examples, we are using two string separators and an SVG icon.
+Nos exemplos a seguir, nós estamos usando dois separadores de string e um ícone SVG.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
@@ -35,7 +35,7 @@ In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customização
+## Navegação estrutural customizada
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 

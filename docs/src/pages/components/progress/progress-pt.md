@@ -83,7 +83,7 @@ function Progress(props) {
 }
 ```
 
-## Customização
+## Progresso customizado
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -122,7 +122,7 @@ Indicadores de <a href="https://material.io/design/components/progress-indicator
 The circular progress component animation on IE 11 is degraded. A animação do traço não está funcionando (equivalente a `disableShrink`) e a animação circular oscila. Você pode resolver o último com:
 
 ```css
-.MuiCircularProgress-indeterminate {
+. MuiCircularProgress-indeterminate {
   animation: circular-rotate 1.4s linear infinite;
 }
 

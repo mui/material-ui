@@ -1,21 +1,21 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
 import NoSsr from '@mui/material/NoSsr';
-import ROUTES from 'docs/src/route';
+import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
+import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => {
   return {
-    top: 70,
+    top: 60,
     // Fix IE11 position sticky issue.
-    marginTop: 70,
-    width: 210,
+    marginTop: 60,
+    width: 240,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
@@ -31,11 +31,13 @@ const Nav = styled('nav')(({ theme }) => {
 const NavLabel = styled(Typography)(({ theme }) => {
   return {
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1.5),
-    fontSize: theme.typography.pxToRem(12),
+    marginBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(1.4),
+    fontSize: theme.typography.pxToRem(11),
     fontWeight: theme.typography.fontWeightBold,
-    color:
-      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
+    textTransform: 'uppercase',
+    letterSpacing: '.08rem',
+    color: theme.palette.grey[600],
   };
 });
 
@@ -51,27 +53,31 @@ const NavItem = styled(Link, {
   const activeStyles = {
     borderLeftColor:
       theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+    '&:hover': {
+      borderLeftColor:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+      color:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+    },
   };
 
   return {
     fontSize: theme.typography.pxToRem(13),
-    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
+    padding: theme.spacing(0, 1, 0, secondary ? 2.5 : '10px'),
     margin: theme.spacing(0.5, 0, 1, 0),
-    borderLeft: `2px solid transparent`,
+    borderLeft: `1px solid transparent`,
     boxSizing: 'border-box',
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
-      color:
-        theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
+        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[600] : theme.palette.grey[200],
     },
     ...(!active && {
-      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.text.primary,
     }),
     // TODO: We probably want `aria-current="location"` instead.
-    // If so, are we sure "current" and "active" states should have the same styles?
     ...(active && activeStyles),
     '&:active': activeStyles,
   };
@@ -116,10 +122,10 @@ function flatten(headings) {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
+  const router = useRouter();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
 
-  const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -198,7 +204,8 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      href={`${activePage.linkProps?.linkAs ?? activePage.pathname}#${item.hash}`}
+      // always replace the #* in the url because `router.asPath` might contain previous #
+      href={`${router.asPath.replace(/#.*/, '')}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
@@ -211,64 +218,7 @@ export default function AppTableOfContents(props) {
   return (
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
-        <Link
-          href={ROUTES.survey2021Docs}
-          target="_blank"
-          data-ga-event-category="survey-2021"
-          data-ga-event-action="click"
-          data-ga-event-label="table-contents"
-          sx={(theme) => ({
-            mb: 2,
-            p: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'start',
-            background:
-              theme.palette.mode === 'dark'
-                ? `linear-gradient(90deg, ${theme.palette.primary[900]}, ${theme.palette.primary[600]} 120%)`
-                : `linear-gradient(-90deg, ${theme.palette.primary[700]}, ${theme.palette.primary[500]} 120%)`,
-            borderRadius: 1,
-            transitionProperty: 'all',
-            transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-            transitionDuration: '200ms',
-            '&:hover, &:focus-visible': {
-              boxShadow:
-                theme.palette.mode === 'dark'
-                  ? '1px 1px 20px 0 rgb(2 2 2 / 50%)'
-                  : '1px 1px 20px 0 rgb(90 105 120 / 30%)',
-            },
-          })}
-        >
-          <Typography component="span" variant="body1" fontWeight="bold" sx={{ color: '#fff' }}>
-            2021 MUI&nbsp;&nbsp;🚀
-            <br />
-          </Typography>
-          <Typography
-            component="span"
-            variant="body2"
-            fontWeight="medium"
-            sx={{ color: 'primary.50' }}
-            // eslint-disable-next-line material-ui/no-hardcoded-labels
-          >
-            Developer survey
-            <br />
-          </Typography>
-          <Typography
-            component="span"
-            variant="caption"
-            fontWeight="normal"
-            sx={{
-              mt: 1,
-              pt: 1,
-              color: 'primary.50',
-              borderTop: 1,
-              borderColor: 'primary.400',
-            }}
-            // eslint-disable-next-line material-ui/no-hardcoded-labels
-          >
-            Help us shape the future of MUI! &#8594;
-          </Typography>
-        </Link>
+        <TableOfContentsBanner />
       </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>

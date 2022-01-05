@@ -79,13 +79,13 @@ Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até 
 
 ## Item de lista encaixado
 
-The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
+A propriedade `inset` habilita um item de lista, que não tenha um ícone principal ou um avatar, para alinhar corretamente os itens que possuem.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
 ## Lista sem espaçamentos
 
-When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+Ao renderizar uma lista dentro de um componente que define seus próprios espaços, o espaçamento do `ListItem` pode ser desabilitado com `disableGutters`.
 
 {{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
@@ -97,7 +97,7 @@ No exemplo a seguir, nós demonstramos como usar a biblioteca [react-window](htt
 
 O uso da biblioteca [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
 
-## Customização
+## Customized List
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 

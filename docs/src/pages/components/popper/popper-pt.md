@@ -18,7 +18,7 @@ Algumas características importantes do componente `Popper`:
 - Clicar fora não oculta o componente `Popper`. Se você precisar desse comportamento, você pode usar o componente [`ClickAwayListener`](/components/click-away-listener/) - veja o exemplo na [seção da documentação do menu](/components/menus/#menulist-composition).
 - O `anchorEl` é passado como o objeto de referência para criar uma nova instância `Popper.js`.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Popper Simples
 

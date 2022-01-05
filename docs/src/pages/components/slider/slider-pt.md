@@ -78,7 +78,7 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/ColorSlider.js"}}
 
-## Customização
+## Sliders customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -128,7 +128,7 @@ Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em
 
 - 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The slider also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import SliderUnstyled from '@mui/base/SliderUnstyled';
@@ -152,7 +152,7 @@ O componente lida com a maior parte do trabalho necessário para torná-lo acess
 The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
-.MuiSlider-valueLabel {
+. MuiSlider-valueLabel {
   left: calc(-50% - 4px);
 }
 ```

@@ -50,15 +50,15 @@ The buttons can be stacked vertically with the `orientation` prop set to "vertic
 If you want to enforce that at least one button must be active, you can adapt your handleChange function.
 
 ```jsx
-const handleAlignment = (event, newAlignment) => {
-  if (newAlignment !== null) {
-    setAlignment(newAlignment);
+const handleFormat = (event, newFormats) => {
+  if (newFormats.length) {
+    setFormats(newFormats);
   }
 };
 
-const handleDevices = (event, newDevices) => {
-  if (newDevices.length) {
-    setDevices(newDevices);
+const handleAlignment = (event, newAlignment) => {
+  if (newAlignment !== null) {
+    setAlignment(newAlignment);
   }
 };
 ```
@@ -69,9 +69,9 @@ const handleDevices = (event, newDevices) => {
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customization 个性化
+## 自定义切换按钮
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 

@@ -24,9 +24,10 @@
 - [处理重大变更](#handling-breaking-changes)
 - [将theme的 `styleOverrides`迁移至emotion](#migrate-themes-styleoverrides-to-emotion)
 - [从 JSS 迁移](#migrate-from-jss)
-- [故障排除（Troubleshooting）](#troubleshooting)
+- [CSS 特性](#css-specificity)
+- [Troubleshooting](#troubleshooting)
 
-> 💡 目标是创建最小的更改，使迁移更顺利。 如果您遇到任何问题，请检查 [疑难解答](#troubleshooting) 部分。 对于其它没有在此文档描述的错误，请以此格式`[Migration] Summary of your issue`[创建问题](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。
+> 💡 目标是创建最小的更改，使迁移更顺利。 如果您遇到任何问题，请查看 [疑难解答](#troubleshooting) 章节。 对于其它没有在此文档描述的错误，请以此格式`[Migration] Summary of your issue`[创建问题](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。
 
 ## 更新 React & TypeScript 版本
 
@@ -120,7 +121,7 @@ yarn add @emotion/react @emotion/styled
 
 至此，您应该已经安装了 `@mui/styles` 。 它包含与emotion冗余的JSS， 这意味着您可以渐进式地升级到v5。 您可以依照[这些步骤](#migrate-from-jss)移除依赖。
 
-> 📝 在进行下一步前，请确保您的程序仍然可以正确**运行**没有报错并且已经**应用了**更改。
+> 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
 
 一旦您的应用完全迁移到MUI v5，您可以通过执行 `yarn remove` 或者 `npm uninstall` 移除旧的`@material-ui/*`软件包。
 
@@ -128,7 +129,7 @@ yarn add @emotion/react @emotion/styled
 
 我们准备了一些codemods，提高您的迁移体验。
 
-### preset-safe
+### 升级 Material-UI 的版本
 
 这个codemods包含了大部分的有助于迁移的转换器。 （**这个codemod在每个目录下仅应当应用一次**）
 
@@ -173,7 +174,7 @@ npx @mui/codemod v5.0.0/variant-prop <path>
 > ❗️ 如果您已经在主题中定义了`underline: "always"`，那么您**不应该**使用此codemod。
 
 ```js
-// 如果您的主题像这样设置，❌请不要运行此codemod。
+// if you have theme setup like this, ❌ don't run this codemod.
 // 这些默认属性可以在之后移除，因为`always`在v5里面是默认值。
 createMuiTheme({
   components: {
@@ -196,7 +197,7 @@ npx @mui/codemod v5.0.0/link-underline-hover <path>
 
 一旦您完成了codemod步骤，请尝试再次运行您的应用程序。 此刻，您的程序应该可以运行并没有报错。 否则查看 [故障排除](#troubleshooting)章节。 下一步，处理各组件中不兼容的改动。
 
-## 处理变化带来的系统崩溃
+## 变更
 
 ### 支持的浏览器和node版本
 
@@ -219,13 +220,59 @@ npx @mui/codemod v5.0.0/link-underline-hover <path>
 
 对 `component` 属性中的非转发（non-ref-forwarding）类组件或作为直接 `子类（children）` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
 
-### 样式库
+### Ref type specificity
 
-v5版默认使用 [`emotion`](https://github.com/emotion-js/emotion)样式库。 从JSS向emotion迁移时，如果您正在使用JSS样式渲染您的组件（例如使用`makeStyles`创建的渲染），您需要注意CSS注入顺序。 为了做到这点，您需要在**组件树的顶部**包含`StyledEngineProvider`，并且包含`injectFirst`属性。
+For some components, you may get a type error when passing `ref`. To avoid the error, you should use a specific element type. For example, `Card` expects the type of `ref` to be `HTMLDivElement`, and `ListItem` expects its `ref` type to be `HTMLLIElement`.
+
+Here is an example:
+
+```diff
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import ListItem from '@mui/material/ListItem';
+
+export default function SpecificRefType() {
+- const cardRef = React.useRef<HTMLElement>(null);
++ const cardRef = React.useRef<HTMLDivElement>(null);
+
+- const listItemRef = React.useRef<HTMLElement>(null);
++ const listItemRef = React.useRef<HTMLLIElement>(null);
+  return (
+    <div>
+      <Card ref={cardRef}></Card>
+      <ListItem ref={listItemRef}></ListItem>
+    </div>
+  );
+}
+```
+
+The list of components that expect a specific element type is as follows:
+
+##### `@mui/material`
+
+- [Accordion](/api/accordion/) - `HTMLDivElement`
+- [Alert](/api/alert/) - `HTMLDivElement`
+- [Avatar](/api/avatar/) - `HTMLDivElement`
+- [ButtonGroup](/api/button-group/) - `HTMLDivElement`
+- [Card](/api/card/) - `HTMLDivElement`
+- [Dialog](/api/dialog/) - `HTMLDivElement`
+- [ImageList](/api/image-list/) - `HTMLUListElement`
+- [List](/api/list/) - `HTMLUListElement`
+- [Tab](/api/tab/) - `HTMLDivElement`
+- [Tabs](/api/tabs/) - `HTMLDivElement`
+- [ToggleButton](/api/toggle-button/) - `HTMLButtonElement`
+
+##### `@mui/lab`
+
+- [Timeline](/api/timeline/) - `HTMLUListElement`
+
+### Style library
+
+The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the **top of your component tree**.
 
 > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
 
-下面是一个示例：
+Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -233,9 +280,9 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 export default function GlobalCssPriority() {
   return (
-    {/* 在JSS前注入emotion */}
+    {/* Inject emotion before JSS */}
     <StyledEngineProvider injectFirst>
-      {/* 您的组件树 现在您可以覆盖 Material-UI 的样式。 */}
+      {/* Your component tree. 现在您可以覆盖 Material-UI 的样式。 */}
     </StyledEngineProvider>
   );
 }
@@ -245,7 +292,7 @@ export default function GlobalCssPriority() {
 > 
 > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
 
-下面是一个示例：
+Here is an example:
 
 ```diff
  import * as React from 'react';
@@ -260,7 +307,7 @@ export default function GlobalCssPriority() {
  export default function PlainCssPriority() {
    return (
      <CacheProvider value={cache}>
-       {/* 您的组件树。 现在您可以覆盖 Material-UI 的样式。 */}
+       {/* Your component tree. Now you can override MUI's styles. */}
      </CacheProvider>
    );
  }
@@ -268,9 +315,9 @@ export default function GlobalCssPriority() {
 
 > **注意：** 如果您正在使用 styled-components 并且有带有自定义 `target`属性的`StyleSheetManager` ，请确保目标是HTML `<head>`中的第一个元素。 如果想了解更多细节，请查阅`@mui/styled-engine-sc`程序包中的[`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js)。
 
-### 主题结构
+### Theme structure
 
-主题的结构在v5段中发生了变化。 您需要更新它的结构。 为了更顺畅的过渡， `adaptV4Theme` 助手允许您逐渐升级一些主题更改到新主题结构。
+The structure of the theme has changed in v5. You need to update its shape. For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
 
 > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
 
@@ -280,46 +327,46 @@ export default function GlobalCssPriority() {
 
 -const theme = createMuiTheme({
 +const theme = createTheme(adaptV4Theme({
-   // v4 版主题代码
+   // v4 theme
 -});
 +}));
 ```
 
 > ⚠️ 此适配器只处理 `createTheme`的输入参数， 在创建主题后修改的样式需要手动迁移。
 
-以下更改由适配器支持：
+The following changes are supported by the adapter:
 
-- 事实证明，“水槽（gutters）”这个抽象的概念还没有被频繁使用，所以是没有价值的。
+- The "gutters" abstraction hasn't proven to be used frequently enough to be valuable.
 
   ```diff
   -theme.mixins.gutters(),
   +paddingLeft: theme.spacing(2),
   +paddingRight: theme.spacing(2),
-  +[theme.breakpoints.up('sm')]],
-  + paddingLeft: theme.spacing(3),
-  + paddingRights: theme.spacing(3),
-+},
+  +[theme.breakpoints.up('sm')]: {
+  +  paddingLeft: theme.spacing(3),
+  +  paddingRight: theme.spacing(3),
+  +},
   ```
 
-- `theme.spacing` 现在默认返回以 px 为单位的单个数值。 这一改动改善了与 styled-components & emotion 的整合。
+- `theme.spacing` now returns single values with px units by default. This change improves the integration with styled-components & emotion.
 
-  > ✅ 这已经在 [preset-safe codemod](#preset-safe) 中得到解决，方式是从带有`theme.spacing`的字符串模板中移除 'px' 后缀。
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by removing any 'px' suffix from `theme.spacing` calls in a template string.
 
-  之前：
+  Before:
 
   ```js
-  `${theme.spacing(2)}px`
+  theme.spacing(2) => 16
   ```
 
-  之后：
+  After:
 
   ```js
-  `${theme.spacing(2)}`
+  theme.spacing(2) => '16px'
   ```
 
-- `theme.platette.type` 关键字已重命名为 `theme.pallette.mode`, 以便更好地遵循通常用于描述此功能的“深色模式”术语。
+- The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    import { createTheme } from '@mui/material/styles';
@@ -327,53 +374,52 @@ export default function GlobalCssPriority() {
   >   +const theme = createTheme({palette: { mode: 'dark' }}),
   > ```
 
-- `theme.palette.info`的默认颜色更改为依照AA标准对比度的颜色值，同时包括浅色模式和深色模式。
+- The default `theme.palette.info` colors were changed to pass AA standard contrast ratio in both light & dark mode.
 
   ```diff
    info = {
   -  main: cyan[500],
-  +  main: lightBlue[700], // lightBlue[400] 在“深色模式”中
+  +  main: lightBlue[700], // lightBlue[400] in "dark" mode
 
   -  light: cyan[300],
-  +  light: lightBlue[500], // lightBlue[300] 在“深色模式”中
+  +  light: lightBlue[500], // lightBlue[300] in "dark" mode
 
   -  dark: cyan[700],
-  +  dark: lightBlue[900], // lightBlue[700] 在“深色模式”中
-
+  +  dark: lightBlue[900], // lightBlue[700] in "dark" mode
    }
   ```
 
-- `theme.palette.success`的默认颜色更改为依照AA标准对比度的颜色值，同时包括浅色模式和深色模式。
+- The default `theme.palette.success` colors were changed to pass AA standard contrast ratio in both light & dark mode.
 
   ```diff
    success = {
   -  main: green[500],
-  +  main: green[800], // green[400] 在“深色模式”中
+  +  main: green[800], // green[400] in "dark" mode
 
   -  light: green[300],
-  +  light: green[500], // green[300] 在“深色模式”中
+  +  light: green[500], // green[300] in "dark" mode
 
   -  dark: green[700],
-  +  dark: green[900], // green[700] 在“深色模式”中
+  +  dark: green[900], // green[700] in "dark" mode
    }
   ```
 
-- `theme.palette.warning`的默认颜色更改为依照AA标准对比度的颜色值，同时包括浅色模式和深色模式。
+- The default `theme.palette.warning` colors were changed to pass AA standard contrast ratio in both light & dark mode.
 
   ```diff
    warning = {
   -  main: orange[500],
-  +  main: "#ED6C02", // orange[400]  在“深色模式”中
+  +  main: "#ED6C02", // orange[400] in "dark" mode
 
   -  light: orange[300],
-  +  light: orange[500], // orange[300]  在“深色模式”中
+  +  light: orange[500], // orange[300] in "dark" mode
 
   -  dark: orange[700],
-  +  dark: orange[900], // orange[700]  在“深色模式”中
+  +  dark: orange[900], // orange[700] in "dark" mode
    }
   ```
 
-- `theme.palette.text.hint` 在MUI组件中未被使用，已经被删除。 如果仍需要使用它，您可以添加回去：
+- The `theme.palette.text.hint` key was unused in MUI components, and has been removed. If you depend on it, you can add it back:
 
   ```diff
    import { createTheme } from '@mui/material/styles';
@@ -384,9 +430,9 @@ export default function GlobalCssPriority() {
   +});
   ```
 
-- 组件的样式在主题中的结构调整为在 `components` 关键字内，为了更容易识别组件相关的样式定义。
+- The components' definitions in the theme were restructured under the `components` key, to allow for easier discoverability of the definitions related to any one component.
 
-  1. `属性`
+  1. `props`
 
   ```diff
    import { createTheme } from '@mui/material/styles';
@@ -407,7 +453,7 @@ export default function GlobalCssPriority() {
    });
   ```
 
-  2. `覆盖`
+  2. `overrides`
 
   ```diff
    import { createTheme } from '@mui/material/styles';
@@ -428,11 +474,11 @@ export default function GlobalCssPriority() {
    });
   ```
 
-### Styles（样式表单）
+### Styles
 
-- 为更好地描述功能，我们将 `fade` 重命名为 `alpha`。 当输入颜色已经有一个 alpha 值时，以前的名称会导致混乱。 **overrides** 助手覆盖了颜色的 alpha 值。
+- Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   - import { fade } from '@mui/material/styles';
@@ -444,9 +490,9 @@ export default function GlobalCssPriority() {
   >   }));
   > ```
 
-- `createStyles` 方法从 `@mui/material/styles` 移动到 `@mui/styles`。 这对于移除核心包对 `@mui/styles` 的依赖性是必要的。
+- The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { createStyles } from '@mui/material/styles';
@@ -457,23 +503,23 @@ export default function GlobalCssPriority() {
 
 #### ThemeProvider
 
-如果您正在使用 `@mui/styles` 以及 `@mui/material`的工具集，您应该将`ThemeProvider` 的引用从 `@mui/styles` 改为 `@mui/material/styles`。 这样做，才能让 `@mui/styles`中的`makeStyles`、`withStyles`等函数，以及MUI组件能够使用context中的 `theme`。
+If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the MUI components.
 
 ```diff
 -import { ThemeProvider } from '@mui/styles';
 +import { ThemeProvider } from '@mui/material/styles';
 ```
 
-请确保在您的应用程序的根节点添加一个 `ThemeProvider` ，因为 `defaultTheme` 已不可用。
+Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
 #### Default theme (TypeScript)
 
-`@mui/styles` 包不再是 `@mui/material/styles` 的一部分。 如果您正在使用 `@mui/styles` 以及 `@mui/materials` 您需要为 `DefaultTheme` 添加模块扩充。
+The `@mui/styles` package is no longer part of `@mui/material/styles`. If you are using `@mui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
 
-> ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
+> ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
 ```ts
-// 在您的主题文件中调用 `createTheme()`
+// in the file where you are creating the theme (invoking the function `createTheme()`)
 import { Theme } from '@mui/material/styles';
 
 declare module '@mui/styles' {
@@ -483,9 +529,9 @@ declare module '@mui/styles' {
 
 ### @mui/material/colors
 
-- 超过1级嵌套导入是私有的。 您不能从 `@mui/material/colors/red` 导入颜色。
+- Nested imports of more than 1 level are private. You can't import color from `@mui/material/colors/red`.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import red from '@mui/material/colors/red';
@@ -496,22 +542,22 @@ declare module '@mui/styles' {
 
 #### createGenerateClassName
 
-- `createGenerateClassName` 功能不再从 `@mui/material/styles` 导出。 你应该直接从 `@mui/styles` 导入它。
+- The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { createGenerateClassName } from '@mui/material/styles';
   >   +import { createGenerateClassName } from '@mui/styles';
   > ```
 
-  **不使用**`@mui/styles`生成自定义类名称，请参考[ClassNameGenerator](/guides/classname-generator/)。
+  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/guides/classname-generator/) for more details.
 
 #### createMuiTheme
 
-- 函数 `createMuiTheme` 被重命名为 `createTheme` 以使其更加直观地使用 `ThemeProvider`。
+- The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { createMuiTheme } from '@mui/material/styles';
@@ -523,9 +569,9 @@ declare module '@mui/styles' {
 
 #### jssPreset
 
-- `jssPreset` 对象不再从 `@mui/material/styles`导出。 你应该直接从 `@mui/styles` 导入它。
+- The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { jssPreset } from '@mui/material/styles';
@@ -534,9 +580,9 @@ declare module '@mui/styles' {
 
 #### makeStyles
 
-- `makeStyles` 对象不再从 `@mui/material/styles`导出。 你可以使用 `@mui/styles/ makeStyles`导入。 请确保在您的应用程序的根节点添加一个 `ThemeProvider` ，因为 `defaultTheme` 已不可用。 如果您正在使用此工具与 `@mui/materials`, 建议您使用 `@mui/material/styles` 的 `ThemeProvider` 组件代替。
+- The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended that you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { makeStyles } from '@mui/material/styles';
@@ -552,7 +598,7 @@ declare module '@mui/styles' {
   >      return <div className={classes.root} />
   >    }
   > 
-  >    // 在您程序的根节点
+  >    // In the root of your app
   >    function App(props) {
   >   -  return <Component />;
   >   +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
@@ -561,9 +607,9 @@ declare module '@mui/styles' {
 
 #### MuiThemeProvider
 
-- `MuiThemeProvider` 组件不再从 `@mui/material/styles` 导出。 使用 `ThemeProvider` 代替。
+- The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`. Use `ThemeProvider` instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { MuiThemeProvider } from '@mui/material/styles';
@@ -572,9 +618,9 @@ declare module '@mui/styles' {
 
 #### ServerStyleSheets
 
-- `ServerStyleSheets` 组件不再从 `@mui/material/styles` 导出。 你应该直接从 `@mui/styles` 导入它。
+- The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { ServerStyleSheets } from '@mui/material/styles';
@@ -583,7 +629,7 @@ declare module '@mui/styles' {
 
 #### styled
 
-- `styled` JSS 工具集不再从 `@mui/material/styles` 导出。 您可以从 `@mui/styles` 导出。 请确保在您的应用程序的根节点添加一个 `ThemeProvider` ，因为 `defaultTheme` 已不可用。 如果您正在使用此工具与 `@mui/materials`, 建议您使用 `@mui/material/styles` 的 `ThemeProvider` 组件代替。
+- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use the one exported from `@mui/styles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   ```diff
   -import { styled } from '@mui/material/styles';
@@ -601,9 +647,9 @@ declare module '@mui/styles' {
 
 #### StylesProvider
 
-- `stylesProvider` 组件不再从 `@mui/material/styles` 导出。 你应该直接从 `@mui/styles` 导入它。
+- The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { StylesProvider } from '@mui/material/styles';
@@ -612,9 +658,9 @@ declare module '@mui/styles' {
 
 #### useThemeVariants
 
-- `useThemeVariants` 钩子函数不再从 `@mui/material/styles` 导出。 你应该直接从 `@mui/styles` 导入它。
+- The `useThemeVariants` hook is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { useThemeVariants } from '@mui/material/styles';
@@ -623,9 +669,9 @@ declare module '@mui/styles' {
 
 #### withStyles
 
-- 用 `ref` prop替换 `innerRef` prop。 Refs现在自动转发到内部组件。
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    import * as React from 'react';
@@ -644,9 +690,9 @@ declare module '@mui/styles' {
   >    }
   > ```
 
-- `withStyles` JSS工具集不再从 `@mui/material/styles` 导出。 你可以使用 `@mui/styles/withStyles`代替。 请确保在您的应用程序的根节点添加一个 `ThemeProvider` ，因为 `defaultTheme` 已不可用。 如果你正在使用此工具集与 `@mui/materials`, 你应该使用 `@mui/material/styles` 的`ThemeProvider` 组件代替。
+- The `withStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { withStyles } from '@mui/material/styles';
@@ -667,9 +713,9 @@ declare module '@mui/styles' {
 
 #### withTheme
 
-- `withTheme` HOC工具集已经从 `@mui/material/styles` 软件包中删除。 您可以使用 `@mui/styles/withTheme` 代替。 请确保在您的应用程序的根节点添加一个 `ThemeProvider` ，因为 `defaultTheme` 已不可用。 如果您正在使用此工具与 `@mui/materials`, 建议您使用 `@mui/material/styles` 的 `ThemeProvider` 组件代替。
+- The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import { withTheme } from '@mui/material/styles';
@@ -685,7 +731,7 @@ declare module '@mui/styles' {
   >    }
   > ```
 
-- 用 `ref` prop替换 `innerRef` prop。 Refs现在自动转发到内部组件。
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 
   ```diff
   import * as React from 'react';
@@ -702,33 +748,33 @@ declare module '@mui/styles' {
 
 #### withWidth
 
-- HOC已被移除。 有一个使用 [`useMediaQuery` 钩子函数](/components/use-media-query/#migrating-from-withwidth) 的替代方法。
+- This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/components/use-media-query/#migrating-from-withwidth).
 
-  > ✅ 这是在 [preset-safe codemod](#preset-safe) 中通过应用硬编码函数来处理的，以防止应用程序崩溃。
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
 
 ### @mui/icons-material
 
 #### GitHub
 
-`GitHub` 图标的大小已从24px 缩小到22px 宽，以与其他图标的大小相匹配。
+The `GitHub` icon was reduced in size from 24px to 22px wide to match the other icons size.
 
 ### @material-ui/pickers
 
-我们有一个 [专用页面](/guides/pickers-migration/) 用于迁移 `@material-ui/pickers` 到 v5
+We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5
 
-### System 系统
+### System
 
-- 以下系统函数(和属性)因被视为废弃的CSS而更名：
+- The following system functions (and properties) were renamed because they are considered deprecated CSS:
 
-  - `gridGap` 更改为 `gap`
-  - `gridRowGap` 更改为 `rowGap`
-  - `gridColumnGap` 更改为 `columnGap`
+  - `gridGap` to `gap`
+  - `gridRowGap` to `rowGap`
+  - `gridColumnGap` to `columnGap`
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
-- 在  `gap`，`rowGap` 和 `columnGap` 中使用间距单位。 如果你先前使用了一个数字，你需要添加px后缀来绕过 `theme.spaming` 的新转换。
+- Use spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Box
@@ -737,39 +783,39 @@ declare module '@mui/styles' {
   >    >
   > ```
 
-- 将 `css` 属性替换为 `sx` 以避免与emotion的styled-components的 `css` 属性发生冲突。.
+- Replace `css` prop with `sx` to avoid collision with styled-components & emotion `css` prop.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Box css={{ color: 'primary.main' }} />
   >   +<Box sx={{ color: 'primary.main' }} />
   > ```
 
-  > 请注意，grid 函数未在v4系统中还未被使用。
+  > Note that the system grid function wasn't documented in v4.
 
-### 核心组件
+### Core components
 
-由于核心组件使用emotion作为其样式引擎，emotion使用的属性不会被截获。 在下面的代码片段中 `as` 属性将不会被传递到`SomeOtherComponent`.
+As the core components use emotion as their style engine, the props used by emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
 ```jsx
 <MuiComponent component={SomeOtherComponent} as="button" />
 ```
 
-### AppBar 应用栏组件
+### AppBar
 
-- 当位置静态和相对位置时移除z-index。 这就避免了建立堆积性环境和渲染问题。
-- `color` 属性在深色模式下不再有任何影响。 AppBar的背景颜色遵循 [Material设计指南](https://material.io/design/color/dark-theme.html)。 使用 `enableColorOnDark` 来恢复v4的行为。
+- Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
+- The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
 
   ```jsx
   <AppBar enableColorOnDark />
   ```
 
-### Alert 警告提示
+### Alert
 
-- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+- Move the component from the lab to the core. The component is now stable.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import Alert from '@mui/lab/Alert';
@@ -778,11 +824,11 @@ declare module '@mui/styles' {
   >   +import AlertTitle from '@mui/material/AlertTitle';
   > ```
 
-### Autocomplete 自动补全组件
+### Autocomplete
 
-- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+- Move the component from the lab to the core. The component is now stable.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import Autocomplete from '@mui/lab/Autocomplete';
@@ -791,8 +837,8 @@ declare module '@mui/styles' {
   >   +import useAutoComplete from '@mui/material/useAutocomplete';
   > ```
 
-- 移除 `debug` 属性。 有几个更简单的方式来使用它：`open={true}`，Chrome 开发者调试工具 [“Emulate focused”](https://twitter.com/sulco/status/1305841873945272321)，或者使用 React 开发工具的属性设置器（prop setter）。
-- `renderOption` 现在应该返回选项的完整 DOM 结构。 这样做可以让定制组件变得更加容易。 你可以通过下面方法进行修复：
+- Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+- `renderOption` should now return the full DOM structure of the option. It makes customizations easier. You can recover from the change with:
 
   ```diff
    <Autocomplete
@@ -813,9 +859,9 @@ declare module '@mui/styles' {
    />
   ```
 
-- 将 `closeIcon` 属性重命名为 `clearIcon` 以避免混淆。
+- Rename `closeIcon` prop to `clearIcon` to avoid confusion.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Autocomplete closeIcon={defaultClearIcon} />
@@ -837,7 +883,7 @@ declare module '@mui/styles' {
 
 - Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Autocomplete
@@ -845,11 +891,11 @@ declare module '@mui/styles' {
   >   +  isOptionEqualToValue={(option, value) => option.title === value.title}
   > ```
 
-### Avatar 头像组件
+### Avatar
 
 - Rename `circle` to `circular` for consistency:
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Avatar variant="circle">
@@ -867,18 +913,18 @@ declare module '@mui/styles' {
 
 - Move the AvatarGroup from the lab to the core.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import AvatarGroup from '@mui/lab/AvatarGroup';
   >   +import AvatarGroup from '@mui/material/AvatarGroup';
   > ```
 
-### Badge 徽章
+### Badge
 
 - Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Badge overlap="circle">
@@ -930,11 +976,11 @@ declare module '@mui/styles' {
    </button>
   ```
 
-### Box 分组
+### Box
 
 - The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit `px` value.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Box borderRadius="borderRadius">
@@ -948,7 +994,7 @@ declare module '@mui/styles' {
 
 - The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```jsx
   >   <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
@@ -957,11 +1003,11 @@ declare module '@mui/styles' {
 
 - The following properties have been renamed because they are considered deprecated CSS properties by the CSS specification:
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
-  1. `gridGap` 更改为 `gap`
-  2. `gridColumnGap` 更改为 `columnGap`
-  3. `gridRowGap` 更改为 `rowGap`
+  1. `gridGap` to `gap`
+  2. `gridColumnGap` to `columnGap`
+  3. `gridRowGap` to `rowGap`
 
   ```diff
   -<Box gridGap={1}>
@@ -1001,11 +1047,11 @@ declare module '@mui/styles' {
   +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
   ```
 
-### Button 按钮
+### Button
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design guidelines and simplifies the API.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Button color="default">
@@ -1014,7 +1060,7 @@ declare module '@mui/styles' {
 
   If you prefer to use the `default` color in v4, take a look at this [CodeSandbox](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx)
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
    <button class="MuiButton-root">
@@ -1028,7 +1074,7 @@ declare module '@mui/styles' {
 
 - Rename `default` variant to `filled` for consistency.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
   Since `filled` is the default value, the variant prop can be deleted:
 
@@ -1037,7 +1083,7 @@ declare module '@mui/styles' {
   +<Chip>
   ```
 
-### Checkbox 选择框
+### Checkbox
 
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
@@ -1053,20 +1099,20 @@ declare module '@mui/styles' {
 
 - The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. It was an exception to Material Design, and was removed from the specification.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<CircularProgress variant="static" classes={{ static: 'className' }} />
   >   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   > ```
 
-> NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
+> 注意：如果你之前已经定制了 determinate，那么你的定制可能不再有效。 所以请删除它们。
 
-### Collapse 折叠
+### Collapse
 
 - The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Collapse collapsedHeight={40}>
@@ -1123,11 +1169,11 @@ declare module '@mui/styles' {
   });
   ```
 
-### Dialog 对话框
+### Dialog
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Dialog
@@ -1150,7 +1196,7 @@ declare module '@mui/styles' {
 
 - Remove the `disableBackdropClick` prop because it is redundant. Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Dialog
@@ -1186,7 +1232,7 @@ declare module '@mui/styles' {
 
 - Flatten DialogTitle DOM structure, remove `disableTypography` prop
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<DialogTitle disableTypography>
@@ -1208,11 +1254,11 @@ declare module '@mui/styles' {
   }
   ```
 
-### ExpansionPanel（扩展面板）
+### ExpansionPanel
 
 - Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import ExpansionPanel from '@mui/material/ExpansionPanel';
@@ -1279,14 +1325,14 @@ declare module '@mui/styles' {
 
 - Rename `round` to `circular` for consistency:
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Fab variant="round">
   >   +<Fab variant="circular">
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27112).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27112).
 
   ```diff
    <button class="MuiFab-root">
@@ -1322,7 +1368,7 @@ declare module '@mui/styles' {
 
 - Rename `justify` prop to `justifyContent` to align with the CSS property name.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Grid justify="center">
@@ -1331,7 +1377,7 @@ declare module '@mui/styles' {
 
 - The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   const theme = createTheme({
@@ -1357,7 +1403,7 @@ declare module '@mui/styles' {
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
 - Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
 - Rename the GridList `cellHeight` prop to `rowHeight`.
@@ -1389,7 +1435,7 @@ declare module '@mui/styles' {
   +</ImageList>
   ```
 
-### Hidden 隐藏组件
+### Hidden
 
 - This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query/) hook.
 
@@ -1419,7 +1465,7 @@ declare module '@mui/styles' {
   +return hidden ? null : <Paper />;
   ```
 
-### 图标
+### Icon
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikely event that you were using the value `default`, the prop can be removed:
 
@@ -1432,14 +1478,14 @@ declare module '@mui/styles' {
 
 - The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   - <IconButton>
   >   + <IconButton size="large">
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
    <button class="MuiIconButton-root">
@@ -1449,7 +1495,7 @@ declare module '@mui/styles' {
    </button>
   ```
 
-### React Link（链接）组件
+### Link
 
 - The default `underline` prop is changed from `"hover"` to `"always"`. To get the same behavior as in v4, apply `defaultProps` in theme
 
@@ -1471,7 +1517,7 @@ declare module '@mui/styles' {
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Menu
@@ -1522,11 +1568,11 @@ declare module '@mui/styles' {
 
   Read more about [MenuItem CSS API](/api/menu-item/#css)
 
-### Modal 模态框组件
+### Modal
 
 - Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Modal
@@ -1542,7 +1588,7 @@ declare module '@mui/styles' {
 
 - Remove the `onEscapeKeyDown` prop because it is redundant. Use `onClose` with `reason === "escapeKeyDown"` instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Modal
@@ -1589,11 +1635,11 @@ declare module '@mui/styles' {
   });
   ```
 
-### Pagination 分页
+### Pagination
 
-- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+- Move the component from the lab to the core. The component is now stable.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import Pagination from '@mui/lab/Pagination';
@@ -1606,7 +1652,7 @@ declare module '@mui/styles' {
 
 - Rename `round` to `circular` for consistency:
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Pagination shape="round">
@@ -1615,11 +1661,11 @@ declare module '@mui/styles' {
   >   +<PaginationItem shape="circular">
   > ```
 
-### 弹出框 (Popover)
+### Popover
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Popover
@@ -1642,7 +1688,7 @@ declare module '@mui/styles' {
 
 - The `getContentAnchorEl` prop was removed to simplify the positioning logic.
 
-### Popper 弹出提示
+### Popper
 
 - Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2. This third-party library has introduced a lot of changes.<br /> You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
 
@@ -1671,7 +1717,7 @@ declare module '@mui/styles' {
 
 - Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
-### Radio 单选框组件
+### Radio
 
 - The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design guidelines.
 
@@ -1690,11 +1736,11 @@ declare module '@mui/styles' {
   +   <span class="PrivateSwitchBase-input">
   ```
 
-### Rating 评分
+### Rating
 
-- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+- Move the component from the lab to the core. The component is now stable.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import Rating from '@mui/lab/Rating';
@@ -1734,7 +1780,7 @@ declare module '@mui/styles' {
   >   +<Button ref={ref} />
   > ```
 
-### Select 选择属性
+### Select
 
 - Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
@@ -1770,11 +1816,11 @@ declare module '@mui/styles' {
 
   This was necessary to prevent overriding of `event.target` of the events that caused the change.
 
-### Skeleton 骨架屏
+### Skeleton
 
-- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+- Move the component from the lab to the core. The component is now stable.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import Skeleton from '@mui/lab/Skeleton';
@@ -1783,7 +1829,7 @@ declare module '@mui/styles' {
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Skeleton variant="circle" />
@@ -1794,7 +1840,7 @@ declare module '@mui/styles' {
   >   +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
   > ```
 
-### Slider 滑块控件
+### Slider
 
 - The `event` in `onChange` is now a synthetic, native `Event`, not a React event.
 
@@ -1822,7 +1868,7 @@ declare module '@mui/styles' {
 
   You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
 
-### Snackbar（消息条）
+### Snackbar
 
 - The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with:
 
@@ -1833,7 +1879,7 @@ declare module '@mui/styles' {
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <Snackbar
@@ -1856,9 +1902,9 @@ declare module '@mui/styles' {
 
 ### SpeedDial
 
-- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+- Move the component from the lab to the core. The component is now stable.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import SpeedDial from '@mui/lab/SpeedDial';
@@ -1869,7 +1915,7 @@ declare module '@mui/styles' {
   >   +import SpeedDialIcon from '@mui/material/SpeedDialIcon';
   > ```
 
-### Stepper 步骤条组件
+### Stepper
 
 - The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
@@ -1895,7 +1941,7 @@ declare module '@mui/styles' {
    </Stepper>
   ```
 
-### SvgIcon（Svg 图标）
+### SvgIcon
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
 
@@ -1906,7 +1952,7 @@ declare module '@mui/styles' {
    </SvgIcon>
   ```
 
-### Switch 开关
+### Switch
 
 - Deprecate the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
 
@@ -1939,7 +1985,7 @@ declare module '@mui/styles' {
   +    <span class="MuiSwitch-input PrivateSwitchBase-input">
   ```
 
-### Table 表格
+### Table
 
 - Rename the `default` value of the `padding` prop to `normal`.
 
@@ -1963,7 +2009,7 @@ declare module '@mui/styles' {
 
 - Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >    <TablePagination
@@ -1991,7 +2037,7 @@ declare module '@mui/styles' {
    />
   ```
 
-### Tabs 选项卡
+### Tabs
 
 - Change the default `indicatorColor` and `textColor` prop values to "primary". This is done to match the most common use cases with Material Design.
 
@@ -2012,7 +2058,7 @@ declare module '@mui/styles' {
   - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
   - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<Tabs scrollButtons="on" />
@@ -2027,7 +2073,7 @@ declare module '@mui/styles' {
 
 - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
 - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
+- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
 
   ```diff
    <button class="MuiTab-root">
@@ -2053,7 +2099,7 @@ declare module '@mui/styles' {
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<TextField rowsMax={6}>
@@ -2062,7 +2108,7 @@ declare module '@mui/styles' {
 
 - Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case:
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<TextField rows={2} maxRows={5} />
@@ -2107,7 +2153,7 @@ declare module '@mui/styles' {
 
 - Remove the `rows` prop, use the `minRows` prop instead. This change aims to clarify the behavior of the prop.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<TextareaAutosize rows={2} />
@@ -2116,7 +2162,7 @@ declare module '@mui/styles' {
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<TextareAutosize rowsMax={6}>
@@ -2125,7 +2171,7 @@ declare module '@mui/styles' {
 
 - Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -<TextareAutosize rowsMin={1}>
@@ -2134,9 +2180,9 @@ declare module '@mui/styles' {
 
 ### ToggleButton
 
-- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+- Move the component from the lab to the core. The component is now stable.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -import ToggleButton from '@mui/lab/ToggleButton';
@@ -2145,7 +2191,7 @@ declare module '@mui/styles' {
   >   +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
 
   ```diff
    <button class="MuiToggleButton-root">
@@ -2170,7 +2216,7 @@ declare module '@mui/styles' {
   +<Tooltip>
   ```
 
-### 文字铸排
+### Typography
 
 - Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
 
@@ -2181,7 +2227,7 @@ declare module '@mui/styles' {
   +<span style={visuallyHidden}>Create a user</span>
   ```
 
-- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. 例如
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example
 
   ```diff
   const theme = createTheme({
@@ -2203,12 +2249,12 @@ declare module '@mui/styles' {
   });
   ```
 
-### 主题
+### Theme
 
 - The default background color is now `#fff` in light mode and `#121212` in dark mode. This matches the Material Design guidelines.
 - Breakpoints are now treated as values instead of [ranges](https://v4.mui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above. `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
   Here are some examples of the changes required:
 
@@ -2269,7 +2315,7 @@ declare module '@mui/styles' {
 
 * The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```diff
   >   -theme.breakpoints.width('md')
@@ -2285,7 +2331,7 @@ declare module '@mui/styles' {
 
 * The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
 
-  > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
   > ```js
   >   function round(value) {
@@ -2302,7 +2348,7 @@ declare module '@mui/styles' {
   +import { DistributiveOmit } from '@mui/types';
   ```
 
-## 将theme的 `styleOverrides`迁移至emotion
+## Migrate theme's `styleOverrides` to emotion
 
 Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled. The `$` syntax used with JSS will not work with Emotion. You need to replace those selectors with a valid class selector.
 
@@ -2344,7 +2390,7 @@ const theme = createTheme({
 });
 ```
 
-> Note: For each component we export a `[component]Classes` constant that contains all nested classes for that component. You can rely on this instead of hardcoding the classes.
+> 注意：对于每个组件我们导出一个包含该组件所有嵌套类的 `[component]类` 常数。 您可以依靠这个而不是硬编码类。
 
 ```diff
 +import { outlinedInputClasses } from '@mui/material/OutlinedInput';
@@ -2367,7 +2413,7 @@ const theme = createTheme({
 
 Take a look at the whole [list of global state classnames](/customization/how-to-customize/#state-classes) available.
 
-## 从 JSS 迁移
+## Migrate from JSS
 
 This is the last step in the migration process to remove `@mui/styles` package from your codebase. We can use one of these two options, by order of preference:
 
@@ -2439,7 +2485,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
  }
 ```
 
-> 💡 You should run this codemod per small chunk of files and then check the changes because in some cases you might need to adjust the code after the transformation (this codemod won't cover all of the cases).
+> 💡 你应该按照文件的小块运行这个codemod，然后检查更改，因为在某些情况下，你可能需要在转换后调整代码(这个codemod不会涵盖所有案例)。
 
 We recommend `sx` API over `styled` when you have to create responsive styles or needs minor CSS overrides. [Read more about `sx`](/system/the-sx-prop/#main-content).
 
@@ -2474,7 +2520,7 @@ We recommend `sx` API over `styled` when you have to create responsive styles or
  }
 ```
 
-#### Manual
+#### 手动
 
 In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity. for example:
 
@@ -2519,7 +2565,7 @@ In some cases, you might want to create multiple styled components in a file ins
  }
 ```
 
-> **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by MUI)
+> **注意：** [https://siriwatk.dev/tool/jssto-stypled](https://siriwatk.dev/tool/jss-to-styled) 是一个有助于将 JS转换成多种样式组件而不增加CSS 针对性的工具。 （这个工具**不是**由MUI维护）
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
@@ -2527,7 +2573,7 @@ The API is similar to JSS `makeStyles` but works with emotion.
 
   <!-- Add material-ui component migration example -->
 
-> **Note:** this library is **not maintained** by MUI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
+> **注意：**这个库**不是由MUI维护**。 如果您对此有任何问题，请在 [tss-react repository](https://github.com/garronej/tss-react/issues/new) 中创建一个问题。
 
 💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by
 
@@ -2538,7 +2584,40 @@ npm uninstall @mui/styles
 yarn remove @mui/styles
 ```
 
-## 故障排除（Troubleshooting）
+## CSS 特性
+
+If you want to apply styles to components by importing a css file, you need to bump up specificity in order to always select the correct component. Consider the following example.
+
+```js
+import './style.css';
+import Chip from '@mui/material/Chip';
+
+const ChipWithGreenIcon = () => (
+  <Chip
+    classes={{ deleteIcon: 'green' }}
+    label="delete icon is green"
+    onDelete={() => {}}
+  />
+);
+```
+
+In this example, in order to correctly apply a particular style to the delete icon of `Chip`, you need to bump the specificity as shown below:
+
+```css
+.MuiChip-root .green {
+  color: green;
+}
+```
+
+The following will not correctly apply the style to the delete icon:
+
+```css
+.green {
+  color: green;
+}
+```
+
+## Troubleshooting
 
 ### Storybook emotion with v5
 
@@ -2604,7 +2683,7 @@ export const decorators = [withThemeProvider];
 }
 ```
 
-> Note: This setup is a workaround and might not work in all cases.
+> 注意：这个设置可能无法在所有情况下工作。
 
 For more details, checkout these issues on GitHub.
 
@@ -2707,7 +2786,7 @@ or fix it manually like this:
 +import { red } from '@mui/material/colors';
 ```
 
-### makeStyles - TypeError: Cannot read property 'drawer' of undefined
+### makeStyles - TypeError：无法读取未定义的属性“drawer”
 
 This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
 

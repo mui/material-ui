@@ -7,9 +7,9 @@ githubLabel: 'component: Box'
 
 <p class="description">O componente Box serve como um componente encapsulador (wrapper) para a auxiliar na maioria das necessidades de uso com CSS.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
+O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Exemplo
 
@@ -17,11 +17,11 @@ The Box component packages [all the style functions](/system/basics/#all-inclusi
 
 ## A propriedade `sx`
 
-Todas as propriedades do sistema estão disponíveis através da [propriedade `sx`](/system/basics/#the-sx-prop). Além disso, a propriedade `sx` permite você especificar quaisquer outras regras CSS que precisar. Aqui está um exemplo de como usá-la:
+All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. Aqui está um exemplo de como você pode usá-la:
 
 {{"demo": "pages/system/box/BoxSx.js", "defaultCodeOpen": true }}
 
-## Overriding MUI components
+## Sobrescrevendo componentes do Material-UI
 
 O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<div>` por padrão, algo que pode ser modificado com a propriedade `component`. Digamos que você queira usar um `<span>`:
 
@@ -29,28 +29,28 @@ O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<di
 
 Isso funciona muito bem quando as alterações precisam ser isoladas em um novo elemento DOM. Note no exemplo, a forma que você alterou a margem.
 
-No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Como um exemplo, talvez queira mudar a borda do Botão. O componente botão define seus próprios estilos. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a MUI component.
+No entanto, às vezes, você precisa modificar o elemento DOM subjacente. As an example, you may want to change the border of the Button. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
--  <Button>Salvar</Button>
+-  <Button>Save</Button>
 -</Box>
-+<Button sx={{ border: '1px dashed grey' }}>Salvar</Button>
++<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
-For non-MUI components, use the `component` prop.
+For non-Material-UI components, use the `component` prop.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
--  <button>Salvar</button>
+-  <button>Save</button>
 -</Box>
-+<Box component="button" sx={{ border: '1px dashed grey' }}>Salvar</Box>
++<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
 ```
 
 ## API
 
 ```jsx
-import Box from '@mui/material/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | Nome                                     | Tipo                                                                                                                          | Padrão                                  | Descrição                                                                               |
@@ -59,9 +59,9 @@ import Box from '@mui/material/Box';
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | O componente usado como nó raiz. Ou uma string para usar um elemento DOM ou componente. |
 | <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | Aceita todas as propriedades do sistema, bem como quaisquer propriedades CSS válidas.   |
 
-## Propriedades do sistema
+## System props
 
-Como um componente util do CSS, o `Box` também suporta todas as propriedades de [`sistem`](/system/properties/). Você pode usá-los como propriedades diretamente no componente. Por exemplo, uma margem do topo:
+As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
 
 ```jsx
 <Box mt={2}>

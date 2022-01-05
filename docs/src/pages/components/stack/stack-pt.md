@@ -8,7 +8,7 @@ githubLabel: 'component: Stack'
 
 <p class="description">The Stack component manages layout of immediate children along the vertical or horizontal axis with optional spacing and/or dividers between each child.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Uso
 
@@ -16,7 +16,7 @@ githubLabel: 'component: Stack'
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-Para controlar o espaço entre os filhos, use a prop ` spacing ` The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/)
+Para controlar o espaço entre os filhos, use a prop `spacing` The spacing value can be any number, including decimals and any string. The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/)
 
 ## Direção
 
@@ -42,9 +42,9 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-## Propriedades do sistema
+## System props
 
-As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. Você pode usá-los como "props" diretamente no componente. Por exemplo, uma margem do topo:
+As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. Você pode usá-los como "props" diretamente no componente. For instance, a margin-top:
 
 ```jsx
 <Stack mt={2}>

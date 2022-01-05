@@ -25,7 +25,7 @@ MUI's styling solution is inspired by many other styling libraries such as [styl
 
 <!-- #default-branch-switch -->
 
-- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
+- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/tree/master/benchmark/server#material-uistyles).
 - 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
@@ -192,7 +192,7 @@ This button component has a `color` prop that changes its color:
 
 ### Adapting the hook API
 
-{{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
+{{"demo": "pages/styles/basics/AdaptingHook.js"}}
 
 ### Adapting the styled components API
 

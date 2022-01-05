@@ -4,7 +4,7 @@
 
 ## 支持的值
 
-The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, and `maxWidth` are using the following custom transform function for the value:
+Sizing 样式函数支持不同的属性输入类型：
 
 ```js
 function transform(value) {

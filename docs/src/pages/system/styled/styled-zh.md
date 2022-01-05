@@ -2,7 +2,7 @@
 
 <p class="description">创建样式组件(styled components)的工具</p>
 
-## 简介
+## Introduction
 
 All the MUI components are styled with this `styled()` utility. This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
@@ -23,13 +23,13 @@ You can use the utility coming from the `@mui/system` package, or if you are usi
 
 ### `styled(Component, [options])(styles) => Component`
 
-#### 参数
+#### Arguments
 
-1. `Component` ：将被包装的组件。
+1. `Component`: The component that will be wrapped.
 2. `options` (_object_ [optional]):
 
    - `options.shouldForwardProp` (_`(prop: string) => bool`_ [optional]): Indicates whether the `prop` should be forwarded to the `Component`.
-   - `options.label` (_string_ [optional]): css样式后缀 适合调试。
+   - `options.label` (_string_ [optional]): css样式后缀 Useful for debugging.
    - `options.name` (_string_ [optional]): 会根据此属性在`theme.components` 中找到相应的`styleOverrides` and `variants`并应用到组件上 同时也会用来生成 `label`
    - `options.slot` (_string_ [optional]):如果是`Root`, 才会自动装配主题上对应`name`下的的`styleOverrides` & <0>variants</0>.
    - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name].styleOverrides` object.
@@ -37,11 +37,11 @@ You can use the utility coming from the `@mui/system` package, or if you are usi
    - `options.skipSx` (_bool_ [optional]): 该组件禁用`sx`属性
    - 其它选项会透传到emotion's `styled([Component], [options])` 的 [`options`](https://emotion.sh/docs/styled) 参数.
 
-#### 返回结果
+#### Returns
 
 `Component` ：已创建的新组建。
 
-## 基本用法
+## Basic usage
 
 {{"demo": "pages/system/styled/BasicUsage.js", "defaultCodeOpen": true}}
 
@@ -49,7 +49,7 @@ You can use the utility coming from the `@mui/system` package, or if you are usi
 
 {{"demo": "pages/system/styled/ThemeUsage.js", "defaultCodeOpen": true}}
 
-## 自定义组件
+## Custom components
 
 下面演示下如何通过 `styled` API 来创建一个包含源组件原有功能的自定义组件
 
@@ -69,15 +69,15 @@ If you would like to remove some of the MUI specific features, you can do it lik
  const StyledComponent = styled('div', {}, {
    name: 'MuiStyled',
    slot: 'Root',
--  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
-+  skipVariantsResolver: true, // disables theme.components[name].variants
-+  skipSx: true, // disables the sx prop
+-  overridesResolver: (props, styles) => styles.root, // 禁用 theme.components[name].styleOverrides
++  skipVariantsResolver: true, // 禁用 theme.components[name].variants
++  skipSx: true, // 禁用 sx 参数
  });
 ```
 
 ## 创建自定义的 `styled()`工具
 
-If you want to have a different default theme for the `styled()` utility, you can create your own version of it, using the `createStyled()` utility.
+如果你想让你的`styled()`工具使用一个不同的默认主题，你可以用`createStyled()` 工具很轻松的创建一个你自己的版本。
 
 ```js
 import { createStyled, createTheme } from '@mui/system';

@@ -66,7 +66,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}
 
-## 素颜模式
+## Unstyled
 
 The @mui/base package contain an unstyled version of Popper - PopperUnstyled. It does not have a dependency on @mui/material. The only difference between Popper and PopperUnstyled is the support for theming. Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
 

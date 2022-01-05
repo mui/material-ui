@@ -2,15 +2,15 @@
 title: Componente React Seletor intervalo de data
 components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
 githubLabel: 'component: DateRangePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Seletor de intervalo de data [<span role="img" title="Enterprise">⚡️</span>](https://material-ui.com/store/items/material-ui-pro/)
+# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://mui.com/store/items/material-ui-pro/)
 
 <p class="description">Seletores de data permitem ao usuário selecionar um intervalo de datas.</p>
 
-> ⚠️ Pro component <br /><br /> The date range picker is intended for MUI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> Esta extensão paga incluirá mais componentes avançados (um data grid rico, seletor de intervalo de data, arrastar  & soltar na visualização em árvore, etc.). [Acesso antecipado](https://material-ui.com/store/items/material-ui-pro/) começa com um preço acessível.
+> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> Esta extensão paga incluirá mais componentes avançados (um data grid rico, seletor de intervalo de data, arrastar  & soltar na visualização em árvore, etc.). [Early access](https://mui.com/store/items/material-ui-pro/) starts at an affordable price.
 
 Os seletores de intervalo de datas permitem que o usuário selecione um intervalo de datas.
 
@@ -23,9 +23,9 @@ Este componente depende da biblioteca de gerenciamento de datas da sua escolha. 
 Por favor, instale qualquer uma destas bibliotecas e configure corretamente o mecanismo de data encapsulando na raiz dos componentes (ou o nível mais alto que você deseja que os seletores estejam disponíveis) com `LocalizationProvider`:
 
 ```jsx
-// or @mui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
-import DateFnsAdapter from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// ou @material-ui/lab/dateAdapter/{dayjs,luxon,moment} ou qualquer adaptador válido de date-io
+import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -53,7 +53,7 @@ O componente de seletor de intervalo de data é projetado e otimizado para o dis
 - The `MobileDateRangePicker` component works best for touch devices and small screens.
 - The `DesktopDateRangePicker` component works best for mouse devices and large screens.
 
-By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
+By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}
 

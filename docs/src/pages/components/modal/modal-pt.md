@@ -17,13 +17,13 @@ O componente renderiza o conteúdo de seu `children` sobre um componente backdro
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
 Se você está criando um diálogo modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
 
-- [Diálogo](/components/dialogs/)
+- [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
@@ -38,7 +38,7 @@ Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CS
 
 - 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The modal also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import ModalUnstyled from '@mui/base/ModalUnstyled';

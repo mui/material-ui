@@ -418,7 +418,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   if (computeDisplay) {
     if (multiple) {
-      display = displayMultiple.reduce((prev, curr) => [prev, ', ', curr]);
+      if (displayMultiple.length === 0) {
+        display = null;
+      } else {
+        display = displayMultiple.reduce((output, child, index) => {
+          output.push(child);
+          if (index < displayMultiple.length - 1) {
+            output.push(', ');
+          }
+          return output;
+        }, []);
+      }
     } else {
       display = displaySingle;
     }

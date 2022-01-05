@@ -109,7 +109,7 @@ Você pode agrupar as opções com a propriedade `groupBy`. Se você fizer isso,
 
 ## `useAutocomplete`
 
-Para casos avançados de customização, o hook `useAutocomplete` é disponibilizado. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente de auto completar é baseado neste hook.
+Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente de auto completar é baseado neste hook.
 
 ```tsx
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
@@ -118,7 +118,7 @@ import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 O hook `useAutocomplete` também é reexportado de @mui/material por conveniência e compatibilidade com versões anteriores.
 
 ```tsx
-import useAutocomplete from '@mui/material/useAutocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 - 📦 [4.5 kB gzipado](/size-snapshot).
@@ -148,7 +148,7 @@ Exibe um estado de progresso enquanto a requisição de rede estiver pendente.
 
 Se sua lógica está buscando novas opções em cada tecla pressionada e usando o valor atual da caixa de texto para filtrar no servidor, você pode querer considerar um limite nas requisições.
 
-Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
+Uma customização de UI para o autocompletar de lugares do Google Maps.
 
 ```jsx
 <Autocomplete filterOptions={(x) => x} />
@@ -219,7 +219,11 @@ A demonstração a seguir dependem do [autosuggest-highlight](https://github.com
 O componente expõe uma fábrica para criar um método de filtro que pode ser fornecido para a propriedade `filterOptions`. Você pode usar ela para modificar o comportamento padrão do filtro.
 
 ```js
-import { createFilterOptions } from '@mui/material/Autocomplete';
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -290,11 +294,11 @@ Se você deseja evitar o comportamento padrão do teclado, você pode definir a 
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
+Os navegadores têm heurística para ajudar os usuários a preencherem os campos do formulário. No entanto, isso pode prejudicar a experiência do usuário com o componente.
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
+Por padrão, o componente desabilita a entrada**autocomplete**(lembra o que o usuário digitou para um determinado campo em uma sessão anterior) com o atributo `autoComplete="off"` Atualmente, o Google Chrome não suporta essa configuração de atributo ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Uma solução alternativa possível é remover o `id` para que o componente gere um aleatório.
 
-In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
+No entanto, além de relembrar valores fornecidos anteriormente, o navegador também pode propor sugestões de **autofill** (preenchimento automático para informações de login, endereço ou detalhes de pagamento). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
 
 - Nomeie o campo sem fornecer informações para o navegador do que ele representa. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
 - Defina `autoComplete="new-password"` (alguns navegadores irão sugerir uma senha forte para entradas com esta configuração de atributo):
@@ -309,7 +313,7 @@ In addition to remembering past entered values, the browser might also propose *
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+Leia [este guia na MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) para mais detalhes.
 
 ### iOS VoiceOver
 

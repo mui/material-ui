@@ -28,21 +28,21 @@ Você pode usar as seguintes ações.
 - Chips com a propriedade `onClick` definida, mudará a aparência com foco, ao passar por cima e com clique.
 - Chips com a propriedade `onDelete` definida irá exibir um ícone de remoção, no qual modificará a aparência ao passar por cima.
 
-### Clickable
+### Clicável
 
-{{"demo": "pages/components/chips/ClickableChips.js"}}
+{{"demo": "pages/components/chips/ClickeableChips.js"}}
 
-### Deletable
+### Deletável
 
-{{"demo": "pages/components/chips/DeletableChips.js"}}
+{{"demo": "pages/components/chips/DeleteableChips.js"}}
 
-### Clickable and deletable
+### Clicável e deletável
 
-{{"demo": "pages/components/chips/ClickableAndDeletableChips.js"}}
+{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
 
-### Clickable link
+### Link clicável
 
-{{"demo": "pages/components/chips/ClickableLinkChips.js"}}
+{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
 
 ### Ícone de exclusão personalizado
 
@@ -64,7 +64,7 @@ Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
 
 ## Color chip
 
-You can use the `color` prop to define a color from theme palette.
+You can use the `color` prop to define a primary or secondary color.
 
 {{"demo": "pages/components/chips/ColorChips.js"}}
 

@@ -119,7 +119,7 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 ## API
 
 ```js
-import { display } from '@mui/system';
+import { display } from '@material-ui/system';
 ```
 
 | Nome da importação | Propriedade    | Propriedade CSS | Chave do tema |

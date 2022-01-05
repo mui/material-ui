@@ -2,7 +2,7 @@
 title: React Date Time Picker（日期时间选择器） 组件
 components: DateTimePicker,DesktopDateTimePicker,MobileDateTimePicker,StaticDateTimePicker
 githubLabel: 'component: DateTimePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -23,9 +23,9 @@ materialDesign: https://material.io/components/date-pickers
 请安装这些库中的任何一个，并使用 `LocalizationProvider` 来包裹到你的 root（或者包裹到该选择器你想要应用的最高位置）来设置正确的日期引擎。
 
 ```jsx
-// or @mui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// 或者使用 @material-ui/lab/Adapter{Dayjs,Luxon,Moment} 或者任何可适用的 date-io 适配器
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -47,7 +47,7 @@ function App() {
 - The `MobileDateTimePicker` component works best for touch devices and small screens.
 - The `DesktopDateTimePicker` component works best for mouse devices and large screens.
 
-By default, the `DateTimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `DateTimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
@@ -68,7 +68,7 @@ The date time picker component can be disabled or read-only.
 
 ## 静态模式
 
-It's possible to render any date & time picker inline. 这将启用自定义弹出提示/模态框的容器。
+It's possible to render any date & time picker inline. 这将启用自定义弹出提示/模态框的容器。 This will enable building custom popover/modal containers.
 
 {{"demo": "pages/components/date-time-picker/StaticDateTimePickerDemo.js", "bg": true}}
 

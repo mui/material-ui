@@ -64,7 +64,7 @@ For smaller slider, use the prop `size="small"`.
 
 ### Minimum distance
 
-You can enforce a minimum distance between values in the `onChange` event handler. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop. If you want the range to shift when reaching minimum distance, you can utilize the `activeThumb` parameter in `onChange`.
+You can enforce a minimum distance between values in the `onChange` event handler. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop. You can enforce a minimum distance between values in the `onChange` event handler. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop. If you want the range to shift when reaching minimum distance, you can utilize the `activeThumb` parameter in `onChange`.
 
 {{"demo": "pages/components/slider/MinimumDistanceSlider.js"}}
 
@@ -78,7 +78,7 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/ColorSlider.js"}}
 
-## Customization 个性化
+## 自定义滑块
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -122,13 +122,13 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
-## 素颜模式
+## Unstyled
 
 <!-- #default-branch-switch -->
 
 - 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The slider also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
+The slider also comes with an unstyled version. The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import SliderUnstyled from '@mui/base/SliderUnstyled';
@@ -149,7 +149,7 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 
 ### IE 11
 
-The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
+The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with: The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
 .MuiSlider-valueLabel {

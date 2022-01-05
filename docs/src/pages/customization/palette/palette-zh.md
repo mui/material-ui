@@ -52,8 +52,8 @@ interface PaletteColor {
 自定义调色板的最简单方法是导入一个或多个提供的颜色：
 
 ```js
-import { createTheme } from '@mui/material/styles';
-import blue from '@mui/material/colors/blue';
+import { createTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
 
 const theme = createTheme({
   palette: {
@@ -67,24 +67,27 @@ const theme = createTheme({
 如果你想要提供更多的自定义颜色，你可以创建你自己的调色板，或者直接为一些或者所有的 `theme.palette` 键提供颜色：
 
 ```js
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
+      // light: 这将从 palette.primary.main 中进行计算，
       main: '#ff4400',
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      // dark: 这将从 palette.primary.main 中进行计算，
+      // contrastText: 这将计算与 palette.primary.main 的对比度
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
+      // dark: 这将从 palette.secondary.main 中进行计算，
       contrastText: '#ffcc00',
     },
-    // Used by `getContrastText()` to maximize the contrast between
-    // the background and the text.
+    // 使用 `getContrastText()` 来最大化
+    // 背景和文本的对比度
+    contrastThreshold: 3,
+    // 使用下面的函数用于将颜色的亮度在其调色板中
+    // 移动大约两个指数。
     contrastThreshold: 3,
     // 使用下面的函数用于将颜色的亮度在其调色板中
     // 移动大约两个指数。
@@ -123,7 +126,7 @@ type PaletteTonalOffset =
 You can add new colors inside and outside the palette of the theme as follows:
 
 ```js
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
   status: {
@@ -147,20 +150,12 @@ const theme = createTheme({
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
-declare module '@mui/material/styles' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];
     };
   }
-
-  interface Palette {
-    neutral: Palette['primary'];
-  }
-  interface PaletteOptions {
-    neutral: PaletteOptions['primary'];
-  }
-
   interface PaletteColor {
     darker?: string;
   }
@@ -173,6 +168,15 @@ declare module '@mui/material/styles' {
     };
   }
 }
+
+declare module '@material-ui/core/styles/createPalette' {
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+  interface PaletteOptions {
+    neutral: PaletteOptions['primary'];
+  }
+}
 ```
 
 {{"demo": "pages/customization/palette/CustomColor.js"}}
@@ -183,4 +187,4 @@ declare module '@mui/material/styles' {
 
 ## 暗色模式
 
-For details of how you can set up a dark mode for your theme, head to the [dark mode guide](/customization/dark-mode/).
+Material-UI comes with two palette modes: light (the default) and dark. 你可以通过设置 `mode: 'dark'` 来启用夜间模式。

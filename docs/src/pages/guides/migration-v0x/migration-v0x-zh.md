@@ -6,11 +6,11 @@
 
 ### 哇—— API 看起来完全不一样！ Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-I'm glad you asked! The answer is no. The core concepts haven't changed. 您会注意到 API 提供了更多的灵活性，但这有一定的成本——一些更低级别的组件提取了较低的复杂性。
+I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't changed. 您会注意到 API 提供了更多的灵活性，但这有一定的成本——一些更低级别的组件提取了较低的复杂性。
 
 ### 到底是什么带来了如此巨大的改变呢？
 
-MUI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding MUI from the **ground-up** taking advantage of this knowledge to address long-standing issues. 譬如这些主要的变化：
+Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material-UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化： 譬如这些主要的变化：
 
 - 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/customization/how-to-customize/)的能力和整体性能）
 - 新的主题处理 （有嵌套，自主支撑等。）
@@ -21,27 +21,27 @@ MUI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b7
 
 ### 我应该从哪里开始迁移？
 
-1. Start by installing the v1.x version of MUI along side the v0.x version.
+1. 首先，和 v0.x 版本一起，安装 v1.x 版本的 Material-UI。
 
 用 yarn：
 
 ```sh
 yarn add material-ui
-yarn add @mui/material
+  yarn add @material-ui/core
 ```
 
 或者用 npm：
 
 ```sh
 npm install material-ui
-npm install @mui/material
+  npm install @material-ui/core
 ```
 
 然后
 
 ```js
 import FlatButton from 'material-ui/FlatButton'; // v0.x
-import Button from '@mui/material/Button'; // v1.x
+  import Button from '@material-ui/core/Button'; // v1.x
 ```
 
 2. 在您的项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod)。
@@ -49,15 +49,15 @@ import Button from '@mui/material/Button'; // v1.x
 
 ```jsx
 import * as React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@mui/material/styles'; // v1.x
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
 import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const theme = createMuiTheme({
-  /* theme for v1.x */
+  /* v1.x 版本的主题 */
 });
 const themeV0 = getMuiTheme({
-  /* theme for v0.x */
+  /* v0.x 版本的主题 */
 });
 
 function App() {
@@ -77,19 +77,19 @@ export default App;
 
 ### Autocomplete 自动补全组件
 
-MUI doesn't provide a high-level API for solving this problem. 我们鼓励您去探索 [React 社区提供的解决方案](/components/autocomplete/) 。
+MUI doesn't provide a high-level API for solving this problem. Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
-在未来，我们将研究提供一个简单的组件来解决简单的用例： [＃9997](https://github.com/mui-org/material-ui/issues/9997)。
+在你的项目上运行 [迁移助手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod)
 
-### Svg Icon（Svg图标）
+### Svg 图标
 
-在您的项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod)。
+未来，我们打算提供一个简单的组件来解决这个用例：[#9997](https://github.com/mui-org/material-ui/issues/9997)。
 
 这将应用如下更改：
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
-+import AddIcon from '@mui/icons-material/Add';
++import AddIcon from '@material-ui/icons/Add';
 
 <AddIcon />
 ```
@@ -98,7 +98,7 @@ MUI doesn't provide a high-level API for solving this problem. 我们鼓励您�
 
 ```diff
 -import FlatButton from 'material-ui/FlatButton';
-+import Button from '@mui/material/Button';
++import Button from '@material-ui/core/Button';
 
 -<FlatButton />
 +<Button />
@@ -110,7 +110,7 @@ MUI doesn't provide a high-level API for solving this problem. 我们鼓励您�
 
 ```diff
 -import RaisedButton from 'material-ui/RaisedButton';
-+import Button from '@mui/material/Button';
++import Button from '@material-ui/core/Button';
 
 -<RaisedButton />
 +<Button variant="contained" />
@@ -120,17 +120,17 @@ MUI doesn't provide a high-level API for solving this problem. 我们鼓励您�
 
 ```diff
 -import Subheader from 'material-ui/Subheader';
-+import ListSubheader from '@mui/material/ListSubheader';
++import ListSubheader from '@material-ui/core/ListSubheader';
 
--<Subheader>Sub Heading</Subheader>
-+<ListSubheader>Sub Heading</ListSubheader>
+-<Subheader>副标题</Subheader>
++<ListSubheader>副标题</ListSubheader>
 ```
 
 ### Toggle（切换）
 
 ```diff
 -import Toggle from 'material-ui/Toggle';
-+import Switch from '@mui/material/Switch';
++import Switch from '@material-ui/core/Switch';
 
 -<Toggle
 -  toggled={this.state.checkedA}
@@ -146,17 +146,17 @@ MUI doesn't provide a high-level API for solving this problem. 我们鼓励您�
 
 ```diff
 -import MenuItem from 'material-ui/MenuItem';
-+import MenuItem from '@mui/material/MenuItem';
++import MenuItem from '@material-ui/core/MenuItem';
 
 -<MenuItem primaryText="Profile" />
-+<MenuItem>Profile</MenuItem>
++<MenuItem>个人资料</MenuItem>
 ```
 
 ### Font Icon（字体图标）
 
 ```diff
 -import FontIcon from 'material-ui/FontIcon';
-+import Icon from '@mui/material/Icon';
++import Icon from '@material-ui/core/Icon';
 
 -<FontIcon>home</FontIcon>
 +<Icon>home</Icon>
@@ -166,7 +166,7 @@ MUI doesn't provide a high-level API for solving this problem. 我们鼓励您�
 
 ```diff
 -import CircularProgress from 'material-ui/CircularProgress';
-+import CircularProgress from '@mui/material/CircularProgress';
++import CircularProgress from '@material-ui/core/CircularProgress';
 
 -<CircularProgress mode="indeterminate" />
 +<CircularProgress variant="indeterminate" />
@@ -176,7 +176,7 @@ MUI doesn't provide a high-level API for solving this problem. 我们鼓励您�
 
 ```diff
 -import DropDownMenu from 'material-ui/DropDownMenu';
-+import Select from '@mui/material/Select';
++import Select from '@material-ui/core/Select';
 
 -<DropDownMenu></DropDownMenu>
 +<Select value={this.state.value}></Select>

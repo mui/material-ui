@@ -16,13 +16,13 @@ Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O e
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## Cor
+## Emblemas customizados
 
-Use `color` prop to apply theme palette to component.
+Você pode usar a propriedade `overlap` para colocar o emblema em relação ao canto do elemento envolvido.
 
 {{"demo": "pages/components/badges/ColorBadge.js"}}
 
-## Customização
+## Visibilidade do emblema
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -64,7 +64,7 @@ Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer 
 
 ## Unstyled
 
-O badge também vem com uma versão sem estilo. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+O badge também vem com uma versão sem estilo. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';

@@ -8,8 +8,8 @@ Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https:
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/nextjs-with-typescript))
-- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript))
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([Versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) ([versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript))
 - [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
@@ -17,17 +17,17 @@ Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https:
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
-Create React App é um projeto incrível para aprender React. Dê uma olhada nas [alternativas disponíveis](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) para ver qual projeto melhor atende às suas necessidades.
+Create React App é um projeto incrível para aprender React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
 O código-fonte deste site de documentação também está incluído no repositório. Este é um projeto um pouco mais complexo. Confira a pasta [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) para instruções de compilação.
 
 ## Projetos de exemplo mais avançados
 
-Se você quer começar com um exemplo mais completo e do mundo real, você pode dar uma olhada nos [temas premium & templates](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) ou:
+If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) or:
 
 ### Grátis
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
   - ![estrelas](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
@@ -77,7 +77,7 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
 
   - Crie o seu aplicativo completo com esta ferramenta online
-  - Choose your framework and library (React & MUI!)
+  - Escolha o seu framework e biblioteca (React & Material-UI!)
   - Escolha seu banco de dados (SQL, MongoDB ou Firestore)
   - Modele seu banco de dados e aplicativo com uma interface intuitiva
   - Gere sua aplicação, incluindo um scaffolded de backend completo
@@ -85,5 +85,5 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [Divjoy](https://divjoy.com?via=material-ui):
 
-  - Create your MUI app in minutes.
+  - Create your Material-UI app in minutes.
   - You'll get a nice template, authentication, database integration, subscription payments, and more.

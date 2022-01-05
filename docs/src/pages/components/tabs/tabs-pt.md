@@ -22,13 +22,13 @@ Um exemplo básico com painéis de guias.
 
 ## API experimental
 
-`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+O `@material-ui/lab` oferece componentes auxiliares que injetam propriedades para implementar abas acessíveis seguindo as [práticas de autoria da WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
 {{"demo": "pages/components/tabs/LabTabs.js"}}
 
 ## Rótulos com quebras
 
-Os rótulos longos serão quebrados automaticamente nas abas. If the label is too long for the tab, it will overflow, and the text will not be visible.
+Os rótulos longos serão quebrados automaticamente nas abas. Os rótulos longos serão quebrados automaticamente nas abas.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -88,7 +88,7 @@ Botões de rolagem da esquerda e direita nunca serão apresentados com `scrollBu
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Customização
+## Abas customizadas
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -118,17 +118,17 @@ O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}
 
-## Icon position
+## Biblioteca de roteamento de terceiros
 
 By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
 
 {{"demo": "pages/components/tabs/IconPositionTabs.js"}}
 
-## Biblioteca de roteamento de terceiros
-
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Aqui está um [guia mais detalhado](/guides/routing/#tabs).
-
 ## Acessibilidade
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Aba` fornece o `componente` prop para lidar com este caso de uso. Aqui está um [guia mais detalhado](/guides/routing/#tabs).
+
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
@@ -137,7 +137,7 @@ As etapas a seguir são necessárias para fornecer a informação coerente para 
 1. Rotule o componente `Tabs` com `aria-label` ou `aria-labelledby`.
 2. Para os componentes `Tab`, precisam estar conectados com seu correspondente `[role="tabpanel"]` definindo o correto `id`, `aria-controls` e `aria-labelledby`.
 
-Um exemplo para a implementação atual pode ser encontrado nas demonstrações desta página. We've also published [an experimental API](#experimental-api) in `@mui/lab` that does not require extra work.
+Um exemplo para a implementação atual pode ser encontrado nas demonstrações desta página. Nós também publicamos [uma API experimental](#experimental-api) no pacote `@material-ui/lab` que não requer nenhum trabalho extra.
 
 ### Navegação por teclado
 
@@ -148,7 +148,7 @@ Os componentes implementam a navegação do teclado usando o comportamento de "a
 As duas demonstrações seguintes diferem apenas no seu comportamento de navegação por teclado. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
-/* Tabs where selection follows focus */
+/* Abas onde a seleção segue o foco */
 <Tabs selectionFollowsFocus />
 ```
 
@@ -163,7 +163,7 @@ As duas demonstrações seguintes diferem apenas no seu comportamento de navega�
 
 ## Unstyled
 
-The Tabs also come with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The Tabs also come with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ### Unstyled component
 

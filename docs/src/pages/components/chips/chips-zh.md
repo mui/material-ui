@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/chips
 
 纸片组件允许用户输入信息、进行选择、过滤内容或触发动作。
 
-While included here as a standalone component, the most common use will be in some form of input, so some of the behavior demonstrated here is not shown in context.
+在这里，虽然我们将纸片组件归类为一个独立的组件，但更常见的作法是用在表单中作为输入框，因此本篇演示的内容并不会在上下文中显示。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -28,21 +28,21 @@ You can use the following actions.
 - Chips with the `onClick` prop defined change appearance on focus, hover, and click.
 - Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover.
 
-### Clickable
+### Clickeable
 
-{{"demo": "pages/components/chips/ClickableChips.js"}}
+{{"demo": "pages/components/chips/ClickeableChips.js"}}
 
-### Deletable
+### Deleteable
 
-{{"demo": "pages/components/chips/DeletableChips.js"}}
+{{"demo": "pages/components/chips/DeleteableChips.js"}}
 
-### Clickable and deletable
+### Clickeable and deleteable
 
-{{"demo": "pages/components/chips/ClickableAndDeletableChips.js"}}
+{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
 
-### Clickable link
+### Clickeable link
 
-{{"demo": "pages/components/chips/ClickableLinkChips.js"}}
+{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
 
 ### Custom delete icon
 
@@ -64,7 +64,7 @@ You can use the following actions.
 
 ## Color chip
 
-You can use the `color` prop to define a color from theme palette.
+You can use the `color` prop to define a primary or secondary color.
 
 {{"demo": "pages/components/chips/ColorChips.js"}}
 
@@ -76,7 +76,7 @@ You can use the `color` prop to define a color from theme palette.
 
 ## 纸片阵列
 
-An example of rendering multiple chips from an array of values. 删除一个纸片元素，则会将其从纸片组的数组中删除。 Note that since no `onClick` prop is defined, the `Chip` can be focused, but does not gain depth while clicked or touched.
+An example of rendering multiple chips from an array of values. 删除一个纸片元素，则会将其从纸片组的数组中删除。 删除一个纸片元素，则会将其从纸片组的数组中删除。 Note that since no `onClick` prop is defined, the `Chip` can be focused, but does not gain depth while clicked or touched.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 

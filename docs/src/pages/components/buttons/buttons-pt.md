@@ -1,6 +1,6 @@
 ---
 title: Componente React para Botão
-components: Button, IconButton, ButtonBase, LoadingButton, ButtonUnstyled
+components: Button, IconButton, ButtonBase
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: Button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
@@ -19,19 +19,19 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic button
+## Basic Button
 
 O `Botão` vem com três variantes: texto (padrão), contido e delineado.
 
 {{"demo": "pages/components/buttons/BasicButtons.js"}}
 
-### Text button
+### Botões de texto
 
 [Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-### Contained button
+### Botões contidos
 
 [Botões Contidos](https://material.io/design/components/buttons.html#contained-button) tem alta ênfase, distinguem-se pelo uso de elevação e preenchimento. Eles contém as principais ações da sua aplicação.
 
@@ -41,7 +41,7 @@ Você pode remover a elevação com a propriedade `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-### Outlined button
+### Botões delineados
 
 [Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
 
@@ -95,13 +95,13 @@ For larger or smaller icon buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
-### Colors
+### Cores
 
 Use a propriedade `color` para aplicar uma paleta de cores ao componente.
 
 {{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
-## Customização
+## Botões customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -109,7 +109,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
 
-## Loading button
+## Botão de carregamento
 
 Os botões de carregamento podem mostrar estado de carregamento e desativar as interações.
 
@@ -119,7 +119,7 @@ Alterne o interruptor de carregamento para ver a transição entre os diferentes
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Complex button
+## Botão complexo
 
 Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. Você pode usar esse componente para construir interações diferentes.
 
@@ -166,9 +166,9 @@ Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de l
 
 ## Unstyled
 
-The button also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
-### Unstyled component
+### Componente sem estilo
 
 ```js
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
@@ -176,7 +176,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 {{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
 
-#### Customizing the root element
+#### Customizando o elemento raiz
 
 By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
 
@@ -186,7 +186,7 @@ Compare the attributes on the span with the button from the previous demo.
 
 #### Complex customization
 
-You are not limited to using HTML elements for the button structure. SVG elements, even with complex structure, are equally acceptable.
+You are not limited to using HTML elements for the button structure. Elementos SVG, mesmo que com uma estrutura complexa, são igualmente aceitáveis.
 
 {{"demo": "pages/components/buttons/UnstyledButtonCustom.js"}}
 

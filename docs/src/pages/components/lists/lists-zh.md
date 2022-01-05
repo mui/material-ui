@@ -79,13 +79,13 @@ When displaying three lines or more, the avatar is not aligned at the top. You s
 
 ## 对齐列表项
 
-The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
+`inset` 属性可以让没有前导（leading）图标或头像的列表项与有前导图标或头像的项正确对齐。
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
 ## 没有边距的列表
 
-When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+当在一个定义了边距（gutters）的组件中渲染列表时，可以通过 `disableGutters` 来禁用 `ListItem` 的边距。
 
 {{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
@@ -97,7 +97,7 @@ When rendering a list within a component that defines its own gutters, `ListItem
 
 我们鼓励尽可能使用 [react-window](https://github.com/bvaughn/react-window)。 如果这个库不包括你的用例，你应该考虑使用 [react-virtualized](https://github.com/bvaughn/react-virtualized)，然后使用 [react-virtuoso](https://github.com/petyosi/react-virtuoso)等替代品。
 
-## Customization 个性化
+## Customized List
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 

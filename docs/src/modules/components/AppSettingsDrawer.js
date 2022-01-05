@@ -76,11 +76,13 @@ function AppSettingsDrawer(props) {
       anchor="right"
       onClose={onClose}
       open={open}
-      PaperProps={{ elevation: 0, sx: { width: 360 } }}
+      PaperProps={{ elevation: 0, sx: { width: 360, borderRadius: '10px 0px 0px 10px' } }}
       {...other}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-        <Typography variant="h6">{t('settings.settings')}</Typography>
+        <Typography variant="body1" fontWeight="500">
+          {t('settings.settings')}
+        </Typography>
         <IconButton color="inherit" onClick={onClose} edge="end">
           <CloseIcon color="primary" fontSize="small" />
         </IconButton>
@@ -143,7 +145,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
           >
-            <FormatTextdirectionLToRIcon />
+            <FormatTextdirectionLToRIcon fontSize="small" />
             {t('settings.ltr')}
           </IconToggleButton>
           <IconToggleButton
@@ -152,7 +154,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
           >
-            <FormatTextdirectionRToLIcon />
+            <FormatTextdirectionRToLIcon fontSize="small" />
             {t('settings.rtl')}
           </IconToggleButton>
         </ToggleButtonGroup>

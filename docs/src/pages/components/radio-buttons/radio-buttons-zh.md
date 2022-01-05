@@ -62,7 +62,7 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 
 {{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
-## Customization 个性化
+## Customized radios 自定义单选框
 
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -75,7 +75,7 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 ### API
 
 ```jsx
-import { useRadioGroup } from '@mui/material/RadioGroup';
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
 ```
 
 #### 返回结果

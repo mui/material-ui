@@ -7,7 +7,7 @@ import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
 
-export interface ThemeOptions extends SystemThemeOptions {
+export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
   components?: Components;
   palette?: PaletteOptions;

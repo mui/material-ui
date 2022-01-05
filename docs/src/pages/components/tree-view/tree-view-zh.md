@@ -1,9 +1,9 @@
 ---
 title: React Tree View（树视图）组件
-components: 树视图，树节点
+components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Tree View 树视图
@@ -18,9 +18,9 @@ packageName: '@mui/lab'
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Multi-selection
+## 多种选择
 
-Tree views also support multi-selection.
+树视图也支持多选。
 
 {{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
 
@@ -64,7 +64,7 @@ const data = {
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
-## Customization 个性化
+## 自定义的树视图
 
 ### 自定义的图标，边框和动画
 

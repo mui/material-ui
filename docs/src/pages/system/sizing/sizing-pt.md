@@ -4,7 +4,7 @@
 
 ## Valores suportados
 
-The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, and `maxWidth` are using the following custom transform function for the value:
+As funções de estilo de dimensionamento suportam diferentes tipos de entrada de propriedade:
 
 ```js
 function transform(value) {

@@ -93,7 +93,7 @@ export default Main() {
 
 ## TransitionGroup
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition/-group) component from _react-transition-group_.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_.
 As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
@@ -117,3 +117,17 @@ You can also visit the dedicated sections of some of the components:
 - [Popper](/components/popper/#transitions)
 - [Snackbar](/components/snackbars/#transitions)
 - [Tooltip](/components/tooltips/#transitions)
+
+## Performance & SEO
+
+The content of transition component is mounted by default even if `in={false}`.
+This default behavior has server-side rendering and SEO in mind.
+If you render expensive component trees inside your transition it might be a good idea to change this default behavior by enabling the
+`unmountOnExit` prop:
+
+```jsx
+<Fade in={false} unmountOnExit />
+```
+
+As with any performance optimization this is not a silver bullet.
+Be sure to identify bottlenecks first and then try out these optimization strategies.

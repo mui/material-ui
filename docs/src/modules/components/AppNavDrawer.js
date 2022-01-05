@@ -62,8 +62,9 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
-    ...theme.mixins.toolbar,
-    paddingLeft: theme.spacing(3),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -173,7 +174,7 @@ function AppNavDrawer(props) {
           <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
               <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
-                <SvgMuiLogo width={32} />
+                <SvgMuiLogo width={28} />
               </Box>
             </NextLink>
             {process.env.LIB_VERSION ? (
@@ -186,10 +187,12 @@ function AppNavDrawer(props) {
                   variant="outlined"
                   endIcon={<ArrowDropDownRoundedIcon fontSize="small" />}
                   sx={{
+                    py: 0.4,
+                    px: 1,
                     border: (theme) =>
-                      `1px solid  ${
+                      `1px solid ${
                         theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
+                          ? theme.palette.primaryDark[700]
                           : theme.palette.grey[200]
                       }`,
                     color: (theme) =>
@@ -197,6 +200,16 @@ function AppNavDrawer(props) {
                         ? theme.palette.primary[300]
                         : theme.palette.primary[500],
                     mr: 2,
+                    '&:hover': {
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[600]
+                          : theme.palette.grey[300],
+                      background: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[700], 0.4)
+                          : theme.palette.grey[50],
+                    },
                   }}
                 >
                   {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
@@ -206,30 +219,6 @@ function AppNavDrawer(props) {
                   anchorEl={anchorEl}
                   open={Boolean(anchorEl)}
                   onClose={() => setAnchorEl(null)}
-                  PaperProps={{
-                    variant: 'outlined',
-                    sx: {
-                      mt: 0.5,
-                      minWidth: 160,
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                      bgcolor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                      boxShadow: (theme) =>
-                        `0px 4px 20px ${
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.background.paper, 0.72)
-                            : 'rgba(170, 180, 190, 0.3)'
-                        }`,
-                      '& .MuiMenuItem-root': {
-                        fontSize: (theme) => theme.typography.pxToRem(14),
-                        fontWeight: 500,
-                        '&.Mui-selected': {
-                          color: 'primary.main',
-                        },
-                      },
-                    },
-                  }}
                 >
                   <MenuItem selected onClick={() => setAnchorEl(null)}>
                     {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
@@ -259,7 +248,6 @@ function AppNavDrawer(props) {
         </ToolbarIE11>
         <Divider />
         <DiamondSponsors spot="drawer" />
-        <Divider />
         {navItems}
         <Box sx={{ height: 40 }} />
       </React.Fragment>
@@ -300,6 +288,10 @@ function AppNavDrawer(props) {
             sx: {
               background: (theme) =>
                 theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[100], 0.08)
+                  : theme.palette.grey[100],
             },
           }}
           open

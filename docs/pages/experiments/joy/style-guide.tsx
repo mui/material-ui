@@ -9,7 +9,10 @@ import {
   styled,
   ColorPaletteProp,
   TypographySystem,
+  createGetThemeVar,
 } from '@mui/joy/styles';
+
+const getThemeVar = createGetThemeVar();
 
 const rgb2hex = (rgb: string) =>
   `#${(rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/) || [])
@@ -23,7 +26,7 @@ const Typography = styled('p', {
   ({ theme, level = 'body1', color }) => [
     { margin: 0 },
     theme.typography[level],
-    color && { color: `var(--joy-palette-${color}-textColor)` },
+    color && color !== 'context' && { color: getThemeVar(`palette-${color}-textColor`) },
   ],
 );
 
@@ -44,7 +47,7 @@ const ColorSchemePicker = () => {
         display: 'inline-flex',
         alignItems: 'center',
         border: '1px solid',
-        borderRadius: '24px',
+        borderRadius: theme.vars.radius.md,
         ...theme.variants.outlined.neutral,
       })}
     >
@@ -53,7 +56,7 @@ const ColorSchemePicker = () => {
           return (
             <Button
               key={modeId}
-              size="small"
+              size="sm"
               variant={mode === modeId ? 'contained' : 'text'}
               onClick={() => {
                 setMode(modeId);
@@ -81,14 +84,14 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
     <Box>
       <Box
         ref={ref}
-        sx={{
-          borderRadius: 'calc(var(--joy-borderRadius-default) / 2)',
+        sx={(theme) => ({
+          borderRadius: `calc(${theme.getThemeVar('radius-md')} / 2)`,
           bgcolor: value,
           width: 64,
           height: 64,
           mb: 1,
-          boxShadow: 'var(--joy-elevation-sm)',
-        }}
+          boxShadow: theme.getThemeVar('shadow-sm'),
+        })}
       />
       <Typography level="body3">{name}</Typography>
       <Typography level="body3">{color}</Typography>
@@ -115,7 +118,7 @@ const PaletteTokens = () => {
               <summary
                 style={{
                   marginBottom: '0.5rem',
-                  fontFamily: 'var(--joy-fontFamily-default)',
+                  fontFamily: getThemeVar('fontFamily-body'),
                   cursor: 'pointer',
                 }}
               >
@@ -174,7 +177,7 @@ export default function JoyStyleGuide() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            bgcolor: 'background.default',
+            bgcolor: 'background.body',
           }}
         >
           <ColorSchemePicker />

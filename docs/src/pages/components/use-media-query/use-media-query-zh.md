@@ -16,7 +16,7 @@ githubLabel: 'hook: useMediaQuery'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic media query
+## 简单的媒体查询
 
 你应该将媒体查询提供给 hook 作为第一个参数。 媒体查询的字符串可以是任何有效的 CSS 媒体查询，例如 [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference)。
 
@@ -24,13 +24,13 @@ githubLabel: 'hook: useMediaQuery'
 
 ⚠️  由于每个浏览器的限制，你不能使用 `'print'`，例如 [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398) 上的这个问题。
 
-## Using MUI's breakpoint helpers
+## 使用 Material-UI 的断点辅助功能
 
-You can use MUI's [breakpoint helpers](/customization/breakpoints/) as follows:
+按照如下所示的例子，你可以这样使用 Material-UI 的 [断点辅助功能](/customization/breakpoints/) ：
 
 ```jsx
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -45,7 +45,7 @@ function MyComponent() {
 或者你也可以使用一个回调函数，其第一个参数是 theme：
 
 ```jsx
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -135,13 +135,34 @@ const theme = createTheme({
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
-      // The estimated CSS width of the browser.
+      // 浏览器的 CSS 宽度预计值
+      width: deviceType === 'mobile' ? '0px' : '1024px',
+    }),
+  });
+
+  const html = ReactDOMServer.renderToString(
+    <ThemeProvider
+      theme={{
+        props: {
+          // 更改 useMediaQuery 的默认选项
+          MuiUseMediaQuery: {
+            ssrMatchMedia,
+          },
+        },
+      }}
+    >
+      <App />
+    </ThemeProvider>,
+  );
+
+  // …
+}
       width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
@@ -184,9 +205,9 @@ function handleRender(req, res) {
 1. `query` (_string_ | _func_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
 2. `options` (_object_ [optional]):
 
-- `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. 默认值为 `false`。
-- `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (_bool_ [optional])：默认为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
+- `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. 默认值为 `false`。 默认值为 `false`。
+- `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. 用其您可以处理一个 iframe 内容窗口。 用其您可以处理一个 iframe 内容窗口。
+- `options.noSsr` (_bool_ [optional])：默认为 `false`。 To perform the server-side hydration, the hook needs to render twice. 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 注意：你可以使用主题的 [`默认属性`](/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
@@ -199,7 +220,7 @@ function handleRender(req, res) {
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('(min-width:600px)');

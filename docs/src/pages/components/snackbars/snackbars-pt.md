@@ -26,7 +26,7 @@ Um snackbar básico que tem como objetivo reproduzir o comportamento do Google K
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Customização
+## Snackbars customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -58,7 +58,7 @@ Snackbars devem aparecer acima de BAFs (no mobile).
 
 {{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
-### Trocar transição
+### Modificando a transição
 
 [Grow](/components/transitions/#grow) é a transição padrão, mas você pode usar uma diferente.
 
@@ -82,13 +82,13 @@ export default function MyComponent() {
 }
 ```
 
-Other examples:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
 ## Projetos Complementares
 
-Para situações de uso mais avançadas, você pode tirar proveito com:
+For more advanced use cases you might be able to take advantage of:
 
 ### notistack
 

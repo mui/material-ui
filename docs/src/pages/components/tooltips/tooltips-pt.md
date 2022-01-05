@@ -24,7 +24,7 @@ O `Tooltip` tem 12 **posicionamentos** para ser escolhido. They don't have direc
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customização
+## Dicas customizadas
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -38,7 +38,7 @@ Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a 
 
 ## Elemento filho customizado
 
-A dica precisa aplicar eventos DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
+A dica precisa aplicar eventos DOM ao seu elemento filho. A dica precisa aplicar eventos DOM ao seu elemento filho.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -89,21 +89,19 @@ Por padrão os elementos desativados como `<button>` não disparam interações 
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desabilitado:
 
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      Um botão desabilitado
-    </button>
-  </span>
-</Tooltip>
+    <button disabled={disabled} style={disabled ? <Tooltip title="Você não tem permissão para esta tarefa">
+  <span>
+    <button disabled={disabled} style={disabled ?
 ```
 
 ## Transições
 
-Use uma transição diferente.
+Use a different transition.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
@@ -115,7 +113,7 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 ## Elemento virtual
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. Você precisa criar um objeto com a estrutura definida como  [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 

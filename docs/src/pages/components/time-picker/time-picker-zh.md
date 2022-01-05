@@ -2,7 +2,7 @@
 title: React Time Picker（时间选择器）组件
 components: DesktopTimePicker, MobileTimePicker, StaticTimePicker, TimePicker, ClockPicker
 githubLabel: 'component: TimePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/time-pickers
 ---
 
@@ -21,9 +21,9 @@ materialDesign: https://material.io/components/time-pickers
 请安装这些库中的任何一个，并使用 `LocalizationProvider` 来包裹到你的 root（或者包裹到该选择器你想要应用的最高位置）来设置正确的日期引擎。
 
 ```jsx
-// or @mui/lab/Adapter{DayJS,Luxon,Moment} or any valid date-io adapter
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// 或者使用 @material-ui/lab/Adapter{DayJS,Luxon,Moment} 或者使用任何可适用的 date-io 适配器
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -40,7 +40,7 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 ## 静态模式
 
-It's possible to render any time picker inline. 这将启用自定义弹出提示/模态框的容器。
+It's possible to render any time picker inline. 这将启用自定义弹出提示/模态框的容器。 This will enable building custom popover/modal containers.
 
 {{"demo": "pages/components/time-picker/StaticTimePickerDemo.js", "bg": true}}
 
@@ -51,7 +51,7 @@ It's possible to render any time picker inline. 这将启用自定义弹出提�
 - The `MobileTimePicker` component works best for touch devices and small screens.
 - The `DesktopTimePicker` component works best for mouse devices and large screens.
 
-By default, the `TimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `TimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/time-picker/ResponsiveTimePickers.js"}}
 
@@ -77,7 +77,7 @@ The time picker component can be disabled or read-only.
 
 ## 子组件
 
-Some lower-level sub-components (`ClockPicker`) are also exported. 这些都是在没有包装器或外部逻辑（屏蔽输入、日期值解析和验证等）的情况下渲染的。
+Some lower-level sub-components (`ClockPicker`) are also exported. 这些都是在没有包装器或外部逻辑（屏蔽输入、日期值解析和验证等）的情况下渲染的。 These are rendered without a wrapper or outer logic (masked input, date values parsing and validation, etc.).
 
 {{"demo": "pages/components/time-picker/SubComponentsTimePickers.js"}}
 

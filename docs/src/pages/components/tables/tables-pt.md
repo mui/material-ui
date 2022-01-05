@@ -46,7 +46,7 @@ A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para imp
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Customização
+## Tabelas Customizadas
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -70,7 +70,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ### Ações de paginação customizada
 
-A propriedade `Action` do componente `TablePagination` permite a implementação de ações customizadas.
+A propriedade `ActionsComponent` do componente `TablePagination` permite a implementação de ações customizadas.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
@@ -117,7 +117,11 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
 
-## Acessibilidade
+#### Customized look and feel
+
+{{"demo": "pages/components/tables/TableCustomized.js"}}
+
+## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 

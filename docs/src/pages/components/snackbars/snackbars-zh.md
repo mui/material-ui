@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Customization 个性化
+## 自定义的消息条
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -82,13 +82,13 @@ export default function MyComponent() {
 }
 ```
 
-Other examples:
+对于更高级的用例，您可以利用：
 
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
 ## 补充项目
 
-对于更高级的用例，您可以利用：
+For more advanced use cases you might be able to take advantage of:
 
 ### notistack
 
@@ -102,9 +102,9 @@ Other examples:
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.
+默认情况下，消息条不会自动隐藏。 但是，如果您决定使用 `autoHideDuration` 属性，我们建议给用户提供 [足够的时间](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) 来响应。
 
-When open, **every** `Snackbar` will be dismissed if <kbd class="key">Escape</kbd> is pressed. Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
+当消息条打开时，如果<kbd class="key">Escape键</kbd>被按下，**每个**`Snackbar`将会消失。 Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
 
 ```jsx
 export default function MyComponent() {

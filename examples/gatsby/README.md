@@ -18,12 +18,6 @@ npm install
 npm run develop
 ```
 
-or:
-
-<!-- #default-branch-switch -->
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/gatsby)
-
 ## The idea behind the example
 
 The project uses [Gatsby](https://github.com/gatsbyjs/gatsby), which is a static site generator for React.

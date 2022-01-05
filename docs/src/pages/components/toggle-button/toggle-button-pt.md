@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/buttons#toggle-button'
 
 <p class="description">Os botões de alternância podem ser usados para agrupar opções relacionadas.</p>
 
-Para enfatizar grupos de [botões de alternância](https://material.io/components/buttons#toggle-button) relacionados, o grupo deve ter um container em comum. O `ToggleButtonGroup` controla o estado selecionado de seus botões filhos através de sua propriedade `value`.
+Para enfatizar grupos de [botões de alternância](https://material.io/components/buttons#toggle-button) relacionados, o grupo deve ter um contêiner em comum. O `ToggleButtonGroup` controla o estado selecionado de seus botões filhos através de sua propriedade `value`.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -50,15 +50,15 @@ The buttons can be stacked vertically with the `orientation` prop set to "vertic
 If you want to enforce that at least one button must be active, you can adapt your handleChange function.
 
 ```jsx
-const handleAlignment = (event, newAlignment) => {
-  if (newAlignment !== null) {
-    setAlignment(newAlignment);
+const handleFormat = (event, newFormats) => {
+  if (newFormats.length) {
+    setFormats(newFormats);
   }
 };
 
-const handleDevices = (event, newDevices) => {
-  if (newDevices.length) {
-    setDevices(newDevices);
+const handleAlignment = (event, newAlignment) => {
+  if (newAlignment !== null) {
+    setAlignment(newAlignment);
   }
 };
 ```
@@ -69,9 +69,9 @@ const handleDevices = (event, newDevices) => {
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customização
+## Botão de alternância customizado
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 

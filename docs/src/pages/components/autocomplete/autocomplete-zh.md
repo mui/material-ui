@@ -72,7 +72,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
-## Free solo
+## 任意输入
 
 当将 `freeSolo` 设置为 true 时，用户可以文本框中输入任意值。
 
@@ -82,12 +82,12 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### Creatable （可创造性）
+### 自由创造
 
 如果您打算将此模块用于类似 [组合框](#combo-box) 的体验（一个选择控件元素的增强版），我们则建议如下的设置：
 
-- `selectOnFocus` to help the user clear the selected value.
-- `clearOnBlur` to help the user enter a new value.
+- `selectOnFocus` 可以帮助用户清除所选定的值。
+- `clearOnBlur` 可以帮助用户输入一个新值。
 - `handleHomeEndKeys` 使用<kbd class="key">Home</kbd> 和 <kbd class="key">End</kbd> 键在弹出窗口内移动焦点。
 - 最后一个选项，例如 `加上 "你的搜索结果"`。
 
@@ -103,22 +103,22 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
-## 失效的选项
+## 禁用选项
 
 {{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
 
 ## `useAutocomplete`
 
-For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 自动完成组件是建立在这个钩子上。
+对于需要高级自定义的场景，无头的 `useAutocomplete()` hook 将会被暴露出来。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 自动完成组件是建立在这个钩子上。
 
 ```tsx
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 ```
 
-The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
+为了方便使用以及兼容性，`useAutocomplete` hook 也可以从 @mui/material 导出。
 
 ```tsx
-import useAutocomplete from '@mui/material/useAutocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 - 📦  [4.5kB 的压缩包](/size-snapshot)。
@@ -129,18 +129,18 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
+前往 [自定义](#customization) 章节，来查看如何使用 `自从完成` 组件来代替该 hook。
 
 ## 异步请求
 
-The component supports two different asynchronous use-cases:
+该组件支持两种不同的异步用例：
 
 - [打开时加载](#load-on-open)：它将等待用户与组件进行交互以加载选项。
 - [当你键入内容时进行搜索](#search-as-you-type)：每一次键入都会提交一个新的请求。
 
 ### 打开时加载
 
-It displays a progress state as long as the network request is pending.
+只要正在处理网络请求，它就会显示一个进度状态。
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
@@ -164,7 +164,7 @@ It displays a progress state as long as the network request is pending.
 
 > ⚠️在你开始使用 Google Maps JavaScript API 之前，你必须注册并且创建一个可支付的账户。
 
-## 多个值
+## 多个输入值
 
 当然您也可以将其作为标签，这样用户就可以输入更多的值。
 
@@ -176,7 +176,7 @@ It displays a progress state as long as the network request is pending.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
-### Checkboxes 复选框
+### 复选框
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
@@ -192,7 +192,7 @@ It displays a progress state as long as the network request is pending.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customization 个性化
+## 个性化
 
 ### 自定义输入
 
@@ -219,7 +219,11 @@ It displays a progress state as long as the network request is pending.
 此组件提供了一个 factory 来构建一个筛选的方法，来供给 `filterOptions` 属性使用。 你可以使用该方法来更改默认的筛选行为。
 
 ```js
-import { createFilterOptions } from '@mui/material/Autocomplete';
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -252,7 +256,7 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
 
-### Advanced 进阶
+### 进阶使用
 
 对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 就像这样：
 
@@ -290,11 +294,11 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
+Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component. 然而，这样的功能会削弱用户的组件体验。
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
 
-In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). 若您不需要自动填充，您可以尝试以下的方式：
+除了记住过去输入的值，浏览器还可能发出 **自动填写（autofill）**建议（保存的登录名、地址或支付详情）。 若您不需要自动填充，您可以尝试以下的方式：
 
 - 给输入框一个不同的名字，这样不会给浏览器泄露任何可以滥用的信息。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id 的话，该组件则会使用一个随机的 id。
 - 设置 `autoComplete="new-password"`（当设置此属性时，有些浏览器会建议输入高复杂度的密码）。
@@ -309,7 +313,7 @@ In addition to remembering past entered values, the browser might also propose *
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+请阅读 [这篇 MDN 指南](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) 来寻求更多解决方案。
 
 ### iOS VoiceOver 辅助功能
 
