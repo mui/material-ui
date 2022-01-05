@@ -70,10 +70,10 @@
 
 ```jsx
 <Box component="div" sx={{ overflow: 'hidden' }}>
-  隐藏溢出的元素
+  Not scrollable, overflow is hidden
 </Box>
-<Box component="div" sx={{ overflow: 'visible' }}>
-  显示溢出的元素
+<Box component="div" sx={{ overflow: 'auto' }}>
+  Try scrolling this overflow auto box
 </Box>
 ```
 
@@ -83,10 +83,10 @@
 
 ```jsx
 <Box component="div" sx={{ textOverflow: 'clip' }}>
-  文本溢出时直接剪切
+  Lorem Ipsum is simply dummy text
 </Box>
 <Box component="div" sx={{ textOverflow: 'ellipsis' }}>
-  文本溢出时显示省略号
+  Lorem Ipsum is simply dummy text
 </Box>
 ```
 
@@ -96,10 +96,10 @@
 
 ```jsx
 <Box component="div" sx={{ visibility: 'visible' }}>
-  可见
+  Visible container
 </Box>
 <Box component="div" sx={{ visibility: 'hidden' }}>
-  不可见
+  Invisible container
 </Box>
 ```
 
@@ -109,10 +109,10 @@
 
 ```jsx
 <Box component="div" sx={{ whiteSpace: 'nowrap' }}>
-  不换行的空格
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 </Box>
 <Box component="div" sx={{ whiteSpace: 'normal' }}>
-  普通的空格
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 </Box>
 ```
 
