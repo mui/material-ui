@@ -200,7 +200,6 @@
     "**/@babel/runtime": "^7.16.3",
     "**/@types/react": "^17.0.38",
     "**/@types/react-dom": "^17.0.11",
-    "**/@mui/core": "link:./packages/mui-base",
     "**/cross-fetch": "^3.1.4",
     "**/react-is": "^17.0.2"
   },

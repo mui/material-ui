@@ -2312,66 +2312,44 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@mui/core@^5.0.0-alpha.54":
-  version "5.0.0-alpha.61"
+"@mui/x-data-grid-generator@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-5.1.0.tgz#b778548a31b13378f496c0cdf0fc6fde4a7deab6"
+  integrity sha512-sENVpmMApjqI5GD660TmgcoYkYOUjS/vfn5gN0gvqKCV/aGjkaDpVdgRn8521nmFJ0xQ/9gBMLrE+T6WXjBjxg==
   dependencies:
-    "@babel/runtime" "^7.16.3"
-    "@emotion/is-prop-valid" "^1.1.1"
-    "@mui/utils" "^5.2.3"
-    "@popperjs/core" "^2.4.4"
-    clsx "^1.1.1"
-    prop-types "^15.7.2"
-    react-is "^17.0.2"
-
-"@mui/core@link:./packages/mui-base":
-  version "5.0.0-alpha.61"
-  dependencies:
-    "@babel/runtime" "^7.16.3"
-    "@emotion/is-prop-valid" "^1.1.1"
-    "@mui/utils" "^5.2.3"
-    "@popperjs/core" "^2.4.4"
-    clsx "^1.1.1"
-    prop-types "^15.7.2"
-    react-is "^17.0.2"
-
-"@mui/x-data-grid-generator@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-5.0.1.tgz#8dd28aaf29e3995e0d0c6449b1fb57ff61f7b2ee"
-  integrity sha512-JuYdxGfFBBRe/SoflZMEiThFL51cUpNuTU1VdO4Vs/iNp9lJQdU/002uJOd7BZoD5bAQV5e0MW0j3N+J0nCfng==
-  dependencies:
-    "@mui/core" "^5.0.0-alpha.54"
+    "@mui/base" "^5.0.0-alpha.55"
     "@types/chance" "^1.1.3"
     chance "^1.1.7"
     clsx "^1.1.1"
     lru-cache "^6.0.0"
 
-"@mui/x-data-grid-pro@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-5.0.1.tgz#2f825b42e335b71738d20b202791eb19e185a53d"
-  integrity sha512-3Kfadbn4eJ9bW2KViPKc3kD7nGFluXeGYvibRqEwzAoFM6UJOc6QQdvuzCRR2ELFfYaYq+QI1wMDC1OD78uM1Q==
+"@mui/x-data-grid-pro@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-5.1.0.tgz#95aea3bd9e9a2f5cdca9c9f03b36f725ea8c57ec"
+  integrity sha512-kFb3I+gu0WAT3f/H9HTMWScJwe0sfecyb2di8Oz5PJE0C5FMXJ/aI1nIEYr1QxLbMExKs140RXq3YXAHncHQGA==
   dependencies:
-    "@mui/utils" "^5.1.0"
-    "@mui/x-license-pro" "5.0.1"
+    "@mui/utils" "^5.1.1"
+    "@mui/x-license-pro" "5.1.0"
     clsx "^1.0.4"
     prop-types "^15.7.2"
-    reselect "^4.1.1"
+    reselect "^4.1.4"
 
-"@mui/x-data-grid@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.0.1.tgz#bace714fca342b6401bebb8861c4a0b09a4f1604"
-  integrity sha512-F1IhkxNiI7A/VoRT0vTs7PP4E8E/K6e5WLrjXFzxeWmvOBaAfmwvf3Wq8o/8ouQ9MFy92M/lAgviOMp1gduOtw==
+"@mui/x-data-grid@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.1.0.tgz#837e51be256fb5a3316bfe1c73ef6f537788785a"
+  integrity sha512-Pj6/FM+fmGjUYqQ26CC0fRiiLENWMfTyp8nOjEm95eqOPbyFM1BMLsZrCU78TR+jUMsE7nc2Y4lYkWlAPcvIgQ==
   dependencies:
-    "@mui/utils" "^5.1.0"
+    "@mui/utils" "^5.1.1"
     clsx "^1.1.1"
     prop-types "^15.7.2"
-    reselect "^4.1.1"
+    reselect "^4.1.4"
 
-"@mui/x-license-pro@5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-5.0.1.tgz#769d1b6c5c2e21aa41b1c9047efc861ea5622843"
-  integrity sha512-z39yFhOUozfJ6kMQaB+bk+ed3hly9GQIDrdZP8uT3aO2+O+I/ztOQ0m+pbInn5/1KFFSw+Sa1xKogbVbp8QS3A==
+"@mui/x-license-pro@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-5.1.0.tgz#2dbbe35c8d61dae95c53c73a6bf64e961bfc5cfc"
+  integrity sha512-/dim8PmwdFeWlTWbZwqsaS2JtFWGIc/NTzLEzbWxyEu+SLXiJgLJ2wtvidE7Tgft9aT+pL6/WwQpK/CqQvqjfA==
   dependencies:
-    "@mui/utils" "^5.1.0"
+    "@mui/utils" "^5.1.1"
     esm "^3.2.25"
     yargs "^17.2.1"
 
@@ -14405,10 +14383,10 @@ requires-port@^1.0.0:
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
 
-reselect@^4.0.0, reselect@^4.1.1:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.4.tgz#66df0aff41b6ee0f51e2cc17cfaf2c1995916f32"
-  integrity sha512-i1LgXw8DKSU5qz1EV0ZIKz4yIUHJ7L3bODh+Da6HmVSm9vdL/hG7IpbgzQ3k2XSirzf8/eI7OMEs81gb1VV2fQ==
+reselect@^4.0.0, reselect@^4.1.4:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.5.tgz#852c361247198da6756d07d9296c2b51eddb79f6"
+  integrity sha512-uVdlz8J7OO+ASpBYoz1Zypgx0KasCY20H+N8JD13oUMtPvSHQuscrHop4KbXrbsBcdB9Ds7lVK7eRkBIfO43vQ==
 
 resize-observer-polyfill@^1.5.1:
   version "1.5.1"
