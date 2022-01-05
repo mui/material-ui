@@ -89,6 +89,9 @@ describe('replaceUrl', () => {
     expect(
       replaceUrl(`/components/data-grid/getting-started/#main-content`, '/x/react-data-grid'),
     ).to.equal(`/x/react-data-grid/getting-started/#main-content`);
+    expect(
+      replaceUrl(`/components/data-grid/components/#main-content`, '/x/react-data-grid'),
+    ).to.equal(`/x/react-data-grid/components/#main-content`);
     expect(replaceUrl(`/api/button-unstyled`, '/base/api/mui-base/button-unstyled')).to.equal(
       `/base/api/mui-base/button-unstyled`,
     );

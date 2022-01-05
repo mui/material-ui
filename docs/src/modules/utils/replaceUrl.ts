@@ -3,20 +3,25 @@ function isNewLocation(url: string) {
 }
 
 export const replaceMaterialLinks = (url: string) => {
-  const routes = 'guides|customization|getting-started|discover-more';
   if (isNewLocation(url)) {
     return url;
   }
-  return url.replace(new RegExp(`(${routes})`), 'material/$1');
+  return url.replace(
+    new RegExp(`(guides|customization|getting-started|discover-more)`),
+    'material/$1',
+  );
 };
 
 export const replaceComponentLinks = (url: string) => {
   if (isNewLocation(url)) {
     return url;
   }
-  return url
-    .replace(/\/components\/data-grid/, '/x/react-data-grid')
-    .replace(/\/components\/(.*)/, '/material/react-$1');
+  url = url.replace(/\/components\/data-grid/, '/x/react-data-grid');
+  if (isNewLocation(url)) {
+    return url;
+  }
+  url = url.replace(/\/components\/(.*)/, '/material/react-$1');
+  return url;
 };
 
 export const replaceAPILinks = (url: string) => {
