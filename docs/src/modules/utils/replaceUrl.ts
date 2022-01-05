@@ -16,7 +16,12 @@ export const replaceComponentLinks = (url: string) => {
 };
 
 export const replaceAPILinks = (url: string) => {
-  if (url.startsWith('/x') || url.startsWith('/material') || !url.startsWith('/api')) {
+  if (
+    url.startsWith('/x') ||
+    url.startsWith('/material') ||
+    url.startsWith('/base/') ||
+    !url.startsWith('/api')
+  ) {
     return url;
   }
   url = url
@@ -25,16 +30,16 @@ export const replaceAPILinks = (url: string) => {
       /\/api\/(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)(.*)/,
       '/material/api/mui-lab/$1$2',
     )
-    .replace(/\/api\/([^/]+-unstyled)(.*)/, '/material/api/mui-base/$1$2');
+    .replace(/\/api\/([^/]+-unstyled)(.*)/, '/base/api/mui-base/$1$2');
 
-  if (url.startsWith('/x') || url.startsWith('/material')) {
+  if (url.startsWith('/x') || url.startsWith('/material') || url.startsWith('/base/')) {
     return url;
   }
   return url.replace(/\/api\/(.*)/, '/material/api/mui-material/$1');
 };
 
 export default function replaceUrl(url: string, asPath: string) {
-  if (asPath.startsWith('/material/') || asPath.startsWith('/x/')) {
+  if (asPath.startsWith('/material/') || asPath.startsWith('/x/') || asPath.startsWith('/base/')) {
     return replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(url)));
   }
   return url;

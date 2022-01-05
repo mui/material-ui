@@ -45,6 +45,14 @@ test.describe.parallel('Material docs', () => {
       );
     });
 
+    test('should have correct API link to mui-base', async ({ page }) => {
+      await page.goto(`/material/react-buttons/`);
+
+      await expect(page.locator('a[href="/base/api/mui-base/button-unstyled/"]')).toContainText(
+        '<ButtonUnstyled />',
+      );
+    });
+
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto(`/material/react-cards/`);
 

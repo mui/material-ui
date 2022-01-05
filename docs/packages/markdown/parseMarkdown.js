@@ -251,6 +251,25 @@ function prepareMarkdown(config) {
   const docs = {};
   const headingHashes = {};
 
+  /**
+   * @param {string} product
+   * @example 'material'
+   * @param {string} componentPkg
+   * @example 'mui-base'
+   * @param {string} component
+   * @example 'ButtonUnstyled'
+   * @returns {string}
+   */
+  function resolveComponentApiUrl(product, componentPkg, component) {
+    if (!product || !componentPkg) {
+      return `/api/${kebabCase(component)}/`;
+    }
+    if (componentPkg === 'mui-base') {
+      return `/base/api/${componentPkg}/${kebabCase(component)}/`;
+    }
+    return `/${product}/api/${componentPkg}/${kebabCase(component)}/`;
+  }
+
   translations
     // Process the English markdown before the other locales.
     // English ToC anchor links are used in all languages
@@ -272,11 +291,13 @@ ${headers.components
 
     // TODO: enable the code below once the migration is done.
     // eslint-disable-next-line no-unreachable
-    const productPackage = componentPackageMapping[headers.product];
-    const componentPkg = productPackage ? productPackage[component] : null;
-    return `- [\`<${component} />\`](${headers.product ? `/${headers.product}` : ''}/api/${
-      componentPkg ? `${componentPkg}/` : ''
-    }${kebabCase(component)}/)`;
+    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
+    return `- [\`<${component} />\`](${resolveComponentApiUrl(
+      headers.product,
+      componentPkg,
+      component,
+    )})`;
   })
   .join('\n')}
   `);

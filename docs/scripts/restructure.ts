@@ -134,6 +134,9 @@ function run() {
     });
   });
 
+  // include `base` pages in `_app.js`
+  updateAppToUseProductPagesData('base');
+
   // Turn feature toggle `enable_product_scope: true`
   const featureTogglePath = path.join(process.cwd(), 'docs/src/featureToggle.js');
   let featureToggle = fs.readFileSync(featureTogglePath, { encoding: 'utf8' });

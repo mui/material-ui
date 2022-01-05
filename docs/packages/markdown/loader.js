@@ -61,6 +61,7 @@ packages.forEach((pkg) => {
     const filePaths = readdirSync(pkgPath);
     filePaths.forEach((folder) => {
       if (folder.match(/^[A-Z]/)) {
+        // filename starts with Uppercase = component
         componentPackageMapping[pkg.product][folder] = packageName;
       }
     });
