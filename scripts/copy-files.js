@@ -35,14 +35,24 @@ async function createModulePackages({ from, to }) {
         path.resolve(path.dirname(packageJsonPath), '../esm'),
       );
 
+      const esm = topLevelPathImportsAreCommonJSModules
+        ? path.posix.join('../esm', directoryPackage, 'index.js')
+        : './index.js';
+      const cjs = topLevelPathImportsAreCommonJSModules
+        ? './index.js'
+        : path.posix.join('../node', directoryPackage, 'index.js');
+
       const packageJson = {
         sideEffects: false,
-        module: topLevelPathImportsAreCommonJSModules
-          ? path.posix.join('../esm', directoryPackage, 'index.js')
-          : './index.js',
-        main: topLevelPathImportsAreCommonJSModules
-          ? './index.js'
-          : path.posix.join('../node', directoryPackage, 'index.js'),
+        module: esm,
+        main: cjs,
+        type: 'module',
+        exports: {
+          '.': {
+            import: esm,
+            require: cjs,
+          },
+        },
         types: './index.d.ts',
       };
 
@@ -52,6 +62,7 @@ async function createModulePackages({ from, to }) {
         fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.main)),
         fse.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
       ]);
+      console.log(`written ${packageJsonPath}`);
 
       const manifestErrorMessages = [];
       if (!typingsEntryExist) {
@@ -89,19 +100,30 @@ async function createPackageFile() {
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
+  const cjs = fse.existsSync(path.resolve(buildPath, './node/index.js'))
+    ? './node/index.js'
+    : './index.js';
+
+  const esm = fse.existsSync(path.resolve(buildPath, './esm/index.js'))
+    ? './esm/index.js'
+    : './index.js';
+
   const newPackageData = {
     ...packageDataOther,
     private: false,
     ...(packageDataOther.main
       ? {
-          main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
-            ? './node/index.js'
-            : './index.js',
-          module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-            ? './esm/index.js'
-            : './index.js',
+          main: cjs,
+          module: esm,
         }
       : {}),
+    type: 'module',
+    exports: {
+      '.': {
+        import: esm,
+        require: cjs,
+      },
+    },
     types: './index.d.ts',
   };
 
