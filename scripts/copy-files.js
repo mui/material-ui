@@ -28,16 +28,18 @@ async function includeFileInBuild(file) {
 async function createModulePackages({ from, to }) {
   const directoryPackages = glob.sync('*/index.{js,ts,tsx}', { cwd: from }).map(path.dirname);
 
-  await Promise.all(
+  const modulePackages = await Promise.all(
     directoryPackages.map(async (directoryPackage) => {
       const packageJsonPath = path.join(to, directoryPackage, 'package.json');
+      const packageDir = path.dirname(packageJsonPath);
       const topLevelPathImportsAreCommonJSModules = await fse.pathExists(
-        path.resolve(path.dirname(packageJsonPath), '../esm'),
+        path.resolve(packageDir, '../esm'),
       );
 
       const esm = topLevelPathImportsAreCommonJSModules
         ? path.posix.join('../esm', directoryPackage, 'index.js')
         : './index.js';
+
       const cjs = topLevelPathImportsAreCommonJSModules
         ? './index.js'
         : path.posix.join('../node', directoryPackage, 'index.js');
@@ -78,9 +80,16 @@ async function createModulePackages({ from, to }) {
         throw new Error(`${packageJsonPath}:\n${manifestErrorMessages.join('\n')}`);
       }
 
-      return packageJsonPath;
+      return {
+        [`./${path.basename(packageDir)}`]: {
+          import: `./${path.relative(to, path.resolve(packageDir, esm))}`,
+          require: `./${path.relative(to, path.resolve(packageDir, cjs))}`,
+        },
+      };
     }),
   );
+
+  return modulePackages;
 }
 
 async function typescriptCopy({ from, to }) {
@@ -94,7 +103,7 @@ async function typescriptCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
-async function createPackageFile() {
+async function createPackageFile({ innerModules }) {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
@@ -122,6 +131,7 @@ async function createPackageFile() {
         import: esm,
         require: cjs,
       },
+      ...Object.assign({}, ...innerModules),
     },
     types: './index.d.ts',
   };
@@ -170,7 +180,12 @@ async function addLicense(packageData) {
 
 async function run() {
   try {
-    const packageData = await createPackageFile();
+    // TypeScript
+    await typescriptCopy({ from: srcPath, to: buildPath });
+
+    const innerModules = await createModulePackages({ from: srcPath, to: buildPath });
+
+    const packageData = await createPackageFile({ innerModules });
 
     await Promise.all(
       [
@@ -182,11 +197,6 @@ async function run() {
     );
 
     await addLicense(packageData);
-
-    // TypeScript
-    await typescriptCopy({ from: srcPath, to: buildPath });
-
-    await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {
     console.error(err);
     process.exit(1);
