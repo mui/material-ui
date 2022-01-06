@@ -44,18 +44,16 @@ const PostPreview = (props: BlogPost) => {
               sx={{
                 fontWeight: 500,
                 color: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[50]
-                    : theme.palette.primary[700],
+                  theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.grey[700],
                 background: (theme) =>
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primary[900]
-                    : theme.palette.primary[50],
+                    ? alpha(theme.palette.grey[700], 0.5)
+                    : theme.palette.grey[100],
                 '&:hover': {
                   background: (theme) =>
                     theme.palette.mode === 'dark'
-                      ? theme.palette.primary[900]
-                      : theme.palette.primary[50],
+                      ? alpha(theme.palette.grey[700], 0.5)
+                      : theme.palette.grey[100],
                 },
               }}
             />
@@ -103,7 +101,7 @@ const PostPreview = (props: BlogPost) => {
               backgroundColor: (theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[300],
+                  : theme.palette.grey[100],
               color: (theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[100]
@@ -336,7 +334,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                                   component="span"
                                   sx={(theme) => ({
                                     borderRadius: 1,
-                                    bgcolor: selected ? 'primary.50' : 'grey.300',
+                                    bgcolor: selected ? 'primary.50' : 'grey.200',
                                     px: 0.5,
                                     mr: -0.25,
                                     fontSize: '0.75rem',
@@ -370,13 +368,6 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                       size="small"
                       sx={{
                         py: 1.2,
-                        '&:hover': {
-                          bgcolor: 'primary.100',
-                        },
-                        '& .MuiChip-deleteIcon': {
-                          color: 'primary.700',
-                          '&:hover': { color: 'primary.700' },
-                        },
                       }}
                     />
                   );

@@ -495,6 +495,9 @@ export function getThemedComponents(theme: Theme) {
       },
       MuiChip: {
         styleOverrides: {
+          root: {
+            fontWeight: 500,
+          },
           outlined: {
             color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.grey[900],
             backgroundColor: 'transparent',
@@ -504,7 +507,6 @@ export function getThemedComponents(theme: Theme) {
                 : theme.palette.grey[300],
           },
           filled: {
-            fontWeight: 400,
             border: '1px solid transparent',
             color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
             backgroundColor:
