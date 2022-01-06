@@ -787,6 +787,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                     height: '100%',
                     ...inputProps.style,
                   }}
+                  {...(!isHostComponent(Input) && {
+                    ownerState: { ...ownerState, ...inputProps.ownerState },
+                  })}
                   {...inputProps}
                 />
               </Thumb>

@@ -1189,7 +1189,9 @@ describe('<Slider />', () => {
       // ARRANGE
       const dataTestId = 'slider-input-testid';
       const name = 'custom-input';
-      const CustomInput = (props) => <input {...props} data-testid={dataTestId} name={name} />;
+      const CustomInput = ({ ownerState, ...props }) => (
+        <input {...props} data-testid={dataTestId} name={name} />
+      );
 
       // ACT
       const { getByTestId } = render(<Slider components={{ Input: CustomInput }} />);
