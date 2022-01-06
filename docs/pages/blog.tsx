@@ -51,6 +51,12 @@ const PostPreview = (props: BlogPost) => {
                   theme.palette.mode === 'dark'
                     ? theme.palette.primary[900]
                     : theme.palette.primary[50],
+                '&:hover': {
+                  background: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primary[900]
+                      : theme.palette.primary[50],
+                },
               }}
             />
           ))}
