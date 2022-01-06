@@ -2,6 +2,29 @@
 
 <p class="description">The theme's `components` key allows you to customize a component without wrapping it in another component. You can change the styles, the default props, and more.</p>
 
+## Default props
+
+You can change the default of every prop of a MUI component.
+A `defaultProps` key is exposed in the theme's `components` key for this use case.
+
+```js
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiButtonBase: {
+      defaultProps: {
+        // The props to change the default for.
+        disableRipple: true, // No more ripple!
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/theme-components/DefaultProps.js"}}
+
+To override lab component styles with TypeScript, check [this page](/components/about-the-lab/#typescript).
+
 ## Global style overrides
 
 You can use the theme's `styleOverrides` key to potentially change every single style injected by MUI into the DOM.
@@ -29,28 +52,30 @@ The list of each component's classes is documented under the **CSS** section of 
 
 To override a lab component's styles with TypeScript, check [this section of the documentation](/components/about-the-lab/#typescript).
 
-## Default props
+### Overrides based on props
 
-You can change the default of every prop of a MUI component.
-A `defaultProps` key is exposed in the theme's `components` key for this use case.
+You can pass a callback as a value in each slot of the component's `styleOverrides` to apply styles based on props.
 
 ```js
-const theme = createTheme({
+const finalTheme = createTheme({
   components: {
-    // Name of the component
-    MuiButtonBase: {
-      defaultProps: {
-        // The props to change the default for.
-        disableRipple: true, // No more ripple!
+    MuiSlider: {
+      styleOverrides: {
+        // The experience is similar to styled(Component)(props => ({ ... }))
+        // props = Slider's props + theme
+        valueLabel: (props) => ({
+          ...(props.orientation === 'vertical' && {
+            backgroundColor: 'transparent',
+            color: props.theme.palette.grey[500],
+          }),
+        }),
       },
     },
   },
 });
 ```
 
-{{"demo": "pages/customization/theme-components/DefaultProps.js"}}
-
-To override lab component styles with TypeScript, check [this page](/components/about-the-lab/#typescript).
+{{"demo": "pages/customization/theme-components/GlobalThemeOverrideCallback.js"}}
 
 ## Adding new component variants
 
