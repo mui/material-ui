@@ -110,7 +110,9 @@ export default function AppProductsDrawer(props: DrawerProps) {
           '& li:not(:last-of-type)': {
             borderBottom: '1px solid',
             borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primary[100], 0.08)
+                : theme.palette.grey[100],
           },
           '& a': { textDecoration: 'none' },
           '& li': {

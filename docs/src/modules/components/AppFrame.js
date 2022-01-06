@@ -184,7 +184,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
-      width: 240,
+      width: 280,
     },
   };
 });
@@ -210,7 +210,12 @@ function AppFrame(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
-
+  const handleNavDrawerOpen = () => {
+    setMobileOpen(true);
+  };
+  // const handleNavDrawerClose = React.useCallback(() => {
+  //   setMobileOpen(false);
+  // }, []);
   const router = useRouter();
   // const { canonicalAs } = pathnameToLanguage(router.asPath);
   const { activePage } = React.useContext(PageContext);
@@ -257,7 +262,7 @@ function AppFrame(props) {
             <Box
               component="a"
               aria-label={t('goToHome')}
-              sx={{ display: { md: 'flex', lg: 'none' } }}
+              sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
             >
               <SvgMuiLogo width={30} />
             </Box>
@@ -278,13 +283,13 @@ function AppFrame(props) {
             </Tooltip>
             <Notifications />
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
+              <IconButton color="primary" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
               <Tooltip title="MUI products" enterDelay={300}>
-                <IconButton color="inherit" onClick={() => setProductsDrawerOpen(true)}>
+                <IconButton color="primary" onClick={() => setProductsDrawerOpen(true)}>
                   <Apps fontSize="small" />
                 </IconButton>
               </Tooltip>

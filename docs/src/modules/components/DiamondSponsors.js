@@ -28,8 +28,6 @@ export default function DiamondSponsors(props) {
         size="small"
         endIcon={<KeyboardArrowRightRoundedIcon />}
         sx={{
-          mt: 1,
-          mb: 1,
           fontSize: theme.typography.pxToRem(12.5),
           fontWeight: 500,
           color:
