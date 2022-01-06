@@ -226,6 +226,11 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The props used for each slot inside the Switch.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * The default checked state. Use when the component is not controlled.
    */
   defaultChecked: PropTypes.bool,
@@ -233,6 +238,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
   /**
    * @ignore
    */
