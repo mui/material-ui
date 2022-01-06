@@ -276,7 +276,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         <Container
           id="post-list"
           sx={{
-            mt: 2,
+            mt: { xs: 0, sm: 1 },
             display: 'grid',
             gridTemplateColumns: { md: '1fr 380px' },
             columnGap: 8,
@@ -291,7 +291,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 position: 'sticky',
                 top: 100,
                 alignSelf: 'start',
-                mb: { xs: 0, sm: 8 },
+                mb: { xs: 4, sm: 8 },
                 p: 2,
                 borderRadius: 1,
                 border: '1px solid',
