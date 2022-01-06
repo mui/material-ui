@@ -285,7 +285,7 @@ export default function App() {
 
 ### `fill` callback gives theme type as `any`
 
-Since `sx` can be an array type, there is a conflict in type of `Array.fill` and CSS's `fill` property when define value as a callback. As a workaround, you can explicitly define the theme like this:
+既然 `sx` 可以是数组类型，那么当值设为回调函数时， 数组的 `fill` 方法与 CSS 的 `fill` 属性就存在冲突 。 作为一种变通方法，您可以像这样显式地定义主题：
 
 ```tsx
 import { Theme } from '@mui/material/styles';
@@ -297,8 +297,8 @@ import { Theme } from '@mui/material/styles';
 />;
 ```
 
-> Let us know or [submit a PR](https://github.com/mui-org/material-ui/pulls) if you have a proper way to fix this issue. 🙏
+> 如果您有解决这个问题的适当方法，请告诉我们或提交一个 [PR](https://github.com/mui-org/material-ui/pulls)。 🙏
 
 ## Performance
 
-If you are interested in the performance tradeoff, you can find more details [here](/system/basics/#performance-tradeoff).
+如果您对性能平衡感兴趣，可以在[这里](/system/basics/#performance-tradeoff)找到更多细节。
