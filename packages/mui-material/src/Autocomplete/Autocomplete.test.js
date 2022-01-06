@@ -17,6 +17,7 @@ import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/material/Autocomplete';
+import { paperClasses } from '@mui/material/Paper';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -2384,5 +2385,24 @@ describe('<Autocomplete />', () => {
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleChange.callCount).to.equal(0);
     expect(handleSubmit.callCount).to.equal(1);
+  });
+
+  describe('prop: componentsProps', () => {
+    it('should apply the props on the Paper component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            paper: { 'data-testid': 'paperRoot', elevation: 2, className: 'my-class' },
+          }}
+        />,
+      );
+
+      const paperRoot = screen.getByTestId('paperRoot');
+      expect(paperRoot).to.have.class(paperClasses.elevation2);
+      expect(paperRoot).to.have.class('my-class');
+    });
   });
 });
