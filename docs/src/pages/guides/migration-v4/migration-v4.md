@@ -2954,7 +2954,7 @@ function Parent() {
 }
 ```
 
-**Note:** `tss-react` is **not maintained** by MUI. 
+**Note:** `tss-react` is **not maintained** by MUI.
 If you have any question about how to setup SSR (Next.js) or if you are wondering
 how to customize the `theme` object please refer to `tss-react`'s documentation,
 the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.  
