@@ -1,5 +1,6 @@
 ---
 description: Here are the most significant improvements in September.
+tags: ['Company update']
 ---
 
 # September 2019 Update

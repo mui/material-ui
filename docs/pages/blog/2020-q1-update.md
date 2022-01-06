@@ -1,5 +1,6 @@
 ---
 description: An update on our mission for Q1 2020.
+tags: ['Company update']
 ---
 
 # Q1 2020 Update

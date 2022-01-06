@@ -1,5 +1,10 @@
 ---
-description: 2020 MUI Developer Survey results
+title: 2020 MUI Developer Survey results
+description: Results for our yearly developer survey, 2020 edition.
+date: 2020-07-27T00:00:00.000Z
+authors: ['mnajdova', 'oliviertassinari', 'mbrookes']
+card: false
+tags: ['Developer survey']
 ---
 
 # 2020 MUI Developer Survey results

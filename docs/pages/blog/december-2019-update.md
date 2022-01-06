@@ -1,5 +1,6 @@
 ---
 description: Here are the most significant improvements in December.
+tags: ['Company update']
 ---
 
 # December 2019 Update

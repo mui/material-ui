@@ -1,5 +1,6 @@
 ---
 description: Here are the most significant improvements in October.
+tags: ['Company update']
 ---
 
 # October 2019 Update

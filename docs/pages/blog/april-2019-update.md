@@ -1,5 +1,6 @@
 ---
 description: Here are the most significant improvements in April.
+tags: ['Company update']
 ---
 
 # April 2019 Update
