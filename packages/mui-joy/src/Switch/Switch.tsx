@@ -131,6 +131,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     checked: checkedProp,
     className,
     component,
+    componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
     onBlur,
@@ -177,9 +178,22 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
       ownerState={ownerState}
       className={clsx(classes.root, className)}
     >
-      <SwitchTrack ownerState={ownerState} className={clsx(classes.track)} />
-      <SwitchThumb ownerState={ownerState} className={clsx(classes.thumb)} />
-      <SwitchInput ownerState={ownerState} {...getInputProps()} className={clsx(classes.input)} />
+      <SwitchTrack
+        {...componentsProps.track}
+        ownerState={ownerState}
+        className={clsx(classes.track, componentsProps.track?.className)}
+      />
+      <SwitchThumb
+        {...componentsProps.thumb}
+        ownerState={ownerState}
+        className={clsx(classes.thumb, componentsProps.thumb?.className)}
+      />
+      <SwitchInput
+        {...componentsProps.input}
+        ownerState={ownerState}
+        {...getInputProps()}
+        className={clsx(classes.input, componentsProps.input?.className)}
+      />
     </SwitchRoot>
   );
 });

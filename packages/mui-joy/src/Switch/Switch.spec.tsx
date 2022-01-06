@@ -7,6 +7,9 @@ import Switch from '@mui/joy/Switch';
 
 <Switch data-testid="any" />;
 
+// common HTML attributes
+<Switch onDrop={() => {}} />;
+
 <Switch defaultChecked />;
 
 <Switch checked />;

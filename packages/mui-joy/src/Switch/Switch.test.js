@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import Switch, { switchClasses as classes } from '@mui/joy/Switch';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -27,6 +27,26 @@ describe('<Switch />', () => {
     ],
   }));
 
+  it('should pass componentProps down to slots', () => {
+    const {
+      container: { firstChild: root },
+    } = render(
+      <Switch
+        data-testid="root-switch"
+        componentsProps={{
+          thumb: { className: 'custom-thumb' },
+          track: { className: 'custom-track' },
+          input: { className: 'custom-input' },
+        }}
+      />,
+    );
+
+    expect(screen.getByTestId('root-switch')).toBeVisible();
+    expect(root.childNodes[0]).to.have.class(/custom-(thumb|track|input)/);
+    expect(root.childNodes[1]).to.have.class(/custom-(thumb|track|input)/);
+    expect(root.childNodes[2]).to.have.class(/custom-(thumb|track|input)/);
+  });
+
   it('should have the classes required for Switch', () => {
     expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
   });
@@ -52,19 +72,19 @@ describe('<Switch />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', true);
   });
 
-  specify('the switch can be disabled', () => {
+  it('the switch can be disabled', () => {
     const { getByRole } = render(<Switch disabled />);
 
     expect(getByRole('checkbox')).to.have.property('disabled', true);
   });
 
-  specify('the switch can be readonly', () => {
+  it('the switch can be readonly', () => {
     const { getByRole } = render(<Switch readOnly />);
 
     expect(getByRole('checkbox')).to.have.property('readOnly', true);
   });
 
-  specify('the Checked state changes after change events', () => {
+  it('the Checked state changes after change events', () => {
     const { getByRole } = render(<Switch defaultChecked />);
 
     // how a user would trigger it

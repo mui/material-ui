@@ -9,7 +9,9 @@ export interface SwitchPropsColorOverrides {}
 
 export interface SwitchPropsSizeOverrides {}
 
-export interface SwitchProps extends UseSwitchProps {
+export interface SwitchProps
+  extends UseSwitchProps,
+    Omit<React.HTMLAttributes<HTMLSpanElement>, keyof UseSwitchProps> {
   /**
    * Class name applied to the root element.
    */
@@ -19,6 +21,15 @@ export interface SwitchProps extends UseSwitchProps {
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType;
+  /**
+   * The props used for each slot inside the Switch.
+   * @default {}
+   */
+  componentsProps?: {
+    thumb?: React.HTMLAttributes<HTMLSpanElement>;
+    input?: React.InputHTMLAttributes<HTMLInputElement>;
+    track?: React.HTMLAttributes<HTMLSpanElement>;
+  };
   /**
    * Override or extend the styles applied to the component.
    */
