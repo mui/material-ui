@@ -1,11 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { exactProp } from '@mui/utils';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import replaceMarkdownLinks from 'docs/src/modules/utils/replaceMarkdownLinks';
 
 // TODO: Only import on demand via @mui/markdown/loader
 const markdownComponents = {
@@ -19,6 +21,7 @@ function noComponent(moduleID) {
 }
 
 function MarkdownDocs(props) {
+  const router = useRouter();
   const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
 
   const userLanguage = useUserLanguage();
@@ -37,7 +40,12 @@ function MarkdownDocs(props) {
     >
       {rendered.map((renderedMarkdownOrDemo, index) => {
         if (typeof renderedMarkdownOrDemo === 'string') {
-          return <MarkdownElement key={index} renderedMarkdown={renderedMarkdownOrDemo} />;
+          return (
+            <MarkdownElement
+              key={index}
+              renderedMarkdown={replaceMarkdownLinks(renderedMarkdownOrDemo, router.asPath)}
+            />
+          );
         }
 
         if (renderedMarkdownOrDemo.component) {

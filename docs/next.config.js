@@ -3,6 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
+const FEATURE_TOGGLE = require('./src/featureToggle');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -225,6 +226,65 @@ module.exports = {
       // Make sure to include the trailing slash if `trailingSlash` option is set
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
     ];
+  },
+  async redirects() {
+    if (FEATURE_TOGGLE.enable_redirects) {
+      return [
+        {
+          source: '/getting-started/:path*',
+          destination: '/material/getting-started/:path*',
+          permanent: false,
+        },
+        {
+          source: '/customization/:path*',
+          destination: '/material/customization/:path*',
+          permanent: false,
+        },
+        {
+          source: '/guides/:path*',
+          destination: '/material/guides/:path*',
+          permanent: false,
+        },
+        {
+          source: '/discover-more/:path*',
+          destination: '/material/discover-more/:path*',
+          permanent: false,
+        },
+        {
+          source: '/components/about-the-lab',
+          destination: '/material/about-the-lab',
+          permanent: false,
+        },
+        {
+          source: '/components/data-grid/:path*',
+          destination: '/x/react-data-grid/:path*',
+          permanent: false,
+        },
+        {
+          source: '/components/:path*',
+          destination: '/material/react-:path*',
+          permanent: false,
+        },
+        {
+          source: '/api/data-grid/:path*',
+          destination: '/x/api/mui-data-grid/:path*',
+          permanent: false,
+        },
+        {
+          source:
+            // if this regex change, make sure to update `replaceMarkdownLinks`
+            '/api/:path(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)',
+          destination: '/material/api/mui-lab/:path*',
+          permanent: false,
+        },
+        {
+          source: '/api/:path*',
+          destination: '/material/api/mui-material/:path*',
+          permanent: false,
+        },
+      ];
+    }
+    return [];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,
