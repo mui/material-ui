@@ -3,7 +3,8 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import InternalLink from 'docs/src/modules/components/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -167,9 +168,16 @@ export default function DesignKitFAQ() {
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
               From community help to premium business support, we’re here to help.
             </Typography>
-            <Link href="mailto:sales@mui.com" variant="body2">
+            <Button
+              component="a"
+              // @ts-expect-error
+              variant="link"
+              size="small"
+              href="mailto:sales@mui.com"
+              endIcon={<KeyboardArrowRightRounded />}
+            >
               Contact sales
-            </Link>
+            </Button>
           </Paper>
         </Grid>
       </Grid>

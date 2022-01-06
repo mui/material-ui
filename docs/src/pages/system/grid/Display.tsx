@@ -7,10 +7,17 @@ export default function Display() {
       <Box
         sx={{
           display: 'grid',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
           p: 1,
-          bgcolor: 'primary.main',
-          borderRadius: 1,
-          color: 'white',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         {"I'm a grid container!"}

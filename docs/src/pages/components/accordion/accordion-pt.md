@@ -40,7 +40,7 @@ O conteúdo dos acordeões é montado por padrão, mesmo que o acordeão não es
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
+Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Be sure to identify bottlenecks first and then try out these optimization strategies.
 
 ## Acessibilidade
 

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/styled": "11.3.0",
+    "@emotion/styled": "11.6.0",
     "@mui/material": "5.0.0-alpha.34",
     "@mui/icons-material": "5.0.0-alpha.34",
     "@mui/lab": "5.0.0-alpha.34",

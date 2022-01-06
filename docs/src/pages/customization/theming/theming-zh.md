@@ -1,6 +1,6 @@
 # Theming 主题
 
-<p class="description">定制属于你自己的 Material-UI 主题。 你可以改变颜色、文字铸排等等。</p>
+<p class="description">用你的主题定制MUI。 你可以改变颜色、文字铸排等等。</p>
 
 主题可以指定组件的配色、平面的明暗、阴影的深浅、墨水元素的合适的不透明度等等。
 
@@ -16,15 +16,15 @@
 
 ## 主题配置变量
 
-更改主题配置变量是将 Material-UI 与您的需求相匹配的最有效方法。 以下各节涵盖了一些最重要的主题变量：
+修改主题配置变量是使MUI符合你的需求的最有效方法。 以下各节涵盖了一些最重要的主题变量：
 
-- [`.调色板`](/customization/palette/)
-- [`.typography`](/customization/typography/)
+- [`.palette 调色板`](/customization/palette/)
+- [`.typography 文字铸排`](/customization/typography/)
 - [`.spacing 间距`](/customization/spacing/)
 - [`.breakpoints 断点`](/customization/breakpoints/)
-- [`.zIndex`](/customization/z-index/)
-- [`.过渡动画`](/customization/transitions/)
-- [`.组件`](/customization/theme-components/)
+- [`.zIndex 层级`](/customization/z-index/)
+- [`.transitions 过渡动画`](/customization/transitions/)
+- [`.components 组件`](/customization/theme-components/)
 
 您可以在[默认主题部分](/customization/default-theme/)查看完整的默认样式。
 
@@ -43,13 +43,13 @@ const theme = createTheme({
 如果您使用的是 TypeScript，您还需要使用 [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) 来让主题接受上述值。
 
 ```tsx
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: string;
     };
   }
-  // allow configuration using `createTheme`
+  // 允许配置文件使用 `createTheme`
   interface ThemeOptions {
     status?: {
       danger?: string;
@@ -66,10 +66,10 @@ declare module '@material-ui/core/styles' {
   <source src="/static/studies.mp4" type="video/mp4" >
 </video>
 
-The community has built great tools to build a theme:
+社区中有一些强大的工具来帮您构建主题：
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 Material-UI 组件库主题的工具。 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/)：使用 Material Design 颜色工具来创建 Material-UI 主题的在线工具。
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 MUI 组件库主题的工具。 这其中包括基本的网站模板，并且展示各种组件以及它们如何受到主题的影响
+- [Material 调色板生成器](https://material.io/inline-tools/color/)：您可以在 Material 调色板生成器中输入的任何颜色，它将帮您生成一系列的颜色组合。
 
 ## 访问一个组件中的主题
 
@@ -164,7 +164,7 @@ theme = createTheme(theme, {
     MuiChip: {
       styleOverrides: {
         root: {
-          // apply theme's border-radius instead of component's default
+          // 用主题的 border-radius 参数来代替默认组件的样式
           borderRadius: theme.shape.borderRadius,
         },
       },
@@ -219,7 +219,7 @@ theme = responsiveFontSizes(theme);
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### Examples
+#### 例子
 
 ```js
 import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
@@ -241,7 +241,7 @@ function App() {
 
 This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. 最好在**您的组件树的根目录**中使用它。
 
-#### Props
+#### 属性
 
 | Name               | Type                                     | Description                                                                                                                                                                                               |
 |:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

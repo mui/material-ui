@@ -9,7 +9,7 @@ import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 // import NoSsr from '@mui/material/NoSsr';
@@ -133,7 +133,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: '8px 12px',
+    padding: theme.spacing(1, 2),
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -157,24 +157,6 @@ const StyledAppBar = styled(AppBar, {
         ? alpha(theme.palette.primaryDark[900], 0.7)
         : 'rgba(255,255,255,0.7)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
-    '& .MuiIconButton-root': {
-      width: 38,
-      border: `1px solid ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
-      }`,
-      borderRadius: theme.shape.borderRadius,
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-      // background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-      '&:hover': {
-        borderColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
-        background:
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[700], 0.4)
-            : theme.palette.grey[50],
-      },
-    },
   };
 });
 
@@ -266,10 +248,10 @@ function AppFrame(props) {
             color="primary"
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
-            onClick={() => setMobileOpen(true)}
-            sx={{ ml: 0.5, mr: 2 }}
+            onClick={handleNavDrawerOpen}
+            sx={{ ml: '1px' }}
           >
-            <MenuIcon fontSize="small" />
+            <SvgHamburgerMenu />
           </NavIconButton>
           <NextLink href="/" passHref /* onClick={onClose} */>
             <Box
@@ -281,16 +263,15 @@ function AppFrame(props) {
             </Box>
           </NextLink>
           <GrowingDiv />
-          <Stack direction="row" spacing={1.2}>
+          <Stack direction="row" spacing={1.3}>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
                 component="a"
-                color="inherit"
+                color="primary"
                 href={process.env.SOURCE_CODE_REPO}
                 data-ga-event-category="header"
                 data-ga-event-action="github"
-                sx={{ display: { xs: 'none', sm: 'flex' } }}
               >
                 <GitHubIcon fontSize="small" />
               </IconButton>

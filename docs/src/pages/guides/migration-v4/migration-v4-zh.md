@@ -222,7 +222,7 @@ npx @mui/codemod v5.0.0/link-underline-hover <path>
 
 ### Ref type specificity
 
-For some components, you may get a type error when passing `ref`. In order to avoid the error, you should use a specific element type. For example, `Card` expects the type of `ref` to be `HTMLDivElement`, and `ListItem` expects its `ref` type to be `HTMLLIElement`.
+For some components, you may get a type error when passing `ref`. To avoid the error, you should use a specific element type. For example, `Card` expects the type of `ref` to be `HTMLDivElement`, and `ListItem` expects its `ref` type to be `HTMLLIElement`.
 
 Here is an example:
 
@@ -250,21 +250,21 @@ The list of components that expect a specific element type is as follows:
 
 ##### `@mui/material`
 
-- [Accordion](/components/accordion) - `HTMLDivElement`
-- [Alert](/components/alert) - `HTMLDivElement`
-- [Avatar](/components/avatar) - `HTMLDivElement`
-- [ButtonGroup](/components/button-group) - `HTMLDivElement`
-- [Card](/components/card) - `HTMLDivElement`
-- [Dialog](/components/dialog) - `HTMLDivElement`
-- [ImageList](/components/image-list) - `HTMLUListElement`
-- [List](/components/list) - `HTMLUListElement`
-- [Tab](/components/tabs) - `HTMLDivElement`
-- [Tabs](/components/tabs) - `HTMLDivElement`
-- [ToggleButton](/components/toggle-button) - `HTMLButtonElement`
+- [Accordion](/api/accordion/) - `HTMLDivElement`
+- [Alert](/api/alert/) - `HTMLDivElement`
+- [Avatar](/api/avatar/) - `HTMLDivElement`
+- [ButtonGroup](/api/button-group/) - `HTMLDivElement`
+- [Card](/api/card/) - `HTMLDivElement`
+- [Dialog](/api/dialog/) - `HTMLDivElement`
+- [ImageList](/api/image-list/) - `HTMLUListElement`
+- [List](/api/list/) - `HTMLUListElement`
+- [Tab](/api/tab/) - `HTMLDivElement`
+- [Tabs](/api/tabs/) - `HTMLDivElement`
+- [ToggleButton](/api/toggle-button/) - `HTMLButtonElement`
 
 ##### `@mui/lab`
 
-- [Timeline](/components/timeline) - `HTMLUListElement`
+- [Timeline](/api/timeline/) - `HTMLUListElement`
 
 ### Style library
 
@@ -2786,7 +2786,7 @@ or fix it manually like this:
 +import { red } from '@mui/material/colors';
 ```
 
-### makeStyles - TypeError: Cannot read property 'drawer' of undefined
+### makeStyles - TypeError：无法读取未定义的属性“drawer”
 
 This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
 

@@ -144,7 +144,7 @@ For instance on the server-side:
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -155,17 +155,19 @@ function handleRender(req, res) {
     }),
   });
 
-  const html = ReactDOMServer.renderToString(
-    <ThemeProvider
-      theme={{
-        props: {
-          // Change the default options of useMediaQuery
-          MuiUseMediaQuery: {
-            ssrMatchMedia,
-          },
+  const theme = createTheme({
+    components: {
+      // Change the default options of useMediaQuery
+      MuiUseMediaQuery: {
+        defaultProps: {
+          ssrMatchMedia,
         },
-      }}
-    >
+      },
+    },
+  });
+
+  const html = ReactDOMServer.renderToString(
+    <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>,
   );

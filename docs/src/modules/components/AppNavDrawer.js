@@ -155,10 +155,9 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
-    paddingTop: theme.spacing(1.6),
-    paddingBottom: theme.spacing(1.7),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -210,7 +209,7 @@ function reduceChildRoutes(context) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
-    const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}/`) === 0 : false;
+    const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}`) === 0 : false;
 
     items.push(
       <AppNavDrawerItem

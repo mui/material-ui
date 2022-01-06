@@ -31,25 +31,25 @@ export type BadgeTypeMap<
       /** Styles applied to the badge `span` element if `color="warning"`. */
       colorWarning?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
-      anchorOriginTopRightRectangular: string;
+      anchorOriginTopRightRectangular?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
-      anchorOriginBottomRightRectangular: string;
+      anchorOriginBottomRightRectangular?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
-      anchorOriginTopLeftRectangular: string;
+      anchorOriginTopLeftRectangular?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
-      anchorOriginBottomLeftRectangular: string;
+      anchorOriginBottomLeftRectangular?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
-      anchorOriginTopRightCircular: string;
+      anchorOriginTopRightCircular?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
-      anchorOriginBottomRightCircular: string;
+      anchorOriginBottomRightCircular?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
-      anchorOriginTopLeftCircular: string;
+      anchorOriginTopLeftCircular?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
-      anchorOriginBottomLeftCircular: string;
+      anchorOriginBottomLeftCircular?: string;
       /** Class name applied to the badge `span` element if `overlap="rectangular"`. */
-      overlapRectangular: string;
+      overlapRectangular?: string;
       /** Class name applied to the badge `span` element if `overlap="circular"`. */
-      overlapCircular: string;
+      overlapCircular?: string;
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
