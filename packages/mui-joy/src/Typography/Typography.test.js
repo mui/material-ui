@@ -39,9 +39,8 @@ describe('<Typography />', () => {
 
     expect(container.firstChild).to.have.class(classes.alignCenter);
   });
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'].forEach((level) => {
+  (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'] as const).forEach((level) => {
     it(`should render ${level} text`, () => {
-      // @ts-ignore literal/tuple type widening
       const { container } = render(
         <React.Fragment>
           <Typography level={level}>Hello</Typography>
@@ -89,7 +88,7 @@ describe('<Typography />', () => {
       expect(getByText(/hello/i).tagName).to.equal('ASIDE');
     });
 
-    it('should work event without the full mapping', () => {
+    it('should work even with an empty mapping', () => {
       const { getByText } = render(
         <Typography variant="h6" variantMapping={{}}>
           Hello
@@ -111,7 +110,7 @@ describe('<Typography />', () => {
       expect(getByText(/hello/i).tagName).to.equal('ASIDE');
     });
 
-    it('should work event without the full mapping', () => {
+    it('should work even with an empty mapping', () => {
       const { getByText } = render(
         <Typography level="h6" levelMapping={{}}>
           Hello

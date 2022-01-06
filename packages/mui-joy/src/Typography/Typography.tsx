@@ -143,7 +143,7 @@ Typography.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * Set the text-align on the component.
+   * Set the text-align property on the component.
    * @default 'inherit'
    * @deprecated use `sx` prop instead. <Typography sx={{ textAlign: 'center' }} />
    */
