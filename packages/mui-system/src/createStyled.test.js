@@ -100,4 +100,79 @@ describe('createStyled', () => {
       });
     });
   });
+
+  describe('styleOverrides callback', () => {
+    const finalTheme = createTheme({
+      typography: {
+        button: {
+          lineHeight: 1.5,
+        },
+      },
+      components: {
+        MuiButton: {
+          styleOverrides: {
+            root: (props) => {
+              const { color, variant, theme } = props;
+              const styles = [];
+              if (color === 'primary') {
+                styles.push({
+                  width: 120,
+                  height: 48,
+                });
+              }
+              if (variant === 'contained') {
+                styles.push(theme.typography.button);
+              }
+              return styles;
+            },
+            icon: ({ startIcon, endIcon }) => [
+              startIcon && { marginRight: 8 },
+              endIcon && { marginLeft: 8 },
+            ],
+          },
+        },
+      },
+    });
+    const styled = createStyled({});
+    const ButtonRoot = styled('button', {
+      name: 'MuiButton',
+      slot: 'Root',
+      overridesResolver: (props, styles) => styles.root,
+    })({});
+    const ButtonIcon = styled('span', {
+      name: 'MuiButton',
+      slot: 'Icon',
+      overridesResolver: (props, styles) => styles.icon,
+    })({});
+    const Button = ({ children, startIcon, endIcon, color = 'primary', ...props }) => {
+      const ownerState = { startIcon, endIcon, color, ...props };
+      return (
+        <ButtonRoot ownerState={ownerState}>
+          {startIcon && <ButtonIcon ownerState={ownerState}>{startIcon}</ButtonIcon>}
+          {children}
+          {endIcon && <ButtonIcon ownerState={ownerState}>{endIcon}</ButtonIcon>}
+        </ButtonRoot>
+      );
+    };
+
+    it('spread ownerState as props to the slot styleOverrides', () => {
+      const { container } = render(
+        <ThemeProvider theme={finalTheme}>
+          <Button color="primary" variant="contained" startIcon="foo">
+            Hello
+          </Button>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '120px',
+        height: '48px',
+        lineHeight: '1.5',
+      });
+      expect(
+        container.firstChild.firstChild, // startIcon
+      ).toHaveComputedStyle({
+        marginRight: '8px',
+      });
+    });
+  });
 });
