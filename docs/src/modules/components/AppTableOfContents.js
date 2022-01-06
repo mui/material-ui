@@ -1,12 +1,12 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
+import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
@@ -122,10 +122,8 @@ function flatten(headings) {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const router = useRouter();
-
   const items = React.useMemo(() => flatten(toc), [toc]);
-
+  const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -134,7 +132,6 @@ export default function AppTableOfContents(props) {
     if (clickedRef.current) {
       return;
     }
-
     let active;
     for (let i = items.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
@@ -142,16 +139,13 @@ export default function AppTableOfContents(props) {
         active = { hash: null };
         break;
       }
-
       const item = items[i];
       const node = document.getElementById(item.hash);
-
       if (process.env.NODE_ENV !== 'production') {
         if (!node) {
           console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
         }
       }
-
       if (
         node &&
         node.offsetTop <
@@ -161,15 +155,12 @@ export default function AppTableOfContents(props) {
         break;
       }
     }
-
     if (active && activeState !== active.hash) {
       setActiveState(active.hash);
     }
   }, [activeState, items]);
-
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
-
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
     if (
@@ -182,29 +173,25 @@ export default function AppTableOfContents(props) {
     ) {
       return;
     }
-
     // Used to disable findActiveIndex if the page scrolls due to a click
     clickedRef.current = true;
     unsetClickedRef.current = setTimeout(() => {
       clickedRef.current = false;
     }, 1000);
-
     if (activeState !== hash) {
       setActiveState(hash);
     }
   };
-
   React.useEffect(
     () => () => {
       clearTimeout(unsetClickedRef.current);
     },
     [],
   );
-
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      href={`${activePage?.linkProps?.linkAs ?? activePage?.pathname}#${item.hash}`}
+      href={`${activePage.linkProps?.linkAs ?? activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
