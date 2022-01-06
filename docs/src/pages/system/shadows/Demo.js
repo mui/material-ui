@@ -8,11 +8,17 @@ export default function Height() {
       <Box
         sx={{
           boxShadow: 0,
-          bgcolor: 'background.paper',
-          m: 1,
-          p: 1,
           width: '8rem',
           height: '5rem',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          p: 1,
+          m: 1,
+          borderRadius: 2,
+          textAlign: 'center',
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         boxShadow: 0
@@ -20,11 +26,17 @@ export default function Height() {
       <Box
         sx={{
           boxShadow: 1,
-          bgcolor: 'background.paper',
-          m: 1,
-          p: 1,
           width: '8rem',
           height: '5rem',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          p: 1,
+          m: 1,
+          borderRadius: 2,
+          textAlign: 'center',
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         boxShadow: 1
@@ -32,11 +44,17 @@ export default function Height() {
       <Box
         sx={{
           boxShadow: 2,
-          bgcolor: 'background.paper',
-          m: 1,
-          p: 1,
           width: '8rem',
           height: '5rem',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          p: 1,
+          m: 1,
+          borderRadius: 2,
+          textAlign: 'center',
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         boxShadow: 2
@@ -44,11 +62,17 @@ export default function Height() {
       <Box
         sx={{
           boxShadow: 3,
-          bgcolor: 'background.paper',
-          m: 1,
-          p: 1,
           width: '8rem',
           height: '5rem',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          p: 1,
+          m: 1,
+          borderRadius: 2,
+          textAlign: 'center',
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         boxShadow: 3

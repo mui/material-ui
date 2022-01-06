@@ -55,7 +55,7 @@ describe('replaceUrl', () => {
   it('replace correct API links', () => {
     expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/mui-material/button/`);
     expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(
-      `/material/api/mui-base/button-unstyled/`,
+      `/base/api/mui-base/button-unstyled/`,
     );
     expect(replaceAPILinks(`/api/loading-button/`)).to.equal(
       `/material/api/mui-lab/loading-button/`,
@@ -71,8 +71,8 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/material/api/mui-material/button/`)).to.equal(
       `/material/api/mui-material/button/`,
     );
-    expect(replaceAPILinks(`/material/api/mui-base/button-unstyled/`)).to.equal(
-      `/material/api/mui-base/button-unstyled/`,
+    expect(replaceAPILinks(`/base/api/mui-base/button-unstyled/`)).to.equal(
+      `/base/api/mui-base/button-unstyled/`,
     );
     expect(replaceAPILinks(`/material/api/mui-lab/loading-button/`)).to.equal(
       `/material/api/mui-lab/loading-button/`,
@@ -86,11 +86,23 @@ describe('replaceUrl', () => {
     expect(replaceUrl(`/guides/minimizing-bundle-size/`, '/material/react-buttons')).to.equal(
       `/material/guides/minimizing-bundle-size/`,
     );
+    expect(
+      replaceUrl(`/components/data-grid/getting-started/#main-content`, '/x/react-data-grid'),
+    ).to.equal(`/x/react-data-grid/getting-started/#main-content`);
+    expect(
+      replaceUrl(`/components/data-grid/components/#main-content`, '/x/react-data-grid'),
+    ).to.equal(`/x/react-data-grid/components/#main-content`);
+    expect(replaceUrl(`/api/button-unstyled`, '/base/api/mui-base/button-unstyled')).to.equal(
+      `/base/api/mui-base/button-unstyled`,
+    );
   });
 
   it('does not replace for old routes', () => {
     expect(replaceUrl(`/guides/minimizing-bundle-size/`, '/components/buttons')).to.equal(
       `/guides/minimizing-bundle-size/`,
     );
+    expect(
+      replaceUrl(`/components/data-grid/getting-started/#main-content`, '/components/buttons'),
+    ).to.equal(`/components/data-grid/getting-started/#main-content`);
   });
 });

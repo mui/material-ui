@@ -41,7 +41,7 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
   paddingTop: 5,
   paddingBottom: 5,
   justifyContent: 'flex-start',
-  fontWeight: theme.typography.fontWeightMedium,
+  fontWeight: 500,
   transition: theme.transitions.create(['color', 'background-color'], {
     duration: theme.transitions.duration.shortest,
   }),
@@ -201,7 +201,7 @@ export default function AppNavDrawerItem(props) {
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        py: 0.5,
+        py: 0.3,
       }}
     >
       <IconComponent {...iconProps} />

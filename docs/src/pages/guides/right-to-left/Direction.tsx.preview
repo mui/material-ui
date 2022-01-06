@@ -1,6 +1,8 @@
-<ThemeProvider theme={theme}>
-  <div dir="rtl">
-    <TextField placeholder="Name" variant="standard" />
-    <input type="text" placeholder="Name" />
-  </div>
-</ThemeProvider>
+<CacheProvider value={cacheRtl}>
+  <ThemeProvider theme={theme}>
+    <div dir="rtl">
+      <TextField label="Name" variant="standard" />
+      <input type="text" placeholder="Name" />
+    </div>
+  </ThemeProvider>
+</CacheProvider>

@@ -36,7 +36,7 @@ export function pageToTitle(page: Page): string | null {
   }
 
   const path = page.subheader || page.pathname;
-  const name = path.replace(/.*\//, '');
+  const name = path.replace(/.*\//, '').replace('react-', '').replace(/\..*/, '');
 
   if (path.indexOf('/api') === 0) {
     return upperFirst(camelCase(name));
