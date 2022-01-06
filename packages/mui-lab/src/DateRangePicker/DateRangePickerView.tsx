@@ -47,7 +47,6 @@ export interface ExportedDateRangePickerViewProps<TDate>
   toolbarTitle?: React.ReactNode;
   /**
    * Component that will replace default toolbar renderer.
-   * @default DateTimePickerToolbar
    */
   ToolbarComponent?: React.JSXElementConstructor<DateRangePickerToolbarProps>;
 }
@@ -98,7 +97,7 @@ export function DateRangePickerView<TDate>(props: DateRangePickerViewProps<TDate
     showToolbar,
     startText,
     toggleMobileKeyboardView,
-    ToolbarComponent,
+    ToolbarComponent = DateRangePickerToolbar,
     toolbarFormat,
     toolbarTitle,
     ...other
@@ -226,11 +225,10 @@ export function DateRangePickerView<TDate>(props: DateRangePickerViewProps<TDate
       }
     }
   };
-  const Toolbar = ToolbarComponent ?? DateRangePickerToolbar;
   return (
     <div className={className}>
       {toShowToolbar && (
-        <Toolbar
+        <ToolbarComponent
           date={date}
           isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
           toggleMobileKeyboardView={toggleMobileKeyboardView}
