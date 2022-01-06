@@ -138,7 +138,7 @@ export default function createStyled(input = {}) {
             const parsedStyleOverrides = {};
             Object.entries(styleOverrides).forEach(([slot, styles]) => {
               if (typeof styles === 'function') {
-                parsedStyleOverrides[slot] = styles({ ...props, ...props.ownerState });
+                parsedStyleOverrides[slot] = styles({ ...props, ...props.ownerState, theme });
               } else {
                 parsedStyleOverrides[slot] = styles;
               }
