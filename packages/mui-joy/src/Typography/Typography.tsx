@@ -85,16 +85,13 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     noWrap,
   };
 
-  const Component = (component ||
-    levelMapping[level] ||
-    defaultVariantMapping[level] ||
-    'span') as React.ElementType;
+  const Component = component || levelMapping[level] || defaultVariantMapping[level] || 'span';
 
   const classes = useUtilityClasses(ownerState);
 
   return (
     <TypographyRoot
-      as={Component}
+      as={Component as React.ElementType}
       ref={ref}
       ownerState={ownerState}
       className={clsx(classes.root, className)}

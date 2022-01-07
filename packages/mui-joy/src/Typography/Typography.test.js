@@ -41,12 +41,6 @@ describe('<Typography />', () => {
   });
 
   describe('headline', () => {
-    it('should render a p with a paragraph', () => {
-      const { getByText } = render(<Typography paragraph>Hello</Typography>);
-
-      expect(getByText(/hello/i).tagName).to.equal('P');
-    });
-
     it('should render the mapped headline', () => {
       const { getByText } = render(<Typography level="h6">Hello</Typography>);
 
