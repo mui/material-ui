@@ -178,8 +178,18 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
   const router = useRouter();
   const [page, setPage] = React.useState(0);
   const [selectedTags, setSelectedTags] = React.useState<Record<string, boolean>>({});
-  const { allBlogPosts, allTags, tagInfo } = props;
-  const [firstPost, secondPost, ...otherPosts] = allBlogPosts.filter((post) => !!post.title);
+  const { allBlogPosts, allTags, tagInfo: rawTagInfo } = props;
+  const [firstPost, secondPost, ...otherPosts] = allBlogPosts;
+  const tagInfo = { ...rawTagInfo };
+  [firstPost, secondPost].forEach((post) => {
+    if (post.tags) {
+      post.tags.forEach((tag) => {
+        if (tagInfo[tag]) {
+          tagInfo[tag]! -= 1;
+        }
+      });
+    }
+  });
   const filteredPosts = otherPosts.filter(
     (post) =>
       !Object.keys(selectedTags).length ||
@@ -289,14 +299,29 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         <Container
           id="post-list"
           sx={{
-            mt: { xs: 0, sm: 1 },
+            mt: { xs: -8, sm: -7 },
             display: 'grid',
             gridTemplateColumns: { md: '1fr 380px' },
             columnGap: 8,
           }}
         >
-          <Typography component="h2" variant="h4" fontWeight="700" sx={{ mb: { xs: 1, sm: 2 } }}>
-            All posts
+          <Typography
+            component="h2"
+            variant="h4"
+            fontWeight="700"
+            sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
+          >
+            All posts{' '}
+            {Object.keys(selectedTags).length ? (
+              <span>
+                about{' '}
+                <Typography component="span" variant="inherit" noWrap>
+                  &quot;{Object.keys(selectedTags)[0]}&quot;
+                </Typography>
+              </span>
+            ) : (
+              ''
+            )}
           </Typography>
           <Box sx={{ gridRow: 'span 2' }}>
             <Box
@@ -305,6 +330,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 top: 100,
                 alignSelf: 'start',
                 mb: { xs: 4, sm: 8 },
+                mt: 8, // margin-top makes the title appear when scroll into view
                 p: 2,
                 borderRadius: 1,
                 border: '1px solid',

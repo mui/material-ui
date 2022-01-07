@@ -32,7 +32,7 @@ export const getBlogPost = (filePath: string): BlogPost => {
 
 export const getAllBlogPosts = () => {
   const filePaths = getBlogFilePaths();
-  const allBlogPosts = filePaths
+  const rawBlogPosts = filePaths
     .map((name) => getBlogPost(name))
     // sort allBlogPosts by date in descending order
     .sort((post1, post2) => {
@@ -44,11 +44,17 @@ export const getAllBlogPosts = () => {
       }
       return -1;
     });
+  const allBlogPosts = rawBlogPosts.filter((post) => !!post.title);
   const tagInfo: Record<string, number | undefined> = {};
   allBlogPosts.forEach((post) => {
     (post.tags || []).forEach((tag) => {
       tagInfo[tag] = (tagInfo[tag] || 0) + 1;
     });
   });
-  return { allBlogPosts, allTags: Object.keys(tagInfo), tagInfo };
+  return {
+    rawBlogPosts, // all posts from the directory
+    allBlogPosts, // posts with at least a title
+    allTags: Object.keys(tagInfo),
+    tagInfo,
+  };
 };
