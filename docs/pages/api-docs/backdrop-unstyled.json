@@ -7,7 +7,10 @@
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ root?: object }" },
+      "default": "{}"
+    },
     "invisible": { "type": { "name": "bool" } }
   },
   "name": "BackdropUnstyled",

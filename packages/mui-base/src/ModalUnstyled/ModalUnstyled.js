@@ -330,7 +330,9 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Modal.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
