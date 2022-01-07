@@ -6,7 +6,10 @@ export default function createGetCssVar<T extends string = string>(prefix: strin
     return `, var(--${prefix ? `${prefix}-` : ''}${vars[0]}${appendVar(...vars.slice(1))})`;
   }
 
-  const getCssVar = (field: T, ...vars: T[]) => {
+  const getCssVar = <AdditionalVars extends string = never>(
+    field: T | AdditionalVars,
+    ...vars: (T | AdditionalVars)[]
+  ) => {
     return `var(--${prefix ? `${prefix}-` : ''}${field}${appendVar(...vars)})`;
   };
   return getCssVar;

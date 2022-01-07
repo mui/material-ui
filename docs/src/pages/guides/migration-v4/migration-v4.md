@@ -2920,12 +2920,46 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
  export default MyCustomButton;
 ```
 
-> **Note:** `tss-react` is **not maintained** by MUI.  
-> If you have any question about how to setup SSR (Next.js) or if you are wondering
-> how to customize the `theme` object please refer to `tss-react`'s documentation,
-> the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.  
-> You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or
-> feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
+#### Overriding styles - `classes` prop
+
+[Documentation of the feature in v4](https://v4.mui.com/styles/advanced/#makestyles) - [Equivalent in `tss-react`](https://v4.mui.com/styles/advanced/#makestyles)
+
+```diff
+-import { makeStyles } from '@material-ui/core/styles';
++import { makeStyles } from 'tss-react/mui';
++import { useMergedClasses } from 'tss-react';
+
+-const useStyles = makeStyles({
++const useStyles = makeStyles()({
+  root: {}, // a style rule
+  label: {}, // a nested style rule
+});
+
+function Nested(props) {
+- const classes = useStyles(props);
++ let { classes } = useStyles();
++ classes = useMergedClasses(classes, props.classes);
+
+  return (
+    <button className={classes.root}>
+      <span className={classes.label}> // 'tss-xxxx-label my-label'
+        nested
+      </span>
+    </button>
+  );
+}
+
+function Parent() {
+  return <Nested classes={{ label: 'my-label' }} />
+}
+```
+
+**Note:** `tss-react` is **not maintained** by MUI.
+If you have any question about how to setup SSR (Next.js) or if you are wondering
+how to customize the `theme` object please refer to `tss-react`'s documentation,
+the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.  
+You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or
+feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 
 💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by:
 

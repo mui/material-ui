@@ -15,7 +15,6 @@ import generatePropTypeDescription, {
   getChained,
 } from 'docs/src/modules/utils/generatePropTypeDescription';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createDescribeableProp, {
   DescribeablePropDescriptor,
 } from 'docs/src/modules/utils/createDescribeableProp';
@@ -23,27 +22,24 @@ import generatePropDescription from 'docs/src/modules/utils/generatePropDescript
 import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
 import generateUtilityClass from '@mui/base/generateUtilityClass';
 import * as ttp from 'typescript-to-proptypes';
-import { getLineFeed, getUnstyledFilename } from '../helpers';
-import { findComponentDemos, getMuiName } from '../buildApiUtils';
+import { getUnstyledFilename } from '../helpers';
+import { ComponentInfo } from '../buildApiUtils';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
-interface ReactApi extends ReactDocgenApi {
-  /**
-   * list of page pathnames
-   * @example ['/components/Accordion']
-   */
-  demos: readonly string[];
+export interface ReactApi extends ReactDocgenApi {
+  demos: ReturnType<ComponentInfo['getDemos']>;
   EOL: string;
   filename: string;
-  apiUrl: string;
+  apiPathname: string;
   forwardsRefTo: string | undefined;
-  inheritance: { component: string; pathname: string } | null;
+  inheritance: ReturnType<ComponentInfo['getInheritance']>;
   /**
    * react component name
    * @example 'Accordion'
    */
   name: string;
+  muiName: string;
   description: string;
   spread: boolean | undefined;
   /**
@@ -87,21 +83,6 @@ export function writePrettifiedFile(
     ...options,
   });
 }
-
-const parseFile = (filename: string) => {
-  const src = readFileSync(filename, 'utf8');
-  return {
-    src,
-    shouldSkip:
-      filename.indexOf('internal') !== -1 ||
-      !!src.match(/@ignore - internal component\./) ||
-      !!src.match(/@ignore - do not document\./),
-    spread: !src.match(/ = exactProp\(/),
-    name: path.parse(filename).name,
-    EOL: getLineFeed(src),
-    inheritedComponent: src.match(/\/\/ @inheritedComponent (.*)/)?.[1],
-  };
-};
 
 /**
  * Produces markdown of the description that can be hosted anywhere.
@@ -218,11 +199,11 @@ async function annotateComponentDefinition(api: ReactApi) {
 
   let inheritanceAPILink = null;
   if (api.inheritance !== null) {
-    const url = api.inheritance.pathname.startsWith('/')
-      ? `${HOST}${api.inheritance.pathname}`
-      : api.inheritance.pathname;
-
-    inheritanceAPILink = `[${api.inheritance.component} API](${url})`;
+    inheritanceAPILink = `[${api.inheritance.name} API](${
+      api.inheritance.apiPathname.startsWith('http')
+        ? api.inheritance.apiPathname
+        : `${HOST}${api.inheritance.apiPathname}`
+    })`;
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
@@ -233,13 +214,21 @@ async function annotateComponentDefinition(api: ReactApi) {
   markdownLines.push(
     'Demos:',
     '',
-    ...api.demos.map((demoPathname) => {
-      return `- [${pageToTitle({ pathname: demoPathname })}](${HOST}${demoPathname}/)`;
+    ...api.demos.map((item) => {
+      return `- [${item.name}](${
+        item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+      })`;
     }),
     '',
   );
 
-  markdownLines.push('API:', '', `- [${api.name} API](${HOST}${api.apiUrl}/)`);
+  markdownLines.push(
+    'API:',
+    '',
+    `- [${api.name} API](${
+      api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
+    })`,
+  );
   if (api.inheritance !== null) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }
@@ -282,18 +271,6 @@ function extractClassConditions(descriptions: any) {
     }
   });
   return classConditions;
-}
-
-/**
- * Generate list of component demos
- */
-function generateDemoList(reactAPI: ReactApi): string {
-  return `<ul>${reactAPI.demos
-    .map(
-      (demoPathname) =>
-        `<li><a href="${demoPathname}/">${pageToTitle({ pathname: demoPathname })}</a></li>`,
-    )
-    .join('\n')}</ul>`;
 }
 
 /**
@@ -371,8 +348,15 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGithubPath(reactApi.filename),
-    inheritance: reactApi.inheritance,
-    demos: generateDemoList(reactApi),
+    inheritance: reactApi.inheritance
+      ? {
+          component: reactApi.inheritance.name,
+          pathname: reactApi.inheritance.apiPathname,
+        }
+      : null,
+    demos: `<ul>${reactApi.demos
+      .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
+      .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
@@ -520,25 +504,26 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * - Add the comment in the component filename with its demo & API urls (including the inherited component).
  *   this process is done by sourcing markdown files and filter matched `components` in the frontmatter
  */
-const generateComponentApi = async (
-  filename: string,
-  options: {
-    outputPagesDirectory: string;
-    productUrlPrefix: string;
-    apiUrl: string;
-    ttpProgram: ttp.ts.Program;
-    pagesMarkdown: Array<{ components: string[]; pathname: string }>;
-  },
-) => {
-  const { ttpProgram: program, pagesMarkdown, outputPagesDirectory } = options;
-  const { shouldSkip, name, spread, EOL, inheritedComponent } = parseFile(filename);
+const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.ts.Program) => {
+  const {
+    filename,
+    name,
+    muiName,
+    apiPathname,
+    apiPagesDirectory,
+    getInheritance,
+    getDemos,
+    readFile,
+  } = componentInfo;
+
+  const { shouldSkip, spread, EOL, src } = readFile();
 
   if (shouldSkip) {
     return null;
   }
 
   const reactApi: ReactApi = docgenParse(
-    readFileSync(filename, 'utf8'),
+    src,
     null,
     defaultHandlers.concat(muiDefaultPropsHandler),
     { filename },
@@ -588,9 +573,10 @@ const generateComponentApi = async (
   }
   reactApi.filename = filename;
   reactApi.name = name;
-  reactApi.apiUrl = options.apiUrl;
+  reactApi.muiName = muiName;
+  reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
-  reactApi.demos = findComponentDemos(name, pagesMarkdown);
+  reactApi.demos = getDemos();
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
@@ -603,30 +589,14 @@ const generateComponentApi = async (
   // no Object.assign to visually check for collisions
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
-
-  const inheritedComponentName = testInfo.inheritComponent || inheritedComponent;
-  if (inheritedComponentName) {
-    reactApi.inheritance = {
-      component: inheritedComponentName,
-      pathname:
-        inheritedComponentName === 'Transition'
-          ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-          : `${options.productUrlPrefix}/api/${kebabCase(inheritedComponentName)}/`,
-    };
-  } else {
-    reactApi.inheritance = null;
-  }
-
+  reactApi.inheritance = getInheritance(testInfo.inheritComponent);
   reactApi.styles = await parseStyles(reactApi, program);
 
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
-    reactApi.styles.name = getMuiName(reactApi.name);
+    reactApi.styles.name = reactApi.muiName;
   }
   reactApi.styles.classes.forEach((key) => {
-    const globalClass = generateUtilityClass(
-      reactApi.styles.name || getMuiName(reactApi.name),
-      key,
-    );
+    const globalClass = generateUtilityClass(reactApi.styles.name || reactApi.muiName, key);
     reactApi.styles.globalClasses[key] = globalClass;
   });
 
@@ -638,7 +608,7 @@ const generateComponentApi = async (
 
   // Generate pages, json and translations
   generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-  generateApiPage(outputPagesDirectory, reactApi);
+  generateApiPage(apiPagesDirectory, reactApi);
 
   // Add comment about demo & api links (including inherited component) to the component file
   await annotateComponentDefinition(reactApi);

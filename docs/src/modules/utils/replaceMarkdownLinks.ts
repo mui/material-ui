@@ -18,15 +18,12 @@ export const replaceAPILinks = (markdown: string) => {
       /href=(\\*?)"\/api\/(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)([^"]*)"/gm,
       'href=$1"/material/api/mui-lab/$2$3"',
     )
-    .replace(
-      /href=(\\*?)"\/api\/([^"-]+-unstyled)([^"]*)"/gm,
-      'href=$1"/material/api/mui-base/$2$3"',
-    )
+    .replace(/href=(\\*?)"\/api\/([^"-]+-unstyled)([^"]*)"/gm, 'href=$1"/base/api/mui-base/$2$3"')
     .replace(/href=(\\*?)"\/api\/([^"]*)"/gm, 'href=$1"/material/api/mui-material/$2"');
 };
 
 export default function replaceMarkdownLinks(markdown: string, asPath: string) {
-  if (asPath.startsWith('/material/') || asPath.startsWith('/x/')) {
+  if (asPath.startsWith('/material/') || asPath.startsWith('/x/') || asPath.startsWith('/base/')) {
     return replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(markdown)));
   }
   return markdown;
