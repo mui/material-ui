@@ -126,7 +126,20 @@ const PostPreview = (props: BlogPost) => {
         <Box sx={{ position: 'relative' }}>
           {props.authors && (
             <Typography variant="body2" fontWeight="500">
-              {props.authors.slice(0, 2).join(', ')}
+              {props.authors
+                .slice(0, 3)
+                .map((userId) => {
+                  const name = AUTHORS[userId as keyof typeof AUTHORS]?.name;
+                  if (name) {
+                    if (props.authors && props.authors.length > 1) {
+                      // display only firstName
+                      return name.split(' ')[0];
+                    }
+                    return name;
+                  }
+                  return userId;
+                })
+                .join(', ')}
               {props.authors.length > 2 && ', and more.'}
             </Typography>
           )}

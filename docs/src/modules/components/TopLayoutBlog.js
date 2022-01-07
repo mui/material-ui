@@ -170,8 +170,8 @@ function TopLayoutBlog(props) {
             variant="body2"
             className={classes.back}
           >
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             {'Back to blog'}
           </Link>
           {headers.title ? (
