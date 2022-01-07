@@ -727,6 +727,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
+    paper: PropTypes.object,
   }),
   /**
    * The default value. Use when the component is not controlled.
