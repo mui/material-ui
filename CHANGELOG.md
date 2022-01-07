@@ -1,4 +1,4 @@
-### [Versions](https://mui.com/versions/)
+# [Versions](https://mui.com/versions/)
 
 ## 5.2.7
 
@@ -1225,7 +1225,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   replace `@material-ui/*` prefix with `@mui/*`:
 
-  ```
+  ```sh
   @material-ui/system -> @mui/system
   @material-ui/styles -> @mui/styles
   @material-ui/lab -> @mui/lab
@@ -1238,7 +1238,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   except these 3 packages that are renamed.
 
-  ```
+  ```sh
   @material-ui/core => @mui/material        // represents Material Design components.
   @material-ui/icons => @mui/icons-material // represents Material Design icons.
   @material-ui/unstyled => @mui/base        // fully functional components with minimum styles.
@@ -2611,6 +2611,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   ```
 
 - &#8203;<!-- 63 -->[Autocomplete] Rename getOptionSelected to isOptionEqualToValue (#26173) @m4theushw
+
   ```diff
   <Autocomplete
   -  getOptionSelected={(option, value) => option.title === value.title}
@@ -4184,7 +4185,7 @@ All contributors of this release in alphabetical order: @artola, @CyanoFresh, @d
 
 ## 5.0.0-alpha.23
 
-###### _Jan 14, 2021_
+_Jan 14, 2021_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4299,7 +4300,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.22
 
-###### _Jan 4, 2021_
+_Jan 4, 2021_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4351,7 +4352,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.21
 
-###### _Dec 30, 2020_
+_Dec 30, 2020_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4424,7 +4425,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.20
 
-###### _Dec 21, 2020_
+_Dec 21, 2020_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4502,7 +4503,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.19
 
-###### _Dec 13, 2020_
+_Dec 13, 2020_
 
 A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4630,7 +4631,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.18
 
-###### _Dec 3, 2020_
+_Dec 3, 2020_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4722,7 +4723,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.17
 
-###### _Nov 23, 2020_
+_Nov 23, 2020_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4889,7 +4890,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.16
 
-###### _Nov 14, 2020_
+_Nov 14, 2020_
 
 A big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4993,7 +4994,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.15
 
-###### _Nov 4, 2020_
+_Nov 4, 2020_
 
 A big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
 
@@ -5105,7 +5106,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.14
 
-###### _Oct 23, 2020_
+_Oct 23, 2020_
 
 A big thanks to the 23 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5156,12 +5157,14 @@ Here are some highlights ✨:
   You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
 
   - The CSS prefixes have changed:
+
     ```diff
     popper: {
       zIndex: 1,
     - '&[x-placement*="bottom"] $arrow': {
     + '&[data-popper-placement*="bottom"] $arrow': {
     ```
+
   - Method names have changed.
 
     ```diff
@@ -5276,7 +5279,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.13
 
-###### _Oct 17, 2020_
+_Oct 17, 2020_
 
 A big thanks to the 25 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5402,7 +5405,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.12
 
-###### _Oct 11, 2020_
+_Oct 11, 2020_
 
 A big thanks to the 45 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5626,7 +5629,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.11
 
-###### _Sep 26, 2020_
+_Sep 26, 2020_
 
 A big thanks to the 29 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5860,7 +5863,7 @@ More documentation are coming.
 
 ## 5.0.0-alpha.10
 
-###### _Sep 15, 2020_
+_Sep 15, 2020_
 
 A big thanks to the 16 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5925,13 +5928,13 @@ Here are some highlights ✨:
 
   Before:
 
-  ```
+  ```sh
   theme.spacing(2) => 16
   ```
 
   After:
 
-  ```
+  ```sh
   theme.spacing(2) => '16px'
   ```
 
@@ -5990,7 +5993,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.9
 
-###### _Sep 6, 2020_
+_Sep 6, 2020_
 
 A big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
@@ -6043,7 +6046,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.8
 
-###### _Aug 31, 2020_
+_Aug 31, 2020_
 
 A big thanks to the 19 contributors who made this release possible.
 Here are some highlights ✨:
@@ -6219,7 +6222,7 @@ const theme = createMuiTheme({
 
 ## 5.0.0-alpha.7
 
-###### _Aug 22, 2020_
+_Aug 22, 2020_
 
 A big thanks to the 22 contributors who made this release possible.
 Here are some highlights ✨:
@@ -6349,7 +6352,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.6
 
-###### _Aug 13, 2020_
+_Aug 13, 2020_
 
 A big thanks to the 26 contributors who made this release possible.
 Here are some highlights ✨:
@@ -6392,7 +6395,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v5.0.0-alpha.6`
 
-### Breaking changes
+#### Breaking changes
 
 - [Avatar] Rename variant circle -> circular for consistency (#22015) @kodai3
   Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -6551,7 +6554,7 @@ Here are some highlights ✨:
   +},
   ```
 
-### Changes
+#### Changes
 
 - [Avatar] Custom variant (#22139) @mnajdova
 - [Badge] Add missing class key (#22095) @kodai3
@@ -6571,7 +6574,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/lab@v5.0.0-alpha.6`
 
-### Breaking changes
+#### Breaking changes
 
 - [Skeleton] Rename variant circle -> circular and rect -> rectangular for consistency (#22053) @kodai3
   Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
@@ -6583,7 +6586,7 @@ Here are some highlights ✨:
   +<Skeleton variant="rectangular">
   ```
 
-### Changes
+#### Changes
 
 - [Autocomplete] Add support for "{label: string}" data type as a default for "options" (#21992) @DanailH
 - [TreeView] Add disabled prop (#20133) @netochaves
@@ -6635,7 +6638,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.5
 
-###### _July 28, 2020_
+_July 28, 2020_
 
 A big thanks to the 18 contributors who made this release possible.
 
@@ -6706,7 +6709,7 @@ A big thanks to the 18 contributors who made this release possible.
 
 ## 5.0.0-alpha.4
 
-###### _July 19, 2020_
+_July 19, 2020_
 
 A big thanks to the 11 contributors who made this release possible.
 
@@ -6748,7 +6751,7 @@ A big thanks to the 11 contributors who made this release possible.
 
 ## 5.0.0-alpha.3
 
-###### _July 12, 2020_
+_July 12, 2020_
 
 A big thanks to the 14 contributors who made this release possible.
 
@@ -6797,7 +6800,7 @@ A big thanks to the 14 contributors who made this release possible.
 
 ## 5.0.0-alpha.2
 
-###### _July 4, 2020_
+_July 4, 2020_
 
 A big thanks to the 16 contributors who made this release possible.
 
@@ -6859,7 +6862,7 @@ A big thanks to the 16 contributors who made this release possible.
 
 ## 5.0.0-alpha.1
 
-###### _June 27, 2020_
+_June 27, 2020_
 
 A big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
 
@@ -6975,6 +6978,7 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   ```
 
 - [Accordion] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />

@@ -217,80 +217,80 @@ The number of answers was limited to 3.
 
 ### 7. How did you hear about MUI?
 
-<img src="/static/blog/2020-survey/7.png" style="width: 515px; margin-top: 32px;" alt="Bar chart: 50.65%	Search, 26.18%	Word of mouth, 10.76%	Social, 5.10%	Blog, 7.31%	Other." />
+<img src="/static/blog/2020-survey/7.png" style="width: 515px; margin-top: 32px;" alt="Bar chart: 50.65% Search, 26.18% Word of mouth, 10.76% Social, 5.10% Blog, 7.31% Other." />
 
 ### 8. Which of the following best describes your current job role?
 
-<img src="/static/blog/2020-survey/8.png" style="width: 676px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 52.18%	Full-stack developer, 27.11%	Frontend developer, 11.65%	Entrepreneur (I do it all), 3.47%	Beginner learning web development, 1.23%	Backend Developer, 1.16%	UX Designer, 0.34%	Student, 0.20%	CTO, 2.66%	Other." />
+<img src="/static/blog/2020-survey/8.png" style="width: 676px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 52.18% Full-stack developer, 27.11% Frontend developer, 11.65% Entrepreneur (I do it all), 3.47% Beginner learning web development, 1.23% Backend Developer, 1.16% UX Designer, 0.34% Student, 0.20% CTO, 2.66% Other." />
 
 This was expected :)
 
 ### 9. How big is your organization?
 
-<img  src="/static/blog/2020-survey/9.png" style="width: 589px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 12.30%	Hobby / side project, 13.40%	Self-employed, 35.60%	2-5 people, 16.10%	6-10, 10.30%	11-20, 5.10%	21-50, 2.50%	51-100, 4.60%	100+" />
+<img  src="/static/blog/2020-survey/9.png" style="width: 589px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 12.30% Hobby / side project, 13.40% Self-employed, 35.60% 2-5 people, 16.10% 6-10, 10.30% 11-20, 5.10% 21-50, 2.50% 51-100, 4.60% 100+" />
 
 It seems we are consistently popular with small to medium-sized organizations, so we will keep working on the ease of use of the components, while at the same time, allowing designers to style them to match their organizations' brand.
 
 ### 10. How long have you been developing with JavaScript
 
-<img src="/static/blog/2020-survey/10.png" style="width: 506px; margin-top: 32px; margin-bottom: 24px;" alt="Bar chart: 3.60%	I'm just getting started!, 7.40%	6 months +, 20.80%	1 year +, 27.80%	3 years +, 24.30%	5 years +, 9.80%	10 years +, 4.10%	15 years +, 2.30%	20 years +" />
+<img src="/static/blog/2020-survey/10.png" style="width: 506px; margin-top: 32px; margin-bottom: 24px;" alt="Bar chart: 3.60% I'm just getting started!, 7.40% 6 months +, 20.80% 1 year +, 27.80% 3 years +, 24.30% 5 years +, 9.80% 10 years +, 4.10% 15 years +, 2.30% 20 years +" />
 
 We can see the normal distribution of developer experience here, where most have moderate level of experience (between 1 and 5 years).
 
 ### 11. How long have you been developing with React?
 
-<img src="/static/blog/2020-survey/11.png" style="width: 546px; margin-top: 32px;" alt="Bar chart: 10.70%	I'm just getting started!, 15.60%	6 months +, 24.60%	1 year +, 21.40%	2 years +, 23.10%	3 years +, 4.60%	Bleeding edge baby! 5 years +" />
+<img src="/static/blog/2020-survey/11.png" style="width: 546px; margin-top: 32px;" alt="Bar chart: 10.70% I'm just getting started!, 15.60% 6 months +, 24.60% 1 year +, 21.40% 2 years +, 23.10% 3 years +, 4.60% Bleeding edge baby! 5 years +" />
 
 ### 12. How long have you been developing with MUI?
 
-<img src="/static/blog/2020-survey/12.png" style="width: 468px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 20.50%	I'm just getting started!, 24.90%	6 months +, 28%	1 year +, 17.40%	2 years +, 7.50%	3 years +, 1.70%	I'm a pioneer! 4 years +" />
+<img src="/static/blog/2020-survey/12.png" style="width: 468px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 20.50% I'm just getting started!, 24.90% 6 months +, 28% 1 year +, 17.40% 2 years +, 7.50% 3 years +, 1.70% I'm a pioneer! 4 years +" />
 
 ### 13. What were you primarily using before MUI?
 
-<img src="/static/blog/2020-survey/13.png" style="width: 667px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 47.08%	Bootstrap, 16.04%	Custom system, 13.68%	Started with MUI, 6.67%	Angular Material, 4.44%	Semantic-UI, 3.19%	Ant Design, 8.89%	Other" />
+<img src="/static/blog/2020-survey/13.png" style="width: 667px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 47.08% Bootstrap, 16.04% Custom system, 13.68% Started with MUI, 6.67% Angular Material, 4.44% Semantic-UI, 3.19% Ant Design, 8.89% Other" />
 
 Similar to last year, it seems that most respondents were previously using Bootstrap. We can see also that custom solutions, as well as some other frameworks, were replaced with MUI.
 
 ### 14. How many MUI based projects have you built?
 
-<img src="/static/blog/2020-survey/14.png" style="width: 448px; margin-top: 32px;" alt="Bar chart: 11.50%	0 (I'm just getting started), 23%	1, 54.80%	2-5, 7.80%	6-10, 2.90%	10+" />
+<img src="/static/blog/2020-survey/14.png" style="width: 448px; margin-top: 32px;" alt="Bar chart: 11.50% 0 (I'm just getting started), 23% 1, 54.80% 2-5, 7.80% 6-10, 2.90% 10+" />
 
 ## Your product
 
 ### 15. What are you building?
 
-<img src="/static/blog/2020-survey/15.png" style="width: 716px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 23.43%	Enterprise application, 20.31%	Dashboard admin app, 7.40%	A design system, 7.40%	A set of UI components, 7.37%	playing with tech, 7.34%	A prototype, 6.40%	Landing page, 5.41%	e-commerce site, 4.80%	CMS, 3.59%	Portfolio or resume, 1.88%	Blog, 4.69%	Other" />
+<img src="/static/blog/2020-survey/15.png" style="width: 716px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 23.43% Enterprise application, 20.31% Dashboard admin app, 7.40% A design system, 7.40% A set of UI components, 7.37% playing with tech, 7.34% A prototype, 6.40% Landing page, 5.41% e-commerce site, 4.80% CMS, 3.59% Portfolio or resume, 1.88% Blog, 4.69% Other" />
 
 Enterprises and dashboards are at the top of the heap, and yes, we know that for many of you, the systems you are building are internal, but if you have something that you would like to share as part of [the showcase](/discover-more/showcase/), let us know by opening a PR. Also for those of you building UI components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
 section.
 
 ### 16. What "delivery mechanism" are you using?
 
-<img src="/static/blog/2020-survey/16.png" style="width: 578px; margin-top: 32px;" alt="Bar chart: 68.37%	Single page app (Create React App, etc), 18.24%	Server-side rendered website (Next.js, Gatsby, etc), 6.22%	Desktop app (Electron, etc), 4.65%	Native mobile app (Cordova, etc), 0.10%	React Native, 2.40%	Other" />
+<img src="/static/blog/2020-survey/16.png" style="width: 578px; margin-top: 32px;" alt="Bar chart: 68.37% Single page app (Create React App, etc), 18.24% Server-side rendered website (Next.js, Gatsby, etc), 6.22% Desktop app (Electron, etc), 4.65% Native mobile app (Cordova, etc), 0.10% React Native, 2.40% Other" />
 
 ### 17. Who are you building it for?
 
-<img src="/static/blog/2020-survey/17.png" style="width: 506px; margin-top: 32px;" alt="Pie chart: 55.17%	For my company
-22.86%	For a client, 16.94%	Side project, 5.03%	More than one of these." />
+<img src="/static/blog/2020-survey/17.png" style="width: 506px; margin-top: 32px;" alt="Pie chart: 55.17% For my company
+22.86% For a client, 16.94% Side project, 5.03% More than one of these." />
 
 ### 18. Which JS framework are you using, if any?
 
-<img src="/static/blog/2020-survey/18.png" style="width: 490px; margin-top: 32px;" alt="Pie chart: 57.34%	Create React App, 16.40%	Custom webpack, 12.35%	Next.js, 5.40%	Gatsby, 8.51%	Other." />
+<img src="/static/blog/2020-survey/18.png" style="width: 490px; margin-top: 32px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
 
 ### 19. What styling system are you using?
 
-<img src="/static/blog/2020-survey/19.png" style="width: 728px; margin-top: 32px; margin-bottom: 24px;" alt="Pie chart: 53.84%	MUI styles (JSS), 20.41%	Styled components, 13.01%	Good plain CSS, 8.31%	CSS Modules, 1.96%	Emotion, 0.59%	scss, 0.59%	sass, 0.09%	less, 1.19%	Other" />
+<img src="/static/blog/2020-survey/19.png" style="width: 728px; margin-top: 32px; margin-bottom: 24px;" alt="Pie chart: 53.84% MUI styles (JSS), 20.41% Styled components, 13.01% Good plain CSS, 8.31% CSS Modules, 1.96% Emotion, 0.59% scss, 0.59% sass, 0.09% less, 1.19% Other" />
 
 The response seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
 
 ### 20. Has your organization ever paid for UI components?
 
-<img src="/static/blog/2020-survey/20.png" style="width: 553px; margin-top: 32px;" alt="Pie chart: 89.90%	No, 10.10% Yes" />
+<img src="/static/blog/2020-survey/20.png" style="width: 553px; margin-top: 32px;" alt="Pie chart: 89.90% No, 10.10% Yes" />
 
 ### 21. What type system are you using?
 
-<img src="/static/blog/2020-survey/21.png" style="width: 614px; margin-top: 32px;" alt="Bar chart: 54.08%	None
-30.87%	TypeScript 3.8, 7.31%	TypeScript 3.7, 1.90%	Flow, 1.55%	TypeScript 3.6, 0.98%	TypeScript 3.5, 3.31%	Other" />
+<img src="/static/blog/2020-survey/21.png" style="width: 614px; margin-top: 32px;" alt="Bar chart: 54.08% None
+30.87% TypeScript 3.8, 7.31% TypeScript 3.7, 1.90% Flow, 1.55% TypeScript 3.6, 0.98% TypeScript 3.5, 3.31% Other" />
 
 Almost half of the community is using TypeScript. Next year, it might even become more popular than JavaScript.
 

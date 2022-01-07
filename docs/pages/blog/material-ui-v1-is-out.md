@@ -1,5 +1,5 @@
 ---
-description: MUI v1 is out 🎉
+description: MUI v1 is out 🎉
 ---
 
 # MUI v1 is out 🎉
@@ -56,7 +56,7 @@ We know the ease of use is a critical part of user acquisition. The more user we
 
 Many people discover web development through MUI but it's also used in production to serve millions of customers. We have an important responsibility, our implementation needs to be rock solid.
 
-- **Best practices.** We are following the best practices as much as possible. We have made the components: fully accessible, fully [HTML5 compliant ](https://validator.w3.org/)and SEO friendly.
+- **Best practices.** We are following the best practices as much as possible. We have made the components: fully accessible, fully [HTML5 compliant](https://validator.w3.org/) and SEO friendly.
 
 ![[Lighthouse](https://github.com/GoogleChrome/lighthouse) report of the MUI documentation homepage](https://cdn-images-1.medium.com/max/2000/1*_x_j-jasswGw0WaDyeHk-g.png)
 
@@ -126,7 +126,7 @@ MUI is an MIT-licensed open source project. It's an independent project with ong
 
 ![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
 
-- GitHub: [https://github.com/mui-org/material-ui](https://github.com/mui-org/material-ui) ⭐️
+- GitHub: [https://github.com/mui-org/material-ui](https://github.com/mui-org/material-ui) ⭐
 - Twitter: [https://twitter.com/MaterialUI](https://twitter.com/MaterialUI)
 
 <hr />

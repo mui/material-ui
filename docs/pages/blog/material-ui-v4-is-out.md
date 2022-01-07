@@ -1,8 +1,8 @@
 ---
-description: MUI v4 is out 🎉
+description: MUI v4 is out 🎉
 ---
 
-# MUI v4 is out 🎉
+# MUI v4 is out 🎉
 
 The core team. May 23, 2019.
 
@@ -18,12 +18,12 @@ MUI v4 has finally arrived. We are so excited about this release, as it defines 
 
 ## Summary
 
-- [High-level goals for v4](#high-level-goals-for-v4)
+- [High-level goals for v4](#high-level-goals-for-v4)
 - [What's new?](#whats-new)
 - [What's next?](#whats-next)
 - [Premium themes store](#premium-themes-store)
 
-## High-level goals for v4
+## High-level goals for v4
 
 MUI v1 was [released](https://medium.com/material-ui/material-ui-v1-is-out-e73ce13463eb) one year ago. Version 4 is our most important major release since then. For those unfamiliar with the history of the project, we didn't release a v2, and v3 only introduced a slight browsers support change.
 
@@ -62,9 +62,9 @@ import { StylesProvider } from '@mui/styles';
 
 ![injectFirst](/static/blog/material-ui-v4-is-out/injectFirst.png)
 
-<p class="blog-description">The DOM output once injectFirst is used.</p>
+<p class="blog-description">The DOM output once injectFirst is used.</p>
 
-- **classes boilerplate**. Early in the v1 effort, we [decided](https://github.com/oliviertassinari/a-journey-toward-better-style) to use a CSS-in-JS styling solution: [JSS](https://cssinjs.org/). The large majority of the CSS-in-JS solutions output non-deterministic class names, e.g. `.fHmkjM`. This design decision helps the isolation of the style of each component, however, it makes the overrides harder. We introduced a `classes` API in v1 to target all our elements as an attempt to mitigate this problem.
+- **classes boilerplate**. Early in the v1 effort, we [decided](https://github.com/oliviertassinari/a-journey-toward-better-style) to use a CSS-in-JS styling solution: [JSS](https://cssinjs.org/). The large majority of the CSS-in-JS solutions output non-deterministic class names, e.g. `.fHmkjM`. This design decision helps the isolation of the style of each component, however, it makes the overrides harder. We introduced a `classes` API in v1 to target all our elements as an attempt to mitigate this problem.
   We have observed the use of this API for months and have seen many people struggling with it. It can be challenging to apply the class name on the right element and requires boilerplate as well.
   As an attempt to further improve the situation, we have changed the class name generation to [output global class names](/styles/advanced/#with-material-ui-core), while keeping the `classes` API working as before 💅.
 
@@ -74,7 +74,7 @@ import { StylesProvider } from '@mui/styles';
 
 ⚠️ Using global class names provide more power but comes with responsibility. We encourage patterns that increase your custom style isolation.
 
-- **Pseudo-classes.** A pseudo-class is a keyword added to a selector that specifies a special state of the selected element. The native elements support a wide range of pseudo-classes, the most popular ones being: `:focus`, `:hover`, `:active`. Sometimes, MUI can't use a pseudo-class as the state doesn't exist in the platform, e.g. the selected state of a menu item. MUI implements support of eight different [custom pseudo-classes](/customization/how-to-customize/#state-classes). It's important to understand that you need to increase the specificity when using a pseudo-class. For instance:
+- **Pseudo-classes.** A pseudo-class is a keyword added to a selector that specifies a special state of the selected element. The native elements support a wide range of pseudo-classes, the most popular ones being: `:focus`, `:hover`, `:active`. Sometimes, MUI can't use a pseudo-class as the state doesn't exist in the platform, e.g. the selected state of a menu item. MUI implements support of eight different [custom pseudo-classes](/customization/how-to-customize/#state-classes). It's important to understand that you need to increase the specificity when using a pseudo-class. For instance:
 
 ```css
 .MenuItem {
@@ -121,7 +121,7 @@ Documentation was reported as the 3rd most critical pain point in the developer 
 
 ![typescript](/static/blog/material-ui-v4-is-out/typescript.png)
 
-<p class="blog-description">https://www.typescriptlang.org traffic estimation over time.</p>
+<p class="blog-description">https://www.typescriptlang.org traffic estimation over time.</p>
 
 ![switch](/static/blog/material-ui-v4-is-out/switch.png)
 
@@ -155,18 +155,18 @@ import {
 
 ![bundle-size](/static/blog/material-ui-v4-is-out/bundle-size.png)
 
-<p class="blog-description">A -15% bundle size reduction. ⚠️ Please don't use the absolute number to compare different UI libraries. Nobody should import the whole barrel index.js file. What matters is the cost of the individual modules you import.</p>
+<p class="blog-description">A -15% bundle size reduction. ⚠️ Please don't use the absolute number to compare different UI libraries. Nobody should import the whole barrel index.js file. What matters is the cost of the individual modules you import.</p>
 
 - **Continuous bundle size tracking**. This bundle size reduction is only possible because we track this metric in each pull request. We have improved our strategy moving from [size-limit](https://github.com/ai/size-limit) to a React [inspired solution](https://github.com/mui-org/material-ui/pull/14662).
 
 ![trackbundle](/static/blog/material-ui-v4-is-out/trackbundle.png)
 
-<p class="blog-description">Fine level tracking</p>
+<p class="blog-description">Fine level tracking</p>
 
 - **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui-org/material-ui/blob/HEAD/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
 - **Runtime performance**. We have heard that some people struggle with the runtime cost of using MUI. We have solved a few problems reported, but nothing systematic. We have observed [a slight gain](https://github.com/mui-org/material-ui/pull/15023) by moving from the classes API to the hooks API. However, it's hard to make progress as we lack a properly setup performance bench. It's something to consider for v5.
 
-### Preparing for the future
+### Preparing for the future
 
 MUI v4 depends on React ≥16.8.0. This is the first version of React that supports the [new Hooks API](https://reactjs.org/docs/hooks-intro.html).
 
@@ -187,7 +187,7 @@ function MyButton() {
 
   Not all [the platforms we support](/getting-started/supported-platforms/) can use the class API natively, so we transpile the syntax with Babel. Functions are supported everywhere, they require fewer line of code. We have observed a -2% gzipped bundle reduction by removing the need to transpile classes.
 
-  It reduces the noise in the React Dev Tools ⚛️, since we could reduce the number of intermediary elements from 5 to 2 in the most common cases. 
+  It reduces the noise in the React Dev Tools ⚛️, since we could reduce the number of intermediary elements from 5 to 2 in the most common cases.
   We have found the hooks API easier to work with: to write, to read, and to change. This is a net positive for everyone's productivity.
   Developers read our source to find inspiration, so we should do our best to promote the best patterns.
 
@@ -206,11 +206,11 @@ The Material Design "v2" announcement caught us by surprise when we released MUI
 
 ![material1](/static/blog/material-ui-v4-is-out/material1.png)
 
-<p class="blog-description">Dense Outlined text field</p>
+<p class="blog-description">Dense Outlined text field</p>
 
 ![material2](/static/blog/material-ui-v4-is-out/material2.png)
 
-<p class="blog-description">Dense Filled text field</p>
+<p class="blog-description">Dense Filled text field</p>
 
 ## What's new?
 
@@ -221,7 +221,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 ![layout](/static/blog/material-ui-v4-is-out/layout.png)
 
-<p class="blog-description">One example among others</p>
+<p class="blog-description">One example among others</p>
 
 - [Responsive font sizes.](/customization/typography/#responsive-font-sizes)
 
@@ -237,7 +237,7 @@ An application example of the Box component.
 
 ![Spacing usage example](/static/blog/material-ui-v4-is-out/spacing.png)
 
-An example of the new spacing helper API.
+An example of the new spacing helper API.
 
 - A new [@material-ui/pickers](https://github.com/mui-org/material-ui-pickers) package created and supported by [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) 📅.
 
@@ -313,7 +313,7 @@ import { Button } from '@mui/material';
   Developers should be able to use their preferred styling solution without paying the cost of two CSS-in-JS runtimes.
 - **Accessibility.** While we try to fix all accessibility issues as they are reported by our users, we feel that we can do better. We want to run a professional ADA audit of all our components ♿️.
 
-## Premium themes store ✨
+## Premium themes store ✨
 
 How are we going to sustain this ambitious roadmap?
 We will follow the Bootstrap model.
@@ -324,7 +324,7 @@ Within a few weeks, you should find a collection of the best MUI templates and t
 
 ## Thank you
 
-Finally, one last thank you to everyone who's contributed to MUI v4. 
+Finally, one last thank you to everyone who's contributed to MUI v4.
 I'm so excited about this release! It's just the beginning. We will keep working hard on delivering the best possible React UI framework components.
 
 <hr />
