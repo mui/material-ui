@@ -121,10 +121,17 @@ const Button = ({
             }
             return styles;
           },
-          startIcon: ({ startIcon, endIcon }) => [
+          startIcon: ({ startIcon, endIcon, ...props }) => [
             startIcon && { marginRight: 8 },
             endIcon && { marginLeft: 8 },
           ],
+        },
+      },
+      MuiSlider: {
+        styleOverrides: {
+          mark: (props) => ({
+            ...(props['data-index'] === 0 && {}),
+          }),
         },
       },
     },
