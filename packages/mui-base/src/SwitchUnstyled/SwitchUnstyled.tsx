@@ -165,7 +165,12 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Switch.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+    thumb: PropTypes.object,
+    track: PropTypes.object,
+  }),
   /**
    * The default checked state. Use when the component is not controlled.
    */

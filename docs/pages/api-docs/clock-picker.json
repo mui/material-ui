@@ -12,7 +12,12 @@
         "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType }"
       }
     },
-    "componentsProps": { "type": { "name": "object" } },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object }"
+      }
+    },
     "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },
     "getClockLabelText": {
       "type": { "name": "func" },

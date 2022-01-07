@@ -100,7 +100,9 @@ TabPanelUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TabPanel.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
    */
