@@ -79,6 +79,10 @@ const finalTheme = createTheme({
 
 ## Adding new component variants
 
+> ⚠️ This API has been **deprecated** which might be removed in the next major release. If you want to apply styles based on props, take a look at [Overrides based on props](#overrides-based-on-props) instead.
+>
+> To see more details about the why, check out [issue #30412](https://github.com/mui-org/material-ui/issues/30412)
+
 You can use the `variants` key in the theme's `components` section to add new variants to MUI components. These new variants can specify what styles the component should have when specific props are applied.
 
 The definitions are specified in an array, under the component's name. For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
