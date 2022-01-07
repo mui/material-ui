@@ -505,7 +505,7 @@ export function getThemedComponents(theme: Theme) {
           root: {
             padding: '8px',
             textTransform: 'none',
-            fontWeight: 700,
+            fontWeight: 500,
             fontSize: theme.typography.pxToRem(14),
             color:
               theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
@@ -609,19 +609,13 @@ export function getThemedComponents(theme: Theme) {
         styleOverrides: {
           root: {
             textTransform: 'none',
-            fontWeight: 700,
+            fontWeight: 500,
             color:
               theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
             borderColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[500]
                 : theme.palette.grey[200],
-            '&:hover': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
-            },
             '&.Mui-selected': {
               color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
               borderColor:

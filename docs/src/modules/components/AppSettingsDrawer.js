@@ -245,6 +245,7 @@ function AppSettingsDrawer(props) {
           sx={{
             width: '100%',
             py: 1,
+            fontWeight: 500,
             border: `1px solid  ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]

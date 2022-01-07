@@ -7,17 +7,14 @@ import Divider from '@mui/material/Divider';
 import { styled, alpha } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
-// import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-// import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import IconImage from 'docs/src/components/icon/IconImage';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
@@ -25,99 +22,79 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-// import Apps from '@mui/icons-material/Apps';
 import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
-import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
-import Tooltip from '@mui/material/Tooltip';
-import Apps from '@mui/icons-material/Apps';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 
 const savedScrollTop = {};
 
-const ProductIdentifier = ({ name, versionSelector }) => (
+function ProductDrawerButton(props) {
+  const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
+
+  return (
+    <div>
+      <Button
+        aria-controls="drawer-open-button"
+        aria-haspopup="true"
+        onClick={() => setProductsDrawerOpen(true)}
+        endIcon={<KeyboardArrowRightRoundedIcon />}
+        sx={(theme) => ({
+          py: 0.1,
+          minWidth: 0,
+          fontSize: theme.typography.pxToRem(12.5),
+          fontWeight: 500,
+          lineHeight: 0,
+          color:
+            theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+          '& svg': {
+            ml: -0.6,
+            width: 18,
+            height: 18,
+          },
+        })}
+      >
+        {props.productName}
+      </Button>
+      <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} />
+    </div>
+  );
+}
+
+ProductDrawerButton.propTypes = {
+  productName: PropTypes.string,
+};
+
+const ProductIdentifier = ({ name, metadata, versionSelector }) => (
   <Box
     sx={{
+      width: '100%',
       display: 'flex',
       flex: 'auto',
       alignItems: 'center',
       justifyContent: 'space-between',
     }}
   >
-    {/* Leaving the product icon not apparent for now just to sleep on it a bit and see how it feels */}
-    {/* <Box
-      sx={{
-        '& circle': {
-          fill: (theme) =>
-            theme.palette.mode === 'dark'
-              ? theme.palette.primaryDark[700]
-              : theme.palette.grey[100],
-        },
-      }}
-    >
-      {icon}
-    </Box> */}
-    <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-      <NextLink href="/" passHref /* onClick={onClose} */>
-        <Box
-          component="a"
-          sx={{
-            pr: 2,
-            mr: 2,
-            borderRight: '1px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[200],
-          }}
-        >
-          <SvgMuiLogo width={30} />
-        </Box>
-      </NextLink>
-      <div>
-        {/* <Typography
-          sx={(theme) => ({
-            color: theme.palette.grey[600],
-            fontSize: theme.typography.pxToRem(11),
-            fontWeight: theme.typography.fontWeightBold,
-            textTransform: 'uppercase',
-            letterSpacing: '.08rem',
-          })}
-        >
-          {metadata}
-        </Typography> */}
-        <Typography
-          fontWeight="500"
-          color="text.primary"
-          sx={{ fontSize: (theme) => theme.typography.pxToRem(14) }}
-        >
-          {name}
-        </Typography>
-      </div>
-    </Box>
-    {/* work in progress */}
-    <Stack direction="row" spacing={1.3}>
-      {versionSelector}
-      <Tooltip title="MUI products" enterDelay={300}>
-        <IconButton color="primary">
-          <Apps fontSize="small" />
-        </IconButton>
-      </Tooltip>
-    </Stack>
+    <div>
+      <Typography
+        sx={(theme) => ({
+          ml: 1,
+          color: theme.palette.grey[600],
+          fontSize: theme.typography.pxToRem(11),
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '.08rem',
+        })}
+      >
+        {metadata}
+      </Typography>
+      <ProductDrawerButton productName={name} />
+    </div>
+    {versionSelector}
   </Box>
 );
 
-// {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
-//   <Tooltip title="MUI products" enterDelay={300}>
-//     <IconButton color="primary" onClick={() => setProductsDrawerOpen(true)}>
-//       <Apps fontSize="small" />
-//     </IconButton>
-//   </Tooltip>
-// )}
-
 ProductIdentifier.propTypes = {
-  // icon: PropTypes.element,
-  // metadata: PropTypes.string,
+  metadata: PropTypes.string,
   name: PropTypes.string,
   versionSelector: PropTypes.element,
 };
@@ -180,7 +157,7 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
-    padding: theme.spacing(1.9, 2),
+    padding: theme.spacing(1.45, 2),
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -202,7 +179,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
 
 const SwipeableDrawerPaperComponent = styled('div')(({ theme }) => {
   return {
-    width: 280,
+    width: 300,
     boxShadow: 'none',
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
@@ -308,7 +285,9 @@ function AppNavDrawer(props) {
             variant="outlined"
             endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
             sx={(theme) => ({
-              py: 0.5,
+              fontSize: theme.typography.pxToRem(13),
+              fontWeight: 500,
+              py: 0.4,
               px: 1,
               border: `1px solid  ${
                 theme.palette.mode === 'dark'
@@ -381,16 +360,27 @@ function AppNavDrawer(props) {
       <React.Fragment>
         <ToolbarIE11>
           <ToolbarDiv>
-            {/* <NextLink href="/" passHref onClick={onClose}>
-              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0 }}>
+            <NextLink href="/" passHref onClick={onClose}>
+              <Box
+                component="a"
+                aria-label={t('goToHome')}
+                sx={{
+                  pr: 2,
+                  mr: 1,
+                  borderRight: '1px solid',
+                  borderColor: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? alpha(theme.palette.primary[100], 0.08)
+                      : theme.palette.grey[200],
+                }}
+              >
                 <SvgMuiLogo width={30} />
               </Box>
-            </NextLink> */}
+            </NextLink>
             {FEATURE_TOGGLE.enable_product_scope && (
               <React.Fragment>
                 {router.asPath.startsWith('/material/') && (
                   <ProductIdentifier
-                    icon={<IconImage name="product-core" sx={{ height: 30, width: 30 }} />}
                     name="Material"
                     metadata="MUI Core"
                     versionSelector={renderVersionSelector([
@@ -401,7 +391,6 @@ function AppNavDrawer(props) {
                 )}
                 {router.asPath.startsWith('/system/') && (
                   <ProductIdentifier
-                    icon={<IconImage name="product-core" />}
                     name="System"
                     metadata="MUI Core"
                     versionSelector={renderVersionSelector([
@@ -412,7 +401,6 @@ function AppNavDrawer(props) {
                 )}
                 {router.asPath.startsWith('/styles/') && (
                   <ProductIdentifier
-                    icon={<IconImage name="product-core" />}
                     name="Styles (legacy)"
                     metadata="MUI Core"
                     versionSelector={renderVersionSelector([
@@ -423,7 +411,6 @@ function AppNavDrawer(props) {
                 )}
                 {router.asPath.startsWith('/base/') && (
                   <ProductIdentifier
-                    icon={<IconImage name="product-core" />}
                     name="Base"
                     metadata="MUI Core"
                     versionSelector={renderVersionSelector([
@@ -433,7 +420,6 @@ function AppNavDrawer(props) {
                 )}
                 {router.asPath.startsWith('/x/data-grid/') && (
                   <ProductIdentifier
-                    icon={<IconImage name="product-advanced" />}
                     name="Data Grid"
                     metadata="MUI X"
                     versionSelector={renderVersionSelector([
@@ -444,94 +430,8 @@ function AppNavDrawer(props) {
                 )}
               </React.Fragment>
             )}
-            {/* {process.env.LIB_VERSION && FEATURE_TOGGLE.enable_product_scope
-              ? null
-              : <Tooltip title="MUI products" enterDelay={300}>
-                  <IconButton
-                    onClick={() => setProductsDrawerOpen(true)}
-                    sx={(theme) => ({
-                      display: { xs: 'none', sm: 'flex' },
-                      width: 38,
-                      border: `1px solid ${
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
-                          : theme.palette.grey[200]
-                      }`,
-                      borderRadius: 1,
-                      color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
-                      background:
-                        theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-                      py: '0.375rem',
-                    })}
-                  >
-                    <Apps />
-                  </IconButton>
-                </Tooltip>
-                renderVersionSelector([
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
-                  { text: 'v4' },
-                ])} */}
           </ToolbarDiv>
         </ToolbarIE11>
-        {/* <Divider /> */}
-        {/* {FEATURE_TOGGLE.enable_product_scope && (
-          <React.Fragment>
-            {router.asPath.startsWith('/material/') && (
-              <ProductIdentifier
-                icon={<IconImage name="product-core" sx={{ height: 30, width: 30 }} />}
-                name="Material"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                ])}
-              />
-            )}
-            {router.asPath.startsWith('/system/') && (
-              <ProductIdentifier
-                icon={<IconImage name="product-core" />}
-                name="System"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                ])}
-              />
-            )}
-            {router.asPath.startsWith('/styles/') && (
-              <ProductIdentifier
-                icon={<IconImage name="product-core" />}
-                name="Styles (legacy)"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                ])}
-              />
-            )}
-            {router.asPath.startsWith('/base/') && (
-              <ProductIdentifier
-                icon={<IconImage name="product-core" />}
-                name="Base"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
-                ])}
-              />
-            )}
-            {router.asPath.startsWith('/x/data-grid/') && (
-              <ProductIdentifier
-                icon={<IconImage name="product-advanced" />}
-                name="Data Grid"
-                metadata="MUI X"
-                versionSelector={renderVersionSelector([
-                  { text: `v5.2.1`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                ])}
-              />
-            )}
-          </React.Fragment>
-        )} */}
         {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
           <Divider
             sx={{

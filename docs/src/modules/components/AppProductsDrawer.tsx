@@ -89,12 +89,12 @@ export default function AppProductsDrawer(props: DrawerProps) {
   return (
     <Drawer
       variant="temporary"
-      anchor="right"
+      anchor="left"
       PaperProps={{
         sx: {
           width: { xs: 310, sm: 360 },
           overflow: 'hidden',
-          borderRadius: '10px 0px 0px 10px',
+          borderRadius: '0px 10px 10px 0px',
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
@@ -176,56 +176,6 @@ export default function AppProductsDrawer(props: DrawerProps) {
               Data Grid <KeyboardArrowRight fontSize="small" />
             </Link>
           </LinksWrapper>
-        </li>
-        <li role="none">
-          <Link
-            role="menuitem"
-            href={ROUTES.productTemplates}
-            sx={{
-              m: -2,
-              p: 2,
-              '&:hover, &:focus': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50',
-                outline: 'none',
-                '@media (hover: none)': {
-                  backgroundColor: 'initial',
-                  outline: 'initial',
-                },
-              },
-            }}
-          >
-            <ProductSubMenu
-              icon={<IconImage name="product-templates" />}
-              name="Templates"
-              description="Fully built, out-of-the-box, templates for your application."
-            />
-          </Link>
-        </li>
-        <li role="none">
-          <Link
-            role="menuitem"
-            href={ROUTES.productDesignKits}
-            sx={{
-              m: -2,
-              p: 2,
-              '&:hover, &:focus': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50',
-                outline: 'none',
-                '@media (hover: none)': {
-                  backgroundColor: 'initial',
-                  outline: 'initial',
-                },
-              },
-            }}
-          >
-            <ProductSubMenu
-              icon={<IconImage name="product-designkits" />}
-              name="Design kits"
-              description="Our components available in your favorite design tool."
-            />
-          </Link>
         </li>
       </ul>
       <Divider />

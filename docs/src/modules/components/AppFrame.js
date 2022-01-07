@@ -12,10 +12,6 @@ import IconButton from '@mui/material/IconButton';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
-// import NoSsr from '@mui/material/NoSsr';
-// import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
-// import Divider from '@mui/material/Divider';
 import Apps from '@mui/icons-material/Apps';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -25,17 +21,11 @@ import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-// import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
-// import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { /* useUserLanguage, */ useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import NextLink from 'next/link';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-
-// const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-// const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -184,7 +174,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
-      width: 280,
+      width: 300,
     },
   };
 });
@@ -192,127 +182,90 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 function AppFrame(props) {
   const { children, disableDrawer = false } = props;
   const t = useTranslate();
-  // const userLanguage = useUserLanguage();
-
-  // const crowdInLocale = LOCALES[userLanguage] || userLanguage;
-
-  // const [languageMenu, setLanguageMenu] = React.useState(null);
-  // const handleLanguageIconClick = (event) => {
-  //   setLanguageMenu(event.currentTarget);
-  // };
-  // const handleLanguageMenuClose = (event) => {
-  //   if (event.currentTarget.nodeName === 'A') {
-  //     document.cookie = `userLanguage=${event.currentTarget.lang};path=/;max-age=31536000`;
-  //   }
-  //   setLanguageMenu(null);
-  // };
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
   const handleNavDrawerOpen = () => {
     setMobileOpen(true);
-  };
-  // const handleNavDrawerClose = React.useCallback(() => {
-  //   setMobileOpen(false);
-  // }, []);
-  const router = useRouter();
-  // const { canonicalAs } = pathnameToLanguage(router.asPath);
-  const { activePage } = React.useContext(PageContext);
+    const router = useRouter();
+    const { activePage } = React.useContext(PageContext);
 
-  const isProductScoped =
-    router.asPath.startsWith('/x') ||
-    router.asPath.startsWith('/material') ||
-    router.asPath.startsWith('/system') ||
-    router.asPath.startsWith('/styles') ||
-    router.asPath.startsWith('/base');
+    const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
-  const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
-
-  // const languageButtonProps = {
-  //   color: 'inherit',
-  //   onClick: handleLanguageIconClick,
-  //   'aria-owns': languageMenu ? 'language-menu' : undefined,
-  //   'aria-haspopup': 'true',
-  //   'data-ga-event-category': 'header',
-  //   'data-ga-event-action': 'language',
-  // };
-
-  return (
-    <RootDiv>
-      <NextNProgressBar />
-      <CssBaseline />
-      <SkipLink color="secondary" href="#main-content">
-        {t('appFrame.skipToContent')}
-      </SkipLink>
-      <MarkdownLinks />
-      <StyledAppBar disablePermanent={disablePermanent}>
-        <Toolbar variant="dense" disableGutters>
-          <NavIconButton
-            edge="start"
-            color="primary"
-            aria-label={t('appFrame.openDrawer')}
-            disablePermanent={disablePermanent}
-            onClick={handleNavDrawerOpen}
-            sx={{ ml: '1px' }}
-          >
-            <SvgHamburgerMenu />
-          </NavIconButton>
-          <NextLink href="/" passHref /* onClick={onClose} */>
-            <Box
-              component="a"
-              aria-label={t('goToHome')}
-              sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
+    return (
+      <RootDiv>
+        <NextNProgressBar />
+        <CssBaseline />
+        <SkipLink color="secondary" href="#main-content">
+          {t('appFrame.skipToContent')}
+        </SkipLink>
+        <MarkdownLinks />
+        <StyledAppBar disablePermanent={disablePermanent}>
+          <Toolbar variant="dense" disableGutters>
+            <NavIconButton
+              edge="start"
+              color="primary"
+              aria-label={t('appFrame.openDrawer')}
+              disablePermanent={disablePermanent}
+              onClick={handleNavDrawerOpen}
+              sx={{ ml: '1px' }}
             >
-              <SvgMuiLogo width={30} />
-            </Box>
-          </NextLink>
-          <GrowingDiv />
-          <Stack direction="row" spacing={1.3}>
-            <DeferredAppSearch />
-            <Tooltip title={t('appFrame.github')} enterDelay={300}>
-              <IconButton
+              <SvgHamburgerMenu />
+            </NavIconButton>
+            <NextLink href="/" passHref /* onClick={onClose} */>
+              <Box
                 component="a"
-                color="primary"
-                href={process.env.SOURCE_CODE_REPO}
-                data-ga-event-category="header"
-                data-ga-event-action="github"
+                aria-label={t('goToHome')}
+                sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
               >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Notifications />
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="primary" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
-              <Tooltip title="MUI products" enterDelay={300}>
-                <IconButton color="primary" onClick={() => setProductsDrawerOpen(true)}>
-                  <Apps fontSize="small" />
+                <SvgMuiLogo width={30} />
+              </Box>
+            </NextLink>
+            <GrowingDiv />
+            <Stack direction="row" spacing={1.3}>
+              <DeferredAppSearch />
+              <Tooltip title={t('appFrame.github')} enterDelay={300}>
+                <IconButton
+                  component="a"
+                  color="primary"
+                  href={process.env.SOURCE_CODE_REPO}
+                  data-ga-event-category="header"
+                  data-ga-event-action="github"
+                >
+                  <GitHubIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
-            )}
-          </Stack>
-        </Toolbar>
-      </StyledAppBar>
-      <StyledAppNavDrawer
-        disablePermanent={disablePermanent}
-        onClose={() => setMobileOpen(false)}
-        onOpen={() => setMobileOpen(true)}
-        mobileOpen={mobileOpen}
-      />
-      {children}
-      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
-      <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} />
-    </RootDiv>
-  );
+              <Notifications />
+              <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+                <IconButton
+                  color="primary"
+                  onClick={() => setSettingsOpen(true)}
+                  sx={{ px: '8px' }}
+                >
+                  <SettingsIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            </Stack>
+          </Toolbar>
+        </StyledAppBar>
+        <StyledAppNavDrawer
+          disablePermanent={disablePermanent}
+          onClose={() => setMobileOpen(false)}
+          onOpen={() => setMobileOpen(true)}
+          mobileOpen={mobileOpen}
+        />
+        {children}
+        <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
+        <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} />
+      </RootDiv>
+    );
+  };
+
+  AppFrame.propTypes = {
+    children: PropTypes.node.isRequired,
+    disableDrawer: PropTypes.bool,
+  };
+
+  export default AppFrame;
 }
-
-AppFrame.propTypes = {
-  children: PropTypes.node.isRequired,
-  disableDrawer: PropTypes.bool,
-};
-
-export default AppFrame;
