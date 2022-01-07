@@ -7,12 +7,6 @@ import { TypographySystem } from '../styles/types';
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
-     * Set the text-align on the component.
-     * @default 'inherit'
-     * @deprecated use `sx` prop instead. <Typography sx={{ textAlign: 'center' }} />
-     */
-    align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
-    /**
      * The content of the component.
      */
     children?: React.ReactNode;
@@ -58,41 +52,9 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      */
     noWrap?: boolean;
     /**
-     * If `true`, the element will be a paragraph element.
-     * @default false
-     * @deprecated use `component` prop instead.
-     */
-    paragraph?: boolean;
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-    /**
-     * Applies the theme typography styles.
-     * @default 'body1'
-     * @deprecated use `level` prop instead.
-     */
-    variant?: keyof TypographySystem | 'inherit';
-    /**
-     * The component maps the variant prop to a range of different HTML element types.
-     * For instance, body1 to `<h6>`.
-     * If you wish to change that mapping, you can provide your own.
-     * Alternatively, you can use the `component` prop.
-     * @default {
-     *   h1: 'h1',
-     *   h2: 'h2',
-     *   h3: 'h3',
-     *   h4: 'h4',
-     *   h5: 'h5',
-     *   h6: 'h6',
-     *   body1: 'p',
-     *   body2: 'p',
-     *   body3: 'p',
-     *   inherit: 'p',
-     * }
-     * @deprecated use `levelMapping` prop instead.
-     */
-    variantMapping?: Partial<Record<keyof TypographySystem | 'inherit', string>>;
   };
   defaultComponent: D;
 }

@@ -30,30 +30,13 @@ describe('<Typography />', () => {
     expect(container.firstChild).to.have.class(classes.root);
   });
 
-  it('should center text', () => {
-    const { container } = render(
-      <Typography align="center" className="woofTypography">
-        Hello
-      </Typography>,
-    );
-
-    expect(container.firstChild).to.have.class(classes.alignCenter);
-  });
   ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'].forEach((level) => {
     it(`should render ${level} text`, () => {
-      const { container } = render(
-        <React.Fragment>
-          <Typography level={level}>Hello</Typography>
-          <Typography variant={level}>Hello</Typography>
-        </React.Fragment>,
-      );
+      const { container } = render(<Typography level={level}>Hello</Typography>);
 
       expect(classes).to.have.property(level);
 
       expect(container.firstChild).to.have.class(classes[level]);
-
-      // variant prop still work
-      expect(container.lastChild).to.have.class(classes[level]);
     });
   });
 
@@ -74,28 +57,6 @@ describe('<Typography />', () => {
       const { getByText } = render(<Typography component="h1">Hello</Typography>);
 
       expect(getByText(/hello/i).tagName).to.equal('H1');
-    });
-  });
-
-  describe('prop: variantMapping', () => {
-    it('should work with a single value', () => {
-      const { getByText } = render(
-        <Typography variant="h6" variantMapping={{ h6: 'aside' }}>
-          Hello
-        </Typography>,
-      );
-
-      expect(getByText(/hello/i).tagName).to.equal('ASIDE');
-    });
-
-    it('should work even with an empty mapping', () => {
-      const { getByText } = render(
-        <Typography variant="h6" variantMapping={{}}>
-          Hello
-        </Typography>,
-      );
-
-      expect(getByText(/hello/i).tagName).to.equal('H6');
     });
   });
 

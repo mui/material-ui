@@ -25,26 +25,6 @@ export interface TypographyClasses {
   noWrap: string;
   /** Styles applied to the root element if `gutterBottom={true}`. */
   gutterBottom: string;
-  /** Styles applied to the root element if `align="left"`.
-   * @deprecated
-   */
-  alignLeft: string;
-  /** Styles applied to the root element if `align="center"`.
-   * @deprecated
-   */
-  alignCenter: string;
-  /** Styles applied to the root element if `align="right"`.
-   * @deprecated
-   */
-  alignRight: string;
-  /** Styles applied to the root element if `align="justify"`.
-   * @deprecated
-   */
-  alignJustify: string;
-  /** Styles applied to the root element if `paragraph={true}`.
-   * @deprecated
-   */
-  paragraph: string;
 }
 
 export type TypographyClassKey = keyof TypographyClasses;
@@ -66,11 +46,6 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypograp
   'body3',
   'noWrap',
   'gutterBottom',
-  'alignLeft',
-  'alignCenter',
-  'alignRight',
-  'alignJustify',
-  'paragraph',
 ]);
 
 export default typographyClasses;

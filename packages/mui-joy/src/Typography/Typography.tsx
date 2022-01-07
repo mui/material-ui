@@ -4,25 +4,16 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import { TypographyTypeMap, TypographyProps } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getTypographyUtilityClass } from './typographyClasses';
 
 const useUtilityClasses = (ownerState: TypographyProps) => {
-  const { align, gutterBottom, noWrap, paragraph, variant, level } = ownerState;
+  const { gutterBottom, noWrap, level } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      !level && variant,
-      level,
-      align && align !== 'inherit' && `align${capitalize(align)}`,
-      gutterBottom && 'gutterBottom',
-      noWrap && 'noWrap',
-      paragraph && 'paragraph',
-    ],
+    root: ['root', level, gutterBottom && 'gutterBottom', noWrap && 'noWrap'],
   };
 
   return composeClasses(slots, getTypographyUtilityClass, {});
@@ -36,24 +27,13 @@ export const TypographyRoot = styled('span', {
 
     return [
       styles.root,
-      ownerState.variant && styles[ownerState.variant],
       ownerState.level && styles[ownerState.level],
-      ownerState.align !== 'inherit' && styles[`align${capitalize(ownerState.align)}`],
       ownerState.noWrap && styles.noWrap,
       ownerState.gutterBottom && styles.gutterBottom,
-      ownerState.paragraph && styles.paragraph,
     ];
   },
 })<{ ownerState: TypographyProps }>(({ theme, ownerState }) => ({
   margin: 0,
-  // TODO: remove in the next major version
-  ...(ownerState.variant &&
-    ownerState.variant !== 'inherit' &&
-    theme.typography[ownerState.variant]),
-  // TODO: remove in the next major version
-  ...(ownerState.align !== 'inherit' && {
-    textAlign: ownerState.align,
-  }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
   ...(ownerState.noWrap && {
     overflow: 'hidden',
@@ -62,9 +42,6 @@ export const TypographyRoot = styled('span', {
   }),
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
-  }),
-  ...(ownerState.paragraph && {
-    marginBottom: 16,
   }),
 }));
 
@@ -90,39 +67,28 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   const props = extendSxProp(themeProps);
 
   const {
-    align = 'inherit',
-    paragraph = false,
-    variant = 'body1',
-    variantMapping = defaultVariantMapping,
     className,
     component,
     gutterBottom = false,
     noWrap = false,
-    level,
+    level = 'body1',
     levelMapping = {},
     ...other
   } = props;
 
   const ownerState = {
     ...props,
-    align,
+    level,
     className,
     component,
     gutterBottom,
     noWrap,
-    paragraph,
-    variant,
-    variantMapping,
   };
 
-  const Component =
-    component ||
-    ((paragraph
-      ? 'p'
-      : levelMapping[level || variant] ||
-        variantMapping[level || variant] ||
-        defaultVariantMapping[level || variant] ||
-        'span') as React.ElementType);
+  const Component = (component ||
+    levelMapping[level] ||
+    defaultVariantMapping[level] ||
+    'span') as React.ElementType;
 
   const classes = useUtilityClasses(ownerState);
 
@@ -142,12 +108,6 @@ Typography.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
-  /**
-   * Set the text-align on the component.
-   * @default 'inherit'
-   * @deprecated use `sx` prop instead. <Typography sx={{ textAlign: 'center' }} />
-   */
-  align: PropTypes.oneOf(['center', 'inherit', 'justify', 'left', 'right']),
   /**
    * The content of the component.
    */
@@ -220,56 +180,6 @@ Typography.propTypes /* remove-proptypes */ = {
    * @default false
    */
   noWrap: PropTypes.bool,
-  /**
-   * If `true`, the element will be a paragraph element.
-   * @default false
-   * @deprecated use `component` prop instead.
-   */
-  paragraph: PropTypes.bool,
-  /**
-   * Applies the theme typography styles.
-   * @default 'body1'
-   * @deprecated use `level` prop instead.
-   */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'body1',
-      'body2',
-      'button',
-      'caption',
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'inherit',
-      'overline',
-      'subtitle1',
-      'subtitle2',
-    ]),
-    PropTypes.string,
-  ]),
-  /**
-   * The component maps the variant prop to a range of different HTML element types.
-   * For instance, body1 to `<h6>`.
-   * If you wish to change that mapping, you can provide your own.
-   * Alternatively, you can use the `component` prop.
-   * @default {
-   *   h1: 'h1',
-   *   h2: 'h2',
-   *   h3: 'h3',
-   *   h4: 'h4',
-   *   h5: 'h5',
-   *   h6: 'h6',
-   *   body1: 'p',
-   *   body2: 'p',
-   *   body3: 'p',
-   *   inherit: 'p',
-   * }
-   * @deprecated use `levelMapping` prop instead.
-   */
-  variantMapping: PropTypes /* @typescript-to-proptypes-ignore */.object,
 } as any;
 
 export default Typography;
