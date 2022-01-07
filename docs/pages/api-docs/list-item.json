@@ -21,7 +21,10 @@
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ root?: object }" },
+      "default": "{}"
+    },
     "ContainerComponent": {
       "type": { "name": "custom", "description": "element type" },
       "default": "'li'",

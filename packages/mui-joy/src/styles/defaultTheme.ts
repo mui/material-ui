@@ -5,7 +5,7 @@ import {
   Spacing,
   CSSObject,
   SxProps as SystemSxProps,
-  unstable_createGetThemeVar as systemCreateGetThemeVar,
+  unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
 import colors from '../colors';
 import {
@@ -399,7 +399,7 @@ type Vars = ThemeScales & ColorSystem;
 
 export type ThemeVar = NormalizeVars<Vars>;
 
-export const createGetThemeVar = (prefix = 'joy') => systemCreateGetThemeVar<ThemeVar>(prefix);
+export const createGetCssVar = (prefix = 'joy') => systemCreateGetCssVar<ThemeVar>(prefix);
 
 export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorScheme>
   extends ThemeScales,
@@ -411,7 +411,7 @@ export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorS
   spacing: Spacing;
   breakpoints: Breakpoints;
   vars: Vars;
-  getThemeVar: ReturnType<typeof createGetThemeVar>;
+  getCssVar: ReturnType<typeof createGetCssVar>;
 }
 
 export type SxProps = SystemSxProps<JoyTheme>;
