@@ -346,7 +346,7 @@ const contributors = [
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     title: 'MUI Core, everything Open Source',
-    location: 'Dresden, Germany',
+    location: 'Berlin, Germany',
     country: 'de',
     src: 'https://avatars.githubusercontent.com/u/12292047',
     twitter: 'sebsilbermann',
