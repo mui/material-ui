@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getDependencies } from './helpers';
+import { getDependencies, pageToTitle } from './helpers';
 
 describe('docs getDependencies helpers', () => {
   before(() => {
@@ -8,6 +8,20 @@ describe('docs getDependencies helpers', () => {
 
   after(() => {
     delete process.env.SOURCE_CODE_REPO;
+  });
+
+  it('should return correct title', () => {
+    expect(pageToTitle({ pathname: '/docs/src/pages/components/buttons/buttons.md' })).to.equal(
+      'Buttons',
+    );
+    expect(pageToTitle({ pathname: '/components' })).to.equal('Components');
+    expect(pageToTitle({ pathname: '/customization/how-to-customize' })).to.equal(
+      'How To Customize',
+    );
+  });
+
+  it('should remove `react-` prefix', () => {
+    expect(pageToTitle({ pathname: '/docs/pages/material/react-buttons.js' })).to.equal('Buttons');
   });
 
   const s1 = `
