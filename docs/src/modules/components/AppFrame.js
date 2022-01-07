@@ -12,7 +12,6 @@ import IconButton from '@mui/material/IconButton';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
-import Apps from '@mui/icons-material/Apps';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NProgressBar from '@mui/docs/NProgressBar';
@@ -186,86 +185,79 @@ function AppFrame(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
-  const handleNavDrawerOpen = () => {
-    setMobileOpen(true);
-    const router = useRouter();
-    const { activePage } = React.useContext(PageContext);
 
-    const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
+  const { activePage } = React.useContext(PageContext);
 
-    return (
-      <RootDiv>
-        <NextNProgressBar />
-        <CssBaseline />
-        <SkipLink color="secondary" href="#main-content">
-          {t('appFrame.skipToContent')}
-        </SkipLink>
-        <MarkdownLinks />
-        <StyledAppBar disablePermanent={disablePermanent}>
-          <Toolbar variant="dense" disableGutters>
-            <NavIconButton
-              edge="start"
-              color="primary"
-              aria-label={t('appFrame.openDrawer')}
-              disablePermanent={disablePermanent}
-              onClick={handleNavDrawerOpen}
-              sx={{ ml: '1px' }}
+  const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
+
+  return (
+    <RootDiv>
+      <NextNProgressBar />
+      <CssBaseline />
+      <SkipLink color="secondary" href="#main-content">
+        {t('appFrame.skipToContent')}
+      </SkipLink>
+      <MarkdownLinks />
+      <StyledAppBar disablePermanent={disablePermanent}>
+        <Toolbar variant="dense" disableGutters>
+          <NavIconButton
+            edge="start"
+            color="primary"
+            aria-label={t('appFrame.openDrawer')}
+            disablePermanent={disablePermanent}
+            onClick={() => setMobileOpen(true)}
+            sx={{ ml: '1px' }}
+          >
+            <SvgHamburgerMenu />
+          </NavIconButton>
+          <NextLink href="/" passHref /* onClick={onClose} */>
+            <Box
+              component="a"
+              aria-label={t('goToHome')}
+              sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
             >
-              <SvgHamburgerMenu />
-            </NavIconButton>
-            <NextLink href="/" passHref /* onClick={onClose} */>
-              <Box
+              <SvgMuiLogo width={30} />
+            </Box>
+          </NextLink>
+          <GrowingDiv />
+          <Stack direction="row" spacing={1.3}>
+            <DeferredAppSearch />
+            <Tooltip title={t('appFrame.github')} enterDelay={300}>
+              <IconButton
                 component="a"
-                aria-label={t('goToHome')}
-                sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
+                color="primary"
+                href={process.env.SOURCE_CODE_REPO}
+                data-ga-event-category="header"
+                data-ga-event-action="github"
               >
-                <SvgMuiLogo width={30} />
-              </Box>
-            </NextLink>
-            <GrowingDiv />
-            <Stack direction="row" spacing={1.3}>
-              <DeferredAppSearch />
-              <Tooltip title={t('appFrame.github')} enterDelay={300}>
-                <IconButton
-                  component="a"
-                  color="primary"
-                  href={process.env.SOURCE_CODE_REPO}
-                  data-ga-event-category="header"
-                  data-ga-event-action="github"
-                >
-                  <GitHubIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Notifications />
-              <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-                <IconButton
-                  color="primary"
-                  onClick={() => setSettingsOpen(true)}
-                  sx={{ px: '8px' }}
-                >
-                  <SettingsIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            </Stack>
-          </Toolbar>
-        </StyledAppBar>
-        <StyledAppNavDrawer
-          disablePermanent={disablePermanent}
-          onClose={() => setMobileOpen(false)}
-          onOpen={() => setMobileOpen(true)}
-          mobileOpen={mobileOpen}
-        />
-        {children}
-        <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
-        <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} />
-      </RootDiv>
-    );
-  };
-
-  AppFrame.propTypes = {
-    children: PropTypes.node.isRequired,
-    disableDrawer: PropTypes.bool,
-  };
-
-  export default AppFrame;
+                <GitHubIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Notifications />
+            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+              <IconButton color="primary" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
+                <SettingsIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Stack>
+        </Toolbar>
+      </StyledAppBar>
+      <StyledAppNavDrawer
+        disablePermanent={disablePermanent}
+        onClose={() => setMobileOpen(false)}
+        onOpen={() => setMobileOpen(true)}
+        mobileOpen={mobileOpen}
+      />
+      {children}
+      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
+      <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} />
+    </RootDiv>
+  );
 }
+
+AppFrame.propTypes = {
+  children: PropTypes.node.isRequired,
+  disableDrawer: PropTypes.bool,
+};
+
+export default AppFrame;
