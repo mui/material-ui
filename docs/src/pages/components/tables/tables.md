@@ -126,7 +126,7 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
 
-#### Customized look and feel
+### Customized look and feel
 
 {{"demo": "pages/components/tables/TableCustomized.js"}}
 
