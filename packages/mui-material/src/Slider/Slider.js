@@ -557,7 +557,23 @@ Slider.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Slider.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    mark: PropTypes.object,
+    markLabel: PropTypes.object,
+    rail: PropTypes.object,
+    root: PropTypes.object,
+    thumb: PropTypes.object,
+    track: PropTypes.object,
+    valueLabel: PropTypes.shape({
+      className: PropTypes.string,
+      components: PropTypes.shape({
+        Root: PropTypes.elementType,
+      }),
+      style: PropTypes.object,
+      value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+    }),
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */

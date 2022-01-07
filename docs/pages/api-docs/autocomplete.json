@@ -19,7 +19,10 @@
     "clearOnEscape": { "type": { "name": "bool" } },
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ clearIndicator?: object }" },
+      "default": "{}"
+    },
     "defaultValue": {
       "type": { "name": "custom", "description": "any" },
       "default": "props.multiple ? [] : null"
