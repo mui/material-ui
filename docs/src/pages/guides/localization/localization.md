@@ -28,9 +28,9 @@ const theme = createTheme(
 
 ### Example
 
-{{"demo": "pages/guides/localization/Locales.js", "hideToolbar": true}}
+{{"demo": "pages/guides/localization/Locales.js"}}
 
-> ⚠️ The `DataGrid` and `DataGridPro` components have their own locale files. To use them see the documentation about [localization for DataGrid](/components/data-grid/localization/).
+> ⚠️ For [`DataGrid` and `DataGridPro`](/components/data-grid/) components, they have their own [localization](/components/data-grid/localization/).
 
 ### Supported locales
 
