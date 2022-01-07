@@ -105,7 +105,7 @@ describe('createStyled', () => {
     const finalTheme = createTheme({
       typography: {
         button: {
-          lineHeight: 1.5,
+          fontSize: '20px',
         },
       },
       components: {
@@ -166,7 +166,7 @@ describe('createStyled', () => {
       expect(container.firstChild).toHaveComputedStyle({
         width: '120px',
         height: '48px',
-        lineHeight: '1.5',
+        fontSize: '20px',
       });
       expect(
         container.firstChild.firstChild, // startIcon

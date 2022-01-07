@@ -18,7 +18,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   unstable_strictMode?: boolean;
 }
 
-interface BaseTheme extends SystemTheme {
+export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette;
   shadows: Shadows;
