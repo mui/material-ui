@@ -18,7 +18,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   unstable_strictMode?: boolean;
 }
 
-export interface BaseTheme extends SystemTheme {
+interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette;
   shadows: Shadows;
@@ -27,6 +27,9 @@ export interface BaseTheme extends SystemTheme {
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
 }
+
+// shut off automatic exporting for the `BaseTheme` above
+export {};
 
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.

@@ -7,6 +7,9 @@ import {
 
 type Theme = Omit<MuiTheme, 'components'>;
 
+// shut off automatic exporting for the `Theme` above
+export {};
+
 export interface LabComponents {
   MuiCalendarPicker?: {
     defaultProps?: ComponentsProps['MuiCalendarPicker'];
