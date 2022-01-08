@@ -16,9 +16,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-#### 频率
-
-我们规定一次只能显示一个消息条。
+**Frequency**: Only one snackbar may be displayed at a time.
 
 ## 简单的消息条
 
