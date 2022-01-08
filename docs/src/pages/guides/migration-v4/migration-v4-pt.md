@@ -252,28 +252,28 @@ For some components, you may get a type error when passing `ref`. To avoid the e
 Here is an example:
 
 ```diff
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import ListItem from '@mui/material/ListItem';
+ import * as React from 'react';
+ import Card from '@mui/material/Card';
+ import ListItem from '@mui/material/ListItem';
 
-export default function SpecificRefType() {
-- const cardRef = React.useRef<HTMLElement>(null);
-+ const cardRef = React.useRef<HTMLDivElement>(null);
+ export default function SpecificRefType() {
+-  const cardRef = React.useRef<HTMLElement>(null);
++  const cardRef = React.useRef<HTMLDivElement>(null);
 
-- const listItemRef = React.useRef<HTMLElement>(null);
-+ const listItemRef = React.useRef<HTMLLIElement>(null);
-  return (
-    <div>
-      <Card ref={cardRef}></Card>
-      <ListItem ref={listItemRef}></ListItem>
-    </div>
-  );
-}
+-  const listItemRef = React.useRef<HTMLElement>(null);
++  const listItemRef = React.useRef<HTMLLIElement>(null);
+   return (
+     <div>
+       <Card ref={cardRef}></Card>
+       <ListItem ref={listItemRef}></ListItem>
+     </div>
+   );
+ }
 ```
 
 The list of components that expect a specific element type is as follows:
 
-##### `@mui/material`
+#### `@mui/material`
 
 - [Accordion](/api/accordion/) - `HTMLDivElement`
 - [Alert](/api/alert/) - `HTMLDivElement`
@@ -287,7 +287,7 @@ The list of components that expect a specific element type is as follows:
 - [Tabs](/api/tabs/) - `HTMLDivElement`
 - [ToggleButton](/api/toggle-button/) - `HTMLButtonElement`
 
-##### `@mui/lab`
+#### `@mui/lab`
 
 - [Timeline](/api/timeline/) - `HTMLUListElement`
 
@@ -1253,7 +1253,7 @@ As the core components use emotion as their style engine, the props used by emot
   > 
   > ```diff
   >   -import withMobileDialog from '@mui/material/withMobileDialog';
-  >   +import { useTheme, useMediaQuery } from '@mui/material';
+  >   +import { useTheme, useMediaQuery } from '@mui/material';
   > 
   >   function ResponsiveDialog(props) {
   >   - const { fullScreen } = props;
@@ -1730,12 +1730,14 @@ As the core components use emotion as their style engine, the props used by emot
 - Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2. This third-party library has introduced a lot of changes.<br /> You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
 
   - The CSS prefixes have changed:
+
     ```diff
-    popper: {
-      zIndex: 1,
-    - '&[x-placement*="bottom"] .arrow': {
-    + '&[data-popper-placement*="bottom"] .arrow': {
+     popper: {
+       zIndex: 1,
+    -  '&[x-placement*="bottom"] .arrow': {
+    +  '&[data-popper-placement*="bottom"] .arrow': {
     ```
+
   - Method names have changed:
 
     ```diff
