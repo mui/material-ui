@@ -16,9 +16,7 @@ Snackbars contêm uma única linha de texto diretamente relacionada à operaçã
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-#### Frequência
-
-Apenas um snackbar pode ser exibido por vez.
+**Frequency**: Only one snackbar may be displayed at a time.
 
 ## Snackbars simples
 
