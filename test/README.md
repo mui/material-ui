@@ -26,7 +26,7 @@ For all unit tests, please use the return value from `test/utils/createRenderer`
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 
-````js
+```js
 describe('test suite', () => {
   const { render } = createRenderer()
 
@@ -34,6 +34,7 @@ describe('test suite', () => {
     render(<input />);
   });
 })
+```
 
 For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
 the tests readable, and, more importantly, the message if they fail as descriptive as possible.
