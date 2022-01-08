@@ -137,7 +137,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 项目之间的边距以负边距的形式来实现。 这样做的话可能会产生意料之外的结果。 例如，当你想要在当前元素应用背景色的时候，就需要对父元素添加 `display: flex;`。
 
-### white-space: nowrap;
+### white-space: nowrap
 
 弹性布局元素的默认属性值为 `min-width：auto`。 当子元素使用 `white-space: nowrap;`时会出现布局冲突。 您可以从以下内容看到这个问题：
 
