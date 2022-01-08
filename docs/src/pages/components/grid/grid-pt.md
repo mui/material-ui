@@ -137,7 +137,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 Há uma limitação com a margem negativa que usamos para implementar o espaçamento entre itens. Isto pode levar a comportamentos inesperados. Por exemplo, para aplicar uma cor de fundo, você precisa aplicar `display: flex;` no elemento pai.
 
-### white-space: nowrap;
+### white-space: nowrap
 
 A configuração inicial em itens flexíveis é `min-width: auto`. Isto causa um conflito de posicionamento quando os elementos filhos estão usando `white-space: nowrap`. Você pode enfrentar o problema com:
 
