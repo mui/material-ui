@@ -78,9 +78,7 @@ These two packages implement the same interface, which makes it makes possible t
 
 ### Ready-to-use examples
 
-如果您正在使用 create-react-app，示例项目中有一个开箱即用的模板。
-
-如果您已经安装了 `styled-components` , 单独使用它是可行的。 目前有两种方式可供选择:
+If you are using create-react-app, there is a ready-to-use template in the example projects. You can use these `styled-component` examples as a reference:
 
 <!-- #default-branch-switch -->
 
@@ -90,4 +88,4 @@ These two packages implement the same interface, which makes it makes possible t
 
 > **注意**: `@emotion/react`, `@emotion/styled`, 和 `styled-components` 是 `@mui/materials` 的可选对等依赖，所以您需要自己安装它们。 更多信息请访问 [安装指南](/getting-started/installation/)。
 
-> **注意：** 这个 package-swap 方法与替换 React 的 [Preact](https://github.com/preactjs/preact) 完全相同。 Preact 开发团队记录了大量安装配置。 如果您被 MUI + styled-components 卡住，请不要犹豫，直接查看他们是如何解决问题的，因为您可能会在里面找到解决思路。
+This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with MUI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
