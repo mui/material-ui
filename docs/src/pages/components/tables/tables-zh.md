@@ -117,7 +117,7 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
 
-#### Customized look and feel
+### Customized look and feel
 
 {{"demo": "pages/components/tables/TableCustomized.js"}}
 
@@ -125,7 +125,7 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
-### Caption 字幕
+### Caption
 
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
