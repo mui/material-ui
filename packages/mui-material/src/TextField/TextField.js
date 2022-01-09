@@ -188,7 +188,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {label && (
+      {label != null && label !== '' && (
         <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
           {label}
         </InputLabel>
