@@ -145,7 +145,7 @@ export const PureDateInput = React.forwardRef(function PureDateInput(
       'aria-readonly': true,
       'aria-label': getOpenDialogAriaText(rawValue, utils),
       value: inputValue,
-      onClick: onOpen,
+      onClick: !props.readOnly ? onOpen : () => {},
       onKeyDown: onSpaceOrEnter(onOpen),
     },
     ...TextFieldProps,
