@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import TextField from '@mui/material/TextField';
-import { fireEvent, screen } from 'test/utils';
+import { fireEvent, screen, userEvent } from 'test/utils';
 import PickersDay from '@mui/lab/PickersDay';
 import CalendarPickerSkeleton from '@mui/lab/CalendarPickerSkeleton';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
@@ -290,5 +290,24 @@ describe('<MobileDatePicker />', () => {
     expect(onCloseMock.callCount).to.equal(1);
     expect(handleChange.callCount).to.equal(1);
     expect(adapterToUse.getDiff(handleChange.args[0][0], start)).to.equal(10);
+  });
+  ['readOnly', 'disabled'].forEach((prop) => {
+    it(`should not be opened when "Choose date" is clicked when ${prop}={true}`, () => {
+      const handleOpen = spy();
+      render(
+        <MobileDatePicker
+          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          {...{ [prop]: true }}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          open={false}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      userEvent.mousePress(screen.getByLabelText(/Choose date/));
+
+      expect(handleOpen.callCount).to.equal(0);
+    });
   });
 });
