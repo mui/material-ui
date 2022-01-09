@@ -121,6 +121,14 @@ describe('<TextField />', () => {
         outlinedInputClasses.notchedOutline,
       );
     });
+    it('should render `0` label properly', () => {
+      const { container } = render(
+        <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={0} required />,
+      );
+
+      const notch = container.querySelector('.notch legend');
+      expect(notch).to.have.text('0\u00a0*');
+    });
   });
 
   describe('prop: InputProps', () => {
