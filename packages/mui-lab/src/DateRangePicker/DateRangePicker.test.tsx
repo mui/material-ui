@@ -167,8 +167,8 @@ describe('<DateRangePicker />', () => {
     expect(onChange.callCount).to.equal(2);
     fireEvent.click(screen.getByRole('button', { name: /ok/i }));
     expect(onAccept.callCount).to.equal(1);
-    const acceptDates = onAccept.args[0][0].map((date: Date) => date.getTime());
-    expect(acceptDates[0]).to.equal(2070000000);
-    expect(acceptDates[1]).to.equal(2415600000);
+    const acceptDates = onAccept.args[0][0].map((date: Date) => date.toDateString());
+    expect(acceptDates[0]).to.equal('Sun Jan 25 1970');
+    expect(acceptDates[1]).to.equal('Thu Jan 29 1970');
   }).timeout(10000);
 });
