@@ -875,6 +875,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    input: PropTypes.object,
     mark: PropTypes.object,
     markLabel: PropTypes.object,
     rail: PropTypes.object,
