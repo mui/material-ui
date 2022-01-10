@@ -31,6 +31,16 @@ describe('parseMarkdown', () => {
       ).to.equal('Some description');
     });
 
+    it('remove backticks', () => {
+      expect(
+        getDescription(`
+<p class="description">
+  Some \`description\`
+</p>
+      `),
+      ).to.equal('Some description');
+    });
+
     it('should not be greedy', () => {
       expect(
         getDescription(`
