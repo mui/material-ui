@@ -2,7 +2,6 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { screen as logger } from '@testing-library/react';
 import DateRangePicker from '@mui/lab/DateRangePicker';
 import { act, describeConformance, fireEvent, screen, waitFor } from 'test/utils';
 import Box from '@mui/material/Box';
@@ -102,7 +101,6 @@ describe('<DateRangePicker />', () => {
     screen.getByRole('button', {
       name: /ok/i,
     });
-    logger.logTestingPlaygroundURL();
   }).timeout(10000);
   it('renders a custom toolbar', async () => {
     render(
