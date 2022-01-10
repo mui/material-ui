@@ -8,8 +8,7 @@ _Jan 10, 2022_
 
 A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
 
-- 📦 Added `Typography` and `Switch` to the new design system.
-- And more 🐛 bug fixes and 📚 documentation improvements.
+- A meaningful number of 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.2.8`
 
