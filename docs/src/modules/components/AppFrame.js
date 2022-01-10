@@ -173,7 +173,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
-      width: 300,
+      width: 280,
     },
   };
 });

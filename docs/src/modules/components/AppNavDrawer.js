@@ -25,8 +25,84 @@ import DoneRounded from '@mui/icons-material/DoneRounded';
 import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import IconImage from 'docs/src/components/icon/IconImage';
+import Link from 'docs/src/modules/components/Link';
+import ROUTES from 'docs/src/route';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 const savedScrollTop = {};
+
+const LinksWrapper = styled('div')(({ theme }) => {
+  return {
+    paddingLeft: theme.spacing(5.5),
+    paddingTop: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
+    '& > a': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      paddingTop: theme.spacing(0.5),
+      paddingBottom: theme.spacing(0.5),
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
+      borderRadius: theme.shape.borderRadius,
+      fontWeight: 500,
+      fontSize: theme.typography.pxToRem(14),
+      color:
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+      '&:hover': {
+        backgroundColor:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primaryDark[700], 0.4)
+            : theme.palette.grey[50],
+      },
+      '& svg': {
+        width: 18,
+        height: 18,
+      },
+    },
+  };
+});
+
+ProductSubMenu.propTypes = {
+  icon: PropTypes.element,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  href: PropTypes.string,
+};
+
+function ProductSubMenu(props) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: 2,
+      }}
+    >
+      <Box
+        sx={{
+          '& circle': {
+            fill: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[100],
+          },
+        }}
+      >
+        {props.icon}
+      </Box>
+      <div>
+        <Typography color="text.primary" variant="body2" fontWeight="700">
+          {props.name}
+        </Typography>
+        <Typography color="text.secondary" variant="body2">
+          {props.description}
+        </Typography>
+      </div>
+    </Box>
+  );
+}
 
 function ProductDrawerButton(props) {
   const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
@@ -73,8 +149,79 @@ function ProductDrawerButton(props) {
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
+        PaperProps={{
+          sx: {
+            width: { xs: 310, sm: 360 },
+            overflow: 'hidden',
+            borderRadius: '10px',
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+            bgcolor: (theme) =>
+              theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+            boxShadow: (theme) =>
+              `0px 4px 20px ${
+                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+              }`,
+            '& ul': {
+              margin: 0,
+              padding: 0,
+              listStyle: 'none',
+            },
+            '& li:not(:last-of-type)': {
+              borderBottom: '1px solid',
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[100], 0.08)
+                  : theme.palette.grey[100],
+            },
+            '& a': { textDecoration: 'none' },
+            '& li': {
+              p: 2,
+            },
+          },
+        }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <ul role="menu">
+          <li role="none">
+            <ProductSubMenu
+              role="menuitem"
+              icon={<IconImage name="product-core" />}
+              name="MUI Core"
+              description="Ready-to-use foundational components, free forever."
+            />
+            <LinksWrapper>
+              <Link href={ROUTES.baseDocs}>
+                Base <KeyboardArrowRight fontSize="small" />
+              </Link>
+              <Link href={ROUTES.materialDocs}>
+                Material Design <KeyboardArrowRight fontSize="small" />
+              </Link>
+              <Link href={ROUTES.systemDocs}>
+                System <KeyboardArrowRight fontSize="small" />
+              </Link>
+              <Link href={ROUTES.stylesLegacyDocs}>
+                Styles (legacy) <KeyboardArrowRight fontSize="small" />
+              </Link>
+            </LinksWrapper>
+          </li>
+          <li role="none">
+            <ProductSubMenu
+              role="menuitem"
+              icon={<IconImage name="product-advanced" />}
+              name={
+                <Box component="span" display="inline-flex" alignItems="center">
+                  MUI&nbsp;X
+                </Box>
+              }
+              description="Advanced and powerful components for complex use-cases."
+            />
+            <LinksWrapper>
+              <Link href={`/x/data-grid/getting-started/`}>
+                Data Grid <KeyboardArrowRight fontSize="small" />
+              </Link>
+            </LinksWrapper>
+          </li>
+        </ul>
       </Menu>
       {/* <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} /> */}
     </div>
@@ -207,7 +354,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
 
 const SwipeableDrawerPaperComponent = styled('div')(({ theme }) => {
   return {
-    width: 300,
+    width: 280,
     boxShadow: 'none',
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
