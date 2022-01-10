@@ -24,7 +24,6 @@ import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
 import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
@@ -64,13 +63,6 @@ const LinksWrapper = styled('div')(({ theme }) => {
   };
 });
 
-ProductSubMenu.propTypes = {
-  icon: PropTypes.element,
-  name: PropTypes.string,
-  description: PropTypes.string,
-  href: PropTypes.string,
-};
-
 function ProductSubMenu(props) {
   return (
     <Box
@@ -104,8 +96,14 @@ function ProductSubMenu(props) {
   );
 }
 
+ProductSubMenu.propTypes = {
+  description: PropTypes.string,
+  icon: PropTypes.element,
+  name: PropTypes.string,
+};
+
 function ProductDrawerButton(props) {
-  const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
+  // const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
