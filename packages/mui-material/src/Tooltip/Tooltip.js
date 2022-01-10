@@ -747,7 +747,12 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    arrow: PropTypes.object,
+    popper: PropTypes.object,
+    tooltip: PropTypes.object,
+    transition: PropTypes.object,
+  }),
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.

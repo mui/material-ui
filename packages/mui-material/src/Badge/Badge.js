@@ -348,7 +348,10 @@ Badge.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Badge.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    badge: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * If `true`, the badge is invisible.
    */
