@@ -79,6 +79,8 @@ async function run(argv) {
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,
     '--plugins',
+    // Make sure this plugin doesn't get picked up by the rollup build, rollup bundler would try to resolve
+    // non-existing javascript files.
     'babel-plugin-add-import-extension',
   ];
   if (largeFiles) {
