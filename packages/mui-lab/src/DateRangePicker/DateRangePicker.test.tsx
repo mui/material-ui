@@ -9,7 +9,8 @@ import { createPickerRenderer, wrapPickerMount } from '../internal/pickers/test-
 
 describe('<DateRangePicker />', () => {
   const { render } = createPickerRenderer();
-
+  const startDate = new Date(Date.UTC(1970, 0, 1, 0, 0, 0));
+  const endDate = new Date(Date.UTC(1970, 0, 12, 0, 0, 0));
   describeConformance(
     <DateRangePicker
       onChange={() => {}}
@@ -47,7 +48,7 @@ describe('<DateRangePicker />', () => {
           </React.Fragment>
         )}
         onChange={() => {}}
-        value={[new Date(0), new Date(1000000000)]}
+        value={[startDate, endDate]}
       />,
     );
     screen.getByRole('textbox', {
@@ -57,6 +58,7 @@ describe('<DateRangePicker />', () => {
     screen.getByRole('textbox', {
       name: /end/i,
     });
+    screen.getByDisplayValue('01/01/1970');
     screen.getByDisplayValue('01/12/1970');
   });
 
@@ -71,7 +73,7 @@ describe('<DateRangePicker />', () => {
           </React.Fragment>
         )}
         onChange={() => {}}
-        value={[new Date(0), new Date(1000000000)]}
+        value={[startDate, endDate]}
       />,
     );
     act(() => {
@@ -120,7 +122,7 @@ describe('<DateRangePicker />', () => {
           </React.Fragment>
         )}
         onChange={() => {}}
-        value={[new Date(0), new Date(1000000000)]}
+        value={[startDate, endDate]}
       />,
     );
     act(() => {
@@ -142,7 +144,7 @@ describe('<DateRangePicker />', () => {
         )}
         onChange={onChange}
         onAccept={onAccept}
-        value={[new Date(0), new Date(1000000000)]}
+        value={[startDate, endDate]}
       />,
     );
     fireEvent.click(screen.getByDisplayValue('01/01/1970'));
