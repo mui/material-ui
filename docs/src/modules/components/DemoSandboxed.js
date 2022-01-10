@@ -121,8 +121,21 @@ DemoFrame.propTypes = {
 
 // Use the default MUI theme for the demos
 const getTheme = (outerTheme) => {
+  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
+  const isCustomized =
+    outerTheme.palette.primary?.main &&
+    outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main;
   const resultTheme = createTheme(
-    { palette: { mode: outerTheme.palette.mode || 'light' } },
+    {
+      palette: {
+        mode: outerTheme.palette.mode || 'light',
+        ...(isCustomized && {
+          // Apply color from the color playground
+          primary: { main: outerTheme.palette.primary.main },
+          secondary: { main: outerTheme.palette.secondary.main },
+        }),
+      },
+    },
     // To make DensityTool playground works
     // check from MuiFormControl because brandingTheme does not customize this component
     outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
@@ -132,12 +145,6 @@ const getTheme = (outerTheme) => {
   }
   if (outerTheme.spacing) {
     resultTheme.spacing = outerTheme.spacing;
-  }
-  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
-  // Apply color from the color playground
-  if (outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main) {
-    resultTheme.palette.primary = outerTheme.palette.primary;
-    resultTheme.palette.secondary = outerTheme.palette.secondary;
   }
   return resultTheme;
 };
