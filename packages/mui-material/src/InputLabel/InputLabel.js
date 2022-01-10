@@ -88,6 +88,8 @@ const InputLabelRoot = styled(FormLabel, {
       transform: 'translate(12px, 13px) scale(1)',
     }),
     ...(ownerState.shrink && {
+      userSelect: 'none',
+      pointerEvents: 'auto',
       transform: 'translate(12px, 7px) scale(0.75)',
       maxWidth: 'calc(133% - 24px)',
       ...(ownerState.size === 'small' && {
@@ -105,6 +107,8 @@ const InputLabelRoot = styled(FormLabel, {
       transform: 'translate(14px, 9px) scale(1)',
     }),
     ...(ownerState.shrink && {
+      userSelect: 'none',
+      pointerEvents: 'auto',
       maxWidth: 'calc(133% - 24px)',
       transform: 'translate(14px, -9px) scale(0.75)',
     }),

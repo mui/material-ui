@@ -421,8 +421,8 @@ const shouldSpreadOwnerState = (Component) => {
   return !Component || !isHostComponent(Component);
 };
 
-const Slider = React.forwardRef(function Slider(inputProps, ref) {
-  const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
+const Slider = React.forwardRef(function Slider(sliderProps, ref) {
+  const props = useThemeProps({ props: sliderProps, name: 'MuiSlider' });
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
@@ -545,6 +545,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Input: PropTypes.elementType,
     Mark: PropTypes.elementType,
     MarkLabel: PropTypes.elementType,
     Rail: PropTypes.elementType,
