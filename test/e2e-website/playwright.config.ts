@@ -8,6 +8,9 @@ const config: PlaywrightTestConfig<TestFixture> = {
     threshold: 60 * 1000, // 1min
   },
   use: {
+    launchOptions: {
+      slowMo: 50,
+    },
     baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || 'https://mui.com',
   },
 };
