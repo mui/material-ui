@@ -2,6 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { screen as logger } from '@testing-library/react';
 import DateRangePicker from '@mui/lab/DateRangePicker';
 import { act, describeConformance, fireEvent, screen, waitFor } from 'test/utils';
 import Box from '@mui/material/Box';
@@ -89,7 +90,20 @@ describe('<DateRangePicker />', () => {
     });
     expect(screen.getAllByText('S')).to.have.length(2);
     expect(screen.getAllByText('T')).to.have.length(2);
-  });
+    screen.getByRole('button', {
+      name: /previous month/i,
+    });
+    screen.getByRole('button', {
+      name: /next month/i,
+    });
+    screen.getByRole('button', {
+      name: /cancel/i,
+    });
+    screen.getByRole('button', {
+      name: /ok/i,
+    });
+    logger.logTestingPlaygroundURL();
+  }).timeout(10000);
   it('renders a custom toolbar', async () => {
     render(
       <DateRangePicker
@@ -156,5 +170,5 @@ describe('<DateRangePicker />', () => {
     const acceptDates = onAccept.args[0][0].map((date: Date) => date.getTime());
     expect(acceptDates[0]).to.equal(2070000000);
     expect(acceptDates[1]).to.equal(2415600000);
-  });
+  }).timeout(10000);
 });
