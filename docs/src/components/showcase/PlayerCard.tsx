@@ -11,6 +11,10 @@ import FastForwardRounded from '@mui/icons-material/FastForwardRounded';
 import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 
+const primary = {
+  300: '#66B2FF',
+  700: '#0059B2',
+};
 const primaryDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
@@ -50,10 +54,10 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
   /*
-   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
+   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode work in MUI's documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
+   * For more details about toggling modes, go to: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -75,7 +79,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
           grey,
         },
         shape: {
-          borderRadius: 8,
+          borderRadius: 10,
         },
         spacing: 10,
         typography: {
@@ -113,6 +117,13 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
               fontSize: 'small',
             },
           },
+          MuiLink: {
+            styleOverrides: {
+              root: {
+                color: mode === 'dark' ? primary[300] : primary[700],
+              },
+            },
+          },
           MuiPopover: {
             styleOverrides: {
               paper: {
@@ -122,7 +133,6 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
                 color: mode === 'dark' ? grey[100] : grey[900],
                 backgroundImage: 'none',
                 backgroundColor: mode === 'dark' ? grey[900] : '#fff',
-                border: `1px solid ${mode === 'dark' ? grey[800] : grey[200]}`,
                 boxShadow: `0px 4px 20px ${
                   mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
                 }`,
@@ -149,7 +159,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
           >
             <img
               alt="Beside Myself album cover"
-              style={{ borderRadius: 5, objectFit: 'cover' }}
+              style={{ borderRadius: 6, objectFit: 'cover' }}
               src="/static/images/cards/basement-beside-myself.jpeg"
               width="124"
               height="124"
@@ -199,7 +209,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
                   <Typography variant="body2" fontWeight={500}>
                     Card component
                   </Typography>
-                  <Typography sx={{ mt: 0.5, fontSize: 12 }}>
+                  <Typography sx={{ mt: 0.5, fontSize: 13 }}>
                     Visit the{' '}
                     <Link href="/components/cards/#customization">Card customization section</Link>{' '}
                     to learn how to customize it so it look lke this.

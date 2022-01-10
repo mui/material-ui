@@ -107,6 +107,13 @@ export default function TaskCard({ theme: externalTheme }: { theme?: Theme }) {
               },
             },
           },
+          MuiLink: {
+            styleOverrides: {
+              root: {
+                color: mode === 'dark' ? primary[300] : primary[700],
+              },
+            },
+          },
           MuiPopover: {
             styleOverrides: {
               paper: {
@@ -116,7 +123,6 @@ export default function TaskCard({ theme: externalTheme }: { theme?: Theme }) {
                 color: mode === 'dark' ? grey[100] : grey[900],
                 backgroundImage: 'none',
                 backgroundColor: mode === 'dark' ? grey[900] : '#fff',
-                border: `1px solid ${mode === 'dark' ? grey[800] : grey[200]}`,
                 boxShadow: `0px 4px 20px ${
                   mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
                 }`,
@@ -171,7 +177,7 @@ export default function TaskCard({ theme: externalTheme }: { theme?: Theme }) {
                 <Typography variant="body2" fontWeight={500}>
                   Card component
                 </Typography>
-                <Typography sx={{ mt: 0.5, fontSize: 12 }}>
+                <Typography sx={{ mt: 0.5, fontSize: 13 }}>
                   Visit the{' '}
                   <Link href="/components/cards/#customization">Card customization section</Link> to
                   learn how to customize it so it look lke this.
@@ -195,7 +201,7 @@ export default function TaskCard({ theme: externalTheme }: { theme?: Theme }) {
               <CodeRounded color="primary" fontSize="small" />
             </Box>
             <Typography variant="h6" component="div" sx={{ mt: 1.5, fontWeight: 500 }}>
-              Check the docs for getting every component API
+              Develop custom theme for MUI components
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', mb: 1 }}>

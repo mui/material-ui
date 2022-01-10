@@ -92,3 +92,11 @@ gain depth while clicked or touched.
 ## Accessibility
 
 If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+
+## Customization
+
+To learn more about customization, check the [how-to-customize](/customization/how-to-customize/) page.
+
+As a reference, here is the customized chip used in MUI's website home page.
+
+{{"demo": "pages/components/chips/CustomizedChip.js", "bg": true}}

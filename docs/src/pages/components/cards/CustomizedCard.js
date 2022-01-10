@@ -18,7 +18,7 @@ const primary = {
   400: '#3399FF',
   main: '#007FFF',
   500: '#007FFF',
-  600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
+  600: '#0072E5',
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',
@@ -132,7 +132,7 @@ export default function CustomizedCard() {
               component="div"
               sx={{ mt: 1.5, fontWeight: 500 }}
             >
-              Check the docs for getting every component API
+              Develop custom theme for MUI components
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', mb: 1 }}>

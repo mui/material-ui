@@ -78,6 +78,10 @@ You can learn more about this in the [overrides documentation page](/customizati
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
+Here is the customized toggle buttons used in MUI's website home page.
+
+{{"demo": "pages/components/toggle-button/CustomizedToggleButton.js", "bg": true}}
+
 ## Accessibility
 
 ### ARIA
