@@ -30,18 +30,28 @@ const savedScrollTop = {};
 
 function ProductDrawerButton(props) {
   const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div>
       <Button
         aria-controls="drawer-open-button"
         aria-haspopup="true"
-        onClick={() => setProductsDrawerOpen(true)}
-        endIcon={<KeyboardArrowRightRoundedIcon />}
+        // onClick={() => setProductsDrawerOpen(true)}
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
         sx={(theme) => ({
           py: 0.1,
           minWidth: 0,
-          fontSize: theme.typography.pxToRem(12.5),
+          fontSize: theme.typography.pxToRem(13),
           fontWeight: 500,
           lineHeight: 0,
           color:
@@ -55,7 +65,18 @@ function ProductDrawerButton(props) {
       >
         {props.productName}
       </Button>
-      <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} />
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+      </Menu>
+      {/* <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} /> */}
     </div>
   );
 }
@@ -87,9 +108,16 @@ const ProductIdentifier = ({ name, metadata, versionSelector }) => (
       >
         {metadata}
       </Typography>
-      <ProductDrawerButton productName={name} />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'end',
+        }}
+      >
+        <ProductDrawerButton productName={name} />
+        {versionSelector}
+      </Box>
     </div>
-    {versionSelector}
   </Box>
 );
 
@@ -281,32 +309,21 @@ function AppNavDrawer(props) {
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
             }}
-            size="small"
-            variant="outlined"
             endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
             sx={(theme) => ({
+              py: 0.1,
+              minWidth: 0,
               fontSize: theme.typography.pxToRem(13),
               fontWeight: 500,
-              py: 0.4,
-              px: 1,
-              border: `1px solid  ${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[200]
-              }`,
+              lineHeight: 0,
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
-              '&:hover': {
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[300],
-                background:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
+                  : theme.palette.primary[600],
+              '& svg': {
+                ml: -0.6,
+                width: 18,
+                height: 18,
               },
             })}
           >
