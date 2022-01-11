@@ -137,6 +137,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const MarkLabel = components.MarkLabel ?? 'span';
   const markLabelProps = appendOwnerState(MarkLabel, componentsProps.markLabel, ownerState);
 
+  const Input = components.Input || 'input';
+  const inputProps = appendOwnerState(Input, componentsProps.input, ownerState);
+  const hiddenInputProps = getHiddenInputProps();
+
   const classes = useUtilityClasses(ownerState);
 
   return (
@@ -242,9 +246,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   ...thumbProps.style,
                 }}
               >
-                {/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
-                <input
-                  {...getHiddenInputProps()}
+                <Input
+                  {...hiddenInputProps}
                   data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
                   aria-valuenow={scale(value)}
@@ -252,6 +255,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                     getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
                   }
                   value={values[index]}
+                  {...(!isHostComponent(Input) && {
+                    ownerState: { ...ownerState, ...inputProps.ownerState },
+                  })}
+                  {...inputProps}
+                  style={{
+                    ...hiddenInputProps.style,
+                    ...inputProps.style,
+                  }}
                 />
               </Thumb>
             </ValueLabelComponent>
