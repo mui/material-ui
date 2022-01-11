@@ -16,7 +16,6 @@ import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NProgressBar from '@mui/docs/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
-import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
@@ -250,7 +249,6 @@ function AppFrame(props) {
       />
       {children}
       <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
-      <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} />
     </RootDiv>
   );
 }

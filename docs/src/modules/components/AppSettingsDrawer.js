@@ -16,7 +16,6 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
-// import Link from 'docs/src/modules/components/Link';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import NoSsr from '@mui/material/NoSsr';
@@ -269,14 +268,6 @@ function AppSettingsDrawer(props) {
         >
           {t('settings.editWebsiteColors')}
         </Button>
-        {/* <Link
-          href="/customization/color/#playground"
-          data-ga-event-category="settings"
-          data-ga-event-action="colors"
-          variant="body2"
-        >
-          {t('settings.editWebsiteColors')}
-        </Link> */}
       </Box>
     </Drawer>
   );

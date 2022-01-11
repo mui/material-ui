@@ -22,7 +22,6 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
@@ -237,7 +236,6 @@ function ProductDrawerButton(props) {
           </LinksWrapper>
         </li>
       </Menu>
-      {/* <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} /> */}
     </div>
   );
 }
@@ -452,7 +450,6 @@ function AppNavDrawer(props) {
   const { activePage, pages } = React.useContext(PageContext);
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
   const userLanguage = useUserLanguage();
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useTranslate();
@@ -685,7 +682,6 @@ function AppNavDrawer(props) {
           </PersistScroll>
         </StyledDrawer>
       )}
-      <AppProductsDrawer open={productsDrawerOpen} onClose={() => setProductsDrawerOpen(false)} />
     </nav>
   );
 }
