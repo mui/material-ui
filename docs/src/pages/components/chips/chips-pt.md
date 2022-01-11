@@ -30,19 +30,19 @@ Você pode usar as seguintes ações.
 
 ### Clicável
 
-{{"demo": "pages/components/chips/ClickableChips.js"}}
+{{"demo": "pages/components/chips/ClickeableChips.js"}}
 
 ### Deletável
 
-{{"demo": "pages/components/chips/DeletableChips.js"}}
+{{"demo": "pages/components/chips/DeleteableChips.js"}}
 
 ### Clicável e deletável
 
-{{"demo": "pages/components/chips/ClickableAndDeletableChips.js"}}
+{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
 
 ### Link clicável
 
-{{"demo": "pages/components/chips/ClickableLinkChips.js"}}
+{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
 
 ### Ícone de exclusão personalizado
 
@@ -64,7 +64,7 @@ Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
 
 ## Color chip
 
-You can use the `color` prop to define a color from theme palette.
+You can use the `color` prop to define a primary or secondary color.
 
 {{"demo": "pages/components/chips/ColorChips.js"}}
 
@@ -84,6 +84,6 @@ An example of rendering multiple chips from an array of values. Deletando um chi
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
-## Accessibility
+## Acessibilidade
 
 Se o Chip é deletável ou clicável, então é como um botão na ordem da tabulação. Quando o Chip está focado (ex. quando tabulando) pressionando (evento `keyup`) `Backspace` ou `Delete` irá chamar o evento manipulador `onDelete`, enquanto liberando com a tecla `Escape` irá tirar o foco do Chip.

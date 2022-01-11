@@ -22,7 +22,10 @@
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ badge?: object, root?: object }" },
+      "default": "{}"
+    },
     "invisible": { "type": { "name": "bool" } },
     "max": { "type": { "name": "number" }, "default": "99" },
     "overlap": {
@@ -51,6 +54,17 @@
       "badge",
       "dot",
       "standard",
+      "anchorOriginTopRight",
+      "anchorOriginBottomRight",
+      "anchorOriginTopLeft",
+      "anchorOriginBottomLeft",
+      "invisible",
+      "colorPrimary",
+      "colorSecondary",
+      "colorError",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
       "anchorOriginTopRightRectangular",
       "anchorOriginBottomRightRectangular",
       "anchorOriginTopLeftRectangular",
@@ -59,13 +73,8 @@
       "anchorOriginBottomRightCircular",
       "anchorOriginTopLeftCircular",
       "anchorOriginBottomLeftCircular",
-      "invisible",
-      "colorPrimary",
-      "colorSecondary",
-      "colorError",
-      "colorInfo",
-      "colorSuccess",
-      "colorWarning"
+      "overlapRectangular",
+      "overlapCircular"
     ],
     "globalClasses": {},
     "name": "MuiBadge"

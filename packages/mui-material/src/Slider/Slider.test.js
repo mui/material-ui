@@ -1183,4 +1183,37 @@ describe('<Slider />', () => {
       expect(thumb).to.have.class(classes.thumbSizeSmall);
     });
   });
+
+  describe('prop: components', () => {
+    it('should render custom components if specified', () => {
+      // ARRANGE
+      const dataTestId = 'slider-input-testid';
+      const name = 'custom-input';
+      const CustomInput = ({ ownerState, ...props }) => (
+        <input {...props} data-testid={dataTestId} name={name} />
+      );
+
+      // ACT
+      const { getByTestId } = render(<Slider components={{ Input: CustomInput }} />);
+
+      // ASSERT
+      expect(getByTestId(dataTestId).name).to.equal(name);
+    });
+  });
+
+  describe('prop: componentsProps', () => {
+    it('should forward the props to their respective components', () => {
+      // ARRANGE
+      const dataTestId = 'slider-input-testid';
+      const id = 'slider-input-id';
+
+      // ACT
+      const { getByTestId } = render(
+        <Slider defaultValue={10} componentsProps={{ input: { 'data-testid': dataTestId, id } }} />,
+      );
+
+      // ASSERT
+      expect(getByTestId(dataTestId).id).to.equal(id);
+    });
+  });
 });

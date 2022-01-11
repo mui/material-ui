@@ -27,7 +27,9 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
      * It can be used to listen for the loading error event.
      */
-    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement> & {
+      sx?: SxProps<Theme>;
+    };
     /**
      * The `sizes` attribute for the `img` element.
      */

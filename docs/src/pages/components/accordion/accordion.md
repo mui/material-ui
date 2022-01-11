@@ -45,8 +45,8 @@ accordions it might be a good idea to change this default behavior by enabling t
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-As with any performance optimization this is not a silver bullet. Be sure to identify
-bottlenecks first and then try out these optimization strategies.
+As with any performance optimization this is not a silver bullet.
+Be sure to identify bottlenecks first and then try out these optimization strategies.
 
 ## Accessibility
 

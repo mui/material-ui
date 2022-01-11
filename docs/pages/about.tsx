@@ -215,19 +215,9 @@ const teamMembers: Array<Profile> = [
     github: 'mbrookes',
   },
   {
-    name: 'Sebastian Silbermann',
-    src: '/static/branding/about/sebastian.png',
-    title: 'Core components team',
-    location: 'Dresden, Germany',
-    country: 'de',
-    about: 'Everything Open Source',
-    twitter: 'sebsilbermann',
-    github: 'eps1lon',
-  },
-  {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.png',
-    title: 'Core components team',
+    title: 'MUI Core engineer',
     location: 'Skopje, North Macedonia',
     country: 'mk',
     about: 'I do karate 🥋 and read 📚. A lot!',
@@ -237,7 +227,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danail Hadjiatanasov',
     src: '/static/branding/about/danail.png',
-    title: 'Advanced components team',
+    title: 'MUI X engineer',
     location: 'Amsterdam, Netherlands',
     country: 'nl',
     about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
@@ -247,7 +237,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Matheus Wichman',
     src: '/static/branding/about/matheus.png',
-    title: 'Advanced components team',
+    title: 'MUI X engineer',
     location: 'Esteio, Brazil',
     country: 'br',
     about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
@@ -256,7 +246,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Michał Dudak',
     src: '/static/branding/about/michal.png',
-    title: 'Core components team',
+    title: 'MUI Core engineer',
     location: 'Silesia, Poland',
     country: 'pl',
     about: 'Motorcyclist, gamer, and coder (UI and more!)',
@@ -266,7 +256,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Siriwat Kunaporn',
     src: '/static/branding/about/siriwat.png',
-    title: 'Core components team',
+    title: 'MUI Core engineer',
     location: 'Bangkok, Thailand',
     country: 'th',
     about: 'UI Lover and ⛷ skiing newbie.',
@@ -286,7 +276,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Flavien Delangle',
     src: '/static/branding/about/flavien.png',
-    title: 'Advanced components team',
+    title: 'MUI X engineer',
     location: 'Lille, France',
     about: 'Love cycling 🚴‍♂️ and reading 📚',
     country: 'fr',
@@ -295,16 +285,16 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Benny Joo',
     src: '/static/branding/about/benny.png',
-    title: 'Core components team',
+    title: 'MUI Core engineer',
     location: 'London, UK',
-    country: 'kr',
+    country: 'gb',
     about: 'Love reading 📚 and working out 🏋️‍♂️',
     github: 'hbjORbj',
   },
   {
     src: '/static/branding/about/alexandre.png',
     name: 'Alexandre Fauquette',
-    title: 'Advanced components team',
+    title: 'MUI X engineer',
     location: 'Nancy, France',
     country: 'fr',
     about: 'Love hacking and cycling 🚴‍♂️',
@@ -314,7 +304,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
-    title: 'Studio team',
+    title: 'MUI Studio engineer',
     location: 'New Delhi, India',
     country: 'in',
     about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
@@ -324,7 +314,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
-    title: 'Studio team',
+    title: 'MUI Studio engineer',
     location: 'Brussels, Belgium',
     country: 'be',
     about: 'Always curious, I enjoy cinema, and hiking',
@@ -333,22 +323,41 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/prakhar.png',
     name: 'Prakhar Gupta',
-    title: 'Studio team',
+    title: 'MUI Studio PM',
     location: 'New Delhi, India',
     country: 'in',
     about: 'Into sports and hiking!',
     twitter: 'gprakhar123',
   },
+  {
+    src: '/static/branding/about/jose.png',
+    name: 'José Freitas',
+    title: 'Advanced components team',
+    location: 'Augsburg, Germany',
+    country: 'br',
+    about: 'Art, fiction',
+    twitter: 'zehdefreitas',
+    github: 'joserodolfofreitas',
+  },
 ];
 
 const contributors = [
   {
-    name: 'Danica Shen',
-    github: 'DDDDDanica',
-    title: 'Chinese docs',
-    location: 'Ireland',
-    country: 'ie',
-    src: 'https://avatars.githubusercontent.com/u/12678455',
+    name: 'Sebastian Silbermann',
+    github: 'eps1lon',
+    title: 'MUI Core, everything Open Source',
+    location: 'Berlin, Germany',
+    country: 'de',
+    src: 'https://avatars.githubusercontent.com/u/12292047',
+    twitter: 'sebsilbermann',
+  },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    title: 'Stack Overflow top contributor',
+    location: 'Minnesota, United States',
+    country: 'us',
+    src: 'https://avatars.githubusercontent.com/u/287804',
   },
   {
     name: 'Yan Lee',
@@ -367,12 +376,12 @@ const contributors = [
     src: 'https://avatars.githubusercontent.com/u/29267813',
   },
   {
-    name: 'Ryan Cogswell',
-    github: 'ryancogswell',
-    title: 'Stack Overflow top contributor',
-    location: 'Minnesota, United States',
-    country: 'us',
-    src: 'https://avatars.githubusercontent.com/u/287804',
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    title: 'Chinese docs',
+    location: 'Ireland',
+    country: 'ie',
+    src: 'https://avatars.githubusercontent.com/u/12678455',
   },
 ];
 
@@ -381,7 +390,7 @@ const emeriti = [
     name: 'Hai Nguyen',
     github: 'hai-cea',
     twitter: 'haicea',
-    title: 'v0.x creator',
+    title: 'MUI Core, v0.x creator',
     location: 'Dallas, Texas, US',
     country: 'us',
     src: 'https://avatars.githubusercontent.com/u/2007468',
@@ -389,7 +398,7 @@ const emeriti = [
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
-    title: 'v1.x co-creator',
+    title: 'MUI Core, v1.x co-creator',
     location: 'Toronto, ON',
     country: 'us',
     src: 'https://avatars.githubusercontent.com/u/4420103',
@@ -398,7 +407,7 @@ const emeriti = [
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    title: 'Core focus, flow',
+    title: 'MUI Core, flow',
     location: 'Franklin, Tennessee, US',
     country: 'us',
     src: 'https://avatars.githubusercontent.com/u/136564',
@@ -407,7 +416,7 @@ const emeriti = [
     name: 'Sebastian Sebald',
     github: 'sebald',
     twitter: 'sebastiansebald',
-    title: 'Core focus',
+    title: 'MUI Core',
     location: 'Freiburg, Germany',
     country: 'de',
     src: 'https://avatars.githubusercontent.com/u/985701',
@@ -415,7 +424,7 @@ const emeriti = [
   {
     name: 'Ken Gregory',
     github: 'kgregory',
-    title: 'Core focus',
+    title: 'MUI Core',
     location: 'New Jersey, US',
     country: 'us',
     src: 'https://avatars.githubusercontent.com/u/3155127',
@@ -424,7 +433,7 @@ const emeriti = [
     name: 'Tom Crockett',
     github: 'pelotom',
     twitter: 'pelotom',
-    title: 'Core focus',
+    title: 'MUI Core',
     location: 'Los Angeles, California, US',
     country: 'us',
     src: 'https://avatars.githubusercontent.com/u/128019',
@@ -433,7 +442,7 @@ const emeriti = [
     name: 'Maik Marschner',
     github: 'leMaik',
     twitter: 'leMaikOfficial',
-    title: 'Core focus',
+    title: 'MUI Core',
     location: 'Hannover, Germany',
     country: 'de',
     src: 'https://avatars.githubusercontent.com/u/5544859',
@@ -442,7 +451,7 @@ const emeriti = [
     name: 'Oleg Slobodskoi',
     github: 'kof',
     twitter: 'oleg008',
-    title: 'JSS',
+    title: 'MUI Core, JSS',
     location: 'Berlin, Germany',
     country: 'de',
     src: 'https://avatars.githubusercontent.com/u/52824',
@@ -451,7 +460,7 @@ const emeriti = [
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
     twitter: 'dmtrKovalenko',
-    title: 'Date pickers',
+    title: 'MUI X, date pickers',
     location: 'Kharkiv, Ukraine',
     country: 'ua',
     src: 'https://avatars.githubusercontent.com/u/16926049',
@@ -460,7 +469,7 @@ const emeriti = [
     name: 'Josh Wooding',
     github: 'joshwooding',
     twitter: 'JoshWooding_',
-    title: 'Core focus, J.P. Morgan',
+    title: 'MUI Core, J.P. Morgan',
     location: 'London, UK',
     country: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
@@ -653,13 +662,16 @@ function AboutContent() {
                 structured feedback, you&apos;re always invited to participate to share your
                 thoughts.
               </Typography>
-              <Link
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
                 href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
-                variant="body2"
+                endIcon={<KeyboardArrowRightRounded />}
               >
                 Leave your feedback{' '}
-                <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              </Button>
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
@@ -705,9 +717,16 @@ function AboutContent() {
                   <Link href="https://stackoverflow.com/questions/tagged/mui">StackOverflow</Link>.
                 </li>
               </Box>
-              <Link href="https://github.com/mui-org/material-ui" variant="body2">
-                See the repository <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
+                href="https://github.com/mui-org/material-ui"
+                endIcon={<KeyboardArrowRightRounded />}
+              >
+                See the repository
+              </Button>
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
@@ -724,10 +743,16 @@ function AboutContent() {
                 All funds donated are managed transparently, and Sponsors receive recognition in the
                 README and on the MUI home page.
               </Typography>
-              <Link href="https://opencollective.com/mui" variant="body2">
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
+                href="https://opencollective.com/mui"
+                endIcon={<KeyboardArrowRightRounded />}
+              >
                 See Open Collective{' '}
-                <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              </Button>
             </Widget>
           </Grid>
         </Grid>

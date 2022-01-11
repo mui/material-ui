@@ -29,13 +29,13 @@ Multiple selection allows for logically-grouped options, like bold, italic, and 
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
-## Size
+## Size 大小
 
 For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Color
+## Color 颜色
 
 {{"demo": "pages/components/toggle-button/ColorToggleButton.js"}}
 
@@ -50,15 +50,15 @@ The buttons can be stacked vertically with the `orientation` prop set to "vertic
 If you want to enforce that at least one button must be active, you can adapt your handleChange function.
 
 ```jsx
-const handleAlignment = (event, newAlignment) => {
-  if (newAlignment !== null) {
-    setAlignment(newAlignment);
+const handleFormat = (event, newFormats) => {
+  if (newFormats.length) {
+    setFormats(newFormats);
   }
 };
 
-const handleDevices = (event, newDevices) => {
-  if (newDevices.length) {
-    setDevices(newDevices);
+const handleAlignment = (event, newAlignment) => {
+  if (newAlignment !== null) {
+    setAlignment(newAlignment);
   }
 };
 ```
@@ -69,19 +69,19 @@ const handleDevices = (event, newDevices) => {
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customization
+## 自定义切换按钮
 
 Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
-## Accessibility
+## 无障碍设计
 
 ### ARIA
 
 - ToggleButtonGroup 具有 `role="group"`。 请您提供一个可访问的标签，标签包含 `aria-label="label"`，`aria-labelledby="id"` 或 `<label>`。
 - ToggleButton 根据按钮的状态来设置 `aria-pressed="<bool>"`。 您应该用 `aria-label` 标记每个按钮。
 
-### Keyboard
+### 键盘输入
 
 At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.

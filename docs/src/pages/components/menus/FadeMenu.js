@@ -18,7 +18,7 @@ export default function FadeMenu() {
     <div>
       <Button
         id="fade-button"
-        aria-controls="fade-menu"
+        aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}

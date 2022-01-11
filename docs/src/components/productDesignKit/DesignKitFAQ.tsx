@@ -3,7 +3,8 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import InternalLink from 'docs/src/modules/components/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -39,10 +40,8 @@ const faqData = [
     detail: (
       <React.Fragment>
         We&apos;ll send you an email when a new release is available. You can access the item on the{' '}
-        <InternalLink href="https://material-ui.com/store/account/downloads/">
-          download
-        </InternalLink>{' '}
-        page of your store account. You can find a detailed description of the changes under the
+        <InternalLink href="https://mui.com/store/account/downloads/">download</InternalLink> page
+        of your store account. You can find a detailed description of the changes under the
         &quot;Changelog&quot; tab on this page.
       </React.Fragment>
     ),
@@ -169,9 +168,16 @@ export default function DesignKitFAQ() {
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
               From community help to premium business support, we’re here to help.
             </Typography>
-            <Link href="mailto:sales@mui.com" variant="body2">
+            <Button
+              component="a"
+              // @ts-expect-error
+              variant="link"
+              size="small"
+              href="mailto:sales@mui.com"
+              endIcon={<KeyboardArrowRightRounded />}
+            >
               Contact sales
-            </Link>
+            </Button>
           </Paper>
         </Grid>
       </Grid>

@@ -43,7 +43,7 @@ export default function DiamondSponsors() {
   const spotIsAvailable = maxNumberOfDiamondSponsors > DIAMONDs.length;
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <Typography
           component="h3"
           variant="h5"

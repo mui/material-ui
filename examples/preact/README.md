@@ -18,12 +18,6 @@ npm install
 npm run start
 ```
 
-or:
-
-<!-- #default-branch-switch -->
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/preact)
-
 ## The idea behind the example
 
 The project uses [Preact](https://github.com/developit/preact), which is a fast 3kB alternative to React with the same modern API.

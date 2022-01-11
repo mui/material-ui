@@ -161,4 +161,5 @@ export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
 export { default as unstable_createCssVarsProvider } from './cssVars';
+export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export * from './cssVars';

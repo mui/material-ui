@@ -70,25 +70,46 @@ export default function XHero() {
       }}
       right={
         <React.Fragment>
-          <Paper sx={{ mb: { md: 2, lg: 3, xl: 4 } }}>
+          <Paper
+            sx={{
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+              border: (theme) =>
+                `1px solid ${
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.grey[200]
+                }`,
+              boxShadow: (theme) =>
+                `0px 4px 20px ${
+                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(170, 180, 190, 0.3)'
+                }`,
+              mb: { md: 2, lg: 3, xl: 4 },
+            }}
+          >
             <Box
               sx={{
                 textAlign: 'center',
-                py: 1,
+                py: 1.5,
                 position: 'relative',
-                borderBottom: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
+                borderRadius: 0,
+                borderBottom: (theme) =>
+                  `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[200]
+                  }`,
               }}
             >
-              <Typography color="primary.main" fontWeight={700}>
-                Trades, October 2020
-              </Typography>
+              <Typography fontWeight={500}>Trades, October 2020</Typography>
             </Box>
             <Box
               sx={{
                 height: { md: 300, xl: 370 },
                 '& .MuiDataGrid-root': {
+                  borderRadius: 1,
+                  border: 0,
+                  color: 'text.secondary',
                   '& .MuiCheckbox-root': {
                     p: 0.5,
                     '& > svg': {
@@ -97,6 +118,7 @@ export default function XHero() {
                   },
                   '& .MuiDataGrid-columnHeaderTitleContainer': {
                     padding: 0,
+                    color: 'text.primary',
                   },
                   '& .MuiDataGrid-columnHeaderTitle': {
                     flexGrow: 1,
@@ -141,7 +163,27 @@ export default function XHero() {
               p: { md: 2, lg: 3, xl: 0 },
             }}
           >
-            <Paper sx={{ minWidth: 300, mr: { md: 2, lg: 3, xl: 4 }, flexGrow: 1 }}>
+            <Paper
+              sx={{
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+                border: (theme) =>
+                  `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[200]
+                  }`,
+                boxShadow: (theme) =>
+                  `0px 4px 20px ${
+                    theme.palette.mode === 'dark'
+                      ? 'rgba(0, 0, 0, 0.3)'
+                      : 'rgba(170, 180, 190, 0.3)'
+                  }`,
+                minWidth: 300,
+                mr: { md: 2, lg: 3, xl: 4 },
+                flexGrow: 1,
+              }}
+            >
               <Box sx={{ p: 2 }}>
                 <Typography fontWeight={500}>Cool Project</Typography>
               </Box>
@@ -150,7 +192,24 @@ export default function XHero() {
             </Paper>
             <Paper
               sx={{
-                '& > div': { borderRadius: 1, overflow: 'auto', bgcolor: 'transparent' },
+                border: (theme) =>
+                  `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[200]
+                  }`,
+                boxShadow: (theme) =>
+                  `0px 4px 20px ${
+                    theme.palette.mode === 'dark'
+                      ? 'rgba(0, 0, 0, 0.3)'
+                      : 'rgba(170, 180, 190, 0.3)'
+                  }`,
+                '& > div': {
+                  borderRadius: 1,
+                  overflow: 'auto',
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+                },
                 '& .MuiTypography-subtitle1': {
                   fontSize: '0.875rem',
                 },

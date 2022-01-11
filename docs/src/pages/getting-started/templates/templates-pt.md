@@ -18,8 +18,8 @@ Se, ao usar estes exemplos você faz mudanças ou melhorias que poderiam melhora
 
 Até agora, temos demonstrações para um painel, página de login, página de inscrição, página de blog, fluxo de check-out, página de álbum, página de preços e uma página de rodapé.
 
-## Temas Premium
+## Premium templates
 
-Procurando por algo mais? Você pode encontrar modelos completos & temas na <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">seção de modelos premium</a>.
+Procurando por algo mais? You can find complete templates & themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
 
-<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="modelos react" /></a>
+<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="modelos react" /></a>

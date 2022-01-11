@@ -34,7 +34,7 @@ so we know they love us really. 😘
 
 ### 2. Who do you think would most benefit from MUI?
 
-This word cloud was generated with [wordclouds.com](https://wordclouds.com).
+This word cloud was generated with wordclouds.com.
 
 <img src="/static/blog/2019-survey/2.png" style="display: block; margin: 0 auto;" alt="Word cloud of who would benefit most" />
 
@@ -219,11 +219,11 @@ A nice bell curve, with the majority of developers having 1 to 5 years experienc
 
 ### 10. How long have you been developing with React?
 
-<img src="/static/blog/2019-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 99	x I'm just getting started!, 77	x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
+<img src="/static/blog/2019-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 99 x I'm just getting started!, 77 x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
 
 ### 11. How long have you been developing with MUI?
 
-<img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160	x I'm just getting started!, 147	x 6 months +, 293	x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
+<img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160 x I'm just getting started!, 147 x 6 months +, 293 x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
 
 We missed a trick by not including "2 years +" here, so "1 year +" looks stacked.
 The number of users of MUI continues to grow at a steady pace, and once on board, many

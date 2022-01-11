@@ -21,7 +21,7 @@ export default function EditPage(props) {
       href={
         userLanguage === 'en'
           ? `${process.env.SOURCE_CODE_ROOT_URL}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging${crowdInPath}`
+          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/master${crowdInPath}`
       }
       target="_blank"
       rel="noopener nofollow"
@@ -31,6 +31,8 @@ export default function EditPage(props) {
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
       sx={{
+        pl: { xs: 0, sm: 0.5 },
+        mb: { xs: 1, sm: 0 },
         fontWeight: 500,
         fontSize: theme.typography.pxToRem(12.5),
         color:

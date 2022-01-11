@@ -179,7 +179,11 @@ async function generateProptypes(
 ): Promise<void> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
-      if (name.toLowerCase().endsWith('classes') || name === 'theme' || name.endsWith('Props')) {
+      if (
+        name.toLowerCase().endsWith('classes') ||
+        name === 'theme' ||
+        (name.endsWith('Props') && name !== 'componentsProps')
+      ) {
         return false;
       }
       return undefined;
@@ -190,6 +194,18 @@ async function generateProptypes(
   if (proptypes.body.length === 0) {
     return;
   }
+
+  // exclude internal slot components, eg. ButtonRoot
+  proptypes.body = proptypes.body.filter((data) => {
+    if (data.propsFilename?.endsWith('.tsx')) {
+      // only check for .tsx
+      const match = data.propsFilename.match(/.*\/([A-Z][a-zA-Z]+)\.tsx/);
+      if (match) {
+        return data.name === match[1];
+      }
+    }
+    return true;
+  });
 
   proptypes.body.forEach((component) => {
     component.types.forEach((prop) => {

@@ -7,11 +7,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 
 # Breadcrumbs 面包屑导航
 
-<p class="description">面包屑导航允许用户在一系列的值中进行选择。</p>
+<p class="description">Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 基本的面包屑导航
+## 简单的面包屑导航
 
 {{"demo": "pages/components/breadcrumbs/BasicBreadcrumbs.js"}}
 
@@ -35,9 +35,9 @@ In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customization
+## 自定义的面包屑导航
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
@@ -45,7 +45,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
-## Accessibility
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
