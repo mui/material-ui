@@ -423,7 +423,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiInputBase'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiInputBase'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiInputBase'];
   };
@@ -431,7 +431,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiInputLabel'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiInputLabel'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiInputLabel'];
   };
@@ -439,7 +439,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiLinearProgress'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiLinearProgress'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiLinearProgress'];
   };
@@ -447,7 +447,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiLink'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiLink'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiLink'];
   };
@@ -455,7 +455,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiList'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiList'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiList'];
   };
@@ -463,7 +463,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiListItem'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiListItem'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiListItem'];
   };
@@ -471,7 +471,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiListItemButton'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiListItemButton'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiListItemButton'];
   };
@@ -479,7 +479,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiListItemAvatar'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiListItemAvatar'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiListItemAvatar'];
   };
@@ -487,7 +487,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiListItemIcon'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiListItemIcon'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiListItemIcon'];
   };
@@ -495,7 +495,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiListItemSecondaryAction'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiListItemSecondaryAction'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiListItemSecondaryAction'];
   };
@@ -503,7 +503,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiListItemText'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiListItemText'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiListItemText'];
   };
@@ -511,7 +511,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiListSubheader'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiListSubheader'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiListSubheader'];
   };
@@ -519,7 +519,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiMenu'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiMenu'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiMenu'];
   };
@@ -527,7 +527,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiMenuItem'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiMenuItem'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiMenuItem'];
   };
@@ -535,7 +535,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiMobileStepper'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiMobileStepper'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiMobileStepper'];
   };
@@ -543,7 +543,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiModal'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiModal'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiModal'];
   };
@@ -551,7 +551,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiNativeSelect'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiNativeSelect'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiNativeSelect'];
   };
@@ -559,7 +559,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiOutlinedInput'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiOutlinedInput'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiOutlinedInput'];
   };
@@ -567,7 +567,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiPagination'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiPagination'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiPagination'];
   };
@@ -575,7 +575,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiPaginationItem'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiPaginationItem'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiPaginationItem'];
   };
@@ -583,7 +583,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiPaper'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiPaper'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiPaper'];
   };
@@ -591,7 +591,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiPopover'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiPopover'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiPopover'];
   };
@@ -599,7 +599,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiRadio'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiRadio'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiRadio'];
   };
@@ -607,7 +607,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiRating'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiRating'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiRating'];
   };
@@ -615,7 +615,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiScopedCssBaseline'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiScopedCssBaseline'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiScopedCssBaseline'];
   };
@@ -623,7 +623,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSelect'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSelect'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSelect'];
   };
@@ -631,7 +631,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSkeleton'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSkeleton'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSkeleton'];
   };
@@ -639,7 +639,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSlider'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSlider'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSlider'];
   };
@@ -647,7 +647,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSnackbar'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSnackbar'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSnackbar'];
   };
@@ -655,7 +655,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSnackbarContent'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSnackbarContent'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSnackbarContent'];
   };
@@ -663,7 +663,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSpeedDial'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSpeedDial'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSpeedDial'];
   };
@@ -671,7 +671,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSpeedDialAction'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSpeedDialAction'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSpeedDialAction'];
   };
@@ -679,14 +679,14 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSpeedDialIcon'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSpeedDialIcon'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSpeedDialIcon'];
   };
   MuiStack?: {
     defaultProps?: ComponentsProps['MuiStack'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiStack'];
   };
@@ -694,7 +694,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiStep'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiStep'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiStep'];
   };
@@ -702,7 +702,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiStepButton'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiStepButton'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiStepButton'];
   };
@@ -710,7 +710,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiStepConnector'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiStepConnector'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiStepConnector'];
   };
@@ -718,7 +718,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiStepContent'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiStepContent'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiStepContent'];
   };
@@ -726,7 +726,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiStepIcon'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiStepIcon'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiStepIcon'];
   };
@@ -734,7 +734,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiStepLabel'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiStepLabel'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiStepLabel'];
   };
@@ -742,7 +742,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiStepper'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiStepper'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiStepper'];
   };
@@ -750,7 +750,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSvgIcon'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSvgIcon'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSvgIcon'];
   };
@@ -758,7 +758,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSwitch'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSwitch'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiSwitch'];
   };
@@ -766,7 +766,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTab'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTab'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTab'];
   };
@@ -774,7 +774,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTable'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTable'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTable'];
   };
@@ -782,7 +782,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTableBody'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTableBody'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTableBody'];
   };
@@ -790,7 +790,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTableCell'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTableCell'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTableCell'];
   };
@@ -798,7 +798,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTableContainer'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTableContainer'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTableContainer'];
   };
@@ -806,7 +806,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTableFooter'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTableFooter'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTableFooter'];
   };
@@ -814,7 +814,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTableHead'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTableHead'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTableHead'];
   };
@@ -822,7 +822,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTablePagination'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTablePagination'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTablePagination'];
   };
@@ -830,7 +830,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTableRow'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTableRow'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTableRow'];
   };
@@ -838,7 +838,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTableSortLabel'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTableSortLabel'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTableSortLabel'];
   };
@@ -846,7 +846,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTabs'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTabs'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTabs'];
   };
@@ -854,7 +854,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTextField'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTextField'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTextField'];
   };
@@ -862,7 +862,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiToggleButton'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiToggleButton'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiToggleButton'];
   };
@@ -870,7 +870,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiToggleButtonGroup'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiToggleButtonGroup'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiToggleButtonGroup'];
   };
@@ -878,7 +878,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiToolbar'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiToolbar'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiToolbar'];
   };
@@ -886,7 +886,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTooltip'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTooltip'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTooltip'];
   };
@@ -894,7 +894,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTouchRipple'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTouchRipple'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTouchRipple'];
   };
@@ -902,7 +902,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTypography'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTypography'];
     /**
-     * @deprecate pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
+     * @deprecated pass a callback to the slot in `styleOverrides` instead. [See example](https://mui.com/customization/theme-components/#overrides-based-on-props)
      */
     variants?: ComponentsVariants['MuiTypography'];
   };
