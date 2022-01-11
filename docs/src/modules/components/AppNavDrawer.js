@@ -28,6 +28,9 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import materialPkgJson from '../../../../packages/mui-material/package.json';
+import basePkgJson from '../../../../packages/mui-base/package.json';
+import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
@@ -103,7 +106,6 @@ ProductSubMenu.propTypes = {
 };
 
 function ProductDrawerButton(props) {
-  // const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -116,9 +118,9 @@ function ProductDrawerButton(props) {
   return (
     <div>
       <Button
+        id="mui-product-selector"
         aria-controls="drawer-open-button"
         aria-haspopup="true"
-        // onClick={() => setProductsDrawerOpen(true)}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
@@ -140,12 +142,12 @@ function ProductDrawerButton(props) {
         {props.productName}
       </Button>
       <Menu
-        id="basic-menu"
+        id="mui-product-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button',
+          'aria-labelledby': 'mui-product-selector',
         }}
         PaperProps={{
           sx: {
@@ -179,47 +181,61 @@ function ProductDrawerButton(props) {
           },
         }}
       >
-        <ul role="menu">
-          <li role="none">
-            <ProductSubMenu
-              role="menuitem"
-              icon={<IconImage name="product-core" />}
-              name="MUI Core"
-              description="Ready-to-use foundational components, free forever."
-            />
-            <LinksWrapper>
-              <Link href={ROUTES.baseDocs}>
+        <li role="none">
+          <ProductSubMenu
+            role="menuitem"
+            icon={<IconImage name="product-core" />}
+            name="MUI Core"
+            description="Ready-to-use foundational components, free forever."
+          />
+          <LinksWrapper>
+            {FEATURE_TOGGLE.enable_mui_base_scope && (
+              <Link
+                href={ROUTES.baseDocs}
+                // eslint-disable-next-line material-ui/no-hardcoded-labels
+              >
                 Base <KeyboardArrowRight fontSize="small" />
               </Link>
-              <Link href={ROUTES.materialDocs}>
-                Material Design <KeyboardArrowRight fontSize="small" />
-              </Link>
-              <Link href={ROUTES.systemDocs}>
-                System <KeyboardArrowRight fontSize="small" />
-              </Link>
-              <Link href={ROUTES.stylesLegacyDocs}>
-                Styles (legacy) <KeyboardArrowRight fontSize="small" />
-              </Link>
-            </LinksWrapper>
-          </li>
-          <li role="none">
-            <ProductSubMenu
-              role="menuitem"
-              icon={<IconImage name="product-advanced" />}
-              name={
-                <Box component="span" display="inline-flex" alignItems="center">
-                  MUI&nbsp;X
-                </Box>
-              }
-              description="Advanced and powerful components for complex use-cases."
-            />
-            <LinksWrapper>
-              <Link href={`/x/data-grid/getting-started/`}>
-                Data Grid <KeyboardArrowRight fontSize="small" />
-              </Link>
-            </LinksWrapper>
-          </li>
-        </ul>
+            )}
+            <Link
+              href={ROUTES.materialDocs}
+              // eslint-disable-next-line material-ui/no-hardcoded-labels
+            >
+              Material Design <KeyboardArrowRight fontSize="small" />
+            </Link>
+            <Link
+              href={ROUTES.systemDocs}
+              // eslint-disable-next-line material-ui/no-hardcoded-labels
+            >
+              System <KeyboardArrowRight fontSize="small" />
+            </Link>
+          </LinksWrapper>
+        </li>
+        <li role="none">
+          <ProductSubMenu
+            role="menuitem"
+            icon={<IconImage name="product-advanced" />}
+            name={
+              <Box
+                component="span"
+                display="inline-flex"
+                alignItems="center"
+                // eslint-disable-next-line material-ui/no-hardcoded-labels
+              >
+                MUI&nbsp;X
+              </Box>
+            }
+            description="Advanced and powerful components for complex use-cases."
+          />
+          <LinksWrapper>
+            <Link
+              href={`/x/data-grid/getting-started/`}
+              // eslint-disable-next-line material-ui/no-hardcoded-labels
+            >
+              Data Grid <KeyboardArrowRight fontSize="small" />
+            </Link>
+          </LinksWrapper>
+        </li>
       </Menu>
       {/* <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} /> */}
     </div>
@@ -331,6 +347,7 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
     padding: theme.spacing(1.45, 2),
+    height: 64,
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -442,6 +459,13 @@ function AppNavDrawer(props) {
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const drawer = React.useMemo(() => {
+    const isProductScoped =
+      router.asPath.startsWith('/x') ||
+      router.asPath.startsWith('/material') ||
+      router.asPath.startsWith('/system') ||
+      router.asPath.startsWith('/styles') ||
+      router.asPath.startsWith('/base');
+
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
     const renderVersionSelector = (versions = []) => {
@@ -470,10 +494,28 @@ function AppNavDrawer(props) {
                 width: 18,
                 height: 18,
               },
+              ...(!isProductScoped && {
+                px: 1,
+                py: 0.4,
+                border: `1px solid ${
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200]
+                }`,
+                '&:hover': {
+                  borderColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[300],
+                  background:
+                    theme.palette.mode === 'dark'
+                      ? alpha(theme.palette.primaryDark[700], 0.4)
+                      : theme.palette.grey[50],
+                },
+              }),
             })}
           >
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-            {`v${process.env.LIB_VERSION}`}
+            {versions[0].text}
           </Button>
           <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
             {versions.map((item) => (
@@ -511,13 +553,6 @@ function AppNavDrawer(props) {
       );
     };
 
-    const isProductScoped =
-      router.asPath.startsWith('/x') ||
-      router.asPath.startsWith('/material') ||
-      router.asPath.startsWith('/system') ||
-      router.asPath.startsWith('/styles') ||
-      router.asPath.startsWith('/base');
-
     return (
       <React.Fragment>
         <ToolbarIE11>
@@ -529,7 +564,7 @@ function AppNavDrawer(props) {
                 sx={{
                   pr: 2,
                   mr: 1,
-                  borderRight: '1px solid',
+                  borderRight: isProductScoped ? '1px solid' : '0px',
                   borderColor: (theme) =>
                     theme.palette.mode === 'dark'
                       ? alpha(theme.palette.primary[100], 0.08)
@@ -539,71 +574,63 @@ function AppNavDrawer(props) {
                 <SvgMuiLogo width={30} />
               </Box>
             </NextLink>
-            {FEATURE_TOGGLE.enable_product_scope && (
-              <React.Fragment>
-                {router.asPath.startsWith('/material/') && (
-                  <ProductIdentifier
-                    name="Material"
-                    metadata="MUI Core"
-                    versionSelector={renderVersionSelector([
-                      { text: `v${process.env.LIB_VERSION}`, current: true },
-                      { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                    ])}
-                  />
-                )}
-                {router.asPath.startsWith('/system/') && (
-                  <ProductIdentifier
-                    name="System"
-                    metadata="MUI Core"
-                    versionSelector={renderVersionSelector([
-                      { text: `v${process.env.LIB_VERSION}`, current: true },
-                      { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                    ])}
-                  />
-                )}
-                {router.asPath.startsWith('/styles/') && (
-                  <ProductIdentifier
-                    name="Styles (legacy)"
-                    metadata="MUI Core"
-                    versionSelector={renderVersionSelector([
-                      { text: `v${process.env.LIB_VERSION}`, current: true },
-                      { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                    ])}
-                  />
-                )}
-                {router.asPath.startsWith('/base/') && (
-                  <ProductIdentifier
-                    name="Base"
-                    metadata="MUI Core"
-                    versionSelector={renderVersionSelector([
-                      { text: `v${process.env.LIB_VERSION}`, current: true },
-                    ])}
-                  />
-                )}
-                {router.asPath.startsWith('/x/data-grid/') && (
-                  <ProductIdentifier
-                    name="Data Grid"
-                    metadata="MUI X"
-                    versionSelector={renderVersionSelector([
-                      { text: `v5.2.1`, current: true },
-                      { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                    ])}
-                  />
-                )}
-              </React.Fragment>
+            {!isProductScoped &&
+              renderVersionSelector([
+                { text: `v${process.env.LIB_VERSION}`, current: true },
+                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
+              ])}
+            {router.asPath.startsWith('/material/') && (
+              <ProductIdentifier
+                name="Material"
+                metadata="MUI Core"
+                versionSelector={renderVersionSelector([
+                  { text: `v${materialPkgJson.version}`, current: true },
+                  {
+                    text: 'v4',
+                    href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
+                  },
+                ])}
+              />
+            )}
+            {router.asPath.startsWith('/system/') && (
+              <ProductIdentifier
+                name="System"
+                metadata="MUI Core"
+                versionSelector={renderVersionSelector([
+                  { text: `v${systemPkgJson.version}`, current: true },
+                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
+                ])}
+              />
+            )}
+            {router.asPath.startsWith('/base/') && (
+              <ProductIdentifier
+                name="Base"
+                metadata="MUI Core"
+                versionSelector={renderVersionSelector([
+                  { text: `v${basePkgJson.version}`, current: true },
+                ])}
+              />
+            )}
+            {router.asPath.startsWith('/x/data-grid/') && (
+              <ProductIdentifier
+                name="Data Grid"
+                metadata="MUI X"
+                versionSelector={renderVersionSelector([
+                  { text: `v5.2.2`, current: true },
+                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
+                ])}
+              />
             )}
           </ToolbarDiv>
         </ToolbarIE11>
-        {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
-          <Divider
-            sx={{
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primary[100], 0.08)
-                  : theme.palette.grey[100],
-            }}
-          />
-        )}
+        <Divider
+          sx={{
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primary[100], 0.08)
+                : theme.palette.grey[100],
+          }}
+        />
         <DiamondSponsors spot="drawer" />
         {navItems}
         <Box sx={{ height: 40 }} />
