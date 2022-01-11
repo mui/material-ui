@@ -33,11 +33,11 @@ Push the next branch on the release branch to deploy the documentation with the 
 
 Note: if you don't have the `material-ui-docs` remote already, you should add it with
 
-```
+```sh
 git remote add material-ui-docs https://github.com/mui-org/material-ui-docs.git
 ```
 
-```
+```sh
 yarn docs:deploy
 ```
 

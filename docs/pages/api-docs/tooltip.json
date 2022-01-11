@@ -11,7 +11,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ arrow?: object, popper?: object, tooltip?: object, transition?: object }"
+      },
+      "default": "{}"
+    },
     "describeChild": { "type": { "name": "bool" } },
     "disableFocusListener": { "type": { "name": "bool" } },
     "disableHoverListener": { "type": { "name": "bool" } },

@@ -385,7 +385,9 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'

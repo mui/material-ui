@@ -104,7 +104,9 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Tabs.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */

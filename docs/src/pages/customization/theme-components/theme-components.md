@@ -1,6 +1,6 @@
 # Components
 
-<p class="description">The theme's `components` key allows you to customize a component without wrapping it in another component. You can change the styles, the default props, and more.</p>
+<p class="description">The theme's components key allows you to customize a component without wrapping it in another component. You can change the styles, the default props, and more.</p>
 
 ## Global style overrides
 

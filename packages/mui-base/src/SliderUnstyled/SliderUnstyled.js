@@ -607,6 +607,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const MarkLabel = components.MarkLabel || 'span';
   const markLabelProps = componentsProps.markLabel || {};
 
+  const Input = components.Input || 'input';
+  const inputProps = componentsProps.input || {};
+
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the varints
   const ownerState = {
@@ -754,7 +757,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   ...thumbProps.style,
                 }}
               >
-                <input
+                <Input
                   tabIndex={tabIndex}
                   data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
@@ -782,7 +785,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                     // So that VoiceOver's focus indicator matches the thumb's dimensions
                     width: '100%',
                     height: '100%',
+                    ...inputProps.style,
                   }}
+                  {...(!isHostComponent(Input) && {
+                    ownerState: { ...ownerState, ...inputProps.ownerState },
+                  })}
+                  {...inputProps}
                 />
               </Thumb>
             </ValueLabelComponent>
@@ -853,6 +861,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Input: PropTypes.elementType,
     Mark: PropTypes.elementType,
     MarkLabel: PropTypes.elementType,
     Rail: PropTypes.elementType,
@@ -865,7 +874,24 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Slider.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    mark: PropTypes.object,
+    markLabel: PropTypes.object,
+    rail: PropTypes.object,
+    root: PropTypes.object,
+    thumb: PropTypes.object,
+    track: PropTypes.object,
+    valueLabel: PropTypes.shape({
+      className: PropTypes.string,
+      components: PropTypes.shape({
+        Root: PropTypes.elementType,
+      }),
+      style: PropTypes.object,
+      value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+    }),
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */
