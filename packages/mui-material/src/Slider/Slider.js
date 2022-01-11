@@ -421,8 +421,8 @@ const shouldSpreadOwnerState = (Component) => {
   return !Component || !isHostComponent(Component);
 };
 
-const Slider = React.forwardRef(function Slider(inputProps, ref) {
-  const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
+const Slider = React.forwardRef(function Slider(sliderProps, ref) {
+  const props = useThemeProps({ props: sliderProps, name: 'MuiSlider' });
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
@@ -545,6 +545,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Input: PropTypes.elementType,
     Mark: PropTypes.elementType,
     MarkLabel: PropTypes.elementType,
     Rail: PropTypes.elementType,
@@ -557,7 +558,24 @@ Slider.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Slider.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    mark: PropTypes.object,
+    markLabel: PropTypes.object,
+    rail: PropTypes.object,
+    root: PropTypes.object,
+    thumb: PropTypes.object,
+    track: PropTypes.object,
+    valueLabel: PropTypes.shape({
+      className: PropTypes.string,
+      components: PropTypes.shape({
+        Root: PropTypes.elementType,
+      }),
+      style: PropTypes.object,
+      value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+    }),
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */

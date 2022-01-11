@@ -17,9 +17,7 @@ They may contain a text action, but no icons. You can use them to display notifi
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-#### Frequency
-
-Only one snackbar may be displayed at a time.
+**Frequency**: Only one snackbar may be displayed at a time.
 
 ## Simple snackbars
 
