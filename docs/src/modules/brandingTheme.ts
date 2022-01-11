@@ -508,7 +508,7 @@ export function getThemedComponents(theme: Theme) {
           },
           filled: {
             border: '1px solid transparent',
-            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[800],
             backgroundColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[500]
@@ -522,6 +522,12 @@ export function getThemedComponents(theme: Theme) {
           },
           deleteIcon: {
             color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
+            '&:hover': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.grey[100]
+                  : theme.palette.primary[900],
+            },
           },
         },
       },
