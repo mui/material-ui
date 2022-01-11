@@ -54,29 +54,8 @@ function AppSettingsDrawer(props) {
   const [mode, setMode] = React.useState(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-
   const userLanguage = useUserLanguage();
-
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
-
-  // const [languageMenu, setLanguageMenu] = React.useState(null);
-  // const handleLanguageIconClick = (event) => {
-  //   setLanguageMenu(event.currentTarget);
-  // };
-  // const handleLanguageMenuClose = (event) => {
-  //   if (event.currentTarget.nodeName === 'A') {
-  //     document.cookie = `userLanguage=${event.currentTarget.lang};path=/;max-age=31536000`;
-  //   }
-  //   setLanguageMenu(null);
-  // };
-  // const languageButtonProps = {
-  //   color: 'inherit',
-  //   onClick: handleLanguageIconClick,
-  //   'aria-owns': languageMenu ? 'language-menu' : undefined,
-  //   'aria-haspopup': 'true',
-  //   'data-ga-event-category': 'header',
-  //   'data-ga-event-action': 'language',
-  // };
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
 
