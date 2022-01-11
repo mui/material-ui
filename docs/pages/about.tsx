@@ -339,6 +339,16 @@ const teamMembers: Array<Profile> = [
     twitter: 'zehdefreitas',
     github: 'joserodolfofreitas',
   },
+  {
+    src: '/static/branding/about/andrii.png',
+    name: 'Andrii Cherniavskyi',
+    title: 'MUI X engineer',
+    location: 'Wrocław, Poland',
+    country: 'ua',
+    about: 'Love playing music - electric and bass guitar 🎸',
+    twitter: 'iamcherniavskii',
+    github: 'cherniavskii',
+  },
 ];
 
 const contributors = [
