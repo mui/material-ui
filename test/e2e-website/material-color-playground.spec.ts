@@ -14,7 +14,7 @@ test('should be able to change color without crash', async ({ page }) => {
 
   await page.click('button:has-text("Set Docs Colors")');
 
-  await page.click('button[aria-label="Change language"]');
+  await page.click('#mui-version-selector'); // can open any menu, just to make sure that it does not break
 
-  await expect(page.locator('#language-menu')).toBeVisible();
+  await expect(page.locator('#mui-version-menu')).toBeVisible();
 });
