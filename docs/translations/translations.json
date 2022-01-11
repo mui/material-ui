@@ -117,7 +117,8 @@
     "mode": "Mode",
     "rtl": "Right to left",
     "settings": "Settings",
-    "system": "System"
+    "system": "System",
+    "language": "Language"
   },
   "showFullSource": "Show the full source",
   "showJSSource": "Show JavaScript source",
