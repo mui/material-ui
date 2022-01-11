@@ -1,5 +1,44 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.2.8
+
+<!-- generated comparing v5.2.7..master -->
+
+_Jan 10, 2022_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+- A meaningful number of 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.2.8`
+
+- &#8203;<!-- 05 -->[TextField][inputlabel] Remove `pointer-events: none` property (#30493) @hbjORbj
+- &#8203;<!-- 02 -->[Slider] Add `input` slot to components and componentsProps (#30362) @alexandre-lelain
+
+### `@mui/joy@5.0.0-alpha.10`
+
+- &#8203;<!-- 04 -->[Joy] Add `Typography` component (#30489) @siriwatknp
+- &#8203;<!-- 03 -->[Joy] Add functional `Switch` component (#30487) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 18 -->[docs] Update markdown parser to remove backticks from description (#30495) @aefox
+- &#8203;<!-- 17 -->[docs] Fix the crash when applying custom colors (#30563) @siriwatknp
+- &#8203;<!-- 16 -->[docs] Location change of Sebastian (#30528) @eps1lon
+- &#8203;<!-- 15 -->[docs] Lint markdown in the CI (#30395) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Fix `componentsProps` API docs and PropTypes (#30502) @ZeeshanTamboli
+- &#8203;<!-- 13 -->[docs] Codemod doc for overriding styles using tss (#30499) @garronej
+- &#8203;<!-- 12 -->[docs] fix edge case when replacing data-grid url for migration (#30505) @siriwatknp
+- &#8203;<!-- 11 -->[docs] fix replace url for migration (#30503) @siriwatknp
+- &#8203;<!-- 10 -->[docs] Prepare scripts for migrating to new structure (#30386) @siriwatknp
+- &#8203;<!-- 09 -->[docs] Adjust RTL Guide demos to fully support RTL (#30387) @noam-honig
+- &#8203;<!-- 08 -->[docs] Move @eps1lon to community (#30473) @oliviertassinari
+- &#8203;<!-- 07 -->[docs] Fix typo and spelling in the-sx-prop.md (#30482) @aefox
+- &#8203;<!-- 06 -->[docs] More general docs polishing (#30371) @danilo-leal
+- &#8203;<!-- 01 -->[website] Add José on the /about page (#30492) @danilo-leal
+
+All contributors of this release in alphabetical order: @aefox, @alexandre-lelain, @danilo-leal, @eps1lon, @garronej, @hbjORbj, @noam-honig, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
+
 ## 5.2.7
 
 <!-- generated comparing v5.2.6..master -->
