@@ -311,7 +311,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             fontWeight="700"
             sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
           >
-            All posts{' '}
+            Posts{' '}
             {Object.keys(selectedTags).length ? (
               <span>
                 about{' '}
@@ -366,27 +366,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                             },
                           }
                         : {
-                            label: (
-                              <React.Fragment>
-                                {tag}{' '}
-                                <Typography
-                                  component="span"
-                                  sx={(theme) => ({
-                                    borderRadius: 1,
-                                    bgcolor: selected ? 'primary.50' : 'grey.200',
-                                    px: 0.5,
-                                    mr: -0.25,
-                                    fontSize: '0.75rem',
-                                    fontWeight: 500,
-                                    ...(theme.palette.mode === 'dark' && {
-                                      bgcolor: 'primaryDark.600',
-                                    }),
-                                  })}
-                                >
-                                  {tagInfo[tag]}
-                                </Typography>
-                              </React.Fragment>
-                            ),
+                            label: tag,
                             onClick: () => {
                               const postList = document.getElementById('post-list');
                               if (postList) {
