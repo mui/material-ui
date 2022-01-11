@@ -117,7 +117,8 @@
     "mode": "模式",
     "rtl": "从右到左",
     "settings": "设置",
-    "system": "system 系统"
+    "system": "system 系统",
+    "language": "Language"
   },
   "showFullSource": "显示全部源代码",
   "showJSSource": "显示 JavaScript 源代码",
