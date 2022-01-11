@@ -472,6 +472,7 @@ function AppNavDrawer(props) {
       return (
         <React.Fragment>
           <Button
+            id="mui-version-selector"
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
             }}
@@ -514,7 +515,12 @@ function AppNavDrawer(props) {
           >
             {versions[0].text}
           </Button>
-          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+          <Menu
+            id="mui-version-menu"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={() => setAnchorEl(null)}
+          >
             {versions.map((item) => (
               <MenuItem
                 key={item.text}
