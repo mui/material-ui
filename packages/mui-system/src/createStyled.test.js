@@ -102,37 +102,6 @@ describe('createStyled', () => {
   });
 
   describe('styleOverrides callback', () => {
-    const finalTheme = createTheme({
-      typography: {
-        button: {
-          fontSize: '20px',
-        },
-      },
-      components: {
-        MuiButton: {
-          styleOverrides: {
-            root: (props) => {
-              const { color, variant, theme } = props;
-              const styles = [];
-              if (color === 'primary') {
-                styles.push({
-                  width: 120,
-                  height: 48,
-                });
-              }
-              if (variant === 'contained') {
-                styles.push(theme.typography.button);
-              }
-              return styles;
-            },
-            icon: ({ startIcon, endIcon }) => [
-              startIcon && { marginRight: 8 },
-              endIcon && { marginLeft: 8 },
-            ],
-          },
-        },
-      },
-    });
     const styled = createStyled({});
     const ButtonRoot = styled('button', {
       name: 'MuiButton',
@@ -156,6 +125,37 @@ describe('createStyled', () => {
     };
 
     it('spread ownerState as props to the slot styleOverrides', () => {
+      const finalTheme = createTheme({
+        typography: {
+          button: {
+            fontSize: '20px',
+          },
+        },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: (props) => {
+                const { color, variant, theme } = props;
+                const styles = [];
+                if (color === 'primary') {
+                  styles.push({
+                    width: 120,
+                    height: 48,
+                  });
+                }
+                if (variant === 'contained') {
+                  styles.push(theme.typography.button);
+                }
+                return styles;
+              },
+              icon: ({ startIcon, endIcon }) => [
+                startIcon && { marginRight: 8 },
+                endIcon && { marginLeft: 8 },
+              ],
+            },
+          },
+        },
+      });
       const { container } = render(
         <ThemeProvider theme={finalTheme}>
           <Button color="primary" variant="contained" startIcon="foo">
@@ -172,6 +172,50 @@ describe('createStyled', () => {
         container.firstChild.firstChild, // startIcon
       ).toHaveComputedStyle({
         marginRight: '8px',
+      });
+    });
+
+    it('support object return from the callback', () => {
+      const finalTheme = createTheme({
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: () => ({
+                width: '300px',
+              }),
+            },
+          },
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={finalTheme}>
+          <Button>Hello</Button>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '300px',
+      });
+    });
+
+    it('support template string return from the callback', () => {
+      const finalTheme = createTheme({
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: () => `
+                width: 300px;
+              `,
+            },
+          },
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={finalTheme}>
+          <Button>Hello</Button>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '300px',
       });
     });
   });
