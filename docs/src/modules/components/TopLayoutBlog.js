@@ -91,7 +91,7 @@ const styles = (theme) => ({
   },
   container: {
     paddingTop: 60 + 20,
-    marginBottom: theme.spacing(16),
+    marginBottom: theme.spacing(8),
     maxWidth: `calc(740px + ${theme.spacing(12)})`,
     '& h1': {
       marginBottom: theme.spacing(3),
@@ -99,9 +99,6 @@ const styles = (theme) => ({
     '& .markdown-body': {
       fontSize: theme.typography.pxToRem(17),
       lineHeight: 1.7,
-      [theme.breakpoints.up('md')]: {
-        paddingRight: theme.spacing(4),
-      },
     },
     '& img, & video': {
       display: 'block',
