@@ -183,7 +183,6 @@ function AppFrame(props) {
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
-  const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
 
   const { activePage } = React.useContext(PageContext);
 
