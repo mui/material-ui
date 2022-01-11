@@ -307,7 +307,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         >
           <Typography
             component="h2"
-            variant="h4"
+            color="text.primary"
+            variant="h5"
             fontWeight="700"
             sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
           >
@@ -315,7 +316,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             {Object.keys(selectedTags).length ? (
               <span>
                 about{' '}
-                <Typography component="span" variant="inherit" noWrap>
+                <Typography component="span" variant="inherit" color="primary" noWrap>
                   &quot;{Object.keys(selectedTags)[0]}&quot;
                 </Typography>
               </span>
@@ -329,8 +330,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 position: 'sticky',
                 top: 100,
                 alignSelf: 'start',
-                mb: { xs: 4, sm: 8 },
-                mt: 8, // margin-top makes the title appear when scroll into view
+                mb: { xs: 2, sm: 8 },
+                mt: { xs: 2, sm: 8 }, // margin-top makes the title appear when scroll into view
                 p: 2,
                 borderRadius: 1,
                 border: '1px solid',
