@@ -1,6 +1,6 @@
 # Components 组件
 
-<p class="description">The theme's `components` key allows you to customize a component without wrapping it in another component. You can change the styles, the default props, and more. 你可以更改样式、默认属性等等其他东西。 你可以更改样式、默认属性等等其他东西。</p>
+<p class="description">The theme's components key allows you to customize a component without wrapping it in another component. 你可以更改样式、默认属性等等其他东西。</p>
 
 ## 重写全局样式
 
