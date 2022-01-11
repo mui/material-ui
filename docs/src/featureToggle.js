@@ -5,5 +5,5 @@ module.exports = {
   // TODO: cleanup once migration is done
   enable_product_scope: true, // related to new structure change
   enable_redirects: false, // related to new structure change
-  enable_mui_base_scope: false,
+  enable_mui_base_scope: false, // will be enabled after the migration
 };
