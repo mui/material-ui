@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
@@ -12,6 +12,7 @@ import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
+import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 
 export const sliderClasses = {
@@ -26,7 +27,7 @@ export const sliderClasses = {
   ]),
 };
 
-export const SliderRoot = styled('span', {
+const SliderRoot = styled('span', {
   name: 'MuiSlider',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -109,7 +110,20 @@ export const SliderRoot = styled('span', {
   },
 }));
 
-export const SliderRail = styled('span', {
+SliderRoot.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderRoot };
+
+const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
@@ -136,7 +150,20 @@ export const SliderRail = styled('span', {
   }),
 }));
 
-export const SliderTrack = styled('span', {
+SliderRail.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderRail };
+
+const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
@@ -177,7 +204,20 @@ export const SliderTrack = styled('span', {
   };
 });
 
-export const SliderThumb = styled('span', {
+SliderTrack.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderTrack };
+
+const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => {
@@ -252,7 +292,20 @@ export const SliderThumb = styled('span', {
   },
 }));
 
-export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
+SliderThumb.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderThumb };
+
+const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -294,7 +347,20 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   },
 }));
 
-export const SliderMark = styled('span', {
+SliderValueLabel.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderValueLabel };
+
+const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
@@ -319,7 +385,20 @@ export const SliderMark = styled('span', {
   }),
 }));
 
-export const SliderMarkLabel = styled('span', {
+SliderMark.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderMark };
+
+const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
@@ -348,7 +427,7 @@ export const SliderMarkLabel = styled('span', {
   }),
 }));
 
-SliderRoot.propTypes = {
+SliderMarkLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -357,43 +436,9 @@ SliderRoot.propTypes = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  ownerState: PropTypes.shape({
-    'aria-label': PropTypes.string,
-    'aria-labelledby': PropTypes.string,
-    'aria-valuetext': PropTypes.string,
-    classes: PropTypes.object,
-    color: PropTypes.oneOf(['primary', 'secondary']),
-    defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-    disabled: PropTypes.bool,
-    getAriaLabel: PropTypes.func,
-    getAriaValueText: PropTypes.func,
-    isRtl: PropTypes.bool,
-    marks: PropTypes.oneOfType([
-      PropTypes.arrayOf(
-        PropTypes.shape({
-          label: PropTypes.node,
-          value: PropTypes.number.isRequired,
-        }),
-      ),
-      PropTypes.bool,
-    ]),
-    max: PropTypes.number,
-    min: PropTypes.number,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    onChangeCommitted: PropTypes.func,
-    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-    scale: PropTypes.func,
-    step: PropTypes.number,
-    track: PropTypes.oneOf(['inverted', 'normal', false]),
-    value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-    valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-    valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  }),
 };
+
+export { SliderMarkLabel };
 
 const extendUtilityClasses = (ownerState) => {
   const { color, size, classes = {} } = ownerState;
@@ -417,17 +462,15 @@ const extendUtilityClasses = (ownerState) => {
   };
 };
 
-const shouldSpreadOwnerState = (Component) => {
-  return !Component || !isHostComponent(Component);
-};
-
-const Slider = React.forwardRef(function Slider(sliderProps, ref) {
-  const props = useThemeProps({ props: sliderProps, name: 'MuiSlider' });
+const Slider = React.forwardRef(function Slider(inputProps, ref) {
+  const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
   const {
+    // eslint-disable-next-line react/prop-types
+    component = 'span',
     components = {},
     componentsProps = {},
     color = 'primary',
@@ -457,25 +500,26 @@ const Slider = React.forwardRef(function Slider(sliderProps, ref) {
         ...componentsProps,
         root: {
           ...componentsProps.root,
-          ...(shouldSpreadOwnerState(components.Root) && {
+          ...(shouldSpreadAdditionalProps(components.Root) && {
+            as: component,
             ownerState: { ...componentsProps.root?.ownerState, color, size },
           }),
         },
         thumb: {
           ...componentsProps.thumb,
-          ...(shouldSpreadOwnerState(components.Thumb) && {
+          ...(shouldSpreadAdditionalProps(components.Thumb) && {
             ownerState: { ...componentsProps.thumb?.ownerState, color, size },
           }),
         },
         track: {
           ...componentsProps.track,
-          ...(shouldSpreadOwnerState(components.Track) && {
+          ...(shouldSpreadAdditionalProps(components.Track) && {
             ownerState: { ...componentsProps.track?.ownerState, color, size },
           }),
         },
         valueLabel: {
           ...componentsProps.valueLabel,
-          ...(shouldSpreadOwnerState(components.ValueLabel) && {
+          ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
             ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
           }),
         },
