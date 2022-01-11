@@ -11,13 +11,16 @@ type SupportedLocales = keyof typeof locales;
 export default function Locales() {
   const [locale, setLocale] = React.useState<SupportedLocales>('zhCN');
 
-  const theme = useTheme()
-  const themeWithLocale = createTheme(theme, locales[locale])
+  const theme = useTheme();
+
+  const themeWithLocale = React.useMemo(
+    () => createTheme(theme, locales[locale]),
+    [locale, theme],
+  );
+
   return (
     <Box sx={{ width: '100%' }}>
-      <ThemeProvider
-        theme={themeWithLocale}
-      >
+      <ThemeProvider theme={themeWithLocale}>
         <Autocomplete
           options={Object.keys(locales)}
           getOptionLabel={(key) => `${key.substring(0, 2)}-${key.substring(2, 4)}`}
@@ -36,7 +39,7 @@ export default function Locales() {
           rowsPerPage={10}
           page={1}
           component="div"
-          onPageChange={() => { }}
+          onPageChange={() => {}}
         />
       </ThemeProvider>
     </Box>

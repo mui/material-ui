@@ -10,7 +10,12 @@ export default function Locales() {
   const [locale, setLocale] = React.useState('zhCN');
 
   const theme = useTheme();
-  const themeWithLocale = createTheme(theme, locales[locale]);
+
+  const themeWithLocale = React.useMemo(
+    () => createTheme(theme, locales[locale]),
+    [locale, theme],
+  );
+
   return (
     <Box sx={{ width: '100%' }}>
       <ThemeProvider theme={themeWithLocale}>
