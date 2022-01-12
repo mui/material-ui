@@ -1,6 +1,6 @@
 # Create React App example with TypeScript
 
-## `@mui/joy` is still in early development, DO NOT use it in production.
+## `@mui/joy` is still in early development, DO NOT use it in production
 
 ## How to use
 
