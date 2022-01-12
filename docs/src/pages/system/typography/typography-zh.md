@@ -22,7 +22,17 @@
 <Box sx={{ textAlign: 'right' }}>…
 ```
 
-## 字体权重（Font weight）
+## Text transformation
+
+{{"demo": "pages/system/typography/TextTransform.js", "defaultCodeOpen": false}}
+
+```jsx
+<Box sx={{ textTransform: 'capitalize' }}>…
+<Box sx={{ textTransform: 'lowercase' }}>…
+<Box sx={{ textTransform: 'uppercase' }}>…
+```
+
+## Font weight
 
 {{"demo": "pages/system/typography/FontWeight.js", "defaultCodeOpen": false}}
 
@@ -34,7 +44,7 @@
 <Box sx={{ fontWeight: 'bold' }}>…
 ```
 
-## 字体大小（Font size）
+## Font size
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
@@ -44,7 +54,7 @@
 <Box sx={{ fontSize: 16 }}>…
 ```
 
-## 字体
+## Font style
 
 {{"demo": "pages/system/typography/FontStyle.js", "defaultCodeOpen": false}}
 
@@ -63,7 +73,7 @@
 <Box sx={{ fontFamily: 'Monospace' }}>…
 ```
 
-## 字母间距
+## Letter spacing
 
 {{"demo": "pages/system/typography/LetterSpacing.js", "defaultCodeOpen": false}}
 
@@ -72,7 +82,7 @@
 <Box sx={{ letterSpacing: 10 }}>…
 ```
 
-## 行高（Line Height）
+## Line height
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 
@@ -84,7 +94,7 @@
 ## API
 
 ```js
-import { typography } from '@material-ui/system';
+import { typography } from '@mui/system';
 ```
 
 | 导入名称            | 属性              | CSS 属性                                                                                       | Theme key                                                              |
@@ -97,3 +107,4 @@ import { typography } from '@material-ui/system';
 | `letterSpacing` | `letterSpacing` | `letter-spacing`                                                                             | none                                                                   |
 | `lineHeight`    | `lineHeight`    | `line-height`                                                                                | none                                                                   |
 | `textAlign`     | `textAlign`     | `text-align`                                                                                 | none                                                                   |
+| `textTransform` | `textTransform` | `text-transform`                                                                             | none                                                                   |
