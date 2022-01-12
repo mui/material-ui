@@ -34,8 +34,6 @@ module.exports = withTM({
                   },
                 ],
               ],
-              include: ['*', 'node_modules/@mui/'],
-              exclude: /node_modules\/(?!@mui).+/,
             },
           },
         },

@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mui/material": "https://pkg.csb.dev/mui-org/material-ui/commit/97b8bd28/@mui/material",
-    "@mui/styled-engine-sc": "https://pkg.csb.dev/mui-org/material-ui/commit/97b8bd28/@mui/styled-engine-sc",
+    "@mui/material": "https://pkg.csb.dev/mui-org/material-ui/commit/133bb5f0/@mui/material",
+    "@mui/styled-engine-sc": "https://pkg.csb.dev/mui-org/material-ui/commit/133bb5f0/@mui/styled-engine-sc",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",
