@@ -19,10 +19,14 @@ export interface SvgIconClasses {
   colorWarning: string;
   /** Styles applied to the root element if `fontSize="inherit"`. */
   fontSizeInherit: string;
+  /** Styles applied to the root element if `fontSize="extraSmall"`. */
+  fontSizeExtraSmall: string;
   /** Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: string;
   /** Styles applied to the root element if `fontSize="large"`. */
   fontSizeMedium: string;
+  /** Styles applied to the root element if `fontSize="extraLarge"`. */
+  fontSizeExtraLarge: string;
   /** Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: string;
 }
@@ -43,8 +47,10 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'colorSuccess',
   'colorWarning',
   'fontSizeInherit',
+  'fontSizeExtraSmall',
   'fontSizeSmall',
   'fontSizeMedium',
+  'fontSizeExtraLarge',
   'fontSizeLarge',
 ]);
 

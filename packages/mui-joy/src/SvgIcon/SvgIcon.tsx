@@ -35,28 +35,26 @@ const SvgIconRoot = styled('svg', {
       styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})<{ ownerState: SvgIconProps }>(({ theme, ownerState }) => {
-  return [
-    {
-      userSelect: 'none',
-      width: '1em',
-      height: '1em',
-      display: 'inline-block',
-      fill: 'currentColor',
-      flexShrink: 0,
-      transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      fontSize: {
-        inherit: 'inherit',
-        small: theme.vars.fontSize.sm,
-        medium: theme.vars.fontSize.md,
-        large: theme.vars.fontSize.lg,
-      }[ownerState.fontSize!],
-      color: theme.vars.palette[ownerState.color!]
-        ? theme.vars.palette[ownerState.color!]
-        : ownerState.color,
-    },
-  ];
-});
+})<{ ownerState: SvgIconProps }>(({ theme, ownerState }) => ({
+  userSelect: 'none',
+  width: '1em',
+  height: '1em',
+  display: 'inline-block',
+  fill: 'currentColor',
+  flexShrink: 0,
+  transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+  fontSize: {
+    inherit: 'inherit',
+    extraSmall: theme.vars.fontSize.xs,
+    small: theme.vars.fontSize.sm,
+    medium: theme.vars.fontSize.md,
+    large: theme.vars.fontSize.lg,
+    extraLarge: theme.vars.fontSize.xl,
+  }[ownerState.fontSize!],
+  color: theme.vars.palette[ownerState.color!]
+    ? theme.vars.palette[ownerState.color!]
+    : ownerState.color,
+}));
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
