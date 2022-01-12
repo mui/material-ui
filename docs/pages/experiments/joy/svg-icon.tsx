@@ -69,8 +69,8 @@ const ColorSchemePicker = () => {
 };
 
 const props = {
-  fontSize: ['extraSmall', 'small', 'medium', 'large', 'extraLarge'],
-  color: ['primary', 'danger', 'info', 'success', 'warning'],
+  fontSize: ['xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6'],
+  color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
 } as const;
 
 export default function JoySvgIcon() {

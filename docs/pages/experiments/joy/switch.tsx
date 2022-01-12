@@ -15,7 +15,7 @@ function createSvgIcon(path: any, displayName: any, initialProps?: any) {
         data-testid={`${displayName}Icon`}
         ref={ref}
         viewBox="0 0 24 24"
-        fontSize="extraLarge"
+        fontSize="xl"
         {...initialProps}
         {...props}
         sx={{ ...initialProps?.sx, ...props.sx }}
