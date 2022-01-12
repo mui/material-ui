@@ -24,44 +24,6 @@ function getMuiName(name: string) {
   return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
 }
 
-const componentPackageMapping = {
-  material: {} as Record<string, string | undefined>,
-  base: {} as Record<string, string | undefined>,
-};
-
-const packages = [
-  {
-    name: 'mui-material',
-    product: 'material',
-    paths: [
-      path.join(__dirname, '../../packages/mui-lab/src'),
-      path.join(__dirname, '../../packages/mui-material/src'),
-      path.join(__dirname, '../../packages/mui-base/src'),
-    ],
-  },
-  {
-    name: 'mui-base',
-    product: 'base',
-    paths: [path.join(__dirname, '../../packages/mui-base/src')],
-  },
-];
-
-packages.forEach((pkg) => {
-  pkg.paths.forEach((pkgPath) => {
-    const packageName = pkgPath.match(/packages\/([^/]+)\/src/)?.[1];
-    if (!packageName) {
-      throw new Error(`cannot find package name from path: ${pkgPath}`);
-    }
-    const filePaths = fs.readdirSync(pkgPath);
-    filePaths.forEach((folder) => {
-      if (folder.match(/^[A-Z]/)) {
-        // @ts-ignore
-        componentPackageMapping[pkg.product][folder] = packageName;
-      }
-    });
-  });
-});
-
 export const extractPackageFile = (filePath: string) => {
   filePath = filePath.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
   const match = filePath.match(
@@ -181,12 +143,11 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
   if (!name) {
     throw new Error(`Could not find the component name from: ${filename}`);
   }
-  const componentPkg = componentPackageMapping.material?.[name ?? ''];
   return {
     filename,
     name,
     muiName: getMuiName(name),
-    apiPathname: `/material/api/${componentPkg}/${kebabCase(name)}/`,
+    apiPathname: `/material/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/material/api/${muiPackage}`),
     readFile() {
       srcInfo = parseFile(filename);
@@ -196,13 +157,12 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
       if (!inheritedComponent) {
         return null;
       }
-      const inheritedPkg = componentPackageMapping.material?.[inheritedComponent ?? ''];
       return {
         name: inheritedComponent,
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/material/api/${inheritedPkg}/${kebabCase(inheritedComponent)}/`,
+            : `/material/api/${kebabCase(inheritedComponent)}/`,
       };
     },
     getDemos: () => {
@@ -221,12 +181,11 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
   if (!name) {
     throw new Error(`Could not find the component name from: ${filename}`);
   }
-  const componentPkg = componentPackageMapping.base?.[name ?? ''];
   return {
     filename,
     name,
     muiName: getMuiName(name),
-    apiPathname: `/base/api/${componentPkg}/${kebabCase(name)}/`,
+    apiPathname: `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api/${muiPackage}`),
     readFile() {
       srcInfo = parseFile(filename);
@@ -236,13 +195,12 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       if (!inheritedComponent) {
         return null;
       }
-      const inheritedPkg = componentPackageMapping.base?.[inheritedComponent ?? ''];
       return {
         name: inheritedComponent,
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/base/api/${inheritedPkg}/${kebabCase(inheritedComponent)}/`,
+            : `/base/api/${kebabCase(inheritedComponent)}/`,
       };
     },
     getDemos: () => {

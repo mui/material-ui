@@ -242,7 +242,7 @@ function createRender(context) {
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations, componentPackageMapping = {} } = config;
+  const { pageFilename, translations } = config;
 
   const demos = {};
   /**
@@ -254,20 +254,15 @@ function prepareMarkdown(config) {
   /**
    * @param {string} product
    * @example 'material'
-   * @param {string} componentPkg
-   * @example 'mui-base'
    * @param {string} component
    * @example 'ButtonUnstyled'
    * @returns {string}
    */
-  function resolveComponentApiUrl(product, componentPkg, component) {
-    if (!product || !componentPkg) {
+  function resolveComponentApiUrl(product, component) {
+    if (!product) {
       return `/api/${kebabCase(component)}/`;
     }
-    if (componentPkg === 'mui-base') {
-      return `/base/api/${componentPkg}/${kebabCase(component)}/`;
-    }
-    return `/${product}/api/${componentPkg}/${kebabCase(component)}/`;
+    return `/${product}/api/${kebabCase(component)}/`;
   }
 
   translations
@@ -286,19 +281,10 @@ function prepareMarkdown(config) {
 ## API
 
 ${headers.components
-  .map((component) => {
-    return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
-
-    // TODO: enable the code below once the migration is done.
-    // eslint-disable-next-line no-unreachable
-    const componentPkgMap = componentPackageMapping[headers.product];
-    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
-    return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.product,
-      componentPkg,
-      component,
-    )})`;
-  })
+  .map(
+    (component) =>
+      `- [\`<${component} />\`](${resolveComponentApiUrl(headers.product, component)})`,
+  )
   .join('\n')}
   `);
       }
