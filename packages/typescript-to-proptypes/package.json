@@ -23,7 +23,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.1.17",
+    "@types/babel__core": "^7.1.18",
     "@types/doctrine": "^0.0.5",
     "@types/lodash": "^4.14.178",
     "@types/node": "^16.11.4",
