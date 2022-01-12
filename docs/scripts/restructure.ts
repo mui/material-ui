@@ -141,6 +141,33 @@ function run() {
     });
   });
 
+  /**
+   * ======================================================================
+   * Styles legacy
+   */
+  const stylesDataDir = readdirDeep(path.resolve(`docs/src/pages/styles`));
+  stylesDataDir.forEach((filePath) => {
+    // pathname could be a directory
+    let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    if (filePath.endsWith('.md')) {
+      data = markdown.removeDemoRelativePath(data);
+    }
+    fs.mkdirSync(filePath.replace('src/pages', 'data'), { recursive: true });
+    fs.writeFileSync(filePath.replace('src/pages', 'data'), data); // (A)
+
+    fs.rmSync(filePath);
+  });
+
+  const stylesPagesDir = readdirDeep(path.resolve(`docs/pages/styles`));
+  stylesPagesDir.forEach((filePath) => {
+    let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    if (filePath.endsWith('.js')) {
+      data = data.replace(`src/pages`, `/data/`); // point to data path (A) in new directory
+    }
+    fs.writeFileSync(filePath.replace('pages/styles', 'pages/system/styles'), data);
+  });
+  // =======================================================================
+
   // include `base` pages in `_app.js`
   updateAppToUseProductPagesData('base');
 
