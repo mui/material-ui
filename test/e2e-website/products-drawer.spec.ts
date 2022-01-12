@@ -22,7 +22,7 @@ test('able to navigate between products', async ({ page }) => {
 
   await expect(page.locator('#mui-product-menu a:has-text("System")')).toHaveAttribute(
     'href',
-    '/system/basic/',
+    '/system/basics/',
   );
 
   await expect(page.locator('#mui-product-menu a:has-text("Data Grid")')).toHaveAttribute(

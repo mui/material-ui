@@ -72,7 +72,10 @@ const readdirDeep = (directory: string, pathsProp: string[] = []) => {
       readdirDeep(itemPath, paths);
     }
 
-    paths.push(itemPath);
+    if (itemPath.match(/.*\/[^/]+\.[^.]+/)) {
+      // ends with extension
+      paths.push(itemPath);
+    }
   });
 
   return paths;
@@ -152,8 +155,9 @@ function run() {
     if (filePath.endsWith('.md')) {
       data = markdown.removeDemoRelativePath(data);
     }
-    fs.mkdirSync(filePath.replace('src/pages', 'data'), { recursive: true });
-    fs.writeFileSync(filePath.replace('src/pages', 'data'), data); // (A)
+    const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
+    fs.mkdirSync(match[1].replace('src/pages', 'data'), { recursive: true });
+    fs.writeFileSync(filePath.replace('src/pages', 'data'), data);
 
     fs.rmSync(filePath);
   });
@@ -162,8 +166,15 @@ function run() {
   stylesPagesDir.forEach((filePath) => {
     let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
     if (filePath.endsWith('.js')) {
-      data = data.replace(`src/pages`, `/data/`); // point to data path (A) in new directory
+      data = data.replace(`src/pages`, `data`);
     }
+
+    // replace the old file
+    fs.writeFileSync(filePath, data);
+
+    // add to /system
+    const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
+    fs.mkdirSync(match[1].replace('pages/styles', 'pages/system/styles'), { recursive: true });
     fs.writeFileSync(filePath.replace('pages/styles', 'pages/system/styles'), data);
   });
   // =======================================================================

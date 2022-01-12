@@ -27,12 +27,6 @@ test.describe.parallel('Material docs', () => {
     );
   });
 
-  test('should see legacy styles inside system', async ({ page }) => {
-    await page.goto(`/system/styles/basic/`);
-
-    await expect(page.locator('h1:has-text("@mui/styles")')).toBeVisible();
-  });
-
   test.describe.parallel('Demo page', () => {
     test('should have correct link for API section', async ({ page }) => {
       await page.goto(`/material/react-cards/`);
@@ -94,10 +88,6 @@ test.describe.parallel('Material docs', () => {
           )
         ) {
           expect(link.startsWith(`/material`)).toBeTruthy();
-        }
-
-        if (link.startsWith('/material/api/')) {
-          expect(link).toMatch(/\/material\/api\/mui-(material|lab)\/.*/);
         }
 
         expect(link).not.toMatch(/\/components/); // there should be no `/components` in the url anymore

@@ -287,6 +287,10 @@ function prepareMarkdown(config) {
 
 ${headers.components
   .map((component) => {
+    return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
+
+    // TODO: enable the code below once the migration is done.
+    // eslint-disable-next-line no-unreachable
     const componentPkgMap = componentPackageMapping[headers.product];
     const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
     return `- [\`<${component} />\`](${resolveComponentApiUrl(
