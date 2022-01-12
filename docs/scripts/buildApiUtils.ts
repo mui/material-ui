@@ -138,7 +138,7 @@ export const getGenericComponentInfo = (filename: string): ComponentInfo => {
 };
 
 export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
-  const { name, muiPackage } = extractPackageFile(filename);
+  const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
     throw new Error(`Could not find the component name from: ${filename}`);
@@ -148,7 +148,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     name,
     muiName: getMuiName(name),
     apiPathname: `/material/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/material/api/${muiPackage}`),
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/material/api`),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -176,7 +176,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
 };
 
 export const getBaseComponentInfo = (filename: string): ComponentInfo => {
-  const { name, muiPackage } = extractPackageFile(filename);
+  const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
     throw new Error(`Could not find the component name from: ${filename}`);
@@ -186,7 +186,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
     name,
     muiName: getMuiName(name),
     apiPathname: `/base/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api/${muiPackage}`),
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
