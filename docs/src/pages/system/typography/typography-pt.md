@@ -22,7 +22,17 @@
 <Box sx={{ textAlign: 'right' }}>…
 ```
 
-## Peso da fonte
+## Text transformation
+
+{{"demo": "pages/system/typography/TextTransform.js", "defaultCodeOpen": false}}
+
+```jsx
+<Box sx={{ textTransform: 'capitalize' }}>…
+<Box sx={{ textTransform: 'lowercase' }}>…
+<Box sx={{ textTransform: 'uppercase' }}>…
+```
+
+## Font weight
 
 {{"demo": "pages/system/typography/FontWeight.js", "defaultCodeOpen": false}}
 
@@ -34,7 +44,7 @@
 <Box sx={{ fontWeight: 'bold' }}>…
 ```
 
-## Tamanho da fonte
+## Font size
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
@@ -44,7 +54,7 @@
 <Box sx={{ fontSize: 16 }}>…
 ```
 
-## Estilo da fonte
+## Font style
 
 {{"demo": "pages/system/typography/FontStyle.js", "defaultCodeOpen": false}}
 
@@ -54,7 +64,7 @@
 <Box sx={{ fontStyle: 'oblique' }}>…
 ```
 
-## Família da fonte
+## Font family
 
 {{"demo": "pages/system/typography/FontFamily.js", "defaultCodeOpen": false}}
 
@@ -63,7 +73,7 @@
 <Box sx={{ fontFamily: 'Monospace' }}>…
 ```
 
-## Espaçamento das letras
+## Letter spacing
 
 {{"demo": "pages/system/typography/LetterSpacing.js", "defaultCodeOpen": false}}
 
@@ -72,7 +82,7 @@
 <Box sx={{ letterSpacing: 10 }}>…
 ```
 
-## Altura da linha
+## Line height
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 
@@ -84,7 +94,7 @@
 ## API
 
 ```js
-import { typography } from '@material-ui/system';
+import { typography } from '@mui/system';
 ```
 
 | Nome da importação | Propriedade     | Propriedade CSS                                                                              | Chave do tema                                                          |
@@ -97,3 +107,4 @@ import { typography } from '@material-ui/system';
 | `letterSpacing`    | `letterSpacing` | `letter-spacing`                                                                             | none                                                                   |
 | `lineHeight`       | `lineHeight`    | `line-height`                                                                                | none                                                                   |
 | `textAlign`        | `textAlign`     | `text-align`                                                                                 | none                                                                   |
+| `textTransform`    | `textTransform` | `text-transform`                                                                             | none                                                                   |
