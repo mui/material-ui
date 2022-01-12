@@ -590,7 +590,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           anchorEl={anchorEl}
           open
         >
-          <AutocompletePaper as={PaperComponent} className={classes.paper} ownerState={ownerState}>
+          <AutocompletePaper
+            ownerState={ownerState}
+            as={PaperComponent}
+            {...componentsProps.paper}
+            className={clsx(classes.paper, componentsProps.paper?.className)}
+          >
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
                 {loadingText}
@@ -722,6 +727,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
+    paper: PropTypes.object,
   }),
   /**
    * The default value. Use when the component is not controlled.
