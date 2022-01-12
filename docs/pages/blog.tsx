@@ -112,7 +112,7 @@ const PostPreview = (props: BlogPost) => {
           }}
         >
           {(props.authors as Array<keyof typeof AUTHORS>).map((author) => (
-            <Avatar key={author} alt="" src={AUTHORS[author]?.avatar} />
+            <Avatar key={author} alt={AUTHORS[author]?.name} src={AUTHORS[author]?.avatar} />
           ))}
         </AvatarGroup>
       )}
