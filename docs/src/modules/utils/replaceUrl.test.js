@@ -57,7 +57,7 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/button/`);
     expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
     expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material/api/loading-button/`);
-    expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/`);
+    expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
     expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
   });
 

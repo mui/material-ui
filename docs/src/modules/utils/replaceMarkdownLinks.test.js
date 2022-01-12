@@ -108,8 +108,8 @@ describe('replaceMarkdownLinks', () => {
 <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
 <li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
 <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-<li><a href="/x/api/data-grid/">DataGrid</a></li>
-<li><a href="/x/api/data-grid-pro/">DataGridPro</a></li>
+<li><a href="/x/api/data-grid/data-grid/">DataGrid</a></li>
+<li><a href="/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
 <li><a href="/system/basics/">System</a></li>
 </ul>
     `);
@@ -173,8 +173,8 @@ describe('replaceMarkdownLinks', () => {
     <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
     <li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
     <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-    <li><a href="/x/api/data-grid/">DataGrid</a></li>
-    <li><a href="/x/api/data-grid-pro/">DataGridPro</a></li>
+    <li><a href="/x/api/data-grid/data-grid/">DataGrid</a></li>
+    <li><a href="/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
     <li><a href="/system/basics/">System</a></li>
     <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/material/customization/theme-components/#default-props">default props</a>
