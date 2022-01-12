@@ -15,6 +15,7 @@ const HomeIcon = () => <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
   <HomeIcon />
 </SvgIcon>;
 
+// `color`
 <SvgIcon color="primary">
   <HomeIcon />
 </SvgIcon>;
@@ -34,23 +35,39 @@ const HomeIcon = () => <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
   <HomeIcon />
 </SvgIcon>;
 
-<SvgIcon fontSize="extraSmall">
+// `fontSize`
+<SvgIcon fontSize="xs">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon fontSize="small">
+<SvgIcon fontSize="sm">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon fontSize="medium">
+<SvgIcon fontSize="md">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon fontSize="large">
+<SvgIcon fontSize="lg">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon fontSize="extraLarge">
+<SvgIcon fontSize="xl">
+  <HomeIcon />
+</SvgIcon>;
+<SvgIcon fontSize="xl2">
+  <HomeIcon />
+</SvgIcon>;
+<SvgIcon fontSize="xl3">
+  <HomeIcon />
+</SvgIcon>;
+<SvgIcon fontSize="xl4">
+  <HomeIcon />
+</SvgIcon>;
+<SvgIcon fontSize="xl5">
+  <HomeIcon />
+</SvgIcon>;
+<SvgIcon fontSize="xl6">
   <HomeIcon />
 </SvgIcon>;
 
-// @ts-expect-error there is no fontSize `sm`
-<SvgIcon fontSize="sm">
+// @ts-expect-error there is no fontSize `small`
+<SvgIcon fontSize="small">
   <HomeIcon />
 </SvgIcon>;

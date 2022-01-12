@@ -110,48 +110,93 @@ describe('<SvgIcon />', () => {
   });
 
   describe('prop: fontSize', () => {
-    it('should render with `medium` by default', () => {
-      const { container } = render(<SvgIcon fontSize="medium">{path}</SvgIcon>);
+    it('should render with `md` by default', () => {
+      const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.fontSizeMedium);
+      expect(container.firstChild).to.have.class(classes.fontSizeMd);
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: defaultTheme.vars.fontSize.md,
       });
     });
 
-    it('should render with `extraSmall` size', () => {
-      const { container } = render(<SvgIcon fontSize="extraSmall">{path}</SvgIcon>);
+    it('should render with `xs` size', () => {
+      const { container } = render(<SvgIcon fontSize="xs">{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.fontSizeExtraSmall);
+      expect(container.firstChild).to.have.class(classes.fontSizeXs);
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: defaultTheme.vars.fontSize.xs,
       });
     });
 
-    it('should render with `small` size', () => {
-      const { container } = render(<SvgIcon fontSize="small">{path}</SvgIcon>);
+    it('should render with `sm` size', () => {
+      const { container } = render(<SvgIcon fontSize="sm">{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.fontSizeSmall);
+      expect(container.firstChild).to.have.class(classes.fontSizeSm);
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: defaultTheme.vars.fontSize.sm,
       });
     });
 
-    it('should render with `large` size', () => {
-      const { container } = render(<SvgIcon fontSize="large">{path}</SvgIcon>);
+    it('should render with `lg` size', () => {
+      const { container } = render(<SvgIcon fontSize="lg">{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.fontSizeLarge);
+      expect(container.firstChild).to.have.class(classes.fontSizeLg);
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: defaultTheme.vars.fontSize.lg,
       });
     });
 
-    it('should render with `extraLarge` size', () => {
-      const { container } = render(<SvgIcon fontSize="extraLarge">{path}</SvgIcon>);
+    it('should render with `xl` size', () => {
+      const { container } = render(<SvgIcon fontSize="xl">{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.fontSizeExtraLarge);
+      expect(container.firstChild).to.have.class(classes.fontSizeXl);
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: defaultTheme.vars.fontSize.xl,
+      });
+    });
+
+    it('should render with `xl2` size', () => {
+      const { container } = render(<SvgIcon fontSize="xl2">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.fontSizeXl2);
+      expect(container.firstChild).toHaveComputedStyle({
+        fontSize: defaultTheme.vars.fontSize.xl2,
+      });
+    });
+
+    it('should render with `xl3` size', () => {
+      const { container } = render(<SvgIcon fontSize="xl3">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.fontSizeXl3);
+      expect(container.firstChild).toHaveComputedStyle({
+        fontSize: defaultTheme.vars.fontSize.xl3,
+      });
+    });
+
+    it('should render with `xl4` size', () => {
+      const { container } = render(<SvgIcon fontSize="xl4">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.fontSizeXl4);
+      expect(container.firstChild).toHaveComputedStyle({
+        fontSize: defaultTheme.vars.fontSize.xl4,
+      });
+    });
+
+    it('should render with `xl5` size', () => {
+      const { container } = render(<SvgIcon fontSize="xl5">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.fontSizeXl5);
+      expect(container.firstChild).toHaveComputedStyle({
+        fontSize: defaultTheme.vars.fontSize.xl5,
+      });
+    });
+
+    it('should render with `xl6` size', () => {
+      const { container } = render(<SvgIcon fontSize="xl6">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.fontSizeXl6);
+      expect(container.firstChild).toHaveComputedStyle({
+        fontSize: defaultTheme.vars.fontSize.xl6,
       });
     });
   });
