@@ -110,6 +110,9 @@ describe('<SvgIcon />', () => {
   });
 
   describe('prop: fontSize', () => {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
     it('should render with `md` by default', () => {
       const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
