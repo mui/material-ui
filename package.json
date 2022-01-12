@@ -89,7 +89,7 @@
     "@testing-library/react": "^12.1.2",
     "@types/chai": "^4.3.0",
     "@types/chai-dom": "^0.0.12",
-    "@types/enzyme": "^3.10.10",
+    "@types/enzyme": "^3.10.11",
     "@types/format-util": "^1.0.2",
     "@types/fs-extra": "^9.0.13",
     "@types/jsdom": "^16.2.14",
