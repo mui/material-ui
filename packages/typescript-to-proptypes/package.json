@@ -29,7 +29,7 @@
     "@types/node": "^16.11.4",
     "@types/prettier": "^2.4.2",
     "@types/react": "^17.0.38",
-    "@types/uuid": "^8.3.3",
+    "@types/uuid": "^8.3.4",
     "fast-glob": "^3.2.7",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2"
