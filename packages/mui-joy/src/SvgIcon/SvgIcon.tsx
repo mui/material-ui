@@ -102,8 +102,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       aria-hidden={titleAccess ? undefined : true}
       role={titleAccess ? 'img' : undefined}
       ref={ref}
-      viewBox={inheritViewBox ? undefined : viewBox}
       {...other}
+      {...(!inheritViewBox && { viewBox })}
     >
       {children}
       {titleAccess ? <title>{titleAccess}</title> : null}
