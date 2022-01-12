@@ -1,7 +1,6 @@
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp } from '../styles/types';
 import { SvgIconClasses } from './svgIconClasses';
 
 export interface SvgIconPropsSizeOverrides {}
@@ -24,15 +23,15 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * @default 'inherit'
      */
     color?: OverridableStringUnion<
-      Exclude<ColorPaletteProp, 'context'>,
-      SvgIconPropsColorOverrides
+      'inherit' | 'primary' | 'neutral' | 'warning' | 'success' | 'danger' | 'info',
+      SvgIconPropsSizeOverrides
     >;
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
      * @default 'medium'
      */
     fontSize?: OverridableStringUnion<
-      'inherit' | 'large' | 'medium' | 'small',
+      'inherit' | 'extraSmall' | 'small' | 'medium' | 'large' | 'extraLarge',
       SvgIconPropsSizeOverrides
     >;
     /**

@@ -4,10 +4,11 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
+import { SvgIconTypeMap } from '.';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSvgIconUtilityClass } from './svgIconClasses';
-import { SvgIconProps, SvgIconTypeMap } from './SvgIconProps';
+import { SvgIconProps } from './SvgIconProps';
 
 const useUtilityClasses = (ownerState: SvgIconProps) => {
   const { color, fontSize, classes } = ownerState;
@@ -35,29 +36,35 @@ const SvgIconRoot = styled('svg', {
       styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})<{ ownerState: SvgIconProps }>(({ theme, ownerState }) => ({
-  userSelect: 'none',
-  width: '1em',
-  height: '1em',
-  display: 'inline-block',
-  fill: 'currentColor',
-  flexShrink: 0,
-  transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-  fontSize: {
-    inherit: 'inherit',
-    extraSmall: theme.vars.fontSize.xs,
-    small: theme.vars.fontSize.sm,
-    medium: theme.vars.fontSize.md,
-    large: theme.vars.fontSize.lg,
-    extraLarge: theme.vars.fontSize.xl,
-  }[ownerState.fontSize!],
-  color: theme.vars.palette[ownerState.color!]
-    ? theme.vars.palette[ownerState.color!]
-    : ownerState.color,
-}));
+})<{ ownerState: SvgIconProps }>(({ theme, ownerState }) => {
+  return [
+    {
+      userSelect: 'none',
+      width: '1em',
+      height: '1em',
+      display: 'inline-block',
+      fill: 'currentColor',
+      flexShrink: 0,
+      transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      fontSize:
+        {
+          inherit: 'inherit',
+          extraSmall: theme.vars.fontSize.xs,
+          small: theme.vars.fontSize.sm,
+          medium: theme.vars.fontSize.md,
+          large: theme.vars.fontSize.lg,
+          extraLarge: theme.vars.fontSize.xl,
+        }[ownerState.fontSize!] || ownerState.fontSize,
+      color:
+        ownerState.color !== 'inherit' && theme.vars.palette[ownerState.color!]
+          ? theme.vars.palette[ownerState.color!].textColor
+          : ownerState.color,
+    },
+  ];
+});
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
-  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+  const props = useThemeProps<typeof inProps & SvgIconProps>({
     props: inProps,
     name: 'MuiSvgIcon',
   });
@@ -123,10 +130,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'neutral', 'primary', 'danger', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -136,10 +140,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  fontSize: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
-    PropTypes.string,
-  ]),
+  fontSize: PropTypes.oneOf(['extraLarge', 'extraSmall', 'inherit', 'large', 'medium', 'small']),
   /**
    * Applies a color attribute to the SVG element.
    */
