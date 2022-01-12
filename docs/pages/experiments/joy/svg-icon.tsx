@@ -88,7 +88,7 @@ export default function JoySvgIcon() {
             >
               <Typography sx={{ textDecoration: 'underline' }}>{propName}</Typography>
               {propValue.map((value) => (
-                <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <SvgIcon {...{ [propName]: value }}>
                     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                   </SvgIcon>
