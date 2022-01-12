@@ -101,7 +101,7 @@ function ProductSubMenu(props) {
 ProductSubMenu.propTypes = {
   description: PropTypes.string,
   icon: PropTypes.element,
-  name: PropTypes.string,
+  name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 function ProductDrawerButton(props) {

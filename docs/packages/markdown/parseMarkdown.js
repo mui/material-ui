@@ -242,7 +242,7 @@ function createRender(context) {
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations } = config;
+  const { pageFilename, translations, componentPackageMapping = {} } = config;
 
   const demos = {};
   /**
@@ -254,13 +254,18 @@ function prepareMarkdown(config) {
   /**
    * @param {string} product
    * @example 'material'
+   * @param {string} componentPkg
+   * @example 'mui-base'
    * @param {string} component
    * @example 'ButtonUnstyled'
    * @returns {string}
    */
-  function resolveComponentApiUrl(product, component) {
+  function resolveComponentApiUrl(product, componentPkg, component) {
     if (!product) {
       return `/api/${kebabCase(component)}/`;
+    }
+    if (componentPkg === 'mui-base') {
+      return `/base/api/${kebabCase(component)}/`;
     }
     return `/${product}/api/${kebabCase(component)}/`;
   }
@@ -281,10 +286,15 @@ function prepareMarkdown(config) {
 ## API
 
 ${headers.components
-  .map(
-    (component) =>
-      `- [\`<${component} />\`](${resolveComponentApiUrl(headers.product, component)})`,
-  )
+  .map((component) => {
+    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
+    return `- [\`<${component} />\`](${resolveComponentApiUrl(
+      headers.product,
+      componentPkg,
+      component,
+    )})`;
+  })
   .join('\n')}
   `);
       }
