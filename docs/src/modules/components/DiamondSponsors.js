@@ -91,7 +91,7 @@ export default function DiamondSponsors(props) {
           data-ga-event-category="sponsor"
           data-ga-event-action={spot}
           data-ga-event-label="doit"
-          href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral"
+          href="https://www.doit-intl.com/flexsave/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
