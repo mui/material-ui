@@ -1,10 +1,32 @@
 import * as React from 'react';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix';
+import { withEmotionCache } from '@emotion/react';
 import theme from './src/theme';
-
+import ClientStyleContext from './src/ClientStyleContext';
 import Layout from './src/Layout';
 
-function Document({ children, title }: { children: React.ReactNode; title?: string }) {
+interface DocumentProps {
+  children: React.ReactNode;
+  title?: string;
+}
+
+const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCache) => {
+  const clientStyleData = React.useContext(ClientStyleContext);
+
+  // Only executed on client
+  React.useEffect(() => {
+    // re-link sheet container
+    emotionCache.sheet.container = document.head;
+    // re-inject tags
+    const tags = emotionCache.sheet.tags;
+    emotionCache.sheet.flush();
+    tags.forEach((tag) => {
+      (emotionCache.sheet as any)._insertTag(tag);
+    });
+    // reset cache to reapply global styles
+    clientStyleData.reset();
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -28,7 +50,7 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
       </body>
     </html>
   );
-}
+});
 
 // https://remix.run/api/conventions#default-export
 // https://remix.run/api/conventions#route-filenames
