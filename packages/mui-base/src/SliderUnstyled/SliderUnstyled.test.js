@@ -2,7 +2,13 @@ import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/base/Slid
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
-import { createRenderer, createMount, describeConformance, fireEvent, screen } from 'test/utils';
+import {
+  createRenderer,
+  createMount,
+  describeConformanceUnstyled,
+  fireEvent,
+  screen,
+} from 'test/utils';
 
 describe('<SliderUnstyled />', () => {
   before(function beforeHook() {
@@ -14,18 +20,28 @@ describe('<SliderUnstyled />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
-  describeConformance(<SliderUnstyled value={0} />, () => ({
+  describeConformanceUnstyled(<SliderUnstyled value={0} />, () => ({
     classes,
     inheritComponent: 'span',
-    mount,
     render,
+    mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: 'span',
-    skip: [
-      'themeDefaultProps', // unstyled
-      'themeStyleOverrides', // unstyled
-      'themeVariants', // unstyled
-    ],
+    testComponentPropWith: 'div',
+    muiName: 'MuiSlider',
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      thumb: {
+        expectedClassName: classes.thumb,
+      },
+      track: {
+        expectedClassName: classes.track,
+      },
+      rail: {
+        expectedClassName: classes.rail,
+      },
+    },
   }));
 
   it('forwards style props on the Root component', () => {

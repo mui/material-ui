@@ -179,7 +179,11 @@ async function generateProptypes(
 ): Promise<void> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
-      if (name.toLowerCase().endsWith('classes') || name === 'theme' || name.endsWith('Props')) {
+      if (
+        name.toLowerCase().endsWith('classes') ||
+        name === 'theme' ||
+        (name.endsWith('Props') && name !== 'componentsProps')
+      ) {
         return false;
       }
       return undefined;
