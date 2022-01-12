@@ -14,7 +14,7 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
   const clientStyleData = React.useContext(ClientStyleContext);
 
   // Only executed on client
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     // re-link sheet container
     emotionCache.sheet.container = document.head;
     // re-inject tags
