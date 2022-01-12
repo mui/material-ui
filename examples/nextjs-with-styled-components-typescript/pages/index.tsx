@@ -9,7 +9,7 @@ import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 
 const CustomButton = styled(Button)({
-  backgroundColor: 'red'
+  backgroundColor: 'red',
 });
 
 const LeftAlignedTypography = styled(Typography)`
@@ -18,7 +18,7 @@ const LeftAlignedTypography = styled(Typography)`
 
 const LeftAlignedLocalTypography = styled(LocalTypography)`
   text-align: left;
-`
+`;
 
 export default function Index() {
   return (
@@ -29,9 +29,13 @@ export default function Index() {
         </Link>
         <ProTip />
         <CustomButton>Should have red background</CustomButton>
-        <LeftAlignedTypography align={"right"}>This should be always aligned left (not working - coming from MUI)</LeftAlignedTypography>
+        <LeftAlignedTypography align={'right'}>
+          This should be always aligned left (not working - coming from MUI)
+        </LeftAlignedTypography>
         {/* @ts-ignore */}
-        <LeftAlignedLocalTypography align="right">This should be always aligned left</LeftAlignedLocalTypography>
+        <LeftAlignedLocalTypography align="right">
+          This should be always aligned left
+        </LeftAlignedLocalTypography>
       </Box>
     </Container>
   );

@@ -7,6 +7,7 @@ export default function styled(tag, options) {
     stylesFactory = scStyled(tag).withConfig({
       displayName: options.label,
       shouldForwardProp: options.shouldForwardProp,
+      componentId: `mui-component-${options.label}`,
     });
   } else {
     stylesFactory = scStyled(tag);
