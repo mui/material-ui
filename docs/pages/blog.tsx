@@ -176,6 +176,7 @@ const PostPreview = (props: BlogPost) => {
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const PAGE_SIZE = 5;
   const router = useRouter();
+  const postListRef = React.useRef<HTMLDivElement | null>(null);
   const [page, setPage] = React.useState(0);
   const [selectedTags, setSelectedTags] = React.useState<Record<string, boolean>>({});
   const { allBlogPosts, allTags, tagInfo: rawTagInfo } = props;
@@ -297,7 +298,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           </Box>
         </Section>
         <Container
-          id="post-list"
+          ref={postListRef}
           sx={{
             mt: { xs: -8, sm: -7 },
             display: 'grid',
@@ -359,20 +360,14 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                         ? {
                             label: tag,
                             onDelete: () => {
-                              const postList = document.getElementById('post-list');
-                              if (postList) {
-                                postList.scrollIntoView();
-                              }
+                              postListRef.current?.scrollIntoView();
                               removeTag(tag);
                             },
                           }
                         : {
                             label: tag,
                             onClick: () => {
-                              const postList = document.getElementById('post-list');
-                              if (postList) {
-                                postList.scrollIntoView();
-                              }
+                              postListRef.current?.scrollIntoView();
                               router.push(
                                 {
                                   query: {
@@ -423,10 +418,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               shape="rounded"
               onChange={(_, value) => {
                 setPage(value - 1);
-                const postList = document.getElementById('post-list');
-                if (postList) {
-                  postList.scrollIntoView();
-                }
+                postListRef.current?.scrollIntoView();
               }}
               sx={{ mt: 1, mb: 8 }}
             />
