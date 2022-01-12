@@ -20,7 +20,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
-- [Update MUI](#update-material-ui-version)
+- [Update MUI](#update-mui-version)
 - [Run codemods](#run-codemods)
   - [preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
