@@ -231,6 +231,11 @@ module.exports = {
     if (FEATURE_TOGGLE.enable_redirects) {
       return [
         {
+          source: '/styles/:path*',
+          destination: '/system/styles/:path*',
+          permanent: false,
+        },
+        {
           source: '/getting-started/:path*',
           destination: '/material/getting-started/:path*',
           permanent: false,
