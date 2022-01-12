@@ -53,33 +53,21 @@ describe('replaceUrl', () => {
   });
 
   it('replace correct API links', () => {
-    expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/mui-material/button/`);
-    expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(
-      `/base/api/mui-base/button-unstyled/`,
-    );
-    expect(replaceAPILinks(`/api/loading-button/`)).to.equal(
-      `/material/api/mui-lab/loading-button/`,
-    );
-    expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(
-      `/x/api/mui-data-grid/data-grid/`,
-    );
-    expect(replaceAPILinks(`/styles/api/`)).to.equal(`/styles/api/`);
+    expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/button/`);
+    expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
+    expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material/api/loading-button/`);
+    expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/`);
+    expect(replaceAPILinks(`/styles/api/`)).to.equal(`/system/styles/api/`);
     expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
   });
 
   it('should do nothing if the APIs have updated', () => {
-    expect(replaceAPILinks(`/material/api/mui-material/button/`)).to.equal(
-      `/material/api/mui-material/button/`,
+    expect(replaceAPILinks(`/material/api/button/`)).to.equal(`/material/api/button/`);
+    expect(replaceAPILinks(`/base/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
+    expect(replaceAPILinks(`/material/api/loading-button/`)).to.equal(
+      `/material/api/loading-button/`,
     );
-    expect(replaceAPILinks(`/base/api/mui-base/button-unstyled/`)).to.equal(
-      `/base/api/mui-base/button-unstyled/`,
-    );
-    expect(replaceAPILinks(`/material/api/mui-lab/loading-button/`)).to.equal(
-      `/material/api/mui-lab/loading-button/`,
-    );
-    expect(replaceAPILinks(`/x/api/mui-data-grid/data-grid/`)).to.equal(
-      `/x/api/mui-data-grid/data-grid/`,
-    );
+    expect(replaceAPILinks(`/x/api/data-grid/`)).to.equal(`/x/api/data-grid/`);
   });
 
   it('only replace links for new routes (/material/* & /x/*)', () => {
@@ -92,8 +80,8 @@ describe('replaceUrl', () => {
     expect(
       replaceUrl(`/components/data-grid/components/#main-content`, '/x/react-data-grid'),
     ).to.equal(`/x/react-data-grid/components/#main-content`);
-    expect(replaceUrl(`/api/button-unstyled`, '/base/api/mui-base/button-unstyled')).to.equal(
-      `/base/api/mui-base/button-unstyled`,
+    expect(replaceUrl(`/api/button-unstyled`, '/base/api/button-unstyled')).to.equal(
+      `/base/api/button-unstyled`,
     );
   });
 
