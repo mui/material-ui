@@ -459,8 +459,7 @@ function AppNavDrawer(props) {
     const isProductScoped =
       router.asPath.startsWith('/x') ||
       router.asPath.startsWith('/material') ||
-      router.asPath.startsWith('/system') ||
-      router.asPath.startsWith('/styles') ||
+      (router.asPath.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) ||
       router.asPath.startsWith('/base');
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
@@ -594,7 +593,7 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
-            {router.asPath.startsWith('/system/') && (
+            {router.asPath.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
               <ProductIdentifier
                 name="System"
                 metadata="MUI Core"

@@ -42,13 +42,20 @@ const updateAppToUseProductPagesData = (product: string) => {
   let appSource = fs.readFileSync(appPath, { encoding: 'utf8' });
   appSource = appendSource(
     appSource,
+    `import findActivePage from 'docs/src/modules/utils/findActivePage';`,
+    `import FEATURE_TOGGLE from 'docs/src/featureToggle';`,
+  );
+  appSource = appendSource(
+    appSource,
     `import pages from 'docs/src/pages';`,
     `import ${product}Pages from 'docs/data/${product}/pages';`,
   );
   appSource = appendSource(
     appSource,
     `let productPages = pages;`,
-    `if (router.asPath.startsWith('/${product}')) {
+    `if (router.asPath.startsWith('/${product}')${
+      product === 'system' ? ` && FEATURE_TOGGLE.enable_system_scope` : ''
+    }) {
       productPages = ${product}Pages;
     }`,
   );
@@ -76,7 +83,7 @@ function run() {
    * clone pages & api data from `docs/src/pages.ts` to `docs/src/data/materialPages.ts`
    * also prefix all pathnames with `/$product/` by using Regexp replace
    */
-  (['styles', 'system', 'material'] as const).forEach((product) => {
+  (['system', 'material'] as const).forEach((product) => {
     const pathnames = productPathnames[product] as unknown as string[];
 
     // update _app.js to use product pages
@@ -126,7 +133,7 @@ function run() {
         } else {
           let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
           if (filePath.endsWith('.js')) {
-            data = data.replace('/src/pages/', `/data/${product}`); // point to data path (A) in new directory
+            data = data.replace(`/src/pages/`, `/data/`); // point to data path (A) in new directory
           }
           fs.writeFileSync(filePath, data);
         }
