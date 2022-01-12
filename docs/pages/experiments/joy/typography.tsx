@@ -1,26 +1,11 @@
 import * as React from 'react';
 // @ts-ignore
 import { jsx as _jsx } from 'react/jsx-runtime';
-import { CssVarsProvider, styled, useColorScheme, FontSize } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import SvgIcon from '@mui/joy/SvgIcon';
 import Typography from '@mui/joy/Typography';
-
-export const SvgIcon = styled('svg', {
-  shouldForwardProp: (prop) => prop !== 'fontSize' && prop !== 'sx',
-})<{
-  fontSize: keyof FontSize | 'inherit';
-}>(({ theme, fontSize }) => ({
-  userSelect: 'none',
-  width: '1em',
-  height: '1em',
-  display: 'inline-block',
-  fill: 'currentColor',
-  flexShrink: 0,
-  ...(fontSize && {
-    fontSize: fontSize === 'inherit' ? 'inherit' : theme.vars.fontSize[fontSize],
-  }),
-}));
 
 function createSvgIcon(path: any, displayName: any, initialProps?: any) {
   const Component = (props: any, ref: any) =>
@@ -29,7 +14,7 @@ function createSvgIcon(path: any, displayName: any, initialProps?: any) {
         data-testid={`${displayName}Icon`}
         ref={ref}
         viewBox="0 0 24 24"
-        fontSize="xl"
+        fontSize="extraLarge"
         {...initialProps}
         {...props}
         sx={{ ...initialProps?.sx, ...props.sx }}
