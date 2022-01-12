@@ -46,18 +46,11 @@ const SvgIconRoot = styled('svg', {
       flexShrink: 0,
       transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontSize:
-        {
-          inherit: 'inherit',
-          extraSmall: theme.vars.fontSize.xs,
-          small: theme.vars.fontSize.sm,
-          medium: theme.vars.fontSize.md,
-          large: theme.vars.fontSize.lg,
-          extraLarge: theme.vars.fontSize.xl,
-        }[ownerState.fontSize!] || ownerState.fontSize,
+        ownerState.fontSize !== 'inherit' ? theme.vars.fontSize[ownerState.fontSize!] : 'inherit',
       color:
         ownerState.color !== 'inherit' && theme.vars.palette[ownerState.color!]
           ? theme.vars.palette[ownerState.color!].textColor
-          : ownerState.color,
+          : 'inherit',
     },
   ];
 });
@@ -73,7 +66,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     className,
     color = 'inherit',
     component = 'svg',
-    fontSize = 'medium',
+    fontSize = 'md',
     htmlColor,
     inheritViewBox = false,
     titleAccess,
@@ -136,10 +129,22 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
-   * @default 'medium'
+   * The fontSize applied to the icon. Defaults to 1rem, but can be configure to inherit font size.
+   * @default 'md'
    */
-  fontSize: PropTypes.oneOf(['extraLarge', 'extraSmall', 'inherit', 'large', 'medium', 'small']),
+  fontSize: PropTypes.oneOf([
+    'inherit',
+    'lg',
+    'md',
+    'sm',
+    'xl',
+    'xl2',
+    'xl3',
+    'xl4',
+    'xl5',
+    'xl6',
+    'xs',
+  ]),
   /**
    * Applies a color attribute to the SVG element.
    */

@@ -19,16 +19,26 @@ export interface SvgIconClasses {
   colorWarning: string;
   /** Styles applied to the root element if `fontSize="inherit"`. */
   fontSizeInherit: string;
-  /** Styles applied to the root element if `fontSize="extraSmall"`. */
-  fontSizeExtraSmall: string;
-  /** Styles applied to the root element if `fontSize="small"`. */
-  fontSizeSmall: string;
-  /** Styles applied to the root element if `fontSize="large"`. */
-  fontSizeMedium: string;
-  /** Styles applied to the root element if `fontSize="extraLarge"`. */
-  fontSizeExtraLarge: string;
-  /** Styles applied to the root element if `fontSize="large"`. */
-  fontSizeLarge: string;
+  /** Styles applied to the root element if `fontSize="xs"`. */
+  fontSizeXs: string;
+  /** Styles applied to the root element if `fontSize="sm"`. */
+  fontSizeSm: string;
+  /** Styles applied to the root element if `fontSize="md"`. */
+  fontSizeMd: string;
+  /** Styles applied to the root element if `fontSize="lg"`. */
+  fontSizeLg: string;
+  /** Styles applied to the root element if `fontSize="xl"`. */
+  fontSizeXl: string;
+  /** Styles applied to the root element if `fontSize="xl2"`. */
+  fontSizeXl2: string;
+  /** Styles applied to the root element if `fontSize="xl3"`. */
+  fontSizeXl3: string;
+  /** Styles applied to the root element if `fontSize="xl4"`. */
+  fontSizeXl4: string;
+  /** Styles applied to the root element if `fontSize="xl5"`. */
+  fontSizeXl5: string;
+  /** Styles applied to the root element if `fontSize="xl6"`. */
+  fontSizeXl6: string;
 }
 
 export type SvgIconClassKey = keyof SvgIconClasses;
@@ -47,11 +57,16 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'colorSuccess',
   'colorWarning',
   'fontSizeInherit',
-  'fontSizeExtraSmall',
-  'fontSizeSmall',
-  'fontSizeMedium',
-  'fontSizeExtraLarge',
-  'fontSizeLarge',
+  'fontSizeXs',
+  'fontSizeSm',
+  'fontSizeMd',
+  'fontSizeLg',
+  'fontSizeXl',
+  'fontSizeXl2',
+  'fontSizeXl3',
+  'fontSizeXl4',
+  'fontSizeXl5',
+  'fontSizeXl6',
 ]);
 
 export default svgIconClasses;
