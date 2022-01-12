@@ -3329,10 +3329,10 @@
   dependencies:
     markdown-to-jsx "*"
 
-"@types/marked@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-3.0.3.tgz#37878f405d5f0cff0e6128cea330bd0aa8df8cb3"
-  integrity sha512-ZgAr847Wl68W+B0sWH7F4fDPxTzerLnRuUXjUpp1n4NjGSs8hgPAjAp7NQIXblG34MXTrf5wWkAK8PVJ2LIlVg==
+"@types/marked@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-4.0.1.tgz#d588a7bbc4d6551c5e75249bc106ffda96ae33c5"
+  integrity sha512-ZigEmCWdNUU7IjZEuQ/iaimYdDHWHfTe3kg8ORfKjyGYd9RWumPoOJRQXB0bO+XLkNwzCthW3wUIQtANaEZ1ag==
 
 "@types/mdast@^3.0.0":
   version "3.0.3"
@@ -11316,10 +11316,10 @@ markdownlint@~0.24.0:
   dependencies:
     markdown-it "12.2.0"
 
-marked@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-3.0.8.tgz#2785f0dc79cbdc6034be4bb4f0f0a396bd3f8aeb"
-  integrity sha512-0gVrAjo5m0VZSJb4rpL59K1unJAMb/hm8HRXqasD8VeC8m91ytDPMritgFSlKonfdt+rRYYpP/JfLxgIX8yoSw==
+marked@^4.0.9:
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.9.tgz#96862d67bd31b4770917f01c93e1d9b3cc73ed96"
+  integrity sha512-HmoFvQwFLxNESeGupeOC+6CLb5WzcCWQmqvVetsErmrI3vrZ6gBumty5IP0ynLPR0zYSoVY7ITC1GffsYIGkog==
 
 material-ui-popup-state@^2.0.0:
   version "2.0.0"
