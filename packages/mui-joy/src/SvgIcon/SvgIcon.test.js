@@ -117,12 +117,12 @@ describe('<SvgIcon />', () => {
       }
     });
 
-    it('should render with `md` by default', () => {
+    it('should render with `xl` by default', () => {
       const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.fontSizeMd);
+      expect(container.firstChild).to.have.class(classes.fontSizeXl);
       expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.md,
+        fontSize: defaultTheme.vars.fontSize.xl,
       });
     });
 
@@ -144,21 +144,21 @@ describe('<SvgIcon />', () => {
       });
     });
 
+    it('should render with `md` size', () => {
+      const { container } = render(<SvgIcon fontSize="md">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.fontSizeMd);
+      expect(container.firstChild).toHaveComputedStyle({
+        fontSize: defaultTheme.vars.fontSize.md,
+      });
+    });
+
     it('should render with `lg` size', () => {
       const { container } = render(<SvgIcon fontSize="lg">{path}</SvgIcon>);
 
       expect(container.firstChild).to.have.class(classes.fontSizeLg);
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: defaultTheme.vars.fontSize.lg,
-      });
-    });
-
-    it('should render with `xl` size', () => {
-      const { container } = render(<SvgIcon fontSize="xl">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeXl);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.xl,
       });
     });
 

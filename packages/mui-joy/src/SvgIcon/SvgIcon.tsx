@@ -66,7 +66,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     className,
     color = 'inherit',
     component = 'svg',
-    fontSize = 'md',
+    fontSize = 'xl',
     htmlColor,
     inheritViewBox = false,
     titleAccess,
