@@ -4,6 +4,7 @@ import replaceMarkdownLinks, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceMarkdownLinks';
+import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceMarkdownLinks', () => {
   it('replace material related links', () => {
@@ -97,7 +98,6 @@ describe('replaceMarkdownLinks', () => {
 <li><a href="/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
 <li><a href="/api/data-grid/data-grid/">DataGrid</a></li>
 <li><a href="/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-<li><a href="/styles/api/">Styles</a></li>
 <li><a href="/system/basics/">System</a></li>
 </ul>
     `),
@@ -110,7 +110,6 @@ describe('replaceMarkdownLinks', () => {
 <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
 <li><a href="/x/api/data-grid/">DataGrid</a></li>
 <li><a href="/x/api/data-grid-pro/">DataGridPro</a></li>
-<li><a href="/system/styles/api/">Styles</a></li>
 <li><a href="/system/basics/">System</a></li>
 </ul>
     `);
@@ -154,7 +153,6 @@ describe('replaceMarkdownLinks', () => {
     <li><a href="/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/api/data-grid/data-grid/">DataGrid</a></li>
     <li><a href="/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/system/styles/api/">Styles</a></li>
     <li><a href="/system/basics/">System</a></li>
     <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/customization/theme-components/#default-props">default props</a>
@@ -177,7 +175,6 @@ describe('replaceMarkdownLinks', () => {
     <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/x/api/data-grid/">DataGrid</a></li>
     <li><a href="/x/api/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/system/styles/api/">Styles</a></li>
     <li><a href="/system/basics/">System</a></li>
     <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/material/customization/theme-components/#default-props">default props</a>
@@ -185,6 +182,15 @@ describe('replaceMarkdownLinks', () => {
     <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `);
+    if (FEATURE_TOGGLE.enable_system_scope) {
+      expect(`<li><a href="/system/styles/api/">Styles</a></li>`).to.equal(
+        `<li><a href="/system/styles/api/">Styles</a></li>`,
+      );
+    } else {
+      expect(`<li><a href="/system/styles/api/">Styles</a></li>`).to.equal(
+        `<li><a href="/styles/api/">Styles</a></li>`,
+      );
+    }
   });
 
   it('should work with json', () => {

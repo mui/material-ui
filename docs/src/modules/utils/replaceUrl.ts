@@ -1,5 +1,12 @@
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
+
 function isNewLocation(url: string) {
-  return url.startsWith('/x') || url.startsWith('/material') || url.startsWith('/base');
+  return (
+    url.startsWith('/x') ||
+    url.startsWith('/material') ||
+    url.startsWith('/base') ||
+    (FEATURE_TOGGLE.enable_system_scope && url.startsWith('/system'))
+  );
 }
 
 export const replaceMaterialLinks = (url: string) => {
@@ -25,9 +32,6 @@ export const replaceComponentLinks = (url: string) => {
 };
 
 export const replaceAPILinks = (url: string) => {
-  if (url.startsWith('/styles')) {
-    return url.replace('styles', 'system/styles');
-  }
   if (isNewLocation(url) || !url.startsWith('/api')) {
     return url;
   }
@@ -47,7 +51,8 @@ export const replaceAPILinks = (url: string) => {
 
 export default function replaceUrl(url: string, asPath: string) {
   if (isNewLocation(asPath)) {
-    return replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(url)));
+    url = replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(url)));
+    return url.replace(/^\/styles\/(.*)/, '/system/styles/$1');
   }
   return url;
 }

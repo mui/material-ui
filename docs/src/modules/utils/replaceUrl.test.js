@@ -4,6 +4,7 @@ import replaceUrl, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceUrl';
+import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceUrl', () => {
   it('replace material related pathname', () => {
@@ -57,7 +58,6 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
     expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material/api/loading-button/`);
     expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/`);
-    expect(replaceAPILinks(`/styles/api/`)).to.equal(`/system/styles/api/`);
     expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
   });
 
@@ -83,6 +83,11 @@ describe('replaceUrl', () => {
     expect(replaceUrl(`/api/button-unstyled`, '/base/api/button-unstyled')).to.equal(
       `/base/api/button-unstyled`,
     );
+    if (FEATURE_TOGGLE.enable_system_scope) {
+      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/system/styles/api/`);
+    } else {
+      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/styles/api/`);
+    }
   });
 
   it('does not replace for old routes', () => {
