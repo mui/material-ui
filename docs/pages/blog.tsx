@@ -317,7 +317,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             Posts{' '}
             {Object.keys(selectedTags).length ? (
               <span>
-                about{' '}
+                tagged as{' '}
                 <Typography component="span" variant="inherit" color="primary" noWrap>
                   &quot;{Object.keys(selectedTags)[0]}&quot;
                 </Typography>
@@ -348,7 +348,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               }}
             >
               <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
-                Filter by subject
+                Filter by tag
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                 {allTags.map((tag) => {
