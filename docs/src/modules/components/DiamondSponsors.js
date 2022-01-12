@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const Root = styled('div')(({ theme }) => ({
   margin: theme.spacing(1, 2, 2),
@@ -26,7 +26,7 @@ export default function DiamondSponsors(props) {
         target="_blank"
         rel="noopener nofollow"
         size="small"
-        endIcon={<KeyboardArrowRightRoundedIcon />}
+        endIcon={<InfoOutlinedIcon fontSize="small" />}
         sx={{
           fontSize: theme.typography.pxToRem(12.5),
           fontWeight: 500,
@@ -34,7 +34,8 @@ export default function DiamondSponsors(props) {
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
           mb: 0.5,
           '& svg': {
-            ml: -0.5,
+            width: 14,
+            height: 14,
           },
         }}
       >
