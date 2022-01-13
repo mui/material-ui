@@ -63,8 +63,6 @@ const finalTheme = createTheme({
   components: {
     MuiSlider: {
       styleOverrides: {
-        // The experience is similar to styled(Component)(props => ({ ... }))
-        // ownerState = Slider's public props + internal states
         valueLabel: ({ ownerState, theme }) => ({
           ...(ownerState.orientation === 'vertical' && {
             backgroundColor: 'transparent',
