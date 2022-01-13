@@ -2886,7 +2886,6 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 
 > **WARNING**: You should drop [`clsx`](https://www.npmjs.com/package/clsx) in favor of [`cx`](https://emotion.sh/docs/@emotion/css#cx).
 > The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order.
-
 > **Note**: To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`).
 > [See doc](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
 
