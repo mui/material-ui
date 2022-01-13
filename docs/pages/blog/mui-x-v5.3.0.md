@@ -9,10 +9,11 @@ card: true
 
 <!-- <img src="/static/blog/2021/card.png" alt="" style="width: 100%; margin-bottom: 16px;" /> -->
 
-# A step to premium plan: Row Grouping
+# A step to Premium plan: Row Grouping
 
 A lot of you were asking about it, and we are pleased to announce that the Premium plan is on the road.
-After an incredible year fully focused on improving the DataGrid, we are moving forward by launching the first feature of the premium plan: the row grouping which is released in v5.3.0.
+After an incredible year fully focused on improving the DataGrid, we are moving forward by launching the first feature of the Premium plan: the row grouping which is released in v5.3.0.
+
 Let me introduce this new feature.
 
 ## Start navigating the data 🚢
@@ -34,10 +35,9 @@ If they are not interested anymore by the director, they can simply click on “
 
 ## Unlock the feature 🔓🎁
 
-Since the Premium plan is not available yet, you can access it under experimental status in the DataGridPro.
-Don’t worry about the `experimentalFeatures` name.
-The feature is stable in its current form.
-The experimental flag is here to prevent regression in the pro plan.
+This feature will be part of the Premium plan when we will launch it. For now, you can access it on the Pro plan by enabling an experimental feature.
+The row grouping is stable in its current form.
+The experimental flag is here to make sure that the Pro plan will not have any regression when the feature will be moved to the Premium plan.
 
 ```js
 <DataGridPro experimentalFeatures={{ rowGrouping: true }} {...otherProps} />
@@ -67,6 +67,8 @@ keyGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`;
 ```
 
 <img src="/static/blog/mui-x-v5.3.0/blog2.gif" alt="grouping by release decade" style="width: 100%; margin-bottom: 16px;" />
+
+## Thank you
 
 More details about customization can be found in the [documentation](/components/data-grid/group-pivot/#disable-the-row-grouping)
 
