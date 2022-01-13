@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { GlobalStyles } from '@mui/system';
-import { CssVarsProvider, createGetCssVar } from '@mui/joy/styles';
+import { GlobalStyles, experimental_sx as sx } from '@mui/system';
+import { CssVarsProvider, createGetCssVar, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
@@ -39,6 +39,94 @@ const Dialog = () => {
     </Box>
   );
 };
+
+const MenuItem = styled('button')(({ theme }) => [
+  sx({ py: 0.5, px: 1 }),
+  {
+    borderRadius: theme.vars.radius.sm,
+    cursor: 'pointer',
+    textAlign: 'initial',
+    backgroundColor: 'initial',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    border: '1px solid transparent',
+    '&:hover': {
+      border: '1px solid',
+    },
+  },
+  theme.variants.text.neutral,
+  theme.variants.outlinedHover.neutral,
+  theme.variants.outlinedActive.neutral,
+]);
+
+const Menu = () => (
+  <Box
+    component="ul"
+    sx={{
+      width: 256,
+      p: 1,
+      listStyle: 'none',
+      boxShadow: (theme) => theme.shadow.lg,
+      borderRadius: (theme) => theme.vars.radius.sm,
+      backgroundColor: (theme) => theme.vars.palette.background.level1,
+    }}
+  >
+    <li>
+      <MenuItem>
+        <Typography>Back</Typography>
+      </MenuItem>
+    </li>
+    <li>
+      <MenuItem>
+        <Typography>Forward</Typography>
+      </MenuItem>
+    </li>
+    <Box
+      role="none"
+      sx={{
+        borderBottom: '1px solid',
+        borderColor: (theme) => theme.vars.palette.neutral.outlinedBorder,
+        borderRadius: 1,
+        my: 1,
+      }}
+    />
+    <li>
+      <MenuItem>
+        <Typography>Assign</Typography>
+      </MenuItem>
+    </li>
+    <li>
+      <MenuItem>
+        <Typography>Priority</Typography>
+      </MenuItem>
+    </li>
+    <li>
+      <MenuItem>
+        <Typography>Move to Project</Typography>
+      </MenuItem>
+    </li>
+    <li>
+      <MenuItem>
+        <Typography>Duplicate</Typography>
+      </MenuItem>
+    </li>
+    <Box
+      role="none"
+      sx={{
+        borderBottom: '1px solid',
+        borderColor: (theme) => theme.vars.palette.neutral.outlinedBorder,
+        borderRadius: 1,
+        my: 1,
+      }}
+    />
+    <li>
+      <MenuItem>
+        <Typography>Delete</Typography>
+      </MenuItem>
+    </li>
+  </Box>
+);
 
 export default function RadixTailwind() {
   return (
@@ -102,6 +190,7 @@ export default function RadixTailwind() {
                 700: '#374151',
                 800: '#1f2937',
                 900: '#111827',
+                outlinedHoverBg: getCssVar('palette-neutral-700'),
               },
               text: {
                 primary: getCssVar('palette-neutral-50'),
@@ -172,8 +261,12 @@ export default function RadixTailwind() {
         <Box data-mui-color-scheme="dark">
           <Dialog />
         </Box>
-        <Box>3</Box>
-        <Box>4</Box>
+        <Box>
+          <Menu />
+        </Box>
+        <Box data-mui-color-scheme="dark">
+          <Menu />
+        </Box>
         <Box>3</Box>
         <Box>4</Box>
       </Box>
