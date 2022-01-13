@@ -76,6 +76,7 @@ type BasePaletteRange =
   | 'textDisabledColor'
   | 'outlinedColor'
   | 'outlinedBorder'
+  | 'outlinedBg'
   | 'outlinedHoverBg'
   | 'outlinedHoverBorder'
   | 'outlinedActiveBg'

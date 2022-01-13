@@ -7,12 +7,15 @@ import { OverridableStringUnion } from '@mui/types';
  */
 export interface PaletteVariant {
   textColor: string;
+  textHoverColor?: string; // default theme does not provide this value
   textHoverBg: string;
   textActiveBg: string;
   textDisabledColor: string;
 
   outlinedColor: string;
   outlinedBorder: string;
+  outlinedBg?: string; // default theme does not provide this value
+  outlinedHoverColor?: string; // default theme does not provide this value
   outlinedHoverBg: string;
   outlinedHoverBorder: string;
   outlinedActiveBg: string;
@@ -21,6 +24,7 @@ export interface PaletteVariant {
 
   lightColor: string;
   lightBg: string;
+  lightHoverColor?: string; // default theme does not provide this value
   lightHoverBg: string;
   lightActiveBg: string;
   lightDisabledColor: string;

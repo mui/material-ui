@@ -81,10 +81,6 @@ export const getTextHoverVariant = (color: ColorPaletteProp) => ({
 
 export const getTextActiveVariant = (color: ColorPaletteProp) => ({
   '&:active': {
-    color:
-      color === 'context'
-        ? `var(--joy-variant-textActiveColor, var(--joy-variant-textColor))`
-        : `var(--joy-palette-${color}-textActiveColor, var(--joy-palette-${color}-textColor))`,
     backgroundColor:
       color === 'context'
         ? `var(--joy-variant-textActiveBg)`
@@ -139,10 +135,6 @@ export const getOutlinedHoverVariant = (color: ColorPaletteProp) => ({
 
 export const getOutlinedActiveVariant = (color: ColorPaletteProp) => ({
   '&:active': {
-    color:
-      color === 'context'
-        ? `var(--joy-variant-outlinedActiveColor, var(--joy-variant-outlinedColor))`
-        : `var(--joy-palette-${color}-outlinedActiveColor, var(--joy-palette-${color}-outlinedColor))`,
     backgroundColor:
       color === 'context'
         ? `var(--joy-variant-outlinedActiveBg)`
@@ -177,6 +169,10 @@ export const getFilledDefaultVariant = (color: ColorPaletteProp) => ({
 export const getFilledHoverVariant = (color: ColorPaletteProp) => ({
   cursor: 'pointer',
   '&:hover': {
+    color:
+      color === 'context'
+        ? `var(--joy-variant-lightHoverColor, var(--joy-variant-lightColor))`
+        : `var(--joy-palette-${color}-lightHoverColor, var(--joy-palette-${color}-lightColor))`,
     backgroundColor:
       color === 'context'
         ? `var(--joy-variant-lightHoverBg)`
