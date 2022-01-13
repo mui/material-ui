@@ -88,6 +88,7 @@ export const fontWeight: SimpleStyleFunction<'fontWeight'>;
 export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
 export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
+export const textTransform: SimpleStyleFunction<'textTransform'>;
 export type TypographyProps = PropsFor<typeof typography>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

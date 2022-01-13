@@ -22,6 +22,16 @@
 <Box sx={{ textAlign: 'right' }}>…
 ```
 
+## Text transformation
+
+{{"demo": "pages/system/typography/TextTransform.js", "defaultCodeOpen": false}}
+
+```jsx
+<Box sx={{ textTransform: 'capitalize' }}>…
+<Box sx={{ textTransform: 'lowercase' }}>…
+<Box sx={{ textTransform: 'uppercase' }}>…
+```
+
 ## Font weight
 
 {{"demo": "pages/system/typography/FontWeight.js", "defaultCodeOpen": false}}
@@ -97,3 +107,4 @@ import { typography } from '@mui/system';
 | `letterSpacing` | `letterSpacing` | `letter-spacing`                                                                             | none                                                                   |
 | `lineHeight`    | `lineHeight`    | `line-height`                                                                                | none                                                                   |
 | `textAlign`     | `textAlign`     | `text-align`                                                                                 | none                                                                   |
+| `textTransform` | `textTransform` | `text-transform`                                                                             | none                                                                   |

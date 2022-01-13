@@ -1,4 +1,4 @@
-const marked = require('marked');
+const { marked } = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
@@ -88,7 +88,7 @@ function getDescription(markdown) {
     return undefined;
   }
 
-  return matches[1].trim();
+  return matches[1].trim().replace(/`/g, '');
 }
 
 /**

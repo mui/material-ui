@@ -42,14 +42,14 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
+    "@babel/runtime": "^7.16.7",
     "@types/prop-types": "^15.7.4",
     "@types/react-is": "^16.7.1 || ^17.0.0",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/helper-module-imports": "^7.16.0",
+    "@babel/helper-module-imports": "^7.16.7",
     "@types/babel-plugin-macros": "^2.8.5",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-tester": "^10.1.0"
