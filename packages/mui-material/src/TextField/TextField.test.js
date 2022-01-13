@@ -129,6 +129,19 @@ describe('<TextField />', () => {
       const notch = container.querySelector('.notch legend');
       expect(notch).to.have.text('0\u00a0*');
     });
+
+    it('should not set padding for empty, null or undefined label props', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };
+      ['', undefined, null].forEach((prop) => {
+        const { container: container1 } = render(
+          <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={prop} />,
+        );
+        expect(container1.querySelector('span')).toHaveComputedStyle(spanStyle);
+      });
+    });
   });
 
   describe('prop: InputProps', () => {
