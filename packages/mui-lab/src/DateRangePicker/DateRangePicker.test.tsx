@@ -105,15 +105,16 @@ describe('<DateRangePicker />', () => {
     });
   }).timeout(10000);
   it('renders a custom toolbar', async () => {
+    const CustomToolbar = ({ date }) => {
+      return (
+        <React.Fragment>
+          Custom Tool bar for {(date as [Date, Date])[0].toDateString()}
+        </React.Fragment>
+      );
+    }
     render(
       <DateRangePicker
-        ToolbarComponent={({ date }) => {
-          return (
-            <React.Fragment>
-              Custom Tool bar for {(date as [Date, Date])[0].toDateString()}
-            </React.Fragment>
-          );
-        }}
+        ToolbarComponent={CustomToolbar}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />
