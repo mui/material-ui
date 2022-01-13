@@ -11,13 +11,13 @@ card: true
 
 # A step to premium plan: Row Grouping
 
-A lot of you were asking about it, and we are pleased to announce that the premium plan is on the road.
-After an incredible year fully focused on improving the DataGrid, we are moving forward by releasing a first feature of the premium plan: the row grouping which is released in v5.3.0.
+A lot of you were asking about it, and we are pleased to announce that the Premium plan is on the road.
+After an incredible year fully focused on improving the DataGrid, we are moving forward by launching the first feature of the premium plan: the row grouping which is released in v5.3.0.
 Let me introduce this new feature.
 
 ## Start navigating the data 🚢
 
-If you already use the pro plan, you probably know the tree data that allows your users to navigate in the hierarchy by opening/closing children of a row.
+If you already use the pro plan, you may be familiar with the [tree data](/components/data-grid/group-pivot/#tree-data) which allows your users to navigate in the hierarchy by opening/closing children of a row.
 However, everything does not have a natural hierarchy, and users might like to modify it.
 Good news!
 It is now possible with row grouping.
@@ -28,7 +28,7 @@ Should you group them by director, box office results or year of release?
 The answer depends on what the user wants to do.
 So let them be free to choose their own organization.
 With the row grouping, they can go in the option menu of the “director” column and click on “Group by director” to group all the rows with the same director.
-If they are not interested anymore by the director, they can simply click on “Stop groping by director”.
+If they are not interested anymore by the director, they can simply click on “Stop grouping by director”.
 
 <img src="/static/blog/mui-x-v5.3.0/blog1.gif" alt="grouping and un-grouping by director" style="width: 100%; margin-bottom: 16px;" />
 
@@ -48,9 +48,9 @@ Congratulation! Your users are now able to use the row grouping 🎉.
 ## Cherry pick the groupable columns 🍒
 
 Before letting your users enjoy this new feature, let adapt it to you use case.
-All the columns are not interesting to perform grouping.
-In our example of movies, grouping by title does not make sense since each movie has a different name.
-You can remove the option for this specific column by setting the property `groupable` to `false` in the column definition.
+All the columns are not good candidates for grouping.
+In our movies example, grouping by title does not make sense since each movie has a different name.
+You can remove the ability to group this specific column by setting the property `groupable` to `false` in the column definition.
 
 <img src="/static/blog/mui-x-v5.3.0/groupable1.png" alt="remove groupable option" style="width: 100%; margin-bottom: 16px;" />
 
@@ -70,4 +70,4 @@ keyGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`;
 
 More details about customization can be found in the [documentation](/components/data-grid/group-pivot/#disable-the-row-grouping)
 
-Thanks for reading. We hope you will enjoy this new feature. Do not hesitate to open issues to share feedbacks, report bugs, or propose enhancement.
+Thanks for reading. We hope you will enjoy this new feature. Do not hesitate to open [issues](https://github.com/mui-org/material-ui-x/issues/new/choose) to share feedbacks, report bugs, or propose enhancement.
