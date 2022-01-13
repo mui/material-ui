@@ -10,7 +10,7 @@ Looking for the v3 docs? You can [find the latest version here](https://mui.com/
 
 ## Introduction
 
-This is a reference for upgrading your site from MUI v3 to v4.
+This is a reference for upgrading your site from Material-UI v3 to v4.
 While there's a lot covered here, you probably won't need to do everything for your site.
 We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
 
@@ -23,24 +23,24 @@ The **why** is covered in the [release blog post on Medium](https://medium.com/m
 
 The very first thing you will need to do is to update your dependencies.
 
-### Update MUI version
+### Update Material-UI version
 
-You need to update your `package.json` to use the latest version of MUI.
+You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
-  "@mui/material": "^4.0.0"
+  "@material-ui/core": "^4.0.0"
 }
 ```
 
 Or run
 
 ```sh
-npm install @mui/material
+npm install @material-ui/core
 
 or
 
-yarn add @mui/material
+yarn add @material-ui/core
 ```
 
 ### Update React version
@@ -48,24 +48,24 @@ yarn add @mui/material
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
 This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
-### Update MUI Styles version
+### Update Material-UI Styles version
 
-If you were previously using `@mui/styles` with v3 you need to update your `package.json` to use the latest version of MUI Styles.
+If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
 
 ```json
 "dependencies": {
-  "@mui/styles": "^4.0.0"
+  "@material-ui/styles": "^4.0.0"
 }
 ```
 
 Or run
 
 ```sh
-npm install @mui/styles
+npm install @material-ui/styles
 
 or
 
-yarn add @mui/styles
+yarn add @material-ui/styles
 ```
 
 ## Handling breaking changes
@@ -80,7 +80,7 @@ yarn add @mui/styles
 
 ### Styles
 
-- ⚠️ MUI depends on JSS v10. JSS v10 is not backward compatible with v9.
+- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9.
   Make sure JSS v9 is not installed in your environment.
   (Removing `react-jss` from your `package.json` can help).
   The StylesProvider component replaces the JssProvider one.
@@ -97,8 +97,8 @@ yarn add @mui/styles
 - Rename `convertHexToRGB` to `hexToRgb`.
 
   ```diff
-  -import { convertHexToRgb } from '@mui/material/styles/colorManipulator';
-  +import { hexToRgb } from '@mui/material/styles';
+  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
+  +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
 - Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
@@ -171,11 +171,11 @@ yarn add @mui/styles
 
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://mui.com/system/spacing/#transformation).
 
-- [Container] Moved from `@mui/lab` to `@mui/material`.
+- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
-  -import Container from '@mui/lab/Container';
-  +import Container from '@mui/material/Container';
+  -import Container from '@material-ui/lab/Container';
+  +import Container from '@material-ui/core/Container';
   ```
 
 ### TypeScript
@@ -213,16 +213,16 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   ```
 
   ```diff
-  -import Button from '@mui/material/Button';
+  -import Button from '@material-ui/core/Button';
   -<Button variant="fab" />
-  +import Fab from '@mui/material/Fab';
+  +import Fab from '@material-ui/core/Fab';
   +<Fab />
   ```
 
   ```diff
-  -import Button from '@mui/material/Button';
+  -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />
-  +import Fab from '@mui/material/Fab';
+  +import Fab from '@material-ui/core/Fab';
   +<Fab variant="extended" />
   ```
 
@@ -318,11 +318,11 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### Slider
 
-- [Slider] Move from `@mui/lab` to `@mui/material`.
+- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
-  -import Slider from '@mui/lab/Slider'
-  +import Slider from '@mui/material/Slider'
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
   ```
 
 ### Switch
@@ -457,7 +457,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### UMD
 
-- This change eases the use of MUI with a CDN:
+- This change eases the use of Material-UI with a CDN:
 
   ```diff
   const {

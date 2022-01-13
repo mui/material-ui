@@ -20,7 +20,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
-- [Update MUI](#update-material-ui-version)
+- [Update MUI Core version](#update-mui-core-version)
 - [Run codemods](#run-codemods)
   - [preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
@@ -75,7 +75,7 @@ function App() {
 
 > 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
 
-## Update MUI version
+## Update MUI Core version
 
 To use the `v5` version of MUI Core, you first need to update the package names:
 
@@ -137,7 +137,7 @@ You should be able to remove the dependency following [these steps](#migrate-fro
 
 > 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
 
-Once you application has completely migrated to MUI v5, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
+Once you application has completely migrated to MUI Core v5, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
@@ -2963,7 +2963,7 @@ Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com
 **Note:** `tss-react` is **not maintained** by MUI.
 If you have any question about how to setup SSR (Next.js) or if you are wondering
 how to customize the `theme` object please refer to `tss-react`'s documentation,
-the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.  
+the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.
 You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or
 feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 
