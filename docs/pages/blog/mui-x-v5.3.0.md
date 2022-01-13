@@ -45,6 +45,26 @@ The experimental flag is here to make sure that the Pro plan will not have any r
 
 Congratulation! Your users are now able to use the row grouping 🎉.
 
+## Provide nice default grouping
+
+Save your user time by defining initial grouping. To do so, specify the row grouping model in the `initialState` prop. For a page about director's results, we could group by director, and box office as follow.
+
+```js
+<DataGridPro
+  experimentalFeatures={{ rowGrouping: true }}
+  initialState={{
+    rowGrouping: {
+      model: ['Director', 'BoxOffice'],
+    },
+  }}
+  {...otherProps}
+/>
+```
+
+Users are still free to modify this grouping configuration by going into the option menues. But in few click you can se that Hitchcock's box office results vary a lot.
+
+<img src="/static/blog/mui-x-v5.3.0/defaultSettings.png" alt="remove groupable option" style="width: 100%; margin-bottom: 16px;" />
+
 ## Cherry pick the groupable columns 🍒
 
 Before letting your users enjoy this new feature, let adapt it to you use case.
