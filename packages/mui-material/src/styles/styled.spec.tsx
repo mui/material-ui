@@ -107,8 +107,8 @@ const Button = ({
     components: {
       MuiButton: {
         styleOverrides: {
-          root: (props) => {
-            const { color, variant, theme } = props;
+          root: ({ ownerState, theme }) => {
+            const { color, variant } = ownerState;
             const styles = [];
             if (color === 'primary') {
               styles.push({
@@ -121,7 +121,7 @@ const Button = ({
             }
             return styles;
           },
-          startIcon: ({ startIcon, endIcon, ...props }) => [
+          startIcon: ({ ownerState: { startIcon, endIcon } }) => [
             startIcon && { marginRight: 8 },
             endIcon && { marginLeft: 8 },
           ],

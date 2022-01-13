@@ -121,7 +121,7 @@ export type OverridesStyleRules<
   | CSSInterpolation
   | ((
       props: (ComponentName extends keyof ComponentsPropsList
-        ? ComponentsPropsList[ComponentName]
+        ? { ownerState: ComponentsPropsList[ComponentName] }
         : {}) & { theme: Theme } & Record<string, unknown>, // Record<string, unknown> is for other props that the slot receive internally
     ) => CSSInterpolation)
 >;

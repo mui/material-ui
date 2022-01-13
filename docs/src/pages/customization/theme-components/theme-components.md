@@ -56,17 +56,19 @@ To override a lab component's styles with TypeScript, check [this section of the
 
 You can pass a callback as a value in each slot of the component's `styleOverrides` to apply styles based on props.
 
+The `ownerState` prop is a combination of public props that you pass to the component + internal states inside the component.
+
 ```js
 const finalTheme = createTheme({
   components: {
     MuiSlider: {
       styleOverrides: {
         // The experience is similar to styled(Component)(props => ({ ... }))
-        // props = Slider's props + theme
-        valueLabel: (props) => ({
-          ...(props.orientation === 'vertical' && {
+        // ownerState = Slider's public props + internal states
+        valueLabel: ({ ownerState, theme }) => ({
+          ...(ownerState.orientation === 'vertical' && {
             backgroundColor: 'transparent',
-            color: props.theme.palette.grey[500],
+            color: theme.palette.grey[500],
           }),
         }),
       },

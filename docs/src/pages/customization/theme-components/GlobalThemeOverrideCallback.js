@@ -7,8 +7,8 @@ const finalTheme = createTheme({
   components: {
     MuiSlider: {
       styleOverrides: {
-        valueLabel: ({ orientation, theme }) => ({
-          ...(orientation === 'vertical' && {
+        valueLabel: ({ ownerState, theme }) => ({
+          ...(ownerState.orientation === 'vertical' && {
             backgroundColor: 'transparent',
             color: theme.palette.grey[500],
             fontWeight: 700,

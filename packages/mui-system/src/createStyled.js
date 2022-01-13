@@ -135,15 +135,7 @@ export default function createStyled(input = {}) {
           const styleOverrides = getStyleOverrides(componentName, theme);
 
           if (styleOverrides) {
-            const parsedStyleOverrides = {};
-            Object.entries(styleOverrides).forEach(([slot, styles]) => {
-              if (typeof styles === 'function') {
-                parsedStyleOverrides[slot] = styles({ ...props, ...props.ownerState, theme });
-              } else {
-                parsedStyleOverrides[slot] = styles;
-              }
-            });
-            return overridesResolver(props, parsedStyleOverrides);
+            return overridesResolver(props, styleOverrides);
           }
 
           return null;

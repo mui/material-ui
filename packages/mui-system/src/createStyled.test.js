@@ -134,8 +134,8 @@ describe('createStyled', () => {
         components: {
           MuiButton: {
             styleOverrides: {
-              root: (props) => {
-                const { color, variant, theme } = props;
+              root: ({ ownerState, theme }) => {
+                const { color, variant } = ownerState;
                 const styles = [];
                 if (color === 'primary') {
                   styles.push({
@@ -148,9 +148,9 @@ describe('createStyled', () => {
                 }
                 return styles;
               },
-              icon: ({ startIcon, endIcon }) => [
-                startIcon && { marginRight: 8 },
-                endIcon && { marginLeft: 8 },
+              icon: ({ ownerState }) => [
+                ownerState.startIcon && { marginRight: 8 },
+                ownerState.endIcon && { marginLeft: 8 },
               ],
             },
           },
