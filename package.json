@@ -53,7 +53,7 @@
     "test:e2e:run": "mocha --config test/e2e/.mocharc.js 'test/e2e/**/*.test.{js,ts,tsx}'",
     "test:e2e:server": "serve test/e2e",
     "test:e2e-website": "playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
-    "test:e2e-website:dev": "PLAYWRIGHT_TEST_BASE_URL=http://localhost:3000 playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
+    "test:e2e-website:dev": "cross-env PLAYWRIGHT_TEST_BASE_URL=http://localhost:3000 playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "test:karma:profile": "cross-env NODE_ENV=test karma start test/karma.conf.profile.js",
     "test:regressions": "cross-env NODE_ENV=production yarn test:regressions:build && concurrently --success first --kill-others \"yarn test:regressions:run\" \"yarn test:regressions:server\"",
