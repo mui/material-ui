@@ -28,12 +28,12 @@ It prepares the test suite and returns a function with the same interface as
 
 ```js
 describe('test suite', () => {
-  const { render } = createRenderer()
+  const { render } = createRenderer();
 
   test('first', () => {
     render(<input />);
   });
-})
+});
 ```
 
 For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
@@ -86,7 +86,7 @@ function SomeComponent({ variant }) {
 expect(() => {
   render(<SomeComponent variant="unexpected" />);
 }).toErrorDev(["That variant doesn't make sense.", '`variant` is deprecated.']);
-````
+```
 
 ```js
 function SomeComponent({ variant }) {
