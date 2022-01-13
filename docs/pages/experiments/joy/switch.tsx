@@ -4,30 +4,9 @@ import { jsx as _jsx } from 'react/jsx-runtime';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
-import {
-  CssVarsProvider,
-  styled,
-  useColorScheme,
-  ColorPaletteProp,
-  TypographySystem,
-  FontSize,
-} from '@mui/joy/styles';
-
-export const SvgIcon = styled('svg', {
-  shouldForwardProp: (prop) => prop !== 'fontSize' && prop !== 'sx',
-})<{
-  fontSize: keyof FontSize | 'inherit';
-}>(({ theme, fontSize }) => ({
-  userSelect: 'none',
-  width: '1em',
-  height: '1em',
-  display: 'inline-block',
-  fill: 'currentColor',
-  flexShrink: 0,
-  ...(fontSize && {
-    fontSize: fontSize === 'inherit' ? 'inherit' : theme.vars.fontSize[fontSize],
-  }),
-}));
+import Typography from '@mui/joy/Typography';
+import SvgIcon from '@mui/joy/SvgIcon';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 
 function createSvgIcon(path: any, displayName: any, initialProps?: any) {
   const Component = (props: any, ref: any) =>
@@ -48,16 +27,6 @@ function createSvgIcon(path: any, displayName: any, initialProps?: any) {
   // @ts-ignore
   return React.memo(React.forwardRef(Component));
 }
-
-const Typography = styled('p', {
-  shouldForwardProp: (prop) => prop !== 'color' && prop !== 'level' && prop !== 'sx',
-})<{ color?: ColorPaletteProp; level?: keyof TypographySystem }>(
-  ({ theme, level = 'body1', color }) => [
-    { margin: 0 },
-    theme.typography[level],
-    color && { color: `var(--joy-palette-${color}-textColor)` },
-  ],
-);
 
 export const Moon = createSvgIcon(
   _jsx('path', {
