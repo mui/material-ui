@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix';
 import { withEmotionCache } from '@emotion/react';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material';
 import theme from './src/theme';
 import ClientStyleContext from './src/ClientStyleContext';
 import Layout from './src/Layout';
@@ -14,17 +15,19 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
   const clientStyleData = React.useContext(ClientStyleContext);
 
   // Only executed on client
-  React.useLayoutEffect(() => {
+  useEnhancedEffect(() => {
     // re-link sheet container
     emotionCache.sheet.container = document.head;
     // re-inject tags
     const tags = emotionCache.sheet.tags;
     emotionCache.sheet.flush();
     tags.forEach((tag) => {
+      // eslint-disable-next-line no-underscore-dangle
       (emotionCache.sheet as any)._insertTag(tag);
     });
     // reset cache to reapply global styles
     clientStyleData.reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
