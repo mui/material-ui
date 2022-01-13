@@ -68,7 +68,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
+    "@babel/runtime": "^7.16.7",
     "@date-io/date-fns": "^2.11.0",
     "@date-io/dayjs": "^2.11.0",
     "@date-io/luxon": "^2.11.1",
@@ -85,7 +85,7 @@
   "devDependencies": {
     "@mui/types": "^7.1.0",
     "@types/luxon": "^2.0.8",
-    "date-fns": "^2.27.0",
+    "date-fns": "^2.28.0",
     "dayjs": "^1.10.7",
     "luxon": "^1.21.3 || ^2.x",
     "moment": "^2.29.1"

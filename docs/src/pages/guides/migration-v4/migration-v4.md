@@ -1810,7 +1810,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   ```diff
   -<Radio />
-  +<Radio color="secondary />
+  +<Radio color="secondary" />
   ```
 
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
