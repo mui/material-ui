@@ -6,6 +6,7 @@ import DateRangePicker from '@mui/lab/DateRangePicker';
 import { act, describeConformance, fireEvent, screen, waitFor } from 'test/utils';
 import Box from '@mui/material/Box';
 import { createPickerRenderer, wrapPickerMount } from '../internal/pickers/test-utils';
+import { DateRangePickerToolbarProps } from './DateRangePickerToolbar';
 
 describe('<DateRangePicker />', () => {
   const { render } = createPickerRenderer();
@@ -105,13 +106,13 @@ describe('<DateRangePicker />', () => {
     });
   }).timeout(10000);
   it('renders a custom toolbar', async () => {
-    const CustomToolbar = ({ date }) => {
+    const CustomToolbar = ({ date }: DateRangePickerToolbarProps) => {
       return (
         <React.Fragment>
           Custom Tool bar for {(date as [Date, Date])[0].toDateString()}
         </React.Fragment>
       );
-    }
+    };
     render(
       <DateRangePicker
         ToolbarComponent={CustomToolbar}
