@@ -15,7 +15,7 @@ materialDesign: https://material.io/design/typography/the-type-system.html
 
 ## 概述
 
-The _Roboto_ font will **not** be automatically loaded by MUI. 你负责加载你的应用程序中使用的任何字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/customization/typography/)。
+Material-UI **不会**自动加载 *Roboto* 字体。 你负责加载你的应用程序中使用的任何字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/customization/typography/)。
 
 ## Roboto 字体 CDN
 
@@ -45,7 +45,7 @@ import '@fontsource/roboto/700.css';
 
 有关更多信息请查看 [Fontsource](https://github.com/fontsource/fontsource)。
 
-您可以将 Fontsource 配置为加载特定的子集（subsets）、字体粗细（weights）和样式（styles）。 MUI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+您可以将 Fontsource 配置为加载特定的子集（subsets）、字体粗细（weights）和样式（styles）。 Material-UI 默认的排版配置仅依赖于 300，400，500 和 700 的字体权重。
 
 ## 组件
 
@@ -63,7 +63,7 @@ import '@fontsource/roboto/700.css';
 
 文字铸排组件通过 `variantMapping` 属性关联了一种 UI 变体和某一种语义元素。 重要的是要意识到排版组件的风格是独立于语义基础元素的。
 
-- You can change the underlying element for a one-off situation with the `component` prop:
+- 使用 `component` 属性，您可以一次性改变底层元素的样式：
 
 ```jsx
 {
@@ -105,13 +105,13 @@ const theme = createTheme({
 
 ## System props
 
-As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top: You can use them as prop directly on the component. For instance, a margin-top:
 
 ```jsx
 <Typography mt={2}>
 ```
 
-## Accessibility
+## 无障碍设计
 
 考虑到文字铸排的无障碍设计，需要遵循以下几个关键点：
 

@@ -14,16 +14,17 @@ describe('Joy <Button />', () => {
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
     testVariantProps: { variant: 'contained', fullWidth: true },
-    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
+    testStateOverrides: { prop: 'size', value: 'sm', styleKey: 'sizeSm' },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
-  it('by default, should render with the root, variantContained, and colorPrimary classes', () => {
+  it('by default, should render with the root, variantContained, sizeMd and colorPrimary classes', () => {
     const { getByRole } = render(<Button>Hello World</Button>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.variantContained);
+    expect(button).to.have.class(classes.sizeMd);
     expect(button).to.have.class(classes.colorPrimary);
 
     // should not have other variant classes
@@ -54,17 +55,17 @@ describe('Joy <Button />', () => {
   });
 
   it('should render a small button', () => {
-    const { getByRole } = render(<Button size="small">Hello World</Button>);
+    const { getByRole } = render(<Button size="sm">Hello World</Button>);
     const button = getByRole('button');
 
-    expect(button).to.have.class(classes.sizeSmall);
+    expect(button).to.have.class(classes.sizeSm);
   });
 
   it('should render a large button', () => {
-    const { getByRole } = render(<Button size="large">Hello World</Button>);
+    const { getByRole } = render(<Button size="lg">Hello World</Button>);
     const button = getByRole('button');
 
-    expect(button).to.have.class(classes.sizeLarge);
+    expect(button).to.have.class(classes.sizeLg);
   });
 
   it('should render a fullWidth button', () => {

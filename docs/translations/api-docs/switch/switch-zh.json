@@ -6,17 +6,17 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "defaultChecked": "The default checked state. Use when the component is not controlled.",
-    "disabled": "If <code>true</code>, the component is disabled.",
+    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.",
     "edge": "If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).",
     "icon": "The icon to display when the component is unchecked.",
     "id": "The id of the <code>input</code> element.",
     "inputProps": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element.",
     "inputRef": "Pass a ref to the <code>input</code> element.",
-    "onChange": "Callback fired when the state is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string). You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean).",
+    "onChange": "Callback fired when the state is changed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string). You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean).",
     "required": "If <code>true</code>, the <code>input</code> element is required.",
-    "size": "The size of the component. <code>small</code> is equivalent to the dense switch styling.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "size": "The size of the switch. <code>small</code> is equivalent to the dense switch styling.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "value": "The value of the component. The DOM API casts this to a string. The browser uses &quot;on&quot; as the default value."
   },
   "classDescriptions": {
@@ -58,11 +58,11 @@
       "conditions": "<code>size=\"medium\"</code>"
     },
     "checked": {
-      "description": "State class applied to {{nodeName}}.",
+      "description": "Pseudo-class applied to {{nodeName}}.",
       "nodeName": "the internal `SwitchBase` component's `checked` class"
     },
     "disabled": {
-      "description": "State class applied to {{nodeName}}.",
+      "description": "Pseudo-class applied to {{nodeName}}.",
       "nodeName": "the internal SwitchBase component's disabled class"
     },
     "input": {

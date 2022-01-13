@@ -1,5 +1,5 @@
 ---
-description: MUI v1 is out 🎉
+description: MUI v1 is out 🎉
 ---
 
 # MUI v1 is out 🎉
@@ -56,7 +56,7 @@ We know the ease of use is a critical part of user acquisition. The more user we
 
 Many people discover web development through MUI but it's also used in production to serve millions of customers. We have an important responsibility, our implementation needs to be rock solid.
 
-- **Best practices.** We are following the best practices as much as possible. We have made the components: fully accessible, fully [HTML5 compliant ](https://validator.w3.org/)and SEO friendly.
+- **Best practices.** We are following the best practices as much as possible. We have made the components: fully accessible, fully [HTML5 compliant](https://validator.w3.org/) and SEO friendly.
 
 ![[Lighthouse](https://github.com/GoogleChrome/lighthouse) report of the MUI documentation homepage](https://cdn-images-1.medium.com/max/2000/1*_x_j-jasswGw0WaDyeHk-g.png)
 
@@ -85,7 +85,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 - New documentation
 - Right-To-Left support
 - First class server-side support
-- [Premium themes](https://material-ui.com/store/)
+- [Premium themes](https://mui.com/store/)
 - First class TypeScript support
 - **And much, much more**
 
@@ -104,7 +104,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 ## Premium themes
 
-We have shipped the long-awaited MUI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://material-ui.com/store/) from [Creative Tim](https://material-ui.com/store/contributors/creative-tim/). More are coming.
+We have shipped the long-awaited MUI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://mui.com/store/) from [Creative Tim](https://mui.com/store/contributors/creative-tim/). More are coming.
 
 ![Creative Tim themes](https://cdn-images-1.medium.com/max/2000/1*jPOu6n1EMsqv4Gh652MtPA.png)
 
@@ -126,7 +126,7 @@ MUI is an MIT-licensed open source project. It's an independent project with ong
 
 ![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
 
-- GitHub: [https://github.com/mui-org/material-ui](https://github.com/mui-org/material-ui) ⭐️
+- GitHub: [https://github.com/mui-org/material-ui](https://github.com/mui-org/material-ui) ⭐
 - Twitter: [https://twitter.com/MaterialUI](https://twitter.com/MaterialUI)
 
 <hr />

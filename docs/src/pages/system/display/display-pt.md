@@ -2,7 +2,7 @@
 
 <p class="description">De forma rápida e responsiva alterne o valor de exibição de componentes e faça muito mais com os utilitários de exibição. Inclui suporte para alguns dos valores mais comuns, bem como alguns extras para controlar a exibição durante a impressão.</p>
 
-## Examples
+## Exemplos
 
 ### Em linha
 
@@ -119,14 +119,14 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 ## API
 
 ```js
-import { display } from '@mui/system';
+import { display } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property    | Theme key |
-|:-------------- |:-------------- |:--------------- |:--------- |
-| `displayPrint` | `displayPrint` | `display`       | none      |
-| `displayRaw`   | `display`      | `display`       | none      |
-| `overflow`     | `overflow`     | `overflow`      | none      |
-| `textOverflow` | `textOverflow` | `text-overflow` | none      |
-| `visibility`   | `visibility`   | `visibility`    | none      |
-| `whiteSpace`   | `whiteSpace`   | `white-space`   | none      |
+| Nome da importação | Propriedade    | Propriedade CSS | Chave do tema |
+|:------------------ |:-------------- |:--------------- |:------------- |
+| `displayPrint`     | `displayPrint` | `display`       | none          |
+| `displayRaw`       | `display`      | `display`       | none          |
+| `overflow`         | `overflow`     | `overflow`      | none          |
+| `textOverflow`     | `textOverflow` | `text-overflow` | none          |
+| `visibility`       | `visibility`   | `visibility`    | none          |
+| `whiteSpace`       | `whiteSpace`   | `white-space`   | none          |

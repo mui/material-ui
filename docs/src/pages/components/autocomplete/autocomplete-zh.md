@@ -118,7 +118,7 @@ import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 为了方便使用以及兼容性，`useAutocomplete` hook 也可以从 @mui/material 导出。
 
 ```tsx
-import useAutocomplete from '@mui/material/useAutocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 - 📦  [4.5kB 的压缩包](/size-snapshot)。
@@ -188,7 +188,7 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 ## 尺寸
 
-Fancy smaller inputs? Use the `size` prop.
+想要使用外观看起来比较小的输入框吗？ 试着使用 `size` 属性吧。
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
@@ -219,12 +219,16 @@ Fancy smaller inputs? Use the `size` prop.
 此组件提供了一个 factory 来构建一个筛选的方法，来供给 `filterOptions` 属性使用。 你可以使用该方法来更改默认的筛选行为。
 
 ```js
-import { createFilterOptions } from '@mui/material/Autocomplete';
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ### `createFilterOptions(config) => filterOptions`
 
-#### Arguments
+#### 参数
 
 1. `config` (_object_ [optional]):
 
@@ -235,7 +239,7 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 - `config.stringify` (*func* [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
 - `config.trim` (_bool_ [optional])：默认为 `false`。 删除尾随空格。
 
-#### Returns
+#### 返回结果
 
 `filterOptions`：返回的 filter（过滤）方法可以直接提供给带有 `filterOptions` 属性的 `Autocomplete` 组件，或者和 hooks 同名的参数。
 
@@ -254,7 +258,7 @@ const filterOptions = createFilterOptions({
 
 ### 进阶使用
 
-对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 For instance:
+对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 就像这样：
 
 ```jsx
 import { matchSorter } from 'match-sorter';
@@ -286,15 +290,15 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 />
 ```
 
-## Limitations
+## 设计局限
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
+Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component. 然而，这样的功能会削弱用户的组件体验。
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
 
-In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). 若您不需要自动填充，您可以尝试以下的方式：
+除了记住过去输入的值，浏览器还可能发出 **自动填写（autofill）**建议（保存的登录名、地址或支付详情）。 若您不需要自动填充，您可以尝试以下的方式：
 
 - 给输入框一个不同的名字，这样不会给浏览器泄露任何可以滥用的信息。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id 的话，该组件则会使用一个随机的 id。
 - 设置 `autoComplete="new-password"`（当设置此属性时，有些浏览器会建议输入高复杂度的密码）。
@@ -319,7 +323,7 @@ iOS Safari 中的 VoiceOver 对 `aria-owns` 属性的支持并不是很到位。
 
 若你提供一共自定义的 `ListboxComponent` 属性，请保证需要滚动功能的容器将 `role` 属性设置为 `listbox`。 这能保证滚动功能在一些情况下，例如当用键盘切换的时候，仍然能够正常显示。
 
-## Accessibility
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 

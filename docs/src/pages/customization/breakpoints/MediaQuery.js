@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { green } from '@mui/material/colors';
+import { red, green, blue } from '@mui/material/colors';
 
 const Root = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
   [theme.breakpoints.down('md')]: {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: red[500],
   },
   [theme.breakpoints.up('md')]: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: blue[500],
   },
   [theme.breakpoints.up('lg')]: {
     backgroundColor: green[500],
@@ -19,9 +19,9 @@ const Root = styled('div')(({ theme }) => ({
 export default function MediaQuery() {
   return (
     <Root>
-      <Typography>{'down(sm): red'}</Typography>
-      <Typography>{'up(md): blue'}</Typography>
-      <Typography>{'up(lg): green'}</Typography>
+      <Typography>down(md): red</Typography>
+      <Typography>up(md): blue</Typography>
+      <Typography>up(lg): green</Typography>
     </Root>
   );
 }

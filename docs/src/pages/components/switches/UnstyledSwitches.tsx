@@ -2,11 +2,20 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 
+const blue = {
+  500: '#007FFF',
+};
+
+const grey = {
+  400: '#BFC7CF',
+  500: '#AAB4BE',
+};
+
 const Root = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
-  width: 32px;
+  width: 40px;
   height: 20px;
   margin: 10px;
   cursor: pointer;
@@ -17,7 +26,7 @@ const Root = styled('span')`
   }
 
   & .${switchUnstyledClasses.track} {
-    background: #b3c3d3;
+    background: ${grey[400]};
     border-radius: 10px;
     display: block;
     height: 100%;
@@ -38,19 +47,19 @@ const Root = styled('span')`
   }
 
   &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: ${grey[500]};
     box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
   &.${switchUnstyledClasses.checked} {
     .${switchUnstyledClasses.thumb} {
-      left: 14px;
+      left: 22px;
       top: 3px;
       background-color: #fff;
     }
 
     .${switchUnstyledClasses.track} {
-      background: #007fff;
+      background: ${blue[500]};
     }
   }
 

@@ -45,8 +45,8 @@
 - 应用于非根元素的类则以元素的名称为前缀，例如， Dialog 组件中的 `paperWidthXs`。
 - 由布尔属性赋值的variants **不添加** 前缀，例如 `rounded` 类由 `rounded` 属性赋值。
 - 由枚举属性赋值的variants**添加**前缀，例如，`colorPrimary` 类使用 `color="primary"` 属性赋值。
-- 一个变体（variant）具有** 一个级别的特异性**。 `color`和`variant`属性被视为variant。 样式特异性越低，它就越容易被覆盖。
-- 我们增加了变体修饰符（variant modifier）的特异性。 对于伪类（pseudo-classes）（`:hover `，`:focus ` 等），我们**必须这样做**。 以更多模板为代价，它才会开放更多的控制权。 我们也希望，它也能更加直观。
+- Variant具有 ** 一个特定级别 **。 `color`和`variant`属性被视为variant。 样式特异性越低，它就越容易被覆盖。
+- 我们增加了变体修饰符（variant modifier）的特异性。 我们已经 ** 必须这样做 ** 为伪类 (`:hover`, `:focus` 等)。 以更多模板为代价，它才会开放更多的控制权。 我们也希望，它也能更加直观。
 
 ```js
 const styles = {
@@ -65,19 +65,19 @@ const styles = {
 一个组件内的嵌套组件具有：
 
 - 它们自己的扁平化属性（当这些属性是顶层组件抽象的关键时），例如 `Input` 组件的 `id` 属性。
-- their own `xxxProps` prop when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` props on components that use `Input` internally.
-- their own `xxxComponent` prop for performing component injection.
+- 当用户可能需要调整内部render方法的子组件时，他们自己的`xxxProps`属性，例如，在内部使用`input`的组件上公开`inputProps`和`InputProps`属性。
+- 他们自己的`xxxComponent`属性，用于执行组件注入。
 - 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这有助于回答 [“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)。
 
 ### 属性名称
 
-The name of a boolean prop should be chosen based on the **default value**. This choice allows:
+应根据 ** 默认值 ** 选择布尔属性的名称。 此选项允许简写的表示：
 
-- the shorthand notation. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`:
+- the shorthand notation. 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。
 
   ```jsx
-  <Input enabled={false} /> ❌
-  <Input disabled /> ✅
+  -<Input enabled={false} />
++<Input disabled />
   ```
 
 - developers to know what the default value is from the name of the boolean prop. It's always the opposite.
@@ -88,7 +88,7 @@ The name of a boolean prop should be chosen based on the **default value**. This
 
 ### boolean vs. enum
 
-当设计组件的变体的 API 时，有两种选择：使用一个 _boolean_；或者使用一个_enum_。 比如说，我们选取了一个有着不同类型的按钮组件。 每个选项都有其优缺点：
+为组件的变体设计API有两种选择：使用* boolean*; 或者使用* enum *。 比如说，我们选取了一个有着不同类型的按钮组件。 每个选项都有其优缺点：
 
 - 选项 1 _布尔值（boolean）_：
 
@@ -113,10 +113,10 @@ The name of a boolean prop should be chosen based on the **default value**. This
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
-The MUI components use a combination of the two approaches according to the following rules:
+Material-UI 组件根据以下规则将两种方法结合使用：
 
 - 当需要 **2** 个可能的值时，我们使用 _boolean_。
-- An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
+- **host element**：`react-dom` 中的一个 DOM 节点，例如 `window.HTMLDivElement` 的实例。
 
 若回到之前的按钮组件示例；因为它需要 3 个可能的值，所以我们使用了 _enum_。
 

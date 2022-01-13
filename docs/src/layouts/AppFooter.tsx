@@ -101,8 +101,9 @@ export default function AppFooter() {
               <Box
                 sx={{
                   px: 0.5,
-                  py: 0.3,
+                  py: '3px',
                   ml: 1,
+                  mb: '1px',
                   borderRadius: 0.5,
                   fontSize: (theme) => theme.typography.pxToRem(9),
                   fontWeight: 700,
@@ -146,7 +147,7 @@ export default function AppFooter() {
               title="GitHub"
               size="small"
             >
-              <GitHubIcon />
+              <GitHubIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -156,7 +157,7 @@ export default function AppFooter() {
               title="Stack Overflow"
               size="small"
             >
-              <SvgStackOverflow />
+              <SvgStackOverflow fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -166,7 +167,7 @@ export default function AppFooter() {
               title="Twitter"
               size="small"
             >
-              <TwitterIcon />
+              <TwitterIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -176,7 +177,7 @@ export default function AppFooter() {
               title="LinkedIn"
               size="small"
             >
-              <LinkedInIcon />
+              <LinkedInIcon fontSize="small" />
             </IconButton>
           </Stack>
         </Box>

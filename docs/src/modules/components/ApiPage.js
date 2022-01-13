@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { exactProp } from '@mui/utils';
 import { styled } from '@mui/material/styles';
@@ -10,6 +11,7 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
+import replaceMarkdownLinks from 'docs/src/modules/utils/replaceMarkdownLinks';
 
 const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
@@ -180,6 +182,7 @@ Heading.propTypes = {
 };
 
 function ApiDocs(props) {
+  const router = useRouter();
   const { descriptions, pageContent } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
@@ -345,7 +348,7 @@ import { ${componentName} } from '${source}';`}
           </React.Fragment>
         ) : null}
         <Heading hash="demos" />
-        <span dangerouslySetInnerHTML={{ __html: demos }} />
+        <span dangerouslySetInnerHTML={{ __html: replaceMarkdownLinks(demos, router.asPath) }} />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">

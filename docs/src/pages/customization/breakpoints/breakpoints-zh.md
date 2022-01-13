@@ -2,13 +2,13 @@
 
 <p class="description">API 解锁了各种情况下断点的使用。</p>
 
-为了获得最佳的用户体验，在不同的断点下，material design 的接口需要适应它们的布局。 MUI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
+为了获得最佳的用户体验，在不同的断点下，material design 的接口需要适应它们的布局。 Material-UI 使用了原先 [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) 的 **简化** 实现。
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) component.
 
 ## 默认的断点
 
-每个断点（一个键）匹配一个_固定_的屏幕宽度（一个值）：
+每个断点（一个键）匹配了一个*固定*的屏幕宽度（一个值）：
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
@@ -22,7 +22,7 @@ The breakpoints are used internally in various components to make them responsiv
 
 ## CSS 媒体查询（Media queries）
 
-CSS media queries 是一种做出响应式的用户界面的特有方法。 而 theme 提供了四种样式的辅助方式：
+CSS media queries 是一种做出响应式的用户界面的特有方法。 The theme provides five styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
@@ -66,8 +66,8 @@ const styles = (theme) => ({
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 - [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values)：默认为 [以上值](#default-breakpoints)。 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
-- `theme.breakpoints.unit`: Default to `'px'`. 这个用于断点值的单位。
-- `theme.breakpoints.step`: Default to `5`. The increment divided by 100 used to implement exclusive breakpoints. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
+- `theme.breakpoints.unit`：默认为 `px`。 这个用于断点值的单位。
+- `theme.breakpoints.step`：默认为 5 (`0.05px`)。 The increment divided by 100 used to implement exclusive breakpoints. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
 如果您需要更改断点的默认值，则需要提供所有的断点值：
 
@@ -100,14 +100,14 @@ const theme = createTheme({
 });
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
 ```ts
-declare module '@mui/material/styles' {
+declare module '@material-ui/core/styles' {
   interface BreakpointOverrides {
-    xs: false; // removes the `xs` breakpoint
+    xs: false; // 移除 `xs` 断点
     sm: false;
     md: false;
     lg: false;
@@ -126,15 +126,15 @@ declare module '@mui/material/styles' {
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Arguments
+#### 参数
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Returns
+#### 返回结果
 
 `media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它匹配的屏幕宽度大于（包含）断点键给出的屏幕尺寸。
 
-#### Examples
+#### 例子
 
 ```js
 const styles = (theme) => ({
@@ -153,15 +153,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Arguments
+#### 参数
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Returns
+#### 返回结果
 
 `media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它匹配的屏幕宽度小于（不包含）断点键给出的屏幕尺寸。
 
-#### Examples
+#### 例子
 
 ```js
 const styles = (theme) => ({
@@ -180,15 +180,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Arguments
+#### 参数
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### 返回结果
 
 `media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它会匹配屏幕宽度，并包括断点键给出的屏幕尺寸。
 
-#### Examples
+#### 例子
 
 ```js
 const styles = (theme) => ({
@@ -208,15 +208,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Arguments
+#### 参数
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### 返回结果
 
 `media query`: A media query string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
 
-#### Examples
+#### 例子
 
 ```js
 const styles = (theme) => ({

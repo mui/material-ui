@@ -12,11 +12,11 @@ TrapFocus é um componente que gerencia o foco para seus descendentes. This is u
 
 When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 > ⚠️ O componente é experimental e instável.
 
-## Example
+## Exemplo
 
 {{"demo": "pages/components/trap-focus/BasicTrapFocus.js"}}
 
@@ -24,7 +24,7 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 - 📦 [2.0 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import TrapFocus from '@mui/base/Unstable_TrapFocus';

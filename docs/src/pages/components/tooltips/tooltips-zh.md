@@ -14,7 +14,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic tooltip
+## 简单的工具提示
 
 {{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
@@ -24,9 +24,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customization
+## 自定义文字提示
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -38,7 +38,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## 自定义子元素
 
-文字提示组件需要将 DOM 事件监听器应用到其子元素当中。 If the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.
+文字提示组件需要将 DOM 事件监听器应用到其子元素当中。 如果子元素是自定义的 React 组件，你需要确保它能够将其属性传播到底部的 DOM 元素。
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -47,6 +47,10 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 });
 
 // ...
+
+<Tooltip title="删除">
+  <MyComponent>
+</Tooltip>
 
 <Tooltip title="删除">
   <MyComponent>
@@ -63,7 +67,7 @@ The touch action requires a long press due to the `enterTouchDelay` prop being s
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## 受控的文字提示
+## 可控的工具提示
 
 You can use the `open`, `onOpen` and `onClose` props to control the behavior of the tooltip.
 
@@ -75,7 +79,7 @@ You can use the `open`, `onOpen` and `onClose` props to control the behavior of 
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
-## Interactive
+## 交互式
 
 Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
@@ -89,7 +93,7 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+> 如果你没有包装从 `ButtonBase` 继承的 Material-UI 组件，譬如一个原生的 `<button>` 元素，当禁用元素的时候，你应该将 _pointer-events: none;_ 这个CSS 属性添加到您的元素中：
 
 ```jsx
 <Tooltip title="您没有足够的操作权限">
@@ -101,7 +105,7 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 </Tooltip>
 ```
 
-## Transitions
+## 过渡动画
 
 Use a different transition.
 
@@ -113,7 +117,7 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## Virtual element
+## 虚拟元素
 
 In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
@@ -127,7 +131,7 @@ In the event you need to implement a custom placement, you can use the `anchorEl
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
 
-## Accessibility
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 

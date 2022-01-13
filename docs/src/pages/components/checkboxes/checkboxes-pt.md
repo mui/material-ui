@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 <p class="description">Caixas de seleção permitem ao usuário selecionar um ou mais itens de um conjunto.</p>
 
-Caixas de seleção podem ser usadas para ativar ou desativar uma opção.
+[Caixas de seleção](https://material.io/design/components/selection-controls.html#checkboxes) podem ser usadas para ativar ou desativar uma opção.
 
 Se você tem várias opções aparecendo em uma lista, você pode economizar espaço usando caixas de seleção ao invés de interruptores liga/desliga. Se você tem uma única opção, evite usar uma caixa de seleção e use um interruptor de liga/desliga.
 
@@ -26,13 +26,13 @@ You can provide a label to the `Checkbox` thanks to the `FormControlLabel` compo
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Size
+## Tamanho
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the checkboxes.
 
 {{"demo": "pages/components/checkboxes/SizeCheckboxes.js"}}
 
-## Color
+## Cor
 
 {{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
 
@@ -66,9 +66,9 @@ Você pode alterar o posicionamento do rótulo:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Customization
+## Caixa de seleção customizada
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
@@ -76,15 +76,15 @@ Here is an example of customizing the component. You can learn more about this i
 
 ## Quando usar
 
-- [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
-- [Caixas de Seleção vs. Interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Caixas de seleção vs. botões de opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Caixas de seleção vs. Interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
-## Accessibility
+## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 
 - Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
-- Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (e.g.`aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
+- Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
 <Checkbox

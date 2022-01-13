@@ -44,7 +44,7 @@ export default function EarlyBird() {
         <Button
           component={Link}
           noLinkStyle
-          href="https://material-ui.com/store/items/material-ui-pro/"
+          href="https://mui.com/store/items/material-ui-pro/"
           variant="contained"
           fullWidth
           endIcon={<KeyboardArrowRightRounded />}
@@ -52,7 +52,7 @@ export default function EarlyBird() {
             py: 1,
             ml: { xs: 0, sm: 2 },
             mt: { xs: 3, sm: 0 },
-            width: { xs: '100%', sm: '50%', md: '20%' },
+            width: { xs: '100%', sm: '50%', md: '15%' },
           }}
         >
           Buy now

@@ -61,6 +61,8 @@ You can learn more about this in the [overrides documentation page](/customizati
 
 The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
+### Unstyled component
+
 ```jsx
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 ```

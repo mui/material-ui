@@ -22,13 +22,13 @@ A basic example with tab panels.
 
 ## 实验性的 API
 
-`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+遵循 [WAI-ARIA 项目实践](https://www.w3.org/TR/wai-aria-practices/#tabpanel)，`@material-ui/lab` 提供了工具集组件，该组件通过注入属性的方式来实现无障碍设计的选项卡。
 
 {{"demo": "pages/components/tabs/LabTabs.js"}}
 
 ## 包装的标签
 
-对于那些比较长的标签，它们会被自动包装成选项卡。 If the label is too long for the tab, it will overflow, and the text will not be visible.
+对于那些比较长的标签，它们会被自动包装成选项卡。 对于那些比较长的标签，它们会被自动包装成选项卡。
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -54,7 +54,7 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 ### 居中对齐
 
-而对于较大的视图，则应使用 `centered` 此属性。
+而对于较大的视图，则应使用 `centered` 属性。
 
 {{"demo": "pages/components/tabs/CenteredTabs.js", "bg": true}}
 
@@ -88,9 +88,9 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Customization
+## 自定义的选项卡
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
@@ -106,7 +106,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 ## Nav tabs
 
-By default, tabs use a `button` element, but you can provide your custom tag or component. 下面是一个实现导航选项卡的例子：
+By default, tabs use a `button` element, but you can provide your custom tag or component. 下面是一个实现导航选项卡的例子： 下面是一个实现导航选项卡的例子：
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 
@@ -118,15 +118,15 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}
 
-## Icon position
+## Third-party routing library（第三方路由库）
 
 By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
 
 {{"demo": "pages/components/tabs/IconPositionTabs.js"}}
 
-## Third-party routing library
+## 无障碍设计
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs). The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
 
 ## Accessibility
 
@@ -137,7 +137,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 1. 在 `Tabs` 上应用 `aria-label` 或 `aria-labelledby` 标签。
 2. 通过设置 `id`、`aria-controls` 和 `aria-labelledby` ，`Tab` 需要连接到其对应的 `[role="tabpanel"]`。
 
-实现这样的设计例子可以在本页面的演示中找到。 We've also published [an experimental API](#experimental-api) in `@mui/lab` that does not require extra work.
+实现这样的设计例子可以在本页面的演示中找到。 我们还在 `@material-ui/lab` 中发布了不需要额外工作就能使用的 [一个实验性的 API](#experimental-api)。
 
 ### 键盘导航
 
@@ -148,7 +148,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 下面的两个演示只是在键盘导航行为上有所区别。 Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
-/* Tabs where selection follows focus */
+/* 那个跟随焦点的选项卡 */
 <Tabs selectionFollowsFocus />
 ```
 

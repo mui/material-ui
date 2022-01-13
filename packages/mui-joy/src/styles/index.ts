@@ -1,7 +1,4 @@
-export * from './types/colorSystem';
-export * from './types/colorScheme';
-export * from './types/variants';
-export * from './types/components';
+export * from './types';
 export * from './CssVarsProvider';
 export * from './defaultTheme';
 export { default as styled } from './styled';

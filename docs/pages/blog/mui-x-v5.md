@@ -183,7 +183,7 @@ export default function App() {
 }
 ```
 
-#### Limitations
+### Limitations
 
 Although this was a clear improvement, we still had to keep a CSS specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, specifically the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all of the components that are nested in them.
 This is due to performance implications related to how [emotion](https://emotion.sh/) injects styles into the page,

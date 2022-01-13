@@ -34,7 +34,7 @@
 <Box sx={{ fontWeight: 'bold' }}>…
 ```
 
-## Font size
+## 字体大小（Font size）
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
@@ -72,7 +72,7 @@
 <Box sx={{ letterSpacing: 10 }}>…
 ```
 
-## 行高
+## 行高（Line Height）
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 
@@ -84,10 +84,10 @@
 ## API
 
 ```js
-import { typography } from '@mui/system';
+import { typography } from '@material-ui/system';
 ```
 
-| Import name     | Prop            | CSS property                                                                                 | Theme key                                                              |
+| 导入名称            | 属性              | CSS 属性                                                                                       | Theme key                                                              |
 |:--------------- |:--------------- |:-------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------- |
 | `typography`    | `typography`    | `font-family`, `font-weight`, `font-size`, `line-height`, `letter-spacing`, `text-transform` | [`typography`](/customization/default-theme/?expand-path=$.typography) |
 | `fontFamily`    | `fontFamily`    | `font-family`                                                                                | [`typography`](/customization/default-theme/?expand-path=$.typography) |

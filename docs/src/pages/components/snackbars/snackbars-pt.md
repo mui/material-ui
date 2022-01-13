@@ -26,9 +26,9 @@ Um snackbar básico que tem como objetivo reproduzir o comportamento do Google K
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Customization
+## Snackbars customizados
 
-Aqui estão alguns exemplos de customização do componente. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -44,7 +44,7 @@ Alguns snackbars com tamanho variável de mensagem.
 
 {{"demo": "pages/components/snackbars/LongTextSnackbar.js"}}
 
-## Transitions
+## Transições
 
 ### Snackbars Consecutivos
 
@@ -58,7 +58,7 @@ Snackbars devem aparecer acima de BAFs (no mobile).
 
 {{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
-### Change transition
+### Modificando a transição
 
 [Grow](/components/transitions/#grow) é a transição padrão, mas você pode usar uma diferente.
 
@@ -82,23 +82,23 @@ export default function MyComponent() {
 }
 ```
 
-Other examples:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
-## Complementary projects
+## Projetos Complementares
 
 For more advanced use cases you might be able to take advantage of:
 
 ### notistack
 
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
+![estrelas](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
 Este exemplo demonstra como usar com [notistack](https://github.com/iamhosseindhv/notistack). notistack tem uma **API imperativa** que facilita a exibição de snackbars, sem ter que lidar com seu estado de aberto/fechado. It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
-## Accessibility
+## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 

@@ -1,27 +1,27 @@
-# MUI System
+# Sistema Material-UI
 
 <p class="description">CSS utilities for rapidly laying out custom designs.</p>
 
-MUI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
+Material-UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
 
 O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
-## Demo
+## Demonstração
 
 _(Redimensione a janela para ver os pontos de quebra responsivos)_
 
 {{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-## Installation
+## Instalação
 
 <!-- #default-branch-switch -->
 
 ```jsx
 // with npm
-npm install @mui/system @emotion/react @emotion/styled
+npm install @material-ui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @mui/system @emotion/react @emotion/styled
+yarn add @material-ui/system@next @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
@@ -30,10 +30,10 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @mui/system @mui/styled-engine-sc styled-components
+npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @mui/system @mui/styled-engine-sc styled-components
+yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
 Dê uma olhada no [guia do Motor de Estilização](/guides/styled-engine/) para mais informações sobre como configurar  `componentes estilizados` como seu motor de estilização.
@@ -180,7 +180,7 @@ O sistema depende do CSS-in-JS. Funciona com ambos, emotion e styled-components.
 Prós:
 
 - 📚 Permite uma grande flexibilidade na API. A propriedade `sx` suporta um super conjunto de CSS. Não há **nenhuma necessidade de aprender CSS duas vezes**. Uma vez que você aprendeu a sintaxe padronizada do CSS, é seguro pois, não mudou durante uma década. Então, você pode **opcionalmente** aprender os atalhos, se você valoriza a economia de tempo que eles trazem.
-- 📦 Auto-purge. Somente o CSS usado na página é enviado para o cliente. O custo inicial do tamanho do pacote é **fixo**. Ele não aumenta com o número de propriedades CSS usadas. You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). Custa cerca de ~15 kB gzipped. Se você já está usando os componentes principais, eles não vêm com sobrecarga extra.
+- 📦 Auto-purge. Somente o CSS usado na página é enviado para o cliente. O custo inicial do tamanho do pacote é **fixo**. Ele não aumenta com o número de propriedades CSS usadas. You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). Você paga o custo de [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) e [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). Custa cerca de ~15 kB gzipped.
 
 Contras:
 
@@ -188,10 +188,10 @@ Contras:
 
   | Benchmark                             | Fragmento de código         | Tempo normalizado |
   |:------------------------------------- |:--------------------------- | ----------------- |
-  | a. Renderizar 1.000 primitivos        | `<div className="…">` | 100ms             |
+  | a. Renderizar 1.000 Box               | `<div className="…">` | 100ms             |
   | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
   | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
-  | d. Renderizar 1.000 Box               | `<Box sx={…}>`        | 370ms             |
+  | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
 
 <!-- #default-branch-switch -->
 
@@ -205,7 +205,7 @@ Having the system under one prop (`sx`) helps to differentiate props defined for
 
 Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason. These components are designed to solve CSS problems, they are CSS component utilities.
 
-## Usage
+## Uso
 
 ### Tokens de design no tema
 
@@ -233,7 +233,7 @@ Estas abreviações são **opcionais**, elas são ótimas para economizar tempo 
 
 ### Super conjunto de CSS
 
-Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos:
+Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos:
 
 - Usando pseudo seletores:
 
@@ -290,7 +290,7 @@ A segunda opção é definir seus pontos de quebra como um array, do menor ao ma
 
 {{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
 
-> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. For instance, the default theme of MUI has 5.
+> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material-UI tem 5.
 
 Você pode ignorar pontos de quebra usando o valor como `null`:
 
@@ -298,14 +298,14 @@ Você pode ignorar pontos de quebra usando o valor como `null`:
 <Box sx={{ width: [null, null, 300] }}>Este box tem uma largura responsiva.</Box>
 ```
 
-### Custom breakpoints
+### Pontos de quebra customizados
 
 Você também pode especificar seus próprios pontos de quebras customizados, e usá-los como chaves ao definir o objeto de pontos de quebra. Aqui esta um exemplo de como o fazer.
 
 ```jsx
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@material-ui/core/Box';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -339,7 +339,7 @@ export default function CustomBreakpoints() {
 Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 ```ts
-declare module '@mui/material/styles' {
+declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
@@ -365,7 +365,7 @@ A propriedade `sx` pode ser usada em quatro locais diferentes:
 
 ### 1. Componentes do core
 
-All core MUI components will support the `sx` prop.
+Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 2. Box
 
@@ -373,10 +373,10 @@ All core MUI components will support the `sx` prop.
 
 ### 3. Componentes customizados
 
-In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
 
 ```jsx
-import { styled } from '@mui/material/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```

@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic links
+## 简单的链接
 
 链接（Links）组件是基于 [文字铸排（Typography）](/api/typography/) 组件构建的，这意味着你也可以使用文字铸排组件的属性。
 
@@ -23,7 +23,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## 下划线
 
-`underline` 属性可以用来设置下划线行为。 The default is `always`.
+`underline` 属性可以用来设置下划线行为。 该属性的默认值是 `hover`。
 
 {{"demo": "pages/components/links/UnderlineLink.js"}}
 
@@ -36,9 +36,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## Third-party routing library（第三方路由库）
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 Here is a [more detailed guide](/guides/routing/#link).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 Here is a [more detailed guide](/guides/routing/#link).
 
-## Accessibility
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 

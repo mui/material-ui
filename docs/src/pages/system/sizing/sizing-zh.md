@@ -4,7 +4,7 @@
 
 ## 支持的值
 
-The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, and `maxWidth` are using the following custom transform function for the value:
+Sizing 样式函数支持不同的属性输入类型：
 
 ```js
 function transform(value) {
@@ -100,7 +100,7 @@ The max-width property allows setting a constraint on your breakpoints. In this 
 import { sizing } from '@mui/system';
 ```
 
-| Import name | Prop        | CSS property | Theme key                                                                                    |
+| 导入名称        | 属性          | CSS 属性       | Theme key                                                                                    |
 |:----------- |:----------- |:------------ |:-------------------------------------------------------------------------------------------- |
 | `width`     | `width`     | `width`      | none                                                                                         |
 | `maxWidth`  | `maxWidth`  | `max-width`  | [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) |

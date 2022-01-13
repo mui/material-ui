@@ -37,7 +37,7 @@ Here are some recommended resources, some of which are free.
   - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
 - **Elegant UX in React with MUI**: a blog post covering some important MUI concepts.
-  - 📝 [The blog post](https://alligator.io/react/material-ui/)
+  - 📝 [The blog post](https://www.digitalocean.com/community/tutorials/react-material-ui)
 
 ### Paid
 
@@ -48,7 +48,7 @@ Here are some recommended resources, some of which are free.
 - **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using MUI and React.
 
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
-  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react/)
 
 - **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using MUI.
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/)

@@ -2,7 +2,7 @@
 title: Componente React Seletor de data e hora
 components: DateTimePicker,DesktopDateTimePicker,MobileDateTimePicker,StaticDateTimePicker
 githubLabel: 'component: DateTimePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -16,16 +16,16 @@ Note que este componente é cobinação dos componentes [DatePicker](/components
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Requirements
+## Requisitos
 
-This component relies on the date management library of your choice. It supports [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) and any other library via a public `dateAdapter` interface.
+Este componente depende da biblioteca de gerenciamento de datas da sua escolha. Ele suporta [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) e qualquer outra biblioteca através da interface publica `dateAdapter`.
 
-Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
+Por favor, instale qualquer uma destas bibliotecas e configure corretamente o mecanismo de data encapsulando na raiz dos componentes (ou o nível mais alto que você deseja que os seletores estejam disponíveis) com `LocalizationProvider`:
 
 ```jsx
-// or @mui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// ou @material-ui/lab/Adapter{Dayjs,Luxon,Moment} ou qualquer adaptador válido de date-io
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
 }
 ```
 
-## Basic usage
+## Utilização Básica
 
 Permite escolher a data e hora. Existem 4 etapas disponíveis (ano, data, hora e minuto), então as abas são necessárias para distinguir visualmente os passos de data/hora.
 
@@ -51,7 +51,7 @@ By default, the `DateTimePicker` component renders the desktop version if the me
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
-## Form props
+## Propriedades de formulário
 
 The date time picker component can be disabled or read-only.
 
@@ -66,13 +66,13 @@ The date time picker component can be disabled or read-only.
 
 {{"demo": "pages/components/date-time-picker/DateTimeValidation.js"}}
 
-## Static mode
+## Modo estático
 
-It's possible to render any date & time picker inline. This will enable building custom popover/modal containers.
+It's possible to render any date & time picker inline. Isto permitirá construir contêineres customizados de popover/modal.
 
 {{"demo": "pages/components/date-time-picker/StaticDateTimePickerDemo.js", "bg": true}}
 
-## Customization
+## Customização
 
 Aqui estão alguns exemplos de seletores de data & hora fortemente customizados:
 

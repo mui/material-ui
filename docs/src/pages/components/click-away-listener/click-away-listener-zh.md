@@ -13,7 +13,7 @@ githubLabel: 'component: ClickAwayListener'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Example
+## 示例
 
 例如，当用户在点击页面除菜单外的任何一处，您可能想隐藏一个下拉的菜单：
 
@@ -39,7 +39,7 @@ githubLabel: 'component: ClickAwayListener'
 
 - 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import ClickAwayListener from '@mui/base/ClickAwayListener';

@@ -20,7 +20,7 @@ Você pode ler mais sobre o CSP no [MDN Web Docs](https://developer.mozilla.org/
 
 ### Renderização do lado do Servidor (SSR)
 
-To use CSP with MUI (and emotion), you need to use a nonce. Um nonce é uma string gerada aleatoriamente que é usada apenas uma vez, portanto, você precisa adicionar um middleware de servidor para gerar um em cada solicitação.
+Para usar o CSP com Material-UI (e JSS), você precisa usar um nonce. Um nonce é uma string gerada aleatoriamente que é usada apenas uma vez, portanto, você precisa adicionar um middleware de servidor para gerar um em cada solicitação.
 
 Um nonce CSP é uma string codificada na Base 64. Você pode gerar um assim:
 
@@ -34,45 +34,37 @@ Você deve usar o UUID versão 4, pois ele gera uma string **imprevisível**. Em
 
 ```js
 header('Content-Security-Policy').set(
-  `default-src 'self'; style-src 'self' 'nonce-${nonce}';`,
+  `default-src 'self'; style-src: 'self' 'nonce-${nonce}';`,
 );
 ```
 
-You should pass the nonce in the `<style>` tags on the server.
+Você deve passar o nonce na tag `<style>` no servidor.
 
 ```jsx
 <style
-  data-emotion={`${style.key} ${style.ids.join(' ')}`}
+  id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: style.css }}
+  dangerouslySetInnerHTML={{
+    __html: sheets.toString(),
+  }}
 />
 ```
 
-Then, you must pass this nonce to the emotion cache so it can add it to subsequent `<style>`.
+Então, você deve passar este nonce para o JSS para que ele possa adicioná-lo às tags `<style>` subsequentes.
 
 > Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option.
 
 ```js
-const cache = createCache({
-  key: 'my-prefix-key',
-  nonce: nonce,
-  prepend: true,
-});
-
-function App(props) {
-  return (
-    <CacheProvider value={cache}>
-      <Home />
-    </CacheProvider>
-  );
-}
+<head>
+  <meta property="csp-nonce" content="this-is-a-nonce-123" />
+</head>
 ```
 
 ### Create React App (CRA)
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
+De acordo com [a documentação de Create React App](https://create-react-app.dev/docs/advanced-configuration/), uma aplicação de Create React App incorporará dinamicamente o script de tempo de execução em index.html durante a compilação de produção por padrão. Isto exigirá que um novo hash seja definido em seu CSP durante cada implantação.
 
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+Para usar um CSP com um projeto inicializado como um Create React App, você precisará definir a variável `INLINE_RUNTIME_CHUNK=false` no arquivo `.env` usado para sua compilação de produção. Isto irá importar o script de execução como de costume em vez de incorporá-lo, evitando a necessidade de definir um novo hash durante cada implantação.
 
 ### global-css
 

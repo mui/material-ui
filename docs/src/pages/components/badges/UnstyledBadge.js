@@ -45,7 +45,7 @@ const StyledBadge = styled(BadgeUnstyled)`
     box-shadow: 0 0 0 1px #fff;
   }
 
-  & .MuiBadge-anchorOriginTopRightCircular {
+  & .MuiBadge-anchorOriginTopRight {
     position: absolute;
     top: 0;
     right: 0;
@@ -73,10 +73,10 @@ function BadgeContent() {
 export default function UnstyledBadge() {
   return (
     <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
-      <StyledBadge badgeContent={5} overlap="circular">
+      <StyledBadge badgeContent={5}>
         <BadgeContent />
       </StyledBadge>
-      <StyledBadge badgeContent={5} variant="dot" overlap="circular">
+      <StyledBadge badgeContent={5} variant="dot">
         <BadgeContent />
       </StyledBadge>
     </Box>

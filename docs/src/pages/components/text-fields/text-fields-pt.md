@@ -1,6 +1,6 @@
 ---
 title: Componente React para Campo de Texto
-components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
@@ -19,7 +19,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/) ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), but MUI will continue to support it.
+Os atributos são suportados pelo `TextField`, como por exemplo `required`, `disabled`, `type`, etc. assim como o `helperText` que é utilizada para dar contexto sobre um campo de entrada, tais como, a entrada que será usada.
 
 ## Propriedades de formulário
 
@@ -41,13 +41,13 @@ You can use the <code>minRows` and `maxRows` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-## Select
+## Seleção
 
 A propriedade `select` faz com que o campo de texto use internamente um componente [Select](/components/selects/).
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
-## Icons
+## Ícones
 
 Há muitas formas de incluir um ícone com um campo de texto.
 
@@ -59,7 +59,7 @@ A forma principal é utilizando um componente `InputAdornment`. This can be used
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
-## Sizes
+## Tamanhos
 
 Gosta mais de campos de texto menores? Use a propriedade `size`.
 
@@ -75,7 +75,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
-## Full width
+## Largura total
 
 A propriedade `fullWidth` pode ser usada para fazer com que o campo ocupe a largura total de seu contêiner.
 
@@ -87,7 +87,7 @@ O componente pode ser controlado ou não controlado.
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
-## Components
+## Componentes
 
 O componente `TextField` é composto por componentes menores ([`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), e [`FormHelperText`](/api/form-helper-text/)) que você pode aproveitar diretamente para customizar significativamente os campos do seu formulário.
 
@@ -95,19 +95,19 @@ Você também pode ter notado que algumas propriedades de campo nativas do HTML 
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
-## Inputs
+## Campos
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
-## Color
+## Cor
 
 A propriedade `color` altera a cor do destaque do campo de texto quando focado.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Customization
+## Campos customizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -124,10 +124,10 @@ For advanced customization use cases, a `useFormControl()` hook is exposed. This
 **API**
 
 ```jsx
-import { useFormControl } from '@mui/material/FormControl';
+import { useFormControl } from '@material-ui/core/FormControl';
 ```
 
-**Returns**
+**Retornos**
 
 `value` (_object_):
 
@@ -148,11 +148,11 @@ import { useFormControl } from '@mui/material/FormControl';
 - `value.onEmpty` (_func_): Should be called when the input is emptied
 - `value.onFilled` (_func_): Should be called when the input is filled
 
-**Example**
+**Exemplo**
 
 {{"demo": "pages/components/text-fields/UseFormControl.js"}}
 
-## Limitations
+## Limitações
 
 ### Shrink
 
@@ -166,7 +166,7 @@ Para contornar o problema, você pode forçar o "shrink" do rótulo.
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-or
+ou
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
@@ -207,7 +207,7 @@ Isso pode ser corrigido passando um caractere de espaço para a propriedade `hel
 
 Você pode usar bibliotecas de terceiros para formatar um campo. Você precisa fornecer uma implementação personalizada do elemento `<input>` com a propriedade `inputComponent`.
 
-The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. O mesmo conceito pode ser aplicado para, [p. ex. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format). O mesmo conceito pode ser aplicado para, [p. ex. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
@@ -247,9 +247,9 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 />;
 ```
 
-## Accessibility
+## Acessibilidade
 
-Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura:
+Para que o campo de texto seja acessível, **o campo deve estar vinculado ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura:
 
 ```jsx
 <div class="form-control">
@@ -270,14 +270,14 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 </div>
 ```
 
-## Complementary projects
+## Projetos Complementares
 
 For more advanced use cases, you might be able to take advantage of:
 
-- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
+- [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
 
 ## Unstyled
 

@@ -4,7 +4,7 @@
 
 ## Valores suportados
 
-The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, and `maxWidth` are using the following custom transform function for the value:
+As funções de estilo de dimensionamento suportam diferentes tipos de entrada de propriedade:
 
 ```js
 function transform(value) {
@@ -272,12 +272,12 @@ The max-width property allows setting a constraint on your breakpoints. In this 
 import { sizing } from '@mui/system';
 ```
 
-| Import name | Prop        | CSS property | Theme key                                                                                    |
-|:----------- |:----------- |:------------ |:-------------------------------------------------------------------------------------------- |
-| `width`     | `width`     | `width`      | none                                                                                         |
-| `maxWidth`  | `maxWidth`  | `max-width`  | [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) |
-| `minWidth`  | `minWidth`  | `min-width`  | none                                                                                         |
-| `height`    | `height`    | `height`     | none                                                                                         |
-| `maxHeight` | `maxHeight` | `max-height` | none                                                                                         |
-| `minHeight` | `minHeight` | `min-height` | none                                                                                         |
-| `boxSizing` | `boxSizing` | `box-sizing` | none                                                                                         |
+| Nome da importação | Propriedade | Propriedade CSS | Chave do tema                                                                                |
+|:------------------ |:----------- |:--------------- |:-------------------------------------------------------------------------------------------- |
+| `width`            | `width`     | `width`         | none                                                                                         |
+| `maxWidth`         | `maxWidth`  | `max-width`     | [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) |
+| `minWidth`         | `minWidth`  | `min-width`     | none                                                                                         |
+| `height`           | `height`    | `height`        | none                                                                                         |
+| `maxHeight`        | `maxHeight` | `max-height`    | none                                                                                         |
+| `minHeight`        | `minHeight` | `min-height`    | none                                                                                         |
+| `boxSizing`        | `boxSizing` | `box-sizing`    | none                                                                                         |

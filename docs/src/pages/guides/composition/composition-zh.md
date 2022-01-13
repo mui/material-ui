@@ -1,19 +1,19 @@
-# Composition
+# 封装
 
-<p class="description">MUI tries to make composition as easy as possible.</p>
+<p class="description">Material-UI 试着让封装尽可能的简单。</p>
 
 ## 封装组件
 
-To provide maximum flexibility and performance, MUI needs a way to know the nature of the child elements a component receives. To solve this problem, we tag some of the components with a `muiName` static property when needed.
+我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
-You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component, verify if that component has this static property set.
+但是，您仍可能需要封装一个组件以增强它的功能，而这可能与 `muiName` 的解决方案相冲突。 若你要封装一个组件，那么得验证该组件是否具有此静态属性的集合。
 
-If you encounter this issue, you need to use the same tag for your wrapping component that is used with the wrapped component. In addition, you should forward the props, as the parent component may need to control the wrapped components props.
+如果您遇到此问题，那么请为封装组件附加上与被封装组件一样的标记。 另外，鉴于父组件可能需要对被封装的组件属性加以控制，您应该向父组件传递这些属性。
 
 让我们来看一个例子：
 
 ```jsx
-const WrappedIcon = (props) => <Icon {...props} />;
+const WrappedIcon = props => <Icon {...props} />;
 WrappedIcon.muiName = Icon.muiName;
 ```
 
@@ -21,14 +21,14 @@ WrappedIcon.muiName = Icon.muiName;
 
 ## 组件属性
 
-MUI allows you to change the root element that will be rendered via a prop called `component`.
+在 Material-UI 中，通过一个叫 `component` 的属性，您可以更改将被渲染的根元素。
 
 ### 它是如何工作的呢？
 
-The custom component will be rendered by MUI like this:
+Materal-UI 将这样渲染自定义的组件：
 
 ```js
-return React.createElement(props.component, props);
+return React.createElement(props.component, props)
 ```
 
 例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 但只要把一个 [React 组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components) 属性传递给 `component` 属性，就即可将此更改。 在下面的例子里，就将 `List` 组件作为一个根元素来渲染成 `<nav>` 元素：
@@ -124,34 +124,37 @@ To be able to use props of such a MUI component on their own, props should be us
 以下 `CustomComponent` 组件与 `Typography` 组件具有相同的属性。
 
 ```ts
-function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
-  /* ... */
-}
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
+<Button component={MyButton} />;
 ```
 
 按照以上示例来设置，现在的 `CustomComponent` 就可以与 `component` 属性一起使用了，并且该属性应该设置为 `'a'`。 此外，`CustomComponent` 将拥有 `<a>` 这个 HTML 元素的所有属性。 `Typography` 组件的其他属性也会出现在 `CustomComponent` 的属性中。
 
-It is possible to have generic `CustomComponent` which will accept any React component, custom, and HTML elements.
+Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 ```ts
-function GenericCustomComponent<C extends React.ElementType>(
-  props: TypographyProps<C, { component?: C }>,
-) {
-  /* ... */
+class Component extends React.Component {
+  render() {
+-   const { props } = this;
++   const { forwardedRef, ...props } = this.props;
+    return <div {...props} ref={forwardedRef} />;
+  }
 }
+
+-export default Component;
++export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);
 ```
 
 If the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
 
 ```ts
-function ThirdPartyComponent({ prop1 }: { prop1: string }) {
-  return <div />;
-}
-// ...
-function ThirdPartyComponent({ prop1 }: { prop1: string }) {
-  return <div />;
-}
-// ...
+-const SomeContent = props => <div {...props}>Hello, World!</div>;
++const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>你好，世界！
+</div>);
+<Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
 当所需的 `ThirdPartyComponent` 是明确要求时，`prop1` 也成为 `GenericCustomComponent` 的必需属性。
@@ -164,7 +167,7 @@ function ThirdPartyComponent({ prop1 }: { prop1: string }) {
 
 某些组件需要访问DOM节点。 之前提到，通过使用` ReactDOM.findDOMNode ` 就能实现。 该方法已被废弃，代替的是使用` ref `和 ref 转递。 然而，只有下列组件类型才可获得 `ref`：
 
-- Any MUI component
+- 任何 Material-UI 组件
 - 类组件，如 `React.Component` 或 `React.PureComponent` 等
 - DOM（或 host）组件，例如 `div` 或 `button`
 - [React.forwardRef 组件](https://reactjs.org/docs/react-api.html#reactforwardref)
@@ -175,18 +178,14 @@ If you don't use one of the above types when using your components in conjunctio
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref. In some instances, an additional warning is issued to help with debugging, similar to:
+请注意，如果 `lazy` 和 `memo` 组件的包装组件包装组件不能容纳 ref，那么仍然会收到此警告。 在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 这只包含了两个最常见的用例。 更多信息见[React官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
 
 ```diff
--const MyButton = () => <div role="button" />;
-+const MyButton = React.forwardRef((props, ref) =>
-+  <div role="button" {...props} ref={ref} />);
-
- <Button component={MyButton} />;
+Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 ```
 
 ```diff
@@ -197,7 +196,7 @@ Note that you will still get this warning for `lazy` and `memo` components if th
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the MUI component you're using has this requirement, check out the props API documentation for that component. 如果您需要转递 refs，描述将链接到此部分。
+要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述将链接到此部分。
 
 ### 使用 StrictMode 的注意事项
 

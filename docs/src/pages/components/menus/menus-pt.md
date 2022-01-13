@@ -24,27 +24,27 @@ Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
 {{"demo": "pages/components/menus/BasicMenu.js"}}
 
-## Icon menu
+## Menu selecionado
 
 No viewport do desktop, o preenchimento é aumentado para dar mais espaço ao menu.
 
 {{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
 
-## Dense menu
+## Menu posicionado
 
 For the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size.
 
 {{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
 
-## Menu selecionado
+## Composição de MenuList
 
 Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variante` para "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## Menu posicionado
+## Menu customizado
 
-Devido ao componente `Menu` usar o componente `Popover` para se posicionar, você pode usar as mesmas [propriedades de posicionamento](/components/popover/#anchor-playground) para posicioná-lo. For instance, you can display the menu on top of the anchor:
+Devido ao componente `Menu` usar o componente `Popover` para se posicionar, você pode usar as mesmas [propriedades de posicionamento](/components/popover/#anchor-playground) para posicioná-lo. Por exemplo, você pode exibir o menu abaixo da âncora:
 
 {{"demo": "pages/components/menus/PositionedMenu.js"}}
 
@@ -56,15 +56,15 @@ A principal responsabilidade do componente `MenuList` é manipular o foco.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Account menu
+## Limitações
 
-`Menu` content can be mixed with other components like `Avatar`.
+Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu terá internamente a opção de rolagem.
 
 {{"demo": "pages/components/menus/AccountMenu.js"}}
 
-## Customization
+## Trocar transição
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -72,13 +72,13 @@ O `MenuItem` é um encapsulador em torno de `ListItem` com alguns estilos adicio
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu/).
 
-## Altura máxima dos menu
+## Menu de contexto
 
 Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu terá internamente a opção de rolagem.
 
 {{"demo": "pages/components/menus/LongMenu.js"}}
 
-## Limitations
+## Projetos Complementares
 
 Existe [um problema com flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) que impede `text-overflow: ellipsis` de funcionar em um leiaute flexível. Você pode usar o componente `Typography` com `noWrap` para solucionar esse problema:
 
@@ -98,7 +98,7 @@ Aqui está um exemplo de um menu de contexto. (Clique com o botão direito para 
 
 ## Complementary projects
 
-For more advanced use cases you might be able to take advantage of:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 ### PopupState helper
 

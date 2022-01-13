@@ -322,20 +322,20 @@ The `grid-area` property allows you to give an item a name so that it can be ref
 ## API
 
 ```js
-import { grid } from '@mui/system';
+import { flexbox } from '@material-ui/system';
 ```
 
-| Import name           | Prop                  | CSS property            | Theme key |
-|:--------------------- |:--------------------- |:----------------------- |:--------- |
-| `gap`                 | `gap`                 | `gap`                   | none      |
-| `columnGap`           | `columnGap`           | `column-gap`            | none      |
-| `rowGap`              | `rowGap`              | `row-gap`               | none      |
-| `gridColumn`          | `gridColumn`          | `grid-column`           | none      |
-| `gridRow`             | `gridRow`             | `grid-row`              | none      |
-| `gridAutoFlow`        | `gridAutoFlow`        | `grid-auto-flow`        | none      |
-| `gridAutoColumns`     | `gridAutoColumns`     | `grid-auto-columns`     | none      |
-| `gridAutoRows`        | `gridAutoRows`        | `grid-auto-rows`        | none      |
-| `gridTemplateColumns` | `gridTemplateColumns` | `grid-template-columns` | none      |
-| `gridTemplateRows`    | `gridTemplateRows`    | `grid-template-rows`    | none      |
-| `gridTemplateAreas`   | `gridTemplateAreas`   | `grid-template-areas`   | none      |
-| `gridArea`            | `gridArea`            | `grid-area`             | none      |
+| Nome da importação    | Propriedade           | Propriedade CSS         | Chave do tema |
+|:--------------------- |:--------------------- |:----------------------- |:------------- |
+| `gap`                 | `gap`                 | `gap`                   | none          |
+| `columnGap`           | `columnGap`           | `column-gap`            | none          |
+| `rowGap`              | `rowGap`              | `row-gap`               | none          |
+| `gridColumn`          | `gridColumn`          | `grid-column`           | none          |
+| `gridRow`             | `gridRow`             | `grid-row`              | none          |
+| `gridAutoFlow`        | `gridAutoFlow`        | `grid-auto-flow`        | none          |
+| `gridAutoColumns`     | `gridAutoColumns`     | `grid-auto-columns`     | none          |
+| `gridAutoRows`        | `gridAutoRows`        | `grid-auto-rows`        | none          |
+| `gridTemplateColumns` | `gridTemplateColumns` | `grid-template-columns` | none          |
+| `gridTemplateRows`    | `gridTemplateRows`    | `grid-template-rows`    | none          |
+| `gridTemplateAreas`   | `gridTemplateAreas`   | `grid-template-areas`   | none          |
+| `gridArea`            | `gridArea`            | `grid-area`             | none          |

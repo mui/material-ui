@@ -5,7 +5,7 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline 基线
 
-<p class="description">MUI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">Material-UI 提供了一个 CssBaseline 组件，用于启动一个优雅、一致且简单的基线。</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -15,13 +15,13 @@ githubLabel: 'component: CssBaseline'
 
 ```jsx
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* The rest of your application */}
+      {/*其他代码 */}
     </React.Fragment>
   );
 }
@@ -33,13 +33,13 @@ However, you might be progressively migrating a website to MUI, using a global r
 
 ```jsx
 import * as React from 'react';
-import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
-      {/* The rest of your application */}
+      {/* 其他代码 */}
       <MyApp />
     </ScopedCssBaseline>
   );
@@ -66,10 +66,11 @@ export default function MyApp() {
 
 > This API is deprecated, consider using [color-scheme](#color-scheme) instead.
 
-The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
+The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode).
 
 ```jsx
-import darkScrollbar from '@mui/material/darkScrollbar';
+import darkScrollbar from '@material-ui/core/darkScrollbar';
+
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
@@ -78,12 +79,16 @@ const theme = createTheme({
       },
     },
   },
+}); darkScrollbar() : null,
+      },
+    },
+  },
 });
 ```
 
-Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
-### Color scheme
+### 文字铸排
 
 This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows:
 
@@ -104,6 +109,6 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 - 您可以通过设置 `theme.typography.fontWeightBold` 来设置 `<b>` 和 `<strong>` 元素的 font-weight。
 - 启用自定义字体平滑功能可以更好地显示 Roboto 字体。
 
-## Customization
+## Customization 个性化
 
 前往文档中的 [全局自定义](/customization/how-to-customize/#5-global-css-override) 部分来改变这些组件的输出。

@@ -12,7 +12,7 @@ githubLabel: 'component: Skeleton'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Usage
+## 使用
 
 骨架屏组件可以**直接在你的组件内**使用。 就像这样：
 
@@ -33,7 +33,7 @@ githubLabel: 'component: Skeleton'
 }
 ```
 
-## Variants
+## 变体
 
 组件支持 3 种形状变体。
 
@@ -79,13 +79,13 @@ loading ? (
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
 
-## Color
+## Color 颜色
 
-The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible).
+The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible). This is especially useful when on a black background (as the skeleton will otherwise be invisible).
 
 {{"demo": "pages/components/skeleton/SkeletonColor.js", "bg": "inline"}}
 
-## Accessibility
+## 无障碍设计
 
 骨架屏的动画可以代替传统转圈动画的加载方式。 骨架屏不是一个抽象的小部件，而是提供一个对未来事件的预期，来减少人们的认知负荷。
 
@@ -95,6 +95,6 @@ The color of the component can be customized by changing its `background-color` 
 
 无。
 
-### Keyboard
+### 键盘输入
 
 骨架屏不能被聚焦。

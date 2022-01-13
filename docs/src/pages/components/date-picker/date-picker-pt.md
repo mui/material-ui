@@ -2,7 +2,7 @@
 title: Componente React Seletor de data
 components: CalendarPicker, CalendarPickerSkeleton, DatePicker, DesktopDatePicker, MobileDatePicker, MonthPicker, PickersDay, StaticDatePicker, YearPicker
 githubLabel: 'component: DatePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">Seletores de data permitem que o usuário selecione uma data.</p>
 
-Date pickers let the user select a date. Seletores de data são exibidos com:
+Date pickers let the user select a date. Seletores de data permitem que o usuário selecione uma data.
 
 - Diálogos em dispositivos móveis
 - Menu suspenso com campo de texto em desktop
@@ -24,9 +24,9 @@ Este componente depende da biblioteca de gerenciamento de datas da sua escolha. 
 Por favor, instale qualquer uma destas bibliotecas e configure corretamente o mecanismo de data encapsulando na raiz dos componentes (ou o nível mais alto que você deseja que os seletores estejam disponíveis) com `LocalizationProvider`:
 
 ```jsx
-// or @mui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// ou @material-ui/lab/Adapter{DayJS,Luxon,Moment} ou qualquer adaptador válido de date-io
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -47,24 +47,24 @@ It's possible to render any date picker without the modal/popover and text field
 
 {{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 
-## Responsiveness
+## Responsividade
 
 O componente seletor de data é projetado e otimizado para o dispositivo em que ele é executado.
 
 - The `MobileDatePicker` component works best for touch devices and small screens.
 - The `DesktopDatePicker` component works best for mouse devices and large screens.
 
-By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. This can be customized with the `desktopModeMediaQuery` prop.
+By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}
 
-## Form props
+## Propriedades de formulário
 
 The date picker component can be disabled or read-only.
 
 {{"demo": "pages/components/date-picker/FormPropsDatePickers.js"}}
 
-## Localization
+## Localização
 
 Use `LocalizationProvider` para alterar a date-engine de localização que é usada para renderizar o seletor de data. Aqui esta um exemplo de alteração da localidade com o adaptador `date-fns`:
 

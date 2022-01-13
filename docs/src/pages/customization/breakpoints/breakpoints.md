@@ -26,7 +26,7 @@ These values can be [customized](#custom-breakpoints).
 ## CSS Media Queries
 
 CSS media queries are the idiomatic approach to make your UI responsive.
-The theme provides four styles helpers to do so:
+The theme provides five styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)

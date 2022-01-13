@@ -71,7 +71,7 @@ function ProductItem({
             alignItems: 'center',
             minHeight: 24,
             '& > svg': { transition: '0.2s' },
-            '&:hover > svg': { transform: 'translateX(4px)' },
+            '&:hover > svg': { transform: 'translateX(2px)' },
           }}
           onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
             event.stopPropagation();

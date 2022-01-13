@@ -2,7 +2,7 @@
 
 <p class="description">是的，我们已经发布了 v4 版本！</p>
 
-您还在找 v3 版本的文档吗？ You can [find the latest version here](https://mui.com/versions/).
+您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
 > 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md)。
 
@@ -18,48 +18,48 @@ This is a reference for upgrading your site from MUI v3 to v4. 您可能不会�
 
 您需要做的第一件事，就是更新您的依赖包。
 
-### Update MUI version
+### 升级 Material-UI 的版本
 
-You need to update your `package.json` to use the latest version of MUI.
+若想要使用最新版本的 Material-UI，您必须更新 `package.json`。
 
 ```json
 "dependencies": {
-  "@mui/material": "^4.0.0"
+  "@material-ui/core": "^4.0.0"
 }
 ```
 
 或者运行
 
 ```sh
-npm install @mui/material
+npm install @material-ui/core
 
-or
+或者
 
-yarn add @mui/material
+yarn add @material-ui/core
 ```
 
 ### 更新 React 的版本
 
 对于 React 版本的最低要求是从 `react@^16.3.0` 升级到 `react@^16.8.0`。 这样一来我们能够依赖 [Hooks](https://reactjs.org/docs/hooks-intro.html) 的功能（我们已经不再使用 class API）。
 
-### Update MUI Styles version
+### 更新 Material-UI Styles 的版本
 
-If you were previously using `@mui/styles` with v3 you need to update your `package.json` to use the latest version of MUI Styles.
+若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
 
 ```json
 "dependencies": {
-  "@mui/styles": "^4.0.0"
+  "@material-ui/styles": "^4.0.0"
 }
 ```
 
-Or run
+或者运行
 
 ```sh
-npm install @mui/styles
+npm install @material-ui/styles
 
-or
+或者
 
-yarn add @mui/styles
+yarn add @material-ui/styles
 ```
 
 ## 处理变化带来的系统崩溃
@@ -83,11 +83,11 @@ yarn add @mui/styles
 - 重命名 `convertHexToRGB` 为 `hexToRgb`。
 
   ```diff
-  -import { convertHexToRgb } from '@mui/material/styles/colorManipulator';
-  +import { hexToRgb } from '@mui/material/styles';
+  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
+  +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
-- 设置 [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation) 的范围。 您应该在您的代码中做出以下改变。 它能帮助分离动画效果的逻辑：
+- 设置 [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation) 的范围。 您应该在您的代码中做出以下改变。 这对分离动画的逻辑有所帮助：
 
   ```diff
     rippleVisible: {
@@ -105,7 +105,7 @@ yarn add @mui/styles
     },
   ```
 
-### Theme
+### 主题
 
 - `theme.palette.augmentColor()` 方法不再对输入框的颜色产生副作用。 若想要正确地使用它，您必须使用其返回值。
 
@@ -117,7 +117,7 @@ yarn add @mui/styles
   console.log({ background });
   ```
 
-- 您可以从创建主体中安全地删除下一个变体：
+- —您可以从主题创建中安全地移除下一个变体：
 
   ```diff
   typography: {
@@ -136,37 +136,37 @@ yarn add @mui/styles
   }
   ```
 
-  _提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。`_
+  提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。 `
 
-  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
+  您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
 
-### Layout
+### 布局
 
-- [Grid] 为了支持任意的间距值，并且移除每次心算都需要数8，我们改变了间距的 API：
+- [Grid] 本着支持任意间距值并且摈弃心理上一直需要在8的基础上计数的目的，我们改变了 spacing 的 API:
 
   ```diff
     /**
-     * Defines the space between the type `item` component.
+     * 在类别为`item` 组件之间定义间距。
      * 它只能用于类型为 `container` 的组件。
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
 
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://mui.com/system/spacing/#transformation).
+  从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://material-ui.com/system/spacing/#transformation)。
 
-- [Container] Moved from `@mui/lab` to `@mui/material`.
+- [Container] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
 
   ```diff
-  -import Container from '@mui/lab/Container';
-  +import Container from '@mui/material/Container';
+  -import Container from '@material-ui/lab/Container';
+  +import Container from '@material-ui/core/Container';
   ```
 
 ### TypeScript
 
-#### `value` type
+#### `value` 类型
 
-Normalized `value` prop type for input components to use `unknown`. This affects `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
+将 input 组件的 `value` 属性的类型正常化，这样可以使用 `unknown`了。 这会影响 `InputBase`，`NativeSelect`，`OutlinedInput`，`Radio`，`RadioGroup`，`Select`，`SelectInput`，`TextArea` 和 `TextField`。
 
 ```diff
 function MySelect({ children }) {
@@ -196,16 +196,16 @@ function MySelect({ children }) {
   ```
 
   ```diff
-  -import Button from '@mui/material/Button';
+  -import Button from '@material-ui/core/Button';
   -<Button variant="fab" />
-  +import Fab from '@mui/material/Fab';
+  +import Fab from '@material-ui/core/Fab';
   +<Fab />
   ```
 
   ```diff
-  -import Button from '@mui/material/Button';
+  -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />
-  +import Fab from '@mui/material/Fab';
+  +import Fab from '@material-ui/core/Fab';
   +<Fab variant="extended" />
   ```
 
@@ -213,7 +213,7 @@ function MySelect({ children }) {
 
   当 `button` 属性设置为 true 时，这也适用于 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem`。
 
-### Card
+### Card（卡片）
 
 - [CardActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [CardActions] 移除 CSS类中的 `disableActionSpacing`。
@@ -282,22 +282,22 @@ function MySelect({ children }) {
 
 ### Portal
 
-- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Slide
+### Slide 滑动
 
-- [Slide] 子组件能够接受一个 ref。 The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Slide] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
 ### Slider
 
-- [Slider] Move from `@mui/lab` to `@mui/material`.
+- [Slider] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
 
   ```diff
-  -import Slider from '@mui/lab/Slider'
-  +import Slider from '@mui/material/Slider'
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
   ```
 
-### Switch
+### Switch 开关
 
 - [Switch] 重新编写实施的代码能够更容易覆盖样式表。 请重命名类的名字以匹配规范的用词：
 
@@ -308,23 +308,23 @@ function MySelect({ children }) {
   +track
   ```
 
-### Snackbar
+### Snackbar（消息条）
 
 - [Snackbar] 匹配新的规范。
 
   - 更改尺寸。
   - 将默认的过渡动画从 `Slide` 改成 `Grow`。
 
-### SvgIcon
+### SvgIcon（Svg 图标）
 
-- [SvgIcon] Rename nativeColor -> htmlColor. React solved the same problem with the `for` HTML attribute, they have decided to call the prop `htmlFor`. 此变化的原因大同小异。
+- [SvgIcon] 重命名nativeColor - > htmlColor。 React 在 `for` 这个 HTML 属性上也遇到了同样的问题，他们选择命名这个属性为`htmlFor`。 此变化的原因大同小异。
 
   ```diff
   -<AddIcon nativeColor="#fff" />
   +<AddIcon htmlColor="#fff" />
   ```
 
-### Tabs
+### Tabs 选项卡
 
 - [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped` 等类的 key。 这使得我们可以移走两个中间的 DOM 元素。 您应该可以将自定义的样式移到`根元素`的类的键上。
 
@@ -365,7 +365,7 @@ function MySelect({ children }) {
   - FormLabelClasses={{ asterisk: 'bar' }}
   + classes={{ asterisk: 'bar' }}
   >
-    Foo
+  Foo
   </InputLabel>
   ```
 
@@ -381,10 +381,10 @@ function MySelect({ children }) {
 
 ### Tooltip
 
-- [Tooltip] 子组件能够接受一个 ref。 The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
-### Typography
+### 文字铸排
 
 - [Typography] 移除了各种弃用的铸排变体。 您可以通过执行以下的替换来升级：
   - display4 => h1
@@ -414,7 +414,7 @@ function MySelect({ children }) {
 
 ### UMD
 
-- This change eases the use of MUI with a CDN:
+- 此更改简化了 Material-UI 与 CDN 的使用：
 
   ```diff
   const {

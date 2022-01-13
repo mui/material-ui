@@ -18,12 +18,6 @@ npm install
 npm run start
 ```
 
-or:
-
-<!-- #default-branch-switch -->
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/ssr)
-
 ## The idea behind the example
 
 This is the reference implementation of the [Server Rendering tutorial](https://mui.com/guides/server-rendering/).

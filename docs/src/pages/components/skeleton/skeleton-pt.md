@@ -12,7 +12,7 @@ Os dados dos seus componentes podem não estar imediatamente disponíveis. Você
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Usage
+## Uso
 
 O componente é projetado para ser usado **diretamente em seus componentes**. Por exemplo:
 
@@ -24,7 +24,7 @@ O componente é projetado para ser usado **diretamente em seus componentes**. Po
 )}
 ```
 
-## Variants
+## Variantes
 
 O componente suporta 3 variantes de forma.
 
@@ -68,13 +68,13 @@ loading
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
 
-## Color
+## Cor
 
 The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible).
 
 {{"demo": "pages/components/skeleton/SkeletonColor.js", "bg": "inline"}}
 
-## Accessibility
+## Acessibilidade
 
 Telas com skeleton fornecem uma alternativa aos métodos tradicionais de feedback. Em vez de mostrar um resumo abstrato na tela, telas com skeleton criam uma expectativa do que está por vir, reduzindo a sensação cognitiva do processo de carregamento.
 
@@ -84,6 +84,6 @@ A cor de fundo do skeleton usa uma quantidade menor de luminância para ser vis�
 
 Nenhum.
 
-### Keyboard
+### Teclado
 
 O skeleton não é focável.

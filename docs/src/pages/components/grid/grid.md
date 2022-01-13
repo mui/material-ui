@@ -25,7 +25,7 @@ The grid system is implemented with the `Grid` component:
 - Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
-- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
+- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/customization/breakpoints/#default-breakpoints).
 
 If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
 
@@ -145,7 +145,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
-### white-space: nowrap;
+### white-space: nowrap
 
 The initial setting on flex items is `min-width: auto`.
 It's causing a positioning conflict when the children is using `white-space: nowrap;`.

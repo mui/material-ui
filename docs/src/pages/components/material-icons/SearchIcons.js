@@ -6,7 +6,7 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
+import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -24,6 +24,7 @@ import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
@@ -47,6 +48,8 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import * as mui from '@mui/icons-material';
 import synonyms from './synonyms';
+
+const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
 
 // const mui = {
 //   ExitToApp,
@@ -444,22 +447,35 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
-export default function SearchIcons() {
-  const [theme, setTheme] = React.useState('Filled');
-  const [keys, setKeys] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
-  const [selectedIcon, setSelectedIcon] = React.useState(null);
+/**
+ * Returns the last defined value that has been passed in [value]
+ */
+function useLatest(value) {
+  const latest = React.useRef(value);
+  if (value !== undefined && value !== null) {
+    latest.current = value;
+  }
+  return latest.current;
+}
 
-  const handleOpenClick = React.useCallback((event) => {
-    setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
-    setOpen(true);
-  }, []);
+export default function SearchIcons() {
+  const [keys, setKeys] = React.useState(null);
+  const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
+  const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
+  const [query, setQuery] = useQueryParameterState('query', '');
+
+  const handleOpenClick = React.useCallback(
+    (event) => {
+      setSelectedIcon(event.currentTarget.getAttribute('title'));
+    },
+    [setSelectedIcon],
+  );
 
   const handleClose = React.useCallback(() => {
-    setOpen(false);
-  }, []);
+    setSelectedIcon('');
+  }, [setSelectedIcon]);
 
-  const handleChange = React.useMemo(
+  const updateSearchResults = React.useMemo(
     () =>
       debounce((value) => {
         if (value === '') {
@@ -479,15 +495,16 @@ export default function SearchIcons() {
             }
           });
         }
-      }, 220),
+      }, UPDATE_SEARCH_INDEX_WAIT_MS),
     [],
   );
 
   React.useEffect(() => {
+    updateSearchResults(query);
     return () => {
-      handleChange.cancel();
+      updateSearchResults.clear();
     };
-  }, [handleChange]);
+  }, [query, updateSearchResults]);
 
   const icons = React.useMemo(
     () =>
@@ -495,6 +512,10 @@ export default function SearchIcons() {
         (icon) => theme === icon.theme,
       ),
     [theme, keys],
+  );
+
+  const dialogSelectedIcon = useLatest(
+    selectedIcon ? allIconsMap[selectedIcon] : null,
   );
 
   return (
@@ -529,9 +550,8 @@ export default function SearchIcons() {
           </IconButton>
           <Input
             autoFocus
-            onChange={(event) => {
-              handleChange(event.target.value);
-            }}
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
           />
@@ -540,8 +560,8 @@ export default function SearchIcons() {
         <Icons icons={icons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
-        open={open}
-        selectedIcon={selectedIcon}
+        open={!!selectedIcon}
+        selectedIcon={dialogSelectedIcon}
         handleClose={handleClose}
       />
     </Grid>

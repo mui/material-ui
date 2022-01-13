@@ -202,6 +202,9 @@ jobs:
       - run:
           name: Lint JSON
           command: yarn jsonlint
+      - run:
+          name: Lint Markdown
+          command: yarn markdownlint
   test_static:
     <<: *defaults
     steps:
@@ -724,7 +727,7 @@ jobs:
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
       - run:
           name: run danger on PRs
-          command: yarn danger ci
+          command: yarn danger ci --fail-on-errors
           environment:
             DANGER_COMMAND: 'reportBundleSize'
   test_benchmark:

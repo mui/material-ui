@@ -13,7 +13,7 @@ Barras de [navegação inferior](https://material.io/design/components/bottom-na
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Bottom Navigation
+## Navegação inferior
 
 Se existir **quatro** ou **cinco** ações, exiba os destinos inativos somente com ícone.
 
@@ -31,6 +31,6 @@ Esta demonstração mantém a navegação inferior fixa na parte inferior, não 
 
 {{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}
 
-## Third-party routing library
+## Biblioteca de roteamento de terceiros
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/).

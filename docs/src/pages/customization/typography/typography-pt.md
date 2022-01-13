@@ -1,4 +1,4 @@
-# Typography
+# Tipografia
 
 <p class="description">O tema fornece um conjunto de tipos de tamanhos que funcionam bem juntos e também com a grade de leiaute.</p>
 
@@ -54,8 +54,8 @@ const theme = createTheme({
           font-style: normal;
           font-display: swap;
           font-weight: 400;
-          src: local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2');
-          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+          src: "local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2')";
+          unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
         }
       `,
     },
@@ -81,9 +81,9 @@ Observe que se você deseja adicionar declarações `@font-face` adicionais, voc
 
 ## Tamanho da fonte
 
-MUI uses `rem` units for the font size. O tamanho da fonte padrão do elemento `<html>` do navegador é `16px`, mas os navegadores têm a opção de alterar esse valor, a unidade `rem` nos permite acomodar as configurações do usuário, resultando em um melhor suporte de acessibilidade. Os usuários alteram as configurações de tamanho da fonte por vários motivos, desde problemas de visão, até a escolha de configurações ideais para dispositivos que podem ser muito diferentes em tamanho e distância de visualização.
+Material-UI usa a unidade `rem` para o tamanho da fonte. O tamanho da fonte padrão do elemento `<html>` do navegador é `16px`, mas os navegadores têm a opção de alterar esse valor, a unidade `rem` nos permite acomodar as configurações do usuário, resultando em um melhor suporte de acessibilidade. Os usuários alteram as configurações de tamanho da fonte por vários motivos, desde problemas de visão, até a escolha de configurações ideais para dispositivos que podem ser muito diferentes em tamanho e distância de visualização.
 
-To change the font-size of MUI you can provide a `fontSize` property. O valor padrão é `14px`.
+Para alterar o tamanho da fonte do Material-UI, você pode definir a propriedade `fontSize`. O valor padrão é `14px`.
 
 ```js
 const theme = createTheme({
@@ -98,10 +98,10 @@ const theme = createTheme({
 O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
 <div class="only-light-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size.svg" />
+  <img alt="cálculo do tamanho da fonte" style="width: 458px;" src="/static/images/font-size.svg" />
 </div>
 <div class="only-dark-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size-dark.svg" />
+  <img alt="cálculo do tamanho da fonte" style="width: 458px;" src="/static/images/font-size-dark.svg" />
 </div>
 
 <!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
@@ -133,7 +133,7 @@ Para automatizar estas configurações, você pode usar a função auxiliar [`re
 Você pode ver isso em ação no exemplo abaixo. Ajuste o tamanho da janela do navegador e observe como o tamanho da fonte muda à medida que a largura cruza os diferentes [pontos de quebra](/customization/breakpoints/):
 
 ```js
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -151,12 +151,12 @@ Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por e
 
 > ⚠️ Alterar o tamanho da fonte pode prejudicar a acessibilidade ♿️. A maioria dos navegadores concordou com o tamanho padrão de 16 pixels, mas o usuário pode alterá-lo. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
+Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell MUI what's the font-size on the html element is.
+    // Tell Material-UI what's the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -172,7 +172,7 @@ _Você precisa aplicar o CSS acima no elemento html desta página para ver a dem
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-## Variants
+## Variantes
 
 O objeto de tipografia vem com [13 variantes](/components/typography/#component) por padrão:
 
@@ -237,7 +237,7 @@ Você precisa ter certeza de que as tipagens para as variantes da propriedade `t
 <!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
-declare module '@mui/material/styles' {
+declare module '@material-ui/core/styles' {
   interface TypographyVariants {
     poster: React.CSSProperties;
   }
@@ -249,7 +249,7 @@ declare module '@mui/material/styles' {
 }
 
 // Update the Typography's variant prop options
-declare module '@mui/material/Typography' {
+declare module '@material-ui/core/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;
@@ -268,6 +268,6 @@ declare module '@mui/material/Typography' {
 <Typography variant="h3">h3</Typography>;
 ```
 
-## Default values
+## Valores padrão
 
 Você pode explorar os valores padrão da tipografia usando [o explorador de tema](/customization/default-theme/?expand-path=$.typography) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.typography`).

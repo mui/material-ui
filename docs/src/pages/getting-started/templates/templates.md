@@ -24,8 +24,8 @@ please consider creating a [pull request on GitHub](https://github.com/mui-org/m
 
 So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 
-## Premium Themes
+## Premium templates
 
-Looking for something more? You can find complete templates & themes in the <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
+Looking for something more? You can find complete templates & themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
 
-<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
+<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

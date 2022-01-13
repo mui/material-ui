@@ -1,10 +1,10 @@
-# Advanced
+# Avançado
 
 <p class="description">Aqui você pode encontrar exemplos de como você pode usar o sistema em seus componentes customizados.</p>
 
 ## Adicionando a propriedade `sx` para seus componentes customizados
 
-The `unstable_styleFunctionSx` utility adds the support for the [`sx` prop](/system/basics/#the-sx-prop) to your own components. Normally you would use the `Box` component from `@mui/material` at the root of your component tree. If you would like to use the system independently from MUI, the `unstable_styleFunctionSx` utility will give you the same capabilities, while having a smaller bundle size.
+The `unstable_styleFunctionSx` utility adds the support for the [`sx` prop](/system/basics/#the-sx-prop) to your own components. Normally you would use the `Box` component from `@material-ui/core` at the root of your component tree. If you would like to use the system independently from Material-UI, the `unstable_styleFunctionSx` utility will give you the same capabilities, while having a smaller bundle size.
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
 

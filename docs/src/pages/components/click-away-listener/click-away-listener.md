@@ -41,7 +41,7 @@ However, you can configure it to respond to the leading events (mouse down + tou
 
 - 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import ClickAwayListener from '@mui/base/ClickAwayListener';

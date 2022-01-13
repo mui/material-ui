@@ -1,4 +1,4 @@
-# Typography
+# Tipografia
 
 <p class="description">Documentação e exemplos de texto, utilizações comuns para controlar o alinhamento, quebra, peso e muito mais.</p>
 
@@ -34,7 +34,7 @@
 <Box sx={{ fontWeight: 'bold' }}>…
 ```
 
-## Font size
+## Tamanho da fonte
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
@@ -54,7 +54,7 @@
 <Box sx={{ fontStyle: 'oblique' }}>…
 ```
 
-## Font family
+## Família da fonte
 
 {{"demo": "pages/system/typography/FontFamily.js", "defaultCodeOpen": false}}
 
@@ -84,16 +84,16 @@
 ## API
 
 ```js
-import { typography } from '@mui/system';
+import { typography } from '@material-ui/system';
 ```
 
-| Import name     | Prop            | CSS property                                                                                 | Theme key                                                              |
-|:--------------- |:--------------- |:-------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------- |
-| `typography`    | `typography`    | `font-family`, `font-weight`, `font-size`, `line-height`, `letter-spacing`, `text-transform` | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `fontFamily`    | `fontFamily`    | `font-family`                                                                                | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `fontSize`      | `fontSize`      | `font-size`                                                                                  | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `fontStyle`     | `fontStyle`     | `font-style`                                                                                 | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `fontWeight`    | `fontWeight`    | `font-weight`                                                                                | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `letterSpacing` | `letterSpacing` | `letter-spacing`                                                                             | none                                                                   |
-| `lineHeight`    | `lineHeight`    | `line-height`                                                                                | none                                                                   |
-| `textAlign`     | `textAlign`     | `text-align`                                                                                 | none                                                                   |
+| Nome da importação | Propriedade     | Propriedade CSS                                                                              | Chave do tema                                                          |
+|:------------------ |:--------------- |:-------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------- |
+| `typography`       | `typography`    | `font-family`, `font-weight`, `font-size`, `line-height`, `letter-spacing`, `text-transform` | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `fontFamily`       | `fontFamily`    | `font-family`                                                                                | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `fontSize`         | `fontSize`      | `font-size`                                                                                  | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `fontStyle`        | `fontStyle`     | `font-style`                                                                                 | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `fontWeight`       | `fontWeight`    | `font-weight`                                                                                | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `letterSpacing`    | `letterSpacing` | `letter-spacing`                                                                             | none                                                                   |
+| `lineHeight`       | `lineHeight`    | `line-height`                                                                                | none                                                                   |
+| `textAlign`        | `textAlign`     | `text-align`                                                                                 | none                                                                   |

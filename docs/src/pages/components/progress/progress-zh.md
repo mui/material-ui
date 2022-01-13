@@ -83,9 +83,9 @@ function Progress(props) {
 }
 ```
 
-## Customization
+## 定制的进度条
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 

@@ -2,15 +2,15 @@
 
 <p class="description">Localização (também referida como "l10n") é o processo de adaptação de um produto ou conteúdo a um idioma ou mercado específico (localidade).</p>
 
-The default locale of MUI is English (United States). Se você quiser usar outras localidades, siga as instruções abaixo.
+A localidade padrão do Material-UI é em inglês (Estados Unidos). Se você quiser usar outras localidades, siga as instruções abaixo.
 
 ## Texto da localidade
 
 Use o tema para configurar os textos da localização globalmente:
 
 ```jsx
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { zhCN } from '@mui/material/locale';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { zhCN } from '@material-ui/core/locale';
 
 const theme = createTheme(
   {
@@ -26,7 +26,7 @@ const theme = createTheme(
 </ThemeProvider>;
 ```
 
-### Example
+### Exemplo
 
 {{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
@@ -46,46 +46,47 @@ const theme = createTheme(
 | Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
 | Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
 | Tcheco                  | cs-CZ                     | `csCZ`             |
-| Holandês                | nl-NL                     | `nlNL`             |
-| Inglês (Estados Unidos) | en-US                     | `enUS`             |
-| Estoniano               | et-EE                     | `etEE`             |
-| Finlandês               | fi-FI                     | `fiFI`             |
-| Francês                 | fr-FR                     | `frFR`             |
-| Alemão                  | de-DE                     | `deDE`             |
+| Danish                  | da-DK                     | `daDK`             |
+| Dutch                   | nl-NL                     | `nlNL`             |
+| English (United States) | en-US                     | `enUS`             |
+| Estonian                | et-EE                     | `etEE`             |
+| Finnish                 | fi-FI                     | `fiFI`             |
+| French                  | fr-FR                     | `frFR`             |
+| German                  | de-DE                     | `deDE`             |
 | Greek                   | el-GR                     | `elGR`             |
-| Hebraico                | he-IL                     | `heIL`             |
+| Hebrew                  | he-IL                     | `heIL`             |
 | Hindi                   | hi-IN                     | `hiIN`             |
-| Húngaro                 | hu-HU                     | `huHU`             |
-| Islandês                | is-IS                     | `isIS`             |
-| Indonésio               | id-ID                     | `idID`             |
-| Italiano                | it-IT                     | `itIT`             |
-| Japonês                 | ja-JP                     | `jaJP`             |
+| Hungarian               | hu-HU                     | `huHU`             |
+| Icelandic               | is-IS                     | `isIS`             |
+| Indonesian              | id-ID                     | `idID`             |
+| Italian                 | it-IT                     | `itIT`             |
+| Japanese                | ja-JP                     | `jaJP`             |
 | Khmer                   | kh-KH                     | `khKH`             |
 | Kazakh                  | kz-KZ                     | `kzKZ`             |
-| Coreano                 | ko-KR                     | `koKR`             |
-| Persa                   | fa-IR                     | `faIR`             |
-| Polonês                 | pl-PL                     | `plPL`             |
-| Português (Europeu)     | pt-PT                     | `ptPT`             |
-| Português (Brasil)      | pt-BR                     | `ptBR`             |
-| Romeno                  | ro-RO                     | `roRO`             |
-| Russo                   | ru-RU                     | `ruRU`             |
+| Korean                  | ko-KR                     | `koKR`             |
+| Persian                 | fa-IR                     | `faIR`             |
+| Polish                  | pl-PL                     | `plPL`             |
+| Portuguese              | pt-PT                     | `ptPT`             |
+| Portuguese (Brazil)     | pt-BR                     | `ptBR`             |
+| Romanian                | ro-RO                     | `roRO`             |
+| Russian                 | ru-RU                     | `ruRU`             |
 | Sinhalese               | si-LK                     | `siLK`             |
-| Eslovaco                | sk-SK                     | `skSK`             |
-| Espanhol                | es-ES                     | `esES`             |
-| Sueco                   | sv-SE                     | `svSE`             |
+| Slovak                  | sk-SK                     | `skSK`             |
+| Spanish                 | es-ES                     | `esES`             |
+| Swedish                 | sv-SE                     | `svSE`             |
 | Thai                    | th-TH                     | `thTH`             |
-| Turco                   | tr-TR                     | `trTR`             |
-| Ucraniano               | uk-UA                     | `ukUA`             |
-| Vietnamita              | vi-VN                     | `viVN`             |
+| Turkish                 | tr-TR                     | `trTR`             |
+| Ukrainian               | uk-UA                     | `ukUA`             |
+| Vietnamese              | vi-VN                     | `viVN`             |
 
 <!-- #default-branch-switch -->
 
 Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
 
-Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
+Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
-Please do consider contributing new translations back to MUI by opening a pull request. However, MUI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, Material-UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
 
 ## Suporte RTL
 
-Idiomas direita-para-esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/guides/right-to-left/) para usá-los.
+Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/guides/right-to-left/) para usá-los.

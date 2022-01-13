@@ -2,13 +2,13 @@
 
 <p class="description">Você pode adicionar tipagem estática para o JavaScript para melhorar a produtividade do desenvolvimento e a qualidade do código graças ao TypeScript.</p>
 
-## Minimum configuration
+## Uso de `withStyles`
 
 <!-- #default-branch-switch -->
 
-MUI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example.
+Material-UI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example.
 
-For types to work, you should have at the minimum the following options enabled in your `tsconfig.json`:
+Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript).
 
 ```json
 {
@@ -21,7 +21,7 @@ For types to work, you should have at the minimum the following options enabled 
 }
 ```
 
-As opções do modo strict são as mesmas que são necessárias para todos os tipos de pacote publicados no namespace `@types/`. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. To get the best type experience with the types we recommend setting `"strict": true`.
+As opções do modo strict são as mesmas que são necessárias para todos os tipos de pacote publicados no namespace `@types/`. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. Para obter a melhor experiência com os tipos, recomendamos configurar `"strict": true`.
 
 ## Manipulando `value` e manipuladores de eventos
 
@@ -31,10 +31,10 @@ No entanto, esse tipo não pode ser verificado em tempo de compilação em situa
 
 As demonstrações incluem variantes tipadas que usam conversão de tipo. É uma troca aceitável porque os tipos estão todos localizados em um único arquivo e são muito básicos. Você tem que decidir por si mesmo se a mesma troca é aceitável para você. The library types are strict by default and loose via opt-in.
 
-## Customization of `Theme`
+## Uso da propriedade `component`
 
 Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
 
 ## Uso da propriedade `component`
 
-Moved to [/guides/composition/#with-typescript](/guides/composition/#with-typescript).
+No entanto, a ampliação de tipos continuará a causar dores de cabeça se você tentar fazer com que os estilos dependam do tema:

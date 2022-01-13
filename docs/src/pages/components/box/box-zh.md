@@ -7,23 +7,23 @@ githubLabel: 'component: Box'
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
+在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Example
+## 示例
 
 查看[调色板](/system/palette/)样式功能。
 
-## The `sx` prop
+## `sx` 属性
 
-所有系统属性都可以通过 [`sx` 属性获得](/system/basics/#the-sx-prop)。 此外，`sx` 属性允许您指定您可能需要的任何其他 CSS 样式。 下面是一个如何使用的示例：
+All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例： 此外，`sx` 属性允许您指定您可能需要的任何其他 CSS 样式。 下面是一个如何使用的示例：
 
 {{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
-## Overriding MUI components
+## 覆盖 Material-UI 组件
 
-Box 组件能够封装您的组件。 It creates a new DOM element, a `<div>` that by default can be changed with the `component` prop. 假设反之你想使用一个 `<span>`：
+Box 组件能够封装您的组件。 假设反之你想使用一个 `<span>`： 假设反之你想使用一个 `<span>`：
 
 {{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
@@ -38,7 +38,7 @@ Box 组件能够封装您的组件。 It creates a new DOM element, a `<div>` th
 +<Button sx={{ border: '1px dashed grey' }}>保存</Button>
 ```
 
-For non-MUI components, use the `component` prop.
+For non-Material-UI components, use the `component` prop.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -50,10 +50,10 @@ For non-MUI components, use the `component` prop.
 ## API
 
 ```jsx
-import Box from '@mui/material/Box';
+import Box from '@material-ui/core/Box';
 ```
 
-| 名称                                       | 类型                                                                                                                            | 默认值                                     | Description                                |
+| 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
 |:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------ |
 | <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Box 渲染函数或者返回节点。                            |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |
@@ -61,7 +61,7 @@ import Box from '@mui/material/Box';
 
 ## 系统属性
 
-As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+作为一个 CSS 实用组件, `Box` 也支持所有 [`system`](/system/properties/) 属性。 您可以直接在组件上使用它们作为 prop。 例如，margin-top:
 
 ```jsx
 <Box mt={2}>

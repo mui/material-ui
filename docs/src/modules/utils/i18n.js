@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
+import { useRouter } from 'next/router';
+import replaceMarkdownLinks from 'docs/src/modules/utils/replaceMarkdownLinks';
 
 function mapTranslations(req) {
   const translations = {};
@@ -61,11 +63,19 @@ export function useSetUserLanguage() {
 const warnedOnce = {};
 
 export function useTranslate() {
+  const router = useRouter();
   const userLanguage = useUserLanguage();
 
   return React.useMemo(
     () =>
       function translate(key, options = {}) {
+        // TODO: remove this logic once the migration to new structure is done.
+        function pointToNewHref(translation) {
+          if (typeof translation === 'string') {
+            return replaceMarkdownLinks(translation, router.asPath);
+          }
+          return translation;
+        }
         const { ignoreWarning = false } = options;
         const wordings = translations[userLanguage];
 
@@ -83,11 +93,11 @@ export function useTranslate() {
             console.error(`Missing translation for ${fullKey}`);
             warnedOnce[fullKey] = true;
           }
-          return getPath(translations.en, key);
+          return pointToNewHref(getPath(translations.en, key));
         }
 
-        return translation;
+        return pointToNewHref(translation);
       },
-    [userLanguage],
+    [userLanguage, router.asPath],
   );
 }

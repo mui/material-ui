@@ -16,7 +16,7 @@ O fundo de uma aplicação se assemelha a textura lisa e opaca de uma folha de p
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 
-## Variants
+## Variantes
 
 Se você precisar de uma superfície delineada, use a propriedade `variant`.
 

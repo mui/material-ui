@@ -10,9 +10,9 @@ githubLabel: 'component: Portal'
 
 O filho do componente portal será adicionado ao `container` especificado. O componente é usado internamente pelos componentes [`Modal`](/components/modal/) e [`Popper`](/components/popper/).
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
-## Example
+## Exemplo
 
 {{"demo": "pages/components/portal/SimplePortal.js"}}
 
@@ -24,7 +24,7 @@ React [não suporta](https://github.com/facebook/react/issues/13097) a API [`cre
 
 - 📦 [970 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import Portal from '@mui/base/Portal';

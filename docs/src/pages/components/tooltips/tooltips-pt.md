@@ -24,9 +24,9 @@ O `Tooltip` tem 12 **posicionamentos** para ser escolhido. They don't have direc
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customization
+## Dicas customizadas
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -38,7 +38,7 @@ Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a 
 
 ## Elemento filho customizado
 
-A dica precisa aplicar eventos DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
+A dica precisa aplicar eventos DOM ao seu elemento filho. A dica precisa aplicar eventos DOM ao seu elemento filho.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -75,7 +75,7 @@ A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
-## Interactive
+## Interativo
 
 Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
@@ -89,19 +89,17 @@ Por padrão os elementos desativados como `<button>` não disparam interações 
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desabilitado:
 
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      Um botão desabilitado
-    </button>
-  </span>
-</Tooltip>
+    <button disabled={disabled} style={disabled ? <Tooltip title="Você não tem permissão para esta tarefa">
+  <span>
+    <button disabled={disabled} style={disabled ?
 ```
 
-## Transitions
+## Transições
 
 Use a different transition.
 
@@ -127,7 +125,7 @@ No celular, a dica é exibida quando o usuário pressiona longamente o elemento 
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
 
-## Accessibility
+## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 

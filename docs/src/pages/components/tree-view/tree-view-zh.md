@@ -3,7 +3,7 @@ title: React Tree View（树视图）组件
 components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Tree View 树视图
@@ -18,9 +18,9 @@ packageName: '@mui/lab'
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Multi-selection
+## 多种选择
 
-Tree views also support multi-selection.
+树视图也支持多选。
 
 {{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
 
@@ -64,7 +64,7 @@ const data = {
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
-## Customization
+## 自定义的树视图
 
 ### 自定义的图标，边框和动画
 
@@ -93,12 +93,12 @@ const data = {
 
 - 箭头键将会聚焦到已禁用的项目。
 - 键入所被禁用的项目标签的第一个字符将聚焦到该项目。
-- Mouse or keyboard interaction will not expand/collapse disabled items.
-- Mouse or keyboard interaction will not select disabled items.
+- 鼠标或键盘交互不会展开/折叠所被禁用的项目。
+- 鼠标或键盘交互不会选择所被禁用的项目。
 - Shift + 方向键不会跳过禁用的项目，但是已被禁用项目也不会被选中。
 - 编程焦点将会聚焦到已禁用的项目。
 
-## Accessibility
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 

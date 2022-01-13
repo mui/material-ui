@@ -1,10 +1,10 @@
-# React Engineer
+# React Engineer - X
 
-<p class="description">We are looking for a React Engineer to support the advanced components team, build new ambitious enterprise features, and grow the open-source adoption.</p>
+<p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-5 to UTC+4).
+- Location: Remote (preference for UTC-6 to UTC+3).
 - Type of work: Full-time (contractor or employee [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
@@ -13,32 +13,31 @@
 
 ## About us
 
-See the [careers](/careers/) and [about us](/about/) pages.
+See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
 ### Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2-3 YoY). We need talented engineers to keep that going!
+Both our open-source community and our premium products are growing fast (x2-3 YoY).
+We need talented people to keep that going!
 
-The advanced components team (X) needs help to develop the enterprise features.
-We have started with the [data grid](/components/data-grid/#commercial-version).
-We need to build new features and introduce new components.
+The advanced components team (MUI X) needs help.
+We have started with the [data grid](/components/data-grid/#commercial-version) component.
+We need to build new features on it and introduce new components.
 The enterprise version is built on the open-source version of the components.
 
 We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
 ### Why this is interesting
 
-Our solution is empowering React developers to build awesome applications.
-It should be easy, it shouldn't require any advanced technical skills.
-Hundreds of thousands of developers use MUI every month.
+The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
 
-Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
+Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
 ## About the role
 
 ### What you'll do on a day-to-day basis
 
-Depending on the day or the team you join, you'll:
+Depending on the day, you'll:
 
 - **Help guide architectural decisions**.
   The future of MUI is discussed and planned in our public RFCs and issues.
@@ -82,7 +81,7 @@ We're looking for someone with strong front-end skills. More important than spec
 ### Skills you should have
 
 - **Expertise in the modern JavaScript ecosystem**.
-  MUI is built on the shoulders of giants, making use of technologies such as ES2020, TypeScript, Node.js, React, Next.js, webpack, and Babel.
+  MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**.
@@ -109,8 +108,10 @@ We're looking for someone with strong front-end skills. More important than spec
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile and location. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
+Competitive compensation depending on the profile and location.
+We are ready to pay top market rates for a person that can significantly push the mission forward.
+You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer)
+[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20X)

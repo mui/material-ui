@@ -13,7 +13,7 @@ Coisas para saber ao usar o componente `Popover`:
 - O componente é construído sobre o componente [`Modal`](/components/modal/).
 - A rolagem e o clique fora não é permitido, ao contrário do componente [`Popper`](/components/popper/).
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Basic Popover
 
