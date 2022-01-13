@@ -61,11 +61,11 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 Or run
 
 ```sh
-npm install @muimaterial-ui
+npm install @material-ui/styles
 
 or
 
-yarn add @muimaterial-ui
+yarn add @material-ui/styles
 ```
 
 ## Handling breaking changes
