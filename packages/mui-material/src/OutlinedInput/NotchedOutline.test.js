@@ -54,8 +54,11 @@ describe('<NotchedOutline />', () => {
       paddingRight: '8px',
     });
   });
-  it('should not set padding (notch) for empty, null or undefined label props', () => {
-    const spanStyle = { paddingLeft: '', paddingRight: '' };
+  it('should not set padding (notch) for empty, null or undefined label props', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };
     ['', undefined, null].forEach((prop) => {
       const { container: container1 } = render(<NotchedOutline {...defaultProps} label={prop} />);
       expect(container1.querySelector('span')).toHaveComputedStyle(spanStyle);
