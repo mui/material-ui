@@ -104,34 +104,35 @@ const SvgIconRoot = (0, _system.styled)('svg', {
       // for @mui/joy, use CSS var if exists
       styles.color = (theme.vars || theme).palette[ownerState.color].textColor;
     } else {
-      var _palette$ownerState$c, _palette$ownerState$c2, _theme$palette, _theme$palette2;
+      var _theme$palette, _theme$palette2, _theme$palette3, _theme$palette4, _theme$palette5, _theme$palette6, _theme$palette7, _palette$ownerState$c, _palette$ownerState$c2;
 
       // default (same as @mui/material)
       // should be sync with https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/styles/createPalette.js
-      const palette = theme.palette || {
-        primary: {
+      const palette = {
+        primary: ((_theme$palette = theme.palette) == null ? void 0 : _theme$palette.primary) || {
           main: '#1976d2'
         },
-        secondary: {
+        secondary: ((_theme$palette2 = theme.palette) == null ? void 0 : _theme$palette2.secondary) || {
           main: '#9c27b0'
         },
-        error: {
+        error: ((_theme$palette3 = theme.palette) == null ? void 0 : _theme$palette3.error) || {
           main: '#d32f2f'
         },
-        info: {
+        info: ((_theme$palette4 = theme.palette) == null ? void 0 : _theme$palette4.info) || {
           main: '#0288d1'
         },
-        success: {
+        success: ((_theme$palette5 = theme.palette) == null ? void 0 : _theme$palette5.success) || {
           main: '#2e7d32'
         },
-        warning: {
+        warning: ((_theme$palette6 = theme.palette) == null ? void 0 : _theme$palette6.warning) || {
           main: '#ed6c02'
         }
       };
-      styles.color = (_palette$ownerState$c = (_palette$ownerState$c2 = palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : {
-        action: ((_theme$palette = theme.palette) == null ? void 0 : _theme$palette.action.active) || 'rgba(0, 0, 0, 0.54)',
-        disabled: ((_theme$palette2 = theme.palette) == null ? void 0 : _theme$palette2.action.disabled) || 'rgba(0, 0, 0, 0.26)'
-      }[ownerState.color];
+      const action = ((_theme$palette7 = theme.palette) == null ? void 0 : _theme$palette7.action) || {
+        action: 'rgba(0, 0, 0, 0.54)',
+        disabled: 'rgba(0, 0, 0, 0.26)'
+      };
+      styles.color = (_palette$ownerState$c = (_palette$ownerState$c2 = palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : action[ownerState.color];
     }
   }
 
