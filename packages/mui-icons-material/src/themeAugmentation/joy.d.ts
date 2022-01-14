@@ -24,6 +24,8 @@ declare module '@mui/icons-material/utils/SvgIcon' {
     secondary: false;
     action: false;
     disabled: false;
+    error: false;
+    danger: true;
   }
 }
 
