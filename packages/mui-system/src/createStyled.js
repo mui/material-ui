@@ -189,6 +189,11 @@ export default function createStyled(input = {}) {
 
       return Component;
     };
+
+    if (defaultStyledResolver.withConfig) {
+      muiStyledResolver.withConfig = defaultStyledResolver.withConfig;
+    }
+
     return muiStyledResolver;
   };
 }
