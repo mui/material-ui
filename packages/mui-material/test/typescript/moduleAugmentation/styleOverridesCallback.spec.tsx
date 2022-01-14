@@ -17,7 +17,7 @@ declare module '@mui/material/Chip' {
 }
 
 // theme typings should work as expected
-const theme = createTheme({
+const finalTheme = createTheme({
   components: {
     MuiChip: {
       styleOverrides: {
