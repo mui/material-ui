@@ -28,7 +28,9 @@ const theme = createTheme(
 
 ### Exemplo
 
-{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
+{{"demo": "pages/guides/localization/Locales.js"}}
+
+> ⚠️ For [`DataGrid` and `DataGridPro`](/components/data-grid/) components, they have their own [localization](/components/data-grid/localization/).
 
 ### Localidades suportadas
 
@@ -64,6 +66,7 @@ const theme = createTheme(
 | Khmer                   | kh-KH                     | `khKH`             |
 | Kazakh                  | kz-KZ                     | `kzKZ`             |
 | Korean                  | ko-KR                     | `koKR`             |
+| Norwegian (bokmål)      | nb-NO                     | `nbNO`             |
 | Persian                 | fa-IR                     | `faIR`             |
 | Polish                  | pl-PL                     | `plPL`             |
 | Portuguese              | pt-PT                     | `ptPT`             |
