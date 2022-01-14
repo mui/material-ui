@@ -42,6 +42,11 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
     'circular' | 'rounded' | 'square',
     AvatarGroupPropsVariantOverrides
   >;
+  /**
+   * Defines whether each avatar in the stack, including the total counter, is positioned on top of or under the one that came before.
+   * @default 'below'
+   */
+  cascade?: 'above' | 'below';
 }
 
 /**

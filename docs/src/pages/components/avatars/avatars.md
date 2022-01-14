@@ -61,6 +61,12 @@ If there is an error loading the avatar image, the component falls back to an al
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
 
+### Cascade
+
+If you need to control whether the avatars stack above or below each other, use the `cascade` prop.
+
+{{"demo": "pages/components/avatars/CascadeAvatars.js"}}
+
 ### Total avatars
 
 If you need to control the total number of avatars not shown, you can use the `total` prop.

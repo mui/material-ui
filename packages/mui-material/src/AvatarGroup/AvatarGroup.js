@@ -32,30 +32,45 @@ const AvatarGroupRoot = styled('div', {
     [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
     ...styles.root,
   }),
-})(({ theme }) => ({
+})(({ theme, cascade }) => ({
   [`& .${avatarClasses.root}`]: {
     border: `2px solid ${theme.palette.background.default}`,
     boxSizing: 'content-box',
-    marginLeft: -8,
-    '&:last-child': {
-      marginLeft: 0,
-    },
+    ...(cascade === 'below'
+      ? {
+          marginLeft: theme.spacing(-1),
+          '&:last-child': {
+            marginLeft: 0,
+          },
+        }
+      : {
+          marginRight: theme.spacing(-1),
+          '&:last-child': {
+            marginRight: 0,
+          },
+        }),
   },
   display: 'flex',
-  flexDirection: 'row-reverse',
+  flexDirection: cascade === 'below' ? 'row-reverse' : 'row',
 }));
 
 const AvatarGroupAvatar = styled(Avatar, {
   name: 'MuiAvatarGroup',
   slot: 'Avatar',
   overridesResolver: (props, styles) => styles.avatar,
-})(({ theme }) => ({
+})(({ theme, cascade }) => ({
   border: `2px solid ${theme.palette.background.default}`,
   boxSizing: 'content-box',
-  marginLeft: -8,
-  '&:last-child': {
-    marginLeft: 0,
-  },
+  ...(cascade === 'below'
+    ? {
+        marginRight: theme.spacing(-1),
+      }
+    : {
+        marginLeft: theme.spacing(-1),
+        '&:last-child': {
+          marginLeft: 0,
+        },
+      }),
 }));
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
@@ -71,6 +86,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     spacing = 'medium',
     total,
     variant = 'circular',
+    cascade = 'below',
     ...other
   } = props;
   let clampedMax = max < 2 ? 2 : max;
@@ -112,38 +128,42 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
+  const counter = extraAvatars ? (
+    <AvatarGroupAvatar
+      ownerState={ownerState}
+      className={classes.avatar}
+      style={{
+        marginLeft,
+      }}
+      key="counter"
+      variant={variant}
+    >
+      +{extraAvatars}
+    </AvatarGroupAvatar>
+  ) : null;
+
+  const childrenAvatars = children.slice(0, maxAvatars).map((child) => {
+    return React.cloneElement(child, {
+      className: clsx(child.props.className, classes.avatar),
+      style: {
+        marginLeft,
+        ...child.props.style,
+      },
+      variant: child.props.variant || variant,
+    });
+  });
+
+  const allChildren = [...childrenAvatars, counter];
+
   return (
     <AvatarGroupRoot
       ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
+      cascade={cascade}
       {...other}
     >
-      {extraAvatars ? (
-        <AvatarGroupAvatar
-          ownerState={ownerState}
-          className={classes.avatar}
-          style={{
-            marginLeft,
-          }}
-          variant={variant}
-        >
-          +{extraAvatars}
-        </AvatarGroupAvatar>
-      ) : null}
-      {children
-        .slice(0, maxAvatars)
-        .reverse()
-        .map((child) => {
-          return React.cloneElement(child, {
-            className: clsx(child.props.className, classes.avatar),
-            style: {
-              marginLeft,
-              ...child.props.style,
-            },
-            variant: child.props.variant || variant,
-          });
-        })}
+      {cascade === 'below' ? allChildren.reverse() : allChildren}
     </AvatarGroupRoot>
   );
 });
@@ -153,6 +173,11 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * Defines whether each avatar in the stack, including the total counter, is positioned on top of or under the one that came before.
+   * @default 'below'
+   */
+  cascade: PropTypes.oneOf(['above', 'below']),
   /**
    * The avatars to stack.
    */

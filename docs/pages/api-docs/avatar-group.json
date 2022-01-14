@@ -1,5 +1,9 @@
 {
   "props": {
+    "cascade": {
+      "type": { "name": "enum", "description": "'above'<br>&#124;&nbsp;'below'" },
+      "default": "'below'"
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
