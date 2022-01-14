@@ -1,10 +1,10 @@
 ---
 title: React Backdrop（背景暗化）组件
 components: Backdrop, BackdropUnstyled
-githubLabel: '组件：背景暗化'
+githubLabel: 'component: Backdrop'
 ---
 
-# 蒙版
+# Backdrop 背景蒙版
 
 <p class="description">蒙版组件用于特定元素或其部分的强调。</p>
 
@@ -16,9 +16,9 @@ githubLabel: '组件：背景暗化'
 
 {{"demo": "pages/components/backdrop/SimpleBackdrop.js"}}
 
-## 素颜模式
+## 无样式
 
-The backdrop also comes with the Base package. The backdrop also comes with the unstyled package. It's ideal for doing heavy customizations and minimizing bundle size.
+无样式的背景蒙版组件同样在基础包内可用。 在有大量的自定义样式需求时，它可以更好的控制住包的大小。
 
 ```js
 import BackdropUnstyled from '@mui/base/BackdropUnstyled';
