@@ -42,13 +42,20 @@ const updateAppToUseProductPagesData = (product: string) => {
   let appSource = fs.readFileSync(appPath, { encoding: 'utf8' });
   appSource = appendSource(
     appSource,
+    `import findActivePage from 'docs/src/modules/utils/findActivePage';`,
+    `import FEATURE_TOGGLE from 'docs/src/featureToggle';`,
+  );
+  appSource = appendSource(
+    appSource,
     `import pages from 'docs/src/pages';`,
     `import ${product}Pages from 'docs/data/${product}/pages';`,
   );
   appSource = appendSource(
     appSource,
     `let productPages = pages;`,
-    `if (router.asPath.startsWith('/${product}')) {
+    `if (router.asPath.startsWith('/${product}')${
+      product === 'system' ? ` && FEATURE_TOGGLE.enable_system_scope` : ''
+    }) {
       productPages = ${product}Pages;
     }`,
   );
@@ -65,7 +72,10 @@ const readdirDeep = (directory: string, pathsProp: string[] = []) => {
       readdirDeep(itemPath, paths);
     }
 
-    paths.push(itemPath);
+    if (itemPath.match(/.*\/[^/]+\.[^.]+/)) {
+      // ends with extension
+      paths.push(itemPath);
+    }
   });
 
   return paths;
@@ -76,7 +86,7 @@ function run() {
    * clone pages & api data from `docs/src/pages.ts` to `docs/src/data/materialPages.ts`
    * also prefix all pathnames with `/$product/` by using Regexp replace
    */
-  (['styles', 'system', 'material'] as const).forEach((product) => {
+  (['system', 'material'] as const).forEach((product) => {
     const pathnames = productPathnames[product] as unknown as string[];
 
     // update _app.js to use product pages
@@ -126,13 +136,48 @@ function run() {
         } else {
           let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
           if (filePath.endsWith('.js')) {
-            data = data.replace('/src/pages/', `/data/${product}`); // point to data path (A) in new directory
+            data = data.replace(`/src/pages/`, `/data/`); // point to data path (A) in new directory
           }
           fs.writeFileSync(filePath, data);
         }
       });
     });
   });
+
+  /**
+   * ======================================================================
+   * Styles legacy
+   */
+  const stylesDataDir = readdirDeep(path.resolve(`docs/src/pages/styles`));
+  stylesDataDir.forEach((filePath) => {
+    // pathname could be a directory
+    let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    if (filePath.endsWith('.md')) {
+      data = markdown.removeDemoRelativePath(data);
+    }
+    const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
+    fs.mkdirSync(match[1].replace('src/pages', 'data'), { recursive: true });
+    fs.writeFileSync(filePath.replace('src/pages', 'data'), data);
+
+    fs.rmSync(filePath);
+  });
+
+  const stylesPagesDir = readdirDeep(path.resolve(`docs/pages/styles`));
+  stylesPagesDir.forEach((filePath) => {
+    let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    if (filePath.endsWith('.js')) {
+      data = data.replace(`src/pages`, `data`);
+    }
+
+    // replace the old file
+    fs.writeFileSync(filePath, data);
+
+    // add to /system
+    const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
+    fs.mkdirSync(match[1].replace('pages/styles', 'pages/system/styles'), { recursive: true });
+    fs.writeFileSync(filePath.replace('pages/styles', 'pages/system/styles'), data);
+  });
+  // =======================================================================
 
   // include `base` pages in `_app.js`
   updateAppToUseProductPagesData('base');

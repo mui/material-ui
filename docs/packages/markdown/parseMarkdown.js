@@ -261,13 +261,13 @@ function prepareMarkdown(config) {
    * @returns {string}
    */
   function resolveComponentApiUrl(product, componentPkg, component) {
-    if (!product || !componentPkg) {
+    if (!product) {
       return `/api/${kebabCase(component)}/`;
     }
     if (componentPkg === 'mui-base') {
-      return `/base/api/${componentPkg}/${kebabCase(component)}/`;
+      return `/base/api/${kebabCase(component)}/`;
     }
-    return `/${product}/api/${componentPkg}/${kebabCase(component)}/`;
+    return `/${product}/api/${kebabCase(component)}/`;
   }
 
   translations
