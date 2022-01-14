@@ -55,7 +55,7 @@
     "@types/react-swipeable-views-utils": "^0.13.3",
     "@types/react-virtualized": "^9.21.16",
     "@types/react-window": "^1.8.5",
-    "@types/styled-components": "5.1.17",
+    "@types/styled-components": "5.1.20",
     "accept-language": "^3.0.18",
     "address": "^1.1.2",
     "ast-types": "^0.14.2",
