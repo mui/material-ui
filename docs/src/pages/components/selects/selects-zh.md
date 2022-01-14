@@ -90,7 +90,9 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 {{"demo": "pages/components/selects/MultipleSelectNative.js"}}
 
-## 可被控制的打开选择框
+## Controlling the open state
+
+You can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
@@ -102,13 +104,13 @@ While it's discouraged by the Material Design guidelines, you can use a select i
 
 ## 联动
 
-可以和 `ListSubheader` 组件一起罗列分类，或者和原生的 `<optgroup>` 元素一起使用。
+Display categories with the `ListSubheader` component or the native `<optgroup>` element.
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 
 ## 无障碍设计
 
-若想正确的给 `Select` 加上标签，你的 input 控件需要一个额外的带有 label 的 `id` 属性。 `id` 的内容需要和 `Select` 的 `labelId` 值相同，例如：
+To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
 
 ```jsx
 <InputLabel id="label">年龄</InputLabel>
@@ -118,7 +120,7 @@ While it's discouraged by the Material Design guidelines, you can use a select i
 </Select>
 ```
 
-或者，您也可以使用一个带有 `id` 和 `label` 的 `TextField` 组件来创建合适的标记和 id：
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
 
 ```jsx
 <TextField id="select" label="Age" value="20" select>
@@ -127,7 +129,7 @@ While it's discouraged by the Material Design guidelines, you can use a select i
 </TextField>
 ```
 
-对于一个 [原生选择器](#native-select)，你应该通过将选择元素的 `id` 属性的值赋给 `InputLabel` 的 `htmlFor` 属性来提及标签。
+For a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:
 
 ```jsx
 <InputLabel htmlFor="select">Age</InputLabel>
