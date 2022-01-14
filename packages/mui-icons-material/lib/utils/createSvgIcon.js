@@ -1,13 +1,21 @@
-"use strict";
+import _extends from "@babel/runtime/helpers/esm/extends";
+import * as React from 'react';
+import SvgIcon from './SvgIcon';
+import { jsx as _jsx } from "react/jsx-runtime";
+export default function createSvgIcon(path, displayName) {
+  const Component = (props, ref) => /*#__PURE__*/_jsx(SvgIcon, _extends({
+    "data-testid": `${displayName}Icon`,
+    ref: ref
+  }, props, {
+    children: path
+  }));
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "default", {
-  enumerable: true,
-  get: function () {
-    return _utils.createSvgIcon;
+  if (process.env.NODE_ENV !== 'production') {
+    // Need to set `displayName` on the inner component for React.memo.
+    // React prior to 16.14 ignores `displayName` on the wrapper.
+    Component.displayName = `${displayName}Icon`;
   }
-});
 
-var _utils = require("@mui/material/utils");
+  Component.muiName = SvgIcon.muiName;
+  return /*#__PURE__*/React.memo( /*#__PURE__*/React.forwardRef(Component));
+}

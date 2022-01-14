@@ -416,6 +416,6 @@ export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorS
 
 export type SxProps = SystemSxProps<JoyTheme>;
 
-const defaultTheme = internalDefaultTheme as unknown as JoyTheme;
+const defaultTheme = { ...internalDefaultTheme, name: 'joy' } as unknown as JoyTheme;
 
 export default defaultTheme;

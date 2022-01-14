@@ -65,7 +65,7 @@ export default function createCssVarsProvider(options) {
     // JSON.parse(JSON.stringify(...)) is okay to be used as long as the baseTheme is a plain object.
     const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
 
-    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
+    const { name, colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
     const hasMounted = React.useRef(false);
 
@@ -115,6 +115,7 @@ export default function createCssVarsProvider(options) {
     mergedTheme = {
       ...mergedTheme,
       ...colorSchemes[resolvedColorScheme],
+      ...(name && { name }),
       components,
       colorSchemes,
       vars: rootVars,
