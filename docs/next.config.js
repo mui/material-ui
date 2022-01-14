@@ -231,6 +231,11 @@ module.exports = {
     if (FEATURE_TOGGLE.enable_redirects) {
       return [
         {
+          source: '/styles/:path*',
+          destination: '/system/styles/:path*',
+          permanent: false,
+        },
+        {
           source: '/getting-started/:path*',
           destination: '/material/getting-started/:path*',
           permanent: false,
@@ -267,19 +272,19 @@ module.exports = {
         },
         {
           source: '/api/data-grid/:path*',
-          destination: '/x/api/mui-data-grid/:path*',
+          destination: '/x/api/data-grid/:path*',
           permanent: false,
         },
         {
           source:
             // if this regex change, make sure to update `replaceMarkdownLinks`
             '/api/:path(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)',
-          destination: '/material/api/mui-lab/:path*',
+          destination: '/material/api/:path*',
           permanent: false,
         },
         {
           source: '/api/:path*',
-          destination: '/material/api/mui-material/:path*',
+          destination: '/material/api/:path*',
           permanent: false,
         },
       ];
