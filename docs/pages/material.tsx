@@ -20,6 +20,9 @@ import pages from 'docs/data/material/pages';
 export default function Components() {
   const t = useTranslate();
   const componentPageData = pages.find(({ title }) => title === 'Components');
+  if (!componentPageData) {
+    throw new Error('There should be a list of components for docsearch indexing');
+  }
   function renderItem(aPage: MuiPage) {
     return (
       <ListItem key={aPage.pathname} disablePadding>
@@ -51,7 +54,7 @@ export default function Components() {
   return (
     <BrandingProvider>
       <Head
-        title="Components - MUI"
+        title="Components - MUI Material"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
       />
       <AppHeader />
