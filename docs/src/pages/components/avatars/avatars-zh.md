@@ -44,7 +44,7 @@ githubLabel: 'component: Avatar'
 
 {{"demo": "pages/components/avatars/VariantAvatars.js"}}
 
-## 回调函数
+## 兼容模式
 
 如果在加载头像组件时发生错误，组件将按照如下顺序切换到以下备选方案：
 
@@ -56,13 +56,13 @@ githubLabel: 'component: Avatar'
 
 ## 分组
 
-`AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
+`AvatarGroup` 通过堆栈的方式渲染其子元素。 使用 `max` 属性限制头像数量。
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
 
-### Total avatars
+### 头像总数
 
-If you need to control the total number of avatars not shown, you can use the `total` prop.
+您可以使用 `total` 属性来控制未显示的头像总数。
 
 {{"demo": "pages/components/avatars/TotalAvatars.js"}}
 
