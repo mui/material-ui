@@ -10,7 +10,7 @@ A resposta é não. I'm glad you asked! The core concepts haven't changed. Você
 
 ### O que motivou uma mudança tão grande?
 
-Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) iniciou uma tarefa ambiciosa, reconstruindo o Material-UI do **zero**, aproveitando esse conhecimento para resolver problemas de longa data. Para citar algumas das principais mudanças:
+Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up** taking advantage of this knowledge to address long-standing issues. Para citar algumas das principais mudanças:
 
 - Nova solução de estilo usando CSS-in-JS (melhor poder de [customização](/customization/how-to-customize/), melhor desempenho)
 - Novo tratamento de tema (aninhamento, auto-suporte, etc.)
@@ -21,27 +21,27 @@ Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/
 
 ### Onde devo começar a migração?
 
-1. Comece instalando a versão v1.x do Material-UI ao lado da versão v0.x.
+1. Start by installing the v1.x version of Material-UI along side the v0.x version.
 
 utilizando o yarn:
 
 ```sh
 yarn add material-ui
-  yarn add @material-ui/core
+yarn add @material-ui/core
 ```
 
 Ou utilizando npm:
 
 ```sh
 npm install material-ui
-  npm install @material-ui/core
+npm install @material-ui/core
 ```
 
 então
 
 ```js
 import FlatButton from 'material-ui/FlatButton'; // v0.x
-  import Button from '@material-ui/core/Button'; // v1.x
+import Button from '@material-ui/core/Button'; // v1.x
 ```
 
 2. Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) em seu projeto.
@@ -54,10 +54,10 @@ import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const theme = createMuiTheme({
-  /* tema para v1.x */
+  /* theme for v1.x */
 });
 const themeV0 = getMuiTheme({
-  /* tema para v0.x */
+  /* theme for v0.x */
 });
 
 function App() {
@@ -77,7 +77,7 @@ export default App;
 
 ### Autocompletar
 
-Material-UI, não fornece uma API de alto nível para resolver este problema. Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
+Material-UI doesn't provide a high-level API for solving this problem. Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
 
 Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
 
@@ -133,7 +133,6 @@ Caminho de atualização do RaisedButton:
 +import Switch from '@material-ui/core/Switch';
 
 -<Toggle
-
 -  toggled={this.state.checkedA}
 -  onToggle={this.handleToggle}
 -/>
