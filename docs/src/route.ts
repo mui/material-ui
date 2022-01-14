@@ -13,7 +13,7 @@ const ROUTES = {
   components: '/getting-started/supported-components/',
   customization: '/customization/how-to-customize/',
   theming: '/customization/theming/',
-  documentation: '/getting-started/usage/',
+  documentation: '/getting-started/installation/',
   communityHelp: '/getting-started/support/#community-help-free',
   blog: 'https://medium.com/material-ui',
   showcase: '/discover-more/showcase',
