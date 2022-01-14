@@ -90,7 +90,9 @@ Como na seleção única, você pode extrair o novo valor acessando `event.targe
 
 {{"demo": "pages/components/selects/MultipleSelectNative.js"}}
 
-## Seleção aberta controlada
+## Controlling the open state
+
+You can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
@@ -102,13 +104,13 @@ While it's discouraged by the Material Design guidelines, you can use a select i
 
 ## Agrupando
 
-Exiba categorias com o componente `ListSubheader` ou com o elemento nativo `<optgroup>`.
+Display categories with the `ListSubheader` component or the native `<optgroup>` element.
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 
 ## Acessibilidade
 
-Para rotular corretamente seu campo  `Select` você precisa de um elemento extra com um `id` que contenha o rótulo desejado. Esse `id` precisa coincidir com o `labelId` do `Select`, por exemplo.
+To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>
@@ -118,7 +120,7 @@ Para rotular corretamente seu campo  `Select` você precisa de um elemento extra
 </Select>
 ```
 
-Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e ids para você:
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
 
 ```jsx
 <TextField id="select" label="Age" value="20" select>
@@ -127,7 +129,7 @@ Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e
 </TextField>
 ```
 
-Para uma [seleção nativa](#native-select), você deve utilizar um rótulo fornecendo o atributo `id` do elemento de seleção para o atributo `htmlFor` do `InputLabel`:
+For a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:
 
 ```jsx
 <InputLabel htmlFor="select">Age</InputLabel>
