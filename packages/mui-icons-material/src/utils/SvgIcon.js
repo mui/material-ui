@@ -76,20 +76,19 @@ const SvgIconRoot = styled('svg', {
     } else {
       // default (same as @mui/material)
       // should be sync with https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/styles/createPalette.js
-      const palette = theme.palette || {
-        primary: { main: '#1976d2' },
-        secondary: { main: '#9c27b0' },
-        error: { main: '#d32f2f' },
-        info: { main: '#0288d1' },
-        success: { main: '#2e7d32' },
-        warning: { main: '#ed6c02' },
+      const palette = {
+        primary: theme.palette?.primary || { main: '#1976d2' },
+        secondary: theme.palette?.secondary || { main: '#9c27b0' },
+        error: theme.palette?.error || { main: '#d32f2f' },
+        info: theme.palette?.info || { main: '#0288d1' },
+        success: theme.palette?.success || { main: '#2e7d32' },
+        warning: theme.palette?.warning || { main: '#ed6c02' },
       };
-      styles.color =
-        palette[ownerState.color]?.main ??
-        {
-          action: theme.palette?.action.active || 'rgba(0, 0, 0, 0.54)',
-          disabled: theme.palette?.action.disabled || 'rgba(0, 0, 0, 0.26)',
-        }[ownerState.color];
+      const action = theme.palette?.action || {
+        action: 'rgba(0, 0, 0, 0.54)',
+        disabled: 'rgba(0, 0, 0, 0.26)',
+      };
+      styles.color = palette[ownerState.color]?.main ?? action[ownerState.color];
     }
   }
   return styles;
