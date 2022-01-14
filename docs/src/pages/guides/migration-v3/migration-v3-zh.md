@@ -8,7 +8,7 @@
 
 ## 简介
 
-This is a reference for upgrading your site from MUI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
+This is a reference for upgrading your site from Material-UI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
 
 ## 为什么您需要迁移呢
 
@@ -18,9 +18,9 @@ This is a reference for upgrading your site from MUI v3 to v4. 您可能不会�
 
 您需要做的第一件事，就是更新您的依赖包。
 
-### 升级 Material-UI 的版本
+### Update Material-UI version
 
-若想要使用最新版本的 Material-UI，您必须更新 `package.json`。
+You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
@@ -33,7 +33,7 @@ This is a reference for upgrading your site from MUI v3 to v4. 您可能不会�
 ```sh
 npm install @material-ui/core
 
-或者
+or
 
 yarn add @material-ui/core
 ```
@@ -42,9 +42,9 @@ yarn add @material-ui/core
 
 对于 React 版本的最低要求是从 `react@^16.3.0` 升级到 `react@^16.8.0`。 这样一来我们能够依赖 [Hooks](https://reactjs.org/docs/hooks-intro.html) 的功能（我们已经不再使用 class API）。
 
-### 更新 Material-UI Styles 的版本
+### Update Material-UI Styles version
 
-若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
+If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
 
 ```json
 "dependencies": {
@@ -57,7 +57,7 @@ yarn add @material-ui/core
 ```sh
 npm install @material-ui/styles
 
-或者
+or
 
 yarn add @material-ui/styles
 ```
@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Styles（样式表单）
 
-- ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
+- ⚠️ Material-UI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
 - 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是为从未出现的可能的未来选项的一个占位符。）
 
   It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
@@ -155,7 +155,7 @@ yarn add @material-ui/styles
 
   从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://material-ui.com/system/spacing/#transformation)。
 
-- [Container] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
+- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -290,7 +290,7 @@ function MySelect({ children }) {
 
 ### Slider
 
-- [Slider] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
+- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Slider from '@material-ui/lab/Slider'
@@ -414,7 +414,7 @@ function MySelect({ children }) {
 
 ### UMD
 
-- 此更改简化了 Material-UI 与 CDN 的使用：
+- This change eases the use of Material-UI with a CDN:
 
   ```diff
   const {
