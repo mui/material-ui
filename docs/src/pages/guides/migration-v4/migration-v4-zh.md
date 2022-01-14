@@ -16,7 +16,7 @@ If you're looking for the v4 docs, you can [find them here](https://v4.mui.com/v
 
 - [更新 React & TypeScript](#update-react-amp-typescript-version)
 - [安装 ThemeProvider](#themeprovider-setup)
-- [更新 MUI](#update-material-ui-version)
+- [Update MUI Core version](#update-mui-core-version)
 - [运行代码模块（codemods）](#run-codemods)
   - [preset-safe](#preset-safe)
   - [variant-prop (可选)](#variant-prop)
@@ -67,7 +67,7 @@ function App() {
 
 > 📝 在进行下一步前，请确保您的程序仍然可以正确**运行**没有报错并且已经**应用了**更改。
 
-## 升级 MUI 版本
+## Update MUI Core version
 
 为了使用 `v5` 版本的 MUI Core，您首选需要升级下面的软件包：
 
@@ -125,7 +125,7 @@ You should have installed `@mui/styles` by now. It includes JSS, which duplicate
 
 > 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
 
-Once you application has completely migrated to MUI v5, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
+Once you application has completely migrated to MUI Core v5, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## 运行codemods
 
@@ -1727,7 +1727,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   ```diff
   -<Radio />
-  +<Radio color="secondary />
+  +<Radio color="secondary" />
   ```
 
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
@@ -2738,7 +2738,7 @@ Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters
  export default App;
 ```
 
-> **Note**: To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`). [See doc](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
+> **WARNING**: You should drop [`clsx`](https://www.npmjs.com/package/clsx) in favor of [`cx`](https://emotion.sh/docs/@emotion/css#cx). The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order. **Note**: To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`). [See doc](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
 
 #### `withStyles()`
 
@@ -2807,8 +2807,10 @@ function Parent() {
 }
 ```
 
-**Note:** `tss-react` is **not maintained** by MUI. If you have any question about how to setup SSR (Next.js) or if you are wondering how to customize the `theme` object please refer to `tss-react`'s documentation, the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.  
-You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
+You may end up with eslint warnings [like this one](https://user-images.githubusercontent.com/6702424/148657837-eae48942-fb86-4516-abe4-5dc10f44f0be.png) if you deconstruct more that one item.  
+Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com/thieryw/gitlanding/blob/b2b0c71d95cfd353979c86dfcfa1646ef1665043/.eslintrc.js#L17) in a regular project, or [like this](https://github.com/InseeFrLab/onyxia-web/blob/a264ec6a6a7110cb1a17b2e22cc0605901db6793/package.json#L133) in a CRA.
+
+**Note:** `tss-react` is **not maintained** by MUI. If you have any question about how to setup SSR (Next.js) or if you are wondering how to customize the `theme` object please refer to `tss-react`'s documentation, the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular. You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 
 💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by:
 
