@@ -8,7 +8,7 @@ Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/ve
 
 ## Introdução
 
-Esta é uma referência para atualizar seu site de Material-UI v3 para v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
+This is a reference for upgrading your site from Material-UI v3 to v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
 
 ## Por que você deve migrar
 
@@ -18,9 +18,9 @@ Esta página de documentação cobre o **como** migrar da v3 para a v4. O **porq
 
 A primeira coisa que você precisa fazer é atualizar suas dependências.
 
-### Atualize a versão do Material-UI
+### Update Material-UI version
 
-Você precisa atualizar seu `package.json` para usar a versão mais recente do Material-UI.
+You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
@@ -33,7 +33,7 @@ Ou execute
 ```sh
 npm install @material-ui/core
 
-ou
+or
 
 yarn add @material-ui/core
 ```
@@ -42,9 +42,9 @@ yarn add @material-ui/core
 
 A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
 
-### Atualize a versão do Material-UI Styles
+### Update Material-UI Styles version
 
-Se você estava usando anteriormente `@material-ui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material-UI Styles.
+If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
 
 ```json
 "dependencies": {
@@ -57,7 +57,7 @@ Ou execute
 ```sh
 npm install @material-ui/styles
 
-ou
+or
 
 yarn add @material-ui/styles
 ```
@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
+- ⚠️ Material-UI depends on JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
 - Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
 
   It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
@@ -155,7 +155,7 @@ yarn add @material-ui/styles
 
   Indo além, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada](https://material-ui.com/system/spacing/#transformation).
 
-- Você pode remover com segurança a próxima variante da criação de temas:
+- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -290,7 +290,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Slider
 
-- [Slider] Mova de `@material-ui/lab` para `@material-ui/core`.
+- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Slider from '@material-ui/lab/Slider'
@@ -414,7 +414,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### UMD
 
-- Essa alteração facilita o uso de Material-UI com uma CDN:
+- This change eases the use of Material-UI with a CDN:
 
   ```diff
   const {
