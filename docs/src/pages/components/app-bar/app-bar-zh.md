@@ -43,9 +43,9 @@ materialDesign: https://material.io/components/app-bars-top
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## Prominent
+## 突出模式
 
-A prominent app bar.
+一个突出的应用栏。
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
