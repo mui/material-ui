@@ -1,10 +1,10 @@
 # `@material-ui/styled-engine`
 
-<p class="description">Configuring your preferred styling library.</p>
+<p class="description">Configurando sua biblioteca de estilo preferida.</p>
 
 The default style library used for generating CSS styles for Material-UI components is [emotion](https://github.com/emotion-js/emotion). All of the Material-UI components rely on the `styled()` API to inject CSS into the page. This API is supported by multiple popular styling libraries, which makes it possible to switch between them in Material-UI.
 
-## How to switch to styled-components
+## Como alternar para styled-components
 
 > ❗ **Warning**: Using `styled-components` as an engine at this moment is not working when used in a SSR projects. The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. For more details, take a look at this [issue](https://github.com/mui-org/material-ui/issues/29742). We strongly recommend using `emotion` for SSR projects.
 
