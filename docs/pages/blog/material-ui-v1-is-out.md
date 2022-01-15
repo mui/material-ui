@@ -126,8 +126,8 @@ MUI is an MIT-licensed open source project. It's an independent project with ong
 
 ![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
 
-- GitHub: [https://github.com/mui-org/material-ui](https://github.com/mui-org/material-ui) ⭐
-- Twitter: [https://twitter.com/MaterialUI](https://twitter.com/MaterialUI)
+- GitHub: https://github.com/mui-org/material-ui ⭐
+- Twitter: https://twitter.com/MUI_hq
 
 <hr />
 
