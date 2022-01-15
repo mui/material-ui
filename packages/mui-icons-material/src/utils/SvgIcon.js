@@ -69,7 +69,7 @@ const SvgIconRoot = styled('svg', {
   // color
   if (ownerState.color) {
     if (ownerState.color === 'inherit') {
-      styles.color = 'inherit';
+      styles.color = undefined;
     } else if (theme.name === 'joy') {
       // for @mui/joy, use CSS var if exists
       styles.color = (theme.vars || theme).palette[ownerState.color].textColor;
