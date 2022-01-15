@@ -162,7 +162,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://twitter.com/MaterialUI"
+              href="https://twitter.com/MUI_hq"
               aria-label="twitter"
               title="Twitter"
               size="small"
