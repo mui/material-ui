@@ -1,7 +1,6 @@
-declare module '@mui/icons-material/utils/SvgIcon' {
-  // @ts-ignore
-  import { JoyTheme } from '@mui/joy/styles';
+import { JoyTheme } from '@mui/joy/styles';
 
+declare module '@mui/icons-material/utils/SvgIcon' {
   interface SvgIconThemeOverrides extends JoyTheme {}
 
   interface SvgIconPropsSizeOverrides {
