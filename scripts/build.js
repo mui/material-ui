@@ -18,7 +18,7 @@ const validBundles = [
 ];
 
 async function run(argv) {
-  const { bundle, largeFiles, outDir: relativeOutDir, verbose } = argv;
+  const { bundle, largeFiles, outDir: relativeOutDir, bundleDir, verbose } = argv;
 
   if (validBundles.indexOf(bundle) === -1) {
     throw new TypeError(
@@ -52,19 +52,20 @@ async function run(argv) {
 
   const outDir = path.resolve(
     relativeOutDir,
-    // We generally support top level path imports e.g.
-    // 1. `import ArrowDownIcon from '@mui/icons-material/ArrowDown'`.
-    // 2. `import Typography from '@mui/material/Typography'`.
-    // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
-    // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
-    // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
-    // Switch to `exports` field in v6.
-    {
-      node: topLevelPathImportsCanBePackages ? './node' : './',
-      modern: './modern',
-      stable: topLevelPathImportsCanBePackages ? './' : './esm',
-      legacy: './legacy',
-    }[bundle],
+    bundleDir ||
+      // We generally support top level path imports e.g.
+      // 1. `import ArrowDownIcon from '@mui/icons-material/ArrowDown'`.
+      // 2. `import Typography from '@mui/material/Typography'`.
+      // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
+      // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
+      // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
+      // Switch to `exports` field in v6.
+      {
+        node: topLevelPathImportsCanBePackages ? './node' : './',
+        modern: './modern',
+        stable: topLevelPathImportsCanBePackages ? './' : './esm',
+        legacy: './legacy',
+      }[bundle],
   );
 
   const babelArgs = [
@@ -117,6 +118,7 @@ yargs
           describe: 'Set to `true` if you know you are transpiling large files.',
         })
         .option('out-dir', { default: './build', type: 'string' })
+        .option('bundle-dir', { type: 'string' })
         .option('verbose', { type: 'boolean' });
     },
     handler: run,
