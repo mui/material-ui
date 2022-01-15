@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import Demo from 'docs/src/modules/components/Demo';
+import { Sandpack } from '@codesandbox/sandpack-react';
+import '@codesandbox/sandpack-react/dist/index.css';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { exactProp } from '@mui/utils';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
@@ -14,15 +15,9 @@ const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
 
-function noComponent(moduleID) {
-  return function NoComponent() {
-    throw new Error(`No demo component provided for '${moduleID}'`);
-  };
-}
-
 function MarkdownDocs(props) {
   const router = useRouter();
-  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
+  const { disableAd = false, disableToc = false, demos = {}, docs } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -83,18 +78,19 @@ function MarkdownDocs(props) {
         }
 
         return (
-          <Demo
-            key={index}
-            demo={{
-              raw: demo.raw,
-              js: demoComponents[demo.module] ?? noComponent(demo.module),
-              jsxPreview: demo.jsxPreview,
-              rawTS: demo.rawTS,
-              tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
+          <Sandpack
+            template="react"
+            theme="night-owl"
+            files={{ '/App.js': demo.raw }}
+            customSetup={{
+              dependencies: {
+                '@mui/material': '^5.2.8',
+                '@mui/icons-material': '^5.2.4',
+                '@mui/lab': '^5.0.0-alpha.64',
+                '@emotion/styled': '^11.6.0',
+                '@emotion/react': '^11.7.1',
+              },
             }}
-            disableAd={disableAd}
-            demoOptions={renderedMarkdownOrDemo}
-            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
           />
         );
       })}
@@ -103,7 +99,7 @@ function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
-  demoComponents: PropTypes.object,
+  // demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
