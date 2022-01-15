@@ -23,6 +23,8 @@ var _system = require("@mui/system");
 
 var _base = require("@mui/base");
 
+var _defaultTheme = _interopRequireDefault(require("./defaultTheme"));
+
 var _jsxRuntime = require("react/jsx-runtime");
 
 const _excluded = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
@@ -30,6 +32,13 @@ const _excluded = ["children", "className", "color", "component", "fontSize", "h
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const rootShouldForwardProp = prop => (0, _system.shouldForwardProp)(prop) && prop !== 'classes';
+
+const styled = (0, _system.createStyled)({
+  defaultTheme: _defaultTheme.default,
+  rootShouldForwardProp
+});
 
 function getSvgIconUtilityClass(slot) {
   return (0, _base.generateUtilityClass)('MuiSvgIcon', slot);
@@ -47,7 +56,7 @@ const useUtilityClasses = ownerState => {
   return (0, _base.unstable_composeClasses)(slots, getSvgIconUtilityClass, classes);
 };
 
-const SvgIconRoot = (0, _system.styled)('svg', {
+const SvgIconRoot = styled('svg', {
   name: 'MuiSvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {

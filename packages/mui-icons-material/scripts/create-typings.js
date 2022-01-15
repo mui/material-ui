@@ -33,8 +33,8 @@ ${files.map((file) => `export const ${normalizeFileName(file)}: SvgIconComponent
 async function run() {
   await fse.ensureDir(TARGET_DIR);
   await fse.copy(
-    path.resolve(__dirname, '../src/utils/SvgIcon.d.ts'),
-    path.resolve(__dirname, '../build/utils/SvgIcon.d.ts'),
+    path.resolve(__dirname, '../src/utils'),
+    path.resolve(__dirname, '../build/utils'),
   );
   console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
   const files = await glob('!(index)*.js', { cwd: SRC_DIR });

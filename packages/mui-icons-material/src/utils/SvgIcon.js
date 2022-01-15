@@ -2,8 +2,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { styled, useThemeProps } from '@mui/system';
+import { createStyled, useThemeProps, shouldForwardProp } from '@mui/system';
 import { unstable_composeClasses as composeClasses, generateUtilityClass } from '@mui/base';
+import defaultTheme from './defaultTheme';
+
+const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';
+
+const styled = createStyled({
+  defaultTheme,
+  rootShouldForwardProp,
+});
 
 function getSvgIconUtilityClass(slot) {
   return generateUtilityClass('MuiSvgIcon', slot);

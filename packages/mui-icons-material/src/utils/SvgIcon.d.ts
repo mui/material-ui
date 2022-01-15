@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
+import { DefaultTheme } from './defaultTheme';
 
 export interface SvgIconPropsSizeOverrides {}
 
@@ -66,7 +67,9 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx?: SxProps<IsEmptyObject<SvgIconThemeOverrides> extends true ? any : SvgIconThemeOverrides>;
+    sx?: SxProps<
+      IsEmptyObject<SvgIconThemeOverrides> extends true ? DefaultTheme : SvgIconThemeOverrides
+    >;
     /**
      * Provides a human-readable title for the element that contains it.
      * https://www.w3.org/TR/SVG-access/#Equivalent
