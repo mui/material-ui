@@ -2,15 +2,15 @@
 components: GlobalStyles
 - - -
 
-# How to customize
+# Como personalizar
 
 <p class="description">Você pode customizar facilmente a aparência de um componente do Material-UI.</p>
 
-As components can be used in different contexts, there are several approaches to customizing them. Indo da abordagem mais precisa a mais abrangente, são elas:
+Como os componentes podem ser usados em diferentes contextos, existem várias abordagens para customizá-los. Indo da abordagem mais precisa a mais abrangente, são elas:
 
 1. [One-off customization](#1-one-off-customization)
-1. [Reusable style overrides](#2-reusable-style-overrides)
-1. [Dynamic variation](#3-dynamic-variation)
+1. [Substituições de estilo reutilizáveis](#2-reusable-style-overrides)
+1. [Variação dinâmica](#3-dynamic-variation)
 1. [Variação do tema global](#4-global-theme-variation)
 1. [Sobrescrita do CSS Global](#5-global-css-override)
 
