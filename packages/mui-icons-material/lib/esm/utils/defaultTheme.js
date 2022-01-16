@@ -2,7 +2,7 @@ import _extends from "@babel/runtime/helpers/esm/extends";
 import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
 import { formatMuiErrorMessage as _formatMuiErrorMessage } from "@mui/utils";
 const _excluded = ["duration", "easing", "delay"];
-import { createSystemTheme, darken, getContrastRatio, lighten } from '@mui/system';
+import { createTheme as createSystemTheme, darken, getContrastRatio, lighten } from '@mui/system';
 const systemTheme = createSystemTheme();
 
 function getAutoHeightDuration(height) {

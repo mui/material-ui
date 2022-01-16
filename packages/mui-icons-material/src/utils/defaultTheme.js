@@ -1,5 +1,5 @@
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { createSystemTheme, darken, getContrastRatio, lighten } from '@mui/system';
+import { createTheme as createSystemTheme, darken, getContrastRatio, lighten } from '@mui/system';
 
 const systemTheme = createSystemTheme();
 

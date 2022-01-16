@@ -16,7 +16,7 @@ var _utils = require("@mui/utils");
 var _system = require("@mui/system");
 
 const _excluded = ["duration", "easing", "delay"];
-const systemTheme = (0, _system.createSystemTheme)();
+const systemTheme = (0, _system.createTheme)();
 
 function getAutoHeightDuration(height) {
   if (!height) {
