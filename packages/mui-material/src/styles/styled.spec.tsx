@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { styled, css, ThemeProvider, createTheme } from '@mui/material/styles';
+import {
+  styled,
+  css,
+  ThemeProvider,
+  createTheme,
+  experimental_sx as sx,
+} from '@mui/material/styles';
 
 const Box = styled('div')(({ theme }) => ({
   color: theme.palette.primary.main,
@@ -132,6 +138,16 @@ const Button = ({
           mark: (props) => ({
             ...(props['data-index'] === 0 && {}),
           }),
+          thumb: sx({
+            p: 1,
+          }),
+          track: ({ ownerState }) => [
+            sx({ height: 10 }),
+            ownerState.orientation === 'vertical' &&
+              sx({
+                my: 2,
+              }),
+          ],
         },
       },
     },

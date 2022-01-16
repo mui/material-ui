@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from 'test/utils';
 import createStyled from './createStyled';
+import sx from './sx';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
@@ -216,6 +217,37 @@ describe('createStyled', () => {
       );
       expect(container.firstChild).toHaveComputedStyle({
         width: '300px',
+      });
+    });
+
+    it('works with sx', () => {
+      const finalTheme = createTheme({
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: sx({
+                pt: 10,
+              }),
+              icon: ({ ownerState }) => [
+                ownerState.color === 'primary' &&
+                  sx({
+                    mr: 10,
+                  }),
+              ],
+            },
+          },
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={finalTheme}>
+          <Button startIcon="✅">Hello</Button>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({
+        paddingTop: '80px',
+      });
+      expect(container.firstChild.firstChild).toHaveComputedStyle({
+        marginRight: '80px',
       });
     });
   });
