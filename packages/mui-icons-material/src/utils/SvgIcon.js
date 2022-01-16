@@ -67,9 +67,9 @@ const SvgIconRoot = styled('svg', {
     } else {
       // default (same as @mui/material)
       styles.fontSize = {
-        small: theme.typography?.pxToRem(20) || '1.25rem',
-        medium: theme.typography?.pxToRem(24) || '1.5rem',
-        large: theme.typography?.pxToRem(35) || '2.1875rem',
+        small: theme.typography.pxToRem(20),
+        medium: theme.typography.pxToRem(24),
+        large: theme.typography.pxToRem(35),
       }[ownerState.fontSize];
     }
   }
@@ -84,19 +84,13 @@ const SvgIconRoot = styled('svg', {
     } else {
       // default (same as @mui/material)
       // should be sync with https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/styles/createPalette.js
-      const palette = {
-        primary: theme.palette?.primary || { main: '#1976d2' },
-        secondary: theme.palette?.secondary || { main: '#9c27b0' },
-        error: theme.palette?.error || { main: '#d32f2f' },
-        info: theme.palette?.info || { main: '#0288d1' },
-        success: theme.palette?.success || { main: '#2e7d32' },
-        warning: theme.palette?.warning || { main: '#ed6c02' },
-      };
-      const action = theme.palette?.action || {
-        action: 'rgba(0, 0, 0, 0.54)',
-        disabled: 'rgba(0, 0, 0, 0.26)',
-      };
-      styles.color = palette[ownerState.color]?.main ?? action[ownerState.color];
+      styles.color =
+        theme.palette[ownerState.color]?.main ??
+        {
+          action: theme.palette.action.active,
+          disabled: theme.palette.action.disabled,
+          inherit: undefined,
+        }[ownerState.color];
     }
   }
   return styles;

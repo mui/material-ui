@@ -72,13 +72,11 @@ const SvgIconRoot = styled('svg', {
       // for @mui/joy, use CSS var if exists
       styles.fontSize = (theme.vars || theme).fontSize[ownerState.fontSize];
     } else {
-      var _theme$typography, _theme$typography2, _theme$typography3;
-
       // default (same as @mui/material)
       styles.fontSize = {
-        small: ((_theme$typography = theme.typography) == null ? void 0 : _theme$typography.pxToRem(20)) || '1.25rem',
-        medium: ((_theme$typography2 = theme.typography) == null ? void 0 : _theme$typography2.pxToRem(24)) || '1.5rem',
-        large: ((_theme$typography3 = theme.typography) == null ? void 0 : _theme$typography3.pxToRem(35)) || '2.1875rem'
+        small: theme.typography.pxToRem(20),
+        medium: theme.typography.pxToRem(24),
+        large: theme.typography.pxToRem(35)
       }[ownerState.fontSize];
     }
   } // color
@@ -91,35 +89,15 @@ const SvgIconRoot = styled('svg', {
       // for @mui/joy, use CSS var if exists
       styles.color = (theme.vars || theme).palette[ownerState.color].textColor;
     } else {
-      var _theme$palette, _theme$palette2, _theme$palette3, _theme$palette4, _theme$palette5, _theme$palette6, _theme$palette7, _palette$ownerState$c, _palette$ownerState$c2;
+      var _theme$palette$ownerS, _theme$palette$ownerS2;
 
       // default (same as @mui/material)
       // should be sync with https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/styles/createPalette.js
-      const palette = {
-        primary: ((_theme$palette = theme.palette) == null ? void 0 : _theme$palette.primary) || {
-          main: '#1976d2'
-        },
-        secondary: ((_theme$palette2 = theme.palette) == null ? void 0 : _theme$palette2.secondary) || {
-          main: '#9c27b0'
-        },
-        error: ((_theme$palette3 = theme.palette) == null ? void 0 : _theme$palette3.error) || {
-          main: '#d32f2f'
-        },
-        info: ((_theme$palette4 = theme.palette) == null ? void 0 : _theme$palette4.info) || {
-          main: '#0288d1'
-        },
-        success: ((_theme$palette5 = theme.palette) == null ? void 0 : _theme$palette5.success) || {
-          main: '#2e7d32'
-        },
-        warning: ((_theme$palette6 = theme.palette) == null ? void 0 : _theme$palette6.warning) || {
-          main: '#ed6c02'
-        }
-      };
-      const action = ((_theme$palette7 = theme.palette) == null ? void 0 : _theme$palette7.action) || {
-        action: 'rgba(0, 0, 0, 0.54)',
-        disabled: 'rgba(0, 0, 0, 0.26)'
-      };
-      styles.color = (_palette$ownerState$c = (_palette$ownerState$c2 = palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : action[ownerState.color];
+      styles.color = (_theme$palette$ownerS = (_theme$palette$ownerS2 = theme.palette[ownerState.color]) == null ? void 0 : _theme$palette$ownerS2.main) != null ? _theme$palette$ownerS : {
+        action: theme.palette.action.active,
+        disabled: theme.palette.action.disabled,
+        inherit: undefined
+      }[ownerState.color];
     }
   }
 
