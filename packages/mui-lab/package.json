@@ -84,7 +84,7 @@
   },
   "devDependencies": {
     "@mui/types": "^7.1.0",
-    "@types/luxon": "^2.0.8",
+    "@types/luxon": "^2.0.9",
     "date-fns": "^2.28.0",
     "dayjs": "^1.10.7",
     "luxon": "^1.21.3 || ^2.x",
