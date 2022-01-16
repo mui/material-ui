@@ -227,7 +227,7 @@ Note that this doesn't support selectors, or nested rules.
 > as it's one of the key elements to know when overriding styles.
 > You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
-By default, the style tags are injected **last** in the `<head>` element of the page.
+By default, the style tags are injected **last** in the `<head>` element of the page. (If there is style tags in the page `<head>` element, it is injected after the last style tags.)
 They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
 
 ### injectFirst
