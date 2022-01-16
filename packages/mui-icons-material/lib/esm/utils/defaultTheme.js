@@ -1,6 +1,5 @@
 import _extends from "@babel/runtime/helpers/esm/extends";
 import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
-import { formatMuiErrorMessage as _formatMuiErrorMessage } from "@mui/utils";
 const _excluded = ["duration", "easing", "delay"];
 import { createTheme as createSystemTheme, darken, getContrastRatio, lighten } from '@mui/system';
 const systemTheme = createSystemTheme();
@@ -114,25 +113,11 @@ const augmentColor = ({
   }
 
   if (!color.hasOwnProperty('main')) {
-    throw new Error(process.env.NODE_ENV !== "production" ? `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.
-The color object needs to have a \`main\` property or a \`${mainShade}\` property.` : _formatMuiErrorMessage(11, name ? ` (${name})` : '', mainShade));
+    throw new Error('MUI: The color%s provided to augmentColor(color) is invalid.\n' + 'The color object needs to have a `main` property or a `%s` property.', name ? ` (${name})` : '', mainShade);
   }
 
   if (typeof color.main !== 'string') {
-    throw new Error(process.env.NODE_ENV !== "production" ? `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.
-\`color.main\` should be a string, but \`${JSON.stringify(color.main)}\` was provided instead.
-
-Did you intend to use one of the following approaches?
-
-import { green } from "@mui/material/colors";
-
-const theme1 = createTheme({ palette: {
-  primary: green,
-} });
-
-const theme2 = createTheme({ palette: {
-  primary: { main: green[500] },
-} });` : _formatMuiErrorMessage(12, name ? ` (${name})` : '', JSON.stringify(color.main)));
+    throw new Error('MUI: The color%s provided to augmentColor(color) is invalid.\n' + '`color.main` should be a string, but `%s` was provided instead.\n' + '\n' + 'Did you intend to use one of the following approaches?\n' + '\n' + 'import { green } from "@mui/material/colors";\n' + '\n' + 'const theme1 = createTheme({ palette: {\n' + '  primary: green,\n' + '} });\n' + '\n' + 'const theme2 = createTheme({ palette: {\n' + '  primary: { main: green[500] },\n' + '} });', name ? ` (${name})` : '', JSON.stringify(color.main));
   }
 
   addLightOrDark(color, 'light', lightShade, 0.2);

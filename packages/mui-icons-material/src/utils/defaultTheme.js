@@ -1,4 +1,3 @@
-import MuiError from '@mui/utils/macros/MuiError.macro';
 import { createTheme as createSystemTheme, darken, getContrastRatio, lighten } from '@mui/system';
 
 const systemTheme = createSystemTheme();
@@ -119,7 +118,7 @@ const augmentColor = ({ color, name, mainShade = 500, lightShade = 300, darkShad
   }
 
   if (!color.hasOwnProperty('main')) {
-    throw new MuiError(
+    throw new Error(
       'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
         'The color object needs to have a `main` property or a `%s` property.',
       name ? ` (${name})` : '',
@@ -128,7 +127,7 @@ const augmentColor = ({ color, name, mainShade = 500, lightShade = 300, darkShad
   }
 
   if (typeof color.main !== 'string') {
-    throw new MuiError(
+    throw new Error(
       'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
         '`color.main` should be a string, but `%s` was provided instead.\n' +
         '\n' +
