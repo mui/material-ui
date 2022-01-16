@@ -48,7 +48,7 @@ New to MUI? It's easy to learn if you know where to start!
 
 Receive the latest news on MUI.
 
-[Follow us](https://twitter.com/MaterialUI)
+[Follow us](https://twitter.com/MUI_hq)
 
 ### Supported versions
 

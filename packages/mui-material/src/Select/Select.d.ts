@@ -30,6 +30,12 @@ export interface SelectProps<T = unknown>
    */
   classes?: Partial<SelectClasses>;
   /**
+   * If `true`, the component is initially open. Use when the component open state is not controlled (i.e. the `open` prop is not defined).
+   * You can only use it when the `native` prop is `false` (default).
+   * @default false
+   */
+  defaultOpen?: boolean;
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue?: T;
@@ -155,6 +161,8 @@ export interface SelectProps<T = unknown>
  * - [Select API](https://mui.com/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/api/outlined-input/)
  */
-declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & { muiName: string };
+declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & {
+  muiName: string;
+};
 
 export default Select;

@@ -611,7 +611,7 @@ Here are some highlights ✨:
 ### Docs
 
 - [docs] Add CssBaseline to auto dark mode example (#21094) @fantasyui-com
-- [docs] Add new twitter quotes to the homepage (#21061) @mbrookes
+- [docs] Add new Twitter quotes to the homepage (#21061) @mbrookes
 - [docs] Fix anchor link to using inline vs. classes (#21151) @dandv
 - [docs] Fix autocomplete attributes (#21138) @socsieng
 - [docs] Fix typo in Modal accessibility description (#21062) @arthur-melo
@@ -6729,7 +6729,7 @@ N/A
 - [README] New iteration on the backers (#12475) @oliviertassinari
 - [docs] Font vs SVG. Which approach to use? (#12466) @PolGuixe
 - [docs] Add a Table Of Contents (#12368) @oliviertassinari
-- [docs] Fix link to twitter account (#12482) @patcito
+- [docs] Fix link to Twitter account (#12482) @patcito
 - [docs] Try CodeFund over Carbon (#12484) @oliviertassinari
 
 ### Core

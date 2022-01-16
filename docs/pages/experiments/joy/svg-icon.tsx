@@ -1,11 +1,11 @@
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import SvgIcon from '@mui/joy/SvgIcon';
+import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 // @ts-ignore
 import { jsx as _jsx } from 'react/jsx-runtime';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import SvgIcon from '@mui/joy/SvgIcon';
-import Typography from '@mui/joy/Typography';
 
 function createSvgIcon(path: any, displayName: any, initialProps?: any) {
   const Component = (props: any, ref: any) =>
@@ -14,7 +14,7 @@ function createSvgIcon(path: any, displayName: any, initialProps?: any) {
         data-testid={`${displayName}Icon`}
         ref={ref}
         viewBox="0 0 24 24"
-        fontSize="xl"
+        fontSize="extraLarge"
         {...initialProps}
         {...props}
         sx={{ ...initialProps?.sx, ...props.sx }}
@@ -68,18 +68,40 @@ const ColorSchemePicker = () => {
   );
 };
 
-export default function JoyTypography() {
+const props = {
+  fontSize: ['xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6'],
+  color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
+} as const;
+
+export default function JoySvgIcon() {
   return (
     <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
-        <Box sx={{ px: 3, pb: 4 }}>
+        <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
         </Box>
-        {(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'] as const).map((level) => (
-          <Typography gutterBottom level={level} key={level}>
-            {`${level} - typography`}
-          </Typography>
-        ))}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+          {Object.entries(props).map(([propName, propValue]) => (
+            <Box
+              key={propName}
+              sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
+            >
+              <Typography sx={{ textDecoration: 'underline' }}>{propName}</Typography>
+              {propValue.map((value) => (
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <SvgIcon {...{ [propName]: value }}>
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                  </SvgIcon>
+                  {value && (
+                    <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
+                      {value}
+                    </Typography>
+                  )}
+                </Box>
+              ))}
+            </Box>
+          ))}
+        </Box>
       </Box>
     </CssVarsProvider>
   );

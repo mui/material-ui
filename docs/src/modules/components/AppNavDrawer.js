@@ -101,7 +101,7 @@ function ProductSubMenu(props) {
 ProductSubMenu.propTypes = {
   description: PropTypes.string,
   icon: PropTypes.element,
-  name: PropTypes.string,
+  name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 function ProductDrawerButton(props) {
@@ -459,8 +459,7 @@ function AppNavDrawer(props) {
     const isProductScoped =
       router.asPath.startsWith('/x') ||
       router.asPath.startsWith('/material') ||
-      router.asPath.startsWith('/system') ||
-      router.asPath.startsWith('/styles') ||
+      (router.asPath.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) ||
       router.asPath.startsWith('/base');
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
@@ -538,19 +537,18 @@ function AppNavDrawer(props) {
                 {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
               </MenuItem>
             ))}
-            {versions.length > 1 && (
-              <React.Fragment>
-                <Divider />
-                <MenuItem
-                  component="a"
-                  href={`https://mui.com${languagePrefix}/versions/`}
-                  onClick={onClose}
-                >
-                  {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-                  {`View all versions`}
-                </MenuItem>
-              </React.Fragment>
-            )}
+            {versions.length > 1 && [
+              <Divider key="divider" />,
+              <MenuItem
+                key="all-versions"
+                component="a"
+                href={`https://mui.com${languagePrefix}/versions/`}
+                onClick={onClose}
+              >
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+                {`View all versions`}
+              </MenuItem>,
+            ]}
           </Menu>
         </React.Fragment>
       );
@@ -595,7 +593,7 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
-            {router.asPath.startsWith('/system/') && (
+            {router.asPath.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
               <ProductIdentifier
                 name="System"
                 metadata="MUI Core"

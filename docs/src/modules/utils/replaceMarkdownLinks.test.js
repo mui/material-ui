@@ -4,6 +4,7 @@ import replaceMarkdownLinks, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceMarkdownLinks';
+import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceMarkdownLinks', () => {
   it('replace material related links', () => {
@@ -97,20 +98,18 @@ describe('replaceMarkdownLinks', () => {
 <li><a href="/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
 <li><a href="/api/data-grid/data-grid/">DataGrid</a></li>
 <li><a href="/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-<li><a href="/styles/api/">Styles</a></li>
 <li><a href="/system/basics/">System</a></li>
 </ul>
     `),
     ).to.equal(`
     <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-<li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
-<li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-<li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-<li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-<li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-<li><a href="/x/api/mui-data-grid/data-grid/">DataGrid</a></li>
-<li><a href="/x/api/mui-data-grid/data-grid-pro/">DataGridPro</a></li>
-<li><a href="/styles/api/">Styles</a></li>
+<li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
+<li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+<li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+<li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+<li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+<li><a href="/x/api/data-grid/data-grid/">DataGrid</a></li>
+<li><a href="/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
 <li><a href="/system/basics/">System</a></li>
 </ul>
     `);
@@ -120,20 +119,20 @@ describe('replaceMarkdownLinks', () => {
     expect(
       replaceAPILinks(`
       <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-  <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
-  <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-  <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-  <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-  <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+  <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
+  <li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+  <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+  <li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+  <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
   </ul>
       `),
     ).to.equal(`
       <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-  <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
-  <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-  <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-  <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-  <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+  <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
+  <li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+  <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+  <li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+  <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
   </ul>
       `);
   });
@@ -154,7 +153,6 @@ describe('replaceMarkdownLinks', () => {
     <li><a href="/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/api/data-grid/data-grid/">DataGrid</a></li>
     <li><a href="/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/styles/api/">Styles</a></li>
     <li><a href="/system/basics/">System</a></li>
     <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/customization/theme-components/#default-props">default props</a>
@@ -170,14 +168,13 @@ describe('replaceMarkdownLinks', () => {
     <li><a href="/material/react-buttons/">Buttons</a></li>
     <li><a href="/material/react-tree-view/">Tree view</a></li>
     <li><a href="/x/react-data-grid/demo/">Demo</a></li>
-    <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
-    <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-    <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-    <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-    <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-    <li><a href="/x/api/mui-data-grid/data-grid/">DataGrid</a></li>
-    <li><a href="/x/api/mui-data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/styles/api/">Styles</a></li>
+    <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
+    <li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+    <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+    <li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+    <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+    <li><a href="/x/api/data-grid/data-grid/">DataGrid</a></li>
+    <li><a href="/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
     <li><a href="/system/basics/">System</a></li>
     <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/material/customization/theme-components/#default-props">default props</a>
@@ -185,6 +182,15 @@ describe('replaceMarkdownLinks', () => {
     <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `);
+    if (FEATURE_TOGGLE.enable_system_scope) {
+      expect(`<li><a href="/styles/api/">Styles</a></li>`).to.equal(
+        `<li><a href="/system/styles/api/">Styles</a></li>`,
+      );
+    } else {
+      expect(`<li><a href="/styles/api/">Styles</a></li>`).to.equal(
+        `<li><a href="/styles/api/">Styles</a></li>`,
+      );
+    }
   });
 
   it('should work with json', () => {
