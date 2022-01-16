@@ -3,8 +3,9 @@
     color="success"
     label={
       <span>
-        <b>Status:</b> success
+        <b>Status:</b> Completed
       </span>
     }
+    icon={<Check fontSize="small" />}
   />
 </ThemeProvider>
