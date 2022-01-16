@@ -77,6 +77,14 @@ const finalTheme = createTheme({
 
 {{"demo": "pages/customization/theme-components/GlobalThemeOverrideCallback.js"}}
 
+### Using `sx` (experimental) syntax
+
+If you are not familiar `sx`, first check out [the concept](/system/the-sx-prop) and [the difference with the `styled`](/system/styled/#difference-with-the-sx-prop).
+
+`sx` is also compatible with theme style overrides if you prefer the shorthand notation.
+
+{{"demo": "pages/customization/theme-components/GlobalThemeOverrideSx.js"}}
+
 ## Adding new component variants
 
 > ⚠️ This API has been **deprecated** and will likely be removed in the next major release. If you want to apply styles based on props, take a look at [Overrides based on props](#overrides-based-on-props) instead.
