@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 14
           cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
         env:
           # Don't need playwright in this job
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
