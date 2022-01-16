@@ -41,9 +41,10 @@
       "labelPlacementTop",
       "labelPlacementBottom",
       "disabled",
-      "label"
+      "label",
+      "error"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" },
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
     "name": "MuiFormControlLabel"
   },
   "spread": true,
