@@ -28,7 +28,10 @@ const ImageListItemRoot = styled('li', {
     const { ownerState } = props;
 
     return [
-      { [`& .${imageListItemClasses.img}`]: styles.img },
+      {
+        [`& .${imageListItemClasses.img}`]:
+          typeof styles.img === 'function' ? styles.img(props) : styles.img,
+      },
       styles.root,
       styles[ownerState.variant],
     ];

@@ -36,7 +36,10 @@ const AccordionRoot = styled(Paper, {
     const { ownerState } = props;
 
     return [
-      { [`& .${accordionClasses.region}`]: styles.region },
+      {
+        [`& .${accordionClasses.region}`]:
+          typeof styles.region === 'function' ? styles.region(props) : styles.region,
+      },
       styles.root,
       !ownerState.square && styles.rounded,
       !ownerState.disableGutters && styles.gutters,

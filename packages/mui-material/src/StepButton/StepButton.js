@@ -29,7 +29,10 @@ const StepButtonRoot = styled(ButtonBase, {
     const { ownerState } = props;
 
     return [
-      { [`& .${stepButtonClasses.touchRipple}`]: styles.touchRipple },
+      {
+        [`& .${stepButtonClasses.touchRipple}`]:
+          typeof styles.touchRipple === 'function' ? styles.touchRipple(props) : styles.touchRipple,
+      },
       styles.root,
       styles[ownerState.orientation],
     ];

@@ -50,16 +50,60 @@ const ChipRoot = styled('div', {
     const { color, clickable, onDelete, size, variant } = ownerState;
 
     return [
-      { [`& .${chipClasses.avatar}`]: styles.avatar },
-      { [`& .${chipClasses.avatar}`]: styles[`avatar${capitalize(size)}`] },
-      { [`& .${chipClasses.avatar}`]: styles[`avatarColor${capitalize(color)}`] },
-      { [`& .${chipClasses.icon}`]: styles.icon },
-      { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
-      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(color)}`] },
-      { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconOutlinedColor${capitalize(color)}`] },
+      {
+        [`& .${chipClasses.avatar}`]:
+          typeof styles.avatar === 'function' ? styles.avatar(props) : styles.avatar,
+      },
+      {
+        [`& .${chipClasses.avatar}`]:
+          typeof styles[`avatar${capitalize(size)}`] === 'function'
+            ? styles[`avatar${capitalize(size)}`](props)
+            : styles[`avatar${capitalize(size)}`],
+      },
+      {
+        [`& .${chipClasses.avatar}`]:
+          typeof styles[`avatarColor${capitalize(color)}`] === 'function'
+            ? styles[`avatarColor${capitalize(color)}`](props)
+            : styles[`avatarColor${capitalize(color)}`],
+      },
+      {
+        [`& .${chipClasses.icon}`]:
+          typeof styles.icon === 'function' ? styles.icon(props) : styles.icon,
+      },
+      {
+        [`& .${chipClasses.icon}`]:
+          typeof styles[`icon${capitalize(size)}`] === 'function'
+            ? styles[`icon${capitalize(size)}`](props)
+            : styles[`icon${capitalize(size)}`],
+      },
+      {
+        [`& .${chipClasses.icon}`]:
+          typeof styles[`iconColor${capitalize(color)}`] === 'function'
+            ? styles[`iconColor${capitalize(color)}`](props)
+            : styles[`iconColor${capitalize(color)}`],
+      },
+      {
+        [`& .${chipClasses.deleteIcon}`]:
+          typeof styles.deleteIcon === 'function' ? styles.deleteIcon(props) : styles.deleteIcon,
+      },
+      {
+        [`& .${chipClasses.deleteIcon}`]:
+          typeof styles[`deleteIcon${capitalize(size)}`] === 'function'
+            ? styles[`deleteIcon${capitalize(size)}`](props)
+            : styles[`deleteIcon${capitalize(size)}`],
+      },
+      {
+        [`& .${chipClasses.deleteIcon}`]:
+          typeof styles[`deleteIconColor${capitalize(color)}`] === 'function'
+            ? styles[`deleteIconColor${capitalize(color)}`](props)
+            : styles[`deleteIconColor${capitalize(color)}`],
+      },
+      {
+        [`& .${chipClasses.deleteIcon}`]:
+          typeof styles[`deleteIconOutlinedColor${capitalize(color)}`] === 'function'
+            ? styles[`deleteIconOutlinedColor${capitalize(color)}`](props)
+            : styles[`deleteIconOutlinedColor${capitalize(color)}`],
+      },
       styles.root,
       styles[`size${capitalize(size)}`],
       styles[`color${capitalize(color)}`],

@@ -27,8 +27,14 @@ const ListItemTextRoot = styled('div', {
     const { ownerState } = props;
 
     return [
-      { [`& .${listItemTextClasses.primary}`]: styles.primary },
-      { [`& .${listItemTextClasses.secondary}`]: styles.secondary },
+      {
+        [`& .${listItemTextClasses.primary}`]:
+          typeof styles.primary === 'function' ? styles.primary(props) : styles.primary,
+      },
+      {
+        [`& .${listItemTextClasses.secondary}`]:
+          typeof styles.secondary === 'function' ? styles.secondary(props) : styles.secondary,
+      },
       styles.root,
       ownerState.inset && styles.inset,
       ownerState.primary && ownerState.secondary && styles.multiline,

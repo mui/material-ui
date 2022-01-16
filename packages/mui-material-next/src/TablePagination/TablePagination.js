@@ -42,10 +42,13 @@ const TablePaginationRoot = styled('td', {
 const TablePaginationToolbar = styled(Toolbar, {
   name: 'MuiTablePagination',
   slot: 'Toolbar',
-  overridesResolver: (props, styles) => ({
-    [`& .${tablePaginationClasses.actions}`]: styles.actions,
-    ...styles.toolbar,
-  }),
+  overridesResolver: (props, styles) => [
+    {
+      [`& .${tablePaginationClasses.actions}`]:
+        typeof styles.actions === 'function' ? styles.actions(props) : styles.actions,
+    },
+    styles.toolbar,
+  ],
 })(({ theme }) => ({
   minHeight: 52,
   paddingRight: 2,
@@ -82,12 +85,18 @@ const TablePaginationSelectLabel = styled('p', {
 const TablePaginationSelect = styled(Select, {
   name: 'MuiTablePagination',
   slot: 'Select',
-  overridesResolver: (props, styles) => ({
-    [`& .${tablePaginationClasses.selectIcon}`]: styles.selectIcon,
-    [`& .${tablePaginationClasses.select}`]: styles.select,
-    ...styles.input,
-    ...styles.selectRoot,
-  }),
+  overridesResolver: (props, styles) => [
+    {
+      [`& .${tablePaginationClasses.selectIcon}`]:
+        typeof styles.selectIcon === 'function' ? styles.selectIcon(props) : styles.selectIcon,
+    },
+    {
+      [`& .${tablePaginationClasses.select}`]:
+        typeof styles.select === 'function' ? styles.select(props) : styles.select,
+    },
+    styles.input,
+    styles.selectRoot,
+  ],
 })({
   color: 'inherit',
   fontSize: 'inherit',

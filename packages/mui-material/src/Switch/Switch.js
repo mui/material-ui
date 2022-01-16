@@ -92,7 +92,10 @@ const SwitchSwitchBase = styled(SwitchBase, {
 
     return [
       styles.switchBase,
-      { [`& .${switchClasses.input}`]: styles.input },
+      {
+        [`& .${switchClasses.input}`]:
+          typeof styles.input === 'function' ? styles.input(props) : styles.input,
+      },
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },

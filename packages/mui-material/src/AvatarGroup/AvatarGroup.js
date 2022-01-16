@@ -28,10 +28,13 @@ const useUtilityClasses = (ownerState) => {
 const AvatarGroupRoot = styled('div', {
   name: 'MuiAvatarGroup',
   slot: 'Root',
-  overridesResolver: (props, styles) => ({
-    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-    ...styles.root,
-  }),
+  overridesResolver: (props, styles) => [
+    {
+      [`& .${avatarGroupClasses.avatar}`]:
+        typeof styles.avatar === 'function' ? styles.avatar(props) : styles.avatar,
+    },
+    styles.root,
+  ],
 })(({ theme }) => ({
   [`& .${avatarClasses.root}`]: {
     border: `2px solid ${theme.palette.background.default}`,

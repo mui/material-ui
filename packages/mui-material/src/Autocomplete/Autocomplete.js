@@ -72,11 +72,31 @@ const AutocompleteRoot = styled('div', {
     const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
 
     return [
-      { [`& .${autocompleteClasses.tag}`]: styles.tag },
-      { [`& .${autocompleteClasses.tag}`]: styles[`tagSize${capitalize(size)}`] },
-      { [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot },
-      { [`& .${autocompleteClasses.input}`]: styles.input },
-      { [`& .${autocompleteClasses.input}`]: inputFocused && styles.inputFocused },
+      {
+        [`& .${autocompleteClasses.tag}`]:
+          typeof styles.tag === 'function' ? styles.tag(props) : styles.tag,
+      },
+      {
+        [`& .${autocompleteClasses.tag}`]:
+          typeof styles[`tagSize${capitalize(size)}`] === 'function'
+            ? styles[`tagSize${capitalize(size)}`](props)
+            : styles[`tagSize${capitalize(size)}`],
+      },
+      {
+        [`& .${autocompleteClasses.inputRoot}`]:
+          typeof styles.inputRoot === 'function' ? styles.inputRoot(props) : styles.inputRoot,
+      },
+      {
+        [`& .${autocompleteClasses.input}`]:
+          typeof styles.input === 'function' ? styles.input(props) : styles.input,
+      },
+      {
+        [`& .${autocompleteClasses.input}`]:
+          inputFocused &&
+          (typeof styles.inputFocused === 'function'
+            ? styles.inputFocused(props)
+            : styles.inputFocused),
+      },
       styles.root,
       fullWidth && styles.fullWidth,
       hasPopupIcon && styles.hasPopupIcon,
@@ -227,7 +247,10 @@ const AutocompletePopper = styled(Popper, {
     const { ownerState } = props;
 
     return [
-      { [`& .${autocompleteClasses.option}`]: styles.option },
+      {
+        [`& .${autocompleteClasses.option}`]:
+          typeof styles.option === 'function' ? styles.option(props) : styles.option,
+      },
       styles.popper,
       ownerState.disablePortal && styles.popperDisablePortal,
     ];
