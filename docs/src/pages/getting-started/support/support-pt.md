@@ -46,7 +46,7 @@ Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
 
 Receba as últimas notícias sobre Material-UI.
 
-[Siga-nos](https://twitter.com/MaterialUI)
+[Siga-nos](https://twitter.com/MUI_hq)
 
 ### Versões suportadas
 
