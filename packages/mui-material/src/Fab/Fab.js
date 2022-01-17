@@ -52,6 +52,7 @@ const FabRoot = styled(ButtonBase, {
     minWidth: 0,
     width: 56,
     height: 56,
+    zIndex: 1050,
     boxShadow: theme.shadows[6],
     '&:active': {
       boxShadow: theme.shadows[12],
