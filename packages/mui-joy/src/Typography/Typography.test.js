@@ -14,7 +14,6 @@ describe('<Typography />', () => {
     render,
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'MuiTypography',
-    testStateOverrides: { prop: 'level', value: 'h2', styleKey: 'h2' },
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 

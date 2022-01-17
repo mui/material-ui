@@ -15,6 +15,7 @@ describe('<Switch />', () => {
     testDeepOverrides: [
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },
+      { slotName: 'thumb', slotClassName: classes.thumb },
     ],
     refInstanceof: window.HTMLSpanElement,
     skip: [

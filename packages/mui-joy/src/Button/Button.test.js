@@ -14,7 +14,6 @@ describe('Joy <Button />', () => {
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
     testVariantProps: { variant: 'contained', fullWidth: true },
-    testStateOverrides: { prop: 'size', value: 'sm', styleKey: 'sizeSm' },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
