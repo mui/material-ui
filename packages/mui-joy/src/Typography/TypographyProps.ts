@@ -4,6 +4,8 @@ import { TypographyClasses } from './typographyClasses';
 import { SxProps } from '../styles/defaultTheme';
 import { TypographySystem } from '../styles/types';
 
+export type TypographySlot = 'root';
+
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**

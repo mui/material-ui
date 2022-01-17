@@ -1,13 +1,9 @@
 import { CSSInterpolation } from '@mui/system';
 import { GlobalStateSlot } from '@mui/base';
-import { ButtonProps } from '../Button/ButtonProps';
-import { ButtonClassKey } from '../Button/buttonClasses';
-import { SwitchProps } from '../Switch/SwitchProps';
-import { SwitchClassKey } from '../Switch/switchClasses';
-import { TypographyProps } from '../Typography/TypographyProps';
-import { TypographyClassKey } from '../Typography/typographyClasses';
-import { SvgIconProps } from '../SvgIcon/SvgIconProps';
-import { SvgIconClassKey } from '../SvgIcon/svgIconClasses';
+import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
+import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
+import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -31,18 +27,18 @@ export type OverridesStyleRules<
 export interface Components<Theme = unknown> {
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
-    styleOverrides?: OverridesStyleRules<ButtonClassKey, ButtonProps, Theme>;
+    styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonProps, Theme>;
   };
   MuiSwitch?: {
     defaultProps?: Partial<SwitchProps>;
-    styleOverrides?: OverridesStyleRules<SwitchClassKey, SwitchProps, Theme>;
+    styleOverrides?: OverridesStyleRules<SwitchSlot, SwitchProps, Theme>;
   };
   MuiTypography?: {
     defaultProps?: Partial<TypographyProps>;
-    styleOverrides?: OverridesStyleRules<TypographyClassKey, TypographyProps, Theme>;
+    styleOverrides?: OverridesStyleRules<TypographySlot, TypographyProps, Theme>;
   };
   MuiSvgIcon?: {
     defaultProps?: Partial<SvgIconProps>;
-    styleOverrides?: OverridesStyleRules<SvgIconClassKey, SvgIconProps, Theme>;
+    styleOverrides?: OverridesStyleRules<SvgIconSlot, SvgIconProps, Theme>;
   };
 }

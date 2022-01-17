@@ -22,16 +22,7 @@ const useUtilityClasses = (ownerState: TypographyProps) => {
 export const TypographyRoot = styled('span', {
   name: 'MuiTypography',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      ownerState.level && styles[ownerState.level],
-      ownerState.noWrap && styles.noWrap,
-      ownerState.gutterBottom && styles.gutterBottom,
-    ];
-  },
+  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TypographyProps }>(({ theme, ownerState }) => ({
   margin: 0,
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),

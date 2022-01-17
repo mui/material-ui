@@ -4,6 +4,8 @@ import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, FontSize } from '../styles/types';
 import { SvgIconClasses } from './svgIconClasses';
 
+export type SvgIconSlot = 'root';
+
 export interface SvgIconPropsSizeOverrides {}
 
 export interface SvgIconPropsColorOverrides {}
