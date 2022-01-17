@@ -3,84 +3,102 @@ import PropTypes from 'prop-types';
 import { styled, createTheme } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
 import Head from 'docs/src/modules/components/Head';
-import AppFrame from 'docs/src/modules/components/AppFrame';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
+import AppFooter from 'docs/src/layouts/AppFooter';
+import HeroEnd from 'docs/src/components/home/HeroEnd';
 import { useRouter } from 'next/router';
+import { exactProp } from '@mui/utils';
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import AppFooter from 'docs/src/layouts/AppFooter';
-import { exactProp } from '@mui/utils';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import ROUTES from 'docs/src/route';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 
-const authors = {
+export const authors = {
   oliviertassinari: {
     name: 'Olivier Tassinari',
     avatar: 'https://avatars.githubusercontent.com/u/3165635',
+    github: 'oliviertassinari',
   },
   mbrookes: {
     name: 'Matt Brookes',
     avatar: 'https://avatars.githubusercontent.com/u/357702',
+    github: 'mbrookes',
   },
   eps1lon: {
     name: 'Sebastian Silbermann',
     avatar: 'https://avatars.githubusercontent.com/u/12292047',
+    github: 'eps1lon',
   },
   mnajdova: {
     name: 'Marija Najdova',
     avatar: 'https://avatars.githubusercontent.com/u/4512430',
+    github: 'mnajdova',
   },
   michaldudak: {
     name: 'Michał Dudak',
     avatar: 'https://avatars.githubusercontent.com/u/4696105',
+    github: 'michaldudak',
   },
   siriwatknp: {
     name: 'Siriwat Kunaporn',
     avatar: 'https://avatars.githubusercontent.com/u/18292247',
+    github: 'siriwatknp',
   },
   'danilo-leal': {
     name: 'Danilo Leal',
     avatar: 'https://avatars.githubusercontent.com/u/67129314',
+    github: 'danilo-leal',
   },
   m4theushw: {
     name: 'Matheus Wichman',
     avatar: 'https://avatars.githubusercontent.com/u/42154031',
+    github: 'm4theushw',
   },
   flaviendelangle: {
     name: 'Flavien Delangle',
     avatar: 'https://avatars.githubusercontent.com/u/3309670',
+    github: 'flaviendelangle',
   },
   DanailH: {
     name: 'Danail Hadjiatanasov',
     avatar: 'https://avatars.githubusercontent.com/u/5858539',
+    github: 'DanailH',
   },
   alexfauquette: {
     name: 'Alexandre Fauquette',
     avatar: 'https://avatars.githubusercontent.com/u/45398769',
+    github: 'alexfauquette',
   },
 };
 
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
+    background:
+      theme.palette.mode === 'dark'
+        ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
+        : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
   },
   back: {
-    display: 'block',
+    display: 'flex',
+    alignItems: 'center',
     marginBottom: theme.spacing(4),
   },
   container: {
-    marginBottom: theme.spacing(20),
-    maxWidth: `calc(680px + ${theme.spacing(12)})`,
+    paddingTop: 60 + 20,
+    marginBottom: theme.spacing(8),
+    maxWidth: `calc(740px + ${theme.spacing(12)})`,
     '& h1': {
-      marginBottom: theme.spacing(4),
+      marginBottom: theme.spacing(3),
     },
     '& .markdown-body': {
       fontSize: theme.typography.pxToRem(17),
       lineHeight: 1.7,
-      [theme.breakpoints.up('md')]: {
-        paddingRight: theme.spacing(4),
-      },
     },
     '& img, & video': {
       display: 'block',
@@ -101,20 +119,20 @@ const styles = (theme) => ({
   },
   time: {
     color: theme.palette.text.secondary,
-    ...theme.typography.body2,
+    ...theme.typography.caption,
+    fontWeight: 500,
   },
 });
 
 const AuthorsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(1),
+  marginBottom: theme.spacing(2),
   '& .author': {
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: theme.spacing(3),
-    paddingRight: theme.spacing(2),
-    fontWeight: theme.typography.fontWeightMedium,
+    paddingBottom: theme.spacing(2),
+    paddingRight: theme.spacing(3),
     '& .MuiAvatar-root': {
       marginRight: theme.spacing(1),
     },
@@ -128,7 +146,8 @@ function TopLayoutBlog(props) {
   const router = useRouter();
 
   return (
-    <AppFrame disableDrawer>
+    <BrandingProvider>
+      <AppHeader />
       <Head
         title={`${finalTitle} - MUI`}
         description={description}
@@ -140,14 +159,17 @@ function TopLayoutBlog(props) {
       <div className={classes.root}>
         <AppContainer component="main" className={classes.container}>
           <Link
-            href="https://medium.com/material-ui"
-            rel="nofollow"
+            href={ROUTES.blog}
+            {...(ROUTES.blog.startsWith('http') && {
+              rel: 'nofollow',
+            })}
             color="text.secondary"
             variant="body2"
             className={classes.back}
           >
+            <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {'< Back to blog'}
+            {'Back to blog'}
           </Link>
           {headers.title ? (
             <React.Fragment>
@@ -166,25 +188,39 @@ function TopLayoutBlog(props) {
                 {headers.authors.map((author) => (
                   <div key={author} className="author">
                     <Avatar
-                      sx={{ width: 32, height: 32 }}
+                      sx={{ width: 36, height: 36 }}
                       alt=""
                       src={`${authors[author].avatar}?s=${32}`}
                       srcSet={`${authors[author].avatar}?s=${32 * 2} 2x`}
                     />
-                    <Typography variant="body2">{authors[author].name}</Typography>
+                    <div>
+                      <Typography variant="body2" fontWeight="500">
+                        {authors[author].name}
+                      </Typography>
+                      <Link
+                        href={`https://github.com/${authors[author].github}`}
+                        color="text.secondary"
+                        variant="body2"
+                        sx={{ fontWeight: 500 }}
+                      >
+                        @{authors[author].github}
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </AuthorsContainer>
+              <Divider sx={{ marginBottom: (theme) => theme.spacing(6) }} />
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
         </AppContainer>
+        <HeroEnd />
         <Divider />
         <AppFooter />
       </div>
-    </AppFrame>
+    </BrandingProvider>
   );
 }
 

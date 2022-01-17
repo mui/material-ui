@@ -4,6 +4,7 @@ description: We are excited to share that Matheus Wichman has joined MUI.
 date: 2021-04-05T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
+tags: ['Team']
 ---
 
 We are excited to share that [Matheus Wichman](https://github.com/m4theushw) has joined MUI.

@@ -1,5 +1,6 @@
 ---
 description: Today, we're excited to announce the introduction of official Sketch symbols for MUI.
+tags: ['News']
 ---
 
 # Introducing MUI for Sketch
