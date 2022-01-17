@@ -107,7 +107,10 @@ describe('createStyled', () => {
     const ButtonRoot = styled('button', {
       name: 'MuiButton',
       slot: 'Root',
-      overridesResolver: (props, styles) => styles.root,
+      overridesResolver: (props, styles) => [
+        styles.root,
+        { [`& .MuiButton-avatar`]: styles.avatar },
+      ],
     })({});
     const ButtonIcon = styled('span', {
       name: 'MuiButton',
@@ -126,6 +129,33 @@ describe('createStyled', () => {
     };
 
     it('spread ownerState as props to the slot styleOverrides', () => {
+      const finalTheme = createTheme({
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              avatar: () => {
+                return {
+                  width: '100px',
+                };
+              },
+            },
+          },
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={finalTheme}>
+          <Button>
+            <div className="MuiButton-avatar" data-testid="button-avatar" />
+            Hello
+          </Button>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild.firstChild).toHaveComputedStyle({
+        width: '100px',
+      });
+    });
+
+    it('support slot as nested class', () => {
       const finalTheme = createTheme({
         typography: {
           button: {
