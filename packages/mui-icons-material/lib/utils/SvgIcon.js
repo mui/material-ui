@@ -90,7 +90,7 @@ const SvgIconRoot = styled('svg', {
   if (ownerState.fontSize) {
     if (ownerState.fontSize === 'inherit') {
       styles.fontSize = 'inherit';
-    } else if (theme.name === 'joy') {
+    } else if (theme.$$designSystem === 'joy') {
       // for @mui/joy, use CSS var if exists
       styles.fontSize = (theme.vars || theme).fontSize[ownerState.fontSize];
     } else {
@@ -107,7 +107,7 @@ const SvgIconRoot = styled('svg', {
   if (ownerState.color) {
     if (ownerState.color === 'inherit') {
       styles.color = undefined;
-    } else if (theme.name === 'joy') {
+    } else if (theme.$$designSystem === 'joy') {
       // for @mui/joy, use CSS var if exists
       styles.color = (theme.vars || theme).palette[ownerState.color].textColor;
     } else {
