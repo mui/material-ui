@@ -15,9 +15,9 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.2.9",
-    "@mui/material": "^5.2.9",
-    "@mui/utils": "^5.2.9",
+    "@mui/icons-material": "^5.3.0",
+    "@mui/material": "^5.3.0",
+    "@mui/utils": "^5.3.0",
     "lodash": "^4.17.21"
   },
   "peerDependencies": {

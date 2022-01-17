@@ -58,9 +58,9 @@
   "dependencies": {
     "@babel/runtime": "^7.16.7",
     "@mui/base": "5.0.0-alpha.65",
-    "@mui/system": "^5.2.9",
+    "@mui/system": "^5.3.0",
     "@mui/types": "^7.1.0",
-    "@mui/utils": "^5.2.9",
+    "@mui/utils": "^5.3.0",
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",
     "hoist-non-react-statics": "^3.3.2",
