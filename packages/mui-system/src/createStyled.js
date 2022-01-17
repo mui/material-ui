@@ -135,7 +135,12 @@ export default function createStyled(input = {}) {
           const styleOverrides = getStyleOverrides(componentName, theme);
 
           if (styleOverrides) {
-            return overridesResolver(props, styleOverrides);
+            const resolvedStyleOverrides = {};
+            Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
+              resolvedStyleOverrides[slotKey] =
+                typeof slotStyle === 'function' ? slotStyle(props) : slotStyle;
+            });
+            return overridesResolver(props, resolvedStyleOverrides);
           }
 
           return null;
