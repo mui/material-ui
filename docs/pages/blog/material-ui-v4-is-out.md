@@ -1,5 +1,6 @@
 ---
-description: MUI v4 is out 🎉
+description: MUI v4 is out 🎉
+tags: ['Company update']
 ---
 
 # MUI v4 is out 🎉

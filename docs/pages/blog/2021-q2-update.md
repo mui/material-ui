@@ -4,6 +4,7 @@ description: An update on our mission for Q2 2021.
 date: 2021-07-12T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 card: true
+tags: ['Company update']
 ---
 
 This update covers our progress over the last three months.
