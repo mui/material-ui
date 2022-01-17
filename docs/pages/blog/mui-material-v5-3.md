@@ -3,6 +3,7 @@ title: Material v5.3 — Theming upgrade
 description: test
 date: 2022-01-18T00:00:00.000Z
 authors: ['siriwatknp']
+tags: ['News']
 card: false
 ---
 
