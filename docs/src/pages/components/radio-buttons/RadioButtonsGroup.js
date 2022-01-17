@@ -7,10 +7,10 @@ import FormLabel from '@mui/material/FormLabel';
 
 export default function RadioButtonsGroup() {
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">Gender</FormLabel>
+    <FormControl>
+      <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
       <RadioGroup
-        aria-label="gender"
+        aria-labelledby="demo-radio-buttons-group-label"
         defaultValue="female"
         name="radio-buttons-group"
       >
