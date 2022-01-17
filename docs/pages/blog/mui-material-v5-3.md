@@ -18,14 +18,14 @@ card: false
         MuiButton: {
           styleOverrides: {
             root: ({ ownerState, theme }) => ({
-              ...ownerState.variant === outlined && {
+              ...(ownerState.variant === outlined && {
                 borderWidth: '2px',
                 borderRadius: theme.shape.borderRadius,
-              },
+              }),
             }),
           },
-        }
-      }
+        },
+      },
     })}
   />
   ```
@@ -33,7 +33,11 @@ card: false
 - The callback also works with the [experimental `sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function:
 
   ```jsx
-  import { ThemeProvider, createTheme, experimental_sx as sx } from '@mui/material/styles';
+  import {
+    ThemeProvider,
+    createTheme,
+    experimental_sx as sx,
+  } from '@mui/material/styles';
 
   <ThemeProvider
     theme={createTheme({
@@ -42,17 +46,17 @@ card: false
           styleOverrides: {
             startIcon: sx({
               // shorthand for margin-right
-              mr: { xs: '4px', sm: '6px', md: '8px' }
+              mr: { xs: '4px', sm: '6px', md: '8px' },
             }),
             endIcon: sx({
               // shorthand for margin-left
-              ml: { xs: '4px', sm: '6px', md: '8px' }
+              ml: { xs: '4px', sm: '6px', md: '8px' },
             }),
           },
-        }
-      }
+        },
+      },
     })}
-  />
+  />;
   ```
 
 - [Variant theming](/customization/theme-components/#adding-new-component-variants) is deprecated. (We will provide a codemod for migrating it).
@@ -87,23 +91,23 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
               medium: '12px 6px',
               large: '16px 8px',
             }[ownerState.size],
-            ...ownerState.variant === 'outlined' && {
+            ...(ownerState.variant === 'outlined' && {
               borderWidth: '2px',
-              ...ownerState.variant === 'primary' && {
+              ...(ownerState.variant === 'primary' && {
                 borderColor: theme.palette.primary.light,
-              },
-            },
+              }),
+            }),
           }),
           label: {
             padding: 0,
-          }
+          },
         },
-      }
-    }
+      },
+    },
   })}
 >
   ...your app
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 > 💡 The side benefit of using a callback is that you can use the theme without creating the outer scoped variable.
@@ -148,7 +152,7 @@ const Label = styled('span')({
 
 `sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use `sx` like syntax at the global theme overrides.
 
-All you need to do is using the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function: 
+All you need to do is using the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function:
 
 ```jsx
 import {
@@ -170,14 +174,14 @@ import {
           }),
           label: {
             padding: 0,
-          }
+          },
         },
-      }
-    }
+      },
+    },
   })}
 >
   ...your app
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 If you want to create a dynamic style based on props, you can return an array from the callback:
@@ -195,7 +199,7 @@ If you want to create a dynamic style based on props, you can return an array fr
       sx({
         borderColor: 'text.secondary',
       }),
-    ownerState.size === 'small' && 
+    ownerState.size === 'small' &&
       sx({
         fontSize: { xs: '0.875rem', sm: '0.75rem' },
       })
@@ -216,5 +220,3 @@ To get more updates in the future, subscribe to our newsletter at the bottom of 
 - [All supported shorthands in `sx`](/system/the-sx-prop/#theme-aware-properties)
 - [`sx` performance tradeoff](/system/basics/#performance-tradeoff)
 - [`sx` with `styled`](/system/styled/#difference-with-the-sx-prop)
-
-
