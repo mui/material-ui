@@ -32,7 +32,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [codemod] Bump `jscodeshift` to remove `colors` dependency (#30578) @siriwatknp
 
-### `@mui/styled-engine-sc@5.3.9`
+### `@mui/styled-engine-sc@5.3.0`
 
 - [styled-engine-sc] Add the withConfig API to enable using the babel plugin for styled-comonents (#30589) @mnajdova
 
