@@ -46,29 +46,30 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### Docs
 
-- End code block in test/README.md (#30531) @yaboi
-- Remove redundant grouping in /components/radio-buttons/ (#30065) @eps1lon
-- Update migration scripts and e2e tests (#30583) @siriwatknp
-- Fix migration guides for versions older than v4 (#30595) @kkirsche
-- Inform about specific files for DataGrid locales (#30411) @alexfauquette
-- jss-to-tss migration advise to drop clsx in favor of cx (#30527) @garronej
-- Fix integration with MUI X (#30593) @oliviertassinari
-- Adding peer dependencies explanation on @mui/lab README.md (#30532) @glaucoheitor
-- Add missing quote in migration docs (#30587) @Atralbus
-- Update link to Doit sponsor (#30586) @oliviertassinari
-- Add products identifier and drawer (#30283) @siriwatknp
-- Add a Blog index page (#30121) @danilo-leal
-- Migrate Twitter from @MaterialUI to @MUI_hq @oliviertassinari
-- Add Andrii to the About Us page (#30581) @cherniavskii
+- [docs] End code block in test/README.md (#30531) @yaboi
+- [docs] Remove redundant grouping in /components/radio-buttons/ (#30065) @eps1lon
+- [docs] Update migration scripts and e2e tests (#30583) @siriwatknp
+- [docs] Fix migration guides for versions older than v4 (#30595) @kkirsche
+- [docs] Inform about specific files for DataGrid locales (#30411) @alexfauquette
+- [docs] jss-to-tss migration advise to drop clsx in favor of cx (#30527) @garronej
+- [docs] Fix integration with MUI X (#30593) @oliviertassinari
+- [docs] Adding peer dependencies explanation on @mui/lab README.md (#30532) @glaucoheitor
+- [docs] Add missing quote in migration docs (#30587) @Atralbus
+- [docs] Update link to Doit sponsor (#30586) @oliviertassinari
+- [docs] Add products identifier and drawer (#30283) @siriwatknp
+- [website] Fix code button with installation command (#30622) @danilo-leal
+- [website] Add a Blog index page (#30121) @danilo-leal
+- [website] Migrate Twitter from @MaterialUI to @MUI_hq @oliviertassinari
+- [website] Add Andrii to the About Us page (#30581) @cherniavskii
 
 ### Core
 
-- Revert changes to peer dependencies (#30662) @oliviertassinari
-- Renovate should not try to update node (#30659) @oliviertassinari
-- Remove dead files (#30663) @oliviertassinari
-- Fix outdated TypeScript template (#30596) @oliviertassinari
-- Remove extra </p> from header of README.md (#30530) @yaboi
-- Fix `docs:api` script for Windows OS (#30533) @ZeeshanTamboli
+- [core] Revert changes to peer dependencies (#30662) @oliviertassinari
+- [core] Renovate should not try to update node (#30659) @oliviertassinari
+- [core] Remove dead files (#30663) @oliviertassinari
+- [core] Fix outdated TypeScript template (#30596) @oliviertassinari
+- [core] Remove extra `</p>` from header of README.md (#30530) @yaboi
+- [core] Fix `docs:api` script for Windows OS (#30533) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @Atralbus, @cherniavskii, @danilo-leal, @eps1lon, @garronej, @glaucoheitor, @hbjORbj, @kkirsche, @mnajdova, @oliviertassinari, @siriwatknp, @VicHofs, @yaboi, @ZeeshanTamboli
 
