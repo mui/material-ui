@@ -1,5 +1,71 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.2.9
+
+<!-- generated comparing v5.2.8..master -->
+
+_Jan 17, 2022_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🧩 @ZeeshanTamboli and @VicHofs improved customization of components (#30515, #30212)
+- 🛠 @hbjORbj fixed the use of ResizeObserver in Masonry component (#29896)
+
+### `@mui/material@5.2.9`
+
+- &#8203;<!-- 25 -->[Autocomplete] Add ability to pass props to `Paper` component (#30515) @ZeeshanTamboli
+- &#8203;<!-- 06 -->[Select] Add defaultOpen prop (#30212) @VicHofs
+
+### `@mui/system@5.2.9`
+
+- &#8203;<!-- 03 -->[system][box, grid, typography] `textTransform` prop should work directly on component (#30437) @hbjORbj
+
+### `@mui/lab@5.0.0-alpha.65`
+
+- &#8203;<!-- 08 -->[Masonry] Observe every masonry child to trigger computation when needed (#29896) @hbjORbj
+- &#8203;<!-- 07 -->[MobileDatePicker] Fix calling onOpen when readOnly is true (#30561) @alisasanib
+
+### `@mui/codemod@5.2.9`
+
+- &#8203;<!-- 24 -->[codemod] Bump `jscodeshift` to remove `colors` dependency (#30578) @siriwatknp
+
+### `@mui/styled-engine-sc@5.2.9`
+
+- &#8203;<!-- 04 -->[styled-engine-sc] Add the withConfig API to enable using the babel plugin for styled-comonents (#30589) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.11`
+
+- &#8203;<!-- 09 -->[Joy] Add `SvgIcon` component (#30570) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.65`
+
+- &#8203;<!-- 05 -->[SliderUnstyled] Add useSlider hook and polish (#30094) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 26 -->[docs] End code block in test/README.md (#30531) @yaboi
+- &#8203;<!-- 19 -->[docs] Remove redundant grouping in /components/radio-buttons/ (#30065) @eps1lon
+- &#8203;<!-- 18 -->[docs] Update migration scripts and e2e tests (#30583) @siriwatknp
+- &#8203;<!-- 17 -->[docs] Fix migration guides for versions older than v4 (#30595) @kkirsche
+- &#8203;<!-- 16 -->[docs] Inform about specific files for DataGrid locales (#30411) @alexfauquette
+- &#8203;<!-- 15 -->[docs] jss-to-tss migration advise to drop clsx in favor of cx (#30527) @garronej
+- &#8203;<!-- 14 -->[docs] Fix integration with MUI X (#30593) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Adding peer dependencies explanation on @mui/lab README.md (#30532) @glaucoheitor
+- &#8203;<!-- 12 -->[docs] Add missing quote in migration docs (#30587) @Atralbus
+- &#8203;<!-- 11 -->[docs] Update link to Doit sponsor (#30586) @oliviertassinari
+- &#8203;<!-- 10 -->[docs] Add products identifier and drawer (#30283) @siriwatknp
+- &#8203;<!-- 02 -->[website] Migrate Twitter from @MaterialUI to @MUI_hq @oliviertassinari
+- &#8203;<!-- 01 -->[website] Add Andrii to the About Us page (#30581) @cherniavskii
+
+### Core
+
+- &#8203;<!-- 23 -->[core] Remove dead files (#30663) @oliviertassinari
+- &#8203;<!-- 22 -->[core] Fix outdated TypeScript template (#30596) @oliviertassinari
+- &#8203;<!-- 21 -->[core] Remove extra </p> from header of README.md (#30530) @yaboi
+- &#8203;<!-- 20 -->[core] Fix `docs:api` script for Windows OS (#30533) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @Atralbus, @cherniavskii, @eps1lon, @garronej, @glaucoheitor, @hbjORbj, @kkirsche, @mnajdova, @oliviertassinari, @siriwatknp, @VicHofs, @yaboi, @ZeeshanTamboli
+
 ## 5.2.8
 
 <!-- generated comparing v5.2.7..master -->
