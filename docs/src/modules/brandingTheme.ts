@@ -339,6 +339,10 @@ export function getThemedComponents(theme: Theme) {
                 color: theme.palette.grey[400],
               },
               '& .MuiButton-endIcon': {
+                display: 'inline-block',
+                position: 'absolute',
+                right: 0,
+                marginRight: 10,
                 color:
                   theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
               },
