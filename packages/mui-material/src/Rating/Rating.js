@@ -74,12 +74,7 @@ const RatingRoot = styled('span', {
     const { ownerState } = props;
 
     return [
-      {
-        [`& .${ratingClasses.visuallyHidden}`]:
-          typeof styles.visuallyHidden === 'function'
-            ? styles.visuallyHidden(props)
-            : styles.visuallyHidden,
-      },
+      { [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden },
       styles.root,
       styles[`size${capitalize(ownerState.size)}`],
       ownerState.readOnly && styles.readOnly,

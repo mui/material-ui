@@ -26,34 +26,14 @@ const SpeedDialIconRoot = styled('span', {
     const { ownerState } = props;
 
     return [
+      { [`& .${speedDialIconClasses.icon}`]: styles.icon },
+      { [`& .${speedDialIconClasses.icon}`]: ownerState.open && styles.iconOpen },
       {
         [`& .${speedDialIconClasses.icon}`]:
-          typeof styles.icon === 'function' ? styles.icon(props) : styles.icon,
+          ownerState.open && ownerState.openIcon && styles.iconWithOpenIconOpen,
       },
-      {
-        [`& .${speedDialIconClasses.icon}`]:
-          ownerState.open &&
-          (typeof styles.iconOpen === 'function' ? styles.iconOpen(props) : styles.iconOpen),
-      },
-      {
-        [`& .${speedDialIconClasses.icon}`]:
-          ownerState.open &&
-          ownerState.openIcon &&
-          (typeof styles.iconWithOpenIconOpen === 'function'
-            ? styles.iconWithOpenIconOpen(props)
-            : styles.iconWithOpenIconOpen),
-      },
-      {
-        [`& .${speedDialIconClasses.openIcon}`]:
-          typeof styles.openIcon === 'function' ? styles.openIcon(props) : styles.openIcon,
-      },
-      {
-        [`& .${speedDialIconClasses.openIcon}`]:
-          ownerState.open &&
-          (typeof styles.openIconOpen === 'function'
-            ? styles.openIconOpen(props)
-            : styles.openIconOpen),
-      },
+      { [`& .${speedDialIconClasses.openIcon}`]: styles.openIcon },
+      { [`& .${speedDialIconClasses.openIcon}`]: ownerState.open && styles.openIconOpen },
       styles.root,
     ];
   },

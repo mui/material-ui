@@ -37,10 +37,7 @@ const InputLabelRoot = styled(FormLabel, {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     return [
-      {
-        [`& .${formLabelClasses.asterisk}`]:
-          typeof styles.asterisk === 'function' ? styles.asterisk(props) : styles.asterisk,
-      },
+      { [`& .${formLabelClasses.asterisk}`]: styles.asterisk },
       styles.root,
       ownerState.formControl && styles.formControl,
       ownerState.size === 'small' && styles.sizeSmall,

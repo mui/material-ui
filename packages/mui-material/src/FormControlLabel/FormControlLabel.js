@@ -29,10 +29,7 @@ export const FormControlLabelRoot = styled('label', {
     const { ownerState } = props;
 
     return [
-      {
-        [`& .${formControlLabelClasses.label}`]:
-          typeof styles.label === 'function' ? styles.label(props) : styles.label,
-      },
+      { [`& .${formControlLabelClasses.label}`]: styles.label },
       styles.root,
       styles[`labelPlacement${capitalize(ownerState.labelPlacement)}`],
     ];

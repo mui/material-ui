@@ -40,16 +40,10 @@ const LoadingButtonRoot = styled(Button, {
     return [
       styles.root,
       styles.startIconLoadingStart && {
-        [`& .${loadingButtonClasses.startIconLoadingStart}`]:
-          typeof styles.startIconLoadingStart === 'function'
-            ? styles.startIconLoadingStart(props)
-            : styles.startIconLoadingStart,
+        [`& .${loadingButtonClasses.startIconLoadingStart}`]: styles.startIconLoadingStart,
       },
       styles.endIconLoadingEnd && {
-        [`& .${loadingButtonClasses.endIconLoadingEnd}`]:
-          typeof styles.endIconLoadingEnd === 'function'
-            ? styles.endIconLoadingEnd(props)
-            : styles.endIconLoadingEnd,
+        [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
       },
     ];
   },

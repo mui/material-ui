@@ -13,38 +13,18 @@ const overridesResolver = (props, styles) => {
   const { ownerState } = props;
 
   return [
+    { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
+    {
+      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(ownerState.orientation)}`],
+    },
+    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(ownerState.variant)}`] },
     {
       [`& .${buttonGroupClasses.grouped}`]:
-        typeof styles.grouped === 'function' ? styles.grouped(props) : styles.grouped,
+        styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.orientation)}`],
     },
     {
       [`& .${buttonGroupClasses.grouped}`]:
-        typeof styles[`grouped${capitalize(ownerState.orientation)}`] === 'function'
-          ? styles[`grouped${capitalize(ownerState.orientation)}`](props)
-          : styles[`grouped${capitalize(ownerState.orientation)}`],
-    },
-    {
-      [`& .${buttonGroupClasses.grouped}`]:
-        typeof styles[`grouped${capitalize(ownerState.variant)}`] === 'function'
-          ? styles[`grouped${capitalize(ownerState.variant)}`](props)
-          : styles[`grouped${capitalize(ownerState.variant)}`],
-    },
-    {
-      [`& .${buttonGroupClasses.grouped}`]:
-        typeof styles[
-          `grouped${capitalize(ownerState.variant)}${capitalize(ownerState.orientation)}`
-        ] === 'function'
-          ? styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.orientation)}`](
-              props,
-            )
-          : styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.orientation)}`],
-    },
-    {
-      [`& .${buttonGroupClasses.grouped}`]:
-        typeof styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`] ===
-        'function'
-          ? styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`](props)
-          : styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`],
+        styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`],
     },
     styles.root,
     styles[ownerState.variant],

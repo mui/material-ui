@@ -29,15 +29,10 @@ const ToggleButtonGroupRoot = styled('div', {
     const { ownerState } = props;
 
     return [
+      { [`& .${toggleButtonGroupClasses.grouped}`]: styles.grouped },
       {
         [`& .${toggleButtonGroupClasses.grouped}`]:
-          typeof styles.grouped === 'function' ? styles.grouped(props) : styles.grouped,
-      },
-      {
-        [`& .${toggleButtonGroupClasses.grouped}`]:
-          typeof styles[`grouped${capitalize(ownerState.orientation)}`] === 'function'
-            ? styles[`grouped${capitalize(ownerState.orientation)}`](props)
-            : styles[`grouped${capitalize(ownerState.orientation)}`],
+          styles[`grouped${capitalize(ownerState.orientation)}`],
       },
       styles.root,
       ownerState.orientation === 'vertical' && styles.vertical,

@@ -102,18 +102,10 @@ const TabsRoot = styled('div', {
     const { ownerState } = props;
 
     return [
+      { [`& .${tabsClasses.scrollButtons}`]: styles.scrollButtons },
       {
         [`& .${tabsClasses.scrollButtons}`]:
-          typeof styles.scrollButtons === 'function'
-            ? styles.scrollButtons(props)
-            : styles.scrollButtons,
-      },
-      {
-        [`& .${tabsClasses.scrollButtons}`]:
-          ownerState.scrollButtonsHideMobile &&
-          (typeof styles.scrollButtonsHideMobile === 'function'
-            ? styles.scrollButtonsHideMobile(props)
-            : styles.scrollButtonsHideMobile),
+          ownerState.scrollButtonsHideMobile && styles.scrollButtonsHideMobile,
       },
       styles.root,
       ownerState.vertical && styles.vertical,
