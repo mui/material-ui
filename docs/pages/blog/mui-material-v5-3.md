@@ -9,7 +9,7 @@ card: false
 
 ## TL;DR
 
-- `styleOverrides` supports callback as a value allows dynamic style based on props:
+- `styleOverrides` supports callback as a value that allows dynamic style based on props:
 
   ```jsx
   <ThemeProvider
@@ -30,7 +30,7 @@ card: false
   />
   ```
 
-- The callback also works with experimental `sx` function:
+- The callback also works with the [experimental `sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function:
 
   ```jsx
   import { ThemeProvider, createTheme, experimental_sx as sx } from '@mui/material/styles';
@@ -59,11 +59,11 @@ card: false
 
 ## The problems
 
-In v4, the style engine library was JSS which has some limitations. Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at [`Chip` classes](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/Chip/chipClasses.ts) for example, there are more than 20 classes which are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`). This leads to bad theming experience because developers need to know the specific key in order to customize.
+In v4, the style engine library was JSS which has some limitations. Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at [`Chip` classes](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/Chip/chipClasses.ts) for example, there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`). This leads to a bad theming experience because developers need to know the specific key in order to customize.
 
-It would be better if developers can read the props and create custom style without knowing what key they should use.
+It would be better if developers can read the props and create a custom style without knowing what key they should use.
 
-Luckily, it is now possible in v5 to do that because of the new style-engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an object for static overrides or a callback for dynamic style.
+Luckily, it is now possible in v5 to do that because of the new style engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an object for static overrides or a callback for dynamic style.
 
 ## Using callback in `styleOverrides`
 
@@ -106,7 +106,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 </ThemeProvider>
 ```
 
-> 💡 The side benefit of using callback is that you can use the theme without creating the outer scoped variable.
+> 💡 The side benefit of using a callback is that you can use the theme without creating the outer scoped variable.
 
 ### Typescript
 
@@ -146,7 +146,7 @@ const Label = styled('span')({
 
 > 💡 All MUI components are created by `styled` API, so they accept `sx` prop by default.
 
-`sx` helps developer write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use `sx` like syntax at the global theme overrides.
+`sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use `sx` like syntax at the global theme overrides.
 
 All you need to do is using the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function: 
 
@@ -180,7 +180,7 @@ import {
 </ThemeProvider>
 ```
 
-If you want to create dynamic style based on props, you can return an array from the callback:
+If you want to create a dynamic style based on props, you can return an array from the callback:
 
 ```js
 {
