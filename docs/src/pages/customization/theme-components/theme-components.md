@@ -56,7 +56,7 @@ To override a lab component's styles with TypeScript, check [this section of the
 
 You can pass a callback as a value in each slot of the component's `styleOverrides` to apply styles based on props.
 
-The `ownerState` prop is a combination of public props that you pass to the component + internal states inside the component.
+The `ownerState` prop is a combination of public props that you pass to the component + internal state of the component.
 
 ```js
 const finalTheme = createTheme({
