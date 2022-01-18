@@ -16,6 +16,7 @@ import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
+import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
 
 const iconsMap = {
   DescriptionIcon: ArticleRoundedIcon,
@@ -28,6 +29,7 @@ const iconsMap = {
   AddIcon: AddCircleRoundedIcon,
   BookIcon: BookRoundedIcon,
   ReaderIcon: ChromeReaderModeRoundedIcon,
+  TableViewIcon: TableViewRoundedIcon,
 };
 
 const Item = styled(function Item({ component: Component = 'div', ...props }) {
