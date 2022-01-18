@@ -110,17 +110,14 @@ const StyledGroupOptions = styled('ul')`
   }
 `;
 
-function CustomSelect(
-  props: SelectUnstyledProps<string>,
-  ref: React.ForwardedRef<any>,
-) {
+function CustomSelect(props: SelectUnstyledProps<string>) {
   const components: SelectUnstyledProps<string>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
     ...props.components,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
+  return <SelectUnstyled {...props} components={components} />;
 }
 
 const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(

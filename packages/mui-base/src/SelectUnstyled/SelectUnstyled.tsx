@@ -58,11 +58,12 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     listboxOpen: listboxOpenProp,
     onChange,
     onListboxOpenChange,
+    renderValue: renderValueProp,
     value: valueProp,
     ...other
   } = props;
 
-  const renderValue = props.renderValue ?? defaultRenderSingleValue;
+  const renderValue = renderValueProp ?? defaultRenderSingleValue;
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
@@ -249,7 +250,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.object,
+  defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * If `true`, the select is disabled.
    * @default false
@@ -281,7 +282,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes.object,
+  value: PropTypes /* @typescript-to-proptypes-ignore */.any,
 } as any;
 
 /**

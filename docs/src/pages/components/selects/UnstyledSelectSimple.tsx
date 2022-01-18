@@ -103,7 +103,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
 
 export default function UnstyledSelectSimple() {
   return (
-    <CustomSelect value={10}>
+    <CustomSelect defaultValue={10}>
       <StyledOption value={10}>Ten</StyledOption>
       <StyledOption value={20}>Twenty</StyledOption>
       <StyledOption value={30}>Thirty</StyledOption>

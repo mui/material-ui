@@ -106,15 +106,27 @@ const StyledGroupOptions = styled('ul')`
   }
 `;
 
-function CustomSelect(props, ref) {
+function CustomSelect(props) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
     ...props.components,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
+  return <SelectUnstyled {...props} components={components} />;
 }
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Listbox: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+};
 
 const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(props, ref) {
   const components = {
