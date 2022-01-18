@@ -405,7 +405,10 @@ function reduceChildRoutes(context) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
-    const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}`) === 0 : false;
+    const topLevel = activePage
+      ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
+        page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
+      : false;
 
     items.push(
       <AppNavDrawerItem
@@ -612,12 +615,13 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
-            {router.asPath.startsWith('/x/data-grid/') && (
+            {(router.asPath.startsWith('/x/react-data-grid') ||
+              router.asPath.startsWith('/x/api/data-grid')) && (
               <ProductIdentifier
                 name="Data Grid"
                 metadata="MUI X"
                 versionSelector={renderVersionSelector([
-                  { text: `v5.2.2`, current: true },
+                  { text: `v5.3.0`, current: true },
                   { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
                 ])}
               />
