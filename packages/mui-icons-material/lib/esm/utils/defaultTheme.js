@@ -1,8 +1,40 @@
 import _extends from "@babel/runtime/helpers/esm/extends";
-import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
-const _excluded = ["duration", "easing", "delay"];
 import { createTheme as createSystemTheme, darken, getContrastRatio, lighten } from '@mui/system';
 const systemTheme = createSystemTheme();
+const common = {
+  black: '#000',
+  white: '#000'
+};
+const light = {
+  text: {
+    primary: 'rgba(0, 0, 0, 0.87)',
+    secondary: 'rgba(0, 0, 0, 0.6)',
+    disabled: 'rgba(0, 0, 0, 0.38)'
+  },
+  divider: 'rgba(0, 0, 0, 0.12)',
+  background: {
+    paper: common.white,
+    default: common.white
+  },
+  action: {
+    active: 'rgba(0, 0, 0, 0.54)',
+    hover: 'rgba(0, 0, 0, 0.04)',
+    hoverOpacity: 0.04,
+    selected: 'rgba(0, 0, 0, 0.08)',
+    selectedOpacity: 0.08,
+    disabled: 'rgba(0, 0, 0, 0.26)',
+    disabledBackground: 'rgba(0, 0, 0, 0.12)',
+    disabledOpacity: 0.38,
+    focus: 'rgba(0, 0, 0, 0.12)',
+    focusOpacity: 0.12,
+    activatedOpacity: 0.12
+  }
+};
+const dark = {
+  text: {
+    primary: common.white
+  }
+};
 
 function getAutoHeightDuration(height) {
   if (!height) {
@@ -38,49 +70,13 @@ const create = (props = ['all'], options = {}) => {
     duration: durationOption = duration.standard,
     easing: easingOption = easing.easeInOut,
     delay = 0
-  } = options,
-        other = _objectWithoutPropertiesLoose(options, _excluded);
-
-  if (process.env.NODE_ENV !== 'production') {
-    const isString = value => typeof value === 'string';
-
-    const isNumber = value => !Number.isNaN(parseFloat(value));
-
-    if (!isString(props) && !Array.isArray(props)) {
-      console.error('MUI: Argument "props" must be a string or Array.');
-    }
-
-    if (!isNumber(durationOption) && !isString(durationOption)) {
-      console.error(`MUI: Argument "duration" must be a number or a string but found ${durationOption}.`);
-    }
-
-    if (!isString(easingOption)) {
-      console.error('MUI: Argument "easing" must be a string.');
-    }
-
-    if (!isNumber(delay) && !isString(delay)) {
-      console.error('MUI: Argument "delay" must be a number or a string.');
-    }
-
-    if (Object.keys(other).length !== 0) {
-      console.error(`MUI: Unrecognized argument(s) [${Object.keys(other).join(',')}].`);
-    }
-  }
-
+  } = options;
   return (Array.isArray(props) ? props : [props]).map(animatedProp => `${animatedProp} ${typeof durationOption === 'string' ? durationOption : formatMs(durationOption)} ${easingOption} ${typeof delay === 'string' ? delay : formatMs(delay)}`).join(',');
 };
 
 function getContrastText(background) {
-  const contrastText = getContrastRatio(background, '#fff') >= 3 ? '#fff' : 'rgba(0, 0, 0, 0.87)';
-
-  if (process.env.NODE_ENV !== 'production') {
-    const contrast = getContrastRatio(background, contrastText);
-
-    if (contrast < 3) {
-      console.error([`MUI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`, 'falls below the WCAG recommended absolute minimum contrast ratio of 3:1.', 'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast'].join('\n'));
-    }
-  }
-
+  const contrastThreshold = 3;
+  const contrastText = getContrastRatio(background, dark.text.primary) >= contrastThreshold ? dark.text.primary : light.text.primary;
   return contrastText;
 }
 
@@ -131,12 +127,9 @@ const augmentColor = ({
 };
 
 export default _extends({}, systemTheme, {
-  palette: {
+  palette: _extends({
     mode: 'light',
-    common: {
-      black: '#000',
-      white: '#fff'
-    },
+    common,
     primary: {
       main: '#1976d2',
       light: '#42a5f5',
@@ -190,33 +183,11 @@ export default _extends({}, systemTheme, {
       A700: '#616161'
     },
     contrastThreshold: 3,
-    tonalOffset: 0.2,
-    text: {
-      primary: 'rgba(0, 0, 0, 0.87)',
-      secondary: 'rgba(0, 0, 0, 0.6)',
-      disabled: 'rgba(0, 0, 0, 0.38)'
-    },
-    divider: 'rgba(0, 0, 0, 0.12)',
-    background: {
-      paper: '#fff',
-      default: '#fff'
-    },
-    action: {
-      active: 'rgba(0, 0, 0, 0.54)',
-      hover: 'rgba(0, 0, 0, 0.04)',
-      hoverOpacity: 0.04,
-      selected: 'rgba(0, 0, 0, 0.08)',
-      selectedOpacity: 0.08,
-      disabled: 'rgba(0, 0, 0, 0.26)',
-      disabledBackground: 'rgba(0, 0, 0, 0.12)',
-      disabledOpacity: 0.38,
-      focus: 'rgba(0, 0, 0, 0.12)',
-      focusOpacity: 0.12,
-      activatedOpacity: 0.12
-    },
+    tonalOffset: 0.2
+  }, light, {
     getContrastText,
     augmentColor
-  },
+  }),
   mixins: {
     toolbar: {
       minHeight: 56,
