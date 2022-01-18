@@ -3,6 +3,7 @@ title: Material-UI is now MUI!
 description: Starting today, we are evolving our brand identity. We are clarifying the difference between our company and our products.
 date: 2021-09-16T00:00:00.000Z
 authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
+tags: ['News']
 card: true
 ---
 

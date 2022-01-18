@@ -4,6 +4,7 @@ import replaceUrl, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceUrl';
+import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceUrl', () => {
   it('replace material related pathname', () => {
@@ -53,33 +54,20 @@ describe('replaceUrl', () => {
   });
 
   it('replace correct API links', () => {
-    expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/mui-material/button/`);
-    expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(
-      `/base/api/mui-base/button-unstyled/`,
-    );
-    expect(replaceAPILinks(`/api/loading-button/`)).to.equal(
-      `/material/api/mui-lab/loading-button/`,
-    );
-    expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(
-      `/x/api/mui-data-grid/data-grid/`,
-    );
-    expect(replaceAPILinks(`/styles/api/`)).to.equal(`/styles/api/`);
+    expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/button/`);
+    expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
+    expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material/api/loading-button/`);
+    expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
     expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
   });
 
   it('should do nothing if the APIs have updated', () => {
-    expect(replaceAPILinks(`/material/api/mui-material/button/`)).to.equal(
-      `/material/api/mui-material/button/`,
+    expect(replaceAPILinks(`/material/api/button/`)).to.equal(`/material/api/button/`);
+    expect(replaceAPILinks(`/base/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
+    expect(replaceAPILinks(`/material/api/loading-button/`)).to.equal(
+      `/material/api/loading-button/`,
     );
-    expect(replaceAPILinks(`/base/api/mui-base/button-unstyled/`)).to.equal(
-      `/base/api/mui-base/button-unstyled/`,
-    );
-    expect(replaceAPILinks(`/material/api/mui-lab/loading-button/`)).to.equal(
-      `/material/api/mui-lab/loading-button/`,
-    );
-    expect(replaceAPILinks(`/x/api/mui-data-grid/data-grid/`)).to.equal(
-      `/x/api/mui-data-grid/data-grid/`,
-    );
+    expect(replaceAPILinks(`/x/api/data-grid/`)).to.equal(`/x/api/data-grid/`);
   });
 
   it('only replace links for new routes (/material/* & /x/*)', () => {
@@ -92,9 +80,14 @@ describe('replaceUrl', () => {
     expect(
       replaceUrl(`/components/data-grid/components/#main-content`, '/x/react-data-grid'),
     ).to.equal(`/x/react-data-grid/components/#main-content`);
-    expect(replaceUrl(`/api/button-unstyled`, '/base/api/mui-base/button-unstyled')).to.equal(
-      `/base/api/mui-base/button-unstyled`,
+    expect(replaceUrl(`/api/button-unstyled`, '/base/api/button-unstyled')).to.equal(
+      `/base/api/button-unstyled`,
     );
+    if (FEATURE_TOGGLE.enable_system_scope) {
+      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/system/styles/api/`);
+    } else {
+      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/styles/api/`);
+    }
   });
 
   it('does not replace for old routes', () => {

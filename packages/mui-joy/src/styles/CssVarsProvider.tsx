@@ -8,6 +8,7 @@ import defaultTheme, {
   darkColorSystem,
   Focus,
   ThemeScales,
+  JoyTheme,
 } from './defaultTheme';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Variants } from './types/variants';
@@ -35,7 +36,7 @@ type ThemeInput = PartialNested<
 > & {
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
-  components?: Components;
+  components?: Components<JoyTheme>;
 };
 
 type JoyThemeInput = ThemeInput & {

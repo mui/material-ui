@@ -5,6 +5,8 @@ import { SwitchClasses } from './switchClasses';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp } from '../styles/types';
 
+export type SwitchSlot = 'root' | 'input' | 'track' | 'thumb';
+
 export interface SwitchPropsColorOverrides {}
 
 export interface SwitchPropsSizeOverrides {}

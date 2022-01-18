@@ -187,6 +187,13 @@ export default function HeaderNavDropdown() {
                   About us
                 </Anchor>
               </li>
+              {FEATURE_TOGGLE.enable_blog_index && (
+                <li>
+                  <Anchor href={ROUTES.blog} as={Link} noLinkStyle>
+                    Blog
+                  </Anchor>
+                </li>
+              )}
             </UList>
           </Box>
         </Collapse>

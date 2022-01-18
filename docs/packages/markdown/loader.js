@@ -53,7 +53,7 @@ const packages = [
 
 packages.forEach((pkg) => {
   pkg.paths.forEach((pkgPath) => {
-    const match = pkgPath.match(/packages\/([^/]+)\/src/);
+    const match = pkgPath.match(/packages(?:\\|\/)([^/\\]+)(?:\\|\/)src/);
     const packageName = match ? match[1] : null;
     if (!packageName) {
       throw new Error(`cannot find package name from path: ${pkgPath}`);

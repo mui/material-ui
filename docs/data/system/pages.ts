@@ -22,6 +22,16 @@ const pages = [
       { pathname: '/system/styled', title: 'styled' },
     ],
   },
+  {
+    pathname: '/system/styles',
+    title: 'Styles (legacy)',
+    icon: 'StyleIcon',
+    children: [
+      { pathname: '/system/styles/basics' },
+      { pathname: '/system/styles/advanced' },
+      { pathname: '/system/styles/api', title: 'API' },
+    ],
+  },
 ];
 
 export default pages;
