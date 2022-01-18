@@ -194,7 +194,7 @@ Button.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'contained'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
