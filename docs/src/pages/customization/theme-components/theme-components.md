@@ -77,6 +77,8 @@ const finalTheme = createTheme({
 
 {{"demo": "pages/customization/theme-components/GlobalThemeOverrideCallback.js"}}
 
+> ⚠️ the callback return type should be an object or an array, we don't support template literals(` `` `) as return type.
+
 ### Using `sx` (experimental) syntax
 
 If you are not familiar `sx`, first check out [the concept](/system/the-sx-prop) and [the difference with the `styled`](/system/styled/#difference-with-the-sx-prop).

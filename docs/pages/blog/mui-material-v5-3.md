@@ -222,8 +222,6 @@ If you want to create a dynamic style based on props, you can return an array fr
 }
 ```
 
-> ⚠️ the callback return type should be an object or an array, we don't support template literals(` `` `) as return type.
-
 <hr />
 
 **That's it for today!** Happy styling 💅.
