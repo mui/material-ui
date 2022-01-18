@@ -35,6 +35,9 @@ async function run() {
   await fse.copy(
     path.resolve(__dirname, '../src/utils'),
     path.resolve(__dirname, '../build/utils'),
+    {
+      filter: (src) => src.endsWith('.d.ts'),
+    },
   );
   console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
   const files = await glob('!(index)*.js', { cwd: SRC_DIR });
