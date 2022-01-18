@@ -123,13 +123,8 @@ export default function createCssVarsProvider(options) {
         ? createBreakpoints(themeProp.breakpoints)
         : systemBreakpoints,
       getCssVar: createGetCssVar(prefix),
+      $$designSystem: designSystemPrefix,
     };
-
-    Object.defineProperty(mergedTheme, '$$designSystem', {
-      writable: false,
-      enumerable: false,
-      configurable: false,
-    });
 
     const styleSheet = {};
 

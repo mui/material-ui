@@ -9,6 +9,10 @@ export interface SvgIconPropsSizeOverrides {}
 
 export interface SvgIconPropsColorOverrides {}
 
+export interface SvgIconThemeOverrides {}
+
+type IsEmptyObject<Obj extends {}> = [keyof Obj] extends [never] ? true : false;
+
 export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
   props: P & {
     /**
@@ -65,7 +69,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx?: SxProps<Theme>;
+    sx?: SxProps<IsEmptyObject<SvgIconThemeOverrides> extends true ? Theme : SvgIconThemeOverrides>;
     /**
      * Provides a human-readable title for the element that contains it.
      * https://www.w3.org/TR/SVG-access/#Equivalent

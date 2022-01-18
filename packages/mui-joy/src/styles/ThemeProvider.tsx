@@ -28,12 +28,5 @@ export default function ThemeProvider({
     vars: mergedTheme,
     components,
   } as JoyTheme<ExtendedColorScheme> & { components: Components };
-
-  Object.defineProperty(mergedTheme, '$$designSystem', {
-    writable: false,
-    enumerable: false,
-    configurable: false,
-  });
-
   return <SystemThemeProvider theme={mergedTheme}>{children}</SystemThemeProvider>;
 }
