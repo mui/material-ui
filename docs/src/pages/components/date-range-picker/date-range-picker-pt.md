@@ -6,11 +6,11 @@ packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Seletor de intervalo de data [<span role="img" title="Enterprise">⚡️</span>](https://material-ui.com/store/items/material-ui-pro/)
+# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://mui.com/store/items/material-ui-pro/)
 
 <p class="description">Seletores de data permitem ao usuário selecionar um intervalo de datas.</p>
 
-> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> Esta extensão paga incluirá mais componentes avançados (um data grid rico, seletor de intervalo de data, arrastar  & soltar na visualização em árvore, etc.). [Acesso antecipado](https://material-ui.com/store/items/material-ui-pro/) começa com um preço acessível.
+> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> Esta extensão paga incluirá mais componentes avançados (um data grid rico, seletor de intervalo de data, arrastar  & soltar na visualização em árvore, etc.). [Early access](https://mui.com/store/items/material-ui-pro/) starts at an affordable price.
 
 Os seletores de intervalo de datas permitem que o usuário selecione um intervalo de datas.
 

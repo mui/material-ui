@@ -7,7 +7,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 
 # Breadcrumbs 面包屑导航
 
-<p class="description">面包屑导航允许用户在一系列的值中进行选择。</p>
+<p class="description">Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

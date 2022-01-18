@@ -1,6 +1,0 @@
-<Box sx={{ display: { xs: 'block', md: 'none' }, m: 1 }}>
-  hide on screens wider than md
-</Box>
-<Box sx={{ display: { xs: 'none', md: 'block' }, m: 1 }}>
-  hide on screens smaller than md
-</Box>

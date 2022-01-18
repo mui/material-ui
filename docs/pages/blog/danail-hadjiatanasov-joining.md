@@ -4,6 +4,7 @@ description: We are excited to share that Danail Hadjiatanasov has joined MUI as
 date: 2020-10-23T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
+tags: ['Team']
 ---
 
 We are excited to share that [Danail Hadjiatanasov](https://twitter.com/danail_h) has joined MUI as part of the enterprise team. This was his first full-time week.

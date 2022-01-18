@@ -25,6 +25,10 @@ export const letterSpacing = style({
   prop: 'letterSpacing',
 });
 
+export const textTransform = style({
+  prop: 'textTransform',
+});
+
 export const lineHeight = style({
   prop: 'lineHeight',
 });
@@ -48,6 +52,7 @@ const typography = compose(
   letterSpacing,
   lineHeight,
   textAlign,
+  textTransform,
 );
 
 export default typography;

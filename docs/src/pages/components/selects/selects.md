@@ -99,7 +99,9 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/components/selects/MultipleSelectNative.js"}}
 
-## Controlled open select
+## Controlling the open state
+
+You can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 

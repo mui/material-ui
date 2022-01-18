@@ -6,11 +6,11 @@ githubLabel: 'component: Masonry'
 
 # Masonry
 
-<p class="description">Masonry lays out contents of different sizes as blocks of the same width and variable height with configurable gaps.</p>
+<p class="description">Masonry lays out contents of varying dimensions as blocks of the same width and different height with configurable gaps.</p>
 
-Masonry maintains a list of content blocks with a consistent width but variable height.
+Masonry maintains a list of content blocks with a consistent width but different height.
 The contents are ordered by row.
-If a row is already filled with the specified number of columns, the next item starts another row, and it is added to the shortest column.
+If a row is already filled with the specified number of columns, the next item starts another row, and it is added to the shortest column in order to optimize the use of space.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -26,6 +26,13 @@ This example demonstrates the use of `Masonry` for images. `Masonry` orders its 
 If you'd like to order images by column, check out [ImageList](/components/image-list/#masonry-image-list).
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
+
+## Items with variable height
+
+This example demonstrates the use of `Masonry` for items with variable height.
+Items can move to other columns in order to abide by the rule that items are always added to the shortest column and hence optimize the use of space.
+
+{{"demo": "pages/components/masonry/MasonryWithVariableHeightItems.js", "bg": true}}
 
 ## Columns
 
