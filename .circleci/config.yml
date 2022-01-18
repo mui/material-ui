@@ -155,7 +155,13 @@ jobs:
               exit 1
             fi
       - run:
-          name: material-ui-icons
+          name: material-ui-icons build:lib'
+          command: yarn workspace @mui/icons-material build:lib
+      - run:
+          name: material-ui-icons lib changes committed?'
+          command: git diff --exit-code
+      - run:
+          name: material-ui-icons types
           command: |
             # latest commit
             LATEST_COMMIT=$(git rev-parse HEAD)
