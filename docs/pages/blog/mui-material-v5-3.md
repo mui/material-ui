@@ -181,10 +181,10 @@ import {
       MuiChip: {
         styleOverrides: {
           root: sx({
-            px: 1.5, // shorthand for padding-left & right
-            py: 0.75, // shorthand for padding-top & bottom
+            px: '12px', // shorthand for padding-left & right
+            py: '6px', // shorthand for padding-top & bottom
             fontWeight: 500,
-            borderRadius: 2,
+            borderRadius: '8px',
           }),
           label: {
             padding: 0,
@@ -204,10 +204,10 @@ If you want to create a dynamic style based on props, you can return an array fr
 {
   root: ({ ownerState }) => [
     sx({
-      px: 1.5,
-      py: 0.75,
+      px: '12px',
+      py: '6px',
       fontWeight: 500,
-      borderRadius: 2,
+      borderRadius: '8px',
     }),
     ownerState.variant === 'outlined' && ownerState.color === 'default' &&
       sx({
