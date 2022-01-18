@@ -534,7 +534,7 @@ export default function useAutocomplete(props) {
             ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
             : 'Make sure you have customized the input component correctly.',
         ].join('\n');
-        if (inputRef.current.nodeName === 'TEXTAREA') {
+        if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA') {
           console.warn(errorText);
         } else {
           console.error(errorText);

@@ -255,9 +255,9 @@ describe('useAutocomplete', () => {
     };
 
     const devErrorMessages = [
-      "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
+      "Error: Uncaught [TypeError: Cannot read properties of null (reading 'removeAttribute')]",
       'MUI: Unable to find the input element.',
-      "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
+      "Error: Uncaught [TypeError: Cannot read properties of null (reading 'removeAttribute')]",
       // strict effects runs effects twice
       React.version.startsWith('18') && 'MUI: Unable to find the input element.',
       React.version.startsWith('18') &&
