@@ -125,6 +125,12 @@ export default function createCssVarsProvider(options) {
       getCssVar: createGetCssVar(prefix),
     };
 
+    Object.defineProperty(mergedTheme, '$$designSystem', {
+      writable: false,
+      enumerable: false,
+      configurable: false,
+    });
+
     const styleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
