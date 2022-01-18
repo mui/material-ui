@@ -10,7 +10,9 @@ export default function GridTemplateAreas() {
         color: '#fff',
         '& > .MuiBox-root > .MuiBox-root': {
           p: 1,
-          borderRadius: 1,
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         },
       }}
     >
@@ -27,8 +29,8 @@ export default function GridTemplateAreas() {
       >
         <Box sx={{ gridArea: 'header', bgcolor: 'primary.main' }}>Header</Box>
         <Box sx={{ gridArea: 'main', bgcolor: 'secondary.main' }}>Main</Box>
-        <Box sx={{ gridArea: 'sidebar', bgcolor: 'info.main' }}>Sidebar</Box>
-        <Box sx={{ gridArea: 'footer', bgcolor: 'warning.main' }}>Footer</Box>
+        <Box sx={{ gridArea: 'sidebar', bgcolor: 'error.main' }}>Sidebar</Box>
+        <Box sx={{ gridArea: 'footer', bgcolor: 'warning.dark' }}>Footer</Box>
       </Box>
     </Box>
   );

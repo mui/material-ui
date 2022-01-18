@@ -1,0 +1,12 @@
+<Masonry columns={3} spacing={1}>
+  {heights.map((height, index) => (
+    <Item key={index}>
+      <Accordion sx={{ minHeight: height }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Accordion {index + 1}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>Contents</AccordionDetails>
+      </Accordion>
+    </Item>
+  ))}
+</Masonry>

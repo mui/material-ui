@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
-import { useTheme, styled, alpha } from '@mui/material/styles';
+import { useTheme, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';
@@ -538,7 +538,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="expand"
               onClick={handleCodeOpenClick}
-              color={demoHovered ? 'primary' : 'default'}
+              color="default"
               {...getControlProps(2)}
             >
               <CodeRoundedIcon />
@@ -637,52 +637,6 @@ export default function DemoToolbar(props) {
         transformOrigin={{
           vertical: 'top',
           horizontal: 'right',
-        }}
-        PaperProps={{
-          variant: 'outlined',
-          elevation: 0,
-          sx: {
-            mt: 0.5,
-            minWidth: 180,
-            backgroundImage: 'none',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-            boxShadow: (theme) =>
-              `0px 4px 20px ${
-                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-              }`,
-            '& .MuiMenuItem-root': {
-              fontSize: (theme) => theme.typography.pxToRem(14),
-              fontWeight: 500,
-              '&:hover': {
-                color: (theme) =>
-                  theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
-              '&:focus': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
-              '&.Mui-selected': {
-                fontWeight: 500,
-                color: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[300]
-                    : theme.palette.primary[600],
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : alpha(theme.palette.primary[100], 0.6),
-              },
-            },
-          },
         }}
       >
         <MenuItem

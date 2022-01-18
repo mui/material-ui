@@ -1,3 +1,5 @@
+import FEATURE_TOGGLE from './featureToggle';
+
 const ROUTES = {
   home: '/',
   productCore: '/core/',
@@ -8,14 +10,18 @@ const ROUTES = {
   pricing: '/pricing/',
   about: '/about/',
   handbook: 'https://www.notion.so/mui-org/Handbook-f086d47e10794d5e839aef9dc67f324b',
+  baseDocs: '/base/getting-started/installation/',
+  materialDocs: '/material/getting-started/installation/',
+  systemDocs: '/system/basics/',
+  stylesLegacyDocs: '/styles/basics/',
   materialIcons: '/components/material-icons/',
   freeTemplates: '/getting-started/templates/',
   components: '/getting-started/supported-components/',
   customization: '/customization/how-to-customize/',
   theming: '/customization/theming/',
-  documentation: '/getting-started/usage/',
+  documentation: '/getting-started/installation/',
   communityHelp: '/getting-started/support/#community-help-free',
-  blog: 'https://medium.com/material-ui',
+  blog: FEATURE_TOGGLE.enable_blog_index ? '/blog/' : 'https://medium.com/material-ui',
   showcase: '/discover-more/showcase',
   roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
   languages: '/discover-more/languages',

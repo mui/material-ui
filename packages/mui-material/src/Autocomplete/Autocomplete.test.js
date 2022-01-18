@@ -17,6 +17,7 @@ import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/material/Autocomplete';
+import { paperClasses } from '@mui/material/Paper';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -500,6 +501,30 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(firstSelectedValue, { key: 'ArrowRight' });
       expect(textbox).toHaveFocus();
+    });
+
+    it('should not call onChange function for duplicate values', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          freeSolo
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+
+      fireEvent.change(textbox, { target: { value: 'two' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(0);
+
+      fireEvent.change(textbox, { target: { value: 'three' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
     });
 
     it('has no textbox value', () => {
@@ -2360,5 +2385,24 @@ describe('<Autocomplete />', () => {
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleChange.callCount).to.equal(0);
     expect(handleSubmit.callCount).to.equal(1);
+  });
+
+  describe('prop: componentsProps', () => {
+    it('should apply the props on the Paper component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            paper: { 'data-testid': 'paperRoot', elevation: 2, className: 'my-class' },
+          }}
+        />,
+      );
+
+      const paperRoot = screen.getByTestId('paperRoot');
+      expect(paperRoot).to.have.class(paperClasses.elevation2);
+      expect(paperRoot).to.have.class('my-class');
+    });
   });
 });

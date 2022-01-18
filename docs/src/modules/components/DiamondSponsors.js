@@ -4,10 +4,10 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const Root = styled('div')(({ theme }) => ({
-  margin: theme.spacing(1, 2, 3),
+  margin: theme.spacing(1, 2, 2),
   '& img': {
     display: 'inline-block',
   },
@@ -26,15 +26,17 @@ export default function DiamondSponsors(props) {
         target="_blank"
         rel="noopener nofollow"
         size="small"
-        endIcon={<KeyboardArrowRightRoundedIcon />}
+        endIcon={<InfoOutlinedIcon fontSize="small" />}
         sx={{
+          ml: -1,
+          mb: 1,
           fontSize: theme.typography.pxToRem(12.5),
           fontWeight: 500,
           color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-          mb: 1,
           '& svg': {
-            ml: -0.5,
+            width: 14,
+            height: 14,
           },
         }}
       >
@@ -90,7 +92,7 @@ export default function DiamondSponsors(props) {
           data-ga-event-category="sponsor"
           data-ga-event-action={spot}
           data-ga-event-label="doit"
-          href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral"
+          href="https://www.doit-intl.com/flexsave/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >

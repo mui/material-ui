@@ -107,7 +107,16 @@ export default function XComponents() {
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
-                {WIP.includes(name) && <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />}
+                {WIP.includes(name) && (
+                  <Tooltip
+                    title="Work in progress"
+                    enterDelay={200}
+                    describeChild
+                    disableFocusListener
+                  >
+                    <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />
+                  </Tooltip>
+                )}
               </Highlighter>
             ))}
             <More href={ROUTES.roadmap} />

@@ -8,23 +8,43 @@ export default function TextOverflow() {
         component="div"
         sx={{
           textOverflow: 'clip',
-          my: 2,
           overflow: 'hidden',
-          bgcolor: 'background.paper',
+          my: 2,
+          p: 1,
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
-        Text Overflow Clip. Text Overflow Clip.
+        Lorem Ipsum is simply dummy text
       </Box>
       <Box
         component="div"
         sx={{
           textOverflow: 'ellipsis',
-          my: 2,
           overflow: 'hidden',
-          bgcolor: 'background.paper',
+          my: 2,
+          p: 1,
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
-        Text Overflow Ellipsis. Text Overflow Ellipsis
+        Lorem Ipsum is simply dummy text
       </Box>
     </div>
   );

@@ -18,7 +18,6 @@ Working on your first Pull Request? You can learn how from this free video serie
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
-If you didn't find a suitable issue you can also follow [@MuiContrib](https://twitter.com/MuiContrib) which automatically tweets new good first issues.
 
 We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
@@ -219,17 +218,17 @@ Finally, when you submit a Pull Request, they are run again by our continuous in
 
 If, for example, you want to add new demos for the button component, you have to take the following steps:
 
-#### 1. Add a new React component file under the related directory.
+### 1. Add a new React component file under the related directory
 
 In this case, you are going to add the new file to the following directory:
 
-```
+```sh
 docs/src/pages/components/buttons/
 ```
 
 and give it a name: `SuperButtons.js`.
 
-#### 2. Edit the page Markdown file.
+### 2. Edit the page Markdown file
 
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
 In this case, the file you need to edit is `docs/src/pages/components/buttons/buttons.md`.
@@ -246,7 +245,7 @@ about translations](#translations).
 +{{"demo": "pages/components/buttons/SuperButtons.js"}}
 ```
 
-#### 3. Write the content of the demo
+### 3. Write the content of the demo
 
 MUI documents how to use this library with TypeScript.
 
@@ -255,7 +254,7 @@ When you're done run `yarn docs:typescript:formatted` to automatically create th
 
 If you are not familiar with that language, write the demo in JavaScript, a core contributor might help you to migrate it to TypeScript.
 
-#### 4. You are done 🎉!
+### 4. You are done 🎉
 
 In case you missed something, [we have a real example that can be used as a summary report](https://github.com/mui-org/material-ui/pull/19582/files).
 
