@@ -26,15 +26,7 @@ const useUtilityClasses = (ownerState: SvgIconProps) => {
 const SvgIconRoot = styled('svg', {
   name: 'MuiSvgIcon',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      styles[`color${capitalize(ownerState.color)}`],
-      styles[`fontSize${capitalize(ownerState.fontSize)}`],
-    ];
-  },
+  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SvgIconProps }>(({ theme, ownerState }) => {
   return [
     {

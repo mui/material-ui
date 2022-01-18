@@ -319,6 +319,13 @@ export default function HeaderNavBar() {
             About us
           </Link>
         </li>
+        {FEATURE_TOGGLE.enable_blog_index && (
+          <li role="none">
+            <Link role="menuitem" href={ROUTES.blog}>
+              Blog
+            </Link>
+          </li>
+        )}
       </ul>
     </Navigation>
   );

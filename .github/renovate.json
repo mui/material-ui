@@ -82,6 +82,11 @@
       "schedule": "every 6 months on the first day of the month"
     },
     {
+      "groupName": "node",
+      "matchPackageNames": ["node"],
+      "enabled": false
+    },
+    {
       "groupName": "examples",
       "matchPaths": ["examples/**/package.json"],
       "minor": {

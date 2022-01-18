@@ -2,8 +2,9 @@
 title: A spotlight on Damien Tassone joining the team
 description: Damien Tassone has joined MUI. He's the first full-time member to focus on enterprise components.
 date: 2020-09-15T00:00:00.000Z
-authors: ['oliviertassinari"]
+authors: ['oliviertassinari']
 card: true
+tags: ['Team']
 ---
 
 A few months ago, right in the middle of the COVID-19 outbreak, [Damien Tassone](https://twitter.com/madKakoO) joined MUI. He's the first full-time member to focus on enterprise components. Back then, we only made a quick mention of it. It's never too late to introduce him properly.

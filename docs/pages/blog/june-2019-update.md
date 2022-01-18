@@ -1,5 +1,6 @@
 ---
 description: Here are the most significant improvements in June.
+tags: ['Company update']
 ---
 
 # June 2019 Update
