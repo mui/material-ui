@@ -41,15 +41,15 @@ export default function RealisticShadow() {
         <Box
           sx={(theme) => ({
             ...boxStyle,
-            bgcolor: theme.getThemeVar('palette-background-body'),
-            boxShadow: theme.getThemeVar('shadow-xl'),
+            bgcolor: theme.getCssVar('palette-background-body'),
+            boxShadow: theme.getCssVar('shadow-xl'),
           })}
         />
         <Box
           sx={(theme) => ({
             ...boxStyle,
-            bgcolor: theme.getThemeVar('palette-background-body'),
-            boxShadow: theme.getThemeVar('shadow-xl'),
+            bgcolor: theme.getCssVar('palette-background-body'),
+            boxShadow: theme.getCssVar('shadow-xl'),
           })}
         />
       </Background>
@@ -57,14 +57,14 @@ export default function RealisticShadow() {
         <Box
           sx={(theme) => ({
             ...boxStyle,
-            bgcolor: theme.getThemeVar('palette-primary-100'),
-            boxShadow: theme.getThemeVar('shadow-xl'), // DOES NOT WORK, can't override global var from parent!
+            bgcolor: theme.getCssVar('palette-primary-100'),
+            boxShadow: theme.getCssVar('shadow-xl'), // DOES NOT WORK, can't override global var from parent!
           })}
         />
         <Box
           sx={(theme) => ({
             ...boxStyle,
-            bgcolor: theme.getThemeVar('palette-primary-100'),
+            bgcolor: theme.getCssVar('palette-primary-100'),
             boxShadow: theme.shadow.xl, // This works, the variable must not be referenced.
           })}
         />
@@ -81,14 +81,14 @@ export default function RealisticShadow() {
         <Box
           sx={(theme) => ({
             ...boxStyle,
-            bgcolor: theme.getThemeVar('palette-success-100'),
-            boxShadow: theme.getThemeVar('shadow-xl'),
+            bgcolor: theme.getCssVar('palette-success-100'),
+            boxShadow: theme.getCssVar('shadow-xl'),
           })}
         />
         <Box
           sx={(theme) => ({
             ...boxStyle,
-            bgcolor: theme.getThemeVar('palette-success-100'),
+            bgcolor: theme.getCssVar('palette-success-100'),
             boxShadow: theme.shadow.xl,
           })}
         />
@@ -118,14 +118,14 @@ export default function RealisticShadow() {
           <Box
             sx={(theme) => ({
               ...boxStyle,
-              bgcolor: theme.getThemeVar('palette-background-body'),
-              boxShadow: theme.getThemeVar('shadow-xl'),
+              bgcolor: theme.getCssVar('palette-background-body'),
+              boxShadow: theme.getCssVar('shadow-xl'),
             })}
           />
           <Box
             sx={(theme) => ({
               ...boxStyle,
-              bgcolor: theme.getThemeVar('palette-background-body'),
+              bgcolor: theme.getCssVar('palette-background-body'),
               boxShadow: theme.shadow.xl,
             })}
           />
