@@ -407,7 +407,7 @@ function reduceChildRoutes(context) {
     const title = pageToTitleI18n(page, t);
     const topLevel = activePage
       ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
-        page?.scopePathnames.some((pathname) => activePage.pathname.includes(pathname))
+        page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
       : false;
 
     items.push(
