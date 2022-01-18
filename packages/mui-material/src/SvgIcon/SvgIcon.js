@@ -48,7 +48,10 @@ const SvgIconRoot = styled('svg', {
         }),
   fontSize:
     theme.$$designSystem === 'joy'
-      ? { ...theme.vars.fontSize, inherit: 'inherit' }[ownerState.fontSize]
+      ? { ...theme.vars.fontSize, inherit: 'inherit' }[
+          // switch default fontSize to `xl` (24px)
+          ownerState.fontSize.replace(/^medium$/, 'xl')
+        ]
       : {
           inherit: 'inherit',
           small: theme.typography.pxToRem(20),
