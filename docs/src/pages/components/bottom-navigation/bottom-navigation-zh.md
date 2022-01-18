@@ -1,7 +1,7 @@
 ---
 title: React Bottom Navigation（底部导航栏）组件
 components: BottomNavigation, BottomNavigationAction
-githubLabel: 'component: BottomNavigation'
+githubLabel: 'component: bottom navigation'
 materialDesign: https://material.io/components/bottom-navigation
 ---
 

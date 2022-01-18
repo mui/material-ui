@@ -1,7 +1,7 @@
 ---
 title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
-githubLabel: 'component: Switch'
+githubLabel: 'component: switch'
 materialDesign: https://material.io/components/selection-controls#switches
 ---
 
