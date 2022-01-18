@@ -612,7 +612,8 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
-            {router.asPath.startsWith('/x/data-grid/') && (
+            {(router.asPath.startsWith('/x/react-data-grid') ||
+              router.asPath.startsWith('/x/api/data-grid')) && (
               <ProductIdentifier
                 name="Data Grid"
                 metadata="MUI X"
