@@ -17,6 +17,7 @@ card: false
       components: {
         MuiButton: {
           styleOverrides: {
+            // ownerState = public props + component's internal state
             root: ({ ownerState, theme }) => ({
               ...(ownerState.variant === outlined && {
                 borderWidth: '2px',
@@ -67,14 +68,14 @@ In v4, the style engine library was JSS which has some limitations. Style overri
 
 It would be better if developers can read the props and create a custom style without knowing what key they should use.
 
-Luckily, it is now possible in v5 to do that because of the new style engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an object for static overrides or a callback for dynamic style.
+Fortunately, it is now possible in v5 because of the new style engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an **object** (static overrides) or a **callback** (dynamic overrides).
 
 ## Using callback in `styleOverrides`
 
 The callback gives you the `props` that the slot received. Most of the time, you would use:
 
 - `props.ownerState`: the combination of runtime props and internal states.
-- `props.theme`: the theme you provide to `<ThemeProvider theme={yourTheme}>` or the default theme.
+- `props.theme`: the object you provide to `ThemeProvider` or the default one.
 
 ```jsx
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -110,11 +111,14 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 </ThemeProvider>;
 ```
 
-> 💡 The side benefit of using a callback is that you can use the theme without creating the outer scoped variable.
+> 💡 The side benefit of using a callback is that you can use the runtime theme without creating the outer scoped variable.
 
 ### Typescript
 
-The callback is typed-safe. `ownerState` is the `ComponentProps` interface and `theme` is `Theme` interface.
+The callback is typed-safe.
+
+- `ownerState`: `ComponentProps` interface, eg. `ButtonProps`, `ChipProps`, etc.
+- `theme`: `Theme` interface from `@mui/material/styles`.
 
 ```tsx
 {
@@ -128,7 +132,17 @@ The callback is typed-safe. `ownerState` is the `ComponentProps` interface and `
 }
 ```
 
-If you extend the `ComponentProps` or [`Theme`](/customization/theming/#custom-variables) via module augmentation, you will be able to see them inside the callback 🎉.
+If you extend the interface via module augmentation like this:
+
+```ts
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
+```
+
+you will be able to see those props in `ownerState.variant` 🎉. `theme` can be augmented as well.
 
 ## Experimental `sx` function
 
@@ -208,11 +222,15 @@ If you want to create a dynamic style based on props, you can return an array fr
 }
 ```
 
-🎉🎉🎉 That's it for today! Happy styling 💅.
+> ⚠️ the callback return type should be an object or an array, we don't support template literals(` `` `) as return type.
+
+<hr />
+
+**That's it for today!** Happy styling 💅.
 
 I hope this small update makes your customization experience better than before. Don't forget to share this update with your friends and/or colleagues.
 
-To get more updates in the future, subscribe to our newsletter at the bottom of this page.
+To get more updates in the future, **subscribe to our newsletter** at the bottom of this page.
 
 ## Read more
 
