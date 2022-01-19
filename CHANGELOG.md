@@ -5757,7 +5757,7 @@ Here are some highlights ✨:
   Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/basics/)).
 
   This change has been in our roadmap for more than a year.
-  We announced it in the [v4 release blog post](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) as a direction v5 would take.
+  We announced it in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/) as a direction v5 would take.
 
 - 🛠 A first iteration on the unstyled components.
 

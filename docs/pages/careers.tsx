@@ -230,8 +230,8 @@ const futureRolesData = [
       {
         title: 'Product Designer',
         description:
-          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-        url: '/company/11-product-designer/',
+          'Design is critical to the success of our mission. We will be looking for skills that complement our Lead Designer. You will empower our community to build outstanding-looking UIs with innovative tools.',
+        url: undefined,
       },
     ],
   },
