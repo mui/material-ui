@@ -12,7 +12,7 @@ This is a reference for upgrading your site from Material-UI v3 to v4. 您可能
 
 ## 为什么您需要迁移呢
 
-此文档介绍了**如何**从 v3 版本迁移到 v4 版本。 关于迁移的**原因**，我们则在 [Medium上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)来详细解说。
+此文档介绍了**如何**从 v3 版本迁移到 v4 版本。 The **why** is covered in the [release blog post on Medium](https://mui.com/blog/material-ui-v4-is-out/).
 
 ## 更新您的依赖包
 
