@@ -8,7 +8,7 @@ export const productPathnames = {
 
 export const markdown = {
   removeDemoRelativePath: (content: string) =>
-    content.replace(/"pages\/[/\-a-zA-Z]*\/([a-zA-Z]*\.js)"/gm, `"$1"`),
+    content.replace(/"pages\/?[^"]*\/([^"]+\.js)"/gm, `"$1"`),
   addMaterialPrefixToLinks: (content: string) => {
     productPathnames.material.forEach((path) => {
       content = content.replace(
