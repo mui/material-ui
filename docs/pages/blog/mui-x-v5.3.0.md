@@ -11,7 +11,7 @@ card: true
 # A step to Premium plan: Row Grouping
 
 A lot of you were asking about it, and we are pleased to announce that the Premium plan is on the road.
-After an incredible year fully focused on improving the DataGrid, we are moving forward by launching the first feature of the Premium plan: the row grouping which is released in v5.3.0.
+After an incredible year fully focused on improving the DataGrid, we are moving forward by launching the first feature of the Premium plan: the [row grouping](/components/data-grid/group-pivot/#row-grouping) which is released in [v5.3.0](https://github.com/mui-org/material-ui-x/releases).
 
 Let me introduce this new feature.
 
@@ -92,4 +92,4 @@ keyGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`;
 
 More details about customization can be found in the [documentation](/components/data-grid/group-pivot/#disable-the-row-grouping)
 
-Thanks for reading. We hope you will enjoy this new feature. Do not hesitate to open [issues](https://github.com/mui-org/material-ui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
+Thanks for reading. To get more information about the v5.3.0, visit the [changelog](https://github.com/mui-org/material-ui-x/releases). We hope you will enjoy this new feature. Do not hesitate to open [issues](https://github.com/mui-org/material-ui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
