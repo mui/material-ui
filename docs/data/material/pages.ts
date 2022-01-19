@@ -129,7 +129,7 @@ const pages = [
         ],
       },
       {
-        pathname: '/x/data-grid',
+        pathname: '/x/data-grid/',
         subheader: 'data-grid',
       },
       {
@@ -138,11 +138,11 @@ const pages = [
         children: [
           { pathname: '/material/about-the-lab', title: 'About the lab 🧪' },
           {
-            pathname: '/material/lab/pickers',
+            pathname: '/material/pickers',
             subheader: 'pickers',
             title: 'Date / Time',
             children: [
-              { pathname: '/material/react-pickers', title: 'Introduction' },
+              { pathname: '/material/pickers', title: 'Introduction' },
               { pathname: '/material/react-date-picker' },
               {
                 pathname: '/material/react-date-range-picker',
