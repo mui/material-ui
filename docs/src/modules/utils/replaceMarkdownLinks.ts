@@ -40,16 +40,6 @@ const replaceStylesLinks = (markdown: string) => {
   return markdown.replace(/\(\/styles\/([^)]*)\)/gm, '(/system/styles/$1)');
 };
 
-export default function replaceMarkdownLinks(markdown: string, asPath: string) {
-  if (
-    asPath.startsWith('/material/') ||
-    asPath.startsWith('/x/') ||
-    asPath.startsWith('/base/') ||
-    (FEATURE_TOGGLE.enable_system_scope && asPath.startsWith('/system'))
-  ) {
-    return replaceStylesLinks(
-      replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(markdown))),
-    );
-  }
-  return markdown;
+export default function replaceMarkdownLinks(markdown: string) {
+  return replaceStylesLinks(replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(markdown))));
 }

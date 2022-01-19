@@ -223,7 +223,7 @@ describe('replaceMarkdownLinks', () => {
       `);
   });
 
-  it('only replace links for new routes (/material/* & /x/*)', () => {
+  it('only replace links for components, api', () => {
     expect(
       replaceMarkdownLinks(
         `
@@ -267,7 +267,6 @@ describe('replaceMarkdownLinks', () => {
         [DataGridPro](/x/api/data-grid/data-grid-pro)
         [System](/system/basics)
     `,
-        '/material/react-buttons',
       ),
     ).to.equal(`
         [ButtonGroup](/material/react-button-group/)
@@ -317,7 +316,7 @@ describe('replaceMarkdownLinks', () => {
     }
   });
 
-  it('does nothing for old routes', () => {
+  it('does not change after transformed', () => {
     expect(
       replaceMarkdownLinks(
         `
@@ -328,7 +327,6 @@ describe('replaceMarkdownLinks', () => {
         [text](/material/react-select/#main-content)
         [text](/material/react-switch/#main-content)
     `,
-        '/components/buttons/',
       ),
     ).to.equal(`
         [ButtonGroup](/material/react-button-group/)
