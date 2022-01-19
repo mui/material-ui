@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
 import prettier from 'prettier';
 import replaceMarkdownLinks from '../src/modules/utils/replaceMarkdownLinks';
@@ -42,13 +42,15 @@ const readdirDeep = (directory: string, pathsProp: string[] = []) => {
 };
 
 function run() {
-  fs.rmdirSync(path.resolve(`docs/src/pages/components`));
-  fs.rmdirSync(path.resolve(`docs/src/pages/customization`));
-  fs.rmdirSync(path.resolve(`docs/src/pages/discover-more`));
-  fs.rmdirSync(path.resolve(`docs/src/pages/getting-started`));
-  fs.rmdirSync(path.resolve(`docs/src/pages/guides`));
-  fs.rmdirSync(path.resolve(`docs/src/pages/styles`));
-  fs.rmdirSync(path.resolve(`docs/src/pages/system`));
+  fs.removeSync(path.resolve(`docs/pages/api-docs`));
+  fs.removeSync(path.resolve(`docs/pages/components`));
+  fs.removeSync(path.resolve(`docs/pages/customization`));
+  fs.removeSync(path.resolve(`docs/pages/discover-more`));
+  fs.removeSync(path.resolve(`docs/pages/getting-started`));
+  fs.removeSync(path.resolve(`docs/pages/guides`));
+  fs.removeSync(path.resolve(`docs/pages/styles`));
+
+  fs.removeSync(path.resolve(`test/e2e-website/material-current.spec.ts`));
 
   const dataDir = readdirDeep(path.resolve(`docs/data`));
   dataDir.forEach((filePath) => {
