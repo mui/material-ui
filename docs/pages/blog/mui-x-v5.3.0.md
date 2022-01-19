@@ -43,7 +43,7 @@ Congratulation! Your users are now able to use the row grouping 🎉.
 
 ## Provide nice default grouping
 
-Save your user time by defining initial grouping. To do so, specify the row grouping model in the `initialState` prop. For a page about director's results, we could group by director, and box office as follow.
+Save your user time by defining initial grouping. To do so, specify the row grouping model in the `initialState` prop. For a page about director's results, we could group by director, and box office as follows.
 
 ```js
 <DataGridPro
@@ -62,9 +62,9 @@ But in a few clicks, you can see that Hitchcock's box office results vary a lot.
 
 <img src="/static/blog/mui-x-v5.3.0/defaultSettings.png" alt="remove groupable option" style="width: 100%; margin-bottom: 16px;" />
 
-## Cherry pick the groupable columns 🍒
+## Cherry-pick the groupable columns 🍒
 
-Before letting your users enjoy this new feature, let adapt it to you use case.
+Before letting your users enjoy this new feature, let adapt it to your use case.
 All the columns are not good candidates for grouping.
 In our movies example, grouping by title does not make sense since each movie has a different name.
 You can remove the ability to group this specific column by setting the property `groupable` to `false` in the column definition.
