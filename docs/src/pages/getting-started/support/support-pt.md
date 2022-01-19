@@ -34,7 +34,7 @@ Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de re
 
 Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
 
-[Leia as últimas postagens](https://medium.com/material-ui)
+[Leia as últimas postagens](https://mui.com/blog/)
 
 ### Recursos 📖
 
