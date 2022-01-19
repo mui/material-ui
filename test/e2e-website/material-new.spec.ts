@@ -29,7 +29,7 @@ test.describe.parallel('Material docs', () => {
 
   test.describe.parallel('Demo page', () => {
     test('should have correct link for API section', async ({ page }) => {
-      await page.goto(`/material/react-cards/`);
+      await page.goto(`/material/react-card/`);
 
       const anchors = await page.locator('div > h2#heading-api ~ ul a');
 
@@ -46,7 +46,7 @@ test.describe.parallel('Material docs', () => {
     });
 
     test('should have correct API link to mui-base', async ({ page }) => {
-      await page.goto(`/material/react-buttons/`);
+      await page.goto(`/material/react-button/`);
 
       await expect(page.locator('a[href="/base/api/button-unstyled/"]')).toContainText(
         '<ButtonUnstyled />',
@@ -54,11 +54,48 @@ test.describe.parallel('Material docs', () => {
     });
 
     test('should have correct link for sidebar anchor', async ({ page }) => {
-      await page.goto(`/material/react-cards/`);
+      await page.goto(`/material/react-card/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
+      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
 
-      await expect(anchor).toHaveAttribute('href', `/material/react-cards/`);
+      await expect(anchor).toHaveAttribute('href', `/material/react-card/`);
+      await expect(anchor).toHaveText('Card');
+    });
+
+    test('should have plural url for Tabs', async ({ page }) => {
+      await page.goto(`/material/react-tabs/`);
+
+      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+
+      await expect(anchor).toHaveAttribute('href', `/material/react-tabs/`);
+      await expect(anchor).toHaveText('Tabs');
+    });
+
+    test('should have plural url for Breadcrumbs', async ({ page }) => {
+      await page.goto(`/material/react-breadcrumbs/`);
+
+      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+
+      await expect(anchor).toHaveAttribute('href', `/material/react-breadcrumbs/`);
+      await expect(anchor).toHaveText('Breadcrumbs');
+    });
+
+    test('should not have react- prefix for icons', async ({ page }) => {
+      await page.goto(`/material/icons/`);
+
+      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+
+      await expect(anchor).toHaveAttribute('href', `/material/icons/`);
+      await expect(anchor).toHaveText('Icons');
+    });
+
+    test('should not have react- prefix for material-icons', async ({ page }) => {
+      await page.goto(`/material/material-icons/`);
+
+      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+
+      await expect(anchor).toHaveAttribute('href', `/material/material-icons/`);
+      await expect(anchor).toHaveText('Material Icons');
     });
   });
 
@@ -123,7 +160,7 @@ test.describe.parallel('Material docs', () => {
 
       const anchor = await page.locator('.DocSearch-Hits a:has-text("Card")');
 
-      await expect(anchor.first()).toHaveAttribute('href', `/material/react-cards/#main-content`);
+      await expect(anchor.first()).toHaveAttribute('href', `/material/react-card/#main-content`);
     });
 
     test('should have correct link when searching API', async ({ page }) => {
