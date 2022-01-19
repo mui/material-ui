@@ -1,5 +1,3 @@
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
-
 export const replaceMaterialLinks = (markdown: string) => {
   return markdown.replace(
     /\(\/(guides|customization|getting-started|discover-more)\/([^)]*)\)/gm,
