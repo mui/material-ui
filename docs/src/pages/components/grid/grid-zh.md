@@ -97,19 +97,19 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ### 负边距
 
-Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size a column based on the natural width of its content.
+将其中一个尺寸的断点属性设置为  `"auto"` 以替代原先的 `true` / `数字`，这样就可以根据其内容的自然宽度来确定该列的尺寸。
 
 {{"demo": "pages/components/grid/VariableWidthGrid.js", "bg": true}}
 
 ## 复杂的栅格
 
-The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.
+以下演示不遵循 Material Design 指南，但它展示了如何使用网格来构建复杂的布局。
 
 {{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## 嵌套栅格
 
-The `container` and `item` props are two independent booleans; they can be combined to allow a Grid component to be both a flex container and child.
+`container` 和 `item` 属性是两个独立的布尔值； 它们可以组合在一起，以允许 Grid 组件既是弹性容器又是子容器。
 
 > 一个 flex **容器** 是通过将 `flex` 或 `inline-flex`的计算显示赋予给一个元素而生成的。 Flex 容器的流入子容器称为 flex **items**， 它们使用 flex 布局模型进行布局。
 
@@ -127,7 +127,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ## 列
 
-You can change the default number of columns (12) with the `columns` prop.
+你可以使用 `columns` 属性来更改默认列数。
 
 {{"demo": "pages/components/grid/ColumnsGrid.js", "bg": true}}
 
@@ -163,11 +163,11 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ## CSS 栅格布局
 
-The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+`网格` 组件的内部是基于 CSS flexbox 构建的。 但如下文所述，您也可以使用 [系统（system）](/system/grid/) 和 CSS 网格来轻松地布局您的页面。
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
 
-## System props
+## 系统属性
 
 As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
 
