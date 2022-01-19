@@ -1,7 +1,7 @@
 ---
 title: Componente React Seletor intervalo de data
 components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
-githubLabel: 'component: DateRangePicker'
+githubLabel: 'component: date range picker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
