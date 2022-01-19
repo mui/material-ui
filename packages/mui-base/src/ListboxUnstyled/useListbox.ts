@@ -84,10 +84,10 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
 
   const createHandleKeyDown =
     (other: Record<string, React.EventHandler<any>>) =>
-    (event: React.KeyboardEvent<HTMLElement> & { defaultMuiPrevented?: boolean }) => {
+    (event: React.KeyboardEvent<HTMLElement>) => {
       other.onKeyDown?.(event);
 
-      if (event.defaultMuiPrevented) {
+      if (event.defaultPrevented) {
         return;
       }
 
@@ -115,12 +115,17 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
 
   const createHandleBlur =
     (other: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent<HTMLElement>) => {
+      other.onBlur?.(event);
+
+      if (event.defaultPrevented) {
+        return;
+      }
+
       if (listboxRef.current?.contains(document.activeElement)) {
         // focus is within the listbox
         return;
       }
 
-      other.onBlur?.(event);
       dispatch({
         type: ActionTypes.blur,
         event,
@@ -130,6 +135,7 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
 
   const getRootProps = (other: Record<string, React.EventHandler<any>> = {}) => {
     return {
+      ...other,
       'aria-activedescendant':
         highlightedIndex >= 0
           ? optionIdGenerator(options[highlightedIndex], highlightedIndex)
@@ -182,5 +188,7 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     getRootProps,
     getOptionProps,
     getOptionState,
+    selectedOption: selectedValue,
+    highlightedOption: options[highlightedIndex] ?? null,
   };
 }

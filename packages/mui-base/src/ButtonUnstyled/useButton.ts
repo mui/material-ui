@@ -98,6 +98,12 @@ export default function useButton(props: UseButtonProps) {
 
   const createHandleKeyDown =
     (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
+      otherHandlers.onKeyDown?.(event);
+
+      if (event.defaultPrevented) {
+        return;
+      }
+
       if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
         event.preventDefault();
       }
@@ -105,8 +111,6 @@ export default function useButton(props: UseButtonProps) {
       if (event.target === event.currentTarget && event.key === ' ' && !disabled) {
         setActive(true);
       }
-
-      otherHandlers.onKeyDown?.(event);
 
       // Keyboard accessibility for non interactive elements
       if (

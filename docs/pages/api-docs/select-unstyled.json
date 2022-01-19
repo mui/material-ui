@@ -7,14 +7,14 @@
     },
     "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultListboxOpen": { "type": { "name": "bool" } },
-    "defaultValue": { "type": { "name": "object" } },
+    "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },
     "renderValue": { "type": { "name": "func" } },
-    "value": { "type": { "name": "object" } }
+    "value": { "type": { "name": "any" } }
   },
   "name": "SelectUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

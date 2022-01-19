@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { unstable_useControlled as useControlled } from '@mui/utils';
+import {
+  unstable_useControlled as useControlled,
+  unstable_useForkRef as useForkRef,
+} from '@mui/utils';
 import { useButton } from '../ButtonUnstyled';
 import {
   SelectOption,
@@ -42,7 +45,7 @@ function useSelect<TValue>(props: UseSelectMultiProps<TValue>): UseSelectMultiRe
 function useSelect<TValue>(props: UseSelectProps<TValue>) {
   const {
     buttonComponent,
-    buttonRef,
+    buttonRef: buttonRefProp,
     defaultValue,
     disabled = false,
     listboxId,
@@ -56,6 +59,9 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     value: valueProp,
   } = props;
 
+  const buttonRef = React.useRef<HTMLElement>(null);
+  const handleButtonRef = useForkRef(buttonRefProp, buttonRef);
+
   const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -66,34 +72,44 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
   const handleButtonClick = (event: React.MouseEvent) => {
     onButtonClick?.(event);
     if (!event.defaultPrevented) {
-      onOpenChange?.(true);
+      onOpenChange?.(!open);
     }
   };
 
   const createHandleButtonKeyDown =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
       otherHandlers?.onKeyDown?.(event);
-
       if (event.defaultPrevented) {
         return;
       }
 
-      if (event.key === 'Enter' || event.key === ' ' || (multiple && event.key === 'ArrowDown')) {
-        event.preventDefault();
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
         onOpenChange?.(true);
       }
     };
 
-  const createHandleListboxKeyDown =
+  const createHandleListboxKeyUp =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
-      otherHandlers?.onKeyDown?.(event);
-
+      otherHandlers?.onKeyUp?.(event);
       if (event.defaultPrevented) {
         return;
       }
 
-      if (event.key === 'Escape' && open) {
-        event.preventDefault();
+      const closingKeys = multiple ? ['Escape'] : ['Escape', 'Enter', ' '];
+
+      if (open && closingKeys.includes(event.key)) {
+        setTimeout(() => buttonRef?.current?.focus(), 0);
+      }
+    };
+
+  const createHandleListboxItemClick =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
+      otherHandlers?.onClick?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      if (!multiple) {
         onOpenChange?.(false);
       }
     };
@@ -102,14 +118,19 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
       otherHandlers?.blur?.(event);
       if (!event.defaultPrevented) {
-        onOpenChange?.(false);
+        setTimeout(() => onOpenChange?.(false), 0);
       }
     };
 
   const listboxReducer: ListboxReducer<SelectOption<TValue>> = (state, action) => {
     const newState = defaultListboxReducer(state, action);
 
-    if (action.type === ActionTypes.keyDown && !open) {
+    // change selection when listbox is closed
+    if (
+      action.type === ActionTypes.keyDown &&
+      !open &&
+      (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
+    ) {
       const optionToSelect = action.props.options[newState.highlightedIndex];
 
       return {
@@ -144,7 +165,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     component: buttonComponent,
     disabled,
     onClick: handleButtonClick,
-    ref: buttonRef,
+    ref: handleButtonRef,
   });
 
   const selectedOption = React.useMemo(
@@ -162,6 +183,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       id: listboxId,
       isOptionDisabled: (o) => o?.disabled ?? false,
       optionComparer: (o, v) => o?.value === v?.value,
+      listboxRef,
       multiple: true,
       onChange: (newOptions) => {
         setValue(newOptions.map((o) => o.value));
@@ -191,7 +213,10 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     getRootProps: getListboxProps,
     getOptionProps,
     getOptionState,
+    highlightedOption,
   } = useListbox(useListboxParameters);
+
+  React.useDebugValue({ value, open, highlightedOption });
 
   return {
     buttonActive,
@@ -201,9 +226,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       return {
         ...getButtonProps({
           ...otherHandlers,
-          // Make arrow keys work even when the listbox isn't open:
-          onKeyDown: getListboxProps({ onKeyDown: createHandleButtonKeyDown(otherHandlers) })
-            .onKeyDown,
+          onKeyDown: createHandleButtonKeyDown(otherHandlers),
         }),
         'aria-expanded': open,
         'aria-haspopup': 'listbox' as const,
@@ -213,10 +236,19 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       getListboxProps({
         ...otherHandlers,
         onBlur: createHandleListboxBlur(otherHandlers),
-        onKeyDown: createHandleListboxKeyDown(otherHandlers),
+        onKeyUp: createHandleListboxKeyUp(otherHandlers),
       }),
-    getOptionProps,
+    getOptionProps: (
+      option: SelectOption<TValue>,
+      otherHandlers?: Record<string, React.EventHandler<any>>,
+    ) => {
+      return getOptionProps(option, {
+        ...otherHandlers,
+        onClick: createHandleListboxItemClick(otherHandlers),
+      });
+    },
     getOptionState,
+    open,
     value,
   };
 }

@@ -26,7 +26,7 @@ describe('MultiSelectUnstyled', () => {
     muiName: 'MuiSelect',
     slots: {
       root: {
-        expectedClassName: selectUnstyledClasses.button,
+        expectedClassName: selectUnstyledClasses.root,
       },
       listbox: {
         expectedClassName: selectUnstyledClasses.listbox,

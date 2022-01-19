@@ -23,8 +23,8 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
   const { active, disabled, open, focusVisible } = ownerState;
 
   const slots = {
-    button: [
-      'button',
+    root: [
+      'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       active && 'active',
@@ -94,12 +94,24 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
 
-  const handleListboxRef = (element: HTMLUListElement) => {
-    if (element != null) {
-      // whenever the listbox is visible, it should be focused
-      element.focus();
+  const [listboxFocusRequested, requestListboxFocus] = React.useState(false);
+  const listboxRef = React.useRef<HTMLElement | null>(null);
+
+  const focusListboxIfRequested = React.useCallback(() => {
+    if (listboxFocusRequested && listboxRef.current != null) {
+      listboxRef.current.focus();
+      requestListboxFocus(false);
     }
+  }, [listboxFocusRequested]);
+
+  const handleListboxRef = (listboxElement: HTMLUListElement) => {
+    listboxRef.current = listboxElement;
+    focusListboxIfRequested();
   };
+
+  React.useEffect(() => {
+    focusListboxIfRequested();
+  }, [focusListboxIfRequested]);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -107,13 +119,8 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     }
   }, [autoFocus]);
 
-  const handleChange = (newValue: TValue | null) => {
-    onChange?.(newValue);
-    setListboxOpen(false);
-    buttonRef.current?.focus();
-  };
-
   const handleOpenChange = (isOpen: boolean) => {
+    requestListboxFocus(isOpen);
     setListboxOpen(isOpen);
     onListboxOpenChange?.(isOpen);
   };
@@ -134,7 +141,8 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     disabled: disabledProp,
     listboxId,
     listboxRef: handleListboxRef,
-    onChange: handleChange,
+    multiple: false,
+    onChange,
     onOpenChange: handleOpenChange,
     open: listboxOpen,
     options,
@@ -164,7 +172,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
       ...other,
       ...componentsProps.root,
       ...getButtonProps(),
-      className: clsx(className, componentsProps.root?.className, classes.button),
+      className: clsx(className, componentsProps.root?.className, classes.root),
     },
     ownerState,
   );
@@ -187,6 +195,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   return (
     <React.Fragment>
       <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
+      <pre>value: {value}</pre>
       {buttonDefined && (
         <PopperUnstyled
           open={listboxOpen}

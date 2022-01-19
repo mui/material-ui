@@ -28,8 +28,8 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
   const { active, disabled, open, focusVisible } = ownerState;
 
   const slots = {
-    button: [
-      'button',
+    root: [
+      'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       active && 'active',
@@ -98,12 +98,24 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
 
-  const handleListboxRef = (element: HTMLUListElement) => {
-    if (element != null) {
-      // whenever the listbox is visible, it should be focused
-      element.focus();
+  const [listboxFocusRequested, requestListboxFocus] = React.useState(false);
+  const listboxRef = React.useRef<HTMLElement | null>(null);
+
+  const focusListboxIfRequested = React.useCallback(() => {
+    if (listboxFocusRequested && listboxRef.current != null) {
+      listboxRef.current.focus();
+      requestListboxFocus(false);
     }
+  }, [listboxFocusRequested]);
+
+  const handleListboxRef = (listboxElement: HTMLUListElement) => {
+    listboxRef.current = listboxElement;
+    focusListboxIfRequested();
   };
+
+  React.useEffect(() => {
+    focusListboxIfRequested();
+  }, [focusListboxIfRequested]);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -111,11 +123,8 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     }
   }, [autoFocus]);
 
-  const handleChange = (newValues: TValue[]) => {
-    onChange?.(newValues);
-  };
-
   const handleOpenChange = (isOpen: boolean) => {
+    requestListboxFocus(isOpen);
     setListboxOpen(isOpen);
     onListboxOpenChange?.(isOpen);
   };
@@ -137,7 +146,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     listboxId,
     listboxRef: handleListboxRef,
     multiple: true,
-    onChange: handleChange,
+    onChange,
     onOpenChange: handleOpenChange,
     open: listboxOpen,
     options,
@@ -170,7 +179,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
       ...other,
       ...componentsProps.root,
       ...getButtonProps(),
-      className: clsx(className, componentsProps.root?.className, classes.button),
+      className: clsx(className, componentsProps.root?.className, classes.root),
     },
     ownerState,
   );
