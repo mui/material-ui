@@ -40,7 +40,7 @@ Ao começar a aprender MUI, você pode encontrar postagens de blogs de terceiros
 
 - **Implement high fidelity designs**: Ponte entre a lacuna de Design & Desenvolvimento. Divida os projetos detalhadamente e os traga a vida com Material-UI e React.
 
-  - 💻 [O Curso](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
+  - 💻 [The Course](https://www.udemy.com/course/implement-high-fidelity-designs-with-material-ui-and-reactjs/)
 
 - **Apply Google Material Design**: Este curso ensina os fundamentos do Google Material Design e como desenvolver uma pesquisa e aplicação de reserva de voo de ponta a ponta usando Material-UI e React.
 
