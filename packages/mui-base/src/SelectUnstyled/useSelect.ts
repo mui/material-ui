@@ -84,6 +84,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       }
 
       if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
         onOpenChange?.(true);
       }
     };

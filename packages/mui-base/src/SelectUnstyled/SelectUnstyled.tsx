@@ -195,7 +195,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   return (
     <React.Fragment>
       <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
-      <pre>value: {value}</pre>
       {buttonDefined && (
         <PopperUnstyled
           open={listboxOpen}
