@@ -1,7 +1,7 @@
 ---
 title: Componente React Interruptor
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
-githubLabel: 'component: Switch'
+githubLabel: 'component: switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
