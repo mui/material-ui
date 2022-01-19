@@ -1,7 +1,7 @@
 ---
 title: React Circular progress（进度环组件），React Linear progress （进度条组件）
 components: CircularProgress, LinearProgress
-githubLabel: 'component: CircularProgress'
+githubLabel: 'component: progress'
 materialDesign: https://material.io/components/progress-indicators
 ---
 
