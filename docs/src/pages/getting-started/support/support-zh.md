@@ -34,7 +34,7 @@ For crowdsourced answers from expert MUI developers in our community. StackOverf
 
 请订阅我们的博客来了解我们库的开发的最新情况。
 
-[阅读最新的博文](https://medium.com/material-ui)
+[阅读最新的博文](https://mui.com/blog/)
 
 ### 资源 📖
 
