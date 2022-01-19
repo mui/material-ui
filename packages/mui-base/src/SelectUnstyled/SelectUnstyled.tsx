@@ -250,7 +250,10 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    listbox: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * If `true`, the select will be initially open.
    * @default false

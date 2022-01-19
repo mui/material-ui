@@ -8,7 +8,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ label?: object, list?: object, root?: object }"
+      },
+      "default": "{}"
+    },
     "disabled": { "type": { "name": "bool" } },
     "label": { "type": { "name": "node" } }
   },

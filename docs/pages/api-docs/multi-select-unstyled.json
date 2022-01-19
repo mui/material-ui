@@ -5,7 +5,10 @@
       "type": { "name": "shape", "description": "{ Listbox?: elementType, Root?: elementType }" },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ listbox?: object, root?: object }" },
+      "default": "{}"
+    },
     "defaultListboxOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "array" }, "default": "[]" },
     "disabled": { "type": { "name": "bool" } },

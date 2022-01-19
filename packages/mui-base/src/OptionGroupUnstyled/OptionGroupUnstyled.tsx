@@ -104,7 +104,11 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    label: PropTypes.object,
+    list: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * If `true` all the options in the group will be disabled.
    * @default false
