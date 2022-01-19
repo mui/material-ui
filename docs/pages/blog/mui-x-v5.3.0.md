@@ -3,10 +3,7 @@ title: 'Introducing Row Grouping Feature'
 description: After more than a year of development on the DataGrid, the first premium feature is live.
 date: 2022-01-20T00:00:00.000Z
 authors: ['alexfauquette']
-card: true
 ---
-
-<!-- <img src="/static/blog/2021/card.png" alt="" style="width: 100%; margin-bottom: 16px;" /> -->
 
 # A step to Premium plan: Row Grouping
 
