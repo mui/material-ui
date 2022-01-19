@@ -2,7 +2,7 @@
 title: React Checkbox（选择框）组件
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
-githubLabel: 'component: Checkbox'
+githubLabel: 'component: checkbox'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 

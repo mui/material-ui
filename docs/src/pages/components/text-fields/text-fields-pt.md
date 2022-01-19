@@ -1,7 +1,12 @@
 ---
 title: Componente React para Campo de Texto
+<<<<<<< HEAD
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: TextField'
+=======
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
+githubLabel: 'component: text field'
+>>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)
 materialDesign: https://material.io/components/text-fields
 ---
 

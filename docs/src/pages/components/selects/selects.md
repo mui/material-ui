@@ -1,7 +1,7 @@
 ---
 title: React Select component
 components: Select, NativeSelect, SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
-githubLabel: 'component: Select'
+githubLabel: 'component: select'
 ---
 
 # Select

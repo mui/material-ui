@@ -1,7 +1,7 @@
 ---
 title: React Snackbar component
 components: Snackbar, SnackbarContent
-githubLabel: 'component: Snackbar'
+githubLabel: 'component: snackbar'
 materialDesign: https://material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 ---

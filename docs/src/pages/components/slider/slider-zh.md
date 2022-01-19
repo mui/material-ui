@@ -1,7 +1,7 @@
 ---
 title: React Slider（滑块）组件
 components: Slider, SliderUnstyled
-githubLabel: 'component: Slider'
+githubLabel: 'component: slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 ---

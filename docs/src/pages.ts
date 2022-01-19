@@ -6,6 +6,10 @@ export interface MuiPage {
   disableDrawer?: boolean;
   icon?: string;
   /**
+   * In case the children have pathnames out of pathname value, use this field to scope other pathnames
+   */
+  scopePathnames?: string[];
+  /**
    * Pages are considered to be ordered depth-first.
    * If a page should be excluded from this order, set `order: false`.
    * You want to set `ordered: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
