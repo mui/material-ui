@@ -1,9 +1,8 @@
 ---
 title: 'Introducing Row Grouping Feature'
 description: After more than a year of development on the DataGrid, the first premium feature is live.
-date: 2022-01-15T00:00:00.000Z
-authors:
-  ['oliviertassinari', 'm4theushw', 'flaviendelangle', 'DanailH', 'alexfauquette']
+date: 2022-01-20T00:00:00.000Z
+authors: ['alexfauquette']
 card: true
 ---
 
@@ -25,11 +24,11 @@ It is now possible with row grouping.
 
 Let's play with the top 250 movies according to IMDb.
 There is not a clear hierarchy to organize movies.
-Should you group them by director, box office results or year of release?
+Should you group them by director, box office results, or year of release?
 The answer depends on what the user wants to do.
 So let them be free to choose their own organization.
-With the row grouping, they can go in the option menu of the “director” column and click on “Group by director” to group all the rows with the same director.
-If they are not interested anymore by the director, they can simply click on “Stop grouping by director”.
+With the row grouping, they can go to the column menu of the “director” column and click on “Group by director” to group all the rows with the same director.
+If they are not interested anymore in the director, they can simply click on “Stop grouping by director”.
 
 <img src="/static/blog/mui-x-v5.3.0/blog1.gif" alt="grouping and un-grouping by director" style="width: 100%; margin-bottom: 16px;" />
 
@@ -61,7 +60,8 @@ Save your user time by defining initial grouping. To do so, specify the row grou
 />
 ```
 
-Users are still free to modify this grouping configuration by going into the option menues. But in few click you can se that Hitchcock's box office results vary a lot.
+Users are still free to modify this grouping configuration by going into the column menu.
+But in a few clicks, you can see that Hitchcock's box office results vary a lot.
 
 <img src="/static/blog/mui-x-v5.3.0/defaultSettings.png" alt="remove groupable option" style="width: 100%; margin-bottom: 16px;" />
 
@@ -79,7 +79,7 @@ You can remove the ability to group this specific column by setting the property
 Some columns are interesting, but not that easy to group by.
 For example, the release date of a movie is interesting, but grouping by the exact date leads to one group per movie (except for “The Thing” and “Blade Runner” both released on June 25, 1982).
 It is more interesting to group them by decade.
-For this purpose, column definition accept the property `keyGetter`.
+For this purpose, the column definitions accept the property `keyGetter`.
 Its signature is similar to `valueGetter` and it returns the grouping key associated to the column. To group movies by decade, you can use for example
 
 ```js
@@ -92,4 +92,4 @@ keyGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`;
 
 More details about customization can be found in the [documentation](/components/data-grid/group-pivot/#disable-the-row-grouping)
 
-Thanks for reading. We hope you will enjoy this new feature. Do not hesitate to open [issues](https://github.com/mui-org/material-ui-x/issues/new/choose) to share feedbacks, report bugs, or propose enhancement.
+Thanks for reading. We hope you will enjoy this new feature. Do not hesitate to open [issues](https://github.com/mui-org/material-ui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
