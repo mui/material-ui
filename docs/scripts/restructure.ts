@@ -12,19 +12,23 @@ const workspaceRoot = path.resolve(__dirname, '../../');
 const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
 
 function writePrettifiedFile(filename: string, data: string, options: object = {}) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
-    config: prettierConfigPath,
-  });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
-    );
-  }
+  if (filename.endsWith('.tsx.preview')) {
+    fs.writeFileSync(filename, data);
+  } else {
+    const prettierConfig = prettier.resolveConfig.sync(filename, {
+      config: prettierConfigPath,
+    });
+    if (prettierConfig === null) {
+      throw new Error(
+        `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
+      );
+    }
 
-  fs.writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
-    encoding: 'utf8',
-    ...options,
-  });
+    fs.writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+      encoding: 'utf8',
+      ...options,
+    });
+  }
 }
 
 const appendSource = (target: string, template: string, source: string) => {
@@ -107,7 +111,7 @@ function run() {
             }
           }
           fs.mkdirSync(info.directory, { recursive: true });
-          fs.writeFileSync(info.path, data); // (A)
+          writePrettifiedFile(info.path, data); // (A)
 
           fs.rmSync(filePath);
         }
@@ -128,9 +132,9 @@ function run() {
               }
 
               fs.mkdirSync(info.directory, { recursive: true });
-              fs.writeFileSync(info.path, data);
+              writePrettifiedFile(info.path, data);
 
-              fs.writeFileSync(filePath, data);
+              writePrettifiedFile(filePath, data);
             }
           }
         } else {
@@ -138,7 +142,7 @@ function run() {
           if (filePath.endsWith('.js')) {
             data = data.replace(`/src/pages/`, `/data/`); // point to data path (A) in new directory
           }
-          fs.writeFileSync(filePath, data);
+          writePrettifiedFile(filePath, data);
         }
       });
     });
@@ -157,7 +161,7 @@ function run() {
     }
     const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
     fs.mkdirSync(match[1].replace('src/pages', 'data'), { recursive: true });
-    fs.writeFileSync(filePath.replace('src/pages', 'data'), data);
+    writePrettifiedFile(filePath.replace('src/pages', 'data'), data);
 
     fs.rmSync(filePath);
   });
@@ -170,12 +174,12 @@ function run() {
     }
 
     // replace the old file
-    fs.writeFileSync(filePath, data);
+    writePrettifiedFile(filePath, data);
 
     // add to /system
     const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
     fs.mkdirSync(match[1].replace('pages/styles', 'pages/system/styles'), { recursive: true });
-    fs.writeFileSync(filePath.replace('pages/styles', 'pages/system/styles'), data);
+    writePrettifiedFile(filePath.replace('pages/styles', 'pages/system/styles'), data);
   });
   // =======================================================================
 
@@ -191,7 +195,7 @@ function run() {
     `enable_product_scope: true`,
   );
 
-  fs.writeFileSync(featureTogglePath, featureToggle);
+  writePrettifiedFile(featureTogglePath, featureToggle);
 }
 
 run();

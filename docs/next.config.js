@@ -259,30 +259,57 @@ module.exports = {
           permanent: false,
         },
         {
-          source: '/components/about-the-lab',
-          destination: '/material/about-the-lab',
-          permanent: false,
-        },
-        {
           source: '/components/data-grid/:path*',
           destination: '/x/react-data-grid/:path*',
           permanent: false,
         },
         {
-          source: '/components/:path*',
-          destination: '/material/react-:path*',
+          source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
+          destination: '/material/:slug',
+          permanent: false,
+        },
+        {
+          source: '/components/:path(tabs|breadcrumbs)',
+          destination: '/material/react-:path',
+          permanent: false,
+        },
+        ...['checkboxes', 'switches'].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material/react-${component.replace(/es$/, '')}`,
+          permanent: false,
+        })),
+        ...[
+          'buttons',
+          'radio-buttons',
+          'selects',
+          'text-fields',
+          'avatars',
+          'badges',
+          'chips',
+          'dividers',
+          'lists',
+          'tables',
+          'tooltips',
+          'dialogs',
+          'snackbars',
+          'cards',
+          'drawers',
+          'links',
+          'menus',
+          'steppers',
+        ].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material/react-${component.replace(/s$/, '')}`,
+          permanent: false,
+        })),
+        {
+          source: '/components/:path',
+          destination: '/material/react-:path',
           permanent: false,
         },
         {
           source: '/api/data-grid/:path*',
           destination: '/x/api/data-grid/:path*',
-          permanent: false,
-        },
-        {
-          source:
-            // if this regex change, make sure to update `replaceMarkdownLinks`
-            '/api/:path(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)',
-          destination: '/material/api/:path*',
           permanent: false,
         },
         {
