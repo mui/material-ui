@@ -79,11 +79,11 @@ You can remove the ability to group this specific column by setting the property
 Some columns are interesting, but not that easy to group by.
 For example, the release date of a movie is interesting, but grouping by the exact date leads to one group per movie (except for “The Thing” and “Blade Runner” both released on June 25, 1982).
 It is more interesting to group them by decade.
-For this purpose, the column definitions accept the property `keyGetter`.
-Its signature is similar to `valueGetter` and it returns the grouping key associated to the column. To group movies by decade, you can use for example
+For this purpose, the column definitions accept the property [`groupingValueGetter`](/components/data-grid/group-pivot/#using-groupingvaluegetter-for-complex-grouping-value).
+Its signature is similar to `valueGetter` and it returns the grouping value associated to the column. To group movies by decade, you can use for example
 
 ```js
-keyGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`;
+groupingValueGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`;
 ```
 
 <img src="/static/blog/mui-x-v5.3.0/blog2.gif" alt="grouping by release decade" style="width: 100%; margin-bottom: 16px;" />
