@@ -1,7 +1,7 @@
 ---
 title: React Backdrop（背景暗化）组件
 components: Backdrop, BackdropUnstyled
-githubLabel: 'component: Backdrop'
+githubLabel: 'component: backdrop'
 ---
 
 # Backdrop 背景蒙版
