@@ -94,7 +94,9 @@ describe('buildApiUtils', () => {
         name: 'Button',
         apiPathname: '/api/button/',
         muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/api-docs')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(`docs${path.sep}pages${path.sep}api-docs`),
+        ),
       });
 
       expect(info.getInheritance('ButtonBase')).to.deep.equal({
@@ -122,7 +124,9 @@ describe('buildApiUtils', () => {
         name: 'Icon',
         apiPathname: '/api/icon/',
         muiName: 'MuiIcon',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/api-docs')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(`docs${path.sep}pages${path.sep}api-docs`),
+        ),
       });
 
       expect(info.getDemos()).to.deep.equal([
