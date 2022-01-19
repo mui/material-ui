@@ -7,6 +7,7 @@ import {
   productPathnames,
   markdown,
 } from './restructureUtils';
+import { replaceComponentLinks as replaceMarkdownComponentLinks } from '../src/modules/utils/replaceMarkdownLinks';
 
 const workspaceRoot = path.resolve(__dirname, '../../');
 const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
@@ -105,6 +106,7 @@ function run() {
             if (product === 'material') {
               data = markdown.addProductFrontmatter(data, 'material');
             }
+            data = replaceMarkdownComponentLinks(data);
           }
           fs.mkdirSync(info.directory, { recursive: true });
           fs.writeFileSync(info.path, data); // (A)

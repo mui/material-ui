@@ -10,7 +10,28 @@ export const replaceMaterialLinks = (markdown: string) => {
 export const replaceComponentLinks = (markdown: string) => {
   return markdown
     .replace(/href=(\\*?)"\/components\/data-grid([^"]*)"/gm, 'href=$1"/x/react-data-grid$2"')
-    .replace(/href=(\\*?)"\/components\/([^"]+)"/gm, 'href=$1"/material/react-$2"');
+    .replace(
+      /href=(\\*?)"\/components\/((icons|material-icons|transitions|pickers|about-the-lab)\/?.*)"/gm,
+      'href=$1"/material/$2"',
+    )
+    .replace(
+      /href=(\\*?)"\/components\/(?!tabs|breadcrumbs)([^"]*)"/gm,
+      'href=$1"/material/react-$2"',
+    )
+    .replace(
+      /href=(\\*?)"\/material\/(react-[-a-z]+)(x|ch)es(\/|#)([^"]*)"/gm,
+      'href=$1"/material/$2$3$4$5"',
+    )
+    .replace(/href=(\\*?)"\/material\/(react-[-a-z]+)(x|ch)es"/gm, 'href=$1"/material/$2$3"')
+    .replace(
+      /href=(\\*?)"\/material\/(react-[-a-z]+)s(\/|#)([^"]*)"/gm,
+      'href=$1"/material/$2$3$4"',
+    )
+    .replace(/href=(\\*?)"\/material\/(react-[-a-z]+)s"/gm, 'href=$1"/material/$2"')
+    .replace(
+      /href=(\\*?)"\/components\/(tabs|breadcrumbs)([^"]*)"/gm,
+      'href=$1"/material/react-$2$3"',
+    );
 };
 
 export const replaceAPILinks = (markdown: string) => {

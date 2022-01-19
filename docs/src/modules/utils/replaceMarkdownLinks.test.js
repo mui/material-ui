@@ -53,6 +53,32 @@ describe('replaceMarkdownLinks', () => {
       <ul>
       <li><a href="/components/button-group/">Button Group</a></li>
       <li><a href="/components/buttons/">Buttons</a></li>
+      <li><a href="/components/checkboxes/#main-content">text</a></li>
+      <li><a href="/components/radio-buttons#main-content">text</a></li>
+      <li><a href="/components/selects/#main-content">text</a></li>
+      <li><a href="/components/switches/#main-content">text</a></li>
+      <li><a href="/components/text-fields/#main-content">text</a></li>
+      <li><a href="/components/avatars/#main-content">text</a></li>
+      <li><a href="/components/badges/#main-content">text</a></li>
+      <li><a href="/components/chips/#main-content">text</a></li>
+      <li><a href="/components/dividers/#main-content">text</a></li>
+      <li><a href="/components/icons/#main-content">text</a></li>
+      <li><a href="/components/material-icons/#main-content">text</a></li>
+      <li><a href="/components/lists/#main-content">text</a></li>
+      <li><a href="/components/tables/#main-content">text</a></li>
+      <li><a href="/components/tooltips/#main-content">text</a></li>
+      <li><a href="/components/dialogs/#main-content">text</a></li>
+      <li><a href="/components/snackbars/#main-content">text</a></li>
+      <li><a href="/components/cards/#main-content">text</a></li>
+      <li><a href="/components/breadcrumbs/#main-content">text</a></li>
+      <li><a href="/components/drawers/#main-content">text</a></li>
+      <li><a href="/components/links/#main-content">text</a></li>
+      <li><a href="/components/menus/#main-content">text</a></li>
+      <li><a href="/components/steppers/#main-content">text</a></li>
+      <li><a href="/components/tabs/#main-content">text</a></li>
+      <li><a href="/components/transitions/#main-content">text</a></li>
+      <li><a href="/components/pickers/#main-content">text</a></li>
+      -
       <li><a href="/components/tree-view/">Tree view</a></li>
       <li><a href="/components/data-grid/demo/">Demo</a></li>
       </ul>
@@ -60,7 +86,33 @@ describe('replaceMarkdownLinks', () => {
     ).to.equal(`
       <ul>
       <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-buttons/">Buttons</a></li>
+      <li><a href="/material/react-button/">Buttons</a></li>
+      <li><a href="/material/react-checkbox/#main-content">text</a></li>
+      <li><a href="/material/react-radio-button#main-content">text</a></li>
+      <li><a href="/material/react-select/#main-content">text</a></li>
+      <li><a href="/material/react-switch/#main-content">text</a></li>
+      <li><a href="/material/react-text-field/#main-content">text</a></li>
+      <li><a href="/material/react-avatar/#main-content">text</a></li>
+      <li><a href="/material/react-badge/#main-content">text</a></li>
+      <li><a href="/material/react-chip/#main-content">text</a></li>
+      <li><a href="/material/react-divider/#main-content">text</a></li>
+      <li><a href="/material/icons/#main-content">text</a></li>
+      <li><a href="/material/material-icons/#main-content">text</a></li>
+      <li><a href="/material/react-list/#main-content">text</a></li>
+      <li><a href="/material/react-table/#main-content">text</a></li>
+      <li><a href="/material/react-tooltip/#main-content">text</a></li>
+      <li><a href="/material/react-dialog/#main-content">text</a></li>
+      <li><a href="/material/react-snackbar/#main-content">text</a></li>
+      <li><a href="/material/react-card/#main-content">text</a></li>
+      <li><a href="/material/react-breadcrumbs/#main-content">text</a></li>
+      <li><a href="/material/react-drawer/#main-content">text</a></li>
+      <li><a href="/material/react-link/#main-content">text</a></li>
+      <li><a href="/material/react-menu/#main-content">text</a></li>
+      <li><a href="/material/react-stepper/#main-content">text</a></li>
+      <li><a href="/material/react-tabs/#main-content">text</a></li>
+      <li><a href="/material/transitions/#main-content">text</a></li>
+      <li><a href="/material/pickers/#main-content">text</a></li>
+      -
       <li><a href="/material/react-tree-view/">Tree view</a></li>
       <li><a href="/x/react-data-grid/demo/">Demo</a></li>
       </ul>
@@ -72,7 +124,7 @@ describe('replaceMarkdownLinks', () => {
       replaceComponentLinks(`
       <ul>
       <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-buttons/">Buttons</a></li>
+      <li><a href="/material/react-button/">Buttons</a></li>
       <li><a href="/material/react-tree-view/">Tree view</a></li>
       <li><a href="/x/react-data-grid/demo/">Demo</a></li>
       </ul>
@@ -80,7 +132,7 @@ describe('replaceMarkdownLinks', () => {
     ).to.equal(`
       <ul>
       <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-buttons/">Buttons</a></li>
+      <li><a href="/material/react-button/">Buttons</a></li>
       <li><a href="/material/react-tree-view/">Tree view</a></li>
       <li><a href="/x/react-data-grid/demo/">Demo</a></li>
       </ul>
@@ -165,7 +217,7 @@ describe('replaceMarkdownLinks', () => {
     ).to.equal(`
     <ul>
     <li><a href="/material/react-button-group/">Button Group</a></li>
-    <li><a href="/material/react-buttons/">Buttons</a></li>
+    <li><a href="/material/react-button/">Buttons</a></li>
     <li><a href="/material/react-tree-view/">Tree view</a></li>
     <li><a href="/x/react-data-grid/demo/">Demo</a></li>
     <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
