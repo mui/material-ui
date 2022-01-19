@@ -1,7 +1,7 @@
 ---
 title: Componente React para Transferência de Lista
 components: List, ListItem, Checkbox, Switch
-githubLabel: 'component: TransferList'
+githubLabel: 'component: transfer list'
 ---
 
 # Transferência de Lista
