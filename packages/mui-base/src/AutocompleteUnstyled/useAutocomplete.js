@@ -824,7 +824,7 @@ export default function useAutocomplete(props) {
           }
           break;
         case 'Backspace':
-          if (multiple && inputValue === '' && value.length > 0) {
+          if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
             newValue.splice(index, 1);
@@ -1042,7 +1042,7 @@ export default function useAutocomplete(props) {
       key: index,
       'data-tag-index': index,
       tabIndex: -1,
-      onDelete: handleTagDelete(index),
+      ...(!readOnly && { onDelete: handleTagDelete(index) }),
     }),
     getListboxProps: () => ({
       role: 'listbox',
