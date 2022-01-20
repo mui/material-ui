@@ -2408,7 +2408,7 @@ describe('<Autocomplete />', () => {
 
   describe('prop: readOnly', () => {
     it('should make the input readonly', () => {
-       render(
+      render(
         <Autocomplete
           readOnly
           options={['one', 'two', 'three']}
@@ -2417,7 +2417,7 @@ describe('<Autocomplete />', () => {
       );
       const input = screen.getByRole('textbox');
       expect(input).to.have.attribute('readonly');
-    })
+    });
 
     it('should not render the clear button', () => {
       render(
@@ -2445,7 +2445,7 @@ describe('<Autocomplete />', () => {
     });
 
     it('should focus on input when clicked', () => {
-     render(
+      render(
         <Autocomplete
           readOnly
           defaultValue="one"
@@ -2464,10 +2464,10 @@ describe('<Autocomplete />', () => {
       fireEvent.click(screen.queryByTitle('Open'));
 
       expect(textbox).toHaveFocus();
-    })
+    });
 
     it('should not open the popup', () => {
-     render(
+      render(
         <Autocomplete
           readOnly
           options={['one', 'two', 'three']}
@@ -2477,6 +2477,6 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('textbox');
       fireEvent.mouseDown(textbox);
       expect(screen.queryByRole('listbox')).to.equal(null);
-    })
-  })
+    });
+  });
 });
