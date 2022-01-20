@@ -1,6 +1,6 @@
 ---
 title: Material v5.3 — Theming upgrade
-description: We are excited to announce the callback support for global theme overrides!
+description: We're excited to introduce in this minor the callback support for global theme overrides!
 date: 2022-01-18T00:00:00.000Z
 authors: ['siriwatknp']
 tags: ['MUI Core']
@@ -64,9 +64,9 @@ card: false
 
 ## The problems
 
-In v4, the style engine library was JSS which has some limitations. Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at [`Chip` classes](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/Chip/chipClasses.ts) for example, there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`). This leads to a bad theming experience because developers need to know the specific key in order to customize.
+In v4, the style engine library was JSS which had some limitations. Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at the [`Chip` classes](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/Chip/chipClasses.ts) for example, there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`). This leads to a bad theming experience because developers need to know the specific key in order to customize.
 
-It would be better if developers can read the props and create a custom style without knowing what key they should use.
+We believe it would be better for developers if they could create custom styles by reading the component props, without ever needing to know what key they should use.
 
 Fortunately, it is now possible in v5 because of the new style engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an **object** (static overrides) or a **callback** (dynamic overrides).
 
@@ -115,7 +115,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 ### Typescript
 
-The callback is typed-safe.
+The callback is type-safe.
 
 - `ownerState`: `ComponentProps` interface, eg. `ButtonProps`, `ChipProps`, etc.
 - `theme`: `Theme` interface from `@mui/material/styles`.
@@ -146,7 +146,7 @@ you will be able to see those props in `ownerState.variant` 🎉. `theme` can be
 
 ## Experimental `sx` function
 
-Initially, `sx` is designed to be a prop that you can inject style with shorthand notation to the component created by `styled` API:
+Initially, `sx` was designed to be a prop that enables you to inject styles with a shorthand notation to components created with the `styled` API:
 
 ```jsx
 import { styled } from '@mui/material/styles';
@@ -162,11 +162,11 @@ const Label = styled('span')({
 </Box>;
 ```
 
-> 💡 All MUI components are created by `styled` API, so they accept `sx` prop by default.
+> 💡 All MUI components are created with `styled` API, so they accept `sx` prop by default.
 
 `sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use `sx` like syntax at the global theme overrides.
 
-All you need to do is using the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function:
+All you need is to use the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function:
 
 ```jsx
 import {
@@ -228,7 +228,7 @@ If you want to create a dynamic style based on props, you can return an array fr
 
 I hope this small update makes your customization experience better than before. Don't forget to share this update with your friends and/or colleagues.
 
-To get more updates in the future, **subscribe to our newsletter** at the bottom of this page.
+To get more updates like this in the future, **subscribe to our newsletter** at the bottom of this page.
 
 ## Read more
 
