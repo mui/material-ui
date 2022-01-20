@@ -15,9 +15,9 @@ describe('buildApiUtils', () => {
   describe('extractApiPage', () => {
     it('return info for api page', () => {
       expect(
-        extractApiPage('/material-ui/docs/pages/material/api/mui-material/accordion-actions.js'),
+        extractApiPage('/material-ui/docs/pages/material/api/accordion-actions.js'),
       ).to.deep.equal({
-        apiPathname: '/material/api/mui-material/accordion-actions',
+        apiPathname: '/material/api/accordion-actions',
       });
     });
   });
@@ -94,7 +94,9 @@ describe('buildApiUtils', () => {
         name: 'Button',
         apiPathname: '/api/button/',
         muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/api-docs')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(`docs${path.sep}pages${path.sep}api-docs`),
+        ),
       });
 
       expect(info.getInheritance('ButtonBase')).to.deep.equal({
@@ -122,7 +124,9 @@ describe('buildApiUtils', () => {
         name: 'Icon',
         apiPathname: '/api/icon/',
         muiName: 'MuiIcon',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/api-docs')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(`docs${path.sep}pages${path.sep}api-docs`),
+        ),
       });
 
       expect(info.getDemos()).to.deep.equal([
@@ -150,16 +154,14 @@ describe('buildApiUtils', () => {
       );
       sinon.assert.match(info, {
         name: 'Button',
-        apiPathname: '/material/api/mui-material/button/',
+        apiPathname: '/material/api/button/',
         muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) =>
-          value.endsWith('docs/pages/material/api/mui-material'),
-        ),
+        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/material/api')),
       });
 
       expect(info.getInheritance('ButtonBase')).to.deep.equal({
         name: 'ButtonBase',
-        apiPathname: '/material/api/mui-material/button-base/',
+        apiPathname: '/material/api/button-base/',
       });
 
       let existed = false;
@@ -195,9 +197,9 @@ describe('buildApiUtils', () => {
       );
       sinon.assert.match(info, {
         name: 'ButtonUnstyled',
-        apiPathname: '/base/api/mui-base/button-unstyled/',
+        apiPathname: '/base/api/button-unstyled/',
         muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/base/api/mui-base')),
+        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/base/api')),
       });
 
       info.readFile();

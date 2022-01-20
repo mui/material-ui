@@ -3,7 +3,7 @@ import TablePagination from '@mui/material/TablePagination';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import * as locales from '@mui/material/locale';
 
 type SupportedLocales = keyof typeof locales;
@@ -11,11 +11,16 @@ type SupportedLocales = keyof typeof locales;
 export default function Locales() {
   const [locale, setLocale] = React.useState<SupportedLocales>('zhCN');
 
+  const theme = useTheme();
+
+  const themeWithLocale = React.useMemo(
+    () => createTheme(theme, locales[locale]),
+    [locale, theme],
+  );
+
   return (
     <Box sx={{ width: '100%' }}>
-      <ThemeProvider
-        theme={(outerTheme) => createTheme(outerTheme, locales[locale])}
-      >
+      <ThemeProvider theme={themeWithLocale}>
         <Autocomplete
           options={Object.keys(locales)}
           getOptionLabel={(key) => `${key.substring(0, 2)}-${key.substring(2, 4)}`}

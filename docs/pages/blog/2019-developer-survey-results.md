@@ -1,5 +1,10 @@
 ---
-description: 2019 MUI Developer Survey results
+title: 2019 MUI Developer Survey results
+description: Results for the first yearly developer survey, 2019 edition.
+date: 2019-03-16T00:00:00.000Z
+authors: ['oliviertassinari', 'mbrookes']
+card: false
+tags: ['Developer survey']
 ---
 
 # 2019 MUI Developer Survey results

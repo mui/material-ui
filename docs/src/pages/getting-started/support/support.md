@@ -36,7 +36,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 
 Stay up to date with the development of the library by following the blog.
 
-[Read the latest posts](https://medium.com/material-ui)
+[Read the latest posts](https://mui.com/blog/)
 
 ### Resources 📖
 
@@ -48,7 +48,7 @@ New to MUI? It's easy to learn if you know where to start!
 
 Receive the latest news on MUI.
 
-[Follow us](https://twitter.com/MaterialUI)
+[Follow us](https://twitter.com/MUI_hq)
 
 ### Supported versions
 

@@ -20,7 +20,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
-- [Update MUI](#update-material-ui-version)
+- [Update MUI Core version](#update-mui-core-version)
 - [Run codemods](#run-codemods)
   - [preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
@@ -75,7 +75,7 @@ function App() {
 
 > 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
 
-## Update MUI version
+## Update MUI Core version
 
 To use the `v5` version of MUI Core, you first need to update the package names:
 
@@ -137,7 +137,7 @@ You should be able to remove the dependency following [these steps](#migrate-fro
 
 > 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
 
-Once you application has completely migrated to MUI v5, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
+Once you application has completely migrated to MUI Core v5, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
@@ -1128,6 +1128,15 @@ As the core components use emotion as their style engine, the props used by emot
   ```
 
 ### Checkbox
+
+- The checkbox color prop is now "primary" by default.
+  To continue using the "secondary" color, you must explicitly indicate `secondary`.
+  This brings the checkbox closer to the Material Design guidelines.
+
+  ```diff
+  -<Checkbox />
+  +<Checkbox color="secondary" />
+  ```
 
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
@@ -2367,7 +2376,7 @@ As the core components use emotion as their style engine, the props used by emot
   -         marginTop: '20px',
   -       },
   -     },
-  +     variants: {
+  +     variants: [{
   +       props: { color: "secondary" },
   +       style: {
   +         marginTop: '20px',
@@ -2884,8 +2893,9 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
  export default App;
 ```
 
-> **Note**: To ensure that your class names always includes the actual name of your components,
-> you can provide the `name` as an implicitly named key (`name: { App }`).
+> **WARNING**: You should drop [`clsx`](https://www.npmjs.com/package/clsx) in favor of [`cx`](https://emotion.sh/docs/@emotion/css#cx).
+> The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order.
+> **Note**: To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`).
 > [See doc](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
 
 #### `withStyles()`
@@ -2956,10 +2966,13 @@ function Parent() {
 }
 ```
 
+You may end up with eslint warnings [like this one](https://user-images.githubusercontent.com/6702424/148657837-eae48942-fb86-4516-abe4-5dc10f44f0be.png) if you deconstruct more that one item.  
+Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com/thieryw/gitlanding/blob/b2b0c71d95cfd353979c86dfcfa1646ef1665043/.eslintrc.js#L17) in a regular project, or [like this](https://github.com/InseeFrLab/onyxia-web/blob/a264ec6a6a7110cb1a17b2e22cc0605901db6793/package.json#L133) in a CRA.
+
 **Note:** `tss-react` is **not maintained** by MUI.
 If you have any question about how to setup SSR (Next.js) or if you are wondering
 how to customize the `theme` object please refer to `tss-react`'s documentation,
-the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.  
+the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.
 You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or
 feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 

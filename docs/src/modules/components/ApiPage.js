@@ -11,7 +11,7 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import replaceMarkdownLinks from 'docs/src/modules/utils/replaceMarkdownLinks';
+import replaceHtmlLinks from 'docs/src/modules/utils/replaceHtmlLinks';
 
 const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
@@ -348,7 +348,7 @@ import { ${componentName} } from '${source}';`}
           </React.Fragment>
         ) : null}
         <Heading hash="demos" />
-        <span dangerouslySetInnerHTML={{ __html: replaceMarkdownLinks(demos, router.asPath) }} />
+        <span dangerouslySetInnerHTML={{ __html: replaceHtmlLinks(demos, router.asPath) }} />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">

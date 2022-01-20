@@ -61,7 +61,7 @@ describe('parseMarkdown', () => {
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: Alert'
+githubLabel: 'component: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors: ['foo', 'bar']
@@ -69,7 +69,7 @@ authors: ['foo', 'bar']
 `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
-        githubLabel: 'component: Alert',
+        githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
@@ -83,7 +83,7 @@ authors: ['foo', 'bar']
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: Alert'
+githubLabel: 'component: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors:
@@ -92,7 +92,7 @@ authors:
 `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
-        githubLabel: 'component: Alert',
+        githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
@@ -106,7 +106,7 @@ authors:
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: Alert'
+githubLabel: 'component: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors:
@@ -118,7 +118,7 @@ authors:
     `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
-        githubLabel: 'component: Alert',
+        githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',

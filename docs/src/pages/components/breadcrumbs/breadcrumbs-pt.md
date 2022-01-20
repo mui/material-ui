@@ -1,7 +1,7 @@
 ---
 title: Componente React para Navegação estrutural
 components: Breadcrumbs, Link, Typography
-githubLabel: 'component: Breadcrumbs'
+githubLabel: 'component: breadcrumbs'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 

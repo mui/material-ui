@@ -7,7 +7,7 @@ import { exactProp } from '@mui/utils';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import replaceMarkdownLinks from 'docs/src/modules/utils/replaceMarkdownLinks';
+import replaceHtmlLinks from 'docs/src/modules/utils/replaceHtmlLinks';
 
 // TODO: Only import on demand via @mui/markdown/loader
 const markdownComponents = {
@@ -43,7 +43,7 @@ function MarkdownDocs(props) {
           return (
             <MarkdownElement
               key={index}
-              renderedMarkdown={replaceMarkdownLinks(renderedMarkdownOrDemo, router.asPath)}
+              renderedMarkdown={replaceHtmlLinks(renderedMarkdownOrDemo, router.asPath)}
             />
           );
         }

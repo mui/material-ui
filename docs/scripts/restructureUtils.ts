@@ -1,3 +1,5 @@
+import { replaceComponentLinks } from '../src/modules/utils/replaceUrl';
+
 export const productPathnames = {
   material: ['/getting-started', '/components', '/customization', '/guides', '/discover-more'],
   system: ['/system'],
@@ -6,7 +8,7 @@ export const productPathnames = {
 
 export const markdown = {
   removeDemoRelativePath: (content: string) =>
-    content.replace(/"pages\/[/\-a-zA-Z]*\/([a-zA-Z]*\.js)"/gm, `"$1"`),
+    content.replace(/"pages\/?[^"]*\/([^"]+\.js)"/gm, `"$1"`),
   addMaterialPrefixToLinks: (content: string) => {
     productPathnames.material.forEach((path) => {
       content = content.replace(
@@ -34,8 +36,6 @@ export const getNewDataLocation = (
   };
 };
 
-const nonComponents = ['about-the-lab'];
-
 export const getNewPageLocation = (
   filePath: string,
 ): { directory: string; path: string } | null => {
@@ -43,16 +43,10 @@ export const getNewPageLocation = (
   if (!match) {
     return null;
   }
-  if (filePath.includes('components')) {
-    if (nonComponents.some((path) => filePath.includes(path))) {
-      return {
-        directory: match[1].replace('docs/pages/components', 'docs/pages/material'),
-        path: filePath.replace('docs/pages/components/', 'docs/pages/material/'),
-      };
-    }
+  if (filePath.match('pages/components')) {
     return {
       directory: match[1].replace('docs/pages/components', 'docs/pages/material'),
-      path: filePath.replace('docs/pages/components/', 'docs/pages/material/react-'),
+      path: replaceComponentLinks(filePath),
     };
   }
   return {
