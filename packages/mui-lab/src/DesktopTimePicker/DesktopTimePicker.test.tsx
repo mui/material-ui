@@ -297,4 +297,68 @@ describe('<DesktopTimePicker />', () => {
       expect(handleTouchStart.callCount).to.equal(1);
     });
   });
+  describe('prop: mask', () => {
+    it('renders mask properly with ampm option', () => {
+      const onChangeMock = spy();
+      render(
+        <DesktopTimePicker
+          renderInput={(props) => <TextField placeholder="09:41 PM" {...props} />}
+          value={adapterToUse.date('2018-01-01T01:00:00.000Z')}
+          onChange={onChangeMock}
+          ampm
+          inputFormat="hh:mm a"
+          mask="__:__ _M"
+        />,
+      );
+
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: {
+          value: '09:43 P',
+        },
+      });
+      const input = screen.getByRole('textbox');
+      expect(input).to.have.value('09:43 PM');
+    });
+    it('should not render mask when not passing the mask value', () => {
+      const onChangeMock = spy();
+      render(
+        <DesktopTimePicker
+          renderInput={(props) => <TextField placeholder="09:41 PM" {...props} />}
+          value={adapterToUse.date('2018-01-01T01:00:00.000Z')}
+          onChange={onChangeMock}
+          ampm
+        />,
+      );
+
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: {
+          value: '09:43 P',
+        },
+      });
+      const input = screen.getByRole('textbox');
+      expect(input).to.have.value('09:43 P');
+    });
+    it('should not render mask when disableMaskedInput is true', () => {
+      const onChangeMock = spy();
+      render(
+        <DesktopTimePicker
+          renderInput={(props) => <TextField placeholder="09:41 PM" {...props} />}
+          value={adapterToUse.date('2018-01-01T01:00:00.000Z')}
+          onChange={onChangeMock}
+          ampm
+          inputFormat="hh:mm a"
+          mask="__:__ _M"
+          disableMaskedInput
+        />,
+      );
+
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: {
+          value: '09:43 P',
+        },
+      });
+      const input = screen.getByRole('textbox');
+      expect(input).to.have.value('09:43 P');
+    });
+  });
 });
