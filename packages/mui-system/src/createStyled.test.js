@@ -228,7 +228,7 @@ describe('createStyled', () => {
       });
     });
 
-    it('support template string return from the callback', () => {
+    it('throw error if template string is returned from the callback', () => {
       const finalTheme = createTheme({
         components: {
           MuiButton: {
@@ -240,14 +240,23 @@ describe('createStyled', () => {
           },
         },
       });
-      const { container } = render(
-        <ThemeProvider theme={finalTheme}>
-          <Button>Hello</Button>
-        </ThemeProvider>,
-      );
-      expect(container.firstChild).toHaveComputedStyle({
-        width: '300px',
-      });
+      try {
+        // Not sure why it throws another error.
+        // If you know, please submit a PR.
+        expect(() => {
+          render(
+            <ThemeProvider theme={finalTheme}>
+              <Button>Hello</Button>
+            </ThemeProvider>,
+          );
+        }).toErrorDev(
+          `MUI: The return type of the callback in 'MuiButton.styleOverrides.root' cannot be a string. Change the return type to array or object instead.`,
+        );
+      } catch (error) {
+        expect(error.message).to.equal(
+          `MUI: The return type of the callback in 'MuiButton.styleOverrides.root' cannot be a string. Change the return type to array or object instead.`,
+        );
+      }
     });
 
     it('works with sx', () => {
