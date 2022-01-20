@@ -605,7 +605,7 @@ It works exactly like styled components. You can [use the same guide](/guides/in
 ![stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/tailwindcss)
 
-If you are used to Tailwind CSS and you want to use it together with the MUI components, you should follow the following steps:
+If you are used to Tailwind CSS and want to use it together with the MUI components, follow these steps:
 
 1. Add Tailwlind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
 2. Remove the Tailwind's `base` directive in favor of the `CSSBaseline` component provided by `@mui/material`, as it plays nicer with the MUI components.
