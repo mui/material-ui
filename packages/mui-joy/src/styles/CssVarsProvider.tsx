@@ -8,6 +8,7 @@ import defaultTheme, {
   darkColorSystem,
   Focus,
   ThemeScales,
+  JoyTheme,
 } from './defaultTheme';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Variants } from './types/variants';
@@ -35,7 +36,7 @@ type ThemeInput = PartialNested<
 > & {
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
-  components?: Components;
+  components?: Components<JoyTheme>;
 };
 
 type JoyThemeInput = ThemeInput & {
@@ -67,7 +68,10 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
   prefix: 'joy',
   shouldSkipGeneratingVar: (keys) =>
-    keys[0] === 'typography' || keys[0] === 'variants' || keys[0] === 'focus',
+    keys[0] === 'typography' ||
+    keys[0] === 'variants' ||
+    keys[0] === 'focus' ||
+    keys[0] === 'breakpoints',
 });
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };

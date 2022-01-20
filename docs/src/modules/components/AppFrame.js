@@ -12,10 +12,6 @@ import IconButton from '@mui/material/IconButton';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
-import NoSsr from '@mui/material/NoSsr';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NProgressBar from '@mui/docs/NProgressBar';
@@ -23,15 +19,11 @@ import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import LanguageIcon from '@mui/icons-material/Translate';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
-
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
+import NextLink from 'next/link';
+import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -180,7 +172,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
-      width: 240,
+      width: 280,
     },
   };
 });
@@ -188,51 +180,13 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 function AppFrame(props) {
   const { children, disableDrawer = false } = props;
   const t = useTranslate();
-  const userLanguage = useUserLanguage();
-
-  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
-
-  const [languageMenu, setLanguageMenu] = React.useState(null);
-  const handleLanguageIconClick = (event) => {
-    setLanguageMenu(event.currentTarget);
-  };
-  const handleLanguageMenuClose = (event) => {
-    if (event.currentTarget.nodeName === 'A') {
-      document.cookie = `userLanguage=${event.currentTarget.lang};path=/;max-age=31536000`;
-    }
-    setLanguageMenu(null);
-  };
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleNavDrawerOpen = () => {
-    setMobileOpen(true);
-  };
-  const handleNavDrawerClose = React.useCallback(() => {
-    setMobileOpen(false);
-  }, []);
-
   const [settingsOpen, setSettingsOpen] = React.useState(false);
-  const handleSettingsDrawerOpen = () => {
-    setSettingsOpen(true);
-  };
-  const handleSettingsDrawerClose = React.useCallback(() => {
-    setSettingsOpen(false);
-  }, []);
 
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const { activePage } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
-
-  const languageButtonProps = {
-    color: 'inherit',
-    onClick: handleLanguageIconClick,
-    'aria-owns': languageMenu ? 'language-menu' : undefined,
-    'aria-haspopup': 'true',
-    'data-ga-event-category': 'header',
-    'data-ga-event-action': 'language',
-  };
 
   return (
     <RootDiv>
@@ -249,11 +203,20 @@ function AppFrame(props) {
             color="primary"
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
-            onClick={handleNavDrawerOpen}
+            onClick={() => setMobileOpen(true)}
             sx={{ ml: '1px' }}
           >
             <SvgHamburgerMenu />
           </NavIconButton>
+          <NextLink href="/" passHref /* onClick={onClose} */>
+            <Box
+              component="a"
+              aria-label={t('goToHome')}
+              sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
+            >
+              <SvgMuiLogo width={30} />
+            </Box>
+          </NextLink>
           <GrowingDiv />
           <Stack direction="row" spacing={1.3}>
             <DeferredAppSearch />
@@ -269,69 +232,22 @@ function AppFrame(props) {
               </IconButton>
             </Tooltip>
             <Notifications />
-            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <IconButton {...languageButtonProps} color="primary">
-                <LanguageIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="primary" onClick={handleSettingsDrawerOpen} sx={{ px: '8px' }}>
+              <IconButton color="primary" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-            <NoSsr defer>
-              <Menu
-                id="language-menu"
-                anchorEl={languageMenu}
-                open={Boolean(languageMenu)}
-                onClose={handleLanguageMenuClose}
-              >
-                {LANGUAGES_LABEL.map((language) => (
-                  <MenuItem
-                    component="a"
-                    data-no-markdown-link="true"
-                    href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
-                    key={language.code}
-                    selected={userLanguage === language.code}
-                    onClick={handleLanguageMenuClose}
-                    lang={language.code}
-                    hrefLang={language.code}
-                  >
-                    {language.text}
-                  </MenuItem>
-                ))}
-                <Box sx={{ my: 1 }}>
-                  <Divider />
-                </Box>
-                <MenuItem
-                  component="a"
-                  href={
-                    userLanguage === 'en'
-                      ? `${CROWDIN_ROOT_URL}`
-                      : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-                  }
-                  rel="noopener nofollow"
-                  target="_blank"
-                  key={userLanguage}
-                  lang={userLanguage}
-                  hrefLang="en"
-                  onClick={handleLanguageMenuClose}
-                >
-                  {t('appFrame.helpToTranslate')}
-                </MenuItem>
-              </Menu>
-            </NoSsr>
           </Stack>
         </Toolbar>
       </StyledAppBar>
       <StyledAppNavDrawer
         disablePermanent={disablePermanent}
-        onClose={handleNavDrawerClose}
-        onOpen={handleNavDrawerOpen}
+        onClose={() => setMobileOpen(false)}
+        onOpen={() => setMobileOpen(true)}
         mobileOpen={mobileOpen}
       />
       {children}
-      <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
+      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
     </RootDiv>
   );
 }

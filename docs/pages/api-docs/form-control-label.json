@@ -10,7 +10,10 @@
     },
     "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ typography?: object }" },
+      "default": "{}"
+    },
     "disabled": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },

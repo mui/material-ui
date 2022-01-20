@@ -83,6 +83,7 @@ export interface BaseTextFieldProps
   id?: string;
   /**
    * Props applied to the [`InputLabel`](/api/input-label/) element.
+   * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
    */
   InputLabelProps?: Partial<InputLabelProps>;
   /**

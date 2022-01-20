@@ -4,6 +4,7 @@ description: We are excited to share that Benny Joo has joined MUI. He has start
 date: 2021-11-16T00:00:00.000Z
 authors: ['mnajdova']
 card: false
+tags: ['Team']
 ---
 
 We are excited to share that [Benny Joo](https://github.com/hbjORbj) has joined MUI.

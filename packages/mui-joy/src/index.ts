@@ -3,3 +3,12 @@ export * from './styles';
 
 export { default as Button } from './Button';
 export * from './Button';
+
+export { default as Typography } from './Typography';
+export * from './Typography';
+
+export { default as Switch } from './Switch';
+export * from './Switch';
+
+export { default as SvgIcon } from './SvgIcon';
+export * from './SvgIcon';

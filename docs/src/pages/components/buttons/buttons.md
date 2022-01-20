@@ -2,7 +2,7 @@
 title: React Button component
 components: Button, IconButton, ButtonBase, LoadingButton, ButtonUnstyled
 materialDesign: https://material.io/components/buttons
-githubLabel: 'component: Button'
+githubLabel: 'component: button'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 ---
 

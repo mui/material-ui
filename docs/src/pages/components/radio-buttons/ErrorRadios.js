@@ -35,15 +35,10 @@ export default function ErrorRadios() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl
-        sx={{ m: 3 }}
-        component="fieldset"
-        error={error}
-        variant="standard"
-      >
-        <FormLabel component="legend">Pop quiz: MUI is...</FormLabel>
+      <FormControl sx={{ m: 3 }} error={error} variant="standard">
+        <FormLabel id="demo-error-radios">Pop quiz: MUI is...</FormLabel>
         <RadioGroup
-          aria-label="quiz"
+          aria-labelledby="demo-error-radios"
           name="quiz"
           value={value}
           onChange={handleRadioChange}

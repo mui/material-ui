@@ -7,9 +7,14 @@ import FormLabel from '@mui/material/FormLabel';
 
 export default function FormControlLabelPlacement() {
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">labelPlacement</FormLabel>
-      <RadioGroup row aria-label="position" name="position" defaultValue="top">
+    <FormControl>
+      <FormLabel id="demo-form-control-label-placement">labelPlacement</FormLabel>
+      <RadioGroup
+        row
+        aria-labelledby="demo-form-control-label-placement"
+        name="position"
+        defaultValue="top"
+      >
         <FormControlLabel
           value="top"
           control={<Radio />}
