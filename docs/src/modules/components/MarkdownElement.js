@@ -155,6 +155,17 @@ const Root = styled('div')(({ theme }) => ({
     borderCollapse: 'collapse',
     marginBottom: '20px',
     borderSpacing: 0,
+    position: 'relative',
+    '&:after': {
+      content: "''",
+      width: '20%',
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      backgroundColor: '#000',
+      backgroundAttachment: 'fixed',
+    },
     '& .prop-name, & .prop-type, & .prop-default': {
       fontWeight: 400,
       fontFamily: theme.typography.fontFamilyCode,
