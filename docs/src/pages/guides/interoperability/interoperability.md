@@ -699,7 +699,7 @@ export default function App() {
 
 ### Deeper elements
 
-If you attempt to style the Slider, for example, you'll likely want to customize its child elements. 
+If you attempt to style the Slider, for example, you'll likely want to customize its child elements.
 
 This example showcases how to override the Slider's `thumb`style.
 
