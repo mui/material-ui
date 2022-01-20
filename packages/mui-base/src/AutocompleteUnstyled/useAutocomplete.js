@@ -101,7 +101,7 @@ export default function useAutocomplete(props) {
     open: openProp,
     openOnFocus = false,
     options,
-    readOnly,
+    readOnly = false,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
