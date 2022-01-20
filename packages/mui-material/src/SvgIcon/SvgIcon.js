@@ -45,9 +45,9 @@ const SvgIconRoot = styled('svg', {
   }),
   fontSize: {
     inherit: 'inherit',
-    small: theme.typography?.pxToRem?.(20),
-    medium: theme.typography?.pxToRem?.(24),
-    large: theme.typography?.pxToRem?.(35),
+    small: theme.typography?.pxToRem?.(20) || '1.25rem',
+    medium: theme.typography?.pxToRem?.(24) || '1.5rem',
+    large: theme.typography?.pxToRem?.(35) || '2.1875',
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color:
