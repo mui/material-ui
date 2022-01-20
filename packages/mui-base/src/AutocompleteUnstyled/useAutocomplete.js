@@ -101,6 +101,7 @@ export default function useAutocomplete(props) {
     open: openProp,
     openOnFocus = false,
     options,
+    readOnly,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
@@ -211,7 +212,7 @@ export default function useAutocomplete(props) {
   const inputValueIsSelectedValue =
     !multiple && value != null && inputValue === getOptionLabel(value);
 
-  const popupOpen = open;
+  const popupOpen = open && !readOnly;
 
   const filteredOptions = popupOpen
     ? filterOptions(
@@ -235,7 +236,7 @@ export default function useAutocomplete(props) {
       )
     : [];
 
-  const listboxAvailable = open && filteredOptions.length > 0;
+  const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
   if (process.env.NODE_ENV !== 'production') {
     if (value !== null && !freeSolo && options.length > 0) {

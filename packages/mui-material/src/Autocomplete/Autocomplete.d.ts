@@ -190,6 +190,11 @@ export interface AutocompleteProps<
    */
   popupIcon?: React.ReactNode;
   /**
+   * If `true`, the component becomes readonly.
+   * @default false
+   */
+  readOnly?: boolean;
+  /**
    * Render the group.
    *
    * @param {AutocompleteRenderGroupParams} params The group to render.
