@@ -1,8 +1,8 @@
 ---
 title: React Timeline（时间轴）组件
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
-githubLabel: 'component: Timeline'
-packageName: '@material-ui/lab'
+githubLabel: 'component: timeline'
+packageName: '@mui/lab'
 ---
 
 # Timeline 时间轴

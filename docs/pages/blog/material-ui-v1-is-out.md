@@ -1,5 +1,6 @@
 ---
-description: MUI v1 is out 🎉
+description: MUI v1 is out 🎉
+tags: ['Company update']
 ---
 
 # MUI v1 is out 🎉
@@ -128,7 +129,3 @@ MUI is an MIT-licensed open source project. It's an independent project with ong
 
 - GitHub: https://github.com/mui-org/material-ui ⭐
 - Twitter: https://twitter.com/MUI_hq
-
-<hr />
-
-_You can find the [same post on Medium](https://medium.com/material-ui/material-ui-v1-is-out-e73ce13463eb)._

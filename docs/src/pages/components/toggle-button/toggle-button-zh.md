@@ -1,7 +1,7 @@
 ---
 title: React Toggle Button（切换按钮）组件
 components: ToggleButton, ToggleButtonGroup
-githubLabel: 'component: ToggleButton'
+githubLabel: 'component: toggle button'
 materialDesign: 'https://material.io/components/buttons#toggle-button'
 ---
 

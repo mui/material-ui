@@ -8,7 +8,7 @@
     "ChipProps": "Props applied to the <a href=\"/api/chip/\"><code>Chip</code></a> element.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "clearIcon": "The icon to display in place of the default clear icon.",
-    "clearOnBlur": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.<br>Set to <code>true</code> if you want to help the user enter a new value. Set to <code>false</code> if you want to help the user resume his search.",
+    "clearOnBlur": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.<br>Set to <code>true</code> if you want to help the user enter a new value. Set to <code>false</code> if you want to help the user resume their search.",
     "clearOnEscape": "If <code>true</code>, clear all values when the user presses escape and the popup is closed.",
     "clearText": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.",
     "closeText": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.",

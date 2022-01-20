@@ -20,7 +20,8 @@ export default function AppFooter() {
     <Container component="footer">
       <Box
         sx={{
-          py: 8,
+          pt: 4,
+          pb: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
           alignItems: 'center',

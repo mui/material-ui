@@ -1,5 +1,6 @@
 ---
 description: Here are the most significant improvements in August.
+tags: ['Company update']
 ---
 
 # August 2019 Update
