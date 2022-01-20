@@ -123,7 +123,6 @@ export default function createCssVarsProvider(options) {
         ? createBreakpoints(themeProp.breakpoints)
         : systemBreakpoints,
       getCssVar: createGetCssVar(prefix),
-      $$designSystem: designSystemPrefix,
     };
 
     const styleSheet = {};

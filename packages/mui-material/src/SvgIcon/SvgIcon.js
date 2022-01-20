@@ -40,34 +40,23 @@ const SvgIconRoot = styled('svg', {
   display: 'inline-block',
   fill: 'currentColor',
   flexShrink: 0,
-  transition:
-    theme.$$designSystem === 'joy'
-      ? undefined
-      : theme.transitions.create('fill', {
-          duration: theme.transitions.duration.shorter,
-        }),
-  fontSize:
-    theme.$$designSystem === 'joy'
-      ? { ...theme.vars.fontSize, inherit: 'inherit' }[
-          // switch default fontSize to `xl` (24px)
-          ownerState.fontSize.replace(/^medium$/, 'xl')
-        ]
-      : {
-          inherit: 'inherit',
-          small: theme.typography.pxToRem(20),
-          medium: theme.typography.pxToRem(24),
-          large: theme.typography.pxToRem(35),
-        }[ownerState.fontSize],
+  transition: theme.transitions?.create('fill', {
+    duration: theme.transitions?.duration.shorter,
+  }),
+  fontSize: {
+    inherit: 'inherit',
+    small: theme.typography.pxToRem?.(20),
+    medium: theme.typography.pxToRem?.(24),
+    large: theme.typography.pxToRem?.(35),
+  }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color:
-    theme.$$designSystem === 'joy'
-      ? theme.vars.palette[ownerState.color]?.textColor
-      : theme.palette[ownerState.color]?.main ??
-        {
-          action: theme.palette.action.active,
-          disabled: theme.palette.action.disabled,
-          inherit: undefined,
-        }[ownerState.color],
+    theme.palette[ownerState.color]?.main ??
+    {
+      action: theme.palette.action?.active,
+      disabled: theme.palette.action?.disabled,
+      inherit: undefined,
+    }[ownerState.color],
 }));
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
