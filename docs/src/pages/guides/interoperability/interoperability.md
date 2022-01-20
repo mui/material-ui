@@ -698,7 +698,7 @@ export default function App() {
 
 ### Deeper elements
 
-If you attempt to style the Slider, you will likely need to affect some of the Slider's child elements, for example the thumb.
+If you attempt to style the Slider, for example, you'll likely want to customize its child elements. 
 
 The following examples override the slider's `thumb` style and adds custom styles for the active pseudo state.
 
