@@ -228,37 +228,6 @@ describe('createStyled', () => {
       });
     });
 
-    it('throw error if template string is returned from the callback', () => {
-      const finalTheme = createTheme({
-        components: {
-          MuiButton: {
-            styleOverrides: {
-              root: () => `
-                width: 300px;
-              `,
-            },
-          },
-        },
-      });
-      try {
-        // Not sure why it throws another error.
-        // If you know, please submit a PR.
-        expect(() => {
-          render(
-            <ThemeProvider theme={finalTheme}>
-              <Button>Hello</Button>
-            </ThemeProvider>,
-          );
-        }).toErrorDev(
-          `MUI: The return type of the callback in 'MuiButton.styleOverrides.root' cannot be a string. Change the return type to array or object instead.`,
-        );
-      } catch (error) {
-        expect(error.message).to.equal(
-          `MUI: The return type of the callback in 'MuiButton.styleOverrides.root' cannot be a string. Change the return type to array or object instead.`,
-        );
-      }
-    });
-
     it('works with sx', () => {
       const finalTheme = createTheme({
         components: {
