@@ -2,6 +2,27 @@ const { createMacro, MacroError } = require('babel-plugin-macros');
 const helperModuleImports = require('@babel/helper-module-imports');
 const fs = require('fs');
 const path = require('path');
+const prettier = require('prettier');
+
+const workspaceRoot = path.resolve(__dirname, '../../../');
+const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
+
+function writePrettifiedFile(filename, data) {
+  if (filename.endsWith('.tsx.preview')) {
+    fs.writeFileSync(filename, data);
+  } else {
+    const prettierConfig = prettier.resolveConfig.sync(filename, {
+      config: prettierConfigPath,
+    });
+    if (prettierConfig === null) {
+      throw new Error(
+        `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
+      );
+    }
+
+    fs.writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }));
+  }
+}
 
 function invertObject(object) {
   const inverted = {};
@@ -193,7 +214,7 @@ function muiError({ references, babel, config, source }) {
   });
 
   if (missingError === 'write' && updatedErrorCodes) {
-    fs.writeFileSync(errorCodesPath, JSON.stringify(invertObject(errorCodesLookup), null, 2));
+    writePrettifiedFile(errorCodesPath, JSON.stringify(invertObject(errorCodesLookup), null, 2));
   }
 
   return { keepImports: false };
