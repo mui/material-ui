@@ -1,5 +1,5 @@
 ---
-title: MUI Material v5.3.0 — Theming upgrade
+title: MUI Material v5.3.0
 description: We're excited to introduce the callback support for global theme overrides in this minor version update!
 date: 2022-01-20T00:00:00.000Z
 authors: ['siriwatknp']
@@ -68,7 +68,7 @@ In v4, the style engine library was JSS which had some limitations. Style overri
 
 We believe it would be better for developers if they could create custom styles by reading the component props, without ever needing to know what key they should use.
 
-Fortunately, it is now possible in v5 because of the new style engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an **object** (static overrides) or a **callback** (dynamic overrides).
+Fortunately, it is now possible in v5 because of the new style engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an **object** (static overrides) or a **callback** (dynamic overrides). The [`variant theming`](/customization/theme-components/#adding-new-component-variants) approach is deprecated because the callback support covers all the use-cases and we think it is better to have only 1 API for theming.
 
 ## Using callback in `styleOverrides`
 
