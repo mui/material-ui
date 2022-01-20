@@ -41,7 +41,7 @@ We need someone experienced enough to help two different teams with hard problem
 - Help setting the bar higher for MUI X documentation, from visual design to copywriting.
 - Support the design team growth by promoting design/product culture and hiring new members.
 
-### You might fit for this role if you:
+### You might fit for this role if you
 
 - See yourself as a generalist designer, which means you like tackling problems ranging from strategic thinking to execution development (more insight at the recently written [first draft of our design philosophy](https://www.notion.so/Design-philosophy-bdbef60d6fad4134a43870df3e452ebc), available at our public Handbook).
 - Have excellent visual and interaction design chops.
