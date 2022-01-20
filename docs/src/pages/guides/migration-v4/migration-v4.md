@@ -2376,7 +2376,7 @@ As the core components use emotion as their style engine, the props used by emot
   -         marginTop: '20px',
   -       },
   -     },
-  +     variants: {
+  +     variants: [{
   +       props: { color: "secondary" },
   +       style: {
   +         marginTop: '20px',
