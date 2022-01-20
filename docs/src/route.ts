@@ -13,25 +13,54 @@ const ROUTES = {
   baseDocs: '/base/getting-started/installation/',
   materialDocs: '/material/getting-started/installation/',
   systemDocs: '/system/basics/',
-  stylesLegacyDocs: '/styles/basics/',
-  materialIcons: '/components/material-icons/',
-  freeTemplates: '/getting-started/templates/',
-  components: '/getting-started/supported-components/',
-  customization: '/customization/how-to-customize/',
-  theming: '/customization/theming/',
-  documentation: '/getting-started/installation/',
-  communityHelp: '/getting-started/support/#community-help-free',
+  materialIcons: FEATURE_TOGGLE.enable_redirects
+    ? '/material/material-icons/'
+    : '/components/material-icons/',
+  freeTemplates: FEATURE_TOGGLE.enable_redirects
+    ? '/material/getting-started/templates/'
+    : '/getting-started/templates/',
+  components: FEATURE_TOGGLE.enable_redirects
+    ? '/material/getting-started/supported-components/'
+    : '/getting-started/supported-components/',
+  customization: FEATURE_TOGGLE.enable_redirects
+    ? '/material/customization/how-to-customize/'
+    : '/customization/how-to-customize/',
+  theming: FEATURE_TOGGLE.enable_redirects
+    ? '/material/customization/theming/'
+    : '/customization/theming/',
+  documentation: FEATURE_TOGGLE.enable_redirects
+    ? '/material/getting-started/installation/'
+    : '/getting-started/installation/',
+  communityHelp: FEATURE_TOGGLE.enable_redirects
+    ? '/material/getting-started/support/#community-help-free'
+    : '/getting-started/support/#community-help-free',
   blog: FEATURE_TOGGLE.enable_blog_index ? '/blog/' : 'https://medium.com/material-ui',
-  showcase: '/discover-more/showcase',
+  showcase: FEATURE_TOGGLE.enable_blog_index
+    ? '/material/discover-more/showcase/'
+    : '/discover-more/showcase',
   roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
-  languages: '/discover-more/languages',
-  vision: '/discover-more/vision/',
-  support: '/getting-started/support/#professional-support-premium',
-  goldSponsor: '/discover-more/backers/#gold/',
+  languages: FEATURE_TOGGLE.enable_blog_index
+    ? '/material/discover-more/languages/'
+    : '/discover-more/languages',
+  vision: FEATURE_TOGGLE.enable_blog_index
+    ? '/material/discover-more/vision/'
+    : '/discover-more/vision/',
+  support: FEATURE_TOGGLE.enable_blog_index
+    ? '/material/getting-started/support/#professional-support-premium'
+    : '/getting-started/support/#professional-support-premium',
+  goldSponsor: FEATURE_TOGGLE.enable_blog_index
+    ? '/material/discover-more/backers/#gold'
+    : '/discover-more/backers/#gold/',
   store: 'https://mui.com/store/',
-  dataGridDocs: '/components/data-grid/getting-started/',
-  dataGridFeatures: '/components/data-grid/#features',
-  dataGridFeaturesComparison: '/components/data-grid/getting-started/#feature-comparison',
+  dataGridDocs: FEATURE_TOGGLE.enable_blog_index
+    ? '/x/react-data-grid/getting-started/'
+    : '/components/data-grid/getting-started/',
+  dataGridFeatures: FEATURE_TOGGLE.enable_blog_index
+    ? '/x/react-data-grid/#features'
+    : '/components/data-grid/#features',
+  dataGridFeaturesComparison: FEATURE_TOGGLE.enable_blog_index
+    ? '/x/react-data-grid/getting-started/#feature-comparison'
+    : '/components/data-grid/getting-started/#feature-comparison',
   storePopular: 'https://mui.com/store/#populars',
   storeDesign: 'https://mui.com/store/#design',
   storeFigma: 'https://mui.com/store/items/figma-react/',
