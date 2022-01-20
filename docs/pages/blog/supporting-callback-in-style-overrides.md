@@ -1,5 +1,5 @@
 ---
-title: MUI Material v5.3.0
+title: Supporting callback in style overrides
 description: We're excited to introduce the callback support for global theme overrides in this minor version update!
 date: 2022-01-20T00:00:00.000Z
 authors: ['siriwatknp']
@@ -7,60 +7,9 @@ tags: ['MUI Core', 'News']
 card: false
 ---
 
-## TL;DR
+The release of MUI Core [v5.3.0](https://github.com/mui-org/material-ui/releases/tag/v5.3.0) allows you to write a callback in style overrides (the global theming) which gives you full control of component customization at the theme level.
 
-- `styleOverrides` supports callback as a value that allows dynamic style based on props:
-
-  ```jsx
-  <ThemeProvider
-    theme={createTheme({
-      components: {
-        MuiButton: {
-          styleOverrides: {
-            // ownerState = public props + component's internal state
-            root: ({ ownerState, theme }) => ({
-              ...(ownerState.variant === outlined && {
-                borderWidth: '2px',
-                borderRadius: theme.shape.borderRadius,
-              }),
-            }),
-          },
-        },
-      },
-    })}
-  />
-  ```
-
-- The callback also works with the [experimental `sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function:
-
-  ```jsx
-  import {
-    ThemeProvider,
-    createTheme,
-    experimental_sx as sx,
-  } from '@mui/material/styles';
-
-  <ThemeProvider
-    theme={createTheme({
-      components: {
-        MuiButton: {
-          styleOverrides: {
-            startIcon: sx({
-              // shorthand for margin-right
-              mr: { xs: '4px', sm: '6px', md: '8px' },
-            }),
-            endIcon: sx({
-              // shorthand for margin-left
-              ml: { xs: '4px', sm: '6px', md: '8px' },
-            }),
-          },
-        },
-      },
-    })}
-  />;
-  ```
-
-- [Variant theming](/customization/theme-components/#adding-new-component-variants) is deprecated. (We will provide a codemod for migrating it).
+How does a callback better than the existing plain object? Let me explain from the beginning.
 
 ## The problems
 

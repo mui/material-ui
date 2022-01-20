@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
-import { docs } from './mui-material-v5-3.md?@mui/markdown';
+import { docs } from './supporting-callback-in-style-overrides.md?@mui/markdown';
 
 export default function Page() {
   return <TopLayoutBlog docs={docs} />;
