@@ -1,7 +1,7 @@
 ---
 title: MUI Material v5.3.0 — Theming upgrade
 description: We're excited to introduce the callback support for global theme overrides in this minor version update!
-date: 2022-01-18T00:00:00.000Z
+date: 2022-01-20T00:00:00.000Z
 authors: ['siriwatknp']
 tags: ['MUI Core', 'News']
 card: false
