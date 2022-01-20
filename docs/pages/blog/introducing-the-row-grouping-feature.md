@@ -25,7 +25,7 @@ So let them be free to choose their own organization.
 With the row grouping, they can go to the column menu of the “director” column and click on “Group by director” to group all the rows with the same director.
 If they are not interested anymore in the director, they can simply click on “Stop grouping by director”.
 
-<img src="/static/blog/mui-x-v5.3.0/blog1.gif" alt="grouping and un-grouping by director" style="width: 100%; margin-bottom: 16px;" />
+<img src="/static/blog/introducing-the-row-grouping-feature/blog1.gif" alt="grouping and un-grouping by director" style="width: 100%; margin-bottom: 16px;" />
 
 ## Unlock the feature 🔓🎁
 
@@ -58,16 +58,16 @@ Save your user time by defining initial grouping. To do so, specify the row grou
 Users are still free to modify this grouping configuration by going into the column menu.
 But in a few clicks, you can see that Hitchcock's box office results vary a lot.
 
-<img src="/static/blog/mui-x-v5.3.0/defaultSettings.png" alt="remove groupable option" style="width: 100%; margin-bottom: 16px;" />
+<img src="/static/blog/introducing-the-row-grouping-feature/defaultSettings.png" alt="remove groupable option" style="width: 100%; margin-bottom: 16px;" />
 
 ## Cherry-pick the groupable columns 🍒
 
-Before letting your users enjoy this new feature, let adapt it to your use case.
+Before letting your users enjoy this new feature, let's adapt it to your use case.
 All the columns are not good candidates for grouping.
 In our movies example, grouping by title does not make sense since each movie has a different name.
 You can remove the ability to group this specific column by setting the property `groupable` to `false` in the column definition.
 
-<img src="/static/blog/mui-x-v5.3.0/groupable1.png" alt="remove groupable option" style="width: 100%; margin-bottom: 16px;" />
+<img src="/static/blog/introducing-the-row-grouping-feature/groupable1.png" alt="remove groupable option" style="width: 100%; margin-bottom: 16px;" />
 
 ## Customize the grouping behavior 🔧
 
@@ -81,7 +81,7 @@ Its signature is similar to `valueGetter` and it returns the grouping value asso
 groupingValueGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`;
 ```
 
-<img src="/static/blog/mui-x-v5.3.0/blog2.gif" alt="grouping by release decade" style="width: 100%; margin-bottom: 16px;" />
+<img src="/static/blog/introducing-the-row-grouping-feature/blog2.gif" alt="grouping by release decade" style="width: 100%; margin-bottom: 16px;" />
 
 ## Thank you
 
