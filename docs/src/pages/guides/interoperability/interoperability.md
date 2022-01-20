@@ -639,7 +639,7 @@ If you are used to Tailwind CSS and want to use it together with the MUI compone
 This is necessary for ensuring that the [deeper elements](#deeper-elements-5), can be customized using the utility Tailwind's classes.
 More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy
 
-3. Fix the CSS injection order
+4. Fix the CSS injection order
 
 **Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done in MUI:
 
