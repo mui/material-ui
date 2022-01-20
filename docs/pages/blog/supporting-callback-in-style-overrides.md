@@ -13,7 +13,9 @@ How does a callback better than the existing plain object? Let me explain from t
 
 ## The problems
 
-In v4, the style engine library was JSS which had some limitations. Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at the [`Chip` classes](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/Chip/chipClasses.ts) for example, there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`). This leads to a bad theming experience because developers need to know the specific key in order to customize.
+In v4, the style engine library was JSS which had some limitations.
+Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at the [`Chip` classes](https://github.com/mui-org/material-ui/blob/97d32b0ff3fae4537c20c79e619f132f4a5c5cbb/packages/mui-material/src/Chip/chipClasses.ts) for example, there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`).
+This leads to a bad theming experience because developers need to know the specific key to customize.
 
 We believe it would be better for developers if they could create custom styles by reading the component props, without ever needing to know what key they should use.
 
@@ -62,7 +64,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 > 💡 The side benefit of using a callback is that you can use the runtime theme without creating the outer scoped variable.
 
-### Typescript
+### TypeScript
 
 The callback is type-safe.
 
