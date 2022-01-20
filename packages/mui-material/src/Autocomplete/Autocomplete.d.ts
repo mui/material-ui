@@ -190,7 +190,7 @@ export interface AutocompleteProps<
    */
   popupIcon?: React.ReactNode;
   /**
-   * If `true`, the component becomes readonly.
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
    * @default false
    */
   readOnly?: boolean;
