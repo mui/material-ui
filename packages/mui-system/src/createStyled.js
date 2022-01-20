@@ -1,5 +1,4 @@
 import styledEngineStyled from '@mui/styled-engine';
-import MuiError from '@mui/utils/macros/MuiError.macro';
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
@@ -138,16 +137,8 @@ export default function createStyled(input = {}) {
           if (styleOverrides) {
             const resolvedStyleOverrides = {};
             Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-              const slotValue = typeof slotStyle === 'function' ? slotStyle(props) : slotStyle;
-              if (typeof slotStyle === 'function' && typeof slotValue === 'string') {
-                throw new MuiError(
-                  "MUI: The return type of the callback in '%s.styleOverrides.%s' cannot be a string. Change the return type to array or object instead.",
-                  componentName,
-                  slotKey,
-                );
-              } else {
-                resolvedStyleOverrides[slotKey] = slotValue;
-              }
+              resolvedStyleOverrides[slotKey] =
+                typeof slotStyle === 'function' ? slotStyle(props) : slotStyle;
             });
             return overridesResolver(props, resolvedStyleOverrides);
           }

@@ -228,6 +228,28 @@ describe('createStyled', () => {
       });
     });
 
+    it('support template string return from the callback', () => {
+      const finalTheme = createTheme({
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: () => `
+                width: 300px;
+              `,
+            },
+          },
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={finalTheme}>
+          <Button>Hello</Button>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '300px',
+      });
+    });
+
     it('works with sx', () => {
       const finalTheme = createTheme({
         components: {
