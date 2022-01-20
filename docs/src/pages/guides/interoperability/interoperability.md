@@ -720,8 +720,8 @@ export default function SliderThumbOverrides() {
 
 ### Styling pseudo states
 
-If you would like to style the component based on some pseudo state, you can use the appropariate key in the `classes` prop.
-Here is an example of how you can style the component, when the active state is on:
+If you want to style a component's pseudo-state, you can use the appropriate key in the `classes` prop.
+Here is an example of how you can style the Slider's active state:
 
 **SliderPseudoStateOverrides.js**
 
