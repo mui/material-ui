@@ -6,7 +6,7 @@
 > It is deprecated in v5.
 > It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore.
 > If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
-
+>
 > ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 MUI aims to provide a strong foundation for building dynamic UIs.

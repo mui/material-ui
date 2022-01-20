@@ -49,6 +49,7 @@ export type SystemStyleObject<Theme extends object = {}> =
   | SystemCssProperties<Theme>
   | CSSPseudoSelectorProps<Theme>
   | CSSSelectorObject<Theme>
+  | { [cssVariable: string]: string | number }
   | null;
 
 /**

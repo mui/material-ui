@@ -105,6 +105,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     autoWidth,
     children,
     className,
+    defaultOpen,
     defaultValue,
     disabled,
     displayEmpty,
@@ -136,13 +137,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     default: defaultValue,
     name: 'Select',
   });
+  const [openState, setOpenState] = useControlled({
+    controlled: openProp,
+    default: defaultOpen,
+    name: 'Select',
+  });
 
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
-  const [openState, setOpenState] = React.useState(false);
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -165,6 +170,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     [value],
   );
 
+  // Resize menu on `defaultOpen` automatic toggle.
+  React.useEffect(() => {
+    if (defaultOpen && openState && displayNode && !isOpenControlled) {
+      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      displayRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayNode, autoWidth]);
+  // `isOpenControlled` is ignored because the component should never switch between controlled and uncontrolled modes.
+  // `defaultOpen` and `openState` are ignored to avoid unnecessary callbacks.
   React.useEffect(() => {
     if (autoFocus) {
       displayRef.current.focus();
@@ -302,7 +317,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const open = displayNode !== null && (isOpenControlled ? openProp : openState);
+  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
@@ -570,6 +585,11 @@ SelectInput.propTypes = {
    * The CSS class name of the select element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the component is toggled on mount. Use when the component open state is not controlled.
+   * You can only use it when the `native` prop is `false` (default).
+   */
+  defaultOpen: PropTypes.bool,
   /**
    * The default value. Use when the component is not controlled.
    */

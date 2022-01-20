@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
 import BadgeUnstyled, { badgeUnstyledClasses, getBadgeUtilityClass } from '@mui/base/BadgeUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 
 export const badgeClasses = {
@@ -213,10 +214,6 @@ const BadgeBadge = styled('span', {
   }),
 }));
 
-const shouldSpreadAdditionalProps = (Slot) => {
-  return !Slot || !isHostComponent(Slot);
-};
-
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
   const {
@@ -348,7 +345,10 @@ Badge.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Badge.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    badge: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * If `true`, the badge is invisible.
    */

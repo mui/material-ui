@@ -292,6 +292,13 @@ describe('<Select />', () => {
     });
   });
 
+  describe('prop: defaultOpen', () => {
+    it('should be open on mount', () => {
+      const { getByRole } = render(<Select defaultOpen value="" />);
+      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+    });
+  });
+
   describe('prop: value', () => {
     it('should select the option based on the number value', () => {
       render(

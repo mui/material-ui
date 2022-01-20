@@ -4,6 +4,7 @@ description: An update on our mission for Q3 2021.
 date: 2021-10-26T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
+tags: ['Company update']
 ---
 
 This update covers our progress over the last three months.

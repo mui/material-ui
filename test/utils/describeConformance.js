@@ -208,7 +208,7 @@ export function testReactTestRenderer(element) {
  * @property {(node: React.ReactElement) => import('./createRenderer').MuiRenderResult} [render] - Should be a return value from createRenderer
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
- * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
+ * @property {Array<keyof typeof fullSuite | 'classesRoot'>} [skip] - Skip the specified tests
  * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
  * @property {{ slotName: string, slotClassName: string } | Array<{ slotName: string, slotClassName: string }>} [testDeepOverrides]
  * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]

@@ -1,7 +1,7 @@
 ---
 title: React Pagination component
 components: Pagination, PaginationItem
-githubLabel: 'component: Pagination'
+githubLabel: 'component: pagination'
 ---
 
 # Pagination

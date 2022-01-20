@@ -28,6 +28,7 @@ const filledProps = {
 {
   const StyledTextField = styled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />; // desired to pass
+  // @ts-expect-error
   <StyledTextField {...filledProps} />; // undesired, should throw
 }
 
