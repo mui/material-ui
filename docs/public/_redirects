@@ -106,6 +106,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /discover-more/team/ /about/ 301
 /api/data-grid/grid-export-csv-options/ /api/data-grid/grid-csv-export-options/ 301
 
+# 2022
+/company/about/ /about/ 301
+
 ## Localization
 /fr/* /:splat 301
 /de/* /:splat 301

@@ -27,7 +27,16 @@ export const replaceComponentLinks = (url: string) => {
   if (isNewLocation(url)) {
     return url;
   }
-  url = url.replace(/\/components\/(.*)/, '/material/react-$1');
+  if (url.match(/components\/(icons|material-icons|transitions|pickers|about-the-lab)/)) {
+    url = url.replace(/\/components\/(.*)/, '/material/$1');
+  } else {
+    url = url.replace(/\/components\/(.*)/, '/material/react-$1');
+    if (!url.match(/\/react-(tabs|breadcrumbs)/)) {
+      url = url
+        .replace(/(react-[-a-z]+)(x|ch)es(.*)$/, '$1$2$3')
+        .replace(/(react-[-a-z]+)s(.*)$/, '$1$2');
+    }
+  }
   return url;
 };
 

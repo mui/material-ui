@@ -95,7 +95,7 @@ githubLabel: 'component: Avatar'
 
     expect(getNewPageLocation('material-ui/docs/pages/components/buttons.js')).to.deep.equal({
       directory: 'material-ui/docs/pages/material',
-      path: 'material-ui/docs/pages/material/react-buttons.js',
+      path: 'material-ui/docs/pages/material/react-button.js',
     });
 
     expect(getNewPageLocation('material-ui/docs/pages/components/about-the-lab.js')).to.deep.equal({

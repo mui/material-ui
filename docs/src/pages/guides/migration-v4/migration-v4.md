@@ -1129,6 +1129,15 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Checkbox
 
+- The checkbox color prop is now "primary" by default.
+  To continue using the "secondary" color, you must explicitly indicate `secondary`.
+  This brings the checkbox closer to the Material Design guidelines.
+
+  ```diff
+  -<Checkbox />
+  +<Checkbox color="secondary" />
+  ```
+
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
   ```diff
