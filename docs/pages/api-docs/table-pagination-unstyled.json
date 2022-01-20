@@ -12,7 +12,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ actions?: object, displayedRows?: object, menuItem?: object, root?: object, select?: object, selectLabel?: object, spacer?: object, toolbar?: object }"
+      },
+      "default": "{}"
+    },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetAriaLabel(type: ItemAriaLabelType) {\n  return `Go to ${type} page`;\n}"

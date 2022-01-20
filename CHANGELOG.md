@@ -1,4 +1,116 @@
-### [Versions](https://mui.com/versions/)
+# [Versions](https://mui.com/versions/)
+
+## 5.3.0
+
+<!-- generated comparing v5.2.8..master -->
+
+_Jan 17, 2022_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 @siriwatknp added support for callbacks in styleOverrides (#30524)
+- 🧩 @ZeeshanTamboli and @VicHofs improved customization of components (#30515, #30212)
+- 🛠 @hbjORbj fixed the use of ResizeObserver in Masonry component (#29896)
+- 📄 @danilo-leal and @siriwatknp created our own blog home page (#30121)
+
+### `@mui/material@5.3.0`
+
+- [Autocomplete] Add ability to pass props to `Paper` component (#30515) @ZeeshanTamboli
+- [Select] Add defaultOpen prop (#30212) @VicHofs
+
+### `@mui/system@5.3.0`
+
+- [system][box, grid, typography] `textTransform` prop should work directly on component (#30437) @hbjORbj
+- [system] Support callback value in `styleOverrides` slot (#30524) @siriwatknp
+
+### `@mui/lab@5.0.0-alpha.65`
+
+- [Masonry] Observe every masonry child to trigger computation when needed (#29896) @hbjORbj
+- [MobileDatePicker] Fix calling onOpen when readOnly is true (#30561) @alisasanib
+
+### `@mui/codemod@5.3.0`
+
+- [codemod] Bump `jscodeshift` to remove `colors` dependency (#30578) @siriwatknp
+
+### `@mui/styled-engine-sc@5.3.0`
+
+- [styled-engine-sc] Add the withConfig API to enable using the babel plugin for styled-comonents (#30589) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.11`
+
+- [Joy] Add `SvgIcon` component (#30570) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.65`
+
+- [SliderUnstyled] Add useSlider hook and polish (#30094) @mnajdova
+
+### Docs
+
+- [docs] End code block in test/README.md (#30531) @yaboi
+- [docs] Remove redundant grouping in /components/radio-buttons/ (#30065) @eps1lon
+- [docs] Update migration scripts and e2e tests (#30583) @siriwatknp
+- [docs] Fix migration guides for versions older than v4 (#30595) @kkirsche
+- [docs] Inform about specific files for DataGrid locales (#30411) @alexfauquette
+- [docs] jss-to-tss migration advise to drop clsx in favor of cx (#30527) @garronej
+- [docs] Fix integration with MUI X (#30593) @oliviertassinari
+- [docs] Adding peer dependencies explanation on @mui/lab README.md (#30532) @glaucoheitor
+- [docs] Add missing quote in migration docs (#30587) @Atralbus
+- [docs] Update link to Doit sponsor (#30586) @oliviertassinari
+- [docs] Add products identifier and drawer (#30283) @siriwatknp
+- [website] Fix code button with installation command (#30622) @danilo-leal
+- [website] Add a Blog index page (#30121) @danilo-leal
+- [website] Migrate Twitter from @MaterialUI to @MUI_hq @oliviertassinari
+- [website] Add Andrii to the About Us page (#30581) @cherniavskii
+
+### Core
+
+- [core] Revert changes to peer dependencies (#30662) @oliviertassinari
+- [core] Renovate should not try to update node (#30659) @oliviertassinari
+- [core] Remove dead files (#30663) @oliviertassinari
+- [core] Fix outdated TypeScript template (#30596) @oliviertassinari
+- [core] Remove extra `</p>` from header of README.md (#30530) @yaboi
+- [core] Fix `docs:api` script for Windows OS (#30533) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @Atralbus, @cherniavskii, @danilo-leal, @eps1lon, @garronej, @glaucoheitor, @hbjORbj, @kkirsche, @mnajdova, @oliviertassinari, @siriwatknp, @VicHofs, @yaboi, @ZeeshanTamboli
+
+## 5.2.8
+
+<!-- generated comparing v5.2.7..master -->
+
+_Jan 10, 2022_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+- A meaningful number of 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.2.8`
+
+- &#8203;<!-- 05 -->[TextField][inputlabel] Remove `pointer-events: none` property (#30493) @hbjORbj
+- &#8203;<!-- 02 -->[Slider] Add `input` slot to components and componentsProps (#30362) @alexandre-lelain
+
+### `@mui/joy@5.0.0-alpha.10`
+
+- &#8203;<!-- 04 -->[Joy] Add `Typography` component (#30489) @siriwatknp
+- &#8203;<!-- 03 -->[Joy] Add functional `Switch` component (#30487) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 18 -->[docs] Update markdown parser to remove backticks from description (#30495) @aefox
+- &#8203;<!-- 17 -->[docs] Fix the crash when applying custom colors (#30563) @siriwatknp
+- &#8203;<!-- 16 -->[docs] Location change of Sebastian (#30528) @eps1lon
+- &#8203;<!-- 15 -->[docs] Lint markdown in the CI (#30395) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Fix `componentsProps` API docs and PropTypes (#30502) @ZeeshanTamboli
+- &#8203;<!-- 13 -->[docs] Codemod doc for overriding styles using tss (#30499) @garronej
+- &#8203;<!-- 12 -->[docs] fix edge case when replacing data-grid url for migration (#30505) @siriwatknp
+- &#8203;<!-- 11 -->[docs] fix replace url for migration (#30503) @siriwatknp
+- &#8203;<!-- 10 -->[docs] Prepare scripts for migrating to new structure (#30386) @siriwatknp
+- &#8203;<!-- 09 -->[docs] Adjust RTL Guide demos to fully support RTL (#30387) @noam-honig
+- &#8203;<!-- 08 -->[docs] Move @eps1lon to community (#30473) @oliviertassinari
+- &#8203;<!-- 07 -->[docs] Fix typo and spelling in the-sx-prop.md (#30482) @aefox
+- &#8203;<!-- 06 -->[docs] More general docs polishing (#30371) @danilo-leal
+- &#8203;<!-- 01 -->[website] Add José on the /about page (#30492) @danilo-leal
+
+All contributors of this release in alphabetical order: @aefox, @alexandre-lelain, @danilo-leal, @eps1lon, @garronej, @hbjORbj, @noam-honig, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
 
 ## 5.2.7
 
@@ -1225,7 +1337,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   replace `@material-ui/*` prefix with `@mui/*`:
 
-  ```
+  ```sh
   @material-ui/system -> @mui/system
   @material-ui/styles -> @mui/styles
   @material-ui/lab -> @mui/lab
@@ -1238,7 +1350,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   except these 3 packages that are renamed.
 
-  ```
+  ```sh
   @material-ui/core => @mui/material        // represents Material Design components.
   @material-ui/icons => @mui/icons-material // represents Material Design icons.
   @material-ui/unstyled => @mui/base        // fully functional components with minimum styles.
@@ -2611,6 +2723,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   ```
 
 - &#8203;<!-- 63 -->[Autocomplete] Rename getOptionSelected to isOptionEqualToValue (#26173) @m4theushw
+
   ```diff
   <Autocomplete
   -  getOptionSelected={(option, value) => option.title === value.title}
@@ -4184,7 +4297,7 @@ All contributors of this release in alphabetical order: @artola, @CyanoFresh, @d
 
 ## 5.0.0-alpha.23
 
-###### _Jan 14, 2021_
+_Jan 14, 2021_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4299,7 +4412,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.22
 
-###### _Jan 4, 2021_
+_Jan 4, 2021_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4351,7 +4464,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.21
 
-###### _Dec 30, 2020_
+_Dec 30, 2020_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4424,7 +4537,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.20
 
-###### _Dec 21, 2020_
+_Dec 21, 2020_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4502,7 +4615,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.19
 
-###### _Dec 13, 2020_
+_Dec 13, 2020_
 
 A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4630,7 +4743,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.18
 
-###### _Dec 3, 2020_
+_Dec 3, 2020_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4722,7 +4835,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.17
 
-###### _Nov 23, 2020_
+_Nov 23, 2020_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4889,7 +5002,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.16
 
-###### _Nov 14, 2020_
+_Nov 14, 2020_
 
 A big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
 
@@ -4993,7 +5106,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.15
 
-###### _Nov 4, 2020_
+_Nov 4, 2020_
 
 A big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
 
@@ -5105,7 +5218,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 
 ## 5.0.0-alpha.14
 
-###### _Oct 23, 2020_
+_Oct 23, 2020_
 
 A big thanks to the 23 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5156,12 +5269,14 @@ Here are some highlights ✨:
   You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
 
   - The CSS prefixes have changed:
+
     ```diff
     popper: {
       zIndex: 1,
     - '&[x-placement*="bottom"] $arrow': {
     + '&[data-popper-placement*="bottom"] $arrow': {
     ```
+
   - Method names have changed.
 
     ```diff
@@ -5276,7 +5391,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.13
 
-###### _Oct 17, 2020_
+_Oct 17, 2020_
 
 A big thanks to the 25 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5402,7 +5517,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.12
 
-###### _Oct 11, 2020_
+_Oct 11, 2020_
 
 A big thanks to the 45 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5626,7 +5741,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.11
 
-###### _Sep 26, 2020_
+_Sep 26, 2020_
 
 A big thanks to the 29 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5642,7 +5757,7 @@ Here are some highlights ✨:
   Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/basics/)).
 
   This change has been in our roadmap for more than a year.
-  We announced it in the [v4 release blog post](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) as a direction v5 would take.
+  We announced it in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/) as a direction v5 would take.
 
 - 🛠 A first iteration on the unstyled components.
 
@@ -5860,7 +5975,7 @@ More documentation are coming.
 
 ## 5.0.0-alpha.10
 
-###### _Sep 15, 2020_
+_Sep 15, 2020_
 
 A big thanks to the 16 contributors who made this release possible.
 Here are some highlights ✨:
@@ -5925,13 +6040,13 @@ Here are some highlights ✨:
 
   Before:
 
-  ```
+  ```sh
   theme.spacing(2) => 16
   ```
 
   After:
 
-  ```
+  ```sh
   theme.spacing(2) => '16px'
   ```
 
@@ -5990,7 +6105,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.9
 
-###### _Sep 6, 2020_
+_Sep 6, 2020_
 
 A big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
@@ -6043,7 +6158,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.8
 
-###### _Aug 31, 2020_
+_Aug 31, 2020_
 
 A big thanks to the 19 contributors who made this release possible.
 Here are some highlights ✨:
@@ -6219,7 +6334,7 @@ const theme = createMuiTheme({
 
 ## 5.0.0-alpha.7
 
-###### _Aug 22, 2020_
+_Aug 22, 2020_
 
 A big thanks to the 22 contributors who made this release possible.
 Here are some highlights ✨:
@@ -6349,7 +6464,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.6
 
-###### _Aug 13, 2020_
+_Aug 13, 2020_
 
 A big thanks to the 26 contributors who made this release possible.
 Here are some highlights ✨:
@@ -6392,7 +6507,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v5.0.0-alpha.6`
 
-### Breaking changes
+#### Breaking changes
 
 - [Avatar] Rename variant circle -> circular for consistency (#22015) @kodai3
   Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -6551,7 +6666,7 @@ Here are some highlights ✨:
   +},
   ```
 
-### Changes
+#### Changes
 
 - [Avatar] Custom variant (#22139) @mnajdova
 - [Badge] Add missing class key (#22095) @kodai3
@@ -6571,7 +6686,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/lab@v5.0.0-alpha.6`
 
-### Breaking changes
+#### Breaking changes
 
 - [Skeleton] Rename variant circle -> circular and rect -> rectangular for consistency (#22053) @kodai3
   Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
@@ -6583,7 +6698,7 @@ Here are some highlights ✨:
   +<Skeleton variant="rectangular">
   ```
 
-### Changes
+#### Changes
 
 - [Autocomplete] Add support for "{label: string}" data type as a default for "options" (#21992) @DanailH
 - [TreeView] Add disabled prop (#20133) @netochaves
@@ -6635,7 +6750,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.5
 
-###### _July 28, 2020_
+_July 28, 2020_
 
 A big thanks to the 18 contributors who made this release possible.
 
@@ -6706,7 +6821,7 @@ A big thanks to the 18 contributors who made this release possible.
 
 ## 5.0.0-alpha.4
 
-###### _July 19, 2020_
+_July 19, 2020_
 
 A big thanks to the 11 contributors who made this release possible.
 
@@ -6748,7 +6863,7 @@ A big thanks to the 11 contributors who made this release possible.
 
 ## 5.0.0-alpha.3
 
-###### _July 12, 2020_
+_July 12, 2020_
 
 A big thanks to the 14 contributors who made this release possible.
 
@@ -6797,7 +6912,7 @@ A big thanks to the 14 contributors who made this release possible.
 
 ## 5.0.0-alpha.2
 
-###### _July 4, 2020_
+_July 4, 2020_
 
 A big thanks to the 16 contributors who made this release possible.
 
@@ -6859,7 +6974,7 @@ A big thanks to the 16 contributors who made this release possible.
 
 ## 5.0.0-alpha.1
 
-###### _June 27, 2020_
+_June 27, 2020_
 
 A big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
 
@@ -6975,6 +7090,7 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   ```
 
 - [Accordion] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />

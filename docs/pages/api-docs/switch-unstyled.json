@@ -10,7 +10,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: object, root?: object, thumb?: object, track?: object }"
+      },
+      "default": "{}"
+    },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },

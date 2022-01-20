@@ -208,6 +208,7 @@ export function ThemeProvider(props) {
 
   const theme = React.useMemo(() => {
     const brandingDesignTokens = getDesignTokens(paletteMode);
+    const nextPalette = deepmerge(brandingDesignTokens.palette, paletteColors);
     let nextTheme = createTheme(
       {
         direction,
@@ -216,8 +217,7 @@ export function ThemeProvider(props) {
           color: brandingDesignTokens.palette.primary.main,
         },
         palette: {
-          ...brandingDesignTokens.palette,
-          ...paletteColors,
+          ...nextPalette,
           mode: paletteMode,
         },
         // v5 migration

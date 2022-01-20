@@ -13,6 +13,7 @@ authors:
     'mbrookes',
   ]
 card: true
+tags: ['News']
 ---
 
 After over 400 days of development and over 40 canary releases, we are excited to introduce [MUI Core v5.0.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0)!

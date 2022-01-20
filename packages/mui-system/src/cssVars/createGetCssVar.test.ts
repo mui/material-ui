@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import createGetThemeVar from './createGetThemeVar';
+import createGetCssVar from './createGetCssVar';
 
-describe('createGetThemeVar', () => {
+describe('createGetCssVar', () => {
   describe('default without prefix', () => {
-    const getThemeVar = createGetThemeVar();
+    const getThemeVar = createGetCssVar();
     it('should return correct CSS var with default prefix', () => {
       expect(getThemeVar('palette-primary-500')).to.equal('var(--palette-primary-500)');
     });
@@ -28,7 +28,7 @@ describe('createGetThemeVar', () => {
   });
 
   it('able to custom prefix', () => {
-    const getThemeVar = createGetThemeVar('custom');
+    const getThemeVar = createGetCssVar('custom');
     expect(getThemeVar('shadow-xs')).to.equal('var(--custom-shadow-xs)');
   });
 });

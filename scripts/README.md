@@ -33,11 +33,11 @@ Push the next branch on the release branch to deploy the documentation with the 
 
 Note: if you don't have the `material-ui-docs` remote already, you should add it with
 
-```
+```sh
 git remote add material-ui-docs https://github.com/mui-org/material-ui-docs.git
 ```
 
-```
+```sh
 yarn docs:deploy
 ```
 
@@ -46,4 +46,4 @@ yarn docs:deploy
 1. **GitHub**. Make a new release on GitHub (for people subscribing to updates). https://github.com/mui-org/material-ui/releases
 1. **Twitter**. It's even better to synchronize with the release of MUI X: https://trello.com/c/kYF9OLLi/105-release-steps, to have a single announcement/version covering the two.
    Send a tweet with the main Twitter account to summarize what happened.
-   Example of template https://twitter.com/MaterialUI/status/1341422029862526977
+   Example of template https://twitter.com/MUI_hq/status/1341422029862526977

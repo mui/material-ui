@@ -1,7 +1,7 @@
 ---
 title: Componente React para Autocompletar
 components: TextField, Popper, Autocomplete
-githubLabel: 'component: Autocomplete'
+githubLabel: 'component: autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 ---
 

@@ -245,7 +245,16 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    actions: PropTypes.object,
+    displayedRows: PropTypes.object,
+    menuItem: PropTypes.object,
+    root: PropTypes.object,
+    select: PropTypes.object,
+    selectLabel: PropTypes.object,
+    spacer: PropTypes.object,
+    toolbar: PropTypes.object,
+  }),
   /**
    * The total number of rows.
    *

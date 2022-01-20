@@ -1,7 +1,7 @@
 ---
 title: React Tooltip（工具提示）组件
 components: Tooltip
-githubLabel: 'component: Tooltip'
+githubLabel: 'component: tooltip'
 materialDesign: https://material.io/components/tooltips
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---

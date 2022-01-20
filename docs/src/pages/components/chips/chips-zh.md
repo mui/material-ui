@@ -1,7 +1,7 @@
 ---
 title: React Chip（纸片）组件
 components: Chip
-githubLabel: 'component: Chip'
+githubLabel: 'component: chip'
 materialDesign: https://material.io/components/chips
 ---
 

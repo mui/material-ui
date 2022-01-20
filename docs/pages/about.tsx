@@ -339,6 +339,16 @@ const teamMembers: Array<Profile> = [
     twitter: 'zehdefreitas',
     github: 'joserodolfofreitas',
   },
+  {
+    src: '/static/branding/about/andrii.png',
+    name: 'Andrii Cherniavskyi',
+    title: 'MUI X engineer',
+    location: 'Wrocław, Poland',
+    country: 'ua',
+    about: 'Love playing music - electric and bass guitar 🎸',
+    twitter: 'iamcherniavskii',
+    github: 'cherniavskii',
+  },
 ];
 
 const contributors = [
@@ -346,7 +356,7 @@ const contributors = [
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     title: 'MUI Core, everything Open Source',
-    location: 'Dresden, Germany',
+    location: 'Berlin, Germany',
     country: 'de',
     src: 'https://avatars.githubusercontent.com/u/12292047',
     twitter: 'sebsilbermann',

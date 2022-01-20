@@ -1,7 +1,7 @@
 ---
 title: Tree View React component
 components: TreeView, TreeItem
-githubLabel: 'component: TreeView'
+githubLabel: 'component: tree view'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#TreeView
 packageName: '@mui/lab'
 ---

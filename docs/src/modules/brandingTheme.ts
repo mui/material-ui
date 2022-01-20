@@ -291,7 +291,10 @@ export function getThemedComponents(theme: Theme) {
             fontWeight: 700,
           },
           sizeSmall: {
-            padding: '0.375rem 0rem',
+            padding: theme.spacing(0.5, 0),
+            [theme.breakpoints.up('md')]: {
+              padding: theme.spacing(0.5, 1),
+            },
           },
           containedPrimary: {
             backgroundColor: theme.palette.primary[500],
@@ -336,6 +339,10 @@ export function getThemedComponents(theme: Theme) {
                 color: theme.palette.grey[400],
               },
               '& .MuiButton-endIcon': {
+                display: 'inline-block',
+                position: 'absolute',
+                right: 0,
+                marginRight: 10,
                 color:
                   theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
               },
@@ -493,12 +500,85 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            fontWeight: 500,
+          },
+          outlined: {
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.grey[900],
+            backgroundColor: 'transparent',
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[600]
+                : theme.palette.grey[300],
+          },
+          filled: {
+            border: '1px solid transparent',
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[800],
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.primary[100],
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.primary[200],
+            },
+          },
+          deleteIcon: {
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
+            '&:hover': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.grey[100]
+                  : theme.palette.primary[900],
+            },
+          },
+        },
+      },
+      MuiList: {
+        styleOverrides: {
+          root: {
+            padding: 0,
+          },
+        },
+      },
       MuiListItemButton: {
         styleOverrides: {
           root: {
-            borderRadius: 5,
-            '&:hover, &:focus': {
-              backgroundColor: theme.palette.mode === 'dark' ? '' : theme.palette.grey[100],
+            padding: '8px',
+            textTransform: 'none',
+            fontWeight: 500,
+            fontSize: theme.typography.pxToRem(14),
+            color:
+              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
+            borderRadius: 0,
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[700], 0.4)
+                  : theme.palette.grey[50],
+            },
+            '&.Mui-selected': {
+              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+              borderRadius: 10,
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? `${theme.palette.primary[700]} !important`
+                  : `${theme.palette.primary[500]} !important`,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.primary[50],
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.primary[100],
+              },
             },
           },
         },
@@ -574,7 +654,7 @@ export function getThemedComponents(theme: Theme) {
         styleOverrides: {
           root: {
             textTransform: 'none',
-            fontWeight: 700,
+            fontWeight: 500,
             color:
               theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
             borderColor:
@@ -641,6 +721,37 @@ export function getThemedComponents(theme: Theme) {
             flexShrink: 0,
             width: '14px',
             height: '14px',
+          },
+        },
+      },
+      MuiPaginationItem: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            fontWeight: 700,
+            color:
+              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.grey[200],
+            '&.Mui-selected': {
+              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? `${theme.palette.primary[700]} !important`
+                  : `${theme.palette.primary[500]} !important`,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.primary[50],
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.primary[100],
+              },
+            },
           },
         },
       },
