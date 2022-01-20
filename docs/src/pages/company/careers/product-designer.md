@@ -1,92 +1,74 @@
-# Product Designer
+# Designer
 
 <p class="description">Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.</p>
 
-## Details of the Role
+## About the company
 
-- Location: Remote (preference for UTC-6 to UTC+3).
-- Type of work: Full-time (contractor or employee [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
-- Start date: Immediately.
-- We're a remote company, we prefer asynchronous communication over meetings.
-- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+MUI started with Material UI, the most successful React implementation of Google’s Material Design. It has gotten a massive following not only due to the fidelity to Material but also because its number of components, carefully designed component API, obsession for details, and community engagement. Today, countless teams and organizations rely on our open-source projects to build their design system.
 
-## About us
+A few years back, we started expanding our suite of products. We released [MUI X](/x), a collection of advanced components, [MUI Design Kits](/design-kits), the MUI Material components available in the most popular design tools out there, and [MUI Templates](/templates), a set of pre-built UIs. We’ve seen fast growth in all of them (x2 ~ 3 year over year) and we have much more baking in the oven.
 
-See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
+We are a team of fully distributed individuals, spread across multiple timezones. We work mainly asynchronously, relying on lots of documentation and written collaboration. Every contributor has the freedom to define how they work — the rest of us won’t know what you’re doing day-to-day unless you tell us. For additional details about MUI team and culture, you can check our [careers](/careers) and [about](/about) pages and also our [public Handbook](https://www.notion.so/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
-### Why we're hiring
+## Why we’re hiring
 
-Both our open-source community and our premium products are growing fast (x2-3 YoY).
-We need talented people to keep that going!
+Material-UI started as an open-source project. As years passed by, audience and usage grew considerably, even turning some of the library’s original founders turned full-time maintainers of it. A few years ago, the project was incorporated and very recently, [we have rebranded the company from Material-UI to MUI](/blog/material-ui-is-now-mui/). A new brand was fundamental to set the stage for MUI to become larger than Material Design, which was something we actually were already doing. Right now, we have five main projects that are not at all related to MD:
 
-So far we have relied a lot on the Material Design guidelines to implement amazing-looking components. However, we have reached the point where this is no longer sufficient.
+- [MUI Core:](/core)
+  - [MUI Base:](/customization/unstyled-components/) the unstyled version of the components.
+  - [MUI System:](/system/basics/) our most recent take on styling for React components.
+  - [MUI Joy (working title)](https://github.com/mui-org/material-ui/discussions/29024): a second design system, alternative to Material Design.
+- [MUI X:](/x) as mentioned already, a growing set of advanced components. Today, the flagship is the [Data Grid](/components/data-grid/), a game-changing component for dealing with lots of data, which integrates perfectly with MUI Core.
+- MUI Studio: a very recent endeavor aimed at exploring how can our users visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
-We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer or dislike writing CSS.
-We are looking for someone that can contribute to the following outcomes:
-
-- Make the React component library the most visually appealing in the market.
-- Strengthen the existing design team to support the growing number of developers working at MUI.
-- Improve the product direction.
-
-### Why this is interesting
-
-The quality of design execution is [the leading reason why](/blog/2020-developer-survey-results/#6-what-are-your-key-criteria-when-choosing-a-ui-library) people pick MUI.
-Providing functional components isn't enough, far from it.
-We will empower developers & designers to build beautiful UIs 😍.
-
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+We also know, especially due to [our yearly run developer surveys](/blog/2020-developer-survey-results/), that design quality plays a huge part when developers are considering available component library options. Therefore, we need to grow the design organization to help us push these initiatives further.
 
 ## About the role
 
-### What you'll do on a day-to-day basis
+Some criterias for applying to this role:
 
-Depending on the day, you'll:
+- Location: fully remote (preference for UTC-6 to UTC +3).
+- Type of work: full-time (as a contractor or employee, [depending on the case](https://www.notion.so/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
+- Level: [2 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
+- Start date: immediately.
 
-- You will design new screens/components on Figma.
-- You will write code with MUI.
-- You will interview users to find out what they are using our existing products for and invent ways we can solve those problems even better than our users have imagined.
-- You will contribute to the product direction. At MUI, the product is a lot driven by engineers and designers, especially on MUI Core.
+We need someone experienced enough to help two different teams with hard problems. You will be responsible for ensuring that the MUI Studio and MUI X teams have spot-on design and product work. Given that each product is in a different stage, at this moment we believe that one person is enought to oversee the design function at each team. You’ll have the freedom, trust, and help from our bright and smart people to understand how to balance and tackle all the work. You’ll also be the second designer of a growing design chapter, so we’ll also need your help as to how to do it in the best way possible.
 
 ### Here are a few initiatives you might work on
 
-Projects you might have worked on if you were part of the team:
+- Help figure out what the first version of MUI Studio will be, from its early strategy thinking to the look and feel of it.
+- Evolve and refine Data Grid features, such as filtering, column pinning, row editing, and more.
+- Help setting the bar higher for MUI X documentation, from visual design to copywriting.
+- Support the design team growth by promoting design/product culture and hiring new members.
 
-- [the new mui.com brand](https://www.figma.com/proto/4uv2dT18rXJPZBbrbpw61q/Marketing-site?node-id=4849%3A24442&scaling=min-zoom&page-id=0%3A1)
-- A redesign of the docs to isolate the products (`@mui/base`, `@mui/material`, `@mui/x`, etc.)
+### You might fit for this role if you:
 
-Tasks that you might work on once you join depending on how we organize the design team:
+- See yourself as a generalist designer, which means you like tackling problems ranging from strategic thinking to execution development (more insight at the recently written [first draft of our design philosophy](https://www.notion.so/Design-philosophy-bdbef60d6fad4134a43870df3e452ebc), available at our public Handbook).
+- Have excellent visual and interaction design chops.
+- Consider yourself a great communicator, both at the written and verbal levels. Designers are key players when it comes to creating alignment and shared understanding, be it from internal to external stakeholders.
+- Feel comfortable around code and git (we use GitHub). Developers are MUI's main audience, therefore it's very important to know how to read and experience code for yourself, to empathize with our users. You should be capable of tweaking your own JSX and CSS, ensuring that your designs are implemented with the highest fidelity. But don't worry, you’ll always have the support of your teams’ developers.
 
-- Polish of all the content in the docs, e.g. customization demos.
-- The product design on our work-in-progress low-code UI builder.
-- The UX and visual design on our advanced components, like the data grid filtering or the date picker components.
-- The update of the components to match the latest Material Design guidelines.
-- The design and implementation of `@mui/material-next` to match [Material You](https://m3.material.io/).
-- Design and implementation of new free templates, e.g. for refreshing Material Design or for second design system Joy.
-- Design and implementation of new marketing pages, e.g. showcases and case studies.
-- Take responsibility for the [MUI Design kits](https://mui.com/design-kits/) product while collaborating with the existing two designers working on it.
+Previous experience with design systems would be great but not required.
 
-## About you
+## Benefits & Compensation
 
-We're looking for someone with an expert eye for visual and UI design. You have enough development skills (CSS, React) to implement the designed interfaces. Details matter to you.
+We offer competitive compensation depending on the profile and location. We’re ready to pay top market rates for a designer that can significantly push the mission forward. Other perks are described on [the careers page](/careers).
 
-### Skills you should have
+## How to apply
 
-- **Expert-level knowledge of visual design**. You can create amazing-looking UIs. You care about every detail. You spot kerning issues, 1px misalignment even when not trying to pay attention.
-- **Expert-level knowledge of UI design**. You can build intuitive UIs.
-- **Enough development skills to implement the designed interfaces**. Our React engineers are often busy implementing complex components. We are looking for somebody with enough CSS and JSX skills to not depend on them to implement the design. It's also important for empathy with developers when contributing to the DX.
-- **Strong written and verbal communication skills**. As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Designer).
 
-### What would be nice if you had, but isn't required
+## What happens next?
 
-- **You've contributed to a design system before**. You have worked on a library of components in the past, maybe for internal usage in your company.
-- **You have other complementary skills**. We are a tiny team of 16 people. We could use any hidden skills that you might have. Maybe you are great at creating video animations or creating graphical illustrations.
+We start by screening all the applications, looking for designers that showcase the desired skills and experience. If your application stands out, we’ll contact you for a get-to-know conversation, where we’ll meet each other.
 
-## Compensation
+If that goes successfully, you'll be invited to up to four conversations, them being:
 
-Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
-You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
+- A walkthrough on one or two selected projects of your career that you believe demonstrates [comparable experience.](https://articles.uie.com/ux-hiring-lets-talk-about-comparable-experience/)
+- A chat with one of our product managers or engineers that will work closely with you.
+- A chat with one of MUI’s founders.
+- A possible follow-up chat if we end up missing addressing any relevant subject on the previous conversations.
 
-## Apply
+All these conversations will be 1:1 and over video chats. Please feel encouraged to ask as many questions as you wish throughout the whole process, it’s a two-way street. If you happen to need additional conversations as well, feel free to ask, we'll be happy to schedule them. Lastly, please note that we’re unable to offer individual feedback during the initial screening process, as we're a tiny team and don’t have the bandwidth to do so.
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Product%20Designer)
+We look forward to hearing from you! ☺️

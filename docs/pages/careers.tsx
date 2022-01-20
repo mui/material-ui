@@ -144,18 +144,18 @@ const faqData = [
 ];
 
 const openRolesData = [
-  // {
-  //   // 1
-  //   title: 'Product',
-  //   roles: [
-  //     {
-  //       title: 'Product Designer',
-  //       description:
-  //         'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-  //       url: '/company/11-product-designer/',
-  //     },
-  //   ],
-  // },
+  {
+    // 1
+    title: 'Product',
+    roles: [
+      {
+        title: 'Designer',
+        description:
+          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
+        url: '/company/11-product-designer/',
+      },
+    ],
+  },
   {
     // 5
     title: 'Developer Experience',
@@ -223,18 +223,18 @@ const openRolesData = [
 ];
 
 const futureRolesData = [
-  {
-    // 1
-    title: 'Product',
-    roles: [
-      {
-        title: 'Product Designer',
-        description:
-          'Design is critical to the success of our mission. We will be looking for skills that complement our Lead Designer. You will empower our community to build outstanding-looking UIs with innovative tools.',
-        url: undefined,
-      },
-    ],
-  },
+  // {
+  //   // 1
+  //   title: 'Product',
+  //   roles: [
+  //     {
+  //       title: 'Product Designer',
+  //       description:
+  //         'Design is critical to the success of our mission. We will be looking for skills that complement our Lead Designer. You will empower our community to build outstanding-looking UIs with innovative tools.',
+  //       url: undefined,
+  //     },
+  //   ],
+  // },
   {
     title: 'Engineering',
     roles: [
