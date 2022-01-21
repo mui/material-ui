@@ -74,7 +74,7 @@ function run() {
   fs.writeFileSync(featureTogglePath, featureToggle);
 
   // Add redirects to _redirects (netlify)
-  const redirectsPath = path.join(process.cwd(), 'docs/src/featureToggle.js');
+  const redirectsPath = path.join(process.cwd(), 'docs/public/_redirects');
   let redirects = fs.readFileSync(redirectsPath, { encoding: 'utf8' });
 
   redirects = redirects.replace(
