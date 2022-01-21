@@ -51,7 +51,6 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     listboxId,
     listboxRef,
     multiple = false,
-    onButtonClick,
     onChange,
     onOpenChange,
     open,
@@ -69,18 +68,26 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     state: 'value',
   });
 
-  const handleButtonClick = (event: React.MouseEvent) => {
-    onButtonClick?.(event);
-    if (!event.defaultPrevented) {
-      onOpenChange?.(!open);
-    }
-  };
+  // prevents closing the listbox on keyUp right after opening it
+  const ignoreEnterKeyUp = React.useRef(false);
+
+  const createHandleButtonClick =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
+      otherHandlers?.onClick?.(event);
+      if (!event.defaultPrevented) {
+        onOpenChange?.(!open);
+      }
+    };
 
   const createHandleButtonKeyDown =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
       otherHandlers?.onKeyDown?.(event);
       if (event.defaultPrevented) {
         return;
+      }
+
+      if (event.key === 'Enter') {
+        ignoreEnterKeyUp.current = true;
       }
 
       if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
@@ -98,9 +105,11 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
 
       const closingKeys = multiple ? ['Escape'] : ['Escape', 'Enter', ' '];
 
-      if (open && closingKeys.includes(event.key)) {
+      if (open && !ignoreEnterKeyUp.current && closingKeys.includes(event.key)) {
         setTimeout(() => buttonRef?.current?.focus(), 0);
       }
+
+      ignoreEnterKeyUp.current = false;
     };
 
   const createHandleListboxItemClick =
@@ -165,7 +174,6 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
   } = useButton({
     component: buttonComponent,
     disabled,
-    onClick: handleButtonClick,
     ref: handleButtonRef,
   });
 
@@ -227,6 +235,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       return {
         ...getButtonProps({
           ...otherHandlers,
+          onClick: createHandleButtonClick(otherHandlers),
           onKeyDown: createHandleButtonKeyDown(otherHandlers),
         }),
         'aria-expanded': open,

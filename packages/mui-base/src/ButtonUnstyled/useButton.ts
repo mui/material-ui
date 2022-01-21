@@ -119,8 +119,8 @@ export default function useButton(props: UseButtonProps) {
         event.key === 'Enter' &&
         !disabled
       ) {
-        event.preventDefault();
         otherHandlers.onClick?.(event);
+        event.preventDefault();
       }
     };
 
