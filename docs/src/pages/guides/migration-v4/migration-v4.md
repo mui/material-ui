@@ -2821,7 +2821,8 @@ If you were using the `$` syntax, the transformation would look like this:
  });
 
  function App() {
-   const classes = useStyles();
+   -const classes = useStyles();
+   +const { classes } = useStyles();
 
    return (
      <div className={classes.parent}>
