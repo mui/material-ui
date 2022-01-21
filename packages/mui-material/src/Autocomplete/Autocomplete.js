@@ -414,6 +414,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     selectOnFocus = !props.freeSolo,
     size = 'medium',
     value: valueProp,
+    isPaginated = false,
+    totalOptions = null,
     ...other
   } = props;
   /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -865,6 +867,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   isOptionEqualToValue: PropTypes.func,
   /**
+   * Used to determine if the list is being paginated - this is required for scroll into view functionality to work properly
+   * when pagination is being done
+   * @default false
+   */
+  isPaginated: PropTypes.bool,
+  /**
    * The maximum number of tags that will be visible when not focused.
    * Set `-1` to disable the limit.
    * @default -1
@@ -1032,6 +1040,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * Total number of options that is used to for scroll into view to work properly when the page is being paginated.
+   * Prop is only required when isPaginated is true
+   * @default null
+   */
+  totalOptions: PropTypes.number,
   /**
    * The value of the autocomplete.
    *

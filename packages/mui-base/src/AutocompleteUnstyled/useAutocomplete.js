@@ -103,6 +103,8 @@ export default function useAutocomplete(props) {
     options,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
+    isPaginated = false,
+    totalOptions = null,
   } = props;
 
   const id = useId(idProp);
@@ -370,7 +372,16 @@ export default function useAutocomplete(props) {
         element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
         listboxNode.scrollTop
       ) {
-        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
+        /* If list is being paginated, check if the current list options is equal
+        to the total available number of options and if so, use the default behavior i.e.
+        when isPaginated is false */
+        if (isPaginated) {
+          if (options.length >= totalOptions) {
+            listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
+          }
+        } else {
+          listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
+        }
       }
     }
   });
