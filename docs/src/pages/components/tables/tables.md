@@ -1,7 +1,7 @@
 ---
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
-githubLabel: 'component: Table'
+githubLabel: 'component: table'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#table
 materialDesign: https://material.io/components/data-tables
 ---
@@ -126,7 +126,7 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
 
-#### Customized look and feel
+### Customized look and feel
 
 {{"demo": "pages/components/tables/TableCustomized.js"}}
 

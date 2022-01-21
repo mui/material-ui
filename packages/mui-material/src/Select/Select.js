@@ -25,6 +25,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     children,
     classes: classesProp = {},
     className,
+    defaultOpen = false,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
     id,
@@ -82,6 +83,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
         ? { id }
         : {
             autoWidth,
+            defaultOpen,
             displayEmpty,
             labelId,
             MenuProps,
@@ -129,6 +131,12 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the component is initially open. Use when the component open state is not controlled (i.e. the `open` prop is not defined).
+   * You can only use it when the `native` prop is `false` (default).
+   * @default false
+   */
+  defaultOpen: PropTypes.bool,
   /**
    * The default value. Use when the component is not controlled.
    */

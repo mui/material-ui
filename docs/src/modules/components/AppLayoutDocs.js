@@ -14,7 +14,7 @@ import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
 const TOC_WIDTH = 240;
-const NAV_WIDTH = 250;
+const NAV_WIDTH = 280;
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',

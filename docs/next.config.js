@@ -3,6 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
+const FEATURE_TOGGLE = require('./src/featureToggle');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -184,6 +185,9 @@ module.exports = {
         if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
           return;
         }
+        if (!FEATURE_TOGGLE.enable_blog_index && page.pathname === '/blog') {
+          return;
+        }
         if (!page.children) {
           // map api-docs to api
           // i: /api-docs/* > /api/* (old structure)
@@ -225,6 +229,97 @@ module.exports = {
       // Make sure to include the trailing slash if `trailingSlash` option is set
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
     ];
+  },
+  async redirects() {
+    if (FEATURE_TOGGLE.enable_redirects) {
+      return [
+        {
+          source: '/styles/:path*',
+          destination: '/system/styles/:path*',
+          permanent: false,
+        },
+        {
+          source: '/getting-started/:path*',
+          destination: '/material/getting-started/:path*',
+          permanent: false,
+        },
+        {
+          source: '/customization/:path*',
+          destination: '/material/customization/:path*',
+          permanent: false,
+        },
+        {
+          source: '/guides/:path*',
+          destination: '/material/guides/:path*',
+          permanent: false,
+        },
+        {
+          source: '/discover-more/:path*',
+          destination: '/material/discover-more/:path*',
+          permanent: false,
+        },
+        {
+          source: '/components/data-grid/:path*',
+          destination: '/x/react-data-grid/:path*',
+          permanent: false,
+        },
+        {
+          source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
+          destination: '/material/:slug',
+          permanent: false,
+        },
+        {
+          source: '/components/:path(tabs|breadcrumbs)',
+          destination: '/material/react-:path',
+          permanent: false,
+        },
+        ...['checkboxes', 'switches'].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material/react-${component.replace(/es$/, '')}`,
+          permanent: false,
+        })),
+        ...[
+          'buttons',
+          'radio-buttons',
+          'selects',
+          'text-fields',
+          'avatars',
+          'badges',
+          'chips',
+          'dividers',
+          'lists',
+          'tables',
+          'tooltips',
+          'dialogs',
+          'snackbars',
+          'cards',
+          'drawers',
+          'links',
+          'menus',
+          'steppers',
+        ].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material/react-${component.replace(/s$/, '')}`,
+          permanent: false,
+        })),
+        {
+          source: '/components/:path',
+          destination: '/material/react-:path',
+          permanent: false,
+        },
+        {
+          source: '/api/data-grid/:path*',
+          destination: '/x/api/data-grid/:path*',
+          permanent: false,
+        },
+        {
+          source: '/api/:path*',
+          destination: '/material/api/:path*',
+          permanent: false,
+        },
+      ];
+    }
+    return [];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,

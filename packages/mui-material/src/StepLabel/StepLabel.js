@@ -198,7 +198,9 @@ StepLabel.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    label: PropTypes.object,
+  }),
   /**
    * If `true`, the step is marked as failed.
    * @default false

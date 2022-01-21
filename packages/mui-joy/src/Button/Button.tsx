@@ -36,17 +36,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
 const ButtonRoot = styled('button', {
   name: 'MuiButton',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      styles[`variant${capitalize(ownerState.variant)}`],
-      styles[`color${capitalize(ownerState.color)}`],
-      ownerState.size && styles[`size${capitalize(ownerState.size)}`],
-      ownerState.fullWidth && styles.fullWidth,
-    ];
-  },
+  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {

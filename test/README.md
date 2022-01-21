@@ -26,14 +26,15 @@ For all unit tests, please use the return value from `test/utils/createRenderer`
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 
-````js
+```js
 describe('test suite', () => {
-  const { render } = createRenderer()
+  const { render } = createRenderer();
 
   test('first', () => {
     render(<input />);
   });
-})
+});
+```
 
 For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
 the tests readable, and, more importantly, the message if they fail as descriptive as possible.
@@ -85,7 +86,7 @@ function SomeComponent({ variant }) {
 expect(() => {
   render(<SomeComponent variant="unexpected" />);
 }).toErrorDev(["That variant doesn't make sense.", '`variant` is deprecated.']);
-````
+```
 
 ```js
 function SomeComponent({ variant }) {
@@ -120,13 +121,13 @@ Note that the test will not get executed until you start code execution in the i
 We have a dedicated task to use VSCode's integrated debugger to debug the currently opened test file.
 Open the test you want to run and press F5 (launch "Test Current File").
 
-#### Run the core mocha unit/integration test suite.
+#### Run the core mocha unit/integration test suite
 
 To run all of the unit and integration tests run `yarn test:unit`
 
 If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `yarn t <testFilePattern>`.
 
-#### Watch the core mocha unit/integration test suite.
+#### Watch the core mocha unit/integration test suite
 
 `yarn t <testFilePattern>`
 
@@ -146,7 +147,7 @@ When running this command you should get under `coverage/index.html` a full cove
 
 ### DOM API level
 
-#### Run the mocha test suite using the karma runner.
+#### Run the mocha test suite using the karma runner
 
 `yarn test:karma`
 

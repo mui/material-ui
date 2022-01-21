@@ -10,7 +10,7 @@ The main difference between this and the non-typescript example is that you need
 
 and install @types/styled-components:
 
-```
+```sh
 npm install --save-dev @types/styled-components
 ```
 

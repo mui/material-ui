@@ -16,10 +16,10 @@ const twoDigitNumbers1 = [
   'Twelve',
   'Thirteen',
   'Fourteen',
-  'Fivteen',
+  'Fifteen',
   'Sixteen',
   'Seventeen',
-  'Eightteen',
+  'Eighteen',
   'Nineteen',
 ];
 
