@@ -10,15 +10,12 @@ test.describe.parallel('Material docs', () => {
 
     const anchors = page.locator('[aria-label="Page table of contents"] ul a');
 
-    const anchorTexts = await anchors.allTextContents();
+    const firstAnchor = await anchors.first();
+    const textContent = await firstAnchor.textContent();
 
-    await Promise.all(
-      anchorTexts.map((text, index) => {
-        return expect(anchors.nth(index)).toHaveAttribute(
-          'href',
-          `/getting-started/installation/#${kebabCase(text)}`,
-        );
-      }),
+    await expect(firstAnchor).toHaveAttribute(
+      'href',
+      `/getting-started/installation/#${kebabCase(textContent || '')}`,
     );
   });
 
@@ -28,13 +25,10 @@ test.describe.parallel('Material docs', () => {
 
       const anchors = await page.locator('div > h2#heading-api ~ ul a');
 
-      const anchorTexts = await anchors.allTextContents();
+      const firstAnchor = await anchors.first();
+      const textContent = await firstAnchor.textContent();
 
-      await Promise.all(
-        anchorTexts.map((text, index) => {
-          return expect(anchors.nth(index)).toHaveAttribute('href', `/api/${kebabCase(text)}/`);
-        }),
-      );
+      await expect(firstAnchor).toHaveAttribute('href', `/api/${kebabCase(textContent || '')}`);
     });
 
     test('should have correct link for sidebar anchor', async ({ page }) => {

@@ -15,15 +15,12 @@ test.describe.parallel('Material docs', () => {
 
     const anchors = page.locator('[aria-label="Page table of contents"] ul a');
 
-    const anchorTexts = await anchors.allTextContents();
+    const firstAnchor = await anchors.first();
+    const textContent = await firstAnchor.textContent();
 
-    await Promise.all(
-      anchorTexts.map((text, index) => {
-        return expect(anchors.nth(index)).toHaveAttribute(
-          'href',
-          `/material/getting-started/installation/#${kebabCase(text)}`,
-        );
-      }),
+    await expect(firstAnchor).toHaveAttribute(
+      'href',
+      `/material/getting-started/installation/#${kebabCase(textContent || '')}`,
     );
   });
 
@@ -33,15 +30,12 @@ test.describe.parallel('Material docs', () => {
 
       const anchors = await page.locator('div > h2#heading-api ~ ul a');
 
-      const anchorTexts = await anchors.allTextContents();
+      const firstAnchor = await anchors.first();
+      const textContent = await firstAnchor.textContent();
 
-      await Promise.all(
-        anchorTexts.map((text, index) => {
-          return expect(anchors.nth(index)).toHaveAttribute(
-            'href',
-            `/material/api/${kebabCase(text)}/`,
-          );
-        }),
+      await expect(firstAnchor).toHaveAttribute(
+        'href',
+        `/material/api/${kebabCase(textContent || '')}`,
       );
     });
 
@@ -120,6 +114,7 @@ test.describe.parallel('Material docs', () => {
 
       links.forEach((link) => {
         if (
+          link &&
           ['/getting-started', '/customization', '/guides', '/discover-more'].some((path) =>
             link.includes(path),
           )
@@ -129,7 +124,7 @@ test.describe.parallel('Material docs', () => {
 
         expect(link).not.toMatch(/\/components/); // there should be no `/components` in the url anymore
 
-        if (link.startsWith('/system')) {
+        if (link && link.startsWith('/system')) {
           expect(link.startsWith('/system')).toBeTruthy();
           expect(link.match(/\/system{1}/g)).toHaveLength(1); // should not have repeated `/system/system/*`
         }
