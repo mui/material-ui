@@ -204,12 +204,10 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const importDemos = require.context(
-  FEATURE_TOGGLE.enable_product_scope ? 'docs/data' : 'docs/src/pages',
-  true,
-  /js$/,
-  'lazy',
-);
+let importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
+if (FEATURE_TOGGLE.enable_product_scope) {
+  importDemos = require.context('docs/data', true, /js$/, 'lazy');
+}
 const demoFixtures = [];
 importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
