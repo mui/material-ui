@@ -133,6 +133,12 @@ export interface AutocompleteProps<
    */
   getLimitTagsText?: (more: number) => React.ReactNode;
   /**
+   * Used to determine if the list is being paginated - this is required for scroll into view functionality to work properly
+   * when pagination is being done
+   * @default false
+   */
+   isPaginated?: boolean;
+  /**
    * The component used to render the listbox.
    * @default 'ul'
    */
@@ -233,6 +239,12 @@ export interface AutocompleteProps<
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+  /**
+   * Total number of options that is used to for scroll into view to work properly when the page is being paginated.
+   * Prop is only required when isPaginated is true
+   * @default null
+   */
+   totalOptions?: number;
 }
 
 /**

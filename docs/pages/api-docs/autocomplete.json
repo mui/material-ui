@@ -53,6 +53,7 @@
     "includeInputInList": { "type": { "name": "bool" } },
     "inputValue": { "type": { "name": "string" } },
     "isOptionEqualToValue": { "type": { "name": "func" } },
+    "isPaginated": { "type": { "name": "bool" } },
     "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
     "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
     "ListboxProps": { "type": { "name": "object" } },
@@ -88,6 +89,7 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
+    "totalOptions": { "type": { "name": "number" }, "default": "null" },
     "value": { "type": { "name": "custom", "description": "any" } }
   },
   "name": "Autocomplete",

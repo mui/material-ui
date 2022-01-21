@@ -34,6 +34,7 @@
     "includeInputInList": "If <code>true</code>, the highlight can move to the input.",
     "inputValue": "The input value.",
     "isOptionEqualToValue": "Used to determine if the option represents the given value. Uses strict equality by default. ⚠️ Both arguments need to be handled, an option can only match with one value.<br><br><strong>Signature:</strong><br><code>function(option: T, value: T) =&gt; boolean</code><br><em>option:</em> The option to test.<br><em>value:</em> The value to test against.",
+    "isPaginated": "Used to determine if the list is being paginated - this is required for scroll into view functionality to work properly when pagination is being done",
     "limitTags": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit.",
     "ListboxComponent": "The component used to render the listbox.",
     "ListboxProps": "Props applied to the Listbox element.",
@@ -60,6 +61,7 @@
     "selectOnFocus": "If <code>true</code>, the input&#39;s text is selected on focus. It helps the user clear the selected value.",
     "size": "The size of the component.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "totalOptions": "Total number of options that is used to for scroll into view to work properly when the page is being paginated. Prop is only required when isPaginated is true",
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop."
   },
   "classDescriptions": {
