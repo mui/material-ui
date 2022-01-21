@@ -81,9 +81,9 @@ function run() {
     `# 2022`,
     `# 2022
 ## MUI X
-/components/data-grid/* https://material-ui-x.netlify.app/x/react-data-grid/:splat 301
-/api/data-grid/* https://material-ui-x.netlify.app/x/api/data-grid/:splat 301
-/x/* https://material-ui-x.netlify.app/x/:splat 301
+/components/data-grid/* https://material-ui-x.netlify.app/x/react-data-grid/:splat 200
+/api/data-grid/* https://material-ui-x.netlify.app/x/api/data-grid/:splat 200
+/x/* https://material-ui-x.netlify.app/x/:splat 200
 
 ## MUI Core
 /styles/* /system/styles/:splat 301
