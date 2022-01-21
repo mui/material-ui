@@ -33,7 +33,7 @@ test.describe.parallel('Material docs', () => {
       const firstAnchor = await anchors.first();
       const textContent = await firstAnchor.textContent();
 
-      await expect(firstAnchor).toHaveAttribute('href', `/api/${kebabCase(textContent || '')}`);
+      await expect(firstAnchor).toHaveAttribute('href', `/api/${kebabCase(textContent || '')}/`);
     });
 
     test('should have correct link for sidebar anchor', async ({ page }) => {
