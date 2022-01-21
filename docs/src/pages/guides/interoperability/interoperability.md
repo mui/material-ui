@@ -637,7 +637,7 @@ If you use a different framework, or already have set up your project, follow th
 
 ```
 
-This is necessary for ensuring that the [deeper elements](#deeper-elements-5), can be customized using the utility Tailwind's classes.
+This is necessary for ensuring that the [deeper elements](#deeper-elements-5), can be customized using Tailwind's utility classes.
 More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy
 
 4. Fix the CSS injection order
