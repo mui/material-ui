@@ -7,9 +7,9 @@ tags: ['MUI Core', 'News']
 card: false
 ---
 
-The release of MUI Core [v5.3.0](https://github.com/mui-org/material-ui/releases/tag/v5.3.0) allows you to write a callback in style overrides (the global theming) which gives you full control of component customization at the theme level.
+MUI Core [v5.3.0](https://github.com/mui-org/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (the global theming), giving you full control of component customization at the theme level.
 
-How does a callback better than the existing plain object? Let me explain from the beginning.
+Why is using a callback better compared to the existing plain object? Let me explain from the beginning.
 
 ## The problems
 
