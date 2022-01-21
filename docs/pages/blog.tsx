@@ -150,7 +150,7 @@ const PostPreview = (props: BlogPost) => {
           )}
         </Box>
         <Button
-          component="a"
+          component={Link}
           aria-describedby={`describe-${props.slug}`}
           href={`/blog/${props.slug}`}
           id={`describe-${props.slug}`}
@@ -180,7 +180,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
   const postListRef = React.useRef<HTMLDivElement | null>(null);
   const [page, setPage] = React.useState(0);
   const [selectedTags, setSelectedTags] = React.useState<Record<string, boolean>>({});
-  const { allBlogPosts, allTags, tagInfo: rawTagInfo } = props;
+  const { allBlogPosts, tagInfo: rawTagInfo } = props;
   const [firstPost, secondPost, ...otherPosts] = allBlogPosts;
   const tagInfo = { ...rawTagInfo };
   [firstPost, secondPost].forEach((post) => {
@@ -190,6 +190,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           tagInfo[tag]! -= 1;
         }
       });
+    }
+  });
+  Object.entries(tagInfo).forEach(([tagName, tagCount]) => {
+    if (!tagCount) {
+      delete tagInfo[tagName];
     }
   });
   const filteredPosts = otherPosts.filter(
@@ -351,7 +356,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 Filter by tag
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {allTags.map((tag) => {
+                {Object.keys(tagInfo).map((tag) => {
                   const selected = !!selectedTags[tag];
                   return (
                     <Chip
