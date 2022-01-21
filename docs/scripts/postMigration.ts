@@ -80,19 +80,29 @@ function run() {
   redirects = redirects.replace(
     `# 2022`,
     `# 2022
+## MUI X
+/components/data-grid/* https://material-ui-x.netlify.app/x/react-data-grid/:splat 301
+/api/data-grid/* https://material-ui-x.netlify.app/x/api/data-grid/:splat 301
+/x/* https://material-ui-x.netlify.app/x/:splat 301
+
+## MUI Core
 /styles/* /system/styles/:splat 301
 /getting-started/* /material/getting-started/:splat 301
 /customization/* /material/customization/:splat 301
 /guides/* /material/guides/:splat 301
 /discover-more/* /material/discover-more/:splat 301
-/components/data-grid/* /x/react-data-grid/:splat 301
+
+### Exceptions
 /components/icons/ /material/icons/ 301
 /components/material-icons/ /material/material-icons/ 301
 /components/about-the-lab/ /material/about-the-lab/ 301
 /components/transitions/ /material/transitions/ 301
 /components/pickers/ /material/pickers/ 301
+
+### React plural
 /components/tabs/ /material/react-tabs/ 301
 /components/breadcrumbs/ /material/react-breadcrumbs/ 301
+
 /components/checkboxes/ /material/react-checkbox/ 301
 /components/switches/ /material/react-switch/ 301
 /components/buttons/ /material/react-button/ 301
@@ -114,9 +124,13 @@ function run() {
 /components/menus/ /material/react-menu/ 301
 /components/steppers/ /material/react-stepper/ 301
 /components/* /material/react-:splat 301
-/api/data-grid/* /x/api/data-grid/:splat 301
 /api/* /material/api/:splat 301`,
   );
+
+  // remove X redirects because of the above redirects
+  redirects
+    .replace('/api/*/ https://docs-v5--material-ui-x.netlify.app/api/:splat/ 200', '')
+    .replace('/components/* https://docs-v5--material-ui-x.netlify.app/components/:splat 200', '');
 
   fs.writeFileSync(redirectsPath, redirects);
 }
