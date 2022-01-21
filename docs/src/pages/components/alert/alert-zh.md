@@ -27,7 +27,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 ## 行为
 
-一个警告提示可以附带一个行为，例如一个关闭或撤销按钮。 它在消息之后，提醒结束前被渲染。
+一个警告提示可以附带一个行为，例如一个关闭或撤销按钮。 它会被渲染在消息后面，组件的末尾。
 
 如果提供了 `onClose` 回调且没有设置 `action` 属性的话，则会呈现一个关闭图标。 这个 `action` 属性可以用来提供一个可替代的行为，例如使用一个 Button 或者IconButton。
 
@@ -45,7 +45,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/customization/theme-components/#default-props)，您可以进行全局的设置。
 
-把图标属性设置为 `false` 将会移除所有图标。
+把 `icon` 属性设置为 `false` 会将图标完全移除。
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
@@ -75,8 +75,8 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
 
-当动态地显示组件时，大部分屏幕都会自动朗读其内容。 此时，屏幕阅读不会将页面加载时出现的提醒通知给用户。
+当动态地显示组件时，大部分屏幕阅读器都会自动朗读其内容。 此时，屏幕阅读器不会将页面加载时出现的提醒通知给用户。
 
-使用颜色来增加意义只提供了一个视觉指示，而不会传达给一个辅助用户的技术，如屏幕阅读器。 请确保用颜色表示的信息，或者对于内容本身（例如一些可见的文本）是明显的，或者通过其他方法包含信息，例如一个附加的隐藏文本。
+用颜色标识只是提供了一种视觉上的指示，这种指示并不会传递给像屏幕阅读器这样的辅助技术。 请确保用颜色表示的信息，或者对于内容本身（例如一些可见的文本）是明显的，或者通过其他方法包含信息，例如一个附加的隐藏文本。
 
 动作的选项卡索引（tab index）必须为 0，这样只使用键盘的用户才能访问它们。
