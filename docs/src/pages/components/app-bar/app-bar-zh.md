@@ -100,7 +100,7 @@ function App() {
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
-### 变高的应用栏
+### 可抬升的应用栏
 
 应用栏阴影会在滚动时加深，以表明用户还未到页面的顶部。
 
@@ -120,7 +120,7 @@ function App() {
 
    - `options.disableHysteresis` (_bool_ [optional])：默认值是 `false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
    - `options.target` (_Node_ [optional])：默认值是 `window`。
-   - `options.threshold` (_number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
+   - `options.threshold` (_number_ [optional])：默认值是 `100`。 当垂直滚动恰好经过（不包括）此阈值时，`trigger` 值会改变。
 
 #### 返回结果
 
