@@ -137,7 +137,7 @@ export interface AutocompleteProps<
    * when pagination is being done
    * @default false
    */
-   isPaginated?: boolean;
+  isPaginated?: boolean;
   /**
    * The component used to render the listbox.
    * @default 'ul'
@@ -244,7 +244,7 @@ export interface AutocompleteProps<
    * Prop is only required when isPaginated is true
    * @default null
    */
-   totalOptions?: number;
+  totalOptions?: number;
 }
 
 /**
