@@ -1,5 +1,5 @@
 ---
-title: Supporting callback in style overrides
+title: Introducing callback support in style overrides
 description: We're excited to introduce the callback support for global theme overrides in this minor version update!
 date: 2022-01-20T00:00:00.000Z
 authors: ['siriwatknp']
