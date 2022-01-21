@@ -1,8 +1,13 @@
 import { test as base, expect, Page } from '@playwright/test';
 import kebabCase from 'lodash/kebabCase';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
+
+test.beforeEach(async ({}) => {
+  test.skip(FEATURE_TOGGLE.enable_redirects, "Migration haven't started yet");
+});
 
 test.describe.parallel('Material docs', () => {
   test('should have correct link with hash in the TOC', async ({ page }) => {
