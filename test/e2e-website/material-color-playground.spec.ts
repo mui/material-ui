@@ -1,10 +1,16 @@
 import { test as base, expect } from '@playwright/test';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
 
 test('should be able to change color without crash', async ({ page }) => {
-  await page.goto('/customization/color/#playground', { waitUntil: 'networkidle' });
+  await page.goto(
+    FEATURE_TOGGLE.enable_redirects
+      ? '/material/customization/color/#playground'
+      : '/customization/color/#playground',
+    { waitUntil: 'networkidle' },
+  );
 
   await page.fill('#primary', ''); // clear the input
   await page.type('#primary', '#e91e63');

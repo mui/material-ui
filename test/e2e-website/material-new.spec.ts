@@ -35,7 +35,7 @@ test.describe.parallel('Material docs', () => {
 
       await expect(firstAnchor).toHaveAttribute(
         'href',
-        `/material/api/${kebabCase(textContent || '')}`,
+        `/material/api/${kebabCase(textContent || '')}/`,
       );
     });
 
