@@ -9,7 +9,7 @@ test.beforeEach(async ({}) => {
   test.skip(!FEATURE_TOGGLE.enable_product_scope, "Migration haven't started yet");
 });
 
-test.describe.parallel('Material docs', () => {
+test.describe('Material docs', () => {
   test('should have correct link with hash in the TOC', async ({ page }) => {
     await page.goto(`/material/getting-started/installation/`);
 
@@ -24,7 +24,7 @@ test.describe.parallel('Material docs', () => {
     );
   });
 
-  test.describe.parallel('Demo page', () => {
+  test.describe('Demo page', () => {
     test('should have correct link for API section', async ({ page }) => {
       await page.goto(`/material/react-card/`);
 
@@ -93,7 +93,7 @@ test.describe.parallel('Material docs', () => {
     });
   });
 
-  test.describe.parallel('API page', () => {
+  test.describe('API page', () => {
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto(`/material/api/card/`);
 
@@ -132,7 +132,7 @@ test.describe.parallel('Material docs', () => {
     });
   });
 
-  test.describe.parallel('Search', () => {
+  test.describe('Search', () => {
     const retryToggleSearch = async (page: Page, count = 3) => {
       try {
         await page.keyboard.press('Meta+k');
