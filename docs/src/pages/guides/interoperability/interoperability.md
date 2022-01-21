@@ -680,7 +680,7 @@ export default function PlainCssPriority() {
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look at the `StylesProvider` implementation in the `@mui/styled-engine-sc` package.
 
-Now you can start using Tailwind CSS on the MUI components
+Now it's all set up and you can start using Tailwind CSS on the MUI components!
 
 **App.js**
 
