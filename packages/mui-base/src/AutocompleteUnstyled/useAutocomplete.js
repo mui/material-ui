@@ -526,22 +526,30 @@ export default function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
-        if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA' && componentName === 'Autocomplete') {
-          console.warn([
-            `A ${inputRef.current} element was provided to ${componentName} where input was expected.`,
-            `This is not a supported scenario but it may work under certain conditions.`,
-            `A ${inputRef.current} keyboard navigation may conflict with Autocomplete controls (e.g. enter and arrow keys).`,
-            `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
-          ].join('\n'));
+        if (
+          inputRef.current &&
+          inputRef.current.nodeName === 'TEXTAREA' &&
+          componentName === 'Autocomplete'
+        ) {
+          console.warn(
+            [
+              `A ${inputRef.current} element was provided to ${componentName} where input was expected.`,
+              `This is not a supported scenario but it may work under certain conditions.`,
+              `A ${inputRef.current} keyboard navigation may conflict with Autocomplete controls (e.g. enter and arrow keys).`,
+              `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
+            ].join('\n'),
+          );
         } else {
-          console.error([
-            `MUI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
-            `Instead, ${componentName} expects an input element.`,
-            '',
-            componentName === 'useAutocomplete'
-              ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
-              : 'Make sure you have customized the input component correctly.',
-          ].join('\n'));
+          console.error(
+            [
+              `MUI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
+              `Instead, ${componentName} expects an input element.`,
+              '',
+              componentName === 'useAutocomplete'
+                ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
+                : 'Make sure you have customized the input component correctly.',
+            ].join('\n'),
+          );
         }
       }
     }, [componentName]);
