@@ -223,6 +223,7 @@ module.exports = {
   },
   reactStrictMode,
   trailingSlash: true,
+  // rewrites has no effect when run `next export` for production
   async rewrites() {
     return [
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
@@ -230,6 +231,8 @@ module.exports = {
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
     ];
   },
+  // For developement, adjust the redirects here (no effect on production because of `next export`)
+  // For production, configure at `docs/public/_redirects` (netlify)
   async redirects() {
     if (FEATURE_TOGGLE.enable_redirects) {
       return [
