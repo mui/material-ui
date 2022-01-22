@@ -2785,8 +2785,8 @@ Then here is one example:
  });
 
  function Apply() {
-   const classes = useStyles();
-
+-   const classes = useStyles();
++   const { classes } = useStyles();
    return (
      <div className={classes.root}>
        <Button component={Link} to="https://support.mui.com" className={classes.apply}>
