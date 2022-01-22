@@ -30,6 +30,7 @@ const ClockNumberRoot = styled('span', { skipSx: true })<{ ownerState: ClockNumb
     alignItems: 'center',
     borderRadius: '50%',
     color: theme.palette.text.primary,
+    fontFamily: theme.typography.fontFamily,
     '&:focused': {
       backgroundColor: theme.palette.background.paper,
     },
