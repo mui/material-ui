@@ -295,7 +295,7 @@ Multiple options were allowed.
 - Gatsby: 8%
 
 Server-side rendering isn't yet very popular.
-As the React ecosystem matures, we might see a [big](https://www.rank2traffic.com/gatsbyjs.org) [push](https://www.rank2traffic.com/nextjs.org) of server-side rendering in the coming months.
+As the React ecosystem matures, we might see a big push of server-side rendering in the coming months.
 
 ### 18. What styling system are you using?
 
