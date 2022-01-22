@@ -433,7 +433,7 @@ The following changes are supported by the adapter:
   ```diff
    warning = {
   -  main: orange[500],
-  +  main: "#ED6C02", // orange[400] in "dark" mode
+  +  main: '#ED6C02', // orange[400] in "dark" mode
 
   -  light: orange[300],
   +  light: orange[500], // orange[300] in "dark" mode
@@ -1141,11 +1141,11 @@ As the core components use emotion as their style engine, the props used by emot
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
   ```diff
-  - <span class="MuiIconButton-root MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
-  -   <span class="MuiIconButton-label">
-  -     <input class="PrivateSwitchBase-input">
-  + <span class="MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
-  +   <span class="PrivateSwitchBase-input">
+  -<span class="MuiIconButton-root MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
+  -  <span class="MuiIconButton-label">
+  -    <input class="PrivateSwitchBase-input">
+  +<span class="MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
+  +  <span class="PrivateSwitchBase-input">
   ```
 
 ### CircularProgress
@@ -2377,7 +2377,7 @@ As the core components use emotion as their style engine, the props used by emot
   -       },
   -     },
   +     variants: [{
-  +       props: { color: "secondary" },
+  +       props: { color: 'secondary' },
   +       style: {
   +         marginTop: '20px',
   +       },
@@ -2726,8 +2726,8 @@ In some cases, you might want to create multiple styled components in a file ins
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
-> Note: This API will not work if you are [using `styled-components` as underlying 
-> style engine in place of `@emotion`](https://mui.com/guides/interoperability/#styled-components).  
+> Note: This API will not work if you are [using `styled-components` as underlying
+> style engine in place of `@emotion`](https://mui.com/guides/interoperability/#styled-components).
 
 The API is similar to JSS `makeStyles` but, under the hood, it uses `@emotion/react`.
 It is also features a much better TypeScript support than v4's `makeStyles`.
@@ -2809,17 +2809,17 @@ If you were using the `$` syntax, the transformation would look like this:
 +import { makeStyles } from 'tss-react/mui';
 
 -const useStyles = makeStyles((theme) => {
-+const useStyles = makeStyles<void, "child">()((_theme, _params, classes) => ({
++const useStyles = makeStyles<void, 'child'>()((_theme, _params, classes) => ({
    parent: {
      padding: 30,
--    "&:hover $child": {
+-    '&:hover $child': {
 +    [`&:hover .${classes.child}`]: {
-       backgroundColor: "red"
+       backgroundColor: 'red',
      },
    },
    child: {
-     backgroundColor: "blue"
-   }
+     backgroundColor: 'blue',
+   },
  });
 
  function App() {
@@ -2838,7 +2838,7 @@ If you were using the `$` syntax, the transformation would look like this:
  export default App;
 ```
 
-> **Note:** In plain JS projects (not using TypeScript), remove `<void, "child">`.
+> **Note:** In plain JS projects (not using TypeScript), remove `<void, 'child'>`.
 
 Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters
 and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
@@ -2849,15 +2849,15 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 +import { makeStyles } from 'tss-react/mui';
 
 -const useStyles = makeStyles((theme) => createStyles<
--  "root" | "small" | "child", { color: "primary" | "secondary" }
+-  'root' | 'small' | 'child', { color: 'primary' | 'secondary' }
 ->({
 +const useStyles = makeStyles<
-+  { color: "primary" | "secondary" }, "child" | "small"
-+>({ name: "App" })((theme, { color }, classes) => ({
++  { color: 'primary' | 'secondary' }, 'child' | 'small'
++>({ name: 'App' })((theme, { color }, classes) => ({
 -  root: ({ color })=> ({
 +  root: {
      padding: 30,
--    "&:hover .child": {
+-    '&:hover .child': {
 +    [`&:hover .${classes.child}`]: {
        backgroundColor: theme.palette[color].main,
      }
@@ -2865,19 +2865,19 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 +  },
   small: {},
   child: {
-    border: "1px solid black",
+    border: '1px solid black',
     height: 50,
--    "&.small": {
+-    '&.small': {
 +    [`&.${classes.small}`]: {
         height: 30
     }
   }
--}, { name: "App" });
+-}, { name: 'App' });
 +}));
 
  function App() {
--  const classes = useStyles({ color: "primary" });
-+  const { classes, cx } = useStyles({ color: "primary" });
+-  const classes = useStyles({ color: 'primary' });
++  const { classes, cx } = useStyles({ color: 'primary' });
 
    return (
      <div className={classes.root}>
@@ -2912,22 +2912,22 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 -import Button from '@material-ui/core/Button';
 +import Button from '@mui/material/Button';
 -import withStyles from '@material-ui/styles/withStyles';
-+import { withStyles } from "tss-react/mui";
++import { withStyles } from 'tss-react/mui';
 
  const MyCustomButton = withStyles(
 +  Button,
    (theme) => ({
      root: {
-       minHeight: '30px'
+       minHeight: '30px',
      },
      textPrimary: {
-       color: theme.palette.text.primary
+       color: theme.palette.text.primary,
      },
      '@media (min-width: 960px)': {
        textPrimary: {
-         fontWeight: "bold"
-       }
-     }
+         fontWeight: 'bold',
+       },
+     },
    }),
 -)(Button);
 +);
@@ -3172,8 +3172,8 @@ If your IDE (ex. VSCode) is able to infer types from `d.ts` file, create `index.
 
 ```js
 // index.d.ts
-declare module "@mui/private-theming" {
-  import type { Theme } from "@mui/material/styles";
+declare module '@mui/private-theming' {
+  import type { Theme } from '@mui/material/styles';
 
   interface DefaultTheme extends Theme {}
 }
