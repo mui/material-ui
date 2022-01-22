@@ -1,6 +1,10 @@
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 function isNewLocation(url: string) {
+  if (url === '/x' || url === '/x/') {
+    // skipped if it is the X marketing page
+    return false;
+  }
   return (
     url.startsWith('/x') ||
     url.startsWith('/material') ||
