@@ -2746,12 +2746,12 @@ yarn add tss-react
 ```diff
  import { render } from 'react-dom';
 -import { StylesProvider } from '@material-ui/core/styles';
-+import createCache from "@emotion/cache";
-+import { ThemeProvider } from "@mui/material/styles";
++import createCache from '@emotion/cache';
++import { ThemeProvider } from '@mui/material/styles';
 
 +export const muiCache = createCache({
-+  "key": "mui",
-+  "prepend": true,
++  'key': 'mui',
++  'prepend': true,
 +});
 
  render(
