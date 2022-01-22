@@ -132,7 +132,7 @@
     "containedSizeMedium": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
-      "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
+      "conditions": "<code>size=\"medium\"</code> and <code>variant=\"contained\"</code>"
     },
     "containedSizeLarge": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
