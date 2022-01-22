@@ -35,30 +35,30 @@ const ROUTES = {
     ? '/material/getting-started/support/#community-help-free'
     : '/getting-started/support/#community-help-free',
   blog: FEATURE_TOGGLE.enable_blog_index ? '/blog/' : 'https://medium.com/material-ui',
-  showcase: FEATURE_TOGGLE.enable_blog_index
+  showcase: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/showcase/'
     : '/discover-more/showcase',
   roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
-  languages: FEATURE_TOGGLE.enable_blog_index
+  languages: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/languages/'
     : '/discover-more/languages',
-  vision: FEATURE_TOGGLE.enable_blog_index
+  vision: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/vision/'
     : '/discover-more/vision/',
-  support: FEATURE_TOGGLE.enable_blog_index
+  support: FEATURE_TOGGLE.enable_redirects
     ? '/material/getting-started/support/#professional-support-premium'
     : '/getting-started/support/#professional-support-premium',
-  goldSponsor: FEATURE_TOGGLE.enable_blog_index
+  goldSponsor: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',
   store: 'https://mui.com/store/',
-  dataGridDocs: FEATURE_TOGGLE.enable_blog_index
+  dataGridDocs: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/'
     : '/components/data-grid/getting-started/',
-  dataGridFeatures: FEATURE_TOGGLE.enable_blog_index
+  dataGridFeatures: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/#features'
     : '/components/data-grid/#features',
-  dataGridFeaturesComparison: FEATURE_TOGGLE.enable_blog_index
+  dataGridFeaturesComparison: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/#feature-comparison'
     : '/components/data-grid/getting-started/#feature-comparison',
   storePopular: 'https://mui.com/store/#populars',
