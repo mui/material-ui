@@ -229,4 +229,10 @@ describe('replaceUrl', () => {
       replaceUrl(`/components/data-grid/getting-started/#main-content`, '/components/buttons'),
     ).to.equal(`/components/data-grid/getting-started/#main-content`);
   });
+
+  it('does not replace for x marketing page', () => {
+    expect(replaceUrl(`/components/data-grid/getting-started/#main-content`, '/x/')).to.equal(
+      `/components/data-grid/getting-started/#main-content`,
+    );
+  });
 });
