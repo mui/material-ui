@@ -507,13 +507,13 @@ The following changes are supported by the adapter:
   > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
   ```diff
-  - import { fade } from '@mui/material/styles';
-  + import { alpha } from '@mui/material/styles';
+  -import { fade } from '@mui/material/styles';
+  +import { alpha } from '@mui/material/styles';
 
-  const classes = makeStyles(theme => ({
+   const classes = makeStyles(theme => ({
   -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-  }));
+   }));
   ```
 
 - The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
