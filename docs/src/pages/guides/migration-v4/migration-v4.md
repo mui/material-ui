@@ -2882,8 +2882,8 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
        <div className={classes.child}>
          The Background take the primary theme color when the mouse hovers the parent.
        </div>
--      <div className={cx(classes.child, classes.small)}>
-+      <div className={clsx(classes.child, classes.small)}>
+-      <div className={clsx(classes.child, classes.small)}>
++      <div className={cx(classes.child, classes.small)}>
          The Background take the primary theme color when the mouse hovers the parent.
          I am smaller than the other child.
        </div>
