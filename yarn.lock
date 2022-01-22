@@ -3519,6 +3519,11 @@
   dependencies:
     csstype "^3.0.2"
 
+"@types/stylis@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@types/stylis/-/stylis-4.0.2.tgz#311c62d68a23dfb01462d54b04549484a4c5cb2a"
+  integrity sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==
+
 "@types/tough-cookie@*":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-4.0.1.tgz#8f80dd965ad81f3e1bc26d6f5c727e132721ff40"
