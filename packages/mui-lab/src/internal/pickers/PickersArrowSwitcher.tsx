@@ -53,13 +53,13 @@ const PickersArrowSwitcherRoot = styled('div')<{
   display: 'flex',
 });
 
-const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })<{
+const PickersArrowSwitcherSpacer = styled('div')<{
   ownerState: ArrowSwitcherProps;
 }>(({ theme }) => ({
   width: theme.spacing(3),
 }));
 
-const PickersArrowSwitcherButton = styled(IconButton, { skipSx: true })<{
+const PickersArrowSwitcherButton = styled(IconButton)<{
   ownerState: ArrowSwitcherProps;
 }>(({ ownerState }) => ({
   ...(ownerState.hidden && {

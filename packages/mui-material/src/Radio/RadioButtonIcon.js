@@ -9,12 +9,12 @@ const RadioButtonIconRoot = styled('span')({
   display: 'flex',
 });
 
-const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, { skipSx: true })({
+const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon)({
   // Scale applied to prevent dot misalignment in Safari
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = styled(RadioButtonCheckedIcon, { skipSx: true })(
+const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(
   ({ theme, ownerState }) => ({
     left: 0,
     position: 'absolute',

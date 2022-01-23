@@ -53,7 +53,7 @@ export const MobileKeyboardInputView = styled('div')({
   padding: '16px 24px',
 });
 
-const PickerRoot = styled('div', { skipSx: true })<{ ownerState: { isLandscape: boolean } }>(
+const PickerRoot = styled('div')<{ ownerState: { isLandscape: boolean } }>(
   ({ ownerState }) => ({
     display: 'flex',
     flexDirection: 'column',

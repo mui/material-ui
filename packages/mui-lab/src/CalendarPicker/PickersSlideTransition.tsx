@@ -28,7 +28,7 @@ const classes = generateUtilityClasses('PrivatePickersSlideTransition', [
 
 export const slideAnimationDuration = 350;
 
-const PickersSlideTransitionRoot = styled(TransitionGroup, { skipSx: true })<TransitionGroupProps>(
+const PickersSlideTransitionRoot = styled(TransitionGroup)<TransitionGroupProps>(
   ({ theme }) => {
     const slideTransition = theme.transitions.create('transform', {
       duration: slideAnimationDuration,

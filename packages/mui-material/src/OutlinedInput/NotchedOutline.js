@@ -19,7 +19,7 @@ const NotchedOutlineRoot = styled('fieldset')({
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, theme }) => ({
+const NotchedOutlineLegend = styled('legend')(({ ownerState, theme }) => ({
   float: 'unset', // Fix conflict with bootstrap
   ...(ownerState.label === undefined && {
     padding: 0,
