@@ -17,13 +17,11 @@ const DatePickerToolbarRoot = styled(PickersToolbar)<{ ownerState: any }>({
   },
 });
 
-const DatePickerToolbarTitle = styled(Typography)<{ ownerState: any }>(
-  ({ ownerState }) => ({
-    ...(ownerState.isLandscape && {
-      margin: 'auto 16px auto auto',
-    }),
+const DatePickerToolbarTitle = styled(Typography)<{ ownerState: any }>(({ ownerState }) => ({
+  ...(ownerState.isLandscape && {
+    margin: 'auto 16px auto auto',
   }),
-);
+}));
 
 /**
  * @ignore - internal component.

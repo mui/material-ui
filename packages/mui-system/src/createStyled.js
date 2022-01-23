@@ -151,10 +151,10 @@ export default function createStyled(input = {}) {
         });
       }
 
-        expressionsWithDefaultTheme.push((props) => {
-          const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-          return styleFunctionSx({ ...props, theme });
-        });
+      expressionsWithDefaultTheme.push((props) => {
+        const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+        return styleFunctionSx({ ...props, theme });
+      });
 
       const numOfCustomFnsApplied = expressionsWithDefaultTheme.length - expressions.length;
 
