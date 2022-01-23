@@ -54,7 +54,7 @@ Previous experience with design systems would be great but not required.
 
 We offer competitive compensation depending on the profile and location. We’re ready to pay top market rates for a designer that can significantly push the mission forward. Other perks are described on [the careers page](/careers).
 
-## How to apply
+## How to apply?
 
 [Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Designer).
 

@@ -10,11 +10,11 @@
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
 See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
-### Why we're hiring
+## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
@@ -22,13 +22,13 @@ We need talented people to keep that going!
 At the current growth rate (self bootstrap), we target 25 new hires in 2022. We would reach 40 people.
 We need somebody to lead our HR strategy including hiring, onboarding, diversity & inclusion, learning & development, and employee happiness.
 
+## About the role
+
 ### Why this is interesting
 
 You'll have the freedom to implement processes and to drive change across the organization.
 
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
-
-## About the role
 
 ### What you'll do on a day-to-day basis
 
@@ -66,12 +66,12 @@ You are curious, you enjoy taking risks, and learning.
 
 - Basic knowledge of web development.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can significantly push the mission forward.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=People%20Operations%20Manager)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=People%20Operations%20Manager)

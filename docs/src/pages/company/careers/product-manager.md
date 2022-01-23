@@ -10,11 +10,11 @@
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
 See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
-### Why we're hiring
+## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
@@ -60,12 +60,12 @@ Depending on the day, you'll:
 - Experience building developer tools.
 - Experience working with open-source and having interacted with open-source communities.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can significantly push the mission forward.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Product%20Manager)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Product%20Manager)

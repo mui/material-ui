@@ -10,11 +10,11 @@
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
 See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
-### Why we're hiring
+## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
@@ -23,14 +23,14 @@ The advanced components team (X) needs help to build its best features.
 We have started with the [data grid](/components/data-grid/) a year ago, but it's the beginning.
 Our users are continuously providing feedback on the most important [pains they face](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc).
 
+## About the role
+
 ### Why this is interesting
 
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 We are the second most used UI library in the world, after Bootstrap.
 
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
-
-## About the role
 
 ### What you'll do on a day-to-day basis
 
@@ -58,12 +58,12 @@ Depending on the day, you'll:
 - Experience building developer tools.
 - Experience working with open-source and having interacted with open-source communities.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can significantly push the mission forward.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Technical%20Product%20Manager)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Technical%20Product%20Manager)

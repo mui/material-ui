@@ -11,11 +11,11 @@
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
 See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
-### Why we're hiring
+## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
@@ -26,6 +26,8 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 You will initiate the development of a bold new product vertical. We are looking for an experienced, and ambitious full-stack engineer that is ready to work in an entrepreneurial environment.
 
+## About the role
+
 ### Why this is interesting
 
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
@@ -34,8 +36,6 @@ But providing React components isn't enough.
 In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
 They are looking for ways to move faster.
 They are working on a couple of new projects every year, and where the integration between the UI and the data is key.
-
-## About the role
 
 ### What you'll do on a day-to-day basis
 
@@ -64,12 +64,12 @@ You are curious, you enjoy taking risks, and learning.
 - **You've maintained an active repository before.**
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can significantly push the mission forward.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Full-stack%20Engineer%20-%20Studio)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Full-stack%20Engineer%20-%20Studio)

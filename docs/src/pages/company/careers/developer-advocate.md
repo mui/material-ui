@@ -10,11 +10,11 @@
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
 See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
-### Why we're hiring
+## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
@@ -30,14 +30,14 @@ We are looking for someone that can contribute to the following outcomes:
 - Improve the overall developer experience, resulting in better NPS & CSAT scores.
 - Create momentum in the React community and drive adoption of the library.
 
+## About the role
+
 ### Why this is interesting
 
 You will be the first person focusing full-time on developer relations at MUI.
 You will lay the foundations for a team that could grow over time.
 
 Our solution empowers React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
-
-## About the role
 
 ### What you'll do on a day-to-day basis
 
@@ -88,12 +88,12 @@ For the right candidate:
 - Experience working with/editing video.
 - Experience using MUI.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can significantly push the mission forward.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Developer%20Advocate)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Developer%20Advocate)

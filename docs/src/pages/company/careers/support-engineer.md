@@ -11,11 +11,11 @@
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
 See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
-### Why we're hiring
+## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
@@ -28,6 +28,8 @@ We face challenges on multiple fronts:
 - Software engineers at MUI are tasked with doing support, however, they could benefit from the help of a dedicated person in the company, for instance to improve the workflows and tooling.
 - The MUI X Premium plan will offer a technical advisor service, we need a Support Engineer to help deliver it.
 
+## About the role
+
 ### Why this is interesting
 
 You will be a key member of the Developer Experience's team and will directly impact customer satisfaction and success.
@@ -36,7 +38,7 @@ At MUI a Support Engineer is as considered as a Developer, it's a person that en
 
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
-## About the role
+### What you'll do on a day-to-day basis
 
 You will own the following responsibilities:
 
@@ -53,8 +55,6 @@ You will own the following responsibilities:
 For the right candidate:
 
 - Working with the Leadership to construct and execute on a hiring plan to grow the support team.
-
-### What you'll do on a day-to-day basis
 
 Depending on the day, you'll:
 
@@ -99,12 +99,12 @@ We're looking for someone with strong front-end skills. More important than spec
   Previous experience with highly active repository workflows is a definite plus for this role.
 - **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can significantly push the mission forward.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Support%20Engineer%20-%20X)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Support%20Engineer%20-%20X)
