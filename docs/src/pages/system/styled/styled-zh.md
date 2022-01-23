@@ -34,7 +34,6 @@ You can use the utility coming from the `@mui/system` package, or if you are usi
    - `options.slot` (_string_ [optional]):如果是`Root`, 才会自动装配主题上对应`name`下的的`styleOverrides` & <0>variants</0>.
    - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name].styleOverrides` object.
    - `options.skipVariantsResolver` (_bool_): 不再自动装配 `theme.components[name].variants`
-   - `options.skipSx` (_bool_ [optional]): 该组件禁用`sx`属性
    - 其它选项会透传到emotion's `styled([Component], [options])` 的 [`options`](https://emotion.sh/docs/styled) 参数.
 
 #### Returns
@@ -71,7 +70,6 @@ If you would like to remove some of the MUI specific features, you can do it lik
    slot: 'Root',
 -  overridesResolver: (props, styles) => styles.root, // 禁用 theme.components[name].styleOverrides
 +  skipVariantsResolver: true, // 禁用 theme.components[name].variants
-+  skipSx: true, // 禁用 sx 参数
  });
 ```
 

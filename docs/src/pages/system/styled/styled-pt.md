@@ -34,7 +34,6 @@ The utility can be used as a replacement for emotion's or styled-components' sty
    - `options.slot` (_string_ [optional]): If `Root`, it automatically applies the theme's `styleOverrides` & `variants`.
    - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name].styleOverrides` object.
    - `options.skipVariantsResolver` (_bool_): Disables the automatic resolver for the `theme.components[name].variants`.
-   - `options.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
    - The other keys are forwarded to the `options` argument of emotion's [`styled([Component], [options])`](https://emotion.sh/docs/styled).
 
 #### Returns
@@ -71,7 +70,6 @@ If you would like to remove some of the MUI specific features, you can do it lik
    slot: 'Root',
 -  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
 +  skipVariantsResolver: true, // disables theme.components[name].variants
-+  skipSx: true, // disables the sx prop
  });
 ```
 
