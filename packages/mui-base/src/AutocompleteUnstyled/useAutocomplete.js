@@ -525,10 +525,10 @@ export default function useAutocomplete(props) {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
+      if (!inputRef.current || !['INPUT', 'TEXTAREA'].includes(inputRef.current.nodeName)) {
         console.error(
           [
-            `MUI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
+            `MUI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement or HTMLTextAreaElement was expected.`,
             `Instead, ${componentName} expects an input element.`,
             '',
             componentName === 'useAutocomplete'
