@@ -74,7 +74,6 @@ export default function createStyled(input = {}) {
       name: componentName,
       slot: componentSlot,
       skipVariantsResolver: inputSkipVariantsResolver,
-      skipSx: inputSkipSx,
       overridesResolver,
       ...options
     } = inputOptions;
@@ -84,8 +83,6 @@ export default function createStyled(input = {}) {
       inputSkipVariantsResolver !== undefined
         ? inputSkipVariantsResolver
         : (componentSlot && componentSlot !== 'Root') || false;
-
-    const skipSx = inputSkipSx || false;
 
     let label;
 
@@ -154,12 +151,10 @@ export default function createStyled(input = {}) {
         });
       }
 
-      if (!skipSx) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
           return styleFunctionSx({ ...props, theme });
         });
-      }
 
       const numOfCustomFnsApplied = expressionsWithDefaultTheme.length - expressions.length;
 
