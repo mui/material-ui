@@ -56,6 +56,10 @@ export const replaceAPILinks = (html: string) => {
       /href=(\\*?)"(\/[a-z]{2})?\/api\/([^"/]+-unstyled)([^"]*)"/gm,
       'href=$1"$2/base/api/$3$4"',
     )
+    .replace(
+      /href=(\\*?)"(\/[a-z]{2})?\/api\/(no-ssr|portal|textarea-autosize)([^"]*)"/gm,
+      'href=$1"$2/base/api/$3$4"',
+    )
     .replace(/href=(\\*?)"(\/[a-z]{2})?\/api\/([^"]*)"/gm, 'href=$1"$2/material/api/$3"');
 };
 

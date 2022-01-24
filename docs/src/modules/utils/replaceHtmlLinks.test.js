@@ -198,6 +198,9 @@ describe('replaceHtmlLinks', () => {
       replaceAPILinks(`
     <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
 <li><a href="/api/button/"><code>&lt;Button /&gt;</code></a></li>
+<li><a href="/api/no-ssr/"><code>&lt;Text /&gt;</code></a></li>
+<li><a href="/api/portal/"><code>&lt;Text /&gt;</code></a></li>
+<li><a href="/api/textarea-autosize/"><code>&lt;Text /&gt;</code></a></li>
 <li><a href="/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
 <li><a href="/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
 <li><a href="/api/tabs-list-unstyled/"><code>&lt;TabListUnstyled /&gt;</code></a></li>
@@ -211,6 +214,9 @@ describe('replaceHtmlLinks', () => {
     ).to.equal(`
     <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
 <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
+<li><a href="/base/api/no-ssr/"><code>&lt;Text /&gt;</code></a></li>
+<li><a href="/base/api/portal/"><code>&lt;Text /&gt;</code></a></li>
+<li><a href="/base/api/textarea-autosize/"><code>&lt;Text /&gt;</code></a></li>
 <li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
 <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
 <li><a href="/base/api/tabs-list-unstyled/"><code>&lt;TabListUnstyled /&gt;</code></a></li>

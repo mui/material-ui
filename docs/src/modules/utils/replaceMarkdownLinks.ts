@@ -33,6 +33,7 @@ export const replaceAPILinks = (markdown: string) => {
       '(/material/api/$1$2)',
     )
     .replace(/\(\/api\/([^"-]+-unstyled)([^)]*)\)/gm, '(/base/api/$1$2)')
+    .replace(/\(\/api\/(no-ssr|portal|textarea-autosize)([^)]*)\)/gm, '(/base/api/$1$2)')
     .replace(/\(\/api\/([^)]*)\)/gm, '(/material/api/$1)');
 };
 

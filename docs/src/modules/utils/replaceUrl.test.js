@@ -210,6 +210,9 @@ describe('replaceUrl', () => {
 
   it('replace correct API links', () => {
     expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/button/`);
+    expect(replaceAPILinks(`/api/no-ssr/`)).to.equal(`/base/api/no-ssr/`);
+    expect(replaceAPILinks(`/api/portal/`)).to.equal(`/base/api/portal/`);
+    expect(replaceAPILinks(`/api/textarea-autosize/`)).to.equal(`/base/api/textarea-autosize/`);
     expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
     expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material/api/loading-button/`);
     expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);

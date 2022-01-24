@@ -189,6 +189,9 @@ describe('replaceMarkdownLinks', () => {
     expect(
       replaceAPILinks(`
       [Button](/api/button)
+      [No Ssr](/api/no-ssr)
+      [Portal](/api/portal)
+      [Textarea Autosize](/api/textarea-autosize)
       [ButtonBase](/api/button-base)
       [ButtonUnstyled](/api/button-unstyled)
       [IconButton](/api/icon-button)
@@ -199,6 +202,9 @@ describe('replaceMarkdownLinks', () => {
     `),
     ).to.equal(`
       [Button](/material/api/button)
+      [No Ssr](/base/api/no-ssr)
+      [Portal](/base/api/portal)
+      [Textarea Autosize](/base/api/textarea-autosize)
       [ButtonBase](/material/api/button-base)
       [ButtonUnstyled](/base/api/button-unstyled)
       [IconButton](/material/api/icon-button)
