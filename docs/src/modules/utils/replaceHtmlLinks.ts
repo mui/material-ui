@@ -44,7 +44,7 @@ export const replaceAPILinks = (markdown: string) => {
       /href=(\\*?)"\/api\/(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)([^"]*)"/gm,
       'href=$1"/material/api/$2$3"',
     )
-    .replace(/href=(\\*?)"\/api\/([^"-]+-unstyled)([^"]*)"/gm, 'href=$1"/base/api/$2$3"')
+    .replace(/href=(\\*?)"\/api\/([^"/]+-unstyled)([^"]*)"/gm, 'href=$1"/base/api/$2$3"')
     .replace(/href=(\\*?)"\/api\/([^"]*)"/gm, 'href=$1"/material/api/$2"');
 };
 
