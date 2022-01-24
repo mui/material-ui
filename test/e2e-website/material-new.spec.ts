@@ -25,6 +25,7 @@ test.describe('Material docs', () => {
   });
 
   test('[zh] should have correct link with hash in the TOC', async ({ page }) => {
+    test.skip(process.env.PULL_REQUEST === 'true', 'There is no languages on the deploy preview');
     await page.goto(`/zh/material/getting-started/installation/`);
 
     const anchors = page.locator('main nav ul a');
