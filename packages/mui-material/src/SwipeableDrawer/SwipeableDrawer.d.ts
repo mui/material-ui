@@ -59,6 +59,17 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    * @default 20
    */
   swipeAreaWidth?: number;
+  /**
+   * Callback to determine if the 'touchstart' event is ignored.
+   * This is useful if you have a swipeable edge, with a button in it,
+   * that you want to be able to both click, and drag to open the drawer.
+   * 
+   * @param {TouchEvent} event The 'touchstart' event
+   * @param {HTMLDivElement} swipeArea The swipe area element
+   * 
+   * @default (event,swipeArea) => event.target !== swipeArea;
+   */
+  swipeAreaIgnoreTouchStartEvent?: (e: TouchEvent, swipeArea: HTMLDivElement) => boolean;
 }
 
 /**

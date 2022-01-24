@@ -12,6 +12,7 @@
     "open": "If <code>true</code>, the component is shown.",
     "SwipeAreaProps": "The element is used to intercept the touch events on the edge.",
     "swipeAreaWidth": "The width of the left most (or right most) area in <code>px</code> that the drawer can be swiped open from.",
+    "swipeAreaIgnoreTouchStartEvent": "Callback to determine if the 'touchstart' event is ignored. This is useful if you have a swipeable edge, with a button in it, that you want to be able to both click, and drag to open the drawer.",
     "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
   },
   "classDescriptions": {}

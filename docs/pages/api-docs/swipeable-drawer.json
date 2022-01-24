@@ -14,6 +14,10 @@
     "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },
     "SwipeAreaProps": { "type": { "name": "object" } },
     "swipeAreaWidth": { "type": { "name": "number" }, "default": "20" },
+    "swipeAreaIgnoreTouchStartEvent": {
+      "type": { "name": "func" },
+      "default": "(event, swipeArea) => event.target !== swipeArea"
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
