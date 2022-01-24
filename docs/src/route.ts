@@ -9,7 +9,7 @@ const ROUTES = {
   careers: '/careers/',
   pricing: '/pricing/',
   about: '/about/',
-  handbook: 'https://www.notion.so/mui-org/Handbook-f086d47e10794d5e839aef9dc67f324b',
+  handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
   baseDocs: '/base/getting-started/installation/',
   materialDocs: '/material/getting-started/installation/',
   systemDocs: '/system/basics/',
