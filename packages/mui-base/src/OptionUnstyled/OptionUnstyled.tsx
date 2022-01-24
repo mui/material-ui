@@ -63,7 +63,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   React.useEffect(() => {
     if (optionState.highlighted) {
-      optionRef.current?.scrollIntoView({ block: 'nearest' });
+      optionRef.current?.scrollIntoView?.({ block: 'nearest' });
     }
   }, [optionState.highlighted]);
 
