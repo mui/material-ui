@@ -1,11 +1,10 @@
 ---
+title: June 2019 Update
 description: Here are the most significant improvements in June.
+date: 2019-07-08T00:00:00.000Z
+authors: ['oliviertassinari']
 tags: ['Company update']
 ---
-
-# June 2019 Update
-
-Olivier Tassinari. July 8, 2019.
 
 Here are the most significant improvements in June:
 

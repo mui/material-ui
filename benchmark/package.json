@@ -14,7 +14,7 @@
     "@chakra-ui/system": "^1.9.1",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@mui/material": "^5.3.0",
+    "@mui/material": "^5.3.1",
     "@mui/styles": "^5.3.0",
     "@mui/system": "^5.3.0",
     "@styled-system/css": "^5.1.5",

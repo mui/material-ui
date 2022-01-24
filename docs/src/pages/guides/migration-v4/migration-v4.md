@@ -1779,7 +1779,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Popper
 
-- Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2.
+- Upgrade [Popper.js](https://popper.js.org/) from v1 to v2.
   This third-party library has introduced a lot of changes.<br />
   You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
 
@@ -2785,8 +2785,8 @@ Then here is one example:
  });
 
  function Apply() {
-   const classes = useStyles();
-
+-   const classes = useStyles();
++   const { classes } = useStyles();
    return (
      <div className={classes.root}>
        <Button component={Link} to="https://support.mui.com" className={classes.apply}>
@@ -2821,7 +2821,8 @@ If you were using the `$` syntax, the transformation would look like this:
  });
 
  function App() {
-   const classes = useStyles();
+-   const classes = useStyles();
++   const { classes } = useStyles();
 
    return (
      <div className={classes.parent}>
