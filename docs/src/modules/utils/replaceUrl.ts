@@ -40,6 +40,8 @@ export const replaceComponentLinks = (url: string) => {
       url = url
         .replace(/(react-[-a-z]+)(x|ch)es([^a-z-])/, '$1$2$3')
         .replace(/(react-[-a-z]+)s([^a-z-])/, '$1$2')
+        .replace(/(react-[-a-z]+)(x|ch)es$/, '$1$2')
+        .replace(/(react-[-a-z]+)s$/, '$1')
         .replace(/react-trap-focu/, 'react-trap-focus')
         .replace(/react-progres/, 'react-progress');
     }
