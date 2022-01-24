@@ -8,9 +8,17 @@ _Jan 24, 2022_
 
 A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
-- 🧩 @siriwatknp updated the doc structure of MUI X components (#30684)
 - 🛠 @mnajdova added interoprability guide for using Tailwind CSS (#30700)
 - A meaningful number of 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/icons-material@5.3.1`
+
+- &#8203;<!-- 04 -->[icons] Fix naming typos (#30512) @MrHBS
+- &#8203;<!-- 03 -->[icons] Makes material-icons work with Joy (#30681) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.66`
+
+- &#8203;<!-- 02 -->[SliderUnstyled] Improve typings on some internal utils (#30614) @mnajdova
 
 ### Core
 
@@ -37,15 +45,6 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - &#8203;<!-- 07 -->[docs] Clear the difference between UI and React components (#29930) @oliviertassinari
 - &#8203;<!-- 06 -->[docs] Make Autocomplete docs gender neutral (#30679) @exequielbc
 - &#8203;<!-- 05 -->[docs] Update doc structure for X components (#30684) @siriwatknp
-
-### `@mui/icons-material@5.3.1`
-
-- &#8203;<!-- 04 -->[icons] Fix naming typos (#30512) @MrHBS
-- &#8203;<!-- 03 -->[icons] Makes material-icons work with Joy (#30681) @siriwatknp
-
-### `@mui/base@5.0.0-alpha.66`
-
-- &#8203;<!-- 02 -->[SliderUnstyled] Improve typings on some internal utils (#30614) @mnajdova
 
 All contributors of this release in alphabetical order: @aaneitchik, @alexfauquette, @chaosmirage, @Evomatic, @exequielbc, @michaldudak, @mnajdova, @MrHBS, @NoahYarian, @oliviertassinari, @siriwatknp
 
