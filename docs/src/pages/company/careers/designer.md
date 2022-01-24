@@ -30,7 +30,7 @@ Right now, we have five main projects that are not at all related to MD:
   - [MUI System:](/system/basics/) our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui-org/material-ui/discussions/29024): a second design system, alternative to Material Design.
 - [MUI X:](/x/) as mentioned already, a growing set of advanced components.
-Today, the flagship one is the [Data Grid](/components/data-grid/), a game-changing component for dealing with lots of data, which integrates perfectly with MUI Core.
+  Today, the flagship one is the [Data Grid](/components/data-grid/), a game-changing component for dealing with lots of data, which integrates perfectly with MUI Core.
 - MUI Studio: a very recent endeavor aimed at enabling users to visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
 We also learned, especially due to [our yearly run developer surveys](/blog/2020-developer-survey-results/), that, for developers, design quality plays a huge part when considering which available component library to use.
@@ -63,11 +63,11 @@ You'll be the second designer of a growing design chapter, so we'll also need yo
 - See yourself as a generalist designer, which means you like tackling problems ranging from strategic thinking to execution development (more insight at the recently written [first draft of our design philosophy](https://www.notion.so/Design-philosophy-bdbef60d6fad4134a43870df3e452ebc), available at our public Handbook).
 - Have excellent visual and interaction design chops.
 - Consider yourself a great communicator, both at the written and verbal levels.
-Designers are key players when it comes to creating alignment and shared understanding, be it from internal to external stakeholders.
+  Designers are key players when it comes to creating alignment and shared understanding, be it from internal to external stakeholders.
 - Feel comfortable around code and git (we use GitHub).
-Developers are MUI's main audience, therefore it's very important to know how to read and experience code for yourself, in order to empathize with our users.
-You should be capable of tweaking your own JSX and CSS, ensuring that your designs are implemented with the highest fidelity.
-But don't worry, you'll always have the support of your team.
+  Developers are MUI's main audience, therefore it's very important to know how to read and experience code for yourself, in order to empathize with our users.
+  You should be capable of tweaking your own JSX and CSS, ensuring that your designs are implemented with the highest fidelity.
+  But don't worry, you'll always have the support of your team.
 
 Previous experience with design systems would be great but not required.
 
