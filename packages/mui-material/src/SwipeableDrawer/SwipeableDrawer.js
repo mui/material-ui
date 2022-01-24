@@ -17,9 +17,6 @@ import SwipeArea from './SwipeArea';
 // trigger a native scroll.
 const UNCERTAINTY_THRESHOLD = 3; // px
 
-// This is the part of the drawer displayed on touch start.
-const DRAG_STARTED_SIGNAL = 20; // px
-
 // We can only have one instance at the time claiming ownership for handling the swipe.
 // Otherwise, the UX would be confusing.
 // That's why we use a singleton here.
@@ -141,6 +138,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     disableBackdropTransition = false,
     disableDiscovery = false,
     disableSwipeToOpen = iOS,
+    discoveryAmount = disableDiscovery ? -15 : 20,
     hideBackdrop,
     hysteresis = 0.52,
     minFlingVelocity = 450,
@@ -160,6 +158,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   const swipeInstance = React.useRef({
     isSwiping: null,
   });
+
+  // invert to keep consistency in rest of file
+  const discoveryAdjust = -discoveryAmount;
 
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
@@ -365,9 +366,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         // Compensate for the part of the drawer displayed on touch start.
         if (!disableDiscovery && !open) {
           if (horizontalSwipe) {
-            swipeInstance.current.startX -= DRAG_STARTED_SIGNAL;
+            swipeInstance.current.startX -= discoveryAdjust;
           } else {
-            swipeInstance.current.startY -= DRAG_STARTED_SIGNAL;
+            swipeInstance.current.startY -= discoveryAdjust;
           }
         }
       }
@@ -491,7 +492,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // The ref may be null when a parent component updates while swiping.
       setPosition(
         getMaxTranslate(horizontalSwipe, paperRef.current) +
-          (disableDiscovery ? 15 : -DRAG_STARTED_SIGNAL),
+          (disableDiscovery ? discoveryAdjust : -discoveryAdjust),
         {
           changeTransition: false,
         },
@@ -614,6 +615,11 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    * @default typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)
    */
   disableSwipeToOpen: PropTypes.bool,
+  /**
+   * The amount that the drawer adjusts on initial touch on the swipe area.
+   * @default disableDiscovery ? -15 : 20
+   */
+  discoveryAmount: PropTypes.number,
   /**
    * @ignore
    */
