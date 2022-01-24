@@ -1,6 +1,7 @@
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 function isNewLocation(url: string) {
+  url = url.replace(/^\/[a-z]{2}\//, '/');
   if (url === '/x' || url === '/x/') {
     // skipped if it is the X marketing page
     return false;
@@ -47,7 +48,7 @@ export const replaceComponentLinks = (url: string) => {
 };
 
 export const replaceAPILinks = (url: string) => {
-  if (isNewLocation(url) || !url.startsWith('/api')) {
+  if (isNewLocation(url) || !url.replace(/^\/[a-zA-Z]{2}\//, '/').startsWith('/api')) {
     return url;
   }
   url = url
@@ -67,7 +68,8 @@ export const replaceAPILinks = (url: string) => {
 export default function replaceUrl(url: string, asPath: string) {
   if (isNewLocation(asPath)) {
     url = replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(url)));
-    return url.replace(/^\/styles\/(.*)/, '/system/styles/$1');
+    url = url.replace(/^\/styles\/(.*)/, '/system/styles/$1');
+    url = url.replace(/^\/([a-z]{2})\/styles\/(.*)/, '/$1/system/styles/$2');
   }
   return url;
 }

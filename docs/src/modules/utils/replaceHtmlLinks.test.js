@@ -307,6 +307,62 @@ describe('replaceHtmlLinks', () => {
     }
   });
 
+  it('[i18n] only replace links for new routes (/material/* & /x/*)', () => {
+    expect(
+      replaceHtmlLinks(
+        `
+    <ul>
+    <li><a href="/zh/components/button-group/">Button Group</a></li>
+    <li><a href="/zh/components/buttons/">Buttons</a></li>
+    <li><a href="/zh/components/tree-view/">Tree view</a></li>
+    <li><a href="/zh/components/data-grid/demo/">Demo</a></li>
+    <li><a href="/zh/api/button/"><code>&lt;Button /&gt;</code></a></li>
+    <li><a href="/zh/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+    <li><a href="/zh/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+    <li><a href="/zh/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+    <li><a href="/zh/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+    <li><a href="/zh/api/data-grid/data-grid/">DataGrid</a></li>
+    <li><a href="/zh/api/data-grid/data-grid-pro/">DataGridPro</a></li>
+    <li><a href="/zh/system/basics/">System</a></li>
+    <a href="/zh/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
+    <a href="/zh/customization/theme-components/#default-props">default props</a>
+    <a data-no-markdown-link="true" tabindex="0" href="/zh/getting-started/usage/">Get started</a>
+    <li><a href="/zh/discover-more/related-projects/">Tree view</a></li>
+    </ul>
+    `,
+        '/zh/material/react-buttons',
+      ),
+    ).to.equal(`
+    <ul>
+    <li><a href="/zh/material/react-button-group/">Button Group</a></li>
+    <li><a href="/zh/material/react-button/">Buttons</a></li>
+    <li><a href="/zh/material/react-tree-view/">Tree view</a></li>
+    <li><a href="/zh/x/react-data-grid/demo/">Demo</a></li>
+    <li><a href="/zh/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
+    <li><a href="/zh/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+    <li><a href="/zh/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
+    <li><a href="/zh/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+    <li><a href="/zh/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+    <li><a href="/zh/x/api/data-grid/data-grid/">DataGrid</a></li>
+    <li><a href="/zh/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
+    <li><a href="/zh/system/basics/">System</a></li>
+    <a href="/zh/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
+    <a href="/zh/material/customization/theme-components/#default-props">default props</a>
+    <a data-no-markdown-link="true" tabindex="0" href="/zh/material/getting-started/usage/">Get started</a>
+    <li><a href="/zh/material/discover-more/related-projects/">Tree view</a></li>
+    </ul>
+    `);
+    if (FEATURE_TOGGLE.enable_system_scope) {
+      expect(`<li><a href="/styles/api/">Styles</a></li>`).to.equal(
+        `<li><a href="/system/styles/api/">Styles</a></li>`,
+      );
+    } else {
+      expect(`<li><a href="/styles/api/">Styles</a></li>`).to.equal(
+        `<li><a href="/styles/api/">Styles</a></li>`,
+      );
+    }
+  });
+
   it('should work with json', () => {
     const json = {
       importDifference:

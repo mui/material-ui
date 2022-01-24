@@ -245,6 +245,26 @@ describe('replaceUrl', () => {
     }
   });
 
+  it('[i18n] only replace links for new routes (/material/* & /x/*)', () => {
+    expect(replaceUrl(`/zh/guides/minimizing-bundle-size/`, '/zh/material/react-buttons')).to.equal(
+      `/zh/material/guides/minimizing-bundle-size/`,
+    );
+    expect(
+      replaceUrl(`/zh/components/data-grid/getting-started/#main-content`, '/zh/x/react-data-grid'),
+    ).to.equal(`/zh/x/react-data-grid/getting-started/#main-content`);
+    expect(
+      replaceUrl(`/zh/components/data-grid/components/#main-content`, '/zh/x/react-data-grid'),
+    ).to.equal(`/zh/x/react-data-grid/components/#main-content`);
+    expect(replaceUrl(`/zh/api/button-unstyled`, '/zh/base/api/button-unstyled')).to.equal(
+      `/zh/base/api/button-unstyled`,
+    );
+    if (FEATURE_TOGGLE.enable_system_scope) {
+      expect(replaceUrl(`/zh/styles/api/`, `/system/basics`)).to.equal(`/zh/system/styles/api/`);
+    } else {
+      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/styles/api/`);
+    }
+  });
+
   it('does not replace for old routes', () => {
     expect(replaceUrl(`/guides/minimizing-bundle-size/`, '/components/buttons')).to.equal(
       `/guides/minimizing-bundle-size/`,
