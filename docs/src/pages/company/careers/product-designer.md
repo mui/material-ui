@@ -4,7 +4,7 @@
 
 ## About the company
 
-MUI started with Material UI, the most successful React implementation of Google’s Material Design. It has gotten a massive following not only due to the fidelity to Material but also because its number of components, carefully designed component API, obsession for details, and community engagement. Today, countless teams and organizations rely on our open-source projects to build their design system.
+MUI started with Material-UI, the most successful React implementation of Google’s Material Design. It has gotten a massive following not only due to the fidelity to Material but also because its number of components, carefully designed component API, obsession for details, and community engagement. Today, countless teams and organizations rely on our open-source projects to build their design system.
 
 A few years back, we started expanding our suite of products. We released [MUI X](/x), a collection of advanced components, [MUI Design Kits](/design-kits), the MUI Material components available in the most popular design tools out there, and [MUI Templates](/templates), a set of pre-built UIs. We’ve seen fast growth in all of them (x2 ~ 3 year over year) and we have much more baking in the oven.
 
