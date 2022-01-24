@@ -223,17 +223,6 @@ const openRolesData = [
 ];
 
 const futureRolesData = [
-  // {
-  //   // 1
-  //   roles: [
-  //     {
-  //       title: 'Product Designer',
-  //       description:
-  //         'Design is critical to the success of our mission. We will be looking for skills that complement our Lead Designer. You will empower our community to build outstanding-looking UIs with innovative tools.',
-  //       url: undefined,
-  //     },
-  //   ],
-  // },
   {
     title: 'Engineering',
     roles: [
