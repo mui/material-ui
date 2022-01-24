@@ -128,6 +128,11 @@ describe('replaceUrl', () => {
       `/material/react-trap-focus/#main-content`,
     );
 
+    expect(replaceComponentLinks(`/components/progress/`)).to.equal(`/material/react-progress/`);
+    expect(replaceComponentLinks(`/components/progress/#main-content`)).to.equal(
+      `/material/react-progress/#main-content`,
+    );
+
     expect(replaceComponentLinks(`/components/tables/`)).to.equal(`/material/react-table/`);
     expect(replaceComponentLinks(`/components/tables/#main-content`)).to.equal(
       `/material/react-table/#main-content`,

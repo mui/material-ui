@@ -73,6 +73,7 @@ describe('replaceMarkdownLinks', () => {
       [text](/components/css-baseline/#main-content)
       [text](/components/no-ssr/#main-content)
       [text](/components/image-list/#main-content)
+      [text](/components/progress/#main-content)
       -
       [Tree view](/components/tree-view/)
       [Demo](/components/data-grid/demo/)
@@ -109,6 +110,7 @@ describe('replaceMarkdownLinks', () => {
       [text](/material/react-css-baseline/#main-content)
       [text](/material/react-no-ssr/#main-content)
       [text](/material/react-image-list/#main-content)
+      [text](/material/react-progress/#main-content)
       -
       [Tree view](/material/react-tree-view/)
       [Demo](/x/react-data-grid/demo/)

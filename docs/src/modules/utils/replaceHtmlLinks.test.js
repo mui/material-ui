@@ -78,6 +78,7 @@ describe('replaceHtmlLinks', () => {
       <li><a href="/components/tabs/#main-content">text</a></li>
       <li><a href="/components/transitions/#main-content">text</a></li>
       <li><a href="/components/pickers/#main-content">text</a></li>
+      <li><a href="/components/progress/#main-content">text</a></li>
       -
       <li><a href="/components/tree-view/">Tree view</a></li>
       <li><a href="/components/data-grid/demo/">Demo</a></li>
@@ -112,6 +113,7 @@ describe('replaceHtmlLinks', () => {
       <li><a href="/material/react-tabs/#main-content">text</a></li>
       <li><a href="/material/transitions/#main-content">text</a></li>
       <li><a href="/material/pickers/#main-content">text</a></li>
+      <li><a href="/material/react-progress/#main-content">text</a></li>
       -
       <li><a href="/material/react-tree-view/">Tree view</a></li>
       <li><a href="/x/react-data-grid/demo/">Demo</a></li>
