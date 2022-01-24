@@ -4,24 +4,37 @@
 
 ## About the company
 
-MUI started as Material-UI, the most successful React implementation of Google’s Material Design. It has gotten a massive following not only due to the fidelity to Material but also because its number of components, carefully designed component API, obsession for details, and community engagement. Today, countless teams and organizations rely on our open-source projects to build their design system.
+MUI started as Material-UI, the most successful React implementation of Google’s Material Design.
+It has gotten a massive following not only due to the fidelity to Material but also because its number of components, carefully designed component API, obsession for details, and community engagement.
+Today, countless teams and organizations rely on our open-source projects to build their design system.
 
-A few years back, we started expanding our suite of products. We released [MUI X](/x/), a collection of advanced components, [MUI Design Kits](/design-kits/), the MUI Material components available in the most popular design tools out there, and [MUI Templates](/templates/), a set of pre-built UIs. We've seen fast growth in all of them (x2 ~ 3 year over year) and we have much more baking in the oven.
+A few years back, we started expanding our suite of products.
+We released [MUI X](/x/), a collection of advanced components, [MUI Design Kits](/design-kits/), the MUI Material components available in the most popular design tools out there, and [MUI Templates](/templates/), a set of pre-built UIs.
+We've seen fast growth in all of them (x2 ~ 3 year over year) and we have much more baking in the oven.
 
-We are a team of fully distributed individuals, spread across multiple timezones. We work mainly asynchronously, relying on lots of documentation and written collaboration. Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us. For more details about MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+We are a team of fully distributed individuals, spread across multiple timezones.
+We work mainly asynchronously, relying on lots of documentation and written collaboration.
+Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
+For more details about MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-Material-UI started as an open-source project. As years passed by, audience and usage grew considerably, even turning some of the library's original founders turned full-time maintainers of it. A few years ago, the project was incorporated and just very recently, [we have rebranded the company from Material-UI to MUI](/blog/material-ui-is-now-mui/). A new brand was fundamental to set the stage for MUI to become larger than Material Design, which was something we actually were already doing. Right now, we have five main projects that are not at all related to MD:
+Material-UI started as an open-source project.
+As years passed by, audience and usage grew considerably, even turning some of the library's original founders turned full-time maintainers of it.
+A few years ago, the project was incorporated and just very recently, [we have rebranded the company from Material-UI to MUI](/blog/material-ui-is-now-mui/).
+A new brand was fundamental to set the stage for MUI to become larger than Material Design, which was something we actually were already doing.
+Right now, we have five main projects that are not at all related to MD:
 
 - [MUI Core:](/core/)
   - [MUI Base:](/customization/unstyled-components/) the unstyled version of the components.
   - [MUI System:](/system/basics/) our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui-org/material-ui/discussions/29024): a second design system, alternative to Material Design.
-- [MUI X:](/x/) as mentioned already, a growing set of advanced components. Today, the flagship one is the [Data Grid](/components/data-grid/), a game-changing component for dealing with lots of data, which integrates perfectly with MUI Core.
+- [MUI X:](/x/) as mentioned already, a growing set of advanced components.
+Today, the flagship one is the [Data Grid](/components/data-grid/), a game-changing component for dealing with lots of data, which integrates perfectly with MUI Core.
 - MUI Studio: a very recent endeavor aimed at enabling users to visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
-We also learned, especially due to [our yearly run developer surveys](/blog/2020-developer-survey-results/), that, for developers, design quality plays a huge part when considering which available component library to use. Therefore, we need to grow the design organization to help us push it further.
+We also learned, especially due to [our yearly run developer surveys](/blog/2020-developer-survey-results/), that, for developers, design quality plays a huge part when considering which available component library to use.
+Therefore, we need to grow the design organization to help us push it further.
 
 ## About the role
 
@@ -32,7 +45,11 @@ Some criterias for applying to this role:
 - Level: [3 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
 - Start date: immediately.
 
-We need someone experienced enough to help two different teams with hard problems. You'll be responsible for ensuring that the MUI Studio and MUI X teams have spot-on design and product work. Given that each product is in a different stage, at this moment we believe that one person is enough to oversee the design function at each team. You'll have the freedom, trust, and help from our bright and smart people to understand how to balance and tackle all the work. You'll be the second designer of a growing design chapter, so we'll also need your help as to how to do it in the best way possible.
+We need someone experienced enough to help two different teams with hard problems.
+You'll be responsible for ensuring that the MUI Studio and MUI X teams have spot-on design and product work.
+Given that each product is in a different stage, at this moment we believe that one person is enough to oversee the design function at each team.
+You'll have the freedom, trust, and help from our bright and smart people to understand how to balance and tackle all the work.
+You'll be the second designer of a growing design chapter, so we'll also need your help as to how to do it in the best way possible.
 
 ### Here are a few initiatives you might work on
 
@@ -45,14 +62,20 @@ We need someone experienced enough to help two different teams with hard problem
 
 - See yourself as a generalist designer, which means you like tackling problems ranging from strategic thinking to execution development (more insight at the recently written [first draft of our design philosophy](https://www.notion.so/Design-philosophy-bdbef60d6fad4134a43870df3e452ebc), available at our public Handbook).
 - Have excellent visual and interaction design chops.
-- Consider yourself a great communicator, both at the written and verbal levels. Designers are key players when it comes to creating alignment and shared understanding, be it from internal to external stakeholders.
-- Feel comfortable around code and git (we use GitHub). Developers are MUI's main audience, therefore it's very important to know how to read and experience code for yourself, in order to empathize with our users. You should be capable of tweaking your own JSX and CSS, ensuring that your designs are implemented with the highest fidelity. But don't worry, you'll always have the support of your team.
+- Consider yourself a great communicator, both at the written and verbal levels.
+Designers are key players when it comes to creating alignment and shared understanding, be it from internal to external stakeholders.
+- Feel comfortable around code and git (we use GitHub).
+Developers are MUI's main audience, therefore it's very important to know how to read and experience code for yourself, in order to empathize with our users.
+You should be capable of tweaking your own JSX and CSS, ensuring that your designs are implemented with the highest fidelity.
+But don't worry, you'll always have the support of your team.
 
 Previous experience with design systems would be great but not required.
 
 ## Benefits & Compensation
 
-We offer competitive compensation depending on the profile and location. We're ready to pay top market rates for a designer that can significantly push the mission forward. Other perks are described on [the careers page](/careers/#perks-amp-benefits/).
+We offer competitive compensation depending on the profile and location.
+We're ready to pay top market rates for a designer that can significantly push the mission forward.
+Other perks are described on [the careers page](/careers/#perks-amp-benefits/).
 
 ## How to apply?
 
@@ -60,7 +83,8 @@ We offer competitive compensation depending on the profile and location. We're r
 
 ## What happens next?
 
-We start by screening all the applications, looking for designers that showcase the desired skills and experience. If your application stands out, we'll contact you for a get-to-know conversation, where we'll meet each other.
+We start by screening all the applications, looking for designers that showcase the desired skills and experience.
+If your application stands out, we'll contact you for a get-to-know conversation, where we'll meet each other.
 
 If that goes successfully, you'll be invited to up to four conversations, them being:
 
@@ -69,6 +93,9 @@ If that goes successfully, you'll be invited to up to four conversations, them b
 - A chat with one of MUI's founders.
 - A possible follow-up chat if we end up missing addressing any relevant topic on the previous conversations.
 
-All these conversations will be 1:1 and over video chats. Please feel encouraged to ask as many questions as you wish throughout the whole process, it's a two-way street. If you happen to need additional conversations as well, feel free to ask, we'll be happy to schedule them. Lastly, please note that we're unable to offer individual feedback during the initial screening process, as we're a small team and don't have the bandwidth to do so.
+All these conversations will be 1:1 and over video chats.
+Please feel encouraged to ask as many questions as you wish throughout the whole process, it's a two-way street.
+If you happen to need additional conversations as well, feel free to ask, we'll be happy to schedule them.
+Lastly, please note that we're unable to offer individual feedback during the initial screening process, as we're a small team and don't have the bandwidth to do so.
 
 We look forward to hearing from you! ☺️
