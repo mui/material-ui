@@ -4,7 +4,7 @@
 
 ## About the company
 
-MUI started as Material-UI, the most successful React implementation of Google’s Material Design.
+MUI started as Material-UI, the most successful React implementation of Google's Material Design.
 It has gotten a massive following not only due to the fidelity to Material but also because of its number of components, carefully designed component API, obsession for details, and community engagement.
 Today, countless teams and organizations rely on our open-source projects to build their design system.
 
