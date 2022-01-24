@@ -20,6 +20,7 @@ export const replaceComponentLinks = (markdown: string) => {
       '(/material/$1$2$3)',
     )
     .replace(/\(\/material\/(?!react-tabs|react-breadcrumbs)(react-[-a-z]+)s"/gm, '(/material/$1)')
+    .replace(/react-trap-focu/gm, 'react-trap-focus')
     .replace(/\(\/components\/(tabs|breadcrumbs)([^)]*)\)/gm, '(/material/react-$1$2)');
 };
 

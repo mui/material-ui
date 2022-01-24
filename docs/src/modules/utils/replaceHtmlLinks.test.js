@@ -250,6 +250,9 @@ describe('replaceHtmlLinks', () => {
     <ul>
     <li><a href="/components/button-group/">Button Group</a></li>
     <li><a href="/components/buttons/">Buttons</a></li>
+    <li><a href="/components/css-baseline/"></a></li>
+    <li><a href="/components/image-list/"></a></li>
+    <li><a href="/components/trap-focus/"></a></li>
     <li><a href="/components/tree-view/">Tree view</a></li>
     <li><a href="/components/data-grid/demo/">Demo</a></li>
     <li><a href="/api/button/"><code>&lt;Button /&gt;</code></a></li>
@@ -272,6 +275,9 @@ describe('replaceHtmlLinks', () => {
     <ul>
     <li><a href="/material/react-button-group/">Button Group</a></li>
     <li><a href="/material/react-button/">Buttons</a></li>
+    <li><a href="/material/react-css-baseline/"></a></li>
+    <li><a href="/material/react-image-list/"></a></li>
+    <li><a href="/material/react-trap-focus/"></a></li>
     <li><a href="/material/react-tree-view/">Tree view</a></li>
     <li><a href="/x/react-data-grid/demo/">Demo</a></li>
     <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>

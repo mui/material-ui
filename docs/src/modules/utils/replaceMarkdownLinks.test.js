@@ -69,6 +69,10 @@ describe('replaceMarkdownLinks', () => {
       [text](/components/tabs/#main-content)
       [text](/components/transitions/#main-content)
       [text](/components/pickers/#main-content)
+      [text](/components/trap-focus/#main-content)
+      [text](/components/css-baseline/#main-content)
+      [text](/components/no-ssr/#main-content)
+      [text](/components/image-list/#main-content)
       -
       [Tree view](/components/tree-view/)
       [Demo](/components/data-grid/demo/)
@@ -101,6 +105,10 @@ describe('replaceMarkdownLinks', () => {
       [text](/material/react-tabs/#main-content)
       [text](/material/transitions/#main-content)
       [text](/material/pickers/#main-content)
+      [text](/material/react-trap-focus/#main-content)
+      [text](/material/react-css-baseline/#main-content)
+      [text](/material/react-no-ssr/#main-content)
+      [text](/material/react-image-list/#main-content)
       -
       [Tree view](/material/react-tree-view/)
       [Demo](/x/react-data-grid/demo/)

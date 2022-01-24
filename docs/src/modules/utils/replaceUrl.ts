@@ -38,7 +38,8 @@ export const replaceComponentLinks = (url: string) => {
     if (!url.match(/\/react-(tabs|breadcrumbs)/)) {
       url = url
         .replace(/(react-[-a-z]+)(x|ch)es([^a-z-])/, '$1$2$3')
-        .replace(/(react-[-a-z]+)s([^a-z-])/, '$1$2');
+        .replace(/(react-[-a-z]+)s([^a-z-])/, '$1$2')
+        .replace(/react-trap-focu/, 'react-trap-focus');
     }
   }
   return url;

@@ -31,6 +31,7 @@ export const replaceComponentLinks = (markdown: string) => {
       /href=(\\*?)"\/material\/(?!react-tabs|react-breadcrumbs)(react-[-a-z]+)s"/gm,
       'href=$1"/material/$2"',
     )
+    .replace(/react-trap-focu/gm, 'react-trap-focus')
     .replace(
       /href=(\\*?)"\/components\/(tabs|breadcrumbs)([^"]*)"/gm,
       'href=$1"/material/react-$2$3"',

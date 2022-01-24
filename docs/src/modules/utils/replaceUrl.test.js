@@ -121,6 +121,13 @@ describe('replaceUrl', () => {
       `/material/react-no-ssr/#main-content`,
     );
 
+    expect(replaceComponentLinks(`/components/trap-focus/`)).to.equal(
+      `/material/react-trap-focus/`,
+    );
+    expect(replaceComponentLinks(`/components/trap-focus/#main-content`)).to.equal(
+      `/material/react-trap-focus/#main-content`,
+    );
+
     expect(replaceComponentLinks(`/components/tables/`)).to.equal(`/material/react-table/`);
     expect(replaceComponentLinks(`/components/tables/#main-content`)).to.equal(
       `/material/react-table/#main-content`,
