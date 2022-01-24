@@ -106,7 +106,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       const closingKeys = multiple ? ['Escape'] : ['Escape', 'Enter', ' '];
 
       if (open && !ignoreEnterKeyUp.current && closingKeys.includes(event.key)) {
-        setTimeout(() => buttonRef?.current?.focus(), 0);
+        buttonRef?.current?.focus();
       }
 
       ignoreEnterKeyUp.current = false;
@@ -128,7 +128,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
       otherHandlers?.blur?.(event);
       if (!event.defaultPrevented) {
-        setTimeout(() => onOpenChange?.(false), 0);
+        onOpenChange?.(false);
       }
     };
 
