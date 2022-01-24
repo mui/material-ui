@@ -24,6 +24,20 @@ test.describe('Material docs', () => {
     );
   });
 
+  test('[zh] should have correct link with hash in the TOC', async ({ page }) => {
+    await page.goto(`/zh/material/getting-started/installation/`);
+
+    const anchors = page.locator('main nav ul a');
+
+    const firstAnchor = await anchors.first();
+    const textContent = await firstAnchor.textContent();
+
+    await expect(firstAnchor).toHaveAttribute(
+      'href',
+      `/zh/material/getting-started/installation/#${kebabCase(textContent || '')}`,
+    );
+  });
+
   test.describe('Demo page', () => {
     test('should have correct link for API section', async ({ page }) => {
       await page.goto(`/material/react-card/`);

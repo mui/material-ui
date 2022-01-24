@@ -176,14 +176,15 @@ function AppWrapper(props) {
     }
   }, []);
 
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   let productPages = pages;
-  if (router.asPath.startsWith('/base')) {
+  if (asPathWithoutLang.startsWith('/base')) {
     productPages = basePages;
   }
-  if (router.asPath.startsWith('/material')) {
+  if (asPathWithoutLang.startsWith('/material')) {
     productPages = materialPages;
   }
-  if (router.asPath.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
+  if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
     productPages = systemPages;
   }
 
