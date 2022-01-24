@@ -8,7 +8,7 @@ _Jan 24, 2022_
 
 A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
-- 🛠 @mnajdova added interoprability guide for using Tailwind CSS (#30700)
+- 🛠 @mnajdova added interoperability guide for using Tailwind CSS (#30700)
 - A meaningful number of 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/icons-material@5.3.1`
