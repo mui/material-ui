@@ -1,6 +1,7 @@
 import * as React from 'react';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
 const StyledButton = styled('button')`
@@ -83,10 +84,15 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
+const StyledPopper = styled(PopperUnstyled)`
+  z-index: 1;
+`;
+
 const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    Popper: StyledPopper,
     ...props.components,
   };
 

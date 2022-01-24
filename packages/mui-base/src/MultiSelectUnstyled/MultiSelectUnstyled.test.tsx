@@ -32,6 +32,10 @@ describe('MultiSelectUnstyled', () => {
         expectedClassName: selectUnstyledClasses.listbox,
         testWithElement: 'ul',
       },
+      popper: {
+        expectedClassName: selectUnstyledClasses.popper,
+        testWithElement: null,
+      },
     },
   }));
 });

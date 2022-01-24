@@ -7,6 +7,7 @@ import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled'
 import OptionGroupUnstyled, {
   OptionGroupUnstyledProps,
 } from '@mui/base/OptionGroupUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
 const StyledButton = styled('button')`
@@ -110,10 +111,15 @@ const StyledGroupOptions = styled('ul')`
   }
 `;
 
+const StyledPopper = styled(PopperUnstyled)`
+  z-index: 1;
+`;
+
 function CustomSelect(props: SelectUnstyledProps<string>) {
   const components: SelectUnstyledProps<string>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    Popper: StyledPopper,
     ...props.components,
   };
 

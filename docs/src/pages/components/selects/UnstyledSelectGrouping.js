@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
 const StyledButton = styled('button')`
@@ -106,10 +107,15 @@ const StyledGroupOptions = styled('ul')`
   }
 `;
 
+const StyledPopper = styled(PopperUnstyled)`
+  z-index: 1;
+`;
+
 function CustomSelect(props) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    Popper: StyledPopper,
     ...props.components,
   };
 
@@ -124,6 +130,7 @@ CustomSelect.propTypes = {
    */
   components: PropTypes.shape({
     Listbox: PropTypes.elementType,
+    Popper: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
 };

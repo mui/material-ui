@@ -1,4 +1,5 @@
 import { SelectOption } from './useSelectProps';
+import PopperUnstyled from '../PopperUnstyled';
 
 export interface SelectUnstyledComponentsPropsOverrides {}
 
@@ -19,6 +20,7 @@ export interface SelectUnstyledCommonProps {
   components?: {
     Root?: React.ElementType;
     Listbox?: React.ElementType;
+    Popper?: React.ElementType;
   };
   /**
    * The props used for each slot inside the Input.
@@ -27,16 +29,14 @@ export interface SelectUnstyledCommonProps {
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'button'> & SelectUnstyledComponentsPropsOverrides;
     listbox?: React.ComponentPropsWithRef<'ul'> & SelectUnstyledComponentsPropsOverrides;
+    popper?: React.ComponentPropsWithRef<typeof PopperUnstyled> &
+      SelectUnstyledComponentsPropsOverrides;
   };
   /**
    * If `true`, the select is disabled.
    * @default false
    */
   disabled?: boolean;
-  /**
-   * Id of the listbox element.
-   */
-  listboxId?: string;
   /**
    * If `true`, the select will be initially open.
    * @default false

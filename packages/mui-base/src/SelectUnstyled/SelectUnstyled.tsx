@@ -31,7 +31,7 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
       open && 'expanded',
     ],
     listbox: ['listbox', disabled && 'disabled'],
-    option: ['option'],
+    popper: ['popper'],
   };
 
   return composeClasses(slots, getSelectUnstyledUtilityClass, {});
@@ -54,7 +54,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
-    listboxId,
     listboxOpen: listboxOpenProp,
     onChange,
     onListboxOpenChange,
@@ -83,6 +82,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
 
   const Button = component ?? components.Root ?? 'button';
   const ListboxRoot = components.Listbox ?? 'ul';
+  const Popper = components.Popper ?? PopperUnstyled;
 
   const handleButtonRefChange = (element: HTMLElement | null) => {
     buttonRef.current = element;
@@ -139,7 +139,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,
-    listboxId,
+    listboxId: componentsProps.listbox?.id,
     listboxRef: handleListboxRef,
     multiple: false,
     onChange,
@@ -187,6 +187,20 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     ownerState,
   );
 
+  const popperProps = appendOwnerState(
+    Popper,
+    {
+      open: listboxOpen,
+      anchorEl: buttonRef.current,
+      placement: 'bottom-start',
+      disablePortal: true,
+      role: undefined,
+      ...componentsProps.popper,
+      className: clsx(componentsProps.popper?.className, classes.popper),
+    },
+    ownerState,
+  );
+
   const context: SelectUnstyledContextType = {
     getOptionProps,
     getOptionState,
@@ -196,19 +210,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     <React.Fragment>
       <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
       {buttonDefined && (
-        <PopperUnstyled
-          open={listboxOpen}
-          anchorEl={buttonRef.current}
-          placement="bottom-start"
-          disablePortal
-          role={undefined}
-        >
+        <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
             <SelectUnstyledContext.Provider value={context}>
               {children}
             </SelectUnstyledContext.Provider>
           </ListboxRoot>
-        </PopperUnstyled>
+        </Popper>
       )}
     </React.Fragment>
   );
@@ -243,6 +251,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   components: PropTypes.shape({
     Listbox: PropTypes.elementType,
+    Popper: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
   /**
@@ -251,6 +260,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.shape({
     listbox: PropTypes.object,
+    popper: PropTypes.object,
     root: PropTypes.object,
   }),
   /**
@@ -267,10 +277,6 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
-  /**
-   * Id of the listbox element.
-   */
-  listboxId: PropTypes.string,
   /**
    * Controls the open state of the select's listbox.
    * @default undefined

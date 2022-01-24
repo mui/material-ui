@@ -2,17 +2,22 @@
   "props": {
     "autoFocus": { "type": { "name": "bool" } },
     "components": {
-      "type": { "name": "shape", "description": "{ Listbox?: elementType, Root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ Listbox?: elementType, Popper?: elementType, Root?: elementType }"
+      },
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ listbox?: object, root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: object, popper?: object, root?: object }"
+      },
       "default": "{}"
     },
     "defaultListboxOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
-    "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },

@@ -5,6 +5,7 @@ import SelectUnstyled, {
 } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
+import { PopperUnstyled } from '@mui/base';
 
 const StyledButton = styled('button')`
   font-family: IBM Plex Sans, sans-serif;
@@ -96,6 +97,10 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
+const StyledPopper = styled(PopperUnstyled)`
+  z-index: 1;
+`;
+
 const CustomSelect = React.forwardRef(function CustomSelect(
   props: SelectUnstyledProps<number>,
   ref: React.ForwardedRef<any>,
@@ -103,6 +108,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(
   const components: SelectUnstyledProps<number>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    Popper: StyledPopper,
     ...props.components,
   };
 

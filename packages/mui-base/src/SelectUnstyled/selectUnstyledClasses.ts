@@ -5,6 +5,7 @@ export interface SelectUnstyledClasses {
   root: string;
   button: string;
   listbox: string;
+  popper: string;
   active: string;
   expanded: string;
   disabled: string;
@@ -21,6 +22,7 @@ const selectUnstyledClasses: SelectUnstyledClasses = generateUtilityClasses('Mui
   'root',
   'button',
   'listbox',
+  'popper',
   'active',
   'expanded',
   'disabled',

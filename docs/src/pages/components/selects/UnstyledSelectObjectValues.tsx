@@ -4,6 +4,7 @@ import SelectUnstyled, {
   selectUnstyledClasses,
 } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
 const StyledButton = styled('button')`
@@ -86,10 +87,15 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
+const StyledPopper = styled(PopperUnstyled)`
+  z-index: 1;
+`;
+
 function CustomSelect<TValue extends {}>(props: SelectUnstyledProps<TValue>) {
   const components: SelectUnstyledProps<number>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    Popper: StyledPopper,
     ...props.components,
   };
 

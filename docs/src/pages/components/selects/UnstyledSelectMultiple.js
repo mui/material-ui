@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
 import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
 const StyledButton = styled('button')`
@@ -85,10 +86,15 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
+const StyledPopper = styled(PopperUnstyled)`
+  z-index: 1;
+`;
+
 const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(props, ref) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    Popper: StyledPopper,
     ...props.components,
   };
 
@@ -103,6 +109,7 @@ CustomMultiSelect.propTypes = {
    */
   components: PropTypes.shape({
     Listbox: PropTypes.elementType,
+    Popper: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
+import { PopperUnstyled } from '@mui/base';
 
 const StyledButton = styled('button')`
   font-family: IBM Plex Sans, sans-serif;
@@ -94,10 +95,15 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
+const StyledPopper = styled(PopperUnstyled)`
+  z-index: 1;
+`;
+
 const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    Popper: StyledPopper,
     ...props.components,
   };
 
@@ -112,6 +118,7 @@ CustomSelect.propTypes = {
    */
   components: PropTypes.shape({
     Listbox: PropTypes.elementType,
+    Popper: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
 };
