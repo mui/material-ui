@@ -98,6 +98,16 @@ githubLabel: 'component: Avatar'
       path: 'material-ui/docs/pages/material/react-button.js',
     });
 
+    expect(getNewPageLocation('material-ui/docs/pages/components/image-list.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-image-list.js',
+    });
+
+    expect(getNewPageLocation('material-ui/docs/pages/components/no-ssr.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-no-ssr.js',
+    });
+
     expect(getNewPageLocation('material-ui/docs/pages/components/about-the-lab.js')).to.deep.equal({
       directory: 'material-ui/docs/pages/material',
       path: 'material-ui/docs/pages/material/about-the-lab.js',

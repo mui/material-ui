@@ -109,10 +109,10 @@ describe('replaceUrl', () => {
       `/material/react-list/#main-content`,
     );
 
-    expect(replaceComponentLinks(`/components/image-lists/`)).to.equal(
+    expect(replaceComponentLinks(`/components/image-list/`)).to.equal(
       `/material/react-image-list/`,
     );
-    expect(replaceComponentLinks(`/components/image-lists/#main-content`)).to.equal(
+    expect(replaceComponentLinks(`/components/image-list/#main-content`)).to.equal(
       `/material/react-image-list/#main-content`,
     );
 
