@@ -82,7 +82,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Badge/Badge.js",
-  "inheritance": { "component": "BadgeUnstyled", "pathname": "/material/api/badge-unstyled/" },
+  "inheritance": { "component": "BadgeUnstyled", "pathname": "/base/api/badge-unstyled/" },
   "demos": "<ul><li><a href=\"/material/react-avatar/\">Avatars</a></li>\n<li><a href=\"/material/react-badge/\">Badges</a></li></ul>",
   "cssComponent": false
 }

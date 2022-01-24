@@ -121,7 +121,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Slider/Slider.js",
-  "inheritance": { "component": "SliderUnstyled", "pathname": "/material/api/slider-unstyled/" },
+  "inheritance": { "component": "SliderUnstyled", "pathname": "/base/api/slider-unstyled/" },
   "demos": "<ul><li><a href=\"/material/react-slider/\">Slider</a></li></ul>",
   "cssComponent": false
 }
