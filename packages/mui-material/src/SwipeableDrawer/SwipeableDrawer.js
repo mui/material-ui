@@ -54,6 +54,10 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
   );
 }
 
+function defaultSwipeAreaIgnoreTouchStartEvent(event, swipeArea) {
+  return event.target !== swipeArea;
+}
+
 /**
  * @param {Element | null} element
  * @param {Element} rootNode
@@ -149,9 +153,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     onOpen,
     open,
     PaperProps = {},
+    swipeAreaIgnoreTouchStartEvent = defaultSwipeAreaIgnoreTouchStartEvent,
     SwipeAreaProps,
     swipeAreaWidth = 20,
-    swipeAreaIgnoreTouchStartEvent = (event, swipeArea) => event.target !== swipeArea,
     transitionDuration = transitionDurationDefault,
     variant = 'temporary', // Mobile first.
     ...other
@@ -664,6 +668,19 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
     style: PropTypes.object,
   }),
   /**
+   * Callback to determine if the 'touchstart' event is ignored.
+   * This is useful if you have a swipeable edge, with a button in it,
+   * that you want to be able to both click, and drag to open the drawer.
+   *
+   * @param {TouchEvent} event The 'touchstart' event
+   * @param {HTMLDivElement} swipeArea The swipe area element
+   *
+   * @default function defaultSwipeAreaIgnoreTouchStartEvent(event, swipeArea) {
+   *   return event.target !== swipeArea;
+   * }
+   */
+  swipeAreaIgnoreTouchStartEvent: PropTypes.func,
+  /**
    * The element is used to intercept the touch events on the edge.
    */
   SwipeAreaProps: PropTypes.object,
@@ -673,17 +690,6 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    * @default 20
    */
   swipeAreaWidth: PropTypes.number,
-  /**
-   * Callback to determine if the 'touchstart' event is ignored.
-   * This is useful if you have a swipeable edge, with a button in it,
-   * that you want to be able to both click, and drag to open the drawer.
-   * 
-   * @param {TouchEvent} event The 'touchstart' event
-   * @param {HTMLDivElement} swipeArea The swipe area element
-   * 
-   * @default (event,swipeArea) => event.target !== swipeArea;
-   */
-   swipeAreaIgnoreTouchStartEvent: PropTypes.func,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
