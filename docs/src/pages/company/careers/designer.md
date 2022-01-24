@@ -5,11 +5,11 @@
 ## About the company
 
 MUI started as Material-UI, the most successful React implementation of Google’s Material Design.
-It has gotten a massive following not only due to the fidelity to Material but also because its number of components, carefully designed component API, obsession for details, and community engagement.
+It has gotten a massive following not only due to the fidelity to Material but also because of its number of components, carefully designed component API, obsession for details, and community engagement.
 Today, countless teams and organizations rely on our open-source projects to build their design system.
 
 A few years back, we started expanding our suite of products.
-We released [MUI X](/x/), a collection of advanced components, [MUI Design Kits](/design-kits/), the MUI Material components available in the most popular design tools out there, and [MUI Templates](/templates/), a set of pre-built UIs.
+We released [MUI X](/x/), a collection of advanced components, [MUI Design kits](/design-kits/), MUI components available in the most popular design tools out there, and [MUI Templates](/templates/), a set of pre-built UI.
 We've seen fast growth in all of them (x2 ~ 3 year over year) and we have much more baking in the oven.
 
 We are a team of fully distributed individuals, spread across multiple timezones.
@@ -20,9 +20,9 @@ For more details about MUI team and culture, you can check our [careers](/career
 ## Why we're hiring
 
 Material-UI started as an open-source project.
-As years passed by, audience and usage grew considerably, even turning some of the library's original founders turned full-time maintainers of it.
+As years passed by, audience and usage grew considerably, even turning some of the library's founders turned full-time maintainers of it.
 A few years ago, the project was incorporated and just very recently, [we have rebranded the company from Material-UI to MUI](/blog/material-ui-is-now-mui/).
-A new brand was fundamental to set the stage for MUI to become larger than Material Design, which was something we actually were already doing.
+A new brand was fundamental to set the stage for MUI to become larger than Material Design, which was something we were already doing.
 Right now, we have five main projects that are not at all related to MD:
 
 - [MUI Core:](/core/)
@@ -38,7 +38,7 @@ Therefore, we need to grow the design organization to help us push it further.
 
 ## About the role
 
-Some criterias for applying to this role:
+Some criteria for applying to this role:
 
 - Location: fully remote (preference for UTC-6 to UTC +3).
 - Type of work: full-time (as a contractor or employee, [depending on the case](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
