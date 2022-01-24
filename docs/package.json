@@ -123,7 +123,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@types/marked": "^4.0.1",
     "@types/recharts": "^2.0.0",
-    "cross-fetch": "^3.1.4",
+    "cross-fetch": "^3.1.5",
     "gm": "^1.23.1"
   }
 }
