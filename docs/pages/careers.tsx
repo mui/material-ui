@@ -152,7 +152,7 @@ const openRolesData = [
         title: 'Designer',
         description:
           'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-        url: '/company/11-product-designer/',
+        url: '/company/designer/',
       },
     ],
   },
