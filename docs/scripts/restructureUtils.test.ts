@@ -98,6 +98,31 @@ githubLabel: 'component: Avatar'
       path: 'material-ui/docs/pages/material/react-button.js',
     });
 
+    expect(getNewPageLocation('material-ui/docs/pages/components/image-list.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-image-list.js',
+    });
+
+    expect(getNewPageLocation('material-ui/docs/pages/components/no-ssr.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-no-ssr.js',
+    });
+
+    expect(getNewPageLocation('material-ui/docs/pages/components/masonry.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-masonry.js',
+    });
+
+    expect(getNewPageLocation('material-ui/docs/pages/components/trap-focus.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-trap-focus.js',
+    });
+
+    expect(getNewPageLocation('material-ui/docs/pages/components/css-baseline.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-css-baseline.js',
+    });
+
     expect(getNewPageLocation('material-ui/docs/pages/components/about-the-lab.js')).to.deep.equal({
       directory: 'material-ui/docs/pages/material',
       path: 'material-ui/docs/pages/material/about-the-lab.js',
