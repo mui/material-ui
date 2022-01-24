@@ -41,7 +41,7 @@ Therefore, we need to grow the design organization to help us push it further.
 Some criterias for applying to this role:
 
 - Location: fully remote (preference for UTC-6 to UTC +3).
-- Type of work: full-time (as a contractor or employee, [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
+- Type of work: full-time (as a contractor or employee, [depending on the case](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
 - Level: [3 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
 - Start date: immediately.
 
