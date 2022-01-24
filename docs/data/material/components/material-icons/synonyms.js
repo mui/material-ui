@@ -1,5 +1,4 @@
 const synonyms = {
-  6FtApart: 'body covid distance feet human people person social',
   AccessAlarm: 'clock time',
   AccessAlarms: 'clock time',
   Accessibility: 'accessible body handicap help human people person user',
