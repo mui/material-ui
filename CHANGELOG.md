@@ -6,7 +6,7 @@
 
 _Jan 24, 2022_
 
-A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - 🛠 @mnajdova added interoperability guide for using Tailwind CSS (#30700)
 - A meaningful number of 🐛 bug fixes and 📚 documentation improvements.
@@ -22,15 +22,18 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 
 ### Core
 
-- &#8203;<!-- 21 -->[core] Batch small changes (#30690) @oliviertassinari
-- &#8203;<!-- 20 -->[core] Add new structure to ignore list crowdin (#30608) @siriwatknp
-- &#8203;<!-- 19 -->[core] Correct version in package.json (#30677) @michaldudak
+- &#8203;<!-- 24 -->[core] Batch small changes (#30690) @oliviertassinari
+- &#8203;<!-- 23 -->[core] Add new structure to ignore list crowdin (#30608) @siriwatknp
+- &#8203;<!-- 22 -->[core] Correct version in package.json (#30677) @michaldudak
 - &#8203;<!-- 01 -->[test] Fix buildApiUtils tests on Windows (#30698) @michaldudak
 
 ### Docs
 
-- &#8203;<!-- 23 -->[blog] Enable blog index (#30724) @siriwatknp
-- &#8203;<!-- 22 -->[blog] Introducing the Row Grouping feature (#30598) @alexfauquette
+- &#8203;<!-- 26 -->[blog] Enable blog index (#30724) @siriwatknp
+- &#8203;<!-- 25 -->[blog] Introducing the Row Grouping feature (#30598) @alexfauquette
+- &#8203;<!-- 21 -->[docs] Fix SEO crawl errors (#30733) @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Update migration-v4.md (#30721) @ddecrulle
+- &#8203;<!-- 19 -->[docs] Fix migration issues detected by `ahrefs` (#30751) @siriwatknp
 - &#8203;<!-- 18 -->[docs] Add interoprability guide for using Tailwind CSS (#30700) @mnajdova
 - &#8203;<!-- 17 -->[docs] Fix typo in containedSizeMedium class (#30723) @aaneitchik
 - &#8203;<!-- 16 -->[docs] Hotfix the wrong URL in X marketing page (#30729) @siriwatknp
@@ -46,7 +49,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - &#8203;<!-- 06 -->[docs] Make Autocomplete docs gender neutral (#30679) @exequielbc
 - &#8203;<!-- 05 -->[docs] Update doc structure for X components (#30684) @siriwatknp
 
-All contributors of this release in alphabetical order: @aaneitchik, @alexfauquette, @chaosmirage, @Evomatic, @exequielbc, @michaldudak, @mnajdova, @MrHBS, @NoahYarian, @oliviertassinari, @siriwatknp
+All contributors of this release in alphabetical order: @aaneitchik, @alexfauquette, @chaosmirage, @ddecrulle, @Evomatic, @exequielbc, @michaldudak, @mnajdova, @MrHBS, @NoahYarian, @oliviertassinari, @siriwatknp
 
 ## 5.3.0
 
