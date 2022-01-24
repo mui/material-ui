@@ -21,6 +21,7 @@ export interface MuiStyledOptions {
   // If we want to support props in the overrides, we will need to change the CSSInterpolation to Interpolation<Props>
   overridesResolver?: (props: any, styles: Record<string, CSSInterpolation>) => CSSInterpolation;
   skipVariantsResolver?: boolean;
+  skipSx?: boolean;
 }
 
 export type CreateMUIStyled<T extends object = DefaultTheme> = CreateMUIStyledStyledEngine<
