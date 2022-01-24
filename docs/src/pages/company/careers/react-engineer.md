@@ -11,11 +11,11 @@
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
 See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
-### Why we're hiring
+## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
@@ -27,13 +27,13 @@ The enterprise version is built on the open-source version of the components.
 
 We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
+## About the role
+
 ### Why this is interesting
 
 The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
 
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
-
-## About the role
 
 ### What you'll do on a day-to-day basis
 
@@ -106,12 +106,12 @@ We're looking for someone with strong front-end skills. More important than spec
   Previous experience with highly active repository workflows is a definite plus for this role.
 - **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can significantly push the mission forward.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20X)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20X)

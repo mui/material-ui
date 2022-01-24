@@ -225,7 +225,6 @@ const openRolesData = [
 const futureRolesData = [
   // {
   //   // 1
-  //   title: 'Product',
   //   roles: [
   //     {
   //       title: 'Product Designer',
