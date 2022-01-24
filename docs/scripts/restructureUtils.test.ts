@@ -108,6 +108,16 @@ githubLabel: 'component: Avatar'
       path: 'material-ui/docs/pages/material/react-no-ssr.js',
     });
 
+    expect(getNewPageLocation('material-ui/docs/pages/components/masonry.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-masonry.js',
+    });
+
+    expect(getNewPageLocation('material-ui/docs/pages/components/css-baseline.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-css-baseline.js',
+    });
+
     expect(getNewPageLocation('material-ui/docs/pages/components/about-the-lab.js')).to.deep.equal({
       directory: 'material-ui/docs/pages/material',
       path: 'material-ui/docs/pages/material/about-the-lab.js',
