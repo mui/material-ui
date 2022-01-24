@@ -220,6 +220,7 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/api/tab-panel-unstyled/`)).to.equal(`/base/api/tab-panel-unstyled/`);
     expect(replaceAPILinks(`/api/tabs-list-unstyled/`)).to.equal(`/base/api/tabs-list-unstyled/`);
     expect(replaceAPILinks(`/api/tabs-unstyled/`)).to.equal(`/base/api/tabs-unstyled/`);
+    expect(replaceAPILinks(`/api/unstable-trap-focus/`)).to.equal(`/base/api/unstable-trap-focus/`);
     expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
     expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
   });
