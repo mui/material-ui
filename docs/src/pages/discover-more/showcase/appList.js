@@ -292,7 +292,7 @@ const appList = [
     title: 'Commit Swimming',
     description: 'The #1 workout journal for coaches and swimmers.',
     image: 'commitswimming.jpg',
-    link: 'https://www.commitswimming.com/',
+    link: 'https://commitswimming.com/',
     dateAdded: '2019-01-01',
   },
   {
