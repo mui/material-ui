@@ -1,11 +1,10 @@
 ---
+title: November 2019 Update
 description: Here are the most significant improvements in November.
+date: 2019-12-12T00:00:00.000Z
+authors: ['oliviertassinari']
 tags: ['Company update']
 ---
-
-# November 2019 Update
-
-Olivier Tassinari. December 12, 2019.
 
 Here are the most significant improvements in November:
 
