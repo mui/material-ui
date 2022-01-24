@@ -1,6 +1,7 @@
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React from 'react';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
 import OptionUnstyledProps from './OptionUnstyledProps';
@@ -57,13 +58,22 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     ...optionState,
   };
 
+  const optionRef = React.useRef<HTMLLIElement>(null);
+  const handleRef = useForkRef(ref, optionRef);
+
+  React.useEffect(() => {
+    if (optionState.highlighted) {
+      optionRef.current?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [optionState.highlighted]);
+
   const classes = useUtilityClasses(ownerState);
 
   const rootProps = appendOwnerState(
     Root,
     {
       ...other,
-      ref,
+      ref: handleRef,
       ...optionProps,
       ...componentsProps.root,
       className: clsx(classes.root, className, componentsProps.root?.className),
@@ -131,6 +141,6 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * - [OptionUnstyled API](https://mui.com/api/option-unstyled/)
  */
-export default OptionUnstyled as <TValue>(
+export default React.memo(OptionUnstyled) as <TValue>(
   props: OptionUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
 ) => JSX.Element | null;

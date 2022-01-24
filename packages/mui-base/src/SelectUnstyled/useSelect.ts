@@ -71,12 +71,27 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
   // prevents closing the listbox on keyUp right after opening it
   const ignoreEnterKeyUp = React.useRef(false);
 
+  // prevents reopening the listbox when button is clicked
+  // (listbox closes on lost focus, then immediately reopens on click)
+  const ignoreClick = React.useRef(false);
+
+  const createHandleMouseDown =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent<HTMLElement>) => {
+      otherHandlers?.onMouseDown?.(event);
+      if (!event.defaultPrevented && open) {
+        ignoreClick.current = true;
+      }
+    };
+
   const createHandleButtonClick =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
       otherHandlers?.onClick?.(event);
-      if (!event.defaultPrevented) {
+      if (!event.defaultPrevented && !ignoreClick.current) {
         onOpenChange?.(!open);
       }
+
+      ignoreClick.current = false;
     };
 
   const createHandleButtonKeyDown =
@@ -236,6 +251,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
         ...getButtonProps({
           ...otherHandlers,
           onClick: createHandleButtonClick(otherHandlers),
+          onMouseDown: createHandleMouseDown(otherHandlers),
           onKeyDown: createHandleButtonKeyDown(otherHandlers),
         }),
         'aria-expanded': open,
