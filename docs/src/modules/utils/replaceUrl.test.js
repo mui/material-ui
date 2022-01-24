@@ -109,6 +109,18 @@ describe('replaceUrl', () => {
       `/material/react-list/#main-content`,
     );
 
+    expect(replaceComponentLinks(`/components/image-lists/`)).to.equal(
+      `/material/react-image-list/`,
+    );
+    expect(replaceComponentLinks(`/components/image-lists/#main-content`)).to.equal(
+      `/material/react-image-list/#main-content`,
+    );
+
+    expect(replaceComponentLinks(`/components/no-ssr/`)).to.equal(`/material/react-no-ssr/`);
+    expect(replaceComponentLinks(`/components/no-ssr/#main-content`)).to.equal(
+      `/material/react-no-ssr/#main-content`,
+    );
+
     expect(replaceComponentLinks(`/components/tables/`)).to.equal(`/material/react-table/`);
     expect(replaceComponentLinks(`/components/tables/#main-content`)).to.equal(
       `/material/react-table/#main-content`,
