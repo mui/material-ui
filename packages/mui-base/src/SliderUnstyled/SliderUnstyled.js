@@ -223,7 +223,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                     ? valueLabelFormat(scale(value), index)
                     : valueLabelFormat,
                 index,
-                open: open === index || active === index || valueLabelDisplay === 'on',
+                open:
+                  valueLabelDisplay === 'on' ||
+                  active === index ||
+                  (disableSwap ? open === index && active === -1 : open === index),
                 disabled,
               })}
               {...valueLabelProps}
@@ -242,7 +245,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 })}
                 style={{
                   ...style,
-                  pointerEvents: disableSwap && active !== index ? 'none' : undefined,
                   ...thumbProps.style,
                 }}
               >
