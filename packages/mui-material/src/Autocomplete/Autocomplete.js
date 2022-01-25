@@ -407,6 +407,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     PaperComponent = Paper,
     PopperComponent = Popper,
     popupIcon = <ArrowDropDownIcon />,
+    readOnly = false,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
@@ -439,7 +440,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
-  const hasClearIcon = !disableClearable && !disabled && dirty;
+  const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   const ownerState = {
@@ -573,6 +574,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           inputProps: {
             className: clsx(classes.input),
             disabled,
+            readOnly,
             ...getInputProps(),
           },
         })}
@@ -979,6 +981,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default <ArrowDropDownIcon />
    */
   popupIcon: PropTypes.node,
+  /**
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * @default false
+   */
+  readOnly: PropTypes.bool,
   /**
    * Render the group.
    *
