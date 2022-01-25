@@ -1,8 +1,8 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "autoComplete": "If <code>true</code>, the portion of the selected suggestion that has not been typed by the user, known as the completion string, appears inline after the input cursor in the textbox. The inline completion string is visually highlighted and has a selected state.",
-    "autoHighlight": "If <code>true</code>, the first option is automatically highlighted.",
+    "autoComplete": "Se <code>true</code>, a porção da sugestão selecionada que não foi digitada pelo usuário, conhecida como a sequência de conclusão, aparece embutida após o cursor da entrada na caixa de texto. A string de conclusão embutida é visualmente destacada e tem um estado selecionado.",
+    "autoHighlight": "Se <code>true</code>, a primeira opção é realçada automaticamente.",
     "autoSelect": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.",
     "blurOnSelect": "Control if the input should be blurred when an option is selected:<br>- <code>false</code> the input is not blurred. - <code>true</code> the input is always blurred. - <code>touch</code> the input is blurred after a touch event. - <code>mouse</code> the input is blurred after a mouse event.",
     "ChipProps": "Props applied to the <a href=\"/api/chip/\"><code>Chip</code></a> element.",
