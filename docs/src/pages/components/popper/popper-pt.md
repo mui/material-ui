@@ -10,7 +10,7 @@ githubLabel: 'component: Popper'
 
 Algumas características importantes do componente `Popper`:
 
-- 🕷 Popper é baseado na biblioteca de terceiros ([Popper.js](https://github.com/popperjs/popper-core)) para um posicionamento perfeito.
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/)) for perfect positioning.
 - 💄 É uma API alternativa para react-popper. Visa a simplicidade.
 - 📦 [8 kB gzipped](/size-snapshot).
 - O elemento filho [`Portal`](/components/portal/) no corpo do documento, evita problemas de renderização. Você pode desativar esse comportamento com `disablePortal`.
