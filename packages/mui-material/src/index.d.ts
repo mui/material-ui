@@ -74,8 +74,6 @@ export * from './styles';
 
 export * from './utils';
 
-export * from '@mui/base';
-
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
 
