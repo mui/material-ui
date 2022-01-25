@@ -9,7 +9,7 @@ card: false
 
 MUI Core [v5.3.0](https://github.com/mui-org/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (the global theming), giving you full control of component customization at the theme level.
 
-Why is using a callback better compared to the existing plain object? Let me explain from the beginning.
+Why using a callback is better than the existing plain object? Let me explain from the beginning.
 
 ## The problems
 
@@ -19,7 +19,7 @@ This leads to a bad theming experience because developers need to know the speci
 
 We believe it would be better for developers if they could create custom styles by reading the component props, without ever needing to know what key they should use.
 
-Fortunately, it is now possible in v5 because of the new style engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an **object** (static overrides) or a **callback** (dynamic overrides). The [`variant theming`](/customization/theme-components/#adding-new-component-variants) approach is deprecated because the callback support covers all the use-cases and we think it is better to have only 1 API for theming.
+Fortunately, it is now possible in v5 because of the new style engine powered by emotion. Theming is simpler and more flexible. You only need to know the component's slot name and then provide an **object** (static overrides) or a **callback** (dynamic overrides).
 
 ## Using callback in `styleOverrides`
 
