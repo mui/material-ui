@@ -50,7 +50,7 @@ export function usePickerState<TInput, TDateValue>(
       setInitialDate(props.value);
     }
   }, [isOpen, props.value]);
-  
+
   function initDraftableDate(date: TDateValue): Draftable<TDateValue> {
     return { committed: date, draft: date };
   }
