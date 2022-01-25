@@ -36,7 +36,9 @@ import {
 
 type CSSProperties = CSS.Properties<number | string>;
 
-type Split<T, K extends keyof T = keyof T> = K extends string | number ? { [k in K]: T[K] } : never;
+type Split<T, K extends keyof T = keyof T> = K extends string | number
+  ? { [k in K]: Exclude<T[K], undefined> }
+  : never;
 
 type ConcatDeep<T> = T extends Record<string | number, infer V>
   ? keyof T extends string | number
@@ -402,10 +404,8 @@ export type ThemeVar = NormalizeVars<Vars>;
 
 export const createGetCssVar = (prefix = 'joy') => systemCreateGetCssVar<ThemeVar>(prefix);
 
-export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorScheme>
-  extends ThemeScales,
-    ColorSystem {
-  colorSchemes: Record<DefaultColorScheme | ApplicationColorScheme, ColorSystem>;
+export interface JoyTheme extends ThemeScales, ColorSystem {
+  colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
