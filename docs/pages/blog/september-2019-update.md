@@ -1,11 +1,10 @@
 ---
+title: September 2019 Update
 description: Here are the most significant improvements in September.
+date: 2019-10-12T00:00:00.000Z
+authors: ['oliviertassinari']
 tags: ['Company update']
 ---
-
-# September 2019 Update
-
-Olivier Tassinari. October 12, 2019.
 
 Here are the most significant improvements in September:
 

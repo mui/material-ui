@@ -150,7 +150,7 @@ const PostPreview = (props: BlogPost) => {
           )}
         </Box>
         <Button
-          component="a"
+          component={Link}
           aria-describedby={`describe-${props.slug}`}
           href={`/blog/${props.slug}`}
           id={`describe-${props.slug}`}

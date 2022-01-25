@@ -9,47 +9,68 @@ test.beforeEach(async ({}) => {
   test.skip(!FEATURE_TOGGLE.enable_product_scope, "Migration haven't started yet");
 });
 
-test.describe.parallel('Material docs', () => {
+test.describe('Material docs', () => {
   test('should have correct link with hash in the TOC', async ({ page }) => {
     await page.goto(`/material/getting-started/installation/`);
 
     const anchors = page.locator('[aria-label="Page table of contents"] ul a');
 
-    const anchorTexts = await anchors.allTextContents();
+    const firstAnchor = await anchors.first();
+    const textContent = await firstAnchor.textContent();
 
-    await Promise.all(
-      anchorTexts.map((text, index) => {
-        return expect(anchors.nth(index)).toHaveAttribute(
-          'href',
-          `/material/getting-started/installation/#${kebabCase(text)}`,
-        );
-      }),
+    await expect(firstAnchor).toHaveAttribute(
+      'href',
+      `/material/getting-started/installation/#${kebabCase(textContent || '')}`,
     );
   });
 
-  test.describe.parallel('Demo page', () => {
+  test('[zh] should have correct link with hash in the TOC', async ({ page }) => {
+    test.skip(
+      (process.env.CIRCLE_BRANCH || '').startsWith('pull'),
+      'There is no languages on the deploy preview',
+    );
+    await page.goto(`/zh/material/getting-started/installation/`);
+
+    const anchors = page.locator('main nav ul a');
+
+    const firstAnchor = await anchors.first();
+    const textContent = await firstAnchor.textContent();
+
+    await expect(firstAnchor).toHaveAttribute(
+      'href',
+      `/zh/material/getting-started/installation/#${kebabCase(textContent || '')}`,
+    );
+  });
+
+  test.describe('Demo page', () => {
     test('should have correct link for API section', async ({ page }) => {
       await page.goto(`/material/react-card/`);
 
       const anchors = await page.locator('div > h2#heading-api ~ ul a');
 
-      const anchorTexts = await anchors.allTextContents();
+      const firstAnchor = await anchors.first();
+      const textContent = await firstAnchor.textContent();
 
-      await Promise.all(
-        anchorTexts.map((text, index) => {
-          return expect(anchors.nth(index)).toHaveAttribute(
-            'href',
-            `/material/api/${kebabCase(text)}/`,
-          );
-        }),
+      await expect(firstAnchor).toHaveAttribute(
+        'href',
+        `/material/api/${kebabCase(textContent || '')}/`,
       );
     });
 
     test('should have correct API link to mui-base', async ({ page }) => {
-      await page.goto(`/material/react-button/`);
+      await page.goto(`/material/react-tabs/`);
 
-      await expect(page.locator('a[href="/base/api/button-unstyled/"]')).toContainText(
-        '<ButtonUnstyled />',
+      await expect(page.locator('a[href="/base/api/tab-panel-unstyled/"]')).toContainText(
+        '<TabPanelUnstyled />',
+      );
+      await expect(page.locator('a[href="/base/api/tab-unstyled/"]')).toContainText(
+        '<TabUnstyled />',
+      );
+      await expect(page.locator('a[href="/base/api/tabs-list-unstyled/"]')).toContainText(
+        '<TabsListUnstyled />',
+      );
+      await expect(page.locator('a[href="/base/api/tabs-unstyled/"]')).toContainText(
+        '<TabsUnstyled />',
       );
     });
 
@@ -99,7 +120,7 @@ test.describe.parallel('Material docs', () => {
     });
   });
 
-  test.describe.parallel('API page', () => {
+  test.describe('API page', () => {
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto(`/material/api/card/`);
 
@@ -120,6 +141,7 @@ test.describe.parallel('Material docs', () => {
 
       links.forEach((link) => {
         if (
+          link &&
           ['/getting-started', '/customization', '/guides', '/discover-more'].some((path) =>
             link.includes(path),
           )
@@ -129,7 +151,7 @@ test.describe.parallel('Material docs', () => {
 
         expect(link).not.toMatch(/\/components/); // there should be no `/components` in the url anymore
 
-        if (link.startsWith('/system')) {
+        if (link && link.startsWith('/system')) {
           expect(link.startsWith('/system')).toBeTruthy();
           expect(link.match(/\/system{1}/g)).toHaveLength(1); // should not have repeated `/system/system/*`
         }
@@ -137,7 +159,7 @@ test.describe.parallel('Material docs', () => {
     });
   });
 
-  test.describe.parallel('Search', () => {
+  test.describe('Search', () => {
     const retryToggleSearch = async (page: Page, count = 3) => {
       try {
         await page.keyboard.press('Meta+k');

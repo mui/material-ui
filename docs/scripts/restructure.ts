@@ -57,7 +57,7 @@ const updateAppToUseProductPagesData = (product: string) => {
   appSource = appendSource(
     appSource,
     `let productPages = pages;`,
-    `if (router.asPath.startsWith('/${product}')${
+    `if (asPathWithoutLang.startsWith('/${product}')${
       product === 'system' ? ` && FEATURE_TOGGLE.enable_system_scope` : ''
     }) {
       productPages = ${product}Pages;

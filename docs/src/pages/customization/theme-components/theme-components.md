@@ -79,7 +79,7 @@ const finalTheme = createTheme({
 
 ### Using `sx` (experimental) syntax
 
-If you are not familiar `sx`, first check out [the concept](/system/the-sx-prop) and [the difference with the `styled`](/system/styled/#difference-with-the-sx-prop).
+If you are not familiar `sx`, first check out [the concept](/system/the-sx-prop/) and [the difference with the `styled`](/system/styled/#difference-with-the-sx-prop).
 
 `sx` is also compatible with theme style overrides if you prefer the shorthand notation.
 
