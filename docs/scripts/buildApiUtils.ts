@@ -5,6 +5,7 @@ import { getHeaders } from '@mui/markdown';
 import { findPagesMarkdown, findPagesMarkdownNew } from 'docs/src/modules/utils/find';
 import { getLineFeed } from 'docs/scripts/helpers';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import { replaceComponentLinks } from 'docs/src/modules/utils/replaceUrl';
 
 function findComponentDemos(
   componentName: string,
@@ -137,6 +138,20 @@ export const getGenericComponentInfo = (filename: string): ComponentInfo => {
   };
 };
 
+function findNewComponentDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
+) {
+  const filteredMarkdowns = pagesMarkdown
+    .filter((page) => page.components.includes(componentName))
+    .map((page) => page.pathname);
+  return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .map((pathname) => ({
+      name: pageToTitle({ pathname }) || '',
+      demoPathname: replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`),
+    }));
+}
+
 export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
@@ -170,7 +185,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
         ...markdown,
         components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
       }));
-      return findComponentDemos(name, allMarkdowns);
+      return findNewComponentDemos(name, allMarkdowns);
     },
   };
 };
@@ -208,7 +223,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
         ...markdown,
         components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
       }));
-      return findComponentDemos(name, allMarkdowns);
+      return findNewComponentDemos(name, allMarkdowns);
     },
   };
 };

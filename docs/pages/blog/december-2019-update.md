@@ -1,11 +1,10 @@
 ---
+title: December 2019 Update
 description: Here are the most significant improvements in December.
+date: 2020-01-07T00:00:00.000Z
+authors: ['oliviertassinari']
 tags: ['Company update']
 ---
-
-# December 2019 Update
-
-Olivier Tassinari. January 7, 2020.
 
 Here are the most significant improvements in December:
 

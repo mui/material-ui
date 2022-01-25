@@ -1,7 +1,7 @@
 ---
 title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
-githubLabel: 'component: Card'
+githubLabel: 'component: card'
 materialDesign: https://material.io/components/cards
 ---
 

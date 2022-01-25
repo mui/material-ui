@@ -17,6 +17,7 @@ import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
+import { alpha } from '@mui/material/styles';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -73,7 +74,7 @@ export default function XHero() {
           <Paper
             sx={{
               backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+                theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff',
               border: (theme) =>
                 `1px solid ${
                   theme.palette.mode === 'dark'
@@ -116,6 +117,14 @@ export default function XHero() {
                       fontSize: '1.25rem',
                     },
                   },
+                  '& .MuiDataGrid-columnHeaders': {
+                    borderBottom: (theme) =>
+                      `1px solid ${
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[600]
+                          : theme.palette.grey[200]
+                      }`,
+                  },
                   '& .MuiDataGrid-columnHeaderTitleContainer': {
                     padding: 0,
                     color: 'text.primary',
@@ -126,6 +135,16 @@ export default function XHero() {
                   },
                   '& button, & button > svg': {
                     fontSize: 16,
+                  },
+                  '& .MuiDataGrid-cell': {
+                    fontSize: '0.875rem',
+                    color: 'text.secondary',
+                    borderBottom: (theme) =>
+                      `1px solid ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[600], 0.5)
+                          : theme.palette.grey[200]
+                      }`,
                   },
                   '& .MuiDataGrid-viewport': {
                     '& .MuiDataGrid-cell': {
@@ -166,7 +185,7 @@ export default function XHero() {
             <Paper
               sx={{
                 backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+                  theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff',
                 border: (theme) =>
                   `1px solid ${
                     theme.palette.mode === 'dark'

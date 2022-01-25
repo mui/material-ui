@@ -1,7 +1,7 @@
 ---
 title: Componente React Lista
 components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
-githubLabel: 'component: List'
+githubLabel: 'component: list'
 materialDesign: https://material.io/components/lists
 ---
 
