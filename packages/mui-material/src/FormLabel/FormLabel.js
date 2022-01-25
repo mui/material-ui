@@ -67,6 +67,7 @@ const AsteriskComponent = styled('span', {
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
   const {
+    asteriskPlacement = 'end',
     children,
     className,
     color,
@@ -88,6 +89,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
 
   const ownerState = {
     ...props,
+    asteriskPlacement,
     color: fcs.color || 'primary',
     component,
     disabled: fcs.disabled,
@@ -99,6 +101,12 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const asteriskNode = fcs.required && (
+    <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
+      {asteriskPlacement === 'start' && '*'}&thinsp;{asteriskPlacement === 'end' && '*'}
+    </AsteriskComponent>
+  );
+
   return (
     <FormLabelRoot
       as={component}
@@ -107,12 +115,9 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
       ref={ref}
       {...other}
     >
+      {asteriskPlacement === 'start' && asteriskNode}
       {children}
-      {fcs.required && (
-        <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
-          &thinsp;{'*'}
-        </AsteriskComponent>
-      )}
+      {asteriskPlacement === 'end' && asteriskNode}
     </FormLabelRoot>
   );
 });
@@ -122,6 +127,11 @@ FormLabel.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * The position of asterisk near the label.
+   * @default 'end'
+   */
+  asteriskPlacement: PropTypes.oneOf(['end', 'start']),
   /**
    * The content of the component.
    */

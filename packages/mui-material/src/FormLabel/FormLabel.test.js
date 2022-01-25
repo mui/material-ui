@@ -141,6 +141,26 @@ describe('<FormLabel />', () => {
         expect(container).to.have.text('name\u2009*');
       });
 
+      it('should show an asterisk at end', () => {
+        const { container } = render(
+          <FormControl required>
+            <FormLabel asteriskPlacement="end">name</FormLabel>
+          </FormControl>,
+        );
+
+        expect(container).to.have.text('name\u2009*');
+      });
+
+      it('should show an asterisk at start', () => {
+        const { container } = render(
+          <FormControl required>
+            <FormLabel asteriskPlacement="start">name</FormLabel>
+          </FormControl>,
+        );
+
+        expect(container).to.have.text('*\u2009name');
+      });
+
       it('should be overridden by props', () => {
         const { container, setProps } = render(<FormLabel required={false}>name</FormLabel>, {
           wrapper: (props) => <FormControl required {...props} />,

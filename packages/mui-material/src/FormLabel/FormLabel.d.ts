@@ -11,6 +11,11 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
   props: P &
     FormLabelBaseProps & {
       /**
+       * The position of asterisk near the label.
+       * @default 'end'
+       */
+      asteriskPlacement?: 'start' | 'end';
+      /**
        * The content of the component.
        */
       children?: React.ReactNode;
