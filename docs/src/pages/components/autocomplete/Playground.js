@@ -148,6 +148,15 @@ export default function Playground() {
           <TextField {...params} label="selectOnFocus" variant="standard" />
         )}
       />
+      <Autocomplete
+        {...flatProps}
+        id="readOnly"
+        readOnly
+        defaultValue="The Shawshank Redemption"
+        renderInput={(params) => (
+          <TextField {...params} label="readOnly" variant="standard" />
+        )}
+      />
     </Stack>
   );
 }
