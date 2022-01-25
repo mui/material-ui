@@ -10,7 +10,7 @@ githubLabel: 'component: Popper'
 
 以下是`弹出提示`组件的一些重要功能：
 
-- 🕷 Popper 依赖第三方库 ([Popper.js](https://github.com/popperjs/popper-core)) 来实现完美的定位。
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/)) for perfect positioning.
 - 💄 这是 react-popper 的一个替代性 API。 它是为了简单性而设计。
 - 📦 [8kB 已压缩的包](/size-snapshot).
 - 为了避免渲染问题，子组件作为页面 body 的 [`Portal`](/components/portal/)。 您可以使用 `disablePortal` 来禁用此行为。
