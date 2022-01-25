@@ -47,6 +47,7 @@ export interface PickersModalDialogProps extends ExportedPickerModalProps {
   onAccept: () => void;
   onClear: () => void;
   onDismiss: () => void;
+  onCancel: () => void;
   onSetToday: () => void;
   open: boolean;
 }
@@ -91,6 +92,7 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
     onAccept,
     onClear,
     onDismiss,
+    onCancel,
     onSetToday,
     open,
     showTodayButton = false,
@@ -113,7 +115,7 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
             {todayText}
           </Button>
         )}
-        {cancelText && <Button onClick={onDismiss}>{cancelText}</Button>}
+        {cancelText && <Button onClick={onCancel}>{cancelText}</Button>}
         {okText && <Button onClick={onAccept}>{okText}</Button>}
       </PickersModalDialogActions>
     </PickersModalDialogRoot>

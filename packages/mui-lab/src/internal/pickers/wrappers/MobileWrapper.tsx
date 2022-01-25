@@ -24,6 +24,7 @@ function MobileWrapper(props: InternalMobileWrapperProps) {
     onAccept,
     onClear,
     onDismiss,
+    onCancel,
     onSetToday,
     open,
     PureDateInputComponent,
@@ -44,6 +45,7 @@ function MobileWrapper(props: InternalMobileWrapperProps) {
         onAccept={onAccept}
         onClear={onClear}
         onDismiss={onDismiss}
+        onCancel={onCancel}
         onSetToday={onSetToday}
         open={open}
         showTodayButton={showTodayButton}

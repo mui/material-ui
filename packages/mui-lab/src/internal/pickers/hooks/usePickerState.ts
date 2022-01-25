@@ -43,7 +43,14 @@ export function usePickerState<TInput, TDateValue>(
 
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
+  const [initialDate, setInitialDate] = React.useState(props.value);
 
+  React.useEffect(() => {
+    if (!isOpen) {
+      setInitialDate(props.value);
+    }
+  }, [isOpen, props.value]);
+  
   function initDraftableDate(date: TDateValue): Draftable<TDateValue> {
     return { committed: date, draft: date };
   }
@@ -95,6 +102,9 @@ export function usePickerState<TInput, TDateValue>(
       onClear: () => acceptDate(valueManager.emptyValue, true),
       onAccept: () => acceptDate(draftState.draft, true),
       onDismiss: () => setIsOpen(false),
+      onCancel: () => {
+        acceptDate(initialDate as unknown as TDateValue, true);
+      },
       onSetToday: () => {
         const now = utils.date() as TDateValue;
         dispatch({ type: 'update', payload: now });
@@ -109,6 +119,7 @@ export function usePickerState<TInput, TDateValue>(
       draftState.draft,
       setIsOpen,
       valueManager.emptyValue,
+      initialDate,
     ],
   );
 
