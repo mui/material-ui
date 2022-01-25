@@ -276,13 +276,13 @@ export default function GlobalCssSliderDeep() {
 }
 ```
 
-## Styled Components
+## 样式化的组件
 
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg)
 
 ### 改变默认的样式引擎
 
-默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 If, however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
+默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 但是，如果您想使用样式化组件，您可以按照样式化引擎指南或借鉴示例项目开始配置您的应用程序：
 
 <!-- #default-branch-switch -->
 
