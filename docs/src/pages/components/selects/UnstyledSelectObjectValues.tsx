@@ -92,7 +92,7 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 function CustomSelect<TValue extends {}>(props: SelectUnstyledProps<TValue>) {
-  const components: SelectUnstyledProps<number>['components'] = {
+  const components: SelectUnstyledProps<TValue>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
     Popper: StyledPopper,
