@@ -89,7 +89,7 @@ Se você pretende usar este modo para uma [caixa de combinação](#combo-box), p
 - `selectOnFocus` para ajudar o usuário a limpar o valor selecionado.
 - `clearOnBlur` para ajudar o usuário a digitar um novo valor.
 - `handleHomeEndKeys` para mover o foco dentro do popup com as teclas <kbd class="key">Home</kbd> e <kbd class="key">End</kbd>.
-- Adicione uma última opção para indicar a possibilidade de adição, por exemplo `Adicionar "SUA PESQUISA"`.
+- A last option, for instance: `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
@@ -99,7 +99,7 @@ Você pode também exibir um diálogo quando o usuário quiser adicionar um novo
 
 ## Agrupamento
 
-Você pode agrupar as opções com a propriedade `groupBy`. Se você fizer isso, certifique-se de que as opções também estejam classificadas com a mesma dimensão que serão agrupadas, caso contrário, você notará cabeçalhos duplicados.
+Você pode agrupar as opções com a propriedade `groupBy`. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise, you will notice duplicate headers.
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
@@ -172,7 +172,7 @@ Também conhecidos como tags, o usuário pode inserir mais de um valor.
 
 ### Opções fixas
 
-Em ocasiões que você necessite travar certa tag para que não possa ser removida da interface, você pode defini-la como desabilitada.
+In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
@@ -202,7 +202,7 @@ A propriedade `renderInput` permite que você customize o input renderizado. O p
 
 ### Seletor do GitHub
 
-Esta demonstração reproduz o rótulo de seleção do GitHub's:
+This demo reproduces GitHub's label picker:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
@@ -216,7 +216,7 @@ A demonstração a seguir dependem do [autosuggest-highlight](https://github.com
 
 ## Filtro customizado
 
-O componente expõe uma fábrica para criar um método de filtro que pode ser fornecido para a propriedade `filterOptions`. Você pode usar ela para modificar o comportamento padrão do filtro.
+The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop. Você pode usar ela para modificar o comportamento padrão do filtro.
 
 ```js
 import matchSorter from 'match-sorter';
