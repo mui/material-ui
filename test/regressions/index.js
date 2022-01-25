@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
+import FEATURE_TOGGLE from '../../docs/src/featureToggle';
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
@@ -203,11 +204,17 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
+let importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
+if (FEATURE_TOGGLE.enable_product_scope) {
+  importDemos = require.context('docs/data', true, /js$/, 'lazy');
+}
 const demoFixtures = [];
 importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
-  const suite = `docs-${suiteArray.reverse().join('-')}`;
+  const suite = `docs-${suiteArray
+    .reverse()
+    .join('-')
+    .replace(/^material-/, '')}`;
 
   // TODO: Why does webpack include a key for the absolute and relative path?
   // We just want the relative path

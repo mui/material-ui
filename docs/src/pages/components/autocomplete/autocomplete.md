@@ -89,7 +89,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 - `selectOnFocus` to help the user clear the selected value.
 - `clearOnBlur` to help the user enter a new value.
 - `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
-- A last option, for instance `Add "YOUR SEARCH"`.
+- A last option, for instance: `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
@@ -101,7 +101,7 @@ You could also display a dialog when the user wants to add a new value.
 
 You can group the options with the `groupBy` prop.
 If you do so, make sure that the options are also sorted with the same dimension that they are grouped by,
-otherwise you will notice duplicate headers.
+otherwise, you will notice duplicate headers.
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
@@ -179,7 +179,7 @@ Also known as tags, the user is allowed to enter more than one value.
 
 ### Fixed options
 
-In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
+In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
@@ -211,7 +211,7 @@ Pay specific attention to the `ref` and `inputProps` keys.
 
 ### GitHub's picker
 
-This demo reproduces the GitHub's label picker:
+This demo reproduces GitHub's label picker:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
@@ -225,7 +225,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ## Custom filter
 
-The component exposes a factory to create a filter method that can provided to the `filterOptions` prop.
+The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop.
 You can use it to change the default option filter behavior.
 
 ```js

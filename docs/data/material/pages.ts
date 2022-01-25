@@ -131,6 +131,11 @@ const pages = [
       {
         pathname: '/x/data-grid/',
         subheader: 'data-grid',
+        children: [
+          { pathname: '/x/react-data-grid/', title: 'Overview' },
+          { pathname: '/x/react-data-grid/demo/', title: 'Demo' },
+          { pathname: '/x/react-data-grid/getting-started/', title: 'Getting Started' },
+        ],
       },
       {
         pathname: '/material',
@@ -164,13 +169,7 @@ const pages = [
     title: 'Component API',
     pathname: '/material/api',
     icon: 'CodeIcon',
-    children: [
-      ...pagesApi,
-      {
-        pathname: '/x/api/mui-data-grid',
-        title: 'Data Grid',
-      },
-    ],
+    children: pagesApi,
   },
   {
     pathname: '/material/customization',
