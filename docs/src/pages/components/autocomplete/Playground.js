@@ -152,7 +152,7 @@ export default function Playground() {
         {...flatProps}
         id="readOnly"
         readOnly
-        defaultValue="The Shawshank Redemption"
+        defaultValue={flatProps.options[13]}
         renderInput={(params) => (
           <TextField {...params} label="readOnly" variant="standard" />
         )}
