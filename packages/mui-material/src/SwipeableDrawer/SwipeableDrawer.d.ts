@@ -22,7 +22,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   disableSwipeToOpen?: boolean;
   /**
    * The amount that the drawer adjusts on initial touch on the swipe area.
-   * @default disableDiscovery ? -15 : 20
+   * @default disableDiscovery ? 15 : 20
    */
   discoveryAmount?: number;
   /**

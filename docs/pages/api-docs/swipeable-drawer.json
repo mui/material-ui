@@ -10,7 +10,7 @@
       "type": { "name": "bool" },
       "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
     },
-    "discoveryAmount": { "type": { "name": "number" }, "default": "disableDiscovery ? -15 : 20" },
+    "discoveryAmount": { "type": { "name": "number" }, "default": "disableDiscovery ? 15 : 20" },
     "hysteresis": { "type": { "name": "number" }, "default": "0.52" },
     "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },
     "SwipeAreaProps": { "type": { "name": "object" } },
