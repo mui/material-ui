@@ -43,6 +43,16 @@ const iOS =
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
+### Drawer Discovery
+
+You can make the drawer appear slightly when the user touches the screen near where the drawer is located.
+
+The amount the drawer appears by can be configured using `discoveryAmount`, and it can be disabled using `disableDiscovery`.
+
+If you are on mobile, you can click near the edge of the screen to discover the drawers.
+
+{{"demo": "pages/components/drawers/SwipeableDiscoveryAmount.js"}}
+
 ### Borda deslizável
 
 Você pode configurar a propriedade `SwipeableDrawer` para visualizar uma borda quando o Drawer estiver fechado.

@@ -43,6 +43,16 @@ const iOS =
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
+### Drawer Discovery
+
+You can make the drawer appear slightly when the user touches the screen near where the drawer is located.
+
+The amount the drawer appears by can be configured using `discoveryAmount`, and it can be disabled using `disableDiscovery`.
+
+If you are on mobile, you can click near the edge of the screen to discover the drawers.
+
+{{"demo": "pages/components/drawers/SwipeableDiscoveryAmount.js"}}
+
 ### 保持挂载（mounted）
 
 你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
