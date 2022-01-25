@@ -57,6 +57,16 @@ export default function Tags() {
           />
         )}
       />
+      <Autocomplete
+        multiple
+        id="tags-readOnly"
+        options={top100Films.map((option) => option.title)}
+        defaultValue={[top100Films[12].title, top100Films[13].title]}
+        readOnly
+        renderInput={(params) => (
+          <TextField {...params} label="readOnly" placeholder="Favorites" />
+        )}
+      />
     </Stack>
   );
 }

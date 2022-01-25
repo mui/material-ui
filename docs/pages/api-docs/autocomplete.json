@@ -71,6 +71,7 @@
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
     "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
+    "readOnly": { "type": { "name": "bool" } },
     "renderGroup": { "type": { "name": "func" } },
     "renderOption": { "type": { "name": "func" } },
     "renderTags": { "type": { "name": "func" } },

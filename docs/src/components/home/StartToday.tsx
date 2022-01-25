@@ -57,8 +57,6 @@ export default function StartToday() {
           <Paper
             component={Link}
             href={ROUTES.blog}
-            target="_blank"
-            rel="noreferrer noopener"
             noLinkStyle
             variant="outlined"
             sx={{ p: 2, height: '100%' }}

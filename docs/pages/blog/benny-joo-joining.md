@@ -3,7 +3,6 @@ title: Benny Joo joins MUI
 description: We are excited to share that Benny Joo has joined MUI. He has started last month full-time and is now a Junior Software Engineer in the Core team.
 date: 2021-11-16T00:00:00.000Z
 authors: ['mnajdova']
-card: false
 tags: ['Team']
 ---
 
