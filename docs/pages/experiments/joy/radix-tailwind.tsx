@@ -4,6 +4,14 @@ import { CssVarsProvider, createGetCssVar, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
+import Switch from '@mui/joy/Switch';
+import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
+import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
+import PersonRounded from '@mui/icons-material/PersonRounded';
+import BarChartRounded from '@mui/icons-material/BarChartRounded';
+import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
+import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
+import KeyboardCommandKey from '@mui/icons-material/KeyboardCommandKey';
 
 const getCssVar = createGetCssVar();
 
@@ -41,7 +49,7 @@ const Dialog = () => {
 };
 
 const MenuItem = styled('button')(({ theme }) => [
-  sx({ py: 0.5, px: 1 }),
+  sx({ py: 0.5, px: 0.75 }),
   {
     borderRadius: theme.vars.radius.sm,
     cursor: 'pointer',
@@ -49,11 +57,16 @@ const MenuItem = styled('button')(({ theme }) => [
     backgroundColor: 'initial',
     width: '100%',
     display: 'flex',
+    gap: '0.375rem',
     alignItems: 'center',
     border: '1px solid transparent',
     '&:hover': {
       border: '1px solid',
+      '--joy-Icon-color': theme.vars.palette.text.secondary,
     },
+    '&:focus-visible': theme.focus.default,
+    '--joy-Icon-color': theme.vars.palette.text.tertiary,
+    '--joy-Icon-fontSize': theme.vars.fontSize.md,
   },
   theme.variants.text.neutral,
   theme.variants.outlinedHover.neutral,
@@ -74,12 +87,18 @@ const Menu = () => (
   >
     <li>
       <MenuItem>
+        <ArrowForwardRounded />
         <Typography>Back</Typography>
+        <KeyboardCommandKey sx={{ ml: 'auto' }} />
+        <ArrowForwardRounded />
       </MenuItem>
     </li>
     <li>
       <MenuItem>
+        <ArrowBackRounded />
         <Typography>Forward</Typography>
+        <KeyboardCommandKey sx={{ ml: 'auto' }} />
+        <ArrowBackRounded />
       </MenuItem>
     </li>
     <Box
@@ -93,21 +112,25 @@ const Menu = () => (
     />
     <li>
       <MenuItem>
+        <PersonRounded />
         <Typography>Assign</Typography>
       </MenuItem>
     </li>
     <li>
       <MenuItem>
+        <BarChartRounded />
         <Typography>Priority</Typography>
       </MenuItem>
     </li>
     <li>
       <MenuItem>
+        <ArrowForwardRounded />
         <Typography>Move to Project</Typography>
       </MenuItem>
     </li>
     <li>
       <MenuItem>
+        <ContentCopyRounded />
         <Typography>Duplicate</Typography>
       </MenuItem>
     </li>
@@ -122,11 +145,42 @@ const Menu = () => (
     />
     <li>
       <MenuItem>
+        <DeleteForeverRounded />
         <Typography>Delete</Typography>
       </MenuItem>
     </li>
   </Box>
 );
+
+const Progress = () => (
+  <Box
+    sx={(theme) => ({
+      width: 232,
+      height: 12,
+      position: 'relative',
+      borderRadius: '12px',
+      backgroundColor: theme.vars.palette.background.body,
+    })}
+  >
+    <Box
+      sx={(theme) => ({
+        position: 'absolute',
+        width: '60%',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        borderRadius: '12px',
+        backgroundColor: theme.vars.palette.bar,
+      })}
+    />
+  </Box>
+);
+
+declare module '@mui/joy/styles' {
+  interface Palette {
+    bar: string;
+  }
+}
 
 export default function RadixTailwind() {
   return (
@@ -162,7 +216,9 @@ export default function RadixTailwind() {
               text: {
                 primary: getCssVar('palette-neutral-900'),
                 secondary: getCssVar('palette-neutral-500'),
+                tertiary: getCssVar('palette-neutral-400'),
               },
+              bar: getCssVar('palette-primary-500'),
             },
           },
           dark: {
@@ -195,7 +251,9 @@ export default function RadixTailwind() {
               text: {
                 primary: getCssVar('palette-neutral-50'),
                 secondary: getCssVar('palette-neutral-400'),
+                tertiary: getCssVar('palette-neutral-500'),
               },
+              bar: '#fff',
             },
           },
         },
@@ -222,7 +280,6 @@ export default function RadixTailwind() {
         components: {
           MuiButton: {
             styleOverrides: {
-              // @ts-ignore
               root: ({ ownerState }) => ({
                 ...(ownerState.size === 'md' && {
                   paddingLeft: '0.75rem',
@@ -234,6 +291,36 @@ export default function RadixTailwind() {
                   '--joy-palette-neutral-outlinedActiveBg': getCssVar('palette-neutral-800'),
                 },
               }),
+            },
+          },
+          MuiSvgIcon: {
+            defaultProps: {
+              fontSize: 'xl',
+              color: 'neutral',
+            },
+            styleOverrides: {
+              root: ({ ownerState, theme }) => ({
+                ...(ownerState.fontSize &&
+                  ownerState.fontSize !== 'inherit' && {
+                    fontSize: theme.getCssVar('Icon-fontSize', `fontSize-${ownerState.fontSize}`),
+                  }),
+                ...(ownerState.color &&
+                  ownerState.color !== 'inherit' && {
+                    color: theme.getCssVar('Icon-color', `palette-${ownerState.color}-textColor`),
+                  }),
+              }),
+            },
+          },
+          MuiSwitch: {
+            styleOverrides: {
+              root: {
+                '--Switch-track-width': '44px',
+                '--Switch-thumb-size': '20px',
+                color: getCssVar('palette-neutral-lightHoverBg'),
+                '&:hover': {
+                  color: getCssVar('palette-neutral-lightActiveBg'),
+                },
+              },
             },
           },
         },
@@ -250,12 +337,13 @@ export default function RadixTailwind() {
         sx={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, minmax(300px, 1fr))',
-          gridAutoRows: '300px',
           '& > div': {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+            py: 4,
+            gap: 2,
           },
           '& > div:nth-child(even)': {
             backgroundColor: (theme) => theme.vars.palette.primary[900],
@@ -277,8 +365,20 @@ export default function RadixTailwind() {
         <Box data-mui-color-scheme="dark">
           <Menu />
         </Box>
-        <Box>3</Box>
-        <Box>4</Box>
+        <Box>
+          <Switch />
+          <Switch defaultChecked />
+        </Box>
+        <Box data-mui-color-scheme="dark">
+          <Switch />
+          <Switch defaultChecked />
+        </Box>
+        <Box>
+          <Progress />
+        </Box>
+        <Box data-mui-color-scheme="dark">
+          <Progress />
+        </Box>
       </Box>
     </CssVarsProvider>
   );
