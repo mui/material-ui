@@ -89,7 +89,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 - `selectOnFocus` 可以帮助用户清除所选定的值。
 - `clearOnBlur` 可以帮助用户输入一个新值。
 - `handleHomeEndKeys` 使用<kbd class="key">Home</kbd> 和 <kbd class="key">End</kbd> 键在弹出窗口内移动焦点。
-- 最后一个选项，例如 `加上 "你的搜索结果"`。
+- A last option, for instance: `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
@@ -99,7 +99,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 ## 分组
 
-你可以使用 `groupBy` 属性对选项进行分组。 如果你要这样做，请先确保选项也按照它们分组的相同维度进行排序， 否则你将会注意到重复的标题。
+你可以使用 `groupBy` 属性对选项进行分组。 If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise, you will notice duplicate headers.
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
@@ -172,7 +172,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 ### 固定的选项
 
-有时候您需要锁定某个标签，这样他们不会被从界面中移除，那么这时您可以将 chips 设置为禁用来达到这个目的。
+In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
@@ -202,7 +202,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 ### GitHub 标签选择器
 
-该演示再现了 GitHub 的标签选择器：
+This demo reproduces GitHub's label picker:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
@@ -216,7 +216,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 ## 自定义筛选
 
-此组件提供了一个 factory 来构建一个筛选的方法，来供给 `filterOptions` 属性使用。 你可以使用该方法来更改默认的筛选行为。
+The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop. 你可以使用该方法来更改默认的筛选行为。
 
 ```js
 import matchSorter from 'match-sorter';
