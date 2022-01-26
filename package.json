@@ -99,6 +99,7 @@
     "@types/prettier": "^2.4.3",
     "@types/react": "^17.0.38",
     "@types/sinon": "^10.0.8",
+    "@types/stylis": "^4.0.2",
     "@types/webpack": "^5.28.0",
     "@types/yargs": "^17.0.8",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
