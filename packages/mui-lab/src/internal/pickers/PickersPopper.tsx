@@ -66,12 +66,14 @@ const PickersPopperPaper = styled(Paper)<{
 const PickersPopperAction = styled(DialogActions, { skipSx: true })<{
   ownerState: PickerPopperProps;
 }>(({ ownerState }) => ({
-  ...(ownerState.clearable && {
-    justifyContent: 'flex-start',
-    '& > *:first-of-type': {
-      marginRight: 'auto',
-    },
-  }),
+  ...(ownerState.clearable
+    ? {
+        justifyContent: 'flex-start',
+        '& > *:first-of-type': {
+          marginRight: 'auto',
+        },
+      }
+    : { padding: 0 }),
 }));
 
 function clickedRootScrollbar(event: MouseEvent, doc: Document) {
