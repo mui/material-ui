@@ -1,21 +1,21 @@
 ---
 title: Introducing callback support in style overrides
-description: We're excited to introduce the callback support for global theme overrides in this minor version update!
+description: We're excited to introduce callback support for global theme overrides in this minor version update!
 date: 2022-01-20T00:00:00.000Z
 authors: ['siriwatknp']
 tags: ['MUI Core', 'News']
 card: false
 ---
 
-MUI Core [v5.3.0](https://github.com/mui-org/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (the global theming), giving you full control of component customization at the theme level.
+MUI Core [v5.3.0](https://github.com/mui-org/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (global theming), giving you full control of component customization at the theme level.
 
-Why using a callback is better than the existing plain object? Let me explain from the beginning.
+Why is using a callback better than the existing plain object? Let me explain from the beginning...
 
 ## The problems
 
 In v4, the style engine library was JSS which had some limitations.
-Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at the [`Chip` classes](https://github.com/mui-org/material-ui/blob/97d32b0ff3fae4537c20c79e619f132f4a5c5cbb/packages/mui-material/src/Chip/chipClasses.ts) for example, there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`).
-This leads to a bad theming experience because developers need to know the specific key to customize.
+Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at the [`Chip` classes](https://github.com/mui-org/material-ui/blob/97d32b0ff3fae4537c20c79e619f132f4a5c5cbb/packages/mui-material/src/Chip/chipClasses.ts) for example – there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`).
+This leads to a poor theming experience because developers need to know which specific key to customize.
 
 We believe it would be better for developers if they could create custom styles by reading the component props, without ever needing to know what key they should use.
 
@@ -23,10 +23,10 @@ Fortunately, it is now possible in v5 because of the new style engine powered by
 
 ## Using callback in `styleOverrides`
 
-The callback gives you the `props` that the slot received. Most of the time, you would use:
+The callback gives you the `props` that the slot received. Most of the time you would use:
 
 - `props.ownerState`: the combination of runtime props and internal states.
-- `props.theme`: the object you provide to `ThemeProvider` or the default one.
+- `props.theme`: the theme object you provided to `ThemeProvider`, or the default one.
 
 ```jsx
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -113,9 +113,9 @@ const Label = styled('span')({
 </Box>;
 ```
 
-> 💡 All MUI components are created with `styled` API, so they accept `sx` prop by default.
+> 💡 All MUI components are created with the `styled` API, so they accept `sx` prop by default.
 
-`sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use `sx` like syntax at the global theme overrides.
+`sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use an `sx`-like syntax in global theme overrides.
 
 All you need is to use the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function:
 
@@ -177,7 +177,7 @@ If you want to create a dynamic style based on props, you can return an array fr
 
 **That's it for today!** Happy styling 💅.
 
-I hope this small update makes your customization experience better than before. Don't forget to share this update with your friends and/or colleagues.
+I hope this small update makes your customization experience better than ever. Don't forget to share this update with your friends and colleagues.
 
 To get more updates like this in the future, **subscribe to our newsletter** at the bottom of this page.
 
