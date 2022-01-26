@@ -67,6 +67,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const {
     children: childrenProp,
     className,
+    componentsProps = {},
     max = 5,
     spacing = 'medium',
     total,
@@ -127,6 +128,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
             marginLeft,
           }}
           variant={variant}
+          {...componentsProps.additionalAvatar}
         >
           +{extraAvatars}
         </AvatarGroupAvatar>
@@ -165,6 +167,12 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  componentsProps: PropTypes.shape({
+    additionalAvatar: PropTypes.object,
+  }),
   /**
    * Max avatars to show before +x.
    * @default 5
