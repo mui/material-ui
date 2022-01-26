@@ -97,6 +97,7 @@ export default function createCssVarsProvider<
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  resolveTheme?: (theme: any) => any;
 }): {
   CssVarsProvider: (
     props: React.PropsWithChildren<

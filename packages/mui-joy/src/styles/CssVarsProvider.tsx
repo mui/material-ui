@@ -1,3 +1,4 @@
+import { deepmerge } from '@mui/utils';
 import {
   unstable_createCssVarsProvider as createCssVarsProvider,
   BreakpointsOptions,
@@ -15,6 +16,7 @@ import { Variants } from './types/variants';
 import { ColorSystem } from './types/colorSystem';
 import { TypographySystem } from './types/typography';
 import { Components } from './components';
+import { createVariant } from './variantUtils';
 
 type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
@@ -67,6 +69,31 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     dark: 'dark',
   },
   prefix: 'joy',
+  resolveTheme: (mergedTheme: JoyTheme) => {
+    mergedTheme.variants = deepmerge(
+      {
+        text: createVariant('text', mergedTheme),
+        textHover: createVariant('textHover', mergedTheme),
+        textActive: createVariant('textActive', mergedTheme),
+        textDisabled: createVariant('textDisabled', mergedTheme),
+        outlined: createVariant('outlined', mergedTheme),
+        outlinedHover: createVariant('outlinedHover', mergedTheme),
+        outlinedActive: createVariant('outlinedActive', mergedTheme),
+        outlinedDisabled: createVariant('outlinedDisabled', mergedTheme),
+        light: createVariant('light', mergedTheme),
+        lightHover: createVariant('lightHover', mergedTheme),
+        lightActive: createVariant('lightActive', mergedTheme),
+        lightDisabled: createVariant('lightDisabled', mergedTheme),
+        contained: createVariant('contained', mergedTheme),
+        containedHover: createVariant('containedHover', mergedTheme),
+        containedActive: createVariant('containedActive', mergedTheme),
+        containedDisabled: createVariant('containedDisabled', mergedTheme),
+      } as typeof mergedTheme.variants,
+      mergedTheme.variants,
+      { clone: false },
+    );
+    return mergedTheme;
+  },
   shouldSkipGeneratingVar: (keys) =>
     keys[0] === 'typography' ||
     keys[0] === 'variants' ||
