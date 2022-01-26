@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState) => {
 
 const styledRootConfig = {
   name: 'MuiSelect',
-  shouldForwardProp: (prop) => rootShouldForwardProp && prop !== 'variant',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'variant',
   slot: 'Root',
 };
 
