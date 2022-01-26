@@ -14,7 +14,7 @@
     },
     "labelDisplayedRows": {
       "type": { "name": "func" },
-      "default": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
+      "default": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
     },
     "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
     "nextIconButtonProps": { "type": { "name": "object" } },
@@ -29,7 +29,12 @@
     "SelectProps": { "type": { "name": "object" }, "default": "{}" },
     "showFirstButton": { "type": { "name": "bool" } },
     "showLastButton": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "TablePagination",
   "styles": {
@@ -54,6 +59,5 @@
   "filename": "/packages/mui-material/src/TablePagination/TablePagination.js",
   "inheritance": { "component": "TableCell", "pathname": "/api/table-cell/" },
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

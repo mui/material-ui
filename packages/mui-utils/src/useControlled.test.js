@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createClientRender } from 'test/utils';
+import { act, createRenderer } from 'test/utils';
 import useControlled from './useControlled';
 
 const TestComponent = ({ value: valueProp, defaultValue, children }) => {
@@ -13,7 +13,7 @@ const TestComponent = ({ value: valueProp, defaultValue, children }) => {
 };
 
 describe('useControlled', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('works correctly when is not controlled', () => {
     let valueState;
@@ -58,7 +58,7 @@ describe('useControlled', () => {
     expect(() => {
       setProps({ value: 'foobar' });
     }).toErrorDev(
-      'Material-UI: A component is changing the uncontrolled value state of TestComponent to be controlled.',
+      'MUI: A component is changing the uncontrolled value state of TestComponent to be controlled.',
     );
   });
 
@@ -72,7 +72,7 @@ describe('useControlled', () => {
     expect(() => {
       setProps({ value: undefined });
     }).toErrorDev(
-      'Material-UI: A component is changing the controlled value state of TestComponent to be uncontrolled.',
+      'MUI: A component is changing the controlled value state of TestComponent to be uncontrolled.',
     );
   });
 
@@ -86,7 +86,7 @@ describe('useControlled', () => {
     expect(() => {
       setProps({ defaultValue: 1 });
     }).toErrorDev(
-      'Material-UI: A component is changing the default value state of an uncontrolled TestComponent after being initialized.',
+      'MUI: A component is changing the default value state of an uncontrolled TestComponent after being initialized.',
     );
   });
 

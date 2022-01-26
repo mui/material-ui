@@ -24,7 +24,7 @@ suite
   .add('ButtonBase', () => {
     ReactDOMServer.renderToString(
       <StylesProvider sheetsManager={new Map()}>
-        <ButtonBase>Material-UI</ButtonBase>
+        <ButtonBase>MUI</ButtonBase>
       </StylesProvider>,
     );
   })
@@ -43,10 +43,10 @@ suite
     );
   })
   .add('ButtonBase enable ripple', () => {
-    ReactDOMServer.renderToString(<ButtonBase>Material-UI</ButtonBase>);
+    ReactDOMServer.renderToString(<ButtonBase>MUI</ButtonBase>);
   })
   .add('ButtonBase disable ripple', () => {
-    ReactDOMServer.renderToString(<ButtonBase disableRipple>Material-UI</ButtonBase>);
+    ReactDOMServer.renderToString(<ButtonBase disableRipple>MUI</ButtonBase>);
   })
   .on('cycle', (event) => {
     console.log(String(event.target));

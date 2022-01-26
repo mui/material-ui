@@ -2,7 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -148,7 +148,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
+                "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );
@@ -237,7 +237,11 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.

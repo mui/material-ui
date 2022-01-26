@@ -9,9 +9,10 @@ import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 
 export default function GetStartedButtons({
-  installation = 'npm install @mui/material',
+  installation = 'npm install @mui/material @emotion/react @emotion/styled',
+  to = ROUTES.documentation,
   ...props
-}: { installation?: string } & BoxProps) {
+}: { installation?: string; to?: string } & BoxProps) {
   const [copied, setCopied] = React.useState(false);
   const handleCopy = () => {
     setCopied(true);
@@ -30,23 +31,32 @@ export default function GetStartedButtons({
       }}
     >
       <Button
-        href={ROUTES.documentation}
+        href={to}
         component={Link}
         noLinkStyle
         size="large"
         variant="contained"
         endIcon={<KeyboardArrowRightRounded />}
+        sx={{ mr: { xs: 0, md: 2 }, mb: { xs: 2, md: 0 } }}
       >
         Get started
       </Button>
-      <Box sx={{ width: 16, height: 16 }} />
       <Button
         size="large"
         // @ts-expect-error
         variant="code"
-        startIcon="$"
         endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
         onClick={handleCopy}
+        sx={{
+          maxWidth: '324px',
+          display: 'inline-block',
+          justifyContent: 'start',
+          overflowX: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+          position: 'relative',
+          pr: 5,
+        }}
       >
         {installation}
       </Button>

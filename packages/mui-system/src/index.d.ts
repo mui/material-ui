@@ -88,6 +88,7 @@ export const fontWeight: SimpleStyleFunction<'fontWeight'>;
 export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
 export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
+export const textTransform: SimpleStyleFunction<'textTransform'>;
 export type TypographyProps = PropsFor<typeof typography>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -107,6 +108,9 @@ export {
   GlobalStyles,
   GlobalStylesProps,
   StyledEngineProvider,
+  Interpolation,
+  CSSInterpolation,
+  CSSObject,
 } from '@mui/styled-engine';
 
 export * from './style';
@@ -117,6 +121,8 @@ export {
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
+
+export { default as experimental_sx } from './sx';
 
 export { default as Box } from './Box';
 export * from './Box';
@@ -154,3 +160,7 @@ export * from './colorManipulator';
 
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
+
+export { default as unstable_createCssVarsProvider } from './cssVars';
+export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
+export * from './cssVars';

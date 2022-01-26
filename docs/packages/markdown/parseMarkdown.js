@@ -1,4 +1,4 @@
-const marked = require('marked');
+const { marked } = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
@@ -6,7 +6,7 @@ const prism = require('./prism');
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
-const headerKeyValueRegExp = /(.*?): (.*)/g;
+const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g;
 const emptyRegExp = /^\s*$/;
 
 /**
@@ -40,10 +40,13 @@ function getHeaders(markdown) {
   // eslint-disable-next-line no-cond-assign
   while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
     const key = regexMatches[1];
-    const value = regexMatches[2].replace(/(.*)/, '$1');
+    let value = regexMatches[2].replace(/(.*)/, '$1');
     if (value[0] === '[') {
       // Need double quotes to JSON parse.
-      headers[key] = JSON.parse(value.replace(/'/g, '"'));
+      value = value.replace(/'/g, '"');
+      // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
+      value = value.replace(/,\s+\]$/g, ']');
+      headers[key] = JSON.parse(value);
     } else {
       // Remove trailing single quote yml escaping.
       headers[key] = value.replace(/^'|'$/g, '');
@@ -85,7 +88,7 @@ function getDescription(markdown) {
     return undefined;
   }
 
-  return matches[1].trim();
+  return matches[1].trim().replace(/`/g, '');
 }
 
 /**
@@ -239,7 +242,7 @@ function createRender(context) {
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations } = config;
+  const { pageFilename, translations, componentPackageMapping = {} } = config;
 
   const demos = {};
   /**
@@ -247,6 +250,25 @@ function prepareMarkdown(config) {
    */
   const docs = {};
   const headingHashes = {};
+
+  /**
+   * @param {string} product
+   * @example 'material'
+   * @param {string} componentPkg
+   * @example 'mui-base'
+   * @param {string} component
+   * @example 'ButtonUnstyled'
+   * @returns {string}
+   */
+  function resolveComponentApiUrl(product, componentPkg, component) {
+    if (!product) {
+      return `/api/${kebabCase(component)}/`;
+    }
+    if (componentPkg === 'mui-base') {
+      return `/base/api/${kebabCase(component)}/`;
+    }
+    return `/${product}/api/${kebabCase(component)}/`;
+  }
 
   translations
     // Process the English markdown before the other locales.
@@ -264,7 +286,19 @@ function prepareMarkdown(config) {
 ## API
 
 ${headers.components
-  .map((component) => `- [\`<${component} />\`](/api/${kebabCase(component)}/)`)
+  .map((component) => {
+    return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
+
+    // TODO: enable the code below once the migration is done.
+    // eslint-disable-next-line no-unreachable
+    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
+    return `- [\`<${component} />\`](${resolveComponentApiUrl(
+      headers.product,
+      componentPkg,
+      component,
+    )})`;
+  })
   .join('\n')}
   `);
       }

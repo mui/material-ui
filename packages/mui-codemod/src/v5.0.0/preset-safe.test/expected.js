@@ -23,7 +23,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { yellow } from '@mui/material/colors';
 
-// FIXME checkout https://material-ui.com/components/use-media-query/#migrating-from-withwidth
+// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
 const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 
 const DarkContext = React.createContext();

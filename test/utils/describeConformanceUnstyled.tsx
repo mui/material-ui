@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { MuiRenderResult, RenderOptions } from './createClientRender';
+import { MuiRenderResult, RenderOptions } from './createRenderer';
 import {
   ConformanceOptions,
   describeRef,
@@ -26,6 +26,7 @@ export interface UnstyledConformanceOptions
   ) => MuiRenderResult;
   skip?: (keyof typeof fullSuite)[];
   slots: Record<string, SlotTestingOptions>;
+  testComponentPropWith?: string;
 }
 
 function throwMissingPropError(field: string): never {
@@ -41,8 +42,7 @@ interface WithClassName {
 
 interface WithCustomProp {
   fooBar: string;
-  'aria-label': string;
-  tabIndex: number;
+  lang: string;
 }
 
 interface WithOwnerState {
@@ -67,7 +67,7 @@ function testPropForwarding(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render } = getOptions();
+  const { render, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -75,17 +75,14 @@ function testPropForwarding(
 
   it('forwards custom props to the root element if a component is provided', () => {
     const CustomRoot = React.forwardRef(
-      (
-        { fooBar, tabIndex, 'aria-label': ariaLabel }: WithCustomProp,
-        ref: React.ForwardedRef<any>,
-      ) => {
-        return <div ref={ref} data-foobar={fooBar} tabIndex={tabIndex} aria-label={ariaLabel} />;
+      ({ fooBar, lang }: WithCustomProp, ref: React.ForwardedRef<any>) => {
+        // @ts-ignore
+        return <Element ref={ref} data-foobar={fooBar} lang={lang} />;
       },
     );
 
     const otherProps = {
-      tabIndex: '0',
-      'aria-label': randomStringValue(),
+      lang: 'fr',
       fooBar: randomStringValue(),
     };
 
@@ -93,23 +90,22 @@ function testPropForwarding(
       React.cloneElement(element, { components: { Root: CustomRoot }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex.toString());
-    expect(container.firstChild).to.have.attribute('aria-label', otherProps['aria-label']);
+    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps.fooBar);
   });
 
   it('does forward standard props to the root element if an intrinsic element is provided', () => {
     const otherProps = {
-      tabIndex: '0',
-      'aria-label': randomStringValue(),
+      lang: 'fr',
+      'data-foobar': randomStringValue(),
     };
 
     const { container } = render(
-      React.cloneElement(element, { components: { Root: 'div' }, ...otherProps }),
+      React.cloneElement(element, { components: { Root: Element }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex);
-    expect(container.firstChild).to.have.attribute('aria-label', otherProps['aria-label']);
+    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
+    expect(container.firstChild).to.have.attribute('data-foobar', otherProps['data-foobar']);
   });
 }
 
@@ -117,7 +113,7 @@ function testComponentsProp(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render, slots } = getOptions();
+  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -152,8 +148,8 @@ function testComponentsProp(
       };
 
       const { container } = render(React.cloneElement(element, { components }));
-      const thumb = container.querySelector(slotElement);
-      expect(thumb).to.have.class(slotOptions.expectedClassName);
+      const renderedElement = container.querySelector(slotElement);
+      expect(renderedElement).to.have.class(slotOptions.expectedClassName);
     });
 
     if (slotOptions.isOptional) {
@@ -171,17 +167,19 @@ function testComponentsProp(
   it('uses the component provided in component prop when both component and components.Root are provided', () => {
     const RootComponentA = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
-        <div data-testid="a" ref={ref}>
+        // @ts-ignore
+        <Element data-testid="a" ref={ref}>
           {children}
-        </div>
+        </Element>
       ),
     );
 
     const RootComponentB = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
-        <div data-testid="b" ref={ref}>
+        // @ts-ignore
+        <Element data-testid="b" ref={ref}>
           {children}
-        </div>
+        </Element>
       ),
     );
 
@@ -244,7 +242,7 @@ function testOwnerStatePropagation(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render, slots } = getOptions();
+  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -260,7 +258,8 @@ function testOwnerStatePropagation(
         ({ ownerState, expectedOwnerState }: WithOwnerState, ref: React.Ref<any>) => {
           expect(ownerState).not.to.equal(undefined);
           expect(ownerState).to.deep.include(expectedOwnerState);
-          return <div ref={ref} />;
+          // @ts-ignore
+          return <Element ref={ref} />;
         },
       );
 
@@ -303,7 +302,7 @@ export default function describeConformanceUnstyled(
       only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
   ) as (keyof typeof fullSuite)[];
 
-  describe('Material-UI unstyled component API', () => {
+  describe('MUI unstyled component API', () => {
     after(runAfterHook);
 
     filteredTests.forEach((testKey) => {

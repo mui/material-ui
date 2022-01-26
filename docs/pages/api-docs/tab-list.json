@@ -7,6 +7,5 @@
   "filename": "/packages/mui-lab/src/TabList/TabList.js",
   "inheritance": { "component": "Tabs", "pathname": "/api/tabs/" },
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

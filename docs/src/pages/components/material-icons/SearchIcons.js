@@ -6,7 +6,7 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
+import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -21,23 +21,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import SvgIcon from '@mui/material/SvgIcon';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import * as mui from '@mui/icons-material';
-import synonyms from './synonyms';
-
-if (process.env.NODE_ENV !== 'production') {
-  Object.keys(synonyms).forEach((icon) => {
-    if (!mui[icon]) {
-      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
-    }
-  });
-}
-
-// If you're working on the logic, uncomment these imports
-// and comment `import * as mui`, and the `if` block above.
-// It will be much faster than working with all of the icons.
-
+import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
+// For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
 // import MenuRounded from '@mui/icons-material/MenuRounded';
@@ -58,6 +46,10 @@ if (process.env.NODE_ENV !== 'production') {
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
+import * as mui from '@mui/icons-material';
+import synonyms from './synonyms';
+
+const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
 
 // const mui = {
 //   ExitToApp,
@@ -82,6 +74,14 @@ if (process.env.NODE_ENV !== 'production') {
 //   DeleteForeverSharp,
 // };
 
+if (process.env.NODE_ENV !== 'production') {
+  Object.keys(synonyms).forEach((icon) => {
+    if (!mui[icon]) {
+      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
+    }
+  });
+}
+
 function selectNode(node) {
   // Clear any current selection
   const selection = window.getSelection();
@@ -94,23 +94,24 @@ function selectNode(node) {
 }
 
 const StyledIcon = styled('span')(({ theme }) => ({
-  display: 'inline-block',
-  width: 86,
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  textAlign: 'center',
+  display: 'inline-flex',
+  flexDirection: 'column',
   color: theme.palette.text.secondary,
   margin: '0 4px',
-  fontSize: 12,
-  '& p': {
-    margin: 0,
+  '& > div': {
+    display: 'flex',
+  },
+  '& > div > *': {
+    flexGrow: 1,
+    fontSize: '.6rem',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
+    textAlign: 'center',
+    width: 0,
   },
 }));
 
-const StyledSvgIcon = styled(Box)(({ theme }) => ({
+const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   boxSizing: 'content-box',
   cursor: 'pointer',
   color: theme.palette.text.primary,
@@ -118,7 +119,6 @@ const StyledSvgIcon = styled(Box)(({ theme }) => ({
   transition: theme.transitions.create(['background-color', 'box-shadow'], {
     duration: theme.transitions.duration.shortest,
   }),
-  fontSize: 40,
   padding: theme.spacing(2),
   margin: theme.spacing(0.5, 0),
   '&:hover': {
@@ -154,20 +154,20 @@ const Icons = React.memo(function Icons(props) {
   return (
     <div>
       {icons.map((icon) => {
-        /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
+        /* eslint-disable jsx-a11y/click-events-have-key-events */
         return (
-          <StyledIcon
-            key={icon.importName}
-            onClick={handleIconClick(icon)}
-            className="markdown-body"
-          >
+          <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
             <StyledSvgIcon
               component={icon.Component}
+              fontSize="large"
               tabIndex={-1}
               onClick={handleOpenClick}
               title={icon.importName}
             />
-            <p onClick={handleLabelClick}>{icon.importName}</p>
+            <div>
+              {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+              <div onClick={handleLabelClick}>{icon.importName}</div>
+            </div>
             {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
           </StyledIcon>
         );
@@ -447,22 +447,35 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
-export default function SearchIcons() {
-  const [theme, setTheme] = React.useState('Filled');
-  const [keys, setKeys] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
-  const [selectedIcon, setSelectedIcon] = React.useState(null);
+/**
+ * Returns the last defined value that has been passed in [value]
+ */
+function useLatest(value) {
+  const latest = React.useRef(value);
+  if (value !== undefined && value !== null) {
+    latest.current = value;
+  }
+  return latest.current;
+}
 
-  const handleOpenClick = React.useCallback((event) => {
-    setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
-    setOpen(true);
-  }, []);
+export default function SearchIcons() {
+  const [keys, setKeys] = React.useState(null);
+  const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
+  const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
+  const [query, setQuery] = useQueryParameterState('query', '');
+
+  const handleOpenClick = React.useCallback(
+    (event) => {
+      setSelectedIcon(event.currentTarget.getAttribute('title'));
+    },
+    [setSelectedIcon],
+  );
 
   const handleClose = React.useCallback(() => {
-    setOpen(false);
-  }, []);
+    setSelectedIcon('');
+  }, [setSelectedIcon]);
 
-  const handleChange = React.useMemo(
+  const updateSearchResults = React.useMemo(
     () =>
       debounce((value) => {
         if (value === '') {
@@ -482,15 +495,16 @@ export default function SearchIcons() {
             }
           });
         }
-      }, 220),
+      }, UPDATE_SEARCH_INDEX_WAIT_MS),
     [],
   );
 
   React.useEffect(() => {
+    updateSearchResults(query);
     return () => {
-      handleChange.cancel();
+      updateSearchResults.clear();
     };
-  }, [handleChange]);
+  }, [query, updateSearchResults]);
 
   const icons = React.useMemo(
     () =>
@@ -498,6 +512,10 @@ export default function SearchIcons() {
         (icon) => theme === icon.theme,
       ),
     [theme, keys],
+  );
+
+  const dialogSelectedIcon = useLatest(
+    selectedIcon ? allIconsMap[selectedIcon] : null,
   );
 
   return (
@@ -532,9 +550,8 @@ export default function SearchIcons() {
           </IconButton>
           <Input
             autoFocus
-            onChange={(event) => {
-              handleChange(event.target.value);
-            }}
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
           />
@@ -543,8 +560,8 @@ export default function SearchIcons() {
         <Icons icons={icons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
-        open={open}
-        selectedIcon={selectedIcon}
+        open={!!selectedIcon}
+        selectedIcon={dialogSelectedIcon}
         handleClose={handleClose}
       />
     </Grid>

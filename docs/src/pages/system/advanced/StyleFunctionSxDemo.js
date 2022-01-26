@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { unstable_styleFunctionSx } from '@mui/system';
-import NoSsr from '@mui/core/NoSsr';
+import NoSsr from '@mui/base/NoSsr';
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme();

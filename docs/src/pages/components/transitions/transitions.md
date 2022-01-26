@@ -1,14 +1,14 @@
 ---
 title: React Transition component
 components: Collapse, Fade, Grow, Slide, Zoom
-githubLabel: 'component: Transition'
+githubLabel: 'component: transitions'
 ---
 
 # Transitions
 
 <p class="description">Transitions help to make a UI expressive and easy to use.</p>
 
-Material-UI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
+MUI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -65,7 +65,7 @@ This example also demonstrates how to delay the enter transition.
 
 ## Child requirement
 
-- **Forward the style**: To better support server rendering, Material-UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
+- **Forward the style**: To better support server rendering, MUI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
   The `style` prop must be applied to the DOM for the animation to work as expected.
 - **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
 - **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
@@ -93,14 +93,14 @@ export default Main() {
 
 ## TransitionGroup
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group) component from _react-transition-group_.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_.
 As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
 
 ## TransitionComponent prop
 
-Some Material-UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
+Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
 You can use any of the above components or your own.
 It should respect the following conditions:
 
@@ -109,7 +109,7 @@ It should respect the following conditions:
 - Call the `onExited` callback prop when the exit transition is completed.
   These two callbacks allow to unmount the children when in a closed state and fully transitioned.
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition).
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/).
 You can also visit the dedicated sections of some of the components:
 
 - [Modal](/components/modal/#transitions)
@@ -117,3 +117,17 @@ You can also visit the dedicated sections of some of the components:
 - [Popper](/components/popper/#transitions)
 - [Snackbar](/components/snackbars/#transitions)
 - [Tooltip](/components/tooltips/#transitions)
+
+## Performance & SEO
+
+The content of transition component is mounted by default even if `in={false}`.
+This default behavior has server-side rendering and SEO in mind.
+If you render expensive component trees inside your transition it might be a good idea to change this default behavior by enabling the
+`unmountOnExit` prop:
+
+```jsx
+<Fade in={false} unmountOnExit />
+```
+
+As with any performance optimization this is not a silver bullet.
+Be sure to identify bottlenecks first and then try out these optimization strategies.

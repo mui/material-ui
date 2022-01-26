@@ -47,7 +47,7 @@ export default function MultipleSelectPlaceholder() {
       target: { value },
     } = event;
     setPersonName(
-      // On autofill we get a the stringified value.
+      // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };

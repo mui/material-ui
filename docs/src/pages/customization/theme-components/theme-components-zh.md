@@ -31,7 +31,7 @@ const theme = createTheme({
 
 ## 默认属性
 
-You can change the default of every prop of a Material-UI component. A `defaultProps` key is exposed in the theme's `components` key for this use case. 下面示例就是指定`defaultProps`属性覆盖`components`下组件的默认属性。 下面示例就是指定`defaultProps`属性覆盖`components`下组件的默认属性。
+You can change the default of every prop of a MUI component. 下面示例就是指定`defaultProps`属性覆盖`components`下组件的默认属性。
 
 ```js
 const theme = createTheme({
@@ -40,6 +40,11 @@ const theme = createTheme({
     MuiButtonBase: {
       defaultProps: {
         // The props to change the default for.
+        disableRipple: true, // No more ripple!
+      },
+    },
+  },
+});
         disableRipple: true, // No more ripple!
       },
     },
@@ -83,7 +88,7 @@ const theme = createTheme({
 
 如果你用的是TypeScript，那么需要使用[moduleaugmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)定义新的variants/colors
 
-<!-- Tested with packages/material-ui/test/typescript/augmentation/themeComponents.spec.ts -->
+<!-- Tested with packages/mui-material/test/typescript/augmentation/themeComponents.spec.ts -->
 
 ```tsx
 declare module '@material-ui/core/Button/Button' {

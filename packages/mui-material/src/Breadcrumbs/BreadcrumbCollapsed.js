@@ -7,8 +7,8 @@ import ButtonBase from '../ButtonBase';
 
 const BreadcrumbCollapsedButton = styled(ButtonBase, { skipSx: true })(({ theme }) => ({
   display: 'flex',
-  marginLeft: theme.spacing(0.5),
-  marginRight: theme.spacing(0.5),
+  marginLeft: `calc(${theme.spacing(1)} * 0.5)`,
+  marginRight: `calc(${theme.spacing(1)} * 0.5)`,
   ...(theme.palette.mode === 'light'
     ? { backgroundColor: theme.palette.grey[100], color: theme.palette.grey[700] }
     : { backgroundColor: theme.palette.grey[700], color: theme.palette.grey[100] }),

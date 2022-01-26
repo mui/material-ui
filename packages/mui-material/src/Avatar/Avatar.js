@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
@@ -215,7 +215,7 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `img` element if the component is used to display an image.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
    */
   imgProps: PropTypes.object,
@@ -235,7 +235,11 @@ Avatar.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The shape of the avatar.
    * @default 'circular'

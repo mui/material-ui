@@ -186,7 +186,7 @@ const IconButtonTest = () => (
     </IconButton>
     {() => {
       const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>(
-        (props, ref) => <ReactRouterLink {...props} innerRef={ref} />,
+        (props, ref) => <ReactRouterLink {...props} ref={ref} />,
       );
       const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = (props) => (
         <IconButton component={ForwardedLink} {...props} />
@@ -862,7 +862,7 @@ const TextFieldTest = () => (
         max: '10',
         step: '1',
         style: {
-          // just a long css property to test autocompletion
+          // just a long CSS property to test autocompletion
           WebkitAnimationIterationCount: 0,
         },
       }}

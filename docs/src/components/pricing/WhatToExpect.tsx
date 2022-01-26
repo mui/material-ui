@@ -64,7 +64,7 @@ export default function WhatToExpect() {
               maintenance to cover newer versions. Please note that while the use of the software is
               perpetual, support and maintenance are not. We roll bug fixes, performance
               enhancements, and other improvements into new releases; we don&apos;t patch, fix, or
-              in any way alter older versions
+              in any way alter older versions.
             </Typography>
           </Paper>
         </Grid>

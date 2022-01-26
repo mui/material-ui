@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -40,21 +40,21 @@ const SvgIconRoot = styled('svg', {
   display: 'inline-block',
   fill: 'currentColor',
   flexShrink: 0,
-  transition: theme.transitions.create('fill', {
-    duration: theme.transitions.duration.shorter,
+  transition: theme.transitions?.create?.('fill', {
+    duration: theme.transitions?.duration?.shorter,
   }),
   fontSize: {
     inherit: 'inherit',
-    small: theme.typography.pxToRem(20),
-    medium: theme.typography.pxToRem(24),
-    large: theme.typography.pxToRem(35),
+    small: theme.typography?.pxToRem?.(20) || '1.25rem',
+    medium: theme.typography?.pxToRem?.(24) || '1.5rem',
+    large: theme.typography?.pxToRem?.(35) || '2.1875',
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color:
-    theme.palette[ownerState.color]?.main ??
+    theme.palette?.[ownerState.color]?.main ??
     {
-      action: theme.palette.action.active,
-      disabled: theme.palette.action.disabled,
+      action: theme.palette?.action?.active,
+      disabled: theme.palette?.action?.disabled,
       inherit: undefined,
     }[ownerState.color],
 }));
@@ -68,6 +68,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     component = 'svg',
     fontSize = 'medium',
     htmlColor,
+    inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
     ...other
@@ -78,8 +79,15 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     color,
     component,
     fontSize,
+    inheritViewBox,
     viewBox,
   };
+
+  const more = {};
+
+  if (!inheritViewBox) {
+    more.viewBox = viewBox;
+  }
 
   const classes = useUtilityClasses(ownerState);
 
@@ -89,11 +97,11 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       focusable="false"
-      viewBox={viewBox}
       color={htmlColor}
       aria-hidden={titleAccess ? undefined : true}
       role={titleAccess ? 'img' : undefined}
       ref={ref}
+      {...more}
       {...other}
     >
       {children}
@@ -156,6 +164,14 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   htmlColor: PropTypes.string,
   /**
+   * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
+   * prop will be ignored.
+   * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+   * `component`'s viewBox to the root node.
+   * @default false
+   */
+  inheritViewBox: PropTypes.bool,
+  /**
    * The shape-rendering attribute. The behavior of the different options is described on the
    * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
    * If you are having issues with blurry icons you should investigate this prop.
@@ -164,7 +180,11 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent

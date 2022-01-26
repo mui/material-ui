@@ -49,7 +49,7 @@ describe('system spacing', () => {
             p: 3,
           });
         }).toErrorDev(
-          'Material-UI: The value provided (3) overflows.\n' +
+          'MUI: The value provided (3) overflows.\n' +
             'The supported values are: [0,3,5].\n' +
             '3 > 2, you need to add the missing values.',
         );
@@ -66,7 +66,7 @@ describe('system spacing', () => {
             p: 3,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` value ([object Object]) is invalid.\n' +
+          'MUI: The `theme.spacing` value ([object Object]) is invalid.\n' +
             'It should be a number, an array or a function.',
         );
         expect(output).to.deep.equal({ padding: undefined });
@@ -82,7 +82,7 @@ describe('system spacing', () => {
             p: 0.5,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.',
+          'MUI: The `theme.spacing` array type cannot be combined with non integer values.',
         );
         expect(output).to.deep.equal({ padding: undefined });
       });
@@ -168,6 +168,12 @@ describe('system spacing', () => {
         paddingBottom: 8,
         paddingTop: 8,
       });
+      const output3 = spacing({
+        paddingInline: 1,
+      });
+      expect(output3).to.deep.equal({
+        paddingInline: 8,
+      });
     });
 
     it('should support string values', () => {
@@ -227,7 +233,7 @@ describe('system spacing', () => {
             m: 3,
           });
         }).toErrorDev(
-          'Material-UI: The value provided (3) overflows.\n' +
+          'MUI: The value provided (3) overflows.\n' +
             'The supported values are: [0,3,5].\n' +
             '3 > 2, you need to add the missing values.',
         );
@@ -244,7 +250,7 @@ describe('system spacing', () => {
             m: 3,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` value ([object Object]) is invalid.\n' +
+          'MUI: The `theme.spacing` value ([object Object]) is invalid.\n' +
             'It should be a number, an array or a function.',
         );
         expect(output).to.deep.equal({ margin: undefined });
@@ -260,7 +266,7 @@ describe('system spacing', () => {
             m: 0.5,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.',
+          'MUI: The `theme.spacing` array type cannot be combined with non integer values.',
         );
         expect(output).to.deep.equal({ margin: undefined });
       });
@@ -346,6 +352,12 @@ describe('system spacing', () => {
         marginBottom: 8,
         marginTop: 8,
       });
+      const output3 = margin({
+        marginInline: 1,
+      });
+      expect(output3).to.deep.equal({
+        marginInline: 8,
+      });
     });
 
     it('should support string values', () => {
@@ -405,7 +417,7 @@ describe('system spacing', () => {
             p: 3,
           });
         }).toErrorDev(
-          'Material-UI: The value provided (3) overflows.\n' +
+          'MUI: The value provided (3) overflows.\n' +
             'The supported values are: [0,3,5].\n' +
             '3 > 2, you need to add the missing values.',
         );
@@ -422,7 +434,7 @@ describe('system spacing', () => {
             p: 3,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` value ([object Object]) is invalid.\n' +
+          'MUI: The `theme.spacing` value ([object Object]) is invalid.\n' +
             'It should be a number, an array or a function.',
         );
         expect(output).to.deep.equal({ padding: undefined });
@@ -438,7 +450,7 @@ describe('system spacing', () => {
             p: 0.5,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.',
+          'MUI: The `theme.spacing` array type cannot be combined with non integer values.',
         );
         expect(output).to.deep.equal({ padding: undefined });
       });
@@ -523,6 +535,12 @@ describe('system spacing', () => {
       expect(output2).to.deep.equal({
         paddingBottom: 8,
         paddingTop: 8,
+      });
+      const output3 = padding({
+        paddingInline: 1,
+      });
+      expect(output3).to.deep.equal({
+        paddingInline: 8,
       });
     });
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
@@ -111,8 +111,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     >
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue
-        // eslint-disable-next-line react/no-danger
-        <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        <span className="notranslate">&#8203;</span>
       ) : (
         children
       )}
@@ -172,7 +171,11 @@ FormHelperText.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    */

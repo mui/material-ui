@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@mui/utils';
-import { capitalize } from '@mui/material/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { capitalize, unstable_useId as useId } from '@mui/material/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -63,6 +63,28 @@ const LoadingButtonRoot = styled(Button, {
       color: 'transparent',
     },
   }),
+  ...(ownerState.loadingPosition === 'start' &&
+    ownerState.fullWidth && {
+      [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+        {
+          transition: theme.transitions.create(['opacity'], {
+            duration: theme.transitions.duration.short,
+          }),
+          opacity: 0,
+          marginRight: -8,
+        },
+    }),
+  ...(ownerState.loadingPosition === 'end' &&
+    ownerState.fullWidth && {
+      [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+        {
+          transition: theme.transitions.create(['opacity'], {
+            duration: theme.transitions.duration.short,
+          }),
+          opacity: 0,
+          marginLeft: -8,
+        },
+    }),
 }));
 
 const LoadingButtonLoadingIndicator = styled('div', {
@@ -79,31 +101,56 @@ const LoadingButtonLoadingIndicator = styled('div', {
   position: 'absolute',
   visibility: 'visible',
   display: 'flex',
-  ...(ownerState.loadingPosition === 'start' && {
-    left: 14,
-  }),
+  ...(ownerState.loadingPosition === 'start' &&
+    (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
+      left: 14,
+    }),
+  ...(ownerState.loadingPosition === 'start' &&
+    ownerState.variant === 'text' && {
+      left: 6,
+    }),
   ...(ownerState.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
     color: theme.palette.action.disabled,
   }),
-  ...(ownerState.loadingPosition === 'end' && {
-    right: 14,
-  }),
+  ...(ownerState.loadingPosition === 'end' &&
+    (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
+      right: 14,
+    }),
+  ...(ownerState.loadingPosition === 'end' &&
+    ownerState.variant === 'text' && {
+      right: 6,
+    }),
+  ...(ownerState.loadingPosition === 'start' &&
+    ownerState.fullWidth && {
+      position: 'relative',
+      left: -10,
+    }),
+  ...(ownerState.loadingPosition === 'end' &&
+    ownerState.fullWidth && {
+      position: 'relative',
+      right: -10,
+    }),
 }));
-
-const LoadingIndicator = <CircularProgress color="inherit" size={16} />;
 
 const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiLoadingButton' });
   const {
     children,
     disabled = false,
+    id: idProp,
     loading = false,
-    loadingIndicator = LoadingIndicator,
+    loadingIndicator: loadingIndicatorProp,
     loadingPosition = 'center',
+    variant = 'text',
     ...other
   } = props;
+
+  const id = useId(idProp);
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+  );
 
   const ownerState = {
     ...props,
@@ -111,6 +158,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
     loading,
     loadingIndicator,
     loadingPosition,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -118,18 +166,39 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   return (
     <LoadingButtonRoot
       disabled={disabled || loading}
+      id={id}
       ref={ref}
       {...other}
+      variant={variant}
       classes={classes}
       ownerState={ownerState}
     >
-      {loading && (
-        <LoadingButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-          {loadingIndicator}
-        </LoadingButtonLoadingIndicator>
-      )}
+      {ownerState.loadingPosition === 'end' ? (
+        <React.Fragment>
+          {children}
+          {loading && (
+            <LoadingButtonLoadingIndicator
+              className={classes.loadingIndicator}
+              ownerState={ownerState}
+            >
+              {loadingIndicator}
+            </LoadingButtonLoadingIndicator>
+          )}
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          {loading && (
+            <LoadingButtonLoadingIndicator
+              className={classes.loadingIndicator}
+              ownerState={ownerState}
+            >
+              {loadingIndicator}
+            </LoadingButtonLoadingIndicator>
+          )}
 
-      {children}
+          {children}
+        </React.Fragment>
+      )}
     </LoadingButtonRoot>
   );
 });
@@ -153,12 +222,18 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * If `true`, the loading indicator is shown.
    * @default false
    */
   loading: PropTypes.bool,
   /**
    * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
    * @default <CircularProgress color="inherit" size={16} />
    */
   loadingIndicator: PropTypes.node,
@@ -169,12 +244,12 @@ LoadingButton.propTypes /* remove-proptypes */ = {
   loadingPosition: chainPropTypes(PropTypes.oneOf(['start', 'end', 'center']), (props) => {
     if (props.loadingPosition === 'start' && !props.startIcon) {
       return new Error(
-        `Material-UI: The loadingPosition="start" should be used in combination with startIcon.`,
+        `MUI: The loadingPosition="start" should be used in combination with startIcon.`,
       );
     }
     if (props.loadingPosition === 'end' && !props.endIcon) {
       return new Error(
-        `Material-UI: The loadingPosition="end" should be used in combination with endIcon.`,
+        `MUI: The loadingPosition="end" should be used in combination with endIcon.`,
       );
     }
     return null;
@@ -182,7 +257,16 @@ LoadingButton.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
 export default LoadingButton;

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, describeConformance, createClientRender, fireEvent, screen } from 'test/utils';
+import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 
 describe('<Rating />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Rating />, () => ({
     classes,
@@ -117,6 +117,18 @@ describe('<Rating />', () => {
     });
 
     expect(container.querySelector('.customized')).to.have.tagName('label');
+  });
+
+  // Internal test that only applies if Rating is implemented using `input[type"radio"]`
+  // It ensures that keyboard navigation for Arrow and TAB keys is handled by the browser
+  it('should ensure a `name`', () => {
+    render(<Rating value={null} />);
+
+    const [arbitraryRadio, ...radios] = document.querySelectorAll('input[type="radio"]');
+    // `name` **property** will always be a string even if the **attribute** is omitted
+    expect(arbitraryRadio.name).not.to.equal('');
+    // all input[type="radio"] have the same name
+    expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
   });
 
   describe('prop: readOnly', () => {

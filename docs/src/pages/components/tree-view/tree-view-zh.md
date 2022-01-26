@@ -1,7 +1,7 @@
 ---
 title: React Tree View（树视图）组件
 components: TreeView, TreeItem
-githubLabel: 'component: TreeView'
+githubLabel: 'component: tree view'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
 packageName: '@material-ui/lab'
 ---
@@ -18,7 +18,7 @@ packageName: '@material-ui/lab'
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## 多选
+## 多种选择
 
 树视图也支持多选。
 

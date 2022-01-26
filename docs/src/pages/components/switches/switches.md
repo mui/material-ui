@@ -1,7 +1,7 @@
 ---
 title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
-githubLabel: 'component: Switch'
+githubLabel: 'component: switch'
 materialDesign: https://material.io/components/selection-controls#switches
 ---
 
@@ -55,14 +55,16 @@ You can learn more about this in the [overrides documentation page](/customizati
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch/).
 
-## Unstyled switches
+## Unstyled
 
 The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
+### Unstyled component
+
 ```jsx
-import SwitchUnstyled from '@mui/core/SwitchUnstyled';
+import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 ```
 
 The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own.
@@ -79,7 +81,7 @@ For the ultimate customizability, a `useSwitch` hook is available.
 It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
 
 ```jsx
-import { useSwitch } from '@mui/core/SwitchUnstyled';
+import { useSwitch } from '@mui/base/SwitchUnstyled';
 ```
 
 #### Basic example

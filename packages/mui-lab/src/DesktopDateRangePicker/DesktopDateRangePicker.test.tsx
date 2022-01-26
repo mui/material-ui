@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { act, describeConformance, screen, fireEvent, userEvent } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
@@ -8,11 +8,9 @@ import { DateRange } from '@mui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@mui/lab/DesktopDateRangePicker';
 import {
   wrapPickerMount,
-  createPickerRender,
+  createPickerRenderer,
   FakeTransitionComponent,
   adapterToUse,
-  getAllByMuiTest,
-  queryByMuiTest,
 } from '../internal/pickers/test-utils';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (
@@ -23,14 +21,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('<DesktopDateRangePicker />', () => {
-  let clock: SinonFakeTimers;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-  const render = createPickerRender();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   describeConformance(
     <DesktopDateRangePicker
@@ -151,7 +142,7 @@ describe('<DesktopDateRangePicker />', () => {
     fireEvent.click(screen.getByLabelText('Jan 1, 2019'));
     fireEvent.click(screen.getByLabelText('Jan 24, 2019'));
 
-    expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(24);
+    expect(screen.getAllByMuiTest('DateRangeHighlight')).to.have.length(24);
   });
 
   it('allows a single day range', () => {
@@ -183,7 +174,7 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(31);
+    expect(screen.getAllByMuiTest('DateRangeHighlight')).to.have.length(31);
   });
 
   it('selects the range from the next month', function test() {
@@ -227,7 +218,7 @@ describe('<DesktopDateRangePicker />', () => {
     fireEvent.click(screen.getByLabelText('Jan 30, 2019'));
     fireEvent.click(screen.getByLabelText('Jan 19, 2019'));
 
-    expect(queryByMuiTest(document.body, 'DateRangeHighlight')).to.equal(null);
+    expect(screen.queryByMuiTest('DateRangeHighlight')).to.equal(null);
 
     fireEvent.click(screen.getByLabelText('Jan 30, 2019'));
 
@@ -253,7 +244,7 @@ describe('<DesktopDateRangePicker />', () => {
     fireEvent.click(screen.getByLabelText('Jan 30, 2019'));
     fireEvent.click(screen.getByLabelText('Jan 19, 2019'));
 
-    expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(12);
+    expect(screen.getAllByMuiTest('DateRangeHighlight')).to.have.length(12);
     expect(onChangeMock.callCount).to.equal(2);
     const [changedRange] = onChangeMock.lastCall.args;
     expect(changedRange[0]).toEqualDateTime(adapterToUse.date('2019-01-19T00:00:00.000'));
@@ -410,7 +401,7 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    expect(getAllByMuiTest('pickers-calendar')).to.have.length(3);
+    expect(screen.getAllByMuiTest('pickers-calendar')).to.have.length(3);
   });
 
   describe('prop: PopperProps', () => {

@@ -1,3 +1,0 @@
-<Box sx={{ display: 'flex', p: 1, bgcolor: 'background.paper' }}>
-  {"I'm a flexbox container!"}
-</Box>

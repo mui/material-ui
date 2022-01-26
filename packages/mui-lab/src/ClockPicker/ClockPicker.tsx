@@ -6,7 +6,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import Clock from './Clock';
 import { pipe } from '../internal/pickers/utils';
 import { useUtils, useNow, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -23,7 +23,7 @@ import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ClockView } from './shared';
 
 export interface ClockPickerClasses {
-  /** Styles applied to the arrowSwticher element. */
+  /** Styles applied to the arrowSwitcher element. */
   arrowSwitcher: string;
 }
 
@@ -153,7 +153,7 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
 
 const ClockPickerArrowSwitcher = styled(PickersArrowSwitcher, {
   name: 'MuiClockPicker',
-  slot: 'ArrowSwticher',
+  slot: 'ArrowSwitcher',
   overridesResolver: (props, styles) => styles.arrowSwitcher,
 })<{ ownerState: ClockPickerProps<any> }>({
   position: 'absolute',
@@ -180,7 +180,7 @@ const defaultGetSecondsClockNumberText = (seconds: string) => `${seconds} second
  *
  * API:
  *
- * - [ClockPicker API](https://material-ui.com/api/clock-picker/)
+ * - [ClockPicker API](https://mui.com/api/clock-picker/)
  */
 function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
   const props = useThemeProps<Theme, ClockPickerProps<TDate>, 'MuiClockPicker'>({
@@ -441,7 +441,10 @@ ClockPicker.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    leftArrowButton: PropTypes.object,
+    rightArrowButton: PropTypes.object,
+  }),
   /**
    * Selected date @DateIOType.
    */
@@ -542,10 +545,10 @@ ClockPicker.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Time Picker](https://material-ui.com/components/time-picker/)
+ * - [Time Picker](https://mui.com/components/time-picker/)
  *
  * API:
  *
- * - [ClockPicker API](https://material-ui.com/api/clock-picker/)
+ * - [ClockPicker API](https://mui.com/api/clock-picker/)
  */
 export default ClockPicker as <TDate>(props: ClockPickerProps<TDate>) => JSX.Element;

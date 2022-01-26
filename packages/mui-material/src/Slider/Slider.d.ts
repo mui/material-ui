@@ -3,7 +3,7 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
-} from '@mui/core/SliderUnstyled';
+} from '@mui/base/SliderUnstyled';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
@@ -60,6 +60,7 @@ type SliderRailProps = NonNullable<SliderTypeMap['props']['componentsProps']>['r
 type SliderTrackProps = NonNullable<SliderTypeMap['props']['componentsProps']>['track'];
 type SliderThumbProps = NonNullable<SliderTypeMap['props']['componentsProps']>['thumb'];
 type SliderValueLabelProps = NonNullable<SliderTypeMap['props']['componentsProps']>['valueLabel'];
+type SliderInputProps = NonNullable<SliderTypeMap['props']['componentsProps']>['input'];
 
 export const SliderRoot: React.FC<SliderRootProps>;
 export const SliderMark: React.FC<SliderMarkProps>;
@@ -68,17 +69,18 @@ export const SliderRail: React.FC<SliderRailProps>;
 export const SliderTrack: React.FC<SliderTrackProps>;
 export const SliderThumb: React.FC<SliderThumbProps>;
 export const SliderValueLabel: React.FC<SliderValueLabelProps>;
+export const SliderInput: React.FC<SliderInputProps>;
 
 /**
  *
  * Demos:
  *
- * - [Slider](https://material-ui.com/components/slider/)
+ * - [Slider](https://mui.com/components/slider/)
  *
  * API:
  *
- * - [Slider API](https://material-ui.com/api/slider/)
- * - inherits [SliderUnstyled API](https://material-ui.com/api/slider-unstyled/)
+ * - [Slider API](https://mui.com/api/slider/)
+ * - inherits [SliderUnstyled API](https://mui.com/api/slider-unstyled/)
  */
 declare const Slider: ExtendSliderUnstyled<SliderTypeMap>;
 

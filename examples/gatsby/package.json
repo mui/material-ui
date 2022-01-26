@@ -2,11 +2,15 @@
   "name": "gatsby",
   "version": "5.0.0",
   "private": true,
+  "browserslist": [
+    ">0.25%",
+    "not dead"
+  ],
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
-    "@mui/material": "next",
+    "@mui/material": "latest",
     "gatsby": "latest",
     "gatsby-plugin-react-helmet": "latest",
     "react": "latest",

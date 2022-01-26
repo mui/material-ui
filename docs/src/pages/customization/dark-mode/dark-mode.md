@@ -1,6 +1,6 @@
 # Dark mode
 
-<p class="description">Material-UI comes with two palette modes: light (the default) and dark.</p>
+<p class="description">MUI comes with two palette modes: light (the default) and dark.</p>
 
 You can make the theme dark by setting `mode: 'dark'`.
 

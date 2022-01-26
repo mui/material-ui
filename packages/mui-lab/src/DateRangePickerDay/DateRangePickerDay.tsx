@@ -7,7 +7,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import { DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import PickersDay, { PickersDayProps, areDayPropsEqual } from '../PickersDay/PickersDay';
@@ -349,18 +349,22 @@ DateRangePickerDay.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 } as any;
 
 /**
  *
  * Demos:
  *
- * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ * - [Date Range Picker](https://mui.com/components/date-range-picker/)
  *
  * API:
  *
- * - [DateRangePickerDay API](https://material-ui.com/api/date-range-picker-day/)
+ * - [DateRangePickerDay API](https://mui.com/api/date-range-picker-day/)
  */
 export default React.memo(DateRangePickerDay, (prevProps, nextProps) => {
   return (

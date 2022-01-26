@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
@@ -58,6 +58,15 @@ const RadioRoot = styled(SwitchBase, {
   },
 }));
 
+function areEqualValues(a, b) {
+  if (typeof b === 'object' && b !== null) {
+    return a === b;
+  }
+
+  // The value could be a number, the DOM will stringify it anyway.
+  return String(a) === String(b);
+}
+
 const defaultCheckedIcon = <RadioButtonIcon checked />;
 const defaultIcon = <RadioButtonIcon />;
 
@@ -88,7 +97,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   if (radioGroup) {
     if (typeof checked === 'undefined') {
-      checked = radioGroup.value === props.value;
+      checked = areEqualValues(radioGroup.value, props.value);
     }
     if (typeof name === 'undefined') {
       name = radioGroup.name;
@@ -192,7 +201,11 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The value of the component. The DOM API casts this to a string.
    */

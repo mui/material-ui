@@ -39,8 +39,9 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
+   * Set to `false` to remove the `icon`.
    */
-  icon?: React.ReactNode | false;
+  icon?: React.ReactNode;
   /**
    * The ARIA role attribute of the element.
    * @default 'alert'
@@ -74,11 +75,11 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
  *
  * Demos:
  *
- * - [Alert](https://material-ui.com/components/alert/)
+ * - [Alert](https://mui.com/components/alert/)
  *
  * API:
  *
- * - [Alert API](https://material-ui.com/api/alert/)
- * - inherits [Paper API](https://material-ui.com/api/paper/)
+ * - [Alert API](https://mui.com/api/alert/)
+ * - inherits [Paper API](https://mui.com/api/paper/)
  */
 export default function Alert(props: AlertProps): JSX.Element;

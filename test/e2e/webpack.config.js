@@ -23,11 +23,22 @@ module.exports = {
   ],
   module: {
     ...webpackBaseConfig.module,
-    rules: webpackBaseConfig.module.rules.concat([
+    rules: [
+      {
+        test: /\.(js|ts|tsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          configFile: path.resolve(__dirname, '../../babel.config.js'),
+        },
+      },
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'url-loader',
+        type: 'asset/inline',
       },
-    ]),
+    ],
   },
+  // TODO: 'browserslist:modern'
+  target: 'web',
 };

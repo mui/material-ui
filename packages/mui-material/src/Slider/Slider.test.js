@@ -2,9 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { SliderUnstyled } from '@mui/core';
+import { SliderUnstyled } from '@mui/base';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 
 function createTouches(touches) {
@@ -27,7 +27,7 @@ describe('<Slider />', () => {
     }
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Slider value={0} />, () => ({
     classes,
@@ -259,7 +259,7 @@ describe('<Slider />', () => {
       expect(handleChange.callCount).to.equal(3);
       expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
       expect(handleChange.args[1][1]).to.deep.equal([22, 30]);
-      expect(handleChange.args[2][1]).to.equal(handleChange.args[1][1]);
+      expect(handleChange.args[2][1]).not.to.equal(handleChange.args[1][1]);
     });
 
     it('should not react to right clicks', () => {
@@ -880,7 +880,7 @@ describe('<Slider />', () => {
           'prop',
           'MockedSlider',
         );
-      }).toErrorDev('Material-UI: You need to use the `getAriaValueText` prop instead of');
+      }).toErrorDev('MUI: You need to use the `getAriaValueText` prop instead of');
     });
 
     it('should warn if aria-label is provided', () => {
@@ -891,7 +891,7 @@ describe('<Slider />', () => {
           'prop',
           'MockedSlider',
         );
-      }).toErrorDev('Material-UI: You need to use the `getAriaLabel` prop instead of');
+      }).toErrorDev('MUI: You need to use the `getAriaLabel` prop instead of');
     });
 
     it('should warn when switching from controlled to uncontrolled', () => {
@@ -900,7 +900,7 @@ describe('<Slider />', () => {
       expect(() => {
         setProps({ value: undefined });
       }).toErrorDev(
-        'Material-UI: A component is changing the controlled value state of Slider to be uncontrolled.',
+        'MUI: A component is changing the controlled value state of Slider to be uncontrolled.',
       );
     });
 
@@ -910,7 +910,7 @@ describe('<Slider />', () => {
       expect(() => {
         setProps({ value: [20, 50] });
       }).toErrorDev(
-        'Material-UI: A component is changing the uncontrolled value state of Slider to be controlled.',
+        'MUI: A component is changing the uncontrolled value state of Slider to be controlled.',
       );
     });
   });
@@ -1181,6 +1181,39 @@ describe('<Slider />', () => {
       const thumb = document.querySelector(`.${classes.thumb}`);
       expect(root).to.have.class(classes.sizeSmall);
       expect(thumb).to.have.class(classes.thumbSizeSmall);
+    });
+  });
+
+  describe('prop: components', () => {
+    it('should render custom components if specified', () => {
+      // ARRANGE
+      const dataTestId = 'slider-input-testid';
+      const name = 'custom-input';
+      const CustomInput = ({ ownerState, ...props }) => (
+        <input {...props} data-testid={dataTestId} name={name} />
+      );
+
+      // ACT
+      const { getByTestId } = render(<Slider components={{ Input: CustomInput }} />);
+
+      // ASSERT
+      expect(getByTestId(dataTestId).name).to.equal(name);
+    });
+  });
+
+  describe('prop: componentsProps', () => {
+    it('should forward the props to their respective components', () => {
+      // ARRANGE
+      const dataTestId = 'slider-input-testid';
+      const id = 'slider-input-id';
+
+      // ACT
+      const { getByTestId } = render(
+        <Slider defaultValue={10} componentsProps={{ input: { 'data-testid': dataTestId, id } }} />,
+      );
+
+      // ASSERT
+      expect(getByTestId(dataTestId).id).to.equal(id);
     });
   });
 });

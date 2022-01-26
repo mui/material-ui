@@ -1,7 +1,7 @@
 ---
 title: React Bottom Navigation（底部导航栏）组件
 components: BottomNavigation, BottomNavigationAction
-githubLabel: 'component: BottomNavigation'
+githubLabel: 'component: bottom navigation'
 materialDesign: https://material.io/components/bottom-navigation
 ---
 
@@ -33,4 +33,4 @@ materialDesign: https://material.io/components/bottom-navigation
 
 ## Third-party routing library（第三方路由库）
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing). The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/).

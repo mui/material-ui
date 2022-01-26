@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createClientRender } from 'test/utils';
+import { describeConformance, createRenderer } from 'test/utils';
 import Container, { containerClasses as classes } from '@mui/material/Container';
 
 describe('<Container />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const defaultProps = {
     children: <div />,

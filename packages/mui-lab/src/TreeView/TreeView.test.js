@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   act,
-  createClientRender,
+  createRenderer,
   ErrorBoundary,
   fireEvent,
   screen,
@@ -14,7 +14,7 @@ import TreeView, { treeViewClasses as classes } from '@mui/lab/TreeView';
 import TreeItem from '@mui/lab/TreeItem';
 
 describe('<TreeView />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<TreeView />, () => ({
     classes,
@@ -36,7 +36,7 @@ describe('<TreeView />', () => {
       expect(() => {
         setProps({ expanded: undefined });
       }).toErrorDev(
-        'Material-UI: A component is changing the controlled expanded state of TreeView to be uncontrolled.',
+        'MUI: A component is changing the controlled expanded state of TreeView to be uncontrolled.',
       );
     });
 
@@ -50,7 +50,7 @@ describe('<TreeView />', () => {
       expect(() => {
         setProps({ selected: undefined });
       }).toErrorDev(
-        'Material-UI: A component is changing the controlled selected state of TreeView to be uncontrolled.',
+        'MUI: A component is changing the controlled selected state of TreeView to be uncontrolled.',
       );
     });
 
@@ -123,7 +123,9 @@ describe('<TreeView />', () => {
       );
 
       expect(() => {
-        screen.getByRole('button').click();
+        act(() => {
+          screen.getByRole('button').click();
+        });
       }).not.toErrorDev();
     });
   });

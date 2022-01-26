@@ -170,7 +170,7 @@ async function run() {
       },
       // Test that @mui/styled-engine doesn't add an signifiant overhead
       {
-        name: 'Styled Material-UI',
+        name: 'Styled MUI',
         path: './styled-material-ui/index.js',
       },
       {
@@ -192,7 +192,7 @@ async function run() {
         path: './box-baseline/index.js',
       },
       {
-        name: 'Box Material-UI',
+        name: 'Box MUI',
         path: './box-material-ui/index.js',
       },
       {

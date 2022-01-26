@@ -2,9 +2,9 @@
 
 <p class="description">你可以随时回到本页来切换你在查阅的不同版本的文档。</p>
 
-## Released versions
+## 发行版本
 
-The most recent stable version (✓) is recommended for use in production.
+建议在生产开发中使用最新的稳定版本.
 
 {{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
@@ -20,7 +20,7 @@ The most recent stable version (✓) is recommended for use in production.
 
 本文档包含了为您提供的一些前沿的 UI 库所遵循的练习， 在保持稳定的同时确保今后的变更总是以可预测的方式引进。
 
-Material-UI 遵循[Semantic Versioning 2.0.0](https://semver.org/)。 Material-UI 的版本号由三部分组成： `major.minor.patch`。 版本号的递增是根据发行的更改级别而定义的。
+Material-UI 遵循[语义化版本 2.0.0](https://semver.org/)。 Material-UI 的版本号由三部分组成： `主版本号.次版本号.修订号`。 版本号的递增是根据发行的更改级别而定义的。
 
 - **主版本**包含重要的新功能，更新时需要一些少量开发人员的支持。 当更新到一个新的主要的发行版本时，您可能需要运行更新脚本，重构代码，运行其他测试以及学习新的 API。
 - **次版本** 包含重要的新功能。 次要发行版本完全向后兼容；更新时不需要开发人员的支持，但您可以选择修改应用程序和库来使用新的版本中添加的新 API ，特征和功能。
@@ -38,17 +38,16 @@ Material-UI 遵循[Semantic Versioning 2.0.0](https://semver.org/)。 Material-U
 
 ## 发布时间表
 
-| 日期                  | 版本          | 状态               |
-|:------------------- |:----------- |:---------------- |
-| 2018 年 5 月          | v1.0.0      | 已发布              |
-| 2018 年 9 月          | v3.0.0      | 已发布              |
-| 2019 年 5 月          | v4.0.0      | 已发布              |
-| 2021 年第一季度          | v5.0.beta.0 | Work in progress |
-| September 1st, 2021 | v5.0.0      | ⏳                |
+| 日期         | 版本     | 状态               |
+|:---------- |:------ |:---------------- |
+| 2018 年 5 月 | v1.0.0 | 已发布              |
+| 2018 年 9 月 | v3.0.0 | 已发布              |
+| 2019 年 5 月 | v4.0.0 | 已发布              |
+| 2021 年 9 月 | v5.0.0 | Work in progress |
 
 查看 [里程碑](https://github.com/mui-org/material-ui/milestones) 可以得到一个更详细的总览。
 
-> ⚠️**免责声明** ：我们在动态的环境中运作，情况随时可能发生变化。 提供的信息旨在概述总体框架方向， 仅供参考。 我们可能会根据我们的交付能力来随时决定增加或删除新的项目来确保我们的质量标准。 Material-UI 任何功能的开发，发布和时间安排均由 Material-UI 全权决定。 路线图不代表在任何时间交付的承诺和义务。
+> ⚠️**免责声明** ：我们在动态的环境中运作，情况随时可能发生变化。 提供的信息旨在概述总体框架方向， 仅供参考。 我们可能会根据我们的交付能力来随时决定增加或删除新的项目来确保我们的质量标准。 路线图不代表在任何时间交付的承诺和义务。 路线图不代表在任何时间交付的承诺和义务。
 
 ## 政策支持
 

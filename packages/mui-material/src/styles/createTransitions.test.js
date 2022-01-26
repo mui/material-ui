@@ -21,44 +21,40 @@ describe('createTransitions', () => {
   describe('create() function', () => {
     describe('warnings', () => {
       it('should warn when first argument is of bad type', () => {
-        expect(() => create(5554)).toErrorDev(
-          'Material-UI: Argument "props" must be a string or Array',
-        );
-        expect(() => create({})).toErrorDev(
-          'Material-UI: Argument "props" must be a string or Array',
-        );
+        expect(() => create(5554)).toErrorDev('MUI: Argument "props" must be a string or Array');
+        expect(() => create({})).toErrorDev('MUI: Argument "props" must be a string or Array');
       });
 
       it('should warn when bad "duration" option type', () => {
         expect(() => create('font', { duration: null })).toErrorDev(
-          'Material-UI: Argument "duration" must be a number or a string but found null',
+          'MUI: Argument "duration" must be a number or a string but found null',
         );
         expect(() => create('font', { duration: {} })).toErrorDev(
-          'Material-UI: Argument "duration" must be a number or a string but found [object Object]',
+          'MUI: Argument "duration" must be a number or a string but found [object Object]',
         );
       });
 
       it('should warn when bad "easing" option type', () => {
         expect(() => create('transform', { easing: 123 })).toErrorDev(
-          'Material-UI: Argument "easing" must be a string',
+          'MUI: Argument "easing" must be a string',
         );
         expect(() => create('transform', { easing: {} })).toErrorDev(
-          'Material-UI: Argument "easing" must be a string',
+          'MUI: Argument "easing" must be a string',
         );
       });
 
       it('should warn when bad "delay" option type', () => {
         expect(() => create('size', { delay: null })).toErrorDev(
-          'Material-UI: Argument "delay" must be a number or a string',
+          'MUI: Argument "delay" must be a number or a string',
         );
         expect(() => create('size', { delay: {} })).toErrorDev(
-          'Material-UI: Argument "delay" must be a number or a string',
+          'MUI: Argument "delay" must be a number or a string',
         );
       });
 
       it('should warn when passed unrecognized option', () => {
         expect(() => create('size', { fffds: 'value' })).toErrorDev(
-          'Material-UI: Unrecognized argument(s) [fffds]',
+          'MUI: Unrecognized argument(s) [fffds]',
         );
       });
     });

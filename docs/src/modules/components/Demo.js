@@ -79,6 +79,7 @@ const Root = styled('div')(({ theme }) => ({
     marginRight: 0,
   },
 }));
+
 const DemoRoot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
 })(({ theme, hiddenToolbar, bg }) => ({
@@ -105,7 +106,7 @@ const DemoRoot = styled('div', {
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
     backgroundColor: theme.palette.background.paper,
-    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+    border: `1px solid ${alpha(theme.palette.action.active, 0.1)}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
   }),
@@ -119,6 +120,7 @@ const DemoRoot = styled('div', {
     paddingTop: theme.spacing(2),
   }),
 }));
+
 const Code = styled(HighlightedCode)(({ theme }) => ({
   padding: 0,
   marginBottom: theme.spacing(1),
@@ -127,16 +129,16 @@ const Code = styled(HighlightedCode)(({ theme }) => ({
     marginTop: theme.spacing(0),
   },
   '& pre': {
-    overflow: 'auto',
-    lineHeight: 1.5,
     margin: '0 auto',
     maxHeight: 'min(68vh, 1000px)',
   },
 }));
+
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
   position: 'absolute',
 });
+
 const InitialFocus = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
   top: 0,
@@ -175,6 +177,10 @@ export default function Demo(props) {
   }
 
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
+  const shownOnce = React.useRef(false);
+  if (codeOpen) {
+    shownOnce.current = true;
+  }
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);

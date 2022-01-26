@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import prism from '@mui/markdown/prism';
-import MarkdownElement from './MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   const { code, language, component: Component = MarkdownElement, ...other } = props;

@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 const options = [
-  'Show some love to Material-UI',
+  'Show some love to MUI',
   'Show all notification content',
   'Hide sensitive notification content',
   'Hide all notification content',

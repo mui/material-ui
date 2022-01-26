@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/core';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
 import { chainPropTypes, elementTypeAcceptingRef } from '@mui/utils';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
@@ -199,7 +199,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         listItemRef.current.focus();
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
+          'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
         );
       }
     }
@@ -352,7 +352,7 @@ ListItem.propTypes /* remove-proptypes */ = {
     //  is ListItemSecondaryAction the last child of ListItem
     if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
       return new Error(
-        'Material-UI: You used an element after ListItemSecondaryAction. ' +
+        'MUI: You used an element after ListItemSecondaryAction. ' +
           'For ListItem to detect that it has a secondary action ' +
           'you must pass it as the last child to ListItem.',
       );
@@ -385,7 +385,9 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
@@ -442,7 +444,11 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default ListItem;

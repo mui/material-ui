@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { isWeekend } from 'date-fns';
 import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
 import DesktopDatePicker, { DesktopDatePickerProps } from '@mui/lab/DesktopDatePicker';
-import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 import { MakeOptional } from '../internal/pickers/typings/helpers';
 
 function TestKeyboardDatePicker(
@@ -26,15 +26,7 @@ function TestKeyboardDatePicker(
 }
 
 describe('<DesktopDatePicker /> keyboard interactions', () => {
-  let clock: ReturnType<typeof useFakeTimers>;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const render = createPickerRender();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   it('closes on Escape press', () => {
     const handleClose = spy();

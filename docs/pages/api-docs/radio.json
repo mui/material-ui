@@ -26,7 +26,12 @@
       },
       "default": "'medium'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "value": { "type": { "name": "any" } }
   },
   "name": "Radio",
@@ -40,6 +45,5 @@
   "filename": "/packages/mui-material/src/Radio/Radio.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

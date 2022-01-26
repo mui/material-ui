@@ -26,6 +26,10 @@ export interface BaseDatePickerProps<TDate>
   >['components'] &
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null>['components'];
   /**
+   * Callback fired on view change.
+   */
+  onViewChange?: (view: DatePickerView) => void;
+  /**
    * First view to show.
    */
   openTo?: DatePickerView;
@@ -89,7 +93,7 @@ export function useDatePickerDefaultizedProps<Props extends BaseDatePickerProps<
     ...other
   }: Props,
   name: string,
-): DefaultizedProps<Props> {
+): DefaultizedProps<Props> & Required<Pick<BaseDatePickerProps<unknown>, 'openTo' | 'views'>> {
   const utils = useUtils();
   const defaultDates = useDefaultDates();
   const minDate = minDateProp ?? defaultDates.minDate;

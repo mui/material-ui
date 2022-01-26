@@ -37,4 +37,12 @@ describe('deepmerge', () => {
       '&.Mui-disabled': undefined,
     });
   });
+
+  it('should merge keys that do not exist in source', () => {
+    const result = deepmerge({ foo: { baz: 'test' } }, { foo: { bar: 'test' }, bar: 'test' });
+    expect(result).to.deep.equal({
+      foo: { baz: 'test', bar: 'test' },
+      bar: 'test',
+    });
+  });
 });

@@ -1,20 +1,20 @@
 ---
 title: React Date Range Picker component
 components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
-githubLabel: 'component: DateRangePicker'
+githubLabel: 'component: date range picker'
 packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://material-ui.com/store/items/material-ui-pro/)
+# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://mui.com/store/items/material-ui-pro/)
 
 <p class="description">Date pickers let the user select a range of dates.</p>
 
 > ⚠️ Pro component
 > <br /><br />
-> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license).
+> The date range picker is intended for MUI X Pro, a commercial set of advanced components built on top of the community edition (MIT license).
 > <br /><br />
-> This paid extension will include more advanced components (rich data grid, date range picker, tree view drag & drop, etc.). [Early access](https://material-ui.com/store/items/material-ui-pro/) starts at an affordable price.
+> This paid extension will include more advanced components (rich data grid, date range picker, tree view drag & drop, etc.). [Early access](https://mui.com/store/items/material-ui-pro/) starts at an affordable price.
 
 The date range pickers let the user select a range of dates.
 
@@ -58,7 +58,6 @@ The date range picker component is designed to be optimized for the device it ru
 - The `DesktopDateRangePicker` component works best for mouse devices and large screens.
 
 By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches.
-This can be customized with the `desktopModeMediaQuery` prop.
 This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}

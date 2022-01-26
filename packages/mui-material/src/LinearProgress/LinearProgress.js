@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { keyframes, css, darken, lighten } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import useTheme from '../styles/useTheme';
@@ -291,7 +291,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
-        'Material-UI: You need to provide a value prop ' +
+        'MUI: You need to provide a value prop ' +
           'when using the determinate or buffer variant of LinearProgress .',
       );
     }
@@ -305,7 +305,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       inlineStyles.bar2.transform = `translateX(${transform}%)`;
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
-        'Material-UI: You need to provide a valueBuffer prop ' +
+        'MUI: You need to provide a valueBuffer prop ' +
           'when using the buffer variant of LinearProgress.',
       );
     }
@@ -363,7 +363,11 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.

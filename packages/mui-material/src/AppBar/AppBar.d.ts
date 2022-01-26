@@ -44,12 +44,12 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
  *
  * Demos:
  *
- * - [App Bar](https://material-ui.com/components/app-bar/)
+ * - [App Bar](https://mui.com/components/app-bar/)
  *
  * API:
  *
- * - [AppBar API](https://material-ui.com/api/app-bar/)
- * - inherits [Paper API](https://material-ui.com/api/paper/)
+ * - [AppBar API](https://mui.com/api/app-bar/)
+ * - inherits [Paper API](https://mui.com/api/paper/)
  */
 
 declare const AppBar: OverridableComponent<AppBarTypeMap>;

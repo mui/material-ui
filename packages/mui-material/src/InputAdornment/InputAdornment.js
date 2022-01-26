@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -89,7 +89,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     if (process.env.NODE_ENV !== 'production') {
       if (variantProp === muiFormControl.variant) {
         console.error(
-          'Material-UI: The `InputAdornment` variant infers the variant prop ' +
+          'MUI: The `InputAdornment` variant infers the variant prop ' +
             'you do not have to provide one.',
         );
       }
@@ -127,8 +127,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
             {/* To have the correct vertical alignment baseline */}
             {position === 'start' ? (
               /* notranslate needed while Google Translate will not fix zero-width space issue */
-              /* eslint-disable-next-line react/no-danger */
-              <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+              <span className="notranslate">&#8203;</span>
             ) : null}
             {children}
           </React.Fragment>
@@ -178,7 +177,11 @@ InputAdornment.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * Note: If you are using the `TextField` component or the `FormControl` component

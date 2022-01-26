@@ -40,7 +40,7 @@ const PaginationDiv = styled('div')(({ theme }) => {
 const PageLinkButton = styled(Button)(({ theme }) => {
   return {
     textTransform: 'none',
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
   };
 });
@@ -93,7 +93,7 @@ function orderedPages(pages, current = []) {
 }
 
 async function postFeedback(data) {
-  const env = window.location.host.indexOf('material-ui.com') !== -1 ? 'prod' : 'dev';
+  const env = window.location.host.indexOf('mui.com') !== -1 ? 'prod' : 'dev';
   try {
     const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',
@@ -109,7 +109,7 @@ async function postFeedback(data) {
 }
 
 async function getUserFeedback(id) {
-  const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
+  const env = location.hostname === 'mui.com' ? 'prod' : 'dev';
   const URL = `${process.env.FEEDBACK_URL}/${env}/feedback/${id}`;
 
   try {
@@ -150,7 +150,7 @@ async function submitFeedback(page, rating, comment, language) {
 
 function getCurrentRating(pathname) {
   let userFeedback;
-  if (process.browser) {
+  if (typeof window !== 'undefined') {
     userFeedback = getCookie('feedback');
     userFeedback = userFeedback && JSON.parse(userFeedback);
   }
@@ -256,6 +256,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={prevPage.pathname}
+                  {...prevPage.linkProps}
                   size="medium"
                   startIcon={<ChevronLeftIcon />}
                 >
@@ -297,6 +298,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={nextPage.pathname}
+                  {...nextPage.linkProps}
                   size="medium"
                   endIcon={<ChevronRightIcon />}
                 >
@@ -306,7 +308,7 @@ export default function AppLayoutDocsFooter() {
             </PaginationDiv>
           </React.Fragment>
         )}
-        <Collapse in={commentOpen} onEntered={handleEntered}>
+        <Collapse in={commentOpen} unmountOnExit onEntered={handleEntered}>
           <form
             aria-labelledby="feedback-message"
             onReset={handleCancelComment}

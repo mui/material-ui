@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createClientRender, fireEvent, describeConformance } from 'test/utils';
+import { act, createRenderer, fireEvent, describeConformance } from 'test/utils';
 import Link, { linkClasses as classes } from '@mui/material/Link';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 
@@ -14,7 +14,7 @@ function focusVisible(element) {
 }
 
 describe('<Link />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Link href="/">Home</Link>, () => ({
     classes,

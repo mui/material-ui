@@ -17,7 +17,7 @@ githubLabel: 'component: Box'
 
 ## `sx` 属性
 
-All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例：
+All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例： In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
 
 {{"demo": "pages/system/box/BoxSx.js", "defaultCodeOpen": true }}
 
@@ -29,7 +29,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. 但是按钮组件已经定义自己的样式。 CSS 继承于事无补。 To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
+但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. 但是按钮组件已经定义自己的样式。 The Button component defines its own styles. CSS 继承于事无补。 To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -61,8 +61,24 @@ import Box from '@material-ui/core/Box';
 
 ## System props
 
-As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top: You can use them as prop directly on the component. For instance, a margin-top:
 
 ```jsx
 <Box mt={2}>
+```
+
+## Create your own `Box` component
+
+If you want to have a different default theme for the `Box` component, you can create your own version of it, using the `createBox()` utility.
+
+```js
+import { createBox, createTheme } from '@mui/system';
+
+const defaultTheme = createTheme({
+  // your custom theme values
+});
+
+const Box = createBox({ defaultTheme });
+
+export default Box;
 ```

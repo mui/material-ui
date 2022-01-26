@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import Input from '@mui/material/Input';
-import { createClientRender, screen } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 import { isMuiElement } from '@mui/material/utils';
 import { createTheme } from '@mui/material/styles';
 import StylesProvider from '../StylesProvider';
@@ -14,7 +14,7 @@ import withStyles from './withStyles';
 
 describe('withStyles', () => {
   // StrictModeViolation: uses makeStyles
-  const render = createClientRender({ strict: false });
+  const { render } = createRenderer({ strict: false });
 
   it('hoist statics', () => {
     const Test = () => null;

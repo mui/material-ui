@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { describeConformance, act, createClientRender, fireEvent, queries } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, queries } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
@@ -13,7 +13,7 @@ const NoContent = React.forwardRef(() => {
 });
 
 describe('<ListItem />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<ListItem />, () => ({
     classes,
@@ -174,17 +174,17 @@ describe('<ListItem />', () => {
             'prop',
             'MockedName',
           );
-        }).toErrorDev('Warning: Failed prop type: Material-UI: You used an element');
+        }).toErrorDev('Warning: Failed prop type: MUI: You used an element');
       });
 
       it('should warn (but not error) with autoFocus with a function component with no content', () => {
         expect(() => {
           render(<ListItem component={NoContent} autoFocus />);
         }).toErrorDev([
-          'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
+          'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') &&
-            'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
+            'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
         ]);
       });
     });

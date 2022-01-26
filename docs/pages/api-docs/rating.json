@@ -28,7 +28,12 @@
       },
       "default": "'medium'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "value": { "type": { "name": "number" } }
   },
   "name": "Rating",
@@ -60,6 +65,5 @@
   "filename": "/packages/mui-material/src/Rating/Rating.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/rating/\">Rating</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

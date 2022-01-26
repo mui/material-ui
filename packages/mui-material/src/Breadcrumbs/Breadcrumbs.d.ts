@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BreadcrumbsClasses } from './breadcrumbsClasses';
 
@@ -55,11 +55,11 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
  *
  * Demos:
  *
- * - [Breadcrumbs](https://material-ui.com/components/breadcrumbs/)
+ * - [Breadcrumbs](https://mui.com/components/breadcrumbs/)
  *
  * API:
  *
- * - [Breadcrumbs API](https://material-ui.com/api/breadcrumbs/)
+ * - [Breadcrumbs API](https://mui.com/api/breadcrumbs/)
  */
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 

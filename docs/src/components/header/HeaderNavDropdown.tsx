@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -45,13 +45,13 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'Core',
-    description: 'Ready to use, forever free, foundational components.',
+    name: 'MUI Core',
+    description: 'Ready-to-use foundational components, free forever.',
     href: ROUTES.productCore,
   },
   {
-    name: 'Advanced',
-    description: 'Powerful and robust components for your complex apps.',
+    name: 'MUI X',
+    description: 'Advanced and powerful components for complex use-cases.',
     href: ROUTES.productAdvanced,
   },
   {
@@ -60,7 +60,7 @@ const PRODUCTS = [
     href: ROUTES.productTemplates,
   },
   {
-    name: 'Design Kits',
+    name: 'Design kits',
     description: 'Our components available in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
@@ -73,26 +73,13 @@ export default function HeaderNavDropdown() {
   return (
     <React.Fragment>
       <IconButton
+        color="primary"
         aria-label="Menu"
         ref={hambugerRef}
         disableRipple
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',
-          p: '6.5px',
-          borderRadius: 1,
-          border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
-          '& svg': { width: 18, height: 18 },
-          '&:focus': {
-            boxShadow: (theme) =>
-              `0 0 0 1px ${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[200]
-              }`,
-          },
           '& rect': {
             transformOrigin: 'center',
             transition: '0.2s',
@@ -123,13 +110,16 @@ export default function HeaderNavDropdown() {
             top: 56,
             left: 0,
             right: 0,
-            boxShadow: '0 15px 10px -5px rgb(90 105 120 / 10%)',
+            boxShadow: (theme) =>
+              `0px 4px 20px ${
+                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+              }`,
             bgcolor: 'background.paper',
           }}
         >
           <Box
             sx={{
-              p: 2.5,
+              p: 2,
               bgcolor: 'background.paper',
               maxHeight: 'calc(100vh - 56px)',
               overflow: 'auto',
@@ -197,6 +187,13 @@ export default function HeaderNavDropdown() {
                   About us
                 </Anchor>
               </li>
+              {FEATURE_TOGGLE.enable_blog_index && (
+                <li>
+                  <Anchor href={ROUTES.blog} as={Link} noLinkStyle>
+                    Blog
+                  </Anchor>
+                </li>
+              )}
             </UList>
           </Box>
         </Collapse>

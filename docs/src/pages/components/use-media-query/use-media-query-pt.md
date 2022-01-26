@@ -66,7 +66,7 @@ Você pode usar [json2mq](https://github.com/akiran/json2mq) para gerar uma stri
 
 Você precisa de uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) em seu ambiente de teste.
 
-Por exemplo, [jsdom não suporta ainda](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). Você deve usar um polyfill para isso. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular.
+Por exemplo, [jsdom não suporta ainda](https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom). Você deve usar um polyfill para isso. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular.
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -163,6 +163,7 @@ function handleRender(req, res) {
 }
 }
 }
+}
 ```
 
 {{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
@@ -186,7 +187,7 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 
 - `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. O valor padrão é `false`.
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. Isso pode ser usado para manipular uma janela iframe com conteúdo.
-- `options.noSsr` (_bool_ [optional]): Defaults to `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
+- `options.noSsr` (_bool_ [opcional]): Padrão `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 Nota: Você pode alterar as opções padrão usando [`default props`](/customization/theme-components/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.

@@ -1,10 +1,10 @@
 ---
+title: July 2019 Update
 description: Here are the most significant improvements in July.
+date: 2019-08-04T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['Company update']
 ---
-
-# July 2019 Update
-
-Olivier Tassinari. August 4, 2019.
 
 Here are the most significant improvements in July:
 
@@ -33,7 +33,7 @@ But this summary is just scratching the surface. We have accepted 146 commits fr
 
 _(We'll do our best, no guarantee!)_
 
-- 🔍 We will work on providing ready to use autocomplete, combo box, and multi-select components.
+- 🔍 We will work on providing ready-to-use autocomplete, combo box, and multi-select components.
 
 - 🦴 We will continue to work on a new Skeleton component. You can already [preview it](https://deploy-preview-16786--material-ui.netlify.app/components/skeleton/).
 

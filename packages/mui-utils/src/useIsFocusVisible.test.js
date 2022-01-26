@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {
   act,
-  createClientRender,
+  createRenderer,
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
@@ -50,7 +50,7 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
 });
 
 describe('useIsFocusVisible', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   before(() => {
     // isolate test from previous component test that use the polyfill in the document scope

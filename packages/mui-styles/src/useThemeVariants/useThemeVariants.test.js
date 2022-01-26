@@ -1,13 +1,13 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, screen, strictModeDoubleLoggingSupressed } from 'test/utils';
+import { createRenderer, screen, strictModeDoubleLoggingSupressed } from 'test/utils';
 import { createTheme } from '@mui/material/styles';
 import ThemeProvider from '../ThemeProvider';
 import useThemeVariants from './useThemeVariants';
 import withStyles from '../withStyles';
 
 describe('useThemeVariants', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const ComponentInternal = (props) => {
     const { className, ...other } = props;
@@ -136,13 +136,13 @@ describe('useThemeVariants', () => {
       ),
     ).toErrorDev([
       [
-        `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
-        `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
+        `MUI: You are using a variant value \`test\` for which you didn't define styles.`,
+        `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://mui.com/r/custom-component-variants.`,
       ].join('\n'),
       !strictModeDoubleLoggingSupressed &&
         [
-          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
-          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
+          `MUI: You are using a variant value \`test\` for which you didn't define styles.`,
+          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://mui.com/r/custom-component-variants.`,
         ].join('\n'),
     ]);
   });

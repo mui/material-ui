@@ -12,7 +12,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4zm0 15 3-3.86 2.14 2.58 3-3.86L18 19H6z"
+  d: "M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 2h5v7l-2.5-1.5L11 11V4zM7 18l2.38-3.17L11 17l2.62-3.5L17 18H7z"
 }), 'PhotoAlbum');
 
 exports.default = _default;

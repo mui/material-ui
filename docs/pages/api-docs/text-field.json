@@ -45,7 +45,12 @@
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       }
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "type": { "type": { "name": "string" } },
     "value": { "type": { "name": "any" } },
     "variant": {
@@ -63,6 +68,5 @@
   "filename": "/packages/mui-material/src/TextField/TextField.js",
   "inheritance": { "component": "FormControl", "pathname": "/api/form-control/" },
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/components/pickers/\">Pickers</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

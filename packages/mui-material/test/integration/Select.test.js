@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { useFakeTimers } from 'sinon';
-import { act, createClientRender, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from 'test/utils';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Dialog from '@mui/material/Dialog';
@@ -9,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
 describe('<Select> integration', () => {
-  const render = createClientRender();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describe('with Dialog', () => {
     function SelectAndDialog() {
@@ -39,18 +38,6 @@ describe('<Select> integration', () => {
       );
     }
 
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should focus the selected item', () => {
       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
@@ -66,9 +53,7 @@ describe('<Select> integration', () => {
       act(() => {
         getByTestId('select-backdrop').click();
       });
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -90,9 +75,7 @@ describe('<Select> integration', () => {
       act(() => {
         options[2].click();
       });
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -125,7 +108,12 @@ describe('<Select> integration', () => {
           <InputLabel classes={{ focused: 'focused-label' }} data-testid="label">
             Age
           </InputLabel>
-          <Select value="">
+          <Select
+            MenuProps={{
+              transitionDuration: 0,
+            }}
+            value=""
+          >
             <MenuItem value="">none</MenuItem>
             <MenuItem value={10}>Ten</MenuItem>
           </Select>
@@ -137,6 +125,7 @@ describe('<Select> integration', () => {
         trigger.focus();
       });
       fireEvent.keyDown(trigger, { key: 'Enter' });
+      clock.tick(0);
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });

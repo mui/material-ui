@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { generateUtilityClasses } from '@mui/core';
+import { generateUtilityClasses } from '@mui/base';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';

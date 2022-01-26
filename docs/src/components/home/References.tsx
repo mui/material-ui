@@ -4,16 +4,25 @@ import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { CORE_CUSTOMERS, ADVANCED_CUSTOMERS } from 'docs/src/components/home/CompaniesGrid';
+import {
+  CORE_CUSTOMERS,
+  ADVANCED_CUSTOMERS,
+  DESIGNKITS_CUSTOMERS,
+  TEMPLATES_CUSTOMERS,
+} from 'docs/src/components/home/CompaniesGrid';
 
-export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS };
+export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS, DESIGNKITS_CUSTOMERS, TEMPLATES_CUSTOMERS };
 
 const CompaniesGrid = dynamic(() => import('./CompaniesGrid'));
 
 const References = ({
   companies,
 }: {
-  companies: typeof CORE_CUSTOMERS | typeof ADVANCED_CUSTOMERS;
+  companies:
+    | typeof CORE_CUSTOMERS
+    | typeof ADVANCED_CUSTOMERS
+    | typeof DESIGNKITS_CUSTOMERS
+    | typeof TEMPLATES_CUSTOMERS;
 }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -29,7 +38,7 @@ const References = ({
         textAlign="center"
         variant="body2"
         sx={{
-          minHeight: 42, // a hack to reduce CLS (layout shift)
+          minHeight: 42, // hard-coded to reduce CLS (layout shift)
           mt: 4,
           mx: 'auto',
           maxWidth: 400,

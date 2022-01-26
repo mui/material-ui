@@ -24,12 +24,12 @@ type DateTimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
- * - [Pickers](https://material-ui.com/components/pickers/)
+ * - [Date Time Picker](https://mui.com/components/date-time-picker/)
+ * - [Pickers](https://mui.com/components/pickers/)
  *
  * API:
  *
- * - [DateTimePicker API](https://material-ui.com/api/date-time-picker/)
+ * - [DateTimePicker API](https://mui.com/api/date-time-picker/)
  */
 const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
   inProps: DateTimePickerProps<TDate>,
@@ -144,7 +144,11 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    leftArrowButton: PropTypes.object,
+    rightArrowButton: PropTypes.object,
+    switchViewButton: PropTypes.object,
+  }),
   /**
    * Date tab icon.
    */
@@ -170,6 +174,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   disableCloseOnSelect: PropTypes.bool,
   /**
    * If `true`, the picker and text field are disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -358,17 +363,22 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
   /**
    * Force rendering in particular orientation.
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
-   * Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps: PropTypes.object,
+  /**
+   * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
    */
   PopperProps: PropTypes.object,
   /**
    * Make picker read only.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**
@@ -377,12 +387,12 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
    */
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}
@@ -459,7 +469,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    */
   toolbarTitle: PropTypes.node,
   /**
-   * Custom component for popper [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
+   * Custom component for popper [Transition](https://mui.com/components/transitions/#transitioncomponent-prop).
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -475,7 +485,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']).isRequired,
   ),
 } as any;
 

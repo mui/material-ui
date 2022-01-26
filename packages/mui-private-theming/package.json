@@ -1,14 +1,14 @@
 {
   "name": "@mui/private-theming",
-  "version": "5.0.0-rc.1",
+  "version": "5.3.0",
   "private": false,
-  "author": "Material-UI Team",
-  "description": "Material-UI Theming - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
+  "author": "MUI Team",
+  "description": "MUI Theming - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
   "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
-    "material-ui",
+    "mui",
     "theme"
   ],
   "repository": {
@@ -20,10 +20,10 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://next.material-ui.com/",
+  "homepage": "https://mui.com/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/material-ui"
+    "url": "https://opencollective.com/mui"
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
@@ -33,13 +33,13 @@
     "build:stable": "node ../../scripts/build stable",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build --tag next",
+    "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-private-theming/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
     "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.2"
+    "react": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -47,8 +47,8 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.8",
-    "@mui/utils": "5.0.0-rc.1",
+    "@babel/runtime": "^7.16.7",
+    "@mui/utils": "^5.3.0",
     "prop-types": "^15.7.2"
   },
   "sideEffects": false,

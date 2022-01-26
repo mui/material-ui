@@ -86,6 +86,7 @@ import { SnackbarProps } from '../Snackbar';
 import { SpeedDialProps } from '../SpeedDial';
 import { SpeedDialActionProps } from '../SpeedDialAction';
 import { SpeedDialIconProps } from '../SpeedDialIcon';
+import { StackProps } from '../Stack';
 import { StepButtonProps } from '../StepButton';
 import { StepConnectorProps } from '../StepConnector';
 import { StepContentProps } from '../StepContent';
@@ -207,6 +208,7 @@ export interface ComponentsPropsList {
   MuiSpeedDial: SpeedDialProps;
   MuiSpeedDialAction: SpeedDialActionProps;
   MuiSpeedDialIcon: SpeedDialIconProps;
+  MuiStack: StackProps;
   MuiStep: StepProps;
   MuiStepButton: StepButtonProps;
   MuiStepConnector: StepConnectorProps;

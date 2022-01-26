@@ -9,3 +9,5 @@ spacing(gap)
 `calc(100% - ${theme.spacing(itemHorzPadding * 2)})`
 padding: `calc(${theme.spacing(2)} - 1px) 0`
 `calc(100% - calc(${theme.spacing(itemHorzPadding)} * 0.3))`
+theme.spacing(-1)
+theme.spacing(-1)

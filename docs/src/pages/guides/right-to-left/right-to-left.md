@@ -1,6 +1,6 @@
 # Right-to-left
 
-<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of Material-UI components you must follow the following steps.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of MUI components you must follow the following steps.</p>
 
 ## Steps
 
@@ -52,23 +52,25 @@ In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package,
 npm install jss-rtl
 ```
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
+Having installed the plugin in your project, MUI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
 
 ### 4. Load the rtl plugin
 
 #### 4.1 emotion
 
-If you use emotion as your style engine, you should create new cache instance that uses the `stylis-plugin-rtl` and provide that on the top of your application tree. The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
+If you use emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree.
+The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+import { prefixer } from 'stylis';
 
 // Create rtl cache
 const cacheRtl = createCache({
   key: 'muirtl',
-  stylisPlugins: [rtlPlugin],
+  stylisPlugins: [prefixer, rtlPlugin],
 });
 
 function RTL(props) {

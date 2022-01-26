@@ -1,4 +1,4 @@
-# Material-UI benchmark
+# MUI benchmark
 
 ## `@mui/material`
 

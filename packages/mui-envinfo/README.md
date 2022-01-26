@@ -1,7 +1,7 @@
 # @mui/envinfo
 
-Prints information about the current environment relevant to Material-UI packages to the console.
-Please use this package if you report [issues to Material-UI](https://github.com/mui-org/material-ui/issues).
+Prints information about the current environment relevant to MUI packages to the console.
+Please use this package if you report [issues to MUI](https://github.com/mui-org/material-ui/issues).
 
 ## Usage
 
@@ -31,7 +31,7 @@ $ npx @mui/envinfo
     @mui/styles:  5.0.0-alpha.18
     @mui/system:  5.0.0-alpha.18
     @mui/types:  5.1.0
-    @mui/core:  5.0.0-alpha.18
+    @mui/base:  5.0.0-alpha.18
     @mui/utils:  5.0.0-alpha.18
     @types/react: ^17.0.0 => 17.0.0
     react: ^16.14.0 => 16.14.0

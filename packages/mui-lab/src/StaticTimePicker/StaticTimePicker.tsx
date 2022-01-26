@@ -2,7 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { BaseTimePickerProps, useTimePickerDefaultizedProps } from '../TimePicker/shared';
 import TimePickerToolbar from '../TimePicker/TimePickerToolbar';
-import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import PickerStaticWrapper, {
+  PickerStaticWrapperProps,
+} from '../internal/pickers/wrappers/PickerStaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { useTimeValidation } from '../internal/pickers/hooks/useValidation';
@@ -20,7 +22,7 @@ export interface StaticTimePickerProps<TDate = unknown> extends BaseTimePickerPr
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default 'mobile'
    */
-  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+  displayStaticWrapperAs?: PickerStaticWrapperProps['displayStaticWrapperAs'];
 }
 
 type StaticTimePickerComponent = (<TDate>(
@@ -31,11 +33,11 @@ type StaticTimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Time Picker](https://material-ui.com/components/time-picker/)
+ * - [Time Picker](https://mui.com/components/time-picker/)
  *
  * API:
  *
- * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
+ * - [StaticTimePicker API](https://mui.com/api/static-time-picker/)
  */
 const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
   inProps: StaticTimePickerProps<TDate>,
@@ -60,7 +62,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
   const DateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
+    <PickerStaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       {/* @ts-ignore time picker has no component slot for the calendar header */}
       <Picker
         {...pickerProps}
@@ -69,7 +71,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
         DateInputProps={DateInputProps}
         {...other}
       />
-    </StaticWrapper>
+    </PickerStaticWrapper>
   );
 }) as StaticTimePickerComponent;
 
@@ -230,6 +232,10 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
    */
   onOpen: PropTypes.func,
   /**
+   * Callback fired on view change.
+   */
+  onViewChange: PropTypes.func,
+  /**
    * Control the popup or dialog open state.
    */
   open: PropTypes.bool,
@@ -251,7 +257,7 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
   readOnly: PropTypes.bool,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}

@@ -10,7 +10,7 @@ export default React.forwardRef(function DeprecatedPaginationItem(props, ref) {
   if (!warnedOnce) {
     console.warn(
       [
-        'Material-UI: The PaginationItem component was moved from the lab to the core.',
+        'MUI: The PaginationItem component was moved from the lab to the core.',
         '',
         "You should use `import { PaginationItem } from '@mui/material'`",
         "or `import PaginationItem from '@mui/material/PaginationItem'`",

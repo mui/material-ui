@@ -30,6 +30,11 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   sx?: SxProps<Theme>;
   /**
+   * The total number of avatars. Used for calculating the number of extra avatars.
+   * @default children.length
+   */
+  total?: number;
+  /**
    * The variant to use.
    * @default 'circular'
    */
@@ -43,10 +48,10 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
  *
  * Demos:
  *
- * - [Avatars](https://material-ui.com/components/avatars/)
+ * - [Avatars](https://mui.com/components/avatars/)
  *
  * API:
  *
- * - [AvatarGroup API](https://material-ui.com/api/avatar-group/)
+ * - [AvatarGroup API](https://mui.com/api/avatar-group/)
  */
 export default function AvatarGroup(props: AvatarGroupProps): JSX.Element;

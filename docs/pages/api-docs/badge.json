@@ -22,7 +22,10 @@
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ badge?: object, root?: object }" },
+      "default": "{}"
+    },
     "invisible": { "type": { "name": "bool" } },
     "max": { "type": { "name": "number" }, "default": "99" },
     "overlap": {
@@ -30,7 +33,12 @@
       "default": "'rectangular'"
     },
     "showZero": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "union",
@@ -46,6 +54,17 @@
       "badge",
       "dot",
       "standard",
+      "anchorOriginTopRight",
+      "anchorOriginBottomRight",
+      "anchorOriginTopLeft",
+      "anchorOriginBottomLeft",
+      "invisible",
+      "colorPrimary",
+      "colorSecondary",
+      "colorError",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
       "anchorOriginTopRightRectangular",
       "anchorOriginBottomRightRectangular",
       "anchorOriginTopLeftRectangular",
@@ -54,13 +73,8 @@
       "anchorOriginBottomRightCircular",
       "anchorOriginTopLeftCircular",
       "anchorOriginBottomLeftCircular",
-      "invisible",
-      "colorPrimary",
-      "colorSecondary",
-      "colorError",
-      "colorInfo",
-      "colorSuccess",
-      "colorWarning"
+      "overlapRectangular",
+      "overlapCircular"
     ],
     "globalClasses": {},
     "name": "MuiBadge"
@@ -70,6 +84,5 @@
   "filename": "/packages/mui-material/src/Badge/Badge.js",
   "inheritance": { "component": "BadgeUnstyled", "pathname": "/api/badge-unstyled/" },
   "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li>\n<li><a href=\"/components/badges/\">Badges</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

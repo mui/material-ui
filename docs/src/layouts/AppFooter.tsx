@@ -13,18 +13,20 @@ import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import Link from 'docs/src/modules/components/Link';
+import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
 export default function AppFooter() {
   return (
     <Container component="footer">
       <Box
         sx={{
-          py: 8,
+          pt: 4,
+          pb: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: (theme) => theme.spacing(4, 2),
+          gap: 4,
           gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
           '& a:not(.MuiIconButton-root)': {
@@ -61,10 +63,10 @@ export default function AppFooter() {
               <Typography fontWeight="bold" variant="body2">
                 Products
               </Typography>
-              <Link href={ROUTES.productCore}>Core</Link>
-              <Link href={ROUTES.productAdvanced}>Advanced X</Link>
+              <Link href={ROUTES.productCore}>MUI Core</Link>
+              <Link href={ROUTES.productAdvanced}>MUI X</Link>
               <Link href={ROUTES.productTemplates}>Templates</Link>
-              <Link href={ROUTES.productDesignKits}>Design Kits</Link>
+              <Link href={ROUTES.productDesignKits}>Design kits</Link>
             </Box>
           ) : (
             <Box sx={{ display: { xs: 'none', md: 'block' } }} />
@@ -95,9 +97,30 @@ export default function AppFooter() {
             </Typography>
             <Link href={ROUTES.about}>About</Link>
             <Link href={ROUTES.vision}>Vision</Link>
-            <Link href={ROUTES.careers}>Careers</Link>
+            <Box sx={{ display: 'flex', alignItems: 'end' }}>
+              <Link href={ROUTES.careers}>Careers </Link>
+              <Box
+                sx={{
+                  px: 0.5,
+                  py: '3px',
+                  ml: 1,
+                  mb: '1px',
+                  borderRadius: 0.5,
+                  fontSize: (theme) => theme.typography.pxToRem(9),
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  color: '#fff',
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.error[800]
+                      : theme.palette.error.main,
+                }}
+              >
+                Hiring
+              </Box>
+            </Box>
             <Link href={ROUTES.support}>Support</Link>
-            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@material-ui.com">
+            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
               Contact us
             </Link>
           </Box>
@@ -119,33 +142,43 @@ export default function AppFooter() {
           <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               href="https://github.com/mui-org"
               aria-label="github"
               title="GitHub"
               size="small"
             >
-              <GitHubIcon />
+              <GitHubIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
-              href="https://twitter.com/MaterialUI"
+              rel="noopener noreferrer"
+              href="https://stackoverflow.com/questions/tagged/mui"
+              aria-label="Stack Overflow"
+              title="Stack Overflow"
+              size="small"
+            >
+              <SvgStackOverflow fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/MUI_hq"
               aria-label="twitter"
               title="Twitter"
               size="small"
             >
-              <TwitterIcon />
+              <TwitterIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
-              href="https://www.linkedin.com/company/material-ui/"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/company/mui/"
               aria-label="linkedin"
               title="LinkedIn"
               size="small"
             >
-              <LinkedInIcon />
+              <LinkedInIcon fontSize="small" />
             </IconButton>
           </Stack>
         </Box>

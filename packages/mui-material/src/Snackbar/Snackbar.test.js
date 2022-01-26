@@ -1,23 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { spy } from 'sinon';
+import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 
 describe('<Snackbar />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const clientRender = createClientRender();
+  const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
   /**
    * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
    *
@@ -30,7 +18,7 @@ describe('<Snackbar />', () => {
    */
   function render(...args) {
     const result = clientRender(...args);
-    clock.next();
+    clock.tick(0);
     return result;
   }
 
@@ -59,6 +47,31 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([event, 'clickaway']);
+    });
+
+    it('should be called when pressing Escape', () => {
+      const handleClose = spy();
+      render(<Snackbar open onClose={handleClose} message="message" />);
+
+      expect(fireEvent.keyDown(document.body, { key: 'Escape' })).to.equal(true);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0][1]).to.deep.equal('escapeKeyDown');
+    });
+
+    it('can limit which Snackbars are closed when pressing Escape', () => {
+      const handleCloseA = spy((event) => event.preventDefault());
+      const handleCloseB = spy();
+      render(
+        <React.Fragment>
+          <Snackbar open onClose={handleCloseA} message="messageA" />
+          <Snackbar open onClose={handleCloseB} message="messageB" />
+        </React.Fragment>,
+      );
+
+      fireEvent.keyDown(document.body, { key: 'Escape' });
+
+      expect(handleCloseA.callCount).to.equal(1);
+      expect(handleCloseB.callCount).to.equal(0);
     });
   });
 
@@ -114,30 +127,22 @@ describe('<Snackbar />', () => {
       act(() => {
         setSnackbarOpen(true);
       });
-      act(() => {
-        clock.tick(duration);
-      });
+      clock.tick(duration);
 
       expect(onClose.callCount).to.equal(1);
       expect(onExited.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(duration / 2);
-      });
+      clock.tick(duration / 2);
 
       expect(onClose.callCount).to.equal(1);
       expect(onExited.callCount).to.equal(1);
 
-      act(() => {
-        clock.tick(duration);
-      });
+      clock.tick(duration);
 
       expect(onClose.callCount).to.equal(messageCount);
       expect(onExited.callCount).to.equal(1);
 
-      act(() => {
-        clock.tick(duration / 2);
-      });
+      clock.tick(duration / 2);
 
       expect(onClose.callCount).to.equal(messageCount);
       expect(onExited.callCount).to.equal(messageCount);
@@ -161,9 +166,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -183,13 +186,9 @@ describe('<Snackbar />', () => {
       );
 
       setProps({ open: true });
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       setProps({ open: true, onClose: handleClose2 });
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose1.callCount).to.equal(0);
       expect(handleClose2.callCount).to.equal(1);
@@ -211,57 +210,11 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       setProps({ autoHideDuration: undefined });
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose.callCount).to.equal(0);
-    });
-
-    it('should be able to interrupt the timer', () => {
-      const handleMouseEnter = spy();
-      const handleMouseLeave = spy();
-      const handleClose = spy();
-      const autoHideDuration = 2e3;
-
-      const { container } = render(
-        <Snackbar
-          open
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClose={handleClose}
-          message="message"
-          autoHideDuration={autoHideDuration}
-        />,
-      );
-
-      expect(handleClose.callCount).to.equal(0);
-
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-        fireEvent.mouseEnter(container.querySelector('div'));
-      });
-
-      expect(handleMouseEnter.callCount).to.equal(1);
-
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-        fireEvent.mouseLeave(container.querySelector('div'));
-      });
-
-      expect(handleMouseLeave.callCount).to.equal(1);
-      expect(handleClose.callCount).to.equal(0);
-
-      act(() => {
-        clock.tick(2e3);
-      });
-
-      expect(handleClose.callCount).to.equal(1);
-      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
 
     it('should not call onClose if autoHideDuration is undefined', () => {
@@ -273,9 +226,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -288,9 +239,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -310,117 +259,164 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       setProps({ open: false });
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose.callCount).to.equal(0);
     });
   });
 
-  describe('prop: resumeHideDuration', () => {
-    it('should not call onClose with not timeout after user interaction', () => {
-      const handleClose = spy();
-      const autoHideDuration = 2e3;
-      const resumeHideDuration = 3e3;
+  [
+    {
+      type: 'mouse',
+      enter: (container) => fireEvent.mouseEnter(container.querySelector('button')),
+      leave: (container) => fireEvent.mouseLeave(container.querySelector('button')),
+    },
+    {
+      type: 'keyboard',
+      enter: (container) => act(() => container.querySelector('button').focus()),
+      leave: (container) => act(() => container.querySelector('button').blur()),
+    },
+  ].forEach((userInteraction) => {
+    describe(`interacting with ${userInteraction.type}`, () => {
+      it('should be able to interrupt the timer', () => {
+        const handleMouseEnter = spy();
+        const handleMouseLeave = spy();
+        const handleBlur = spy();
+        const handleFocus = spy();
+        const handleClose = spy();
+        const autoHideDuration = 2e3;
 
-      const { container } = render(
-        <Snackbar
-          open
-          onClose={handleClose}
-          message="message"
-          autoHideDuration={autoHideDuration}
-          resumeHideDuration={resumeHideDuration}
-        />,
-      );
+        const { container } = render(
+          <Snackbar
+            action={<button>undo</button>}
+            open
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClose={handleClose}
+            message="message"
+            autoHideDuration={autoHideDuration}
+          />,
+        );
 
-      expect(handleClose.callCount).to.equal(0);
+        expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
         clock.tick(autoHideDuration / 2);
-      });
-      fireEvent.mouseEnter(container.querySelector('div'));
-      act(() => {
+        userInteraction.enter(container.querySelector('div'));
+
+        if (userInteraction.type === 'keyboard') {
+          expect(handleFocus.callCount).to.equal(1);
+        } else {
+          expect(handleMouseEnter.callCount).to.equal(1);
+        }
+
         clock.tick(autoHideDuration / 2);
-      });
-      fireEvent.mouseLeave(container.querySelector('div'));
+        userInteraction.leave(container.querySelector('div'));
 
-      expect(handleClose.callCount).to.equal(0);
+        if (userInteraction.type === 'keyboard') {
+          expect(handleBlur.callCount).to.equal(1);
+        } else {
+          expect(handleMouseLeave.callCount).to.equal(1);
+        }
+        expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
         clock.tick(2e3);
+
+        expect(handleClose.callCount).to.equal(1);
+        expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
       });
 
-      expect(handleClose.callCount).to.equal(0);
-    });
+      it('should not call onClose with not timeout after user interaction', () => {
+        const handleClose = spy();
+        const autoHideDuration = 2e3;
+        const resumeHideDuration = 3e3;
 
-    it('should call onClose when timer done after user interaction', () => {
-      const handleClose = spy();
-      const autoHideDuration = 2e3;
-      const resumeHideDuration = 3e3;
+        const { container } = render(
+          <Snackbar
+            action={<button>undo</button>}
+            open
+            onClose={handleClose}
+            message="message"
+            autoHideDuration={autoHideDuration}
+            resumeHideDuration={resumeHideDuration}
+          />,
+        );
 
-      const { container } = render(
-        <Snackbar
-          open
-          onClose={handleClose}
-          message="message"
-          autoHideDuration={autoHideDuration}
-          resumeHideDuration={resumeHideDuration}
-        />,
-      );
+        expect(handleClose.callCount).to.equal(0);
 
-      expect(handleClose.callCount).to.equal(0);
-
-      act(() => {
         clock.tick(autoHideDuration / 2);
-      });
-      fireEvent.mouseEnter(container.querySelector('div'));
-      act(() => {
+        userInteraction.enter(container.querySelector('div'));
         clock.tick(autoHideDuration / 2);
+        userInteraction.leave(container.querySelector('div'));
+
+        expect(handleClose.callCount).to.equal(0);
+
+        clock.tick(2e3);
+
+        expect(handleClose.callCount).to.equal(0);
       });
-      fireEvent.mouseLeave(container.querySelector('div'));
 
-      expect(handleClose.callCount).to.equal(0);
+      it('should call onClose when timer done after user interaction', () => {
+        const handleClose = spy();
+        const autoHideDuration = 2e3;
+        const resumeHideDuration = 3e3;
 
-      act(() => {
+        const { container } = render(
+          <Snackbar
+            action={<button>undo</button>}
+            open
+            onClose={handleClose}
+            message="message"
+            autoHideDuration={autoHideDuration}
+            resumeHideDuration={resumeHideDuration}
+          />,
+        );
+
+        expect(handleClose.callCount).to.equal(0);
+
+        clock.tick(autoHideDuration / 2);
+        userInteraction.enter(container.querySelector('div'));
+        clock.tick(autoHideDuration / 2);
+        userInteraction.leave(container.querySelector('div'));
+
+        expect(handleClose.callCount).to.equal(0);
+
         clock.tick(resumeHideDuration);
+
+        expect(handleClose.callCount).to.equal(1);
+        expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
       });
 
-      expect(handleClose.callCount).to.equal(1);
-      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
-    });
+      it('should call onClose immediately after user interaction when 0', () => {
+        const handleClose = spy();
+        const autoHideDuration = 6e3;
+        const resumeHideDuration = 0;
+        const { setProps, container } = render(
+          <Snackbar
+            action={<button>undo</button>}
+            open
+            onClose={handleClose}
+            message="message"
+            autoHideDuration={autoHideDuration}
+            resumeHideDuration={resumeHideDuration}
+          />,
+        );
 
-    it('should call onClose immediately after user interaction when 0', () => {
-      const handleClose = spy();
-      const autoHideDuration = 6e3;
-      const resumeHideDuration = 0;
-      const { setProps, container } = render(
-        <Snackbar
-          open
-          onClose={handleClose}
-          message="message"
-          autoHideDuration={autoHideDuration}
-          resumeHideDuration={resumeHideDuration}
-        />,
-      );
+        setProps({ open: true });
 
-      setProps({ open: true });
+        expect(handleClose.callCount).to.equal(0);
 
-      expect(handleClose.callCount).to.equal(0);
-
-      act(() => {
-        fireEvent.mouseEnter(container.querySelector('div'));
+        userInteraction.enter(container.querySelector('div'));
         clock.tick(100);
-        fireEvent.mouseLeave(container.querySelector('div'));
+        userInteraction.leave(container.querySelector('div'));
         clock.tick(resumeHideDuration);
-      });
 
-      expect(handleClose.callCount).to.equal(1);
-      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
+        expect(handleClose.callCount).to.equal(1);
+        expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
+      });
     });
   });
 
@@ -449,9 +445,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
 
@@ -466,9 +460,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -494,9 +486,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);

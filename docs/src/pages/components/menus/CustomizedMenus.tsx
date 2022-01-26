@@ -65,7 +65,7 @@ export default function CustomizedMenus() {
     <div>
       <Button
         id="demo-customized-button"
-        aria-controls="demo-customized-menu"
+        aria-controls={open ? 'demo-customized-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="contained"

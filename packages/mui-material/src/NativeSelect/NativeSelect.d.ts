@@ -28,7 +28,7 @@ export interface NativeSelectProps
    */
   input?: React.ReactElement<any, any>;
   /**
-   * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `select` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes) applied to the `select` element.
    */
   inputProps?: Partial<NativeSelectInputProps>;
   /**
@@ -57,12 +57,12 @@ export interface NativeSelectProps
  *
  * Demos:
  *
- * - [Selects](https://material-ui.com/components/selects/)
+ * - [Selects](https://mui.com/components/selects/)
  *
  * API:
  *
- * - [NativeSelect API](https://material-ui.com/api/native-select/)
- * - inherits [Input API](https://material-ui.com/api/input/)
+ * - [NativeSelect API](https://mui.com/api/native-select/)
+ * - inherits [Input API](https://mui.com/api/input/)
  */
 declare const NativeSelect: ((props: NativeSelectProps) => JSX.Element) & { muiName: string };
 

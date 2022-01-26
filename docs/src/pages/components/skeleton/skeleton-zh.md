@@ -1,7 +1,7 @@
 ---
 title: React Skeleton（骨架屏）组件
 components: Skeleton
-githubLabel: 'component: Skeleton'
+githubLabel: 'component: skeleton'
 ---
 
 # Skeleton 骨架屏
@@ -81,7 +81,7 @@ loading ? (
 
 ## Color 颜色
 
-The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible).
+The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible). This is especially useful when on a black background (as the skeleton will otherwise be invisible).
 
 {{"demo": "pages/components/skeleton/SkeletonColor.js", "bg": "inline"}}
 

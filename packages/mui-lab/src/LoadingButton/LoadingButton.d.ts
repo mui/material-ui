@@ -36,6 +36,8 @@ export type LoadingButtonTypeMap<
     loading?: boolean;
     /**
      * Element placed before the children if the button is in loading state.
+     * The node should contain an element with `role="progressbar"` with an accessible name.
+     * By default we render a `CircularProgress` that is labelled by the button itself.
      * @default <CircularProgress color="inherit" size={16} />
      */
     loadingIndicator?: React.ReactNode;
@@ -56,12 +58,12 @@ export type LoadingButtonTypeMap<
  *
  * Demos:
  *
- * - [Buttons](https://material-ui.com/components/buttons/)
+ * - [Buttons](https://mui.com/components/buttons/)
  *
  * API:
  *
- * - [LoadingButton API](https://material-ui.com/api/loading-button/)
- * - inherits [Button API](https://material-ui.com/api/button/)
+ * - [LoadingButton API](https://mui.com/api/loading-button/)
+ * - inherits [Button API](https://mui.com/api/button/)
  */
 declare const LoadingButton: ExtendButton<LoadingButtonTypeMap>;
 

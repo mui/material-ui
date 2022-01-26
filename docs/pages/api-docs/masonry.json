@@ -10,6 +10,9 @@
       "default": "4"
     },
     "component": { "type": { "name": "elementType" } },
+    "defaultColumns": { "type": { "name": "number" } },
+    "defaultHeight": { "type": { "name": "number" } },
+    "defaultSpacing": { "type": { "name": "number" } },
     "spacing": {
       "type": {
         "name": "union",
@@ -17,7 +20,12 @@
       },
       "default": "1"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "Masonry",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMasonry" },
@@ -26,6 +34,5 @@
   "filename": "/packages/mui-lab/src/Masonry/Masonry.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/masonry/\">Masonry</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

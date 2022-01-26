@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },

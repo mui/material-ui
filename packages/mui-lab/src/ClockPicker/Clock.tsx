@@ -209,7 +209,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
   // Focusing in passive effects in Popper causes scroll jump.
   useEnhancedEffect(() => {
     if (autoFocus) {
-      // The ref not being resolved would be a bug in Material-UI.
+      // The ref not being resolved would be a bug in MUI.
       listboxRef.current!.focus();
     }
   }, [autoFocus]);

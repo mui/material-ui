@@ -38,7 +38,9 @@ const styles = (theme: Theme) =>
     },
   } as const);
 
-function Transition(props: TransitionProps) {
+function Transition(
+  props: TransitionProps & { children: React.ReactElement<any, any> },
+) {
   return <Slide {...props} direction="down" />;
 }
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -13,16 +12,10 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
-import { getSelectUtilityClasses } from './selectClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
-
-  const slots = {
-    root: ['root'],
-  };
-
-  return composeClasses(slots, getSelectUtilityClasses, classes);
+  return classes;
 };
 
 const Select = React.forwardRef(function Select(inProps, ref) {
@@ -32,6 +25,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     children,
     classes: classesProp = {},
     className,
+    defaultOpen = false,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
     id,
@@ -72,7 +66,6 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const ownerState = { ...props, classes: classesProp };
   const classes = useUtilityClasses(ownerState);
-  const { root, ...otherClasses } = classesProp;
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
 
@@ -90,6 +83,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
         ? { id }
         : {
             autoWidth,
+            defaultOpen,
             displayEmpty,
             labelId,
             MenuProps,
@@ -100,12 +94,12 @@ const Select = React.forwardRef(function Select(inProps, ref) {
             SelectDisplayProps: { id, ...SelectDisplayProps },
           }),
       ...inputProps,
-      classes: inputProps ? deepmerge(otherClasses, inputProps.classes) : otherClasses,
+      classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
       ...(input ? input.props.inputProps : {}),
     },
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref: inputComponentRef,
-    className: clsx(classes.root, InputComponent.props.className, className),
+    className: clsx(InputComponent.props.className, className),
     ...other,
   });
 });
@@ -137,6 +131,12 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the component is initially open. Use when the component open state is not controlled (i.e. the `open` prop is not defined).
+   * You can only use it when the `native` prop is `false` (default).
+   * @default false
+   */
+  defaultOpen: PropTypes.bool,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -236,7 +236,11 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.

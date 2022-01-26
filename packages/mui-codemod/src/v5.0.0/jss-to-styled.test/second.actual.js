@@ -57,7 +57,7 @@ function AffiliatesHero() {
           <Button
             variant="contained"
             component={MuiLink}
-            href="mailto:store@material-ui.com"
+            href="mailto:store@mui.com"
             className={classes.apply}
           >
             Apply now

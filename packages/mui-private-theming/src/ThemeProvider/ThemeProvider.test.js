@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, RenderCounter, strictModeDoubleLoggingSupressed } from 'test/utils';
+import { createRenderer, RenderCounter, strictModeDoubleLoggingSupressed } from 'test/utils';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should provide the theme', () => {
     const ref = React.createRef();
@@ -109,9 +109,9 @@ describe('ThemeProvider', () => {
           </ThemeProvider>,
         );
       }).toErrorDev([
-        'Material-UI: You should return an object from your theme function',
+        'MUI: You should return an object from your theme function',
         !strictModeDoubleLoggingSupressed &&
-          'Material-UI: You should return an object from your theme function',
+          'MUI: You should return an object from your theme function',
       ]);
     });
   });

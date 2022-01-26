@@ -5,7 +5,7 @@ import { spy, stub } from 'sinon';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
   focusVisible,
@@ -17,7 +17,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
 
 describe('<ButtonBase />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;

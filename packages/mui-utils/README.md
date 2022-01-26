@@ -1,3 +1,3 @@
 # @mui/utils
 
-Shared utilities used by Material-UI packages.
+Shared utilities used by MUI packages.

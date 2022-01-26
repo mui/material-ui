@@ -9,8 +9,8 @@ import { makeStyles } from '@mui/styles';
 import createStyles from '@mui/styles/createStyles';
 
 // unstyled
-import { SliderUnstyled } from '@mui/core';
-import SwitchUnstyled from '@mui/core/SwitchUnstyled';
+import { SliderUnstyled } from '@mui/base';
+import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 
 // system
 import { SxProps } from '@mui/system';

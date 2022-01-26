@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { describeConformance, createClientRender } from 'test/utils';
+import { describeConformance, createRenderer } from 'test/utils';
 import MenuList from '@mui/material/MenuList';
 import List from '@mui/material/List';
 import getScrollbarSize from '../utils/getScrollbarSize';
@@ -17,7 +17,7 @@ function setStyleWidthForJsdomOrBrowser(style, width) {
 }
 
 describe('<MenuList />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<MenuList />, () => ({
     classes: {},

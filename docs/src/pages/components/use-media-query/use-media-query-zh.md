@@ -66,7 +66,7 @@ function MyComponent() {
 
 你需要在测试环境中实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)。
 
-例如：[暂时还不支持 jsdom](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html)。 所以你应来兼容（polyfill）它。 我们推荐使用 [css-mediaquery](https://github.com/ericf/css-mediaquery) 来创造一个模拟环境从而达到兼容的目的。
+例如：[暂时还不支持 jsdom](https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom)。 所以你应来兼容（polyfill）它。 我们推荐使用 [css-mediaquery](https://github.com/ericf/css-mediaquery) 来创造一个模拟环境从而达到兼容的目的。
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -163,6 +163,27 @@ function handleRender(req, res) {
 
   // …
 }
+      width: deviceType === 'mobile' ? '0px' : '1024px',
+    }),
+  });
+
+  const html = ReactDOMServer.renderToString(
+    <ThemeProvider
+      theme={{
+        props: {
+          // 更改 useMediaQuery 的默认选项
+          MuiUseMediaQuery: {
+            ssrMatchMedia,
+          },
+        },
+      }}
+    >
+      <App />
+    </ThemeProvider>,
+  );
+
+  // …
+}
 ```
 
 {{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
@@ -184,9 +205,9 @@ function handleRender(req, res) {
 1. `query` (_string_ | _func_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
 2. `options` (_object_ [optional]):
 
-- `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. 默认值为 `false`。
-- `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (_bool_ [optional]): Defaults to `false`. 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
+- `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. 默认值为 `false`。 默认值为 `false`。
+- `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. 用其您可以处理一个 iframe 内容窗口。 用其您可以处理一个 iframe 内容窗口。
+- `options.noSsr` (_bool_ [optional])：默认为 `false`。 To perform the server-side hydration, the hook needs to render twice. 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 注意：你可以使用主题的 [`默认属性`](/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。

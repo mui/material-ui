@@ -16,7 +16,7 @@ githubLabel: 'component: Stack'
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-Para controlar o espaço entre os filhos, use a prop ` spacing ` The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/)
+Para controlar o espaço entre os filhos, use a prop `spacing` The spacing value can be any number, including decimals and any string. The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/)
 
 ## Direção
 
@@ -26,7 +26,7 @@ By default, `Stack` arranges items vertically in a `column`. However, the `direc
 
 ## Divisores
 
-Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/components/divider/) component.
+Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/components/dividers/) component.
 
 {{"demo": "pages/components/stack/DividerStack.js", "bg": true}}
 
@@ -44,7 +44,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## System props
 
-As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. Você pode usá-los como "props" diretamente no componente. For instance, a margin-top:
 
 ```jsx
 <Stack mt={2}>

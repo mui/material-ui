@@ -31,11 +31,11 @@ type MobileDateTimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
+ * - [Date Time Picker](https://mui.com/components/date-time-picker/)
  *
  * API:
  *
- * - [MobileDateTimePicker API](https://material-ui.com/api/mobile-date-time-picker/)
+ * - [MobileDateTimePicker API](https://mui.com/api/mobile-date-time-picker/)
  */
 const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDate>(
   inProps: MobileDateTimePickerProps<TDate>,
@@ -144,7 +144,11 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    leftArrowButton: PropTypes.object,
+    rightArrowButton: PropTypes.object,
+    switchViewButton: PropTypes.object,
+  }),
   /**
    * Date tab icon.
    */
@@ -164,6 +168,7 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
   disableCloseOnSelect: PropTypes.bool,
   /**
    * If `true`, the picker and text field are disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -352,13 +357,14 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
   /**
    * Force rendering in particular orientation.
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
    * Make picker read only.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**
@@ -367,12 +373,12 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
    */
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}
@@ -461,7 +467,7 @@ MobileDateTimePicker.propTypes /* remove-proptypes */ = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']).isRequired,
   ),
 } as any;
 

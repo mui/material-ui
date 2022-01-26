@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType, elementTypeAcceptingRef } from '@mui/utils';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/core';
+import {
+  unstable_composeClasses as composeClasses,
+  isHostComponent,
+  TextareaAutosize,
+} from '@mui/base';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import TextareaAutosize from '../TextareaAutosize';
 import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
@@ -208,7 +210,6 @@ export const InputBaseComponent = styled('input', {
     ...(ownerState.type === 'search' && {
       // Improve type search style.
       MozAppearance: 'textfield',
-      WebkitAppearance: 'textfield',
     }),
   };
 });
@@ -239,6 +240,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     componentsProps = {},
     defaultValue,
     disabled,
+    disableInjectingGlobalStyles,
     endAdornment,
     error,
     fullWidth = false,
@@ -268,8 +270,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
-
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
@@ -279,7 +279,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
           [
-            'Material-UI: You have provided a `inputComponent` to the input component',
+            'MUI: You have provided a `inputComponent` to the input component',
             'that does not correctly handle the `ref` prop.',
             'Make sure the `ref` prop is called with a HTMLInputElement.',
           ].join('\n'),
@@ -388,9 +388,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       const element = event.target || inputRef.current;
       if (element == null) {
         throw new MuiError(
-          'Material-UI: Expected valid input target. ' +
+          'MUI: Expected valid input target. ' +
             'Did you use a custom `inputComponent` and forget to forward refs? ' +
-            'See https://material-ui.com/r/input-component-ref-interface for more info.',
+            'See https://mui.com/r/input-component-ref-interface for more info.',
         );
       }
 
@@ -425,7 +425,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       onClick(event);
     }
   };
-
   let InputComponent = inputComponent;
   let inputProps = inputPropsProp;
 
@@ -434,7 +433,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
           console.warn(
-            'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+            'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
           );
         }
       }
@@ -493,12 +492,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      {inputGlobalStyles}
+      {!disableInjectingGlobalStyles && inputGlobalStyles}
       <Root
         {...rootProps}
         {...(!isHostComponent(Root) && {
           ownerState: { ...ownerState, ...rootProps.ownerState },
-          theme,
         })}
         ref={ref}
         onClick={handleClick}
@@ -530,10 +528,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
             {...(!isHostComponent(Input) && {
               as: InputComponent,
               ownerState: { ...ownerState, ...inputProps.ownerState },
-              theme,
             })}
             ref={handleInputRef}
-            className={clsx(classes.input, inputProps.className, inputPropsProp.className)}
+            className={clsx(classes.input, inputProps.className)}
             onBlur={handleBlur}
             onChange={handleChange}
             onFocus={handleFocus}
@@ -599,7 +596,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -609,6 +609,12 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, GlobalStyles for the auto-fill keyframes will not be injected/removed on mount/unmount. Make sure to inject them at the top of your application.
+   * This option is intended to help with boosting the initial rendering performance if you are loading a big amount of Input components at once.
+   * @default false
+   */
+  disableInjectingGlobalStyles: PropTypes.bool,
   /**
    * End `InputAdornment` for this component.
    */
@@ -730,7 +736,11 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'

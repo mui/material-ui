@@ -2,18 +2,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => {
   return {
-    top: 70,
+    top: 60,
     // Fix IE11 position sticky issue.
-    marginTop: 70,
-    width: 210,
+    marginTop: 60,
+    width: 240,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
@@ -29,11 +31,13 @@ const Nav = styled('nav')(({ theme }) => {
 const NavLabel = styled(Typography)(({ theme }) => {
   return {
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1.5),
-    fontSize: '.75rem',
-    fontWeight: 600,
-    color:
-      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
+    marginBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(1.4),
+    fontSize: theme.typography.pxToRem(11),
+    fontWeight: theme.typography.fontWeightBold,
+    textTransform: 'uppercase',
+    letterSpacing: '.08rem',
+    color: theme.palette.grey[600],
   };
 });
 
@@ -49,54 +53,35 @@ const NavItem = styled(Link, {
   const activeStyles = {
     borderLeftColor:
       theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+    '&:hover': {
+      borderLeftColor:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+      color:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+    },
   };
 
   return {
-    fontSize: '.8125rem',
-    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
+    fontSize: theme.typography.pxToRem(13),
+    padding: theme.spacing(0, 1, 0, secondary ? 2.5 : '10px'),
     margin: theme.spacing(0.5, 0, 1, 0),
-    borderLeft: `2px solid transparent`,
+    borderLeft: `1px solid transparent`,
     boxSizing: 'border-box',
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
-      color:
-        theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
+        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[600] : theme.palette.grey[200],
     },
     ...(!active && {
-      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.text.primary,
     }),
     // TODO: We probably want `aria-current="location"` instead.
-    // If so, are we sure "current" and "active" states should have the same styles?
     ...(active && activeStyles),
     '&:active': activeStyles,
   };
 });
-
-// TODO: these nodes are mutable sources. Use createMutableSource once it's stable
-function getItemsClient(headings) {
-  const itemsWithNode = [];
-
-  headings.forEach((item) => {
-    itemsWithNode.push({
-      ...item,
-      node: document.getElementById(item.hash),
-    });
-
-    if (item.children.length > 0) {
-      item.children.forEach((subitem) => {
-        itemsWithNode.push({
-          ...subitem,
-          node: document.getElementById(subitem.hash),
-        });
-      });
-    }
-  });
-  return itemsWithNode;
-}
 
 const noop = () => {};
 
@@ -119,14 +104,26 @@ function useThrottledOnScroll(callback, delay) {
   }, [throttledCallback]);
 }
 
+function flatten(headings) {
+  const itemsWithNode = [];
+
+  headings.forEach((item) => {
+    itemsWithNode.push(item);
+
+    if (item.children.length > 0) {
+      item.children.forEach((subitem) => {
+        itemsWithNode.push(subitem);
+      });
+    }
+  });
+  return itemsWithNode;
+}
+
 export default function AppTableOfContents(props) {
-  const { items } = props;
+  const { toc } = props;
   const t = useTranslate();
 
-  const itemsWithNodeRef = React.useRef([]);
-  React.useEffect(() => {
-    itemsWithNodeRef.current = getItemsClient(items);
-  }, [items]);
+  const items = React.useMemo(() => flatten(toc), [toc]);
 
   const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
@@ -139,24 +136,25 @@ export default function AppTableOfContents(props) {
     }
 
     let active;
-    for (let i = itemsWithNodeRef.current.length - 1; i >= 0; i -= 1) {
+    for (let i = items.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
         active = { hash: null };
         break;
       }
 
-      const item = itemsWithNodeRef.current[i];
+      const item = items[i];
+      const node = document.getElementById(item.hash);
 
       if (process.env.NODE_ENV !== 'production') {
-        if (!item.node) {
+        if (!node) {
           console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
         }
       }
 
       if (
-        item.node &&
-        item.node.offsetTop <
+        node &&
+        node.offsetTop <
           document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
@@ -167,7 +165,7 @@ export default function AppTableOfContents(props) {
     if (active && activeState !== active.hash) {
       setActiveState(active.hash);
     }
-  }, [activeState]);
+  }, [activeState, items]);
 
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
@@ -206,7 +204,7 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      href={`${activePage.linkProps?.as ?? activePage.pathname}#${item.hash}`}
+      href={`${activePage?.linkProps?.linkAs ?? activePage?.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
@@ -218,11 +216,14 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
-      {items.length > 0 ? (
+      <NoSsr>
+        <TableOfContentsBanner />
+      </NoSsr>
+      {toc.length > 0 ? (
         <React.Fragment>
           <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
           <NavList component="ul">
-            {items.map((item) => (
+            {toc.map((item) => (
               <li key={item.text}>
                 {itemLink(item)}
                 {item.children.length > 0 ? (
@@ -242,5 +243,5 @@ export default function AppTableOfContents(props) {
 }
 
 AppTableOfContents.propTypes = {
-  items: PropTypes.array.isRequired,
+  toc: PropTypes.array.isRequired,
 };

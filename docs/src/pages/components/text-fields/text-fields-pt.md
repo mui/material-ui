@@ -1,7 +1,12 @@
 ---
 title: Componente React para Campo de Texto
+<<<<<<< HEAD
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: TextField'
+=======
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
+githubLabel: 'component: text field'
+>>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)
 materialDesign: https://material.io/components/text-fields
 ---
 
@@ -115,7 +120,7 @@ Customization does not stop at CSS. You can use composition to build custom comp
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/text-field).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field/).
 
 ## `useFormControl`
 
@@ -197,7 +202,7 @@ No futuro, pretendemos fornecer um [componente de campo número](https://github.
 
 A propriedade de texto auxiliar afeta a altura do campo de texto. Se dois campos de texto forem colocados lado a lado, um com um texto auxiliar e outro sem ele, terão alturas diferentes. Por exemplo:
 
-Para usos mais avançados, você pode tirar vantagem com:
+{{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 
 Isso pode ser corrigido passando um caractere de espaço para a propriedade `helperText`:
 
@@ -249,7 +254,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 
 ## Acessibilidade
 
-Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura:
+Para que o campo de texto seja acessível, **o campo deve estar vinculado ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura:
 
 ```jsx
 <div class="form-control">
@@ -259,8 +264,8 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 </div>
 ```
 
-- Se você estiver usando o componente `TextField`, basta fornecer um `id` único.
-- Se você está compondo o componente:
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
+- If you are composing the component:
 
 ```jsx
 <div class="form-control" mark="crwd-mark">
@@ -275,6 +280,24 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
+- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
+
+## Unstyled
+
+For advanced customization scenarios, you can use the unstyled primitives.
+
+The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
+
+### Unstyled component
+
+The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead.
+
+{{"demo": "pages/components/text-fields/UnstyledInput.js"}}
+
+### Hook
+
+The `useInput` hook is the headless version of the `InputUnstyled` component. Use it for even greater control over the rendered output.
+
+{{"demo": "pages/components/text-fields/UseInput.js"}}

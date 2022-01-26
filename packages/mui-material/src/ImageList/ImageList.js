@@ -1,4 +1,4 @@
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { integerPropType } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -69,7 +69,7 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
       if (document !== undefined && 'objectFit' in document.documentElement.style === false) {
         console.error(
           [
-            'Material-UI: ImageList v5+ no longer natively supports Internet Explorer.',
+            'MUI: ImageList v5+ no longer natively supports Internet Explorer.',
             'Use v4 of this component instead, or polyfill CSS object-fit.',
           ].join('\n'),
         );
@@ -144,15 +144,16 @@ ImageList.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'standard'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']),
 };
 
 export default ImageList;

@@ -1,8 +1,13 @@
 ---
 title: React Date Time Picker（日期时间选择器） 组件
 components: DateTimePicker,DesktopDateTimePicker,MobileDateTimePicker,StaticDateTimePicker
+<<<<<<< HEAD
 githubLabel: 'component: DateTimePicker'
 packageName: '@material-ui/lab'
+=======
+githubLabel: 'component: date time picker'
+packageName: '@mui/lab'
+>>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -47,7 +52,7 @@ function App() {
 - The `MobileDateTimePicker` component works best for touch devices and small screens.
 - The `DesktopDateTimePicker` component works best for mouse devices and large screens.
 
-By default, the `DateTimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `DateTimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
@@ -68,7 +73,7 @@ The date time picker component can be disabled or read-only.
 
 ## 静态模式
 
-It's possible to render any date & time picker inline. 这将启用自定义弹出提示/模态框的容器。
+It's possible to render any date & time picker inline. 这将启用自定义弹出提示/模态框的容器。 This will enable building custom popover/modal containers.
 
 {{"demo": "pages/components/date-time-picker/StaticDateTimePickerDemo.js", "bg": true}}
 

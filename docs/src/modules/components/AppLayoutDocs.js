@@ -13,8 +13,8 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
-const TOC_WIDTH = 210;
-const NAV_WIDTH = 240;
+const TOC_WIDTH = 240;
+const NAV_WIDTH = 280;
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
@@ -60,14 +60,14 @@ const StyledAppContainer = styled(AppContainer, {
   };
 });
 
-const ActionsDiv = styled('div')({
-  position: 'absolute',
-  right: 20,
-  top: 120,
+const ActionsDiv = styled('div')(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-end',
-});
+  marginTop: -10,
+  marginBottom: -15,
+  [theme.breakpoints.up('lg')]: {
+    justifyContent: 'flex-end',
+  },
+}));
 
 function AppLayoutDocs(props) {
   const {
@@ -87,10 +87,10 @@ function AppLayoutDocs(props) {
   return (
     <AppFrame>
       <AdManager>
-        <Head title={`${title} - Material-UI`} description={description} />
+        <Head title={`${title} - MUI`} description={description} />
         {disableAd ? null : (
           <AdGuest>
-            <Ad placement="body" />
+            <Ad />
           </AdGuest>
         )}
         <Main disableToc={disableToc}>
@@ -101,7 +101,7 @@ function AppLayoutDocs(props) {
               <AppLayoutDocsFooter />
             </NoSsr>
           </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents items={toc} />}
+          {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>
       </AdManager>
     </AppFrame>

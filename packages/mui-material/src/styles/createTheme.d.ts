@@ -7,9 +7,9 @@ import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
 
-export interface ThemeOptions extends SystemThemeOptions {
+export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
-  components?: Components;
+  components?: Components<BaseTheme>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -18,18 +18,24 @@ export interface ThemeOptions extends SystemThemeOptions {
   unstable_strictMode?: boolean;
 }
 
-/**
- * Our [TypeScript guide on theme customization](https://material-ui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
- */
-export interface Theme extends SystemTheme {
+interface BaseTheme extends SystemTheme {
   mixins: Mixins;
-  components?: Components;
   palette: Palette;
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
+}
+
+// shut off automatic exporting for the `BaseTheme` above
+export {};
+
+/**
+ * Our [TypeScript guide on theme customization](https://mui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
+ */
+export interface Theme extends BaseTheme {
+  components?: Components<BaseTheme>;
 }
 
 /**
@@ -42,6 +48,6 @@ export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme
  * Generate a theme base on the options received.
  * @param options Takes an incomplete theme object and adds the missing parts.
  * @param args Deep merge the arguments with the about to be returned theme.
- * @returns A complete, ready to use theme object.
+ * @returns A complete, ready-to-use theme object.
  */
 export default function createTheme(options?: ThemeOptions, ...args: object[]): Theme;

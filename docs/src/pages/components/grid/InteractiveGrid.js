@@ -26,7 +26,7 @@ export default function InteractiveGrid() {
     <Grid sx={{ flexGrow: 1 }} container>
       <Grid item xs={12}>
         <Grid
-          sx={{ height: 240 }}
+          sx={{ height: 300, pb: 2 }}
           container
           spacing={2}
           alignItems={alignItems}

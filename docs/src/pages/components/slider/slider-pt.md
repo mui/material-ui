@@ -1,7 +1,7 @@
 ---
 title: Componente React Slider
 components: Slider, SliderUnstyled
-githubLabel: 'component: Slider'
+githubLabel: 'component: slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 ---
@@ -126,12 +126,12 @@ Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em
 
 <!-- #default-branch-switch -->
 
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 ```
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}
@@ -152,7 +152,7 @@ O componente lida com a maior parte do trabalho necessário para torná-lo acess
 The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
-.MuiSlider-valueLabel {
+. MuiSlider-valueLabel {
   left: calc(-50% - 4px);
 }
 ```

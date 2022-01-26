@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { refType, deepmerge } from '@mui/utils';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -257,7 +257,10 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -366,7 +369,11 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'

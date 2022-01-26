@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { refType } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
@@ -27,6 +27,7 @@ const SelectSelect = styled('div', {
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
+      { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
 })(nativeSelectSelectStyles, {
@@ -73,6 +74,7 @@ function areEqualValues(a, b) {
     return a === b;
   }
 
+  // The value could be a number, the DOM will stringify it anyway.
   return String(a) === String(b);
 }
 
@@ -81,10 +83,10 @@ function isEmpty(display) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, open } = ownerState;
+  const { classes, variant, disabled, multiple, open } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
@@ -103,6 +105,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     autoWidth,
     children,
     className,
+    defaultOpen,
     defaultValue,
     disabled,
     displayEmpty,
@@ -134,13 +137,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     default: defaultValue,
     name: 'Select',
   });
+  const [openState, setOpenState] = useControlled({
+    controlled: openProp,
+    default: defaultOpen,
+    name: 'Select',
+  });
 
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
-  const [openState, setOpenState] = React.useState(false);
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -163,6 +170,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     [value],
   );
 
+  // Resize menu on `defaultOpen` automatic toggle.
+  React.useEffect(() => {
+    if (defaultOpen && openState && displayNode && !isOpenControlled) {
+      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      displayRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayNode, autoWidth]);
+  // `isOpenControlled` is ignored because the component should never switch between controlled and uncontrolled modes.
+  // `defaultOpen` and `openState` are ignored to avoid unnecessary callbacks.
   React.useEffect(() => {
     if (autoFocus) {
       displayRef.current.focus();
@@ -300,7 +317,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const open = displayNode !== null && (isOpenControlled ? openProp : openState);
+  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
@@ -337,7 +354,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: The Select component doesn't accept a Fragment as a child.",
+            "MUI: The Select component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -349,7 +366,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (multiple) {
       if (!Array.isArray(value)) {
         throw new MuiError(
-          'Material-UI: The `value` prop must be an array ' +
+          'MUI: The `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );
       }
@@ -370,7 +387,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     return React.cloneElement(child, {
-      'aria-selected': selected ? 'true' : undefined,
+      'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
       onKeyUp: (event) => {
         if (event.key === ' ') {
@@ -398,7 +415,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         const values = childrenArray.map((child) => child.props.value);
         console.warn(
           [
-            `Material-UI: You have provided an out-of-range value \`${value}\` for the select ${
+            `MUI: You have provided an out-of-range value \`${value}\` for the select ${
               name ? `(name="${name}") ` : ''
             }component.`,
             "Consider providing a value that matches one of the available options or ''.",
@@ -415,7 +432,21 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }
 
   if (computeDisplay) {
-    display = multiple ? displayMultiple.join(', ') : displaySingle;
+    if (multiple) {
+      if (displayMultiple.length === 0) {
+        display = null;
+      } else {
+        display = displayMultiple.reduce((output, child, index) => {
+          output.push(child);
+          if (index < displayMultiple.length - 1) {
+            output.push(', ');
+          }
+          return output;
+        }, []);
+      }
+    } else {
+      display = displaySingle;
+    }
   }
 
   // Avoid performing a layout computation in the render method.
@@ -468,8 +499,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          // eslint-disable-next-line react/no-danger
-          <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+          <span className="notranslate">&#8203;</span>
         ) : (
           display
         )}
@@ -554,6 +584,11 @@ SelectInput.propTypes = {
    * The CSS class name of the select element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the component is toggled on mount. Use when the component open state is not controlled.
+   * You can only use it when the `native` prop is `false` (default).
+   */
+  defaultOpen: PropTypes.bool,
   /**
    * The default value. Use when the component is not controlled.
    */

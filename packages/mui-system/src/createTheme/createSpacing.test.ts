@@ -56,7 +56,7 @@ describe('createSpacing', () => {
           // @ts-expect-error
           unit: 4,
         });
-      }).toErrorDev('Material-UI: The `theme.spacing` value ([object Object]) is invalid');
+      }).toErrorDev('MUI: The `theme.spacing` value ([object Object]) is invalid');
     });
   });
 });

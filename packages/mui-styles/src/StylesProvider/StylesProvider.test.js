@@ -147,9 +147,9 @@ describe('StylesProvider', () => {
           </StylesProvider>,
         );
       }).toErrorDev([
-        'Material-UI: You cannot use the jss and injectFirst props at the same time',
+        'MUI: You cannot use the jss and injectFirst props at the same time',
         !strictModeDoubleLoggingSupressed &&
-          'Material-UI: You cannot use the jss and injectFirst props at the same time',
+          'MUI: You cannot use the jss and injectFirst props at the same time',
       ]);
     });
   });

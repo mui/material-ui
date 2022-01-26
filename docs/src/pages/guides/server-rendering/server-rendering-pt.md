@@ -39,7 +39,7 @@ const theme = createTheme({
       main: '#19857b',
     },
     error: {
-      main: red.A400,
+      main: red. A400,
     },
   },
 });
@@ -74,9 +74,9 @@ const port = 3000;
 app.listen(port);
 ```
 
-### Handling the request
+### ### Manipulando as requests
 
-The first thing that we need to do on every request is to create a new `emotion cache`.
+A primeira coisa que nós precisamos fazer em cada request é criar um novo `emotion cache`.
 
 When rendering, we will wrap `App`, the root component, inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
@@ -101,22 +101,10 @@ With this we are creating new emotion cache instance and using this to extract t
 Vamos ver como isso é passado na função `renderFullPage`.
 
 ```jsx
-import express from 'express';
-import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import createEmotionServer from '@emotion/server/create-instance';
-import App from './App';
-import theme from './theme';
-import getCache from './getCache';
+app.use(handleRender);
 
-function handleRender(req, res) {
-  const cache = getCache();
-  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
-    createEmotionServer(cache);
-
-  // Render the component to a string.
+const port = 3000;
+app.listen(port);
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
@@ -140,10 +128,22 @@ const app = express();
 app.use('/build', express.static('build'));
 
 // This is fired every time the server-side receives a request.
-app.use(handleRender);
+import express from 'express';
+import * as React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from '@emotion/server/create-instance';
+import App from './App';
+import theme from './theme';
+import getCache from './getCache';
 
-const port = 3000;
-app.listen(port);
+function handleRender(req, res) {
+  const cache = getCache();
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(cache);
+
+  // Render the component to a string.
 ```
 
 ### Inject initial component HTML and CSS
@@ -195,9 +195,7 @@ function Main() {
       </ThemeProvider>
     </CacheProvider>
   );
-}
-
-ReactDOM.hydrate(<Main />, document.querySelector('#root'));
+} ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
 ## Implementações de referência

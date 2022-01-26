@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import NoSsr from '@mui/material/NoSsr';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
@@ -13,12 +13,14 @@ import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
 import ROUTES from 'docs/src/route';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Header = styled('header', {
-  shouldForwardProp: (prop) => prop !== 'trigger',
-})<{ trigger: boolean }>(({ theme, trigger }) => ({
+const Header = styled('header')(({ theme }) => ({
   position: 'sticky',
-  top: trigger ? -80 : 0,
+  top: 0,
   transition: theme.transitions.create('top'),
   zIndex: theme.zIndex.appBar,
   backdropFilter: 'blur(20px)',
@@ -33,54 +35,62 @@ const Header = styled('header', {
 
 export default function AppHeader() {
   const changeTheme = useChangeTheme();
-  const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
+  const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+
+  const t = useTranslate();
+
+  React.useEffect(() => {
+    const initialMode = getCookie('paletteMode') || 'system';
+    setMode(initialMode);
+  }, []);
 
   const handleChangeThemeMode = (checked: boolean) => {
-    let paletteMode = 'system';
-    paletteMode = checked ? 'dark' : 'light';
-    if (paletteMode === null) {
-      return;
-    }
-
+    const paletteMode = checked ? 'dark' : 'light';
     setMode(paletteMode);
 
-    if (paletteMode === 'system') {
-      document.cookie = `paletteMode=;path=/;max-age=31536000`;
-      changeTheme({ paletteMode: preferredMode });
-    } else {
-      document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
-      changeTheme({ paletteMode });
-    }
+    document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+    changeTheme({ paletteMode });
   };
+
   return (
-    <Header trigger={false}>
-      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
+    <Header>
+      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 56 }}>
         <Box
           component={Link}
           href={ROUTES.home}
-          aria-label="Goto homepage"
+          aria-label="Go to homepage"
           sx={{ lineHeight: 0, mr: 2 }}
         >
-          <SvgMuiLogo width={32} />
+          <SvgMuiLogo width={30} />
         </Box>
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>
         <Box sx={{ ml: 'auto' }} />
-        <Box sx={{ mr: 2 }}>
+        <Stack direction="row" spacing={1}>
           <DeferredAppSearch />
-        </Box>
-        <Box sx={{ display: { md: 'none' }, mr: 1 }}>
+          <Tooltip title={t('appFrame.github')} enterDelay={300}>
+            <IconButton
+              component="a"
+              color="primary"
+              href="https://github.com/mui-org/"
+              data-ga-event-category="header"
+              data-ga-event-action="github"
+            >
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          {mode !== null ? (
+            <ThemeModeToggle
+              checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
+              onChange={handleChangeThemeMode}
+            />
+          ) : null}
+        </Stack>
+        <Box sx={{ display: { md: 'none' }, ml: 1 }}>
           <HeaderNavDropdown />
         </Box>
-        <NoSsr>
-          <ThemeModeToggle
-            checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
-            onChange={handleChangeThemeMode}
-          />
-        </NoSsr>
       </Container>
     </Header>
   );

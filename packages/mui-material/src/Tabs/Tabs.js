@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -289,7 +289,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     if (centered && scrollable) {
       console.error(
-        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"` properties ' +
+        'MUI: You can not use the `centered={true}` and `variant="scrollable"` properties ' +
           'at the same time on a `Tabs` component.',
       );
     }
@@ -340,7 +340,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           if (!tab) {
             console.error(
               [
-                `Material-UI: The \`value\` provided to the Tabs component is invalid.`,
+                `MUI: The \`value\` provided to the Tabs component is invalid.`,
                 `None of the Tabs' children match with "${value}".`,
                 valueToIndex.keys
                   ? `You can provide one of the following values: ${Array.from(
@@ -364,7 +364,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
             tabsMeta = null;
             console.error(
               [
-                'Material-UI: The `value` provided to the Tabs component is invalid.',
+                'MUI: The `value` provided to the Tabs component is invalid.',
                 `The Tab with this \`value\` ("${value}") is not part of the document layout.`,
                 "Make sure the tab item is present in the document or that it's not `display: none`.",
               ].join('\n'),
@@ -639,7 +639,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: The Tabs component doesn't accept a Fragment as a child.",
+            "MUI: The Tabs component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -841,7 +841,11 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Props applied to the tab indicator element.
    * @default  {}

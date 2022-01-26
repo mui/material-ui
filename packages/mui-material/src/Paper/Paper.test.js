@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import {
-  createClientRender,
-  describeConformance,
-  strictModeDoubleLoggingSupressed,
-} from 'test/utils';
+import { createRenderer, describeConformance, strictModeDoubleLoggingSupressed } from 'test/utils';
 import Paper, { paperClasses as classes } from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 describe('<Paper />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Paper />, () => ({
     classes,
@@ -94,9 +90,9 @@ describe('<Paper />', () => {
       expect(() => {
         render(<Paper elevation={25} />);
       }).toErrorDev([
-        'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
+        'MUI: The elevation provided <Paper elevation={25}> is not available in the theme.',
         !strictModeDoubleLoggingSupressed &&
-          'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
+          'MUI: The elevation provided <Paper elevation={25}> is not available in the theme.',
       ]);
     });
 
@@ -109,7 +105,7 @@ describe('<Paper />', () => {
           'MockedName',
         );
       }).toErrorDev([
-        'Material-UI: Combining `elevation={5}` with `variant="outlined"` has no effect. Either use `elevation={0}` or use a different `variant`.',
+        'MUI: Combining `elevation={5}` with `variant="outlined"` has no effect. Either use `elevation={0}` or use a different `variant`.',
       ]);
     });
   });

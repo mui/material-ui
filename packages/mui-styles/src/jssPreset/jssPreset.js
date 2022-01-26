@@ -6,7 +6,7 @@ import defaultUnit from 'jss-plugin-default-unit';
 import vendorPrefixer from 'jss-plugin-vendor-prefixer';
 import propsSort from 'jss-plugin-props-sort';
 
-// Subset of jss-preset-default with only the plugins the Material-UI components are using.
+// Subset of jss-preset-default with only the plugins the MUI components are using.
 export default function jssPreset() {
   return {
     plugins: [

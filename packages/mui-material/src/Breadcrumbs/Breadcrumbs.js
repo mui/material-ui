@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
@@ -127,7 +127,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       if (process.env.NODE_ENV !== 'production') {
         console.error(
           [
-            'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.',
+            'MUI: You have provided an invalid combination of props to the Breadcrumbs.',
             `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
           ].join('\n'),
         );
@@ -148,7 +148,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
         if (isFragment(child)) {
           console.error(
             [
-              "Material-UI: The Breadcrumbs component doesn't accept a Fragment as a child.",
+              "MUI: The Breadcrumbs component doesn't accept a Fragment as a child.",
               'Consider providing an array instead.',
             ].join('\n'),
           );
@@ -240,7 +240,11 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default Breadcrumbs;

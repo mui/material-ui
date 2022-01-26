@@ -46,6 +46,7 @@
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
     "onOpen": { "type": { "name": "func" } },
+    "onViewChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "OpenPickerButtonProps": { "type": { "name": "object" } },
     "openTo": {
@@ -87,6 +88,5 @@
   "filename": "/packages/mui-lab/src/MobileTimePicker/MobileTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

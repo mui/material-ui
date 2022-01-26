@@ -81,10 +81,10 @@ export interface PaginationProps
  *
  * Demos:
  *
- * - [Pagination](https://material-ui.com/components/pagination/)
+ * - [Pagination](https://mui.com/components/pagination/)
  *
  * API:
  *
- * - [Pagination API](https://material-ui.com/api/pagination/)
+ * - [Pagination API](https://mui.com/api/pagination/)
  */
 export default function Pagination(props: PaginationProps): JSX.Element;

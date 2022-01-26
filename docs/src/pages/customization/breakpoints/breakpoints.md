@@ -3,7 +3,7 @@
 <p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
 
 For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints.
-Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
+MUI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them
@@ -12,6 +12,8 @@ for controlling the layout of your application through the [Grid](/components/gr
 ## Default breakpoints
 
 Each breakpoint (a key) matches with a _fixed_ screen width (a value):
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 - **xs,** extra-small: 0px
 - **sm,** small: 600px
@@ -24,11 +26,12 @@ These values can be [customized](#custom-breakpoints).
 ## CSS Media Queries
 
 CSS media queries are the idiomatic approach to make your UI responsive.
-The theme provides four styles helpers to do so:
+The theme provides five styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
+- [theme.breakpoints.not(key)](#theme-breakpoints-not-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
 In the following demo, we change the background color (red, blue & green) based on the screen width.
@@ -65,9 +68,12 @@ You can learn more on the [useMediaQuery](/components/use-media-query/) page.
 
 You define your project's breakpoints in the `theme.breakpoints` section of your theme.
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 - [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
-- `theme.breakpoints.unit`: Default to `px`. The unit used for the breakpoint's values.
-- `theme.breakpoints.step`: Default to 5 (`0.05px`). The increment used to implement exclusive breakpoints.
+- `theme.breakpoints.unit`: Default to `'px'`. The unit used for the breakpoint's values.
+- `theme.breakpoints.step`: Default to `5`. The increment divided by 100 used to implement exclusive breakpoints.
+  For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
 If you change the default breakpoints's values, you need to provide them all:
 
@@ -124,6 +130,8 @@ declare module '@mui/material/styles' {
 
 ### `theme.breakpoints.up(key) => media query`
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 #### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
@@ -148,6 +156,8 @@ const styles = (theme) => ({
 ```
 
 ### `theme.breakpoints.down(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### Arguments
 
@@ -174,6 +184,8 @@ const styles = (theme) => ({
 
 ### `theme.breakpoints.only(key) => media query`
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 #### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
@@ -198,7 +210,37 @@ const styles = (theme) => ({
 });
 ```
 
+### `theme.breakpoints.not(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
+#### Arguments
+
+1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
+
+#### Returns
+
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
+
+#### Examples
+
+```js
+const styles = (theme) => ({
+  root: {
+    backgroundColor: 'blue',
+    // Match [xs, md) and [md + 1, ∞)
+    //       [xs, md) and [lg, ∞)
+    //       [0px, 900px) and [1200px, ∞)
+    [theme.breakpoints.not('md')]: {
+      backgroundColor: 'red',
+    },
+  },
+});
+```
+
 ### `theme.breakpoints.between(start, end) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### Arguments
 

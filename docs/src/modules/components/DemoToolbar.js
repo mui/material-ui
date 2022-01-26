@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
 import { useTheme, styled } from '@mui/material/styles';
@@ -59,22 +58,28 @@ const Root = styled('div')(({ theme }) => ({
   alignItems: 'center',
   '& .MuiSvgIcon-root': {
     fontSize: 17,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
   },
 }));
 
-const DemoTooltip = styled((props) => {
-  const { className, classes = {}, ...other } = props;
-
-  return <Tooltip {...other} classes={{ ...classes, popper: clsx(className, classes.popper) }} />;
-})(({ theme }) => ({
-  zIndex: theme.zIndex.appBar - 1,
-}));
+function DemoTooltip(props) {
+  return (
+    <Tooltip
+      componentsProps={{
+        popper: {
+          sx: {
+            zIndex: (theme) => theme.zIndex.appBar - 1,
+          },
+        },
+      }}
+      {...props}
+    />
+  );
+}
 
 function ToggleCodeTooltip(props) {
   const { showSourceHint, ...other } = props;
   const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -139,7 +144,7 @@ function useToolbar(controlRefs, options = {}) {
       // eslint-disable-next-line no-lonely-if
       if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+          'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
             'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
         );
       }
@@ -151,7 +156,7 @@ function useToolbar(controlRefs, options = {}) {
     handleToolbarFocus = (event) => {
       if (findControlIndex(event.target) === -1) {
         console.error(
-          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+          'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
             'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
         );
       }
@@ -533,7 +538,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="expand"
               onClick={handleCodeOpenClick}
-              color={demoHovered ? 'primary' : 'default'}
+              color="default"
               {...getControlProps(2)}
             >
               <CodeRoundedIcon />

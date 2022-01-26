@@ -4,34 +4,36 @@
 
 ## Official examples
 
-You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) folder:
+You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript))
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript))
+- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/nextjs-with-typescript))
+- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript))
+- [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+- [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
+- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
+- [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
+- [Tailwind CSS](https://github.com/mui-org/material-ui/tree/master/examples/tailwind)
 - [Vite.js](https://github.com/mui-org/material-ui/tree/next/examples/vitejs)
+- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
 Create React App is an awesome project for learning React.
-Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
+Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
 The source code for this documentation site is also included in the repository.
 This is a slightly more complex project.
-Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/next/docs) folder for
+Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for
 build instructions.
 
 ## More advanced example projects
 
-If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) or:
+If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) or:
 
 ### Free
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
   - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
@@ -81,7 +83,7 @@ If you want to start with a more complete and real-world example, you could take
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
 
   - Build your complete application with this online tool
-  - Choose your framework and library (React & Material-UI!)
+  - Choose your framework and library (React & MUI!)
   - Choose your database (SQL, MongoDB or Firestore)
   - Model your database and application with the intuitive GUI
   - Generate your application, including a complete scaffolded backend
@@ -89,5 +91,5 @@ If you want to start with a more complete and real-world example, you could take
 
 - [Divjoy](https://divjoy.com?via=material-ui):
 
-  - Create your Material-UI app in minutes.
+  - Create your MUI app in minutes.
   - You'll get a nice template, authentication, database integration, subscription payments, and more.

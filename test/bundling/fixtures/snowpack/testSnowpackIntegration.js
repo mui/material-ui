@@ -56,7 +56,7 @@ async function main() {
       );
     }
   });
-  await attemptGoto(page, 'http://localhost:5000/');
+  await attemptGoto(page, 'http://localhost:3000/');
 
   await browser.close();
 }

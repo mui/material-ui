@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -97,7 +97,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
     if (theme.shadows[elevation] === undefined) {
       console.error(
         [
-          `Material-UI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`,
+          `MUI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`,
           `Please make sure that \`theme.shadows[${elevation}]\` is defined.`,
         ].join('\n'),
       );
@@ -146,7 +146,7 @@ Paper.propTypes /* remove-proptypes */ = {
     const { elevation, variant } = props;
     if (elevation > 0 && variant === 'outlined') {
       return new Error(
-        `Material-UI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`,
+        `MUI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`,
       );
     }
 
@@ -160,7 +160,11 @@ Paper.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'elevation'

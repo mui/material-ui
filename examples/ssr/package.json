@@ -2,6 +2,10 @@
   "name": "ssr",
   "version": "5.0.0",
   "private": true,
+  "browserslist": [
+    ">0.25%",
+    "not dead"
+  ],
   "dependencies": {
     "@babel/core": "latest",
     "@babel/node": "latest",
@@ -12,7 +16,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@emotion/server": "latest",
-    "@mui/material": "next",
+    "@mui/material": "latest",
     "babel-loader": "latest",
     "cross-env": "latest",
     "express": "latest",

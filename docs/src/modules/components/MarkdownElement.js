@@ -28,78 +28,71 @@ const Root = styled('div')(({ theme }) => ({
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
   },
-  // inline code
-  '& code': {
+  '& code, & code[class*="language-"]': {
     direction: 'ltr',
-    lineHeight: 1.4,
-    letterSpacing: 0.2,
     display: 'inline-block',
-    fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-    fontWeight: 500,
+    ...theme.typography.body2,
+    fontSize: theme.typography.pxToRem(13),
+    fontFamily: theme.typography.fontFamilyCode,
+    fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
     padding: '0 5px',
-    color: theme.palette.text.primary,
-    backgroundColor: alpha(theme.palette.primary.light, 0.15),
-    fontSize: '.8125em',
     borderRadius: 5,
   },
+  // inline code
+  '& code': {
+    color: theme.palette.text.primary,
+    backgroundColor: alpha(theme.palette.primary.light, 0.15),
+  },
+  // block code
   '& code[class*="language-"]': {
-    backgroundColor: blueDark[800],
     color: '#fff',
-    // Avoid layout jump after hydration (style injected by prism)
-    lineHeight: 1.5,
-  },
-  // code blocks
-  '& pre code': {
-    fontSize: '.8125em',
-    fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-    fontWeight: 500,
-  },
-  '& .token.operator': {
-    background: 'transparent',
+    backgroundColor: blueDark[800],
   },
   '& h1': {
     ...theme.typography.h3,
-    fontSize: theme.typography.pxToRem(40),
-    fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
-    margin: '16px 0',
+    fontSize: theme.typography.pxToRem(36),
+    fontFamily: `"PlusJakartaSans-ExtraBold", ${theme.typography.fontFamilySystem}`,
+    margin: '10px 0',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[900],
     fontWeight: 800,
   },
   '& .description': {
-    ...theme.typography.h6,
+    ...theme.typography.subtitle1,
     fontWeight: 400,
     margin: '0 0 40px',
   },
   '& h2': {
     ...theme.typography.h5,
-    fontSize: theme.typography.pxToRem(30),
-    fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
-    margin: '40px 0 10px',
-    fontWeight: 600,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[700],
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: 700,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
+    margin: '40px 0 8px',
   },
   '& h3': {
     ...theme.typography.h6,
-    margin: '20px 0 10px',
-    fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
-    fontWeight: 500,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: 700,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    margin: '28px 0 8px',
   },
   '& h4': {
-    ...theme.typography.h6,
-    margin: '10px 0 16px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    ...theme.typography.subtitle1,
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    margin: '24px 0 8px',
   },
   '& h5': {
     ...theme.typography.subtitle2,
-    margin: '10px 0 16px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    margin: '20px 0 8px',
   },
   '& p, & ul, & ol': {
     marginTop: 0,
     marginBottom: 16,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[900],
   },
   '& ul': {
     ...(theme.direction === 'rtl' && {
@@ -139,6 +132,19 @@ const Root = styled('div')(({ theme }) => ({
       },
     },
   },
+  '& h1 code': {
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& h2 code': {
+    fontSize: theme.typography.pxToRem(24),
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& h3 code': {
+    fontSize: theme.typography.pxToRem(18),
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
   '& table': {
     // Trade display table for scroll overflow
     display: 'block',
@@ -149,8 +155,11 @@ const Root = styled('div')(({ theme }) => ({
     borderCollapse: 'collapse',
     marginBottom: '20px',
     borderSpacing: 0,
-    '& .prop-name': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+    '& .prop-name, & .prop-type, & .prop-default': {
+      fontWeight: 400,
+      fontFamily: theme.typography.fontFamilyCode,
+      WebkitFontSmoothing: 'subpixel-antialiased',
+      fontSize: theme.typography.pxToRem(13),
     },
     '& .required': {
       color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
@@ -159,43 +168,47 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
     },
     '& .prop-type': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
     },
     '& .prop-default': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       borderBottom: `1px dotted ${theme.palette.divider}`,
     },
   },
   '& td': {
     ...theme.typography.body2,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 20,
-    color: theme.palette.text.primary,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+    color: theme.palette.text.secondary,
   },
   '& td code': {
     lineHeight: 1.6,
   },
   '& th': {
+    fontSize: theme.typography.pxToRem(14),
     lineHeight: theme.typography.pxToRem(24),
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     color: theme.palette.text.primary,
     whiteSpace: 'pre',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 20,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
   },
   '& blockquote': {
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
+    borderLeft: '8px solid',
     borderColor:
       theme.palette.mode === 'dark'
         ? // Support Material design theme
-          theme.palette.warning[900] ?? theme.palette.warning.dark
-        : theme.palette.warning[400] ?? theme.palette.warning.light,
+          theme.palette.warning[500] ?? theme.palette.warning.dark
+        : theme.palette.warning[300] ?? theme.palette.warning.light,
     backgroundColor:
       theme.palette.mode === 'dark'
         ? // Support Material design theme
-          alpha(theme.palette.warning[800] ?? theme.palette.warning.dark, 0.09)
+          alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',
     margin: '20px 0',
@@ -251,6 +264,16 @@ const Root = styled('div')(({ theme }) => ({
     boxShadow: `inset 0 -1px 0 ${
       theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
     }`,
+  },
+  '& details': {
+    marginBottom: theme.spacing(1.5),
+    padding: theme.spacing(0.5, 0, 0.5, 1),
+    '& summary': {
+      cursor: 'pointer',
+    },
+    '& pre': {
+      marginTop: theme.spacing(1),
+    },
   },
 }));
 

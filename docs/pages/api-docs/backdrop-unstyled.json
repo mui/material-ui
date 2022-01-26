@@ -7,7 +7,10 @@
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ root?: object }" },
+      "default": "{}"
+    },
     "invisible": { "type": { "name": "bool" } }
   },
   "name": "BackdropUnstyled",
@@ -18,9 +21,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-core/src/BackdropUnstyled/BackdropUnstyled.js",
+  "filename": "/packages/mui-base/src/BackdropUnstyled/BackdropUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

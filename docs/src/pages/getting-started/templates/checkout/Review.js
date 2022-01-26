@@ -29,7 +29,7 @@ const products = [
   { name: 'Shipping', desc: '', price: 'Free' },
 ];
 
-const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type', detail: 'Visa' },
   { name: 'Card holder', detail: 'Mr John Smith' },

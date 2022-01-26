@@ -71,6 +71,12 @@ export interface InputBaseProps
    */
   disabled?: boolean;
   /**
+   * If `true`, GlobalStyles for the auto-fill keyframes will not be injected/removed on mount/unmount. Make sure to inject them at the top of your application.
+   * This option is intended to help with boosting the initial rendering performance if you are loading a big amount of Input components at once.
+   * @default false
+   */
+  disableInjectingGlobalStyles?: boolean;
+  /**
    * End `InputAdornment` for this component.
    */
   endAdornment?: React.ReactNode;
@@ -205,10 +211,10 @@ export interface InputBaseComponentProps
  *
  * Demos:
  *
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [InputBase API](https://material-ui.com/api/input-base/)
+ * - [InputBase API](https://mui.com/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): JSX.Element;

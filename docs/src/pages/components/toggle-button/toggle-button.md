@@ -1,7 +1,7 @@
 ---
 title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
-githubLabel: 'component: ToggleButton'
+githubLabel: 'component: toggle button'
 materialDesign: https://material.io/components/buttons#toggle-button
 ---
 
@@ -20,6 +20,8 @@ The `ToggleButtonGroup` controls the selected state of its child buttons when gi
 With exclusive selection, selecting one option deselects any other.
 
 In this example, text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
+
+**Note**: Exclusive selection does not enforce that a button must be active. For that effect see [enforce value set](#enforce-value-set).
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 

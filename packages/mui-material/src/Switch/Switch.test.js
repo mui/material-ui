@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
 
 describe('<Switch />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Switch />, () => ({
     classes,
     render,
     muiName: 'MuiSwitch',
-    testDeepOverrides: { slotName: 'track', slotClassName: classes.track },
+    testDeepOverrides: [
+      { slotName: 'track', slotClassName: classes.track },
+      { slotName: 'input', slotClassName: classes.input },
+    ],
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
   }));

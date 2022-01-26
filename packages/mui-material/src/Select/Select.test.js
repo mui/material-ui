@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import {
   describeConformance,
   ErrorBoundary,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
 } from 'test/utils';
@@ -19,18 +19,7 @@ import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const render = createClientRender();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<Select value="" />, () => ({
     classes,
@@ -136,14 +125,13 @@ describe('<Select />', () => {
   });
 
   it('options should have a data-value attribute', () => {
-    const { getAllByRole } = render(
+    render(
       <Select open value={10}>
         <MenuItem value={10}>Ten</MenuItem>
         <MenuItem value={20}>Twenty</MenuItem>
       </Select>,
-      { baseElement: document.body },
     );
-    const options = getAllByRole('option');
+    const options = screen.getAllByRole('option');
 
     expect(options[0]).to.have.attribute('data-value', '10');
     expect(options[1]).to.have.attribute('data-value', '20');
@@ -304,17 +292,23 @@ describe('<Select />', () => {
     });
   });
 
+  describe('prop: defaultOpen', () => {
+    it('should be open on mount', () => {
+      const { getByRole } = render(<Select defaultOpen value="" />);
+      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+    });
+  });
+
   describe('prop: value', () => {
     it('should select the option based on the number value', () => {
-      const { getAllByRole } = render(
+      render(
         <Select open value={20}>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>,
-        { baseElement: document.body },
       );
-      const options = getAllByRole('option');
+      const options = screen.getAllByRole('option');
 
       expect(options[0]).not.to.have.attribute('aria-selected', 'true');
       expect(options[1]).to.have.attribute('aria-selected', 'true');
@@ -322,15 +316,14 @@ describe('<Select />', () => {
     });
 
     it('should select the option based on the string value', () => {
-      const { getAllByRole } = render(
+      render(
         <Select open value="20">
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>,
-        { baseElement: document.body },
       );
-      const options = getAllByRole('option');
+      const options = screen.getAllByRole('option');
 
       expect(options[0]).not.to.have.attribute('aria-selected', 'true');
       expect(options[1]).to.have.attribute('aria-selected', 'true');
@@ -340,14 +333,13 @@ describe('<Select />', () => {
     it('should select only the option that matches the object', () => {
       const obj1 = { id: 1 };
       const obj2 = { id: 2 };
-      const { getAllByRole } = render(
+      render(
         <Select open value={obj1}>
           <MenuItem value={obj1}>1</MenuItem>
           <MenuItem value={obj2}>2</MenuItem>
         </Select>,
-        { baseElement: document.body },
       );
-      const options = getAllByRole('option');
+      const options = screen.getAllByRole('option');
 
       expect(options[0]).to.have.attribute('aria-selected', 'true');
       expect(options[1]).not.to.have.attribute('aria-selected', 'true');
@@ -379,11 +371,11 @@ describe('<Select />', () => {
             </Select>,
           ),
         ).toWarnDev([
-          'Material-UI: You have provided an out-of-range value `20` for the select component.',
+          'MUI: You have provided an out-of-range value `20` for the select component.',
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') &&
-            'Material-UI: You have provided an out-of-range value `20` for the select component.',
-          'Material-UI: You have provided an out-of-range value `20` for the select component.',
+            'MUI: You have provided an out-of-range value `20` for the select component.',
+          'MUI: You have provided an out-of-range value `20` for the select component.',
         ]);
       });
     });
@@ -582,7 +574,6 @@ describe('<Select />', () => {
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
         </Select>,
-        { baseElement: document.body },
       );
       const trigger = screen.getByRole('button');
       act(() => {
@@ -607,15 +598,11 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('button'));
-      act(() => {
-        clock.tick(99);
-      });
+      clock.tick(99);
 
       expect(onEntered.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(1);
-      });
+      clock.tick(1);
 
       expect(onEntered.callCount).to.equal(1);
     });
@@ -740,9 +727,7 @@ describe('<Select />', () => {
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
       expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(queryByRole('listbox', { hidden: true })).to.equal(null);
     });
@@ -827,6 +812,32 @@ describe('<Select />', () => {
       expect(options[2]).to.have.attribute('aria-selected', 'true');
     });
 
+    it('should serialize multiple select display value', () => {
+      const { getByRole } = render(
+        <Select multiple value={[10, 20, 30]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>
+            <strong>Twenty</strong>
+          </MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      expect(getByRole('button')).to.have.text('Ten, Twenty, Thirty');
+    });
+
+    it('should not throw an error if `value` is an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={[]} />);
+      }).not.to.throw();
+    });
+
+    it('should not throw an error if `value` is not an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={['foo']} />);
+      }).not.to.throw();
+    });
+
     it('selects value based on their stringified equality when theyre not objects', () => {
       const { getAllByRole } = render(
         <Select multiple open value={['10', '20']}>
@@ -881,16 +892,16 @@ describe('<Select />', () => {
             </ErrorBoundary>,
           );
         }).toErrorDev([
-          'Material-UI: The `value` prop must be an array',
+          'MUI: The `value` prop must be an array',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'Material-UI: The `value` prop must be an array',
+          React.version.startsWith('18') && 'MUI: The `value` prop must be an array',
           'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
         } = errorRef;
         expect(errors).to.have.length(1);
-        expect(errors[0].toString()).to.include('Material-UI: The `value` prop must be an array');
+        expect(errors[0].toString()).to.include('MUI: The `value` prop must be an array');
       });
     });
 
@@ -942,6 +953,59 @@ describe('<Select />', () => {
         expect(onChange.callCount).to.equal(2);
         expect(onChange.secondCall.returnValue).to.deep.equal({ name: 'age', value: [30, 10] });
       });
+    });
+
+    it('should apply multiple class to `select` slot', () => {
+      const { container } = render(
+        <Select multiple open value={[10, 30]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector(`.${classes.select}`)).to.have.class(classes.multiple);
+    });
+
+    it('should be able to override `multiple` rule name in `select` slot', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const selectStyle = {
+        marginLeft: '10px',
+        marginTop: '10px',
+      };
+
+      const multipleStyle = {
+        marginTop: '14px',
+      };
+
+      const theme = createTheme({
+        components: {
+          MuiSelect: {
+            styleOverrides: {
+              select: selectStyle,
+              multiple: multipleStyle,
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Select open value={['first']} multiple>
+            <MenuItem value="first" />
+            <MenuItem value="second" />
+          </Select>
+        </ThemeProvider>,
+      );
+
+      const combinedStyle = { ...selectStyle, ...multipleStyle };
+
+      expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(
+        combinedStyle,
+      );
     });
   });
 
@@ -1169,12 +1233,23 @@ describe('<Select />', () => {
       marginTop: '10px',
     };
 
+    const selectStyle = {
+      marginLeft: '10px',
+      marginTop: '12px',
+    };
+
+    const multipleStyle = {
+      marginTop: '14px',
+    };
+
     const theme = createTheme({
       components: {
         MuiSelect: {
           styleOverrides: {
+            select: selectStyle,
             icon: iconStyle,
             nativeInput: nativeInputStyle,
+            multiple: multipleStyle,
           },
         },
       },
@@ -1193,6 +1268,7 @@ describe('<Select />', () => {
     expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
       nativeInputStyle,
     );
+    expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
   });
 
   describe('prop: input', () => {

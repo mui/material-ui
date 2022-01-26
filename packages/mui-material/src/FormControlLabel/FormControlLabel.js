@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useFormControl } from '../FormControl';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
@@ -11,11 +11,17 @@ import useThemeProps from '../styles/useThemeProps';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
+import formControlState from '../FormControl/formControlState';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, labelPlacement } = ownerState;
+  const { classes, disabled, labelPlacement, error } = ownerState;
   const slots = {
-    root: ['root', disabled && 'disabled', `labelPlacement${capitalize(labelPlacement)}`],
+    root: [
+      'root',
+      disabled && 'disabled',
+      `labelPlacement${capitalize(labelPlacement)}`,
+      error && 'error',
+    ],
     label: ['label', disabled && 'disabled'],
   };
 
@@ -108,11 +114,18 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     }
   });
 
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['error'],
+  });
+
   const ownerState = {
     ...props,
     disabled,
     label,
     labelPlacement,
+    error: fcs.error,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -157,7 +170,9 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    typography: PropTypes.object,
+  }),
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
@@ -175,9 +190,9 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    */
   inputRef: refType,
   /**
-   * The text to be used in an enclosing label element.
+   * A text or an element to be used in an enclosing label element.
    */
-  label: PropTypes.node,
+  label: PropTypes.oneOfType([PropTypes.element, PropTypes.number, PropTypes.string]).isRequired,
   /**
    * The position of the label.
    * @default 'end'
@@ -197,7 +212,11 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The value of the component.
    */

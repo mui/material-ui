@@ -7,6 +7,7 @@ import {
   useTheme,
   Theme,
   ThemeOptions,
+  alpha,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
@@ -103,7 +104,6 @@ const Grid = styled('div')(({ theme }) => ({
       },
       '&:last-of-type': {
         borderBottomRightRadius: theme.shape.borderRadius,
-        borderStyle: 'dashed',
       },
       '&:nth-last-of-type(3)': {
         borderBottomLeftRadius: theme.shape.borderRadius,
@@ -183,7 +183,7 @@ function Demo({
 }
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: 700,
   transition: 'none',
   '&.MuiChip-outlined': {
     border: 'none',
@@ -228,7 +228,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
       ...theme.typography,
       button: {
         ...theme.typography.button,
-        fontSize: '1rem',
+        fontSize: '0.875rem',
         lineHeight: 24 / 16,
       },
     },
@@ -243,19 +243,44 @@ export function buildTheme(theme: Theme): ThemeOptions {
           disableElevation: true,
         },
         styleOverrides: {
+          root: {
+            borderRadius: '99px',
+            fontWeight: 500,
+            fontSize: '0.875rem',
+            lineHeight: 24 / 16,
+          },
+          sizeSmall: {
+            padding: theme.spacing(0.5, 1),
+          },
+          sizeMedium: {
+            padding: theme.spacing(0.8, 2),
+          },
+          sizeLarge: {
+            padding: theme.spacing(1, 2),
+            fontSize: '1rem',
+          },
+          contained: {
+            color: theme.palette.primaryDark[50],
+            bgColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[400]
+                : theme.palette.primaryDark[600],
+          },
           text: {
             color:
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[100]
+                ? theme.palette.primaryDark[50]
                 : theme.palette.primaryDark[700],
           },
-          sizeMedium: {
-            padding: theme.spacing(1, 2),
-          },
-          sizeLarge: {
-            padding: theme.spacing(1.5, 2.5),
-            fontSize: '1rem',
-            lineHeight: 24 / 16,
+          outlined: {
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[300]
+                : theme.palette.primaryDark[600],
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[50]
+                : theme.palette.primaryDark[700],
           },
           iconSizeSmall: {
             '& > *:nth-of-type(1)': {
@@ -263,6 +288,11 @@ export function buildTheme(theme: Theme): ThemeOptions {
             },
           },
           iconSizeMedium: {
+            '& > *:nth-of-type(1)': {
+              fontSize: '0.875rem',
+            },
+          },
+          iconSizeLarge: {
             '& > *:nth-of-type(1)': {
               fontSize: '1rem',
             },
@@ -279,24 +309,58 @@ export function buildTheme(theme: Theme): ThemeOptions {
             '& .MuiAlert-icon': {
               color:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[500]
+                  ? theme.palette.primaryDark[100]
                   : theme.palette.primaryDark[800],
             },
           },
           filled: {
+            color: theme.palette.primaryDark[50],
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.primaryDark[700],
             '& .MuiAlert-icon': {
-              color: theme.palette.mode === 'dark' ? theme.palette.primary[500] : '#fff',
+              color: theme.palette.primary[50],
+            },
+          },
+          outlined: {
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[50]
+                : theme.palette.primaryDark[700],
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[700], 0.5)
+                : alpha(theme.palette.primaryDark[50], 0.5),
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[200]
+                : theme.palette.primaryDark[600],
+            '& .MuiAlert-icon': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[100]
+                  : theme.palette.primaryDark[800],
             },
           },
           message: {
             padding: 0,
-            fontWeight: 600,
+            fontWeight: 500,
           },
           standardInfo: {
-            backgroundColor: theme.palette.primaryDark[100],
-            color: theme.palette.primaryDark[600],
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[900]
+                : theme.palette.primaryDark[50],
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[50]
+                : theme.palette.primaryDark[700],
             '& .MuiAlert-icon': {
-              color: theme.palette.primaryDark[600],
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[50]
+                  : theme.palette.primaryDark[700],
             },
           },
           icon: {
@@ -331,11 +395,11 @@ export function buildTheme(theme: Theme): ThemeOptions {
                   : theme.palette.grey[300],
             },
             '& .MuiInputBase-input': {
-              fontWeight: 600,
+              fontWeight: 700,
             },
             '& .MuiFilledInput-root': {
               backgroundColor:
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : '#fff',
               '&:after': {
                 borderColor:
                   theme.palette.mode === 'dark'
@@ -344,7 +408,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               },
               '&:hover': {
                 backgroundColor:
-                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
+                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#fff',
               },
             },
             '& .MuiInputLabel-filled.Mui-focused': {
@@ -355,7 +419,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               '&:after': {
                 borderColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primary[500]
+                    ? theme.palette.primaryDark[500]
                     : theme.palette.primaryDark[800],
               },
             },
@@ -381,7 +445,9 @@ export function buildTheme(theme: Theme): ThemeOptions {
       MuiPopover: {
         styleOverrides: {
           paper: {
-            boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.1)',
+            boxShadow: `0px 4px 20px ${
+              theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+            }`,
           },
         },
       },
@@ -400,7 +466,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               fontSize: '1.125rem',
               color:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[500]
+                  ? theme.palette.primary[300]
                   : theme.palette.primaryDark[400],
             },
           },
@@ -420,7 +486,7 @@ export default function MaterialDesignComponents() {
     setTheme(createTheme(customized ? buildTheme(globalTheme) : { palette: { mode } }));
   }, [mode, customized, globalTheme]);
   return (
-    <Box>
+    <div>
       <Box
         sx={{
           mt: { xs: 2, md: 4 },
@@ -570,6 +636,6 @@ export default function MaterialDesignComponents() {
           </Button>
         </Box>
       </Grid>
-    </Box>
+    </div>
   );
 }

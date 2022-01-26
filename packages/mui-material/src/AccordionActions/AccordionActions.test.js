@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import AccordionActions, {
   accordionActionsClasses as classes,
 } from '@mui/material/AccordionActions';
 
 describe('<AccordionActions />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<AccordionActions>Conformance</AccordionActions>, () => ({
     classes,

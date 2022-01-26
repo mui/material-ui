@@ -71,7 +71,7 @@ export default function SearchAppBar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            Material-UI
+            MUI
           </Typography>
           <Search>
             <SearchIconWrapper>

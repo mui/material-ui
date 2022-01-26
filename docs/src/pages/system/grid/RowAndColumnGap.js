@@ -7,12 +7,14 @@ function Item(props) {
   return (
     <Box
       sx={{
-        bgcolor: 'primary.main',
-        color: 'white',
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800'),
+        border: '1px solid',
+        borderColor: (theme) =>
+          theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         p: 1,
-        borderRadius: 1,
-        textAlign: 'center',
-        fontSize: 19,
+        borderRadius: 2,
+        fontSize: '0.875rem',
         fontWeight: '700',
         ...sx,
       }}
@@ -22,7 +24,13 @@ function Item(props) {
 }
 
 Item.propTypes = {
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default function RowAndColumnGap() {

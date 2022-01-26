@@ -9,7 +9,12 @@
     "component": { "type": { "name": "elementType" } },
     "disablePointerEvents": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "enum",
@@ -38,6 +43,5 @@
   "filename": "/packages/mui-material/src/InputAdornment/InputAdornment.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -4,6 +4,7 @@ description: An update on our mission for Q1 2021.
 date: 2021-04-12T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
+tags: ['Company update']
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the months ahead.
@@ -43,7 +44,7 @@ Here are the most significant improvements since December 2020.
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
-  You can find [more details](https://next.material-ui.com/components/stack/) in the documentation.
+  You can find [more details](https://mui.com/components/stack/) in the documentation.
 
 - 🎨 We have improved the support for custom colors and variants.
   This is [one](https://github.com/mui-org/material-ui/issues/13875) of the most upvoted issues in the GitHub issue tracker.
@@ -83,7 +84,7 @@ This new feature removes the need to create a wrapper component.
   At the same time, they have increased the number of provided icons from 6,500 to 8,500.
   You can find all these icons under the `@mui/icons-material` package.
 
-- 🦴 We have migrated a couple of components to the `@mui/core` package.
+- 🦴 We have migrated a couple of components to the `@mui/base` package.
   The aim of the package is to host the unstyled and headless (hooks) components.
   So far, you can only find:
 
@@ -120,7 +121,7 @@ We have primarily focused on the data grid components, fixing a lot of bugs, but
 The date picker is at the border between the advanced components and the design system realms.
 
 - 📚 We have fixed the generation of the API pages.
-  We now document all the props supported by the public pickers components, e.g. [DatePicker](https://next.material-ui.com/api/date-picker/).
+  We now document all the props supported by the public pickers components, e.g. [DatePicker](https://mui.com/api/date-picker/).
 - ⚙️ We have mostly focused on addressing the technical debt present in the picker components (ported from `@materal-ui/pickers`).
 
 #### Data Grid
@@ -135,7 +136,7 @@ The date picker is at the border between the advanced components and the design 
 - 🚨 We have started to work on breaking changes to reach a stable state.
 - 💾 We have extended the support of @mui/material to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/material-ui-x_.
-  For Material-UI X, we will likely need to release breaking changes at a higher frequency: every six months.
+  For MUI X, we will likely need to release breaking changes at a higher frequency: every six months.
 - 🎛 We have added a column selector.
 
   <img src="/static/blog/2021-q1-update/column-selector.png" alt="" style="width: 518px; margin-bottom: 16px;" />
@@ -166,7 +167,7 @@ We have redesigned most of the components from scratch to make sure all componen
 The most important change inside the organization is the introduction of a company Handbook.
 The company is distributed and operates across different time zones.
 Per the nature of our operation, and at the pace we are growing, we needed an effective and efficient way to share the organizational processes and culture.
-Per our transparency value, all the sections of the Handbook that don't contain sensitive information are [publicly available](https://www.notion.so/Handbook-f086d47e10794d5e839aef9dc67f324b).
+Per our transparency value, all the sections of the Handbook that don't contain sensitive information are [publicly available](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 This Handbook is the single **source of truth**. It's meant to be updated by any team member, to stay in sync with how we do things.
 
@@ -182,7 +183,7 @@ This Handbook is the single **source of truth**. It's meant to be updated by any
   We have seen a significant influx of stars this quarter.
 - 👨‍👩‍👧‍👦 From 2,052 to 2,141 contributors on GitHub. We add on average one new contributor every day.
 - 💰 Grew gross revenue at +4%/week on average during the period.
-- 🏢 We have welcomed one new member to Material-UI: [Matheus](/blog/matheus-wichman-joining/).
+- 🏢 We have welcomed one new member to MUI: [Matheus](/blog/matheus-wichman-joining/).
 
 ## Our roadmap intent for Q2 2021
 
@@ -197,7 +198,7 @@ We will cross the ten-person milestone in the coming weeks (11).
 
 We have the following objectives:
 
-- Finish the implementation of the rebranding. A preview, the [about](https://next.material-ui.com/branding/about/) and [pricing](https://next.material-ui.com/branding/pricing/) pages.
+- Finish the implementation of the rebranding. A preview, the [about](/about/) and [pricing](/pricing/) pages.
 - Onboard the new members and scale our processes as we double the size of the organization this quarter.
 
 ### Core components

@@ -82,7 +82,7 @@ export default function transformer(fileInfo, api, options) {
     const importPath = path.value.source.value;
     let entryModule = importPath.match(importRegExp);
 
-    // Remove non-Material-UI imports
+    // Remove non-MUI imports
     if (!entryModule) {
       return;
     }

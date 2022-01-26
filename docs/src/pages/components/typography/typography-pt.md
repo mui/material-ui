@@ -1,11 +1,11 @@
 ---
 title: Componente React de Tipografia
-components: Tipografia
+components: Typography
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 
-# Tipografia
+# Typography
 
 <p class="description">Use a tipografia para apresentar seu design e conteúdo da forma mais clara e eficiente possível.</p>
 
@@ -60,7 +60,7 @@ Em algumas situações, talvez você não consiga usar o componente `Typography`
 
 O componente de Tipografia (Typography) usa a propriedade `variantMapping` para associar a variação da UI com um elemento semântico. It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
-- Você pode alterar o elemento subjacente para uma ocasião única com a propriedade `component`:
+- Você pode alterar o elemento subjacente para uma ocasião em específico com a propriedade `component`:
 
 ```jsx
 {/ * Já existe um h1 na página, não vamos duplicá-lo. */}

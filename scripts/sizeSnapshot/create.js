@@ -1,12 +1,12 @@
 const fse = require('fs-extra');
 const lodash = require('lodash');
 const path = require('path');
-const { promisify } = require('util');
-const webpackCallbackBased = require('webpack');
 const yargs = require('yargs');
-const createWebpackConfig = require('./webpack.config');
+const Piscina = require('piscina');
+const os = require('os');
+const { getWebpackEntries } = require('./webpack.config');
 
-const webpack = promisify(webpackCallbackBased);
+const MAX_CONCURRENCY = Math.min(8, os.cpus().length);
 
 const workspaceRoot = path.join(__dirname, '../../');
 const snapshotDestPath = path.join(workspaceRoot, 'size-snapshot.json');
@@ -36,37 +36,21 @@ async function getRollupSize(snapshotPath) {
  * creates size snapshot for every bundle that built with webpack
  */
 async function getWebpackSizes(webpackEnvironment) {
+  const worker = new Piscina({
+    filename: require.resolve('./worker'),
+    maxThreads: MAX_CONCURRENCY,
+  });
   await fse.mkdirp(path.join(__dirname, 'build'));
 
-  const configurations = await createWebpackConfig(webpack, webpackEnvironment);
-  const webpackMultiStats = await webpack(configurations);
+  const entries = await getWebpackEntries();
 
-  const sizes = [];
-  webpackMultiStats.stats.forEach((webpackStats) => {
-    if (webpackStats.hasErrors()) {
-      const { entrypoints, errors } = webpackStats.toJson({
-        all: false,
-        entrypoints: true,
-        errors: true,
-      });
-      throw new Error(
-        `The following errors occured during bundling of ${Object.keys(
-          entrypoints,
-        )} with webpack: \n${errors.join('\n')}`,
-      );
-    }
+  const sizeArrays = await Promise.all(
+    entries.map((entry, index) =>
+      worker.run({ entry, webpackEnvironment, index, total: entries.length }),
+    ),
+  );
 
-    const stats = webpackStats.toJson({ all: false, assets: true });
-    const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
-
-    Object.entries(stats.assetsByChunkName).forEach(([chunkName, assetName]) => {
-      const parsedSize = assets.get(assetName).size;
-      const gzipSize = assets.get(`${assetName}.gz`).size;
-      sizes.push([chunkName, { parsed: parsedSize, gzip: gzipSize }]);
-    });
-  });
-
-  return sizes;
+  return sizeArrays.flat();
 }
 
 async function run(argv) {

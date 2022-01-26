@@ -1,14 +1,22 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
+import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 
-const Root = styled('span')(`
+const blue = {
+  500: '#007FFF',
+};
+
+const grey = {
+  400: '#BFC7CF',
+  500: '#AAB4BE',
+};
+
+const Root = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
-  width: 32px;
+  width: 40px;
   height: 20px;
-  
   margin: 10px;
   cursor: pointer;
 
@@ -18,7 +26,7 @@ const Root = styled('span')(`
   }
 
   & .${switchUnstyledClasses.track} {
-    background: #B3C3D3;
+    background: ${grey[400]};
     border-radius: 10px;
     display: block;
     height: 100%;
@@ -33,25 +41,25 @@ const Root = styled('span')(`
     top: 3px;
     left: 3px;
     border-radius: 16px;
-    background-color: #FFF;
+    background-color: #fff;
     position: relative;
     transition: all 200ms ease;
   }
 
   &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
-    background-color: rgba(255,255,255,1);
-    box-shadow: 0 0 1px 8px rgba(0,0,0,0.25);
+    background-color: ${grey[500]};
+    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
-  &.${switchUnstyledClasses.checked} { 
+  &.${switchUnstyledClasses.checked} {
     .${switchUnstyledClasses.thumb} {
-      left: 14px;
+      left: 22px;
       top: 3px;
-      background-color: #FFF;
+      background-color: #fff;
     }
 
     .${switchUnstyledClasses.track} {
-      background: #007FFF;
+      background: ${blue[500]};
     }
   }
 
@@ -65,7 +73,8 @@ const Root = styled('span')(`
     opacity: 0;
     z-index: 1;
     margin: 0;
-  }`);
+  }
+`;
 
 export default function UnstyledSwitches() {
   const label = { componentsProps: { input: { 'aria-label': 'Demo switch' } } };

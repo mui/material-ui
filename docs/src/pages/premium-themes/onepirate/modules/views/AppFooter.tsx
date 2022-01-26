@@ -10,7 +10,7 @@ function Copyright() {
   return (
     <React.Fragment>
       {'© '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -59,17 +59,13 @@ export default function AppFooter() {
               sx={{ height: 120 }}
             >
               <Grid item sx={{ display: 'flex' }}>
-                <Box component="a" href="https://material-ui.com/" sx={iconStyle}>
+                <Box component="a" href="https://mui.com/" sx={iconStyle}>
                   <img
                     src="/static/themes/onepirate/appFooterFacebook.png"
                     alt="Facebook"
                   />
                 </Box>
-                <Box
-                  component="a"
-                  href="https://twitter.com/MaterialUI"
-                  sx={iconStyle}
-                >
+                <Box component="a" href="https://twitter.com/MUI_hq" sx={iconStyle}>
                   <img
                     src="/static/themes/onepirate/appFooterTwitter.png"
                     alt="Twitter"

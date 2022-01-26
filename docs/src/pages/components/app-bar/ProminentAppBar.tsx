@@ -39,7 +39,7 @@ export default function ProminentAppBar() {
             component="div"
             sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
           >
-            Material-UI
+            MUI
           </Typography>
           <IconButton size="large" aria-label="search" color="inherit">
             <SearchIcon />

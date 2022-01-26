@@ -1,10 +1,10 @@
 ---
+title: March 2019 Update
 description: Here are the most significant improvements in March.
+date: 2019-04-05T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['Company update']
 ---
-
-# March 2019 Update
-
-Olivier Tassinari. April 5, 2019.
 
 Here are the most significant improvements in March:
 
@@ -14,10 +14,12 @@ Here are the most significant improvements in March:
 - We have migrated a few demos from the `withStyles()` API to the `makeStyles()` API.
   If you are wondering which you should use, we would encourage the use of `makeStyles()` where possible. `withStyles()` is interesting for overriding component styles or for handling legacy class logics.
 - We have made the [Box API](/system/basics/) stable 🥳.
+
   ```diff
   -import { unstable_Box as Box } from '@mui/material/Box';
   +import Box from '@mui/material/Box';
   ```
+
 - We have committed to [a new Roadmap](/discover-more/roadmap/) (prioritized) for the next 6 months.
 - We have migrated 50% of the codebase from the Classes API to the Hooks API. Once we are done with this task we can remove the internal usage of higher-order components.
 - We have introduced [a simplified server-side rendering API](/styles/advanced/#server-side-rendering), inspired by styled-components.
@@ -27,7 +29,7 @@ Here are the most significant improvements in March:
 _(We'll do our best, no guarantee!)_
 
 - We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui-org/material-ui/issues/13663). You can already find [the upgrade path](/guides/migration-v3/) from v3 to v4 in the documentation. Next, we will release the first beta version (no more breaking changes).
-  The results of the Material-UI developer survey suggested that there are too many breaking changes.
+  The results of the MUI developer survey suggested that there are too many breaking changes.
   Don't worry, it's almost over! We will focus on providing more components once we have released v4 stable.
 - We will continue, and hopefully complete, the tasks we undertook:
   - TypeScript demo variants.

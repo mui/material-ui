@@ -8,7 +8,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 
 type HTMLDivProps = JSX.IntrinsicElements['div'];
@@ -31,6 +31,7 @@ export interface CalendarPickerSkeletonProps extends HTMLDivProps {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 export type CalendarPickerSkeletonClassKey = keyof CalendarPickerSkeletonClasses;
@@ -111,16 +112,16 @@ const monthMap = [
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
+ * - [CalendarPickerSkeleton API](https://mui.com/api/calendar-picker-skeleton/)
  */
 function CalendarPickerSkeleton(props: CalendarPickerSkeletonProps) {
   const { className, ...other } = useThemeProps<
     Theme,
-    JSX.IntrinsicElements['div'],
+    Omit<JSX.IntrinsicElements['div'], 'ref'> & { ref?: React.Ref<HTMLDivElement> },
     'MuiCalendarPickerSkeleton'
   >({
     props,
@@ -153,11 +154,11 @@ function CalendarPickerSkeleton(props: CalendarPickerSkeletonProps) {
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
+ * - [CalendarPickerSkeleton API](https://mui.com/api/calendar-picker-skeleton/)
  */
 
 CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
@@ -176,7 +177,11 @@ CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 } as any;
 
 export default CalendarPickerSkeleton;

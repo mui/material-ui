@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Toolbar, { toolbarClasses as classes } from '@mui/material/Toolbar';
 
 describe('<Toolbar />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Toolbar />, () => ({
     classes,

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { describeConformance, createClientRender } from 'test/utils';
+import { describeConformance, createRenderer } from 'test/utils';
 import DialogTitle, { dialogTitleClasses as classes } from '@mui/material/DialogTitle';
 
 describe('<DialogTitle />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<DialogTitle>foo</DialogTitle>, () => ({
     classes,

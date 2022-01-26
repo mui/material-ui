@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@3.0.0
 
 parameters:
   browserstack-force:
@@ -13,6 +15,10 @@ parameters:
     description: The name of the workflow to run
     type: string
     default: pipeline
+  e2e-base-url:
+    description: The base url for running end-to-end test
+    type: string
+    default: ''
 
 defaults: &defaults
   parameters:
@@ -24,6 +30,10 @@ defaults: &defaults
       description: A particular type of tests that should be run
       type: string
       default: undefined
+    e2e-base-url:
+      description: The base url for running end-to-end test
+      type: string
+      default: << pipeline.parameters.e2e-base-url >>
   environment:
     # Keep in sync with "Save playwright cache"
     PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
@@ -31,6 +41,7 @@ defaults: &defaults
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_DIST_TAG: << parameters.react-dist-tag >>
     TEST_GATE: << parameters.test-gate >>
+    AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:12
@@ -66,12 +77,11 @@ commands:
       - restore_cache:
           name: Restore yarn cache
           keys:
-            - v7-yarn-{{ checksum "yarn.lock" }}
-            - v7-yarn-
+            - v8-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: Set yarn cache folder
           command: |
-            # Keep path in sync with `save_cache` for key "v7-yarn-"
+            # Keep path in sync with `save_cache` for key "v8-yarn-"
             yarn config set cache-folder /tmp/yarn-cache
             # Debug information
             yarn cache dir
@@ -89,8 +99,6 @@ commands:
                 name: Restore playwright cache
                 keys:
                   - v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
-                  - v5-playwright-{{ arch }}-
-                  - v5-playwright-
       - run:
           name: Install js dependencies
           command: yarn install --verbose
@@ -98,7 +106,7 @@ commands:
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
       - save_cache:
           name: Save yarn cache
-          key: v7-yarn-{{ checksum "yarn.lock" }}
+          key: v8-yarn-{{ checksum "yarn.lock" }}
           paths:
             # Keep path in sync with "Set yarn cache folder"
             # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
@@ -194,6 +202,9 @@ jobs:
       - run:
           name: Lint JSON
           command: yarn jsonlint
+      - run:
+          name: Lint Markdown
+          command: yarn markdownlint
   test_static:
     <<: *defaults
     steps:
@@ -249,19 +260,20 @@ jobs:
           name: Test module augmenation
           command: |
             yarn workspace @mui/material typescript:module-augmentation
-            yarn workspace @mui/core typescript:module-augmentation
+            yarn workspace @mui/base typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files
           keys:
-            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
+            # #default-branch-switch
+            # We assume that the target branch is `master` and that declaration files are persisted in commit order.
             # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-next
+            - typescript-declaration-files-master
 
       - run:
           name: Diff declaration files
           command: |
-            git add -f packages/mui-material/build || echo '/core declarations do not exist'
+            git add -f packages/mui-material/build || echo '/material declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             yarn lerna run --parallel build:types
@@ -329,7 +341,7 @@ jobs:
   test_browser:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -356,7 +368,7 @@ jobs:
   test_e2e:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -372,10 +384,25 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
+  test_e2e_website:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout
+      - install_js:
+          browsers: true
+      - run:
+          name: yarn test:e2e-website
+          command: yarn test:e2e-website
+          environment:
+            PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -402,7 +429,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -456,7 +483,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -480,7 +507,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -504,7 +531,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -528,7 +555,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -552,7 +579,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -576,7 +603,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -604,7 +631,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -623,6 +650,101 @@ jobs:
       - run:
           name: Test fixture
           command: yarn start
+  test_bundle_size_monitor:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: prepare danger on PRs
+          command: yarn danger ci
+          environment:
+            DANGER_COMMAND: prepareBundleSizeReport
+      - run:
+          name: build @mui packages
+          command: yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
+      - run:
+          name: create @mui/material canary distributable
+          command: |
+            cd packages/mui-material/build
+            npm version 0.0.0-canary.${CIRCLE_SHA1} --no-git-tag-version
+            npm pack
+            mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
+      - when:
+          # don't run on PRs
+          condition:
+            not:
+              matches:
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: '^pull/.+$'
+                value: << pipeline.git.branch >>
+          steps:
+            # Upload distributables to S3
+            - aws-s3/copy:
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: mui-material.tgz
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+      - store_artifacts:
+          path: mui-material.tgz
+          destination: mui-material.tgz
+      - run:
+          name: create a size snapshot
+          command: yarn size:snapshot
+      - store_artifacts:
+          name: persist size snapshot as pipeline artifact
+          path: size-snapshot.json
+          destination: size-snapshot.json
+      - when:
+          # don't run on PRs
+          condition:
+            not:
+              matches:
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: '^pull/.+$'
+                value: << pipeline.git.branch >>
+          steps:
+            # persist size snapshot on S3
+            - aws-s3/copy:
+                arguments: --content-type application/json
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: size-snapshot.json
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+            # symlink size-snapshot to latest
+            - aws-s3/copy:
+                arguments: --content-type application/json
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: size-snapshot.json
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
+      - run:
+          name: run danger on PRs
+          command: yarn danger ci --fail-on-errors
+          environment:
+            DANGER_COMMAND: 'reportBundleSize'
+  test_benchmark:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout
+      - install_js:
+          browsers: true
+      - run: yarn benchmark:browser
+      - store_artifacts:
+          name: Publish benchmark results as a pipeline artifact.
+          path: tmp/benchmarks
+          destination: benchmarks
 workflows:
   version: 2
   pipeline:
@@ -651,6 +773,18 @@ workflows:
       - test_e2e:
           requires:
             - checkout
+      - test_bundle_size_monitor:
+          requires:
+            - checkout
+  e2e-website:
+    when:
+      equal: [e2e-website, << pipeline.parameters.workflow >>]
+    jobs:
+      - checkout
+      - test_e2e_website:
+          requires:
+            - checkout
+
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
@@ -693,7 +827,6 @@ workflows:
             branches:
               only:
                 - master
-                - next
     jobs:
       - test_unit:
           react-dist-tag: next
@@ -711,6 +844,10 @@ workflows:
             branches:
               only:
                 - master
-                - next
     jobs:
       - test_types_next
+  benchmark:
+    when:
+      equal: [benchmark, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_benchmark

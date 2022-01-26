@@ -27,6 +27,21 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
       PaginationItemPropsColorOverrides
     >;
     /**
+     * The components used for first, last, next & previous item type
+     * @default {
+     *   first: FirstPageIcon,
+     *   last: LastPageIcon,
+     *   next: NavigateNextIcon,
+     *   previous: NavigateBeforeIcon,
+     * }
+     */
+    components?: {
+      first?: React.ElementType;
+      last?: React.ElementType;
+      next?: React.ElementType;
+      previous?: React.ElementType;
+    };
+    /**
      * If `true`, the component is disabled.
      * @default false
      */
@@ -72,11 +87,11 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
  *
  * Demos:
  *
- * - [Pagination](https://material-ui.com/components/pagination/)
+ * - [Pagination](https://mui.com/components/pagination/)
  *
  * API:
  *
- * - [PaginationItem API](https://material-ui.com/api/pagination-item/)
+ * - [PaginationItem API](https://mui.com/api/pagination-item/)
  */
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 

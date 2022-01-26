@@ -20,7 +20,7 @@ For instance, with a `Button` component:
 
 In real-life applications, using a native `<a>` element is rarely enough.
 You can improve the user experience by using an enhanced Link component systematically.
-The theme of Material-UI allows configuring this component once.
+The theme of MUI allows configuring this component once.
 For instance, with react-router:
 
 ```jsx
@@ -29,7 +29,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (Material-UI) -> to (react-router)
+  // Map href (MUI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -62,7 +62,7 @@ You can learn more about this prop in the [**composition guide**](/guides/compos
 
 ### Link
 
-Here are a few demos with [react-router](https://github.com/ReactTraining/react-router).
+Here are a few demos with [react-router](https://github.com/remix-run/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
@@ -95,9 +95,9 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 ### Next.js
 
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
-The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
+The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
 
-- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component.
+- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui-org/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component.
   This component is unstyled and only responsible for handling the navigation.
   The prop `href` was renamed `to` to avoid a naming conflict.
   This is similar to react-router's Link component.
@@ -123,7 +123,7 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
 
 - The second version of the adapter is the `Link` component.
   This component is styled.
-  It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+  It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

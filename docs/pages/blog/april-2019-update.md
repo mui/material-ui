@@ -1,10 +1,10 @@
 ---
+title: April 2019 Update
 description: Here are the most significant improvements in April.
+date: 2019-05-07T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['Company update']
 ---
-
-# April 2019 Update
-
-Olivier Tassinari. May 7, 2019.
 
 Here are the most significant improvements in April:
 
@@ -46,7 +46,7 @@ But this summary is just scratching the surface. We have accepted 243 commits fr
 
 _(We'll do our best, no guarantee!)_
 
-- We will release Material-UI v4 stable during the React Europe conference.
+- We will release MUI v4 stable during the React Europe conference.
 - We will start an effort to support more components. So far, we have identified a couple of useful ones:
   - Layout
   - Combobox

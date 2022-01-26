@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import ListItemIcon, { listItemIconClasses as classes } from '@mui/material/ListItemIcon';
 
 describe('<ListItemIcon />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <ListItemIcon>

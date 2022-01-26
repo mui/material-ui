@@ -6,7 +6,7 @@ export * from './styles';
 
 export * from './utils';
 
-export * from '@mui/core';
+export * from '@mui/base';
 
 export { default as Accordion } from './Accordion';
 export * from './Accordion';

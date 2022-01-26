@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Paper from '../Paper';
@@ -74,9 +74,7 @@ Card.propTypes /* remove-proptypes */ = {
    */
   raised: chainPropTypes(PropTypes.bool, (props) => {
     if (props.raised && props.variant === 'outlined') {
-      return new Error(
-        'Material-UI: Combining `raised={true}` with `variant="outlined"` has no effect.',
-      );
+      return new Error('MUI: Combining `raised={true}` with `variant="outlined"` has no effect.');
     }
 
     return null;
@@ -84,7 +82,11 @@ Card.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default Card;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
+import { PaperProps } from '@mui/material/Paper';
 import { PopperProps } from '@mui/material/Popper';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
@@ -12,7 +13,7 @@ import {
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
-} from '@mui/core';
+} from '@mui/base';
 import { AutocompleteClasses } from './autocompleteClasses';
 
 export {
@@ -101,6 +102,7 @@ export interface AutocompleteProps<
    */
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
+    paper?: PaperProps;
   };
   /**
    * If `true`, the component is disabled.
@@ -188,9 +190,14 @@ export interface AutocompleteProps<
    */
   popupIcon?: React.ReactNode;
   /**
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * @default false
+   */
+  readOnly?: boolean;
+  /**
    * Render the group.
    *
-   * @param {any} option The group to render.
+   * @param {AutocompleteRenderGroupParams} params The group to render.
    * @returns {ReactNode}
    */
   renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode;
@@ -237,11 +244,11 @@ export interface AutocompleteProps<
  *
  * Demos:
  *
- * - [Autocomplete](https://material-ui.com/components/autocomplete/)
+ * - [Autocomplete](https://mui.com/components/autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://material-ui.com/api/autocomplete/)
+ * - [Autocomplete API](https://mui.com/api/autocomplete/)
  */
 export default function Autocomplete<
   T,

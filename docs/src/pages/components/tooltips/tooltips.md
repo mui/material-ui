@@ -1,7 +1,7 @@
 ---
 title: React Tooltip component
 components: Tooltip
-githubLabel: 'component: Tooltip'
+githubLabel: 'component: tooltip'
 materialDesign: https://material.io/components/tooltips
 waiAria: https://www.w3.org/TR/wai-aria-practices/#tooltip
 ---
@@ -62,6 +62,8 @@ You can find a similar concept in the [wrapping components](/guides/composition/
 
 You can define the types of events that cause a tooltip to show.
 
+The touch action requires a long press due to the `enterTouchDelay` prop being set to `700`ms by default.
+
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
 ## Controlled tooltips
@@ -92,7 +94,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+> If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
 
 ```jsx
 <Tooltip title="You don't have permission to do this">

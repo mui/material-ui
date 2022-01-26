@@ -1,7 +1,7 @@
 ---
 title: Componente Diálogo para React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
-githubLabel: 'component: Dialog'
+githubLabel: 'component: dialog'
 materialDesign: https://material.io/components/dialogs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
@@ -102,7 +102,7 @@ Tocar em "Cancelar" em um diálogo de confirmação ou pressionar Voltar, cancel
 
 ## Diálogo arrastável
 
-Você pode criar um diálogo arrastável usando [react-draggable](https://github.com/mzabriskie/react-draggable). Para fazer isso, você deve passar o componente importado `Draggable` como `PaperComponent` do componente `Dialog`. Isso fará com que todo o diálogo seja arrastável.
+You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). Para fazer isso, você deve passar o componente importado `Draggable` como `PaperComponent` do componente `Dialog`. Isso fará com que todo o diálogo seja arrastável.
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 

@@ -72,7 +72,7 @@
 <Box sx={{ letterSpacing: 10 }}>…
 ```
 
-## 行高
+## 行高（Line Height）
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 

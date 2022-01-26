@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, visuallyHidden } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useTheme from '../styles/useTheme';
 import {
   capitalize,
@@ -562,7 +562,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                                   ? `${(indexDecimal + 1) * precision * 100}%`
                                   : '0%',
                               overflow: 'hidden',
-                              zIndex: 1,
                               position: 'absolute',
                             },
                     }}
@@ -707,7 +706,7 @@ Rating.propTypes /* remove-proptypes */ = {
     if (props.precision < 0.1) {
       return new Error(
         [
-          'Material-UI: The prop `precision` should be above 0.1.',
+          'MUI: The prop `precision` should be above 0.1.',
           'A value below this limit has an imperceptible impact.',
         ].join('\n'),
       );
@@ -730,7 +729,11 @@ Rating.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The rating value.
    */

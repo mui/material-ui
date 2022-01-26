@@ -4,7 +4,12 @@
     "classes": { "type": { "name": "object" } },
     "message": { "type": { "name": "node" } },
     "role": { "type": { "name": "string" }, "default": "'alert'" },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "SnackbarContent",
   "styles": {
@@ -17,6 +22,5 @@
   "filename": "/packages/mui-material/src/SnackbarContent/SnackbarContent.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/snackbars/\">Snackbars</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

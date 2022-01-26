@@ -1,7 +1,7 @@
 <NoSsr>
   <MuiThemeProvider theme={customTheme}>
     <ThemeProvider theme={customTheme}>
-      <Styledvatar>OP</Styledvatar>
+      <StyledAvatar>OP</StyledAvatar>
     </ThemeProvider>
   </MuiThemeProvider>
 </NoSsr>

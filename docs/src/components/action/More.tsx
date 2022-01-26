@@ -6,9 +6,27 @@ import AddCircleOutlineRounded from '@mui/icons-material/AddCircleOutlineRounded
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default (function More(props: ButtonBaseProps) {
+  const ref = React.useRef<null | HTMLButtonElement>(null);
   return (
     <ButtonBase
+      ref={ref}
       {...props}
+      onClick={(event) => {
+        if (ref.current) {
+          ref.current.scrollIntoView({ block: 'nearest' });
+        }
+        if (props.onClick) {
+          props.onClick(event);
+        }
+      }}
+      onFocusVisible={(event) => {
+        if (ref.current) {
+          ref.current.scrollIntoView({ block: 'nearest' });
+        }
+        if (props.onFocusVisible) {
+          props.onFocusVisible(event);
+        }
+      }}
       sx={{
         p: 2,
         display: 'flex',
@@ -31,10 +49,10 @@ export default (function More(props: ButtonBaseProps) {
         ...props.sx,
       }}
     >
-      <Box sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
+      <Box component="span" sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
         <AddCircleOutlineRounded color="primary" fontSize="small" />
       </Box>
-      <Typography color="primary.main" variant="body2" fontWeight="bold">
+      <Typography component="span" color="primary.main" variant="body2" fontWeight="bold">
         Much more{' '}
         <KeyboardArrowRightRounded
           color="primary"

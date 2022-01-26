@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import ImageListItemBar, {
   imageListItemBarClasses as classes,
 } from '@mui/material/ImageListItemBar';
 
 describe('<ImageListItemBar />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<ImageListItemBar title="conform?" />, () => ({
     classes,

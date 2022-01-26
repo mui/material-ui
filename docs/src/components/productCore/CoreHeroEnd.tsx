@@ -8,7 +8,7 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import { MuiStats } from 'docs/src/components/home/Testimonials';
+import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 export default function CoreHeroEnd() {
@@ -25,9 +25,9 @@ export default function CoreHeroEnd() {
                   description="The core components were crafted by many hands, all over the world. Join the community to help us expand it even further!"
                 />
                 <Button
-                  aria-label="Goto documentation"
+                  aria-label="Go to documentation"
                   component={Link}
-                  href={ROUTES.documentation}
+                  href={ROUTES.communityHelp}
                   noLinkStyle
                   size="large"
                   variant="contained"
@@ -37,7 +37,7 @@ export default function CoreHeroEnd() {
                 </Button>
               </Box>
             </Grid>
-            <MuiStats />
+            <MuiStatistics />
           </Grid>
         </Box>
       </Section>

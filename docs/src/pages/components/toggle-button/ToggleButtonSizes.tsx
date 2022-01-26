@@ -19,16 +19,16 @@ export default function ToggleButtonSizes() {
 
   const children = [
     <ToggleButton value="left" key="left">
-      <FormatAlignLeftIcon fontSize="small" />
+      <FormatAlignLeftIcon />
     </ToggleButton>,
     <ToggleButton value="center" key="center">
-      <FormatAlignCenterIcon fontSize="small" />
+      <FormatAlignCenterIcon />
     </ToggleButton>,
     <ToggleButton value="right" key="right">
-      <FormatAlignRightIcon fontSize="small" />
+      <FormatAlignRightIcon />
     </ToggleButton>,
     <ToggleButton value="justify" key="justify">
-      <FormatAlignJustifyIcon fontSize="small" />
+      <FormatAlignJustifyIcon />
     </ToggleButton>,
   ];
 

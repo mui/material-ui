@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getDependencies } from './helpers';
+import { getDependencies, pageToTitle } from './helpers';
 
 describe('docs getDependencies helpers', () => {
   before(() => {
@@ -8,6 +8,20 @@ describe('docs getDependencies helpers', () => {
 
   after(() => {
     delete process.env.SOURCE_CODE_REPO;
+  });
+
+  it('should return correct title', () => {
+    expect(pageToTitle({ pathname: '/docs/src/pages/components/buttons/buttons.md' })).to.equal(
+      'Buttons',
+    );
+    expect(pageToTitle({ pathname: '/components' })).to.equal('Components');
+    expect(pageToTitle({ pathname: '/customization/how-to-customize' })).to.equal(
+      'How To Customize',
+    );
+  });
+
+  it('should remove `react-` prefix', () => {
+    expect(pageToTitle({ pathname: '/docs/pages/material/react-buttons.js' })).to.equal('Buttons');
   });
 
   const s1 = `
@@ -19,7 +33,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import SliderUnstyled from '@mui/core/SliderUnstyled';
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {
@@ -36,8 +50,8 @@ const styles = theme => ({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      '@mui/material': 'next',
-      '@mui/core': 'next',
+      '@mui/material': 'latest',
+      '@mui/base': 'latest',
       'prop-types': 'latest',
     });
   });
@@ -62,7 +76,7 @@ const suggestions = [
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -86,8 +100,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
       'date-fns': 'latest',
     });
   });
@@ -100,8 +114,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      '@mui/material': 'next',
-      '@mui/core': 'next',
+      '@mui/material': 'latest',
+      '@mui/base': 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
@@ -126,8 +140,8 @@ import {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
       'date-fns': 'latest',
     });
   });
@@ -142,16 +156,16 @@ import lab from '@mui/lab';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
     });
   });
 
   it('can use codesandbox deploys if a commit is given', () => {
     const source = `
-import * as Core from '@mui/material';
-import * as Unstyled from '@mui/core';
-import * as Icons from '@mui/icons-material';
+import * as Material from '@mui/material';
+import * as Base from '@mui/base';
+import * as IconsMaterial from '@mui/icons-material';
 import * as Lab from '@mui/lab';
 import * as Styles from '@mui/styles';
 import * as System from '@mui/system';
@@ -172,7 +186,7 @@ import * as Utils from '@mui/utils';
       '@mui/styles': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/styles',
       '@mui/system': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
       '@mui/utils': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/utils',
-      '@mui/core': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/core',
+      '@mui/base': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/base',
     });
   });
 
@@ -190,8 +204,8 @@ import AdapterMoment from '@mui/lab/AdapterMoment';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
       'date-fns': 'latest',
       dayjs: 'latest',
       luxon: 'latest',

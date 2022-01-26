@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import Avatar from '../Avatar';
+import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
 const SPACINGS = {
@@ -33,7 +33,7 @@ const AvatarGroupRoot = styled('div', {
     ...styles.root,
   }),
 })(({ theme }) => ({
-  [`& .MuiAvatar-root`]: {
+  [`& .${avatarClasses.root}`]: {
     border: `2px solid ${theme.palette.background.default}`,
     boxSizing: 'content-box',
     marginLeft: -8,
@@ -69,10 +69,11 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     className,
     max = 5,
     spacing = 'medium',
+    total,
     variant = 'circular',
     ...other
   } = props;
-  const clampedMax = max < 2 ? 2 : max;
+  let clampedMax = max < 2 ? 2 : max;
 
   const ownerState = {
     ...props,
@@ -88,7 +89,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: The AvatarGroup component doesn't accept a Fragment as a child.",
+            "MUI: The AvatarGroup component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -98,7 +99,16 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     return React.isValidElement(child);
   });
 
-  const extraAvatars = children.length > clampedMax ? children.length - clampedMax + 1 : 0;
+  const totalAvatars = total || children.length;
+
+  if (totalAvatars === clampedMax) {
+    clampedMax += 1;
+  }
+
+  clampedMax = Math.min(totalAvatars + 1, clampedMax);
+
+  const maxAvatars = Math.min(children.length, clampedMax - 1);
+  const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
@@ -122,7 +132,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
         </AvatarGroupAvatar>
       ) : null}
       {children
-        .slice(0, children.length - extraAvatars)
+        .slice(0, maxAvatars)
         .reverse()
         .map((child) => {
           return React.cloneElement(child, {
@@ -163,7 +173,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     if (props.max < 2) {
       return new Error(
         [
-          'Material-UI: The prop `max` should be equal to 2 or above.',
+          'MUI: The prop `max` should be equal to 2 or above.',
           'A value below is clamped to 2.',
         ].join('\n'),
       );
@@ -179,7 +189,16 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The total number of avatars. Used for calculating the number of extra avatars.
+   * @default children.length
+   */
+  total: PropTypes.number,
   /**
    * The variant to use.
    * @default 'circular'

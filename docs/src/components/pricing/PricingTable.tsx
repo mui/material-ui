@@ -19,7 +19,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get started with the industry-standard UI library for building React user interfaces.',
+      'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
   },
   pro: {
     color: 'blue',
@@ -29,7 +29,7 @@ const planInfo = {
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advanced features including premium support.',
+    description: 'Unlock all the most advanced features and professional support.',
   },
 } as const;
 
@@ -71,7 +71,13 @@ export function PlanName({
   );
 }
 
-export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
+interface PlanPriceProps {
+  plan: 'community' | 'pro' | 'premium';
+}
+
+export function PlanPrice(props: PlanPriceProps) {
+  const { plan } = props;
+
   if (plan === 'community') {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
@@ -87,42 +93,62 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   }
   if (plan === 'pro') {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-        <Typography
-          variant="body2"
-          fontWeight="bold"
-          color="error.500"
-          sx={{
-            borderRadius: 0.5,
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
-            // bgcolor: 'error.200',
-            textDecoration: 'line-through',
-            p: '4px',
-          }}
-        >
-          $249
+      <div>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
+          <Typography
+            variant="body2"
+            fontWeight="bold"
+            color="error.500"
+            sx={{
+              borderRadius: 0.5,
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
+              textDecoration: 'line-through',
+              p: '4px',
+            }}
+          >
+            $249
+          </Typography>
+          <Box sx={{ width: 10 }} />
+          <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
+            $186
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            component="div"
+            fontWeight="bold"
+            color="primary.main"
+            sx={{ mb: 1 }}
+          >
+            *
+          </Typography>
+          <Box sx={{ width: 5 }} />
+          <Typography variant="body2" color="text.secondary">
+            / developer.
+          </Typography>
+        </Box>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          <Link href="#early-bird">* Early bird special.</Link>
+          <br />
+          Price capped at 10 developers.
         </Typography>
-        <Box sx={{ width: 10 }} />
-        <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
-          $186
+      </div>
+    );
+  }
+  return (
+    <div>
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+        <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
+          $599
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
           / developer.
         </Typography>
       </Box>
-    );
-  }
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-      <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
-        $599
+      <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+        Price capped at 10 developers per application
       </Typography>
-      <Box sx={{ width: 5 }} />
-      <Typography variant="body2" color="text.secondary">
-        / developer.
-      </Typography>
-    </Box>
+    </div>
   );
 }
 
@@ -135,7 +161,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
           variant="caption"
           color="text.secondary"
           fontWeight="normal"
-          sx={{ display: 'block', mt: 0.5 }}
+          sx={{ display: 'block', mt: 0.8, textAlign: 'center' }}
         >
           {metadata}
         </Typography>
@@ -255,7 +281,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
     {...props}
     sx={{
       py: 2,
-      pl: 2,
+      px: 2,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -288,7 +314,7 @@ const RowHead = ({
       p: 1,
       transition: 'none',
       typography: 'body2',
-      fontWeight: 600,
+      fontWeight: 700,
       display: 'flex',
       alignItems: 'center',
       ...props.sx,
@@ -300,30 +326,19 @@ const RowHead = ({
 );
 
 function getUrl(hash: string) {
-  return `https://material-ui.com/components/data-grid${hash}`;
+  return `https://mui.com/components/data-grid${hash}`;
 }
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  '@mui/core': (
-    <ColumnHead
-      {...{
-        label: '@mui/core-base',
-        tooltip: 'The unstyled components and react hooks.',
-      }}
-    />
-  ),
-  '@mui/unstyled': (
-    <ColumnHead
-      {...{ label: '@mui/core-material', tooltip: 'Core components following Material Design.' }}
-    />
+  '@mui/base': <ColumnHead label="@mui/base" tooltip="The unstyled components and react hooks." />,
+  '@mui/material': (
+    <ColumnHead label="@mui/material" tooltip="Core components following Material Design" />
   ),
   '@mui/system': (
     <ColumnHead
-      {...{
-        label: '@mui/system',
-        tooltip: 'CSS utilities for rapidly laying out custom designs.',
-      }}
+      label="@mui/system"
+      tooltip="CSS utilities for rapidly laying out custom designs."
     />
   ),
   // Advanced
@@ -500,160 +515,164 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
 };
 
+const yes = <IconImage name="yes" title="Included" />;
+const pending = <IconImage name="time" title="Work in progress" />;
+const no = <IconImage name="no" title="Not included" />;
+
 const communityData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
-  '@mui/system': <IconImage name="yes" />,
-  // Advanced
-  'data-grid/column-groups': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
-  'data-grid/column-resizing': <IconImage name="no" />,
-  'data-grid/column-reorder': <IconImage name="no" />,
-  'data-grid/column-pinning': <IconImage name="no" />,
-  'data-grid/row-sorting': <IconImage name="yes" />,
-  'data-grid/row-height': <IconImage name="yes" />,
-  'data-grid/row-spanning': <IconImage name="time" />,
-  'data-grid/row-reordering': <IconImage name="no" />,
-  'data-grid/row-selection': <IconImage name="yes" />,
-  'data-grid/row-multiselection': <IconImage name="no" />,
-  'data-grid/row-rangeselection': <IconImage name="no" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
-  'data-grid/filter-column': <IconImage name="yes" />,
-  'data-grid/filter-multicolumn': <IconImage name="no" />,
-  'data-grid/pagination': <IconImage name="yes" />,
-  'data-grid/pagination-large': <IconImage name="no" />,
-  'data-grid/edit-row': <IconImage name="time" />,
-  'data-grid/edit-cell': <IconImage name="yes" />,
-  'data-grid/file-csv': <IconImage name="yes" />,
-  'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-clipboard': <IconImage name="no" />,
-  'data-grid/file-excel': <IconImage name="no" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
-  'data-grid/virtualize-column': <IconImage name="yes" />,
-  'data-grid/virtualize-row': <IconImage name="no" />,
-  'data-grid/tree-data': <IconImage name="no" />,
-  'data-grid/master-detail': <IconImage name="no" />,
-  'data-grid/grouping': <IconImage name="no" />,
-  'data-grid/aggregation': <IconImage name="no" />,
-  'data-grid/pivoting': <IconImage name="no" />,
-  'data-grid/accessibility': <IconImage name="yes" />,
-  'data-grid/keyboard-nav': <IconImage name="yes" />,
-  'data-grid/localization': <IconImage name="yes" />,
-  'data-grid-pro': <IconImage name="no" />,
-  'date-range-picker': <IconImage name="no" />,
+  // MUI Core
+  '@mui/base': yes,
+  '@mui/material': yes,
+  '@mui/system': yes,
+  // MUI X
+  'data-grid/column-groups': pending,
+  'data-grid/column-spanning': pending,
+  'data-grid/column-resizing': no,
+  'data-grid/column-reorder': no,
+  'data-grid/column-pinning': no,
+  'data-grid/row-sorting': yes,
+  'data-grid/row-height': yes,
+  'data-grid/row-spanning': pending,
+  'data-grid/row-reordering': no,
+  'data-grid/row-selection': yes,
+  'data-grid/row-multiselection': no,
+  'data-grid/row-rangeselection': no,
+  'data-grid/filter-quick': pending,
+  'data-grid/filter-column': yes,
+  'data-grid/filter-multicolumn': no,
+  'data-grid/pagination': yes,
+  'data-grid/pagination-large': no,
+  'data-grid/edit-row': yes,
+  'data-grid/edit-cell': yes,
+  'data-grid/file-csv': yes,
+  'data-grid/file-print': yes,
+  'data-grid/file-clipboard': no,
+  'data-grid/file-excel': no,
+  'data-grid/customizable-components': yes,
+  'data-grid/virtualize-column': yes,
+  'data-grid/virtualize-row': no,
+  'data-grid/tree-data': no,
+  'data-grid/master-detail': no,
+  'data-grid/grouping': no,
+  'data-grid/aggregation': no,
+  'data-grid/pivoting': no,
+  'data-grid/accessibility': yes,
+  'data-grid/keyboard-nav': yes,
+  'data-grid/localization': yes,
+  'data-grid-pro': no,
+  'date-range-picker': no,
   // Support
-  community: <IconImage name="yes" />,
-  'bugs/features': <IconImage name="yes" />,
-  'tech-advisory': <IconImage name="no" />,
-  'support-duration': <IconImage name="no" />,
-  'response-time': <IconImage name="no" />,
-  'pre-screening': <IconImage name="no" />,
-  'issue-escalation': <IconImage name="no" />,
+  community: yes,
+  'bugs/features': yes,
+  'tech-advisory': no,
+  'support-duration': no,
+  'response-time': no,
+  'pre-screening': no,
+  'issue-escalation': no,
 };
 
 const proData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
-  '@mui/system': <IconImage name="yes" />,
-  // Advanced
-  'data-grid/column-groups': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
-  'data-grid/column-resizing': <IconImage name="yes" />,
-  'data-grid/column-reorder': <IconImage name="yes" />,
-  'data-grid/column-pinning': <IconImage name="time" />,
-  'data-grid/row-sorting': <IconImage name="yes" />,
-  'data-grid/row-height': <IconImage name="yes" />,
-  'data-grid/row-spanning': <IconImage name="time" />,
-  'data-grid/row-reordering': <IconImage name="time" />,
-  'data-grid/row-selection': <IconImage name="yes" />,
-  'data-grid/row-multiselection': <IconImage name="yes" />,
-  'data-grid/row-rangeselection': <IconImage name="no" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
-  'data-grid/filter-column': <IconImage name="yes" />,
-  'data-grid/filter-multicolumn': <IconImage name="yes" />,
-  'data-grid/pagination': <IconImage name="yes" />,
-  'data-grid/pagination-large': <IconImage name="yes" />,
-  'data-grid/edit-row': <IconImage name="time" />,
-  'data-grid/edit-cell': <IconImage name="yes" />,
-  'data-grid/file-csv': <IconImage name="yes" />,
-  'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-clipboard': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
-  'data-grid/virtualize-column': <IconImage name="yes" />,
-  'data-grid/virtualize-row': <IconImage name="yes" />,
-  'data-grid/tree-data': <IconImage name="time" />,
-  'data-grid/master-detail': <IconImage name="time" />,
-  'data-grid/grouping': <IconImage name="no" />,
-  'data-grid/aggregation': <IconImage name="no" />,
-  'data-grid/pivoting': <IconImage name="no" />,
-  'data-grid/accessibility': <IconImage name="yes" />,
-  'data-grid/keyboard-nav': <IconImage name="yes" />,
-  'data-grid/localization': <IconImage name="yes" />,
+  // MUI Core
+  '@mui/base': yes,
+  '@mui/material': yes,
+  '@mui/system': yes,
+  // MUI X
+  'data-grid/column-groups': pending,
+  'data-grid/column-spanning': pending,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-reorder': yes,
+  'data-grid/column-pinning': yes,
+  'data-grid/row-sorting': yes,
+  'data-grid/row-height': yes,
+  'data-grid/row-spanning': pending,
+  'data-grid/row-reordering': pending,
+  'data-grid/row-selection': yes,
+  'data-grid/row-multiselection': yes,
+  'data-grid/row-rangeselection': no,
+  'data-grid/filter-quick': pending,
+  'data-grid/filter-column': yes,
+  'data-grid/filter-multicolumn': yes,
+  'data-grid/pagination': yes,
+  'data-grid/pagination-large': yes,
+  'data-grid/edit-row': yes,
+  'data-grid/edit-cell': yes,
+  'data-grid/file-csv': yes,
+  'data-grid/file-print': yes,
+  'data-grid/file-clipboard': pending,
+  'data-grid/file-excel': no,
+  'data-grid/customizable-components': yes,
+  'data-grid/virtualize-column': yes,
+  'data-grid/virtualize-row': yes,
+  'data-grid/tree-data': yes,
+  'data-grid/master-detail': pending,
+  'data-grid/grouping': no,
+  'data-grid/aggregation': no,
+  'data-grid/pivoting': no,
+  'data-grid/accessibility': yes,
+  'data-grid/keyboard-nav': yes,
+  'data-grid/localization': yes,
   'data-grid-pro': <Info value="1 year" />,
-  'date-range-picker': <IconImage name="time" />,
+  'date-range-picker': pending,
   // Support
-  community: <IconImage name="yes" />,
-  'bugs/features': <Info value={<IconImage name="yes" />} metadata="Priority over Community" />,
-  'tech-advisory': <IconImage name="no" />,
+  community: yes,
+  'bugs/features': <Info value={yes} metadata="Priority over Community" />,
+  'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
-  'response-time': <IconImage name="no" />,
-  'pre-screening': <IconImage name="no" />,
-  'issue-escalation': <IconImage name="no" />,
+  'response-time': no,
+  'pre-screening': no,
+  'issue-escalation': no,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
-  '@mui/system': <IconImage name="yes" />,
-  // Advanced
-  'data-grid/column-groups': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
-  'data-grid/column-resizing': <IconImage name="yes" />,
-  'data-grid/column-reorder': <IconImage name="yes" />,
-  'data-grid/column-pinning': <IconImage name="time" />,
-  'data-grid/row-sorting': <IconImage name="yes" />,
-  'data-grid/row-height': <IconImage name="yes" />,
-  'data-grid/row-spanning': <IconImage name="time" />,
-  'data-grid/row-reordering': <IconImage name="time" />,
-  'data-grid/row-selection': <IconImage name="yes" />,
-  'data-grid/row-multiselection': <IconImage name="yes" />,
-  'data-grid/row-rangeselection': <IconImage name="time" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
-  'data-grid/filter-column': <IconImage name="yes" />,
-  'data-grid/filter-multicolumn': <IconImage name="yes" />,
-  'data-grid/pagination': <IconImage name="yes" />,
-  'data-grid/pagination-large': <IconImage name="yes" />,
-  'data-grid/edit-row': <IconImage name="time" />,
-  'data-grid/edit-cell': <IconImage name="yes" />,
-  'data-grid/file-csv': <IconImage name="yes" />,
-  'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-clipboard': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
-  'data-grid/virtualize-column': <IconImage name="yes" />,
-  'data-grid/virtualize-row': <IconImage name="yes" />,
-  'data-grid/tree-data': <IconImage name="time" />,
-  'data-grid/master-detail': <IconImage name="time" />,
-  'data-grid/grouping': <IconImage name="time" />,
-  'data-grid/aggregation': <IconImage name="time" />,
-  'data-grid/pivoting': <IconImage name="time" />,
-  'data-grid/accessibility': <IconImage name="yes" />,
-  'data-grid/keyboard-nav': <IconImage name="yes" />,
-  'data-grid/localization': <IconImage name="yes" />,
+  // MUI Core
+  '@mui/base': yes,
+  '@mui/material': yes,
+  '@mui/system': yes,
+  // MUI X
+  'data-grid/column-groups': pending,
+  'data-grid/column-spanning': pending,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-reorder': yes,
+  'data-grid/column-pinning': yes,
+  'data-grid/row-sorting': yes,
+  'data-grid/row-height': yes,
+  'data-grid/row-spanning': pending,
+  'data-grid/row-reordering': pending,
+  'data-grid/row-selection': yes,
+  'data-grid/row-multiselection': yes,
+  'data-grid/row-rangeselection': pending,
+  'data-grid/filter-quick': pending,
+  'data-grid/filter-column': yes,
+  'data-grid/filter-multicolumn': yes,
+  'data-grid/pagination': yes,
+  'data-grid/pagination-large': yes,
+  'data-grid/edit-row': yes,
+  'data-grid/edit-cell': yes,
+  'data-grid/file-csv': yes,
+  'data-grid/file-print': yes,
+  'data-grid/file-clipboard': pending,
+  'data-grid/file-excel': pending,
+  'data-grid/customizable-components': yes,
+  'data-grid/virtualize-column': yes,
+  'data-grid/virtualize-row': yes,
+  'data-grid/tree-data': yes,
+  'data-grid/master-detail': pending,
+  'data-grid/grouping': pending,
+  'data-grid/aggregation': pending,
+  'data-grid/pivoting': pending,
+  'data-grid/accessibility': yes,
+  'data-grid/keyboard-nav': yes,
+  'data-grid/localization': yes,
   'data-grid-pro': <Info value="1 year" />,
-  'date-range-picker': <IconImage name="time" />,
+  'date-range-picker': pending,
   // Support
-  community: <IconImage name="yes" />,
-  'bugs/features': <Info value={<IconImage name="yes" />} metadata="Priority over Pro" />,
-  'tech-advisory': <IconImage name="time" />,
+  community: yes,
+  'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
+  'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <Info value="2 business days" metadata="1 business day (priority only)" />,
   'pre-screening': <Info value="4 hours" metadata="priority only" />,
-  'issue-escalation': <Info value={<IconImage name="time" />} metadata="priority only" />,
+  'issue-escalation': <Info value={pending} metadata="priority only" />,
 };
 
 const RowCategory = (props: BoxProps) => (
@@ -712,7 +731,7 @@ const StickyHead = ({
       sx={{
         position: 'fixed',
         zIndex: 1,
-        top: 64,
+        top: 56,
         left: 0,
         right: 0,
         transition: '0.3s',
@@ -818,9 +837,7 @@ export default function PricingTable({
             Plans
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
-            <div>
-              <PlanName plan="community" />
-            </div>
+            <PlanName plan="community" />
             <PlanPrice plan="community" />
             <Button
               component={Link}
@@ -836,17 +853,12 @@ export default function PricingTable({
           </Box>
           <ColumnHeadHighlight>
             <Recommended />
-            <div>
-              <PlanName plan="pro" />
-            </div>
+            <PlanName plan="pro" />
             <PlanPrice plan="pro" />
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Price capped at 10 developers.
-            </Typography>
             <Button
               component={Link}
               noLinkStyle
-              href="/store/items/material-ui-pro/"
+              href="https://mui.com/store/items/material-ui-pro/"
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
@@ -864,22 +876,24 @@ export default function PricingTable({
               variant="outlined"
               disabled
               fullWidth
-              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.secondary' } }}
+              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
             >
-              Available later this year!
+              In progress!
             </Button>
           </Box>
         </Box>
       )}
-      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>Core</RowHead>
-      {renderRow('@mui/core')}
+      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
+        MUI Core (open-source)
+      </RowHead>
+      {renderRow('@mui/base')}
       {divider}
-      {renderRow('@mui/unstyled')}
+      {renderRow('@mui/material')}
       {divider}
       {renderRow('@mui/system')}
 
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
-        Advanced
+        MUI X (open-core)
       </RowHead>
       <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
         <Cell />
@@ -924,6 +938,15 @@ export default function PricingTable({
             top: 0,
             width: '100%',
             height: '100%',
+            '&:hover': {
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[900], 0.3)
+                  : alpha(theme.palette.grey[50], 0.4),
+              '@media (hover: none)': {
+                bgcolor: 'initial',
+              },
+            },
           }}
         >
           Data Grid

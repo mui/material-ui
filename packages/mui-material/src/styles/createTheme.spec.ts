@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 const theme = createTheme();
 
@@ -77,6 +77,44 @@ const theme = createTheme();
             color: 'black',
           },
         },
+      },
+    },
+  });
+}
+
+{
+  createTheme(theme, {
+    components: {
+      MuiButton: {
+        variants: [
+          {
+            props: {}, // match any props combination
+            style: ({ theme: t }) => {
+              return {
+                fontFamily: t.typography.fontFamily,
+              };
+            },
+          },
+        ],
+      },
+    },
+  } as ThemeOptions);
+}
+
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        variants: [
+          {
+            props: {}, // match any props combination
+            style: ({ theme: t }) => {
+              return {
+                fontFamily: t.typography.fontFamily,
+              };
+            },
+          },
+        ],
       },
     },
   });

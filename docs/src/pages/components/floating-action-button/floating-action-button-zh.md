@@ -21,7 +21,7 @@ Only use a FAB if it is the most suitable way to present a screen's primary acti
 
 ## Size 大小
 
-By default, the size is `large`. Use the `size` prop for smaller floating action buttons.
+By default, the size is `large`. By default, the size is `large`. Use the `size` prop for smaller floating action buttons.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
 

@@ -1,20 +1,20 @@
 ---
 title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
-githubLabel: 'component: Accordion'
+githubLabel: 'component: accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
 waiAria: https://www.w3.org/TR/wai-aria-practices/#accordion
 ---
 
 # Accordion
 
-<p class="description">Accordions contain creation flows and allow lightweight editing of an element.</p>
+<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
 An accordion is a lightweight container that may either be used standalone, or be connected to a larger surface, such as a card.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
+> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
 
 ## Basic accordion
 
@@ -45,8 +45,8 @@ accordions it might be a good idea to change this default behavior by enabling t
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-As with any performance optimization this is not a silver bullet. Be sure to identify
-bottlenecks first and then try out these optimization strategies.
+As with any performance optimization this is not a silver bullet.
+Be sure to identify bottlenecks first and then try out these optimization strategies.
 
 ## Accessibility
 

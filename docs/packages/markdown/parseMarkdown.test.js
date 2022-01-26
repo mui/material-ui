@@ -31,6 +31,16 @@ describe('parseMarkdown', () => {
       ).to.equal('Some description');
     });
 
+    it('remove backticks', () => {
+      expect(
+        getDescription(`
+<p class="description">
+  Some \`description\`
+</p>
+      `),
+      ).to.equal('Some description');
+    });
+
     it('should not be greedy', () => {
       expect(
         getDescription(`
@@ -51,7 +61,7 @@ describe('parseMarkdown', () => {
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: Alert'
+githubLabel: 'component: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors: ['foo', 'bar']
@@ -59,7 +69,56 @@ authors: ['foo', 'bar']
 `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
-        githubLabel: 'component: Alert',
+        githubLabel: 'component: alert',
+        packageName: '@mui/lab',
+        title: 'React Alert component',
+        waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
+        authors: ['foo', 'bar'],
+      });
+    });
+
+    it('should work with authors broken in two lines', () => {
+      expect(
+        getHeaders(`
+---
+title: React Alert component
+components: Alert, AlertTitle
+githubLabel: 'component: alert'
+packageName: '@mui/lab'
+waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+authors:
+  ['foo', 'bar']
+---
+`),
+      ).to.deep.equal({
+        components: ['Alert', 'AlertTitle'],
+        githubLabel: 'component: alert',
+        packageName: '@mui/lab',
+        title: 'React Alert component',
+        waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
+        authors: ['foo', 'bar'],
+      });
+    });
+
+    it('should work with one author per line', () => {
+      expect(
+        getHeaders(`
+---
+title: React Alert component
+components: Alert, AlertTitle
+githubLabel: 'component: alert'
+packageName: '@mui/lab'
+waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+authors:
+  [
+    'foo',
+    'bar',
+  ]
+---
+    `),
+      ).to.deep.equal({
+        components: ['Alert', 'AlertTitle'],
+        githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',

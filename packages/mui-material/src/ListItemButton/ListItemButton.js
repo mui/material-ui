@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -144,7 +144,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         listItemRef.current.focus();
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Material-UI: Unable to set focus to a ListItemButton whose component has not been rendered.',
+          'MUI: Unable to set focus to a ListItemButton whose component has not been rendered.',
         );
       }
     }
@@ -234,7 +234,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * This prop can help identify which element has keyboard focus.
    * The class name will be applied when the element gains the focus through keyboard interaction.
    * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
    * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
    * if needed.
    */
@@ -247,7 +247,11 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default ListItemButton;

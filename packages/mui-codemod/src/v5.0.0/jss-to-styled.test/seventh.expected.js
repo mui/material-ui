@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withPrefix, navigate } from 'gatsby';
 

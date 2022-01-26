@@ -19,7 +19,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -152,8 +152,8 @@ function PricingContent() {
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" component="p">
           Quickly build an effective pricing table for your potential customers with
-          this layout. It&apos;s built with default Material-UI components with
-          little customization.
+          this layout. It&apos;s built with default MUI components with little
+          customization.
         </Typography>
       </Container>
       {/* End hero unit */}

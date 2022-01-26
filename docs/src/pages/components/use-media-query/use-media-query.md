@@ -25,9 +25,9 @@ The media query string can be any valid CSS media query, e.g. [`'(prefers-color-
 
 ⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using Material-UI's breakpoint helpers
+## Using MUI's breakpoint helpers
 
-You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
+You can use MUI's [breakpoint helpers](/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@mui/material/styles';
@@ -67,7 +67,7 @@ You can use [json2mq](https://github.com/akiran/json2mq) to generate media query
 
 You need an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your test environment.
 
-For instance, [jsdom doesn't support it yet](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). You should polyfill it.
+For instance, [jsdom doesn't support it yet](https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom). You should polyfill it.
 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 ```js
@@ -144,7 +144,7 @@ For instance on the server-side:
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -155,17 +155,19 @@ function handleRender(req, res) {
     }),
   });
 
-  const html = ReactDOMServer.renderToString(
-    <ThemeProvider
-      theme={{
-        props: {
-          // Change the default options of useMediaQuery
-          MuiUseMediaQuery: {
-            ssrMatchMedia,
-          },
+  const theme = createTheme({
+    components: {
+      // Change the default options of useMediaQuery
+      MuiUseMediaQuery: {
+        defaultProps: {
+          ssrMatchMedia,
         },
-      }}
-    >
+      },
+    },
+  });
+
+  const html = ReactDOMServer.renderToString(
+    <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>,
   );

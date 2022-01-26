@@ -10,7 +10,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: object, root?: object, thumb?: object, track?: object }"
+      },
+      "default": "{}"
+    },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
@@ -21,9 +27,8 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/mui-core/src/SwitchUnstyled/SwitchUnstyled.tsx",
+  "filename": "/packages/mui-base/src/SwitchUnstyled/SwitchUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/switches/\">Switches</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

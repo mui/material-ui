@@ -1,8 +1,8 @@
-# Material-UI System
+# MUI System
 
 <p class="description">CSS utilities for rapidly laying out custom designs.</p>
 
-Material-UI comes with dozens of **ready-to-use** components in the core.
+MUI comes with dozens of **ready-to-use** components in the core.
 These components are an incredible starting point but when it comes to making your site stand out with a custom design, it can be simpler to start from an unstyled state. Introducing the system:
 
 The **system** lets you quickly build custom UI components leveraging the values defined in your theme.
@@ -19,20 +19,22 @@ _(Resize the window to see the responsive breakpoints)_
 
 ```jsx
 // with npm
-npm install @mui/system@next @emotion/react @emotion/styled
+npm install @mui/system @emotion/react @emotion/styled
 
 // with yarn
-yarn add @mui/system@next @emotion/react @emotion/styled
+yarn add @mui/system @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
 
+<!-- #default-branch-switch -->
+
 ```sh
 // with npm
-npm install @mui/system@next @mui/styled-engine-sc@next styled-components
+npm install @mui/system @mui/styled-engine-sc styled-components
 
 // with yarn
-yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
+yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -184,7 +186,7 @@ Pros:
 
 - 📚 It allows a lot of flexibility in the API. The `sx` prop supports a superset of CSS. There is **no need to learn CSS twice**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
 - 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties.
-  You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@mui/system](https://bundlephobia.com/result?p=@mui/system). It cost around ~15 kB gzipped.
+  You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). It cost around ~15 kB gzipped.
   If you are already using the core components, it comes with no extra overhead.
 
 Cons:
@@ -198,9 +200,11 @@ Cons:
   | c. Render 1,000 styled components | `<StyledDiv>`         | 160ms           |
   | d. Render 1,000 Box               | `<Box sx={…}>`        | 370ms           |
 
-  _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
+<!-- #default-branch-switch -->
 
-  We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
+_Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+
+We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
 ### API tradeoff
 
@@ -303,7 +307,7 @@ The second option is to define your breakpoints as an array, from the smallest t
 {{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
 
 > ⚠️ This option is only recommended when the theme has a limited number of breakpoints, e.g. 3.<br />
-> Prefer the object API if you have more breakpoints. For instance, the default theme of Material-UI has 5.
+> Prefer the object API if you have more breakpoints. For instance, the default theme of MUI has 5.
 
 You can skip breakpoints with the `null` value:
 
@@ -378,7 +382,7 @@ The `sx` prop can be used in four different locations:
 
 ### 1. Core components
 
-All core Material-UI components will support the `sx` prop.
+All core MUI components will support the `sx` prop.
 
 ### 2. Box
 
@@ -387,7 +391,7 @@ It renders a `<div>` element by default.
 
 ### 3. Custom components
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
+In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
 ```jsx
 import { styled } from '@mui/material/styles';

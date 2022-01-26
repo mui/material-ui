@@ -10,20 +10,19 @@ import MarkEmailReadTwoTone from '@mui/icons-material/MarkEmailReadTwoTone';
 
 export default function NewsletterToast() {
   const router = useRouter();
-  const { newsletter } = router.query;
-  const [hidden, setHidden] = React.useState(newsletter !== 'subscribed');
+  const [hidden, setHidden] = React.useState(router.query.newsletter !== 'subscribed');
   React.useEffect(() => {
-    if (newsletter === 'subscribed') {
+    if (router.query.newsletter === 'subscribed') {
       setHidden(false);
       router.replace(router.pathname);
     }
-  }, [newsletter, router]);
+  }, [router.query.newsletter, router]);
   React.useEffect(() => {
     const time = setTimeout(() => {
       if (!hidden) {
         setHidden(true);
       }
-    }, 3000);
+    }, 4000);
     return () => {
       clearTimeout(time);
     };
@@ -68,7 +67,7 @@ export default function NewsletterToast() {
               You have subscribed to MUI newsletter.
             </Typography>
           </div>
-          <IconButton aria-hidden size="small" onClick={() => setHidden(true)}>
+          <IconButton aria-hidden size="small" onClick={() => setHidden(true)} aria-label="close">
             <CloseRounded fontSize="small" />
           </IconButton>
         </Card>

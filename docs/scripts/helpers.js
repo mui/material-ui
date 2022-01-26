@@ -36,8 +36,11 @@ function getUnstyledFilename(filename, definitionFile = false) {
 
   const separator = filename.indexOf('/') > -1 ? '/' : '\\';
 
-  if (filename.indexOf('mui-core') === -1) {
-    unstyledFile = filename.replace('.d.ts', '').replace('.ts', '').replace('.js', '');
+  if (filename.indexOf('mui-base') === -1) {
+    unstyledFile = filename
+      .replace(/.d.ts$/, '')
+      .replace(/.tsx?$/, '')
+      .replace(/.js$/, '');
     unstyledFile = unstyledFile.replace(/Styled/g, '');
 
     const pathParts = unstyledFile.split(separator);
@@ -50,12 +53,12 @@ function getUnstyledFilename(filename, definitionFile = false) {
     if (separator === '/') {
       unstyledFile = unstyledFile.replace(
         /packages\/mui-lab|packages\/mui-material/g,
-        'packages/mui-core',
+        'packages/mui-base',
       );
     } else {
       unstyledFile = unstyledFile.replace(
         /packages\\mui-lab|packages\\mui-material/g,
-        'packages\\mui-core',
+        'packages\\mui-base',
       );
     }
 

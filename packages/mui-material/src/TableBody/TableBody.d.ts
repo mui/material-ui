@@ -25,11 +25,11 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
  *
  * Demos:
  *
- * - [Tables](https://material-ui.com/components/tables/)
+ * - [Tables](https://mui.com/components/tables/)
  *
  * API:
  *
- * - [TableBody API](https://material-ui.com/api/table-body/)
+ * - [TableBody API](https://mui.com/api/table-body/)
  */
 declare const TableBody: OverridableComponent<TableBodyTypeMap>;
 

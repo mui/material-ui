@@ -36,7 +36,7 @@ export interface LabComponentsPropsList {
   MuiCalendarPickerSkeleton: CalendarPickerSkeletonProps;
   MuiClockPicker: ClockPickerProps<unknown>;
   MuiDatePicker: DatePickerProps;
-  MuiDateRangePickerDay: DateRangePickerDayProps;
+  MuiDateRangePickerDay: DateRangePickerDayProps<unknown>;
   MuiDateTimePicker: DateTimePickerProps;
   MuiDesktopDateTimePicker: DesktopDateTimePickerProps;
   MuiDesktopTimePicker: DesktopTimePickerProps;

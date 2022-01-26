@@ -59,6 +59,12 @@ const marginKeys = [
   'marginLeft',
   'marginX',
   'marginY',
+  'marginInline',
+  'marginInlineStart',
+  'marginInlineEnd',
+  'marginBlock',
+  'marginBlockStart',
+  'marginBlockEnd',
 ];
 
 const paddingKeys = [
@@ -76,6 +82,12 @@ const paddingKeys = [
   'paddingLeft',
   'paddingX',
   'paddingY',
+  'paddingInline',
+  'paddingInlineStart',
+  'paddingInlineEnd',
+  'paddingBlock',
+  'paddingBlockStart',
+  'paddingBlockEnd',
 ];
 
 const spacingKeys = [...marginKeys, ...paddingKeys];
@@ -92,7 +104,7 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
       if (process.env.NODE_ENV !== 'production') {
         if (typeof abs !== 'number') {
           console.error(
-            `Material-UI: Expected ${propName} argument to be a number or a string, got ${abs}.`,
+            `MUI: Expected ${propName} argument to be a number or a string, got ${abs}.`,
           );
         }
       }
@@ -110,14 +122,14 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
         if (!Number.isInteger(abs)) {
           console.error(
             [
-              `Material-UI: The \`theme.${themeKey}\` array type cannot be combined with non integer values.` +
+              `MUI: The \`theme.${themeKey}\` array type cannot be combined with non integer values.` +
                 `You should either use an integer value that can be used as index, or define the \`theme.${themeKey}\` as a number.`,
             ].join('\n'),
           );
         } else if (abs > themeSpacing.length - 1) {
           console.error(
             [
-              `Material-UI: The value provided (${abs}) overflows.`,
+              `MUI: The value provided (${abs}) overflows.`,
               `The supported values are: ${JSON.stringify(themeSpacing)}.`,
               `${abs} > ${themeSpacing.length - 1}, you need to add the missing values.`,
             ].join('\n'),
@@ -136,7 +148,7 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(
       [
-        `Material-UI: The \`theme.${themeKey}\` value (${themeSpacing}) is invalid.`,
+        `MUI: The \`theme.${themeKey}\` value (${themeSpacing}) is invalid.`,
         'It should be a number, an array or a function.',
       ].join('\n'),
     );

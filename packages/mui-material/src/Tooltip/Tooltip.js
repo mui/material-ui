@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
@@ -225,12 +225,15 @@ function composeEventHandler(handler, eventHandler) {
   };
 }
 
+// TODO v6: Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children,
     classes: classesProp,
+    components = {},
+    componentsProps = {},
     describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
@@ -247,10 +250,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
-    PopperComponent = Popper,
+    PopperComponent: PopperComponentProp,
     PopperProps = {},
     title,
-    TransitionComponent = Grow,
+    TransitionComponent: TransitionComponentProp = Grow,
     TransitionProps,
     ...other
   } = props;
@@ -293,7 +296,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       ) {
         console.error(
           [
-            'Material-UI: You are providing a disabled `button` child to the Tooltip component.',
+            'MUI: You are providing a disabled `button` child to the Tooltip component.',
             'A disabled element does not fire events.',
             "Tooltip needs to listen to the child element's events to display the title.",
             '',
@@ -459,7 +462,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       children.props.onTouchEnd(event);
     }
 
-    clearTimeout(touchTimer.current);
+    stopTouchInteraction();
     clearTimeout(leaveTimer.current);
     leaveTimer.current = setTimeout(() => {
       handleClose(event);
@@ -541,7 +544,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       if (childNode && !childNode.getAttribute('data-mui-internal-clone-element')) {
         console.error(
           [
-            'Material-UI: The `children` component of the Tooltip is not forwarding its props correctly.',
+            'MUI: The `children` component of the Tooltip is not forwarding its props correctly.',
             'Please make sure that props are spread on the same element that the ref is applied to.',
           ].join('\n'),
         );
@@ -580,7 +583,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     if (children.props.title) {
       console.error(
         [
-          'Material-UI: You have provided a `title` prop to the child of <Tooltip />.',
+          'MUI: You have provided a `title` prop to the child of <Tooltip />.',
           `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
         ].join('\n'),
       );
@@ -615,18 +618,46 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     arrow,
     disableInteractive,
     placement,
-    PopperComponent,
+    PopperComponentProp,
     touch: ignoreNonTouchEvents.current,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const PopperComponent = components.Popper ?? TooltipPopper;
+  const TransitionComponent = components.Transition ?? TransitionComponentProp ?? Grow;
+  const TooltipComponent = components.Tooltip ?? TooltipTooltip;
+  const ArrowComponent = components.Arrow ?? TooltipArrow;
+
+  const popperProps = appendOwnerState(
+    PopperComponent,
+    { ...PopperProps, ...componentsProps.popper },
+    ownerState,
+  );
+
+  const transitionProps = appendOwnerState(
+    TransitionComponent,
+    { ...TransitionProps, ...componentsProps.transition },
+    ownerState,
+  );
+
+  const tooltipProps = appendOwnerState(
+    TooltipComponent,
+    { ...componentsProps.tooltip },
+    ownerState,
+  );
+
+  const tooltipArrowProps = appendOwnerState(
+    ArrowComponent,
+    { ...componentsProps.arrow },
+    ownerState,
+  );
+
   return (
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
-      <TooltipPopper
-        as={PopperComponent}
-        className={classes.popper}
+      <PopperComponent
+        as={PopperComponentProp ?? Popper}
         placement={placement}
         anchorEl={
           followCursor
@@ -647,25 +678,32 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         id={id}
         transition
         {...interactiveWrapperListeners}
-        {...PopperProps}
+        {...popperProps}
+        className={clsx(classes.popper, PopperProps?.className, componentsProps.popper?.className)}
         popperOptions={popperOptions}
-        ownerState={ownerState}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
-            {...TransitionProps}
+            {...transitionProps}
           >
-            <TooltipTooltip className={classes.tooltip} ownerState={ownerState}>
+            <TooltipComponent
+              {...tooltipProps}
+              className={clsx(classes.tooltip, componentsProps.tooltip?.className)}
+            >
               {title}
               {arrow ? (
-                <TooltipArrow className={classes.arrow} ref={setArrowRef} ownerState={ownerState} />
+                <ArrowComponent
+                  {...tooltipArrowProps}
+                  className={clsx(classes.arrow, componentsProps.arrow?.className)}
+                  ref={setArrowRef}
+                />
               ) : null}
-            </TooltipTooltip>
+            </TooltipComponent>
           </TransitionComponent>
         )}
-      </TooltipPopper>
+      </PopperComponent>
     </React.Fragment>
   );
 });
@@ -692,6 +730,29 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The components used for each slot inside the Tooltip.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Arrow: PropTypes.elementType,
+    Popper: PropTypes.elementType,
+    Tooltip: PropTypes.elementType,
+    Transition: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Tooltip.
+   * Note that `componentsProps.popper` prop values win over `PopperProps`
+   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    arrow: PropTypes.object,
+    popper: PropTypes.object,
+    tooltip: PropTypes.object,
+    transition: PropTypes.object,
+  }),
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -803,7 +864,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Tooltip title. Zero-length titles string are never displayed.
    */
@@ -816,7 +881,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

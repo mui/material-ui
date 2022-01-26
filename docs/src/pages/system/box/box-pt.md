@@ -23,7 +23,7 @@ All system properties are available via the [`sx` prop](/system/basics/#the-sx-p
 
 ## Sobrescrevendo componentes do Material-UI
 
-O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<div>` por padrão, comportamento que pode ser modificado através da propriedade `component`. Digamos que você queira usar um `<span>`:
+O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<div>` por padrão, algo que pode ser modificado com a propriedade `component`. Digamos que você queira usar um `<span>`:
 
 {{"demo": "pages/system/box/BoxComponent.js", "defaultCodeOpen": true }}
 
@@ -65,4 +65,20 @@ As a CSS utility component, the `Box` also supports all [`system`](/system/prope
 
 ```jsx
 <Box mt={2}>
+```
+
+## Crie seu próprio componente `Box` componente.
+
+Se você quiser ter um tema padrão diferente para o componente `Box` , você pode criar sua própria versão dele, usando o utilitário `createBox()`.
+
+```js
+import { createBox, createTheme } from '@mui/system';
+
+const defaultTheme = createTheme({
+  // your custom theme values
+});
+
+const Box = createBox({ defaultTheme });
+
+export default Box;
 ```

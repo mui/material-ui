@@ -49,6 +49,14 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     htmlColor?: string;
     /**
+     * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
+     * prop will be ignored.
+     * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+     * `component`'s viewBox to the root node.
+     * @default false
+     */
+    inheritViewBox?: boolean;
+    /**
      * The shape-rendering attribute. The behavior of the different options is described on the
      * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
      * If you are having issues with blurry icons you should investigate this prop.
@@ -79,12 +87,12 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
  *
  * Demos:
  *
- * - [Icons](https://material-ui.com/components/icons/)
- * - [Material Icons](https://material-ui.com/components/material-icons/)
+ * - [Icons](https://mui.com/components/icons/)
+ * - [Material Icons](https://mui.com/components/material-icons/)
  *
  * API:
  *
- * - [SvgIcon API](https://material-ui.com/api/svg-icon/)
+ * - [SvgIcon API](https://mui.com/api/svg-icon/)
  */
 declare const SvgIcon: OverridableComponent<SvgIconTypeMap> & { muiName: string };
 

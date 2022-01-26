@@ -1,6 +1,6 @@
 # @mui/icons-material-builder
 
-This tool generates Material-UI SvgIcon components for a set of svg icons.
+This tool generates MUI SvgIcon components for a set of svg icons.
 
 ## Running the build
 
@@ -15,7 +15,7 @@ yarn publish
 
 ## Generated folders
 
-The build script downloads Material Design SVG icons to the `material-design-icons` folder,
+The build script downloads Material Design SVG icons to the `material-icons` folder,
 generates the appropriate `.js` files in the `build` folder, and creates a `package.json`.
 
 ## Advanced usage and Custom builds

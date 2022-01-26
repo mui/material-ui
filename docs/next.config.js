@@ -3,6 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
+const FEATURE_TOGGLE = require('./src/featureToggle');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -24,11 +25,10 @@ if (staging) {
 
 module.exports = {
   eslint: {
-    // TODO: https://github.com/mui-org/material-ui/issues/25966
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Motivated by https://github.com/zeit/next.js/issues/7687
+    // Motivated by https://github.com/vercel/next.js/issues/7687
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
@@ -43,8 +43,9 @@ module.exports = {
           analyzerMode: 'server',
           generateStatsFile: true,
           analyzerPort: options.isServer ? 8888 : 8889,
-          // Will be available at `.next/stats.json`
-          statsFilename: 'stats.json',
+          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
+          // Will be available at `.next/${statsFilename}`
+          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
         }),
       );
     }
@@ -64,9 +65,13 @@ module.exports = {
       config.externals = [
         (ctx, callback) => {
           const { request } = ctx;
-          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/data-grid'].includes(
-            request,
-          );
+          const hasDependencyOnRepoPackages = [
+            'notistack',
+            '@mui/x-data-grid',
+            '@mui/x-data-grid-pro',
+            '@mui/x-data-grid-generator',
+            '@mui/x-license-pro',
+          ].includes(request);
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -95,7 +100,7 @@ module.exports = {
             oneOf: [
               {
                 resourceQuery: /@mui\/markdown/,
-                use: require.resolve('@mui/markdown/loader'),
+                use: [options.defaultLoaders.babel, require.resolve('@mui/markdown/loader')],
               },
               {
                 // used in some /getting-started/templates
@@ -106,7 +111,8 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)data-grid)/,
+            include:
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -128,20 +134,9 @@ module.exports = {
                         '@mui/system': '../packages/mui-system/src',
                         '@mui/private-theming': '../packages/mui-private-theming/src',
                         '@mui/utils': '../packages/mui-utils/src',
-                        '@mui/core': '../packages/mui-core/src',
+                        '@mui/base': '../packages/mui-base/src',
                         '@mui/material-next': '../packages/mui-material-next/src',
-                        // all legacy package names in this monorepo
-                        '@material-ui/core': '../packages/mui-material/src',
-                        '@material-ui/docs': '../packages/mui-docs/src',
-                        '@material-ui/icons': '../packages/mui-icons-material/lib',
-                        '@material-ui/lab': '../packages/mui-lab/src',
-                        '@material-ui/styled-engine': '../packages/mui-styled-engine/src',
-                        '@material-ui/styles': '../packages/mui-styles/src',
-                        '@material-ui/system': '../packages/mui-system/src',
-                        '@material-ui/private-theming': '../packages/mui-private-theming/src',
-                        '@material-ui/utils': '../packages/mui-utils/src',
-                        '@material-ui/unstyled': '../packages/mui-core/src',
-                        '@material-ui/core/*': '../packages/mui-material/src/*',
+                        '@mui/joy': '../packages/mui-joy/src',
                       },
                       transformFunctions: ['require'],
                     },
@@ -161,7 +156,6 @@ module.exports = {
       },
     };
   },
-  trailingSlash: true,
   env: {
     COMMIT_REF: process.env.COMMIT_REF,
     ENABLE_AD: process.env.ENABLE_AD,
@@ -174,7 +168,7 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/next',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
     SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
     STAGING: staging,
   },
@@ -188,8 +182,17 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
+        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+          return;
+        }
+        if (!FEATURE_TOGGLE.enable_blog_index && page.pathname === '/blog') {
+          return;
+        }
         if (!page.children) {
-          map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
+          // map api-docs to api
+          // i: /api-docs/* > /api/* (old structure)
+          // ii: /*/api-docs/* > /*/api/* (for new structure)
+          map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
             page: page.pathname,
             query: {
               userLanguage,
@@ -219,8 +222,107 @@ module.exports = {
     return map;
   },
   reactStrictMode,
+  trailingSlash: true,
+  // rewrites has no effect when run `next export` for production
   async rewrites() {
-    return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
+    return [
+      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+      // Make sure to include the trailing slash if `trailingSlash` option is set
+      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+    ];
+  },
+  // For developement, adjust the redirects here (no effect on production because of `next export`)
+  // For production, configure at `docs/public/_redirects` (netlify)
+  async redirects() {
+    if (FEATURE_TOGGLE.enable_redirects) {
+      return [
+        {
+          source: '/styles/:path*',
+          destination: '/system/styles/:path*',
+          permanent: false,
+        },
+        {
+          source: '/getting-started/:path*',
+          destination: '/material/getting-started/:path*',
+          permanent: false,
+        },
+        {
+          source: '/customization/:path*',
+          destination: '/material/customization/:path*',
+          permanent: false,
+        },
+        {
+          source: '/guides/:path*',
+          destination: '/material/guides/:path*',
+          permanent: false,
+        },
+        {
+          source: '/discover-more/:path*',
+          destination: '/material/discover-more/:path*',
+          permanent: false,
+        },
+        {
+          source: '/components/data-grid/:path*',
+          destination: '/x/react-data-grid/:path*',
+          permanent: false,
+        },
+        {
+          source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
+          destination: '/material/:slug',
+          permanent: false,
+        },
+        {
+          source: '/components/:path(tabs|breadcrumbs)',
+          destination: '/material/react-:path',
+          permanent: false,
+        },
+        ...['checkboxes', 'switches'].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material/react-${component.replace(/es$/, '')}`,
+          permanent: false,
+        })),
+        ...[
+          'buttons',
+          'radio-buttons',
+          'selects',
+          'text-fields',
+          'avatars',
+          'badges',
+          'chips',
+          'dividers',
+          'lists',
+          'tables',
+          'tooltips',
+          'dialogs',
+          'snackbars',
+          'cards',
+          'drawers',
+          'links',
+          'menus',
+          'steppers',
+        ].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material/react-${component.replace(/s$/, '')}`,
+          permanent: false,
+        })),
+        {
+          source: '/components/:path',
+          destination: '/material/react-:path',
+          permanent: false,
+        },
+        {
+          source: '/api/data-grid/:path*',
+          destination: '/x/api/data-grid/:path*',
+          permanent: false,
+        },
+        {
+          source: '/api/:path*',
+          destination: '/material/api/:path*',
+          permanent: false,
+        },
+      ];
+    }
+    return [];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,

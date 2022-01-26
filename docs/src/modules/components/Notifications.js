@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Popper from '@mui/material/Popper';
 import Grow from '@mui/material/Grow';
 import MuiPaper from '@mui/material/Paper';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
@@ -18,6 +18,7 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Paper = styled(MuiPaper)({
   transformOrigin: 'top right',
+  backgroundImage: 'none',
 });
 const List = styled(MuiList)(({ theme }) => ({
   width: theme.spacing(40),
@@ -103,7 +104,7 @@ export default function Notifications() {
         .then((newMessages) => {
           if (active) {
             const seen = getCookie('lastSeenNotification');
-            const lastSeenNotification = seen === '' ? 0 : parseInt(seen, 10);
+            const lastSeenNotification = seen === undefined ? 0 : parseInt(seen, 10);
             setNotifications({
               messages: newMessages || [],
               lastSeen: lastSeenNotification,
@@ -132,14 +133,13 @@ export default function Notifications() {
         enterDelay={300}
       >
         <IconButton
-          color="inherit"
+          color="primary"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
-          sx={{ px: '10px' }}
         >
           <Badge
             color="error"
@@ -172,7 +172,20 @@ export default function Notifications() {
             }}
           >
             <Grow in={open} {...TransitionProps}>
-              <Paper>
+              <Paper
+                sx={{
+                  mt: 0.5,
+                  border: '1px solid',
+                  borderColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                  boxShadow: (theme) =>
+                    `0px 4px 20px ${
+                      theme.palette.mode === 'dark'
+                        ? 'rgba(0, 0, 0, 0.5)'
+                        : 'rgba(170, 180, 190, 0.3)'
+                    }`,
+                }}
+              >
                 <List>
                   {messageList ? (
                     messageList.map((message, index) => (

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { keyframes, css } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
@@ -225,7 +225,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   disableShrink: chainPropTypes(PropTypes.bool, (props) => {
     if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {
       return new Error(
-        'Material-UI: You have provided the `disableShrink` prop ' +
+        'MUI: You have provided the `disableShrink` prop ' +
           'with a variant other than `indeterminate`. This will have no effect.',
       );
     }
@@ -246,7 +246,11 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The thickness of the circle.
    * @default 3.6

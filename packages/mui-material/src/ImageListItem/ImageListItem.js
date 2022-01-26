@@ -1,4 +1,4 @@
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { integerPropType } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -114,7 +114,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: The ImageListItem component doesn't accept a Fragment as a child.",
+                "MUI: The ImageListItem component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );
@@ -172,7 +172,11 @@ ImageListItem.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default ImageListItem;

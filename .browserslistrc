@@ -19,7 +19,9 @@ baidu 7.12
 chrome 90
 edge 91
 firefox 78
-ios_saf 12.4
+# 12.4 but 12.2-12.5 are treated equally in caniuse-lite.
+# Though caniuse-lite does not supporting finding an exact version in a range which is why `12.4` would result in "Unknown version 12.4 of ios_saf"
+ios_saf 12.2
 kaios 2.5
 op_mini all
 op_mob 76
@@ -39,7 +41,7 @@ baidu 7.12
 chrome 90
 edge 91
 firefox 78
-ios_saf 12.4
+ios_saf 12.2
 kaios 2.5
 op_mini all
 op_mob 76

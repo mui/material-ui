@@ -1,4 +1,4 @@
-# Material-UI Scripts
+# MUI Scripts
 
 ## Release
 
@@ -14,7 +14,7 @@ The following steps must be proposed as a pull request.
 
 1. Clean the generated changelog, to match the format of https://github.com/mui-org/material-ui/releases.
 1. Update the root `/package.json`'s version
-1. `yarn release:version`
+1. `yarn release:version` (🔔 manually remove `^` from packages with prerelease version, eg. `-alpha`)
 1. Open PR with changes and wait for review and green CI
 1. Merge PR once CI is green and it has been approved
 
@@ -33,17 +33,17 @@ Push the next branch on the release branch to deploy the documentation with the 
 
 Note: if you don't have the `material-ui-docs` remote already, you should add it with
 
-```
+```sh
 git remote add material-ui-docs https://github.com/mui-org/material-ui-docs.git
 ```
 
-```
+```sh
 yarn docs:deploy
 ```
 
 ### Announce
 
 1. **GitHub**. Make a new release on GitHub (for people subscribing to updates). https://github.com/mui-org/material-ui/releases
-1. **Twitter**. It's even better to synchronize with the release of Material-UI X: https://trello.com/c/kYF9OLLi/105-release-steps, to have a single announcement/version covering the two.
+1. **Twitter**. It's even better to synchronize with the release of MUI X: https://trello.com/c/kYF9OLLi/105-release-steps, to have a single announcement/version covering the two.
    Send a tweet with the main Twitter account to summarize what happened.
-   Example of template https://twitter.com/MaterialUI/status/1341422029862526977
+   Example of template https://twitter.com/MUI_hq/status/1341422029862526977

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { spy } from 'sinon';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 
@@ -32,16 +32,7 @@ function clickBackdrop(view) {
 }
 
 describe('<Dialog />', () => {
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const render = createClientRender();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describeConformance(
     <Dialog open disablePortal>
@@ -104,9 +95,8 @@ describe('<Dialog />', () => {
     fireEvent.keyDown(document.activeElement, { key: 'Esc' });
     expect(onClose.calledOnce).to.equal(true);
 
-    act(() => {
-      clock.tick(100);
-    });
+    clock.tick(100);
+
     expect(queryByRole('dialog')).to.equal(null);
   });
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import TabScrollButton, { tabScrollButtonClasses as classes } from '@mui/material/TabScrollButton';
 
 describe('<TabScrollButton />', () => {
@@ -8,7 +8,7 @@ describe('<TabScrollButton />', () => {
     direction: 'left',
     orientation: 'horizontal',
   };
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<TabScrollButton {...defaultProps} />, () => ({
     classes,

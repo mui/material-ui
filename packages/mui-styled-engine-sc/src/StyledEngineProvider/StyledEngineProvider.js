@@ -23,7 +23,7 @@ StyledEngineProvider.propTypes = {
   /**
    * By default, the styles are injected last in the <head> element of the page.
    * As a result, they gain more specificity than any other style sheet.
-   * If you want to override Material-UI's styles, set this prop.
+   * If you want to override MUI's styles, set this prop.
    */
   injectFirst: PropTypes.bool,
 };

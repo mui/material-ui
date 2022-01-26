@@ -15,9 +15,27 @@ export default function Highlighter({
     white: '#fff',
     comfort: 'grey.50',
   };
+  const ref = React.useRef<null | HTMLButtonElement>(null);
   return (
     <ButtonBase
+      ref={ref}
       {...props}
+      onClick={(event) => {
+        if (ref.current) {
+          ref.current.scrollIntoView({ block: 'nearest' });
+        }
+        if (props.onClick) {
+          props.onClick(event);
+        }
+      }}
+      onFocusVisible={(event) => {
+        if (ref.current) {
+          ref.current.scrollIntoView({ block: 'nearest' });
+        }
+        if (props.onFocusVisible) {
+          props.onFocusVisible(event);
+        }
+      }}
       sx={{
         justifyContent: 'flex-start',
         textAlign: 'left',
@@ -45,6 +63,9 @@ export default function Highlighter({
             },
           },
         }),
+        '&.Mui-disabled': {
+          opacity: 0.4,
+        },
         ...props.sx,
       }}
     />

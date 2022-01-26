@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance, screen } from 'test/utils';
+import { createRenderer, describeConformance, screen } from 'test/utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
 
 describe('<AppBar />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<AppBar>Conformance?</AppBar>, () => ({
     classes,

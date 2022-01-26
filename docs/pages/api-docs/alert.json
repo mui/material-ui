@@ -26,7 +26,12 @@
       },
       "default": "'success'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "union",
@@ -66,6 +71,5 @@
   "filename": "/packages/mui-material/src/Alert/Alert.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/alert/\">Alert</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

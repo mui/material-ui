@@ -25,6 +25,12 @@ export const margin: SimpleStyleFunction<
   | 'marginLeft'
   | 'marginX'
   | 'marginY'
+  | 'marginInline'
+  | 'marginInlineStart'
+  | 'marginInlineEnd'
+  | 'marginBlock'
+  | 'marginBlockStart'
+  | 'marginBlockEnd'
 >;
 
 export type MarginProps = PropsFor<typeof margin>;
@@ -44,6 +50,12 @@ export const padding: SimpleStyleFunction<
   | 'paddingLeft'
   | 'paddingX'
   | 'paddingY'
+  | 'paddingInline'
+  | 'paddingInlineStart'
+  | 'paddingInlineEnd'
+  | 'paddingBlock'
+  | 'paddingBlockStart'
+  | 'paddingBlockEnd'
 >;
 
 export type PaddingProps = PropsFor<typeof padding>;

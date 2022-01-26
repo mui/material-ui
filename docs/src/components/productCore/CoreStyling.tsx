@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import { shouldForwardProp } from '@mui/system';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -15,24 +13,7 @@ import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
-
-const FlashCode = styled('div', {
-  shouldForwardProp: (prop) =>
-    shouldForwardProp(prop) && prop !== 'endLine' && prop !== 'startLine',
-})<{ endLine?: number; startLine?: number }>(({ theme, startLine = 0, endLine = 1 }) => ({
-  borderRadius: 2,
-  pointerEvents: 'none',
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  top: startLine * 18 + 2,
-  height: (endLine - startLine + 1) * 18,
-  transition: '0.3s',
-  ...theme.typography.caption,
-  backgroundColor: alpha(theme.palette.primary.main, 0.2),
-  border: '1px solid',
-  borderColor: theme.palette.primary.dark,
-}));
+import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
 <Card
@@ -87,8 +68,8 @@ const code = `
   </Box>
 </Card>`;
 
-const startLine = [33, 26, 6];
-const endLine = [45, 31, 9];
+const startLine = [32, 25, 5];
+const endLine = [44, 30, 8];
 const scrollTo = [540, 320, 0];
 
 const useResizeHandle = (
@@ -224,6 +205,7 @@ export default function CoreStyling() {
             <Frame.Demo
               sx={{
                 bgcolor: 'background.paper',
+                overflow: 'auto',
               }}
             >
               <Box
@@ -314,13 +296,14 @@ export default function CoreStyling() {
               sx={{
                 maxHeight: index === 2 ? 282 : 400,
                 overflow: 'auto',
-                position: 'relative',
               }}
             >
-              <Box sx={{ zIndex: 1, position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
+                <Box sx={{ position: 'relative', zIndex: 1 }}>
+                  <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+                </Box>
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -2 }} />
               </Box>
-              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
             </Frame.Info>
           </Frame>
         </Grid>

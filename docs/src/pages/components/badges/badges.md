@@ -1,7 +1,7 @@
 ---
 title: React Badge component
 components: Badge, BadgeUnstyled
-githubLabel: 'component: Badge'
+githubLabel: 'component: badge'
 ---
 
 # Badge
@@ -69,7 +69,7 @@ The badge also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import BadgeUnstyled from '@mui/core/BadgeUnstyled';
+import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 ```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
