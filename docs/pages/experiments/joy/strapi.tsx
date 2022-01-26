@@ -1,8 +1,37 @@
 import * as React from 'react';
-import { CssVarsProvider, createGetCssVar } from '@mui/joy/styles';
+import { CssVarsProvider, createGetCssVar, useColorScheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
+import Moon from '@mui/icons-material/DarkMode';
+import Sun from '@mui/icons-material/LightMode';
+
+const ColorSchemePicker = () => {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <Button
+      variant="outlined"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+      sx={{ minWidth: 40, p: '0.25rem' }}
+    >
+      {mode === 'light' ? <Moon /> : <Sun />}
+    </Button>
+  );
+};
 
 const getCssVar = createGetCssVar();
 
@@ -10,7 +39,6 @@ declare module '@mui/joy/styles' {
   interface PaletteRange {
     150: string;
     0: string;
-    outlinedActiveColor: string;
   }
 
   interface Palette {
@@ -48,12 +76,11 @@ export default function Strapi() {
                 containedActiveBg: getCssVar('palette-primary-700'),
                 outlinedColor: getCssVar('palette-primary-600'),
                 outlinedBorder: getCssVar('palette-primary-200'),
-                outlinedHoverBorder: getCssVar('palette-primary-200'),
                 outlinedBg: getCssVar('palette-primary-100'),
+                outlinedHoverBorder: getCssVar('palette-primary-200'),
                 outlinedHoverBg: getCssVar('palette-neutral-0'),
-                outlinedActiveBg: getCssVar('palette-neutral-0'),
-                // new tokens that Joy does not provide
                 outlinedActiveColor: getCssVar('palette-primary-700'),
+                outlinedActiveBg: getCssVar('palette-neutral-0'),
               },
               success: {
                 700: '#2F6846',
@@ -65,12 +92,11 @@ export default function Strapi() {
                 containedActiveBg: getCssVar('palette-success-700'),
                 outlinedColor: getCssVar('palette-success-600'),
                 outlinedBorder: getCssVar('palette-success-200'),
-                outlinedHoverBorder: getCssVar('palette-success-200'),
                 outlinedBg: getCssVar('palette-success-100'),
+                outlinedHoverBorder: getCssVar('palette-success-200'),
                 outlinedHoverBg: getCssVar('palette-neutral-0'),
-                outlinedActiveBg: getCssVar('palette-neutral-0'),
-                // new tokens that Joy does not provide
                 outlinedActiveColor: getCssVar('palette-success-700'),
+                outlinedActiveBg: getCssVar('palette-neutral-0'),
               },
               danger: {
                 700: '#B72B1A',
@@ -82,11 +108,10 @@ export default function Strapi() {
                 containedActiveBg: getCssVar('palette-danger-700'),
                 outlinedColor: getCssVar('palette-danger-600'),
                 outlinedBorder: getCssVar('palette-danger-200'),
-                outlinedHoverBorder: getCssVar('palette-danger-200'),
                 outlinedBg: getCssVar('palette-danger-100'),
+                outlinedHoverBorder: getCssVar('palette-danger-200'),
                 outlinedHoverBg: getCssVar('palette-neutral-0'),
                 outlinedActiveBg: getCssVar('palette-neutral-0'),
-                // new tokens that Joy does not provide
                 outlinedActiveColor: getCssVar('palette-danger-700'),
               },
               warning: {
@@ -122,20 +147,17 @@ export default function Strapi() {
           outlinedActive: {
             primary: {
               '&:active': {
-                color: getCssVar('palette-primary-outlinedActiveColor'),
-                borderColor: getCssVar('palette-primary-outlinedActiveColor'),
+                borderColor: 'currentColor',
               },
             },
             success: {
               '&:active': {
-                color: getCssVar('palette-success-outlinedActiveColor'),
-                borderColor: getCssVar('palette-success-outlinedActiveColor'),
+                borderColor: 'currentColor',
               },
             },
             danger: {
               '&:active': {
-                color: getCssVar('palette-danger-outlinedActiveColor'),
-                borderColor: getCssVar('palette-danger-outlinedActiveColor'),
+                borderColor: 'currentColor',
               },
             },
           },
@@ -272,6 +294,7 @@ export default function Strapi() {
         },
       }}
     >
+      <ColorSchemePicker />
       <Box
         sx={{
           display: 'grid',
