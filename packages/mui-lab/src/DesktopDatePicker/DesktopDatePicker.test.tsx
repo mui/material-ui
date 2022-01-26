@@ -267,6 +267,27 @@ describe('<DesktopDatePicker />', () => {
 
     expect(screen.getByMuiTest('picker-toolbar')).toBeVisible();
   });
+  it('prop `clearable` - renders clear button in Desktop mode', () => {
+    const onChangeMock = spy();
+    render(
+      <UncontrolledOpenDesktopDatePicker
+        // @ts-expect-error internal prop
+        defaultOpen
+        showToolbar
+        clearable
+        TransitionComponent={FakeTransitionComponent}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
+        renderInput={(params) => <TextField {...params} />}
+        onChange={onChangeMock}
+      />,
+    );
+
+    fireEvent.click(screen.getByText('Clear'));
+
+    expect(onChangeMock.callCount).to.equal(1);
+    expect(onChangeMock.args[0][0]).to.equal(null);
+    expect(screen.queryByRole('dialog')).to.equal(null);
+  });
 
   it('switches between views uncontrolled', () => {
     const handleViewChange = spy();
