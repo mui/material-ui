@@ -621,7 +621,8 @@ function AppNavDrawer(props) {
                 name="Data Grid"
                 metadata="MUI X"
                 versionSelector={renderVersionSelector([
-                  { text: `v5.3.0`, current: true },
+                  // LIB_VERSION is set from the X repo
+                  { text: `v${process.env.LIB_VERSION}`, current: true },
                   { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
                 ])}
               />
