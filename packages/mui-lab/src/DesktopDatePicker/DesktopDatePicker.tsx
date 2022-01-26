@@ -60,6 +60,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
 
   return (
     <DesktopWrapper
+      {...other}
       {...wrapperProps}
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
