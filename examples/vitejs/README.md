@@ -26,7 +26,6 @@ or:
 
 This example uses [Vite.js](https://github.com/vitejs/vite).
 It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5.
-If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
 
 ## What's next?
 
