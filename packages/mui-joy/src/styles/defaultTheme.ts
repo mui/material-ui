@@ -9,18 +9,19 @@ import {
 } from '@mui/system';
 import colors from '../colors';
 import {
-  ColorPaletteProp,
   ColorSystem,
   Palette,
   PaletteText,
   PaletteRange,
   PaletteBackground,
+  DefaultColorPalette,
 } from './types/colorSystem';
-import { Variants, DefaultVariantKey, DefaultContextualOverrides } from './types/variants';
+import { DefaultContextualOverrides, DefaultVariantKey, Variants } from './types/variants';
 import {
   createLightModeVariantVariables,
   createDarkModeVariantVariables,
-  createVariant,
+  createContextVariant,
+  createContainedOverrides,
 } from './variantUtils';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Shadow } from './types/shadow';
@@ -59,47 +60,16 @@ export interface Focus {
  * Internal type for definfing default Joy theme.
  * ==============================================
  */
-type BasePaletteRange =
-  | 50
-  | 100
-  | 200
-  | 300
-  | 400
-  | 500
-  | 600
-  | 700
-  | 800
-  | 900
-  | 'textColor'
-  | 'textHoverBg'
-  | 'textActiveBg'
-  | 'textDisabledColor'
-  | 'outlinedColor'
-  | 'outlinedBorder'
-  | 'outlinedHoverBg'
-  | 'outlinedHoverBorder'
-  | 'outlinedActiveBg'
-  | 'outlinedDisabledColor'
-  | 'outlinedDisabledBorder'
-  | 'lightColor'
-  | 'lightBg'
-  | 'lightHoverBg'
-  | 'lightActiveBg'
-  | 'lightDisabledColor'
-  | 'lightDisabledBg'
-  | 'containedColor'
-  | 'containedBg'
-  | 'containedHoverBg'
-  | 'containedActiveBg'
-  | 'containedDisabledBg';
+type BasePaletteRange = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+type PartialOtherKeys<T, U extends keyof T> = Pick<T, U> & Partial<Exclude<T, U>>;
 type BaseDesignTokens = {
   palette: {
-    primary: Pick<PaletteRange, BasePaletteRange>;
-    neutral: Pick<PaletteRange, BasePaletteRange>;
-    danger: Pick<PaletteRange, BasePaletteRange>;
-    info: Pick<PaletteRange, BasePaletteRange>;
-    success: Pick<PaletteRange, BasePaletteRange>;
-    warning: Pick<PaletteRange, BasePaletteRange>;
+    primary: PartialOtherKeys<PaletteRange, BasePaletteRange>;
+    neutral: PartialOtherKeys<PaletteRange, BasePaletteRange>;
+    danger: PartialOtherKeys<PaletteRange, BasePaletteRange>;
+    info: PartialOtherKeys<PaletteRange, BasePaletteRange>;
+    success: PartialOtherKeys<PaletteRange, BasePaletteRange>;
+    warning: PartialOtherKeys<PaletteRange, BasePaletteRange>;
     text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
     background: Pick<PaletteBackground, 'body' | 'level1' | 'level2' | 'level3'>;
     focusVisible: Palette['focusVisible'];
@@ -275,8 +245,8 @@ const internalDefaultTheme: BaseDesignTokens & {
     TypographySystem,
     'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
   >;
-  variants: Pick<Variants, DefaultVariantKey> &
-    Record<DefaultContextualOverrides, Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>>;
+  variants: Record<DefaultVariantKey, Record<'context', CSSObject>> &
+    Record<DefaultContextualOverrides, Record<Exclude<DefaultColorPalette, 'context'>, CSSObject>>;
   vars: BaseDesignTokens & BaseColorSystem;
   spacing: Spacing;
   breakpoints: Breakpoints;
@@ -360,23 +330,23 @@ const internalDefaultTheme: BaseDesignTokens & {
     },
   },
   variants: {
-    text: createVariant('text'),
-    textHover: createVariant('textHover'),
-    textActive: createVariant('textActive'),
-    textDisabled: createVariant('textDisabled'),
-    outlined: createVariant('outlined'),
-    outlinedHover: createVariant('outlinedHover'),
-    outlinedActive: createVariant('outlinedActive'),
-    outlinedDisabled: createVariant('outlinedDisabled'),
-    light: createVariant('light'),
-    lightHover: createVariant('lightHover'),
-    lightActive: createVariant('lightActive'),
-    lightDisabled: createVariant('lightDisabled'),
-    contained: createVariant('contained'),
-    containedHover: createVariant('containedHover'),
-    containedActive: createVariant('containedActive'),
-    containedDisabled: createVariant('containedDisabled'),
-    containedOverrides: createVariant('containedOverrides'),
+    text: createContextVariant('text'),
+    textHover: createContextVariant('textHover'),
+    textActive: createContextVariant('textActive'),
+    textDisabled: createContextVariant('textDisabled'),
+    outlined: createContextVariant('outlined'),
+    outlinedHover: createContextVariant('outlinedHover'),
+    outlinedActive: createContextVariant('outlinedActive'),
+    outlinedDisabled: createContextVariant('outlinedDisabled'),
+    light: createContextVariant('light'),
+    lightHover: createContextVariant('lightHover'),
+    lightActive: createContextVariant('lightActive'),
+    lightDisabled: createContextVariant('lightDisabled'),
+    contained: createContextVariant('contained'),
+    containedHover: createContextVariant('containedHover'),
+    containedActive: createContextVariant('containedActive'),
+    containedDisabled: createContextVariant('containedDisabled'),
+    containedOverrides: createContainedOverrides(),
   },
   vars: baseDesignTokens,
   breakpoints: defaultSystemTheme.breakpoints,

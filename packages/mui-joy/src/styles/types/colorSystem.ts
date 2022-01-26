@@ -7,29 +7,53 @@ import { OverridableStringUnion } from '@mui/types';
  */
 export interface PaletteVariant {
   textColor: string;
+  // hover state
+  textHoverColor: string;
   textHoverBg: string;
+  // active state
+  textActiveColor: string;
   textActiveBg: string;
+  // disabled state
   textDisabledColor: string;
 
   outlinedColor: string;
   outlinedBorder: string;
-  outlinedHoverBg: string;
+  outlinedBg: string;
+  // hover state
+  outlinedHoverColor: string;
   outlinedHoverBorder: string;
+  outlinedHoverBg: string;
+  // active state
+  outlinedActiveColor: string;
+  outlinedActiveBorder: string;
   outlinedActiveBg: string;
+  // disabled state
   outlinedDisabledColor: string;
   outlinedDisabledBorder: string;
+  outlinedDisabledBg: string;
 
   lightColor: string;
   lightBg: string;
+  // hover state
+  lightHoverColor: string;
   lightHoverBg: string;
+  // active state
+  lightActiveColor: string;
   lightActiveBg: string;
+  // disabled state
   lightDisabledColor: string;
   lightDisabledBg: string;
 
   containedColor: string;
   containedBg: string;
+  // hover state
+  containedHoverColor: string;
   containedHoverBg: string;
+  // active state
+  containedActiveColor: string;
   containedActiveBg: string;
+  // disabled state
+  containedDisabledColor: string;
   containedDisabledBg: string;
 }
 export interface PaletteRange extends PaletteVariant {
