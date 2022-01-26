@@ -54,7 +54,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     open,
     renderValue,
     SelectDisplayProps,
-    variant: variantProps = 'outlined',
+    variant: variantProp = 'outlined',
     ...other
   } = props;
 
@@ -67,7 +67,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     states: ['variant'],
   });
 
-  const variant = fcs.variant || variantProps;
+  const variant = fcs.variant || variantProp;
 
   const InputComponent =
     input ||
@@ -77,7 +77,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       filled: <StyledFilledInput />,
     }[variant];
 
-  const ownerState = { ...props, classes: classesProp };
+  const ownerState = { ...props, variant, classes: classesProp };
   const classes = useUtilityClasses(ownerState);
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);

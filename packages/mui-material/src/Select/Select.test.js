@@ -1271,6 +1271,40 @@ describe('<Select />', () => {
     expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
   });
 
+  ['standard', 'outlined', 'filled'].forEach((variant) =>
+    it(`variant overrides should work for "${variant}" variant`, function test() {
+      const theme = createTheme({
+        components: {
+          MuiSelect: {
+            variants: [
+              {
+                props: {
+                  variant,
+                },
+                style: {
+                  backgroundColor: 'red',
+                },
+              },
+            ],
+          },
+        },
+      });
+
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <Select variant={variant} value="first" data-testid="input">
+            <MenuItem value="first" />
+            <MenuItem value="second" />
+          </Select>
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('input')).to.toHaveComputedStyle({
+        backgroundColor: 'red',
+      });
+    }),
+  );
+
   describe('prop: input', () => {
     it('merges `ref` of `Select` and `input`', () => {
       const Input = React.forwardRef(function Input(props, ref) {
