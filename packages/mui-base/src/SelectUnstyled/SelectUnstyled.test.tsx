@@ -54,8 +54,8 @@ describe('SelectUnstyled', () => {
         const button = getByRole('button');
         act(() => {
           button.focus();
-          userEvent.keyPress(button, { key: 'Enter' });
         });
+        userEvent.keyPress(button, { key });
 
         expect(button).to.have.attribute('aria-expanded', 'true');
         expect(getByRole('listbox')).not.to.equal(null);
@@ -102,7 +102,7 @@ describe('SelectUnstyled', () => {
 
           userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '1'
           userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
-          userEvent.keyPress(listbox, { key: 'Enter' });
+          userEvent.keyPress(listbox, { key });
 
           expect(button).to.have.text('2');
         }),
