@@ -117,7 +117,7 @@ const Label = styled('span')({
 
 `sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use an `sx`-like syntax in global theme overrides.
 
-All you need is to use the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function:
+All you need is to use the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function. In the following example, I use `sx` to theme the `Chip` component:
 
 ```jsx
 import {
@@ -149,9 +149,15 @@ import {
 </ThemeProvider>;
 ```
 
-If you want to create a dynamic style based on props, you can return an array from the callback:
+If I want to add more styles based on these conditions:
+
+- border color `palette.text.secondary` is applied when `<Chip variant="outlined" />`.
+- font size is `0.875rem` in mobile viewport, `0.75rem` in larger than mobile viewport when `<Chip size="small" />`.
+
+An array can be used as a return type to make the code easier to add/remove conditions:
 
 ```js
+// The <ThemeProvider> is omitted for readability.
 {
   root: ({ ownerState }) => [
     sx({
@@ -169,7 +175,6 @@ If you want to create a dynamic style based on props, you can return an array fr
         fontSize: { xs: '0.875rem', sm: '0.75rem' },
       })
   ],
-  // ...other keys
 }
 ```
 
