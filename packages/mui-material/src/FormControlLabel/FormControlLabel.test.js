@@ -136,6 +136,17 @@ describe('<FormControlLabel />', () => {
   });
 
   describe('with FormControl', () => {
+    describe('error', () => {
+      it('should have the error class', () => {
+        const { getByTestId } = render(
+          <FormControl error>
+            <FormControlLabel data-testid="FormControlLabel" control={<div />} label="Pizza" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).to.have.class(classes.error);
+      });
+    });
     describe('enabled', () => {
       it('should not have the disabled class', () => {
         const { getByTestId } = render(
