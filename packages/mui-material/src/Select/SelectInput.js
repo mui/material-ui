@@ -499,8 +499,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          // eslint-disable-next-line react/no-danger
-          <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+          <span className="notranslate">&#8203;</span>
         ) : (
           display
         )}
