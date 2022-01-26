@@ -17,6 +17,10 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<AvatarGroupClasses>;
+  /**
+   * The props used for targeting the additional avatar when max prop is set.
+   * @default {}
+   */
   componentsProps?: {
     additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
       AvatarGroupComponentsPropsOverrides;

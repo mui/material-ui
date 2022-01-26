@@ -168,7 +168,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * The props used for targeting the additional avatar when max prop is set.
+   * @default {}
    */
   componentsProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,
