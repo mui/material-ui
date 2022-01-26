@@ -12,11 +12,24 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
   return classes;
 };
+
+const styledRootConfig = {
+  name: 'MuiSelect',
+  shouldForwardProp: (prop) => rootShouldForwardProp && prop !== 'variant',
+  slot: 'Root',
+};
+
+const StyledInput = styled(Input, styledRootConfig)('');
+
+const StyledOutlinedInput = styled(OutlinedInput, styledRootConfig)('');
+
+const StyledFilledInput = styled(FilledInput, styledRootConfig)('');
 
 const Select = React.forwardRef(function Select(inProps, ref) {
   const props = useThemeProps({ name: 'MuiSelect', props: inProps });
@@ -59,9 +72,9 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const InputComponent =
     input ||
     {
-      standard: <Input />,
-      outlined: <OutlinedInput label={label} />,
-      filled: <FilledInput />,
+      standard: <StyledInput />,
+      outlined: <StyledOutlinedInput label={label} />,
+      filled: <StyledFilledInput />,
     }[variant];
 
   const ownerState = { ...props, classes: classesProp };
@@ -100,6 +113,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref: inputComponentRef,
     className: clsx(InputComponent.props.className, className),
+    variant,
     ...other,
   });
 });
