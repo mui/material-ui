@@ -73,4 +73,11 @@ describe('Joy <Button />', () => {
 
     expect(button).to.have.class(classes.fullWidth);
   });
+
+  it('should render a square button', () => {
+    const { getByRole } = render(<Button square>S</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.square);
+  });
 });

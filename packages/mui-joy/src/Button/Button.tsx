@@ -40,8 +40,23 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      padding: '0.25rem 1.5rem', // the padding-top, bottom act as a minimum spacing between content and root element
-      minHeight: '40px',
+      '--Button-minHeight': '40px',
+      '--Button-gutter': '1.5rem',
+      ...(ownerState.size === 'sm' && {
+        '--Button-minHeight': '32px',
+        '--Button-gutter': '1rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Button-minHeight': '48px',
+        '--Button-gutter': '2rem',
+      }),
+      ...(ownerState.square && {
+        '--Button-gutter': '0.25rem',
+      }),
+    },
+    {
+      padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
+      minHeight: 'var(--Button-minHeight)',
       borderRadius: theme.vars.radius.sm,
       border: 'none',
       backgroundColor: 'transparent',
@@ -55,16 +70,12 @@ const ButtonRoot = styled('button', {
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...theme.typography.body1,
       ...(ownerState.size === 'sm' && {
-        paddingLeft: '1rem',
-        paddingRight: '1rem',
-        minHeight: '32px',
         ...theme.typography.body2,
+        lineHeight: '1.25rem',
       }),
-      ...(ownerState.size === 'lg' && {
-        paddingLeft: '2rem',
-        paddingRight: '2rem',
-        minHeight: '48px',
-        ...theme.typography.h6,
+      ...(ownerState.size === 'lg' && theme.typography.h6),
+      ...(ownerState.square && {
+        minWidth: 'var(--Button-minHeight)',
       }),
       [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
@@ -93,6 +104,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant = 'contained',
     size = 'md',
     fullWidth = false,
+    square = false,
     ...other
   } = props;
 
@@ -126,6 +138,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
     size,
     focusVisible,
+    square,
   };
 
   const classes = useUtilityClasses(ownerState);

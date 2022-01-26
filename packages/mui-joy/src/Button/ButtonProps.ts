@@ -57,6 +57,11 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     sx?: SxProps;
     /**
+     * If `true`, the component has min-width equal to var(--Button-minHeight).
+     * @default false
+     */
+    square?: boolean;
+    /**
      * @default 0
      */
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;

@@ -10,6 +10,9 @@ import {
 } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import Add from '@mui/icons-material/Add';
+import DeleteForever from '@mui/icons-material/DeleteForeverOutlined';
+import ThumbUp from '@mui/icons-material/ThumbUp';
 
 const Typography = styled('p', {
   shouldForwardProp: (prop) => prop !== 'color' && prop !== 'level' && prop !== 'sx',
@@ -34,6 +37,7 @@ const ColorSchemePicker = () => {
   return (
     <Button
       variant="outlined"
+      square
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -41,7 +45,6 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ minWidth: 40, p: '0.25rem' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
@@ -101,6 +104,34 @@ export default function JoyComponents() {
               ))}
             </Box>
           ))}
+          <Box
+            sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
+          >
+            <Typography level="body2" sx={{ fontWeight: 'bold' }}>
+              square
+            </Typography>
+            <Button variant="light" square>
+              <Add />
+            </Button>
+            <Button variant="outlined" square size="sm" color="danger">
+              <DeleteForever />
+            </Button>
+            <Button variant="contained" square size="lg" color="success">
+              <ThumbUp />
+            </Button>
+            <Button
+              variant="contained"
+              square
+              size="lg"
+              color="success"
+              sx={{ '--Button-minHeight': '64px' }}
+            >
+              <ThumbUp fontSize="xl4" />
+            </Button>
+            <Button variant="outlined" square sx={{ borderRadius: 'var(--Button-minHeight)' }}>
+              <Add />
+            </Button>
+          </Box>
         </Box>
         {/* Danilo's not smart iteration below 😅 - wanted to see each color with every variant. */}
         <Box sx={{ display: 'flex', py: 16 }}>
