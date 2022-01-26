@@ -49,7 +49,6 @@ const PickerStaticWrapperRoot = styled('div', {
   name: 'MuiPickerStaticWrapper',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-  skipSx: true,
 })(({ theme }) => ({
   overflow: 'hidden',
   minWidth: DIALOG_WIDTH,
