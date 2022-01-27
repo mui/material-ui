@@ -9,7 +9,7 @@ import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
+  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant, square } =
     ownerState;
 
   const slots = {
@@ -21,7 +21,10 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      square && 'square',
     ],
+    startIcon: ['startIcon'],
+    endIcon: ['endIcon'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, {});
@@ -33,6 +36,26 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
   return composedClasses;
 };
 
+const ButtonStartIcon = styled('span', {
+  name: 'MuiButton',
+  slot: 'StartIcon',
+  overridesResolver: (props, styles) => styles.startIcon,
+})<{ ownerState: ButtonProps }>({
+  display: 'inherit',
+  marginLeft: 'calc(var(--Button-gutter) / -2)',
+  marginRight: 'min(var(--Button-gutter) / 2, 0.5rem)', // limit upper bound to 0.5rem
+});
+
+const ButtonEndIcon = styled('span', {
+  name: 'MuiButton',
+  slot: 'EndIcon',
+  overridesResolver: (props, styles) => styles.endIcon,
+})<{ ownerState: ButtonProps }>({
+  display: 'inherit',
+  marginLeft: 'min(var(--Button-gutter) / 2, 0.5rem)', // limit upper bound to 0.5rem
+  marginRight: 'calc(var(--Button-gutter) / -2)',
+});
+
 const ButtonRoot = styled('button', {
   name: 'MuiButton',
   slot: 'Root',
@@ -40,22 +63,28 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      '--Button-minHeight': '40px',
-      '--Button-gutter': '1.5rem',
+      '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
+      '--Button-gutter': '1.5rem', // gutter is the padding-x
       ...(ownerState.size === 'sm' && {
-        '--Button-minHeight': '32px',
+        '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Button-minHeight': '48px',
+        '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
       }),
       ...(ownerState.square && {
-        '--Button-gutter': '0.25rem',
+        '--Button-gutter': '0.5rem',
+        ...(ownerState.size === 'sm' && {
+          '--Button-gutter': '0.25rem', // reduce the padding to make the button square because icon size is 24px by default
+        }),
       }),
     },
     {
       padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
+      ...(ownerState.variant === 'outlined' && {
+        padding: 'calc(0.25rem - 1px) calc(var(--Button-gutter) - 1px)', // account for the border width
+      }),
       minHeight: 'var(--Button-minHeight)',
       borderRadius: theme.vars.radius.sm,
       border: 'none',
@@ -105,6 +134,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     size = 'md',
     fullWidth = false,
     square = false,
+    startIcon: startIconProp,
+    endIcon: endIconProp,
     ...other
   } = props;
 
@@ -143,6 +174,18 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const startIcon = startIconProp && (
+    <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
+      {startIconProp}
+    </ButtonStartIcon>
+  );
+
+  const endIcon = endIconProp && (
+    <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
+      {endIconProp}
+    </ButtonEndIcon>
+  );
+
   return (
     <ButtonRoot
       as={ComponentProp}
@@ -151,7 +194,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       {...other}
       {...getRootProps()}
     >
+      {startIcon}
       {children}
+      {endIcon}
     </ButtonRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;

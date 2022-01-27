@@ -37,6 +37,10 @@ export interface ButtonClasses {
   fullWidth: string;
   /** Styles applied to the root element if `square={true}`. */
   square: string;
+  /** Styles applied to the startIcon element if supplied. */
+  startIcon: string;
+  /** Styles applied to the endIcon element if supplied. */
+  endIcon: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -64,6 +68,8 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'sizeLg',
   'fullWidth',
   'square',
+  'startIcon',
+  'endIcon',
 ]);
 
 export default buttonClasses;

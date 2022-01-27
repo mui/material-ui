@@ -12,6 +12,8 @@ import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Add from '@mui/icons-material/Add';
 import DeleteForever from '@mui/icons-material/DeleteForeverOutlined';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import ThumbUp from '@mui/icons-material/ThumbUp';
 
 const Typography = styled('p', {
@@ -110,15 +112,30 @@ export default function JoyComponents() {
             <Typography level="body2" sx={{ fontWeight: 'bold' }}>
               square
             </Typography>
-            <Button variant="light" square>
-              <Add />
-            </Button>
-            <Button variant="outlined" square size="sm" color="danger">
-              <DeleteForever />
-            </Button>
-            <Button variant="contained" square size="lg" color="success">
-              <ThumbUp />
-            </Button>
+            <Box>
+              <Button variant="light" square>
+                <Add />
+              </Button>
+              <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
+                40x40
+              </Typography>
+            </Box>
+            <Box>
+              <Button variant="outlined" square size="sm" color="danger">
+                <DeleteForever />
+              </Button>
+              <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
+                32x32
+              </Typography>
+            </Box>
+            <Box>
+              <Button variant="contained" square size="lg" color="success">
+                <ThumbUp />
+              </Button>
+              <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
+                48x48
+              </Typography>
+            </Box>
             <Button
               variant="contained"
               square
@@ -130,6 +147,36 @@ export default function JoyComponents() {
             </Button>
             <Button variant="outlined" square sx={{ borderRadius: 'var(--Button-minHeight)' }}>
               <Add />
+            </Button>
+          </Box>
+          <Box
+            sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
+          >
+            <Typography level="body2" sx={{ fontWeight: 'bold' }}>
+              start & end icon
+            </Typography>
+            <Button
+              variant="contained"
+              square
+              color="success"
+              endIcon={<KeyboardArrowDown fontSize="lg" />}
+            >
+              <ThumbUp />
+            </Button>
+            <Button variant="contained" startIcon={<ThumbUp />} size="sm">
+              Add to cart
+            </Button>
+            <Button variant="outlined" startIcon={<Add />} size="sm">
+              Add to cart
+            </Button>
+            <Button variant="contained" startIcon={<Add />}>
+              Add to cart
+            </Button>
+            <Button variant="contained" startIcon={<Add />} size="lg">
+              Add to cart
+            </Button>
+            <Button variant="outlined" endIcon={<KeyboardArrowRight />} color="success">
+              Checkout
             </Button>
           </Box>
         </Box>
