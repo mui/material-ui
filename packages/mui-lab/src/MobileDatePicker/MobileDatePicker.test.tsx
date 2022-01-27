@@ -323,7 +323,7 @@ describe('<MobileDatePicker />', () => {
         renderInput={(params) => <TextField {...params} />}
       />,
     );
-    
+
     fireEvent.click(screen.getByRole('textbox'));
     fireEvent.click(screen.getByLabelText('Jan 31, 2022')); // changing date followed by clicking cancel button
 
