@@ -149,7 +149,7 @@ describe('<TreeView />', () => {
     expect(handleKeyDown.callCount).to.equal(3);
   });
 
-  it('should select node when a key is pressed ', () => {
+  it('should select node when Enter key is pressed ', () => {
     const handleKeyDown = spy();
 
     const { getByRole, getByTestId } = render(
