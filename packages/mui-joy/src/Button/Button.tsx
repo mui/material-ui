@@ -236,6 +236,10 @@ Button.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * Element placed after the children.
+   */
+  endIcon: PropTypes.node,
+  /**
    * If `true`, the button will take up the full width of its container.
    * @default false
    */
@@ -244,6 +248,15 @@ Button.propTypes /* remove-proptypes */ = {
    * The size of the component.
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * If `true`, the component has min-width equal to var(--Button-minHeight).
+   * @default false
+   */
+  square: PropTypes.bool,
+  /**
+   * Element placed before the children.
+   */
+  startIcon: PropTypes.node,
   /**
    * The variant to use.
    * @default 'contained'
