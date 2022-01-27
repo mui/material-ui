@@ -49,7 +49,7 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('+2');
   });
 
-  it('should allow for props on additionalAvatar', () => {
+  it('should pass props from componentsProps.additionalAvatar to the slot component', () => {
     const componentsProps = { additionalAvatar: { className: 'additional-avatar-test' } };
 
     const { container } = render(

@@ -18,7 +18,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   classes?: Partial<AvatarGroupClasses>;
   /**
-   * The props used for targeting the additional avatar when max prop is set.
+   * The props used for each slot inside the AvatarGroup.
    * @default {}
    */
   componentsProps?: {
