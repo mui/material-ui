@@ -1282,7 +1282,7 @@ describe('<Select />', () => {
                   variant,
                 },
                 style: {
-                  backgroundColor: 'red',
+                  fontWeight: '200',
                 },
               },
             ],
@@ -1300,7 +1300,7 @@ describe('<Select />', () => {
       );
 
       expect(getByTestId('input')).to.toHaveComputedStyle({
-        backgroundColor: 'red',
+        fontWeight: '200',
       });
     }),
   );
