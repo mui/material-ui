@@ -253,7 +253,7 @@ const GridRoot = styled('div', {
     ...(ownerState.wrap === 'nowrap' && {
       flexWrap: 'nowrap',
     }),
-    ...(ownerState.wrap === 'reverse' && {
+    ...(ownerState.wrap === 'wrap-reverse' && {
       flexWrap: 'wrap-reverse',
     }),
   }),
