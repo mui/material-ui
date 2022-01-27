@@ -163,7 +163,6 @@ describe('<TreeView />', () => {
 
     expect(getByTestId('one')).not.to.have.attribute('aria-selected');
 
-    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
     fireEvent.keyDown(getByRole('tree'), { key: 'Enter' });
 
     expect(getByTestId('one')).to.have.attribute('aria-selected');
