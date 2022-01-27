@@ -16,6 +16,7 @@ Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https:
 - [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Tailwind CSS](https://github.com/mui-org/material-ui/tree/master/examples/tailwind)
+- [Vite.js](https://github.com/mui-org/material-ui/tree/next/examples/vitejs)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
 Create React App é um projeto incrível para aprender React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
