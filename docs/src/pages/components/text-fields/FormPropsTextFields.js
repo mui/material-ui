@@ -20,6 +20,13 @@ export default function FormPropsTextFields() {
           defaultValue="Hello World"
         />
         <TextField
+          required
+          id="outlined-required"
+          label="Required"
+          defaultValue="Hello World"
+          InputLabelProps={{ asteriskPlacement: 'start' }}
+        />
+        <TextField
           disabled
           id="outlined-disabled"
           label="Disabled"
@@ -62,6 +69,14 @@ export default function FormPropsTextFields() {
           label="Required"
           defaultValue="Hello World"
           variant="filled"
+        />
+        <TextField
+          required
+          id="filled-required"
+          label="Required"
+          defaultValue="Hello World"
+          variant="filled"
+          InputLabelProps={{ asteriskPlacement: 'start' }}
         />
         <TextField
           disabled
@@ -116,6 +131,14 @@ export default function FormPropsTextFields() {
           label="Required"
           defaultValue="Hello World"
           variant="standard"
+        />
+        <TextField
+          required
+          id="standard-required"
+          label="Required"
+          defaultValue="Hello World"
+          variant="standard"
+          InputLabelProps={{ asteriskPlacement: 'start' }}
         />
         <TextField
           disabled
