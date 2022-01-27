@@ -20,6 +20,8 @@ This [selection of basic templates](/getting-started/templates/) will help you g
 
 ## Recommended resources
 
+> ⚠️ Note that the resources linked below are using MUI v4, which is not the latest major version. As v5 was released recently, it would take some time till new content is created. If you have created some learning material for v5, let us know and we can link them here.
+
 When first learning MUI, you might find third-party blog posts, books and video courses more helpful than the official documentation.
 Here are some recommended resources, some of which are free.
 
