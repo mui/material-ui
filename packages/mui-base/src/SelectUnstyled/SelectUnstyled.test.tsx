@@ -185,4 +185,19 @@ describe('SelectUnstyled', () => {
     expect(button).to.have.attribute('aria-expanded', 'false');
     expect(button).to.have.text('1');
   });
+
+  it('focuses the listbox after it is opened', () => {
+    const { getByRole } = render(
+      <SelectUnstyled>
+        <OptionUnstyled value={1}>1</OptionUnstyled>
+      </SelectUnstyled>,
+    );
+
+    const button = getByRole('button');
+    act(() => {
+      button.click();
+    });
+
+    expect(document.activeElement).to.equal(getByRole('listbox'));
+  });
 });

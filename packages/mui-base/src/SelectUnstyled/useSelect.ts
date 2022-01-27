@@ -49,7 +49,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     defaultValue,
     disabled = false,
     listboxId,
-    listboxRef,
+    listboxRef: listboxRefProp,
     multiple = false,
     onChange,
     onOpenChange,
@@ -60,6 +60,9 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
 
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleButtonRef = useForkRef(buttonRefProp, buttonRef);
+
+  const listboxRef = React.useRef<HTMLElement | null>(null);
+  const intermediaryListboxRef = useForkRef(listboxRefProp, listboxRef);
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -74,6 +77,31 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
   // prevents reopening the listbox when button is clicked
   // (listbox closes on lost focus, then immediately reopens on click)
   const ignoreClick = React.useRef(false);
+
+  // Ensure the listbox is focused after opening
+  const [listboxFocusRequested, requestListboxFocus] = React.useState(false);
+
+  const focusListboxIfRequested = React.useCallback(() => {
+    if (listboxFocusRequested && listboxRef.current != null) {
+      listboxRef.current.focus();
+      requestListboxFocus(false);
+    }
+  }, [listboxFocusRequested]);
+
+  const updateListboxRef = (listboxElement: HTMLUListElement) => {
+    listboxRef.current = listboxElement;
+    focusListboxIfRequested();
+  };
+
+  const handleListboxRef = useForkRef(intermediaryListboxRef, updateListboxRef);
+
+  React.useEffect(() => {
+    focusListboxIfRequested();
+  }, [focusListboxIfRequested]);
+
+  React.useEffect(() => {
+    requestListboxFocus(open ?? false);
+  }, [open]);
 
   const createHandleMouseDown =
     (otherHandlers?: Record<string, React.EventHandler<any>>) =>
@@ -207,7 +235,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       id: listboxId,
       isOptionDisabled: (o) => o?.disabled ?? false,
       optionComparer: (o, v) => o?.value === v?.value,
-      listboxRef,
+      listboxRef: handleListboxRef,
       multiple: true,
       onChange: (newOptions) => {
         setValue(newOptions.map((o) => o.value));
@@ -221,7 +249,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       id: listboxId,
       isOptionDisabled: (o) => o?.disabled ?? false,
       optionComparer: (o, v) => o?.value === v?.value,
-      listboxRef,
+      listboxRef: handleListboxRef,
       multiple: false,
       onChange: (option: SelectOption<TValue> | null) => {
         setValue(option?.value ?? null);

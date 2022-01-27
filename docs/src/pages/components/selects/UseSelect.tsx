@@ -25,7 +25,7 @@ const Toggle = styled('div')`
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
 
   & .placeholder {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 `;
 
@@ -52,6 +52,10 @@ const Listbox = styled('ul')`
     &:hover {
       background: #ccc;
     }
+
+    &[aria-selected='true'] {
+      background: #ccc;
+    }
   }
 `;
 
@@ -61,11 +65,19 @@ interface Props {
 }
 
 function CustomSelect({ options, placeholder }: Props) {
+  const listboxRef = React.useRef<HTMLUListElement>(null);
+  const [listboxVisible, setListboxVisible] = React.useState(false);
+
   const { getButtonProps, getListboxProps, getOptionProps, value } = useSelect({
+    listboxRef,
     options,
   });
 
-  const [listboxVisible, setListboxVisible] = React.useState(false);
+  React.useEffect(() => {
+    if (listboxVisible) {
+      listboxRef.current?.focus();
+    }
+  }, [listboxVisible]);
 
   return (
     <Root
@@ -92,17 +104,14 @@ const options = [
   {
     label: 'Red',
     value: '#D32F2F',
-    index: 0,
   },
   {
     label: 'Green',
     value: '#4CAF50',
-    index: 1,
   },
   {
     label: 'Blue',
     value: '#2196F3',
-    index: 2,
   },
 ];
 
