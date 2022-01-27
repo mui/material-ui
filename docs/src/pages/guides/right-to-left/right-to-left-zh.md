@@ -58,20 +58,22 @@ npm install jss-rtl
 
 #### 3.1 JSS
 
-如果你的样式引擎的是 emotion，那么你应该创建并使用  `stylis-plugin-rtl` 的新缓存实例，并将其提供在你应用程序树的顶部。 [CacheProvider](https://emotion.sh/docs/cache-provider) 组件实现了这一点：
+If you use emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree. [CacheProvider](https://emotion.sh/docs/cache-provider) 组件实现了这一点：
 
 ```jsx
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import rtlPlugin from 'stylis-plugin-rtl';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { prefixer } from 'stylis';
 
-// Configure JSS
-const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
+// Create rtl cache
+const cacheRtl = createCache({
+  key: 'muirtl',
+  stylisPlugins: [prefixer, rtlPlugin],
 });
 
 function RTL(props) {
-  return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
+  return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
 }
 ```
 
