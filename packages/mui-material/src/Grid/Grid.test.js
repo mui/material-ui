@@ -430,7 +430,7 @@ describe('<Grid />', () => {
 
   describe('prop: wrap', () => {
     it('should wrap by default', () => {
-      const { container } = render(<Grid container data-testid="wrap" />);
+      render(<Grid container data-testid="wrap" />);
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'wrap',
       });
