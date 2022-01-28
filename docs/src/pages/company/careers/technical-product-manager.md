@@ -5,16 +5,27 @@
 ## Details of the Role
 
 - Location: Remote (preference for UTC-6 to UTC+3).
-- Type of work: Full-time (contractor or employee [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
+- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
-See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
+MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
+Today, countless teams and organizations rely on our open-source projects to build their design system.
 
-### Why we're hiring
+A couple of years ago, we started to expand our suite of products.
+We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
+We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+
+We are a fully distributed team, spread across multiple timezones.
+We work mainly asynchronously, relying mostly on written collaboration.
+Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
+For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+
+## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
@@ -23,14 +34,14 @@ The advanced components team (X) needs help to build its best features.
 We have started with the [data grid](/components/data-grid/) a year ago, but it's the beginning.
 Our users are continuously providing feedback on the most important [pains they face](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc).
 
+## About the role
+
 ### Why this is interesting
 
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 We are the second most used UI library in the world, after Bootstrap.
 
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
-
-## About the role
 
 ### What you'll do on a day-to-day basis
 
@@ -58,12 +69,12 @@ Depending on the day, you'll:
 - Experience building developer tools.
 - Experience working with open-source and having interacted with open-source communities.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can significantly push the mission forward.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Technical%20Product%20Manager)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Technical%20Product%20Manager)
