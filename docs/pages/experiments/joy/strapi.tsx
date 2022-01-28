@@ -1,10 +1,66 @@
 import * as React from 'react';
-import { CssVarsProvider, createGetCssVar, useColorScheme } from '@mui/joy/styles';
-import Box from '@mui/joy/Box';
+import { GlobalStyles, CSSObject } from '@mui/system';
+import {
+  CssVarsProvider,
+  createGetCssVar,
+  useColorScheme,
+  ColorPaletteProp,
+} from '@mui/joy/styles';
+import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
+import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import Public from '@mui/icons-material/Public';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Info from '@mui/icons-material/InfoOutlined';
+import Code from '@mui/icons-material/Code';
+import PlayArrow from '@mui/icons-material/PlayArrowRounded';
+import HistoryEdu from '@mui/icons-material/HistoryEdu';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import OpenInNew from '@mui/icons-material/OpenInNew';
+import ArrowForward from '@mui/icons-material/ArrowForward';
+import Edit from '@mui/icons-material/Edit';
+import ViewCompact from '@mui/icons-material/ViewCompact';
+import PermMedia from '@mui/icons-material/PermMedia';
+import Extension from '@mui/icons-material/Extension';
+import ShoppingCart from '@mui/icons-material/ShoppingCart';
+import Settings from '@mui/icons-material/Settings';
+// experiment components
+import Badge from 'docs/src/_experiment/joy/Badge';
+import { ToggleButton, ToggleButtonGroup } from 'docs/src/_experiment/joy/Toggle';
+import Input from 'docs/src/_experiment/joy/Input';
+import TextField from 'docs/src/_experiment/joy/TextField';
+import SelectField from 'docs/src/_experiment/joy/SelectField';
+import Checkbox from 'docs/src/_experiment/joy/Checkbox';
+import { List, ListItemButton, ListSubheader } from 'docs/src/_experiment/joy/List';
+
+// how to add more color and use with variants
+const Tile = ({
+  children,
+  variant = 'light',
+  color = 'primary',
+  sx = [],
+  ...props
+}: {
+  variant?: 'light' | 'contained';
+  color?: ColorPaletteProp | 'secondary' | 'alternate';
+} & Omit<BoxProps, 'color'>) => {
+  return (
+    <Box
+      sx={[
+        { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
+        (theme) => theme.variants[variant][color],
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+      {...props}
+    >
+      {children}
+    </Box>
+  );
+};
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -56,6 +112,16 @@ declare module '@mui/joy/styles' {
     smallText: React.CSSProperties;
     smallButtonText: React.CSSProperties;
     tableLabel: React.CSSProperties;
+  }
+
+  interface VariantLight {
+    secondary: CSSObject;
+    alternate: CSSObject;
+  }
+
+  interface VariantContained {
+    secondary: CSSObject;
+    alternate: CSSObject;
   }
 }
 
@@ -121,6 +187,28 @@ export default function Strapi() {
                 200: '#FAE7B9',
                 100: '#FDF4DC',
               },
+              secondary: {
+                700: '#006096',
+                600: '#0C75AF',
+                500: '#66B7F1',
+                200: '#B8E1FF',
+                100: '#EAF5FF',
+                lightBg: 'var(--joy-palette-secondary-100)',
+                lightColor: 'var(--joy-palette-secondary-700)',
+                containedBg: 'var(--joy-palette-secondary-500)',
+                containedColor: '#fff',
+              },
+              alternate: {
+                700: '#8312D1',
+                600: '#9736E8',
+                500: '#AC73E6',
+                200: '#E0C1F4',
+                100: '#F6ECFC',
+                lightBg: 'var(--joy-palette-alternate-100)',
+                lightColor: 'var(--joy-palette-alternate-700)',
+                containedBg: 'var(--joy-palette-alternate-500)',
+                containedColor: '#fff',
+              },
               neutral: {
                 900: '#212134',
                 800: '#32324D',
@@ -132,15 +220,31 @@ export default function Strapi() {
                 200: '#DCDCE4',
                 150: '#EAEAEF',
                 100: '#F6F6F9',
-                50: '#FDF4DC',
                 0: '#FFFFFF',
                 outlinedColor: getCssVar('palette-neutral-800'),
                 outlinedBorder: getCssVar('palette-neutral-200'),
                 outlinedHoverBg: getCssVar('palette-neutral-100'),
                 outlinedActiveBg: getCssVar('palette-neutral-150'),
+                outlinedDisabledColor: getCssVar('palette-neutral-600'),
+                outlinedDisabledBorder: getCssVar('palette-neutral-300'),
+                outlinedDisabledBg: getCssVar('palette-neutral-200'),
+              },
+              background: {
+                level1: getCssVar('palette-neutral-100'),
+                level2: getCssVar('palette-neutral-150'),
+              },
+              text: {
+                primary: getCssVar('palette-neutral-800'),
               },
               outlinedFocusBorder: getCssVar('palette-neutral-0'),
             },
+          },
+        },
+        focus: {
+          default: {
+            outline: '2px solid',
+            outlineOffset: '2px',
+            outlineColor: getCssVar('palette-primary-700'),
           },
         },
         variants: {
@@ -161,6 +265,26 @@ export default function Strapi() {
               },
             },
           },
+          light: {
+            secondary: {
+              color: 'var(--joy-palette-secondary-lightColor)',
+              backgroundColor: 'var(--joy-palette-secondary-lightBg)',
+            },
+            alternate: {
+              color: 'var(--joy-palette-alternate-lightColor)',
+              backgroundColor: 'var(--joy-palette-alternate-lightBg)',
+            },
+          },
+          contained: {
+            secondary: {
+              color: 'var(--joy-palette-secondary-containedColor)',
+              backgroundColor: 'var(--joy-palette-secondary-containedBg)',
+            },
+            alternate: {
+              color: 'var(--joy-palette-alternate-containedColor)',
+              backgroundColor: 'var(--joy-palette-alternate-containedBg)',
+            },
+          },
         },
         typography: {
           header1: {
@@ -168,42 +292,42 @@ export default function Strapi() {
             fontWeight: 600,
             fontSize: '2rem',
             lineHeight: '2.5rem',
-            color: getCssVar('palette-neutral-800'),
+            color: getCssVar('palette-text-primary'),
           },
           header2: {
             fontFamily: getCssVar('fontFamily-body'),
             fontWeight: 600,
             fontSize: '1.125rem',
             lineHeight: '1.375rem',
-            color: getCssVar('palette-neutral-800'),
+            color: getCssVar('palette-text-primary'),
           },
           header3: {
             fontFamily: getCssVar('fontFamily-body'),
             fontWeight: 500,
             fontSize: '1rem',
             lineHeight: '1.25rem',
-            color: getCssVar('palette-neutral-800'),
+            color: getCssVar('palette-text-primary'),
           },
           subtitle: {
             fontFamily: getCssVar('fontFamily-body'),
             fontWeight: 400,
             fontSize: '1rem',
             lineHeight: '1.5rem',
-            color: getCssVar('palette-neutral-600'),
+            color: getCssVar('palette-text-secondary'),
           },
           body: {
             fontFamily: getCssVar('fontFamily-body'),
             fontWeight: 400,
             fontSize: '0.875rem',
             lineHeight: '1rem',
-            color: getCssVar('palette-neutral-800'),
+            color: getCssVar('palette-text-primary'),
           },
           bodyHighlight: {
             fontFamily: getCssVar('fontFamily-body'),
             fontWeight: 500,
             fontSize: '0.875rem',
             lineHeight: '1rem',
-            color: getCssVar('palette-neutral-800'),
+            color: getCssVar('palette-text-primary'),
           },
           buttonText: {
             fontFamily: getCssVar('fontFamily-body'),
@@ -211,14 +335,14 @@ export default function Strapi() {
             fontSize: '0.875rem',
             lineHeight: '1rem',
             // button should not contain color globally
-            // color: getCssVar('palette-neutral-800'),
+            // color: getCssVar('palette-text-primary'),
           },
           smallText: {
             fontFamily: getCssVar('fontFamily-body'),
             fontWeight: 400,
             fontSize: '0.75rem',
             lineHeight: '1rem',
-            color: getCssVar('palette-neutral-800'),
+            color: getCssVar('palette-text-secondary'),
           },
           smallButtonText: {
             fontFamily: getCssVar('fontFamily-body'),
@@ -226,14 +350,14 @@ export default function Strapi() {
             fontSize: '0.75rem',
             lineHeight: '1rem',
             // button should not contain color globally
-            // color: getCssVar('palette-neutral-600'),
+            // color: getCssVar('palette-text-secondary'),
           },
           tableLabel: {
             fontFamily: getCssVar('fontFamily-body'),
             fontWeight: 600,
             fontSize: '0.7rem',
             lineHeight: '1rem',
-            color: getCssVar('palette-neutral-800'),
+            color: getCssVar('palette-text-primary'),
             textTransform: 'uppercase',
           },
         },
@@ -241,8 +365,9 @@ export default function Strapi() {
           MuiButton: {
             styleOverrides: {
               root: ({ ownerState, theme }) => ({
-                paddingLeft: '1rem',
-                paddingRight: '1rem',
+                ...(!ownerState.square && {
+                  '--Button-gutter': '1rem',
+                }),
                 borderRadius: '4px',
                 ...theme.typography.buttonText,
                 ...(ownerState.size === 'sm' && {
@@ -256,9 +381,6 @@ export default function Strapi() {
                   minHeight: 40,
                 }),
                 '&.Mui-focusVisible': {
-                  outline: '2px solid',
-                  outlineColor: theme.vars.palette.primary[700],
-                  outlineOffset: '2px',
                   ...(ownerState.variant === 'outlined' && {
                     // @ts-ignore This type error only occur in our repository due to multiple module augmentation
                     borderColor: theme.vars.palette.outlinedFocusBorder,
@@ -271,6 +393,22 @@ export default function Strapi() {
                   borderColor: theme.vars.palette.neutral[200],
                 },
               }),
+            },
+          },
+          MuiTypography: {
+            defaultProps: {
+              levelMapping: {
+                header1: 'h1',
+                header2: 'h2',
+                header3: 'h3',
+                subtitle: 'p',
+                body: 'p',
+                bodyHighlight: 'p',
+                buttonText: 'p',
+                smallText: 'p',
+                smallButtonText: 'p',
+                tableLabel: 'p',
+              },
             },
           },
           MuiSwitch: {
@@ -291,10 +429,30 @@ export default function Strapi() {
               },
             },
           },
+          MuiSvgIcon: {
+            defaultProps: {
+              fontSize: 'xl',
+            },
+            styleOverrides: {
+              root: ({ ownerState, theme }) => ({
+                ...(ownerState.fontSize &&
+                  ownerState.fontSize !== 'inherit' && {
+                    fontSize: theme.vars.fontSize[ownerState.fontSize],
+                  }),
+                ...(ownerState.color &&
+                  ownerState.color !== 'inherit' && {
+                    color: theme.vars.palette[ownerState.color].textColor,
+                  }),
+              }),
+            },
+          },
         },
       }}
     >
-      <ColorSchemePicker />
+      <GlobalStyles styles={{ body: { margin: 0 }, '*': { boxSizing: 'border-box' } }} />
+      <Box sx={{ p: 2 }}>
+        <ColorSchemePicker />
+      </Box>
       <Box
         sx={{
           display: 'grid',
@@ -306,6 +464,7 @@ export default function Strapi() {
             py: 4,
             justifyContent: 'center',
             alignItems: 'center',
+            alignSelf: 'center',
             gap: 2,
           },
         }}
@@ -393,6 +552,530 @@ export default function Strapi() {
         <Box>
           <Switch defaultChecked />
           <Switch />
+        </Box>
+        <Box>
+          <Badge color="neutral">Text</Badge>
+          <Badge>Text</Badge>
+        </Box>
+        <Box>
+          <div>
+            <Typography
+              level="smallButtonText"
+              sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.5 }}
+            >
+              Toggle field <Public fontSize="xs" color="neutral" />
+            </Typography>
+            <ToggleButtonGroup role="group">
+              <ToggleButton color="danger" pressed>
+                Off
+              </ToggleButton>
+              <ToggleButton>On</ToggleButton>
+            </ToggleButtonGroup>
+            <Typography level="smallText" sx={{ mt: 0.5, color: 'var(--joy-palette-neutral-600)' }}>
+              Description line
+            </Typography>
+          </div>
+          <ToggleButtonGroup>
+            <ToggleButton>Off</ToggleButton>
+            <ToggleButton color="success" pressed>
+              On
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
+        {(() => {
+          const eye = (
+            <Button
+              square
+              variant="text"
+              color="neutral"
+              size="sm"
+              sx={{ pointerEvents: 'visible' }}
+            >
+              <Visibility fontSize="lg" />
+            </Button>
+          ) as any;
+          const label = (
+            <React.Fragment>
+              Label <Public fontSize="xs" color="neutral" />
+            </React.Fragment>
+          );
+          return (
+            <Box>
+              <Input placeholder="Placeholder" endAdornment={eye} />
+              <TextField
+                id="text-field1"
+                label={label}
+                placeholder="Placeholder"
+                helperText="Description line"
+                endAdornment={eye}
+              />
+              <TextField
+                id="text-field2"
+                label={label}
+                error
+                placeholder="Placeholder"
+                helperText="Description line"
+                endAdornment={eye}
+              />
+              <TextField
+                id="text-field3"
+                label={label}
+                disabled
+                placeholder="Placeholder"
+                helperText="Description line"
+                endAdornment={eye}
+              />
+              <TextField
+                id="text-field4"
+                label={label}
+                disabled
+                placeholder="Placeholder"
+                helperText="Description line"
+                startAdornment={<VisibilityOff fontSize="lg" />}
+              />
+            </Box>
+          );
+        })()}
+        <Box>
+          <SelectField
+            id="select-field1"
+            label={
+              <React.Fragment>
+                Label <Public fontSize="xs" color="neutral" />
+              </React.Fragment>
+            }
+            placeholder="Placeholder"
+            helperText="Description line"
+          />
+          <SelectField
+            id="select-field1"
+            error
+            label={
+              <React.Fragment>
+                Label <Public fontSize="xs" color="neutral" />
+              </React.Fragment>
+            }
+            placeholder="Placeholder"
+            helperText="Description line"
+          />
+        </Box>
+        <Box sx={{ flexDirection: 'column' }}>
+          <Checkbox id="check1" />
+          <Checkbox id="check2" label="Title" />
+          <Checkbox checked id="check3" />
+          <Checkbox checked id="check4" label="Title" />
+          <Checkbox disabled />
+          <Checkbox checked disabled />
+        </Box>
+        <Box>
+          <Tile sx={{ p: 2 }}>
+            <Tile variant="contained">
+              <Info />
+            </Tile>
+          </Tile>
+          <Tile sx={{ p: 2 }} color="warning">
+            <Tile variant="contained" color="warning">
+              <Code />
+            </Tile>
+          </Tile>
+          <Tile sx={{ p: 2 }} color="secondary">
+            <Tile variant="contained" color="secondary">
+              <PlayArrow />
+            </Tile>
+          </Tile>
+          <Tile sx={{ p: 2 }} color="alternate">
+            <Tile variant="contained" color="alternate">
+              <HistoryEdu />
+            </Tile>
+          </Tile>
+        </Box>
+      </Box>
+
+      {/* Log in */}
+      <Box
+        sx={{ minHeight: '100vh', bgcolor: 'var(--joy-palette-background-level1)', pt: '100px' }}
+      >
+        <Box
+          sx={{
+            width: 552,
+            mx: 'auto',
+            borderRadius: '4px',
+            boxShadow: 'var(--joy-shadow-sm)',
+            bgcolor: 'var(--joy-palette-background-body)',
+            textAlign: 'center',
+            px: '3.5rem',
+            py: '3rem',
+          }}
+        >
+          <Box
+            component="img"
+            src="https://res.cloudinary.com/practicaldev/image/fetch/s--XsZRGi5O--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/763/988af53b-5d7e-435a-98eb-dd4aff5299d2.png"
+            sx={{
+              borderRadius: '1rem',
+              width: 72,
+              height: 72,
+              mx: 'auto',
+              display: 'block',
+            }}
+          />
+          <Typography level="h3" sx={{ mt: '1.5rem', mb: '0.375rem', fontWeight: 'bold' }}>
+            Welcome back!
+          </Typography>
+          <Typography sx={{ color: 'var(--joy-palette-text-tertiary)', mb: '2rem' }}>
+            Log in to your Strapi account
+          </Typography>
+          <TextField label="Email" id="email" placeholder="kaidoe@gmail.com" fullWidth />
+          <Box sx={{ height: '1.5rem' }} />
+          <TextField
+            label="Password"
+            id="password"
+            fullWidth
+            endAdornment={
+              <Button
+                square
+                variant="text"
+                color="neutral"
+                size="sm"
+                sx={{ pointerEvents: 'visible' }}
+              >
+                <Visibility fontSize="lg" />
+              </Button>
+            }
+          />
+          <Box sx={{ height: '1.5rem' }} />
+          <Checkbox label="Remember me" />
+          <Box sx={{ height: '1.5rem' }} />
+          <Button fullWidth size="lg">
+            Login
+          </Button>
+        </Box>
+        <Box sx={{ textAlign: 'center', py: 1 }}>
+          <Button variant="text" sx={{ fontWeight: 'normal' }}>
+            Forgot password?
+          </Button>
+        </Box>
+      </Box>
+
+      {/* Sign up */}
+      <Box
+        sx={{ minHeight: '100vh', bgcolor: 'var(--joy-palette-background-level1)', pt: '100px' }}
+      >
+        <Box
+          sx={{
+            width: 552,
+            mx: 'auto',
+            borderRadius: '4px',
+            boxShadow: 'var(--joy-shadow-sm)',
+            bgcolor: 'var(--joy-palette-background-body)',
+            textAlign: 'center',
+            px: '3.5rem',
+            py: '3rem',
+          }}
+        >
+          <Box
+            component="img"
+            src="https://res.cloudinary.com/practicaldev/image/fetch/s--XsZRGi5O--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/763/988af53b-5d7e-435a-98eb-dd4aff5299d2.png"
+            sx={{
+              borderRadius: '1rem',
+              width: 72,
+              height: 72,
+              mx: 'auto',
+              display: 'block',
+            }}
+          />
+          <Typography level="h3" sx={{ mt: '1.5rem', mb: '0.375rem', fontWeight: 'bold' }}>
+            Welcome back!
+          </Typography>
+          <Typography sx={{ color: 'var(--joy-palette-text-tertiary)', mb: '2rem' }}>
+            Your credentials are only used to authenticate yourself on the admin panel. All saved
+            data will be stored in your own database.
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 2, '& > *': { flexGrow: 1 } }}>
+            <TextField label="First name" id="first-name" placeholder="Kai" fullWidth />
+            <TextField label="Last name" id="last-name" placeholder="Doe" fullWidth />
+          </Box>
+          <Box sx={{ height: '1.5rem' }} />
+          <TextField label="Email" id="email" placeholder="kaidoe@gmail.com" fullWidth />
+          <Box sx={{ height: '1.5rem' }} />
+          <TextField
+            label="Password"
+            id="password"
+            fullWidth
+            endAdornment={
+              <Button
+                square
+                variant="text"
+                color="neutral"
+                size="sm"
+                sx={{ pointerEvents: 'visible' }}
+              >
+                <Visibility fontSize="lg" />
+              </Button>
+            }
+          />
+          <Box sx={{ height: '1.5rem' }} />
+          <TextField
+            label="Password"
+            id="password"
+            fullWidth
+            endAdornment={
+              <Button
+                square
+                variant="text"
+                color="neutral"
+                size="sm"
+                sx={{ pointerEvents: 'visible' }}
+              >
+                <Visibility fontSize="lg" />
+              </Button>
+            }
+          />
+          <Box sx={{ height: '1.5rem' }} />
+          <Checkbox label="Keep me updated about the new features and upcoming improvements (by doing this you accept the terms and the privacy policy)." />
+          <Box sx={{ height: '1.5rem' }} />
+          <Button fullWidth size="lg">
+            Let&apos;s start
+          </Button>
+        </Box>
+      </Box>
+
+      {/* Home */}
+      <Box
+        sx={{
+          minHeight: '100vh',
+          bgcolor: 'var(--joy-palette-background-level1)',
+          display: 'flex',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: 225,
+            flexShrink: 0,
+            bgcolor: 'var(--joy-palette-background-body)',
+            borderRight: '1px solid',
+            borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+          }}
+        >
+          <Box sx={{ display: 'flex', gap: 1, py: '1.25rem', px: '0.75rem' }}>
+            <Box
+              component="img"
+              alt=""
+              src="https://res.cloudinary.com/practicaldev/image/fetch/s--XsZRGi5O--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/763/988af53b-5d7e-435a-98eb-dd4aff5299d2.png"
+              sx={{
+                borderRadius: '4px',
+                width: 32,
+                height: 32,
+                display: 'block',
+              }}
+            />
+            <div>
+              <Typography level="bodyHighlight" sx={{ fontWeight: 'bold' }}>
+                Strapi Website
+              </Typography>
+              <Typography level="smallText">Workplace</Typography>
+            </div>
+          </Box>
+          <Box
+            sx={{
+              borderBottom: '1px solid',
+              borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+            }}
+          />
+          <Box sx={{ flexGrow: 1, minHeight: 0 }}>
+            <List>
+              <ListItemButton startIcon={<Edit />}>Content</ListItemButton>
+              <li>
+                <Box component="ul" sx={{ p: 0 }}>
+                  <ListSubheader>plugins</ListSubheader>
+                  <ListItemButton startIcon={<ViewCompact />}>Builder</ListItemButton>
+                  <ListItemButton startIcon={<PermMedia />}>Builder</ListItemButton>
+                  <ListItemButton startIcon={<Info />}>Builder</ListItemButton>
+                </Box>
+              </li>
+              <li>
+                <Box component="ul" sx={{ p: 0 }}>
+                  <ListSubheader>general</ListSubheader>
+                  <ListItemButton startIcon={<Extension />}>Plugins</ListItemButton>
+                  <ListItemButton startIcon={<ShoppingCart />}>Marketplace</ListItemButton>
+                  <ListItemButton startIcon={<Settings />}>
+                    Settings <Badge sx={{ ml: 'auto' }}>2</Badge>
+                  </ListItemButton>
+                </Box>
+              </li>
+            </List>
+          </Box>
+          <Box
+            sx={{
+              borderBottom: '1px solid',
+              borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+            }}
+          />
+          <Box sx={{ display: 'flex', px: '1.5rem', py: '1.5rem', gap: 1, alignItems: 'center' }}>
+            <Box
+              sx={{
+                width: 26,
+                height: 26,
+                borderRadius: '26px',
+                bgcolor: 'var(--joy-palette-background-level2)',
+              }}
+            />
+            <Typography sx={{ color: 'var(--joy-palette-text-secondary)' }}>Kai Doe</Typography>
+            <Button square variant="outlined" color="neutral" size="sm" sx={{ ml: 'auto' }}>
+              <KeyboardArrowLeft />
+            </Button>
+          </Box>
+        </Box>
+        <Box sx={{ flexGrow: 1, minWidth: 0, px: '3.5rem', py: '2rem' }}>
+          <Box sx={{ pl: 4, mb: 5.5 }}>
+            <Typography level="h3" sx={{ fontWeight: 'bold', mb: 1.5 }}>
+              Welcome 👋
+            </Typography>
+            <Typography level="subtitle">
+              We hope you are making good progress on your project! Feel free to read the latest
+              news about Strapi. We are giving our best to improve the product based on your
+              feedback.
+            </Typography>
+            <Button
+              variant="text"
+              endIcon={<OpenInNew fontSize="sm" />}
+              size="sm"
+              sx={{ ml: -2, mt: 2 }}
+            >
+              SEE MORE ON THE BLOG
+            </Button>
+          </Box>
+          <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 352px', gap: 3 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 3,
+                  p: 3,
+                  alignItems: 'center',
+                  bgcolor: 'var(--joy-palette-background-body)',
+                  boxShadow: 'var(--joy-shadow-sm)',
+                  borderRadius: '8px',
+                }}
+              >
+                <Tile sx={{ p: 2 }}>
+                  <Tile variant="contained">
+                    <Info />
+                  </Tile>
+                </Tile>
+                <div>
+                  <Typography level="bodyHighlight" sx={{ fontSize: '1rem' }}>
+                    Read the documentation
+                  </Typography>
+                  <Typography level="subtitle">
+                    Discover the concepts, reference, guides and tutorials.
+                  </Typography>
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 3,
+                  p: 3,
+                  alignItems: 'center',
+                  bgcolor: 'var(--joy-palette-background-body)',
+                  boxShadow: 'var(--joy-shadow-sm)',
+                  borderRadius: '8px',
+                }}
+              >
+                <Tile sx={{ p: 2 }} color="warning">
+                  <Tile variant="contained" color="warning">
+                    <Code />
+                  </Tile>
+                </Tile>
+                <div>
+                  <Typography level="bodyHighlight" sx={{ fontSize: '1rem' }}>
+                    Code example
+                  </Typography>
+                  <Typography level="subtitle">
+                    Learn by testing real project developed by the community
+                  </Typography>
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 3,
+                  p: 3,
+                  alignItems: 'center',
+                  bgcolor: 'var(--joy-palette-background-body)',
+                  boxShadow: 'var(--joy-shadow-sm)',
+                  borderRadius: '8px',
+                }}
+              >
+                <Tile sx={{ p: 2 }} color="secondary">
+                  <Tile variant="contained" color="secondary">
+                    <PlayArrow />
+                  </Tile>
+                </Tile>
+                <div>
+                  <Typography level="bodyHighlight" sx={{ fontSize: '1rem' }}>
+                    Tutorial
+                  </Typography>
+                  <Typography level="subtitle">
+                    Discover the concepts, reference, guides and tutorials.
+                  </Typography>
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 3,
+                  p: 3,
+                  alignItems: 'center',
+                  bgcolor: 'var(--joy-palette-background-body)',
+                  boxShadow: 'var(--joy-shadow-sm)',
+                  borderRadius: '8px',
+                }}
+              >
+                <Tile sx={{ p: 2 }} color="alternate">
+                  <Tile variant="contained" color="alternate">
+                    <HistoryEdu />
+                  </Tile>
+                </Tile>
+                <div>
+                  <Typography level="bodyHighlight" sx={{ fontSize: '1rem' }}>
+                    Blog
+                  </Typography>
+                  <Typography level="subtitle">
+                    Discover the concepts, reference, guides and tutorials.
+                  </Typography>
+                </div>
+              </Box>
+            </Box>
+            <Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 1.5,
+                  p: 3,
+                  bgcolor: 'var(--joy-palette-background-body)',
+                  boxShadow: 'var(--joy-shadow-sm)',
+                  borderRadius: '8px',
+                }}
+              >
+                <Typography sx={{ fontWeight: 500 }}>Join the community</Typography>
+                <Typography level="subtitle">
+                  Discuss with team members, contributors and developers on different channels.
+                </Typography>
+                <Button
+                  variant="text"
+                  size="sm"
+                  endIcon={<ArrowForward fontSize="md" />}
+                  sx={{ alignSelf: 'flex-start' }}
+                >
+                  SEE OUR ROAD MAP
+                </Button>
+              </Box>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </CssVarsProvider>
