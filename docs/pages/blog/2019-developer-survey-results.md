@@ -7,10 +7,6 @@ card: false
 tags: ['Developer survey']
 ---
 
-# 2019 MUI Developer Survey results
-
-Olivier Tassinari, Matt Brookes. March 16, 2019.
-
 While we are currently working on the upcoming release of MUI v4, we need to prioritize our
 roadmap for the coming year. To refine our focus, we launched a developer survey last month,
 to which we received 734 contributions. Thank you for your participation!

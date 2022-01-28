@@ -128,7 +128,7 @@ const styles = (theme) => ({
 const AuthorsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(4),
   '& .author': {
     display: 'flex',
     alignItems: 'center',
@@ -210,7 +210,6 @@ function TopLayoutBlog(props) {
                   </div>
                 ))}
               </AuthorsContainer>
-              <Divider sx={{ marginBottom: (theme) => theme.spacing(6) }} />
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {

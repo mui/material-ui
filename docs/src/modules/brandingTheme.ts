@@ -292,7 +292,7 @@ export function getThemedComponents(theme: Theme) {
           },
           sizeSmall: {
             padding: theme.spacing(0.5, 0),
-            [theme.breakpoints.up('md')]: {
+            [theme.breakpoints.up('lg')]: {
               padding: theme.spacing(0.5, 1),
             },
           },

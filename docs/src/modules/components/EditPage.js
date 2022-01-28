@@ -31,7 +31,7 @@ export default function EditPage(props) {
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
       sx={{
-        ml: { md: -1, lg: 0 },
+        ml: { sm: -1, md: 0 },
         mb: 1.5,
         fontWeight: 500,
         fontSize: theme.typography.pxToRem(12.5),
