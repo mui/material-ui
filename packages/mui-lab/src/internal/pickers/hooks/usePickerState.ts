@@ -47,7 +47,7 @@ export function usePickerState<TInput, TDateValue>(
 
   React.useEffect(() => {
     if (!isOpen) {
-      setInitialDate(value);
+      setInitialDate(value as unknown as TDateValue);
     }
   }, [isOpen, value]);
 
