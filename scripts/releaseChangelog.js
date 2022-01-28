@@ -8,7 +8,7 @@ const exec = promisify(childProcess.exec);
 
 /**
  * @param {string} commitMessage
- * @returns {string} The tags in lower cases, ordered ascending and comma separated
+ * @returns {string} The tags in lowercases, ordered ascending and comma separated
  */
 function parseTags(commitMessage) {
   const tagMatch = commitMessage.match(/^(\[[\w-]+\])+/);
