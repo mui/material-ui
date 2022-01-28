@@ -1384,7 +1384,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +<Grid justifyContent="center">
   > ```
 
-- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options.
+- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/customization/theme-components/#overrides-based-on-props).
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1397,12 +1397,11 @@ As the core components use emotion as their style engine, the props used by emot
   >   -         marginTop: '20px',
   >   -       },
   >   -     },
-  >   +     variants: {
-  >   +       props: { alignItems: "flex-end" },
-  >   +       style: {
+  >   +     styleOverrides: ({ ownerState }) => ({
+  >   +       ...ownerState.alignItems === 'flex-end' && {
   >   +         marginTop: '20px',
   >   +       },
-  >   +     }],
+  >   +     }),
   >       },
   >     },
   >   });
@@ -2238,7 +2237,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<span style={visuallyHidden}>Create a user</span>
   ```
 
-- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example:
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/customization/theme-components/#overrides-based-on-props). For example:
 
   ```diff
   const theme = createTheme({
@@ -2249,12 +2248,11 @@ As the core components use emotion as their style engine, the props used by emot
   -         marginTop: '20px',
   -       },
   -     },
-  +     variants: [{
-  +       props: { color: 'secondary' },
-  +       style: {
+  +     styleOverrides: ({ ownerState }) => ({
+  +       ...ownerState.color === 'secondary' && {
   +         marginTop: '20px',
   +       },
-  +     }],
+  +     }),
       },
     },
   });
