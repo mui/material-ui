@@ -1,5 +1,5 @@
 {
-  "adblock": "If you don't mind-tech related ads (no tracking or remarketing), and want to keep us running, please whitelist MUI in your blocker.",
+  "adblock": "If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist MUI in your blocker.",
   "api-docs": {
     "componentName": "Component name",
     "cssComponent": "As a CSS utility, the {{name}} component also supports all <a href=\"/system/properties/\"><code>system</code></a> properties. You can use them as props directly on the component.",
