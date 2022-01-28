@@ -43,7 +43,7 @@ export function usePickerState<TInput, TDateValue>(
 
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
-  const [initialDate, setInitialDate] = React.useState(value);
+  const [initialDate, setInitialDate] = React.useState<TDateValue>(value as unknown as TDateValue);
 
   React.useEffect(() => {
     if (!isOpen) {
@@ -103,7 +103,7 @@ export function usePickerState<TInput, TDateValue>(
       onAccept: () => acceptDate(draftState.draft, true),
       onDismiss: () => setIsOpen(false),
       onCancel: () => {
-        acceptDate(initialDate as unknown as TDateValue, true);
+        acceptDate(initialDate, true);
       },
       onSetToday: () => {
         const now = utils.date() as TDateValue;
