@@ -121,15 +121,13 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       {...other}
     >
       {extraAvatars ? (
-        <AvatarGroupAvatar
-          ownerState={ownerState}
-          className={classes.avatar}
-          style={{
-            marginLeft,
-          }}
-          variant={variant}
-          {...componentsProps.additionalAvatar}
-        >
+         <AvatarGroupAvatar
+         ownerState={ownerState}
+         variant={variant}
+         {...componentsProps.additionalAvatar}
+         className={clsx(classes.avatar, componentsProps.additionalAvatar?.className)}
+         style={{ marginLeft, ...componentsProps.additionalAvatar?.style }}
+       >
           +{extraAvatars}
         </AvatarGroupAvatar>
       ) : null}
