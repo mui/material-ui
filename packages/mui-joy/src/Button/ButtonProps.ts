@@ -35,6 +35,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
+     * Element placed after the children.
+     */
+    endIcon?: React.ReactNode;
+    /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
      * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
@@ -53,9 +57,18 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', ButtonPropsSizeOverrides>;
     /**
+     * Element placed before the children.
+     */
+    startIcon?: React.ReactNode;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
+    /**
+     * If `true`, the component has min-width equal to var(--Button-minHeight).
+     * @default false
+     */
+    square?: boolean;
     /**
      * @default 0
      */

@@ -62,3 +62,20 @@ function CustomLink({
 <Button component={CustomLink} to="/" href="/" />;
 
 <Button sx={{ borderRadius: 0 }}>Button</Button>;
+
+function Icon() {
+  return null;
+}
+
+<Button square>
+  <Icon />
+</Button>;
+<Button variant="contained" square color="success" endIcon={<Icon />}>
+  <Icon />
+</Button>;
+<Button variant="contained" startIcon={<Icon />} size="sm">
+  Add to cart
+</Button>;
+<Button variant="outlined" endIcon={<Icon />} color="success">
+  Checkout
+</Button>;

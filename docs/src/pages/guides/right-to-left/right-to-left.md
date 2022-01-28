@@ -58,17 +58,19 @@ Having installed the plugin in your project, MUI components still require it to 
 
 #### 4.1 emotion
 
-If you use emotion as your style engine, you should create new cache instance that uses the `stylis-plugin-rtl` and provide that on the top of your application tree. The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
+If you use emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree.
+The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+import { prefixer } from 'stylis';
 
 // Create rtl cache
 const cacheRtl = createCache({
   key: 'muirtl',
-  stylisPlugins: [rtlPlugin],
+  stylisPlugins: [prefixer, rtlPlugin],
 });
 
 function RTL(props) {
