@@ -87,7 +87,8 @@ const styles = (theme) => ({
   back: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+    marginLeft: theme.spacing(-1),
   },
   container: {
     paddingTop: 60 + 20,

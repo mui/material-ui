@@ -266,7 +266,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danilo Leal',
     src: '/static/branding/about/danilo.png',
-    title: 'Design Lead',
+    title: 'Lead designer',
     location: 'São Paulo, Brazil',
     country: 'br',
     about: 'Music production and hiking!',
@@ -679,6 +679,7 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 Leave your feedback{' '}
               </Button>
@@ -734,6 +735,7 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui-org/material-ui"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 See the repository
               </Button>
@@ -760,6 +762,7 @@ function AboutContent() {
                 size="small"
                 href="https://opencollective.com/mui"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 See Open Collective{' '}
               </Button>
