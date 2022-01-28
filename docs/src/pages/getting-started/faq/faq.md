@@ -369,7 +369,7 @@ You could end up accidentally using two class name generators in a variety of sc
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
-### [v4] CSS works only on first load then is missing
+### [v4] CSS works only on first load and goes missing
 
 The CSS is only generated on the first load of the page.
 Then, the CSS is missing on the server for consecutive requests.
