@@ -311,7 +311,7 @@ describe('<MobileDatePicker />', () => {
     });
   });
 
-  it('should retain the values on clicking Cancel button', function verifyCancel() {
+  it('should retain the values on clicking Cancel button', () => {
     const onChangeCallback = spy();
 
     const initialDateValue = new Date('Jan 26, 2022');

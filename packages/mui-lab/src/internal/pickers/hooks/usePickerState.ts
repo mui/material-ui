@@ -43,13 +43,13 @@ export function usePickerState<TInput, TDateValue>(
 
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
-  const [initialDate, setInitialDate] = React.useState(props.value);
+  const [initialDate, setInitialDate] = React.useState(value);
 
   React.useEffect(() => {
     if (!isOpen) {
-      setInitialDate(props.value);
+      setInitialDate(value);
     }
-  }, [isOpen, props.value]);
+  }, [isOpen, value]);
 
   function initDraftableDate(date: TDateValue): Draftable<TDateValue> {
     return { committed: date, draft: date };

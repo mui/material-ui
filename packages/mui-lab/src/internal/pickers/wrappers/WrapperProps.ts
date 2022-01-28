@@ -10,7 +10,7 @@ export interface PrivateWrapperProps {
   onAccept: () => void;
   onClear: () => void;
   onDismiss: () => void;
-  onCancel: () => void; // will revert the picker date to initial value
+  onCancel: () => void; // reverts the picker date to initial value
   onSetToday: () => void;
   open: boolean;
 }
