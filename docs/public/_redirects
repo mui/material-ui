@@ -108,6 +108,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 
 # 2022
 /company/about/ /about/ 301
+/company/jobs/ /careers/ 301
 
 ## Localization
 /fr/* /:splat 301
