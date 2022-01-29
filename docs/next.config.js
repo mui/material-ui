@@ -185,9 +185,6 @@ module.exports = {
         if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
           return;
         }
-        if (page.pathname === '/blog') {
-          return;
-        }
         if (!page.children) {
           // map api-docs to api
           // i: /api-docs/* > /api/* (old structure)
