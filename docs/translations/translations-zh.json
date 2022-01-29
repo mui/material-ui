@@ -1,5 +1,5 @@
 {
-  "adblock": "如果您不介意与技术相关的广告，并且支持开源代码，请在你的 ad blocker 中将 MUI 设置为白名单。",
+  "adblock": "If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist MUI in your blocker.",
   "api-docs": {
     "componentName": "组件名称",
     "cssComponent": "作为一个 CSS 实用工具， {{name}} 组件也支持所有 <a href=\"/system/properties/\"><code>系统</code></a> 属性。 您可以将它们作为props在组件上直接使用。",
