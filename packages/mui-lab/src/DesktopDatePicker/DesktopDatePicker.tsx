@@ -54,19 +54,22 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
     ToolbarComponent = DatePickerToolbar,
     TransitionComponent,
     value,
+    clearText,
+    clearable,
     ...other
   } = props;
   const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
     <DesktopWrapper
-      {...other}
       {...wrapperProps}
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
       PopperProps={PopperProps}
       PaperProps={PaperProps}
       TransitionComponent={TransitionComponent}
+      clearText={clearText}
+      clearable={clearable}
     >
       <Picker
         {...pickerProps}
