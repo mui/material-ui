@@ -185,7 +185,7 @@ module.exports = {
         if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
           return;
         }
-        if (!FEATURE_TOGGLE.enable_blog_index && page.pathname === '/blog') {
+        if (page.pathname === '/blog') {
           return;
         }
         if (!page.children) {

@@ -34,7 +34,7 @@ const ROUTES = {
   communityHelp: FEATURE_TOGGLE.enable_redirects
     ? '/material/getting-started/support/#community-help-free'
     : '/getting-started/support/#community-help-free',
-  blog: FEATURE_TOGGLE.enable_blog_index ? '/blog/' : 'https://medium.com/material-ui',
+  blog: '/blog/',
   showcase: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/showcase/'
     : '/discover-more/showcase',
