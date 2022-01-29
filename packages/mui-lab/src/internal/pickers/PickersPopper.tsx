@@ -63,7 +63,7 @@ const PickersPopperPaper = styled(Paper)<{
   }),
 }));
 
-const PickersPopperAction = styled(DialogActions, { skipSx: true })<{
+const PickersPopperAction = styled(DialogActions)<{
   ownerState: PickerPopperProps;
 }>(({ ownerState }) => ({
   ...(ownerState.clearable
