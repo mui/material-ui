@@ -42,8 +42,8 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: ButtonProps }>({
   display: 'inherit',
-  marginLeft: 'calc(var(--Button-gutter) / -2)',
-  marginRight: 'min(var(--Button-gutter) / 2, 0.5rem)', // limit upper bound to 0.5rem
+  marginLeft: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
+  marginRight: 'var(--Button-gap)',
 });
 
 const ButtonEndIcon = styled('span', {
@@ -52,8 +52,8 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: ButtonProps }>({
   display: 'inherit',
-  marginLeft: 'min(var(--Button-gutter) / 2, 0.5rem)', // limit upper bound to 0.5rem
-  marginRight: 'calc(var(--Button-gutter) / -2)',
+  marginLeft: 'var(--Button-gap)',
+  marginRight: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
 });
 
 const ButtonRoot = styled('button', {
@@ -65,6 +65,8 @@ const ButtonRoot = styled('button', {
     {
       '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
       '--Button-gutter': '1.5rem', // gutter is the padding-x
+      '--Button-gap': 'min(var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content (limit upper bound to 0.5rem)
+      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
       ...(ownerState.size === 'sm' && {
         '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
