@@ -23,6 +23,7 @@ const InputInput = styled('input')(({ theme, ownerState }) => [
     borderRadius: theme.vars.radius.xs,
     padding: '0 1rem',
     flex: 1,
+    outline: 'none',
     ...(ownerState.startAdornment && {
       paddingLeft: 'var(--Input-minHeight)', // equal to input's height
     }),

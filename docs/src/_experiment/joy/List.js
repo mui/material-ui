@@ -18,7 +18,7 @@ export const ListSubheader = styled('div')(({ theme }) => ({
   color: theme.vars.palette.text.secondary,
 }));
 
-const ListItemButtonRoot = styled('button')(({ theme }) => [
+const ListItemButtonRoot = styled('button')(({ theme, ownerState }) => [
   {
     display: 'flex',
     alignItems: 'center',
@@ -29,12 +29,14 @@ const ListItemButtonRoot = styled('button')(({ theme }) => [
     borderRadius: '4px',
     ...theme.typography.body,
     color: theme.vars.palette.text.secondary,
-    '&:focus': theme.focus.default,
-    '& + &': {
+    '&:focus-visible': theme.focus.default,
+    '& + button': {
       marginTop: '0.5rem',
     },
   },
-  theme.variants.textHover.neutral,
+  !ownerState.variant && theme.variants.textHover.neutral,
+  ownerState.variant && theme.variants[ownerState.variant][ownerState.color],
+  ownerState.variant && theme.variants[`${ownerState.variant}Hover`][ownerState.color],
 ]);
 
 const ListItemIcon = styled('div')(({ theme }) => ({
@@ -46,9 +48,16 @@ const ListItemIcon = styled('div')(({ theme }) => ({
   },
 }));
 
-export const ListItemButton = ({ children, startIcon, ...props }) => {
+export const ListItemButton = ({
+  children,
+  startIcon,
+  variant = '',
+  color = 'neutral',
+  ...props
+}) => {
+  const ownerState = { ...props, variant, color, startIcon };
   return (
-    <ListItemButtonRoot {...props}>
+    <ListItemButtonRoot ownerState={ownerState} {...props}>
       {startIcon && <ListItemIcon>{startIcon}</ListItemIcon>}
       {children}
     </ListItemButtonRoot>
