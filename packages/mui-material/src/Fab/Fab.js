@@ -12,14 +12,7 @@ const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      variant,
-      `size${capitalize(size)}`,
-      color === 'inherit' && 'colorInherit',
-      color === 'primary' && 'primary',
-      color === 'secondary' && 'secondary',
-    ],
+    root: ['root', variant, `size${capitalize(size)}`, color],
   };
 
   return composeClasses(slots, getFabUtilityClass, classes);
@@ -36,8 +29,8 @@ const FabRoot = styled(ButtonBase, {
       styles[ownerState.variant],
       styles[`size${capitalize(ownerState.size)}`],
       ownerState.color === 'inherit' && styles.colorInherit,
-      ownerState.color === 'primary' && styles.primary,
-      ownerState.color === 'secondary' && styles.secondary,
+      styles[capitalize(ownerState.size)],
+      styles[ownerState.color],
     ];
   },
 })(
@@ -111,28 +104,19 @@ const FabRoot = styled(ButtonBase, {
     }),
   }),
   ({ theme, ownerState }) => ({
-    ...(ownerState.color === 'primary' && {
-      color: theme.palette.primary.contrastText,
-      backgroundColor: theme.palette.primary.main,
-      '&:hover': {
-        backgroundColor: theme.palette.primary.dark,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.palette.primary.main,
+    ...(ownerState.color !== 'inherit' &&
+      ownerState.color !== 'default' &&
+      theme.palette[ownerState.color] != null && {
+        color: theme.palette[ownerState.color].contrastText,
+        backgroundColor: theme.palette[ownerState.color].main,
+        '&:hover': {
+          backgroundColor: theme.palette[ownerState.color].dark,
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: theme.palette[ownerState.color].main,
+          },
         },
-      },
-    }),
-    ...(ownerState.color === 'secondary' && {
-      color: theme.palette.secondary.contrastText,
-      backgroundColor: theme.palette.secondary.main,
-      '&:hover': {
-        backgroundColor: theme.palette.secondary.dark,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.palette.secondary.main,
-        },
-      },
-    }),
+      }),
   }),
 );
 
