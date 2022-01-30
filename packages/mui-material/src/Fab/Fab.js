@@ -184,9 +184,15 @@ Fab.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
-    PropTypes.string,
+  color: PropTypes.oneOf([
+    'default',
+    'error',
+    'info',
+    'inherit',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
   ]),
   /**
    * The component used for the root node.
