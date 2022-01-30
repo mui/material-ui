@@ -7,7 +7,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 
 # Navegação estrutural
 
-<p class="description">Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".</p>
+<p class="description">O Breadcrumbs consiste em uma lista de links que ajuda o usuário a visualizar a localização da página dentro da hierarqui estrutural de um website, e permite a navegação até qualquer um de seus "ancestrais".</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
