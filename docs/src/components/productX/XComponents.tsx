@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { flexbox, shouldForwardProp } from '@mui/system';
+import { shouldForwardProp } from '@mui/system';
 import { ThemeProvider, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
