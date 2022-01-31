@@ -165,13 +165,9 @@ const StyledSlider = styled(Slider, {
 
 {{"demo": "pages/customization/how-to-customize/DynamicCSSVariables.js"}}
 
-### Aninhamento de tema
-
-{{"demo": "pages/customization/how-to-customize/DynamicThemeNesting.js"}}
-
 ## 4. Variação do tema global
 
-A fim de promover a consistência entre os componentes e gerenciar a aparência da interface do usuário como um todo, o Material-UI fornece um mecanismo para aplicar mudanças globais.
+In order to promote consistency between components, and manage the user interface appearance as a whole, MUI provides a mechanism to apply global changes.
 
 Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
 
@@ -213,7 +209,3 @@ If you are already using the [CssBaseline](/components/css-baseline/) component 
    )
  }
 ```
-
-## 6. Custom class name
-
-Check out [ClassName Generator](/guides/classname-generator/) section for more details.
