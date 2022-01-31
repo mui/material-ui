@@ -12,7 +12,12 @@ const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
 
   const slots = {
-    root: ['root', variant, `size${capitalize(size)}`, color],
+    root: [
+      'root',
+      variant,
+      `size${capitalize(size)}`,
+      color === 'inherit' ? 'colorInherit' : color,
+    ],
   };
 
   return composeClasses(slots, getFabUtilityClass, classes);
