@@ -19,29 +19,13 @@ Existem muitas maneiras de apoiar o Material-UI:
   - [Improve our documentation](https://github.com/mui-org/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/mui)**. Se você usa Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um Patrocinador, ou em um projeto freelancer ou hobby e gostaria de se tornar um Apoiador, você pode se tornar através do OpenCollective. Todos os fundos doados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
 
-## Por que meus componentes não estão renderizando corretamente em compilações de produção?
+## Why do the fixed positioned elements move when a modal is opened?
 
-O motivo número #1 pelo qual isto provavelmente acontecerá é devido a conflitos de nome de classe quando seu código estiver em um pacote de produção. Para que o Material-UI funcione, os valores do `className` de todos os componentes de uma página, devem ser gerados por uma única instância do [gerador de nome de classes](/styles/advanced/#class-names).
+Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell MUI to handle those elements.
 
-Para corrigir este problema, todos os componentes da página precisam ser inicializados, de modo que haja somente **um gerador de nome de classe** entre eles.
+## How can I disable the ripple effect globally?
 
-Você pode acabar usando acidentalmente dois geradores de nome de classe em vários cenários:
-
-- Você acidentalmente **empacota** duas versões do Material-UI. Você pode ter nesse caso, uma dependência que não esta configurando corretamente o Material-UI.
-- Você esta usando `StylesProvider` para um **subconjunto** da sua árvore de componentes React.
-- Você está usando um empacotador (bundler) e está dividindo o código de uma maneira que faz com que várias instâncias do gerador de nome de classe sejam criadas.
-
-> Se você estiver usando webpack com [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), tente configurar o [`runtimeChunk` disponível em `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
-
-No geral, é simples livrar-se desse problema encapsulando cada aplicação Material-UI com componentes [`StylesProvider`](/styles/api/#stylesprovider), no topo de suas árvores de componentes** e usando um único gerador de nome de classe compartilhado entre eles**.
-
-## Por que os elementos posicionados como fixos se movem quando um modal é aberto?
-
-A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação com o segundo plano, pois o modal deve ser o único conteúdo interativo. No entanto, removendo a barra de rolagem pode fazer com que seus **elementos fixos posicionados** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed` para informar ao Material-UI para manipular esses elementos.
-
-## Como posso desativar o efeito cascata globalmente?
-
-O efeito cascata é exclusivamente proveniente do componente `BaseButton`. Você pode desativar o efeito cascata globalmente aplicando as seguintes configurações no seu tema:
+The ripple effect is exclusively coming from the `BaseButton` component. You can disable the ripple effect globally by providing the following in your theme:
 
 ```js
 import { createTheme } from '@material-ui/core';
@@ -58,9 +42,9 @@ const theme = createTheme({
 });
 ```
 
-## Como posso desativar as transições globalmente?
+## How can I disable transitions globally?
 
-Material-UI usa o mesmo auxiliar de tema para criar todas as transições. Portanto, você pode desativar todas as transições substituindo o auxiliar no seu tema:
+MUI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
 import { createTheme } from '@material-ui/core';
@@ -73,9 +57,9 @@ const theme = createTheme({
 });
 ```
 
-Pode ser útil desabilitar transições durante testes visuais ou para melhorar o desempenho em dispositivos de baixo custo.
+It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-Você pode ir além, desabilitando todas as transições e efeitos de animações:
+You can go one step further by disabling all transitions and animations effects:
 
 ```js
 import { createTheme } from '@material-ui/core';
@@ -95,7 +79,7 @@ const theme = createTheme({
 });
 ```
 
-Observe que o uso de `CssBaseline` é necessário para que a abordagem acima funcione. Se você optar por não usá-lo, você ainda pode desabilitar transições e animações incluindo estas regras CSS:
+Notice that the usage of `CssBaseline` is required for the above approach to work. If you choose not to use it, you can still disable transitions and animations by including these CSS rules:
 
 ```css
 *, *::before, *::after {
@@ -104,28 +88,28 @@ Observe que o uso de `CssBaseline` é necessário para que a abordagem acima fun
 }
 ```
 
-## Preciso usar o JSS para estilizar minha aplicação?
+## Do I have to use emotion to style my app?
 
-Não, não é obrigatório. Mas essa dependência vem embutida, portanto, não sobrecarrega o tamanho do pacote.
+No, it's not required. But if you are using the default styled engine (`@mui/styled-engine`) the emotion dependency comes built in, so carries no additional bundle size overhead.
 
-No entanto, talvez você esteja adicionando os componentes Material-UI para uma aplicação que já usa outra solução de estilos, ou, já esta familiarizado com uma API diferente e não quer aprender uma nova? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
+Perhaps, however, you're adding some MUI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the [Style Library Interoperability](/guides/interoperability/) section, where we show how simple it is to restyle MUI components with alternative style libraries.
 
 ## When should I use inline-style vs. CSS?
 
-Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâmicas. A alternativa de uso com CSS oferece mais vantagens, em:
+As a rule of thumb, only use inline-styles for dynamic style properties. The CSS alternative provides more advantages, such as:
 
-- prefixação automática
-- melhor depuração
-- consultas de mídia
+- auto-prefixing
+- better debugging
+- media queries
 - keyframes
 
-## Como usar react-router?
+## How do I use react-router?
 
-Detalhamos a [integração com bibliotecas de roteamento de terceiros](/guides/routing/) como react-router, Gatsby ou Next.js em nosso guia.
+We detail the [integration with third-party routing libraries](/guides/routing/) like react-router, Gatsby or Next.js in our guide.
 
-## Como posso acessar o elemento DOM?
+## How can I access the DOM element?
 
-Todos os componentes do Material-UI que devem renderizar algo no DOM possuem referência para o componente DOM subjacente. Isso significa que você pode obter elementos DOM lendo o ref anexado aos componentes do Material-UI:
+All MUI components that should render something in the DOM forward their ref to the underlying DOM component. This means that you can get DOM elements by reading the ref attached to MUI components:
 
 ```jsx
 // uma função setter ref
@@ -136,37 +120,37 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-Se você não tem certeza se o componente do Material-UI em questão encaminha seu ref, você pode verificar a documentação da API em "Props" por exemplo, a API [Button API](/api/button/#props)
+If you're not sure if the MUI component in question forwards its ref you can check the API documentation under "Props" e.g. the [Button API](/api/button/#props) includes
 
-> O ref é encaminhado para o elemento raiz.
+> The ref is forwarded to the root element.
 
-indicando que você pode acessar o elemento DOM como uma referência.
+indicating that you can access the DOM element with a ref.
 
-## Eu tenho várias instâncias de estilos na página
+## I have several instances of styles on the page
 
-Se você está vendo uma mensagem de aviso no console como a abaixo, você provavelmente tem várias instâncias de `@material-ui/styles` inicializadas na página.
+If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. Isso pode causar problemas de propagação de temas, nomes de classes quebrados, problemas de especificidade e tornar sua aplicação maior sem um bom motivo.
+> It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
 
 ### Possíveis razões
 
-Existem várias razões comuns para isso acontecer:
+There are several common reasons for this to happen:
 
-- Você tem outra biblioteca `@material-ui/styles` em algum lugar das suas dependências.
-- Você tem uma estrutura "monorepo" para seu projeto (por exemplo, lerna, yarn workspaces) e o módulo `@material-ui/styles` é uma dependência em mais de um pacote (este é mais ou menos o mesmo que o anterior).
-- Você tem várias aplicações que estão usando `@material-ui/styles` executando na mesma página (por exemplo, vários pontos de entrada no webpack são carregados na mesma página).
+- You have another `@mui/styles` library somewhere in your dependencies.
+- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@mui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
+- You have several applications that are using `@mui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
 
 ### Módulo duplicado em node_modules
 
-Se você acha que o problema pode estar na duplicação do módulo @material-ui/styles em algum lugar de suas dependências, há várias maneiras de verificar isto. Você pode usar os comandos `npm ls @material-ui/styles`, `yarn list @material-ui/styles` ou `find -L ./node_modules | grep /@material-ui/styles/package.json` na pasta da sua aplicação.
+If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this. You can use `npm ls @mui/styles`, `yarn list @mui/styles` or `find -L ./node_modules | grep /@mui/styles/package.json` commands in your application folder.
 
-Se nenhum desses comandos identificou a duplicação, tente analisar seu pacote para encontrar instâncias duplicadas do @material-ui/styles. Você pode somente checar em fontes do seu pacote, ou usar uma ferramenta como [source-map-explorer](https://github.com/danvk/source-map-explorer) ou [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @mui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
-Se você identificou que a duplicação é o problema que você esta enfrentando, há várias coisas que você pode tentar para resolvê-lo:
+If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
 
-Se você está usando npm você pode tentar executar `npm dedupe`. Este comando pesquisa as dependências locais e tenta simplificar a estrutura movendo dependências comuns mais acima na árvore.
+If you are using npm you can try running `npm dedupe`. This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
 
-Se você estiver usando o webpack, você pode mudar a maneira como ele irá resolver ([resolve](https://webpack.js.org/configuration/resolve/#resolve-modules)) o módulo @material-ui/styles. Você pode sobrescrever a ordem padrão na qual o webpack irá procurar por suas dependências e tornar a pasta node_modules da sua aplicação, com maior prioridade do que a ordem de resolução de módulos padrão:
+If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
   resolve: {
@@ -178,15 +162,15 @@ Se você estiver usando o webpack, você pode mudar a maneira como ele irá reso
 
 ### Uso com Lerna
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Tente executar a opção de auto inicialização com o parâmetro --hoist.
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-Alternativamente, você pode remover a referência do @material-ui/styles do seu arquivo package.json e subir (hoist) ela manualmente para o arquivo package.json da pasta raiz do Lerna.
+Alternatively, you can remove @mui/styles from your package.json file and hoist it manually to your top-level package.json file.
 
-Exemplo de um arquivo package.json em uma pasta raiz do Lerna
+Example of a package.json file in a Lerna root folder
 
 ```json
 {
@@ -208,7 +192,7 @@ Exemplo de um arquivo package.json em uma pasta raiz do Lerna
 
 ### Executando múltiplas aplicações em uma única página
 
-Se você tiver várias aplicações em execução em uma página, considere o uso de um único módulo @material-ui/styles para todas elas. Se você esta usando webpack, você pode usar [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) para criar de forma explícita um [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), que conterá o módulo @material-ui/styles:
+If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @mui/styles module:
 
 ```diff
   module.exports = {
@@ -226,52 +210,161 @@ Se você tiver várias aplicações em execução em uma página, considere o us
   }
 ```
 
-## Minha aplicação não é renderizada corretamente no servidor
+## My App doesn't render correctly on the server
 
-Se isso não funcionar, em 99% dos casos é um problema de configuração. Uma propriedade ausente, uma ordem de chamada errada ou um componente ausente – a renderização do lado do servidor é rigorosa sobre configuração, e a melhor maneira de descobrir o que há de errado é comparar seu projeto com uma configuração já em funcionamento.
+If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration.
 
-A melhor maneira de descobrir o que há de errado é comparar seu projeto com uma **configuração já em funcionamento**. Confira as [implementações de referência](/guides/server-rendering/#reference-implementations), pouco a pouco.
+The best way to find out what's wrong is to compare your project to an **already working setup**. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
-### O CSS funciona apenas no primeiro carregamento, em seguida, para de funcionar
+## Why are the colors I am seeing different from what I see here?
 
-O CSS é gerado apenas no primeiro carregamento da página. Em seguida, o CSS não retorna do servidor para solicitações consecutivas.
+The documentation site is using a custom theme. Hence, the color palette is different from the default theme that MUI ships. Please refer to [this page](/customization/theming/) to learn about theme customization.
+
+## Why does component X require a DOM node in a prop instead of a ref object?
+
+Components like the [Portal](/api/portal/#props) or [Popper](/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
+
+```jsx
+function App() {
+  const container = React.useRef(null);
+
+  return (
+    <div className="App">
+      <Portal container={container}>
+        <span>portaled children</span>
+      </Portal>
+      <div ref={container} />
+    </div>
+  );
+}
+```
+
+where `Portal` would only mount the children into the container when `container.current` is available. Here is a naive implementation of Portal:
+
+```jsx
+function Portal({ children, container }) {
+  const [node, setNode] = React.useState(null);
+
+  React.useEffect(() => {
+    setNode(container.current);
+  }, [container]);
+
+  if (node === null) {
+    return null;
+  }
+  return ReactDOM.createPortal(children, node);
+}
+```
+
+With this simple heuristic `Portal` might re-render after it mounts because refs are up-to-date before any effects run. However, just because a ref is up-to-date doesn't mean it points to a defined instance. If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. The above implementation could also not account for a change in the DOM node.
+
+This is why we require a prop with the actual DOM node so that React can take care of determining when the `Portal` should re-render:
+
+```jsx
+function App() {
+  const [container, setContainer] = React.useState(null);
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
+
+  return (
+    <div className="App">
+      <Portal container={container}>
+        <span>Portaled</span>
+      </Portal>
+      <div ref={handleRef} />
+    </div>
+  );
+}
+```
+
+## What's the clsx dependency for?
+
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
+
+Instead of writing:
+
+```jsx
+// let disabled = false, selected = true;
+
+return (
+  <div
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${
+      selected ? 'Mui-selected' : ''
+    }`}
+  />
+);
+```
+
+you can do:
+
+```jsx
+import clsx from 'clsx';
+
+return (
+  <div
+    className={clsx('MuiButton-root', {
+      'Mui-disabled': disabled,
+      'Mui-selected': selected,
+    })}
+  />
+);
+```
+
+## I cannot use components as selectors in the styled() utility. What should I do?
+
+If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.
+
+## [v4] Why aren't my components rendering correctly in production builds?
+
+The #1 reason this happens is likely due to class name conflicts once your code is in a production bundle. For MUI to work, the `className` values of all components on a page must be generated by a single instance of the [class name generator](/styles/advanced/#class-names).
+
+To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
+
+You could end up accidentally using two class name generators in a variety of scenarios:
+
+- You accidentally **bundle** two versions of MUI. You might have a dependency not correctly setting MUI as a peer dependency.
+- You are using `StylesProvider` for a **subset** of your React tree.
+- You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
+
+> If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+
+Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
+
+### [v4] CSS works only on first load and goes missing
+
+The CSS is only generated on the first load of the page. Then, the CSS is missing on the server for consecutive requests.
 
 #### Ação a tomar
 
-A solução de estilo depende de um cache, o *sheets manager*, para injetar apenas o CSS uma vez por tipo de componente (se você usar dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição**.
+The styling solution relies on a cache, the _sheets manager_, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
 
-exemplo de correção:
+Example of fix:
 
 ```diff
--// Crie uma instância de sheets.
+-// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
-
-+ // Crie uma instância de sheets.
++ // Create a sheets instance.
 + const sheets = new ServerStyleSheets();
 
   //…
 
-  // Renderize o componente para uma string.
-
-  + const sheets = new ServerStyleSheets();
-
-  //…
-
-  // Renderize o componente para uma string.
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
 ```
 
-### React incompatibilidade de nome de classes na hidratação (React Hydrate)
+### [v4] React class name hydration mismatch
 
 > Warning: Prop className did not match.
 
-Há uma incompatibilidade de nome de classe entre o cliente e o servidor. Pode funcionar para a primeira requisição. Outro sintoma é que o estilo muda entre o carregamento inicial da página e o download dos scripts do cliente.
+There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
 #### Ação a tomar
 
-O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). Este gerador precisa se comportar de forma idêntica no servidor e no cliente. For instance:
+The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
 
 - Você precisa fornecer um novo gerador de nome de classe para cada requisição. Mas você não deve compartilhar um `createGenerateClassName()` entre diferentes requisições:
 
@@ -305,103 +398,3 @@ function handleRender(req, res) {
   ```
 
 - Você precisa ter certeza de que o servidor e o cliente compartilhem o mesmo valor de `process.env.NODE_ENV`.
-
-## Por que as cores que estou vendo são diferentes das que vejo aqui?
-
-O site de documentação está usando um tema customizado. Assim, a paleta de cores é diferente do tema padrão que é fornecido pelo Material-UI. Por favor, consulte [esta página](/customization/theming/) para aprender sobre customização de temas.
-
-## Por que o componente X requer um nó DOM em uma propriedade em vez de um objeto ref?
-
-Componentes como [Portal](/api/portal/#props) ou [Popper](/api/popper/#props) requerem um nó DOM na propriedade `container` ou `anchorEl` respectivamente. Parece conveniente simplesmente passar um objeto ref nessas propriedades e deixar o Material-UI acessar o valor atual. Isso funciona em um cenário simples:
-
-```jsx
-function App() {
-  const container = React.useRef(null);
-
-  return (
-    <div className="App">
-      <Portal container={container}>
-        <span>Componente filho portado</span>
-      </Portal>
-      <div ref={container} />
-    </div>
-  );
-}
-```
-
-onde `Portal` só montaria os filhos no container quando `container.current` estiver disponível. Aqui está uma implementação simplória do Portal:
-
-```jsx
-function Portal({ children, container }) {
-  const [node, setNode] = React.useState(null);
-
-  React.useEffect(() => {
-    setNode(container.current);
-  }, [container]);
-
-  if (node === null) {
-    return null;
-  }
-  return ReactDOM.createPortal(children, node);
-}
-```
-
-Com esta simples heurística `Portal` pode renderizar novamente depois de montado porque os refs estão atualizados antes de qualquer efeito ser executado. No entanto, só porque um ref está atualizado não significa que ele aponta para uma instância definida. Se o ref estiver anexado a um componente de encaminhamento de ref não estará claro quando o nó DOM estará disponível. No exemplo acima, o `Portal` executaria o efeito uma vez, mas pode não renderizar novamente porque `ref.current` ainda é `null`. Isso é especialmente aparente para componentes React.lazy em Suspense. A implementação acima também não poderia explicar uma alteração no nó DOM.
-
-É por isso que precisamos de uma propriedade com o nó DOM real para que o React possa tomar cuidado ao determinar quando o `Portal` deve renderizar novamente:
-
-```jsx
-function App() {
-  const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(
-    (instance) => setContainer(instance),
-    [setContainer],
-  );
-
-  return (
-    <div className="App">
-      <Portal container={container}>
-        <span>Portaled</span>
-      </Portal>
-      <div ref={handleRef} />
-    </div>
-  );
-}
-```
-
-## Para que serve a dependência do clsx?
-
-[clsx](https://github.com/lukeed/clsx) é um pequeno utilitário para construir sequências de strings de `className` condicionalmente, sendo um objeto onde as chaves são as strings de classe e valores sendo booleanos.
-
-Em vez de escrever:
-
-```jsx
-// let disabled = false, selected = true;
-
-return (
-  <div
-    className={`MuiButton-root ${disabled ? // let disabled = false, selected = true;
-
-return (
-  <div
-    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ?
-```
-
-você pode fazer:
-
-```jsx
-import clsx from 'clsx';
-
-return (
-  <div
-    className={clsx('MuiButton-root', {
-      'Mui-disabled': disabled,
-      'Mui-selected': selected,
-    })}
-  />
-);
-```
-
-## I cannot use components as selectors in the styled() utility. What should I do?
-
-If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.
