@@ -269,7 +269,7 @@ const teamMembers: Array<Profile> = [
     title: 'Lead designer',
     location: 'São Paulo, Brazil',
     country: 'br',
-    about: 'Music production and hiking!',
+    about: 'Music production, hiking and traveling!',
     github: 'danilo-leal',
     twitter: 'danilobleal',
   },
@@ -332,10 +332,10 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jose.png',
     name: 'José Freitas',
-    title: 'Advanced components team',
+    title: 'MUI X PM',
     location: 'Augsburg, Germany',
-    country: 'br',
-    about: 'Art, fiction',
+    country: 'de',
+    about: 'Art, fiction and bar philosophy',
     twitter: 'zehdefreitas',
     github: 'joserodolfofreitas',
   },
@@ -578,6 +578,7 @@ function AboutContent() {
               endIcon={<KeyboardArrowRightRounded fontSize="small" />}
               variant="contained"
               size="large"
+              sx={{ width: { xs: '100%', sm: 'auto' } }}
             >
               See open roles
             </Button>
