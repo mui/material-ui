@@ -40,8 +40,9 @@ const ColorSchemePicker = () => {
   );
 };
 
-const Input = styled('input')(({ theme }) => ({
-  maxWidth: 64,
+const Input = styled('input')<{ ownerState: any }>(({ theme, ownerState }) => ({
+  boxSizing: 'border-box',
+  maxWidth: 80,
   padding: '0.25rem 0.5rem',
   border: 'none',
   borderRadius: '4px',
@@ -51,7 +52,9 @@ const Input = styled('input')(({ theme }) => ({
   cursor: 'pointer',
   '&:focus-visible': theme.focus.default,
   flexGrow: 1,
-  paddingRight: '1.5rem',
+  ...(ownerState.unit && {
+    paddingRight: '1.5rem',
+  }),
 }));
 
 const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
@@ -67,13 +70,15 @@ const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
         {label}
       </Typography>
       <Box sx={{ position: 'relative' }}>
-        <Input id={id} {...props} />
-        <Typography
-          level="body3"
-          sx={{ position: 'absolute', right: '6px', top: '4px', pointerEvents: 'none' }}
-        >
-          {unit}
-        </Typography>
+        <Input id={id} ownerState={{ unit, ...props }} {...props} />
+        {unit && (
+          <Typography
+            level="body3"
+            sx={{ position: 'absolute', right: '6px', top: '4px', pointerEvents: 'none' }}
+          >
+            {unit}
+          </Typography>
+        )}
       </Box>
     </Box>
   );
@@ -96,6 +101,8 @@ const components = [
     cssVars: [
       { id: '--Button-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
+      { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
+      { id: '--Button-gap', type: 'number', unit: 'px' },
     ],
   },
   {
@@ -242,9 +249,12 @@ export default function JoyComponents() {
                 key={cssVar.id}
                 type="number"
                 label={cssVar.id}
-                placeholder={cssVar.defaultValue}
                 unit={cssVar.unit}
-                value={componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') || ''}
+                value={
+                  componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
+                  cssVar.defaultValue ||
+                  ''
+                }
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   const value = event.target.value;
                   setComponentVars((latest) => {
@@ -252,7 +262,7 @@ export default function JoyComponents() {
                     if (!value) {
                       delete vars[cssVar.id];
                     } else {
-                      vars[cssVar.id] = `${value}${cssVar.unit}`;
+                      vars[cssVar.id] = cssVar.unit ? `${value}${cssVar.unit}` : value;
                     }
                     return {
                       ...latest,
