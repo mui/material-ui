@@ -67,10 +67,15 @@ function Icon() {
   return null;
 }
 
-<Button square>
+<Button sx={{ width: 'var(--Button-minHeight)' }}>
   <Icon />
 </Button>;
-<Button variant="contained" square color="success" endIcon={<Icon />}>
+<Button
+  variant="contained"
+  color="success"
+  endIcon={<Icon />}
+  sx={{ width: 'var(--Button-minHeight)' }}
+>
   <Icon />
 </Button>;
 <Button variant="contained" startIcon={<Icon />} size="sm">
