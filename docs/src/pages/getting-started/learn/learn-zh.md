@@ -18,6 +18,8 @@ Developers come to MUI from different backgrounds and with different learning st
 
 ## 推荐资源
 
+> ⚠️ Note that the resources linked below are using MUI v4, which is not the latest major version. As v5 has been released recently, it will take some time till new contents are created. If you have created any learning material for v5, let us know and we can link them here.
+
 When first learning MUI, you might find third-party blog posts, books and video courses more helpful than the official documentation. 以下是一些推荐资源，其中一些是免费的。
 
 ### 免费的资源
