@@ -160,30 +160,7 @@ theme = createTheme(theme, {
 });
 ```
 
-Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
-
-```js
-import { createTheme } from '@mui/material/styles';
-
-let theme = createTheme({
-  shape: {
-    borderRadius: 4,
-  },
-});
-
-theme = createTheme(theme, {
-  components: {
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          // apply theme's border-radius instead of component's default
-          borderRadius: theme.shape.borderRadius,
-        },
-      },
-    },
-  },
-});
-```
+Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
 ### `responsiveFontSizes(theme, options) => theme`
 

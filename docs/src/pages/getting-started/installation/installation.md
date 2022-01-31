@@ -20,7 +20,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
-Or if you want to use `styled-components` as a styling engine:
+MUI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
 
 ```sh
 // with npm

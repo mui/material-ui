@@ -20,9 +20,7 @@ export type PickersMonthClassKey = keyof typeof classes;
 
 const PickersMonthRoot = styled<
   OverridableComponent<TypographyTypeMap<{ component?: React.ElementType; disabled?: boolean }>>
->(Typography, {
-  skipSx: true,
-})(({ theme }) => ({
+>(Typography)(({ theme }) => ({
   flex: '1 0 33.33%',
   display: 'flex',
   alignItems: 'center',

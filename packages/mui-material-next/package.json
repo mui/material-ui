@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.19",
+  "version": "6.0.0-alpha.20",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design components built using @mui/base.",
@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.7",
-    "@mui/base": "5.0.0-alpha.65",
+    "@mui/base": "5.0.0-alpha.66",
     "@mui/system": "^5.3.0",
     "@mui/types": "^7.1.0",
     "@mui/utils": "^5.3.0",

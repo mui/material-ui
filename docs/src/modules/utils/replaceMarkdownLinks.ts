@@ -20,6 +20,8 @@ export const replaceComponentLinks = (markdown: string) => {
       '(/material/$1$2$3)',
     )
     .replace(/\(\/material\/(?!react-tabs|react-breadcrumbs)(react-[-a-z]+)s"/gm, '(/material/$1)')
+    .replace(/react-trap-focu/gm, 'react-trap-focus')
+    .replace(/react-progres/gm, 'react-progress')
     .replace(/\(\/components\/(tabs|breadcrumbs)([^)]*)\)/gm, '(/material/react-$1$2)');
 };
 
@@ -31,6 +33,7 @@ export const replaceAPILinks = (markdown: string) => {
       '(/material/api/$1$2)',
     )
     .replace(/\(\/api\/([^"-]+-unstyled)([^)]*)\)/gm, '(/base/api/$1$2)')
+    .replace(/\(\/api\/(no-ssr|portal|textarea-autosize)([^)]*)\)/gm, '(/base/api/$1$2)')
     .replace(/\(\/api\/([^)]*)\)/gm, '(/material/api/$1)');
 };
 
