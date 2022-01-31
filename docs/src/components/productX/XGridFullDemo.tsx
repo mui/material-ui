@@ -64,9 +64,13 @@ function SettingsPanel(props: GridToolbarContainerProps) {
   return (
     <FormGroup
       className="MuiFormGroup-options"
-      row
       sx={{
-        '& > *': { '&:not(:first-child)': { ml: 1 }, '&:last-child': { ml: 'auto' } },
+        flexDirection: { xs: 'column', sm: 'row' },
+        alignContent: { xs: 'start', sm: 'center' },
+        '& > *': {
+          '&:not(:first-child)': { ml: { xs: 0, sm: 1 } },
+          '&:last-child': { ml: 'auto' },
+        },
         '& .MuiFilledInput-root': {
           borderRadius: 1,
           backgroundColor: 'transparent',
@@ -102,7 +106,9 @@ function SettingsPanel(props: GridToolbarContainerProps) {
           <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
         </Select>
       </FormControl>
-      <Button onClick={handleApplyChanges}>Apply changes</Button>
+      <Button onClick={handleApplyChanges} sx={{ mt: { xs: 2, sm: 0 } }}>
+        Apply changes
+      </Button>
     </FormGroup>
   );
 }
