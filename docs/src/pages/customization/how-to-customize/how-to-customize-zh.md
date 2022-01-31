@@ -164,13 +164,9 @@ const StyledSlider = styled(Slider, {
 
 {{"demo": "pages/customization/how-to-customize/DynamicCSSVariables.js"}}
 
-### 覆盖主题
-
-{{"demo": "pages/customization/how-to-customize/DynamicThemeNesting.js"}}
-
 ## 4、 Global theme variation
 
-为了提高组件之间的一致性，并整体化管理用户界面外观，Material-UI 提供了一种能够应用全局变更的机制。
+In order to promote consistency between components, and manage the user interface appearance as a whole, MUI provides a mechanism to apply global changes.
 
 Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
 
@@ -186,11 +182,11 @@ Components expose [global class names](/styles/advanced/#with-material-ui-core) 
 
 You can reference the [Styles library interoperability guide](/guides/interoperability/) to find examples of this using different styles libraries or plain CSS.
 
-If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements. Here is an example of how you can override styles for the `h1` elements.
+If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements.
 
 {{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
 
-If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach. Here is how you can achieve the same by using this approach.
+If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
 
 {{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}
 
@@ -212,7 +208,3 @@ If you are already using the [CssBaseline](/components/css-baseline/) component 
    )
  }
 ```
-
-## 6. Custom class name
-
-Check out [ClassName Generator](/guides/classname-generator/) section for more details.
