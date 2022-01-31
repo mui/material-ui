@@ -24,7 +24,6 @@ const ColorSchemePicker = () => {
   return (
     <Button
       variant="outlined"
-      square
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -32,6 +31,7 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
+      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
@@ -98,7 +98,10 @@ export default function JoyButton() {
               square
             </Typography>
             <Box>
-              <Button variant="light" square>
+              <Button
+                variant="light"
+                sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
+              >
                 <Add />
               </Button>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
@@ -106,7 +109,12 @@ export default function JoyButton() {
               </Typography>
             </Box>
             <Box>
-              <Button variant="outlined" square size="sm" color="danger">
+              <Button
+                variant="outlined"
+                size="sm"
+                color="danger"
+                sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
+              >
                 <DeleteForever />
               </Button>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
@@ -114,7 +122,12 @@ export default function JoyButton() {
               </Typography>
             </Box>
             <Box>
-              <Button variant="contained" square size="lg" color="success">
+              <Button
+                variant="contained"
+                size="lg"
+                color="success"
+                sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
+              >
                 <ThumbUp />
               </Button>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
@@ -123,14 +136,24 @@ export default function JoyButton() {
             </Box>
             <Button
               variant="contained"
-              square
               size="lg"
               color="success"
-              sx={{ '--Button-minHeight': '64px' }}
+              sx={{
+                '--Button-minHeight': '64px',
+                '--Button-gutter': '0.25rem',
+                minWidth: 'var(--Button-minHeight)',
+              }}
             >
               <ThumbUp fontSize="xl4" />
             </Button>
-            <Button variant="outlined" square sx={{ borderRadius: 'var(--Button-minHeight)' }}>
+            <Button
+              variant="outlined"
+              sx={{
+                '--Button-gutter': '0.25rem',
+                minWidth: 'var(--Button-minHeight)',
+                borderRadius: 'var(--Button-minHeight)',
+              }}
+            >
               <Add />
             </Button>
           </Box>
@@ -142,9 +165,10 @@ export default function JoyButton() {
             </Typography>
             <Button
               variant="contained"
-              square
               color="success"
               endIcon={<KeyboardArrowDown fontSize="lg" />}
+              sx={{ '--Button-gutter': '0.5rem' }}
+              // sx={{ px: '0.5rem' }} // should not use `px` because endIcon will have mismatch position
             >
               <ThumbUp />
             </Button>
