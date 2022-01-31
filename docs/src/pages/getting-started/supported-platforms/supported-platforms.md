@@ -28,7 +28,7 @@ MUI provides **partial** supports for IE 11. Be aware of the following:
 - Some of the components have no support. For instance, the new components, the data grid, the date picker.
 - Some of the components have degraded support. For instance, the outlined input border radius is missing, the combobox doesn't remove diacritics, the circular progress animation is wobbling.
 - The documentaton itself might crash.
-- You need install the [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+- You need to install the [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
 - You might need to install polyfills. For instance for the [popper.js transitive dependency](https://popper.js.org/docs/v2/browser-support/#ie11).
 
 Overall, the library doesn't prioritize the support of IE 11 if it harms the most common use cases. For instance, we will close new issues opened about IE 11 and might not merge pull requests that improve IE 11 support.
