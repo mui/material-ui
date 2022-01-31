@@ -74,7 +74,7 @@
     "@date-io/luxon": "^2.11.1",
     "@date-io/moment": "^2.11.0",
     "@mui/base": "5.0.0-alpha.67",
-    "@mui/system": "^5.3.2",
+    "@mui/system": "^5.4.0",
     "@mui/utils": "^5.3.0",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",

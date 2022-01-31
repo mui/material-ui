@@ -1,6 +1,6 @@
 # [Versions](https://mui.com/versions/)
 
-## 5.3.2
+## 5.4.0
 
 <!-- generated comparing v5.3.1..master -->
 
@@ -11,7 +11,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - 🛠 @goncalovf added an example project using MUI with Vite.js (#28241)
 - Number of 🐛 bug fixes and 📚 documentation improvements.
 
-### `@mui/material@5.3.2`
+### `@mui/material@5.4.0`
 
 #### Breaking changes
 
