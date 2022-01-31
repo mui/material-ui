@@ -39,7 +39,7 @@ export default function Highlighter({
       sx={{
         justifyContent: 'flex-start',
         textAlign: 'left',
-        alignItems: 'center',
+        alignItems: 'start',
         borderRadius: 1,
         height: '100%',
         border: '1px solid transparent',
