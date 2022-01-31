@@ -39,7 +39,7 @@ This approach recognizes that the problems solved by the components in these two
 The paths to success require different strategies.
 Many of the developers using MUI X also use MUI Core, these users care a lot about consistency (design, docs, dependencies, etc.).
 
-With the [release of MUI Core v5](/blog/mui-core-v5) two months ago MUI X had to work on providing a cohesive experience.
+With the [release of MUI Core v5](/blog/mui-core-v5/) two months ago MUI X had to work on providing a cohesive experience.
 The primary objective of this new major is to have MUI X provide a great **compatibility with MUI Core v5**.
 
 ## A new virtualization engine

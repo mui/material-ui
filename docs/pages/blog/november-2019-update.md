@@ -24,9 +24,9 @@ Here are the most significant improvements in November:
 - 🌎 We have introduced [localization](/guides/localization/) support.
   The framework supports [13 locales](/guides/localization/#supported-locales), and growing. We would love to see your translation contribution ✨.
 
-- 👨‍🎤 We have added [Framer X](https://packages.framer.com/package/material-ui/material-ui) support ([#17797](https://github.com/mui-org/material-ui/pull/17797)) (and now looking into Sketch, Figma and Adobe XD).
+- 👨‍🎤 We have added Framer X support ([#17797](https://github.com/mui-org/material-ui/pull/17797)) (and now looking into Sketch, Figma and Adobe XD).
 
-  <a href="https://packages.framer.com/package/material-ui/material-ui"><img src="/static/blog/november-2019-update/framer.jpg" alt="Framer X" width="300" /></a>
+  <img src="/static/blog/november-2019-update/framer.jpg" alt="Framer X" width="300" />
 
 - ⚛️ We have completed the migration of the demos to TypeScript. A big thanks to all the contributors that participated in [this effort](https://github.com/mui-org/material-ui/issues/14897). Around 10% of the audience on the documentation uses this version of the demos and growing.
 
