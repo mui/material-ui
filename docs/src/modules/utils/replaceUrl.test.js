@@ -109,6 +109,30 @@ describe('replaceUrl', () => {
       `/material/react-list/#main-content`,
     );
 
+    expect(replaceComponentLinks(`/components/image-list/`)).to.equal(
+      `/material/react-image-list/`,
+    );
+    expect(replaceComponentLinks(`/components/image-list/#main-content`)).to.equal(
+      `/material/react-image-list/#main-content`,
+    );
+
+    expect(replaceComponentLinks(`/components/no-ssr/`)).to.equal(`/material/react-no-ssr/`);
+    expect(replaceComponentLinks(`/components/no-ssr/#main-content`)).to.equal(
+      `/material/react-no-ssr/#main-content`,
+    );
+
+    expect(replaceComponentLinks(`/components/trap-focus/`)).to.equal(
+      `/material/react-trap-focus/`,
+    );
+    expect(replaceComponentLinks(`/components/trap-focus/#main-content`)).to.equal(
+      `/material/react-trap-focus/#main-content`,
+    );
+
+    expect(replaceComponentLinks(`/components/progress/`)).to.equal(`/material/react-progress/`);
+    expect(replaceComponentLinks(`/components/progress/#main-content`)).to.equal(
+      `/material/react-progress/#main-content`,
+    );
+
     expect(replaceComponentLinks(`/components/tables/`)).to.equal(`/material/react-table/`);
     expect(replaceComponentLinks(`/components/tables/#main-content`)).to.equal(
       `/material/react-table/#main-content`,
@@ -186,6 +210,9 @@ describe('replaceUrl', () => {
 
   it('replace correct API links', () => {
     expect(replaceAPILinks(`/api/button/`)).to.equal(`/material/api/button/`);
+    expect(replaceAPILinks(`/api/no-ssr/`)).to.equal(`/base/api/no-ssr/`);
+    expect(replaceAPILinks(`/api/portal/`)).to.equal(`/base/api/portal/`);
+    expect(replaceAPILinks(`/api/textarea-autosize/`)).to.equal(`/base/api/textarea-autosize/`);
     expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
     expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material/api/loading-button/`);
     expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
@@ -221,6 +248,26 @@ describe('replaceUrl', () => {
     }
   });
 
+  it('[i18n] only replace links for new routes (/material/* & /x/*)', () => {
+    expect(replaceUrl(`/zh/guides/minimizing-bundle-size/`, '/zh/material/react-buttons')).to.equal(
+      `/zh/material/guides/minimizing-bundle-size/`,
+    );
+    expect(
+      replaceUrl(`/zh/components/data-grid/getting-started/#main-content`, '/zh/x/react-data-grid'),
+    ).to.equal(`/zh/x/react-data-grid/getting-started/#main-content`);
+    expect(
+      replaceUrl(`/zh/components/data-grid/components/#main-content`, '/zh/x/react-data-grid'),
+    ).to.equal(`/zh/x/react-data-grid/components/#main-content`);
+    expect(replaceUrl(`/zh/api/button-unstyled`, '/zh/base/api/button-unstyled')).to.equal(
+      `/zh/base/api/button-unstyled`,
+    );
+    if (FEATURE_TOGGLE.enable_system_scope) {
+      expect(replaceUrl(`/zh/styles/api/`, `/system/basics`)).to.equal(`/zh/system/styles/api/`);
+    } else {
+      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/styles/api/`);
+    }
+  });
+
   it('does not replace for old routes', () => {
     expect(replaceUrl(`/guides/minimizing-bundle-size/`, '/components/buttons')).to.equal(
       `/guides/minimizing-bundle-size/`,
@@ -228,5 +275,11 @@ describe('replaceUrl', () => {
     expect(
       replaceUrl(`/components/data-grid/getting-started/#main-content`, '/components/buttons'),
     ).to.equal(`/components/data-grid/getting-started/#main-content`);
+  });
+
+  it('does not replace for x marketing page', () => {
+    expect(replaceUrl(`/components/data-grid/getting-started/#main-content`, '/x/')).to.equal(
+      `/components/data-grid/getting-started/#main-content`,
+    );
   });
 });

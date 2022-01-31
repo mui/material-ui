@@ -3,7 +3,6 @@ title: 2019 MUI Developer Survey results
 description: Results for the first yearly developer survey, 2019 edition.
 date: 2019-03-16T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
-card: false
 tags: ['Developer survey']
 ---
 
@@ -291,7 +290,7 @@ Multiple options were allowed.
 - Gatsby: 8%
 
 Server-side rendering isn't yet very popular.
-As the React ecosystem matures, we might see a [big](https://www.rank2traffic.com/gatsbyjs.org) [push](https://www.rank2traffic.com/nextjs.org) of server-side rendering in the coming months.
+As the React ecosystem matures, we might see a big push of server-side rendering in the coming months.
 
 ### 18. What styling system are you using?
 

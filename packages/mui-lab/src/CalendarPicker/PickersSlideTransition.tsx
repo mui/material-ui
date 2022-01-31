@@ -28,54 +28,52 @@ const classes = generateUtilityClasses('PrivatePickersSlideTransition', [
 
 export const slideAnimationDuration = 350;
 
-const PickersSlideTransitionRoot = styled(TransitionGroup, { skipSx: true })<TransitionGroupProps>(
-  ({ theme }) => {
-    const slideTransition = theme.transitions.create('transform', {
-      duration: slideAnimationDuration,
-      easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
-    });
-    return {
-      display: 'block',
-      position: 'relative',
-      overflowX: 'hidden',
-      '& > *': {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        left: 0,
-      },
-      [`& .${classes['slideEnter-left']}`]: {
-        willChange: 'transform',
-        transform: 'translate(100%)',
-        zIndex: 1,
-      },
-      [`& .${classes['slideEnter-right']}`]: {
-        willChange: 'transform',
-        transform: 'translate(-100%)',
-        zIndex: 1,
-      },
-      [`& .${classes.slideEnterActive}`]: {
-        transform: 'translate(0%)',
-        transition: slideTransition,
-      },
-      [`& .${classes.slideExit}`]: {
-        transform: 'translate(0%)',
-      },
-      [`& .${classes['slideExitActiveLeft-left']}`]: {
-        willChange: 'transform',
-        transform: 'translate(-100%)',
-        transition: slideTransition,
-        zIndex: 0,
-      },
-      [`& .${classes['slideExitActiveLeft-right']}`]: {
-        willChange: 'transform',
-        transform: 'translate(100%)',
-        transition: slideTransition,
-        zIndex: 0,
-      },
-    };
-  },
-);
+const PickersSlideTransitionRoot = styled(TransitionGroup)<TransitionGroupProps>(({ theme }) => {
+  const slideTransition = theme.transitions.create('transform', {
+    duration: slideAnimationDuration,
+    easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
+  });
+  return {
+    display: 'block',
+    position: 'relative',
+    overflowX: 'hidden',
+    '& > *': {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      left: 0,
+    },
+    [`& .${classes['slideEnter-left']}`]: {
+      willChange: 'transform',
+      transform: 'translate(100%)',
+      zIndex: 1,
+    },
+    [`& .${classes['slideEnter-right']}`]: {
+      willChange: 'transform',
+      transform: 'translate(-100%)',
+      zIndex: 1,
+    },
+    [`& .${classes.slideEnterActive}`]: {
+      transform: 'translate(0%)',
+      transition: slideTransition,
+    },
+    [`& .${classes.slideExit}`]: {
+      transform: 'translate(0%)',
+    },
+    [`& .${classes['slideExitActiveLeft-left']}`]: {
+      willChange: 'transform',
+      transform: 'translate(-100%)',
+      transition: slideTransition,
+      zIndex: 0,
+    },
+    [`& .${classes['slideExitActiveLeft-right']}`]: {
+      willChange: 'transform',
+      transform: 'translate(100%)',
+      transition: slideTransition,
+      zIndex: 0,
+    },
+  };
+});
 
 /**
  * @ignore - do not document.

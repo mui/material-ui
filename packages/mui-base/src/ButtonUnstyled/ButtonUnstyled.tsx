@@ -155,10 +155,6 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocusVisible: PropTypes.func,
 } as any;
 

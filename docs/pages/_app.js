@@ -172,6 +172,7 @@ function AppWrapper(props) {
     }
   }, []);
 
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   // eslint-disable will be removed once docs restructure is done
   // eslint-disable-next-line prefer-const
   let productPages = pages;
@@ -179,7 +180,7 @@ function AppWrapper(props) {
   const activePage = findActivePage(productPages, router.pathname);
 
   let fonts = [];
-  if (router.pathname.match(/onepirate/)) {
+  if (asPathWithoutLang.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];

@@ -79,17 +79,13 @@ const finalTheme = createTheme({
 
 ### Using `sx` (experimental) syntax
 
-If you are not familiar `sx`, first check out [the concept](/system/the-sx-prop) and [the difference with the `styled`](/system/styled/#difference-with-the-sx-prop).
+If you are not familiar `sx`, first check out [the concept](/system/the-sx-prop/) and [the difference with the `styled`](/system/styled/#difference-with-the-sx-prop).
 
 `sx` is also compatible with theme style overrides if you prefer the shorthand notation.
 
 {{"demo": "pages/customization/theme-components/GlobalThemeOverrideSx.js"}}
 
 ## Adding new component variants
-
-> ⚠️ This API has been **deprecated** and will likely be removed in the next major release. If you want to apply styles based on props, take a look at [Overrides based on props](#overrides-based-on-props) instead.
->
-> If you are interested to see the reasoning behind this change, check out [issue #30412](https://github.com/mui-org/material-ui/issues/30412)
 
 You can use the `variants` key in the theme's `components` section to add new variants to MUI components. These new variants can specify what styles the component should have when specific props are applied.
 

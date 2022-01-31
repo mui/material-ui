@@ -682,8 +682,7 @@ export function getThemedComponents(theme: Theme) {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            paddingTop: 7,
-            paddingBottom: 7,
+            padding: '5px 9px',
           },
         },
       },
