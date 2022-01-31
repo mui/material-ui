@@ -35,8 +35,6 @@ export interface ButtonClasses {
   sizeLg: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
-  /** Styles applied to the root element if `square={true}`. */
-  square: string;
   /** Styles applied to the startIcon element if supplied. */
   startIcon: string;
   /** Styles applied to the endIcon element if supplied. */
@@ -67,7 +65,6 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'sizeMd',
   'sizeLg',
   'fullWidth',
-  'square',
   'startIcon',
   'endIcon',
 ]);

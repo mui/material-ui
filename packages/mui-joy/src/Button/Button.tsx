@@ -9,7 +9,7 @@ import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant, square } =
+  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
     ownerState;
 
   const slots = {
@@ -21,7 +21,6 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      square && 'square',
     ],
     startIcon: ['startIcon'],
     endIcon: ['endIcon'],
@@ -66,7 +65,7 @@ const ButtonRoot = styled('button', {
       '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
       '--Button-gutter': '1.5rem', // gutter is the padding-x
       '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
-      '--Button-gap': 'min(var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content (limit upper bound to 0.5rem)
+      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
       ...(ownerState.size === 'sm' && {
         '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
@@ -74,12 +73,6 @@ const ButtonRoot = styled('button', {
       ...(ownerState.size === 'lg' && {
         '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
-      }),
-      ...(ownerState.square && {
-        '--Button-gutter': '0.5rem',
-        ...(ownerState.size === 'sm' && {
-          '--Button-gutter': '0.25rem', // reduce the padding to make the button square because icon size is 24px by default
-        }),
       }),
     },
     {
@@ -105,9 +98,6 @@ const ButtonRoot = styled('button', {
         lineHeight: '1.25rem',
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
-      ...(ownerState.square && {
-        minWidth: 'var(--Button-minHeight)',
-      }),
       [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
@@ -135,7 +125,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant = 'contained',
     size = 'md',
     fullWidth = false,
-    square = false,
     startIcon: startIconProp,
     endIcon: endIconProp,
     ...other
@@ -171,7 +160,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
     size,
     focusVisible,
-    square,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -250,11 +238,6 @@ Button.propTypes /* remove-proptypes */ = {
    * The size of the component.
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  /**
-   * If `true`, the component has min-width equal to var(--Button-minHeight).
-   * @default false
-   */
-  square: PropTypes.bool,
   /**
    * Element placed before the children.
    */
