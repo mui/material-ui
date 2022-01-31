@@ -43,7 +43,4 @@ yarn docs:deploy
 
 ### Announce
 
-1. **GitHub**. Make a new release on GitHub (for people subscribing to updates). https://github.com/mui-org/material-ui/releases
-1. **Twitter**. It's even better to synchronize with the release of MUI X: https://trello.com/c/kYF9OLLi/105-release-steps, to have a single announcement/version covering the two.
-   Send a tweet with the main Twitter account to summarize what happened.
-   Example of template https://twitter.com/MUI_hq/status/1341422029862526977
+Follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
