@@ -157,8 +157,8 @@ const PostPreview = (props: BlogPost) => {
           size="small"
           endIcon={<KeyboardArrowRightRoundedIcon />}
           sx={(theme) => ({
-            mt: { sm: 1, md: 0 },
-            mb: { sm: -1, md: 0 },
+            mt: { xs: 1, md: 0 },
+            mb: { xs: -1, md: 0 },
             color:
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[300]

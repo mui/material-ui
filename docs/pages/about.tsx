@@ -181,7 +181,7 @@ const Widget = ({
   icon: React.ReactElement;
 }) => {
   return (
-    <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
+    <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
       <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
         <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
           {icon}
@@ -679,7 +679,6 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 endIcon={<KeyboardArrowRightRounded />}
-                sx={{ ml: -1 }}
               >
                 Leave your feedback{' '}
               </Button>
@@ -735,7 +734,6 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui-org/material-ui"
                 endIcon={<KeyboardArrowRightRounded />}
-                sx={{ ml: -1 }}
               >
                 See the repository
               </Button>
@@ -762,7 +760,6 @@ function AboutContent() {
                 size="small"
                 href="https://opencollective.com/mui"
                 endIcon={<KeyboardArrowRightRounded />}
-                sx={{ ml: -1 }}
               >
                 See Open Collective{' '}
               </Button>

@@ -5,9 +5,9 @@ export default function SvgMuiLogo(props: RootSvgProps) {
   return (
     <RootSvg
       xmlns="http://www.w3.org/2000/svg"
-      width={35}
+      width={36}
       height={32}
-      viewBox="0 0 35 32"
+      viewBox="0 0 36 32"
       fill="none"
       {...props}
     >
