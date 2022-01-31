@@ -20,7 +20,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 请注意，安装依赖于 [react](https://www.npmjs.com/package/react) 的 17.0.0 及以上版本，和 [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 及以上版本。
 
-或者你想使用 `styled-components` 来作为样式引擎：
+MUI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
 
 ```sh
 // 使用 npm 安装
