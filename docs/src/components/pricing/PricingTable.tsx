@@ -331,25 +331,14 @@ function getUrl(hash: string) {
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  '@mui/base': (
-    <ColumnHead
-      {...{
-        label: '@mui/base',
-        tooltip: 'The unstyled components and react hooks.',
-      }}
-    />
-  ),
+  '@mui/base': <ColumnHead label="@mui/base" tooltip="The unstyled components and react hooks." />,
   '@mui/material': (
-    <ColumnHead
-      {...{ label: '@mui/material', tooltip: 'Core components following Material Design.' }}
-    />
+    <ColumnHead label="@mui/material" tooltip="Core components following Material Design" />
   ),
   '@mui/system': (
     <ColumnHead
-      {...{
-        label: '@mui/system',
-        tooltip: 'CSS utilities for rapidly laying out custom designs.',
-      }}
+      label="@mui/system"
+      tooltip="CSS utilities for rapidly laying out custom designs."
     />
   ),
   // Advanced

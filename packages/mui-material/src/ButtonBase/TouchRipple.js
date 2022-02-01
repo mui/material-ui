@@ -50,7 +50,6 @@ const pulsateKeyframe = keyframes`
 export const TouchRippleRoot = styled('span', {
   name: 'MuiTouchRipple',
   slot: 'Root',
-  skipSx: true,
 })({
   overflow: 'hidden',
   pointerEvents: 'none',

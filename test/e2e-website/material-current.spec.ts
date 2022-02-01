@@ -1,40 +1,39 @@
 import { test as base, expect, Page } from '@playwright/test';
 import kebabCase from 'lodash/kebabCase';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
 
-test.describe.parallel('Material docs', () => {
+test.beforeEach(async ({}) => {
+  test.skip(FEATURE_TOGGLE.enable_redirects, "Migration haven't started yet");
+});
+
+test.describe('Material docs', () => {
   test('should have correct link with hash in the TOC', async ({ page }) => {
     await page.goto(`/getting-started/installation/`);
 
     const anchors = page.locator('[aria-label="Page table of contents"] ul a');
 
-    const anchorTexts = await anchors.allTextContents();
+    const firstAnchor = await anchors.first();
+    const textContent = await firstAnchor.textContent();
 
-    await Promise.all(
-      anchorTexts.map((text, index) => {
-        return expect(anchors.nth(index)).toHaveAttribute(
-          'href',
-          `/getting-started/installation/#${kebabCase(text)}`,
-        );
-      }),
+    await expect(firstAnchor).toHaveAttribute(
+      'href',
+      `/getting-started/installation/#${kebabCase(textContent || '')}`,
     );
   });
 
-  test.describe.parallel('Demo page', () => {
+  test.describe('Demo page', () => {
     test('should have correct link for API section', async ({ page }) => {
       await page.goto(`/components/cards/`);
 
       const anchors = await page.locator('div > h2#heading-api ~ ul a');
 
-      const anchorTexts = await anchors.allTextContents();
+      const firstAnchor = await anchors.first();
+      const textContent = await firstAnchor.textContent();
 
-      await Promise.all(
-        anchorTexts.map((text, index) => {
-          return expect(anchors.nth(index)).toHaveAttribute('href', `/api/${kebabCase(text)}/`);
-        }),
-      );
+      await expect(firstAnchor).toHaveAttribute('href', `/api/${kebabCase(textContent || '')}/`);
     });
 
     test('should have correct link for sidebar anchor', async ({ page }) => {
@@ -46,7 +45,7 @@ test.describe.parallel('Material docs', () => {
     });
   });
 
-  test.describe.parallel('API page', () => {
+  test.describe('API page', () => {
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto(`/api/card/`);
 
@@ -71,7 +70,7 @@ test.describe.parallel('Material docs', () => {
     });
   });
 
-  test.describe.parallel('Search', () => {
+  test.describe('Search', () => {
     const retryToggleSearch = async (page: Page, count = 3) => {
       try {
         await page.keyboard.press('Meta+k');

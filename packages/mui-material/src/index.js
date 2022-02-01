@@ -6,8 +6,6 @@ export * from './styles';
 
 export * from './utils';
 
-export * from '@mui/base';
-
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
 
@@ -405,3 +403,10 @@ export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
 export { StyledEngineProvider } from './styles';
+
+export { default as unstable_composeClasses } from '@mui/base/composeClasses';
+
+export { default as generateUtilityClass } from '@mui/base/generateUtilityClass';
+export * from '@mui/base/generateUtilityClass';
+
+export { default as generateUtilityClasses } from '@mui/base/generateUtilityClasses';
