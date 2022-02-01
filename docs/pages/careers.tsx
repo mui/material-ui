@@ -144,18 +144,18 @@ const faqData = [
 ];
 
 const openRolesData = [
-  // {
-  //   // 1
-  //   title: 'Product',
-  //   roles: [
-  //     {
-  //       title: 'Product Designer',
-  //       description:
-  //         'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-  //       url: '/company/11-product-designer/',
-  //     },
-  //   ],
-  // },
+  {
+    // 1
+    title: 'Product',
+    roles: [
+      {
+        title: 'Designer',
+        description:
+          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
+        url: '/company/designer/',
+      },
+    ],
+  },
   {
     // 5
     title: 'Developer Experience',
@@ -164,18 +164,18 @@ const openRolesData = [
         title: 'Developer Advocate',
         description:
           'You will educate users on the latest features, craft high-quality examples, and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
-        url: '/company/50-developer-advocate/',
+        url: '/company/developer-advocate/',
       },
       {
         title: 'Developer Experience Engineer',
         description: 'You will focus on providing experiences that delight developers using MUI.',
-        url: '/company/51-developer-experience-engineer/',
+        url: '/company/developer-experience-engineer/',
       },
       {
         title: 'Support Engineer - X',
         description:
           "You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/company/50-support-engineer/',
+        url: '/company/support-engineer/',
       },
     ],
   },
@@ -187,12 +187,12 @@ const openRolesData = [
         title: 'React Engineer - X',
         description:
           'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/company/20-react-engineer/',
+        url: '/company/react-engineer/',
       },
       {
         title: 'Hustler Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
-        url: '/company/22-hustler-engineer/',
+        url: '/company/hustler-engineer/',
       },
     ],
   },
@@ -204,7 +204,7 @@ const openRolesData = [
         title: 'People Operations Manager',
         description:
           'You will build the HR function from the ground up at a high-growth tech company.',
-        url: '/company/30-people-operations-manager/',
+        url: '/company/people-operations-manager/',
       },
     ],
   },
@@ -216,25 +216,13 @@ const openRolesData = [
         title: 'Support Agent - Store',
         description:
           "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/company/41-support-agent/',
+        url: '/company/support-agent/',
       },
     ],
   },
 ];
 
 const futureRolesData = [
-  {
-    // 1
-    title: 'Product',
-    roles: [
-      {
-        title: 'Product Designer',
-        description:
-          'Design is critical to the success of our mission. We will be looking for skills that complement our Lead Designer. You will empower our community to build outstanding-looking UIs with innovative tools.',
-        url: undefined,
-      },
-    ],
-  },
   {
     title: 'Engineering',
     roles: [

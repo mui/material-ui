@@ -16,6 +16,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 - [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Tailwind CSS](https://github.com/mui-org/material-ui/tree/master/examples/tailwind)
+- [Vite.js](https://github.com/mui-org/material-ui/tree/next/examples/vitejs)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
 Create React App is an awesome project for learning React.
@@ -51,6 +52,7 @@ If you want to start with a more complete and real-world example, you could take
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
 
+<!-- TODO: revert this once it is migrated to v5
 - [React SaaS Template](https://github.com/dunky11/react-saas-template):
 
   - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
@@ -59,7 +61,9 @@ If you want to start with a more complete and real-world example, you could take
   - Fully routed using react-router
   - Lazy loads components to boost performance
   - Components for statistics, text with emoji support, image upload and much more...
+-->
 
+<!-- TODO: revert this once it is migrated to v5
 - [Material Sense](https://github.com/alexanmtz/material-sense):
 
   - ![stars](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
@@ -67,15 +71,7 @@ If you want to start with a more complete and real-world example, you could take
   - React Router included with a navigation example
   - A docker container with an Nginx server for production build
   - Created with Create React App
-
-- [RMUIF](https://github.com/rmuif/web):
-
-  - ![stars](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
-  - Bootstrapped with Create React App
-  - Firebase back-end with most of their products for the web included, e.g., Authentication and Cloud Firestore
-  - Routing with React Router, including protected routes and error handling
-  - Extensive and well-tested mobile support with full-screen dialogs and swipeable tabs
-  - Cross-platform application monitoring with Sentry
+-->
 
 ### Paid
 

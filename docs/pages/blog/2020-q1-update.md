@@ -1,11 +1,10 @@
 ---
+title: Q1 2020 Update
 description: An update on our mission for Q1 2020.
+date: 2020-04-14T00:00:00.000Z
+authors: ['oliviertassinari']
 tags: ['Company update']
 ---
-
-# Q1 2020 Update
-
-Olivier Tassinari. April 14, 2020.
 
 Welcome to the new format of our mission update. We are moving from monthly to quarterly updates.
 

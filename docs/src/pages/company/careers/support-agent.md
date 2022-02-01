@@ -5,29 +5,40 @@
 ## Details of the Role
 
 - Location: Remote (preference for UTC-6 to UTC+3).
-- Type of work: Full-time (contractor or employee [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
+- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
-See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
+MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
+Today, countless teams and organizations rely on our open-source projects to build their design system.
 
-### Why we're hiring
+A couple of years ago, we started to expand our suite of products.
+We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
+We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+
+We are a fully distributed team, spread across multiple timezones.
+We work mainly asynchronously, relying mostly on written collaboration.
+Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
+For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+
+## Why we're hiring
 
 The orders on the MUI Store are growing fast (x2-3 YoY).
 We need talented people to keep that going!
 
 The support on the store is currently almost exclusively done by the executive team of the company (e.g. CSO). This team does no longer has enough bandwidth. You will be responsible to step up and carry forward the support provided to customers of the store on multiple fronts: answering license questions, processing purchase orders, granting refunds, identifying recurring problems, and a lot more.
 
+## About the role
+
 ### Why this is interesting
 
 You will be in the tech industry. We offer flexibility in your work day.
 
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
-
-## About the role
 
 ### What you'll do on a day-to-day basis
 
@@ -51,11 +62,11 @@ Depending on the day, you'll:
 
 - Basic knowledge of web development.
 
-## Compensation
+## Benefits & Compensation
 
 Competitive compensation depending on the profile and location of up to $20/h.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Support%20Agent%20-%20Store)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Support%20Agent%20-%20Store)
