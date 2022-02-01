@@ -10,6 +10,7 @@ import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
+import Paper from '@mui/joy/Paper';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Public from '@mui/icons-material/Public';
@@ -675,26 +676,26 @@ export default function Strapi() {
           <Checkbox checked disabled />
         </Box>
         <Box>
-          <Tile sx={{ p: 2 }}>
-            <Tile variant="contained">
+          <Paper variant="light" color="primary" sx={{ p: 2 }}>
+            <Paper variant="contained" color="primary">
               <Info />
-            </Tile>
-          </Tile>
-          <Tile sx={{ p: 2 }} color="warning">
-            <Tile variant="contained" color="warning">
+            </Paper>
+          </Paper>
+          <Paper variant="light" color="warning" sx={{ p: 2 }}>
+            <Paper variant="contained" color="warning">
               <Code />
-            </Tile>
-          </Tile>
-          <Tile sx={{ p: 2 }} color="secondary">
-            <Tile variant="contained" color="secondary">
+            </Paper>
+          </Paper>
+          <Paper variant="light" color="secondary" sx={{ p: 2 }}>
+            <Paper variant="contained" color="secondary">
               <PlayArrow />
-            </Tile>
-          </Tile>
-          <Tile sx={{ p: 2 }} color="alternate">
-            <Tile variant="contained" color="alternate">
+            </Paper>
+          </Paper>
+          <Paper variant="light" color="alternate" sx={{ p: 2 }}>
+            <Paper variant="contained" color="alternate">
               <HistoryEdu />
-            </Tile>
-          </Tile>
+            </Paper>
+          </Paper>
         </Box>
       </Box>
 
@@ -971,23 +972,25 @@ export default function Strapi() {
               gap: 3,
             }}
           >
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-              <Box
-                sx={{
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 3,
+                '& > div': {
                   display: 'flex',
                   gap: 3,
                   p: 3,
                   alignItems: 'center',
-                  bgcolor: 'var(--joy-palette-background-body)',
-                  boxShadow: 'var(--joy-shadow-sm)',
-                  borderRadius: '8px',
-                }}
-              >
-                <Tile sx={{ p: 2 }}>
-                  <Tile variant="contained">
+                },
+              }}
+            >
+              <Paper radius="sm" elevation="sm" sx={{ flexDirection: 'row' }}>
+                <Paper variant="light" color="primary" sx={{ p: 2 }}>
+                  <Paper variant="contained" color="primary">
                     <Info />
-                  </Tile>
-                </Tile>
+                  </Paper>
+                </Paper>
                 <div>
                   <Typography level="bodyHighlight" sx={{ fontSize: '1rem' }}>
                     Read the documentation
@@ -996,23 +999,13 @@ export default function Strapi() {
                     Discover the concepts, reference, guides and tutorials.
                   </Typography>
                 </div>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 3,
-                  p: 3,
-                  alignItems: 'center',
-                  bgcolor: 'var(--joy-palette-background-body)',
-                  boxShadow: 'var(--joy-shadow-sm)',
-                  borderRadius: '8px',
-                }}
-              >
-                <Tile sx={{ p: 2 }} color="warning">
-                  <Tile variant="contained" color="warning">
+              </Paper>
+              <Paper radius="sm" elevation="sm" sx={{ flexDirection: 'row' }}>
+                <Paper sx={{ p: 2 }} variant="light" color="warning">
+                  <Paper variant="contained" color="warning">
                     <Code />
-                  </Tile>
-                </Tile>
+                  </Paper>
+                </Paper>
                 <div>
                   <Typography level="bodyHighlight" sx={{ fontSize: '1rem' }}>
                     Code example
@@ -1021,23 +1014,13 @@ export default function Strapi() {
                     Learn by testing real project developed by the community
                   </Typography>
                 </div>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 3,
-                  p: 3,
-                  alignItems: 'center',
-                  bgcolor: 'var(--joy-palette-background-body)',
-                  boxShadow: 'var(--joy-shadow-sm)',
-                  borderRadius: '8px',
-                }}
-              >
-                <Tile sx={{ p: 2 }} color="secondary">
-                  <Tile variant="contained" color="secondary">
+              </Paper>
+              <Paper radius="sm" elevation="sm" sx={{ flexDirection: 'row' }}>
+                <Paper sx={{ p: 2 }} variant="light" color="secondary">
+                  <Paper variant="contained" color="secondary">
                     <PlayArrow />
-                  </Tile>
-                </Tile>
+                  </Paper>
+                </Paper>
                 <div>
                   <Typography level="bodyHighlight" sx={{ fontSize: '1rem' }}>
                     Tutorial
@@ -1046,23 +1029,13 @@ export default function Strapi() {
                     Discover the concepts, reference, guides and tutorials.
                   </Typography>
                 </div>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 3,
-                  p: 3,
-                  alignItems: 'center',
-                  bgcolor: 'var(--joy-palette-background-body)',
-                  boxShadow: 'var(--joy-shadow-sm)',
-                  borderRadius: '8px',
-                }}
-              >
-                <Tile sx={{ p: 2 }} color="alternate">
-                  <Tile variant="contained" color="alternate">
+              </Paper>
+              <Paper radius="sm" elevation="sm" sx={{ flexDirection: 'row' }}>
+                <Paper sx={{ p: 2 }} variant="light" color="alternate">
+                  <Paper variant="contained" color="alternate">
                     <HistoryEdu />
-                  </Tile>
-                </Tile>
+                  </Paper>
+                </Paper>
                 <div>
                   <Typography level="bodyHighlight" sx={{ fontSize: '1rem' }}>
                     Blog
@@ -1071,18 +1044,17 @@ export default function Strapi() {
                     Discover the concepts, reference, guides and tutorials.
                   </Typography>
                 </div>
-              </Box>
+              </Paper>
             </Box>
             <Box>
-              <Box
+              <Paper
+                radius="sm"
+                elevation="sm"
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 1.5,
                   p: 3,
-                  bgcolor: 'var(--joy-palette-background-body)',
-                  boxShadow: 'var(--joy-shadow-sm)',
-                  borderRadius: '8px',
                 }}
               >
                 <Typography sx={{ fontWeight: 500 }}>Join the community</Typography>
@@ -1097,7 +1069,7 @@ export default function Strapi() {
                 >
                   SEE OUR ROAD MAP
                 </Button>
-              </Box>
+              </Paper>
             </Box>
           </Box>
         </Box>
@@ -1307,21 +1279,20 @@ export default function Strapi() {
             </Button>
           </Box>
           <Box sx={{ px: '3.5rem', pb: '1rem', width: 400 }}>
-            <Input
-              placeholder="Search for an entry"
-              startAdornment={(<Search />) as any}
-              sx={{ bgcolor: 'var(--joy-palette-background-body)' }}
-              style={{ '--Input-minHeight': '2rem' }}
-            />
+            <Paper>
+              <Input
+                placeholder="Search for an entry"
+                startAdornment={(<Search />) as any}
+                style={{ '--Input-minHeight': '2rem' }}
+              />
+            </Paper>
           </Box>
           <Box sx={{ px: '3.5rem', pb: '1rem' }}>
-            <Box
+            <Paper
+              elevation="sm"
               sx={{
                 display: 'grid',
                 gridTemplateColumns: 'min-content minmax(100px, 20%) 1fr 12% min-content',
-                bgcolor: 'var(--joy-palette-background-body)',
-                borderRadius: '4px',
-                boxShadow: 'var(--joy-shadow-sm)',
                 '& > div': {
                   display: 'flex',
                   alignItems: 'center',
@@ -1494,7 +1465,7 @@ export default function Strapi() {
               >
                 Add new webhook
               </Button>
-            </Box>
+            </Paper>
           </Box>
         </Box>
       </Box>
