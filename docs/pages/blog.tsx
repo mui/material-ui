@@ -163,8 +163,8 @@ const PostPreview = (props: BlogPost) => {
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[300]
                 : theme.palette.primary[600],
-            '& svg': {
-              ml: -0.5,
+            '& .MuiButton-endIcon': {
+              ml: 0,
             },
           })}
         >

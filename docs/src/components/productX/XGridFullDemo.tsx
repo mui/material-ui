@@ -174,6 +174,7 @@ export default function XGridFullDemo() {
             '& .MuiDataGrid-root': {
               bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
               '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
+              '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
               '& .MuiDataGrid-renderingZone': {
                 '& .MuiDataGrid-cell': {
                   bgcolor: (theme) =>

@@ -192,7 +192,7 @@ export default function Notifications() {
                       <React.Fragment key={message.id}>
                         <ListItem alignItems="flex-start">
                           <Typography gutterBottom>{message.title}</Typography>
-                          <Typography gutterBottom variant="body2">
+                          <Typography gutterBottom variant="body2" color="text.secondary">
                             <span
                               id="notification-message"
                               // eslint-disable-next-line react/no-danger
