@@ -38,15 +38,22 @@ const IconButtonRoot = styled('button', {
 })<{ ownerState: IconButtonProps }>(({ theme, ownerState }) => [
   {
     '--IconButton-size': '2.5rem',
+    padding: '0.25rem',
+    ...(ownerState.variant === 'outlined' && {
+      padding: 'calc(0.25rem - 1px)', // account for the border width
+    }),
     ...(ownerState.size === 'sm' && {
       '--IconButton-size': '2rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--IconButton-size': '3rem',
+      padding: '0.5rem',
+      ...(ownerState.variant === 'outlined' && {
+        padding: 'calc(0.5rem - 1px)', // account for the border width
+      }),
     }),
-    minWidth: 'var(--IconButton-size)',
-    minHeight: 'var(--IconButton-size)',
-    padding: 'clamp(0.25rem, var(--IconButton-size) / 2.5, 1rem)', // use ratio of 40/16 = 2.5
+    minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content
+    minHeight: 'var(--IconButton-size)', // use min-height instead of height to make the button resilient to its content
     borderRadius: theme.vars.radius.sm,
     border: 'none',
     backgroundColor: 'transparent',

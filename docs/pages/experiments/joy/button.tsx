@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
@@ -98,54 +99,32 @@ export default function JoyButton() {
               square
             </Typography>
             <Box>
-              <Button
-                variant="light"
-                sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
-              >
+              <IconButton>
                 <Add />
-              </Button>
+              </IconButton>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                 40x40
               </Typography>
             </Box>
             <Box>
-              <Button
-                variant="outlined"
-                size="sm"
-                color="danger"
-                sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
-              >
+              <IconButton variant="outlined" size="sm" color="danger">
                 <DeleteForever />
-              </Button>
+              </IconButton>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                 32x32
               </Typography>
             </Box>
             <Box>
-              <Button
-                variant="contained"
-                size="lg"
-                color="success"
-                sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
-              >
+              <IconButton variant="contained" size="lg" color="success">
                 <ThumbUp />
-              </Button>
+              </IconButton>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                 48x48
               </Typography>
             </Box>
-            <Button
-              variant="contained"
-              size="lg"
-              color="success"
-              sx={{
-                '--Button-minHeight': '64px',
-                '--Button-gutter': '0.25rem',
-                minWidth: 'var(--Button-minHeight)',
-              }}
-            >
+            <IconButton variant="contained" size="lg" color="success">
               <ThumbUp fontSize="xl4" />
-            </Button>
+            </IconButton>
             <Button
               variant="outlined"
               sx={{
