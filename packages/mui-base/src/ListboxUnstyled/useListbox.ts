@@ -9,15 +9,16 @@ const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => o
 
 export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
   const {
-    disableListWrap = false,
     disabledItemsFocusable = false,
+    disableListWrap = false,
+    focusManagement = 'activeDescendant',
     id: idProp,
-    options,
-    multiple = false,
     isOptionDisabled = () => false,
-    optionComparer = defaultOptionComparer,
-    stateReducer: externalReducer,
     listboxRef: externalListboxRef,
+    multiple = false,
+    optionComparer = defaultOptionComparer,
+    options,
+    stateReducer: externalReducer,
   } = props;
 
   const id = useId(idProp);
@@ -155,14 +156,14 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     return {
       ...other,
       'aria-activedescendant':
-        highlightedIndex >= 0
+        focusManagement === 'activeDescendant' && highlightedIndex >= 0
           ? optionIdGenerator(options[highlightedIndex], highlightedIndex)
           : undefined,
       id,
       onBlur: createHandleBlur(other),
       onKeyDown: createHandleKeyDown(other),
       role: 'listbox',
-      tabIndex: 0,
+      tabIndex: focusManagement === 'DOM' ? -1 : 0,
       ref: handleRef,
     };
   };
@@ -187,14 +188,31 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     } as OptionState;
   };
 
+  const getOptionTabIndex = (optionState: OptionState) => {
+    if (focusManagement === 'activeDescendant') {
+      return undefined;
+    }
+
+    if (!optionState.highlighted) {
+      return -1;
+    }
+
+    if (optionState.disabled && !disabledItemsFocusable) {
+      return -1;
+    }
+
+    return 0;
+  };
+
   const getOptionProps = (option: TOption, other: Record<string, React.EventHandler<any>> = {}) => {
-    const { selected, disabled } = getOptionState(option);
+    const optionState = getOptionState(option);
     const index = options.findIndex((opt) => optionComparer(opt, option));
 
     return {
       ...other,
-      'aria-disabled': disabled || undefined,
-      'aria-selected': selected,
+      'aria-disabled': optionState.disabled || undefined,
+      'aria-selected': optionState.selected,
+      tabIndex: getOptionTabIndex(optionState),
       id: optionIdGenerator(option, index),
       onClick: createHandleOptionClick(option, other),
       onMouseOver: createHandleOptionMouseOver(option, other),

@@ -31,30 +31,9 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
 ) {
   const { children, className, component, components = {}, componentsProps = {}, ...other } = props;
 
-  const {
-    registerItem,
-    unregisterItem,
-    getRootProps,
-    getItemProps,
-    getItemState,
-    menuItems,
-    highlightedOption,
-  } = useMenu({ listboxRef: ref });
-
-  // Fire the keyboard event on the highlighted item:
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (highlightedOption == null) {
-      return;
-    }
-
-    const highlightedElement = menuItems[highlightedOption]?.ref?.current;
-    const eventCopy = new KeyboardEvent(event.type, event.nativeEvent);
-
-    // The original event propagates already
-    eventCopy.stopPropagation();
-
-    highlightedElement?.dispatchEvent(eventCopy);
-  };
+  const { registerItem, unregisterItem, getRootProps, getItemProps, getItemState } = useMenu({
+    listboxRef: ref,
+  });
 
   const ownerState = props;
 
@@ -66,7 +45,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
     {
       ...other,
       ...componentsProps.root,
-      ...getRootProps({ onKeyDown: handleKeyDown }),
+      ...getRootProps(),
       className: clsx(classes.root, className, componentsProps.root?.className),
       role: 'menu',
     },

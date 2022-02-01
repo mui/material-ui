@@ -53,7 +53,16 @@ export default function useMenuItem(props: UseMenuItemProps) {
   React.useDebugValue({ id, disabled });
 
   if (id === undefined) {
-    return null;
+    return {
+      getRootProps: (other?: Record<string, any>) => ({
+        role: 'menuitem',
+        'aria-disabled': disabled || undefined,
+        'aria-selected': undefined,
+        ...other,
+        ref: handleRef,
+      }),
+      itemState: null,
+    };
   }
 
   const itemState = menuContext.getItemState(id);

@@ -11,6 +11,8 @@ export type UseListboxStrictProps<TOption> = Omit<
 > &
   Required<Pick<UseListboxProps<TOption>, UseListboxStrictPropsRequiredKeys>>;
 
+export type FocusManagementType = 'DOM' | 'activeDescendant';
+
 enum ActionTypes {
   blur = 'blur',
   focus = 'focus',
@@ -99,10 +101,7 @@ interface UseListboxCommonProps<TOption> {
    * @default false
    */
   disableListWrap?: boolean;
-  /**
-   * Ref of the listbox DOM element.
-   */
-  listboxRef?: React.Ref<any>;
+  focusManagement?: FocusManagementType;
   /**
    * Id attribute of the listbox.
    */
@@ -112,6 +111,10 @@ interface UseListboxCommonProps<TOption> {
    * @default () => false
    */
   isOptionDisabled?: (option: TOption, index: number) => boolean;
+  /**
+   * Ref of the listbox DOM element.
+   */
+  listboxRef?: React.Ref<any>;
   /**
    * Callback fired when the highlighted option changes.
    */

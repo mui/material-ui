@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import MenuItemUnstyledProps from './MenuItemUnstyledProps';
 import { appendOwnerState } from '../utils';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
@@ -9,14 +10,13 @@ import composeClasses from '../composeClasses';
 
 export interface MenuItemState {
   disabled: boolean;
-  highlighted: boolean;
 }
 
 function getUtilityClasses(ownerState: MenuItemState) {
-  const { disabled, highlighted } = ownerState;
+  const { disabled } = ownerState;
 
   const slots = {
-    root: ['root', disabled && 'disabled', highlighted && 'highlighted'],
+    root: ['root', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getMenuItemUnstyledUtilityClass, {});
@@ -33,7 +33,7 @@ function getUtilityClasses(ownerState: MenuItemState) {
  */
 const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
   props: MenuItemUnstyledProps,
-  ref: React.Ref<any>,
+  forwardedRef: React.Ref<any>,
 ) {
   const {
     onClick,
@@ -46,17 +46,19 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
     ...other
   } = props;
 
+  const ref = React.useRef<any>(null);
+  const handleRef = useForkRef(ref, forwardedRef);
+
   const menuItem = useMenuItem({
     disabled,
     onClick,
-    ref,
+    ref: handleRef,
   });
+  const { getRootProps, itemState } = menuItem;
 
-  if (menuItem == null || menuItem.itemState == null) {
+  if (itemState == null) {
     return null;
   }
-
-  const { getRootProps, itemState } = menuItem;
 
   const ownerState: MenuItemState = { ...props, ...itemState };
 
