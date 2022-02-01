@@ -177,8 +177,6 @@ function AppWrapper(props) {
   }, []);
 
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  // eslint-disable will be removed once docs restructure is done
-  // eslint-disable-next-line prefer-const
   let productPages = pages;
   if (asPathWithoutLang.startsWith('/base')) {
     productPages = basePages;
