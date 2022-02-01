@@ -40,7 +40,7 @@ const IconButtonRoot = styled('button', {
     '--IconButton-size': '2.5rem',
     padding: '0.25rem',
     ...(ownerState.variant === 'outlined' && {
-      padding: 'calc(0.25rem - 1px)', // account for the border width
+      padding: 'calc(0.25rem - var(--variant-outlined-borderWidth))', // account for the border width
     }),
     ...(ownerState.size === 'sm' && {
       '--IconButton-size': '2rem',
@@ -49,7 +49,7 @@ const IconButtonRoot = styled('button', {
       '--IconButton-size': '3rem',
       padding: '0.5rem',
       ...(ownerState.variant === 'outlined' && {
-        padding: 'calc(0.5rem - 1px)', // account for the border width
+        padding: 'calc(0.5rem - var(--variant-outlined-borderWidth))', // account for the border width
       }),
     }),
     minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content

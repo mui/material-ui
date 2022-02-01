@@ -108,7 +108,10 @@ export const getOutlinedDefaultVariant = (color: ColorPaletteProp) => ({
     color === 'context'
       ? `var(--joy-variant-outlinedColor)`
       : `var(--joy-palette-${color}-outlinedColor)`,
-  border: '1px solid',
+  // this variable prefix cannot be configured. It is intended to be the used as a reference to the global outlined border's width
+  '--variant-outlined-borderWidth': '1px',
+  borderWidth: 'var(--variant-outlined-borderWidth, 1px)',
+  borderStyle: 'solid',
   borderColor:
     color === 'context'
       ? `var(--joy-variant-outlinedBorder)`
