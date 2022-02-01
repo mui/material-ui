@@ -125,16 +125,9 @@ export default function JoyButton() {
             <IconButton variant="contained" size="lg" color="success">
               <ThumbUp fontSize="xl4" />
             </IconButton>
-            <Button
-              variant="outlined"
-              sx={{
-                '--Button-gutter': '0.25rem',
-                minWidth: 'var(--Button-minHeight)',
-                borderRadius: 'var(--Button-minHeight)',
-              }}
-            >
+            <IconButton variant="outlined" sx={{ borderRadius: 'var(--IconButton-size)' }}>
               <Add />
-            </Button>
+            </IconButton>
           </Box>
           <Box
             sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
