@@ -33,6 +33,12 @@ export interface IconButtonClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `shape="rounded"`. */
+  shapeRounded: string;
+  /** Styles applied to the root element if `shape="square"`. */
+  shapeSquare: string;
+  /** Styles applied to the root element if `shape="circular"`. */
+  shapeCircular: string;
 }
 
 export type IconButtonClassKey = keyof IconButtonClasses;
@@ -58,6 +64,9 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'shapeRounded',
+  'shapeSquare',
+  'shapeCircular',
 ]);
 
 export default iconButtonClasses;

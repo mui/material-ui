@@ -9,7 +9,7 @@ import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasse
 import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
 const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
+  const { color, disabled, focusVisible, focusVisibleClassName, size, shape, variant } = ownerState;
 
   const slots = {
     root: [
@@ -19,6 +19,7 @@ const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      shape && `shape${capitalize(shape)}`,
     ],
   };
 
@@ -44,6 +45,7 @@ const IconButtonRoot = styled('button', {
     }),
     ...(ownerState.size === 'sm' && {
       '--IconButton-size': '2rem',
+      // same padding as size `md`
     }),
     ...(ownerState.size === 'lg' && {
       '--IconButton-size': '3rem',
@@ -55,6 +57,12 @@ const IconButtonRoot = styled('button', {
     minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content
     minHeight: 'var(--IconButton-size)', // use min-height instead of height to make the button resilient to its content
     borderRadius: theme.vars.radius.sm,
+    ...(ownerState.shape === 'square' && {
+      borderRadius: 0,
+    }),
+    ...(ownerState.shape === 'circular' && {
+      borderRadius: 'var(--IconButton-size)', // don't divided by 2, in case the icon causes the size to be bigger so that the button remains circular
+    }),
     border: 'none',
     backgroundColor: 'transparent',
     display: 'inline-flex',
@@ -86,6 +94,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color = 'primary',
     variant = 'light',
     size = 'md',
+    shape = 'rounded',
     ...other
   } = props;
 
@@ -117,6 +126,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     variant,
     size,
+    shape,
     focusVisible,
   };
 

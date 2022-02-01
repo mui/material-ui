@@ -25,11 +25,16 @@ describe('Joy <IconButton />', () => {
     expect(button).to.have.class(classes.variantLight);
     expect(button).to.have.class(classes.sizeMd);
     expect(button).to.have.class(classes.colorPrimary);
+    expect(button).to.have.class(classes.shapeRounded);
 
     // should not have other variant classes
     expect(button).not.to.have.class(classes.variantOutlined);
     expect(button).not.to.have.class(classes.variantText);
     expect(button).not.to.have.class(classes.variantContained);
+
+    // should not have other shape classes
+    expect(button).not.to.have.class(classes.shapeSquare);
+    expect(button).not.to.have.class(classes.shapeCircular);
   });
 
   it('should render an outlined button', () => {
@@ -65,6 +70,20 @@ describe('Joy <IconButton />', () => {
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.sizeLg);
+  });
+
+  it('should render a square button', () => {
+    const { getByRole } = render(<IconButton shape="square">Hello World</IconButton>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.shapeSquare);
+  });
+
+  it('should render a circular button', () => {
+    const { getByRole } = render(<IconButton shape="circular">Hello World</IconButton>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.shapeCircular);
   });
 
   it('should disable the component', () => {
