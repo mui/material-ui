@@ -45,6 +45,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     disablePortal,
     modifiers,
     open,
+    ownerState,
     placement: initialPlacement,
     popperOptions,
     popperRef: popperRefProp,

@@ -1,8 +1,13 @@
 ---
 title: Componente React para Linha do tempo
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
+<<<<<<< HEAD
 githubLabel: 'component: Timeline'
 packageName: '@material-ui/lab'
+=======
+githubLabel: 'component: timeline'
+packageName: '@mui/lab'
+>>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)
 ---
 
 # Linha do tempo

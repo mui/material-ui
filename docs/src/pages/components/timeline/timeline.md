@@ -1,7 +1,7 @@
 ---
 title: React Timeline component
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
-githubLabel: 'component: Timeline'
+githubLabel: 'component: timeline'
 packageName: '@mui/lab'
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Text Field React component
 components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
-githubLabel: 'component: TextField'
+githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
 ---
 

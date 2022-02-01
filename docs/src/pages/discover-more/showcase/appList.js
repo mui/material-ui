@@ -144,7 +144,7 @@ const appList = [
       'Schedule, dispatch, GPS track employees, invoice, accept credit cards and get booked ' +
       'online. The marketing website is also built with MUI: https://www.housecallpro.com/',
     image: 'housecall.jpg',
-    link: 'https://pro.housecall.io/pro/log_in',
+    link: 'https://pro.housecallpro.com/pro/log_in',
     similarWebVisits: 1800,
     dateAdded: '2019-01-01',
   },
@@ -292,7 +292,7 @@ const appList = [
     title: 'Commit Swimming',
     description: 'The #1 workout journal for coaches and swimmers.',
     image: 'commitswimming.jpg',
-    link: 'https://www.commitswimming.com/',
+    link: 'https://commitswimming.com/',
     dateAdded: '2019-01-01',
   },
   {

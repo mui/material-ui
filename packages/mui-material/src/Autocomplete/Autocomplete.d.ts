@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
+import { PaperProps } from '@mui/material/Paper';
 import { PopperProps } from '@mui/material/Popper';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
@@ -101,6 +102,7 @@ export interface AutocompleteProps<
    */
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
+    paper?: PaperProps;
   };
   /**
    * If `true`, the component is disabled.
@@ -187,6 +189,11 @@ export interface AutocompleteProps<
    * @default <ArrowDropDownIcon />
    */
   popupIcon?: React.ReactNode;
+  /**
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * @default false
+   */
+  readOnly?: boolean;
   /**
    * Render the group.
    *

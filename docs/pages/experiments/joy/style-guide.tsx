@@ -9,10 +9,10 @@ import {
   styled,
   ColorPaletteProp,
   TypographySystem,
-  createGetThemeVar,
+  createGetCssVar,
 } from '@mui/joy/styles';
 
-const getThemeVar = createGetThemeVar();
+const getCssVar = createGetCssVar();
 
 const rgb2hex = (rgb: string) =>
   `#${(rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/) || [])
@@ -26,7 +26,7 @@ const Typography = styled('p', {
   ({ theme, level = 'body1', color }) => [
     { margin: 0 },
     theme.typography[level],
-    color && color !== 'context' && { color: getThemeVar(`palette-${color}-textColor`) },
+    color && color !== 'context' && { color: getCssVar(`palette-${color}-textColor`) },
   ],
 );
 
@@ -85,12 +85,12 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
       <Box
         ref={ref}
         sx={(theme) => ({
-          borderRadius: `calc(${theme.getThemeVar('radius-md')} / 2)`,
+          borderRadius: `calc(${theme.getCssVar('radius-md')} / 2)`,
           bgcolor: value,
           width: 64,
           height: 64,
           mb: 1,
-          boxShadow: theme.getThemeVar('shadow-sm'),
+          boxShadow: theme.getCssVar('shadow-sm'),
         })}
       />
       <Typography level="body3">{name}</Typography>
@@ -118,7 +118,7 @@ const PaletteTokens = () => {
               <summary
                 style={{
                   marginBottom: '0.5rem',
-                  fontFamily: getThemeVar('fontFamily-body'),
+                  fontFamily: getCssVar('fontFamily-body'),
                   cursor: 'pointer',
                 }}
               >

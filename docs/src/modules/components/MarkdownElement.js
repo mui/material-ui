@@ -177,19 +177,24 @@ const Root = styled('div')(({ theme }) => ({
   '& td': {
     ...theme.typography.body2,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 16,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
     color: theme.palette.text.secondary,
   },
   '& td code': {
     lineHeight: 1.6,
   },
   '& th': {
+    fontSize: theme.typography.pxToRem(14),
     lineHeight: theme.typography.pxToRem(24),
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     color: theme.palette.text.primary,
     whiteSpace: 'pre',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 16,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
   },
   '& blockquote': {
     borderRadius: theme.shape.borderRadius,

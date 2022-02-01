@@ -20,6 +20,8 @@ This [selection of basic templates](/getting-started/templates/) will help you g
 
 ## Recommended resources
 
+> ⚠️ Note that the resources linked below are using MUI v4, which is not the latest major version. As v5 has been released recently, it will take some time till new contents are created. If you have created any learning material for v5, let us know and we can link them here.
+
 When first learning MUI, you might find third-party blog posts, books and video courses more helpful than the official documentation.
 Here are some recommended resources, some of which are free.
 
@@ -43,7 +45,7 @@ Here are some recommended resources, some of which are free.
 
 - **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with MUI and React.
 
-  - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
+  - 💻 [The Course](https://www.udemy.com/course/implement-high-fidelity-designs-with-material-ui-and-reactjs/)
 
 - **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using MUI and React.
 

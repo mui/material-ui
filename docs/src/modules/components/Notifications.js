@@ -133,14 +133,13 @@ export default function Notifications() {
         enterDelay={300}
       >
         <IconButton
-          color="inherit"
+          color="primary"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
-          sx={{ px: '10px' }}
         >
           <Badge
             color="error"
@@ -192,7 +191,12 @@ export default function Notifications() {
                     messageList.map((message, index) => (
                       <React.Fragment key={message.id}>
                         <ListItem alignItems="flex-start">
-                          <Typography gutterBottom>{message.title}</Typography>
+                          <Typography gutterBottom>
+                            <span
+                              // eslint-disable-next-line react/no-danger
+                              dangerouslySetInnerHTML={{ __html: message.title }}
+                            />
+                          </Typography>
                           <Typography gutterBottom variant="body2">
                             <span
                               id="notification-message"

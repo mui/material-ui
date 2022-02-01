@@ -1,10 +1,10 @@
 ---
+title: Q2 2020 Update
 description: An update on our mission for Q2 2020.
+date: 2020-07-17T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['Company update']
 ---
-
-# Q2 2020 Update
-
-Olivier Tassinari. July 17, 2020.
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
 
@@ -100,7 +100,7 @@ We'll do our best, no guarantee!
 
 These are objectives, no guarantees:
 
-- 🏢 We will [hire](/company/jobs/) 3 full-time roles in the team.
+- 🏢 We will [hire](/careers/) 3 full-time roles in the team.
 
   - One person on the open-source side to focus on the design system problem (unstyled, theming, styling, etc.): ✅ starting in two months.
   - One person on the enterprise side to consolidate the development of the advanced components: 🚧 Work in progress.

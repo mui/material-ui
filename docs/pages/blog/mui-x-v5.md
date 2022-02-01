@@ -5,6 +5,7 @@ date: 2021-11-22T00:00:00.000Z
 authors:
   ['oliviertassinari', 'm4theushw', 'flaviendelangle', 'DanailH', 'alexfauquette']
 card: true
+tags: ['News']
 ---
 
 We are excited to introduce [MUI X v5.0.0](https://github.com/mui-org/material-ui-x/releases/tag/v5.0.0)!
@@ -38,7 +39,7 @@ This approach recognizes that the problems solved by the components in these two
 The paths to success require different strategies.
 Many of the developers using MUI X also use MUI Core, these users care a lot about consistency (design, docs, dependencies, etc.).
 
-With the [release of MUI Core v5](/blog/mui-core-v5) two months ago MUI X had to work on providing a cohesive experience.
+With the [release of MUI Core v5](/blog/mui-core-v5/) two months ago MUI X had to work on providing a cohesive experience.
 The primary objective of this new major is to have MUI X provide a great **compatibility with MUI Core v5**.
 
 ## A new virtualization engine
@@ -183,7 +184,7 @@ export default function App() {
 }
 ```
 
-#### Limitations
+### Limitations
 
 Although this was a clear improvement, we still had to keep a CSS specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, specifically the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all of the components that are nested in them.
 This is due to performance implications related to how [emotion](https://emotion.sh/) injects styles into the page,

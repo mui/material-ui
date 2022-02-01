@@ -36,13 +36,11 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, ExportedPi
   onBlur?: () => void;
 }
 
-const PickersPopperRoot = styled(Popper, { skipSx: true })<{ ownerState: PickerPopperProps }>(
-  ({ theme }) => ({
-    zIndex: theme.zIndex.modal,
-  }),
-);
+const PickersPopperRoot = styled(Popper)<{ ownerState: PickerPopperProps }>(({ theme }) => ({
+  zIndex: theme.zIndex.modal,
+}));
 
-const PickersPopperPaper = styled(Paper, { skipSx: true })<{
+const PickersPopperPaper = styled(Paper)<{
   ownerState: PickerPopperProps & Pick<MuiPopperProps, 'placement'>;
 }>(({ ownerState }) => ({
   transformOrigin: 'top center',

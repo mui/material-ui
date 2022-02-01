@@ -4,10 +4,11 @@ description: We are excited to share that Danilo Leal has joined MUI.
 date: 2021-07-15T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
+tags: ['Team']
 ---
 
 We are excited to share that [Danilo Leal](https://daniloleal.co/) has joined MUI!
-He started a couple of days ago as a lead designer.
+He started a couple of days ago as a Lead Designer.
 
 Before joining MUI, he worked as a designer at Loggi, a Brazilian logistics unicorn.
 He has spent the last five years diving into product design, product strategy, and design systems.

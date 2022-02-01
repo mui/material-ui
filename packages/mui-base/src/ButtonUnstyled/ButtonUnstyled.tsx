@@ -144,16 +144,14 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
   /**
    * @ignore
    */

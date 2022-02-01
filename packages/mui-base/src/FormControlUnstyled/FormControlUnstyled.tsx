@@ -195,7 +195,9 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * @ignore
    */

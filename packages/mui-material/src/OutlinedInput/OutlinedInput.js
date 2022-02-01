@@ -140,7 +140,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
         <NotchedOutlineRoot
           className={classes.notchedOutline}
           label={
-            label && fcs.required ? (
+            label != null && label !== '' && fcs.required ? (
               <React.Fragment>
                 {label}
                 &nbsp;{'*'}

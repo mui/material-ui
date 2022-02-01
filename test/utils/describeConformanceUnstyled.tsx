@@ -13,7 +13,7 @@ import {
 
 export interface SlotTestingOptions {
   testWithComponent?: React.ComponentType;
-  testWithElement?: keyof JSX.IntrinsicElements;
+  testWithElement?: keyof JSX.IntrinsicElements | null;
   expectedClassName: string;
   isOptional?: boolean;
 }
@@ -42,7 +42,7 @@ interface WithClassName {
 
 interface WithCustomProp {
   fooBar: string;
-  tabIndex: number;
+  lang: string;
 }
 
 interface WithOwnerState {
@@ -75,14 +75,14 @@ function testPropForwarding(
 
   it('forwards custom props to the root element if a component is provided', () => {
     const CustomRoot = React.forwardRef(
-      ({ fooBar, tabIndex }: WithCustomProp, ref: React.ForwardedRef<any>) => {
+      ({ fooBar, lang }: WithCustomProp, ref: React.ForwardedRef<any>) => {
         // @ts-ignore
-        return <Element ref={ref} data-foobar={fooBar} tabIndex={tabIndex} />;
+        return <Element ref={ref} data-foobar={fooBar} lang={lang} />;
       },
     );
 
     const otherProps = {
-      tabIndex: '0',
+      lang: 'fr',
       fooBar: randomStringValue(),
     };
 
@@ -90,13 +90,13 @@ function testPropForwarding(
       React.cloneElement(element, { components: { Root: CustomRoot }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex.toString());
+    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps.fooBar);
   });
 
   it('does forward standard props to the root element if an intrinsic element is provided', () => {
     const otherProps = {
-      tabIndex: '0',
+      lang: 'fr',
       'data-foobar': randomStringValue(),
     };
 
@@ -104,7 +104,7 @@ function testPropForwarding(
       React.cloneElement(element, { components: { Root: Element }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex);
+    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps['data-foobar']);
   });
 }
@@ -140,17 +140,28 @@ function testComponentsProp(
       expect(renderedElement).to.have.class(slotOptions.expectedClassName);
     });
 
-    it(`allows overriding the ${capitalize(slotName)} slot with an element`, () => {
-      const slotElement = slotOptions.testWithElement ?? 'i';
+    if (slotOptions.testWithElement !== null) {
+      it(`allows overriding the ${capitalize(slotName)} slot with an element`, () => {
+        const slotElement = slotOptions.testWithElement ?? 'i';
 
-      const components = {
-        [capitalize(slotName)]: slotElement,
-      };
+        const components = {
+          [capitalize(slotName)]: slotElement,
+        };
 
-      const { container } = render(React.cloneElement(element, { components }));
-      const renderedElement = container.querySelector(slotElement);
-      expect(renderedElement).to.have.class(slotOptions.expectedClassName);
-    });
+        const componentsProps = {
+          [slotName]: {
+            'data-testid': 'customized',
+          },
+        };
+
+        const { getByTestId } = render(
+          React.cloneElement(element, { components, componentsProps }),
+        );
+        const renderedElement = getByTestId('customized');
+        expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
+        expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+      });
+    }
 
     if (slotOptions.isOptional) {
       it(`alows omitting the optional ${capitalize(slotName)} slot by providing null`, () => {

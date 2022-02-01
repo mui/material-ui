@@ -95,7 +95,7 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('text').textContent).to.equal('var(--mui-fontSize)');
     });
 
-    it('provide getThemeVar util', () => {
+    it('provide getCssVar util', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: { palette: { primary: { 500: '#ff5252' } } } },
@@ -105,7 +105,7 @@ describe('createCssVarsProvider', () => {
       });
       const Text = () => {
         const theme = useTheme();
-        return <div data-testid={`text`}>{theme.getThemeVar('palette-primary-500')}</div>;
+        return <div data-testid={`text`}>{theme.getCssVar('palette-primary-500')}</div>;
       };
       render(
         <CssVarsProvider>

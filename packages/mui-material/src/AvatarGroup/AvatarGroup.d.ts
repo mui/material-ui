@@ -3,9 +3,11 @@ import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { AvatarGroupClasses } from './avatarGroupClasses';
+import Avatar from '../Avatar';
 
 export interface AvatarGroupPropsVariantOverrides {}
 
+export interface AvatarGroupComponentsPropsOverrides {}
 export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The avatars to stack.
@@ -15,6 +17,14 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<AvatarGroupClasses>;
+  /**
+   * The props used for each slot inside the AvatarGroup.
+   * @default {}
+   */
+  componentsProps?: {
+    additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
+      AvatarGroupComponentsPropsOverrides;
+  };
   /**
    * Max avatars to show before +x.
    * @default 5
