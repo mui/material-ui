@@ -2,6 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/joy/styles';
+import Adornment from '@mui/joy/Adornment';
 
 const InputRoot = styled('div')(({ ownerState }) => [
   {
@@ -73,14 +74,11 @@ const InputBorder = styled('div')(({ theme }) => ({
   borderRadius: theme.vars.radius.xs,
 }));
 
-const InputAdornment = styled('div')(({ theme, ownerState }) => ({
+const InputAdornment = styled(Adornment)(({ theme, ownerState }) => ({
   position: 'absolute',
   top: 0,
   bottom: 0,
   width: 'var(--Input-minHeight)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   color: theme.vars.palette.neutral.textColor,
   pointerEvents: 'none',
   border: '1px solid transparent', // to have content within input's border
@@ -100,6 +98,7 @@ export default function Input({
   error = false,
   fullWidth = false,
   disabled = false,
+  placeholder = '',
   ...props
 }) {
   const ownerState = {
@@ -108,6 +107,7 @@ export default function Input({
     endAdornment,
     error,
     fullWidth,
+    placeholder,
     ...props,
   };
   return (
@@ -118,12 +118,15 @@ export default function Input({
       <InputInput
         ownerState={ownerState}
         disabled={disabled}
+        placeholder={placeholder}
         {...props}
         className={clsx(disabled && 'Mui-disabled')}
       />
       <InputBorder />
       {endAdornment && (
-        <InputAdornment ownerState={{ ...ownerState, end: true }}>{endAdornment}</InputAdornment>
+        <InputAdornment ownerState={{ ...ownerState, end: true }} end>
+          {endAdornment}
+        </InputAdornment>
       )}
     </InputRoot>
   );
