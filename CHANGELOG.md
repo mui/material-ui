@@ -59,6 +59,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 28 -->[blog] Introducing callback support in style overrides (#30668) @siriwatknp
+- &#8203;<!-- 23 -->[docs] Add notifications for the blog posts (#30852) @siriwatknp
 - &#8203;<!-- 22 -->[docs] Improve the interoperability guide (#30785) @mnajdova
 - &#8203;<!-- 21 -->[docs] Improve the Getting Started documentation content (#30808) @mnajdova
 - &#8203;<!-- 20 -->[docs] Fix typo in ad fallback (#30823) @cherniavskii
@@ -70,6 +71,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 29 -->[core] Clarify the label, to match with MUI X (#30831) @oliviertassinari
 - &#8203;<!-- 26 -->[core] Remove none code related instructions from git (#30843) @oliviertassinari
 - &#8203;<!-- 25 -->[core] Fix typos in comments for scripts (#30809) @aefox
 - &#8203;<!-- 24 -->[core] Fix 301 link in the blog @oliviertassinari
