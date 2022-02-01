@@ -123,7 +123,7 @@ export default function Hero() {
       rightSx={{
         p: 3,
         minWidth: 2000,
-        overflowY: 'auto',
+        overflow: 'scroll',
         '& > div': {
           width: 360,
           display: 'inline-flex',

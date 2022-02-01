@@ -217,7 +217,7 @@ export default function Hero() {
         p: 3,
         minWidth: 2000,
         flexDirection: 'column',
-        overflowY: 'auto',
+        overflow: 'scroll',
       }}
       right={
         <ThemeProvider
