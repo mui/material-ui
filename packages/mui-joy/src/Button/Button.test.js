@@ -7,12 +7,13 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('Joy <Button />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Button>Conformance?</Button>, () => ({
+  describeConformance(<Button startIcon="icon">Conformance?</Button>, () => ({
     render,
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
+    testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
     testVariantProps: { variant: 'contained', fullWidth: true },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
@@ -72,5 +73,23 @@ describe('Joy <Button />', () => {
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.fullWidth);
+  });
+
+  it('should render a button with startIcon', () => {
+    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+    const button = getByRole('button');
+    const startIcon = button.querySelector(`.${classes.startIcon}`);
+
+    expect(button).to.have.class(classes.root);
+    expect(startIcon).not.to.have.class(classes.endIcon);
+  });
+
+  it('should render a button with endIcon', () => {
+    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
+    const button = getByRole('button');
+    const endIcon = button.querySelector(`.${classes.endIcon}`);
+
+    expect(button).to.have.class(classes.root);
+    expect(endIcon).not.to.have.class(classes.startIcon);
   });
 });
