@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
 import { styled } from '@mui/joy/styles';
+import Adornment from '@mui/joy/Adornment';
 
 export const List = styled('ul')(() => ({
   display: 'flex',
@@ -39,18 +40,24 @@ const ListItemButtonRoot = styled('button')(({ theme, ownerState }) => [
   ownerState.variant && theme.variants[`${ownerState.variant}Hover`][ownerState.color],
 ]);
 
-const ListItemIcon = styled('div')(({ theme }) => ({
-  marginRight: '0.75rem',
-  lineHeight: 1,
-  display: 'inline-flex',
-  '& > svg': {
-    fontSize: theme.vars.fontSize.md,
-  },
+// const ListItemIcon = styled('div')(({ theme }) => ({
+//   marginRight: '0.75rem',
+//   lineHeight: 1,
+//   display: 'inline-flex',
+//   '& > svg': {
+//     fontSize: theme.vars.fontSize.md,
+//   },
+// }));
+
+export const ListItem = styled('li')(() => ({
+  display: 'flex',
+  alignItems: 'center',
 }));
 
 export const ListItemButton = ({
   children,
-  startIcon,
+  startIcon = null,
+  endIcon = null,
   variant = '',
   color = 'neutral',
   ...props
@@ -58,8 +65,13 @@ export const ListItemButton = ({
   const ownerState = { ...props, variant, color, startIcon };
   return (
     <ListItemButtonRoot ownerState={ownerState} {...props}>
-      {startIcon && <ListItemIcon>{startIcon}</ListItemIcon>}
+      {startIcon && <Adornment>{startIcon}</Adornment>}
       {children}
+      {endIcon && (
+        <Adornment end sx={{ '--Adornment-gap': 'auto' }}>
+          {endIcon}
+        </Adornment>
+      )}
     </ListItemButtonRoot>
   );
 };

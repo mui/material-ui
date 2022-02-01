@@ -903,21 +903,21 @@ export default function Strapi() {
           />
           <Box sx={{ flexGrow: 1, minHeight: 0 }}>
             <List>
-              <ListItemButton startIcon={<Edit />}>Content</ListItemButton>
+              <ListItemButton startIcon={(<Edit />) as any}>Content</ListItemButton>
               <li>
                 <Box component="ul" sx={{ p: 0 }}>
                   <ListSubheader>plugins</ListSubheader>
-                  <ListItemButton startIcon={<ViewCompact />}>Builder</ListItemButton>
-                  <ListItemButton startIcon={<PermMedia />}>Builder</ListItemButton>
-                  <ListItemButton startIcon={<Info />}>Builder</ListItemButton>
+                  <ListItemButton startIcon={(<ViewCompact />) as any}>Builder</ListItemButton>
+                  <ListItemButton startIcon={(<PermMedia />) as any}>Builder</ListItemButton>
+                  <ListItemButton startIcon={(<Info />) as any}>Builder</ListItemButton>
                 </Box>
               </li>
               <li>
                 <Box component="ul" sx={{ p: 0 }}>
                   <ListSubheader>general</ListSubheader>
-                  <ListItemButton startIcon={<Extension />}>Plugins</ListItemButton>
-                  <ListItemButton startIcon={<ShoppingCart />}>Marketplace</ListItemButton>
-                  <ListItemButton startIcon={<Settings />}>
+                  <ListItemButton startIcon={(<Extension />) as any}>Plugins</ListItemButton>
+                  <ListItemButton startIcon={(<ShoppingCart />) as any}>Marketplace</ListItemButton>
+                  <ListItemButton startIcon={(<Settings />) as any}>
                     Settings <Badge sx={{ ml: 'auto' }}>2</Badge>
                   </ListItemButton>
                 </Box>
@@ -1263,17 +1263,17 @@ export default function Strapi() {
           />
           <List as="nav" aria-describedby="global-settings" sx={{ pr: 0, pl: '0.75rem' }}>
             <ListSubheader id="global-settings">GLOBAL SETTINGS</ListSubheader>
-            <ListItemButton startIcon={<Apps />} variant="text">
+            <ListItemButton startIcon={(<Apps />) as any} variant="text">
               Application
             </ListItemButton>
-            <ListItemButton startIcon={<VpnKey />} variant="text">
+            <ListItemButton startIcon={(<VpnKey />) as any} variant="text">
               API Tokens
             </ListItemButton>
-            <ListItemButton startIcon={<HistoryEdu />} variant="text">
+            <ListItemButton startIcon={(<HistoryEdu />) as any} variant="text">
               Content manager
             </ListItemButton>
             <ListItemButton
-              startIcon={<Webhook />}
+              startIcon={(<Webhook />) as any}
               variant="light"
               color="primary"
               sx={{
@@ -1302,7 +1302,7 @@ export default function Strapi() {
                 Get POST changes notifications
               </Typography>
             </div>
-            <Button startIcon={<Add />} sx={{ alignSelf: 'center' }}>
+            <Button startIcon={(<Add />) as any} sx={{ alignSelf: 'center' }}>
               Add new webhook
             </Button>
           </Box>
@@ -1469,16 +1469,18 @@ export default function Strapi() {
               <Button
                 variant="light"
                 startIcon={
-                  <Box
-                    sx={{
-                      borderRadius: '50%',
-                      display: 'inline-flex',
-                      p: '0.25rem',
-                      bgcolor: 'var(--joy-palette-primary-lightHoverBg)',
-                    }}
-                  >
-                    <Add />
-                  </Box>
+                  (
+                    <Box
+                      sx={{
+                        borderRadius: '50%',
+                        display: 'inline-flex',
+                        p: '0.25rem',
+                        bgcolor: 'var(--joy-palette-primary-lightHoverBg)',
+                      }}
+                    >
+                      <Add />
+                    </Box>
+                  ) as any
                 }
                 sx={{
                   '--Button-iconOffsetStep': 0,
