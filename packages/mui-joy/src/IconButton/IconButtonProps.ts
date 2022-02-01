@@ -48,10 +48,6 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', IconButtonPropsSizeOverrides>;
     /**
-     * The shape of the component.
-     */
-    shape?: 'rounded' | 'square' | 'circular';
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
