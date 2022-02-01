@@ -26,13 +26,16 @@ const ColorSchemePicker = () => {
   return (
     <Button
       variant="outlined"
-      square
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
         } else {
           setMode('light');
         }
+      }}
+      sx={{
+        p: '0.25rem',
+        width: 'var(--Button-minHeight)',
       }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
