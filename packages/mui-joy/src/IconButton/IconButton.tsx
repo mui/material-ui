@@ -180,6 +180,10 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The shape of the component.
+   */
+  shape: PropTypes.oneOf(['circular', 'rounded', 'square']),
+  /**
    * The size of the component.
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
