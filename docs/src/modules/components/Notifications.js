@@ -197,7 +197,7 @@ export default function Notifications() {
                               dangerouslySetInnerHTML={{ __html: message.title }}
                             />
                           </Typography>
-                          <Typography gutterBottom variant="body2">
+                          <Typography gutterBottom variant="body2" color="text.secondary">
                             <span
                               id="notification-message"
                               // eslint-disable-next-line react/no-danger
