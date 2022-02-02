@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   defaultListboxReducer,
   ListboxAction,
@@ -18,8 +19,11 @@ export interface UseMenuProps {
   listboxRef?: React.Ref<HTMLElement>;
 }
 
-export default function useMenu({ listboxRef }: UseMenuProps) {
+export default function useMenu({ listboxRef: listboxRefProp }: UseMenuProps) {
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
+
+  const listboxRef = React.useRef<HTMLElement>(null);
+  const handleRef = useForkRef(listboxRefProp, listboxRef);
 
   const registerItem = React.useCallback((id, metadata) => {
     setMenuItems((previousState) => {
@@ -57,14 +61,15 @@ export default function useMenu({ listboxRef }: UseMenuProps) {
   const { getOptionState, getOptionProps, getRootProps, highlightedOption } = useListbox({
     options: Object.keys(menuItems),
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
-    listboxRef,
+    listboxRef: handleRef,
     focusManagement: 'DOM',
     stateReducer,
     disabledItemsFocusable: true,
   });
 
   React.useEffect(() => {
-    if (highlightedOption !== null) {
+    // set focus to the highlighted item (but prevent stealing focus from other elements on the page)
+    if (listboxRef.current?.contains(document.activeElement) && highlightedOption !== null) {
       menuItems?.[highlightedOption]?.ref.current?.focus();
     }
   }, [highlightedOption, menuItems]);
