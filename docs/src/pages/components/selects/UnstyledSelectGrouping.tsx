@@ -133,7 +133,7 @@ const StyledGroupRoot = styled('li')`
 
 const StyledGroupHeader = styled('span')`
   display: block;
-  padding: 15px 0px 5px 10px;
+  padding: 15px 0 5px 10px;
   font-size: 0.75em;
   font-weight: 600;
   text-transform: uppercase;
