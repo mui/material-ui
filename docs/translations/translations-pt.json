@@ -1,5 +1,5 @@
 {
-  "adblock": "Se você não se importa com anúncios relacionados à tecnologia e deseja dar suporte ao código aberto, inscreva o MUI na lista de liberações no seu bloqueador de anúncios.",
+  "adblock": "If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist MUI in your blocker.",
   "api-docs": {
     "componentName": "Nome do componente",
     "cssComponent": "Como um utilitário CSS, o componente {{name}} também suporta todas as propriedades do <a href=\"/system/properties/\"><code>sistema</code></a> . Você pode usá-los como \"props\" diretamente no componente.",
@@ -117,7 +117,8 @@
     "mode": "Modo",
     "rtl": "Direita para esquerda",
     "settings": "Configurações",
-    "system": "sistema"
+    "system": "sistema",
+    "language": "Language"
   },
   "showFullSource": "Ver o código fonte completo",
   "showJSSource": "Ver o fonte JavaScript",
@@ -334,7 +335,6 @@
     "/discover-more/languages": "Idiomas",
     "/about": "Sobre nós",
     "https://mui.com/store/": "Templates",
-    "/versions": "Versões",
-    "https://medium.com/material-ui": "Blog"
+    "/versions": "Versões"
   }
 }
