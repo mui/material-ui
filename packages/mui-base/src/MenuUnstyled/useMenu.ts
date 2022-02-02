@@ -60,6 +60,7 @@ export default function useMenu({ listboxRef }: UseMenuProps) {
     listboxRef,
     focusManagement: 'DOM',
     stateReducer,
+    disabledItemsFocusable: true,
   });
 
   React.useEffect(() => {
