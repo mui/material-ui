@@ -18,9 +18,7 @@ const columns = [
     sortable: false,
     width: 160,
     valueGetter: (params) =>
-      `${params.getValue(params.id, 'firstName') || ''} ${
-        params.getValue(params.id, 'lastName') || ''
-      }`,
+      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
 ];
 

@@ -178,7 +178,7 @@ describe('buildApiUtils', () => {
           },
           {
             name: 'Buttons',
-            demoPathname: '/material/react-buttons/',
+            demoPathname: '/material/react-button/',
           },
         ]);
       }
@@ -216,7 +216,7 @@ describe('buildApiUtils', () => {
         expect(info.getDemos()).to.deep.equal([
           {
             name: 'Buttons',
-            demoPathname: '/material/react-buttons/',
+            demoPathname: '/material/react-button/',
           },
         ]);
       }

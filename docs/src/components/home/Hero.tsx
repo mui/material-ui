@@ -122,6 +122,7 @@ export default function Hero() {
       }
       rightSx={{
         p: 3,
+        ml: 2,
         minWidth: 2000,
         overflowY: 'auto',
         '& > div': {

@@ -177,10 +177,6 @@ const StyledSlider = styled(Slider, {
 
 {{"demo": "pages/customization/how-to-customize/DynamicCSSVariables.js"}}
 
-### Theme nesting
-
-{{"demo": "pages/customization/how-to-customize/DynamicThemeNesting.js"}}
-
 ## 4. Global theme variation
 
 In order to promote consistency between components, and manage the user interface appearance as a whole, MUI provides a mechanism to apply global changes.
@@ -225,7 +221,3 @@ If you are already using the [CssBaseline](/components/css-baseline/) component 
    )
  }
 ```
-
-## 6. Custom class name
-
-Check out [ClassName Generator](/guides/classname-generator/) section for more details.

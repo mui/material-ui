@@ -67,14 +67,14 @@ const Root = styled('div')(({ theme }) => ({
     fontFamily: theme.typography.fontFamilySystem,
     fontWeight: 700,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
-    margin: '40px 0 8px',
+    margin: '40px 0 4px',
   },
   '& h3': {
     ...theme.typography.h6,
     fontFamily: theme.typography.fontFamilySystem,
-    fontWeight: 700,
+    fontWeight: 600,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
-    margin: '28px 0 8px',
+    margin: '24px 0 8px',
   },
   '& h4': {
     ...theme.typography.subtitle1,

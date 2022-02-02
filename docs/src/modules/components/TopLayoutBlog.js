@@ -11,12 +11,12 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import Divider from '@mui/material/Divider';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import ROUTES from 'docs/src/route';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import Link from 'docs/src/modules/components/Link';
 
 export const authors = {
   oliviertassinari: {
@@ -87,7 +87,8 @@ const styles = (theme) => ({
   back: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+    marginLeft: theme.spacing(-1),
   },
   container: {
     paddingTop: 60 + 20,
@@ -127,7 +128,7 @@ const styles = (theme) => ({
 const AuthorsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(4),
   '& .author': {
     display: 'flex',
     alignItems: 'center',
@@ -199,6 +200,8 @@ function TopLayoutBlog(props) {
                       </Typography>
                       <Link
                         href={`https://github.com/${authors[author].github}`}
+                        target="_blank"
+                        rel="noreferrer noopener"
                         color="text.secondary"
                         variant="body2"
                         sx={{ fontWeight: 500 }}
@@ -209,7 +212,6 @@ function TopLayoutBlog(props) {
                   </div>
                 ))}
               </AuthorsContainer>
-              <Divider sx={{ marginBottom: (theme) => theme.spacing(6) }} />
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {

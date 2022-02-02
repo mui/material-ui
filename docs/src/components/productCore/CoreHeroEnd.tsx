@@ -15,10 +15,10 @@ export default function CoreHeroEnd() {
   return (
     <ThemeProvider theme={brandingDarkTheme}>
       <Section bg="dim">
-        <Box sx={{ py: 4 }}>
+        <Box>
           <Grid container spacing={2} alignItems="center">
             <Grid item md={6}>
-              <Box maxWidth={500}>
+              <Box maxWidth={500} sx={{ mb: 4 }}>
                 <SectionHeadline
                   overline="Community"
                   title="Get and give help by joining our contributors community"
@@ -32,6 +32,7 @@ export default function CoreHeroEnd() {
                   size="large"
                   variant="contained"
                   endIcon={<KeyboardArrowRightRounded />}
+                  sx={{ width: { xs: '100%', sm: 'auto' } }}
                 >
                   Learn more
                 </Button>
