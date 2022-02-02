@@ -216,7 +216,9 @@ export default function createCssVarsProvider(options) {
       >
         <GlobalStyles styles={{ ':root': rootCss }} />
         <GlobalStyles styles={styleSheet} />
-        <ThemeProvider theme={resolveTheme(mergedTheme)}>{children}</ThemeProvider>
+        <ThemeProvider theme={resolveTheme ? resolveTheme(mergedTheme) : mergedTheme}>
+          {children}
+        </ThemeProvider>
       </ColorSchemeContext.Provider>
     );
   }
