@@ -1,7 +1,31 @@
 import { expect } from 'chai';
-import { createVariantStyle, createVariant } from './variantUtils';
+import { createVariantStyle, isVariantPalette } from './variantUtils';
 
 describe('variant utils', () => {
+  it('isVariantPalette', () => {
+    expect(
+      isVariantPalette({
+        100: '',
+        200: '',
+      }),
+    ).to.equal(false);
+    expect(
+      isVariantPalette({
+        textColor: '',
+      }),
+    ).to.equal(true);
+    expect(
+      isVariantPalette({
+        lightBg: '',
+      }),
+    ).to.equal(true);
+    expect(
+      isVariantPalette({
+        containedBg: '',
+      }),
+    ).to.equal(true);
+  });
+
   describe('initial state', () => {
     it('[color] should create a variant', () => {
       expect(
@@ -275,31 +299,6 @@ describe('variant utils', () => {
         pointerEvents: 'none',
         cursor: 'default',
         color: 'var(--joy-variant-textDisabledColor)',
-      },
-    });
-  });
-
-  it('should only create style with properties from palette variables', () => {
-    const result = createVariant('outlinedActive', {
-      palette: {
-        primary: {
-          outlinedActiveBorder: 'some-color',
-          outlinedActiveBg: null, // background-color will not be created
-        },
-      },
-      vars: {
-        palette: {
-          primary: {
-            outlinedActiveBorder: 'var(--any-token)',
-            outlinedActiveBg: 'var(--any-token)',
-          },
-        },
-      },
-    });
-    expect(result.primary).to.deep.equal({
-      '&:active': {
-        border: '1px solid',
-        borderColor: 'var(--any-token)',
       },
     });
   });

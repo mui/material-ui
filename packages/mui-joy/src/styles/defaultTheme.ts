@@ -14,15 +14,9 @@ import {
   PaletteText,
   PaletteRange,
   PaletteBackground,
-  DefaultColorPalette,
 } from './types/colorSystem';
-import { DefaultContextualOverrides, DefaultVariantKey, Variants } from './types/variants';
-import {
-  createLightModeVariantVariables,
-  createDarkModeVariantVariables,
-  createContextVariant,
-  createContainedOverrides,
-} from './variantUtils';
+import { Variants } from './types/variants';
+import { createLightModeVariantVariables, createDarkModeVariantVariables } from './variantUtils';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Shadow } from './types/shadow';
 import { Radius } from './types/radius';
@@ -248,8 +242,7 @@ const internalDefaultTheme: BaseDesignTokens & {
     TypographySystem,
     'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
   >;
-  variants: Record<DefaultVariantKey, Record<'context', CSSObject>> &
-    Record<DefaultContextualOverrides, Record<Exclude<DefaultColorPalette, 'context'>, CSSObject>>;
+  variants: {};
   vars: BaseDesignTokens & BaseColorSystem;
   spacing: Spacing;
   breakpoints: Breakpoints;
@@ -332,22 +325,7 @@ const internalDefaultTheme: BaseDesignTokens & {
       color: 'var(--joy-palette-text-tertiary)',
     },
   },
-  variants: {
-    // by default, Joy only prepare the `context` variant style because it does not rely on the any specific color.
-    text: createContextVariant('text'),
-    textHover: createContextVariant('textHover'),
-    textActive: createContextVariant('textActive'),
-    textDisabled: createContextVariant('textDisabled'),
-    outlined: createContextVariant('outlined'),
-    outlinedHover: createContextVariant('outlinedHover'),
-    outlinedActive: createContextVariant('outlinedActive'),
-    outlinedDisabled: createContextVariant('outlinedDisabled'),
-    light: createContextVariant('light'),
-    lightHover: createContextVariant('lightHover'),
-    lightActive: createContextVariant('lightActive'),
-    lightDisabled: createContextVariant('lightDisabled'),
-    containedOverrides: createContainedOverrides(),
-  },
+  variants: {},
   vars: baseDesignTokens,
   breakpoints: defaultSystemTheme.breakpoints,
   spacing: defaultSystemTheme.spacing,
@@ -378,6 +356,7 @@ export interface JoyTheme extends ThemeScales, ColorSystem {
   variants: Variants;
   spacing: Spacing;
   breakpoints: Breakpoints;
+  prefix: string;
   vars: Vars;
   getCssVar: ReturnType<typeof createGetCssVar>;
 }

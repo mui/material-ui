@@ -132,7 +132,7 @@ export default function JoyVariant() {
           <Typography component="h2" level="h4">
             Default
           </Typography>
-          <Typography level="body2" sx={{ mb: 3 }}>
+          <Typography level="body2" sx={{ mb: 1 }}>
             Joy provides default style for each variant.
           </Typography>
           <Box
@@ -152,6 +152,39 @@ export default function JoyVariant() {
             <Button variant="light">Light</Button>
             <Button variant="contained">Contained</Button>
             <Button disabled>Disabled</Button>
+          </Box>
+          <br />
+          <Typography level="body2" sx={{ mb: 1 }}>
+            Default context overrides feature
+          </Typography>
+          <Box
+            sx={[
+              {
+                display: 'flex',
+                gap: 2,
+                justifyContent: 'center',
+                p: 2,
+                borderRadius: 1,
+              },
+              (theme) => theme.variants.contained.primary,
+              (theme) => theme.variants.containedOverrides.primary,
+            ]}
+          >
+            <Button color="context" variant="text">
+              Text
+            </Button>
+            <Button color="context" variant="outlined">
+              Outlined
+            </Button>
+            <Button disabled color="context" variant="outlined">
+              Disabled
+            </Button>
+            <Button color="context" variant="light">
+              Light
+            </Button>
+            <Button disabled color="context" variant="light">
+              Disabled
+            </Button>
           </Box>
         </Box>
       </CssVarsProvider>
