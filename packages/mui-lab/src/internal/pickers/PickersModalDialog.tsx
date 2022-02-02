@@ -115,7 +115,7 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
             {todayText}
           </Button>
         )}
-        {cancelText && <Button onClick={onCancel}>{cancelText}</Button>}
+        {cancelText && <Button onClick={onDismiss}>{cancelText}</Button>}
         {okText && <Button onClick={onAccept}>{okText}</Button>}
       </PickersModalDialogActions>
     </PickersModalDialogRoot>
