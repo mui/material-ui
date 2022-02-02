@@ -63,15 +63,16 @@ export interface Focus {
  * ==============================================
  */
 type BasePaletteRange = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-type PartialOtherKeys<T, U extends keyof T> = Pick<T, U> & Partial<Exclude<T, U>>;
+type PartialRest<T, U extends keyof T> = Pick<T, U> & Partial<Exclude<T, U>>;
 type BaseDesignTokens = {
   palette: {
-    primary: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    neutral: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    danger: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    info: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    success: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    warning: PartialOtherKeys<PaletteRange, BasePaletteRange>;
+    // variant tokens are optional because the style will be generated after CSS variables has been prepared.
+    primary: PartialRest<PaletteRange, BasePaletteRange>;
+    neutral: PartialRest<PaletteRange, BasePaletteRange>;
+    danger: PartialRest<PaletteRange, BasePaletteRange>;
+    info: PartialRest<PaletteRange, BasePaletteRange>;
+    success: PartialRest<PaletteRange, BasePaletteRange>;
+    warning: PartialRest<PaletteRange, BasePaletteRange>;
     text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
     background: Pick<PaletteBackground, 'body' | 'level1' | 'level2' | 'level3'>;
     focusVisible: Palette['focusVisible'];
@@ -332,6 +333,7 @@ const internalDefaultTheme: BaseDesignTokens & {
     },
   },
   variants: {
+    // by default, Joy only prepare the `context` variant style because it does not rely on the any specific color.
     text: createContextVariant('text'),
     textHover: createContextVariant('textHover'),
     textActive: createContextVariant('textActive'),
@@ -344,10 +346,6 @@ const internalDefaultTheme: BaseDesignTokens & {
     lightHover: createContextVariant('lightHover'),
     lightActive: createContextVariant('lightActive'),
     lightDisabled: createContextVariant('lightDisabled'),
-    contained: createContextVariant('contained'),
-    containedHover: createContextVariant('containedHover'),
-    containedActive: createContextVariant('containedActive'),
-    containedDisabled: createContextVariant('containedDisabled'),
     containedOverrides: createContainedOverrides(),
   },
   vars: baseDesignTokens,
