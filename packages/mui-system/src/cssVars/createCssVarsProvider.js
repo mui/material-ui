@@ -118,6 +118,7 @@ export default function createCssVarsProvider(options) {
       ...colorSchemes[resolvedColorScheme],
       components,
       colorSchemes,
+      prefix,
       vars: rootVars,
       spacing: themeProp.spacing ? createSpacing(themeProp.spacing) : systemSpacing,
       breakpoints: themeProp.breakpoints
