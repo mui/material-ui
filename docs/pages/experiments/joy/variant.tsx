@@ -274,28 +274,6 @@ export default function JoyVariant() {
               },
             },
           },
-          variants: {
-            light: {
-              secondary: {
-                color: 'var(--joy-palette-secondary-lightColor)',
-                backgroundColor: 'var(--joy-palette-secondary-lightBg)',
-              },
-              alternate: {
-                color: 'var(--joy-palette-alternate-lightColor)',
-                backgroundColor: 'var(--joy-palette-alternate-lightBg)',
-              },
-            },
-            contained: {
-              secondary: {
-                color: 'var(--joy-palette-secondary-containedColor)',
-                backgroundColor: 'var(--joy-palette-secondary-containedBg)',
-              },
-              alternate: {
-                color: 'var(--joy-palette-alternate-containedColor)',
-                backgroundColor: 'var(--joy-palette-alternate-containedBg)',
-              },
-            },
-          },
           focus: {
             default: {
               outline: '2px solid',
@@ -704,8 +682,8 @@ declare module '@mui/joy/styles' {
           </Box>
           <Typography level="body2">
             The above UI looks exactly like the contained variant on top of light variant. In this
-            case, developers should only extend the those variants to support secondary & alternate
-            colors. (Joy does not provide secondary & alternate colors by default)
+            case, developers should extend only light & contained variants to support secondary &
+            alternate colors. (Joy does not provide secondary & alternate colors by default)
           </Typography>
           <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
             <HighlightedCode
@@ -738,6 +716,8 @@ declare module '@mui/joy/styles' {
             500: '#66B7F1',
             200: '#B8E1FF',
             100: '#EAF5FF',
+            // Joy can detect the variables and will automatically generate variant styles
+            // even though the color does not exist in the default theme.
             lightBg: 'var(--strapi-palette-secondary-100)',
             lightColor: 'var(--strapi-palette-secondary-700)',
             containedBg: 'var(--strapi-palette-secondary-500)',
@@ -749,6 +729,8 @@ declare module '@mui/joy/styles' {
             500: '#AC73E6',
             200: '#E0C1F4',
             100: '#F6ECFC',
+            // Joy can detect the variables and will automatically generate variant styles
+            // even though the color does not exist in the default theme.
             lightBg: 'var(--strapi-palette-alternate-100)',
             lightColor: 'var(--strapi-palette-alternate-700)',
             containedBg: 'var(--strapi-palette-alternate-500)',

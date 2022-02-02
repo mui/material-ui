@@ -180,24 +180,32 @@ export const createContextVariant = (variant: DefaultVariantKey) => ({
 });
 
 export const createVariant = (variant: VariantKey, theme: any) => {
-  const colors: DefaultColorPalette[] = [
-    'neutral',
-    'primary',
-    'danger',
-    'info',
-    'success',
-    'warning',
-  ];
   let result = {} as Record<DefaultColorPalette, CSSObject>;
-  colors.forEach((color) => {
-    result = {
-      ...result,
-      [color]: createVariantStyle(
-        variant,
-        theme.palette[color],
-        (variantVar) => theme.vars.palette[color][variantVar],
-      ),
-    };
+
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (
+      colorPalette &&
+      typeof colorPalette === 'object' &&
+      Object.keys(colorPalette).some(
+        (value) => value.match?.(/(text|outlined|light|contained)(Hover|Active|Disabled)?/), // base token that each variant should have
+      )
+    ) {
+      result = {
+        ...result,
+        [color]: createVariantStyle(
+          variant,
+          // cannot use theme.vars because it is created from all color schemes.
+          // @example developer provides `primary.outlinedActiveBorder` to only dark mode.
+          //          theme.vars.palette.primary.outlinedActiveBorder always exists regardless of the current color scheme.
+          theme.palette[color],
+          (variantVar) => theme.vars.palette[color][variantVar],
+        ),
+      };
+    }
   });
   return result;
 };
