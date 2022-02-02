@@ -5,20 +5,13 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
 const blue = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
   200: '#99CCF3',
-  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
-  700: '#0059B2',
-  800: '#004C99',
-  900: '#003A75',
 };
 
 const grey = {
-  50: '#F3F6F9',
   100: '#E7EBF0',
   200: '#E0E3E7',
   300: '#CDD2D7',
@@ -36,7 +29,7 @@ const StyledButton = styled('button')(
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
-  min-width: 200px;
+  min-width: 320px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 0.75em;
@@ -57,8 +50,6 @@ const StyledButton = styled('button')(
   }
 
   &.${selectUnstyledClasses.expanded} {
-    border-radius: 0.75em 0.75em 0 0;
-
     &::after {
       content: '▴';
     }
@@ -77,16 +68,18 @@ const StyledListbox = styled('ul')(
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 0;
-  margin: 0;
-  min-width: 200px;
+  margin: 10px 0;
+  min-width: 320px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0 0 0.75em 0.75em;
-  border-top: none;
+  border-radius: 0.75em;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
-  outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
-  outline-offset: 2px;
+
+  &.${selectUnstyledClasses.focusVisible} {
+    outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    outline-offset: 2px;
+  }
   `,
 );
 
