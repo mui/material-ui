@@ -98,6 +98,12 @@ export default function useButton(props: UseButtonProps) {
 
   const createHandleKeyDown =
     (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
+      otherHandlers.onKeyDown?.(event);
+
+      if (event.defaultPrevented) {
+        return;
+      }
+
       if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
         event.preventDefault();
       }
@@ -106,8 +112,6 @@ export default function useButton(props: UseButtonProps) {
         setActive(true);
       }
 
-      otherHandlers.onKeyDown?.(event);
-
       // Keyboard accessibility for non interactive elements
       if (
         event.target === event.currentTarget &&
@@ -115,8 +119,8 @@ export default function useButton(props: UseButtonProps) {
         event.key === 'Enter' &&
         !disabled
       ) {
-        event.preventDefault();
         otherHandlers.onClick?.(event);
+        event.preventDefault();
       }
     };
 
@@ -153,6 +157,7 @@ export default function useButton(props: UseButtonProps) {
   };
 
   const buttonProps: Record<string, unknown> = {};
+
   if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
     buttonProps.disabled = disabled;
@@ -191,9 +196,9 @@ export default function useButton(props: UseButtonProps) {
     return {
       tabIndex: disabled ? -1 : tabIndex,
       type,
-      ref: updateRef,
       ...buttonProps,
       ...mergedEventHandlers,
+      ref: updateRef,
     };
   };
 

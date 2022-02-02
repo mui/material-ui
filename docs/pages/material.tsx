@@ -54,7 +54,7 @@ export default function Components() {
   return (
     <BrandingProvider>
       <Head
-        title="Components - MUI Material"
+        title="Components - Material UI"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
       />
       <AppHeader />

@@ -51,7 +51,7 @@ export interface PickersModalDialogProps extends ExportedPickerModalProps {
   open: boolean;
 }
 
-const PickersModalDialogRoot = styled(Dialog, { skipSx: true })({
+const PickersModalDialogRoot = styled(Dialog)({
   [`& .${dialogClasses.container}`]: {
     outline: 0,
   },
@@ -61,13 +61,13 @@ const PickersModalDialogRoot = styled(Dialog, { skipSx: true })({
   },
 });
 
-const PickersModalDialogContent = styled(DialogContent, { skipSx: true })({
+const PickersModalDialogContent = styled(DialogContent)({
   '&:first-of-type': {
     padding: 0,
   },
 });
 
-const PickersModalDialogActions = styled(DialogActions, { skipSx: true })<{
+const PickersModalDialogActions = styled(DialogActions)<{
   ownerState: PickersModalDialogProps;
 }>(({ ownerState }) => ({
   ...((ownerState.clearable || ownerState.showTodayButton) && {
