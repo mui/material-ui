@@ -33,7 +33,7 @@ type ThemeInput = PartialNested<
   ThemeScales & {
     focus: Focus;
     typography: TypographySystem;
-    variants: Variants;
+    variants: PartialNested<Variants>;
   }
 > & {
   breakpoints?: BreakpointsOptions;

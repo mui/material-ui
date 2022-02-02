@@ -19,9 +19,16 @@ export type ContextualOverrideKeys = OverridableStringUnion<
 
 type State = 'Hover' | 'Active' | 'Disabled';
 
-export type DefaultVariantKey = DefaultVariantProp | `${DefaultVariantProp}${State}`;
+export type VariantKey = DefaultVariantProp | `${DefaultVariantProp}${State}`;
 
-type BaseContextOverrides = Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>;
+// contained is not necessary for the default theme.
+export type DefaultVariantKey =
+  | Exclude<DefaultVariantProp, 'contained'>
+  | `${Exclude<DefaultVariantProp, 'contained'>}${State}`;
+
+type BaseContextOverrides = {
+  containedOverrides: Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>;
+};
 
 export interface VariantText extends Record<ColorPaletteProp, CSSObject> {}
 export interface VariantTextHover extends Record<ColorPaletteProp, CSSObject> {}

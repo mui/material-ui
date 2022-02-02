@@ -69,19 +69,6 @@ export interface PaletteRange extends PaletteVariant {
   900: string;
 }
 
-export interface PaletteText {
-  primary: string;
-  secondary: string;
-  tertiary: string;
-}
-
-export interface PaletteBackground {
-  body: string;
-  level1: string;
-  level2: string;
-  level3: string;
-}
-
 export interface ColorPalettePropOverrides {}
 
 export type DefaultColorPalette =
@@ -98,11 +85,31 @@ export type ColorPaletteProp = OverridableStringUnion<
   ColorPalettePropOverrides
 >;
 
-export type ColorPalette = {
-  [k in Exclude<ColorPaletteProp, 'context'>]: PaletteRange;
-};
+export interface PalettePrimary extends PaletteRange {}
+export interface PaletteNeutral extends PaletteRange {}
+export interface PaletteDanger extends PaletteRange {}
+export interface PaletteInfo extends PaletteRange {}
+export interface PaletteSuccess extends PaletteRange {}
+export interface PaletteWarning extends PaletteRange {}
+export interface PaletteText {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+}
+export interface PaletteBackground {
+  body: string;
+  level1: string;
+  level2: string;
+  level3: string;
+}
 
-export interface Palette extends ColorPalette {
+export interface Palette {
+  primary: PalettePrimary;
+  neutral: PaletteNeutral;
+  danger: PaletteDanger;
+  info: PaletteInfo;
+  success: PaletteSuccess;
+  warning: PaletteWarning;
   text: PaletteText;
   background: PaletteBackground;
   focusVisible: string;
