@@ -18,13 +18,21 @@ import { TypographySystem } from './types/typography';
 import { Components } from './components';
 import { createVariant } from './variantUtils';
 
-type PartialDeep<T> = {
-  [K in keyof T]?: PartialDeep<T[K]>;
+type PartialNested<T> = {
+  [K in keyof T]?: T[K] extends Record<any, any>
+    ? {
+        [J in keyof T[K]]?: T[K][J];
+      }
+    : T[K];
 };
 
-type PartialNested<T> = {
+type PartialNestedNested<T> = {
   [K in keyof T]?: {
-    [J in keyof T[K]]?: T[K][J];
+    [J in keyof T[K]]?: T[K][J] extends Record<any, any>
+      ? {
+          [P in keyof T[K][J]]?: T[K][J][P];
+        }
+      : T[K][J];
   };
 };
 
@@ -42,11 +50,11 @@ type ThemeInput = PartialNested<
 };
 
 type JoyThemeInput = ThemeInput & {
-  colorSchemes: Record<DefaultColorScheme, PartialDeep<ColorSystem>>;
+  colorSchemes: Record<DefaultColorScheme, PartialNestedNested<ColorSystem>>;
 };
 
 type ApplicationThemeInput = ThemeInput & {
-  colorSchemes: Record<ExtendedColorScheme, PartialDeep<ColorSystem>>;
+  colorSchemes: Record<ExtendedColorScheme, PartialNestedNested<ColorSystem>>;
 };
 
 const { palette, ...rest } = defaultTheme;
