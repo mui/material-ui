@@ -1,5 +1,5 @@
 import { CSSObject } from '@mui/system';
-import { DefaultVariantKey } from './types/variants';
+import { DefaultVariantKey, VariantKey } from './types/variants';
 import { ColorPaletteProp, DefaultColorPalette } from './types/colorSystem';
 
 export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -179,7 +179,7 @@ export const createContextVariant = (variant: DefaultVariantKey) => ({
   }),
 });
 
-export const createVariant = (variant: DefaultVariantKey, theme: any) => {
+export const createVariant = (variant: VariantKey, theme: any) => {
   const colors: DefaultColorPalette[] = [
     'neutral',
     'primary',
