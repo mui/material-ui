@@ -113,7 +113,7 @@
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-tester": "^10.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "chai": "^4.3.4",
+    "chai": "^4.3.6",
     "chai-dom": "^1.11.0",
     "chalk": "^4.1.2",
     "compression-webpack-plugin": "^9.2.0",
