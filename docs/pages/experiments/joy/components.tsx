@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
@@ -150,7 +151,9 @@ const components = [
 ];
 
 export default function JoyComponents() {
-  const [current, setCurrent] = React.useState(components[0].name);
+  const router = useRouter();
+  const match = components.find(({ name }) => name === router.query.name);
+  const [current, setCurrent] = React.useState(match ? router.query.name : components[0].name);
   const [componentVars, setComponentVars] = React.useState<Record<string, any>>(
     components.reduce((result, curr) => ({ ...result, [curr.name]: {} }), {}),
   );
@@ -160,6 +163,13 @@ export default function JoyComponents() {
         .map(([key, value]) => `  '${key}': '${value}',`)
         .join('\n')
     : null;
+  React.useEffect(() => {
+    if (router.query.name !== current) {
+      router.replace({
+        query: { name: current },
+      });
+    }
+  }, [current, router]);
   return (
     <CssVarsProvider
       theme={{
