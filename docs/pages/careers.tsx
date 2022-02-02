@@ -161,21 +161,15 @@ const openRolesData = [
     title: 'Developer Experience',
     roles: [
       {
-        title: 'Developer Advocate',
+        title: 'Support Engineer - X',
         description:
-          'You will educate users on the latest features, craft high-quality examples, and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
-        url: '/company/developer-advocate/',
+          "You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/company/support-engineer/',
       },
       {
         title: 'Developer Experience Engineer',
         description: 'You will focus on providing experiences that delight developers using MUI.',
         url: '/company/developer-experience-engineer/',
-      },
-      {
-        title: 'Support Engineer - X',
-        description:
-          "You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/company/support-engineer/',
       },
     ],
   },

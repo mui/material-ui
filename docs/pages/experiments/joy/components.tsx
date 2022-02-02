@@ -1,25 +1,17 @@
 import * as React from 'react';
+import { GlobalStyles } from '@mui/system';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import {
-  CssVarsProvider,
-  styled,
-  useColorScheme,
-  ColorPaletteProp,
-  TypographySystem,
-} from '@mui/joy/styles';
+import Switch from '@mui/joy/Switch';
+import Typography from '@mui/joy/Typography';
+import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
-
-const Typography = styled('p', {
-  shouldForwardProp: (prop) => prop !== 'color' && prop !== 'level' && prop !== 'sx',
-})<{ color?: ColorPaletteProp; level?: keyof TypographySystem }>(
-  ({ theme, level = 'body1', color }) => [
-    { margin: 0 },
-    theme.typography[level],
-    color && { color: `var(--joy-palette-${color}-textColor)` },
-  ],
-);
+import Add from '@mui/icons-material/Add';
+import DeleteForever from '@mui/icons-material/DeleteForever';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -41,19 +33,112 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ minWidth: 40, p: '0.25rem' }}
+      sx={{
+        p: '0.25rem',
+        width: 'var(--Button-minHeight)',
+      }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
   );
 };
 
+const Input = styled('input')<{ ownerState: any }>(({ theme, ownerState }) => ({
+  boxSizing: 'border-box',
+  maxWidth: 80,
+  padding: '0.25rem 0.5rem',
+  border: 'none',
+  borderRadius: '4px',
+  minWidth: 0,
+  ...theme.typography.body2,
+  ...theme.variants.light.neutral,
+  cursor: 'pointer',
+  '&:focus-visible': theme.focus.default,
+  flexGrow: 1,
+  ...(ownerState.unit && {
+    paddingRight: '1.5rem',
+  }),
+}));
+
+const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
+  return (
+    <Box
+      sx={{ display: 'flex', alignItems: 'center', my: 1, gap: 1, justifyContent: 'space-between' }}
+    >
+      <Typography
+        htmlFor={id}
+        component="label"
+        sx={{ fontSize: 'var(--joy-fontSize-sm)', flexShrink: 0 }}
+      >
+        {label}
+      </Typography>
+      <Box sx={{ position: 'relative' }}>
+        <Input id={id} ownerState={{ unit, ...props }} {...props} />
+        {unit && (
+          <Typography
+            level="body3"
+            sx={{ position: 'absolute', right: '6px', top: '4px', pointerEvents: 'none' }}
+          >
+            {unit}
+          </Typography>
+        )}
+      </Box>
+    </Box>
+  );
+};
+
+const components = [
+  {
+    name: 'Button',
+    render: (props: any) => (
+      <React.Fragment>
+        <Button {...props}>Text</Button>
+        <Button startIcon={<Add />} variant="light" {...props}>
+          Add more row
+        </Button>
+        <Button endIcon={<DeleteForever />} variant="outlined" {...props}>
+          Delete
+        </Button>
+      </React.Fragment>
+    ),
+    cssVars: [
+      { id: '--Button-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
+      { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
+      { id: '--Button-gap', type: 'number', unit: 'px' },
+    ],
+  },
+  {
+    name: 'Switch',
+    render: (props: any) => (
+      <React.Fragment>
+        <Switch {...props} />
+        <Switch defaultChecked {...props} />
+      </React.Fragment>
+    ),
+    cssVars: [
+      { id: '--Switch-track-radius', type: 'number', unit: 'px', defaultValue: 16 },
+      { id: '--Switch-track-width', type: 'number', unit: 'px', defaultValue: 48 },
+      { id: '--Switch-track-height', type: 'number', unit: 'px', defaultValue: 24 },
+      { id: '--Switch-thumb-size', type: 'number', unit: 'px', defaultValue: 16 },
+      { id: '--Switch-thumb-radius', type: 'number', unit: 'px' },
+      { id: '--Switch-thumb-width', type: 'number', unit: 'px' },
+      { id: '--Switch-thumb-offset', type: 'number', unit: 'px' },
+    ],
+  },
+];
+
 export default function JoyComponents() {
-  const buttonProps = {
-    variant: ['text', 'outlined', 'light', 'contained'],
-    color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
-    size: ['sm', 'md', 'lg'],
-  } as const;
+  const [current, setCurrent] = React.useState(components[0].name);
+  const [componentVars, setComponentVars] = React.useState<Record<string, any>>(
+    components.reduce((result, curr) => ({ ...result, [curr.name]: {} }), {}),
+  );
+  const data = components.find(({ name }) => name === current);
+  const renderedSx = data?.name
+    ? Object.entries(componentVars[data?.name])
+        .map(([key, value]) => `  ${key}: ${value}`)
+        .join('\n')
+    : null;
   return (
     <CssVarsProvider
       theme={{
@@ -78,483 +163,118 @@ export default function JoyComponents() {
         },
       }}
     >
-      <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
-        <Box sx={{ px: 3, pb: 4 }}>
-          <ColorSchemePicker />
+      <GlobalStyles styles={{ body: { margin: 0 } }} />
+      <Box sx={{ maxWidth: { md: 1152, xl: 1536 }, mx: 'auto', display: 'flex' }}>
+        <Box
+          sx={{
+            width: 256,
+            minHeight: '100vh',
+            boxShadow: 'var(--joy-shadow-sm)',
+          }}
+        >
+          <Box sx={{ pl: 5, pt: 2 }}>
+            <ColorSchemePicker />
+          </Box>
+          <Box
+            component="ul"
+            sx={{
+              my: 2,
+              px: 2,
+              listStyle: 'none',
+              '& > li': {
+                marginBottom: '0.25rem',
+              },
+              '& button': { justifyContent: 'flex-start' },
+            }}
+          >
+            {components.map((config) => (
+              <li key={config.name}>
+                <Button
+                  fullWidth
+                  variant={config.name === current ? 'outlined' : 'text'}
+                  onClick={() => setCurrent(config.name)}
+                >
+                  {config.name}
+                </Button>
+              </li>
+            ))}
+          </Box>
         </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
-          {Object.entries(buttonProps).map(([propName, propValue]) => (
-            <Box
-              key={propName}
-              sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
-            >
-              <Typography level="body2" sx={{ fontWeight: 'bold' }}>
-                {propName}
-              </Typography>
-              {propValue.map((value) => (
-                <Box key={value}>
-                  <Button {...{ [propName]: value }}>Button</Button>
-                  <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
-                    {value || 'default'}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          ))}
+        <Box
+          className="Canvas"
+          sx={{
+            position: 'relative',
+            flexGrow: 1,
+            minWidth: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 2,
+          }}
+        >
+          {data?.render({ sx: componentVars[data.name] })}
+          <Box
+            sx={{
+              position: 'absolute',
+              left: '1rem',
+              right: '1rem',
+              bottom: '1rem',
+            }}
+          >
+            <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+              <HighlightedCode
+                component={MarkdownElement}
+                code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}
+/>`}
+                language="jsx"
+              />
+            </ThemeProvider>
+          </Box>
         </Box>
-        {/* Danilo's not smart iteration below 😅 - wanted to see each color with every variant. */}
-        <Box sx={{ display: 'flex', py: 16 }}>
-          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
-            <Button variant="contained" color="primary">
-              Button
-            </Button>
-            <Button variant="contained" color="neutral">
-              Button
-            </Button>
-            <Button variant="contained" color="danger">
-              Button
-            </Button>
-            <Button variant="contained" color="info">
-              Button
-            </Button>
-            <Button variant="contained" color="success">
-              Button
-            </Button>
-            <Button variant="contained" color="warning">
-              Button
-            </Button>
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
-            <Button variant="outlined" color="primary">
-              Button
-            </Button>
-            <Button variant="outlined" color="neutral">
-              Button
-            </Button>
-            <Button variant="outlined" color="danger">
-              Button
-            </Button>
-            <Button variant="outlined" color="info">
-              Button
-            </Button>
-            <Button variant="outlined" color="success">
-              Button
-            </Button>
-            <Button variant="outlined" color="warning">
-              Button
-            </Button>
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
-            <Button variant="light" color="primary">
-              Button
-            </Button>
-            <Button variant="light" color="neutral">
-              Button
-            </Button>
-            <Button variant="light" color="danger">
-              Button
-            </Button>
-            <Button variant="light" color="info">
-              Button
-            </Button>
-            <Button variant="light" color="success">
-              Button
-            </Button>
-            <Button variant="light" color="warning">
-              Button
-            </Button>
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
-            <Button variant="text" color="primary">
-              Button
-            </Button>
-            <Button variant="text" color="neutral">
-              Button
-            </Button>
-            <Button variant="text" color="danger">
-              Button
-            </Button>
-            <Button variant="text" color="info">
-              Button
-            </Button>
-            <Button variant="text" color="success">
-              Button
-            </Button>
-            <Button variant="text" color="warning">
-              Button
-            </Button>
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid' }}>
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-50)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-100)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-200)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-300)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-400)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-500)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-600)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-700)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-800)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-primary-900)',
-              }}
-            />
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid' }}>
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-50)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-100)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-200)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-300)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-400)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-500)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-600)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-700)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-800)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-info-900)',
-              }}
-            />
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid' }}>
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-50)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-100)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-200)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-300)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-400)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-500)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-600)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-700)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-800)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-neutral-900)',
-              }}
-            />
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid' }}>
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-50)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-100)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-200)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-300)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-400)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-500)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-600)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-700)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-800)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-danger-900)',
-              }}
-            />
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid' }}>
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-50)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-100)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-200)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-300)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-400)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-500)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-600)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-700)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-800)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-success-900)',
-              }}
-            />
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid' }}>
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-50)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-100)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-200)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-300)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-400)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-500)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-600)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-700)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-800)',
-              }}
-            />
-            <Box
-              sx={{
-                width: '50px',
-                backgroundColor: 'var(--joy-palette-warning-900)',
-              }}
-            />
+        <Box
+          sx={{ width: 300, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+        >
+          <Box
+            sx={{
+              bgcolor: 'var(--joy-palette-background-level1)',
+              borderRadius: '4px',
+              minHeight: 300,
+              py: 1.5,
+              px: 2,
+            }}
+          >
+            <Typography level="body2" sx={{ mb: 2 }}>
+              CSS variables
+            </Typography>
+            {data?.cssVars.map((cssVar) => (
+              <ControlInput
+                key={cssVar.id}
+                type="number"
+                label={cssVar.id}
+                unit={cssVar.unit}
+                value={
+                  componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
+                  cssVar.defaultValue ||
+                  ''
+                }
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  const value = event.target.value;
+                  setComponentVars((latest) => {
+                    const vars = { ...latest[data.name] };
+                    if (!value) {
+                      delete vars[cssVar.id];
+                    } else {
+                      vars[cssVar.id] = cssVar.unit ? `${value}${cssVar.unit}` : value;
+                    }
+                    return {
+                      ...latest,
+                      [data.name]: vars,
+                    };
+                  });
+                }}
+              />
+            ))}
           </Box>
         </Box>
       </Box>
