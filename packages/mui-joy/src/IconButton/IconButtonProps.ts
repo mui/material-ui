@@ -57,7 +57,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'light'
      */
     variant?: OverridableStringUnion<VariantProp, IconButtonPropsVariantOverrides>;
   };
