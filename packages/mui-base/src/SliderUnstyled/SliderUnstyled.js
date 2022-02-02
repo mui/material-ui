@@ -49,7 +49,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     className,
     component,
     classes: classesProp,
-    disableSwap = false,
     disabled = false,
     getAriaLabel,
     getAriaValueText,
@@ -226,7 +225,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 open:
                   valueLabelDisplay === 'on' ||
                   active === index ||
-                  (disableSwap ? open === index && active === -1 : open === index),
+                  (open === index && active === -1),
                 disabled,
               })}
               {...valueLabelProps}
