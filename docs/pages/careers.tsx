@@ -332,9 +332,9 @@ function CareersContent() {
       </Box>
       {/* Perks & benefits */}
       <div>
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
+        <Container sx={{ py: 4 }}>
           <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} sx={{ pr: { sm: 0, md: 4 } }}>
               <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
                 {'Perks & benefits'}
               </Typography>
@@ -362,53 +362,59 @@ function CareersContent() {
                 </Box>
               ))}
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                component={Link}
-                href={ROUTES.handbook}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2 }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Handbook
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  See how we run the company and the way we work.
-                </Typography>
-                <Typography
-                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-                  variant="body2"
-                  fontWeight="bold"
+            <Grid item xs={12} sm={12} md={6} container spacing={2}>
+              <Grid item xs={12} sm={12} md={6}>
+                <Paper
+                  component={Link}
+                  href={ROUTES.handbook}
+                  noLinkStyle
+                  variant="outlined"
+                  sx={{ p: 2 }}
                 >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                component={Link}
-                href={ROUTES.blog}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2 }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Blog
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Check behind the scenes and news from the company.
-                </Typography>
-                <Typography
-                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-                  variant="body2"
-                  fontWeight="bold"
+                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                    Handbook
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    See how we run the company and the way we work.
+                  </Typography>
+                  <Typography
+                    color={(theme) =>
+                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
+                    }
+                    variant="body2"
+                    fontWeight="bold"
+                  >
+                    Learn more{' '}
+                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6}>
+                <Paper
+                  component={Link}
+                  href={ROUTES.blog}
+                  noLinkStyle
+                  variant="outlined"
+                  sx={{ p: 2 }}
                 >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
+                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                    Blog
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    Check behind the scenes and news from the company.
+                  </Typography>
+                  <Typography
+                    color={(theme) =>
+                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
+                    }
+                    variant="body2"
+                    fontWeight="bold"
+                  >
+                    Learn more{' '}
+                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                  </Typography>
+                </Paper>
+              </Grid>
             </Grid>
           </Grid>
         </Container>

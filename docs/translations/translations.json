@@ -335,7 +335,6 @@
     "/discover-more/languages": "Languages",
     "/about": "About us",
     "https://mui.com/store/": "Templates",
-    "/versions": "Versions",
-    "https://medium.com/material-ui": "Blog"
+    "/versions": "Versions"
   }
 }
