@@ -142,9 +142,6 @@ export default function UnstyledSelectSimple() {
       <StyledOption value={10}>Ten</StyledOption>
       <StyledOption value={20}>Twenty</StyledOption>
       <StyledOption value={30}>Thirty</StyledOption>
-      <StyledOption value={40} disabled>
-        Forty
-      </StyledOption>
     </CustomSelect>
   );
 }

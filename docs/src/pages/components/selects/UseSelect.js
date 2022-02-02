@@ -166,11 +166,11 @@ const options = [
   },
   {
     label: 'Green',
-    value: '#178D46',
+    value: '#4CAF50',
   },
   {
     label: 'Blue',
-    value: '#0072E5',
+    value: '#2196F3',
   },
 ];
 
