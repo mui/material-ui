@@ -32,7 +32,6 @@ const StyledInputElement = styled('input')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 8px;
   padding: 12px 12px;
-  transition: all 200ms ease;
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? null : grey[100]};
