@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/material/getting-started/templates/templates.md?@mui/markdown';
+} from 'docs/src/pages/getting-started/templates/templates.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} disableToc />;
