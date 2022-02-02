@@ -96,7 +96,7 @@ export default function JoyButton() {
             sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
           >
             <Typography level="body2" sx={{ fontWeight: 'bold' }}>
-              square
+              icon
             </Typography>
             <Box>
               <IconButton>
