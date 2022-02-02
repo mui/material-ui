@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { MenuUnstyledContext } from '../MenuUnstyled';
+import { useButton } from '../ButtonUnstyled';
 
 export interface UseMenuItemProps {
+  component: React.ElementType;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<any>;
   ref: React.Ref<any>;
 }
 
 export default function useMenuItem(props: UseMenuItemProps) {
-  const { disabled = false, onClick, ref } = props;
+  const { component, disabled = false, ref } = props;
 
   const id = useId();
   const menuContext = React.useContext(MenuUnstyledContext);
@@ -28,58 +30,43 @@ export default function useMenuItem(props: UseMenuItemProps) {
       return undefined;
     }
 
-    registerItem(id, { disabled, id, onClick, ref: itemRef });
+    registerItem(id, { disabled, id, ref: itemRef });
 
     return () => unregisterItem(id);
-  }, [id, registerItem, unregisterItem, disabled, onClick, ref]);
+  }, [id, registerItem, unregisterItem, disabled, ref]);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-
-    if (disabled) {
-      return;
-    }
-
-    onClick?.(event);
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      itemRef.current?.click();
-    }
-  };
-
+  const { getRootProps: getButtonProps } = useButton({
+    component,
+    ref: handleRef,
+    disabled,
+  });
   React.useDebugValue({ id, disabled });
 
   if (id === undefined) {
     return {
       getRootProps: (other?: Record<string, any>) => ({
-        role: 'menuitem',
-        'aria-disabled': disabled || undefined,
-        'aria-selected': undefined,
         ...other,
-        ref: handleRef,
+        ...getButtonProps(other),
+        role: 'menuitem',
       }),
       itemState: null,
     };
   }
 
   const itemState = menuContext.getItemState(id);
-  const itemProps = menuContext.getItemProps(id, {
-    onClick: handleClick,
-    onKeyDown: handleKeyDown,
-  });
 
   return {
-    getRootProps: (other?: Record<string, any>) => ({
-      ...itemProps,
-      role: 'menuitem',
-      'aria-disabled': disabled || undefined,
-      'aria-selected': undefined,
-      ...other,
-      ref: handleRef,
-    }),
+    getRootProps: (other?: Record<string, any>) => {
+      const optionProps = menuContext.getItemProps(id, other);
+
+      return {
+        ...other,
+        ...getButtonProps(other),
+        tabIndex: optionProps.tabIndex,
+        id: optionProps.id,
+        role: 'menuitem',
+      };
+    },
     itemState,
   };
 }

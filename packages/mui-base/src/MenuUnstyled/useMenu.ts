@@ -11,7 +11,6 @@ import {
 export interface MenuItemMetadata {
   id: string;
   disabled: boolean;
-  onClick?: React.MouseEventHandler<HTMLElement>;
   ref: React.RefObject<HTMLElement>;
 }
 

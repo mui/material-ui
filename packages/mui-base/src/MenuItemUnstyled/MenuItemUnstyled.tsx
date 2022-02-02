@@ -36,7 +36,6 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
   forwardedRef: React.Ref<any>,
 ) {
   const {
-    onClick,
     children,
     className,
     disabled = false,
@@ -49,12 +48,13 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
   const ref = React.useRef<any>(null);
   const handleRef = useForkRef(ref, forwardedRef);
 
-  const menuItem = useMenuItem({
+  const Root = component ?? components.Root ?? 'li';
+
+  const { getRootProps, itemState } = useMenuItem({
+    component: Root,
     disabled,
-    onClick,
     ref: handleRef,
   });
-  const { getRootProps, itemState } = menuItem;
 
   if (itemState == null) {
     return null;
@@ -64,7 +64,6 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
 
   const classes = getUtilityClasses(ownerState);
 
-  const Root = component ?? components.Root ?? 'li';
   const rootProps = appendOwnerState(
     Root,
     {
