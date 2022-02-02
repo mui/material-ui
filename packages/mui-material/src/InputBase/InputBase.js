@@ -394,9 +394,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         );
       }
 
-      checkDirty({
-        value: element.value,
-      });
+      checkDirty(element);
     }
 
     if (inputPropsProp.onChange) {
