@@ -98,7 +98,7 @@ const Listbox = styled('ul')(
   }
 
   & > li {
-    padding: 5px;
+    padding: 10px;
 
     &:hover {
       background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
