@@ -267,8 +267,7 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   };
 
-  const isSelected = (index) =>
-  selected.filter((n) => n === index).length > 0;
+  const isSelected = (index) => selected.filter((n) => n === index).length > 0;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =

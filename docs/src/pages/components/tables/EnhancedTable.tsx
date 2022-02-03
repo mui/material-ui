@@ -299,7 +299,7 @@ export default function EnhancedTable() {
   };
 
   const isSelected = (index: number) =>
-  selected.filter((n) => n === index).length > 0;
+    selected.filter((n) => n === index).length > 0;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
