@@ -125,8 +125,8 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSpeedDial' });
   const theme = useTheme();
   const defaultTransitionDuration = {
-    enter: theme.duration.enteringScreen,
-    exit: theme.duration.leavingScreen,
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
   };
 
   const {
@@ -520,8 +520,8 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: theme.duration.enteringScreen,
-   *   exit: theme.duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration: PropTypes.oneOfType([

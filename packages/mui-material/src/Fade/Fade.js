@@ -22,8 +22,8 @@ const styles = {
 const Fade = React.forwardRef(function Fade(props, ref) {
   const theme = useTheme();
   const defaultTimeout = {
-    enter: theme.duration.enteringScreen,
-    exit: theme.duration.leavingScreen,
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
   };
 
   const {
@@ -212,8 +212,8 @@ Fade.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: theme.duration.enteringScreen,
-   *   exit: theme.duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   timeout: PropTypes.oneOfType([

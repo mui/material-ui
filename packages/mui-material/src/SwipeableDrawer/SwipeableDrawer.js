@@ -135,8 +135,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   const props = useThemeProps({ name: 'MuiSwipeableDrawer', props: inProps });
   const theme = useTheme();
   const transitionDurationDefault = {
-    enter: theme.duration.enteringScreen,
-    exit: theme.duration.leavingScreen,
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
   };
   const {
     anchor = 'left',
@@ -678,8 +678,8 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: theme.duration.enteringScreen,
-   *   exit: theme.duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration: PropTypes.oneOfType([
