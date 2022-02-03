@@ -77,10 +77,10 @@ export default function XRoadmap() {
   return (
     <ThemeProvider theme={brandingDarkTheme}>
       <Section bg="dim">
-        <Box sx={{ py: 4 }}>
+        <Box>
           <Grid container spacing={2} alignItems="center" justifyContent="space-between">
             <Grid item xs={12} md={5}>
-              <Box maxWidth={500}>
+              <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
                 <SectionHeadline
                   overline="Roadmap"
                   title="Follow the MUI X roadmap for future updates"
@@ -93,6 +93,7 @@ export default function XRoadmap() {
                   size="large"
                   variant="contained"
                   endIcon={<KeyboardArrowRightRounded />}
+                  sx={{ width: { xs: '100%', sm: 'auto' } }}
                 >
                   See the roadmap
                 </Button>
