@@ -84,7 +84,7 @@ const StyledListbox = styled('ul')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
 
-  &.${selectUnstyledClasses.focusVisible} {
+  &:focus {
     outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
     outline-offset: 2px;
   }
