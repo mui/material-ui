@@ -92,7 +92,10 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
-   * @default { enter: theme.duration.enteringScreen, exit: theme.duration.leavingScreen }
+   * @default {
+   *   enter: theme.duration.enteringScreen,
+   *   exit: theme.duration.leavingScreen,
+   * }
    */
   transitionDuration?: TransitionProps['timeout'];
   /**

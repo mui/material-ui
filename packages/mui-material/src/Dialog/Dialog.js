@@ -396,7 +396,10 @@ Dialog.propTypes /* remove-proptypes */ = {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
-   * @default { enter: theme.duration.enteringScreen, exit: theme.duration.leavingScreen }
+   * @default {
+   *   enter: theme.duration.enteringScreen,
+   *   exit: theme.duration.leavingScreen,
+   * }
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
