@@ -20,8 +20,6 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
     target.backgroundColor = value;
   }
   if (variantVar.includes('Border')) {
-    // target['--variant-outlined-borderWidth'] = '1px';
-    // target.border = 'var(--variant-outlined-borderWidth) solid';
     target.borderColor = value;
   }
 };
@@ -91,8 +89,8 @@ export const createVariantStyle = (
           assignCss(result['&.Mui-disabled'] as any, variantVar, cssVar);
         } else {
           if (variantVar.includes('Border')) {
-            result['--variant-outlined-borderWidth'] = '1px';
-            result.border = 'var(--variant-outlined-borderWidth) solid';
+            result['--variant-outlinedBorderWidth'] = '1px';
+            result.border = 'var(--variant-outlinedBorderWidth) solid';
           }
           // border color should come later
           assignCss(result as any, variantVar, cssVar);

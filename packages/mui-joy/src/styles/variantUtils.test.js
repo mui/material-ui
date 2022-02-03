@@ -62,8 +62,8 @@ describe('variant utils', () => {
           outlinedBorder: 'var(--any-token)',
         }),
       ).to.deep.equal({
-        '--variant-outlined-borderWidth': '1px',
-        border: 'var(--variant-outlined-borderWidth) solid',
+        '--variant-outlinedBorderWidth': '1px',
+        border: 'var(--variant-outlinedBorderWidth) solid',
         borderColor: 'var(--any-token)',
       });
     });
@@ -224,8 +224,8 @@ describe('variant utils', () => {
       outlined: {
         primary: {
           color: 'var(--any-token)',
-          '--variant-outlined-borderWidth': '1px',
-          border: 'var(--variant-outlined-borderWidth) solid',
+          '--variant-outlinedBorderWidth': '1px',
+          border: 'var(--variant-outlinedBorderWidth) solid',
           borderColor: 'var(--any-token)',
           backgroundColor: 'var(--any-token)',
         },
@@ -373,8 +373,8 @@ describe('variant utils', () => {
       });
       expect(createVariant('outlined').context).to.deep.equal({
         color: 'var(--variant-outlinedColor)',
-        '--variant-outlined-borderWidth': '1px',
-        border: 'var(--variant-outlined-borderWidth) solid',
+        '--variant-outlinedBorderWidth': '1px',
+        border: 'var(--variant-outlinedBorderWidth) solid',
         borderColor: 'var(--variant-outlinedBorder)',
       });
       expect(createVariant('light').context).to.deep.equal({
