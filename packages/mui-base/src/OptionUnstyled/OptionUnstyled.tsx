@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
-import OptionUnstyledProps from './OptionUnstyledProps';
+import OptionUnstyledProps, { OptionUnstyledOwnerState } from './OptionUnstyledProps';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import appendOwnerState from '../utils/appendOwnerState';
@@ -53,7 +53,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   const optionState = selectContext.getOptionState(selectOption);
   const optionProps = selectContext.getOptionProps(selectOption);
 
-  const ownerState = {
+  const ownerState: OptionUnstyledOwnerState<TValue> = {
     ...props,
     ...optionState,
   };

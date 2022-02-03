@@ -163,8 +163,6 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     const disabled = isOptionDisabled(option, index);
 
     return {
-      index,
-      option,
       selected,
       disabled,
       highlighted: highlightedIndex === index,

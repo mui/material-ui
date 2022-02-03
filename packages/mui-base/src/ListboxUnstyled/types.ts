@@ -168,7 +168,5 @@ export type UseListboxProps<TOption> =
 export interface OptionState {
   disabled: boolean;
   highlighted: boolean;
-  index: number;
-  // option: TOption;
   selected: boolean;
 }
