@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 let globalId = 0;
-function useRandomId(idOverride?: string): string | undefined {
+function useGlobalId(idOverride?: string): string | undefined {
   const [defaultId, setDefaultId] = React.useState(idOverride);
   const id = idOverride || defaultId;
   React.useEffect(() => {
@@ -31,5 +31,5 @@ export default function useId(idOverride?: string): string | undefined {
     return idOverride ?? reactId;
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks -- `React.useId` is invariant at runtime.
-  return useRandomId(idOverride);
+  return useGlobalId(idOverride);
 }
