@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AppTheme from 'docs/src/modules/components/AppTheme';
-import Blog from 'docs/data/material/getting-started/templates/blog/Blog';
+import Blog from 'docs/src/pages/getting-started/templates/blog/Blog';
 
 export default function Page() {
   return (

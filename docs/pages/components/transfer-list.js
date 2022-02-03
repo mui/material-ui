@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/material/components/transfer-list/transfer-list.md?@mui/markdown';
+} from 'docs/src/pages/components/transfer-list/transfer-list.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
