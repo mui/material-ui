@@ -62,7 +62,8 @@ describe('variant utils', () => {
           outlinedBorder: 'var(--any-token)',
         }),
       ).to.deep.equal({
-        border: '1px solid',
+        '--variant-outlined-borderWidth': '1px',
+        border: 'var(--variant-outlined-borderWidth) solid',
         borderColor: 'var(--any-token)',
       });
     });
@@ -103,7 +104,6 @@ describe('variant utils', () => {
       ).to.deep.equal({
         cursor: 'pointer',
         '&:hover': {
-          border: '1px solid',
           borderColor: 'var(--any-token)',
         },
       });
@@ -142,7 +142,6 @@ describe('variant utils', () => {
         }),
       ).to.deep.equal({
         '&:active': {
-          border: '1px solid',
           borderColor: 'var(--any-token)',
         },
       });
@@ -185,7 +184,6 @@ describe('variant utils', () => {
         }),
       ).to.deep.equal({
         '&.Mui-disabled': {
-          border: '1px solid',
           borderColor: 'var(--any-token)',
           pointerEvents: 'none',
           cursor: 'default',
@@ -226,7 +224,8 @@ describe('variant utils', () => {
       outlined: {
         primary: {
           color: 'var(--any-token)',
-          border: '1px solid',
+          '--variant-outlined-borderWidth': '1px',
+          border: 'var(--variant-outlined-borderWidth) solid',
           borderColor: 'var(--any-token)',
           backgroundColor: 'var(--any-token)',
         },
@@ -236,7 +235,6 @@ describe('variant utils', () => {
           cursor: 'pointer',
           '&:hover': {
             color: 'var(--any-token)',
-            border: '1px solid',
             borderColor: 'var(--any-token)',
             backgroundColor: 'var(--any-token)',
           },
@@ -246,7 +244,6 @@ describe('variant utils', () => {
         primary: {
           '&:active': {
             color: 'var(--any-token)',
-            border: '1px solid',
             borderColor: 'var(--any-token)',
             backgroundColor: 'var(--any-token)',
           },
@@ -256,7 +253,6 @@ describe('variant utils', () => {
         primary: {
           '&.Mui-disabled': {
             color: 'var(--any-token)',
-            border: '1px solid',
             borderColor: 'var(--any-token)',
             backgroundColor: 'var(--any-token)',
             pointerEvents: 'none',
@@ -332,7 +328,6 @@ describe('variant utils', () => {
       });
       expect(result.primary).to.deep.equal({
         '&:active': {
-          border: '1px solid',
           borderColor: 'var(--any-token)',
         },
       });
@@ -378,7 +373,8 @@ describe('variant utils', () => {
       });
       expect(createVariant('outlined').context).to.deep.equal({
         color: 'var(--variant-outlinedColor)',
-        border: '1px solid',
+        '--variant-outlined-borderWidth': '1px',
+        border: 'var(--variant-outlined-borderWidth) solid',
         borderColor: 'var(--variant-outlinedBorder)',
       });
       expect(createVariant('light').context).to.deep.equal({

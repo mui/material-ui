@@ -20,11 +20,46 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
     target.backgroundColor = value;
   }
   if (variantVar.includes('Border')) {
-    target.border = '1px solid';
+    // target['--variant-outlined-borderWidth'] = '1px';
+    // target.border = 'var(--variant-outlined-borderWidth) solid';
     target.borderColor = value;
   }
 };
 
+/**
+ *
+ * @param name variant name
+ * @example 'text'
+ *
+ * @param palette object that contains palette tokens
+ * @example { primary: { textColor: '', textHoverColor: '', ...tokens }, ...other palete }
+ *
+ * @param getCssVar a function that receive variant token and return a CSS variable
+ *
+ * result will be the stylesheet based on the palette tokens
+ * @example {
+ *   color: '--token',
+ *   backgroundColor: '--token'
+ * }
+ * @example {
+ *   cursor: 'pointer',
+ *   '&:hover': {
+ *      color: '--token',
+ *   }
+ * }
+ * @example {
+ *   '&:active': {
+ *      color: '--token',
+ *   }
+ * }
+ * @example {
+ *   pointerEvents: 'none',
+ *   cursor: 'default',
+ *   '&.Mui-disabled': {
+ *      color: '--token',
+ *   }
+ * }
+ */
 export const createVariantStyle = (
   name: string,
   palette: Partial<PaletteRange> | undefined,
@@ -55,6 +90,11 @@ export const createVariantStyle = (
           }
           assignCss(result['&.Mui-disabled'] as any, variantVar, cssVar);
         } else {
+          if (variantVar.includes('Border')) {
+            result['--variant-outlined-borderWidth'] = '1px';
+            result.border = 'var(--variant-outlined-borderWidth) solid';
+          }
+          // border color should come later
           assignCss(result as any, variantVar, cssVar);
         }
       }
