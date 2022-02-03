@@ -1,68 +1,14 @@
-import { CSSObject } from '@mui/system';
-import { ColorPaletteProp, PaletteVariant, PaletteRange } from './types/colorSystem';
-
-export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
-  textColor: `var(--joy-palette-${color}-600)`,
-  textHoverBg: `var(--joy-palette-${color}-100)`,
-  textActiveBg: `var(--joy-palette-${color}-200)`,
-  textDisabledColor: `var(--joy-palette-${color}-200)`,
-
-  outlinedColor: `var(--joy-palette-${color}-600)`,
-  outlinedBorder: `var(--joy-palette-${color}-200)`,
-  outlinedHoverBg: `var(--joy-palette-${color}-100)`,
-  outlinedHoverBorder: `var(--joy-palette-${color}-300)`,
-  outlinedActiveBg: `var(--joy-palette-${color}-200)`,
-  outlinedDisabledColor: `var(--joy-palette-${color}-200)`,
-  outlinedDisabledBorder: `var(--joy-palette-${color}-100)`,
-
-  lightColor: `var(--joy-palette-${color}-700)`,
-  lightBg: `var(--joy-palette-${color}-100)`,
-  lightHoverBg: `var(--joy-palette-${color}-200)`,
-  lightActiveBg: `var(--joy-palette-${color}-300)`,
-  lightDisabledColor: `var(--joy-palette-${color}-300)`,
-  lightDisabledBg: `var(--joy-palette-${color}-50)`,
-
-  containedColor: '#fff',
-  containedBg: `var(--joy-palette-${color}-600)`,
-  containedHoverBg: `var(--joy-palette-${color}-700)`,
-  containedActiveBg: `var(--joy-palette-${color}-800)`,
-  containedDisabledBg: `var(--joy-palette-${color}-200)`,
-});
-
-export const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
-  textColor: `var(--joy-palette-${color}-300)`,
-  textHoverBg: `var(--joy-palette-${color}-800)`,
-  textActiveBg: `var(--joy-palette-${color}-700)`,
-  textDisabledColor: `var(--joy-palette-${color}-800)`,
-
-  outlinedColor: `var(--joy-palette-${color}-200)`,
-  outlinedBorder: `var(--joy-palette-${color}-700)`,
-  outlinedHoverBg: `var(--joy-palette-${color}-900)`,
-  outlinedHoverBorder: `var(--joy-palette-${color}-600)`,
-  outlinedActiveBg: `var(--joy-palette-${color}-900)`,
-  outlinedDisabledColor: `var(--joy-palette-${color}-800)`,
-  outlinedDisabledBorder: `var(--joy-palette-${color}-800)`,
-
-  lightColor: `var(--joy-palette-${color}-200)`,
-  lightBg: `var(--joy-palette-${color}-900)`,
-  lightHoverBg: `var(--joy-palette-${color}-800)`,
-  lightActiveBg: `var(--joy-palette-${color}-700)`,
-  lightDisabledColor: `var(--joy-palette-${color}-800)`,
-  lightDisabledBg: `var(--joy-palette-${color}-900)`,
-
-  containedColor: `#fff`,
-  containedBg: `var(--joy-palette-${color}-600)`,
-  containedHoverBg: `var(--joy-palette-${color}-700)`,
-  containedActiveBg: `var(--joy-palette-${color}-800)`,
-  containedDisabledBg: `var(--joy-palette-${color}-300)`,
-});
+import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
+import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
+import { VariantKey } from './types/variants';
+import { JoyTheme } from './defaultTheme';
 
 export const isVariantPalette = (colorPalette: string | number | Record<string, any>) =>
   colorPalette &&
   typeof colorPalette === 'object' &&
   Object.keys(colorPalette).some((value) =>
     value.match?.(
-      /^(text(Color|Bg)|outlined(Color|Border|Bg)|light(Color|Bg)|contained(Color|Bg))$/,
+      /^(text(Hover|Active|Disabled)?(Color|Bg)|outlined(Hover|Active|Disabled)?(Color|Border|Bg)|light(Hover|Active|Disabled)?(Color|Bg)|contained(Hover|Active|Disabled)?(Color|Bg))$/,
     ),
   );
 
@@ -114,5 +60,117 @@ export const createVariantStyle = (
       }
     },
   );
+  return result;
+};
+
+export const createContainedOverrides = (theme: JoyTheme) => {
+  const getCssVar = createGetCssVar(theme.prefix);
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          [`--${theme.prefix ? `${theme.prefix}-` : ''}palette-text-primary`]: '#fff',
+          [`--${theme.prefix ? `${theme.prefix}-` : ''}palette-text-secondary`]: getCssVar(
+            `palette-${color}-100`,
+          ),
+          [`--${theme.prefix ? `${theme.prefix}-` : ''}palette-text-tertiary`]: getCssVar(
+            `palette-${color}-200`,
+          ),
+          '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
+
+          '--variant-textColor': getCssVar(`palette-${color}-100`),
+          '--variant-textHoverColor': `#fff`,
+          '--variant-textHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-textActiveBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-textDisabledColor': getCssVar(`palette-${color}-300`),
+
+          '--variant-outlinedColor': getCssVar(`palette-${color}-100`),
+          '--variant-outlinedBorder': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedHoverColor': `#fff`,
+          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-200`),
+          '--variant-outlinedHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-outlinedDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
+
+          '--variant-lightColor': '#fff',
+          '--variant-lightBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-lightHoverBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-lightActiveBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-lightDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-lightDisabledBg': `rgba(255 255 255 / 0.08)`,
+
+          '--variant-containedBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
+          '--variant-containedHoverBg': 'rgba(0 0 0 / 0.32)',
+          '--variant-containedActiveBg': 'rgba(0 0 0 / 0.48)',
+          '--variant-containedDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-containedDisabledBg': `rgba(255 255 255 / 0.08)`,
+        },
+      };
+    }
+  });
+  return result;
+};
+
+export const createVariant = (variant: VariantKey, theme?: JoyTheme) => {
+  let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;
+
+  if (theme) {
+    Object.entries(theme.palette).forEach((entry) => {
+      const [color, colorPalette] = entry as [
+        Exclude<DefaultColorPalette, 'context'>,
+        string | number | Record<string, any>,
+      ];
+      if (isVariantPalette(colorPalette)) {
+        result = {
+          ...result,
+          [color]: createVariantStyle(
+            variant,
+            // cannot use theme.vars because it is created from all color schemes.
+            // @example developer provides `primary.outlinedActiveBorder` to only dark mode.
+            //          theme.vars.palette.primary.outlinedActiveBorder always exists regardless of the current color scheme.
+            theme.palette[color],
+            (variantVar) => theme.vars.palette[color][variantVar],
+          ),
+        };
+      }
+    });
+  }
+
+  result.context = createVariantStyle(variant, {
+    textColor: 'var(--variant-textColor)',
+    textHoverColor: `var(--variant-textHoverColor)`,
+    textHoverBg: 'var(--variant-textHoverBg)',
+    textActiveBg: 'var(--variant-textActiveBg)',
+    textDisabledColor: 'var(--variant-textDisabledColor)',
+
+    outlinedColor: 'var(--variant-outlinedColor)',
+    outlinedBorder: 'var(--variant-outlinedBorder)',
+    outlinedHoverColor: `var(--variant-outlinedHoverColor)`,
+    outlinedHoverBorder: `var(--variant-outlinedHoverBorder)`,
+    outlinedHoverBg: `var(--variant-outlinedHoverBg)`,
+    outlinedActiveBg: `var(--variant-outlinedActiveBg)`,
+    outlinedDisabledColor: `var(--variant-outlinedDisabledColor)`,
+    outlinedDisabledBorder: `var(--variant-outlinedDisabledBorder)`,
+
+    lightColor: 'var(--variant-lightColor)',
+    lightBg: 'var(--variant-lightBg)',
+    lightHoverBg: 'var(--variant-lightHoverBg)',
+    lightActiveBg: 'var(--variant-lightActiveBg)',
+    lightDisabledColor: 'var(--variant-lightDisabledColor)',
+    lightDisabledBg: 'var(--variant-lightDisabledBg)',
+
+    containedBg: 'var(--variant-containedBg)',
+    containedHoverBg: 'var(--variant-containedHoverBg)',
+    containedActiveBg: 'var(--variant-containedActiveBg)',
+    containedDisabledColor: 'var(--variant-containedDisabledColor)',
+    containedDisabledBg: 'var(--variant-containedDisabledBg)',
+  });
   return result;
 };

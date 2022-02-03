@@ -10,13 +10,13 @@ import {
 import colors from '../colors';
 import {
   ColorSystem,
+  ColorPaletteProp,
   Palette,
   PaletteText,
   PaletteRange,
   PaletteBackground,
 } from './types/colorSystem';
 import { Variants } from './types/variants';
-import { createLightModeVariantVariables, createDarkModeVariantVariables } from './variantUtils';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Shadow } from './types/shadow';
 import { Radius } from './types/radius';
@@ -86,6 +86,62 @@ type BaseDesignTokens = {
 };
 
 type BaseColorSystem = Pick<BaseDesignTokens, 'palette' | 'shadowRing' | 'shadowChannel'>;
+
+const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
+  textColor: `var(--joy-palette-${color}-600)`,
+  textHoverBg: `var(--joy-palette-${color}-100)`,
+  textActiveBg: `var(--joy-palette-${color}-200)`,
+  textDisabledColor: `var(--joy-palette-${color}-200)`,
+
+  outlinedColor: `var(--joy-palette-${color}-600)`,
+  outlinedBorder: `var(--joy-palette-${color}-200)`,
+  outlinedHoverBg: `var(--joy-palette-${color}-100)`,
+  outlinedHoverBorder: `var(--joy-palette-${color}-300)`,
+  outlinedActiveBg: `var(--joy-palette-${color}-200)`,
+  outlinedDisabledColor: `var(--joy-palette-${color}-200)`,
+  outlinedDisabledBorder: `var(--joy-palette-${color}-100)`,
+
+  lightColor: `var(--joy-palette-${color}-700)`,
+  lightBg: `var(--joy-palette-${color}-100)`,
+  lightHoverBg: `var(--joy-palette-${color}-200)`,
+  lightActiveBg: `var(--joy-palette-${color}-300)`,
+  lightDisabledColor: `var(--joy-palette-${color}-300)`,
+  lightDisabledBg: `var(--joy-palette-${color}-50)`,
+
+  containedColor: '#fff',
+  containedBg: `var(--joy-palette-${color}-600)`,
+  containedHoverBg: `var(--joy-palette-${color}-700)`,
+  containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledBg: `var(--joy-palette-${color}-200)`,
+});
+
+const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
+  textColor: `var(--joy-palette-${color}-300)`,
+  textHoverBg: `var(--joy-palette-${color}-800)`,
+  textActiveBg: `var(--joy-palette-${color}-700)`,
+  textDisabledColor: `var(--joy-palette-${color}-800)`,
+
+  outlinedColor: `var(--joy-palette-${color}-200)`,
+  outlinedBorder: `var(--joy-palette-${color}-700)`,
+  outlinedHoverBg: `var(--joy-palette-${color}-900)`,
+  outlinedHoverBorder: `var(--joy-palette-${color}-600)`,
+  outlinedActiveBg: `var(--joy-palette-${color}-900)`,
+  outlinedDisabledColor: `var(--joy-palette-${color}-800)`,
+  outlinedDisabledBorder: `var(--joy-palette-${color}-800)`,
+
+  lightColor: `var(--joy-palette-${color}-200)`,
+  lightBg: `var(--joy-palette-${color}-900)`,
+  lightHoverBg: `var(--joy-palette-${color}-800)`,
+  lightActiveBg: `var(--joy-palette-${color}-700)`,
+  lightDisabledColor: `var(--joy-palette-${color}-800)`,
+  lightDisabledBg: `var(--joy-palette-${color}-900)`,
+
+  containedColor: `#fff`,
+  containedBg: `var(--joy-palette-${color}-600)`,
+  containedHoverBg: `var(--joy-palette-${color}-700)`,
+  containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledBg: `var(--joy-palette-${color}-300)`,
+});
 
 export const lightColorSystem: BaseColorSystem = {
   palette: {
