@@ -149,23 +149,11 @@ const Root = styled('div')(({ theme }) => ({
     // Trade display table for scroll overflow
     display: 'block',
     wordBreak: 'normal',
-    width: '100%',
     overflowX: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     borderCollapse: 'collapse',
     marginBottom: '20px',
     borderSpacing: 0,
-    position: 'relative',
-    '&:after': {
-      content: "''",
-      width: '20%',
-      height: '100%',
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      backgroundColor: '#000',
-      backgroundAttachment: 'fixed',
-    },
     '& .prop-name, & .prop-type, & .prop-default': {
       fontWeight: 400,
       fontFamily: theme.typography.fontFamilyCode,
