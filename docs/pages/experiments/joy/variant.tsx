@@ -4,9 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
-import { CssVarsProvider, useColorScheme, ColorPaletteProp } from '@mui/joy/styles';
-import Moon from '@mui/icons-material/DarkMode';
-import Sun from '@mui/icons-material/LightMode';
+import { CssVarsProvider, ColorPaletteProp } from '@mui/joy/styles';
 import Info from '@mui/icons-material/Info';
 import Code from '@mui/icons-material/Code';
 import PlayArrow from '@mui/icons-material/PlayArrow';
@@ -34,36 +32,6 @@ declare module '@mui/joy/styles' {
     alternate: CSSObject;
   }
 }
-
-const ColorSchemePicker = () => {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return null;
-  }
-
-  return (
-    <Button
-      variant="outlined"
-      onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-      }}
-      sx={{
-        p: '0.25rem',
-        width: 'var(--Button-minHeight)',
-      }}
-    >
-      {mode === 'light' ? <Moon /> : <Sun />}
-    </Button>
-  );
-};
 
 // how to add more color and use with variants
 const Tile = ({
@@ -123,9 +91,6 @@ export default function JoyVariant() {
         }}
       >
         <Box sx={{ p: 2 }}>
-          <Box sx={{ pb: 3 }}>
-            <ColorSchemePicker />
-          </Box>
           <Typography component="h1" level="h3" gutterBottom>
             Variant demonstration
           </Typography>
