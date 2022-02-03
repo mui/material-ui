@@ -40,8 +40,8 @@ export interface SlideProps extends TransitionProps {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.duration.enteringScreen,
+   *   exit: theme.duration.leavingScreen,
    * }
    */
   timeout?: TransitionProps['timeout'];

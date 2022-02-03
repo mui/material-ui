@@ -5,7 +5,7 @@ import { elementAcceptingRef, HTMLElementType, chainPropTypes } from '@mui/utils
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
-import { duration, easing } from '../styles/createTransitions';
+import { easing } from '../styles/createTransitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
@@ -84,16 +84,17 @@ const defaultEasing = {
   exit: easing.sharp,
 };
 
-const defaultTimeout = {
-  enter: duration.enteringScreen,
-  exit: duration.leavingScreen,
-};
-
 /**
  * The Slide transition is used by the [Drawer](/components/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Slide = React.forwardRef(function Slide(props, ref) {
+  const theme = useTheme();
+  const defaultTimeout = {
+    enter: theme.duration.enteringScreen,
+    exit: theme.duration.leavingScreen,
+  };
+
   const {
     addEndListener,
     appear = true,
@@ -115,7 +116,6 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
   const childrenRef = React.useRef(null);
   const handleRefIntermediary = useForkRef(children.ref, childrenRef);
   const handleRef = useForkRef(handleRefIntermediary, ref);
@@ -385,8 +385,8 @@ Slide.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.duration.enteringScreen,
+   *   exit: theme.duration.leavingScreen,
    * }
    */
   timeout: PropTypes.oneOfType([
