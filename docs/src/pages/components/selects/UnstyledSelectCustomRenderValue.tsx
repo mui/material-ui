@@ -90,7 +90,7 @@ const StyledListbox = styled('ul')(
 const StyledOption = styled(OptionUnstyled)(
   ({ theme }) => `
   list-style: none;
-  padding: 5px 10px;
+  padding: 10px;
   margin: 0;
   border-bottom: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   cursor: default;
