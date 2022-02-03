@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
@@ -109,6 +111,26 @@ const components = [
     ],
   },
   {
+    name: 'IconButton',
+    render: (props: any) => (
+      <React.Fragment>
+        <IconButton color="success" {...props}>
+          <Add />
+        </IconButton>
+        <IconButton variant="contained" color="danger" {...props}>
+          <DeleteForever />
+        </IconButton>
+        <IconButton variant="outlined" color="primary" {...props}>
+          <Moon />
+        </IconButton>
+        <IconButton variant="outlined" color="primary" shape="circular" {...props}>
+          <Sun />
+        </IconButton>
+      </React.Fragment>
+    ),
+    cssVars: [{ id: '--IconButton-size', type: 'number', unit: 'px', defaultValue: 40 }],
+  },
+  {
     name: 'Switch',
     render: (props: any) => (
       <React.Fragment>
@@ -129,16 +151,25 @@ const components = [
 ];
 
 export default function JoyComponents() {
-  const [current, setCurrent] = React.useState(components[0].name);
+  const router = useRouter();
+  const match = components.find(({ name }) => name === router.query.name);
+  const [current, setCurrent] = React.useState(match ? router.query.name : components[0].name);
   const [componentVars, setComponentVars] = React.useState<Record<string, any>>(
     components.reduce((result, curr) => ({ ...result, [curr.name]: {} }), {}),
   );
   const data = components.find(({ name }) => name === current);
   const renderedSx = data?.name
     ? Object.entries(componentVars[data?.name])
-        .map(([key, value]) => `  ${key}: ${value}`)
+        .map(([key, value]) => `  '${key}': '${value}',`)
         .join('\n')
     : null;
+  React.useEffect(() => {
+    if (router.query.name !== current) {
+      router.replace({
+        query: { name: current },
+      });
+    }
+  }, [current, router]);
   return (
     <CssVarsProvider
       theme={{
