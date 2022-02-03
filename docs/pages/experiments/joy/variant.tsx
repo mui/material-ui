@@ -185,6 +185,12 @@ export default function JoyVariant() {
             <Button disabled color="context" variant="light">
               Disabled
             </Button>
+            <Button color="context" variant="contained">
+              Contained
+            </Button>
+            <Button disabled color="context" variant="contained">
+              Disabled
+            </Button>
           </Box>
         </Box>
       </CssVarsProvider>
@@ -303,6 +309,7 @@ export default function JoyVariant() {
                 text: {
                   primary: 'var(--strapi-palette-neutral-800)',
                 },
+                focusVisible: 'var(--strapi-palette-primary-700)',
                 outlinedFocusBorder: 'var(--strapi-palette-neutral-0)',
               },
             },
@@ -311,7 +318,6 @@ export default function JoyVariant() {
             default: {
               outline: '2px solid',
               outlineOffset: '2px',
-              outlineColor: 'var(--strapi-palette-primary-700)',
             },
           },
           components: {
@@ -628,6 +634,35 @@ declare module '@mui/joy/styles' {
             final variables which means developers can also remove the default tokens by providing
             undefined.
           </Typography>
+          <br />
+          <Typography gutterBottom level="body2">
+            Even though, Strapi does not have context override concept, it still work out-of-the
+            box.
+          </Typography>
+          <Box
+            sx={[
+              {
+                display: 'flex',
+                gap: 2,
+                justifyContent: 'center',
+                alignItems: 'center',
+                p: 2,
+                borderRadius: 1,
+              },
+              (theme) => theme.variants.contained.primary,
+              (theme) => theme.variants.containedOverrides.primary,
+            ]}
+          >
+            <Button color="context" variant="contained">
+              Contained
+            </Button>
+            <Button color="context" variant="outlined">
+              Outlined
+            </Button>
+            <Button color="context" disabled>
+              Disabled
+            </Button>
+          </Box>
           <br />
           <Typography component="h3" level="h5" gutterBottom>
             Focus

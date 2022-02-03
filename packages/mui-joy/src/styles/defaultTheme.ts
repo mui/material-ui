@@ -255,7 +255,7 @@ const internalDefaultTheme: BaseDesignTokens & {
   focus: {
     default: {
       outline: '4px solid',
-      outlineColor: 'var(--joy-palette-focusVisible)',
+      outlineColor: 'var(--variant-focusVisible, var(--joy-palette-focusVisible))',
     },
   },
   typography: {

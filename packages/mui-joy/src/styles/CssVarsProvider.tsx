@@ -78,6 +78,7 @@ const createContainedOverrides = (theme: JoyTheme) => {
           [`--${theme.prefix ? `${theme.prefix}-` : ''}palette-text-tertiary`]: getCssVar(
             `palette-${color}-200`,
           ),
+          '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
 
           '--variant-textColor': getCssVar(`palette-${color}-100`),
           '--variant-textHoverColor': `#fff`,
@@ -100,6 +101,12 @@ const createContainedOverrides = (theme: JoyTheme) => {
           '--variant-lightActiveBg': `rgba(255 255 255 / 0.08)`,
           '--variant-lightDisabledColor': getCssVar(`palette-${color}-300`),
           '--variant-lightDisabledBg': `rgba(255 255 255 / 0.08)`,
+
+          '--variant-containedBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
+          '--variant-containedHoverBg': 'rgba(0 0 0 / 0.32)',
+          '--variant-containedActiveBg': 'rgba(0 0 0 / 0.48)',
+          '--variant-containedDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-containedDisabledBg': `rgba(255 255 255 / 0.08)`,
         },
       };
     }
@@ -148,11 +155,16 @@ const createVariant = (variant: VariantKey, theme: JoyTheme) => {
 
     lightColor: 'var(--variant-lightColor)',
     lightBg: 'var(--variant-lightBg)',
-    lightHoverColor: 'var(--variant-lightHoverColor)',
     lightHoverBg: 'var(--variant-lightHoverBg)',
     lightActiveBg: 'var(--variant-lightActiveBg)',
     lightDisabledColor: 'var(--variant-lightDisabledColor)',
     lightDisabledBg: 'var(--variant-lightDisabledBg)',
+
+    containedBg: 'var(--variant-containedBg)',
+    containedHoverBg: 'var(--variant-containedHoverBg)',
+    containedActiveBg: 'var(--variant-containedActiveBg)',
+    containedDisabledColor: 'var(--variant-containedDisabledColor)',
+    containedDisabledBg: 'var(--variant-containedDisabledBg)',
   });
   return result;
 };
