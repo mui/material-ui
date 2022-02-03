@@ -128,6 +128,15 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
+const Paragraph = styled('p')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  margin: 10px 0;
+  color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
+  `,
+);
+
 function CustomSelect(props: SelectUnstyledProps<number>) {
   const components: SelectUnstyledProps<number>['components'] = {
     Root: StyledButton,
@@ -149,7 +158,7 @@ export default function UnstyledSelectsMultiple() {
         <StyledOption value={30}>Thirty</StyledOption>
       </CustomSelect>
 
-      <p>Selected value: {value}</p>
+      <Paragraph>Selected value: {value}</Paragraph>
     </div>
   );
 }

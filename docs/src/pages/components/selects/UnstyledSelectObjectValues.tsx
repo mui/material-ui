@@ -12,9 +12,11 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  800: '#001E3C',
 };
 
 const grey = {
+  50: '#F3F6F9',
   100: '#E7EBF0',
   200: '#E0E3E7',
   300: '#CDD2D7',
@@ -128,6 +130,29 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
+const Paragraph = styled('p')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  margin: 10px 0;
+  color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
+  `,
+);
+
+const Pre = styled('pre')(
+  ({ theme }) => `
+  font-family: monospace;
+  font-size: 0.875rem;
+  margin: 0px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 30, 60, 0.5)' : grey[50]
+  };
+  color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
+  `,
+);
+
 function CustomSelect<TValue extends {}>(props: SelectUnstyledProps<TValue>) {
   const components: SelectUnstyledProps<TValue>['components'] = {
     Root: StyledButton,
@@ -164,8 +189,8 @@ export default function UnstyledSelectObjectValues() {
         ))}
       </CustomSelect>
 
-      <p>Selected character:</p>
-      <pre>{JSON.stringify(character, null, 2)}</pre>
+      <Paragraph>Selected character:</Paragraph>
+      <Pre>{JSON.stringify(character, null, 2)}</Pre>
     </div>
   );
 }
