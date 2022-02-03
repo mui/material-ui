@@ -78,7 +78,8 @@ const ButtonRoot = styled('button', {
     {
       padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
       ...(ownerState.variant === 'outlined' && {
-        padding: 'calc(0.25rem - 1px) calc(var(--Button-gutter) - 1px)', // account for the border width
+        padding:
+          'calc(0.25rem - var(--variant-outlined-borderWidth)) calc(var(--Button-gutter) - var(--variant-outlined-borderWidth))', // account for the border width
       }),
       minHeight: 'var(--Button-minHeight)',
       borderRadius: theme.vars.radius.sm,
