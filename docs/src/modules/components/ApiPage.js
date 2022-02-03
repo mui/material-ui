@@ -25,8 +25,8 @@ const Table = styled('table')(({ theme }) => {
     background: `
   linear-gradient(to right, ${contentColor} 2%, rgba(0, 0, 0, 0)),
   linear-gradient(to right, rgba(0, 0, 0, 0), ${contentColor} 100%) 0 100%,
-  linear-gradient(to right, ${shadowColor}, rgba(0, 0, 0, 0.08) 5%),
-  linear-gradient(to left, ${shadowColor}, rgba(0, 0, 0, 0.05) 5%)`,
+  linear-gradient(to right, ${shadowColor}, rgba(0, 0, 0, 0.012) 5%),
+  linear-gradient(to left, ${shadowColor}, rgba(0, 0, 0, 0.012) 5%)`,
     backgroundAttachment: 'local, local, scroll, scroll',
     // the above background create thin line on the left, right of the table
     // as a workaround, use negative margin with overflow `hidden` on the parent
