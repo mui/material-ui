@@ -32,7 +32,7 @@ function getUtilityClasses(ownerState: MenuItemState) {
  * - [MenuItemUnstyled API](https://mui.com/api/menu-item-unstyled/)
  */
 const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
-  props: MenuItemUnstyledProps,
+  props: MenuItemUnstyledProps & React.ComponentPropsWithoutRef<'li'>,
   forwardedRef: React.Ref<any>,
 ) {
   const {
@@ -104,16 +104,14 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * If `true`, the menu item will be disabled.
    * @default false
    */
   disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
 } as any;
 
 export default MenuItemUnstyled;

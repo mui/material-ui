@@ -105,6 +105,29 @@ Here is an example of a context menu. (Right click to open.)
 
 {{"demo": "ContextMenu.js"}}
 
+## Unstyled
+
+The Menu also comes with an unstyled version.
+It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```jsx
+import MenuUnstyled from '@mui/base/MenuUnstyled';
+```
+
+#### Basic usage
+
+{{"demo": "UnstyledMenuSimple.js"}}
+
+#### Popup menu
+
+The MenuUnstyled component does not include the trigger button or the popup.
+It's just the list of options.
+Developers are free to compose it with their own triggering elements and popups.
+
+{{"demo": "UnstyledMenuPopup.js"}}
+
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:

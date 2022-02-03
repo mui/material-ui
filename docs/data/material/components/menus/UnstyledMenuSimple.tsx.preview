@@ -1,0 +1,11 @@
+<StyledMenu>
+  <StyledMenuItem onClick={() => console.log('Cut')}>
+    <ContentCut fontSize="small" /> Cut
+  </StyledMenuItem>
+  <StyledMenuItem onClick={() => console.log('Copy')}>
+    <ContentCopy fontSize="small" /> Copy
+  </StyledMenuItem>
+  <StyledMenuItem onClick={() => console.log('Paste')} disabled>
+    <ContentPaste fontSize="small" /> Paste
+  </StyledMenuItem>
+</StyledMenu>
