@@ -242,7 +242,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   let invisible = invisibleProp;
 
   if (
-    invisibleProp == null &&
+    invisibleProp !== true &&
     ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
   ) {
     invisible = true;
