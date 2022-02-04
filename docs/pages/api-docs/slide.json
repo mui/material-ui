@@ -18,7 +18,7 @@
         "name": "union",
         "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
       },
-      "default": "{\n  enter: easing.easeOut,\n  exit: easing.sharp,\n}"
+      "default": "{\n  enter: theme.transitions.easing.easeOut,\n  exit: theme.transitions.easing.sharp,\n}"
     },
     "in": { "type": { "name": "bool" } },
     "timeout": {
