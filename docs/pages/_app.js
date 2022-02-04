@@ -13,6 +13,9 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
 import pages from 'docs/src/pages';
+import basePages from 'docs/data/base/pages';
+import materialPages from 'docs/data/material/pages';
+import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
@@ -27,6 +30,7 @@ import {
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -173,9 +177,16 @@ function AppWrapper(props) {
   }, []);
 
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  // eslint-disable will be removed once docs restructure is done
-  // eslint-disable-next-line prefer-const
   let productPages = pages;
+  if (asPathWithoutLang.startsWith('/base')) {
+    productPages = basePages;
+  }
+  if (asPathWithoutLang.startsWith('/material')) {
+    productPages = materialPages;
+  }
+  if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
+    productPages = systemPages;
+  }
 
   const activePage = findActivePage(productPages, router.pathname);
 
