@@ -97,6 +97,8 @@ export type ColorPaletteProp = OverridableStringUnion<
   ColorPalettePropOverrides
 >;
 
+// Split interfaces into multiple chunks so that they can be augmented independently
+
 export interface PalettePrimary extends PaletteRange {}
 export interface PaletteNeutral extends PaletteRange {}
 export interface PaletteDanger extends PaletteRange {}
