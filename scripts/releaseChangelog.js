@@ -8,7 +8,7 @@ const exec = promisify(childProcess.exec);
 
 /**
  * @param {string} commitMessage
- * @returns {string} The tags in lowercases, ordered ascending and commaseparated
+ * @returns {string} The tags in lowercases, ordered ascending and comma separated
  */
 function parseTags(commitMessage) {
   const tagMatch = commitMessage.match(/^(\[[\w-]+\])+/);
@@ -130,7 +130,7 @@ async function main(argv) {
     const shortMessage = commitsItem.commit.message.split('\n')[0];
     return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
   });
-  const nowFormated = new Date().toLocaleDateString('en-US', {
+  const nowFormatted = new Date().toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
@@ -139,7 +139,7 @@ async function main(argv) {
   const changelog = `
 ## TODO RELEASE NAME
 <!-- generated comparing ${lastRelease}..${release} -->
-_${nowFormated}_
+_${nowFormatted}_
 
 A big thanks to the ${
     authors.length
@@ -164,7 +164,7 @@ yargs
       return command
         .option('lastRelease', {
           describe:
-            'The release to compare gainst e.g. `v5.0.0-alpha.23`. Default: The latest tag on the current branch.',
+            'The release to compare against e.g. `v5.0.0-alpha.23`. Default: The latest tag on the current branch.',
           type: 'string',
         })
         .option('githubToken', {

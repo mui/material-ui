@@ -27,7 +27,9 @@ test('able to navigate between products', async ({ page }) => {
 
   await expect(page.locator('#mui-product-menu a:has-text("Data Grid")')).toHaveAttribute(
     'href',
-    '/x/data-grid/getting-started/',
+    FEATURE_TOGGLE.enable_redirects
+      ? '/x/react-data-grid/getting-started/'
+      : '/components/data-grid/getting-started/',
   );
 
   if (FEATURE_TOGGLE.enable_mui_base_scope) {

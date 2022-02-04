@@ -28,7 +28,6 @@ export default function DiamondSponsors(props) {
         size="small"
         endIcon={<InfoOutlinedIcon fontSize="small" />}
         sx={{
-          ml: -1,
           mb: 1,
           fontSize: theme.typography.pxToRem(12.5),
           fontWeight: 500,
