@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/material/guides/interoperability/interoperability.md?@mui/markdown';
+} from 'docs/src/pages/guides/interoperability/interoperability.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
