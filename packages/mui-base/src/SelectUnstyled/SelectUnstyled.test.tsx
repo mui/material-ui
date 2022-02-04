@@ -47,20 +47,34 @@ describe('SelectUnstyled', () => {
   }));
 
   describe('keyboard navigation', () => {
-    ['Enter', ' ', 'ArrowDown', 'ArrowUp'].forEach((key) => {
-      it(`opens the dropdown when the "${key}" key is pressed on the button`, () => {
+    ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
+      it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
         const { getByRole } = render(<SelectUnstyled components={{ Root: 'div' }} />);
         const button = getByRole('button');
         act(() => {
           button.focus();
         });
-        userEvent.keyPress(button, { key });
+        fireEvent.keyDown(button, { key });
 
         expect(button).to.have.attribute('aria-expanded', 'true');
         expect(getByRole('listbox')).not.to.equal(null);
         expect(document.activeElement).to.equal(getByRole('listbox'));
       });
+    });
+
+    it(`opens the dropdown when the " " key is let go on the button`, () => {
+      // can't use the default native `button` as it doesn't treat enter or space press as a click
+      const { getByRole } = render(<SelectUnstyled components={{ Root: 'div' }} />);
+      const button = getByRole('button');
+      act(() => {
+        button.focus();
+      });
+      fireEvent.keyUp(button, { key: ' ' });
+
+      expect(button).to.have.attribute('aria-expanded', 'true');
+      expect(getByRole('listbox')).not.to.equal(null);
+      expect(document.activeElement).to.equal(getByRole('listbox'));
     });
 
     ['Enter', ' ', 'Escape'].forEach((key) => {
