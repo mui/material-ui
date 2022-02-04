@@ -191,8 +191,13 @@ export default function Notifications() {
                     messageList.map((message, index) => (
                       <React.Fragment key={message.id}>
                         <ListItem alignItems="flex-start">
-                          <Typography gutterBottom>{message.title}</Typography>
-                          <Typography gutterBottom variant="body2">
+                          <Typography gutterBottom>
+                            <span
+                              // eslint-disable-next-line react/no-danger
+                              dangerouslySetInnerHTML={{ __html: message.title }}
+                            />
+                          </Typography>
+                          <Typography gutterBottom variant="body2" color="text.secondary">
                             <span
                               id="notification-message"
                               // eslint-disable-next-line react/no-danger

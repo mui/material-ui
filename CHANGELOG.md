@@ -1,5 +1,140 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.4.0
+
+<!-- generated comparing v5.3.1..master -->
+
+_Feb 1, 2022_
+
+A big thanks to the 22 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 @goncalovf added an example project using [MUI with Vite.js](https://github.com/mui-org/material-ui/tree/master/examples/vitejs) (#28241)
+- Number of 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.4.0`
+
+#### Breaking changes
+
+- &#8203;<!-- 27 -->[core] Do not reexport Base from Material (#30853) @michaldudak
+
+  All Base components were exported from the `@mui/material` package and treated as stable even though the `@mui/base` package is in development. It could create a lot of confusion if developers start using Base components, depend on them, and demand quality found in "proper" Material components. We admit it was a mistake to reexport these components without marking them as unstable.
+
+  Developers are still encouraged to evaluate the Base components, but they should do so by explicitly installing the `@mui/base` package.
+
+  This is technically a breaking change as it removes a number of components from the `@mui/material` package. However, we believe that removing the components now and potentially breaking the codebases will do less harm than introducing "silent" breaking changes to Base components while continuing reexporting them from `@mui/material`.
+
+  Note: the utility components, such as ClickAwayListener, NoSsr, Portal, and TextareaAutosize continue to be exported from both `@mui/material` and `@mui/base`.
+
+  If you're encountering build errors after upgrading @mui/material, do the following:
+
+  1. Install @mui/base: npm install @mui/base or yarn add @mui/base
+  2. Make sure the version of @mui/base match the version of @mui/material
+  3. Change the import paths of unstyled components from @mui/material to @mui/base, e.g.:
+
+  ```diff
+  - @import ButtonUnstyled from '@mui/material/ButtonUnstyled';
+  + @import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+  ```
+
+#### Changes
+
+- &#8203;<!-- 30 -->[Autocomplete] Add `readOnly` prop (#30706) @ZeeshanTamboli
+- &#8203;<!-- 29 -->[Autocomplete] Fix typos in the page (#30737) @austinewuncler
+- &#8203;<!-- 14 -->[FormControlLabel][formgroup] add Mui-error class (#30656) @alisasanib
+- &#8203;<!-- 13 -->[Grid] Fix prop check for applying wrap-reverse (#30813) @Hubbz
+- &#8203;<!-- 07 -->[TextField] Remove notch when no label is added (#30560) @alisasanib
+- &#8203;<!-- 06 -->[TextField] Remove usage of dangerouslySetInnerHTML (#30776) @Jack-Works
+- &#8203;<!-- 05 -->[TreeView] Select node when key `Enter` is pressed (#30795) @dryrainbow
+- &#8203;<!-- 04 -->[useMediaQuery] Ensure no tearing in React 18 (#30655) @eps1lon
+
+### `@mui/base@5.0.0-alpha.67`
+
+- &#8203;<!-- 11 -->[SelectUnstyled] Create unstyled select (+ hook) (#30113) @michaldudak
+
+### `@mui/lab@5.0.0-alpha.67`
+
+- &#8203;<!-- 23 -->[DateTimePicker] Fix month view highlight wrong tab (#30773) @DiegoYungh
+- &#8203;<!-- 12 -->[pickers] Enable the sx props on all components (#30749) @boutahlilsoufiane
+
+### Docs
+
+- &#8203;<!-- 28 -->[blog] Introducing callback support in style overrides (#30668) @siriwatknp
+- &#8203;<!-- 23 -->[docs] Add notifications for the blog posts (#30852) @siriwatknp
+- &#8203;<!-- 22 -->[docs] Improve the interoperability guide (#30785) @mnajdova
+- &#8203;<!-- 21 -->[docs] Improve the Getting Started documentation content (#30808) @mnajdova
+- &#8203;<!-- 20 -->[docs] Fix typo in ad fallback (#30823) @cherniavskii
+- &#8203;<!-- 19 -->[docs] Change ThemeProvider API links (#30705) @atakanzen
+- &#8203;<!-- 18 -->[docs] Retain vendor prefixing in rtl example (#30710) @ryancogswell
+- &#8203;<!-- 17 -->[docs] Fix typo in the Popper ScrollPlayground demo (#30780) @tanyabouman
+- &#8203;<!-- 16 -->[docs] Small fixes on the jss-to-tss migration guide (#30734) @garronej
+- &#8203;<!-- 15 -->[examples] Add Vite.js example (#28241) @goncalovf
+
+### Core
+
+- &#8203;<!-- 29 -->[core] Clarify the label, to match with MUI X (#30831) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Remove none code related instructions from git (#30843) @oliviertassinari
+- &#8203;<!-- 25 -->[core] Fix typos in comments for scripts (#30809) @aefox
+- &#8203;<!-- 24 -->[core] Fix 301 link in the blog @oliviertassinari
+- &#8203;<!-- 10 -->[test] Fix tests on Node 16 (#30819) @michaldudak
+- &#8203;<!-- 09 -->[test] Add explicit types to support noImplicityAny=false (#30798) @m4theushw
+- &#8203;<!-- 08 -->[test] Support React.useId format in \*DescriptionOf (#30657) @eps1lon
+- &#8203;<!-- 03 -->[website] Fix SEO issues (#30829) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Add designer position page (#30708) @danilo-leal
+- &#8203;<!-- 01 -->[website] Polish /about page (#30747) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aefox, @alisasanib, @atakanzen, @austinewuncler, @boutahlilsoufiane, @cherniavskii, @danilo-leal, @DiegoYungh, @dryrainbow, @eps1lon, @garronej, @goncalovf, @Hubbz, @Jack-Works, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @ryancogswell, @siriwatknp, @tanyabouman, @ZeeshanTamboli
+
+## 5.3.1
+
+<!-- generated comparing v5.3.0..master -->
+
+_Jan 24, 2022_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 @mnajdova added interoperability guide for using Tailwind CSS (#30700)
+- A meaningful number of 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/icons-material@5.3.1`
+
+- &#8203;<!-- 04 -->[icons] Fix naming typos (#30512) @MrHBS
+- &#8203;<!-- 03 -->[icons] Makes material-icons work with Joy (#30681) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.66`
+
+- &#8203;<!-- 02 -->[SliderUnstyled] Improve typings on some internal utils (#30614) @mnajdova
+
+### Core
+
+- &#8203;<!-- 24 -->[core] Batch small changes (#30690) @oliviertassinari
+- &#8203;<!-- 23 -->[core] Add new structure to ignore list crowdin (#30608) @siriwatknp
+- &#8203;<!-- 22 -->[core] Correct version in package.json (#30677) @michaldudak
+- &#8203;<!-- 01 -->[test] Fix buildApiUtils tests on Windows (#30698) @michaldudak
+
+### Docs
+
+- &#8203;<!-- 26 -->[blog] Enable blog index (#30724) @siriwatknp
+- &#8203;<!-- 25 -->[blog] Introducing the Row Grouping feature (#30598) @alexfauquette
+- &#8203;<!-- 21 -->[docs] Fix SEO crawl errors (#30733) @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Update migration-v4.md (#30721) @ddecrulle
+- &#8203;<!-- 19 -->[docs] Fix migration issues detected by `ahrefs` (#30751) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Add interoprability guide for using Tailwind CSS (#30700) @mnajdova
+- &#8203;<!-- 17 -->[docs] Fix typo in containedSizeMedium class (#30723) @aaneitchik
+- &#8203;<!-- 16 -->[docs] Hotfix the wrong URL in X marketing page (#30729) @siriwatknp
+- &#8203;<!-- 15 -->[docs] Post migration preparation fix (#30716) @siriwatknp
+- &#8203;<!-- 14 -->[docs] Update remix example to restore from error pages (#30592) @mnajdova
+- &#8203;<!-- 13 -->[docs] Use new URLs when enable_redirects is true (#30704) @siriwatknp
+- &#8203;<!-- 12 -->[docs] Add a missing bracket in the migration-v4 guide (#30616) @chaosmirage
+- &#8203;<!-- 11 -->[docs] Add Checkbox color prop change (#30697) @aaneitchik
+- &#8203;<!-- 10 -->[docs] Fix migration to have singular urls (#30695) @siriwatknp
+- &#8203;<!-- 09 -->[docs] Update UXPin link to new landing page (#30691) @Evomatic
+- &#8203;<!-- 08 -->[docs] Close user menu on click in the responsive app bar demo (#30664) @NoahYarian
+- &#8203;<!-- 07 -->[docs] Clear the difference between UI and React components (#29930) @oliviertassinari
+- &#8203;<!-- 06 -->[docs] Make Autocomplete docs gender neutral (#30679) @exequielbc
+- &#8203;<!-- 05 -->[docs] Update doc structure for X components (#30684) @siriwatknp
+
+All contributors of this release in alphabetical order: @aaneitchik, @alexfauquette, @chaosmirage, @ddecrulle, @Evomatic, @exequielbc, @michaldudak, @mnajdova, @MrHBS, @NoahYarian, @oliviertassinari, @siriwatknp
+
 ## 5.3.0
 
 <!-- generated comparing v5.2.8..master -->
@@ -5757,7 +5892,7 @@ Here are some highlights ✨:
   Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/basics/)).
 
   This change has been in our roadmap for more than a year.
-  We announced it in the [v4 release blog post](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) as a direction v5 would take.
+  We announced it in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/) as a direction v5 would take.
 
 - 🛠 A first iteration on the unstyled components.
 

@@ -250,11 +250,8 @@ const GridRoot = styled('div', {
     ...(ownerState.zeroMinWidth && {
       minWidth: 0,
     }),
-    ...(ownerState.wrap === 'nowrap' && {
-      flexWrap: 'nowrap',
-    }),
-    ...(ownerState.wrap === 'reverse' && {
-      flexWrap: 'wrap-reverse',
+    ...(ownerState.wrap !== 'wrap' && {
+      flexWrap: ownerState.wrap,
     }),
   }),
   generateDirection,

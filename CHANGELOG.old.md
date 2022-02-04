@@ -3583,7 +3583,7 @@ Here are some highlights ✨:
 
 _May 23, 2019_
 
-[Material-UI v4 is out 🎉](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)
+[Material-UI v4 is out 🎉](https://mui.com/blog/material-ui-v4-is-out/)
 
 Some statistics with v4 compared to the release of v1 one year ago:
 

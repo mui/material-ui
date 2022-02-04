@@ -30,7 +30,7 @@ export default function XPlans() {
     <Section>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
             <SectionHeadline
               overline="Plans"
               title={
@@ -47,6 +47,7 @@ export default function XPlans() {
               size="large"
               variant="contained"
               endIcon={<KeyboardArrowRightRounded />}
+              sx={{ width: { xs: '100%', sm: 'auto' } }}
             >
               Compare plans
             </Button>

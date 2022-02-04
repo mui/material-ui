@@ -144,38 +144,32 @@ const faqData = [
 ];
 
 const openRolesData = [
-  // {
-  //   // 1
-  //   title: 'Product',
-  //   roles: [
-  //     {
-  //       title: 'Product Designer',
-  //       description:
-  //         'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-  //       url: '/company/11-product-designer/',
-  //     },
-  //   ],
-  // },
+  {
+    // 1
+    title: 'Product',
+    roles: [
+      {
+        title: 'Designer',
+        description:
+          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
+        url: '/company/designer/',
+      },
+    ],
+  },
   {
     // 5
     title: 'Developer Experience',
     roles: [
       {
-        title: 'Developer Advocate',
+        title: 'Support Engineer - X',
         description:
-          'You will educate users on the latest features, craft high-quality examples, and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
-        url: '/company/50-developer-advocate/',
+          "You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/company/support-engineer/',
       },
       {
         title: 'Developer Experience Engineer',
         description: 'You will focus on providing experiences that delight developers using MUI.',
-        url: '/company/51-developer-experience-engineer/',
-      },
-      {
-        title: 'Support Engineer - X',
-        description:
-          "You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/company/50-support-engineer/',
+        url: '/company/developer-experience-engineer/',
       },
     ],
   },
@@ -187,12 +181,12 @@ const openRolesData = [
         title: 'React Engineer - X',
         description:
           'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/company/20-react-engineer/',
+        url: '/company/react-engineer/',
       },
       {
         title: 'Hustler Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
-        url: '/company/22-hustler-engineer/',
+        url: '/company/hustler-engineer/',
       },
     ],
   },
@@ -204,7 +198,7 @@ const openRolesData = [
         title: 'People Operations Manager',
         description:
           'You will build the HR function from the ground up at a high-growth tech company.',
-        url: '/company/30-people-operations-manager/',
+        url: '/company/people-operations-manager/',
       },
     ],
   },
@@ -216,25 +210,13 @@ const openRolesData = [
         title: 'Support Agent - Store',
         description:
           "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/company/41-support-agent/',
+        url: '/company/support-agent/',
       },
     ],
   },
 ];
 
 const futureRolesData = [
-  {
-    // 1
-    title: 'Product',
-    roles: [
-      {
-        title: 'Product Designer',
-        description:
-          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-        url: '/company/11-product-designer/',
-      },
-    ],
-  },
   {
     title: 'Engineering',
     roles: [
@@ -350,9 +332,9 @@ function CareersContent() {
       </Box>
       {/* Perks & benefits */}
       <div>
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
+        <Container sx={{ py: 4 }}>
           <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} sx={{ pr: { sm: 0, md: 4 } }}>
               <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
                 {'Perks & benefits'}
               </Typography>
@@ -380,53 +362,59 @@ function CareersContent() {
                 </Box>
               ))}
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                component={Link}
-                href={ROUTES.handbook}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2 }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Handbook
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  See how we run the company and the way we work.
-                </Typography>
-                <Typography
-                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-                  variant="body2"
-                  fontWeight="bold"
+            <Grid item xs={12} sm={12} md={6} container spacing={2}>
+              <Grid item xs={12} sm={12} md={6}>
+                <Paper
+                  component={Link}
+                  href={ROUTES.handbook}
+                  noLinkStyle
+                  variant="outlined"
+                  sx={{ p: 2 }}
                 >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                component={Link}
-                href={ROUTES.blog}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2 }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Blog
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Check behind the scenes and news from the company.
-                </Typography>
-                <Typography
-                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-                  variant="body2"
-                  fontWeight="bold"
+                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                    Handbook
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    See how we run the company and the way we work.
+                  </Typography>
+                  <Typography
+                    color={(theme) =>
+                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
+                    }
+                    variant="body2"
+                    fontWeight="bold"
+                  >
+                    Learn more{' '}
+                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6}>
+                <Paper
+                  component={Link}
+                  href={ROUTES.blog}
+                  noLinkStyle
+                  variant="outlined"
+                  sx={{ p: 2 }}
                 >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
+                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                    Blog
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    Check behind the scenes and news from the company.
+                  </Typography>
+                  <Typography
+                    color={(theme) =>
+                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
+                    }
+                    variant="body2"
+                    fontWeight="bold"
+                  >
+                    Learn more{' '}
+                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                  </Typography>
+                </Paper>
+              </Grid>
             </Grid>
           </Grid>
         </Container>

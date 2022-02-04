@@ -150,20 +150,21 @@ const PostPreview = (props: BlogPost) => {
           )}
         </Box>
         <Button
-          component="a"
+          component={Link}
           aria-describedby={`describe-${props.slug}`}
           href={`/blog/${props.slug}`}
           id={`describe-${props.slug}`}
           size="small"
           endIcon={<KeyboardArrowRightRoundedIcon />}
           sx={(theme) => ({
-            mt: { xs: 0.5, sm: 0 },
+            mt: { xs: 1, md: 0 },
+            mb: { xs: -1, md: 0 },
             color:
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[300]
                 : theme.palette.primary[600],
-            '& svg': {
-              ml: -0.5,
+            '& .MuiButton-endIcon': {
+              ml: 0,
             },
           })}
         >
@@ -180,7 +181,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
   const postListRef = React.useRef<HTMLDivElement | null>(null);
   const [page, setPage] = React.useState(0);
   const [selectedTags, setSelectedTags] = React.useState<Record<string, boolean>>({});
-  const { allBlogPosts, allTags, tagInfo: rawTagInfo } = props;
+  const { allBlogPosts, tagInfo: rawTagInfo } = props;
   const [firstPost, secondPost, ...otherPosts] = allBlogPosts;
   const tagInfo = { ...rawTagInfo };
   [firstPost, secondPost].forEach((post) => {
@@ -190,6 +191,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           tagInfo[tag]! -= 1;
         }
       });
+    }
+  });
+  Object.entries(tagInfo).forEach(([tagName, tagCount]) => {
+    if (!tagCount) {
+      delete tagInfo[tagName];
     }
   });
   const filteredPosts = otherPosts.filter(
@@ -301,7 +307,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         <Container
           ref={postListRef}
           sx={{
-            mt: { xs: -8, sm: -7 },
+            mt: -6,
             display: 'grid',
             gridTemplateColumns: { md: '1fr 380px' },
             columnGap: 8,
@@ -332,8 +338,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 position: 'sticky',
                 top: 100,
                 alignSelf: 'start',
-                mb: { xs: 2, sm: 8 },
-                mt: { xs: 2, sm: 8 }, // margin-top makes the title appear when scroll into view
+                mb: 2,
+                mt: { xs: 3, sm: 2, md: 9 }, // margin-top makes the title appear when scroll into view
                 p: 2,
                 borderRadius: 1,
                 border: '1px solid',
@@ -351,7 +357,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 Filter by tag
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {allTags.map((tag) => {
+                {Object.keys(tagInfo).map((tag) => {
                   const selected = !!selectedTags[tag];
                   return (
                     <Chip
@@ -398,7 +404,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   component="li"
                   key={post.slug}
                   sx={() => ({
-                    py: 2,
+                    py: 2.5,
                     display: 'flex',
                     flexDirection: 'column',
                     position: 'relative',

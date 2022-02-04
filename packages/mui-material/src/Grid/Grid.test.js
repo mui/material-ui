@@ -427,4 +427,29 @@ describe('<Grid />', () => {
       marginBottom: '16px',
     });
   });
+
+  describe('prop: wrap', () => {
+    it('should wrap by default', () => {
+      render(<Grid container data-testid="wrap" />);
+      expect(screen.getByTestId('wrap')).toHaveComputedStyle({
+        flexWrap: 'wrap',
+      });
+    });
+
+    it('should apply nowrap class and style', () => {
+      const { container } = render(<Grid container wrap="nowrap" data-testid="wrap" />);
+      expect(container.firstChild).to.have.class('MuiGrid-wrap-xs-nowrap');
+      expect(screen.getByTestId('wrap')).toHaveComputedStyle({
+        flexWrap: 'nowrap',
+      });
+    });
+
+    it('should apply wrap-reverse class and style', () => {
+      const { container } = render(<Grid container wrap="wrap-reverse" data-testid="wrap" />);
+      expect(container.firstChild).to.have.class('MuiGrid-wrap-xs-wrap-reverse');
+      expect(screen.getByTestId('wrap')).toHaveComputedStyle({
+        flexWrap: 'wrap-reverse',
+      });
+    });
+  });
 });

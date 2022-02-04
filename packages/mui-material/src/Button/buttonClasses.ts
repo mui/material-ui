@@ -49,7 +49,7 @@ export interface ButtonClasses {
   outlinedSizeLarge: string;
   /** Styles applied to the root element if `size="small"` and `variant="contained"`. */
   containedSizeSmall: string;
-  /** Styles applied to the root element if `size="small"` and `variant="contained"`. */
+  /** Styles applied to the root element if `size="medium"` and `variant="contained"`. */
   containedSizeMedium: string;
   /** Styles applied to the root element if `size="large"` and `variant="contained"`. */
   containedSizeLarge: string;

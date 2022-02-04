@@ -11,13 +11,14 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import replaceMarkdownLinks from 'docs/src/modules/utils/replaceMarkdownLinks';
+import replaceHtmlLinks from 'docs/src/modules/utils/replaceHtmlLinks';
 
 const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
   const t = useTranslate();
+  const router = useRouter();
 
   return (
     <table>
@@ -71,7 +72,7 @@ function PropsTable(props) {
                   )}
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: propDescriptions[propName] || '',
+                      __html: replaceHtmlLinks(propDescriptions[propName] || '', router.asPath),
                     }}
                   />
                 </td>
@@ -286,7 +287,11 @@ import { ${componentName} } from '${source}';`}
           <React.Fragment>
             <br />
             <br />
-            <span dangerouslySetInnerHTML={{ __html: componentDescription }} />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: replaceHtmlLinks(componentDescription, router.asPath),
+              }}
+            />
           </React.Fragment>
         ) : null}
         {componentStyles.name && (
@@ -294,16 +299,19 @@ import { ${componentName} } from '${source}';`}
             <Heading hash="component-name" />
             <span
               dangerouslySetInnerHTML={{
-                __html: t('api-docs.styleOverrides').replace(
-                  /{{componentStyles\.name}}/,
-                  componentStyles.name,
+                __html: replaceHtmlLinks(
+                  t('api-docs.styleOverrides').replace(
+                    /{{componentStyles\.name}}/,
+                    componentStyles.name,
+                  ),
+                  router.asPath,
                 ),
               }}
             />
           </React.Fragment>
         )}
         <Heading hash="props" />
-        <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
+        <p dangerouslySetInnerHTML={{ __html: replaceHtmlLinks(spreadHint, router.asPath) }} />
         <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
         <br />
         {cssComponent && (
@@ -323,11 +331,14 @@ import { ${componentName} } from '${source}';`}
             <Heading hash="inheritance" level="h3" />
             <span
               dangerouslySetInnerHTML={{
-                __html: t('api-docs.inheritanceDescription')
-                  .replace(/{{component}}/, inheritance.component)
-                  .replace(/{{pathname}}/, inheritance.pathname)
-                  .replace(/{{suffix}}/, inheritanceSuffix)
-                  .replace(/{{componentName}}/, componentName),
+                __html: replaceHtmlLinks(
+                  t('api-docs.inheritanceDescription')
+                    .replace(/{{component}}/, inheritance.component)
+                    .replace(/{{pathname}}/, inheritance.pathname)
+                    .replace(/{{suffix}}/, inheritanceSuffix)
+                    .replace(/{{componentName}}/, componentName),
+                  router.asPath,
+                ),
               }}
             />
           </React.Fragment>
@@ -348,7 +359,7 @@ import { ${componentName} } from '${source}';`}
           </React.Fragment>
         ) : null}
         <Heading hash="demos" />
-        <span dangerouslySetInnerHTML={{ __html: replaceMarkdownLinks(demos, router.asPath) }} />
+        <span dangerouslySetInnerHTML={{ __html: replaceHtmlLinks(demos, router.asPath) }} />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">
