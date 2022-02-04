@@ -228,7 +228,7 @@ function ProductDrawerButton(props) {
           />
           <LinksWrapper>
             <Link
-              href={`/x/data-grid/getting-started/`}
+              href={ROUTES.dataGridDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
               Data Grid <KeyboardArrowRight fontSize="small" />
@@ -621,7 +621,8 @@ function AppNavDrawer(props) {
                 name="Data Grid"
                 metadata="MUI X"
                 versionSelector={renderVersionSelector([
-                  { text: `v5.3.0`, current: true },
+                  // LIB_VERSION is set from the X repo
+                  { text: `v${process.env.LIB_VERSION}`, current: true },
                   { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
                 ])}
               />
