@@ -1,5 +1,5 @@
 # Configuration for support-requests - https://github.com/dessant/support-requests
-name: 'Support Requests'
+name: 'Support StackOverflow'
 
 on:
   issues:
@@ -16,7 +16,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Label used to mark issues as support requests
-          support-label: 'support'
+          support-label: 'support: StackOverflow'
           # Comment to post on issues marked as support requests. Add a link
           # to a support page, or set to `false` to disable
           issue-comment: |

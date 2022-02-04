@@ -118,6 +118,7 @@ export default function createCssVarsProvider(options) {
       ...colorSchemes[resolvedColorScheme],
       components,
       colorSchemes,
+      prefix,
       vars: rootVars,
       spacing: themeProp.spacing ? createSpacing(themeProp.spacing) : systemSpacing,
       breakpoints: themeProp.breakpoints
@@ -216,7 +217,9 @@ export default function createCssVarsProvider(options) {
       >
         <GlobalStyles styles={{ ':root': rootCss }} />
         <GlobalStyles styles={styleSheet} />
-        <ThemeProvider theme={resolveTheme(mergedTheme)}>{children}</ThemeProvider>
+        <ThemeProvider theme={resolveTheme ? resolveTheme(mergedTheme) : mergedTheme}>
+          {children}
+        </ThemeProvider>
       </ColorSchemeContext.Provider>
     );
   }

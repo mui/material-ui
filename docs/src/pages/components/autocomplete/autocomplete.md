@@ -164,12 +164,11 @@ overriding the `filterOptions` prop:
 ### Google Maps place
 
 A customized UI for Google Maps Places Autocomplete.
+For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
-
-> ⚠️ Before you can start using the Google Maps JavaScript API, you must sign up and create a billing account.
+> ⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
 
 ## Multiple values
 

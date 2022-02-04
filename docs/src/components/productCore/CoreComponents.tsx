@@ -314,6 +314,7 @@ export default function CoreComponents() {
               </Box>
               <Box
                 sx={{
+                  pl: 1.5,
                   display: 'flex',
                   alignItems: 'center',
                   position: 'absolute',

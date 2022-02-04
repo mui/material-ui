@@ -10,19 +10,14 @@ import {
 import colors from '../colors';
 import {
   ColorSystem,
+  ColorPaletteProp,
   Palette,
   PaletteText,
   PaletteRange,
   PaletteBackground,
   DefaultColorPalette,
 } from './types/colorSystem';
-import { DefaultContextualOverrides, DefaultVariantKey, Variants } from './types/variants';
-import {
-  createLightModeVariantVariables,
-  createDarkModeVariantVariables,
-  createContextVariant,
-  createContainedOverrides,
-} from './variantUtils';
+import { Variants } from './types/variants';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Shadow } from './types/shadow';
 import { Radius } from './types/radius';
@@ -63,15 +58,16 @@ export interface Focus {
  * ==============================================
  */
 type BasePaletteRange = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-type PartialOtherKeys<T, U extends keyof T> = Pick<T, U> & Partial<Exclude<T, U>>;
+type PartialRest<T, U extends keyof T> = Pick<T, U> & Partial<Exclude<T, U>>;
 type BaseDesignTokens = {
   palette: {
-    primary: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    neutral: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    danger: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    info: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    success: PartialOtherKeys<PaletteRange, BasePaletteRange>;
-    warning: PartialOtherKeys<PaletteRange, BasePaletteRange>;
+    // variant tokens are optional because the style will be generated after CSS variables has been prepared.
+    primary: PartialRest<PaletteRange, BasePaletteRange>;
+    neutral: PartialRest<PaletteRange, BasePaletteRange>;
+    danger: PartialRest<PaletteRange, BasePaletteRange>;
+    info: PartialRest<PaletteRange, BasePaletteRange>;
+    success: PartialRest<PaletteRange, BasePaletteRange>;
+    warning: PartialRest<PaletteRange, BasePaletteRange>;
     text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
     background: Pick<PaletteBackground, 'body' | 'level1' | 'level2' | 'level3'>;
     focusVisible: Palette['focusVisible'];
@@ -91,6 +87,62 @@ type BaseDesignTokens = {
 };
 
 type BaseColorSystem = Pick<BaseDesignTokens, 'palette' | 'shadowRing' | 'shadowChannel'>;
+
+const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
+  textColor: `var(--joy-palette-${color}-600)`,
+  textHoverBg: `var(--joy-palette-${color}-100)`,
+  textActiveBg: `var(--joy-palette-${color}-200)`,
+  textDisabledColor: `var(--joy-palette-${color}-200)`,
+
+  outlinedColor: `var(--joy-palette-${color}-600)`,
+  outlinedBorder: `var(--joy-palette-${color}-200)`,
+  outlinedHoverBg: `var(--joy-palette-${color}-100)`,
+  outlinedHoverBorder: `var(--joy-palette-${color}-300)`,
+  outlinedActiveBg: `var(--joy-palette-${color}-200)`,
+  outlinedDisabledColor: `var(--joy-palette-${color}-200)`,
+  outlinedDisabledBorder: `var(--joy-palette-${color}-100)`,
+
+  lightColor: `var(--joy-palette-${color}-700)`,
+  lightBg: `var(--joy-palette-${color}-100)`,
+  lightHoverBg: `var(--joy-palette-${color}-200)`,
+  lightActiveBg: `var(--joy-palette-${color}-300)`,
+  lightDisabledColor: `var(--joy-palette-${color}-300)`,
+  lightDisabledBg: `var(--joy-palette-${color}-50)`,
+
+  containedColor: '#fff',
+  containedBg: `var(--joy-palette-${color}-600)`,
+  containedHoverBg: `var(--joy-palette-${color}-700)`,
+  containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledBg: `var(--joy-palette-${color}-200)`,
+});
+
+const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
+  textColor: `var(--joy-palette-${color}-300)`,
+  textHoverBg: `var(--joy-palette-${color}-800)`,
+  textActiveBg: `var(--joy-palette-${color}-700)`,
+  textDisabledColor: `var(--joy-palette-${color}-800)`,
+
+  outlinedColor: `var(--joy-palette-${color}-200)`,
+  outlinedBorder: `var(--joy-palette-${color}-700)`,
+  outlinedHoverBg: `var(--joy-palette-${color}-900)`,
+  outlinedHoverBorder: `var(--joy-palette-${color}-600)`,
+  outlinedActiveBg: `var(--joy-palette-${color}-900)`,
+  outlinedDisabledColor: `var(--joy-palette-${color}-800)`,
+  outlinedDisabledBorder: `var(--joy-palette-${color}-800)`,
+
+  lightColor: `var(--joy-palette-${color}-200)`,
+  lightBg: `var(--joy-palette-${color}-900)`,
+  lightHoverBg: `var(--joy-palette-${color}-800)`,
+  lightActiveBg: `var(--joy-palette-${color}-700)`,
+  lightDisabledColor: `var(--joy-palette-${color}-800)`,
+  lightDisabledBg: `var(--joy-palette-${color}-900)`,
+
+  containedColor: `#fff`,
+  containedBg: `var(--joy-palette-${color}-600)`,
+  containedHoverBg: `var(--joy-palette-${color}-700)`,
+  containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledBg: `var(--joy-palette-${color}-300)`,
+});
 
 export const lightColorSystem: BaseColorSystem = {
   palette: {
@@ -247,8 +299,7 @@ const internalDefaultTheme: BaseDesignTokens & {
     TypographySystem,
     'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
   >;
-  variants: Record<DefaultVariantKey, Record<'context', CSSObject>> &
-    Record<DefaultContextualOverrides, Record<Exclude<DefaultColorPalette, 'context'>, CSSObject>>;
+  variants: {};
   vars: BaseDesignTokens & BaseColorSystem;
   spacing: Spacing;
   breakpoints: Breakpoints;
@@ -331,25 +382,7 @@ const internalDefaultTheme: BaseDesignTokens & {
       color: 'var(--joy-palette-text-tertiary)',
     },
   },
-  variants: {
-    text: createContextVariant('text'),
-    textHover: createContextVariant('textHover'),
-    textActive: createContextVariant('textActive'),
-    textDisabled: createContextVariant('textDisabled'),
-    outlined: createContextVariant('outlined'),
-    outlinedHover: createContextVariant('outlinedHover'),
-    outlinedActive: createContextVariant('outlinedActive'),
-    outlinedDisabled: createContextVariant('outlinedDisabled'),
-    light: createContextVariant('light'),
-    lightHover: createContextVariant('lightHover'),
-    lightActive: createContextVariant('lightActive'),
-    lightDisabled: createContextVariant('lightDisabled'),
-    contained: createContextVariant('contained'),
-    containedHover: createContextVariant('containedHover'),
-    containedActive: createContextVariant('containedActive'),
-    containedDisabled: createContextVariant('containedDisabled'),
-    containedOverrides: createContainedOverrides(),
-  },
+  variants: {},
   vars: baseDesignTokens,
   breakpoints: defaultSystemTheme.breakpoints,
   spacing: defaultSystemTheme.spacing,
@@ -380,6 +413,7 @@ export interface JoyTheme extends ThemeScales, ColorSystem {
   variants: Variants;
   spacing: Spacing;
   breakpoints: Breakpoints;
+  prefix: string;
   vars: Vars;
   getCssVar: ReturnType<typeof createGetCssVar>;
 }

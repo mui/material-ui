@@ -9,7 +9,7 @@ import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant, square } =
+  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
     ownerState;
 
   const slots = {
@@ -21,7 +21,6 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      square && 'square',
     ],
     startIcon: ['startIcon'],
     endIcon: ['endIcon'],
@@ -65,8 +64,8 @@ const ButtonRoot = styled('button', {
     {
       '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
       '--Button-gutter': '1.5rem', // gutter is the padding-x
-      '--Button-gap': 'min(var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content (limit upper bound to 0.5rem)
       '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
+      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
       ...(ownerState.size === 'sm' && {
         '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
@@ -75,17 +74,12 @@ const ButtonRoot = styled('button', {
         '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
       }),
-      ...(ownerState.square && {
-        '--Button-gutter': '0.5rem',
-        ...(ownerState.size === 'sm' && {
-          '--Button-gutter': '0.25rem', // reduce the padding to make the button square because icon size is 24px by default
-        }),
-      }),
     },
     {
       padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
       ...(ownerState.variant === 'outlined' && {
-        padding: 'calc(0.25rem - 1px) calc(var(--Button-gutter) - 1px)', // account for the border width
+        padding:
+          'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-gutter) - var(--variant-outlinedBorderWidth))', // account for the border width
       }),
       minHeight: 'var(--Button-minHeight)',
       borderRadius: theme.vars.radius.sm,
@@ -105,9 +99,6 @@ const ButtonRoot = styled('button', {
         lineHeight: '1.25rem',
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
-      ...(ownerState.square && {
-        minWidth: 'var(--Button-minHeight)',
-      }),
       [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
@@ -135,7 +126,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant = 'contained',
     size = 'md',
     fullWidth = false,
-    square = false,
     startIcon: startIconProp,
     endIcon: endIconProp,
     ...other
@@ -171,7 +161,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
     size,
     focusVisible,
-    square,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -231,7 +220,10 @@ Button.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -249,12 +241,10 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  /**
-   * If `true`, the component has min-width equal to var(--Button-minHeight).
-   * @default false
-   */
-  square: PropTypes.bool,
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * Element placed before the children.
    */
@@ -263,7 +253,10 @@ Button.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'contained'
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default Button;

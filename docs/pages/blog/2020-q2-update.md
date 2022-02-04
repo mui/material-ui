@@ -100,7 +100,7 @@ We'll do our best, no guarantee!
 
 These are objectives, no guarantees:
 
-- 🏢 We will [hire](/company/jobs/) 3 full-time roles in the team.
+- 🏢 We will [hire](/careers/) 3 full-time roles in the team.
 
   - One person on the open-source side to focus on the design system problem (unstyled, theming, styling, etc.): ✅ starting in two months.
   - One person on the enterprise side to consolidate the development of the advanced components: 🚧 Work in progress.

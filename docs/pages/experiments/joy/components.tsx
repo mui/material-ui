@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
@@ -34,14 +36,19 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
+      sx={{
+        p: '0.25rem',
+        width: 'var(--Button-minHeight)',
+      }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
   );
 };
 
-const Input = styled('input')(({ theme }) => ({
-  maxWidth: 64,
+const Input = styled('input')<{ ownerState: any }>(({ theme, ownerState }) => ({
+  boxSizing: 'border-box',
+  maxWidth: 80,
   padding: '0.25rem 0.5rem',
   border: 'none',
   borderRadius: '4px',
@@ -51,7 +58,9 @@ const Input = styled('input')(({ theme }) => ({
   cursor: 'pointer',
   '&:focus-visible': theme.focus.default,
   flexGrow: 1,
-  paddingRight: '1.5rem',
+  ...(ownerState.unit && {
+    paddingRight: '1.5rem',
+  }),
 }));
 
 const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
@@ -67,13 +76,15 @@ const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
         {label}
       </Typography>
       <Box sx={{ position: 'relative' }}>
-        <Input id={id} {...props} />
-        <Typography
-          level="body3"
-          sx={{ position: 'absolute', right: '6px', top: '4px', pointerEvents: 'none' }}
-        >
-          {unit}
-        </Typography>
+        <Input id={id} ownerState={{ unit, ...props }} {...props} />
+        {unit && (
+          <Typography
+            level="body3"
+            sx={{ position: 'absolute', right: '6px', top: '4px', pointerEvents: 'none' }}
+          >
+            {unit}
+          </Typography>
+        )}
       </Box>
     </Box>
   );
@@ -96,7 +107,29 @@ const components = [
     cssVars: [
       { id: '--Button-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
+      { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
+      { id: '--Button-gap', type: 'number', unit: 'px' },
     ],
+  },
+  {
+    name: 'IconButton',
+    render: (props: any) => (
+      <React.Fragment>
+        <IconButton color="success" {...props}>
+          <Add />
+        </IconButton>
+        <IconButton variant="contained" color="danger" {...props}>
+          <DeleteForever />
+        </IconButton>
+        <IconButton variant="outlined" color="primary" {...props}>
+          <Moon />
+        </IconButton>
+        <IconButton variant="outlined" color="primary" shape="circular" {...props}>
+          <Sun />
+        </IconButton>
+      </React.Fragment>
+    ),
+    cssVars: [{ id: '--IconButton-size', type: 'number', unit: 'px', defaultValue: 40 }],
   },
   {
     name: 'Switch',
@@ -119,16 +152,25 @@ const components = [
 ];
 
 export default function JoyComponents() {
-  const [current, setCurrent] = React.useState(components[0].name);
+  const router = useRouter();
+  const match = components.find(({ name }) => name === router.query.name);
+  const [current, setCurrent] = React.useState(match ? router.query.name : components[0].name);
   const [componentVars, setComponentVars] = React.useState<Record<string, any>>(
     components.reduce((result, curr) => ({ ...result, [curr.name]: {} }), {}),
   );
   const data = components.find(({ name }) => name === current);
   const renderedSx = data?.name
     ? Object.entries(componentVars[data?.name])
-        .map(([key, value]) => `  ${key}: ${value}`)
+        .map(([key, value]) => `  '${key}': '${value}',`)
         .join('\n')
     : null;
+  React.useEffect(() => {
+    if (router.query.name !== current) {
+      router.replace({
+        query: { name: current },
+      });
+    }
+  }, [current, router]);
   return (
     <CssVarsProvider
       theme={{
@@ -242,9 +284,12 @@ export default function JoyComponents() {
                 key={cssVar.id}
                 type="number"
                 label={cssVar.id}
-                placeholder={cssVar.defaultValue}
                 unit={cssVar.unit}
-                value={componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') || ''}
+                value={
+                  componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
+                  cssVar.defaultValue ||
+                  ''
+                }
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   const value = event.target.value;
                   setComponentVars((latest) => {
@@ -252,7 +297,7 @@ export default function JoyComponents() {
                     if (!value) {
                       delete vars[cssVar.id];
                     } else {
-                      vars[cssVar.id] = `${value}${cssVar.unit}`;
+                      vars[cssVar.id] = cssVar.unit ? `${value}${cssVar.unit}` : value;
                     }
                     return {
                       ...latest,

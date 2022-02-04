@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
@@ -24,7 +25,6 @@ const ColorSchemePicker = () => {
   return (
     <Button
       variant="outlined"
-      square
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -32,6 +32,7 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
+      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
@@ -95,44 +96,38 @@ export default function JoyButton() {
             sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
           >
             <Typography level="body2" sx={{ fontWeight: 'bold' }}>
-              square
+              icon
             </Typography>
             <Box>
-              <Button variant="light" square>
+              <IconButton>
                 <Add />
-              </Button>
+              </IconButton>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                 40x40
               </Typography>
             </Box>
             <Box>
-              <Button variant="outlined" square size="sm" color="danger">
+              <IconButton variant="outlined" size="sm" color="danger">
                 <DeleteForever />
-              </Button>
+              </IconButton>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                 32x32
               </Typography>
             </Box>
             <Box>
-              <Button variant="contained" square size="lg" color="success">
+              <IconButton variant="contained" size="lg" color="success">
                 <ThumbUp />
-              </Button>
+              </IconButton>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                 48x48
               </Typography>
             </Box>
-            <Button
-              variant="contained"
-              square
-              size="lg"
-              color="success"
-              sx={{ '--Button-minHeight': '64px' }}
-            >
+            <IconButton variant="contained" size="lg" color="success">
               <ThumbUp fontSize="xl4" />
-            </Button>
-            <Button variant="outlined" square sx={{ borderRadius: 'var(--Button-minHeight)' }}>
+            </IconButton>
+            <IconButton variant="outlined" sx={{ borderRadius: 'var(--IconButton-size)' }}>
               <Add />
-            </Button>
+            </IconButton>
           </Box>
           <Box
             sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
@@ -142,9 +137,10 @@ export default function JoyButton() {
             </Typography>
             <Button
               variant="contained"
-              square
               color="success"
               endIcon={<KeyboardArrowDown fontSize="lg" />}
+              sx={{ '--Button-gutter': '0.5rem' }}
+              // sx={{ px: '0.5rem' }} // should not use `px` because endIcon will have mismatch position
             >
               <ThumbUp />
             </Button>

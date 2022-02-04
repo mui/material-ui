@@ -74,7 +74,6 @@ export interface PaletteText {
   secondary: string;
   tertiary: string;
 }
-
 export interface PaletteBackground {
   body: string;
   level1: string;
@@ -98,11 +97,22 @@ export type ColorPaletteProp = OverridableStringUnion<
   ColorPalettePropOverrides
 >;
 
-export type ColorPalette = {
-  [k in Exclude<ColorPaletteProp, 'context'>]: PaletteRange;
-};
+// Split interfaces into multiple chunks so that they can be augmented independently
 
-export interface Palette extends ColorPalette {
+export interface PalettePrimary extends PaletteRange {}
+export interface PaletteNeutral extends PaletteRange {}
+export interface PaletteDanger extends PaletteRange {}
+export interface PaletteInfo extends PaletteRange {}
+export interface PaletteSuccess extends PaletteRange {}
+export interface PaletteWarning extends PaletteRange {}
+
+export interface Palette {
+  primary: PalettePrimary;
+  neutral: PaletteNeutral;
+  danger: PaletteDanger;
+  info: PaletteInfo;
+  success: PaletteSuccess;
+  warning: PaletteWarning;
   text: PaletteText;
   background: PaletteBackground;
   focusVisible: string;

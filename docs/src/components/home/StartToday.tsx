@@ -11,7 +11,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 export default function StartToday() {
   return (
-    <Grid container spacing={{ xs: 2, md: 4 }} alignItems="center">
+    <Grid container spacing={{ xs: 5, md: 4 }} alignItems="center">
       <Grid item xs={12} sm={6} md={6} sx={{ mb: { md: 4 } }}>
         <SectionHeadline
           overline="Go live!"
