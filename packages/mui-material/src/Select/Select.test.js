@@ -1225,6 +1225,10 @@ describe('<Select />', () => {
       this.skip();
     }
 
+    const rootStyle = {
+      marginTop: '15px',
+    };
+
     const iconStyle = {
       marginTop: '13px',
     };
@@ -1246,6 +1250,7 @@ describe('<Select />', () => {
       components: {
         MuiSelect: {
           styleOverrides: {
+            root: rootStyle,
             select: selectStyle,
             icon: iconStyle,
             nativeInput: nativeInputStyle,
@@ -1255,15 +1260,16 @@ describe('<Select />', () => {
       },
     });
 
-    const { container } = render(
+    const { container, getByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Select open value="first">
+        <Select open value="first" data-testid="select">
           <MenuItem value="first" />
           <MenuItem value="second" />
         </Select>
       </ThemeProvider>,
     );
 
+    expect(getByTestId('select')).toHaveComputedStyle(rootStyle);
     expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
     expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
       nativeInputStyle,
@@ -1271,7 +1277,7 @@ describe('<Select />', () => {
     expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
   });
 
-  ['standard', 'outlined', 'filled'].forEach((variant) =>
+  ['standard', 'outlined', 'filled'].forEach((variant) => {
     it(`variant overrides should work for "${variant}" variant`, function test() {
       const theme = createTheme({
         components: {
@@ -1302,8 +1308,8 @@ describe('<Select />', () => {
       expect(getByTestId('input')).to.toHaveComputedStyle({
         fontWeight: '200',
       });
-    }),
-  );
+    });
+  });
 
   describe('prop: input', () => {
     it('merges `ref` of `Select` and `input`', () => {
