@@ -22,7 +22,7 @@ const Table = styled('table')(({ theme }) => {
   const contentColor = theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff';
   const shadowColor = theme.palette.mode === 'dark' ? '#000' : 'rgba(0,0,0,0.5)';
   return {
-    borderRadius: 2,
+    borderRadius: 10,
     background: `
   linear-gradient(to right, ${contentColor} 2%, rgba(0, 0, 0, 0)),
   linear-gradient(to right, rgba(0, 0, 0, 0), ${contentColor} 100%) 0 100%,
