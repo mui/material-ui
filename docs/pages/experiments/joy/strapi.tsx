@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { GlobalStyles, CSSObject } from '@mui/system';
-import {
-  CssVarsProvider,
-  createGetCssVar,
-  useColorScheme,
-  ColorPaletteProp,
-} from '@mui/joy/styles';
-import Box, { BoxProps } from '@mui/joy/Box';
+import { CssVarsProvider, createGetCssVar, useColorScheme } from '@mui/joy/styles';
+import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
@@ -44,31 +39,6 @@ import TextField from 'docs/src/_experiment/joy/TextField';
 import SelectField from 'docs/src/_experiment/joy/SelectField';
 import Checkbox from 'docs/src/_experiment/joy/Checkbox';
 import { List, ListItemButton, ListSubheader } from 'docs/src/_experiment/joy/List';
-
-// how to add more color and use with variants
-const Tile = ({
-  children,
-  variant = 'light',
-  color = 'primary',
-  sx = [],
-  ...props
-}: {
-  variant?: 'light' | 'contained';
-  color?: ColorPaletteProp | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) => {
-  return (
-    <Box
-      sx={[
-        { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
-        (theme) => theme.variants[variant][color],
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
-};
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -130,6 +100,13 @@ declare module '@mui/joy/styles' {
   interface VariantContained {
     secondary: CSSObject;
     alternate: CSSObject;
+  }
+}
+
+declare module '@mui/joy/Paper' {
+  interface PaperPropsColorOverrides {
+    secondary: true;
+    alternate: true;
   }
 }
 
@@ -985,7 +962,13 @@ export default function Strapi() {
                 },
               }}
             >
-              <Paper radius="sm" elevation="sm" sx={{ flexDirection: 'row' }}>
+              <Paper
+                sx={{
+                  flexDirection: 'row',
+                  borderRadius: (theme) => theme.vars.radius.sm,
+                  boxShadow: (theme) => theme.vars.shadow.sm,
+                }}
+              >
                 <Paper variant="light" color="primary" sx={{ p: 2 }}>
                   <Paper variant="contained" color="primary">
                     <Info />
@@ -1000,7 +983,13 @@ export default function Strapi() {
                   </Typography>
                 </div>
               </Paper>
-              <Paper radius="sm" elevation="sm" sx={{ flexDirection: 'row' }}>
+              <Paper
+                sx={{
+                  flexDirection: 'row',
+                  borderRadius: (theme) => theme.vars.radius.sm,
+                  boxShadow: (theme) => theme.vars.shadow.sm,
+                }}
+              >
                 <Paper sx={{ p: 2 }} variant="light" color="warning">
                   <Paper variant="contained" color="warning">
                     <Code />
@@ -1015,7 +1004,13 @@ export default function Strapi() {
                   </Typography>
                 </div>
               </Paper>
-              <Paper radius="sm" elevation="sm" sx={{ flexDirection: 'row' }}>
+              <Paper
+                sx={{
+                  flexDirection: 'row',
+                  borderRadius: (theme) => theme.vars.radius.sm,
+                  boxShadow: (theme) => theme.vars.shadow.sm,
+                }}
+              >
                 <Paper sx={{ p: 2 }} variant="light" color="secondary">
                   <Paper variant="contained" color="secondary">
                     <PlayArrow />
@@ -1030,7 +1025,13 @@ export default function Strapi() {
                   </Typography>
                 </div>
               </Paper>
-              <Paper radius="sm" elevation="sm" sx={{ flexDirection: 'row' }}>
+              <Paper
+                sx={{
+                  flexDirection: 'row',
+                  borderRadius: (theme) => theme.vars.radius.sm,
+                  boxShadow: (theme) => theme.vars.shadow.sm,
+                }}
+              >
                 <Paper sx={{ p: 2 }} variant="light" color="alternate">
                   <Paper variant="contained" color="alternate">
                     <HistoryEdu />
@@ -1048,13 +1049,11 @@ export default function Strapi() {
             </Box>
             <Box>
               <Paper
-                radius="sm"
-                elevation="sm"
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
                   gap: 1.5,
                   p: 3,
+                  borderRadius: (theme) => theme.vars.radius.sm,
+                  boxShadow: (theme) => theme.vars.shadow.sm,
                 }}
               >
                 <Typography sx={{ fontWeight: 500 }}>Join the community</Typography>
@@ -1289,10 +1288,10 @@ export default function Strapi() {
           </Box>
           <Box sx={{ px: '3.5rem', pb: '1rem' }}>
             <Paper
-              elevation="sm"
               sx={{
                 display: 'grid',
                 gridTemplateColumns: 'min-content minmax(100px, 20%) 1fr 12% min-content',
+                boxShadow: (theme) => theme.vars.shadow.sm,
                 '& > div': {
                   display: 'flex',
                   alignItems: 'center',
