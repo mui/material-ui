@@ -22,7 +22,7 @@ githubLabel: 'component: Avatar'
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
-您可以为头像使用不同的背景颜色。 下面的演示根据人的姓名生成颜色。
+你可以为头像添加不同的背景颜色 下面的例子演示了如何通过人物的姓名来展示头像
 
 {{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
@@ -38,7 +38,7 @@ githubLabel: 'component: Avatar'
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
-## 变体
+## 其他的方式
 
 如果你需要矩形或圆角的头像组件，请使用 `variant`属性。
 

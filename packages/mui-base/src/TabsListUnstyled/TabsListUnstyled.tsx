@@ -91,7 +91,9 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TabsList.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
 } as any;
 
 export default TabsListUnstyled;

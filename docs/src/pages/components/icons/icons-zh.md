@@ -93,7 +93,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
-- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 （使用 `viewBox` 属性，您可以随意自定义）。
+- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 (This can be customized with the `viewBox` attribute, to inherit `viewBox` value from original image `inheritViewBox` attribute can be used).
 - 默认情况下，此组件会继承当前的颜色。 当然，通过 `color` 这个属性，你可以让图标使用主题里的颜色。
 
 ```jsx

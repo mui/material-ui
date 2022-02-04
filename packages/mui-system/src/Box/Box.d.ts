@@ -123,6 +123,7 @@ export const typography: SimpleStyleFunction<
   | 'letterSpacing'
   | 'lineHeight'
   | 'textAlign'
+  | 'textTransform'
 >;
 
 // compose.js

@@ -1,9 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import prettier from 'prettier';
-import pages from 'docs/src/pages';
 import {
-  refactorJsonContent,
   getNewDataLocation,
   getNewPageLocation,
   productPathnames,
@@ -29,35 +27,6 @@ function writePrettifiedFile(filename: string, data: string, options: object = {
   });
 }
 
-const prefixSource = (arraySource: string, pathnames: string[], product: string) => {
-  let target = arraySource;
-
-  // prefix with `/${product}/`
-  pathnames.forEach((pathname) => {
-    const replace = `"${pathname}/([-/a-z]*)"`;
-    target = target.replace(new RegExp(replace, 'g'), `"/${product}${pathname}/$1"`);
-    target = target.replace(
-      new RegExp(`"pathname":"${pathname}"`, 'g'),
-      `"pathname":"/${product}${pathname}"`,
-    );
-  });
-
-  return target;
-};
-
-const createProductPagesData = (arraySource: string, product: string) => {
-  // prepare source code
-  const source = `
-const pages = ${arraySource}
-
-export default pages
-  `;
-
-  // create new folder and add prettified file.
-  fs.mkdirSync(`${workspaceRoot}/docs/data/${product}`, { recursive: true });
-  writePrettifiedFile(`${workspaceRoot}/docs/data/${product}/pages.ts`, source);
-};
-
 const appendSource = (target: string, template: string, source: string) => {
   const match = source.match(/^(.*)$/m);
   if (match && target.includes(match[0])) {
@@ -73,13 +42,20 @@ const updateAppToUseProductPagesData = (product: string) => {
   let appSource = fs.readFileSync(appPath, { encoding: 'utf8' });
   appSource = appendSource(
     appSource,
+    `import findActivePage from 'docs/src/modules/utils/findActivePage';`,
+    `import FEATURE_TOGGLE from 'docs/src/featureToggle';`,
+  );
+  appSource = appendSource(
+    appSource,
     `import pages from 'docs/src/pages';`,
     `import ${product}Pages from 'docs/data/${product}/pages';`,
   );
   appSource = appendSource(
     appSource,
     `let productPages = pages;`,
-    `if (router.asPath.startsWith('/${product}')) {
+    `if (router.asPath.startsWith('/${product}')${
+      product === 'system' ? ` && FEATURE_TOGGLE.enable_system_scope` : ''
+    }) {
       productPages = ${product}Pages;
     }`,
   );
@@ -96,7 +72,10 @@ const readdirDeep = (directory: string, pathsProp: string[] = []) => {
       readdirDeep(itemPath, paths);
     }
 
-    paths.push(itemPath);
+    if (itemPath.match(/.*\/[^/]+\.[^.]+/)) {
+      // ends with extension
+      paths.push(itemPath);
+    }
   });
 
   return paths;
@@ -107,73 +86,112 @@ function run() {
    * clone pages & api data from `docs/src/pages.ts` to `docs/src/data/materialPages.ts`
    * also prefix all pathnames with `/$product/` by using Regexp replace
    */
-  (['styles', 'system', 'material'] as const).forEach((product) => {
+  (['system', 'material'] as const).forEach((product) => {
     const pathnames = productPathnames[product] as unknown as string[];
-    const productPages = pages.filter((item) => pathnames.includes(item.pathname));
-
-    let arraySource = JSON.stringify(productPages);
-
-    if (product === 'material') {
-      arraySource = prefixSource(arraySource, [...pathnames, '/api'], 'material');
-    }
-
-    createProductPagesData(arraySource, product);
 
     // update _app.js to use product pages
     updateAppToUseProductPagesData(product);
 
     pathnames.forEach((pathname) => {
-      if (pathname !== '/api-docs') {
-        // clone js/md data to new location
-        const dataDir = readdirDeep(path.resolve(`docs/src/pages${pathname}`));
-        dataDir.forEach((filePath) => {
-          const info = getNewDataLocation(filePath, product);
-          // pathname could be a directory
-          if (info) {
-            let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
-            if (filePath.endsWith('.md')) {
-              data = markdown.removeDemoRelativePath(data);
-              data = markdown.addMaterialPrefixToLinks(data);
-              if (product === 'material') {
-                data = markdown.addProductFrontmatter(data, 'material');
-              }
+      // clone js/md data to new location
+      const dataDir = readdirDeep(path.resolve(`docs/src/pages${pathname}`));
+      dataDir.forEach((filePath) => {
+        const info = getNewDataLocation(filePath, product);
+        // pathname could be a directory
+        if (info) {
+          let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+          if (filePath.endsWith('.md')) {
+            data = markdown.removeDemoRelativePath(data);
+            if (product === 'material') {
+              data = markdown.addProductFrontmatter(data, 'material');
             }
-            fs.mkdirSync(info.directory, { recursive: true });
-            fs.writeFileSync(info.path, data); // (A)
           }
-        });
-      }
+          fs.mkdirSync(info.directory, { recursive: true });
+          fs.writeFileSync(info.path, data); // (A)
+
+          fs.rmSync(filePath);
+        }
+      });
 
       const pagesDir = readdirDeep(path.resolve(`docs/pages${pathname}`));
       pagesDir.forEach((filePath) => {
         if (product === 'material') {
-          // clone pages to new location
-          const info = getNewPageLocation(filePath);
-          // pathname could be a directory
-          if (info) {
-            let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+          if (!filePath.includes('api-docs')) {
+            // clone pages to new location
+            const info = getNewPageLocation(filePath);
+            // pathname could be a directory
+            if (info) {
+              let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
 
-            if (filePath.endsWith('.json')) {
-              data = refactorJsonContent(data);
+              if (filePath.endsWith('.js')) {
+                data = data.replace('/src/pages/', `/data/material/`); // point to data path (A) in new directory
+              }
+
+              fs.mkdirSync(info.directory, { recursive: true });
+              fs.writeFileSync(info.path, data);
+
+              fs.writeFileSync(filePath, data);
             }
-
-            if (filePath.endsWith('.js')) {
-              data = data.replace('/src/pages/', `/products/${product}/`); // point to data path (A) in new directory
-            }
-
-            fs.mkdirSync(info.directory, { recursive: true });
-            fs.writeFileSync(info.path, data);
           }
         } else {
           let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
           if (filePath.endsWith('.js')) {
-            data = data.replace('/src/pages/', `/products/`); // point to data path (A) in new directory
+            data = data.replace(`/src/pages/`, `/data/`); // point to data path (A) in new directory
           }
           fs.writeFileSync(filePath, data);
         }
       });
     });
   });
+
+  /**
+   * ======================================================================
+   * Styles legacy
+   */
+  const stylesDataDir = readdirDeep(path.resolve(`docs/src/pages/styles`));
+  stylesDataDir.forEach((filePath) => {
+    // pathname could be a directory
+    let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    if (filePath.endsWith('.md')) {
+      data = markdown.removeDemoRelativePath(data);
+    }
+    const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
+    fs.mkdirSync(match[1].replace('src/pages', 'data'), { recursive: true });
+    fs.writeFileSync(filePath.replace('src/pages', 'data'), data);
+
+    fs.rmSync(filePath);
+  });
+
+  const stylesPagesDir = readdirDeep(path.resolve(`docs/pages/styles`));
+  stylesPagesDir.forEach((filePath) => {
+    let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    if (filePath.endsWith('.js')) {
+      data = data.replace(`src/pages`, `data`);
+    }
+
+    // replace the old file
+    fs.writeFileSync(filePath, data);
+
+    // add to /system
+    const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
+    fs.mkdirSync(match[1].replace('pages/styles', 'pages/system/styles'), { recursive: true });
+    fs.writeFileSync(filePath.replace('pages/styles', 'pages/system/styles'), data);
+  });
+  // =======================================================================
+
+  // include `base` pages in `_app.js`
+  updateAppToUseProductPagesData('base');
+
+  // Turn feature toggle `enable_product_scope: true`
+  const featureTogglePath = path.join(process.cwd(), 'docs/src/featureToggle.js');
+  let featureToggle = fs.readFileSync(featureTogglePath, { encoding: 'utf8' });
+
+  featureToggle = featureToggle.replace(
+    `enable_product_scope: false`,
+    `enable_product_scope: true`,
+  );
+
+  fs.writeFileSync(featureTogglePath, featureToggle);
 }
 
 run();

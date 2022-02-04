@@ -70,10 +70,10 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ```jsx
 <Box component="div" sx={{ overflow: 'hidden' }}>
-  Overflow Hidden
+  Not scrollable, overflow is hidden
 </Box>
-<Box component="div" sx={{ overflow: 'visible' }}>
-  Overflow visible
+<Box component="div" sx={{ overflow: 'auto' }}>
+  Try scrolling this overflow auto box
 </Box>
 ```
 
@@ -83,10 +83,10 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ```jsx
 <Box component="div" sx={{ textOverflow: 'clip' }}>
-  Text Overflow Clip
+  Lorem Ipsum is simply dummy text
 </Box>
 <Box component="div" sx={{ textOverflow: 'ellipsis' }}>
-  Text Overflow Ellipsis
+  Lorem Ipsum is simply dummy text
 </Box>
 ```
 
@@ -96,10 +96,10 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ```jsx
 <Box component="div" sx={{ visibility: 'visible' }}>
-  Visibility Visible
+  Visible container
 </Box>
 <Box component="div" sx={{ visibility: 'hidden' }}>
-  Visibility Hidden
+  Invisible container
 </Box>
 ```
 
@@ -109,10 +109,10 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ```jsx
 <Box component="div" sx={{ whiteSpace: 'nowrap' }}>
-  White Space Nowrap
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 </Box>
 <Box component="div" sx={{ whiteSpace: 'normal' }}>
-  White Space Normal
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 </Box>
 ```
 

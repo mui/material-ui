@@ -16,6 +16,7 @@ import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
+import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
 
 const iconsMap = {
   DescriptionIcon: ArticleRoundedIcon,
@@ -28,6 +29,7 @@ const iconsMap = {
   AddIcon: AddCircleRoundedIcon,
   BookIcon: BookRoundedIcon,
   ReaderIcon: ChromeReaderModeRoundedIcon,
+  TableViewIcon: TableViewRoundedIcon,
 };
 
 const Item = styled(function Item({ component: Component = 'div', ...props }) {
@@ -41,7 +43,7 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
   paddingTop: 5,
   paddingBottom: 5,
   justifyContent: 'flex-start',
-  fontWeight: theme.typography.fontWeightMedium,
+  fontWeight: 500,
   transition: theme.transitions.create(['color', 'background-color'], {
     duration: theme.transitions.duration.shortest,
   }),
@@ -201,7 +203,7 @@ export default function AppNavDrawerItem(props) {
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        py: 0.5,
+        py: 0.3,
       }}
     >
       <IconComponent {...iconProps} />
