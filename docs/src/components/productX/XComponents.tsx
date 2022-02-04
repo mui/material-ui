@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
-import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -107,16 +106,7 @@ export default function XComponents() {
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
-                {WIP.includes(name) && (
-                  <Tooltip
-                    title="Work in progress"
-                    enterDelay={200}
-                    describeChild
-                    disableFocusListener
-                  >
-                    <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />
-                  </Tooltip>
-                )}
+                {WIP.includes(name) && <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />}
               </Highlighter>
             ))}
             <More href={ROUTES.roadmap} />
@@ -150,11 +140,6 @@ export default function XComponents() {
               <Box sx={{ height: '100%' }}>
                 <Frame sx={{ height: '100%' }}>
                   <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
-                    <Box sx={{ textAlign: 'right', mb: 2, lineHeight: 1 }}>
-                      <Tooltip title="This is just a marketing example image. The actual component might be different once developed and released.">
-                        <Chip label="PNG Preview" size="small" sx={{ fontWeight: 500 }} />
-                      </Tooltip>
-                    </Box>
                     {demo === DEMOS[3] && (
                       <Grid container justifyContent="space-around" spacing={1}>
                         <Grid item xs={6}>
@@ -214,10 +199,26 @@ export default function XComponents() {
                   </Frame.Demo>
                   <ThemeProvider theme={brandingDarkTheme}>
                     <Frame.Info>
-                      <Typography variant="body2" fontWeight="bold">
-                        Coming soon!
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1, mb: 1 }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          lineHeight: 1,
+                          mb: 0.5,
+                        }}
+                      >
+                        <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
+                          Coming soon!
+                        </Typography>
+                        <Chip
+                          variant="outlined"
+                          label="PNG Preview"
+                          size="small"
+                          sx={{ fontWeight: 500 }}
+                        />
+                      </Box>
+
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                         Subscribe to our newsletter to get first-hand info about the development and
                         release of new components.
                       </Typography>

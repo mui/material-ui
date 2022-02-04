@@ -74,8 +74,6 @@ export * from './styles';
 
 export * from './utils';
 
-export * from '@mui/base';
-
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
 
@@ -476,3 +474,10 @@ export * from './GlobalStyles';
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
  */
 export { StyledEngineProvider } from './styles';
+
+export { default as unstable_composeClasses } from '@mui/base/composeClasses';
+
+export { default as generateUtilityClass } from '@mui/base/generateUtilityClass';
+export * from '@mui/base/generateUtilityClass';
+
+export { default as generateUtilityClasses } from '@mui/base/generateUtilityClasses';

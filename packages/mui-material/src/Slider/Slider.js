@@ -716,7 +716,10 @@ Slider.propTypes /* remove-proptypes */ = {
    * The size of the slider.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['small', 'medium']),
+    PropTypes.string,
+  ]),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

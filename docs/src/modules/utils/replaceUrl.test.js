@@ -215,6 +215,13 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/api/textarea-autosize/`)).to.equal(`/base/api/textarea-autosize/`);
     expect(replaceAPILinks(`/api/button-unstyled/`)).to.equal(`/base/api/button-unstyled/`);
     expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material/api/loading-button/`);
+    expect(replaceAPILinks(`/api/tab-list/`)).to.equal(`/material/api/tab-list/`);
+    expect(replaceAPILinks(`/api/tab-panel/`)).to.equal(`/material/api/tab-panel/`);
+    expect(replaceAPILinks(`/api/tab-panel-unstyled/`)).to.equal(`/base/api/tab-panel-unstyled/`);
+    expect(replaceAPILinks(`/api/tabs-list-unstyled/`)).to.equal(`/base/api/tabs-list-unstyled/`);
+    expect(replaceAPILinks(`/api/tabs-unstyled/`)).to.equal(`/base/api/tabs-unstyled/`);
+    expect(replaceAPILinks(`/api/unstable-trap-focus/`)).to.equal(`/base/api/unstable-trap-focus/`);
+    expect(replaceAPILinks(`/api/click-away-listener/`)).to.equal(`/base/api/click-away-listener/`);
     expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
     expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
   });
