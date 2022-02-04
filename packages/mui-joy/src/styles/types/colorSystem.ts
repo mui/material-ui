@@ -69,6 +69,18 @@ export interface PaletteRange extends PaletteVariant {
   900: string;
 }
 
+export interface PaletteText {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+}
+export interface PaletteBackground {
+  body: string;
+  level1: string;
+  level2: string;
+  level3: string;
+}
+
 export interface ColorPalettePropOverrides {}
 
 export type DefaultColorPalette =
@@ -91,17 +103,6 @@ export interface PaletteDanger extends PaletteRange {}
 export interface PaletteInfo extends PaletteRange {}
 export interface PaletteSuccess extends PaletteRange {}
 export interface PaletteWarning extends PaletteRange {}
-export interface PaletteText {
-  primary: string;
-  secondary: string;
-  tertiary: string;
-}
-export interface PaletteBackground {
-  body: string;
-  level1: string;
-  level2: string;
-  level3: string;
-}
 
 export interface Palette {
   primary: PalettePrimary;
