@@ -222,6 +222,7 @@ function AppSettingsDrawer(props) {
           variant="outlined"
           sx={{
             width: '100%',
+            mx: 0,
             py: 1,
             fontWeight: 500,
             border: `1px solid  ${

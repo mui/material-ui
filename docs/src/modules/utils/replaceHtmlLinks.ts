@@ -49,16 +49,16 @@ export const replaceAPILinks = (html: string) => {
   return html
     .replace(/href=(\\*?)"(\/[a-z]{2})?\/api\/data-grid([^"]*)"/gm, 'href=$1"$2/x/api/data-grid$3"')
     .replace(
-      /href=(\\*?)"(\/[a-z]{2})?\/api\/(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)([^"]*)"/gm,
-      'href=$1"$2/material/api/$3$4"',
-    )
-    .replace(
       /href=(\\*?)"(\/[a-z]{2})?\/api\/([^"/]+-unstyled)([^"]*)"/gm,
       'href=$1"$2/base/api/$3$4"',
     )
     .replace(
-      /href=(\\*?)"(\/[a-z]{2})?\/api\/(no-ssr|portal|textarea-autosize)([^"]*)"/gm,
+      /href=(\\*?)"(\/[a-z]{2})?\/api\/(unstable-trap-focus|click-away-listener|no-ssr|portal|textarea-autosize)([^"]*)"/gm,
       'href=$1"$2/base/api/$3$4"',
+    )
+    .replace(
+      /href=(\\*?)"(\/[a-z]{2})?\/api\/(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)([^"]*)"/gm,
+      'href=$1"$2/material/api/$3$4"',
     )
     .replace(/href=(\\*?)"(\/[a-z]{2})?\/api\/([^"]*)"/gm, 'href=$1"$2/material/api/$3"');
 };

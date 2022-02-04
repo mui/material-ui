@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * A basic error boundary that can be used to assert thrown errors in render.
  * @example <ErrorBoundary ref={errorRef}><MyComponent /></ErrorBoundary>;
- *          expect(errorRef.current.errors).to.have.lenght(0);
+ *          expect(errorRef.current.errors).to.have.length(0);
  */
 export class ErrorBoundary extends React.Component {
   static propTypes = {
