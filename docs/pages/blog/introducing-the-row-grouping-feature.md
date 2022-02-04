@@ -3,7 +3,7 @@ title: 'Introducing the Row Grouping feature'
 description: After more than a year of development on the DataGrid, the first premium feature is live.
 date: 2022-01-20T00:00:00.000Z
 authors: ['alexfauquette']
-tags: ['News', 'MUI X']
+tags: ['MUI X', 'News']
 ---
 
 A lot of you were asking about it, and we are pleased to announce that the Premium plan is on the road.

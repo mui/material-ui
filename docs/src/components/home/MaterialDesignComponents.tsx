@@ -492,7 +492,7 @@ export default function MaterialDesignComponents() {
           mt: { xs: 2, md: 4 },
           mb: 2,
           display: 'flex',
-          justifyContent: { xs: 'flex-start', sm: 'flex-end' },
+          justifyContent: { sm: 'flex-start', md: 'flex-end' },
         }}
       >
         <StyledChip

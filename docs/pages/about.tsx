@@ -191,7 +191,7 @@ const Widget = ({
   icon: React.ReactElement;
 }) => {
   return (
-    <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
+    <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
       <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
         <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
           {icon}
@@ -276,10 +276,10 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danilo Leal',
     src: '/static/branding/about/danilo.png',
-    title: 'Design Lead',
+    title: 'Lead designer',
     location: 'São Paulo, Brazil',
     locationCountry: 'br',
-    about: 'Music production and hiking!',
+    about: 'Music production, hiking and traveling!',
     github: 'danilo-leal',
     twitter: 'danilobleal',
   },
@@ -343,10 +343,10 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jose.png',
     name: 'José Freitas',
-    title: 'MUI X Technical PM',
+    title: 'MUI X PM',
     location: 'Augsburg, Germany',
     locationCountry: 'de',
-    about: 'Art, fiction',
+    about: 'Art, fiction and bar philosophy',
     twitter: 'zehdefreitas',
     github: 'joserodolfofreitas',
   },
@@ -589,6 +589,7 @@ function AboutContent() {
               endIcon={<KeyboardArrowRightRounded fontSize="small" />}
               variant="contained"
               size="large"
+              sx={{ width: { xs: '100%', sm: 'auto' } }}
             >
               See open roles
             </Button>

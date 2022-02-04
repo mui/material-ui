@@ -78,7 +78,8 @@ const ButtonRoot = styled('button', {
     {
       padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
       ...(ownerState.variant === 'outlined' && {
-        padding: 'calc(0.25rem - 1px) calc(var(--Button-gutter) - 1px)', // account for the border width
+        padding:
+          'calc(0.25rem - var(--variant-outlined-borderWidth)) calc(var(--Button-gutter) - var(--variant-outlined-borderWidth))', // account for the border width
       }),
       minHeight: 'var(--Button-minHeight)',
       borderRadius: theme.vars.radius.sm,
@@ -219,7 +220,10 @@ Button.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -237,7 +241,10 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * Element placed before the children.
    */
@@ -246,7 +253,10 @@ Button.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'contained'
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default Button;
