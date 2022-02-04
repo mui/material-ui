@@ -4,8 +4,16 @@ import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from
 import defaultTheme, { JoyTheme } from './defaultTheme';
 import { Components } from './components';
 
-type PartialDeep<T> = {
-  [K in keyof T]?: PartialDeep<T[K]>;
+type Partial3Level<T> = {
+  [K in keyof T]?: T[K] extends Record<any, any>
+    ? {
+        [J in keyof T[K]]?: T[K][J] extends Record<any, any>
+          ? {
+              [P in keyof T[K][J]]?: T[K][J][P];
+            }
+          : T[K][J];
+      }
+    : T[K];
 };
 
 export const useTheme = () => {
@@ -16,7 +24,7 @@ export default function ThemeProvider({
   children,
   theme,
 }: React.PropsWithChildren<{
-  theme?: PartialDeep<Omit<JoyTheme, 'vars'>> & {
+  theme?: Partial3Level<Omit<JoyTheme, 'vars'>> & {
     components?: Components;
   };
 }>) {

@@ -18,7 +18,7 @@ import { TypographySystem } from './types/typography';
 import { Components } from './components';
 import { createVariant, createContainedOverrides } from './variantUtils';
 
-type PartialNested<T> = {
+type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
     ? {
         [J in keyof T[K]]?: T[K][J];
@@ -26,7 +26,7 @@ type PartialNested<T> = {
     : T[K];
 };
 
-type PartialNestedNested<T> = {
+type Partial3Level<T> = {
   [K in keyof T]?: {
     [J in keyof T[K]]?: T[K][J] extends Record<any, any>
       ? {
@@ -36,12 +36,12 @@ type PartialNestedNested<T> = {
   };
 };
 
-// Use PartialNested instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-type ThemeInput = PartialNested<
+// Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
+type ThemeInput = Partial2Level<
   ThemeScales & {
     focus: Focus;
     typography: TypographySystem;
-    variants: PartialNested<Variants>;
+    variants: Partial2Level<Variants>;
   }
 > & {
   breakpoints?: BreakpointsOptions;
@@ -50,11 +50,11 @@ type ThemeInput = PartialNested<
 };
 
 type JoyThemeInput = ThemeInput & {
-  colorSchemes: Record<DefaultColorScheme, PartialNestedNested<ColorSystem>>;
+  colorSchemes: Record<DefaultColorScheme, Partial3Level<ColorSystem>>;
 };
 
 type ApplicationThemeInput = ThemeInput & {
-  colorSchemes: Record<ExtendedColorScheme, PartialNestedNested<ColorSystem>>;
+  colorSchemes: Record<ExtendedColorScheme, Partial3Level<ColorSystem>>;
 };
 
 const { palette, ...rest } = defaultTheme;
