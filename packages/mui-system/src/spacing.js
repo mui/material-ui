@@ -90,7 +90,14 @@ const paddingKeys = [
   'paddingBlockEnd',
 ];
 
-const spacingKeys = [...marginKeys, ...paddingKeys];
+const positionKeys = [
+  'top',
+  'left',
+  'right',
+  'bottom',
+]
+
+const spacingKeys = [...marginKeys, ...paddingKeys, ...positionKeys];
 
 export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   const themeSpacing = getPath(theme, themeKey) || defaultValue;
