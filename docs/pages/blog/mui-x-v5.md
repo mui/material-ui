@@ -5,7 +5,7 @@ date: 2021-11-22T00:00:00.000Z
 authors:
   ['oliviertassinari', 'm4theushw', 'flaviendelangle', 'DanailH', 'alexfauquette']
 card: true
-tags: ['News']
+tags: ['MUI X', 'News']
 ---
 
 We are excited to introduce [MUI X v5.0.0](https://github.com/mui/mui-x/releases/tag/v5.0.0)!

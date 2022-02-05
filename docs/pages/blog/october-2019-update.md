@@ -3,7 +3,7 @@ title: October 2019 Update
 description: Here are the most significant improvements in October.
 date: 2019-11-08T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['MUI Core', 'News']
 ---
 
 Here are the most significant improvements in October:
