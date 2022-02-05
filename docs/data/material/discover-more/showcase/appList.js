@@ -525,7 +525,7 @@ const appList = [
     image: 'saleor.jpg',
     link: 'https://demo.saleor.io/dashboard/',
     source: 'https://github.com/saleor/saleor-dashboard',
-    stars: 412,
+    stars: 15079,
     dateAdded: '2022-02-05',
   },
 ];
