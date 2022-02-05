@@ -29,8 +29,7 @@ if (process.env.NODE_ENV === 'production') {
   cleanCSS = new CleanCSS();
 }
 
-const PRODUCTION_DEPLOYEMENT =
-  process.env.PULL_REQUEST !== 'true' && process.env.NODE_ENV === 'production';
+const PRODUCTION_DEPLOYEMENT = !process.env.PULL_REQUEST && process.env.NODE_ENV === 'production';
 
 const GOOGLE_ANALYTICS_ID = PRODUCTION_DEPLOYEMENT ? 'UA-106598593-2' : 'UA-106598593-3';
 
