@@ -299,8 +299,55 @@ describe('ModalManager', () => {
     });
 
     it('should add aria-hidden to container siblings', () => {
+      const secondSibling = document.createElement('input');
+      container2.appendChild(secondSibling);
       modalManager.add({}, container2);
       expect(container2.children[0]).toBeAriaHidden();
+      expect(container2.children[1]).toBeAriaHidden();
+    });
+
+    it('should not add aria-hidden to forbidden container siblings', () => {
+      [
+        'template',
+        'script',
+        'style',
+        'link',
+        'map',
+        'meta',
+        'noscript',
+        'picture',
+        'col',
+        'colgroup',
+        'param',
+        'slot',
+        'source',
+        'track',
+      ].forEach(function createBlacklistSiblings(name) {
+        const sibling = document.createElement(name);
+        container2.appendChild(sibling);
+      });
+      const inputHiddenSibling = document.createElement('input');
+      inputHiddenSibling.setAttribute('type', 'hidden');
+      container2.appendChild(inputHiddenSibling);
+      expect(container2.children.length).equal(16);
+
+      modalManager.add({}, container2);
+      expect(container2.children[0]).toBeAriaHidden();
+      expect(container2.children[1]).not.toBeAriaHidden();
+      expect(container2.children[2]).not.toBeAriaHidden();
+      expect(container2.children[3]).not.toBeAriaHidden();
+      expect(container2.children[4]).not.toBeAriaHidden();
+      expect(container2.children[5]).not.toBeAriaHidden();
+      expect(container2.children[6]).not.toBeAriaHidden();
+      expect(container2.children[7]).not.toBeAriaHidden();
+      expect(container2.children[8]).not.toBeAriaHidden();
+      expect(container2.children[9]).not.toBeAriaHidden();
+      expect(container2.children[10]).not.toBeAriaHidden();
+      expect(container2.children[11]).not.toBeAriaHidden();
+      expect(container2.children[12]).not.toBeAriaHidden();
+      expect(container2.children[13]).not.toBeAriaHidden();
+      expect(container2.children[14]).not.toBeAriaHidden();
+      expect(container2.children[15]).not.toBeAriaHidden();
     });
 
     it('should add aria-hidden to previous modals', () => {
