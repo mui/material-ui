@@ -90,12 +90,7 @@ const paddingKeys = [
   'paddingBlockEnd',
 ];
 
-const positionKeys = [
-  'top',
-  'left',
-  'right',
-  'bottom',
-]
+const positionKeys = ['top', 'left', 'right', 'bottom'];
 
 const spacingKeys = [...marginKeys, ...paddingKeys, ...positionKeys];
 
