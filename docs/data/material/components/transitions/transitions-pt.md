@@ -59,7 +59,7 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 
 - Para um melhor suporte a renderização no servidor, Material-UI provê uma propriedade `style` para o elemento filho de alguns componentes de transição, (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
 - **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
-- **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
+- **Single element**: The transition components require only one child element (`React. Fragment` is not allowed).
 
 ```jsx
 // O objeto `props` contém uma propriedade `style`.
