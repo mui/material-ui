@@ -8,7 +8,7 @@
 
 ## 简介
 
-This is a reference for upgrading your site from MUI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
+This is a reference for upgrading your site from MUI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 While there's a lot covered here, you probably won't need to do everything for your site. 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
 
 ## 为什么您需要迁移呢
 
@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Styles（样式表单）
 
-- ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
+- ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 JSS v10 is not backward compatible with v9. 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
 - 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是为从未出现的可能的未来选项的一个占位符。）
 
   It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
@@ -330,7 +330,7 @@ function MySelect({ children }) {
 
   ![一个更简单的标签项的 DOM 结构](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
-- [Tabs] 移除了弃用的 <0>fullWidth</0> 和 <0>scrollable</0> 属性：:
+- [Tabs] 移除了弃用的
 
   ```diff
   -<Tabs fullWidth scrollable />
