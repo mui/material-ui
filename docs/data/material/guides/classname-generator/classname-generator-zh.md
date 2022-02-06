@@ -31,14 +31,23 @@ function App() {
 使用 `ClassNameGenerator.configure(callback)` 回调函数，可为 MUI 所有生成组件类名添加前缀。
 
 ```js
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
++import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
-// 在应用程序的根目录和任何 MUI 组件导入之前调用此函数。
-ClassNameGenerator.configure((componentName) => `foo-bar-${componentName}`);
-
-function App() {
-  return <Button>Button</Button>;
-}
+   const theme = createTheme({
+     components: {
+       MuiOutlinedInput: {
+         styleOverrides: {
+           root: {
+  -          '& .MuiOutlinedInput-notchedOutline': {
+  +          // the result will contain the prefix.
+  +          [`& .${outlinedInputClasses.notchedOutline}`]: {
+               borderWidth: 1,
+             }
+           }
+         }
+       }
+     }
+   });
 ```
 
 返回 HTML 结果
