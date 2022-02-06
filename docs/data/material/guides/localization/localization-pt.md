@@ -33,8 +33,7 @@ const theme = createTheme(
 ### Localidades suportadas
 
 | Localidade | Etiqueta do idioma BCP 47 | Nome da importação |
-|:---
-product: material-------------------- |:------------------------- |:------------------ |
+|:----------------------- |:------------------------- |:------------------ |
 | Amharic | am-ET | `amET` |
 | Arabic (Egypt) | ar-EG | `arEG` |
 | Arabic (Sudan) | ar-SD | `arSD` |

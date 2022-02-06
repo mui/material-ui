@@ -33,8 +33,7 @@ const theme = createTheme(
 ### 支持的地区
 
 | 地区 | BCP 47 语言标签 | 导入名称 |
-|:---
-product: material-------------------- |:----------- |:------ |
+|:----------------------- |:----------- |:------ |
 | Amharic | am-ET | `amET` |
 | Arabic (Egypt) | ar-EG | `arEG` |
 | Arabic (Sudan) | ar-SD | `arSD` |

@@ -34,54 +34,53 @@ const theme = createTheme(
 
 ### Supported locales
 
-| Locale | BCP 47 language tag | Import name |
-| :---
-product: material------------------- | :------------------ | :---------- |
-| Amharic | am-ET | `amET` |
-| Arabic (Egypt) | ar-EG | `arEG` |
-| Arabic (Sudan) | ar-SD | `arSD` |
-| Armenian | hy-AM | `hyAM` |
-| Azerbaijani | az-AZ | `azAZ` |
-| Bangla | bn-BD | `bnBD` |
-| Bulgarian | bg-BG | `bgBG` |
-| Catalan | ca-ES | `caES` |
-| Chinese (Hong Kong) | zh-HK | `zhHK` |
-| Chinese (Simplified) | zh-CN | `zhCN` |
-| Chinese (Taiwan) | zh-TW | `zhTW` |
-| Czech | cs-CZ | `csCZ` |
-| Danish | da-DK | `daDK` |
-| Dutch | nl-NL | `nlNL` |
-| English (United States) | en-US | `enUS` |
-| Estonian | et-EE | `etEE` |
-| Finnish | fi-FI | `fiFI` |
-| French | fr-FR | `frFR` |
-| German | de-DE | `deDE` |
-| Greek | el-GR | `elGR` |
-| Hebrew | he-IL | `heIL` |
-| Hindi | hi-IN | `hiIN` |
-| Hungarian | hu-HU | `huHU` |
-| Icelandic | is-IS | `isIS` |
-| Indonesian | id-ID | `idID` |
-| Italian | it-IT | `itIT` |
-| Japanese | ja-JP | `jaJP` |
-| Khmer | kh-KH | `khKH` |
-| Kazakh | kz-KZ | `kzKZ` |
-| Korean | ko-KR | `koKR` |
-| Norwegian (bokmål) | nb-NO | `nbNO` |
-| Persian | fa-IR | `faIR` |
-| Polish | pl-PL | `plPL` |
-| Portuguese | pt-PT | `ptPT` |
-| Portuguese (Brazil) | pt-BR | `ptBR` |
-| Romanian | ro-RO | `roRO` |
-| Russian | ru-RU | `ruRU` |
-| Sinhalese | si-LK | `siLK` |
-| Slovak | sk-SK | `skSK` |
-| Spanish | es-ES | `esES` |
-| Swedish | sv-SE | `svSE` |
-| Thai | th-TH | `thTH` |
-| Turkish | tr-TR | `trTR` |
-| Ukrainian | uk-UA | `ukUA` |
-| Vietnamese | vi-VN | `viVN` |
+| Locale                  | BCP 47 language tag | Import name |
+| :---------------------- | :------------------ | :---------- |
+| Amharic                 | am-ET               | `amET`      |
+| Arabic (Egypt)          | ar-EG               | `arEG`      |
+| Arabic (Sudan)          | ar-SD               | `arSD`      |
+| Armenian                | hy-AM               | `hyAM`      |
+| Azerbaijani             | az-AZ               | `azAZ`      |
+| Bangla                  | bn-BD               | `bnBD`      |
+| Bulgarian               | bg-BG               | `bgBG`      |
+| Catalan                 | ca-ES               | `caES`      |
+| Chinese (Hong Kong)     | zh-HK               | `zhHK`      |
+| Chinese (Simplified)    | zh-CN               | `zhCN`      |
+| Chinese (Taiwan)        | zh-TW               | `zhTW`      |
+| Czech                   | cs-CZ               | `csCZ`      |
+| Danish                  | da-DK               | `daDK`      |
+| Dutch                   | nl-NL               | `nlNL`      |
+| English (United States) | en-US               | `enUS`      |
+| Estonian                | et-EE               | `etEE`      |
+| Finnish                 | fi-FI               | `fiFI`      |
+| French                  | fr-FR               | `frFR`      |
+| German                  | de-DE               | `deDE`      |
+| Greek                   | el-GR               | `elGR`      |
+| Hebrew                  | he-IL               | `heIL`      |
+| Hindi                   | hi-IN               | `hiIN`      |
+| Hungarian               | hu-HU               | `huHU`      |
+| Icelandic               | is-IS               | `isIS`      |
+| Indonesian              | id-ID               | `idID`      |
+| Italian                 | it-IT               | `itIT`      |
+| Japanese                | ja-JP               | `jaJP`      |
+| Khmer                   | kh-KH               | `khKH`      |
+| Kazakh                  | kz-KZ               | `kzKZ`      |
+| Korean                  | ko-KR               | `koKR`      |
+| Norwegian (bokmål)      | nb-NO               | `nbNO`      |
+| Persian                 | fa-IR               | `faIR`      |
+| Polish                  | pl-PL               | `plPL`      |
+| Portuguese              | pt-PT               | `ptPT`      |
+| Portuguese (Brazil)     | pt-BR               | `ptBR`      |
+| Romanian                | ro-RO               | `roRO`      |
+| Russian                 | ru-RU               | `ruRU`      |
+| Sinhalese               | si-LK               | `siLK`      |
+| Slovak                  | sk-SK               | `skSK`      |
+| Spanish                 | es-ES               | `esES`      |
+| Swedish                 | sv-SE               | `svSE`      |
+| Thai                    | th-TH               | `thTH`      |
+| Turkish                 | tr-TR               | `trTR`      |
+| Ukrainian               | uk-UA               | `ukUA`      |
+| Vietnamese              | vi-VN               | `viVN`      |
 
 <!-- #default-branch-switch -->
 

@@ -35,8 +35,7 @@ Na demonstração a seguir, alteramos a cor do plano de fundo (vermelho, azul & 
 ```jsx
 value         |0px     600px    960px    1280px   1920px
 key           |xs      sm       md       lg       xl
-screen width  |---
-product: material-----|--------|--------|--------|-------->
+screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
