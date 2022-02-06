@@ -20,10 +20,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default function MyApp() {
   return (
-    <React.Fragment>
+    <React. Fragment>
       <CssBaseline />
       {/* O resto da sua aplicação */}
-    </React.Fragment>
+    </React. Fragment>
   );
 }
 ```
@@ -80,7 +80,11 @@ const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: theme.palette.mode === 'dark' ?
+        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
+      },
+    },
+  },
+});
 ```
 
 Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
