@@ -39,7 +39,7 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 
 ## MenuList 组合
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
+If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "SimpleListMenu.js"}}
 
