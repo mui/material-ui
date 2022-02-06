@@ -2,13 +2,8 @@
 product: material
 title: React Date Time Picker（日期时间选择器） 组件
 components: DateTimePicker,DesktopDateTimePicker,MobileDateTimePicker,StaticDateTimePicker
-<<<<<<< HEAD
-githubLabel: 'component: DateTimePicker'
-packageName: '@material-ui/lab'
-=======
 githubLabel: 'component: date time picker'
 packageName: '@mui/lab'
->>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)
 materialDesign: https://material.io/components/date-pickers
 ---
 
