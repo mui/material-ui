@@ -43,6 +43,8 @@ As package resolutions are not available in npm at this moment, you need to upda
 
 ```diff
  module.exports = {
+   //...
+module.exports = {
   //...
 resolve: {
     alias: {
@@ -90,9 +92,7 @@ If you are using TypeScript, you will need to also update the TSConfig.
 
 ### Ready-to-use examples
 
-If you are using create-react-app, there is a ready-to-use template in the example projects.
-
-You can use these `styled-component` examples as a reference:
+If you are using create-react-app, there is a ready-to-use template in the example projects. You can use these `styled-component` examples as a reference:
 
 <!-- #default-branch-switch -->
 
@@ -102,4 +102,4 @@ You can use these `styled-component` examples as a reference:
 
 > **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
 
-> **Note:** This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with MUI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
+**Note:** This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with MUI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
