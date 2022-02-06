@@ -6,7 +6,7 @@
 
 ### 哇—— API 看起来完全不一样！ Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't changed. 您会注意到 API 提供了更多的灵活性，但这有一定的成本——一些更低级别的组件提取了较低的复杂性。
+I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### 到底是什么带来了如此巨大的改变呢？
 
@@ -77,7 +77,7 @@ export default App;
 
 ### Autocomplete 自动补全组件
 
-MUI doesn't provide a high-level API for solving this problem. Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
+Material-UI doesn't provide a high-level API for solving this problem. MUI doesn't provide a high-level API for solving this problem. Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
 在你的项目上运行 [迁移助手](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod)
 
