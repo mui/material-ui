@@ -39,7 +39,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 - 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The modal also comes with an unstyled version. The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The modal also comes with an unstyled version. The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import ModalUnstyled from '@mui/base/ModalUnstyled';
@@ -80,7 +80,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 {{"demo": "KeepMountedModal.js", "defaultCodeOpen": false}}
 
-As with any performance optimization, this is not a silver bullet. As with any performance optimization, this is not a silver bullet. Be sure to identify bottlenecks first, and then try out these optimization strategies.
+As with any performance optimization, this is not a silver bullet. As with any performance optimization, this is not a silver bullet. Be sure to identify bottlenecks first, and then try out these optimization strategies. Be sure to identify bottlenecks first, and then try out these optimization strategies.
 
 ## 服务端渲染的模态框
 
@@ -94,7 +94,7 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
 
 如果用户试图将焦点离开模态框，模态框会将丢失的焦点移回到组件的主体。
 
-This is done for accessibility purposes. However, it might create issues. 如果用户需要与页面的其他部分进行交互，例如当您需要使用聊天窗口时，那么就可以禁用该行为：
+This is done for accessibility purposes. However, it might create issues. This is done for accessibility purposes. However, it might create issues. 如果用户需要与页面的其他部分进行交互，例如当您需要使用聊天窗口时，那么就可以禁用该行为：
 
 ```jsx
 <Modal disableEnforceFocus />
@@ -114,4 +114,4 @@ This is done for accessibility purposes. However, it might create issues. 如果
   ```
 
 - 这篇 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法帮助你通过模态窗口里的内容，为最相关的元素设置初始焦点。
-- 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 因为这可能会造成[冲突行为](#focus-trap)。
+- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 因为这可能会造成[冲突行为](#focus-trap)。
