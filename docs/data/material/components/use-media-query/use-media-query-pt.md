@@ -165,6 +165,7 @@ function handleRender(req, res) {
 }
 }
 }
+}
 ```
 
 {{"demo": "ServerSide.js", "defaultCodeOpen": false}}
