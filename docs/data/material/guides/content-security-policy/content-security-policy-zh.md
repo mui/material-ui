@@ -20,7 +20,7 @@ CSP 通过要求开发人员检索其资产的来源并将其列入白名单来�
 
 ### 服务端渲染（SSR）
 
-如果将 CSP 与 MUI（和 emotion）一起使用，你需要使用一个 随机数. 随机数是一个随机生成的字符串，只使用一次，因此您需要添加服务器中间件以在每个请求上生成一个。
+To use CSP with MUI (and emotion), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
 
 CSP nonce 是一个 Base 64 编码的字符串。 你可以生成这样一个：
 
