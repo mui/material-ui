@@ -115,9 +115,9 @@ import { Link } from 'react-router-dom';
 
 ### 使用 TypeScript
 
-Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/guides/routing/#component-prop)。
+Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/guides/routing/#component-prop)。
 
-To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
+To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component. Otherwise, the `component` prop will not be present in the props of the MUI component.
 
 下面的示例使用了 `TypographyProps`，这也同样适用于那些带有 `OverrideProps` 定义的属性的组件。
 
@@ -159,7 +159,7 @@ If the `GenericCustomComponent` will be used with a `component` prop provided, i
 
 当所需的 `ThirdPartyComponent` 是明确要求时，`prop1` 也成为 `GenericCustomComponent` 的必需属性。
 
-但是，并不是每个组件都完全支持您传入的任何组件类型。 If you encounter a component that rejects its `component` props in TypeScript, please open an issue. 我们也一直在努力实现组件属性的通用化。
+但是，并不是每个组件都完全支持您传入的任何组件类型。 If you encounter a component that rejects its `component` props in TypeScript, please open an issue. 我们也一直在努力实现组件属性的通用化。 There is an ongoing effort to fix this by making component props generic.
 
 ## 使用 refs 时的一些注意事项
 
@@ -176,11 +176,11 @@ If the `GenericCustomComponent` will be used with a `component` prop provided, i
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 
-> Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+> Function components cannot be given refs. Attempts to access this ref will fail. Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
 请注意，如果 `lazy` 和 `memo` 组件的包装组件包装组件不能容纳 ref，那么仍然会收到此警告。 在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
 
-> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref. Expected an element type that can hold a ref.
 
 这只包含了两个最常见的用例。 更多信息见[React 官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
 
