@@ -1,16 +1,11 @@
 ---
 product: material
 title: React Date Picker（日期选择器）和 Time Picker（时间选择器）组件
-<<<<<<< HEAD
-components: TextField
-githubLabel: 'component: DatePicker'
-=======
 components: DatePicker,DateTimePicker,TimePicker,TextField
 githubLabel: 'component: date picker'
->>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)
 materialDesign: https://material.io/components/date-pickers
 waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
-packageName: '@material-ui/lab'
+packageName: '>>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)'
 ---
 
 # Date/Time pickers 日期/时间选择器
