@@ -6,7 +6,7 @@ Looking for the v3 docs? You can [find the latest version here](https://mui.com/
 
 > This document is a work in progress.
 > Have you upgraded your site and run into something that's not covered here?
-> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
+> [Add your changes on GitHub](https://github.com/mui/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introduction
 
@@ -154,7 +154,7 @@ yarn add @material-ui/styles
 
   _Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`_.
 
-  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
+  You can use [the migration helper](https://github.com/mui/material-ui/tree/master/packages/mui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
 ### Layout
 
@@ -448,7 +448,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   12px is recommended as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants.
   The color should inherit most of the time. It's the default behavior of the web.
-- [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028).
+- [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui/material-ui/issues/13028).
   The usage of _default_ should be avoided, it lacks semantic.
 
 ### Node

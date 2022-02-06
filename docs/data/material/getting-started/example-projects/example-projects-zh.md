@@ -4,22 +4,22 @@
 
 ## 官方示例
 
-您可以在 [GitHub 存储库](https://github.com/mui-org/material-ui)中的 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 文件夹下找到一些示例项目：
+您可以在 [GitHub 存储库](https://github.com/mui/material-ui)中的 [`/examples`](https://github.com/mui/material-ui/tree/master/examples) 文件夹下找到一些示例项目：
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript)）
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript)）
-- [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
-- [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
-- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
+- [Next.js](https://github.com/mui/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui/material-ui/tree/next/examples/nextjs-with-typescript)）
+- [Create React App](https://github.com/mui/material-ui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui/material-ui/tree/next/examples/create-react-app-with-typescript)）
+- [Remix](https://github.com/mui/material-ui/tree/master/examples/remix-with-typescript)
+- [Gatsby](https://github.com/mui/material-ui/tree/master/examples/gatsby)
+- [Preact](https://github.com/mui/material-ui/tree/master/examples/preact)
+- [CDN](https://github.com/mui/material-ui/tree/master/examples/cdn)
+- [Plain server-side](https://github.com/mui/material-ui/tree/master/examples/ssr)
+- [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
 Create React App 是一个很棒的学习 React 的项目。 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
-此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/ docs`](https://github.com/mui-org/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
+此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/ docs`](https://github.com/mui/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
 
 ## 进阶示例项目
 

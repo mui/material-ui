@@ -6,7 +6,7 @@
 
 <!-- #default-branch-switch -->
 
-MUI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example.
+MUI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript) example.
 
 For types to work, it's recommended that you have at least the following options enabled in your `tsconfig.json`:
 

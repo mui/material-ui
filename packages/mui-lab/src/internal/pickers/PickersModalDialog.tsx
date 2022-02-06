@@ -72,7 +72,7 @@ const PickersModalDialogActions = styled(DialogActions)<{
 }>(({ ownerState }) => ({
   ...((ownerState.clearable || ownerState.showTodayButton) && {
     // set justifyContent to default value to fix IE11 layout bug
-    // see https://github.com/mui-org/material-ui-pickers/pull/267
+    // see https://github.com/mui/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
     '& > *:first-of-type': {
       marginRight: 'auto',

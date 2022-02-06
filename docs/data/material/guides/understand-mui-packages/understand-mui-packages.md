@@ -58,7 +58,7 @@ These adapters unify the APIs of both `emotion` and `styled-components`, so that
 
 The previous style library `@mui/styles` (JSS wrapper) is deprecated and will be removed in the future.
 
-> The details about the change in styling solution are in [this RFC](https://github.com/mui-org/material-ui/issues/22342).
+> The details about the change in styling solution are in [this RFC](https://github.com/mui/material-ui/issues/22342).
 
 ## System
 

@@ -14,5 +14,5 @@ Explore the default theme object:
 
 <!-- #default-branch-switch -->
 
-If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/styles/createTheme.js),
+If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createTheme.js`](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/createTheme.js),
 and the related imports which `createTheme` uses.

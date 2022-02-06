@@ -77,7 +77,7 @@ yarn add @mui/icons-material
 - 您可以在开发环境调试：https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
 - 也可放心地在生产环境使用: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
-您可以按照[此 CDN 示例](https://github.com/mui-org/material-ui/tree/master/examples/cdn)快速开始。
+您可以按照[此 CDN 示例](https://github.com/mui/material-ui/tree/master/examples/cdn)快速开始。
 
 尽管我们**不赞成**在**生产环境**中使用这种方式 —— 无论实际使用哪些组件，客户端必须下载整个库，而这将会影响到整体性能和带宽利用率。
 

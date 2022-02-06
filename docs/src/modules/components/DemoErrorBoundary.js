@@ -38,13 +38,13 @@ export default class DemoErrorBoundary extends React.Component {
       const title = `[docs] Demo ${name} crashes`;
       const searchQuery = encodeURIComponent(`is:issue ${title}`);
       const issueLink = newGithubIssueUrl({
-        user: 'mui-org',
+        user: 'mui',
         repo: 'material-ui',
         title,
         body: `
 <!-- Please make sure you have fullfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
-- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
+- [ ] I have [searched for similar issues](https://github.com/mui/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
 
 ## Steps to Reproduce
 1. Visit ${window.location.href}

@@ -7,14 +7,14 @@ tags: ['MUI Core', 'News']
 card: false
 ---
 
-<span class="x x-first x-last">[</span>MUI Core v5.3.0](https://github.com/mui-org/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (global theming), giving you full control of component customization at the theme level.
+<span class="x x-first x-last">[</span>MUI Core v5.3.0](https://github.com/mui/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (global theming), giving you full control of component customization at the theme level.
 
 Why is using a callback better than the existing plain object? Let me explain from the beginning<span class="x x-first x-last">…</span>
 
 ## The problems
 
 In v4, the style engine library was JSS which had some limitations.
-Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at the [`Chip` classes](https://github.com/mui-org/material-ui/blob/97d32b0ff3fae4537c20c79e619f132f4a5c5cbb/packages/mui-material/src/Chip/chipClasses.ts) for example – there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`).
+Style overrides were not able to support dynamic props via a callback so we relied on using classes. Take a look at the [`Chip` classes](https://github.com/mui/material-ui/blob/97d32b0ff3fae4537c20c79e619f132f4a5c5cbb/packages/mui-material/src/Chip/chipClasses.ts) for example – there are more than 20 classes that are incomplete if we count the permutation of elements (`root | avatar | icon | label | deleteIcon`), size (`small | medium | large`), and color (`primary | secondary | ...`).
 This leads to a poor theming experience because developers need to know which specific key to customize.
 
 We believe it would be better for developers if they could create custom styles by reading the component props, without ever needing to know what key they should use.

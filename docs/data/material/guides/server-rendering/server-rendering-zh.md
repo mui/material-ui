@@ -228,11 +228,11 @@ function handleRender(req, res) {
 
 ## 参考实现
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/HEAD/examples) folder:
+We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
 
-- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/HEAD/examples/ssr)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/HEAD/examples/gatsby)
-- [Next.js](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript))
+- [本教程的参考实现](https://github.com/mui/material-ui/tree/HEAD/examples/ssr)
+- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/gatsby)
+- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript))
 
 ## 故障排除（Troubleshooting）
 

@@ -104,7 +104,7 @@ function Progress(props) {
 
 ![高负载](/static/images/progress/heavy-load.gif)
 
-当这个方法不可行的时候，您可以利用 `disableShrink` 属性来缓解这个问题。 请查看 [这个问题](https://github.com/mui-org/material-ui/issues/10327)。
+当这个方法不可行的时候，您可以利用 `disableShrink` 属性来缓解这个问题。 请查看 [这个问题](https://github.com/mui/material-ui/issues/10327)。
 
 {{"demo": "CircularUnderLoad.js"}}
 

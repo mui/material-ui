@@ -7,7 +7,7 @@
 The bundle size of MUI is taken very seriously. Size snapshots are taken
 on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
-[detailed bundle size changes](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
+[detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## When and how to use tree-shaking?
 

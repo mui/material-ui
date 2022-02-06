@@ -27,7 +27,7 @@ To get the benefits of bug fixes and a lot of improvements such as the new styli
 - [CSS specificity](#css-specificity)
 - [Troubleshooting](#troubleshooting)
 
-> 💡 Aim to create small commits on any changes to help the migration go more smoothly. If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
+> 💡 Aim to create small commits on any changes to help the migration go more smoothly. If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
 
 ## Tratamento de alterações recentes
 
@@ -81,7 +81,7 @@ yarn add @material-ui/core@next @emotion/react @emotion/styled
 
 **Optional**: if you have one these packages, install the new package separately
 
-- Você pode usar o [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
+- Você pode usar o [codemod `moved-lab-modules`](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
 - For non-Material-UI components, use the `component` prop.
 
 <details>
@@ -124,7 +124,7 @@ You should have installed `@mui/styles` by now. It includes JSS, which duplicate
 
 > 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
 
-You can use the [`theme-breakpoints` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
+You can use the [`theme-breakpoints` codemod](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
 
 ## Run codemods
 
@@ -138,7 +138,7 @@ This codemod contains most of the transformers that are useful for migration. (*
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
-> You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+> You can use the [`use-transitionprops` codemod](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
 ### Suporte de navegadores e versões de node
 
@@ -173,11 +173,11 @@ However, if you want to keep `variant="standard"` to your components, run this c
 +}));
 ```
 
-Você pode usar o [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
+Você pode usar o [codemod `moved-lab-modules`](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
 
 ### Componentes de classe sem o encaminhamento de refs
 
-You can use the [`box-borderradius-values` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-borderradius-values) for automatic migration.
+You can use the [`box-borderradius-values` codemod](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#box-borderradius-values) for automatic migration.
 
 > ❗️ You should **NOT** use this codemod if you have already defined default `underline: "always"` in the theme.
 
@@ -195,7 +195,7 @@ createMuiTheme({
 });
 ```
 
-You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#circularprogress-variant) for automatic migration.
+You can use the [`circularprogress-variant` codemod](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#circularprogress-variant) for automatic migration.
 
 ```sh
 import { createTheme } from '@material-ui/core/styles';
@@ -216,7 +216,7 @@ const theme = createTheme({
 });
 ```
 
-You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#collapse-rename-collapsedheight) for automatic migration of both the prop and the classes key.
+You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#collapse-rename-collapsedheight) for automatic migration of both the prop and the classes key.
 
 Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
@@ -235,7 +235,7 @@ O pacote padrão suporta as seguintes versões mínimas:
 - Edge 85 (antes 14)
 - Firefox 78 (antes era 52)
 - Safari 13 (macOS) e 12.2 (iOS) (antes era 10)
-- para maiores detalhes (veja [.browserslistrc (seção `stable`)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+- para maiores detalhes (veja [.browserslistrc (seção `stable`)](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11))
 
 Não há mais o suporte para o IE 11. Se você precisar do suporte para o IE 11, confira nosso [pacote legado](/guides/minimizing-bundle-size/#legacy-bundle).
 
@@ -247,7 +247,7 @@ O suporte para componentes de classe, sem o encaminhamento de refs, na proprieda
 
 For some components, you may get a type error when passing `ref`. To avoid the error, you should use a specific element type. For example, `Card` expects the type of `ref` to be `HTMLDivElement`, and `ListItem` expects its `ref` type to be `HTMLLIElement`.
 
-Você pode usar o [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
+Você pode usar o [codemod `moved-lab-modules`](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
 
 ```diff
 import * as React from 'react';
@@ -348,7 +348,7 @@ Here is an example:
  }
 ```
 
-> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/HEAD/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/HEAD/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
 
 ### Theme structure
 
@@ -998,7 +998,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### BottomNavigationAction
 
-- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui-org/material-ui/pull/26923).
+- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui/material-ui/pull/26923).
 
   ```diff
    <button class="MuiBottomNavigationAction-root">
@@ -1095,7 +1095,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   If you prefer to use the `default` color in v4, take a look at this [CodeSandbox](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx)
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
    <button class="MuiButton-root">
@@ -1367,7 +1367,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +<Fab variant="circular">
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27112).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/27112).
 
   ```diff
    <button class="MuiFab-root">
@@ -1520,7 +1520,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   + <IconButton size="large">
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
    <button class="MuiIconButton-root">
@@ -2108,7 +2108,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
 - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
-- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
+- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26926).
 
   ```diff
    <button class="MuiTab-root">
@@ -2226,7 +2226,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/27111).
 
   ```diff
    <button class="MuiToggleButton-root">
@@ -2315,7 +2315,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
-- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui/material-ui/issues/21902)
 
   ```diff
   {
@@ -2456,7 +2456,7 @@ This is the last step in the migration process to remove `@mui/styles` package f
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
 npx @mui/codemod v5.0.0/jss-to-styled <path>
@@ -2723,7 +2723,7 @@ export const decorators = [withThemeProvider];
 For more details, checkout these issues on GitHub.
 
 - https://github.com/storybookjs/storybook/issues/16099
-- https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133
+- https://github.com/mui/material-ui/issues/24282#issuecomment-796755133
 
 ### Cannot read property `scrollTop` of null
 
@@ -2771,7 +2771,7 @@ const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
 </Fade>
 ```
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/27154) on GitHub.
+For more details, checkout [this issue](https://github.com/mui/material-ui/issues/27154) on GitHub.
 
 ### [Types] Property "palette", "spacing" does not exist on type 'DefaultTheme'
 
@@ -2806,7 +2806,7 @@ declare module "@mui/private-theming" {
 
 ### [Jest] SyntaxError: Unexpected token 'export'
 
-`@mui/material/colors/red` is considered private since v1.0.0. You should replace the import, [more details about this error](https://github.com/mui-org/material-ui/issues/27296).
+`@mui/material/colors/red` is considered private since v1.0.0. You should replace the import, [more details about this error](https://github.com/mui/material-ui/issues/27296).
 
 You can use this codemod (**recommended**) to fix all the import in your project:
 
@@ -2889,7 +2889,7 @@ The root cause of this error comes from accessing empty theme. Make sure that yo
 
 - Make sure that no `useStyles` is called outside of `<ThemeProvider>`. If you have, consider fixing it like [this suggestion](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)
 
-For more details, [checkout this issue](https://github.com/mui-org/material-ui/issues/28496)
+For more details, [checkout this issue](https://github.com/mui/material-ui/issues/28496)
 
 ### Styles broken after migrating to v5
 

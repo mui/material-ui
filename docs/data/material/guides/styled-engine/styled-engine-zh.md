@@ -6,7 +6,7 @@
 
 ## 如何切换到 styled-components
 
-> ❗ **警告**: 目前使用 `styled-components` 作为服务端渲染(SSR)项目的样式引擎时无法工作。 原因是 `babel-plugin-styled-components` 没有正确获取 `@mui` 软件包中的 `styled()` 方法。 欲了解更多详情，请查看这个 [issue](https://github.com/mui-org/material-ui/issues/29742)。 我们强烈建议在服务端渲染(SSR)项目中使用 `emotion`。
+> ❗ **警告**: 目前使用 `styled-components` 作为服务端渲染(SSR)项目的样式引擎时无法工作。 原因是 `babel-plugin-styled-components` 没有正确获取 `@mui` 软件包中的 `styled()` 方法。 欲了解更多详情，请查看这个 [issue](https://github.com/mui/material-ui/issues/29742)。 我们强烈建议在服务端渲染(SSR)项目中使用 `emotion`。
 
 如果您已经安装了 [styled-components](https://github.com/styled-components/styled-components) ，用它作为样式引擎是可行的。 目前有两个软件包可供选择：
 
@@ -84,9 +84,9 @@ has @material-ui/styled-engine as a dependency, but you can configure your bundl
 
 <!-- #default-branch-switch -->
 
-- [create-react-app](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
-- [使用 TypeScript 来 create-react-app](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
-- [其他模板](https://github.com/mui-org/material-ui/tree/master/examples)
+- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components)
+- [使用 TypeScript 来 create-react-app](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
+- [其他模板](https://github.com/mui/material-ui/tree/master/examples)
 
 > **注意**: `@emotion/react`, `@emotion/styled`, 和 `styled-components` 是 `@mui/materials` 的可选对等依赖，所以您需要自己安装它们。 更多信息请访问 [安装指南](/getting-started/installation/)。
 

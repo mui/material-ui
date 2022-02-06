@@ -16,10 +16,10 @@ For crowdsourced answers from expert MUI developers in our community. StackOverf
 
 ### GitHub
 
-我们用 GitHub issues 作为唯一的记录 BUG 或特性需求的跟踪方式。 如果你认为发现了一个 bug，或有一个新功能的想法，在您提交之前，请先确保它没有被 [报告过或解决过](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。 您可以搜索已有的 Issues 或者 Pull Requests，这样可以知晓是否有人已报告过类似的问题。
+我们用 GitHub issues 作为唯一的记录 BUG 或特性需求的跟踪方式。 如果你认为发现了一个 bug，或有一个新功能的想法，在您提交之前，请先确保它没有被 [报告过或解决过](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。 您可以搜索已有的 Issues 或者 Pull Requests，这样可以知晓是否有人已报告过类似的问题。
 
-- [开一个 issue](https://github.com/mui-org/material-ui/issues/new/choose)
-- [Open an issue on MUI X](https://github.com/mui-org/material-ui-x/issues/new/choose)
+- [开一个 issue](https://github.com/mui/material-ui/issues/new/choose)
+- [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose)
 
 #### 新 Issue 指南
 

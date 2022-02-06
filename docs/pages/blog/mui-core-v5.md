@@ -16,7 +16,7 @@ card: true
 tags: ['News']
 ---
 
-After over 400 days of development and over 40 canary releases, we are excited to introduce [MUI Core v5.0.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0)!
+After over 400 days of development and over 40 canary releases, we are excited to introduce [MUI Core v5.0.0](https://github.com/mui/material-ui/releases/tag/v5.0.0)!
 
 <img src="/static/blog/mui-core-v5/card.png" alt="" style="width: 100%; margin-bottom: 16px;" />
 
@@ -72,7 +72,7 @@ So, we have approached v5 with a focus on delivering **long-term value**.
 For instance, we stopped all development on v4 as soon as we started to work on v5,
 and have taken the liberty of introducing breaking changes anytime we have identified a long-term upside.
 
-You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mui-org/material-ui/issues/20012).
+You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mui/material-ui/issues/20012).
 
 ## A new brand
 
@@ -110,11 +110,11 @@ While MUI is compatible with any styling solution (as long as the styles have mo
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
    The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/s/nb05w?file=/src/App.js) than emotion,
    however, the dynamic style generation was too slow to be used in production. We would have needed to reimplement it.
-3. Many developers were advocating for MUI to [migrate to styled-components](https://github.com/mui-org/material-ui/issues/6115),
+3. Many developers were advocating for MUI to [migrate to styled-components](https://github.com/mui/material-ui/issues/6115),
    which would allow us to drop the custom React JSS wrapper we maintain.
    From our experience, maintaining a custom styling solution takes a considerable amount of time.
 
-After [exploring](https://github.com/mui-org/material-ui/issues/22342) many different options, we settled on what we believe is a great tradeoff to **solve** the above issues:
+After [exploring](https://github.com/mui/material-ui/issues/22342) many different options, we settled on what we believe is a great tradeoff to **solve** the above issues:
 
 1. We have made `styled()` the lowest level primitive to add styles.
    This API is already known by many.
@@ -122,7 +122,7 @@ After [exploring](https://github.com/mui-org/material-ui/issues/22342) many diff
 
    - `@mui/styled-engine`: implemented with emotion (default).
    - `@mui/styled-engine-sc`: implemented with styled-components
-   - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui-org/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
+   - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
 
    This allows developers to swap between different style engines. For example, styled-components users no longer need to bundle emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
    How does the [swap work](https://mui.com/guides/styled-engine/#how-to-switch-to-styled-components)? The same way it does from React to Preact.
@@ -131,7 +131,7 @@ After [exploring](https://github.com/mui-org/material-ui/issues/22342) many diff
 
 The first immediate benefit of the move to emotion was **performance**. The `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
 
-We would like to thank all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui-org/material-ui/issues/24405) and [#16947](https://github.com/mui-org/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@queengooborg](https://github.com/queengooborg), and more.
+We would like to thank all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui/material-ui/issues/24405) and [#16947](https://github.com/mui/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@queengooborg](https://github.com/queengooborg), and more.
 It was a major undertaking!
 
 Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](https://mui.com/guides/migration-v4/#migrate-from-jss).
@@ -194,7 +194,7 @@ It's how developers have extended the core components up until v4. However:
 3. It adds a boilerplate.
 
 For this reason, v5 comes with the capability to extend the built-in behavior of the components, right from the theme.
-This was one of the most upvoted GitHub issues: [#13875](https://github.com/mui-org/material-ui/issues/13875).
+This was one of the most upvoted GitHub issues: [#13875](https://github.com/mui/material-ui/issues/13875).
 In practice, this change makes the MUI Core components extendable placeholders.
 
 **First**, you can use the [existing style mapping](/customization/palette/#adding-new-colors) of the components.
@@ -375,8 +375,8 @@ const CustomButton = React.forwardRef(function CustomButton(
 
 <p class="blog-description"><a href="https://codesandbox.io/s/7lc1r?file=/demo.tsx">Codesandbox</a></p>
 
-We discuss the effort in [#6218](https://github.com/mui-org/material-ui/issues/6218).
-You can use [#27170](https://github.com/mui-org/material-ui/issues/27170) to follow our progress.
+We discuss the effort in [#6218](https://github.com/mui/material-ui/issues/6218).
+You can use [#27170](https://github.com/mui/material-ui/issues/27170) to follow our progress.
 
 ## Improved DX
 
@@ -384,7 +384,7 @@ You can use [#27170](https://github.com/mui-org/material-ui/issues/27170) to fol
 
 We have used the migration of the demos from JSS to emotion as an opportunity to rework them.
 Many of the demos were originally added taking into account how they would help maintainers work on the components.
-Instead, we have reversed the priority, putting the developers using them [first](https://github.com/mui-org/material-ui/issues/22484).
+Instead, we have reversed the priority, putting the developers using them [first](https://github.com/mui/material-ui/issues/22484).
 
 In practice, this means breaking down complex demos into smaller ones.
 We aim to have as many "inline previews" as possible. It saves one click to expand the demo, and the mental overhead of figuring out what part of the code maps with what of interest you saw on the screen.
@@ -416,7 +416,7 @@ The migration has even allowed us to rethink some of the implementations, making
 
 ### TypeScript migration
 
-The MUI Core codebase is not completely written in TypeScript yet but we have been coming a long way ([MUI X](https://github.com/mui-org/material-ui-x) is).
+The MUI Core codebase is not completely written in TypeScript yet but we have been coming a long way ([MUI X](https://github.com/mui/mui-x) is).
 In v4, we have written all the demos TypeScript first.
 
 With v5, we have made new steps toward the adoption of TypeScript:
@@ -438,14 +438,14 @@ Overall, the language stats of GitHub give some qualitative measure of the progr
 <img loading="lazy" src="/static/blog/mui-core-v5/typescript.png" alt="Screenshot of our current language distribution. 36.1% TypeScript, 63.9% JavaScript." style="width: 700px; margin-bottom: 16px;" />
 
 We expect the adoption of TypeScript to increase during the lifecycle of v5.
-With this organic adoption strategy, it might take us two years to close [#15984](https://github.com/mui-org/material-ui/issues/15984).
+With this organic adoption strategy, it might take us two years to close [#15984](https://github.com/mui/material-ui/issues/15984).
 
 ### Strict Mode support
 
 This release is compatible with `React.StrictMode`.
 This is the result of two years of work on the infrastructure.
 We now run the tests and the documentation in strict mode.
-Thanks for the patience, this has been an old and [frequently requested](https://github.com/mui-org/material-ui/issues/13394) improvement.
+Thanks for the patience, this has been an old and [frequently requested](https://github.com/mui/material-ui/issues/13394) improvement.
 
 Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased) in a nightly build, in strict mode, without any test failures.
 
@@ -456,7 +456,7 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 <img loading="lazy" src="/static/blog/mui-core-v5/mui-x-blog-hero.png" alt="Mockup of some MUI X components" style="width: 700px; margin-bottom: 16px;" />
 
 We are very excited to introduce a new product line to the MUI family: [**MUI X**](/x/)!
-We have recently released our [first stable version](https://github.com/mui-org/material-ui-x/releases/tag/v4.0.0).
+We have recently released our [first stable version](https://github.com/mui/mui-x/releases/tag/v4.0.0).
 
 MUI X embodies our initiative to solve the main pain point developers have reported two years in a row during our developer's survey: [2020](/blog/2020-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), [2019](/blog/2019-developer-survey-results/#4-how-can-we-improve-material-ui-for-you).
 We have heard you, you want **more components**.
@@ -464,7 +464,7 @@ We have heard you, you want **more components**.
 But, in practice, we wouldn't probably cover all the possible components you might need. It would be a titanic task.
 Instead, we are focusing on the **hardest** and **most requested** components, leaving the long tail to our [community of contributors](/discover-more/related-projects/#components).
 
-We started working on this effort over a year ago, in a new GitHub repository: [mui-org/material-ui-x](https://github.com/mui-org/material-ui-x).
+We started working on this effort over a year ago, in a new GitHub repository: [mui/mui-x](https://github.com/mui/mui-x).
 You might wonder, why work on it as a different product? Building a great data grid or charting solution takes a considerable amount of time. Taking on the challenge of developing them required us to think about a different monetization strategy and we quickly realized that the team working on MUI X would need to become, at least, two times larger than the one working on MUI Core, which already has the community contribution.
 
 Although each product has its unique vision and mission statements, they complement each other. A solid MUI Core foundation is essential for the MUI X adoption.
@@ -657,7 +657,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
   - Chrome: from 49 to **90**. We have [assumed](https://developers.google.com/search/blog/2019/05/the-new-evergreen-googlebot) that Googlebot is always using the latest version of Chrome.
   - Safari: from 10 to **12.5**
 
-These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/material-ui/pull/22814#issuecomment-700995216) on the `@mui/material` package.
+These changes have allowed us to save [6 kB gzipped](https://github.com/mui/material-ui/pull/22814#issuecomment-700995216) on the `@mui/material` package.
 
 ## Design kits
 
@@ -702,8 +702,8 @@ We hope we can reach 50% of the React community by 2026. This is an ambitious go
 
 You can use our public roadmap on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
-- [MUI Core](https://github.com/mui-org/material-ui/projects/25)
-- [MUI X](https://github.com/mui-org/material-ui-x/projects/1)
+- [MUI Core](https://github.com/mui/material-ui/projects/25)
+- [MUI X](https://github.com/mui/mui-x/projects/1)
 
 We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we’re building.
 
@@ -724,7 +724,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](/customization/unstyled-components/) and keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
+You can read more about them in [the docs](/customization/unstyled-components/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).
@@ -733,12 +733,12 @@ Please note that both packages are in an alpha state so that we can release brea
 we want to take the opportunity to create the best APIs we possibly can.
 
 You can help us shape these new packages by taking part in discussions.
-There are [RFCs](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3Adiscussion+%5BRFC%5D) waiting for your feedback.
+There are [RFCs](https://github.com/mui/material-ui/issues?q=is%3Aopen+label%3Adiscussion+%5BRFC%5D) waiting for your feedback.
 Don't hesitate to let us know what you think!
 
 ### Second design system
 
-Developing a new design system is one of the main initiatives, alongside this new brand and the unstyled components, to grow MUI beyond Material Design. Its codename is **Joy** and we have just started [the high-level discussion](https://github.com/mui-org/material-ui/discussions/27803) around it.
+Developing a new design system is one of the main initiatives, alongside this new brand and the unstyled components, to grow MUI beyond Material Design. Its codename is **Joy** and we have just started [the high-level discussion](https://github.com/mui/material-ui/discussions/27803) around it.
 
 It will be built on top of our foundation packages (the base/unstyled components and `@mui/system`) to provide the API shaped similarly to our Material Design components. We plan on having built-in CSS variables generated from the theme, a great dark mode API, a custom look and feel, and more.
 

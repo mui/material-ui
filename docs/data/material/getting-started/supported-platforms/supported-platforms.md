@@ -16,7 +16,7 @@ product: material- | :------ | :----- | :------------- | :----------- | :-------
 
 <!-- #default-branch-switch -->
 
-An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/master/.browserslistrc#L12-L27) (check the `stable` entry).
+An extensive list can be found in our [.browserlistrc](https://github.com/mui/material-ui/blob/master/.browserslistrc#L12-L27) (check the `stable` entry).
 
 Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that MUI supports it.
 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html).
@@ -50,7 +50,7 @@ that adds vendor-specific prefixes.
 These prefixes are automatically added to the client thanks to [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
 
 The CSS served on this documentation is processed with [`autoprefixer`](https://www.npmjs.com/package/autoprefixer).
-You can use [the documentation implementation](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) as inspiration.
+You can use [the documentation implementation](https://github.com/mui/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) as inspiration.
 Be aware that it has an implication with the performance of the page.
 It's a must-do for static pages, but it needs to be put in balance with not doing anything when rendering dynamic pages.
 

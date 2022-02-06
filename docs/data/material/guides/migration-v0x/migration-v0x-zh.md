@@ -10,12 +10,12 @@ I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't ch
 
 ### 到底是什么带来了如此巨大的改变呢？
 
-Material-UI 这个项目是从[4 年前](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material-UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化： 譬如这些主要的变化：
+Material-UI 这个项目是从[4 年前](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material-UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化： 譬如这些主要的变化：
 
 - 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/customization/how-to-customize/)的能力和整体性能）
 - 新的主题处理 （有嵌套，自主支撑等。）
 - Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
-- 更容易检测 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
+- 更容易检测 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui/material-ui)）
 - 完全的 [服务器端渲染](/guides/server-rendering/) 支持
 - 大范围地 [支持的浏览器](/getting-started/supported-platforms/)
 
@@ -44,7 +44,7 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 import Button from '@material-ui/core/Button'; // v1.x
 ```
 
-2. 在您的项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod)。
+2. 在您的项目上运行 [迁移帮助程序](https://github.com/mui/material-ui/tree/master/packages/mui-codemod)。
 3. `MuiThemeProvider` 对于 v1.x.版本是可选的，但如果您有自定义主题，则可以同时使用该组件的 v0.x 和 v1.x 版本，如下所示：
 
 ```jsx
@@ -79,11 +79,11 @@ export default App;
 
 MUI doesn't provide a high-level API for solving this problem. Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
-在你的项目上运行 [迁移助手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod)
+在你的项目上运行 [迁移助手](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod)
 
 ### Svg 图标
 
-未来，我们打算提供一个简单的组件来解决这个用例：[#9997](https://github.com/mui-org/material-ui/issues/9997)。
+未来，我们打算提供一个简单的组件来解决这个用例：[#9997](https://github.com/mui/material-ui/issues/9997)。
 
 这将应用如下更改：
 
@@ -184,4 +184,4 @@ MUI doesn't provide a high-level API for solving this problem. Material-UI doesn
 
 ### 未完待续...
 
-您是否已成功迁移您的应用，并助社区一臂之力？ 要完成本迁移指南 [#7195](https://github.com/mui-org/material-ui/issues/7195)，还存在一个未决问题。 我们欢迎任何 pull request。
+您是否已成功迁移您的应用，并助社区一臂之力？ 要完成本迁移指南 [#7195](https://github.com/mui/material-ui/issues/7195)，还存在一个未决问题。 我们欢迎任何 pull request。

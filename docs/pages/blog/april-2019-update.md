@@ -8,7 +8,7 @@ tags: ['Company update']
 
 Here are the most significant improvements in April:
 
-- 📚 We have migrated [most](https://github.com/mui-org/material-ui/issues/14897) of our demos to TypeScript. **@eps1lon** has lead the effort. You can switch between the JavaScript demo and the TypeScript demo using this toggle button:
+- 📚 We have migrated [most](https://github.com/mui/material-ui/issues/14897) of our demos to TypeScript. **@eps1lon** has lead the effort. You can switch between the JavaScript demo and the TypeScript demo using this toggle button:
 
   ![TypeScript switch](/static/blog/april-2019-update/typescript.png)
 
@@ -61,4 +61,4 @@ _(We'll do our best, no guarantee!)_
   - Timeline
 - Something big 🌈
 
-- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

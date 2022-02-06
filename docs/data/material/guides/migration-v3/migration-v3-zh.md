@@ -4,7 +4,7 @@
 
 您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md)。
+> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md)。
 
 ## 简介
 
@@ -138,7 +138,7 @@ yarn add @material-ui/styles
 
   提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。 `
 
-  您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
+  您可以在项目中使用 [迁移小帮手](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
 
 ### 布局
 
@@ -406,7 +406,7 @@ function MySelect({ children }) {
 
 - [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为 16px 的字体大小比默认为 14px 好。 Bootstrap，material.io，甚至本文档都使用的是 16px 作为默认字体大小。 像 Ant Design 一样使用 14px 是可以理解的，因为中国的用户使用了不同的字母表。 我们建议将 12px 作为日语的默认字体大小。
 - [Typography] 移除了铸排变体的默认颜色。 大多数情况下，字体颜色应该是继承而来的。 这是网站的默认行为。
-- [Typography] 按照 [该讨论](https://github.com/mui-org/material-ui/issues/13028) 的逻辑，我们将 `color="default"` 重命名为 `color="initial"`。 你不应该再使用 _default_，因为它缺少明确的语义。
+- [Typography] 按照 [该讨论](https://github.com/mui/material-ui/issues/13028) 的逻辑，我们将 `color="default"` 重命名为 `color="initial"`。 你不应该再使用 _default_，因为它缺少明确的语义。
 
 ### Node
 

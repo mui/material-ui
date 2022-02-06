@@ -689,7 +689,7 @@ function AboutContent() {
                 // @ts-expect-error
                 variant="link"
                 size="small"
-                href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
+                href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 Leave your feedback{' '}
@@ -714,22 +714,22 @@ function AboutContent() {
               >
                 <li>
                   Add new features by{' '}
-                  <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                  <Link href="https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
                     submitting a pull request
                   </Link>
                   .
                 </li>
                 <li>
                   Fix bugs or{' '}
-                  <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
+                  <Link href="https://github.com/mui/material-ui/tree/HEAD/docs">
                     improve our documentation
                   </Link>
                   .
                 </li>
                 <li>
                   Help others by reviewing and commenting on existing{' '}
-                  <Link href="https://github.com/mui-org/material-ui/pulls">PRs</Link> and{' '}
-                  <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
+                  <Link href="https://github.com/mui/material-ui/pulls">PRs</Link> and{' '}
+                  <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
                 </li>
                 <li>
                   Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
@@ -744,7 +744,7 @@ function AboutContent() {
                 // @ts-expect-error
                 variant="link"
                 size="small"
-                href="https://github.com/mui-org/material-ui"
+                href="https://github.com/mui/material-ui"
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 See the repository
