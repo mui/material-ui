@@ -96,7 +96,8 @@ Existem duas opções para projetar a API para as variações de um componente: 
 
   ```tsx
   type Props = {
-    variant: 'text' | 'contained' | 'fab';
+    contained: boolean;
+    fab: boolean;
   };
   ```
 
