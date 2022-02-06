@@ -114,4 +114,4 @@ This is done for accessibility purposes. However, it might create issues. No cas
   ```
 
 - O [WAI-ARIA authoring practices ](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
-- Esteja ciente que uma "janela modal" sobrepõe a janela primária ou qualquer outra janela modal. Esteja ciente que uma "janela modal" sobrepõe a janela primária ou qualquer outra janela modal. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa. Isso pode criar [comportamentos conflitantes](#focus-trap).
+- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa. Isso pode criar [comportamentos conflitantes](#focus-trap).
