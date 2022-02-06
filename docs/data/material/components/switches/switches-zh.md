@@ -1,13 +1,8 @@
 ---
 product: material
 title: React Switch（开关）组件
-<<<<<<< HEAD
-components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
-githubLabel: 'component: Switch'
-=======
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
 githubLabel: 'component: switch'
->>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
