@@ -56,6 +56,6 @@ A barra de título pode ser colocada abaixo da imagem.
 
 ## Lista de imagem customizada
 
-Neste exemplo, os itens tem uma barra de título customizada, posicionada no topo e com um gradiente customizado com `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda. A ação secundária `IconButton` está posicionada à esquerda.
+Neste exemplo, os itens tem uma barra de título customizada, posicionada no topo e com um gradiente customizado com `titleBackground`. The secondary action `IconButton` is positioned on the left. The `gap` prop is used to adjust the gap between items.
 
 {{"demo": "CustomImageList.js", "defaultCodeOpen": false}}
