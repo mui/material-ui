@@ -4,6 +4,7 @@
     "autoWidth": "If <code>true</code>, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input.",
     "children": "The option elements to populate the select with. Can be some <code>MenuItem</code> when <code>native</code> is false and <code>option</code> when <code>native</code> is true.<br>⚠️The <code>MenuItem</code> elements <strong>must</strong> be direct descendants when <code>native</code> is false.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "defaultOpen": "If <code>true</code>, the component is initially open. Use when the component open state is not controlled (i.e. the <code>open</code> prop is not defined). You can only use it when the <code>native</code> prop is <code>false</code> (default).",
     "defaultValue": "The default input value. Use when the component is not controlled.",
     "displayEmpty": "If <code>true</code>, a value is displayed even if no items are selected.<br>In order to display a meaningful value, a function can be passed to the <code>renderValue</code> prop which returns the value to be displayed when no items are selected.<br>⚠️ When using this prop, make sure the label doesn&#39;t overlap with the empty displayed value. The label should either be hidden or forced to a shrunk state.",
     "IconComponent": "The icon that displays the arrow.",
