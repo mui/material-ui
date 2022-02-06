@@ -76,10 +76,10 @@ const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 // Exemplo de componente que utiliza a função `normalise` no ponto de renderização.
 function Progress(props) {
   return (
-    <React.Fragment>
+    <React. Fragment>
       <CircularProgress variant="determinate" value={normalise(props.value)} />
       <LinearProgress variant="determinate" value={normalise(props.value)} />
-    </React.Fragment>
+    </React. Fragment>
   );
 }
 ```
