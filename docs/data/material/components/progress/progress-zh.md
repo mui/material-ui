@@ -70,8 +70,7 @@ materialDesign: https://material.io/components/progress-indicators
 ```jsx
 // MIN = 最小期待值
 // MAX = 最大期待值
-// 使数值正常化的功能（MIN/MAX 可以整合）。
-const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
+// 使数值正常化的功能（MIN/MAX 可以整合）。 const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
 // 此示例组件在渲染时优化了“ normalise”函数。
 function Progress(props) {
