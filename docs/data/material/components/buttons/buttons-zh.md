@@ -44,7 +44,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 ### 描边按钮
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。 They contain actions that are important but aren't the primary action in an app.
 
 你也可以将描边按钮作为比实心按钮次要一点的替代方案，或者用来作为比文本按钮重要一点的展示。
 
@@ -70,7 +70,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"demo": "ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
 ## 尺寸
 
@@ -172,7 +172,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 ## Unstyled
 
-The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ### Unstyled component
 
@@ -184,7 +184,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 #### Customizing the root element
 
-By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
+By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
@@ -192,7 +192,7 @@ Compare the attributes on the span with the button from the previous demo.
 
 #### Complex customization
 
-You are not limited to using HTML elements for the button structure. SVG elements, even with complex structure, are equally acceptable.
+You are not limited to using HTML elements for the button structure. SVG elements, even with complex structure, are equally acceptable. SVG elements, even with complex structure, are equally acceptable.
 
 {{"demo": "UnstyledButtonCustom.js"}}
 
@@ -202,8 +202,8 @@ You are not limited to using HTML elements for the button structure. SVG element
 import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
-If you need to use Button's functionality in another component, you can use the `useButton` hook. It returns props to be placed on a custom button element and fields representing the internal state of the button.
+If you need to use Button's functionality in another component, you can use the `useButton` hook. It returns props to be placed on a custom button element and fields representing the internal state of the button. It returns props to be placed on a custom button element and fields representing the internal state of the button.
 
-The `useButton` hook requires the ref of the element it'll be used on. Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
+The `useButton` hook requires the ref of the element it'll be used on. The `useButton` hook requires the ref of the element it'll be used on. Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
 
 {{"demo": "UseButton.js"}}
