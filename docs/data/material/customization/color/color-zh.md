@@ -10,9 +10,8 @@ Material Design [颜色系统](https://material.io/design/color/) 可用于创�
 
 Material Design 团队也搭建了一个非常棒的调色板配置工具： [material.io/resources/color/](https://material.io/resources/color/)。 您可以用它来为 UI 创建调色板，以及检测任何颜色组合的无障碍水平。
 
-<a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336
-" target="_blank" rel="noopener nofollow">
-<img src="/static/images/color/colorTool.png" alt="官方的色彩工具" style="width: 574px" />
+<a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
+  <img src="/static/images/color/colorTool.png" alt="官方的色彩工具" style="width: 574px" />
 </a>
 
 <br />
@@ -80,7 +79,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### 一些重要的术语
 
-- **Palette**：调色板是颜色的集合，即色调及其深度。 设计 [此调色板](#color-palette) 时，我们确保了各个颜色之间的协调呈现。 设计 [此调色板](#color-palette) 时，我们确保了各个颜色之间的协调呈现。
+- **Palette**：调色板是颜色的集合，即色调及其深度。 MUI provides all colors from the Material Design guidelines. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 - **Hue & Shade**：调色板中的单一颜色由色调（如“red”）和深度（如“500”）组成。 "rad 50" 是红色的最浅的阴影（_ 粉红色！ _），而 "red 900" 是最暗的深红色。 除此之外，大多数的色调都带有以 `A` 为前缀的强调（accent）色调。
 
 ### 调色板
