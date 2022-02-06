@@ -20,7 +20,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 请注意，安装依赖于 [react](https://www.npmjs.com/package/react) 的 17.0.0 及以上版本，和 [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 及以上版本。
 
-或者你想使用 `styled-components` 来作为样式引擎：
+MUI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. 或者你想使用 `styled-components` 来作为样式引擎：
 
 ```sh
 // 使用 npm 安装
@@ -45,7 +45,7 @@ MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计
 
 ## 字体图标
 
-To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 我们提供了安装字体的[一些说明](/components/icons/#font-icons)。 这是如何去做的 [一些说明](/components/icons/#font-icons) 例如，通过 Google Web Fonts 引入：
+To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 我们提供了安装字体的[一些说明](/components/icons/#font-icons)。 这是如何去做的 [一些说明](/components/icons/#font-icons) 例如，通过 Google Web Fonts 引入： For instance, via Google Web Fonts:
 
 ```html
 <link
@@ -94,4 +94,4 @@ A set of reusable components for design tools is available, designed to match th
 - [Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted MUI components.
 - [Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
 - [Sketch](https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted MUI symbols.
-- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
+- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
