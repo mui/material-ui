@@ -75,6 +75,6 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
 ## Accessibility
 
-You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`: 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
+You can't rely on the content of the badge to be announced correctly. You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`: 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
 
 {{"demo": "AccessibleBadges.js"}}
