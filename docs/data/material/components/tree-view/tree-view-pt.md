@@ -40,7 +40,8 @@ Vamos considerar uma variável de dados com a seguinte estrutura, a recursão po
 ```js
 const data = {
   id: 'root',
-  name: 'Parent',
+  name:
+  'Parent',
   children: [
     {
       id: '1',
