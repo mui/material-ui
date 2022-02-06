@@ -23,7 +23,7 @@ export type StandardProps<
 
 /**
  * @internal
- * ONLY USE FROM WITHIN mui-org/material-ui
+ * ONLY USE FROM WITHIN mui/material-ui
  *
  * Internal helper type for conform (describeConformance) components
  * However, we don't declare classes on this type.

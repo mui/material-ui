@@ -15,7 +15,7 @@ product: material-- |:------- |:------ |:-------------- |:------------ |:-------
 
 <!-- #default-branch-switch -->
 
-An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L12-L27) (check the `stable` entry).
+An extensive list can be found in our [.browserlistrc](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L12-L27) (check the `stable` entry).
 
 [WRS 定期更新它使用的渲染引擎](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)。 [WRS 定期更新它使用的渲染引擎](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)。 您可以依赖 Material-UI 组件的渲染，并不会出现重大的问题。
 
@@ -43,7 +43,7 @@ Material-UI supports [Node.js](https://github.com/nodejs/node) starting with ver
 
 请注意，有些 CSS 功能 [需要额外的后处理步骤](https://github.com/cssinjs/jss/issues/279)，来添加不同浏览器标准(vendor-specific) 的特定前缀。 多亏了使用 [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer)，这些前缀会自动被添加到客户端。
 
-本文档中提供的 CSS 由 [`autoprefixer`](https://www.npmjs.com/package/autoprefixer) 处理。 您可以使用 [文档实现](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) 作为灵感。 请注意，它对页面的性能会产生影响。 对于静态页面来说，这是一个必须要做的事情，但是在渲染动态的页面时，是否采用该方法是权衡利弊之后的考虑。
+本文档中提供的 CSS 由 [`autoprefixer`](https://www.npmjs.com/package/autoprefixer) 处理。 您可以使用 [文档实现](https://github.com/mui/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) 作为灵感。 请注意，它对页面的性能会产生影响。 对于静态页面来说，这是一个必须要做的事情，但是在渲染动态的页面时，是否采用该方法是权衡利弊之后的考虑。
 
 ## React
 

@@ -381,15 +381,15 @@ function render() {
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-您需要有一个自定义的 `pages/_document.js`，然后复制 [此逻辑](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) 以注入服务器侧渲染的样式到 `<head>` 元素中。
+您需要有一个自定义的 `pages/_document.js`，然后复制 [此逻辑](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) 以注入服务器侧渲染的样式到 `<head>` 元素中。
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## 类名（Class names）
 
@@ -452,7 +452,7 @@ const className = `${productionPrefix}-${identifier}`;
 
 ## CSS 前缀（prefixes）
 
-JSS 使用特征探测来应用正确的前缀。 如果您看不到最新版本 Chrome 中显示一个特定前缀，[请不要感到惊讶](https://github.com/mui-org/material-ui/issues/9293)。 您的浏览器可能不需要它。
+JSS 使用特征探测来应用正确的前缀。 如果您看不到最新版本 Chrome 中显示一个特定前缀，[请不要感到惊讶](https://github.com/mui/material-ui/issues/9293)。 您的浏览器可能不需要它。
 
 ## TypeScript usage
 

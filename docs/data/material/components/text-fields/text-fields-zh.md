@@ -190,7 +190,7 @@ type="number" 的输入存在潜在的可用性问题。
 <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
 ```
 
-以后我们可能会提供 [数字（number）输入组件](https://github.com/mui-org/material-ui/issues/19154)。
+以后我们可能会提供 [数字（number）输入组件](https://github.com/mui/material-ui/issues/19154)。
 
 ### 辅助文本
 
@@ -206,7 +206,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 
 您可以使用第三方库来格式化您的输入框。 只要确保在整合的时候，您提供了一个带有 `inputComponent` 属性的自定义 `<input>` 元素。
 
-下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask) 和 [react-number-format](https://github.com/s-yadav/react-number-format) 这两个基本库。 同样的概念可以适用于 [这个例子：react-stripe-element](https://github.com/mui-org/material-ui/issues/16037)。
+下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask) 和 [react-number-format](https://github.com/s-yadav/react-number-format) 这两个基本库。 同样的概念可以适用于 [这个例子：react-stripe-element](https://github.com/mui/material-ui/issues/16037)。
 
 {{"demo": "FormattedInputs.js"}}
 

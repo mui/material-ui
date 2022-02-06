@@ -286,8 +286,8 @@ export default function GlobalCssSliderDeep() {
 
 <!-- #default-branch-switch -->
 
-- [Create React App with styled-components](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
-- [Create React App with styled-components and typescript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
+- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components)
+- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
 
 After the style engine is configured properly, you can use the [`styled()`](/system/styled/) utility from `@material-ui/core/styles` and have direct access to the theme.
 

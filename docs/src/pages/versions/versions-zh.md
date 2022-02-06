@@ -45,7 +45,7 @@ Material-UI 遵循[语义化版本 2.0.0](https://semver.org/)。 Material-UI �
 | 2019 年 5 月 | v4.0.0 | 已发布              |
 | 2021 年 9 月 | v5.0.0 | Work in progress |
 
-查看 [里程碑](https://github.com/mui-org/material-ui/milestones) 可以得到一个更详细的总览。
+查看 [里程碑](https://github.com/mui/material-ui/milestones) 可以得到一个更详细的总览。
 
 > ⚠️**免责声明** ：我们在动态的环境中运作，情况随时可能发生变化。 提供的信息旨在概述总体框架方向， 仅供参考。 我们可能会根据我们的交付能力来随时决定增加或删除新的项目来确保我们的质量标准。 路线图不代表在任何时间交付的承诺和义务。 路线图不代表在任何时间交付的承诺和义务。
 

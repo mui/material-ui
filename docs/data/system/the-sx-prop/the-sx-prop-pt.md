@@ -297,7 +297,7 @@ import { Theme } from '@mui/material/styles';
 />;
 ```
 
-> Let us know or [submit a PR](https://github.com/mui-org/material-ui/pulls) if you have a proper way to fix this issue. 🙏
+> Let us know or [submit a PR](https://github.com/mui/material-ui/pulls) if you have a proper way to fix this issue. 🙏
 
 ## Performance
 

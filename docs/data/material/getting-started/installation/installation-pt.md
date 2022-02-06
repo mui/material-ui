@@ -77,7 +77,7 @@ Dois arquivos Universal Module Definition (**UMD**) são fornecidos:
 - um para desenvolvimento: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
 - um para produção: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
-Você pode seguir [esse exemplo CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) para dar um pontapé inicial.
+Você pode seguir [esse exemplo CDN](https://github.com/mui/material-ui/tree/master/examples/cdn) para dar um pontapé inicial.
 
 ⚠️ Usar essa abordagem em **produção** não é **recomendada** devido que - o cliente tem que baixar toda a biblioteca, independentemente de quais os componentes que são realmente utilizados, o que afeta o desempenho e a utilização da largura de banda.
 

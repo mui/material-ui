@@ -45,7 +45,7 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 | Maio de 2019     | v4.0.0 | Lançada          |
 | Setembro de 2021 | v5.0.0 | Work in progress |
 
-Você pode seguir os [milestones](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
+Você pode seguir os [milestones](https://github.com/mui/material-ui/milestones) para uma visão geral mais detalhada.
 
 > ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. As informações disponibilizadas destinam-se a traçar a orientação geral do framework. Destina-se apenas a fins informativos. Podemos decidir adicionar/remover itens novos a qualquer momento, com base em nossos recursos de capacidade de entrega ou para manter nossos padrões de qualidade. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. O roadmap não representa um compromisso, obrigação ou promessa que será entregue em um determinado momento.
 

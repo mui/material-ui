@@ -6,9 +6,9 @@
 
 <!-- #default-branch-switch -->
 
-Material-UI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example.
+Material-UI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript) example.
 
-Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript).
+Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript).
 
 ```json
 {

@@ -18,10 +18,10 @@ StackOverflow is also visited from time to time by the maintainers of MUI.
 ### GitHub
 
 MUI uses GitHub issues as a bug and feature request tracker.
-If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
+If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
 
-- [Open an issue on MUI Core](https://github.com/mui-org/material-ui/issues/new/choose)
-- [Open an issue on MUI X](https://github.com/mui-org/material-ui-x/issues/new/choose)
+- [Open an issue on MUI Core](https://github.com/mui/material-ui/issues/new/choose)
+- [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose)
 
 #### New issue guidelines
 

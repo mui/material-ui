@@ -16,10 +16,10 @@ For crowdsourced answers from expert MUI developers in our community. StackOverf
 
 ### GitHub
 
-Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de recursos. Se você acha que encontrou um bug ou tem uma nova idéia de recurso, comece certificando-se de que ele ainda não foi [relatado ou corrigido](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Você pode pesquisar nas issues existentes e pull requests para ver se alguém relatou algo semelhante ao seu.
+Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de recursos. Se você acha que encontrou um bug ou tem uma nova idéia de recurso, comece certificando-se de que ele ainda não foi [relatado ou corrigido](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Você pode pesquisar nas issues existentes e pull requests para ver se alguém relatou algo semelhante ao seu.
 
-- [Abra uma issue](https://github.com/mui-org/material-ui/issues/new/choose)
-- [Open an issue on MUI X](https://github.com/mui-org/material-ui-x/issues/new/choose)
+- [Abra uma issue](https://github.com/mui/material-ui/issues/new/choose)
+- [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose)
 
 #### Novas diretrizes para issues
 

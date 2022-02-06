@@ -25,12 +25,12 @@ Here are the most significant improvements since March 2021.
 
 ### Core components
 
-- 🔥 We've made enough progress to ship [v5.0.0-beta.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0-beta.0). Here are a few statistics to give an idea of the effort that went into it:
+- 🔥 We've made enough progress to ship [v5.0.0-beta.0](https://github.com/mui/material-ui/releases/tag/v5.0.0-beta.0). Here are a few statistics to give an idea of the effort that went into it:
 
   - [12 months](/blog/2020-q2-update/#product) of dedicated focus.
     We stopped work on v4 early on to fully dedicate to v5.
   - 3,475 pull requests.
-  - 5,092 commits (the extra commits came from the merge of [material-ui-pickers](https://github.com/mui-org/material-ui-pickers))
+  - 5,092 commits (the extra commits came from the merge of [material-ui-pickers](https://github.com/mui/material-ui-pickers))
   - 398 new contributors.
   - The equivalent of four full-time developers working on it on average (core team + community).
   - 38 alpha releases, we release once a week.
@@ -40,7 +40,7 @@ Here are the most significant improvements since March 2021.
   In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://mui.com/system/the-sx-prop/) for one-off customizations.
   The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://mui.com/guides/styled-engine/#how-to-switch-to-styled-components).
 
-- ⚒️ We added a [codemod CLI](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
+- ⚒️ We added a [codemod CLI](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
   If you're not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g).
 
 - 💄 We have [updated the style of the Slider](https://mui.com/components/slider/#sizes) to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:
@@ -168,18 +168,18 @@ After considering [different](https://basecamp.com/shapeup) [alternatives](https
 ### Growth between Q1 2021 and Q2 2021
 
 - 📦 From 8.6M to 9.1M downloads per month on npm. We have 21.03% of market share inside the React ecosystem, up from 6.68%, 5 years ago.
-- ⭐️ From 67.2k to 69.1k stars. [Leave us yours 🌟](https://github.com/mui-org/material-ui)!
+- ⭐️ From 67.2k to 69.1k stars. [Leave us yours 🌟](https://github.com/mui/material-ui)!
 - 👨‍👩‍👧‍👦 From 2,141 to 2,223 contributors on GitHub. We add on average one new contributor every day.
 
 ### New members
 
 We have welcomed four new members to the company 🏢:
 
-- [Jun](/blog/siriwat-kunaporn-joining/), leads the implementation of a [second design system](https://github.com/mui-org/material-ui/issues/22485).
+- [Jun](/blog/siriwat-kunaporn-joining/), leads the implementation of a [second design system](https://github.com/mui/material-ui/issues/22485).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/jun.jpg" alt="jun" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
-- [Michał](/blog/michal-dudak-joining/) leads the initiative around the [unstyled components](https://github.com/mui-org/material-ui/issues/6218).
+- [Michał](/blog/michal-dudak-joining/) leads the initiative around the [unstyled components](https://github.com/mui/material-ui/issues/6218).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpg" alt="michal" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
@@ -217,20 +217,20 @@ We have the following objectives:
 - ⚛️ Support [React 18](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
   We want our most demanding users to feel empowered by MUI, not slowed down by a third-party.
 - 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://mui.com/components/switches/#unstyled).
-  You can follow our progress in the [umbrella issue](https://github.com/mui-org/material-ui/issues/27170).
+  You can follow our progress in the [umbrella issue](https://github.com/mui/material-ui/issues/27170).
 - 🌈 Do a proof of concept on supporting a second design system.
   Some of our users (and potential users) dislike Material Design. We will try to make the second design system one that they love!
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/material-ui/projects/25).
+- ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Advanced components
 
 - 🚀 Release the first stable version of the Data Grid.
-- ✨ Resume work on the [key features](https://github.com/mui-org/material-ui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc), after a quarter focused on stability.
+- ✨ Resume work on the [key features](https://github.com/mui/mui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc), after a quarter focused on stability.
   It seems that the audience is adopting the data grid as fast as we can build it.
-  For instance, we have one issue with over [1,000 upvotes](https://github.com/mui-org/material-ui-x/issues/204) 👍.
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
+  For instance, we have one issue with over [1,000 upvotes](https://github.com/mui/mui-x/issues/204) 👍.
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Design kits
 

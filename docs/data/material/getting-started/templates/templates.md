@@ -9,7 +9,7 @@ title: 9+ Free React Templates
 
 <!-- #default-branch-switch -->
 
-The templates can be combined with one of the [example projects](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
+The templates can be combined with one of the [example projects](https://github.com/mui/material-ui/tree/master/examples) to form a complete starter.
 
 Sections of each layout are clearly defined either by comments or use of separate files,
 making it simple to extract parts of a page (such as a "hero unit", or footer, for example)
@@ -21,7 +21,7 @@ the purpose of each file.
 
 If while using these examples you make changes or enhancements that could improve the
 developer experience, or you would like to contribute an additional example,
-please consider creating a [pull request on GitHub](https://github.com/mui-org/material-ui/pulls).
+please consider creating a [pull request on GitHub](https://github.com/mui/material-ui/pulls).
 
 So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 

@@ -4,7 +4,7 @@
 
 Nós trabalhamos para seguir as orientações sempre que possível (aplicando senso comum onde as diretrizes contradizem - uma ocorrência mais comum do que se poderia esperar), não esperamos suportar cada componente, ou cada característica de cada componente, mas sim fornecer elementos base que permitem que os desenvolvedores criem interfaces e experiências de usuário atraentes.
 
-Se você deseja adicionar suporte a um componente ou recurso não destacado aqui, pesquise se já não existe no [Issues do GitHub](https://github.com/mui-org/material-ui/issues) ou crie um novo para discutir a abordagem antes de enviar um pull request.
+Se você deseja adicionar suporte a um componente ou recurso não destacado aqui, pesquise se já não existe no [Issues do GitHub](https://github.com/mui/material-ui/issues) ou crie um novo para discutir a abordagem antes de enviar um pull request.
 
 - **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (_Legado Material v1_)
 - Barra de Aplicativos

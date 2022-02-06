@@ -16,8 +16,7 @@ const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY =
 const vercelDeploy = Boolean(process.env.VERCEL);
 
 const staging =
-  process.env.REPOSITORY_URL === undefined ||
-  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+  process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
@@ -168,8 +167,8 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
-    SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
+    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     STAGING: staging,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.

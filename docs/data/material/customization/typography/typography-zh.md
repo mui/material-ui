@@ -155,7 +155,7 @@ theme = responsiveFontSizes(theme);
 
 ### 流式文字大小
 
-待完成：[#15251](https://github.com/mui-org/material-ui/issues/15251)。
+待完成：[#15251](https://github.com/mui/material-ui/issues/15251)。
 
 ### HTML 的字体大小
 

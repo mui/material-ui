@@ -104,7 +104,7 @@ Quando o processamento é particularmente lento, você pode perder a animação 
 
 ![carga pesada](/static/images/progress/heavy-load.gif)
 
-Quando não for possível, você pode utilizar a propriedade `disableShrink` para atenuar o problema. Veja [este problema](https://github.com/mui-org/material-ui/issues/10327).
+Quando não for possível, você pode utilizar a propriedade `disableShrink` para atenuar o problema. Veja [este problema](https://github.com/mui/material-ui/issues/10327).
 
 {{"demo": "CircularUnderLoad.js"}}
 

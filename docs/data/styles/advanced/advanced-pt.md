@@ -380,15 +380,15 @@ Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-mate
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
+Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## Nomes de classes
 
@@ -451,7 +451,7 @@ Você também pode combinar nomes de classe gerados pelo JSS com nomes globais.
 
 ## Prefixos CSS
 
-O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui-org/material-ui/issues/9293) se você não conseguir ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa disso.
+O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui/material-ui/issues/9293) se você não conseguir ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa disso.
 
 ## TypeScript usage
 

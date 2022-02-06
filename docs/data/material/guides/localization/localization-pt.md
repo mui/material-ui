@@ -82,7 +82,7 @@ product: material-------------------- |:------------------------- |:------------
 
 <!-- #default-branch-switch -->
 
-Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
+Você pode [encontrar o fonte](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
 
 Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 

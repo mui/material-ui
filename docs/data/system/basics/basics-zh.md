@@ -195,7 +195,7 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 <!-- #default-branch-switch -->
 
-_Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+_Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
 
 我们相信，对于大多数用途来说，它已经足够快了\*\*\*\*，但当性能变得至关重要时，也有一些简单的解决方法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
 
@@ -383,4 +383,4 @@ const Div = styled('div')``;
 
 ### 4. 4、 4、 4、 使用 babel 插件的任何元素
 
-等待开发 [#23220](https://github.com/mui-org/material-ui/issues/23220)。
+等待开发 [#23220](https://github.com/mui/material-ui/issues/23220)。

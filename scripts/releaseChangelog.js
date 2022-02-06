@@ -78,7 +78,7 @@ async function main(argv) {
    */
   const timeline = octokit.paginate.iterator(
     octokit.repos.compareCommits.endpoint.merge({
-      owner: 'mui-org',
+      owner: 'mui',
       repo: 'material-ui',
       base: lastRelease,
       head: release,

@@ -17,7 +17,7 @@ Here are the top priorities:
   - Identify frequently needed components. There are many resources we leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage, npm downloads, etc.
   - Prioritize the creation of frequently needed components.
   - Encourage the usage of third-party components if they already exist and are well maintained.
-- **Design.** 🎀 We are relatively up-to-date, but the Material Design guidelines [are evolving](https://material.io/whats-new/). So should we. We also plan to implement [a second design](https://github.com/mui-org/material-ui/issues/22485).
+- **Design.** 🎀 We are relatively up-to-date, but the Material Design guidelines [are evolving](https://material.io/whats-new/). So should we. We also plan to implement [a second design](https://github.com/mui/material-ui/issues/22485).
 - **Better customization.** 💅 We want to make component customization intuitive, no matter if you are using global CSS or styled-components:
 - **Better documentation.** 📚 No solution is complete without great documentation.
 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
@@ -29,12 +29,12 @@ Here are the top priorities:
 
 Our GitHub project's roadmap is where you can learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
-- [MUI Core](https://github.com/mui-org/material-ui/projects/25).
+- [MUI Core](https://github.com/mui/material-ui/projects/25).
   This repository focuses on empowering the creation of great design systems with React, as well as providing two ready to use themes (Material Design so far, another one coming in the near future).
-- [MUI X](https://github.com/mui-org/material-ui-x/projects/1).
+- [MUI X](https://github.com/mui/mui-x/projects/1).
   This repository focuses on providing advanced React components.
   Some of the features are MIT licensed, others are available under a commercial license.
-- [MUI Design kits](https://github.com/mui-org/mui-design-kits/projects/1)
+- [MUI Design kits](https://github.com/mui/mui-design-kits/projects/1)
   This repository focuses on providing the components for designers on Figma and other design tools.
   It's a great place to leave feedback, feature requests, and ask questions.
 
