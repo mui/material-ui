@@ -15,6 +15,8 @@
 - [Preact](https://github.com/mui/material-ui/tree/master/examples/preact)
 - [CDN](https://github.com/mui/material-ui/tree/master/examples/cdn)
 - [Plain server-side](https://github.com/mui/material-ui/tree/master/examples/ssr)
+- [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind)
+- [Vite.js](https://github.com/mui/material-ui/tree/master/examples/vitejs)
 - [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
 Create React App 是一个很棒的学习 React 的项目。 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
@@ -46,31 +48,26 @@ If you want to start with a more complete and real-world example, you could take
   - 包含所有渐进式网页应用（PWA）的功能（SW 即 Service Worker， 通知，延迟安装的提示，以及更多）
   - 优化和可扩展的性能（在 Lighthouse 总共有大约 100 分）
 
-- [React SaaS 模板](https://github.com/dunky11/react-saas-template)：
+<!-- TODO: revert this once it is migrated to v5
+- [React SaaS Template](https://github.com/dunky11/react-saas-template):
 
   - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
-  - 使用 Create React App 创建
-  - 特征是一个登录页面，博客，一个登录和注册的区块，以及一个管理员控制界面
-  - 完全使用 react-router 来路由
-  - 延迟加载组件以提高性能
-  - 一些显示统计数据、带有表情支持的文本、图片上传和更多内容的组件。。。
+  - Created with Create React App
+  - Features a landing page, a blog, an area to login/register and an admin-dashboard
+  - Fully routed using react-router
+  - Lazy loads components to boost performance
+  - Components for statistics, text with emoji support, image upload and much more...
+-->
 
+<!-- TODO: revert this once it is migrated to v5
 - [Material Sense](https://github.com/alexanmtz/material-sense):
 
   - ![stars](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
-  - 使用 recharts 的图表
-  - 运用 React Router 的一个导航示例
-  - 一个在生产环境下使用的带有 Nginx 服务器的 docker container（docker 容器)。
-  - 使用 Create React App 创建
-
-- [RMUIF](https://github.com/rmuif/web):
-
-  - ![stars](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
-  - 使用 Create React App 创建，也是可以开箱即用
-  - 基于 Firebase 建成，并包括它所有网站上的产品
-  - 使用 React Router 进行可靠的路由，包括了保护的路由和错误处理
-  - 全面的移动支持，带有全屏对话框和 react-swipeable-views 的选项卡
-  - 跨平台应用程序的的监测工作，主要是使用 Sentry 生成的错误报告
+  - Graph using recharts
+  - React Router included with a navigation example
+  - A docker container with an Nginx server for production build
+  - Created with Create React App
+-->
 
 ### 付费的资源
 
