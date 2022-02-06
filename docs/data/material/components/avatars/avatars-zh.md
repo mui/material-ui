@@ -23,7 +23,7 @@ githubLabel: 'component: avatar'
 
 {{"demo": "LetterAvatars.js"}}
 
-你可以为头像添加不同的背景颜色 下面的例子演示了如何通过人物的姓名来展示头像
+You can use different background colors for the avatar. The following demo generates the color based on the name of the person.
 
 {{"demo": "BackgroundLetterAvatars.js"}}
 
@@ -57,7 +57,7 @@ githubLabel: 'component: avatar'
 
 ## 分组
 
-`AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
+`AvatarGroup` renders its children as a stack. `AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
 
 {{"demo": "GroupAvatars.js"}}
 
