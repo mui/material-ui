@@ -157,17 +157,15 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 ### Google Maps Places
 
-一个自定义 UI 来配合 Google 地图位置的自动完成功能。
+一个自定义 UI 来配合 Google 地图位置的自动完成功能。 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
 {{"demo": "GoogleMaps.js"}}
-
-在这个演示中，我们需要加载 [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API。
 
 > ⚠️ 在你开始使用 Google Maps JavaScript API 之前，你必须注册并且创建一个可支付的账户。
 
 ## 多个输入值
 
-当然您也可以将其作为标签，这样用户就可以输入更多的值。
+在这个演示中，我们需要加载 [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API。
 
 {{"demo": "Tags.js"}}
 
@@ -207,11 +205,11 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 {{"demo": "GitHubLabel.js"}}
 
-在该示例中使用 `useAutocomplete` hook 而不是组件，您也可以查看 [Customized hook](#customized-hook) 部分来了解自定义示例。
+Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
 
 ## 高亮显示
 
-下面的演示依赖于 [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight)，这是极小的 (1 kB) 工具集，它用于突出显示自动建议和自动完成组件中的文本。
+在该示例中使用 `useAutocomplete` hook 而不是组件，您也可以查看 [Customized hook](#customized-hook) 部分来了解自定义示例。
 
 {{"demo": "Highlights.js"}}
 
@@ -242,9 +240,9 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 #### 返回结果
 
-`filterOptions`：返回的 filter（过滤）方法可以直接提供给带有 `filterOptions` 属性的 `Autocomplete` 组件，或者和 hooks 同名的参数。
+`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
 
-在下面的演示中，选项需要以查询前缀开始：
+`filterOptions`：返回的 filter（过滤）方法可以直接提供给带有 `filterOptions` 属性的 `Autocomplete` 组件，或者和 hooks 同名的参数。
 
 ```jsx
 const filterOptions = createFilterOptions({
@@ -289,13 +287,18 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
     }
   }}
 />
+      event.defaultMuiPrevented = true;
+      // your handler code
+    }
+  }}
+/>
 ```
 
 ## 设计局限
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component. 然而，这样的功能会削弱用户的组件体验。
+Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component. 然而，这样的功能会削弱用户的组件体验。 However, this can harm the UX of the component.
 
 By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
 
