@@ -24,7 +24,7 @@ Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de re
 #### Novas diretrizes para issues
 
 - Por favor, siga o modelo de issue.
-- Comece o título com '[ComponentName]', quando apropriado, e use uma descrição sucinta que ajude outras pessoas a encontrar issues semelhantes. Use o idioma padrão do projeto que é o inglês.
+- Comece o título com '[ComponentName]', quando apropriado, e use uma descrição sucinta que ajude outras pessoas a encontrar issues semelhantes.
   - "doesn't work" ❌
   - "[Button] Add support for <some feature>" ✅
 - Não agrupe vários tópicos em uma issue - cada um deve ter sua própria issue.
@@ -34,7 +34,7 @@ Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de re
 
 Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
 
-[Leia as últimas postagens](https://medium.com/material-ui)
+[Leia as últimas postagens](https://mui.com/blog/)
 
 ### Recursos 📖
 
@@ -46,7 +46,7 @@ Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
 
 Receba as últimas notícias sobre Material-UI.
 
-[Siga-nos](https://twitter.com/MaterialUI)
+[Siga-nos](https://twitter.com/MUI_hq)
 
 ### Versões suportadas
 
