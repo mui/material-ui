@@ -49,6 +49,8 @@ const data = {
     // …
   ],
 };
+  ],
+};
 ```
 
 {{"demo": "RichObjectTreeView.js", "defaultCodeOpen": false}}
