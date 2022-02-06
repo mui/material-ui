@@ -5,7 +5,7 @@ components: Container
 githubLabel: 'component: Container'
 ---
 
-# Container 容器
+# Container
 
 <p class="description">通过容器组件，您页面的内容会呈现水平居中。 这是最基本的布局元素。</p>
 
