@@ -5,11 +5,11 @@ components: Skeleton
 githubLabel: 'component: skeleton'
 ---
 
-# Skeleton 骨架屏
+# Skeleton
 
 <p class="description">在数据完整加载之前将您的内容显示为一个占位的预览，这样可以减少由加载时间造成的困扰。</p>
 
-您的组件需要的数据可能无法立刻加载。 你可以通过使用骨架屏来提高页面的感知响应度。 好像感觉到事情马上就要发生了，然后信息在屏幕上逐步地显示（Cf. [ 避开 Spinner](https://www.lukew.com/ff/entry.asp?1797)）。
+您的组件需要的数据可能无法立刻加载。 你可以通过使用骨架屏来提高页面的感知响应度。 It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -19,6 +19,7 @@ githubLabel: 'component: skeleton'
 
 ```jsx
 {
+  item ? {
   item ? (
     <img
       style={{
@@ -61,7 +62,7 @@ githubLabel: 'component: skeleton'
 当您在排版的时候会得心应手，因为它的高度是用 `em` 单位设置的。
 
 ```jsx
-<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
+<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography> <Skeleton /> : 'h1'}</Typography>
 ```
 
 {{"demo": "SkeletonTypography.js", "defaultCodeOpen": false}}
@@ -69,7 +70,7 @@ githubLabel: 'component: skeleton'
 但是，当涉及到其他组件时，你可能不想重复申明宽度和高度。 在这些情况下，你可以传入 `children`，然后它将会从它们中推断出它的宽度和高度。
 
 ```jsx
-loading ? (
+loading ? loading ? (
   <Skeleton variant="circular">
     <Avatar />
   </Skeleton>
@@ -82,7 +83,7 @@ loading ? (
 
 ## Color 颜色
 
-The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible). This is especially useful when on a black background (as the skeleton will otherwise be invisible).
+The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible). This is especially useful when on a black background (as the skeleton will otherwise be invisible). This is especially useful when on a black background (as the skeleton will otherwise be invisible).
 
 {{"demo": "SkeletonColor.js", "bg": "inline"}}
 
