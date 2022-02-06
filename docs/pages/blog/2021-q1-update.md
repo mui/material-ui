@@ -94,7 +94,7 @@ This new feature removes the need to create a wrapper component.
   - Modal
   - Slider
 
-  We are synchronizing the development of the unstyled package with the creation of the second theme (and not v5).
+  We are synchronizing the development of the Base package with the creation of the second theme (and not v5).
 
 - 🛠 We added a subset of the system as flattened props to the CSS utility components (Box, Typography, Stack, and Grid).
   We initially didn't plan to do so but reversed on hearing the feedback from the community.
