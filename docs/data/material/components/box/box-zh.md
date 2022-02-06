@@ -18,19 +18,19 @@ githubLabel: 'component: Box'
 
 ## `sx` 属性
 
-All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例： 此外，`sx` 属性允许您指定您可能需要的任何其他 CSS 样式。 下面是一个如何使用的示例：
+All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例： 此外，`sx` 属性允许您指定您可能需要的任何其他 CSS 样式。 In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例：
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
 ## 覆盖 Material-UI 组件
 
-Box 组件能够封装您的组件。 假设反之你想使用一个 `<span>`： 假设反之你想使用一个 `<span>`：
+Box 组件能够封装您的组件。 It creates a new DOM element, a `<div>` that by default can be changed with the `component` prop. 假设反之你想使用一个 `<span>`： 假设反之你想使用一个 `<span>`：
 
 {{"demo": "BoxComponent.js", "defaultCodeOpen": true }}
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您必须针对到底层的 DOM 元素。 比如，你要修改按钮的边框 但是按钮组件已经定义自己的样式。 所以使用 CSS 继承是于事无补的。 想要解决这个问题，可以将[`sx`](/system/basics/#the-sx-prop)作为 MUI 组件的 props 使用
+但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. The Button component defines its own styles. 所以使用 CSS 继承是于事无补的。 想要解决这个问题，可以将[`sx`](/system/basics/#the-sx-prop)作为 MUI 组件的 props 使用
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -54,11 +54,11 @@ For non-Material-UI components, use the `component` prop.
 import Box from '@material-ui/core/Box';
 ```
 
-| 名称                                     | 类型                                                                                                        | 默认值                                  | 描述                                                                 |
-| :--------------------------------------- | :---------------------------------------------------------------------------------------------------------- | :-------------------------------------- | :------------------------------------------------------------------- |
-| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                     |                                         | Box 渲染函数或者返回节点。                                           |
+| 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
+|:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------ |
+| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Box 渲染函数或者返回节点。                            |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |
-| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                       | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                          |
+| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                   |
 
 ## 系统属性
 
