@@ -104,5 +104,5 @@ import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb
-const accent = purple.A200; // #e040fb (método alternativo)
+const accent = purple. A200; // #e040fb (método alternativo)
 ```
