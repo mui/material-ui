@@ -60,15 +60,15 @@ export type SxProps<Theme extends object = {}> =
   | ((theme: Theme) => SystemStyleObject<Theme>)
   | Array<boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)>;
 
-interface StyleFunctionSx {
+export interface StyleFunctionSx {
   (props: object): object;
-  filterProps?: Array<string>;
+  filterProps?: string[];
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_createStyleFunctionSx(options: {
   getThemeValue: (prop: string, value: string | number | object, theme: object) => object;
-  propToStyleFunction: Record<string, Function>;
+  propToStyleFunction: Record<string, (props: object) => object>;
 }): StyleFunctionSx;
 
 declare const styleFunctionSx: StyleFunctionSx;

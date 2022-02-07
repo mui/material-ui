@@ -19,4 +19,4 @@ export interface StyleOptions<PropKey> {
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,
-): StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme }> & { filterProps: Array<string> };
+): StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme }> & { filterProps: string[] };
