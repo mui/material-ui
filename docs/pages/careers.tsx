@@ -161,12 +161,6 @@ const openRolesData = [
     title: 'Developer Experience',
     roles: [
       {
-        title: 'Support Engineer - X',
-        description:
-          "You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/company/support-engineer/',
-      },
-      {
         title: 'Developer Experience Engineer',
         description: 'You will focus on providing experiences that delight developers using MUI.',
         url: '/company/developer-experience-engineer/',
@@ -182,6 +176,12 @@ const openRolesData = [
         description:
           'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
         url: '/company/react-engineer/',
+      },
+      {
+        title: 'React Engineer - X - Community support',
+        description:
+          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/company/support-engineer/',
       },
       {
         title: 'Hustler Engineer - Store',

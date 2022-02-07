@@ -1,6 +1,6 @@
-# Support Engineer - X
+# React Engineer - X - Community support
 
-<p class="description">You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.</p>
+<p class="description">You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.</p>
 
 ## Details of the Role
 
