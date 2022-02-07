@@ -11,7 +11,7 @@ export interface StyleOptions<PropKey> {
   transform?: (cssValue: unknown) => number | string | React.CSSProperties | CSSObject;
   /**
    * If `true`, `theme.vars` will be used as a starting point for getting `themeKey`
-   * fallback to provided theme if no `theme.vars` found.
+   * fallback to provided theme if `!theme.vars`.
    *
    * This is an experimental flag for using in `@mui/joy`.
    */
