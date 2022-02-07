@@ -38,7 +38,7 @@ const ROUTES = {
   showcase: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/showcase/'
     : '/discover-more/showcase',
-  roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
+  roadmap: 'https://github.com/mui/mui-x/projects/1',
   languages: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/languages/'
     : '/discover-more/languages',

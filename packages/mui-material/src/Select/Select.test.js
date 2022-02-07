@@ -743,7 +743,7 @@ describe('<Select />', () => {
     });
 
     it('open only with the left mouse button click', () => {
-      // Test for https://github.com/mui-org/material-ui/issues/19250#issuecomment-578620934
+      // Test for https://github.com/mui/material-ui/issues/19250#issuecomment-578620934
       // Right/middle mouse click shouldn't open the Select
       const { getByRole, queryByRole } = render(
         <Select value="">

@@ -20,11 +20,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-codemod"
   },
   "license": "MIT",
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-codemod",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"

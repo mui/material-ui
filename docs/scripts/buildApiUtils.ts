@@ -177,7 +177,9 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/material/api/${kebabCase(inheritedComponent)}/`,
+            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material'}/api/${kebabCase(
+                inheritedComponent,
+              )}/`,
       };
     },
     getDemos: () => {

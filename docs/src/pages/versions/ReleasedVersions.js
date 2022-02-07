@@ -8,8 +8,7 @@ import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import VersionsContext from './VersionsContext';
 
-const GITHUB_RELEASE_BASE_URL =
-  'https://github.com/mui-org/material-ui/releases/tag/';
+const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui/material-ui/releases/tag/';
 
 function ReleasedVersions() {
   const versions = React.useContext(VersionsContext);

@@ -32,7 +32,7 @@ We need talented people to keep that going!
 
 The advanced components team (X) needs help to build its best features.
 We have started with the [data grid](/components/data-grid/) a year ago, but it's the beginning.
-Our users are continuously providing feedback on the most important [pains they face](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc).
+Our users are continuously providing feedback on the most important [pains they face](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc).
 
 ## About the role
 

@@ -8,11 +8,11 @@
   "homepage": "https://mui.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "framer/Material-UI.framerfx"
   },
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
   "dependencies": {
     "@mui/icons-material": "^5.3.1",

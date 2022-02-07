@@ -3,7 +3,7 @@ import { getDependencies, pageToTitle } from './helpers';
 
 describe('docs getDependencies helpers', () => {
   before(() => {
-    process.env.SOURCE_CODE_REPO = 'https://github.com/mui-org/material-ui';
+    process.env.SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
   });
 
   after(() => {
@@ -179,14 +179,14 @@ import * as Utils from '@mui/utils';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/material',
+      '@mui/material': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/material',
       '@mui/icons-material':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/icons-material',
-      '@mui/lab': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/lab',
-      '@mui/styles': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/styles',
-      '@mui/system': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
-      '@mui/utils': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/utils',
-      '@mui/base': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/base',
+        'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/icons-material',
+      '@mui/lab': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/lab',
+      '@mui/styles': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/styles',
+      '@mui/system': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/system',
+      '@mui/utils': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/utils',
+      '@mui/base': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/base',
     });
   });
 

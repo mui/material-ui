@@ -160,7 +160,7 @@ withStyles((theme) =>
 
 {
   // allow top level media queries
-  // https://github.com/mui-org/material-ui/issues/12277
+  // https://github.com/mui/material-ui/issues/12277
 
   // typescript thinks `content` is the CSS property not a classname
   const ambiguousStyles = createStyles({
@@ -236,7 +236,7 @@ withStyles((theme) =>
 }
 
 {
-  // https://github.com/mui-org/material-ui/issues/11109
+  // https://github.com/mui/material-ui/issues/11109
   // The real test here is with "strictFunctionTypes": false,
   // but we don't have a way currently to test under varying
   // TypeScript configurations.
@@ -272,7 +272,7 @@ withStyles((theme) =>
 }
 
 {
-  // https://github.com/mui-org/material-ui/issues/11191
+  // https://github.com/mui/material-ui/issues/11191
   const styles = (theme: Theme) =>
     createStyles({
       main: {},
@@ -294,7 +294,7 @@ withStyles((theme) =>
 }
 
 {
-  // https://github.com/mui-org/material-ui/issues/11312
+  // https://github.com/mui/material-ui/issues/11312
   withStyles(simpleStyles, { name: 'MyComponent', index: 0 })(() => <div />);
 }
 
@@ -332,7 +332,7 @@ withStyles((theme) =>
 }
 
 {
-  // https://github.com/mui-org/material-ui/issues/12670
+  // https://github.com/mui/material-ui/issues/12670
   interface Props {
     nonDefaulted: string;
     defaulted: number;
@@ -432,7 +432,7 @@ function ForwardRefTest() {
 }
 
 {
-  // https://github.com/mui-org/material-ui/pull/15546
+  // https://github.com/mui/material-ui/pull/15546
   // Update type definition to let CSS properties be functions
   interface TestProps {
     foo: boolean;
@@ -454,7 +454,7 @@ function ForwardRefTest() {
 
 {
   // If there are no props, use the definition that doesn't accept them
-  // https://github.com/mui-org/material-ui/issues/16198
+  // https://github.com/mui/material-ui/issues/16198
 
   const styles = createStyles({
     root: {
