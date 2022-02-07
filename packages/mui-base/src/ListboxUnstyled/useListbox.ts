@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { UseListboxProps, UseListboxStrictProps, ActionTypes, OptionState } from './types';
 import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
@@ -11,7 +11,7 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
   const {
     disableListWrap = false,
     disabledItemsFocusable = false,
-    id,
+    id: idProp,
     options,
     multiple = false,
     isOptionDisabled = () => false,
@@ -19,6 +19,8 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     stateReducer: externalReducer,
     listboxRef: externalListboxRef,
   } = props;
+
+  const id = useId(idProp);
 
   function defaultIdGenerator(_: TOption, index: number) {
     return `${id}-option-${index}`;
@@ -163,8 +165,6 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     const disabled = isOptionDisabled(option, index);
 
     return {
-      index,
-      option,
       selected,
       disabled,
       highlighted: highlightedIndex === index,

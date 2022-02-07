@@ -1,4 +1,5 @@
 import React from 'react';
+import { OptionState } from '../ListboxUnstyled';
 
 export interface OptionUnstyledComponentsPropsOverrides {}
 
@@ -37,3 +38,5 @@ export default interface OptionUnstyledProps<TValue> {
     root?: React.ComponentPropsWithRef<'li'> & OptionUnstyledComponentsPropsOverrides;
   };
 }
+
+export type OptionUnstyledOwnerState<TValue> = OptionUnstyledProps<TValue> & OptionState;
