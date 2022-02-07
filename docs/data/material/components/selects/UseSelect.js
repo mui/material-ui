@@ -87,10 +87,6 @@ const Listbox = styled('ul')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   z-index: 1;
-  
-  &:focus {
-    outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
-  }
 
   &.hidden {
     opacity: 0;
