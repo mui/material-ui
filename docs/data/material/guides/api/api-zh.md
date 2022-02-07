@@ -69,7 +69,7 @@ const styles = {
 - 他们自己的`xxxComponent`属性，用于执行组件注入。
 - 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这有助于回答 [“我如何访问 DOM 元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)。
 
-### 属性名称
+### Prop naming
 
 应根据 ** 默认值 ** 选择布尔属性的名称。 此选项允许简写的表示：
 
