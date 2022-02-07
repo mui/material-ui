@@ -13,11 +13,11 @@ githubLabel: 'component: Stack'
 
 ## 使用
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically. 默认方向是垂直堆叠子项的 `列`。 The default direction is `column` which stacks children vertically.
+`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 {{"demo": "BasicStack.js", "bg": true}}
 
-To control space between children, use the `spacing` prop. The spacing value can be any number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper. 间距值可以是任何数字，包括小数（浮点数）和任何字符串（文字）。 The spacing value can be any number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+要控制子组件之间的空间，请使用 `spacing` 属性。 The spacing value can be any number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
 
 ## 方向
 
