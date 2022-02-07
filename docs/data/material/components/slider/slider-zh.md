@@ -150,7 +150,7 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 
 ### IE 11
 
-The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with: The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with: The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
+The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
 .MuiSlider-valueLabel {
