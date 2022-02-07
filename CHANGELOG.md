@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.4.1
+
 <!-- generated comparing v5.4.0..master -->
+
 _Feb 7, 2022_
 
 A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
