@@ -824,9 +824,9 @@ const useStyles = makeStyles<{ color: 'red' | 'blue' }>()((theme, { color }) => 
 
 For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).
 
-> WARNING: **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
+> ⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
 > it's a peer dependency of `@mui/material`.
 
-> WARNING for [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
+> ⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
 > Material-ui and TSS runs emotion 11 so there is [some changes](https://github.com/garronej/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
 > to be made to your `.storybook/main.js` to make it uses emotion 11.
