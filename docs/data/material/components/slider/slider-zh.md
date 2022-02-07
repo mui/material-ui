@@ -65,7 +65,7 @@ For smaller slider, use the prop `size="small"`.
 
 ### Minimum distance
 
-You can enforce a minimum distance between values in the `onChange` event handler. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop. You can enforce a minimum distance between values in the `onChange` event handler. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop. If you want the range to shift when reaching minimum distance, you can utilize the `activeThumb` parameter in `onChange`.
+You can enforce a minimum distance between values in the `onChange` event handler. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop. You can enforce a minimum distance between values in the `onChange` event handler. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop. You can enforce a minimum distance between values in the `onChange` event handler. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop. If you want the range to shift when reaching minimum distance, you can utilize the `activeThumb` parameter in `onChange`.
 
 {{"demo": "MinimumDistanceSlider.js"}}
 
@@ -129,7 +129,7 @@ In this example, an input allows a discrete value to be set.
 
 - 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The slider also comes with an unstyled version. The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The slider also comes with an unstyled version. The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import SliderUnstyled from '@mui/base/SliderUnstyled';
@@ -150,7 +150,7 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 
 ### IE 11
 
-The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with: The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
+The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
 .MuiSlider-valueLabel {

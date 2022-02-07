@@ -44,7 +44,9 @@ const data = {
   children: [
     {
       id: '1',
-      name:
+      name: 'Child - 1',
+    },
+    // …
   ],
 };
 ```

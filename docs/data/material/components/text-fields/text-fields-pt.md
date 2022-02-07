@@ -36,7 +36,9 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ## Multilinha
 
-A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>. Unless the`rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)). You can use the <code>minRows` and `maxRows` props to bound it.
+A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>.
+Unless the`rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)).
+You can use the <code>minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
 
@@ -179,7 +181,7 @@ The floating label is absolutely positioned. It won't impact the layout of the p
 
 Campos com type="number" tem problemas potenciais de usabilidade:
 
-- Permitindo certos caracteres não numéricos ('e', '+', '-', '.') e silenciosamente descartando outros e silenciosamente descartando outros e silenciosamente descartando outros
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
 - A funcionalidade de rolagem para incrementar/decrementar o número, pode causar alterações acidentais difíceis de notar
 
 e muito mais - consulte [este artigo](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) da equipe GOV.UK Design System para obter uma explicação mais detalhada.

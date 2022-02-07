@@ -66,7 +66,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* conteúdo */}</Toolbar>
+        <Toolbar>{/* content */}</Toolbar>
       </AppBar>
       <Toolbar />
     </React.Fragment>
@@ -81,12 +81,14 @@ const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 function App() {
   return (
-    <React. Fragment>
+    <React.Fragment>
       <AppBar position="fixed">
         <Toolbar>{/* content */}</Toolbar>
       </AppBar>
       <Offset />
-    </React.
+    </React.Fragment>
+  );
+}
 ```
 
 ## Scrolling

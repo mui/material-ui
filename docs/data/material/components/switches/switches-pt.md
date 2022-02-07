@@ -42,7 +42,7 @@ Você pode controlar o interruptor com as propriedades `checked` e `onChange`:
 
 ## Interruptores com FormGroup
 
-`FormGroup` é usado para agrupar componentes de seleção para facilitar o uso da API. `FormGroup` é usado para agrupar componentes de seleção para facilitar o uso da API. (Veja: [Quando usar](#when-to-use)).
+`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API. However, you are encouraged to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (Veja: [Quando usar](#when-to-use)).
 
 {{"demo": "SwitchesGroup.js"}}
 
@@ -64,7 +64,7 @@ The switch also comes with an unstyled version. It's ideal for doing heavy custo
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 ```
 
-The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own. You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc. It is also possible to replace these default components by other HTML elements or custom components.
+The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own. You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc. It is also possible to replace these default components by other HTML elements or custom components. It is also possible to replace these default components by other HTML elements or custom components.
 
 There are three components you can override by the `components` prop: `Root`, `Thumb` and `Input`. Each one's props can be set using the `componentsProps` object.
 
@@ -107,5 +107,3 @@ Você pode alterar o posicionamento do rótulo:
   <Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
 </code>
 ```
-
-</code>

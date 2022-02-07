@@ -49,7 +49,7 @@ While each component has its own API, there are a few props common to all of the
   <BadgeUnstyled components={{ Root: 'div', Badge: MyCustomBadge }} />
   ```
 
-- `component` - a shortcut to `components.Root`. Note that if both `components.Root` and `component` are specified, `component` takes precedence.
+- `component` - a shortcut to `components. Root`. Note that if both `components. Root` and `component` are specified, `component` takes precedence.
 
   ```jsx
   <BadgeUnstyled component="div" />

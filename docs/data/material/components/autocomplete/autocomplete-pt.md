@@ -44,7 +44,7 @@ const options = [
   { label: 'The Godfather', id: 1 },
   { label: 'Pulp Fiction', id: 2 },
 ];
-// or
+// ou
 const options = ['The Godfather', 'Pulp Fiction'];
 ```
 
@@ -110,7 +110,7 @@ Você pode agrupar as opções com a propriedade `groupBy`. Se você fizer isso,
 
 ## `useAutocomplete`
 
-Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente de auto completar é baseado neste hook.
+For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. O componente de auto completar é baseado neste hook.
 
 ```tsx
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
@@ -157,23 +157,21 @@ Uma customização de UI para o autocompletar de lugares do Google Maps.
 
 ### Lugares com a API do Google Maps
 
-Uma customização de UI para o autocompletar de lugares do Google Maps.
+Uma customização de UI para o autocompletar de lugares do Google Maps. For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
 {{"demo": "GoogleMaps.js"}}
-
-Para esse exemplo, nós precisamos carregar a API de Javascript do [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial).
 
 > ⚠️ Antes de você começar a usar a API JavaScript do Google Maps você precisará estar cadastrado e ter uma conta.
 
 ## Múltiplos valores
 
-Também conhecidos como tags, o usuário pode inserir mais de um valor.
+Also known as tags, the user is allowed to enter more than one value.
 
 {{"demo": "Tags.js"}}
 
 ### Opções fixas
 
-Em ocasiões que você necessite travar certa tag para que não possa ser removida da interface, você pode defini-la como desabilitada.
+In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
 
 {{"demo": "FixedTags.js"}}
 
@@ -183,9 +181,9 @@ Em ocasiões que você necessite travar certa tag para que não possa ser removi
 
 ### Limitar tags
 
-Você pode usar a propriedade `limitTags` para limitrar o número de opções exibidas quando o componente não estiver com o foco.
+You can use the `limitTags` prop to limit the number of displayed options when not focused.
 
-{{"demo": "LimitTags.js"}}
+Você pode usar a propriedade `limitTags` para limitrar o número de opções exibidas quando o componente não estiver com o foco.
 
 ## Tamanhos
 
@@ -203,15 +201,15 @@ A propriedade `renderInput` permite que você customize o input renderizado. O p
 
 ### Seletor do GitHub
 
-Esta demonstração reproduz o rótulo de seleção do GitHub's:
+This demo reproduces GitHub's label picker:
 
 {{"demo": "GitHubLabel.js"}}
 
-Va para a seção [Hook customizado](#customized-hook) para um exemplo com o uso do hook customizado `useAutocomplete` ao invés do componente.
+Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
 
 ## Realce
 
-A demonstração a seguir dependem do [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), um utilitário pequeno (1 kB) para realçar textos nos componentes autosuggest e autocomplete.
+Va para a seção [Hook customizado](#customized-hook) para um exemplo com o uso do hook customizado `useAutocomplete` ao invés do componente.
 
 {{"demo": "Highlights.js"}}
 
@@ -220,11 +218,7 @@ A demonstração a seguir dependem do [autosuggest-highlight](https://github.com
 O componente expõe uma fábrica para criar um método de filtro que pode ser fornecido para a propriedade `filterOptions`. Você pode usar ela para modificar o comportamento padrão do filtro.
 
 ```js
-import matchSorter from 'match-sorter';
-
-const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
-
-<Autocomplete filterOptions={filterOptions} />;
+import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -242,9 +236,9 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 #### Retornos
 
-`filterOptions`: o método de filtro retornado pode ser fornecido diretamente para a propriedade `filterOptions` do componente `Autocomplete` ou para o parâmetro de mesmo nome no hook.
+`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
 
-Na demonstração a seguir, as opções necessárias para o filtro ser aplicado no inicio das opções:
+`filterOptions`: o método de filtro retornado pode ser fornecido diretamente para a propriedade `filterOptions` do componente `Autocomplete` ou para o parâmetro de mesmo nome no hook.
 
 ```jsx
 const filterOptions = createFilterOptions({
@@ -255,7 +249,7 @@ const filterOptions = createFilterOptions({
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
-{{"demo": "Filter.js", "defaultCodeOpen": false}}
+Na demonstração a seguir, as opções necessárias para o filtro ser aplicado no inicio das opções:
 
 ### Avançado
 
@@ -297,7 +291,7 @@ Se você deseja evitar o comportamento padrão do teclado, você pode definir a 
 
 Os navegadores têm heurística para ajudar os usuários a preencherem os campos do formulário. No entanto, isso pode prejudicar a experiência do usuário com o componente.
 
-Por padrão, o componente desabilita a entrada**autocomplete**(lembra o que o usuário digitou para um determinado campo em uma sessão anterior) com o atributo `autoComplete="off"` Atualmente, o Google Chrome não suporta essa configuração de atributo ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Uma solução alternativa possível é remover o `id` para que o componente gere um aleatório.
+Por padrão, o componente desabilita a entrada**autocomplete**(lembra o que o usuário digitou para um determinado campo em uma sessão anterior) com o atributo `autoComplete="off"` Atualmente, o Google Chrome não suporta essa configuração de atributo ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Uma solução alternativa possível é remover o `id` para que o componente gere um aleatório.
 
 No entanto, além de relembrar valores fornecidos anteriormente, o navegador também pode propor sugestões de **autofill** (preenchimento automático para informações de login, endereço ou detalhes de pagamento). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
 

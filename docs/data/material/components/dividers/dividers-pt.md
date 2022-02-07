@@ -6,7 +6,7 @@ githubLabel: 'component: divider'
 materialDesign: https://material.io/components/dividers
 ---
 
-# Divisor
+# Divider
 
 <p class="description">Um divisor é uma linha fina que agrupa conteúdo em listas e leiautes.</p>
 

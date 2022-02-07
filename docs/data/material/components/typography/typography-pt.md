@@ -67,11 +67,11 @@ O componente de Tipografia (Typography) usa a propriedade `variantMapping` para 
 - Você pode alterar o elemento subjacente para uma ocasião em específico com a propriedade `component`:
 
 ```jsx
-{/ * Já existe um h1 na página, não vamos duplicá-lo. */}
+{/ * Já existe um h1 na página, não vamos duplicá-lo. */
+}
 <Typography variant="h1" component="h2">
-  h1. */}
-<Typography variant="h1" component="h2">
-  h1.
+  h1. Heading
+</Typography>;
 ```
 
 - Você pode alterar o mapeamento [globalmente usando o tema](/customization/theme-components/#default-props):

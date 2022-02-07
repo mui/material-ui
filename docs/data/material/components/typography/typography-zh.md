@@ -6,7 +6,7 @@ githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 
-# Typography 文字铸排
+# Typography
 
 <p class="description">使用文字铸排可以尽可能清晰、高效地展示您的设计和内容。</p>
 
@@ -56,7 +56,7 @@ import '@fontsource/roboto/700.css';
 
 ## 主题
 
-某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用 theme 里 [`typography `](/customization/default-theme/?expand-path=$.typography) 的一些值。
+某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用 theme 里 [`typography`](/customization/default-theme/?expand-path=$.typography) 的一些值。
 
 {{"demo": "TypographyTheme.js"}}
 
@@ -72,6 +72,7 @@ import '@fontsource/roboto/700.css';
 }
 <Typography variant="h1" component="h2">
   h1. 标题
+</Typography>; Heading
 </Typography>;
 ```
 
@@ -106,7 +107,7 @@ const theme = createTheme({
 
 ## System props
 
-As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top: You can use them as prop directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
 
 ```jsx
 <Typography mt={2}>

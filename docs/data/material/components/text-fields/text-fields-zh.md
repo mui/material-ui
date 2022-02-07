@@ -16,7 +16,7 @@ materialDesign: https://material.io/components/text-fields
 
 ## 基础文本框
 
-The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard. It comes with three variants: outlined (default), filled, and standard.
+`TextField` 包装器组件是一个完整的表单控件，它包括了标签、输入和帮助文本。 It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "BasicTextFields.js"}}
 
@@ -30,7 +30,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## 校验
 
-The `error` prop toggles the error state. The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
+The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
 
 {{"demo": "ValidationTextFields.js"}}
 
@@ -70,7 +70,7 @@ The `error` prop toggles the error state. The `error` prop toggles the error sta
 
 ## Margin
 
-The `margin` prop can be used to alter the vertical spacing of the text field. The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
+The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
 
 {{"demo": "LayoutTextFields.js"}}
 
@@ -90,7 +90,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. T
 
 `TextField` 是由一些较小的组件组成的 ( [`FormControl`](/api/form-control/)， [`Input`](/api/input/)， [`FilledInput`](/api/filled-input/)， [`InputLabel`](/api/input-label/)， [`OutlinedInput`](/api/outlined-input/)， and [`FormHelperText`](/api/form-helper-text/) ) ，而你可以直接使用这些小的组件，来自定制你的表单域输入框。
 
-您可能注意到了， 和原生的 HTML input 组件相比，`TextField` 组件缺失了一些属性。 这是故意为之的。 The component takes care of the most used properties. Then, it's up to the user to use the underlying component shown in the following demo. 但是同时, 为了避免过于模版化，您仍然可以使用 `inputProps` (和 `inputProps`, `InputLabelProps` 属性) 来控制原生组件的属性。
+您可能注意到了， 和原生的 HTML input 组件相比，`TextField` 组件缺失了一些属性。 这是故意为之的。 The component takes care of the most used properties. Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
 
 {{"demo": "ComposedTextField.js"}}
 
@@ -110,7 +110,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. T
 
 {{"demo": "CustomizedInputs.js"}}
 
-Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. 接下来的这个示例受到了 Google 地图的启发，它使用了 [`InputBase`](/api/input-base/) 组件。
+Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
@@ -118,12 +118,12 @@ Customization does not stop at CSS. You can use composition to build custom comp
 
 ## `useFormControl`
 
-For advanced customization use cases, a `useFormControl()` hook is exposed. For advanced customization use cases, a `useFormControl()` hook is exposed. This hook returns the context value of the parent `FormControl` component.
+For advanced customization use cases, a `useFormControl()` hook is exposed. This hook returns the context value of the parent `FormControl` component.
 
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **返回结果**
@@ -173,13 +173,13 @@ import { useFormControl } from '@material-ui/core/FormControl';
 
 ### 悬浮的标签
 
-The floating label is absolutely positioned. It won't impact the layout of the page. The floating label is absolutely positioned. It won't impact the layout of the page. Make sure that the input is larger than the label to display correctly.
+The floating label is absolutely positioned. It won't impact the layout of the page. Make sure that the input is larger than the label to display correctly.
 
 ### type="number"
 
 type="number" 的输入存在潜在的可用性问题。
 
-- 这将允许某些非数字字符（'e', '+', '-', '.'） 并且丢失其他字符 并且丢失其他字符 并且丢失其他字符
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
 - 滚动增加/减少数字的功能可能会导致意外和难以察觉的变化。
 
 有关该话题的更多信息 - 请参阅 GOV.UK 设计系统团队的 [这篇文章](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/)，来了解更详细的解释。
@@ -265,7 +265,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 <FormControl>
   <InputLabel htmlFor="my-input">电子邮件</InputLabel>
   <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">我们绝不会分享您的邮件地址。</FormHelperText>
+  <FormHelperText id="my-helper-text">我们绝不会分享您的邮件地址。 </FormHelperText>
 </FormControl>
 ```
 

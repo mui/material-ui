@@ -25,6 +25,12 @@ This example demonstrates the use of `Masonry` for images. `Masonry` orders its 
 
 {{"demo": "ImageMasonry.js", "bg": true}}
 
+## Items with variable height
+
+This example demonstrates the use of `Masonry` for items with variable height. Items can move to other columns in order to abide by the rule that items are always added to the shortest column and hence optimize the use of space.
+
+{{"demo": "MasonryWithVariableHeightItems.js", "bg": true}}
+
 ## Columns
 
 This example demonstrates the use of the `columns` to configure the number of columns of a `Masonry`.

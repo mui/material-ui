@@ -2,7 +2,7 @@
 product: material
 title: React Transfer List（传递列表）组件
 components: List, ListItem, Checkbox, Switch
-githubLabel: 'component: TransferList'
+githubLabel: 'component: transfer list'
 ---
 
 # Transfer List 传递列表

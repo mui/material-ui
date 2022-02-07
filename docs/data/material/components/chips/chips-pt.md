@@ -39,7 +39,7 @@ Você pode usar as seguintes ações.
 
 ### Clicável e deletável
 
-{{"demo": "ClickeableAndDeleteableChips.js"}}
+{{"demo": "ClickableAndDeletableChips.js"}}
 
 ### Link clicável
 

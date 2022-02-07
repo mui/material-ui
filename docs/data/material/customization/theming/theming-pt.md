@@ -119,7 +119,7 @@ const theme = createTheme({
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### Exemplos
+#### Examples
 
 ```js
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -146,6 +146,54 @@ function Tabs() {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
 
+### `responsiveFontSizes(theme, options) => theme`
+
+Gera configurações de tipografia responsivas com base nas opções recebidas.
+
+#### Retornos
+
+1. `theme` (_object_): The theme object to enhance.
+2. `options` (_object_ [optional]):
+
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
+- `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
+- `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
+- `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
+
+#### Exemplos
+
+`theme` (_object_): The new theme with a responsive typography.
+
+#### Examples
+
+```js
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
+```
+
+### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
+
+Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos componentes.
+
+Gera um tema que reduz a quantidade de avisos dentro de [`React. StrictMode`](https://pt-br.reactjs.org/docs/strict-mode.html) como por exemplo, `Warning: findDOMNode is deprecated in StrictMode`.
+
+#### Argumentos
+
+Atualmente `unstable_createMuiStrictModeTheme` não adiciona requisitos adicionais.
+
+#### Retornos
+
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
+
+#### Exemplos
+
+`theme` (_object_): A complete, ready-to-use theme object.
+
+#### Examples
+
 ```js
 import { createTheme } from '@mui/material/styles';
 
@@ -169,70 +217,6 @@ theme = createTheme(theme, {
 });
 ```
 
-### `responsiveFontSizes(theme, options) => theme`
-
-Gera configurações de tipografia responsivas com base nas opções recebidas.
-
-#### Retornos
-
-1. `theme` (_object_): The theme object to enhance.
-2. `options` (_object_ [optional]):
-
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
-- `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
-- `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
-- `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
-
-#### Exemplos
-
-`theme` (_object_): The new theme with a responsive typography.
-
-#### Requisitos
-
-```js
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
-```
-
-### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
-
-Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos componentes.
-
-Gera um tema que reduz a quantidade de avisos dentro de [`React.StrictMode`](https://pt-br.reactjs.org/docs/strict-mode.html) como por exemplo, `Warning: findDOMNode is deprecated in StrictMode`.
-
-#### Argumentos
-
-Atualmente `unstable_createMuiStrictModeTheme` não adiciona requisitos adicionais.
-
-#### Retornos
-
-1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
-
-#### Exemplos
-
-`theme` (_object_): A complete, ready-to-use theme object.
-
-#### Examples
-
-```js
-import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
-
-const theme = unstable_createMuiStrictModeTheme();
-
-function App() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <LandingPage />
-      </ThemeProvider>
-    </React.StrictMode>
-  );
-}
-```
-
 ### `ThemeProvider`
 
 This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
@@ -240,9 +224,11 @@ This component takes a `theme` prop and applies it to the entire React tree that
 #### Props
 
 | Name | Type | Description |
-|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\* | node | Your component tree. |
-| theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
+|:---- | ---- | ----------- |
+|      |      |             |
+ product: material--------------- |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | | children&nbsp;\* | node | Your component tree. | | theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of 
+
+[`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
 #### Examples
 
@@ -262,7 +248,5 @@ const theme = createTheme({
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'));
+} ReactDOM.render(<App />, document.querySelector('#app'));
 ```

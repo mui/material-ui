@@ -24,7 +24,7 @@ Todas as propriedades do sistema estão disponíveis através da [propriedade `s
 
 ## Sobrescrevendo componentes do Material-UI
 
-O componente Box envolve seu componente. Digamos que você queira usar um `<span>`: Digamos que você queira usar um `<span>`:
+O componente Box envolve seu componente. It creates a new DOM element, a `<div>` that by default can be changed with the `component` prop. Digamos que você queira usar um `<span>`: Digamos que você queira usar um `<span>`:
 
 {{"demo": "BoxComponent.js", "defaultCodeOpen": true }}
 
@@ -54,11 +54,11 @@ For non-Material-UI components, use the `component` prop.
 import Box from '@material-ui/core/Box';
 ```
 
-| Nome                                     | Tipo                                                                                                        | Padrão                                  | Descrição                                                                               |
-| :--------------------------------------- | :---------------------------------------------------------------------------------------------------------- | :-------------------------------------- | :-------------------------------------------------------------------------------------- |
-| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                     |                                         | Função de renderização do Box ou nó.                                                    |
+| Nome                                     | Tipo                                                                                                                          | Padrão                                  | Descrição                                                                               |
+|:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:--------------------------------------------------------------------------------------- |
+| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Função de renderização do Box ou nó.                                                    |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | O componente usado como nó raiz. Ou uma string para usar um elemento DOM ou componente. |
-| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                       | <span class="prop-default">{}</span>    | Aceita todas as propriedades do sistema, bem como quaisquer propriedades CSS válidas.   |
+| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | Aceita todas as propriedades do sistema, bem como quaisquer propriedades CSS válidas.   |
 
 ## Propriedades do sistema
 

@@ -36,6 +36,22 @@ githubLabel: 'component: ClickAwayListener'
 
 > ⚠️ 在此模式下，仅有文档对象滚动条上的交互被忽略。
 
+## Accessibility
+
+By default `<ClickAwayListener />` will add an `onClick` handler to its children. This can result in e.g. screen readers announcing the children as clickable. However, the purpose of the `onClick` handler is not to make `children` interactive.
+
+In order to prevent screen readers from marking non-interactive children as "clickable" add `role="presentation"` to the immediate children:
+
+```tsx
+<ClickAwayListener>
+  <div role="presentation">
+    <h1>non-interactive heading</h1>
+  </div>
+</ClickAwayListern>
+```
+
+This is also required to fix a quirk in NVDA when using FireFox that prevents announcement of alert messages (see [mui-org/material-ui#29080](https://github.com/mui-org/material-ui/issues/29080)).
+
 ## Unstyled
 
 - 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
