@@ -519,6 +519,16 @@ const appList = [
     stars: 18500,
     dateAdded: '2021-05-06',
   },
+  {
+    title: 'Saleor Store Dashboard',
+    description: 'Dashboard application for Saleor headless e-commerce platform',
+    image: 'saleor.jpg',
+    link: 'https://demo.saleor.io/dashboard/',
+    source: 'https://github.com/saleor/saleor-dashboard',
+    stars: 15079,
+    similarWebVisits: 62,
+    dateAdded: '2022-02-05',
+  },
 ];
 
 export default appList;
