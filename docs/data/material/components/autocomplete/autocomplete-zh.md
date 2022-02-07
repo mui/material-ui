@@ -12,7 +12,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 
 该组件常用于以下两个场景中的单行文本框赋值：
 
-1. 文本框必须取值于某个预设好的，例如：一个位置域必须包含一个有效的位置名称： [组合框](#combo-box)。
+1. 文本框必须取值于一组预设好的值，例如：一个地址项必须包含一个有效的地址：[组合框](#combo-box)。
 2. 文本框也可以是任何值，但最好能够为用户提供可能的选项，譬如搜索框可以提供近似的或者曾搜索过的选项以节省用户时间：[灵活的单文本框](#free-solo)。
 
 此组件旨在改进 “react-select” 和 “downshift” 这两个包。
@@ -110,13 +110,13 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 ## `useAutocomplete`
 
-对于需要高级自定义的场景，无头的 `useAutocomplete()` hook 将会被暴露出来。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 自动完成组件是建立在这个钩子上。
+对于需要高级自定义的场景，可以使用无界面的 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，除了所有与渲染 JSX 有关的参数。 Autocomplete 组件就是用基于这个 hook 创建的。
 
 ```tsx
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 ```
 
-为了方便使用以及兼容性，`useAutocomplete` hook 也可以从 @mui/material 导出。
+为了方便使用以及向后兼容，`useAutocomplete` hook 也在 @mui/material 中重新导出了。
 
 ```tsx
 import { createFilterOptions } from '@material-ui/core/Autocomplete';
