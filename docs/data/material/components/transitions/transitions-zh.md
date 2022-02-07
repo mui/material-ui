@@ -29,7 +29,7 @@ Material-UI 提供了一系列的过渡效果，你可以将一些基本的 [动
 
 Expands outwards from the center of the child element, while also fading in from transparent to opaque.
 
-从子元素的中心向外扩展，同时从透明淡入至不透明。
+The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` prop to change the entry speed.
 
 {{"demo": "SimpleGrow.js", "bg": true}}
 
@@ -43,7 +43,7 @@ Expands outwards from the center of the child element, while also fading in from
 
 ### Slide relative to a container
 
-The Slide component also accepts `container` prop, which is a reference to a DOM node. If this prop is set, the Slide component will slide from the edge of that DOM node. If this prop is set, the Slide component will slide from the edge of that DOM node.
+The Slide component also accepts `container` prop, which is a reference to a DOM node. If this prop is set, the Slide component will slide from the edge of that DOM node.
 
 从子元素的中心向外扩展。
 
@@ -64,17 +64,18 @@ The Slide component also accepts `container` prop, which is a reference to a DOM
 ```jsx
 // 'props' 对象包含一个 'style' 属性。
 // 你需要将这个属性提供给 `div` 元素，如下所示。
-function MyComponent(props) {
+const MyComponent = React.forwardRef((props, ref) {
   return (
-    <div {...props}>
+    <div ref={ref} {...props}>
       Fade
     </div>
   );
-}
+})
 
 export default Main() {
   return (
     <Fade>
+      {/* MyComponent must the only child */}
       <MyComponent />
     </Fade>
   );
@@ -83,7 +84,7 @@ export default Main() {
 
 ## TransitionComponent 属性
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_. 当组件被添加或删除时，`in` 属性会被 `TransitionGroup` 自动切换。 As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
 {{"demo": "TransitionGroupExample.js"}}
 
@@ -95,7 +96,7 @@ To animate a component when it is mounted or unmounted, you can use the [`Transi
 - 当进入过渡时调用 `onEnter` 回调属性。
 - 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了当在一个关闭的状态并展示完过渡动画时，才会移除子内容。
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/). 你还可以访问一些组件的专用部分： You can also visit the dedicated sections of some of the components:
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/). 你还可以访问一些组件的专用部分：
 
 - [Modal](/components/modal/#transitions)
 - [Dialog](/components/dialogs/#transitions)
@@ -111,4 +112,4 @@ The content of transition component is mounted by default even if `in={false}`. 
 <Fade in={false} unmountOnExit />
 ```
 
-As with any performance optimization this is not a silver bullet. As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+不过对所有情况下的性能优化，这并不是灵丹妙药。 Be sure to identify bottlenecks first and then try out these optimization strategies.
