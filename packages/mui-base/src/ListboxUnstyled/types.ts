@@ -11,7 +11,7 @@ export type UseListboxStrictProps<TOption> = Omit<
 > &
   Required<Pick<UseListboxProps<TOption>, UseListboxStrictPropsRequiredKeys>>;
 
-export enum ActionTypes {
+enum ActionTypes {
   blur = 'blur',
   focus = 'focus',
   keyDown = 'keyDown',
@@ -19,6 +19,9 @@ export enum ActionTypes {
   setControlledValue = 'setControlledValue',
   optionsChange = 'optionsChange',
 }
+
+// split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
+export { ActionTypes };
 
 interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
