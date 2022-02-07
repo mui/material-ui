@@ -34,7 +34,7 @@ function style(options) {
     cssProperty = options.prop,
     themeKey,
     transform,
-    enableVarsLookup = false,
+    enableThemeVars = false,
   } = options;
 
   const fn = (props) => {
@@ -44,7 +44,7 @@ function style(options) {
 
     const propValue = props[prop];
     const theme = props.theme;
-    const themeMapping = getPath(enableVarsLookup ? theme.vars || theme : theme, themeKey) || {};
+    const themeMapping = getPath(enableThemeVars ? theme.vars || theme : theme, themeKey) || {};
     const styleFromPropValue = (propValueFinal) => {
       let value = getValue(themeMapping, transform, propValueFinal);
 

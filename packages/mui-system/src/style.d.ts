@@ -9,6 +9,11 @@ export interface StyleOptions<PropKey> {
    */
   themeKey?: string;
   transform?: (cssValue: unknown) => number | string | React.CSSProperties | CSSObject;
+  /**
+   * If `true`, `theme.vars` will be used as a starting point for getting `themeKey`
+   * fallback to provided theme if no `theme.vars` found.
+   */
+  enableThemeVars?: boolean;
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,
