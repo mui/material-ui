@@ -45,15 +45,21 @@ function LanguageNegotiation() {
 
   React.useLayoutEffect(() => {
     const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
-    const preferedLanguage =
-      LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
-      acceptLanguage.get(navigator.language) ||
-      userLanguage;
 
-    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
-      window.location =
-        preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
-    } else if (userLanguage !== userLanguageUrl) {
+    // Only consider a redirection if coming to the naked folder.
+    if (userLanguageUrl === 'en') {
+      const preferedLanguage =
+        LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
+        acceptLanguage.get(navigator.language) ||
+        userLanguage;
+
+      if (userLanguage !== preferedLanguage) {
+        window.location =
+          preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
+      }
+    }
+
+    if (userLanguage !== userLanguageUrl) {
       setUserLanguage(userLanguageUrl);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
