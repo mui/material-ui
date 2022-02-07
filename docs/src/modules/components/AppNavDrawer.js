@@ -200,7 +200,7 @@ function ProductDrawerButton(props) {
               href={ROUTES.materialDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              Material Design <KeyboardArrowRight fontSize="small" />
+              Material UI <KeyboardArrowRight fontSize="small" />
             </Link>
             <Link
               href={ROUTES.systemDocs}
@@ -585,7 +585,7 @@ function AppNavDrawer(props) {
               ])}
             {router.asPath.startsWith('/material/') && (
               <ProductIdentifier
-                name="Material"
+                name="Material UI"
                 metadata="MUI Core"
                 versionSelector={renderVersionSelector([
                   { text: `v${materialPkgJson.version}`, current: true },
