@@ -80,7 +80,7 @@ To control space between children, use the `spacing` prop. The spacing value can
 > 
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
->    <Grid item xs={2} />> >{' '}
+>    <Grid item xs={2} />
 > > </Grid>
 > ```
 
