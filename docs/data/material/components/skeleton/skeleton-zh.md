@@ -19,7 +19,6 @@ githubLabel: 'component: skeleton'
 
 ```jsx
 {
-  item ? {
   item ? (
     <img
       style={{
@@ -62,7 +61,7 @@ githubLabel: 'component: skeleton'
 当您在排版的时候会得心应手，因为它的高度是用 `em` 单位设置的。
 
 ```jsx
-<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography> <Skeleton /> : 'h1'}</Typography>
+<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
 ```
 
 {{"demo": "SkeletonTypography.js", "defaultCodeOpen": false}}
@@ -70,7 +69,7 @@ githubLabel: 'component: skeleton'
 但是，当涉及到其他组件时，你可能不想重复申明宽度和高度。 在这些情况下，你可以传入 `children`，然后它将会从它们中推断出它的宽度和高度。
 
 ```jsx
-loading ? loading ? (
+loading ? (
   <Skeleton variant="circular">
     <Avatar />
   </Skeleton>
