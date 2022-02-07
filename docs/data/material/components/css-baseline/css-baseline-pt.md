@@ -16,14 +16,14 @@ Você já deve estar familiarizado com [normalize.css](https://github.com/necola
 
 ```jsx
 import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp() {
   return (
-    <React. Fragment>
+    <React.Fragment>
       <CssBaseline />
       {/* O resto da sua aplicação */}
-    </React. Fragment>
+    </React.Fragment>
   );
 }
 ```
@@ -70,12 +70,7 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
-darkScrollbar() : null,
-      },
-    },
-  },
-}); import darkScrollbar from '@material-ui/core/darkScrollbar';
-
+import darkScrollbar from '@mui/material/darkScrollbar';
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
