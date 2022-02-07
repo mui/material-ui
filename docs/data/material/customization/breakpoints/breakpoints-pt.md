@@ -33,11 +33,20 @@ Consultas de mídia CSS são a abordagem idiomática para tornar sua interface d
 Na demonstração a seguir, alteramos a cor do plano de fundo (vermelho, azul & verde) com base na largura da tela.
 
 ```jsx
-value         |0px     600px    960px    1280px   1920px
-key           |xs      sm       md       lg       xl
-screen width  |---
-product: material-----|--------|--------|--------|-------->
-range         |   xs   |   sm   |   md   |   lg   |   xl
+const styles = (theme) => ({
+  root: {
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: green[500],
+    },
+  },
+});
 ```
 
 {{"demo": "MediaQuery.js"}}
@@ -96,9 +105,9 @@ Se você estiver usando TypeScript, você também deverá usar a [extensão de m
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface BreakpointOverrides {
-    xs: false; // remove o ponto de quebra `xs`
+    xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;
     lg: false;
@@ -117,15 +126,15 @@ declare module '@material-ui/core/styles' {
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Arguments
+#### Argumentos
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Returns
+#### Retornos
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela maior que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Examples
+#### Exemplos
 
 ```js
 const styles = (theme) => ({
@@ -144,15 +153,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Arguments
+#### Argumentos
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Returns
+#### Retornos
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela menor que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Examples
+#### Exemplos
 
 ```js
 const styles = (theme) => ({
