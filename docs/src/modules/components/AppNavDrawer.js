@@ -206,7 +206,7 @@ function ProductDrawerButton(props) {
               href={ROUTES.systemDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              System <KeyboardArrowRight fontSize="small" />
+              MUI System <KeyboardArrowRight fontSize="small" />
             </Link>
           </LinksWrapper>
         </li>
@@ -231,7 +231,7 @@ function ProductDrawerButton(props) {
               href={ROUTES.dataGridDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              Data Grid <KeyboardArrowRight fontSize="small" />
+              Advanced components <KeyboardArrowRight fontSize="small" />
             </Link>
           </LinksWrapper>
         </li>
@@ -598,7 +598,7 @@ function AppNavDrawer(props) {
             )}
             {router.asPath.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
               <ProductIdentifier
-                name="System"
+                name="MUI System"
                 metadata="MUI Core"
                 versionSelector={renderVersionSelector([
                   { text: `v${systemPkgJson.version}`, current: true },
