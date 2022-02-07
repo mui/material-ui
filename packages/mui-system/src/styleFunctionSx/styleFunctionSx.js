@@ -18,7 +18,8 @@ function callIfFn(maybeFn, arg) {
   return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
 }
 
-export function createStyleFunctionSx({ getThemeValue, propToStyleFunction }) {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_createStyleFunctionSx({ getThemeValue, propToStyleFunction }) {
   function styleFunctionSx(props) {
     const { sx, theme = {} } = props || {};
     if (!sx) {
@@ -75,7 +76,7 @@ export function createStyleFunctionSx({ getThemeValue, propToStyleFunction }) {
   return styleFunctionSx;
 }
 
-const styleFunctionSx = createStyleFunctionSx({
+const styleFunctionSx = unstable_createStyleFunctionSx({
   getThemeValue: defaultGetThemeValue,
   propToStyleFunction: defaultPropToStyleFunction,
 });

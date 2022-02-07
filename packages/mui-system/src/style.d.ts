@@ -12,9 +12,11 @@ export interface StyleOptions<PropKey> {
   /**
    * If `true`, `theme.vars` will be used as a starting point for getting `themeKey`
    * fallback to provided theme if no `theme.vars` found.
+   *
+   * This is an experimental flag for using in `@mui/joy`.
    */
   enableThemeVars?: boolean;
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,
-): StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme }>;
+): StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme }> & { filterProps: Array<string> };
