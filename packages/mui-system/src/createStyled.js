@@ -160,7 +160,7 @@ export default function createStyled(input = {}) {
         });
       }
 
-      if (!skipSx && typeof styleFunctionSx === 'function') {
+      if (!skipSx) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
           return styleFunctionSx({ ...props, theme });
