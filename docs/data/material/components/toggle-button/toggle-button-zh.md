@@ -20,7 +20,7 @@ materialDesign: 'https://material.io/components/buttons#toggle-button'
 
 In this example, text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
 
-**Note**: Exclusive selection does not enforce that a button must be active. For that effect see [enforce value set](#enforce-value-set). For that effect see [enforce value set](#enforce-value-set).
+**Note**: Exclusive selection does not enforce that a button must be active. For that effect see [enforce value set](#enforce-value-set).
 
 {{"demo": "ToggleButtons.js"}}
 
@@ -51,15 +51,15 @@ The buttons can be stacked vertically with the `orientation` prop set to "vertic
 If you want to enforce that at least one button must be active, you can adapt your handleChange function.
 
 ```jsx
-const handleFormat = (event, newFormats) => {
-  if (newFormats.length) {
-    setFormats(newFormats);
-  }
-};
-
 const handleAlignment = (event, newAlignment) => {
   if (newAlignment !== null) {
     setAlignment(newAlignment);
+  }
+};
+
+const handleDevices = (event, newDevices) => {
+  if (newDevices.length) {
+    setDevices(newDevices);
   }
 };
 ```
@@ -72,7 +72,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## 自定义切换按钮
 
-Here is an example of customizing the component. Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "CustomizedDividers.js", "bg": true}}
 
@@ -85,4 +85,4 @@ Here is an example of customizing the component. Here is an example of customizi
 
 ### 键盘输入
 
-At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
+At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
