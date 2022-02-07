@@ -49,15 +49,6 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 // ...
 
-return <div {...props} ref={ref}>Bin</div>
-});
-
-// ...
-
-<Tooltip title="删除">
-  <MyComponent>
-</Tooltip>
-
 <Tooltip title="删除">
   <MyComponent>
 </Tooltip>
@@ -105,10 +96,6 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 <Tooltip title="您没有足够的操作权限">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      一个禁用的按钮
-    </button>
-  </span>
-</Tooltip> { pointerEvents: 'none' } : {}}>
       A disabled button
     </button>
   </span>
@@ -129,7 +116,7 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 ## 虚拟元素
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/). You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "AnchorElTooltips.js"}}
 
@@ -145,12 +132,12 @@ In the event you need to implement a custom placement, you can use the `anchorEl
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 
-By default, the tooltip only labels its child element. By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in: For example, in:
+By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
 
 ```html
 <button title="some more information">一个按钮</button>
 ```
 
-the `title` acts as an accessible description. the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html). Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
 
 {{"demo": "AccessibilityTooltips.js"}}
