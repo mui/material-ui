@@ -16,7 +16,7 @@ materialDesign: https://material.io/components/text-fields
 
 ## 基础文本框
 
-The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard. It comes with three variants: outlined (default), filled, and standard. It comes with three variants: outlined (default), filled, and standard.
+`TextField` 包装器组件是一个完整的表单控件，它包括了标签、输入和帮助文本。 It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "BasicTextFields.js"}}
 
@@ -30,7 +30,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## 校验
 
-The `error` prop toggles the error state. The `error` prop toggles the error state. The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
+The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
 
 {{"demo": "ValidationTextFields.js"}}
 
@@ -70,7 +70,7 @@ The `error` prop toggles the error state. The `error` prop toggles the error sta
 
 ## Margin
 
-The `margin` prop can be used to alter the vertical spacing of the text field. The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
+The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
 
 {{"demo": "LayoutTextFields.js"}}
 
@@ -118,12 +118,12 @@ Customization does not stop at CSS. You can use composition to build custom comp
 
 ## `useFormControl`
 
-For advanced customization use cases, a `useFormControl()` hook is exposed. For advanced customization use cases, a `useFormControl()` hook is exposed. This hook returns the context value of the parent `FormControl` component. This hook returns the context value of the parent `FormControl` component.
+For advanced customization use cases, a `useFormControl()` hook is exposed. This hook returns the context value of the parent `FormControl` component.
 
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **返回结果**
@@ -258,7 +258,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
 - If you are composing the component:
 
 ```jsx
@@ -286,12 +286,12 @@ The basic building blocks are the `InputUnstyled` component and the `useInput` h
 
 ### Unstyled component
 
-The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead. You can, optionally, provide a custom component to be rendered instead.
+The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead.
 
 {{"demo": "UnstyledInput.js"}}
 
 ### Hook
 
-The `useInput` hook is the headless version of the `InputUnstyled` component. Use it for even greater control over the rendered output. Use it for even greater control over the rendered output.
+The `useInput` hook is the headless version of the `InputUnstyled` component. Use it for even greater control over the rendered output.
 
 {{"demo": "UseInput.js"}}
