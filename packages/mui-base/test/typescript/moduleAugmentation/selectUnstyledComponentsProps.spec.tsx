@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SelectUnstyled } from '@mui/base';
+import { SelectUnstyled, MultiSelectUnstyled } from '@mui/base';
 
 declare module '@mui/base' {
   interface SelectUnstyledComponentsPropsOverrides {
@@ -11,3 +11,8 @@ declare module '@mui/base' {
 
 // @ts-expect-error unknown variant
 <SelectUnstyled componentsProps={{ root: { variant: 'three' } }} />;
+
+<MultiSelectUnstyled componentsProps={{ root: { variant: 'one' } }} />;
+
+// @ts-expect-error unknown variant
+<MultiSelectUnstyled componentsProps={{ root: { variant: 'three' } }} />;
