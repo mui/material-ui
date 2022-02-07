@@ -197,7 +197,7 @@ createMuiTheme({
 });
 ```
 
-You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#collapse-rename-collapsedheight) for automatic migration of both the prop and the classes key.
+If, however, you want to keep `underline="hover"`, run this codemod or configure theme default props.
 
 ```sh
 import { createTheme } from '@material-ui/core/styles';
