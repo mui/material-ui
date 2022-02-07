@@ -50,29 +50,6 @@ const getDesignTokens = (mode: PaletteMode) => ({
           },
         }),
   },
-}); {
-          // palette values for light mode
-          primary: amber,
-          divider: amber[200],
-          text: {
-            primary: grey[900],
-            secondary: grey[800],
-          },
-        }
-      : {
-          // palette values for dark mode
-          primary: deepOrange,
-          divider: deepOrange[700],
-          background: {
-            default: deepOrange[900],
-            paper: deepOrange[900],
-          },
-          text: {
-            primary: '#fff',
-            secondary: grey[500],
-          },
-        }),
-  },
 });
 ```
 
@@ -87,23 +64,6 @@ export default function App() {
       toggleColorMode: () => {
         setMode((prevMode: PaletteMode) =>
           prevMode === 'light' ? 'dark' : 'light',
-        );
-      },
-    }),
-    [],
-  );
-
-  // Update the theme only if the mode changes
-  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
-
-  return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <Page />
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-  );
-} 'dark' : 'light',
         );
       },
     }),
@@ -155,18 +115,6 @@ function App() {
       createTheme({
         palette: {
           mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes />
-    </ThemeProvider>
-  );
-} 'dark' : 'light',
         },
       }),
     [prefersDarkMode],
