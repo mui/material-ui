@@ -740,10 +740,10 @@ export default function SliderThumbOverrides() {
 ## ~~JSS~~ TSS
 
 [JSS](https://cssinjs.org/) itself is no longer supported in MUI however,
-if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`](https://codesandbox.io/s/j3l06yyqpw) was offering you can opt for [`tss-react`](https://github.com/garronej/tss-react).  
+if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`](https://codesandbox.io/s/j3l06yyqpw) was offering you can opt for [`tss-react`](https://github.com/garronej/tss-react).
 
 [TSS](https://docs.tss-react.dev) integrates well with MUI and provide a better
-TypeScript support than JSS.  
+TypeScript support than JSS.
 
 > If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout
 > [migration guide](https://mui.com/guides/migration-v4/#2-use-tss-react).
@@ -755,18 +755,18 @@ import createCache from '@emotion/cache';
 import { ThemeProvider } from '@mui/material/styles';
 
 export const muiCache = createCache({
-    key: 'mui',
-    prepend: true,
+  key: 'mui',
+  prepend: true,
 });
 
 //NOTE: Don't use <StyledEngineProvider injectFirst/>
 render(
-    <CacheProvider value={muiCache}>
-        <ThemeProvider theme={myTheme}>
-            <Root />
-        </ThemeProvider>
-    </CacheProvider>,
-    document.getElementById('root')
+  <CacheProvider value={muiCache}>
+    <ThemeProvider theme={myTheme}>
+      <Root />
+    </ThemeProvider>
+  </CacheProvider>,
+  document.getElementById('root'),
 );
 ```
 
@@ -786,46 +786,43 @@ import { useTheme } from '@mui/material/styles';
 import { createMakeAndWithStyles } from 'tss-react';
 
 export const { makeStyles, withStyles } = createMakeAndWithStyles({
-    useTheme
-    /*
+  useTheme,
+  /*
     OR, if you have extended the default mui theme adding your own custom properties: 
     Let's assume the myTheme object that you provide to the <ThemeProvider /> is of 
     type MyTheme then you'll write:
     */
-    //"useTheme": useTheme as (()=> MyTheme)
+  //"useTheme": useTheme as (()=> MyTheme)
 });
 ```
 
-Then, the library is used like this:  
+Then, the library is used like this:
 
 ```tsx
 import { makeStyles } from 'tss-react/mui';
 
 export function MyComponent(props: Props) {
+  const { className } = props;
 
-    const { className } = props;
+  const [color, setColor] = useState<'red' | 'blue'>('red');
 
-    const [color, setColor] = useState<'red' | 'blue'>('red');
+  const { classes, cx } = useStyles({ color });
 
-    const { classes, cx } = useStyles({ color });
-
-    //Thanks to cx, className will take priority over classes.root
-    return <span className={cx(classes.root, className)}>hello world</span>;
+  //Thanks to cx, className will take priority over classes.root
+  return <span className={cx(classes.root, className)}>hello world</span>;
 }
 
-const useStyles = makeStyles<{ color: 'red' | 'blue' }>()(
-    (theme, { color }) => ({
-        root: {
-            color,
-            '&:hover': {
-                backgroundColor: theme.palette.primary.main
-            },
-        },
-    }),
-);
+const useStyles = makeStyles<{ color: 'red' | 'blue' }>()((theme, { color }) => ({
+  root: {
+    color,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+}));
 ```
 
-For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).  
+For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).
 
 > WARNING: **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
 > it's a peer dependency of `@mui/material`.
