@@ -201,7 +201,7 @@ createMuiTheme({
 });
 ```
 
-If, however, you want to keep `variant="hover"`, run this codemod or configure theme default props.
+If, however, you want to keep `underline="hover"`, run this codemod or configure theme default props.
 
 ```sh
 npx @mui/codemod v5.0.0/link-underline-hover <path>
