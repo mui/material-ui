@@ -37,11 +37,11 @@ const ROUTES = {
   blog: '/blog/',
   showcase: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/showcase/'
-    : '/discover-more/showcase',
+    : '/discover-more/showcase/',
   roadmap: 'https://github.com/mui/mui-x/projects/1',
   languages: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/languages/'
-    : '/discover-more/languages',
+    : '/discover-more/languages/',
   vision: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/vision/'
     : '/discover-more/vision/',
