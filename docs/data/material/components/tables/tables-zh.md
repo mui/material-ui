@@ -112,7 +112,7 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 {{"demo": "ReactVirtualizedTable.js", "bg": true}}
 
-## Unstyled table
+## Unstyled
 
 If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
 
@@ -128,6 +128,6 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 ### Caption 字幕
 
-A caption functions like a heading for a table. Most screen readers announce the content of captions. A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
+字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 标题可以帮助用户找到表格，了解表格的内容，决定是否要阅读。
 
 {{"demo": "AcccessibleTable.js", "bg": true}}
