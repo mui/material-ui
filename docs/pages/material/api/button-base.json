@@ -18,7 +18,13 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
-    "TouchRippleProps": { "type": { "name": "object" } }
+    "TouchRippleProps": { "type": { "name": "object" } },
+    "touchRippleRef": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { pulsate: func, start: func, stop: func } }"
+      }
+    }
   },
   "name": "ButtonBase",
   "styles": {
