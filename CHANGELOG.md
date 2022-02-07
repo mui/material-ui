@@ -14,9 +14,9 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 ### `@mui/material@5.4.1`
 
 - &#8203;<!-- 37 -->[AvatarGroup] Enable targeting of additional Avatar when max props is passed (#30794) @mogrady88
-- &#8203;<!-- 36 -->[Badge] fix showzero and invisible condition (#30899) @alisasanib
+- &#8203;<!-- 36 -->[Badge] Fix showzero and invisible condition (#30899) @alisasanib
 - &#8203;<!-- 35 -->[ButtonBase] Expose ref to TouchRipple (#30901) @m4theushw
-- &#8203;<!-- 15 -->[Fab] supporting other colors (#30846) @alisasanib
+- &#8203;<!-- 15 -->[Fab] Add support for the default theme colors (#30846) @alisasanib
 - &#8203;<!-- 11 -->[SelectInput] Only attach click handler to label if a labelId is passed (#30239) @johsunds
 - &#8203;<!-- 09 -->[Snackbar] Ensure messages are announced in NVDA+FF (#30774) @eps1lon
 
@@ -41,7 +41,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - &#8203;<!-- 32 -->[docs] Remove ul with div children and replace with nav element (#30534) @joeframbach
 - &#8203;<!-- 31 -->[docs] Add Saleor to showcase (#30924) @cherniavskii
 - &#8203;<!-- 30 -->[docs] Include JSS in styling solution interoperability guide (#30736) @garronej
-- &#8203;<!-- 29 -->[docs] fix contents of link-underline-hover (#30904) @pppp606
+- &#8203;<!-- 29 -->[docs] Fix contents of link-underline-hover (#30904) @pppp606
 - &#8203;<!-- 28 -->[docs] Fix markdown table format (#30947) @oliviertassinari
 - &#8203;<!-- 27 -->[docs] Add missing import to RTL guide (#30891) @CFarhad
 - &#8203;<!-- 26 -->[docs] Fix WithStyles import statement for @mui/styles (#30942) @altruity
