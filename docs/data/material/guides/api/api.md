@@ -87,7 +87,7 @@ Nested components inside a component have:
   for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component.
   This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
-### Property naming
+### Prop naming
 
 The name of a boolean prop should be chosen based on the **default value**. This choice allows:
 

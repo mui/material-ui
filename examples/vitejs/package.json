@@ -14,7 +14,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@vitejs/plugin-react-refresh": "latest",
+    "@vitejs/plugin-react": "latest",
     "vite": "latest"
   }
 }
