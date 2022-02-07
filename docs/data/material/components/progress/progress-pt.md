@@ -76,10 +76,10 @@ const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 // Exemplo de componente que utiliza a função `normalise` no ponto de renderização.
 function Progress(props) {
   return (
-    <React. Fragment>
+    <React.Fragment>
       <CircularProgress variant="determinate" value={normalise(props.value)} />
       <LinearProgress variant="determinate" value={normalise(props.value)} />
-    </React. Fragment>
+    </React.Fragment>
   );
 }
 ```
@@ -115,7 +115,9 @@ O `LinearProgress` usa uma transição na propriedade de transformação do CSS 
 Se você precisar executar 30 renderizações por segundo ou mais, recomendamos desabilitar a transição:
 
 ```css
-Indicadores de <a href="https://material.io/design/components/progress-indicators.html#linear-progress-indicators">progresso linear</a>.
+.MuiLinearProgress-bar {
+  transition: none;
+}
 ```
 
 ### IE 11
