@@ -27,6 +27,7 @@ export { default as typography } from './typography';
 export * from './typography';
 export {
   default as unstable_styleFunctionSx,
+  unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export { default as experimental_sx } from './sx';
