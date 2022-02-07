@@ -2,13 +2,6 @@ import * as React from 'react';
 import { useSelect, SelectOption } from '@mui/base';
 import { styled } from '@mui/system';
 
-const blue = {
-  200: '#99CCF3',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-};
-
 const grey = {
   100: '#E7EBF0',
   200: '#E0E3E7',
