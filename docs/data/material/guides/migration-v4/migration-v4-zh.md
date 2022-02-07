@@ -188,7 +188,7 @@ npx @mui/codemod v5.0.0/variant-prop <path>
 });
 ```
 
-更多技术细节请参考此链接 [link-underline-hover codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover)。
+If, however, you want to keep `underline="hover"`, run this codemod or configure theme default props.
 
 ```sh
 npx @mui/codemod v5.0.0/link-underline-hover <path>
