@@ -44,7 +44,7 @@ const options = [
   { label: 'The Godfather', id: 1 },
   { label: 'Pulp Fiction', id: 2 },
 ];
-// or
+// ou
 const options = ['The Godfather', 'Pulp Fiction'];
 ```
 
@@ -165,15 +165,15 @@ Uma customização de UI para o autocompletar de lugares do Google Maps. For thi
 
 ## Múltiplos valores
 
-Para esse exemplo, nós precisamos carregar a API de Javascript do [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial).
+Also known as tags, the user is allowed to enter more than one value.
 
-Também conhecidos como tags, o usuário pode inserir mais de um valor.
+{{"demo": "Tags.js"}}
 
 ### Opções fixas
 
 In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
 
-Em ocasiões que você necessite travar certa tag para que não possa ser removida da interface, você pode defini-la como desabilitada.
+{{"demo": "FixedTags.js"}}
 
 ### Caixas de seleção
 
@@ -203,7 +203,7 @@ A propriedade `renderInput` permite que você customize o input renderizado. O p
 
 This demo reproduces GitHub's label picker:
 
-Esta demonstração reproduz o rótulo de seleção do GitHub's:
+{{"demo": "GitHubLabel.js"}}
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
 
@@ -211,18 +211,14 @@ Head to the [Customized hook](#customized-hook) section for a customization exam
 
 Va para a seção [Hook customizado](#customized-hook) para um exemplo com o uso do hook customizado `useAutocomplete` ao invés do componente.
 
-A demonstração a seguir dependem do [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), um utilitário pequeno (1 kB) para realçar textos nos componentes autosuggest e autocomplete.
+{{"demo": "Highlights.js"}}
 
 ## Filtro customizado
 
 O componente expõe uma fábrica para criar um método de filtro que pode ser fornecido para a propriedade `filterOptions`. Você pode usar ela para modificar o comportamento padrão do filtro.
 
 ```js
-import matchSorter from 'match-sorter';
-
-const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
-
-<Autocomplete filterOptions={filterOptions} />;
+import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
