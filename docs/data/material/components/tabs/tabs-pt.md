@@ -76,7 +76,7 @@ Botões de rolagem esquerda e direita são apresentados (espaço reserva) indepe
 Se você quiser certificar-se de que os botões são sempre visíveis, você deve customizar a opacidade.
 
 ```css
-. MuiTabs-scrollButtons. Mui-disabled {
+.MuiTabs-scrollButtons.Mui-disabled {
   opacity: 0.3;
 }
 ```
