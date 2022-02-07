@@ -779,7 +779,7 @@ get with
 If you want to take controls over what the `theme` object should be,
 you can re-export `makeStyles` and `withStyles` from a file called, for example, `makesStyles.ts`:
 
-```typescript
+```ts
 import { useTheme } from '@mui/material/styles';
 //WARNING: tss-react require TypeScript v4.4 or newer. If you can't update use:
 //import { createMakeAndWithStyles } from "tss-react/compat";
