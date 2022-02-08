@@ -188,14 +188,12 @@ function ProductDrawerButton(props) {
             description="Ready-to-use foundational components, free forever."
           />
           <LinksWrapper>
-            {FEATURE_TOGGLE.enable_mui_base_scope && (
-              <Link
-                href={ROUTES.baseDocs}
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
-              >
-                Base <KeyboardArrowRight fontSize="small" />
-              </Link>
-            )}
+            <Link
+              href={ROUTES.baseDocs}
+              // eslint-disable-next-line material-ui/no-hardcoded-labels
+            >
+              Base <KeyboardArrowRight fontSize="small" />
+            </Link>
             <Link
               href={ROUTES.materialDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
@@ -403,7 +401,7 @@ function reduceChildRoutes(context) {
     return items;
   }
 
-  if (page.children && page.children.length > 1) {
+  if (page.children && page.children.length >= 1) {
     const title = pageToTitleI18n(page, t);
     const topLevel = activePage
       ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||

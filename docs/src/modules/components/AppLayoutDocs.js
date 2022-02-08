@@ -92,7 +92,7 @@ function AppLayoutDocs(props) {
     productName = 'Material UI';
   }
   if (asPathWithoutLang.startsWith('/base')) {
-    productName = 'Base UI';
+    productName = 'MUI Base';
   }
   if (asPathWithoutLang.startsWith('/x')) {
     productName = 'MUI X';
