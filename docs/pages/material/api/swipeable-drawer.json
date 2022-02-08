@@ -12,6 +12,10 @@
     },
     "hysteresis": { "type": { "name": "number" }, "default": "0.52" },
     "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },
+    "swipeAreaIgnoreTouchStartEvent": {
+      "type": { "name": "func" },
+      "default": "function defaultSwipeAreaIgnoreTouchStartEvent(event, swipeArea) {\n  return event.target !== swipeArea;\n}"
+    },
     "SwipeAreaProps": { "type": { "name": "object" } },
     "swipeAreaWidth": { "type": { "name": "number" }, "default": "20" },
     "transitionDuration": {
