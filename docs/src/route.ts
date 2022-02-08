@@ -9,7 +9,7 @@ const ROUTES = {
   careers: '/careers/',
   pricing: '/pricing/',
   about: '/about/',
-  handbook: 'https://www.notion.so/mui-org/Handbook-f086d47e10794d5e839aef9dc67f324b',
+  handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
   baseDocs: '/base/getting-started/installation/',
   materialDocs: '/material/getting-started/installation/',
   systemDocs: '/system/basics/',
@@ -34,14 +34,14 @@ const ROUTES = {
   communityHelp: FEATURE_TOGGLE.enable_redirects
     ? '/material/getting-started/support/#community-help-free'
     : '/getting-started/support/#community-help-free',
-  blog: FEATURE_TOGGLE.enable_blog_index ? '/blog/' : 'https://medium.com/material-ui',
+  blog: '/blog/',
   showcase: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/showcase/'
-    : '/discover-more/showcase',
-  roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
+    : '/discover-more/showcase/',
+  roadmap: 'https://github.com/mui/mui-x/projects/1',
   languages: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/languages/'
-    : '/discover-more/languages',
+    : '/discover-more/languages/',
   vision: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/vision/'
     : '/discover-more/vision/',

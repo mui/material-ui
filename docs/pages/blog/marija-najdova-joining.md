@@ -13,8 +13,8 @@ Before joining MUI, Marija worked on the React implementation of [Fluent UI](htt
 
 Marija is off to a running start, having made important changes happen during her free time, even before starting! These include a new structure for the theme object, as well as the ability to [add custom variants](https://mui.com/customization/theme-components/#adding-new-component-variants) in v5:
 
-She is now actively working on the unstyled components and [the update of the style engine](https://github.com/mui-org/material-ui/issues/22342). These are two items we've been eager to push forward since the release of v1 but that required someone to be dedicated to tackling them.
+She is now actively working on the unstyled components and [the update of the style engine](https://github.com/mui/material-ui/issues/22342). These are two items we've been eager to push forward since the release of v1 but that required someone to be dedicated to tackling them.
 
-The community team will continue developing the foundations on which to build great design systems. Here's a quick view of [the community roadmap](https://github.com/mui-org/material-ui/projects/25).
+The community team will continue developing the foundations on which to build great design systems. Here's a quick view of [the community roadmap](https://github.com/mui/material-ui/projects/25).
 
 We couldn't be more excited to have Marija on the team! You can follow her on [Twitter](https://twitter.com/marijanajdova).

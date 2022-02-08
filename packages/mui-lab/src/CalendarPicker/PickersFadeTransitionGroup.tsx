@@ -16,9 +16,7 @@ const classes = generateUtilityClasses('PrivatePickersFadeTransitionGroup', ['ro
 
 const animationDuration = 500;
 
-const PickersFadeTransitionGroupRoot = styled(TransitionGroup, {
-  skipSx: true,
-})({
+const PickersFadeTransitionGroupRoot = styled(TransitionGroup)({
   display: 'block',
   position: 'relative',
 });

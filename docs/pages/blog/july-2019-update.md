@@ -39,4 +39,4 @@ _(We'll do our best, no guarantee!)_
 
   ![Skeleton](/static/blog/july-2019-update/skeleton.png)
 
-- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

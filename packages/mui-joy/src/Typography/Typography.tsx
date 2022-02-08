@@ -118,17 +118,9 @@ Typography.propTypes /* remove-proptypes */ = {
    * Applies the theme typography styles.
    * @default 'body1'
    */
-  level: PropTypes.oneOf([
-    'body1',
-    'body2',
-    'body3',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'inherit',
+  level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),
+    PropTypes.string,
   ]),
   /**
    * The component maps the variant prop to a range of different HTML element types.
@@ -148,18 +140,7 @@ Typography.propTypes /* remove-proptypes */ = {
    *   inherit: 'p',
    * }
    */
-  levelMapping: PropTypes.shape({
-    body1: PropTypes.string,
-    body2: PropTypes.string,
-    body3: PropTypes.string,
-    h1: PropTypes.string,
-    h2: PropTypes.string,
-    h3: PropTypes.string,
-    h4: PropTypes.string,
-    h5: PropTypes.string,
-    h6: PropTypes.string,
-    inherit: PropTypes.string,
-  }),
+  levelMapping: PropTypes /* @typescript-to-proptypes-ignore */.object,
   /**
    * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
    *

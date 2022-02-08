@@ -129,7 +129,7 @@ const pages = [
         ],
       },
       {
-        pathname: '/x/data-grid/',
+        pathname: '/x/react-data-grid',
         subheader: 'data-grid',
         children: [
           { pathname: '/x/react-data-grid/', title: 'Overview' },

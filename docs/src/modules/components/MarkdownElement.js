@@ -67,14 +67,14 @@ const Root = styled('div')(({ theme }) => ({
     fontFamily: theme.typography.fontFamilySystem,
     fontWeight: 700,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
-    margin: '40px 0 8px',
+    margin: '40px 0 4px',
   },
   '& h3': {
     ...theme.typography.h6,
     fontFamily: theme.typography.fontFamilySystem,
-    fontWeight: 700,
+    fontWeight: 600,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
-    margin: '28px 0 8px',
+    margin: '24px 0 8px',
   },
   '& h4': {
     ...theme.typography.subtitle1,
@@ -202,12 +202,12 @@ const Root = styled('div')(({ theme }) => ({
     borderLeft: '8px solid',
     borderColor:
       theme.palette.mode === 'dark'
-        ? // Support Material design theme
+        ? // Support Material Design theme
           theme.palette.warning[500] ?? theme.palette.warning.dark
         : theme.palette.warning[300] ?? theme.palette.warning.light,
     backgroundColor:
       theme.palette.mode === 'dark'
-        ? // Support Material design theme
+        ? // Support Material Design theme
           alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',

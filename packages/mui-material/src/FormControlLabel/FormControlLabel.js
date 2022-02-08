@@ -11,11 +11,17 @@ import useThemeProps from '../styles/useThemeProps';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
+import formControlState from '../FormControl/formControlState';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, labelPlacement } = ownerState;
+  const { classes, disabled, labelPlacement, error } = ownerState;
   const slots = {
-    root: ['root', disabled && 'disabled', `labelPlacement${capitalize(labelPlacement)}`],
+    root: [
+      'root',
+      disabled && 'disabled',
+      `labelPlacement${capitalize(labelPlacement)}`,
+      error && 'error',
+    ],
     label: ['label', disabled && 'disabled'],
   };
 
@@ -108,11 +114,18 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     }
   });
 
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['error'],
+  });
+
   const ownerState = {
     ...props,
     disabled,
     label,
     labelPlacement,
+    error: fcs.error,
   };
 
   const classes = useUtilityClasses(ownerState);

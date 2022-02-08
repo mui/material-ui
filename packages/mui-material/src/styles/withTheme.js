@@ -4,6 +4,6 @@ export default function withTheme() {
   throw new MuiError(
     'MUI: withTheme is not longer exported from @mui/material/styles.\n' +
       'You have to import it from @mui/styles.\n' +
-      'See https://mui.com/r/migration-v4/#material-ui-core-styles for more details.',
+      'See https://mui.com/r/migration-v4/#mui-material-styles for more details.',
   );
 }

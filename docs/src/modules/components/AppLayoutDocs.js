@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
 import NoSsr from '@mui/material/NoSsr';
@@ -70,6 +71,7 @@ const ActionsDiv = styled('div')(({ theme }) => ({
 }));
 
 function AppLayoutDocs(props) {
+  const router = useRouter();
   const {
     children,
     description,
@@ -84,10 +86,22 @@ function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  let productName = 'MUI';
+  if (asPathWithoutLang.startsWith('/material')) {
+    productName = 'Material UI';
+  }
+  if (asPathWithoutLang.startsWith('/base')) {
+    productName = 'Base UI';
+  }
+  if (asPathWithoutLang.startsWith('/x')) {
+    productName = 'MUI X';
+  }
+
   return (
     <AppFrame>
       <AdManager>
-        <Head title={`${title} - MUI`} description={description} />
+        <Head title={`${title} - ${productName}`} description={description} />
         {disableAd ? null : (
           <AdGuest>
             <Ad />
