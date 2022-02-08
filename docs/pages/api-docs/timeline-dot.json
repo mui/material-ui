@@ -9,7 +9,12 @@
       },
       "default": "'grey'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "union",
@@ -36,9 +41,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui-lab/src/TimelineDot/TimelineDot.js",
+  "filename": "/packages/mui-lab/src/TimelineDot/TimelineDot.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

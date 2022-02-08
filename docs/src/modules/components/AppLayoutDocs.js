@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@material-ui/core/styles';
-import { exactProp } from '@material-ui/utils';
-import NoSsr from '@material-ui/core/NoSsr';
+import { useRouter } from 'next/router';
+import { styled } from '@mui/material/styles';
+import { exactProp } from '@mui/utils';
+import NoSsr from '@mui/material/NoSsr';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
@@ -13,8 +14,8 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
-const TOC_WIDTH = 175;
-const NAV_WIDTH = 240;
+const TOC_WIDTH = 240;
+const NAV_WIDTH = 280;
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
@@ -50,19 +51,27 @@ const StyledAppContainer = styled(AppContainer, {
           width: `calc(100% - ${TOC_WIDTH}px)`,
         },
       }),
+      ...(!disableToc && {
+        [theme.breakpoints.up('lg')]: {
+          paddingLeft: '60px',
+          paddingRight: '60px',
+        },
+      }),
     }),
   };
 });
 
-const ActionsDiv = styled('div')({
-  position: 'absolute',
-  right: 16,
+const ActionsDiv = styled('div')(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-end',
-});
+  marginTop: -10,
+  marginBottom: -15,
+  [theme.breakpoints.up('lg')]: {
+    justifyContent: 'flex-end',
+  },
+}));
 
 function AppLayoutDocs(props) {
+  const router = useRouter();
   const {
     children,
     description,
@@ -77,13 +86,25 @@ function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  let productName = 'MUI';
+  if (asPathWithoutLang.startsWith('/material')) {
+    productName = 'Material UI';
+  }
+  if (asPathWithoutLang.startsWith('/base')) {
+    productName = 'Base UI';
+  }
+  if (asPathWithoutLang.startsWith('/x')) {
+    productName = 'MUI X';
+  }
+
   return (
     <AppFrame>
       <AdManager>
-        <Head title={`${title} - Material-UI`} description={description} />
+        <Head title={`${title} - ${productName}`} description={description} />
         {disableAd ? null : (
           <AdGuest>
-            <Ad placement="body" />
+            <Ad />
           </AdGuest>
         )}
         <Main disableToc={disableToc}>
@@ -94,7 +115,7 @@ function AppLayoutDocs(props) {
               <AppLayoutDocsFooter />
             </NoSsr>
           </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents items={toc} />}
+          {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>
       </AdManager>
     </AppFrame>

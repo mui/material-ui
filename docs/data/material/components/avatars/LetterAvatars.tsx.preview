@@ -1,0 +1,3 @@
+<Avatar>H</Avatar>
+<Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+<Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>

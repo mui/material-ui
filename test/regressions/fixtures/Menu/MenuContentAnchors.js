@@ -1,16 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { styled } from '@material-ui/core/styles';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
 
-const MenuItemStyled = styled(MenuItem)(() => ({
+const MenuItemStyled = styled(MenuItem)({
   '&.Mui-focusVisible': { border: '3px dashed black' },
   '&.Mui-selected': { border: '3px dotted black' },
   '&.Mui-focusVisible.Mui-selected': { border: '3px solid black' },
-}));
+});
 
 /**
  * Item 1 or 2 can be pre-selected to check alignment between anchorEl and menuitem

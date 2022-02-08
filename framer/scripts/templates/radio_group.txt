@@ -1,8 +1,8 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import Mui«componentName» from '@material-ui/core/«componentName»';
-import MuiFormLabel from '@material-ui/core/FormLabel';
+import Mui«componentName» from '@mui/material/«componentName»';
+import MuiFormLabel from '@mui/material/FormLabel';
 import { Radio } from './Radio';
 
 interface Props {

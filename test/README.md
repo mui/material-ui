@@ -1,17 +1,17 @@
-# Material-UI Testing
+# MUI Testing
 
 Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Getting started
 
 1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
-2. Run `yarn test:watch`.
+2. Run `yarn t TheUnitInQuestion`.
 3. Implement the tested behavior
 4. Open a PR once the test passes or you want somebody to review your work
 
 ## Tools we use
 
-- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro)
+- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/)
 - [Chai](https://www.chaijs.com/)
 - [Sinon](https://sinonjs.org/)
 - [Mocha](https://mochajs.org/)
@@ -20,11 +20,21 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [jsdom](https://github.com/jsdom/jsdom)
 - [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
-## Writing Tests
+## Writing tests
 
-For all unit tests, please use the return value from `test/utils/createClientRender`.
+For all unit tests, please use the return value from `test/utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
+
+```js
+describe('test suite', () => {
+  const { render } = createRenderer();
+
+  test('first', () => {
+    render(<input />);
+  });
+});
+```
 
 For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
 the tests readable, and, more importantly, the message if they fail as descriptive as possible.
@@ -33,7 +43,7 @@ In addition to the core matchers from `chai` we also use matchers from [`chai-do
 
 Deciding where to put a test is (like naming things) a hard problem:
 
-- When in doubt, put the new test case directly in the unit test file for that component e.g. `material-ui/src/Button/Button.test.js`.
+- When in doubt, put the new test case directly in the unit test file for that component e.g. `packages/mui-material/src/Button/Button.test.js`.
 - If your test requires multiple components from the library create a new integration test.
 - If you find yourself using a lot of `data-testid` attributes or you're accessing
   a lot of styles consider adding a component (that doesn't require any interaction)
@@ -96,39 +106,38 @@ expect(() => {
 }).not.toErrorDev();
 ```
 
-#### Visual regression tests
-
-We try to use as many demos from the documentation as possible;
-however, we can't replace one with the other as they address different needs.
-With the regression tests:
-
-- You might need to test a more complex situation, e.g. a stress test of the grid.
-- You might need to test a simpler situation, e.g. a static progress bar.
-
 ## Commands
 
-Material-UI uses a wide range of tests approach as each of them comes with a different
+MUI uses a wide range of tests approach as each of them comes with a different
 trade-off, mainly completeness vs. speed.
 
 ### React API level
 
-#### Run the core mocha unit/integration test suite.
+#### Debugging tests
+
+If you want to debug tests with the e.g. Chrome inspector (chrome://inspect) you can run `yarn t <testFilePattern> --debug`.
+Note that the test will not get executed until you start code execution in the inspector.
+
+We have a dedicated task to use VSCode's integrated debugger to debug the currently opened test file.
+Open the test you want to run and press F5 (launch "Test Current File").
+
+#### Run the core mocha unit/integration test suite
 
 To run all of the unit and integration tests run `yarn test:unit`
 
-If you want to `grep` for certain tests add `-g STRING_TO_GREP`.
+If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `yarn t <testFilePattern>`.
 
-#### Watch the core mocha unit/integration test suite.
+#### Watch the core mocha unit/integration test suite
 
-`yarn test:watch`
+`yarn t <testFilePattern>`
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
-Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/packages/material-ui/src/Dialog/Dialog.test.js#L71-L80) with the `Dialog` component.
+Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/packages/mui-material/src/Dialog/Dialog.test.js#L71-L80) with the `Dialog` component.
 
 Next, we have the **integration** tests. They are mostly used for components that
 act as composite widgets like `Select` or `Menu`.
-Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/packages/material-ui/test/integration/Menu.test.js#L98-L108) with the `Menu` component.
+Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/packages/material-ui/test/integration/Menu.test.js#L98-L108) with the `Menu` component.
 
 #### Create HTML coverage reports
 
@@ -138,7 +147,7 @@ When running this command you should get under `coverage/index.html` a full cove
 
 ### DOM API level
 
-#### Run the mocha test suite using the karma runner.
+#### Run the mocha test suite using the karma runner
 
 `yarn test:karma`
 
@@ -151,20 +160,31 @@ Our tests run on different browsers to increase the coverage:
 - [Headless Chrome](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md)
 - Chrome, Firefox, Safari, and Edge thanks to [BrowserStack](https://www.browserstack.com)
 
+##### BrowserStack
+
+We only use BrowserStack for non-PR commits to save ressources.
+BrowserStack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
+
+To force a run of BrowserStack on a PR you have to run the pipeline with `browserstack-force` set to `true`.
+For example, you've opened a PR with the number 64209 and now after everything is green you want to make sure the change passes all browsers:
+
+```bash
+curl --request POST \
+  --url https://circleci.com/api/v2/project/gh/mui/material-ui/pipeline \
+  --header 'content-type: application/json' \
+  --header 'Circle-Token: $CIRCLE_TOKEN' \
+  --data-raw '{"branch":"pull/64209/head","parameters":{"browserstack-force":true}}'
+```
+
 ### Browser API level
 
 In the end, components are going to be used in a real browser.
 The DOM is just one dimension of that environment,
 so we also need to take into account the rendering engine.
 
-#### Run the visual regression tests
+#### Visual regression tests
 
-We are using [Playwright](https://playwright.dev/) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
-
-![before](/test/docs-regressions-before.png)
-![diff](/test/docs-regressions-diff.png)
-
-Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
+Check out the [visual regression testing readme](./regressions/README.md) for more information.
 
 #### end-to-end tests
 
@@ -178,7 +198,7 @@ You can pass the same arguments as you could to `mocha`.
 For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+Alternatively, you might want to open `http://localhost:3000` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
 ### Caveats
 
@@ -206,7 +226,7 @@ The following command triggers the `profile` workflow for the pull request #2428
 
 ```bash
 curl --request POST \
-  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --url https://circleci.com/api/v2/project/gh/mui/material-ui/pipeline \
   --header 'content-type: application/json' \
   --header 'Circle-Token: $CIRCLE_TOKEN' \
   --data-raw '{"branch":"pull/24289/head","parameters":{"workflow":"profile"}}'
@@ -215,10 +235,10 @@ curl --request POST \
 To analyze this profile run you can use https://mui-dashboard.netlify.app/test-profile/:job-number.
 
 To find out the job number you can start with the response of the previous CircleCI API request which includes the created pipeline id.
-You then have to search in the [CircleCI UI](https://app.circleci.com/pipelines/github/mui-org/material-ui) for the job number of `test_profile` that is part of the started pipeline.
+You then have to search in the [CircleCI UI](https://app.circleci.com/pipelines/github/mui/material-ui) for the job number of `test_profile` that is part of the started pipeline.
 The job number can be extracted from the URL of a particular CircleCI job.
 
-For example, in https://app.circleci.com/pipelines/github/mui-org/material-ui/32796/workflows/23f946de-328e-49b7-9c94-bfe0a0248a12/jobs/211258 `jobs/211258` points to the job number which is in this case `211258` which means you want to visit https://mui-dashboard.netlify.app/test-profile/211258 to analyze the profile.
+For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/workflows/23f946de-328e-49b7-9c94-bfe0a0248a12/jobs/211258 `jobs/211258` points to the job number which is in this case `211258` which means you want to visit https://mui-dashboard.netlify.app/test-profile/211258 to analyze the profile.
 
 ### Testing multiple versions of React
 
@@ -238,7 +258,7 @@ PR #24289 for `react@next`
 
 ```bash
 curl --request POST \
-  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --url https://circleci.com/api/v2/project/gh/mui/material-ui/pipeline \
   --header 'content-type: application/json' \
   --header 'Circle-Token: $CIRCLE_TOKEN' \
   --data-raw '{"branch":"pull/24289/head","parameters":{"react-dist-tag":"next"}}'

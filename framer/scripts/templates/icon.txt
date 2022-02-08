@@ -1,8 +1,8 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import * as Icons from '@material-ui/icons';
-import { SvgIconProps } from '@material-ui/core/SvgIcon';
+import * as Icons from '@mui/icons-material';
+import { SvgIconProps } from '@mui/material/SvgIcon';
 import { pascalCase } from './utils';
 
 interface Props extends SvgIconProps {

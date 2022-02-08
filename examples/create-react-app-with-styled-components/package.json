@@ -3,9 +3,9 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "next",
-    "@material-ui/lab": "next",
-    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next",
+    "@mui/material": "latest",
+    "@mui/lab": "latest",
+    "@mui/styled-engine-sc": "latest",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
@@ -14,13 +14,10 @@
     "react-scripts": "latest",
     "styled-components": "latest"
   },
-  "resolutions": {
-    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -34,5 +31,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "latest"
   }
 }

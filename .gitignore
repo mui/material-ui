@@ -2,7 +2,8 @@
 # However, in order to prevent issues, they are ignored here.
 .DS_STORE
 .idea
-.vscode
+.vscode/*
+!.vscode/launch.json
 *.log
 *.tsbuildinfo
 /.eslintcache
@@ -11,10 +12,11 @@
 /coverage
 /docs/.env.local
 /docs/export
+/docs/pages/playground.tsx
 /examples/**/.cache
-/packages/material-ui-codemod/lib
-/packages/material-ui-envinfo/*.tgz
-/packages/material-ui-icons/src/*.js
+/packages/mui-codemod/lib
+/packages/mui-envinfo/*.tgz
+/packages/mui-icons-material/src/*.js
 /test/bundling/fixtures/*/yarn.lock
 # created by test/bundling/scripts/createFixture
 /test/bundling/fixtures/**/*.fixture.js

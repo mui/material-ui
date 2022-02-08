@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { ServerStyleSheets } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
-
-const defaultTheme = createTheme();
+import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -30,11 +29,13 @@ if (process.env.NODE_ENV === 'production') {
   cleanCSS = new CleanCSS();
 }
 
-const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA-106598593-3';
+const PRODUCTION_DEPLOYEMENT = !process.env.PULL_REQUEST && process.env.NODE_ENV === 'production';
+
+const GOOGLE_ANALYTICS_ID = PRODUCTION_DEPLOYEMENT ? 'UA-106598593-2' : 'UA-106598593-3';
 
 export default class MyDocument extends Document {
   render() {
-    const { canonical, userLanguage } = this.props;
+    const { canonicalAs, userLanguage } = this.props;
 
     return (
       <Html lang={userLanguage}>
@@ -45,25 +46,32 @@ export default class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={defaultTheme.palette.primary.main} />
+          <meta
+            name="theme-color"
+            content={getMetaThemeColor('light')}
+            media="(prefers-color-scheme: light)"
+          />
+          <meta
+            name="theme-color"
+            content={getMetaThemeColor('dark')}
+            media="(prefers-color-scheme: dark)"
+          />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://material-ui.com${
-              userLanguage === 'en' ? '' : `/${userLanguage}`
-            }${canonical}`}
+            href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAs}`}
           />
-          <link rel="alternate" href={`https://material-ui.com${canonical}`} hrefLang="x-default" />
+          <link rel="alternate" href={`https://mui.com${canonicalAs}`} hrefLang="x-default" />
           {LANGUAGES_SSR.map((userLanguage2) => (
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://material-ui.com${
+              href={`https://mui.com${
                 userLanguage2 === 'en' ? '' : `/${userLanguage2}`
-              }${canonical}`}
+              }${canonicalAs}`}
               hrefLang={userLanguage2}
             />
           ))}
@@ -75,10 +83,57 @@ export default class MyDocument extends Document {
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
             rel="stylesheet"
           />
-          <link href="/static/fonts/Plusjakartasans.css" rel="stylesheet" />
+          <link // prevent font flash
+            rel="preload"
+            // optimized for english characters (40kb -> 6kb)
+            href="/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <style
+            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'PlusJakartaSans-ExtraBold';font-style:normal;font-weight:800;font-display:swap;src:url('/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2') format('woff2');}`,
+            }}
+          />
+          <style
+            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'PlusJakartaSans-Bold';font-style:normal;font-weight:700;font-display:swap;src:url('/static/fonts/PlusJakartaSans-Bold-subset.woff2') format('woff2');}`,
+            }}
+          />
+          <style
+            // Loads IBM Plex Sans: 400,500,700 & IBM Plex Mono: 400, 600
+            // use https://cssminifier.com/ to minify
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Regular.woff) format('woff'),url(/static/fonts/IBMPlexSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Medium.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Medium.woff) format('woff'),url(/static/fonts/IBMPlexSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-SemiBold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-SemiBold.woff) format('woff'),url(/static/fonts/IBMPlexSans-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Bold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Bold.woff) format('woff'),url(/static/fonts/IBMPlexSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap}`,
+            }}
+          />
+          <GlobalStyles
+            styles={{
+              // First SSR paint
+              '.only-light-mode': {
+                display: 'block',
+              },
+              '.only-dark-mode': {
+                display: 'none',
+              },
+              // Post SSR Hydration
+              '.mode-dark .only-light-mode': {
+                display: 'none',
+              },
+              '.mode-dark .only-dark-mode': {
+                display: 'block',
+              },
+            }}
+          />
         </Head>
         <body>
           <Main />
@@ -87,7 +142,9 @@ export default class MyDocument extends Document {
             dangerouslySetInnerHTML={{
               __html: `
                 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                window.ga('create','${GOOGLE_ID}','auto');
+                window.ga('create','${GOOGLE_ANALYTICS_ID}',{
+                  sampleRate: ${PRODUCTION_DEPLOYEMENT ? 80 : 100},
+                });
               `,
             }}
           />
@@ -124,7 +181,7 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const materialSheets = new ServerStyleSheets();
+  const jssSheets = new JSSServerStyleSheets();
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
@@ -136,7 +193,7 @@ MyDocument.getInitialProps = async (ctx) => {
       originalRenderPage({
         enhanceApp: (App) => (props) =>
           styledComponentsSheet.collectStyles(
-            materialSheets.collect(<App emotionCache={cache} {...props} />),
+            jssSheets.collect(<App emotionCache={cache} {...props} />),
           ),
       });
 
@@ -151,7 +208,7 @@ MyDocument.getInitialProps = async (ctx) => {
       />
     ));
 
-    let css = materialSheets.toString();
+    let css = jssSheets.toString();
     // It might be undefined, e.g. after an error.
     if (css && process.env.NODE_ENV === 'production') {
       const result1 = await prefixer.process(css, { from: undefined });
@@ -168,7 +225,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
     return {
       ...initialProps,
-      canonical: pathnameToLanguage(url).canonical,
+      canonicalAs: pathnameToLanguage(url).canonicalAs,
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [

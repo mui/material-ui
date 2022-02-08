@@ -2,16 +2,19 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
+import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { jssPreset, StylesProvider } from '@material-ui/styles';
-import { useTheme, styled } from '@material-ui/core/styles';
+import { jssPreset, StylesProvider } from '@mui/styles';
+import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -37,7 +40,7 @@ function FramedDemo(props) {
         key: `iframe-demo-${theme.direction}`,
         prepend: true,
         container: document.head,
-        stylisPlugins: theme.direction === 'rtl' ? [rtlPlugin] : [],
+        stylisPlugins: theme.direction === 'rtl' ? [prefixer, rtlPlugin] : [prefixer],
       }),
     [document, theme.direction],
   );
@@ -117,6 +120,43 @@ DemoFrame.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
+// Use the default MUI theme for the demos
+const getTheme = (outerTheme) => {
+  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
+  const isCustomized =
+    outerTheme.palette.primary?.main &&
+    outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main;
+  const resultTheme = createTheme(
+    {
+      palette: {
+        mode: outerTheme.palette.mode || 'light',
+        ...(isCustomized && {
+          // Apply color from the color playground
+          primary: { main: outerTheme.palette.primary.main },
+          secondary: { main: outerTheme.palette.secondary.main },
+        }),
+      },
+    },
+    // To make DensityTool playground works
+    // check from MuiFormControl because brandingTheme does not customize this component
+    outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
+  );
+  if (outerTheme.direction) {
+    resultTheme.direction = outerTheme.direction;
+  }
+  if (outerTheme.spacing) {
+    resultTheme.spacing = outerTheme.spacing;
+  }
+  return resultTheme;
+};
+
+// TODO: Let demos decide whether they need JSS
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+  insertionPoint:
+    typeof window !== 'undefined' ? document.querySelector('#insertion-point-jss') : null,
+});
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
@@ -130,9 +170,14 @@ function DemoSandboxed(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      <Sandbox {...sandboxProps}>
-        <Component />
-      </Sandbox>
+      <StylesProvider jss={jss}>
+        <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
+          <Sandbox {...sandboxProps}>
+            {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+            <Component />
+          </Sandbox>
+        </ThemeProvider>
+      </StylesProvider>
     </DemoErrorBoundary>
   );
 }

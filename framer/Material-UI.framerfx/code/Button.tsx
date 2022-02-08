@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiButton from '@material-ui/core/Button';
+import MuiButton from '@mui/material/Button';
 import { Icon } from './Icon';
 
 interface Props {

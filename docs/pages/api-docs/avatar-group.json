@@ -2,6 +2,10 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
+      "default": "{}"
+    },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
     "spacing": {
       "type": {
@@ -10,7 +14,13 @@
       },
       "default": "'medium'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "total": { "type": { "name": "number" }, "default": "children.length" },
     "variant": {
       "type": {
         "name": "union",
@@ -23,9 +33,8 @@
   "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/AvatarGroup/AvatarGroup.js",
+  "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

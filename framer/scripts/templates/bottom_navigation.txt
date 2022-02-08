@@ -1,8 +1,8 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import Mui«componentName» from '@material-ui/core/«componentName»';
-import MuiBottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Mui«componentName» from '@mui/material/«componentName»';
+import MuiBottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { Icon } from './Icon';
 
 interface Props {

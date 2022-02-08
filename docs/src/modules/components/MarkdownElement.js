@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha, darken, styled } from '@material-ui/core/styles';
+import { alpha, darken, styled } from '@mui/material/styles';
+import { blueDark } from 'docs/src/modules/brandingTheme';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
@@ -12,11 +13,14 @@ const Root = styled('div')(({ theme }) => ({
     position: 'absolute',
   },
   '& pre': {
-    margin: theme.spacing(3, 'auto'),
+    margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
-    backgroundColor: '#272c34',
+    backgroundColor: blueDark[800],
+    colorScheme: 'dark',
     direction: 'ltr',
     borderRadius: theme.shape.borderRadius,
+    border: '1px solid',
+    borderColor: blueDark[700],
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     maxWidth: 'calc(100vw - 32px)',
@@ -24,67 +28,79 @@ const Root = styled('div')(({ theme }) => ({
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
   },
+  '& code, & code[class*="language-"]': {
+    direction: 'ltr',
+    display: 'inline-block',
+    ...theme.typography.body2,
+    fontSize: theme.typography.pxToRem(13),
+    fontFamily: theme.typography.fontFamilyCode,
+    fontWeight: 400,
+    WebkitFontSmoothing: 'subpixel-antialiased',
+    padding: '0 5px',
+    borderRadius: 5,
+  },
   // inline code
   '& code': {
-    direction: 'ltr',
-    lineHeight: 1.4,
-    display: 'inline-block',
-    fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-    WebkitFontSmoothing: 'subpixel-antialiased',
-    padding: '0 3px',
     color: theme.palette.text.primary,
-    backgroundColor:
-      theme.palette.mode === 'light'
-        ? 'rgba(255, 229, 100, 0.2)'
-        : alpha(theme.palette.primary.main, 0.08),
-    fontSize: '.85em',
-    borderRadius: 2,
+    backgroundColor: alpha(theme.palette.primary.light, 0.15),
   },
+  // block code
   '& code[class*="language-"]': {
-    backgroundColor: '#272c34',
     color: '#fff',
-    // Avoid layout jump after hydration (style injected by prism)
-    lineHeight: 1.5,
-  },
-  // code blocks
-  '& pre code': {
-    fontSize: '.9em',
-  },
-  '& .token.operator': {
-    background: 'transparent',
+    backgroundColor: blueDark[800],
   },
   '& h1': {
     ...theme.typography.h3,
-    fontSize: 40,
-    margin: '16px 0',
+    fontSize: theme.typography.pxToRem(36),
+    fontFamily: `"PlusJakartaSans-ExtraBold", ${theme.typography.fontFamilySystem}`,
+    margin: '10px 0',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[900],
+    fontWeight: 800,
   },
   '& .description': {
-    ...theme.typography.h5,
+    ...theme.typography.subtitle1,
+    fontWeight: 400,
     margin: '0 0 40px',
   },
   '& h2': {
-    ...theme.typography.h4,
-    fontSize: 30,
-    margin: '40px 0 16px',
+    ...theme.typography.h5,
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: 700,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
+    margin: '40px 0 4px',
   },
   '& h3': {
-    ...theme.typography.h5,
-    margin: '40px 0 16px',
+    ...theme.typography.h6,
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    margin: '24px 0 8px',
   },
   '& h4': {
-    ...theme.typography.h6,
-    margin: '32px 0 16px',
+    ...theme.typography.subtitle1,
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    margin: '24px 0 8px',
   },
   '& h5': {
     ...theme.typography.subtitle2,
-    margin: '32px 0 16px',
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    margin: '20px 0 8px',
   },
   '& p, & ul, & ol': {
     marginTop: 0,
     marginBottom: 16,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[900],
   },
   '& ul': {
-    paddingLeft: 30,
+    ...(theme.direction === 'rtl' && {
+      paddingRight: 30,
+    }),
+    ...(theme.direction !== 'rtl' && {
+      paddingLeft: 30,
+    }),
   },
   '& h1, & h2, & h3, & h4': {
     '& code': {
@@ -116,6 +132,19 @@ const Root = styled('div')(({ theme }) => ({
       },
     },
   },
+  '& h1 code': {
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& h2 code': {
+    fontSize: theme.typography.pxToRem(24),
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& h3 code': {
+    fontSize: theme.typography.pxToRem(18),
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
   '& table': {
     // Trade display table for scroll overflow
     display: 'block',
@@ -124,11 +153,13 @@ const Root = styled('div')(({ theme }) => ({
     overflowX: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     borderCollapse: 'collapse',
-    marginBottom: '16px',
+    marginBottom: '20px',
     borderSpacing: 0,
-    overflow: 'hidden',
-    '& .prop-name': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+    '& .prop-name, & .prop-type, & .prop-default': {
+      fontWeight: 400,
+      fontFamily: theme.typography.fontFamilyCode,
+      WebkitFontSmoothing: 'subpixel-antialiased',
+      fontSize: theme.typography.pxToRem(13),
     },
     '& .required': {
       color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
@@ -137,43 +168,58 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
     },
     '& .prop-type': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
     },
     '& .prop-default': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       borderBottom: `1px dotted ${theme.palette.divider}`,
     },
   },
   '& td': {
     ...theme.typography.body2,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 16,
-    color: theme.palette.text.primary,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+    color: theme.palette.text.secondary,
   },
   '& td code': {
     lineHeight: 1.6,
   },
   '& th': {
+    fontSize: theme.typography.pxToRem(14),
     lineHeight: theme.typography.pxToRem(24),
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     color: theme.palette.text.primary,
     whiteSpace: 'pre',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 16,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
   },
   '& blockquote': {
-    borderLeft: '5px solid #ffe564',
-    backgroundColor: 'rgba(255,229,100,0.2)',
-    padding: '4px 24px',
-    margin: '24px 0',
+    borderRadius: theme.shape.borderRadius,
+    border: '1px solid',
+    borderLeft: '8px solid',
+    borderColor:
+      theme.palette.mode === 'dark'
+        ? // Support Material Design theme
+          theme.palette.warning[500] ?? theme.palette.warning.dark
+        : theme.palette.warning[300] ?? theme.palette.warning.light,
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? // Support Material Design theme
+          alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
+        : theme.palette.warning[50] ?? theme.palette.warning.light,
+    padding: '10px 20px',
+    margin: '20px 0',
     '& p': {
-      marginTop: '16px',
+      marginTop: 10,
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[800],
     },
   },
   '& a, & a code': {
     // Style taken from the Link component
-    color: theme.palette.primary.main,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
     textDecoration: 'underline',
     textDecorationColor: alpha(theme.palette.primary.main, 0.4),
     '&:hover': {
@@ -183,7 +229,7 @@ const Root = styled('div')(({ theme }) => ({
   '& a code': {
     color:
       theme.palette.mode === 'dark'
-        ? theme.palette.primary.main
+        ? theme.palette.primary.light
         : darken(theme.palette.primary.main, 0.04),
   },
   '& img, video': {
@@ -210,10 +256,24 @@ const Root = styled('div')(({ theme }) => ({
     lineHeight: '10px',
     color: theme.palette.text.primary,
     verticalAlign: 'middle',
-    backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : '#fafbfc',
-    border: `1px solid ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
-    borderRadius: 6,
-    boxShadow: `inset 0 -1px 0 ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
+    backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : theme.palette.grey[50],
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
+    }`,
+    borderRadius: 5,
+    boxShadow: `inset 0 -1px 0 ${
+      theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
+    }`,
+  },
+  '& details': {
+    marginBottom: theme.spacing(1.5),
+    padding: theme.spacing(0.5, 0, 0.5, 1),
+    '& summary': {
+      cursor: 'pointer',
+    },
+    '& pre': {
+      marginTop: theme.spacing(1),
+    },
   },
 }));
 

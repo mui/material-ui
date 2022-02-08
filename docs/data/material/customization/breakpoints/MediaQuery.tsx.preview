@@ -1,0 +1,5 @@
+<Root>
+  <Typography>down(md): red</Typography>
+  <Typography>up(md): blue</Typography>
+  <Typography>up(lg): green</Typography>
+</Root>

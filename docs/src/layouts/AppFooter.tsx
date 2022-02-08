@@ -1,29 +1,35 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import NextLink from 'next/link';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import ROUTES from '../route';
+import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import ROUTES from 'docs/src/route';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import Link from 'docs/src/modules/components/Link';
+import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
 export default function AppFooter() {
   return (
-    <Container>
+    <Container component="footer">
       <Box
         sx={{
-          py: 8,
+          pt: 4,
+          pb: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
+          alignItems: 'center',
           justifyContent: 'space-between',
-          gap: (theme) => theme.spacing(4, 2),
-          gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
+          gap: 4,
+          gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
-          '& a': {
+          '& a:not(.MuiIconButton-root)': {
             mt: 1,
             color: 'text.secondary',
             typography: 'body2',
@@ -42,143 +48,140 @@ export default function AppFooter() {
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
             No spam, guaranteed.
           </Typography>
-          <Box
-            sx={{
-              width: { xs: '100%', sm: 'auto' },
-              maxWidth: 360,
-              display: 'inline-flex',
-              borderRadius: 1,
-              overflow: 'hidden',
-            }}
-          >
-            <InputBase
-              placeholder="Enter your email"
-              sx={{
-                bgcolor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[900]
-                    : theme.palette.grey[100],
-                px: 1,
-                py: 0.5,
-                typography: 'body2',
-                flexGrow: 1,
-                minWidth: 200,
-              }}
-            />
-            <Button
-              sx={{
-                bgcolor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[300],
-                py: 1,
-                px: 2,
-                color: 'text.primary',
-                borderRadius: '0px',
-                '&:hover': {
-                  bgcolor: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[700]
-                      : theme.palette.grey[400],
-                },
-              }}
-            >
-              Subscribe
-            </Button>
-          </Box>
+          <EmailSubscribe sx={{ mb: 1 }} />
         </div>
         <Box
           sx={{
             display: 'grid',
             gridTemplateColumns: { xs: '1fr 1fr', md: '1fr 1fr 1fr 1fr' },
             gridAutoColumns: '1fr',
-            gap: '16px 20px',
+            gap: 2,
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
-              Products
-            </Typography>
-            <NextLink href={ROUTES.productCore} passHref>
-              <Link>Core</Link>
-            </NextLink>
-            <NextLink href={ROUTES.productAdvanced} passHref>
-              <Link>Advanced X</Link>
-            </NextLink>
-            <NextLink href={ROUTES.productTemplates} passHref>
-              <Link>Templates</Link>
-            </NextLink>
-            <NextLink href={ROUTES.productDesignKits} passHref>
-              <Link>Design Kits</Link>
-            </NextLink>
-          </Box>
+          {FEATURE_TOGGLE.nav_products ? (
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography fontWeight="bold" variant="body2">
+                Products
+              </Typography>
+              <Link href={ROUTES.productCore}>MUI Core</Link>
+              <Link href={ROUTES.productAdvanced}>MUI X</Link>
+              <Link href={ROUTES.productTemplates}>Templates</Link>
+              <Link href={ROUTES.productDesignKits}>Design kits</Link>
+            </Box>
+          ) : (
+            <Box sx={{ display: { xs: 'none', md: 'block' } }} />
+          )}
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
               Resources
             </Typography>
-            <NextLink href={ROUTES.materialIcons} passHref>
-              <Link>Material Icons</Link>
-            </NextLink>
-            <NextLink href={ROUTES.freeTemplates} passHref>
-              <Link>Free templates</Link>
-            </NextLink>
-            <NextLink href={ROUTES.components} passHref>
-              <Link>Components</Link>
-            </NextLink>
-            <NextLink href={ROUTES.customization} passHref>
-              <Link>Customization</Link>
-            </NextLink>
-            <NextLink href={ROUTES.styling} passHref>
-              <Link>Styling</Link>
-            </NextLink>
+            <Link href={ROUTES.materialIcons}>Material Icons</Link>
+            <Link href={ROUTES.freeTemplates}>Free templates</Link>
+            <Link href={ROUTES.components}>Components</Link>
+            <Link href={ROUTES.customization}>Customization</Link>
+            <Link href={ROUTES.theming}>Theming</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
               Explore
             </Typography>
-            <NextLink href={ROUTES.documentation} passHref>
-              <Link>Documentation</Link>
-            </NextLink>
-            <NextLink href={ROUTES.blog} passHref>
-              <Link>Blog</Link>
-            </NextLink>
-            <NextLink href={ROUTES.showcase} passHref>
-              <Link>Showcase</Link>
-            </NextLink>
-            <NextLink href={ROUTES.roadmap} passHref>
-              <Link>Roadmap</Link>
-            </NextLink>
-            <NextLink href={ROUTES.languages} passHref>
-              <Link>Languages</Link>
-            </NextLink>
+            <Link href={ROUTES.documentation}>Documentation</Link>
+            <Link href={ROUTES.blog}>Blog</Link>
+            <Link href={ROUTES.showcase}>Showcase</Link>
+            <Link href={ROUTES.roadmap}>Roadmap</Link>
+            <Link href={ROUTES.languages}>Languages</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
               Company
             </Typography>
-            <NextLink href={ROUTES.about}>
-              <Link>About</Link>
-            </NextLink>
-            <NextLink href={ROUTES.vision}>
-              <Link>Vision</Link>
-            </NextLink>
-            <NextLink href={ROUTES.careers}>
-              <Link>Careers</Link>
-            </NextLink>
-            <NextLink href={ROUTES.support}>
-              <Link>Support</Link>
-            </NextLink>
-            <NextLink href={ROUTES.contactUs}>
-              <Link>Contact us</Link>
-            </NextLink>
+            <Link href={ROUTES.about}>About</Link>
+            <Link href={ROUTES.vision}>Vision</Link>
+            <Box sx={{ display: 'flex', alignItems: 'end' }}>
+              <Link href={ROUTES.careers}>Careers </Link>
+              <Box
+                sx={{
+                  px: 0.5,
+                  py: '3px',
+                  ml: 1,
+                  mb: '1px',
+                  borderRadius: 0.5,
+                  fontSize: (theme) => theme.typography.pxToRem(9),
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  color: '#fff',
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.error[800]
+                      : theme.palette.error.main,
+                }}
+              >
+                Hiring
+              </Box>
+            </Box>
+            <Link href={ROUTES.support}>Support</Link>
+            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
+              Contact us
+            </Link>
           </Box>
         </Box>
       </Box>
       <Divider />
-      <Box sx={{ py: 4 }}>
+      <Box
+        sx={{
+          py: 4,
+          display: { xs: 'block', sm: 'flex' },
+          alignItems: { sm: 'center' },
+          justifyContent: { sm: 'space-between' },
+        }}
+      >
         <Typography color="text.secondary" variant="body2">
-          Currently v4.11.0. Released under the MIT License. Copyright © 2020 Material-UI.
+          Copyright © {new Date().getFullYear()} Material-UI SAS.
         </Typography>
+        <Box sx={{ py: { xs: 2, sm: 0 } }}>
+          <Stack spacing={2} direction="row">
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/mui"
+              aria-label="github"
+              title="GitHub"
+              size="small"
+            >
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://stackoverflow.com/questions/tagged/mui"
+              aria-label="Stack Overflow"
+              title="Stack Overflow"
+              size="small"
+            >
+              <SvgStackOverflow fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/MUI_hq"
+              aria-label="twitter"
+              title="Twitter"
+              size="small"
+            >
+              <TwitterIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/company/mui/"
+              aria-label="linkedin"
+              title="LinkedIn"
+              size="small"
+            >
+              <LinkedInIcon fontSize="small" />
+            </IconButton>
+          </Stack>
+        </Box>
       </Box>
     </Container>
   );

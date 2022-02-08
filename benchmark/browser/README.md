@@ -14,7 +14,7 @@ You should use these numbers exclusively for comparing performance between diffe
 
 For compareable results ask a maintainer to approve the CircleCI job `benchmark`.
 
-```
+```sh
 noop (baseline):
   06.29 ±00.44ms
 Table:
@@ -23,7 +23,7 @@ React primitives:
   34 ±6%
 React components:
   45 ±3%
-Styled Material-UI:
+Styled MUI:
   73 ±4%
 Styled emotion:
   67 ±3%
@@ -33,13 +33,13 @@ makeStyles:
   71 ±3%
 Box Baseline:
   81 ±3%
-Box Material-UI:
+Box MUI:
   209 ±15%
 Box Theme-UI:
   172 ±8%
 Box Chakra-UI:
   115 ±8%
-styled-components Box + @material-ui/system:
+styled-components Box + @mui/system:
   194 ±9%
 styled-components Box + styled-system:
   162 ±10%

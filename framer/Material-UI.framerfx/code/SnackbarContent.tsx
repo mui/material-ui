@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiSnackbarContent from '@material-ui/core/SnackbarContent';
-import MuiButton from '@material-ui/core/Button';
+import MuiSnackbarContent from '@mui/material/SnackbarContent';
+import MuiButton from '@mui/material/Button';
 
 interface Props {
   message: string;

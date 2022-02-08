@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiLinearProgress from '@material-ui/core/LinearProgress';
+import MuiLinearProgress from '@mui/material/LinearProgress';
 
 interface Props {
   value: number;

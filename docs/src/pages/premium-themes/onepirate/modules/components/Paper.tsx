@@ -1,6 +1,6 @@
 import * as React from 'react';
-import MuiPaper, { PaperProps } from '@material-ui/core/Paper';
-import { styled } from '@material-ui/core/styles';
+import MuiPaper, { PaperProps } from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
 interface ExtraPaperProps {
   background: 'light' | 'main' | 'dark';

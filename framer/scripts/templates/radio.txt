@@ -1,8 +1,8 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
-import Mui«componentName» from '@material-ui/core/«componentName»';
+import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
+import Mui«componentName» from '@mui/material/«componentName»';
 
 interface Props extends Omit<FormControlLabelProps, 'control'> {
 «& tsInterface»

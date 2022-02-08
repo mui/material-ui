@@ -1,0 +1,3 @@
+<ThemeProvider theme={theme}>
+  <Button>font-size: 1rem</Button>
+</ThemeProvider>

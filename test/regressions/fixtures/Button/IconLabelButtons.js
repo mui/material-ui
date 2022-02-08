@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-import SendIcon from '@material-ui/icons/Send';
+import Button from '@mui/material/Button';
+import Icon from '@mui/material/Icon';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function IconLabelButtons() {
   return (

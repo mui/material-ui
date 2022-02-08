@@ -1,6 +1,6 @@
 # eslint-plugin-material-ui
 
-Custom eslint rules for Material-UI.
+Custom eslint rules for MUI.
 
 ## List of supported rules
 
@@ -40,7 +40,7 @@ Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-r
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }

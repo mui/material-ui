@@ -1,16 +1,19 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import NextLink from 'next/link';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
-import CheckRounded from '@material-ui/icons/CheckRounded';
+import Box, { BoxProps } from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
+import CheckRounded from '@mui/icons-material/CheckRounded';
 import ROUTES from 'docs/src/route';
+import Link from 'docs/src/modules/components/Link';
 
-export default function GetStartedButtons(props: BoxProps) {
+export default function GetStartedButtons({
+  installation = 'npm install @mui/material @emotion/react @emotion/styled',
+  to = ROUTES.documentation,
+  ...props
+}: { installation?: string; to?: string } & BoxProps) {
   const [copied, setCopied] = React.useState(false);
-  const installation = 'npm install @mui/core';
   const handleCopy = () => {
     setCopied(true);
     copy(installation).then(() => {
@@ -23,28 +26,38 @@ export default function GetStartedButtons(props: BoxProps) {
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
-        '&& > *': { minWidth: 'clamp(0px, (449px - 100%) * 999 ,100%)' },
+        '&& > *': { minWidth: 'clamp(0px, (492px - 100%) * 999 ,100%)' },
         ...props.sx,
       }}
     >
-      <NextLink href={ROUTES.documentation} passHref>
-        <Button
-          component="a"
-          size="large"
-          variant="contained"
-          endIcon={<KeyboardArrowRightRounded />}
-        >
-          Get Started
-        </Button>
-      </NextLink>
-      <Box sx={{ width: 16, height: 16 }} />
+      <Button
+        href={to}
+        component={Link}
+        noLinkStyle
+        size="large"
+        variant="contained"
+        endIcon={<KeyboardArrowRightRounded />}
+        sx={{ mr: { xs: 0, sm: 2 } }}
+      >
+        Get started
+      </Button>
+      <Box sx={{ py: 1, display: { xs: 'block', sm: 'hidden' } }} />
       <Button
         size="large"
         // @ts-expect-error
         variant="code"
-        startIcon="$"
         endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
         onClick={handleCopy}
+        sx={{
+          maxWidth: '324px',
+          display: 'inline-block',
+          justifyContent: 'start',
+          overflowX: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+          position: 'relative',
+          pr: 5,
+        }}
       >
         {installation}
       </Button>

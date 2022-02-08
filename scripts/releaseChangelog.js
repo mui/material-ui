@@ -8,7 +8,7 @@ const exec = promisify(childProcess.exec);
 
 /**
  * @param {string} commitMessage
- * @returns {string} The tags in lowercases, ordered ascending and commaseparated
+ * @returns {string} The tags in lowercases, ordered ascending and comma separated
  */
 function parseTags(commitMessage) {
   const tagMatch = commitMessage.match(/^(\[[\w-]+\])+/);
@@ -78,7 +78,7 @@ async function main(argv) {
    */
   const timeline = octokit.paginate.iterator(
     octokit.repos.compareCommits.endpoint.merge({
-      owner: 'mui-org',
+      owner: 'mui',
       repo: 'material-ui',
       base: lastRelease,
       head: release,
@@ -121,17 +121,16 @@ async function main(argv) {
   });
   const changes = commitsItems.map((commitsItem) => {
     // Helps changelog author keeping track of order when grouping commits under headings.
-    const dateSortMarker = `<!-- ${(
-      commitsItemsByDateDesc.length - commitsItemsByDateDesc.indexOf(commitsItem)
-    )
+    // &#8203; is a zero-width-space that ensures that the content of the listitem is formatted properly
+    const dateSortMarker = `&#8203;<!-- ${(commitsItems.length - commitsItems.indexOf(commitsItem))
       .toString()
       // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
       // i.e. we can sort the lines alphanumerically
       .padStart(Math.ceil(Math.log10(commitsItemsByDateDesc.length)), '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
-    return `- ${dateSortMarker} ${shortMessage} @${commitsItem.author.login}`;
+    return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
   });
-  const nowFormated = new Date().toLocaleDateString('en-US', {
+  const nowFormatted = new Date().toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
@@ -140,9 +139,9 @@ async function main(argv) {
   const changelog = `
 ## TODO RELEASE NAME
 <!-- generated comparing ${lastRelease}..${release} -->
-_${nowFormated}_
+_${nowFormatted}_
 
-Big thanks to the ${
+A big thanks to the ${
     authors.length
   } contributors who made this release possible. Here are some highlights ✨:
 
@@ -165,7 +164,7 @@ yargs
       return command
         .option('lastRelease', {
           describe:
-            'The release to compare gainst e.g. `v5.0.0-alpha.23`. Default: The latest tag on the current branch.',
+            'The release to compare against e.g. `v5.0.0-alpha.23`. Default: The latest tag on the current branch.',
           type: 'string',
         })
         .option('githubToken', {
@@ -175,7 +174,8 @@ yargs
           type: 'string',
         })
         .option('release', {
-          default: 'next',
+          // #default-branch-switch
+          default: 'master',
           describe: 'Ref which we want to release',
           type: 'string',
         });

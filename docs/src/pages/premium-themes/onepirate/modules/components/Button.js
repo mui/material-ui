@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import MuiButton from '@material-ui/core/Button';
+import { experimentalStyled as styled } from '@mui/material/styles';
+import MuiButton from '@mui/material/Button';
 
 const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
   borderRadius: 0,
@@ -22,7 +22,7 @@ const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
   }),
 }));
 
-// See https://next.material-ui.com/guides/typescript/#usage-of-component-prop for why the types uses `C`.
+// See https://mui.com/guides/typescript/#usage-of-component-prop for why the types uses `C`.
 function Button(props) {
   return <ButtonRoot {...props} />;
 }

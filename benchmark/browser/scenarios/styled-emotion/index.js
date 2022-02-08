@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import emotionStyled from '@emotion/styled';
 
 const Div = emotionStyled('div')(

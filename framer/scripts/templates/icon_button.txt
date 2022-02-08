@@ -1,8 +1,8 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiIconButton, { IconButtonProps as MuiIconButtonProps } from '@material-ui/core/IconButton';
-import MuiBadge from '@material-ui/core/Badge';
+import MuiIconButton, { IconButtonProps as MuiIconButtonProps } from '@mui/material/IconButton';
+import MuiBadge from '@mui/material/Badge';
 import { Icon } from './Icon';
 
 interface Props extends MuiIconButtonProps {

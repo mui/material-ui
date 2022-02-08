@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
 
 /**
  * Based on https://github.com/sindresorhus/new-github-issue-url/blob/061fa0ddb7d51f3b96d3a0f6a6bebb196f105a7b/index.js
@@ -38,13 +38,13 @@ export default class DemoErrorBoundary extends React.Component {
       const title = `[docs] Demo ${name} crashes`;
       const searchQuery = encodeURIComponent(`is:issue ${title}`);
       const issueLink = newGithubIssueUrl({
-        user: 'mui-org',
+        user: 'mui',
         repo: 'material-ui',
         title,
         body: `
 <!-- Please make sure you have fullfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
-- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
+- [ ] I have [searched for similar issues](https://github.com/mui/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
 
 ## Steps to Reproduce
 1. Visit ${window.location.href}
@@ -54,7 +54,7 @@ export default class DemoErrorBoundary extends React.Component {
 ## Your Environment
 | Tech         | Version |
 |--------------|---------|
-| Material-UI  | v${process.env.LIB_VERSION}  |
+| MUI  | v${process.env.LIB_VERSION}  |
 | netlify deploy | ${process.env.NETLIFY_DEPLOY_URL} |
 | Browser      | ${
           typeof window !== 'undefined' && window.navigator

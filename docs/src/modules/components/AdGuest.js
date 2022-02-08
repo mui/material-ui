@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Portal from '@material-ui/core/Portal';
+import Portal from '@mui/material/Portal';
 import { AdContext } from 'docs/src/modules/components/AdManager';
 
 export default function AdGuest(props) {

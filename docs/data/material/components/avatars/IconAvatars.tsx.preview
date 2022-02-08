@@ -1,0 +1,9 @@
+<Avatar>
+  <FolderIcon />
+</Avatar>
+<Avatar sx={{ bgcolor: pink[500] }}>
+  <PageviewIcon />
+</Avatar>
+<Avatar sx={{ bgcolor: green[500] }}>
+  <AssignmentIcon />
+</Avatar>

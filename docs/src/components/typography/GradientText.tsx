@@ -1,4 +1,4 @@
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const GradientText = styled('span')<{
   color?: 'primary' | 'error' | 'success' | 'warning';
@@ -7,7 +7,7 @@ const GradientText = styled('span')<{
     theme.palette.mode === 'dark'
       ? theme.palette.primary.main
       : `linear-gradient(to right, ${theme.palette[color].main}, ${theme.palette[color][700]})`,
-  backgroundClip: 'text',
+  WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
 }));
 

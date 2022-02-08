@@ -1,14 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { alpha, styled } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-import NoSsr from '@material-ui/core/NoSsr';
+import { alpha, styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import NoSsr from '@mui/material/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
-import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
+import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
@@ -20,7 +19,7 @@ const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
-      height: theme.spacing(6),
+      height: theme.spacing(8),
     },
   };
 });
@@ -76,11 +75,11 @@ const Root = styled('div')(({ theme }) => ({
   marginLeft: theme.spacing(-2),
   marginRight: theme.spacing(-2),
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(0, 1),
     marginLeft: 0,
     marginRight: 0,
   },
 }));
+
 const DemoRoot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
 })(({ theme, hiddenToolbar, bg }) => ({
@@ -90,39 +89,38 @@ const DemoRoot = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 10,
+    ...(bg === 'outlined' && {
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    }),
+    /* Make no difference between the demo and the markdown. */
+    ...(bg === 'inline' && {
+      padding: theme.spacing(3),
+    }),
+    ...(hiddenToolbar && {
+      paddingTop: theme.spacing(3),
+    }),
   },
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
     backgroundColor: theme.palette.background.paper,
-    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+    border: `1px solid ${alpha(theme.palette.action.active, 0.1)}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    [theme.breakpoints.up('sm')]: {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    },
   }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: theme.palette.mode === 'dark' ? '#333' : theme.palette.grey[100],
-  }),
-  /* Make no difference between the demo and the markdown. */
-  ...(bg === 'inline' && {
-    // Maintain alignment with the markdown text
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(3),
-    },
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
   }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(3),
-    },
   }),
 }));
+
 const Code = styled(HighlightedCode)(({ theme }) => ({
   padding: 0,
   marginBottom: theme.spacing(1),
@@ -131,16 +129,16 @@ const Code = styled(HighlightedCode)(({ theme }) => ({
     marginTop: theme.spacing(0),
   },
   '& pre': {
-    overflow: 'auto',
-    lineHeight: 1.5,
     margin: '0 auto',
     maxHeight: 'min(68vh, 1000px)',
   },
 }));
+
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
   position: 'absolute',
 });
+
 const InitialFocus = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
   top: 0,
@@ -152,7 +150,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation } = props;
   const t = useTranslate();
-  const codeVariant = useSelector((state) => state.options.codeVariant);
+  const codeVariant = useCodeVariant();
   const demoData = useDemoData(codeVariant, demo, githubLocation);
 
   const [demoHovered, setDemoHovered] = React.useState(false);
@@ -191,12 +189,8 @@ export default function Demo(props) {
     }
   }, [demoName]);
 
-  const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
-    !demoOptions.hideToolbar &&
-    demoOptions.defaultCodeOpen !== false &&
-    jsx !== demoData.raw &&
-    jsx.split(/\n/).length <= 17;
+    !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
 
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
@@ -259,7 +253,7 @@ export default function Demo(props) {
         <div>
           <Code
             id={demoSourceId}
-            code={showPreview && !codeOpen ? jsx : demoData.raw}
+            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
             language={demoData.sourceLanguage}
           />
         </div>

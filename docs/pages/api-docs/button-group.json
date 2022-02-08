@@ -21,12 +21,17 @@
     },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'"
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "union",
@@ -70,9 +75,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/ButtonGroup/ButtonGroup.js",
+  "filename": "/packages/mui-material/src/ButtonGroup/ButtonGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/button-group/\">Button Group</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

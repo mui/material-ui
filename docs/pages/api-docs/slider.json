@@ -11,15 +11,20 @@
       },
       "default": "'primary'"
     },
-    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",
-        "description": "{ Mark?: elementType, MarkLabel?: elementType, Rail?: elementType, Root?: elementType, Thumb?: elementType, Track?: elementType, ValueLabel?: elementType }"
+        "description": "{ Input?: elementType, Mark?: elementType, MarkLabel?: elementType, Rail?: elementType, Root?: elementType, Thumb?: elementType, Track?: elementType, ValueLabel?: elementType }"
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: object, mark?: object, markLabel?: object, rail?: object, root?: object, thumb?: object, track?: object, valueLabel?: { className?: string, components?: { Root?: elementType }, style?: object, value?: Array&lt;number&gt;<br>&#124;&nbsp;number, valueLabelDisplay?: 'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on' } }"
+      },
+      "default": "{}"
+    },
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
@@ -46,11 +51,19 @@
     },
     "scale": { "type": { "name": "func" }, "default": "(x) => x" },
     "size": {
-      "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
+      "type": {
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "step": { "type": { "name": "number" }, "default": "1" },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {
@@ -101,14 +114,17 @@
       "thumbColorSecondary",
       "thumbSizeSmall"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "active": "Mui-active",
+      "focusVisible": "Mui-focusVisible"
+    },
     "name": "MuiSlider"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/Slider/Slider.js",
+  "filename": "/packages/mui-material/src/Slider/Slider.js",
   "inheritance": { "component": "SliderUnstyled", "pathname": "/api/slider-unstyled/" },
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

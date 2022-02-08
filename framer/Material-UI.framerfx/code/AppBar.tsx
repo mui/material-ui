@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PropertyControls, ControlType } from 'framer';
-import MuiAppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import { IconButton } from './IconButton';
 
 // Define type of property
@@ -24,7 +24,7 @@ export class AppBar extends React.Component<Props> {
     width: 300,
     height: 56,
     leftIcon: 'menu',
-    title: 'Material-UI',
+    title: 'MUI',
     action1: 'Login',
     action2: '',
     icon1: 'notifications',

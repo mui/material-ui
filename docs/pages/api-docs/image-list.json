@@ -9,7 +9,12 @@
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
       "default": "'auto'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "union",
@@ -26,9 +31,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
-  "filename": "/packages/material-ui/src/ImageList/ImageList.js",
+  "filename": "/packages/mui-material/src/ImageList/ImageList.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

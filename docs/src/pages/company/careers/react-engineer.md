@@ -1,52 +1,62 @@
-# React Engineer
+# React Engineer - X
 
-<p class="description">We are looking for a React Engineer to support the advanced components team, build new ambitious enterprise features, and grow the open-source adoption.</p>
+<p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-5 to UTC+4).
-- Type of work: Contractor (full-time, convertible to an employee position in the future).
+- Location: Remote (preference for UTC-6 to UTC+3).
+- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
-## About us
+## About the company
 
-See the [careers](/company/careers/) and [about us](https://next.material-ui.com/branding/about/) pages.
+MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
+Today, countless teams and organizations rely on our open-source projects to build their design system.
 
-### Why we're hiring
+A couple of years ago, we started to expand our suite of products.
+We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
+We've seen rapid growth with all of them (2-3x per year) and we have more to come.
 
-Both our open-source community and our premium products are growing fast (x2-3 YoY). We need talented engineers to keep that going!
+We are a fully distributed team, spread across multiple timezones.
+We work mainly asynchronously, relying mostly on written collaboration.
+Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
+For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
-The advanced components team (X) needs help to develop the enterprise features.
-We have started with the [data grid](/components/data-grid/#commercial-version).
-We need to build new features and introduce new components.
+## Why we're hiring
+
+Both our open-source community and our premium products are growing fast (x2-3 YoY).
+We need talented people to keep that going!
+
+The advanced components team (MUI X) needs help.
+We have started with the [data grid](/components/data-grid/#commercial-version) component.
+We need to build new features on it and introduce new components.
 The enterprise version is built on the open-source version of the components.
 
 We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
+## About the role
+
 ### Why this is interesting
 
-Our solution is empowering React developers to build awesome applications.
-It should be easy, it shouldn't require any advanced technical skills.
-Hundreds of thousands of developers use Material-UI every month.
+The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
 
-Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
-
-## About the role
+Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
 ### What you'll do on a day-to-day basis
 
-Depending on the day or the team you join, you'll:
+Depending on the day, you'll:
 
 - **Help guide architectural decisions**.
-  The future of Material-UI is discussed and planned in our public RFCs and issues.
-  You'll be helping drive these conversations and guiding Material-UI toward the best possible solutions.
+  The future of MUI is discussed and planned in our public RFCs and issues.
+  You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
 - **Contribute to deep, meaningful refactors and feature releases**.
-  Material-UI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
+  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
 - **Reduce friction**.
-  A large amount of the work on Material-UI is reducing friction and making it easier to use.
+  A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier to understand error messages, and writing documentation and blog posts about features you ship.
 - **Collaborate with the community**.
   Many small as well as meaningful fixes and features have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
@@ -61,7 +71,7 @@ Depending on the day or the team you join, you'll:
 
 - **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making Material-UI the go-to UI framework** for building applications, websites, and design systems with React.
+- **Your role will be key to making MUI the go-to UI framework** for building applications, websites, and design systems with React.
 
 ### The worst parts of this job
 
@@ -71,7 +81,7 @@ Depending on the day or the team you join, you'll:
   It's fun, rewarding work, but it can be very challenging.
 - **We move quickly, but don't sacrifice quality**.
   We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **Material-UI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
+- **MUI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
@@ -82,7 +92,7 @@ We're looking for someone with strong front-end skills. More important than spec
 ### Skills you should have
 
 - **Expertise in the modern JavaScript ecosystem**.
-  Material-UI is built on the shoulders of giants, making use of technologies such as ES2020, TypeScript, Node.js, React, Next.js, webpack, and Babel.
+  MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**.
@@ -105,12 +115,14 @@ We're looking for someone with strong front-end skills. More important than spec
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to Material-UI before**. A history of contributing to Material-UI would be a definite plus.
+- **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
 
-## Compensation
+## Benefits & Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation depending on the profile and location.
+We are ready to pay top market rates for a person that can significantly push the mission forward.
+You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
-## Apply
+## How to apply?
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20X)

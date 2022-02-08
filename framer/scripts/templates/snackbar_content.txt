@@ -1,8 +1,8 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import Mui«componentName» from '@material-ui/core/«componentName»';
-import MuiButton from '@material-ui/core/Button';
+import Mui«componentName» from '@mui/material/«componentName»';
+import MuiButton from '@mui/material/Button';
 
 interface Props {
 «& tsInterface»

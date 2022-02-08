@@ -1,21 +1,24 @@
-/* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
+/* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import clsx from 'clsx';
-import { exactProp } from '@material-ui/utils';
-import { styled } from '@material-ui/core/styles';
-import Alert from '@material-ui/core/Alert';
-import Typography from '@material-ui/core/Typography';
+import { exactProp } from '@mui/utils';
+import { styled } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import Typography from '@mui/material/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
+import replaceHtmlLinks from 'docs/src/modules/utils/replaceHtmlLinks';
 
 const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
   const t = useTranslate();
+  const router = useRouter();
 
   return (
     <table>
@@ -56,7 +59,7 @@ function PropsTable(props) {
                 <td align="left">
                   {propData.deprecated && (
                     <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-                      <strong>Deprecated</strong>
+                      <strong>{t('api-docs.deprecated')}</strong>
                       {propData.deprecationInfo && ' - '}
                       {propData.deprecationInfo && (
                         <span
@@ -69,7 +72,7 @@ function PropsTable(props) {
                   )}
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: propDescriptions[propName] || '',
+                      __html: replaceHtmlLinks(propDescriptions[propName] || '', router.asPath),
                     }}
                   />
                 </td>
@@ -180,6 +183,7 @@ Heading.propTypes = {
 };
 
 function ApiDocs(props) {
+  const router = useRouter();
   const { descriptions, pageContent } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
@@ -193,8 +197,6 @@ function ApiDocs(props) {
     name: componentName,
     props: componentProps,
     spread,
-    // TODO: Drop once migration to emotion is complete since this will always be true.
-    styledComponent,
     styles: componentStyles,
   } = pageContent;
 
@@ -207,12 +209,12 @@ function ApiDocs(props) {
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
-    .replace(
-      /\/packages\/material-ui(-(.+?))?\/src/,
-      (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
-    )
+    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+
+  // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
+  const apiSourceLocation = filename.replace('.js', '.d.ts');
 
   function createTocEntry(sectionName) {
     return {
@@ -231,7 +233,7 @@ function ApiDocs(props) {
     ...componentDescriptionToc,
     componentStyles.name && createTocEntry('component-name'),
     createTocEntry('props'),
-    componentStyles.classes && createTocEntry('css'),
+    componentStyles.classes.length > 0 && createTocEntry('css'),
     createTocEntry('demos'),
   ].filter(Boolean);
 
@@ -263,8 +265,8 @@ function ApiDocs(props) {
       description={description}
       disableAd={false}
       disableToc={false}
-      location={filename}
-      title={`${componentName} API – Material-UI`}
+      location={apiSourceLocation}
+      title={`${componentName} API`}
       toc={toc}
     >
       <MarkdownElement>
@@ -285,7 +287,11 @@ import { ${componentName} } from '${source}';`}
           <React.Fragment>
             <br />
             <br />
-            <span dangerouslySetInnerHTML={{ __html: componentDescription }} />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: replaceHtmlLinks(componentDescription, router.asPath),
+              }}
+            />
           </React.Fragment>
         ) : null}
         {componentStyles.name && (
@@ -293,16 +299,19 @@ import { ${componentName} } from '${source}';`}
             <Heading hash="component-name" />
             <span
               dangerouslySetInnerHTML={{
-                __html: t('api-docs.styleOverrides').replace(
-                  /{{componentStyles\.name}}/,
-                  componentStyles.name,
+                __html: replaceHtmlLinks(
+                  t('api-docs.styleOverrides').replace(
+                    /{{componentStyles\.name}}/,
+                    componentStyles.name,
+                  ),
+                  router.asPath,
                 ),
               }}
             />
           </React.Fragment>
         )}
         <Heading hash="props" />
-        <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
+        <p dangerouslySetInnerHTML={{ __html: replaceHtmlLinks(spreadHint, router.asPath) }} />
         <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
         <br />
         {cssComponent && (
@@ -322,11 +331,14 @@ import { ${componentName} } from '${source}';`}
             <Heading hash="inheritance" level="h3" />
             <span
               dangerouslySetInnerHTML={{
-                __html: t('api-docs.inheritanceDescription')
-                  .replace(/{{component}}/, inheritance.component)
-                  .replace(/{{pathname}}/, inheritance.pathname)
-                  .replace(/{{suffix}}/, inheritanceSuffix)
-                  .replace(/{{componentName}}/, componentName),
+                __html: replaceHtmlLinks(
+                  t('api-docs.inheritanceDescription')
+                    .replace(/{{component}}/, inheritance.component)
+                    .replace(/{{pathname}}/, inheritance.pathname)
+                    .replace(/{{suffix}}/, inheritanceSuffix)
+                    .replace(/{{componentName}}/, componentName),
+                  router.asPath,
+                ),
               }}
             />
           </React.Fragment>
@@ -341,24 +353,13 @@ import { ${componentName} } from '${source}';`}
             />
             <br />
             <span dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-            {styledComponent ? (
-              <span
-                dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStylesStyledComponent') }}
-              />
-            ) : (
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.overrideStylesJss').replace(
-                    /{{URL}}/,
-                    `${process.env.SOURCE_CODE_ROOT_URL}${filename}`,
-                  ),
-                }}
-              />
-            )}
+            <span
+              dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStylesStyledComponent') }}
+            />
           </React.Fragment>
         ) : null}
         <Heading hash="demos" />
-        <span dangerouslySetInnerHTML={{ __html: demos }} />
+        <span dangerouslySetInnerHTML={{ __html: replaceHtmlLinks(demos, router.asPath) }} />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">

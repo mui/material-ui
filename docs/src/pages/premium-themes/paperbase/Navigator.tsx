@@ -1,22 +1,22 @@
 import * as React from 'react';
-import Divider from '@material-ui/core/Divider';
-import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Box from '@material-ui/core/Box';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemButton from '@material-ui/core/ListItemButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
-import PeopleIcon from '@material-ui/icons/People';
-import DnsRoundedIcon from '@material-ui/icons/DnsRounded';
-import PermMediaOutlinedIcon from '@material-ui/icons/PhotoSizeSelectActual';
-import PublicIcon from '@material-ui/icons/Public';
-import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
-import SettingsInputComponentIcon from '@material-ui/icons/SettingsInputComponent';
-import TimerIcon from '@material-ui/icons/Timer';
-import SettingsIcon from '@material-ui/icons/Settings';
-import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
+import Divider from '@mui/material/Divider';
+import Drawer, { DrawerProps } from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Box from '@mui/material/Box';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import HomeIcon from '@mui/icons-material/Home';
+import PeopleIcon from '@mui/icons-material/People';
+import DnsRoundedIcon from '@mui/icons-material/DnsRounded';
+import PermMediaOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActual';
+import PublicIcon from '@mui/icons-material/Public';
+import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
+import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputComponent';
+import TimerIcon from '@mui/icons-material/Timer';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
 
 const categories = [
   {

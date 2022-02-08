@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
-import MuiRadio from '@material-ui/core/Radio';
+import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
+import MuiRadio from '@mui/material/Radio';
 
 interface Props extends Omit<FormControlLabelProps, 'control'> {
   disabled: boolean;
