@@ -8,8 +8,8 @@ _Feb 7, 2022_
 
 A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
 
-- ♿️ Ensured Snackbar messages are announced by screen reader (#30774) @eps1lon
-- Number of 🐛 bug fixes and 📚 documentation improvements.
+- ♿️ Snackbar messages are now announced by NVDA when using Firefox (#30774) @eps1lon
+- Several 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.4.1`
 

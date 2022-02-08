@@ -60,7 +60,7 @@
     "@mui/base": "5.0.0-alpha.68",
     "@mui/system": "^5.4.1",
     "@mui/types": "^7.1.1",
-    "@mui/utils": "^5.3.1",
+    "@mui/utils": "^5.4.1",
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",
     "hoist-non-react-statics": "^3.3.2",

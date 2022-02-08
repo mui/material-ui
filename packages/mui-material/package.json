@@ -64,7 +64,7 @@
     "@mui/base": "5.0.0-alpha.68",
     "@mui/system": "^5.4.1",
     "@mui/types": "^7.1.1",
-    "@mui/utils": "^5.3.1",
+    "@mui/utils": "^5.4.1",
     "@types/react-transition-group": "^4.4.4",
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",

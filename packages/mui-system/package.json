@@ -57,10 +57,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.7",
-    "@mui/private-theming": "^5.3.1",
-    "@mui/styled-engine": "^5.3.1",
+    "@mui/private-theming": "^5.4.1",
+    "@mui/styled-engine": "^5.4.1",
     "@mui/types": "^7.1.1",
-    "@mui/utils": "^5.3.1",
+    "@mui/utils": "^5.4.1",
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",
     "prop-types": "^15.7.2"
