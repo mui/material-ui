@@ -58,7 +58,7 @@ The amount the drawer appears by can be configured using `discoveryAmount`, and 
 
 Using a mobile device or mobile view, you can touch near the edge of the screen to discover the drawers.
 
-{{"demo": "pages/components/drawers/SwipeableDiscoveryAmount.js"}}
+{{"demo": "SwipeableDiscoveryAmount.js"}}
 
 ### Swipeable edge
 
