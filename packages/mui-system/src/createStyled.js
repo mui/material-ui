@@ -53,6 +53,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
+// Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
