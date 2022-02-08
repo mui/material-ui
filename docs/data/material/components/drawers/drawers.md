@@ -56,7 +56,7 @@ You can make the drawer appear slightly when the user touches the screen near wh
 
 The amount the drawer appears by can be configured using `discoveryAmount`, and it can be disabled using `disableDiscovery`.
 
-If you are on mobile, you can click near the edge of the screen to discover the drawers.
+Using a mobile device or mobile view, you can touch near the edge of the screen to discover the drawers.
 
 {{"demo": "pages/components/drawers/SwipeableDiscoveryAmount.js"}}
 
