@@ -8,11 +8,9 @@ const heights = [150, 30, 90, 70, 110, 150, 130, 80, 50, 90, 100, 150, 30, 50, 8
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
+  padding: theme.spacing(0.5),
+  textAlign: 'center',
   color: theme.palette.text.secondary,
-  border: '1px solid black',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
 }));
 
 export default function SSRMasonry() {
@@ -20,7 +18,7 @@ export default function SSRMasonry() {
     <Box sx={{ width: 500, minHeight: 393 }}>
       <Masonry
         columns={4}
-        spacing={1}
+        spacing={2}
         defaultHeight={450}
         defaultColumns={4}
         defaultSpacing={1}
