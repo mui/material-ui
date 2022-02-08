@@ -1,5 +1,5 @@
 import { SelectOption } from './useSelectProps';
-import PopperUnstyled from '../PopperUnstyled';
+import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 
 export interface SelectUnstyledComponentsPropsOverrides {}
 
@@ -20,7 +20,7 @@ export interface SelectUnstyledCommonProps {
   components?: {
     Root?: React.ElementType;
     Listbox?: React.ElementType;
-    Popper?: React.ElementType;
+    Popper?: React.ComponentType<PopperUnstyledProps>;
   };
   /**
    * The props used for each slot inside the Input.

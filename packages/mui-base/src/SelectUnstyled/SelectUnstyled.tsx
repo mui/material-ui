@@ -172,7 +172,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     {
       open: listboxOpen,
       anchorEl: buttonRef.current,
-      placement: 'bottom-start',
+      placement: 'bottom-start' as const,
       disablePortal: true,
       role: undefined,
       ...componentsProps.popper,

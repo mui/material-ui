@@ -179,7 +179,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     {
       open: listboxOpen,
       anchorEl: buttonRef.current,
-      placement: 'bottom-start',
+      placement: 'bottom-start' as const,
       disablePortal: true,
       role: undefined,
       ...componentsProps.popper,
