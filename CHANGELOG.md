@@ -37,6 +37,8 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 16 -->[examples] Fix vitejs example and improve HMR (#30897) @mihailgaberov
+- &#8203;<!-- 33 -->[docs] Improve autocomplete "limit tags" demo (#30910) @danilo-leal
+- &#8203;<!-- 34 -->[docs] Sync translations with Crowdin (#30950) @l10nbot
 - &#8203;<!-- 38 -->[docs] Improve description of the disableRestoreFocus prop of the `TrapFocus` (#30912) @flaviendelangle
 - &#8203;<!-- 32 -->[docs] Remove ul with div children and replace with nav element (#30534) @joeframbach
 - &#8203;<!-- 31 -->[docs] Add Saleor to showcase (#30924) @cherniavskii
@@ -61,6 +63,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 37 -->[core] Batch small fixes (#30952) @oliviertassinari
 - &#8203;<!-- 34 -->[core] Rename the GitHub org (#30944) @oliviertassinari
 - &#8203;<!-- 33 -->[core] Fix propTypes in components where OverridableStringUnion is used (#30682) @paales
 - &#8203;<!-- 08 -->[test] Codify the difference between keyup and keydown in SelectUnstyled (#30857) @eps1lon
