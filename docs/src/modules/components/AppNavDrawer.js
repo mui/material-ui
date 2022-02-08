@@ -228,10 +228,10 @@ function ProductDrawerButton(props) {
           />
           <LinksWrapper>
             <Link
-              href={ROUTES.dataGridDocs}
+              href={ROUTES.muiXDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              Data Grid <KeyboardArrowRight fontSize="small" />
+              MUI X <KeyboardArrowRight fontSize="small" />
             </Link>
           </LinksWrapper>
         </li>

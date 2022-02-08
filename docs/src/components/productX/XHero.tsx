@@ -61,7 +61,7 @@ export default function XHero() {
           </Typography>
           <GetStartedButtons
             installation="npm install @mui/x-data-grid"
-            to={ROUTES.dataGridDocs}
+            to={ROUTES.muiXDocs}
             sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
           />
         </Box>
