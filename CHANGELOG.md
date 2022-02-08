@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.4.0..master -->
 
-_Feb 7, 2022_
+_Feb 8, 2022_
 
 A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
 
