@@ -52,9 +52,7 @@ const ROUTES = {
     ? '/material/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',
   store: 'https://mui.com/store/',
-  muiXDocs: FEATURE_TOGGLE.enable_redirects
-    ? '/x/react-data-grid/'
-    : '/components/data-grid/',
+  muiXDocs: FEATURE_TOGGLE.enable_redirects ? '/x/react-data-grid/' : '/components/data-grid/',
   dataGridFeatures: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/#features'
     : '/components/data-grid/#features',
