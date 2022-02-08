@@ -108,6 +108,7 @@ function run() {
             data = markdown.removeDemoRelativePath(data);
             if (product === 'material') {
               data = markdown.addProductFrontmatter(data, 'material');
+              data = markdown.updateMaterialTitle(filePath, data);
             }
           }
           fs.mkdirSync(info.directory, { recursive: true });

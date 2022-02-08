@@ -310,4 +310,32 @@ describe('<MobileDatePicker />', () => {
       expect(handleOpen.callCount).to.equal(0);
     });
   });
+
+  it('should retain the values on clicking Cancel button', () => {
+    const onChangeCallback = spy();
+
+    const initialDateValue = new Date('Jan 26, 2022');
+
+    render(
+      <MobileDatePicker
+        value={initialDateValue}
+        onChange={onChangeCallback}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('textbox'));
+    fireEvent.click(screen.getByLabelText('Jan 31, 2022')); // changing date followed by clicking cancel button
+
+    fireEvent.click(screen.getByText(/cancel/i));
+
+    /**
+     * picking second arg, as callback is being called twice.
+     * First, while selecting temporary date (Jan 31, 2022 in this case)
+     * Second, while clicking cancel (which is setting date back to initial value)
+     */
+    const finalDateValue = new Date(onChangeCallback.args[1][0]);
+
+    expect(finalDateValue.getTime()).to.equal(initialDateValue.getTime());
+  });
 });

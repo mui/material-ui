@@ -21,7 +21,7 @@ const Feedback = ({
 }) => {
   return (
     <Box sx={{ color: '#fff' }}>
-      <Typography variant="subtitle1" component="div" sx={{ mb: 2 }}>
+      <Typography variant="body1" fontWeight="500" component="div" sx={{ mb: 2.5 }}>
         {quote}
       </Typography>
       <Box sx={{ display: 'flex' }}>
@@ -31,15 +31,15 @@ const Feedback = ({
           alt={`Picture of ${profile.name}`}
           imgProps={{ loading: 'lazy' }}
           sx={{
-            width: 60,
-            height: 60,
-            border: '1px solid',
-            borderColor: '#fff',
+            width: 58,
+            height: 58,
+            border: '2px solid',
+            borderColor: 'primary.200',
             bgcolor: 'grey.800',
           }}
         />
         <Box sx={{ ml: 2 }}>
-          <Typography fontWeight="bold" sx={{ mb: 1 }}>
+          <Typography fontWeight="500" sx={{ mb: 1 }}>
             {profile.name},{' '}
             <Box component="span" sx={{ color: 'grey.500', fontWeight: 'regular' }}>
               {profile.role}

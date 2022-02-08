@@ -37,10 +37,11 @@ export default function GetStartedButtons({
         size="large"
         variant="contained"
         endIcon={<KeyboardArrowRightRounded />}
-        sx={{ mr: { xs: 0, md: 2 }, mb: { xs: 2, md: 0 } }}
+        sx={{ mr: { xs: 0, sm: 2 } }}
       >
         Get started
       </Button>
+      <Box sx={{ py: 1, display: { xs: 'block', sm: 'hidden' } }} />
       <Button
         size="large"
         // @ts-expect-error

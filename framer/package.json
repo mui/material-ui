@@ -1,8 +1,8 @@
 {
   "name": "framer",
-  "version": "1.0.45",
+  "version": "1.0.47",
   "description": "Builds MUI for Framer X",
-  "repository": "https://github.com/mui-org/material-ui",
+  "repository": "https://github.com/mui/material-ui",
   "author": "MUI Team",
   "license": "MIT",
   "private": true,

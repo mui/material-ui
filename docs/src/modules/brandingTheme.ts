@@ -291,10 +291,8 @@ export function getThemedComponents(theme: Theme) {
             fontWeight: 700,
           },
           sizeSmall: {
-            padding: theme.spacing(0.5, 0),
-            [theme.breakpoints.up('md')]: {
-              padding: theme.spacing(0.5, 1),
-            },
+            padding: theme.spacing(0.5, 1),
+            marginLeft: theme.spacing(-1),
           },
           containedPrimary: {
             backgroundColor: theme.palette.primary[500],
