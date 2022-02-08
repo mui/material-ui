@@ -231,7 +231,7 @@ function ProductDrawerButton(props) {
               href={ROUTES.dataGridDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              Advanced components <KeyboardArrowRight fontSize="small" />
+              Data Grid <KeyboardArrowRight fontSize="small" />
             </Link>
           </LinksWrapper>
         </li>
