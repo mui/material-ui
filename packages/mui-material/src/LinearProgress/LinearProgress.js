@@ -354,6 +354,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * The string option is added in order to allow adding custom theme colors, as shown in the [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
