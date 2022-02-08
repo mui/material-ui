@@ -4576,10 +4576,10 @@ available-typed-arrays@^1.0.2:
   dependencies:
     array-filter "^1.0.0"
 
-aws-sdk@^2.1009.0, aws-sdk@^2.1066.0:
-  version "2.1066.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1066.0.tgz#2a9b00d983f3c740a7adda18d4e9a5c34d4d3887"
-  integrity sha512-9BZPdJgIvau8Jf2l3PxInNqQd733uKLqGGDywMV71duxNTLgdBZe2zvCkbgl22+ldC8R2LVMdS64DzchfQIxHg==
+aws-sdk@^2.1009.0, aws-sdk@^2.1070.0:
+  version "2.1070.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1070.0.tgz#e7a27c34ed3a92776aa9128ed3469cb94bba9655"
+  integrity sha512-tkmuycoJ9k0qF1iq03iqyhevxP3l0OlrnUxjd0x8nZ9Ko1TGjyj0yJS4Vbd4r5RBpKUwRqedB7TAyZ/71mcZKw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
