@@ -4,15 +4,15 @@
 
 ## Introduction
 
-All the MUI components are styled with this `styled()` utility. This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/guides/styled-engine/) and provides additional features.
+All the MUI components are styled with this `styled()` utility. All the MUI components are styled with this `styled()` utility. This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
 ### 引用路径
 
-You can use the utility coming from the `@mui/system` package, or if you are using `@mui/material`, you can import it from `@mui/material/styles`. 区别是如果 React Context 上下文中没有可以用的主题的情况下，后者会自带默认的主题 `theme`。
+You can use the utility coming from the `@mui/system` package, or if you are using `@mui/material`, you can import it from `@mui/material/styles`. You can use the utility coming from the `@mui/system` package, or if you are using `@mui/material`, you can import it from `@mui/material/styles`. 区别是如果 React Context 上下文中没有可以用的主题的情况下，后者会自带默认的主题 `theme`。
 
 ### 这解决了什么问题？
 
-该能力可以作为 emotion 或者是 styled-components 中 styled()能力的替代品 处理的都是一样的问题，但是它额外提供了下面这些内容
+The utility can be used as a replacement for emotion's or styled-components' styled() utility. It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses MUI's default `theme` if no theme is available in React context.
 2. 支持根据`name`属性设置主题中的[`styleOverrides`](/customization/theme-components/#global-style-overrides) 和 [`variants`](/customization/theme-components/#adding-new-component-variants)（可忽略）。
@@ -29,9 +29,9 @@ You can use the utility coming from the `@mui/system` package, or if you are usi
 2. `options` (_object_ [optional]):
 
    - `options.shouldForwardProp` (_`(prop: string) => bool`_ [optional]): Indicates whether the `prop` should be forwarded to the `Component`.
-   - `options.label` (_string_ [optional]): css 样式后缀 Useful for debugging.
-   - `options.name` (_string_ [optional]): 会根据此属性在`theme.components` 中找到相应的`styleOverrides` and `variants`并应用到组件上 同时也会用来生成 `label`
-   - `options.slot` (_string_ [optional]):如果是`Root`, 才会自动装配主题上对应`name`下的的`styleOverrides` & <0>variants</0>.
+   - `options.label` (_string_ [optional]): css 样式后缀 Useful for debugging. Useful for debugging.
+   - `options.name` (_string_ [optional]): 会根据此属性在`theme.components` 中找到相应的`styleOverrides` and `variants`并应用到组件上 同时也会用来生成 `label` Also used for generating the `label`.
+   - `options.slot` (_string_ [optional]):如果是`Root`, 才会自动装配主题上对应`name`下的的`styleOverrides` &
    - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name].styleOverrides` object.
    - `options.skipVariantsResolver` (_bool_): 不再自动装配 `theme.components[name].variants`
    - `options.skipSx` (_bool_ [optional]): 该组件禁用`sx`属性
@@ -93,9 +93,9 @@ export default styled;
 
 ## Difference with the `sx` prop
 
-The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either emotion or styled-components. It is guaranteed that it will produce the same output as the `styled` function coming from the style library for the same input.
+The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either emotion or styled-components. It is guaranteed that it will produce the same output as the `styled` function coming from the style library for the same input. It is guaranteed that it will produce the same output as the `styled` function coming from the style library for the same input.
 
-The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
+The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components. `styled` is a function, while `sx` is a prop of the MUI components.
 
 Therefore, you will notice the following differences:
 
@@ -106,6 +106,7 @@ With `styled`:
 ```js
 const MyStyledButton = styled('button')({
   mx: 1, // ❌ don't use this! This shortcut is only provided by the `sx` prop
+}); This shortcut is only provided by the `sx` prop
 });
 ```
 
@@ -229,7 +230,7 @@ render(
 );
 ```
 
-With MUI's `styled()` utility, you can use components as selectors, too. When using `@mui/styled-engine-sc` (`styled-components`), nothing needs to be done. When using `@mui/styled-engine` (`emotion`), the default engine, there are a few steps you should perform:
+With MUI's `styled()` utility, you can use components as selectors, too. When using `@mui/styled-engine-sc` (`styled-components`), nothing needs to be done. When using `@mui/styled-engine` (`emotion`), the default engine, there are a few steps you should perform: When using `@mui/styled-engine-sc` (`styled-components`), nothing needs to be done. When using `@mui/styled-engine` (`emotion`), the default engine, there are a few steps you should perform:
 
 First, you should install [`@emotion/babel-plugin`](https://emotion.sh/docs/@emotion/babel-plugin).
 
@@ -243,6 +244,8 @@ Then, configure the plugin to know about the MUI version of the `styled()` utili
 
 ```js
 module.exports = {
+  ...
+  module.exports = {
   ...
   plugins: [
     [

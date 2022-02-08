@@ -4,7 +4,7 @@
 
 A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Ter um pacote separado para o lab nos permite liberar alterações críticas quando necessário, enquanto o pacote core segue uma [política de liberação mais controlada](https://mui.com/versions/#release-frequency).
 
-À medida que os desenvolvedores usam, testam os componentes e relatam problemas, os mantenedores aprendem mais sobre as deficiências dos componentes: recursos ausentes, problemas de acessibilidade, bugs, design de API, etc. Quanto mais antigo e mais usado for um componente, menor é a probabilidade de novos problemas serem encontrados e, consequentemente, necessidades de alterações críticas serem feitas.
+À medida que os desenvolvedores usam, testam os componentes e relatam problemas, os mantenedores aprendem mais sobre as deficiências dos componentes: recursos ausentes, problemas de acessibilidade, bugs, design de API, etc. Quanto mais antigo e mais usado for um componente, menor é a probabilidade de novos problemas serem encontrados e, consequentemente, necessidades de alterações críticas serem feitas. The older and more used a component is, the less likely it is that new issues will be found and subsequently need to introduce breaking changes.
 
 Para que um componente esteja pronto para ir para o core, são considerados os seguintes critérios:
 

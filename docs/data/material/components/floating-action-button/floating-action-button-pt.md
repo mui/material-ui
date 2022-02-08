@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/buttons-floating-action-button
 
 Um botão de ação flutuante aparece na frente de todo o conteúdo da tela, tipicamente em uma forma circular com um ícone em seu centro. BAFs podem ser de dois tipos: regular e estendido.
 
-Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela. Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela.
+Only use a FAB if it is the most suitable way to present a screen's primary action. Only one component is recommended per screen to represent the most common action.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

@@ -6,7 +6,7 @@ githubLabel: 'component: rating'
 waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 ---
 
-# Rating 评分
+# Rating
 
 <p class="description">评分组件可以让用户深入了解他人的意见和经验，也可以让用户提交自己的评价。</p>
 
@@ -53,7 +53,7 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 这个组件的可访问性依赖于：
 
 - 一个单选框组，其字段在视觉上是隐藏的。 它包含六个单选按钮，一组用于每颗星星的选择，另一组代表默认选中的 0 颗星。 请确保为 `name` 属性提供一个对父表单唯一的值。
-- Labels for the radio buttons containing actual text ("1 Star", "2 Stars", …). 当页面的语言不是英语时，请确保为 `getLabelText` 属性提供一个合适的函数。 你可以使用这上面 [所提供的本地化语言选项](https://material-ui.com/guides/localization/)，或者单独提供你自己的语言包。
+- Labels for the radio buttons containing actual text ("1 Star", "2 Stars", …). 当页面的语言不是英语时，请确保为 `getLabelText` 属性提供一个合适的函数。 Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. 你可以使用这上面 [所提供的本地化语言选项](https://material-ui.com/guides/localization/)，或者单独提供你自己的语言包。
 - 为评分图标提供了一个视觉上独特的外观。 默认情况下，评分组件通过颜色和形状的差异（填充和空图标）来表示所指定的值。 如果你使用颜色作为唯一的方式来表示数值，那么数值信息也应该像下面这个示例一样以文本的形式来显示。 这对于符合 WCAG2.1 的 [成功标准 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) 非常重要。
 
 {{"demo": "TextRating.js"}}

@@ -9,14 +9,15 @@ O Material-UI suporta as versões mais recentes e estáveis de todos os principa
 <!-- #stable-snapshot -->
 
 | Edge | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE |
-|:----- |:------- |:------ |:-------------- |:------------ |:-------------------- |
-| >= 85 | >= 78 | >= 84 | >= 13 | >= 12.1 | 11 (suporte parcial) |
+|:---- | ------- | ------ | -------------- | ------------ | -- |
+|      |         |        |                |              |    |
+ product: material-- |:------- |:------ |:-------------- |:------------ |:-------------------- | | >= 85 | >= 78 | >= 84 | >= 13 | >= 12.1 | 11 (suporte parcial) |
 
 <!-- #default-branch-switch -->
 
 An extensive list can be found in our [.browserlistrc](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L12-L27) (check the `stable` entry).
 
-[O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). [O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Você pode esperar que os componentes do Material-UI sejam renderizados sem grandes problemas.
+Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that MUI supports it. [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). You can expect MUI's components to render without major issues.
 
 ### IE 11
 

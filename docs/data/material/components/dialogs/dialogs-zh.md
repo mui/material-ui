@@ -48,7 +48,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## 过渡动画
 
-当然你也可以换掉过渡效果，下面的示例使用了 ` Slide（幻灯片）`。
+当然你也可以换掉过渡效果，下面的示例使用了 `Slide（幻灯片）`。
 
 {{"demo": "AlertDialogSlide.js"}}
 
@@ -103,7 +103,7 @@ function MyComponent() {
 
 ## 可拖动的对话框
 
-You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). 为此，您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 这样一来，您就可以拖动整个对话框。
+You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). 为此，您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. 这样一来，您就可以拖动整个对话框。
 
 {{"demo": "DraggableDialog.js"}}
 

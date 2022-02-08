@@ -14,7 +14,7 @@ Você também pode fazer com que um botão execute ações de navegação. Se se
 
 ## Global theme Link
 
-Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. For instance, with react-router: The theme of Material-UI allows configuring this component once.
+Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. For instance, with react-router: The theme of Material-UI allows configuring this component once. For instance, with react-router:
 
 ```jsx
 const LinkBehavior = React.forwardRef<

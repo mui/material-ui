@@ -115,7 +115,9 @@ O `LinearProgress` usa uma transição na propriedade de transformação do CSS 
 Se você precisar executar 30 renderizações por segundo ou mais, recomendamos desabilitar a transição:
 
 ```css
-Indicadores de <a href="https://material.io/design/components/progress-indicators.html#linear-progress-indicators">progresso linear</a>.
+.MuiLinearProgress-bar {
+  transition: none;
+}
 ```
 
 ### IE 11

@@ -20,7 +20,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 Note que o pacote possui 2 dependências obrigatórias: [react](https://www.npmjs.com/package/react) >= 17.0.0 e [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0.
 
-Ou se você quiser utilizar `styled-components` como um motor de estilização:
+MUI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. Ou se você quiser utilizar `styled-components` como um motor de estilização:
 
 ```sh
 // usando npm

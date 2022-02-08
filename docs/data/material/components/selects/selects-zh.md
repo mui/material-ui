@@ -25,7 +25,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 属性
 
-选择器组件是通过自定义 [InputBase](/api/input-base/) 的 `<input>` 元素来实现的。 It extends the [text field components](/components/text-fields/) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. 它有着相同的样式和许多相同的属性。 详情请参阅相应组件的 API 文档。
+选择器组件是通过自定义 [InputBase](/api/input-base/) 的 `<input>` 元素来实现的。 It extends the [text field components](/components/text-fields/) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. 它有着相同的样式和许多相同的属性。 It shares the same styles and many of the same props. 详情请参阅相应组件的 API 文档。
 
 ### Filled and standard variants
 
@@ -67,9 +67,9 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 多重选择
 
-`Select` 组件也支持多项选择。 `Select` 组件也支持多项选择。
+The `Select` component can handle multiple selections. It's enabled with the `multiple` prop.
 
-与单项选择一样，您可以通过访问 `onChange` 的回调函数中的 `event.target.value ` 来提取新的值。 它总是以一个数组的形式出现。
+与单项选择一样，您可以通过访问 `onChange` 的回调函数中的 `event.target.value` 来提取新的值。 它总是以一个数组的形式出现。
 
 ### 默认值
 
@@ -92,6 +92,8 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 {{"demo": "MultipleSelectNative.js"}}
 
 ## 可被控制的打开选择框
+
+You can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.
 
 {{"demo": "ControlledOpenSelect.js"}}
 
@@ -119,7 +121,7 @@ While it's discouraged by the Material Design guidelines, you can use a select i
 </Select>
 ```
 
-或者，您也可以使用一个带有 `id` 和 `label` 的 `TextField` 组件来创建合适的标记和 id：
+对于一个 [原生选择器](#native-select)，你应该通过将选择元素的 `id` 属性的值赋给 `InputLabel` 的 `htmlFor` 属性来提及标签。
 
 ```jsx
 <TextField id="select" label="Age" value="20" select>
@@ -128,7 +130,7 @@ While it's discouraged by the Material Design guidelines, you can use a select i
 </TextField>
 ```
 
-对于一个 [原生选择器](#native-select)，你应该通过将选择元素的 `id` 属性的值赋给 `InputLabel` 的 `htmlFor` 属性来提及标签。
+或者，您也可以使用一个带有 `id` 和 `label` 的 `TextField` 组件来创建合适的标记和 id：
 
 ```jsx
 <InputLabel htmlFor="select">Age</InputLabel>
@@ -137,3 +139,75 @@ While it's discouraged by the Material Design guidelines, you can use a select i
   <option value="20">Twenty</option>
 </NativeSelect>
 ```
+
+## Unstyled
+
+The Select also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```jsx
+import SelectUnstyled from '@mui/base/SelectUnstyled';
+```
+
+#### Basic usage
+
+{{"demo": "UnstyledSelectSimple.js"}}
+
+The `SelectUnstyled` is a component that accepts generic props. Due to Typescript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components). In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete. To avoid this, manually cast the resulting component to the correct type (as shown above).
+
+The rest of the demos below will not use `forwardRef` for brevity.
+
+#### Controlled select
+
+The SelectUnstyled can be used as either uncontrolled (as shown in the demo above) or controlled component.
+
+{{"demo": "UnstyledSelectControlled.js"}}
+
+#### Usage with object values
+
+The unstyled select may be used with non-string values.
+
+{{"demo": "UnstyledSelectObjectValues.js"}}
+
+#### Customizing the selected value appearance
+
+It is possible to customize the selected value display by providing a function to the `renderValue` prop. The element returned by this function will be rendered inside the select's button.
+
+{{"demo": "UnstyledSelectCustomRenderValue.js"}}
+
+#### Customizing the options' appearance
+
+Options don't have to be plain strings. You can include custom elements to be rendered inside the listbox.
+
+{{"demo": "UnstyledSelectRichOptions.js"}}
+
+#### Grouping
+
+Options can be grouped, similarly to the how the native `select` element works. Unlike the native `select`, however, the groups can be nested.
+
+Place the `Option` components inside `OptionGroup` to achieve this.
+
+{{"demo": "UnstyledSelectGrouping.js"}}
+
+#### Multiselect
+
+To be able to select multiple options at once, use the `MultiSelectUnstyled` component.
+
+```js
+import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
+```
+
+{{"demo": "UnstyledSelectMultiple.js"}}
+
+### useSelect hook
+
+```js
+import { useSelect } from '@mui/base/SelectUnstyled';
+```
+
+If you need to use Select's functionality in another component, you can use the `useSelect` hook. It enables maximal customizability at the cost of being low-level.
+
+The following example shows a select that opens when hovered over or focused. It can be controlled by a mouse/touch or a keyboard.
+
+{{"demo": "UseSelect.js"}}

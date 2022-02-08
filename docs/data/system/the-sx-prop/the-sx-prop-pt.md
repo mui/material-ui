@@ -129,7 +129,7 @@ The spacing properties: `margin`, `padding` and the corresponding longhand prope
 The following aliases are available for the spacing properties:
 
 | Prop | CSS property                    |
-| :--- | :------------------------------ |
+|:---- |:------------------------------- |
 | `m`  | `margin`                        |
 | `mt` | `margin-top`                    |
 | `mr` | `margin-right`                  |
@@ -149,7 +149,7 @@ _Head to the [spacing page](/system/spacing/) for more details._
 
 ### Typography
 
-As propriedades `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` mapeiam seus valores para o valor de ` theme.typography`.
+As propriedades `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` mapeiam seus valores para o valor de `theme.typography`.
 
 ```jsx
 <Box sx={{ fontWeight: 'fontWeightLight' }} />

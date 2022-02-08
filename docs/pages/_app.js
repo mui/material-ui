@@ -43,7 +43,7 @@ function LanguageNegotiation() {
   const router = useRouter();
   const userLanguage = useUserLanguage();
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
     const preferedLanguage =
       LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
@@ -206,6 +206,7 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+        <LanguageNegotiation />
         <CodeVariantProvider>
           <PageContext.Provider value={{ activePage, pages: productPages }}>
             <ThemeProvider>
@@ -215,7 +216,6 @@ function AppWrapper(props) {
               </DocsStyledEngineProvider>
             </ThemeProvider>
           </PageContext.Provider>
-          <LanguageNegotiation />
         </CodeVariantProvider>
       </UserLanguageProvider>
     </React.Fragment>

@@ -18,6 +18,8 @@ Esta [seleção de modelos básicos](/getting-started/templates/) pode ajudar vo
 
 ## Recursos recomendados
 
+> ⚠️ Note that the resources linked below are using MUI v4, which is not the latest major version. As v5 has been released recently, it will take some time till new contents are created. If you have created any learning material for v5, let us know and we can link them here.
+
 Ao começar a aprender MUI, você pode encontrar postagens de blogs de terceiros, livros e cursos em vídeo mais úteis do que a documentação oficial. Aqui estão alguns recursos recomendados, uma parte deles é gratuita.
 
 ### Grátis

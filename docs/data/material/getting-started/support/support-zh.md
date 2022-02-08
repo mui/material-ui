@@ -8,11 +8,11 @@
 
 ### StackOverflow
 
-For crowdsourced answers from expert MUI developers in our community. StackOverflow is also visited from time to time by the maintainers of MUI.
+For crowdsourced answers from expert MUI developers in our community. For crowdsourced answers from expert MUI developers in our community. StackOverflow is also visited from time to time by the maintainers of MUI.
 
 [发布一个问题](https://stackoverflow.com/questions/tagged/mui)
 
-> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/). To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
 
 ### GitHub
 
@@ -34,11 +34,11 @@ For crowdsourced answers from expert MUI developers in our community. StackOverf
 
 请订阅我们的博客来了解我们库的开发的最新情况。
 
-[阅读最新的博文](https://medium.com/material-ui)
+[阅读最新的博文](https://mui.com/blog/)
 
 ### 资源 📖
 
-New to MUI? It's easy to learn if you know where to start!
+New to MUI? It's easy to learn if you know where to start! It's easy to learn if you know where to start!
 
 [Learn MUI](/getting-started/learn/)
 
@@ -46,11 +46,11 @@ New to MUI? It's easy to learn if you know where to start!
 
 Receive the latest news on MUI.
 
-[关注我们](https://twitter.com/MaterialUI)
+[关注我们](https://twitter.com/MUI_hq)
 
 ### 支持的版本
 
-MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
 我们考虑到时间和资源限制的现实，以及需要不断创新的愿望，所以随着时间的推移，我们有必要将开发的重点转移到框架的最新版本（[我们的版本发布时间表](https://material-ui.com/versions/#release-frequency)），同时让用户尽可能平稳地过渡到新的版本，所以我们做了包括迁移指南在内的多个工作，例如 [这个 v4 版本](/guides/migration-v3/) 的迁移指南。 作为一个开源社区，我们始终欢迎您来提交新的功能和帮助我们修复错误。
 
@@ -71,7 +71,7 @@ The current status of each MUI version is as follows:
 
 MUI comes in [three plans](/pricing/). The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
 
-The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
+The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
 
 我们当然推荐您试一下，若您想要兼有开源的灵活性和使用商业级软件的自信心。
 

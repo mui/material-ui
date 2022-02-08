@@ -39,7 +39,7 @@ const theme = createTheme({
       main: '#19857b',
     },
     error: {
-      main: red.A400,
+      main: red. A400,
     },
   },
 });
@@ -101,7 +101,23 @@ With this we are creating new emotion cache instance and using this to extract t
 Vamos ver como isso é passado na função `renderFullPage`.
 
 ```jsx
-app.use(handleRender);
+import express from 'express';
+import * as React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from '@emotion/server/create-instance';
+import App from './App';
+import theme from './theme';
+import getCache from './getCache';
+
+function handleRender(req, res) {
+  const cache = getCache();
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(cache);
+
+  // Render the component to a string.
+  app.use(handleRender);
 
 const port = 3000;
 app.listen(port);
@@ -128,22 +144,10 @@ const app = express();
 app.use('/build', express.static('build'));
 
 // This is fired every time the server-side receives a request.
-import express from 'express';
-import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import createEmotionServer from '@emotion/server/create-instance';
-import App from './App';
-import theme from './theme';
-import getCache from './getCache';
+app.use(handleRender);
 
-function handleRender(req, res) {
-  const cache = getCache();
-  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
-    createEmotionServer(cache);
-
-  // Render the component to a string.
+const port = 3000;
+app.listen(port);
 ```
 
 ### Inject initial component HTML and CSS
@@ -195,8 +199,7 @@ function Main() {
       </ThemeProvider>
     </CacheProvider>
   );
-}
-ReactDOM.hydrate(<Main />, document.querySelector('#root'));
+} ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
 ## Implementações de referência

@@ -112,13 +112,13 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 {{"demo": "ReactVirtualizedTable.js", "bg": true}}
 
-## Unstyled table
+## Unstyled
 
 If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
 
 {{"demo": "TableUnstyled.js"}}
 
-#### Customized look and feel
+### Customized look and feel
 
 {{"demo": "TableCustomized.js"}}
 

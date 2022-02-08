@@ -69,7 +69,7 @@ Os componentes aninhados dentro de um componente possuem:
 - suas próprias propriedades `xxxComponent` para executar a injeção de componentes.
 - suas próprias propriedades `xxxRef`, quando o usuário precisar executar ações imperativas, por exemplo, expondo uma propriedade `inputRef` para acessar nativamente o `input` no componente `Input`. Isso ajuda a responder a pergunta ["Como posso acessar o elemento DOM?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
-### Nomeando propriedades
+### Prop naming
 
 O nome de uma propriedade booleana deve ser escolhido com base no **valor padrão**. Essa escolha permite a notação abreviada:
 
@@ -96,7 +96,8 @@ Existem duas opções para projetar a API para as variações de um componente: 
 
   ```tsx
   type Props = {
-    variant: 'text' | 'contained' | 'fab';
+    contained: boolean;
+    fab: boolean;
   };
   ```
 

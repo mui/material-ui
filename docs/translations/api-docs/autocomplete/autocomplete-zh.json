@@ -53,6 +53,7 @@
     "PaperComponent": "The component used to render the body of the popup.",
     "PopperComponent": "The component used to position the popup.",
     "popupIcon": "The icon to display in place of the default popup icon.",
+    "readOnly": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.",
     "renderGroup": "Render the group.<br><br><strong>Signature:</strong><br><code>function(option: any) =&gt; ReactNode</code><br><em>option:</em> The group to render.",
     "renderInput": "Render the input.<br><br><strong>Signature:</strong><br><code>function(params: object) =&gt; ReactNode</code><br>",
     "renderOption": "Render the option, use <code>getOptionLabel</code> by default.<br><br><strong>Signature:</strong><br><code>function(props: object, option: T, state: object) =&gt; ReactNode</code><br><em>props:</em> The props to apply on the li element.<br><em>option:</em> The option to render.<br><em>state:</em> The state of the component.",
