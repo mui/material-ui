@@ -6,7 +6,7 @@ MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material
 
 ## npm
 
-To install and save in your `package.json` dependencies, run:
+To and save in your `package.json` dependencies, run:
 
 ```sh
 // with npm
