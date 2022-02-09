@@ -12,6 +12,7 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import pages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
@@ -43,7 +44,7 @@ function LanguageNegotiation() {
   const router = useRouter();
   const userLanguage = useUserLanguage();
 
-  React.useLayoutEffect(() => {
+  useEnhancedEffect(() => {
     const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
 
     // Only consider a redirection if coming to the naked folder.
