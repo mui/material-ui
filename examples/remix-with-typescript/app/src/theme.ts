@@ -14,13 +14,6 @@ const theme = createTheme({
       main: red.A400,
     },
   },
-  components: {
-    MuiButton: {
-      defaultProps: {
-        color: "secondary"
-      }
-    }
-  }
 });
 
 export default theme;
