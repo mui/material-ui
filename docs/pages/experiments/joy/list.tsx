@@ -1,0 +1,350 @@
+import * as React from 'react';
+import { GlobalStyles } from '@mui/system';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemAdornment from '@mui/joy/ListItemAdornment';
+import ListItemContent from '@mui/joy/ListItemContent';
+import ListItemSeparator from '@mui/joy/ListItemSeparator';
+import Typography from '@mui/joy/Typography';
+import Moon from '@mui/icons-material/DarkMode';
+import Sun from '@mui/icons-material/LightMode';
+import InboxIcon from '@mui/icons-material/Inbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import BeachAccess from '@mui/icons-material/BeachAccess';
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
+import Star from '@mui/icons-material/StarBorder';
+import Favorite from '@mui/icons-material/FavoriteBorder';
+
+const ColorSchemePicker = () => {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <Button
+      variant="outlined"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+      sx={{ minWidth: 40, p: '0.25rem' }}
+    >
+      {mode === 'light' ? <Moon /> : <Sun />}
+    </Button>
+  );
+};
+
+export default function JoyTypography() {
+  return (
+    <CssVarsProvider
+      theme={{
+        colorSchemes: {
+          light: {
+            palette: {
+              neutral: {
+                outlinedBorder: 'rgba(0, 0, 0, 0.12)',
+              },
+            },
+          },
+        },
+        components: {
+          MuiSvgIcon: {
+            defaultProps: {
+              fontSize: 'xl',
+            },
+            styleOverrides: {
+              root: ({ ownerState, theme }) => ({
+                ...(ownerState.fontSize &&
+                  ownerState.fontSize !== 'inherit' && {
+                    fontSize: theme.vars.fontSize[ownerState.fontSize],
+                  }),
+                ...(ownerState.color &&
+                  ownerState.color !== 'inherit' && {
+                    color: theme.vars.palette[ownerState.color].textColor,
+                  }),
+              }),
+            },
+          },
+        },
+      }}
+    >
+      <GlobalStyles
+        styles={{ body: { margin: 0, backgroundColor: 'var(--joy-palette-background-level1)' } }}
+      />
+      <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
+        <Box sx={{ px: 3, pb: 4 }}>
+          <ColorSchemePicker />
+        </Box>
+        <Box
+          sx={{
+            display: 'grid',
+            gap: 2,
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            alignItems: 'flex-start',
+            '& > *': { bgcolor: 'background.body' },
+          }}
+        >
+          {/* ex1 */}
+          <List>
+            <ListItem>Inbox</ListItem>
+            <ListItem>Drafts</ListItem>
+          </List>
+
+          {/* ex2 */}
+          <List>
+            <ListItem>Inbox</ListItem>
+            <ListItemSeparator />
+            <ListItem>Drafts</ListItem>
+            <ListItemSeparator />
+            <ListItem>Trash</ListItem>
+          </List>
+
+          {/* ex3 */}
+          <List>
+            <ListItem>
+              <ListItemAdornment>
+                <InboxIcon fontSize="lg" />
+              </ListItemAdornment>
+              Inbox
+            </ListItem>
+            <ListItem>
+              <ListItemAdornment />
+              Drafts
+            </ListItem>
+            <ListItem>
+              <ListItemAdornment />
+              Trash
+            </ListItem>
+          </List>
+
+          {/* ex4 */}
+          <List>
+            <ListItem>
+              <ListItemAdornment>
+                <InboxIcon fontSize="lg" />
+              </ListItemAdornment>
+              Inbox
+            </ListItem>
+            <ListItem>
+              <ListItemAdornment>
+                <DraftsIcon fontSize="lg" />
+              </ListItemAdornment>
+              Drafts
+            </ListItem>
+            <ListItemSeparator />
+            <ListItem>Trash</ListItem>
+          </List>
+
+          {/* ex5 */}
+          <List>
+            <ListItem>
+              <ListItemAdornment>
+                <Box
+                  sx={(theme) => ({
+                    display: 'inline-flex',
+                    borderRadius: '40px',
+                    p: '0.5rem',
+                    ...theme.variants.light.neutral,
+                  })}
+                >
+                  <InboxIcon />
+                </Box>
+              </ListItemAdornment>
+              <ListItemContent sx={{ pl: 1 }}>
+                Inbox
+                <Typography level="body2">Jan 9, 2014</Typography>
+              </ListItemContent>
+            </ListItem>
+            <ListItemSeparator inset="leftContent" />
+            <ListItem>
+              <ListItemAdornment>
+                <Box
+                  sx={(theme) => ({
+                    display: 'inline-flex',
+                    borderRadius: '40px',
+                    p: '0.5rem',
+                    ...theme.variants.light.neutral,
+                  })}
+                >
+                  <DraftsIcon fontSize="md" />
+                </Box>
+              </ListItemAdornment>
+              <ListItemContent sx={{ pl: 1 }}>
+                Drafts
+                <Typography level="body2">Jan 7, 2014</Typography>
+              </ListItemContent>
+            </ListItem>
+            <ListItemSeparator inset="leftContent" />
+            <ListItem>
+              <ListItemAdornment>
+                <Box
+                  sx={(theme) => ({
+                    display: 'inline-flex',
+                    borderRadius: '40px',
+                    p: '0.5rem',
+                    ...theme.variants.light.neutral,
+                  })}
+                >
+                  <BeachAccess />
+                </Box>
+              </ListItemAdornment>
+              <ListItemContent sx={{ pl: 1 }}>
+                Vacation
+                <Typography level="body2">July 20, 2014</Typography>
+              </ListItemContent>
+            </ListItem>
+          </List>
+
+          {/* ex6 */}
+          <List sx={{ '--List-startAdornment': '56px' }}>
+            <ListItem>
+              <ListItemAdornment sx={{ alignSelf: 'flex-start' }}>
+                <Box
+                  component="img"
+                  src="/static/images/avatar/1.jpg"
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '40px',
+                  }}
+                />
+              </ListItemAdornment>
+              <div>
+                <Typography>Brunch this weekend?</Typography>
+                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                  Ali Connors{' '}
+                  <Typography
+                    component="span"
+                    level="inherit"
+                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
+                  >
+                    {' '}
+                    — I&apos;ll be in your neighborhood doing errands this…
+                  </Typography>
+                </Typography>
+              </div>
+            </ListItem>
+            <ListItemSeparator inset="leftContent" />
+            <ListItem>
+              <ListItemAdornment sx={{ alignSelf: 'flex-start' }}>
+                <Box
+                  component="img"
+                  src="/static/images/avatar/2.jpg"
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '40px',
+                  }}
+                />
+              </ListItemAdornment>
+              <div>
+                <Typography>Summer BBQ</Typography>
+                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                  to Scott, Alex, Jennifer{' '}
+                  <Typography
+                    component="span"
+                    level="inherit"
+                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
+                  >
+                    {' '}
+                    — Wish I could come, but I&apos;m out of town this…
+                  </Typography>
+                </Typography>
+              </div>
+            </ListItem>
+          </List>
+
+          {/* ex7 */}
+          <List>
+            <ListItem>
+              <ListItemContent>New file</ListItemContent>
+              <Typography level="body2">⌘ N</Typography>
+            </ListItem>
+            <ListItem>
+              <ListItemContent>Copy</ListItemContent>
+              <Typography level="body2">⌘ C</Typography>
+            </ListItem>
+            <ListItem>
+              <ListItemContent>Check</ListItemContent>
+            </ListItem>
+            <ListItemSeparator inset="gutter" />
+            <ListItem>
+              <ListItemContent>Delete</ListItemContent>
+              <Typography level="body2">⌘ D</Typography>
+            </ListItem>
+          </List>
+
+          {/* ex8 */}
+          <List
+            component="nav"
+            sx={{
+              '--List-radius': '8px',
+              '--List-itemGutter': '1rem',
+              '--List-itemMinHeight': '2rem',
+              '--List-startAdornment': '2rem',
+              '--List-separatorSize': '0.5rem',
+            }}
+          >
+            <ListItemButton selected selectedVariant="contained" color="primary">
+              <ListItemAdornment>
+                <InboxIcon />
+              </ListItemAdornment>
+              <ListItemContent>Inbox</ListItemContent>
+              <ListItemAdornment end>
+                <KeyboardArrowUp />
+              </ListItemAdornment>
+            </ListItemButton>
+            <ListItemSeparator component="hr" />
+            <ListItem component="div" nestedLevel={1}>
+              <List component="div">
+                <ListItemButton>
+                  <ListItemAdornment>
+                    <Star />
+                  </ListItemAdornment>
+                  <ListItemContent>Starred</ListItemContent>
+                </ListItemButton>
+                <ListItemSeparator component="hr" inset="gutter" />
+                <ListItemButton>
+                  <ListItemAdornment>
+                    <Favorite />
+                  </ListItemAdornment>
+                  <ListItemContent>Favorite</ListItemContent>
+                </ListItemButton>
+                <ListItemSeparator component="hr" inset="leftAdornment" />
+                <ListItem component="div" nestedLevel={2}>
+                  <List component="div">
+                    <ListItemButton>
+                      <ListItemAdornment>
+                        <Star />
+                      </ListItemAdornment>
+                      <ListItemContent>Starred</ListItemContent>
+                    </ListItemButton>
+                    <ListItemSeparator component="hr" inset="leftContent" />
+                    <ListItemButton>
+                      <ListItemAdornment>
+                        <Favorite />
+                      </ListItemAdornment>
+                      <ListItemContent>Favorite</ListItemContent>
+                    </ListItemButton>
+                  </List>
+                </ListItem>
+              </List>
+            </ListItem>
+          </List>
+        </Box>
+      </Box>
+    </CssVarsProvider>
+  );
+}
