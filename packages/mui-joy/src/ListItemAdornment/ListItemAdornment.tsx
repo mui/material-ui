@@ -7,9 +7,9 @@ import { styled, useThemeProps } from '../styles';
 import { ListItemAdornmentProps, ListItemAdornmentTypeMap } from './ListItemAdornmentProps';
 import { getListItemAdornmentUtilityClass } from './listItemAdornmentClasses';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: ListItemAdornmentProps) => {
   const slots = {
-    root: ['root'],
+    root: ['root', ownerState.end && 'end'],
   };
 
   return composeClasses(slots, getListItemAdornmentUtilityClass, {});
@@ -39,7 +39,7 @@ const ListItemAdornment = React.forwardRef(function ListItemAdornment(inProps, r
     ...props,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListItemAdornmentRoot

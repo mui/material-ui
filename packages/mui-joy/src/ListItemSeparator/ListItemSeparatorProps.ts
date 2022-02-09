@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ListItemSeparatorClasses } from './listItemSeparatorClasses';
+
+export interface ListItemSeparatorInsetOverrides {}
 
 export interface ListItemSeparatorTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
@@ -16,7 +18,10 @@ export interface ListItemSeparatorTypeMap<P = {}, D extends React.ElementType = 
     /**
      * The empty space on the side(s) of the separator.
      */
-    inset?: 'gutter' | 'leftAdornment' | 'leftContent';
+    inset?: OverridableStringUnion<
+      'gutter' | 'leftAdornment' | 'leftContent',
+      ListItemSeparatorInsetOverrides
+    >;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

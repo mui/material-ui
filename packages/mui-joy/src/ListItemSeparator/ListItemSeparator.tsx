@@ -1,15 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemSeparatorProps, ListItemSeparatorTypeMap } from './ListItemSeparatorProps';
 import { getListItemSeparatorUtilityClass } from './listItemSeparatorClasses';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: ListItemSeparatorProps) => {
   const slots = {
-    root: ['root'],
+    root: ['root', ownerState.inset && `inset${capitalize(ownerState.inset)}`],
   };
 
   return composeClasses(slots, getListItemSeparatorUtilityClass, {});
@@ -50,7 +51,7 @@ const ListItemSeparator = React.forwardRef(function ListItemSeparator(inProps, r
     ...props,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListItemSeparatorRoot
@@ -87,7 +88,10 @@ ListItemSeparator.propTypes /* remove-proptypes */ = {
   /**
    * The empty space on the side(s) of the separator.
    */
-  inset: PropTypes.oneOf(['gutter', 'leftAdornment', 'leftContent']),
+  inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['gutter', 'leftAdornment', 'leftContent']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default ListItemSeparator;
