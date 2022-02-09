@@ -21,37 +21,37 @@ import { JoyTheme, SxProps } from './defaultTheme';
 const borderColor = style({
   prop: 'borderColor',
   themeKey: 'palette',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const borderTopColor = style({
   prop: 'borderTopColor',
   themeKey: 'palette',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const borderRightColor = style({
   prop: 'borderRightColor',
   themeKey: 'palette',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const borderBottomColor = style({
   prop: 'borderBottomColor',
   themeKey: 'palette',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const borderLeftColor = style({
   prop: 'borderLeftColor',
   themeKey: 'palette',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const borderRadius = style({
   prop: 'borderRadius',
   themeKey: 'radius',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const borders = compose(
@@ -71,20 +71,20 @@ const borders = compose(
 const color = style({
   prop: 'color',
   themeKey: 'palette',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const bgcolor = style({
   prop: 'bgcolor',
   cssProperty: 'backgroundColor',
   themeKey: 'palette',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const backgroundColor = style({
   prop: 'backgroundColor',
   themeKey: 'palette',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const palette = compose(color, bgcolor, backgroundColor);
@@ -92,37 +92,37 @@ const palette = compose(color, bgcolor, backgroundColor);
 const boxShadow = style({
   prop: 'boxShadow',
   themeKey: 'shadow',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 export const fontFamily = style({
   prop: 'fontFamily',
   themeKey: 'fontFamily',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 export const fontSize = style({
   prop: 'fontSize',
   themeKey: 'fontSize',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 export const fontWeight = style({
   prop: 'fontWeight',
   themeKey: 'fontWeight',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 export const letterSpacing = style({
   prop: 'letterSpacing',
   themeKey: 'letterSpacing',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 export const lineHeight = style({
   prop: 'lineHeight',
   themeKey: 'lineHeight',
-  enableThemeVars: true,
+  internal_designTokensKey: 'vars',
 });
 
 const typography = compose(

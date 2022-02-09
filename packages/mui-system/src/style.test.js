@@ -177,7 +177,7 @@ describe('style', () => {
         prop: 'bgcolor',
         cssProperty: 'backgroundColor',
         themeKey: 'palette',
-        enableThemeVars: true,
+        internal_designTokensKey: 'vars',
       });
       const output = bgcolorStyle({
         bgcolor: 'primary.main',
@@ -206,7 +206,7 @@ describe('style', () => {
         prop: 'bgcolor',
         cssProperty: 'backgroundColor',
         themeKey: 'palette',
-        enableThemeVars: true,
+        internal_designTokensKey: 'vars',
       });
       const output = bgcolorStyle({
         bgcolor: 'primary.main',

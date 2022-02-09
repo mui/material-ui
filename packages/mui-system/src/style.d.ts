@@ -10,12 +10,11 @@ export interface StyleOptions<PropKey> {
   themeKey?: string;
   transform?: (cssValue: unknown) => number | string | React.CSSProperties | CSSObject;
   /**
-   * If `true`, `theme.vars` will be used as a starting point for getting `themeKey`
-   * fallback to provided theme if `!theme.vars`.
+   * The keys be used as a starting point for getting `themeKey`
    *
-   * This is an experimental flag for using in `@mui/joy`.
+   * This is an experimental field for using in `@mui/joy`.
    */
-  enableThemeVars?: boolean;
+  internal_designTokensKey?: string;
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,

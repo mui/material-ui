@@ -34,7 +34,8 @@ function style(options) {
     cssProperty = options.prop,
     themeKey,
     transform,
-    enableThemeVars = false,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    internal_designTokensKey,
   } = options;
 
   const fn = (props) => {
@@ -44,7 +45,7 @@ function style(options) {
 
     const propValue = props[prop];
     const theme = props.theme;
-    const themeMapping = getPath(enableThemeVars ? theme.vars || theme : theme, themeKey) || {};
+    const themeMapping = getPath(theme?.[internal_designTokensKey] ?? theme, themeKey) || {};
     const styleFromPropValue = (propValueFinal) => {
       let value = getValue(themeMapping, transform, propValueFinal);
 
