@@ -112,9 +112,11 @@ const DemoRoot = styled('div', {
   }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.grey[800], 0.15)
+        : theme.palette.grey[100],
   }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(2),
