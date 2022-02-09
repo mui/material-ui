@@ -43,6 +43,8 @@
 ```diff
  module.exports = {
    //...
+module.exports = {
+   //...
 +  resolve: {
 +    alias: {
 +      '@mui/styled-engine': '@mui/styled-engine-sc'
@@ -73,14 +75,9 @@
 These two packages implement the same interface, which makes it makes possible to replace one with the other. By default, <code>@material-ui/core</code> has <code>@material-ui/styled-engine</code> as a dependency, but you can configure your bundler to replace it with <code>@material-ui/styled-engine-sc</code>. For example, if you are using webpack you can configure this by adding a resolver:
 ```
 
-has @material-ui/styled-engine as a dependency, but you can configure your bundler to replace it with @material-ui/styled-engine-sc. For example, if you are using webpack you can configure this by adding a resolver:
-</code>
-
 ### Ready-to-use examples
 
-如果您正在使用 create-react-app，示例项目中有一个开箱即用的模板。
-
-如果您已经安装了 `styled-components` , 单独使用它是可行的。 目前有两种方式可供选择:
+如果您正在使用 create-react-app，示例项目中有一个开箱即用的模板。 如果您已经安装了 `styled-components` , 单独使用它是可行的。 目前有两种方式可供选择:
 
 <!-- #default-branch-switch -->
 
@@ -90,4 +87,4 @@ has @material-ui/styled-engine as a dependency, but you can configure your bundl
 
 > **注意**: `@emotion/react`, `@emotion/styled`, 和 `styled-components` 是 `@mui/materials` 的可选对等依赖，所以您需要自己安装它们。 更多信息请访问 [安装指南](/getting-started/installation/)。
 
-> **注意：** 这个 package-swap 方法与替换 React 的 [Preact](https://github.com/preactjs/preact) 完全相同。 Preact 开发团队记录了大量安装配置。 如果您被 MUI + styled-components 卡住，请不要犹豫，直接查看他们是如何解决问题的，因为您可能会在里面找到解决思路。
+**注意：** 这个 package-swap 方法与替换 React 的 [Preact](https://github.com/preactjs/preact) 完全相同。 Preact 开发团队记录了大量安装配置。 如果您被 MUI + styled-components 卡住，请不要犹豫，直接查看他们是如何解决问题的，因为您可能会在里面找到解决思路。

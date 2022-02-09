@@ -29,7 +29,7 @@ O `@material-ui/lab` oferece componentes auxiliares que injetam propriedades par
 
 ## Rótulos com quebras
 
-Os rótulos longos serão quebrados automaticamente nas abas. Os rótulos longos serão quebrados automaticamente nas abas.
+Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow, and the text will not be visible.
 
 {{"demo": "TabsWrappedLabel.js"}}
 
@@ -179,8 +179,9 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 
 #### Customizing the root element
 
-By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
+The `TabPanelUnstyled` on the other hand renders a native `div` element by default. You are free to override this as well by setting the `component` or `components.
+Root` prop on the `TabPanelUnstyled`.
 
-The `TabPanelUnstyled` on the other hand renders a native `div` element by default. You are free to override this as well by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components. Root` prop.
 
 {{"demo": "UnstyledTabsCustomized.js"}}

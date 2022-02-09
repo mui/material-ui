@@ -17,7 +17,7 @@ githubLabel: 'component: Box'
 
 ## `sx` 属性
 
-All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例： In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
+All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例： In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it: In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
@@ -29,7 +29,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. 但是按钮组件已经定义自己的样式。 The Button component defines its own styles. CSS 继承于事无补。 To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
+但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. 但是按钮组件已经定义自己的样式。 The Button component defines its own styles. CSS 继承于事无补。 CSS inheritance doesn't help. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -53,15 +53,15 @@ For non-Material-UI components, use the `component` prop.
 import Box from '@material-ui/core/Box';
 ```
 
-| 名称                                     | 类型                                                                                                        | 默认值                                  | 描述                                                                 |
-| :--------------------------------------- | :---------------------------------------------------------------------------------------------------------- | :-------------------------------------- | :------------------------------------------------------------------- |
-| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                     |                                         | Box 渲染函数或者返回节点。                                           |
+| 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
+|:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------ |
+| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Box 渲染函数或者返回节点。                            |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |
-| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                       | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                          |
+| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                   |
 
 ## System props
 
-As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top: You can use them as prop directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top: You can use them as prop directly on the component. For instance, a margin-top: You can use them as prop directly on the component. For instance, a margin-top:
 
 ```jsx
 <Box mt={2}>

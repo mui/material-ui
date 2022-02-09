@@ -41,9 +41,9 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ## 排序 & 选择
 
-此示例演示了在表格内使用了 ` 选择框组件（Checkbox）` 以及单击选择行，而且这个表格带有一个自定义的 `工具条组件（Toolbar）`。 它也展示了如何使用 `TableSortLabel` 组件来给列标题添加样式。
+此示例演示了在表格内使用了 `选择框组件（Checkbox）` 以及单击选择行，而且这个表格带有一个自定义的 `工具条组件（Toolbar）`。 它也展示了如何使用 `TableSortLabel` 组件来给列标题添加样式。
 
-这个表格已被赋予一个固定的宽度，您可以查看如何实现横向滚动。 在表格外部使用 TablePagination 组件，能够防止分页控件的滚动。 (以下的['Custom Table Pagination Action' （自定义表分页操作示例）](#custom-pagination-actions)展示了 TableFooter 中的分页。)
+这个表格已被赋予一个固定的宽度，您可以查看如何实现横向滚动。 在表格外部使用 TablePagination 组件，能够防止分页控件的滚动。 (以下的['Custom Table Pagination Action' （自定义表分页操作示例）](#custom-pagination-actions)展示了 TableFooter 中的分页。 )
 
 {{"demo": "EnhancedTable.js", "bg": true}}
 
@@ -77,7 +77,7 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ## Sticky header
 
-Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support) It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
+Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support) It leverages the `stickyHeader` prop. (⚠️ no IE 11 support) It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
 
 {{"demo": "StickyHeadTable.js", "bg": true}}
 
@@ -112,13 +112,13 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 {{"demo": "ReactVirtualizedTable.js", "bg": true}}
 
-## Unstyled table
+## Unstyled
 
 If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
 
 {{"demo": "TableUnstyled.js"}}
 
-#### Customized look and feel
+### Customized look and feel
 
 {{"demo": "TableCustomized.js"}}
 
@@ -128,6 +128,6 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 ### Caption 字幕
 
-A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
+字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 标题可以帮助用户找到表格，了解表格的内容，决定是否要阅读。
 
 {{"demo": "AcccessibleTable.js", "bg": true}}

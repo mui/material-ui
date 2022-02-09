@@ -1,7 +1,5 @@
 ---
-
-@material-ui/core/styles 的 API 参考文档。
-
+title: '@material-ui/core/styles 的 API 参考文档。'
 ---
 
 # API
@@ -81,7 +79,7 @@ export default function MyComponent {
 2. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（_object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.name` (_string_ [optional]): 样式表的名称。 适合调试。
+- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
@@ -164,9 +162,9 @@ const response = `
 3. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（_object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
-- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 Provide the `theme` object to the component as a prop.
+- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。 When set to `null`, it follows `theme.direction`.
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
@@ -209,13 +207,13 @@ It should preferably be used at **the root of your component tree**.
 
 ### 属性
 
-| 名称              | 类型   | 默认值 | 描述                                                                                                                                                                                                                              |
-| :---------------- | :----- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\*  | node   |        | 您的组件树。                                                                                                                                                                                                                      |
-| disableGeneration | bool   | false  | 使用此选项，你可以禁用样式表的生成。 当在服务端的 HTML 之外渲染步骤中遍历 React 树的时候，这个属性卓有成效。 举个例子，若你正在使用 react-apillo 来提取服务端接口发出的所有查询（queries）。 使用这个属性可以大大加快遍历的速度。 |
-| generateClassName | func   |        | JSS 的类名生成器。                                                                                                                                                                                                                |
-| injectFirst       | bool   | false  | 默认情况下，在页面中注入的 style 会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material-UI 的样式，请设置此属性。                                                              |
-| jss               | object |        | JSS 的实例。                                                                                                                                                                                                                      |
+| 名称                 | 类型     | 默认值   | 描述                                                                                                                                  |
+|:------------------ |:------ |:----- |:----------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node   |       | 您的组件树。                                                                                                                              |
+| disableGeneration  | bool   | false | 使用此选项，你可以禁用样式表的生成。 当在服务端的 HTML 之外渲染步骤中遍历 React 树的时候，这个属性卓有成效。 举个例子，若你正在使用 react-apillo 来提取服务端接口发出的所有查询（queries）。 使用这个属性可以大大加快遍历的速度。 |
+| generateClassName  | func   |       | JSS 的类名生成器。                                                                                                                         |
+| injectFirst        | bool   | false | 默认情况下，在页面中注入的 style 会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material-UI 的样式，请设置此属性。                            |
+| jss                | object |       | JSS 的实例。                                                                                                                            |
 
 ### 例子
 
@@ -237,10 +235,10 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### 属性
 
-| 名称             | 类型                                     | 默认值 | 描述                                                                  |
-| :--------------- | :--------------------------------------- | :----- | :-------------------------------------------------------------------- |
-| children&nbsp;\* | node                                     |        | 您的组件树。                                                          |
-| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |        | 一个主题对象（theme object）。 您可以提供一个能够扩展外层主题的函数。 |
+| 名称                 | 类型                                       | 默认值 | 描述                                        |
+|:------------------ |:---------------------------------------- |:--- |:----------------------------------------- |
+| children&nbsp;\* | node                                     |     | 您的组件树。                                    |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |     | 一个主题对象（theme object）。 您可以提供一个能够扩展外层主题的函数。 |
 
 ### 例子
 
@@ -295,9 +293,9 @@ export default function MyComponent() {
 2. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（_object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 Provide the `theme` object to the component as a prop.
-- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
+- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。 When set to `null`, it follows `theme.direction`.
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果

@@ -1,6 +1,6 @@
 {
-  "name": "mui-material-with-tailwind",
-  "version": "0.1.0",
+  "name": "tailwind-css",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",

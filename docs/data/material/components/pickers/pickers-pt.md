@@ -1,16 +1,10 @@
 ---
 product: material
 title: Componente React para Data e Hora
-<<<<<<< HEAD
-components: TextField
-githubLabel: 'component: DatePicker'
-=======
-components: DatePicker,DateTimePicker,TimePicker,TextField
+components: DatePicker, DateTimePicker, TimePicker, TextField
 githubLabel: 'component: date picker'
->>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)
 materialDesign: https://material.io/components/date-pickers
 waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
-packageName: '@material-ui/lab'
 ---
 
 # Seletores Data / Hora
@@ -37,7 +31,7 @@ Um exemplo de seletor de data nativo com `type="date"`.
 - [Luxon](https://moment.github.io/luxon/#/)
 - [Moment.js](https://momentjs.com/)
 
-{{"demo": "DatePickers.js"}}
+First you have to install the adapter package for the date-library you want to use:
 
 ```sh
 // date-fns

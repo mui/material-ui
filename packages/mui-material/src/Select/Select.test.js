@@ -1304,4 +1304,17 @@ describe('<Select />', () => {
       expect(getByTestId('root')).to.have.class('bar');
     });
   });
+
+  it('should not focus select when clicking an arbitrary element with id="undefined"', () => {
+    const { getByRole, getByTestId } = render(
+      <React.Fragment>
+        <div id="undefined" data-testid="test-element" />
+        <Select value="" />
+      </React.Fragment>,
+    );
+
+    fireEvent.click(getByTestId('test-element'));
+
+    expect(getByRole('button')).not.toHaveFocus();
+  });
 });

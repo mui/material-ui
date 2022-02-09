@@ -87,6 +87,18 @@ return (
     </Box>
   </ThemeProvider>
 );
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Box
+      sx={{
+        fontFamily: 'Raleway',
+      }}
+    >
+      Raleway
+    </Box>
+  </ThemeProvider>
+);
 ```
 
 Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
@@ -138,7 +150,7 @@ theme.typography.h3 = {
 
 {{"demo": "CustomResponsiveFontSizes.js"}}
 
-若你想实现此设置的自动化，则可以使用 [` responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) 的帮助程序将 Typography 的字体大小在主题设置为响应性。
+若你想实现此设置的自动化，则可以使用 [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) 的帮助程序将 Typography 的字体大小在主题设置为响应性。
 
 {{"demo": "ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
@@ -161,14 +173,17 @@ theme = responsiveFontSizes(theme);
 
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
-> ⚠️ 更改字体的大小会对无障碍设计造成影响 ♿️。 ⚠️ 更改字体的大小会对无障碍设计造成影响 ♿️。 For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-这可以用于调整 `rem` 值，如此一来计算后的 font-size 总是与规范相符合。 这可以用于调整 `rem` 值，如此一来计算后的 font-size 总是与规范相符合。
+The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
     // Tell Material-UI what's the font-size on the html element is.
+    htmlFontSize: 10,
+  },
+});
     htmlFontSize: 10,
   },
 });
@@ -229,7 +244,7 @@ const theme = createTheme({
 
 除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 Here is what you need to do:
 
-**Step 1. Step 1. Step 1. Step 1. Update the theme's typography object**
+**Step 1. Step 1. Step 1. Step 1. Step 1. Update the theme's typography object**
 
 ```js
 const theme = createTheme({
@@ -243,7 +258,7 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. Step 2. Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
 
 > If you aren't using TypeScript you should skip this step.
 
@@ -272,7 +287,7 @@ declare module '@material-ui/core/Typography' {
 }
 ```
 
-**Step 3. Step 3. Step 3. Step 3. You can now use the new variant**
+**Step 3. You can now use the new variant**
 
 {{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 

@@ -6,7 +6,7 @@
 
 ## 在服务器端的 Material-UI
 
-MUI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated. 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS，从而导致浏览器样式闪烁（FOUC）。 若想将样式注入客户端，我们需要：
+MUI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated. 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS，从而导致浏览器样式闪烁（FOUC）。 It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker (FOUC). 若想将样式注入客户端，我们需要：
 
 1. Create a fresh, new [`emotion cache`](https://emotion.sh/docs/@emotion/cache) instance on every request.
 2. 用服务端收集器渲染 React 树组件。
@@ -26,6 +26,10 @@ On the client-side, the CSS will be injected a second time before removing the s
 `theme.js`
 
 ```js
+import { createTheme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
+
+// Create a theme instance.
 const theme = createTheme({
   palette: {
     primary: {
@@ -49,7 +53,7 @@ import red from '@material-ui/core/colors/red';
 
 ### 服务器端
 
-下面的大纲可以大致展现一下服务器端。 We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come into the server. If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request. If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request.
+下面的大纲可以大致展现一下服务器端。 We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come into the server. If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request. If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request. If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request.
 
 `server.js`
 
@@ -82,7 +86,7 @@ When rendering, we will wrap `App`, the root component, inside a [`CacheProvider
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-MUI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件：
+MUI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件： We need to extract the styles from the emotion instance. The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件：
 
 `getCache.js`
 
@@ -101,32 +105,65 @@ With this we are creating new emotion cache instance and using this to extract t
 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
 ```jsx
+import express from 'express';
 import * as React from 'react';
-import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import ReactDOMServer from 'react-dom/server';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
+import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
-import getCache from './getCache';
+import createEmotionCache from './createEmotionCache';
 
-function Main() {
-  return (
-    <CacheProvider value={getCache}>
+function handleRender(req, res) {
+  const cache = createEmotionCache();
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(cache);
+
+  // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
+    <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <App />
       </ThemeProvider>
-    </CacheProvider>
+    </CacheProvider>,
   );
+
+  // Grab the CSS from emotion
+  const emotionChunks = extractCriticalToChunks(html);
+  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
+
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, emotionCss));
 }
 
-ReactDOM.hydrate(<Main />, document.querySelector('#root'));
-  const html = ReactDOMServer.renderToString(
-    <CacheProvider value={cache}>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
+app.use(handleRender);
+
+const port = 3000;
+app.listen(port); import express from 'express';
+import * as React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from '@emotion/server/create-instance';
+import App from './App';
+import theme from './theme';
+import getCache from './getCache';
+
+function handleRender(req, res) {
+  const cache = getCache();
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(cache);
+
+  // 将组件渲染成字符串。 */}
         <CssBaseline />
         <App />
       </ThemeProvider>
@@ -177,12 +214,34 @@ function renderFullPage(html, css) {
 
 ### The client-side
 
-The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件：
+The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. Let's take a look at the client file:
 
 `client.js`
 
 ```jsx
-const html = ReactDOMServer.renderToString(
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/react';
+import App from './App';
+import theme from './theme';
+import getCache from './getCache';
+
+function Main() {
+  return (
+    <CacheProvider value={getCache}>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
+  );
+}
+
+ReactDOM.hydrate(<Main />, document.querySelector('#root'));
+  const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -208,22 +267,15 @@ app.use('/build', express.static('build'));
 app.use(handleRender);
 
 const port = 3000;
-app.listen(port); import express from 'express';
-import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import createEmotionServer from '@emotion/server/create-instance';
-import App from './App';
-import theme from './theme';
-import getCache from './getCache';
+app.listen(port); */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
+  );
+}
 
-function handleRender(req, res) {
-  const cache = getCache();
-  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
-    createEmotionServer(cache);
-
-  // 将组件渲染成字符串。
+ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
 ## 参考实现

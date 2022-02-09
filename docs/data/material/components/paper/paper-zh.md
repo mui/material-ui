@@ -5,7 +5,7 @@ components: Paper
 githubLabel: 'component: Paper'
 ---
 
-# Paper 纸张组件
+# Paper
 
 <p class="description">在 Material Design 中，我们在屏幕上展现了纸张的物理属性。 </p>
 
@@ -25,8 +25,8 @@ githubLabel: 'component: Paper'
 
 ## Elevation
 
-The elevation can be used to establish a hierachy between other content. The elevation can be used to establish a hierachy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter. In dark mode, raising the elevation also makes the surface lighter.
+The elevation can be used to establish a hierachy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter.
 
 {{"demo": "Elevation.js", "bg": "inline"}}
 
-The change of shade in dark mode is done by applying a semi-transparent gradient to the `background-image` property. This can lead to confusion when overriding the styles of `Paper`, as setting just the `background-color` property will not affect the elevation-related shading. To ignore the shading and set the background color that is not affected by elevation in dark mode, override the `background` property (or both `background-color` and `background-image`).
+The change of shade in dark mode is done by applying a semi-transparent gradient to the `background-image` property. This can lead to confusion when overriding the styles of `Paper`, as setting just the `background-color` property will not affect the elevation-related shading. To ignore the shading and set the background color that is not affected by elevation in dark mode, override the `background` property (or both `background-color` and `background-image`). This can lead to confusion when overriding the styles of `Paper`, as setting just the `background-color` property will not affect the elevation-related shading. To ignore the shading and set the background color that is not affected by elevation in dark mode, override the `background` property (or both `background-color` and `background-image`).

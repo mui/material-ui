@@ -2,7 +2,7 @@
 
 <p class="description">以下精心挑选了一系列的库，他们都值得一阅。</p>
 
-Because the scope of problems MUI solves is bound, we try to play nicely with other libraries. 请随时提交一个 pull request 来加入另外一个项目，如果它合适的话我们会将其纳如列表。
+Because the scope of problems MUI solves is bound, we try to play nicely with other libraries. 请随时提交一个 pull request 来加入另外一个项目，如果它合适的话我们会将其纳如列表。 Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
 
 ## 设计资源
 
@@ -15,7 +15,7 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 - [Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma): A large UI kit with over 600 handcrafted MUI components.
 - [Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
 - [Sketch](https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted MUI symbols.
-- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
+- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
 
 ## 图像和图案
 
@@ -39,7 +39,7 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 
 ### 布局
 
-- [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
+- [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
 ### 通知
 

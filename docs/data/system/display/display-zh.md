@@ -26,9 +26,9 @@
 
 为了更快速地进行移动端的开发，您可以使用响应式的显示类来按设备显示和隐藏元素。 避免为同一站点创建完全不同的版本，您只需要根据不同的屏幕大小来相应地隐藏元素。
 
-| 屏幕大小           | 类别                                                         |
-| :----------------- | :----------------------------------------------------------- |
-| 在所有设备上隐藏   | `sx={{ display: 'none' }}`                                   |
+| 屏幕大小        | 类别                                                           |
+|:----------- |:------------------------------------------------------------ |
+| 在所有设备上隐藏    | `sx={{ display: 'none' }}`                                   |
 | 仅在 xs 大小时隐藏 | `sx={{ display: { xs: 'none', sm: 'block' } }}`              |
 | 仅在 sm 大小时隐藏 | `sx={{ display: { xs: 'block', sm: 'none', md: 'block' } }}` |
 | 仅在 md 大小时隐藏 | `sx={{ display: { xs: 'block', md: 'none', lg: 'block' } }}` |
@@ -114,6 +114,10 @@
 <Box component="div" sx={{ whiteSpace: 'normal' }}>
   普通的空格
 </Box>
+</Box>
+<Box component="div" sx={{ whiteSpace: 'normal' }}>
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+</Box>
 ```
 
 ## API
@@ -122,11 +126,11 @@
 import { display } from '@material-ui/system';
 ```
 
-| 导入名称               | 属性                   | CSS 属性               | Theme key |
-| :--------------------- | :--------------------- | :--------------------- | :-------- |
-| `displayPrint`         | `displayPrint`         | `display`              | none      |
-| `displayRaw`           | `display`              | `display`              | none      |
-| `溢出（Overflow）`     | `溢出（Overflow）`     | `溢出（Overflow）`     | none      |
-| `textOverflow`         | `textOverflow`         | `text-overflow`        | none      |
+| 导入名称              | 属性                | CSS 属性            | Theme key |
+|:----------------- |:----------------- |:----------------- |:--------- |
+| `displayPrint`    | `displayPrint`    | `display`         | none      |
+| `displayRaw`      | `display`         | `display`         | none      |
+| `溢出（Overflow）`    | `溢出（Overflow）`    | `溢出（Overflow）`    | none      |
+| `textOverflow`    | `textOverflow`    | `text-overflow`   | none      |
 | `可见性（Visibility）` | `可见性（Visibility）` | `可见性（Visibility）` | none      |
-| `whiteSpace`           | `whiteSpace`           | `white-space`          | none      |
+| `whiteSpace`      | `whiteSpace`      | `white-space`     | none      |

@@ -6,7 +6,7 @@ components: Hidden
 githubLabel: 'component: Hidden'
 ---
 
-# Hidden 隐藏组件
+# Hidden
 
 > `Hidden` is deprecated, checkout [migration docs](/guides/migration-v4/#hidden)
 

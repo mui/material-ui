@@ -7,7 +7,7 @@ materialDesign: https://material.io/components/tooltips
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Tooltip 工具提示
+# Tooltip
 
 <p class="description">当用户鼠标悬停，聚焦或者轻触一个元素时，工具提示组件会显示一段有意义的文本。</p>
 
@@ -52,10 +52,6 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 <Tooltip title="删除">
   <MyComponent>
 </Tooltip>
-
-<Tooltip title="删除">
-  <MyComponent>
-</Tooltip>
 ```
 
 您可以在[包装的组件](/guides/composition/#wrapping-components)指南中找到类似的概念。
@@ -82,7 +78,7 @@ You can use the `open`, `onOpen` and `onClose` props to control the behavior of 
 
 ## 交互式
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
 {{"demo": "NonInteractiveTooltips.js"}}
 
@@ -100,7 +96,7 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 <Tooltip title="您没有足够的操作权限">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      一个禁用的按钮
+      A disabled button
     </button>
   </span>
 </Tooltip>

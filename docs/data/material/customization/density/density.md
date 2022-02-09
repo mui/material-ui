@@ -6,7 +6,7 @@
 
 This section explains how to apply density.
 It doesn't cover potential use cases, or considerations for using density in your application.
-The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+The Material Design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
 
 ## Implementing density
 
@@ -39,7 +39,7 @@ around and see how this applies to the overall feel of MUI components.
 
 If you enable high density a custom theme is applied to the docs. This theme is only
 for demonstration purposes. You _should not_ apply this theme to your whole application
-as this might negatively impact user experience. The [Material design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples
+as this might negatively impact user experience. The [Material Design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples
 for when not to apply density.
 
 The theme is configured with the following options:

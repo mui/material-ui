@@ -8,7 +8,7 @@
 
 为了提高应用程序之间的一致性，你可以在明暗主题类型中选择。 默认情况下，组件会使用浅色的主题样式。
 
-## ThemeProvider
+## Theme provider
 
 如果你想要使用自定义的主题，那么需要使用 `MuiThemeProvider` 组件将样式注入到你的应用中。 但是，这是可选的；因为 Material-UI 组件带有默认主题。
 
@@ -30,7 +30,7 @@
 
 ### 自定义变量
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样：
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样： For instance:
 
 ```jsx
 const theme = createTheme({
@@ -96,7 +96,7 @@ declare module '@mui/material/styles' {
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-> Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+> Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -119,7 +119,7 @@ const theme = createTheme({
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### 例子
+#### Examples
 
 ```js
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -150,29 +150,6 @@ function App() {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
 
-```js
-import { createTheme } from '@mui/material/styles';
-
-let theme = createTheme({
-  shape: {
-    borderRadius: 4,
-  },
-});
-
-theme = createTheme(theme, {
-  components: {
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          // 用主题的 border-radius 参数来代替默认组件的样式
-          borderRadius: theme.shape.borderRadius,
-        },
-      },
-    },
-  },
-});
-```
-
 ### `responsiveFontSizes(theme, options) => theme`
 
 根据接收到的选项生成响应式的文字铸排设置。
@@ -191,7 +168,7 @@ theme = createTheme(theme, {
 
 `theme` (_object_): The new theme with a responsive typography.
 
-#### 要求
+#### Examples
 
 ```js
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
@@ -219,7 +196,7 @@ theme = responsiveFontSizes(theme);
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### 例子
+#### Examples
 
 ```js
 import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
@@ -239,14 +216,16 @@ function App() {
 
 ### `ThemeProvider`
 
-This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. 最好在**您的组件树的根目录**中使用它。
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. 最好在**您的组件树的根目录**中使用它。 It should preferably be used at **the root of your component tree**.
 
 #### 属性
 
 | Name | Type | Description |
-|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\* | node | Your component tree. |
-| theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
+|:---- | ---- | ----------- |
+|      |      |             |
+ product: material--------------- |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | | children&nbsp;\* | node | Your component tree. | | theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of 
+
+[`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. | | | theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
 #### Examples
 

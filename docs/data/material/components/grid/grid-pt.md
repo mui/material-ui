@@ -6,7 +6,7 @@ githubLabel: 'component: Grid'
 materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
-# Grade
+# Grid
 
 <p class="description">O leiaute responsivo da grade do Material Design se adapta ao tamanho e orientação da tela, garantindo a consistência entre leiautes.</p>
 
@@ -51,7 +51,7 @@ Aqui por exemplo `xs={12} sm={6}` define que o componente ocupará metade da lar
 
 ## Espaçamento
 
-Para controlar o espaço entre os filhos, use a prop `spacing` O valor do espaçamento pode ser qualquer numero positivo, incluindo decimais e até strings (cadeia de caracteres) As props são convertidas em css usando o auxiliar [`theme.spacing()`](/customization/spacing/) O valor do espaçamento pode ser qualquer numero positivo, incluindo decimais e até strings (cadeia de caracteres) As props são convertidas em css usando o auxiliar [`theme.spacing()`](/customization/spacing/)
+To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
 
 {{"demo": "SpacingGrid.js", "bg": true}}
 
@@ -63,7 +63,7 @@ As props `rowSpacing` e `columnSpacing` nos permite especificar os espaços entr
 
 ## Valores responsivos
 
-Podemos ativar as props de acordo com ponto de ruptura ativo Podemos ativar as props de acordo com ponto de ruptura ativo Por exemplo, podemos implementar o leiaute responsivo do Material Design ["recommended"](https://material.io/design/layout/responsive-layout-grid.html)
+You can switch the props' value based on the active breakpoint. Podemos ativar as props de acordo com ponto de ruptura ativo Podemos ativar as props de acordo com ponto de ruptura ativo Por exemplo, podemos implementar o leiaute responsivo do Material Design ["recommended"](https://material.io/design/layout/responsive-layout-grid.html)
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 
@@ -76,12 +76,12 @@ Valores responsivos são suportados por:
 - `spacing`
 - todas as outras propriedades do sistema [other props](#system-props)
 
-> ⚠️ Quando Usamos a prop de código responsivo `colunas`, cada item da manha precisa de seu correspondente ponto de ruptura. Por exemplo, este não está funcionando Por exemplo, este não está funcionando Os itens da malha precisa de seu valor para `md` (ponto médio)
->
+> ⚠️ Quando Usamos a prop de código responsivo `colunas`, cada item da manha precisa de seu correspondente ponto de ruptura. For instance, this is not working. The grid item misses the value for `md`:
+> 
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
->   <Grid item xs={2} />> >{' '}
-> </Grid>
+>    <Grid item xs={2} />> >{' '}
+> > </Grid>
 > ```
 
 ## Interativo
@@ -92,7 +92,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Leiaute Automático
 
-O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele
+O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele That also means you can set the width of one _item_ and the others will automatically resize around it.
 
 {{"demo": "AutoGrid.js", "bg": true}}
 
@@ -147,7 +147,7 @@ A configuração inicial em itens flexíveis é `min-width: auto`. Isto causa um
   <Typography noWrap>
 ```
 
-Para que o item permaneça dentro do contêiner, você precisa definir `min-width: 0`. Para que o item permaneça dentro do contêiner, você precisa definir `min-width: 0`.
+In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` prop:
 
 ```jsx
 <Grid item xs zeroMinWidth>

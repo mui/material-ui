@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { TouchRippleProps } from './TouchRipple';
+import { TouchRippleActions, TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonBaseClasses } from './buttonBaseClasses';
 
@@ -80,6 +80,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * Props applied to the `TouchRipple` element.
      */
     TouchRippleProps?: Partial<TouchRippleProps>;
+    /**
+     * A ref that points to the `TouchRippple` element.
+     */
+    touchRippleRef?: React.Ref<TouchRippleActions>;
   };
   defaultComponent: D;
 }
