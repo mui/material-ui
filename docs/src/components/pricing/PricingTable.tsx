@@ -535,7 +535,6 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/column-resizing': no,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
-  'data-grid/row-sorting': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
@@ -545,6 +544,8 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/filter-quick': pending,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': no,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': no,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': no,
   'data-grid/edit-row': yes,
@@ -587,7 +588,6 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
-  'data-grid/row-sorting': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': pending,
@@ -597,6 +597,8 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/filter-quick': pending,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
   'data-grid/edit-row': yes,
@@ -639,7 +641,6 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
-  'data-grid/row-sorting': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': pending,
@@ -649,6 +650,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/filter-quick': pending,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
   'data-grid/edit-row': yes,
@@ -980,8 +983,6 @@ export default function PricingTable({
         {renderRow('data-grid/column-pinning')}
         {nestedDivider}
         <RowCategory>Row features</RowCategory>
-        {renderRow('data-grid/row-sorting')}
-        {nestedDivider}
         {renderRow('data-grid/row-height')}
         {nestedDivider}
         {renderRow('data-grid/row-spanning')}
@@ -1001,6 +1002,11 @@ export default function PricingTable({
         {renderRow('data-grid/filter-column')}
         {nestedDivider}
         {renderRow('data-grid/filter-multicolumn')}
+        {nestedDivider}
+        <RowCategory>Sorting</RowCategory>
+        {renderRow('data-grid/column-sorting')}
+        {nestedDivider}
+        {renderRow('data-grid/multi-column-sorting')}
         {nestedDivider}
         <RowCategory>Pagination features</RowCategory>
         {renderRow('data-grid/pagination')}
