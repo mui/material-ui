@@ -357,8 +357,11 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': (
     <ColumnHead label="Column pinning" nested href={getUrl('/columns/#column-pinning')} />
   ),
-  'data-grid/row-sorting': (
-    <ColumnHead label="Row sorting" nested href={getUrl('/rows/#row-sorting')} />
+  'data-grid/column-sorting': (
+    <ColumnHead label="Column sorting" nested href={getUrl('/sorting/')} />
+  ),
+  'data-grid/multi-column-sorting': (
+    <ColumnHead label="Multi-column sorting" nested href={getUrl('/sorting/#multi-sorting')} />
   ),
   'data-grid/row-height': (
     <ColumnHead label="Row height" nested href={getUrl('/rows/#row-height')} />
@@ -392,7 +395,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead
       label="Multi-column filtering"
       nested
-      href={getUrl('/filtering/#multi-column-filtering')}
+      href={getUrl('/filtering/#single-and-multi-filtering')}
     />
   ),
   'data-grid/pagination': <ColumnHead label="Pagination" nested href={getUrl('/pagination/')} />,
@@ -400,7 +403,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead
       label="Pagination > 100 rows per page"
       nested
-      href={getUrl('/pagination/#paginate-gt-100-rows')}
+      href={getUrl('/pagination/#size-of-the-page')}
     />
   ),
   'data-grid/edit-row': (
@@ -412,7 +415,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/file-csv': (
     <ColumnHead label="CSV export" nested href={getUrl('/export/#csv-export')} />
   ),
-  'data-grid/file-print': <ColumnHead label="Print" nested href={getUrl('/export/#print')} />,
+  'data-grid/file-print': (
+    <ColumnHead label="Print" nested href={getUrl('/export/#print-export')} />
+  ),
   'data-grid/file-clipboard': (
     <ColumnHead label="Clipboard" nested href={getUrl('/export/#clipboard')} />
   ),
@@ -604,7 +609,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/virtualize-column': yes,
   'data-grid/virtualize-row': yes,
   'data-grid/tree-data': yes,
-  'data-grid/master-detail': pending,
+  'data-grid/master-detail': yes,
   'data-grid/grouping': no,
   'data-grid/aggregation': no,
   'data-grid/pivoting': no,
@@ -656,8 +661,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/virtualize-column': yes,
   'data-grid/virtualize-row': yes,
   'data-grid/tree-data': yes,
-  'data-grid/master-detail': pending,
-  'data-grid/grouping': pending,
+  'data-grid/master-detail': yes,
+  'data-grid/grouping': yes,
   'data-grid/aggregation': pending,
   'data-grid/pivoting': pending,
   'data-grid/accessibility': yes,
