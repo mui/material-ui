@@ -8,10 +8,12 @@ import { styled } from '@mui/system';
 import { PopperUnstyled } from '@mui/base';
 
 const blue = {
+  100: '#DAECFF',
   200: '#99CCF3',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  900: '#003A75',
 };
 
 const grey = {
@@ -48,8 +50,7 @@ const StyledButton = styled('button')(
   }
 
   &.${selectUnstyledClasses.focusVisible} {
-    outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
-    outline-offset: 2px;
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
   }
 
   &.${selectUnstyledClasses.expanded} {
@@ -74,7 +75,7 @@ const StyledListbox = styled('ul')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  padding: 0;
+  padding: 5px;
   margin: 10px 0;
   min-width: 320px;
   max-height: 400px;
@@ -90,9 +91,8 @@ const StyledListbox = styled('ul')(
 const StyledOption = styled(OptionUnstyled)(
   ({ theme }) => `
   list-style: none;
-  padding: 10px;
-  margin: 0;
-  border-bottom: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
+  padding: 8px;
+  border-radius: 0.45em;
   cursor: default;
 
   &:last-of-type {
@@ -100,8 +100,8 @@ const StyledOption = styled(OptionUnstyled)(
   }
 
   &.${optionUnstyledClasses.selected} {
-    background-color: ${blue[500]};
-    color: #fff;
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
   &.${optionUnstyledClasses.highlighted} {
@@ -110,8 +110,8 @@ const StyledOption = styled(OptionUnstyled)(
   }
 
   &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
-    background-color: ${blue[600]};
-    color: #fff;
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
   &.${optionUnstyledClasses.disabled} {

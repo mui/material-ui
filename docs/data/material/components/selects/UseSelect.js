@@ -61,7 +61,7 @@ const Listbox = styled('ul')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  padding: 0;
+  padding: 5px;
   margin: 5px 0 0 0;
   list-style: none;
   position: absolute;
@@ -76,7 +76,6 @@ const Listbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 0.75em;
-  border-top: none;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   z-index: 1;
@@ -89,7 +88,8 @@ const Listbox = styled('ul')(
   }
 
   & > li {
-    padding: 10px;
+    padding: 8px;
+    border-radius: 0.45em;
 
     &:hover {
       background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
