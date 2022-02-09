@@ -7,9 +7,9 @@ const sortBreakpointsValues = (values) => {
   // Sort in ascending order
   breakpointsAsArray.sort((breakpoint1, breakpoint2) => breakpoint1.val - breakpoint2.val);
   return breakpointsAsArray.reduce((acc, obj) => {
-    return { ...acc, [obj.key]: obj.val }
+    return { ...acc, [obj.key]: obj.val };
   }, {});
-}
+};
 
 // Keep in mind that @media is inclusive by the CSS specification.
 export default function createBreakpoints(breakpoints) {

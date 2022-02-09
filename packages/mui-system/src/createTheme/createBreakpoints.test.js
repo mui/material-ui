@@ -33,7 +33,7 @@ describe('createBreakpoints', () => {
 
     expect(unorderedValues.keys).to.deep.equal(orderedValues.keys);
     expect(unorderedValues.values).to.deep.equal(orderedValues.values);
-  })
+  });
 
   describe('up', () => {
     it('should work for xs', () => {
