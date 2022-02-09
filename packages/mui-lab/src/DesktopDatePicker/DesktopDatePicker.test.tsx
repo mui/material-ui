@@ -267,6 +267,7 @@ describe('<DesktopDatePicker />', () => {
 
     expect(screen.getByMuiTest('picker-toolbar')).toBeVisible();
   });
+
   it('prop `clearable` - renders clear button in Desktop mode', () => {
     function DesktopDatePickerClearable() {
       const [value, setValue] = React.useState<Date | null>(
