@@ -400,8 +400,9 @@ Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool.isRequired,
   /**
    * If `true`, the trap focus will not scroll to the previously focused element while restoring the focus.
+   * @default false
    */
-  preventScrollOnFocusRestoration: PropTypes.any.isRequired,
+  preventScrollOnFocusRestoration: PropTypes.bool,
 };
 
 if (process.env.NODE_ENV !== 'production') {

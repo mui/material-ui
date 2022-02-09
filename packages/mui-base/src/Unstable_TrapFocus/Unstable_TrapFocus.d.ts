@@ -52,8 +52,9 @@ export interface TrapFocusProps {
   disableRestoreFocus?: boolean;
   /**
    * If `true`, the trap focus will not scroll to the previously focused element while restoring the focus.
+   * @default false
    */
-  preventScrollOnFocusRestoration;
+  preventScrollOnFocusRestoration?: boolean;
 }
 
 /**

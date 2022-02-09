@@ -9,7 +9,8 @@
     "isEnabled": {
       "type": { "name": "func" },
       "default": "function defaultIsEnabled() {\n  return true;\n}"
-    }
+    },
+    "preventScrollOnFocusRestoration": { "type": { "name": "bool" } }
   },
   "name": "Unstable_TrapFocus",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
