@@ -14,7 +14,7 @@ export interface LinearProgressProps
   classes?: Partial<LinearProgressClasses>;
   /**
    * The color of the component. It supports those default theme colors that make sense for this component,
-   * The string option is added in order to allow adding custom theme colors, as shown in the [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
+   * or custom theme colors, defined as shown in the [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
