@@ -30,6 +30,6 @@
     "styled-components": "^5.3.3",
     "theme-ui": "^0.13.1",
     "webpack": "^5.68.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.2"
   }
 }
