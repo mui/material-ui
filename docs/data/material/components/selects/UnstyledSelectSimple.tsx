@@ -50,7 +50,7 @@ const StyledButton = styled('button')(
   }
 
   &.${selectUnstyledClasses.focusVisible} {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[100]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
   }
 
   &.${selectUnstyledClasses.expanded} {
