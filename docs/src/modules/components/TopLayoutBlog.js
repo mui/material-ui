@@ -83,6 +83,8 @@ const styles = (theme) => ({
       theme.palette.mode === 'dark'
         ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
         : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
+    backgroundSize: 'auto 250px ',
+    backgroundRepeat: 'no-repeat',
   },
   back: {
     display: 'flex',
@@ -128,7 +130,7 @@ const styles = (theme) => ({
 const AuthorsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(4),
+  marginBottom: theme.spacing(2),
   '& .author': {
     display: 'flex',
     alignItems: 'center',
