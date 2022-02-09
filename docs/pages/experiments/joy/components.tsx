@@ -5,6 +5,12 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemContent from '@mui/joy/ListItemContent';
+import ListItemAdornment from '@mui/joy/ListItemAdornment';
+import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemSeparator from '@mui/joy/ListItemSeparator';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
@@ -12,6 +18,11 @@ import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Add from '@mui/icons-material/Add';
 import DeleteForever from '@mui/icons-material/DeleteForever';
+import Inbox from '@mui/icons-material/Inbox';
+import Drafts from '@mui/icons-material/Drafts';
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
+import Star from '@mui/icons-material/StarBorder';
+import Favorite from '@mui/icons-material/FavoriteBorder';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
@@ -148,6 +159,95 @@ const components = [
       { id: '--Switch-thumb-offset', type: 'number', unit: 'px' },
     ],
   },
+  {
+    name: 'List',
+    render: (props: any) => (
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          minWidth: 375,
+          gap: 2,
+          p: 2,
+          bgcolor: 'var(--joy-palette-background-level2)',
+          '& > *': { bgcolor: 'var(--joy-palette-background-body)' },
+        }}
+      >
+        <List {...props}>
+          <ListItem>
+            <ListItemAdornment>
+              <Box
+                sx={(theme) => ({
+                  display: 'inline-flex',
+                  borderRadius: '40px',
+                  p: '0.5rem',
+                  ...theme.variants.light.neutral,
+                })}
+              >
+                <Inbox />
+              </Box>
+            </ListItemAdornment>
+            <ListItemContent sx={{ pl: 1 }}>
+              Inbox
+              <Typography level="body2">Jan 9, 2014</Typography>
+            </ListItemContent>
+          </ListItem>
+          <ListItemSeparator inset="leftContent" />
+          <ListItem>
+            <ListItemAdornment>
+              <Box
+                sx={(theme) => ({
+                  display: 'inline-flex',
+                  borderRadius: '40px',
+                  p: '0.5rem',
+                  ...theme.variants.light.neutral,
+                })}
+              >
+                <Drafts fontSize="md" />
+              </Box>
+            </ListItemAdornment>
+            <ListItemContent sx={{ pl: 1 }}>
+              Drafts
+              <Typography level="body2">Jan 7, 2014</Typography>
+            </ListItemContent>
+          </ListItem>
+        </List>
+        <List component="nav" {...props}>
+          <ListItemButton selected color="primary">
+            <ListItemAdornment>
+              <Inbox />
+            </ListItemAdornment>
+            <ListItemContent>Inbox</ListItemContent>
+            <ListItemAdornment end>
+              <KeyboardArrowUp />
+            </ListItemAdornment>
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemAdornment>
+              <Star />
+            </ListItemAdornment>
+            <ListItemContent>Starred</ListItemContent>
+          </ListItemButton>
+          <ListItemSeparator component="hr" />
+          <ListItemButton>
+            <ListItemAdornment>
+              <Favorite />
+            </ListItemAdornment>
+            <ListItemContent>Favorite</ListItemContent>
+          </ListItemButton>
+        </List>
+      </Box>
+    ),
+    cssVars: [
+      { id: '--List-gutter', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--List-itemGutter', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-itemMinHeight', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--List-startAdornment', type: 'number', unit: 'px', defaultValue: 48 },
+      { id: '--List-separatorSize', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-insetLeft', type: 'number', unit: 'px' },
+    ],
+  },
 ];
 
 export default function JoyComponents() {
@@ -206,30 +306,25 @@ export default function JoyComponents() {
           <Box sx={{ pl: 5, pt: 2 }}>
             <ColorSchemePicker />
           </Box>
-          <Box
-            component="ul"
+          <List
             sx={{
-              my: 2,
-              px: 2,
-              listStyle: 'none',
-              '& > li': {
-                marginBottom: '0.25rem',
-              },
-              '& button': { justifyContent: 'flex-start' },
+              mt: 2,
+              '--List-insetLeft': '1.25rem',
+              '--List-radius': '1rem',
             }}
           >
             {components.map((config) => (
-              <li key={config.name}>
-                <Button
-                  fullWidth
-                  variant={config.name === current ? 'outlined' : 'text'}
+              <ListItem key={config.name} sx={{ mb: 1 }}>
+                <ListItemButton
+                  color={config.name === current ? 'primary' : 'neutral'}
+                  selected={config.name === current}
                   onClick={() => setCurrent(config.name)}
                 >
                   {config.name}
-                </Button>
-              </li>
+                </ListItemButton>
+              </ListItem>
             ))}
-          </Box>
+          </List>
         </Box>
         <Box
           className="Canvas"
@@ -240,7 +335,7 @@ export default function JoyComponents() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
+            pt: '100px',
             gap: 2,
           }}
         >
@@ -263,9 +358,7 @@ export default function JoyComponents() {
             </ThemeProvider>
           </Box>
         </Box>
-        <Box
-          sx={{ width: 300, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-        >
+        <Box sx={{ width: 300, display: 'flex', flexDirection: 'column', pt: '100px' }}>
           <Box
             sx={{
               bgcolor: 'var(--joy-palette-background-level1)',

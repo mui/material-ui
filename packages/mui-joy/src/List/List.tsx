@@ -35,6 +35,7 @@ const ListRoot = styled('ul', {
   '--ListItemButton-margin': 'initial',
   borderRadius: 'var(--List-radius)',
   padding: '0.375rem var(--List-gutter)',
+  margin: 'initial',
   listStyle: 'none',
   display: 'flex',
   flexDirection: 'column',
