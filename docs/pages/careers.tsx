@@ -181,12 +181,12 @@ const openRolesData = [
         title: 'React Support Engineer - X',
         description:
           "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/company/support-engineer/',
+        url: '/company/react-support-engineer/',
       },
       {
         title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
-        url: '/company/hustler-engineer/',
+        url: '/company/product-engineer/',
       },
     ],
   },
