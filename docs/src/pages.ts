@@ -6,6 +6,10 @@ export interface MuiPage {
   disableDrawer?: boolean;
   icon?: string;
   /**
+   * Indicates if the pages are regarding some legacy API.
+   */
+  legacy?: boolean;
+  /**
    * In case the children have pathnames out of pathname value, use this field to scope other pathnames
    */
   scopePathnames?: string[];
@@ -327,6 +331,7 @@ const pages: readonly MuiPage[] = [
     pathname: '/styles',
     title: 'Styles (legacy)',
     icon: 'StyleIcon',
+    legacy: true,
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },

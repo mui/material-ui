@@ -6,6 +6,13 @@ title: Styles API
 
 <p class="description">The API reference of @mui/styles.</p>
 
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI.
+> It is deprecated in v5.
+> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore.
+> If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+>
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
+
 ## `createGenerateClassName([options]) => class name generator`
 
 A function which returns [a class name generator function](https://cssinjs.org/jss-api/#generate-your-class-names).
