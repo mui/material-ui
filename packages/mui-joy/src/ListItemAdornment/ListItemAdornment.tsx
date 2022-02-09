@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
@@ -52,5 +53,29 @@ const ListItemAdornment = React.forwardRef(function ListItemAdornment(inProps, r
     </ListItemAdornmentRoot>
   );
 }) as OverridableComponent<ListItemAdornmentTypeMap>;
+
+ListItemAdornment.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * If `true`, the margin-left is added. Otherwise, the margin-right is added.
+   */
+  end: PropTypes.bool,
+} as any;
 
 export default ListItemAdornment;

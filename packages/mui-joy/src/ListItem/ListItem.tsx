@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
@@ -22,7 +23,6 @@ const ListItemRoot = styled('li', {
   // add negative margin to ListItemButton equal to this ListItem padding
   '--ListItemButton-margin':
     'max(-0.375rem, -1 * var(--List-itemGutter)) calc(-1 * var(--List-itemGutter))',
-
   boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'center',
@@ -57,5 +57,25 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     </ListItemRoot>
   );
 }) as OverridableComponent<ListItemTypeMap>;
+
+ListItem.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+} as any;
 
 export default ListItem;

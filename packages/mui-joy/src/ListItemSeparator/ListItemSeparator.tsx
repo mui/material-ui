@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
@@ -64,5 +65,29 @@ const ListItemSeparator = React.forwardRef(function ListItemSeparator(inProps, r
     </ListItemSeparatorRoot>
   );
 }) as OverridableComponent<ListItemSeparatorTypeMap>;
+
+ListItemSeparator.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The empty space on the side(s) of the separator.
+   */
+  inset: PropTypes.oneOf(['gutter', 'leftAdornment', 'leftContent']),
+} as any;
 
 export default ListItemSeparator;
