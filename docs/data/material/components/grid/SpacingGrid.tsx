@@ -29,8 +29,6 @@ export default function SpacingGrid() {
                 sx={{
                   height: 140,
                   width: 100,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                 }}
               />
             </Grid>
