@@ -121,6 +121,7 @@ function Unstable_TrapFocus(props) {
     disableAutoFocus = false,
     disableEnforceFocus = false,
     disableRestoreFocus = false,
+    preventScrollOnFocusRestoration = false,
     getTabbable = defaultGetTabbable,
     isEnabled = defaultIsEnabled,
     open,
@@ -183,14 +184,14 @@ function Unstable_TrapFocus(props) {
         // Once IE11 support is dropped the focus() call can be unconditional.
         if (nodeToRestore.current && nodeToRestore.current.focus) {
           ignoreNextEnforceFocus.current = true;
-          nodeToRestore.current.focus();
+          nodeToRestore.current.focus({ preventScroll: preventScrollOnFocusRestoration });
         }
 
         nodeToRestore.current = null;
       }
     };
-    // Missing `disableRestoreFocus` which is fine.
-    // We don't support changing that prop on an open TrapFocus
+    // Missing `disableRestoreFocus` / `preventScrollOnFocusRestoration` which is fine.
+    // We don't support changing those props on an open TrapFocus
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
@@ -300,7 +301,15 @@ function Unstable_TrapFocus(props) {
       doc.removeEventListener('focusin', contain);
       doc.removeEventListener('keydown', loopFocus, true);
     };
-  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
+  }, [
+    disableAutoFocus,
+    disableEnforceFocus,
+    disableRestoreFocus,
+    preventScrollOnFocusRestoration,
+    isEnabled,
+    open,
+    getTabbable,
+  ]);
 
   const onFocus = (event) => {
     if (nodeToRestore.current === null) {
@@ -389,6 +398,10 @@ Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
    * If `true`, focus is locked.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * If `true`, the trap focus will not scroll to the previously focused element while restoring the focus.
+   */
+  preventScrollOnFocusRestoration: PropTypes.any.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {
