@@ -18,19 +18,19 @@ githubLabel: 'component: Box'
 
 ## `sx` 属性
 
-All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例： 此外，`sx` 属性允许您指定您可能需要的任何其他 CSS 样式。 In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例：
+所有的样式功能都可以通过 [`sx` 属性 ](/system/basics/#the-sx-prop)设置。 同时，您也可通过`sx` 属性指定任何您想添加的 CSS 规则。 下面是一个如何使用的示例：
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
 ## 覆盖 Material-UI 组件
 
-Box 组件能够封装您的组件。 It creates a new DOM element, a `<div>` that by default can be changed with the `component` prop. 假设反之你想使用一个 `<span>`： 假设反之你想使用一个 `<span>`：
+Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默认情况下为 `<div>`，并可以通过 ` component ` 属性进行更改。 假设您想使用 `<span>`：
 
 {{"demo": "BoxComponent.js", "defaultCodeOpen": true }}
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. The Button component defines its own styles. 所以使用 CSS 继承是于事无补的。 想要解决这个问题，可以将[`sx`](/system/basics/#the-sx-prop)作为 MUI 组件的 props 使用
+但是，有时您的目标是下层的 DOM 元素。 例如，你可能想要更改 Button 组件的边框。 Button 组件已经定义好了它自己的样式。 所以使用 CSS 继承是于事无补的。 为了回避这个CSS继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -39,7 +39,7 @@ Box 组件能够封装您的组件。 It creates a new DOM element, a `<div>` th
 +<Button sx={{ border: '1px dashed grey' }}>保存</Button>
 ```
 
-For non-Material-UI components, use the `component` prop.
+对于非 MUI 组件，使用 `component` 属性。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
