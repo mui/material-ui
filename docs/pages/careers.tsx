@@ -184,7 +184,7 @@ const openRolesData = [
         url: '/company/support-engineer/',
       },
       {
-        title: 'Hustler Engineer - Store',
+        title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/company/hustler-engineer/',
       },
