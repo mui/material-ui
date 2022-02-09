@@ -169,6 +169,7 @@ const components = [
           minWidth: 375,
           gap: 2,
           p: 2,
+          mt: '-80px',
           bgcolor: 'var(--joy-palette-background-level2)',
           '& > *': { bgcolor: 'var(--joy-palette-background-body)' },
         }}
@@ -234,6 +235,21 @@ const components = [
               <Favorite />
             </ListItemAdornment>
             <ListItemContent>Favorite</ListItemContent>
+          </ListItemButton>
+        </List>
+        <List component="nav" {...props}>
+          <ListItemButton>
+            <ListItemContent>New file</ListItemContent>
+            <Typography level="body2">⌘ N</Typography>
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemContent>Copy</ListItemContent>
+            <Typography level="body2">⌘ C</Typography>
+          </ListItemButton>
+          <ListItemSeparator inset="gutter" />
+          <ListItemButton>
+            <ListItemContent>Delete</ListItemContent>
+            <Typography level="body2">⌘ D</Typography>
           </ListItemButton>
         </List>
       </Box>
