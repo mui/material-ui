@@ -6,10 +6,9 @@ import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 
-const useUtilityClasses = (ownerState: ListItemProps) => {
-  const { nestedLevel } = ownerState;
+const useUtilityClasses = () => {
   const slots = {
-    root: ['root', !!nestedLevel && `nestedLevel${nestedLevel}`],
+    root: ['root'],
   };
 
   return composeClasses(slots, getListItemUtilityClass, {});
@@ -19,34 +18,15 @@ const ListItemRoot = styled('li', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: ListItemProps }>(({ theme }) => ({
   // add negative margin to ListItemButton equal to this ListItem padding
   '--ListItemButton-margin':
     'max(-0.375rem, -1 * var(--List-itemGutter)) calc(-1 * var(--List-itemGutter))',
 
-  ...(ownerState.nestedLevel && {
-    // tell the List that it is nested
-    '--NestedList-level': ownerState.nestedLevel,
-
-    // add negative margin to NestedList equal to this ListItem padding & clear the padding
-    '--NestedList-margin':
-      'max(-0.375rem, -1 * var(--List-itemGutter)) calc(-1 * var(--List-itemGutter))',
-    '--NestedList-padding': '0px var(--List-gutter)',
-
-    '--NestedList-radius': 'var(--List-radius)',
-    '--NestedList-gutter': 'var(--List-gutter)',
-    '--NestedList-itemMinHeight': 'var(--List-itemMinHeight)',
-    '--NestedList-startAdornment': 'var(--List-startAdornment)',
-    '--NestedList-separatorSize': 'var(--List-separatorSize)',
-    margin: '0px calc(-1 * var(--List-gutter))',
-  }),
   boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'center',
   padding: 'min(0.375rem, var(--List-itemGutter)) var(--List-itemGutter)',
-  ...(!ownerState.nestedLevel && {
-    paddingLeft: 'var(--List-insetLeft, var(--List-itemGutter))',
-  }),
   minHeight: 'var(--List-itemMinHeight)',
   ...theme.typography.body1,
 }));
@@ -57,14 +37,13 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'MuiListItem',
   });
 
-  const { component, className, children, nestedLevel, ...other } = props;
+  const { component, className, children, ...other } = props;
 
   const ownerState = {
-    nestedLevel,
     ...props,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses();
 
   return (
     <ListItemRoot

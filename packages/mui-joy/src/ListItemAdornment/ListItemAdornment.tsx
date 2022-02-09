@@ -22,7 +22,7 @@ const ListItemAdornmentRoot = styled('span', {
   display: 'inline-flex',
   ...(ownerState.end
     ? { marginLeft: 'var(--List-itemGutter)' }
-    : { minWidth: 'var(--List-startAdornment, 3rem)' }),
+    : { minWidth: 'var(--List-startAdornment)' }),
 }));
 
 const ListItemAdornment = React.forwardRef(function ListItemAdornment(inProps, ref) {

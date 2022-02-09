@@ -22,15 +22,17 @@ const ListItemSeparatorRoot = styled('li', {
   border: 'none', // reset the border for `hr` tag
   borderBottom: '1px solid',
   borderColor: theme.vars.palette.neutral.outlinedBorder,
+  // by default, the separator line is stretched from edge-to-edge of the List
+  // spacing between ListItem can be controlled by `--List-separatorSize` on the List
   margin: 'var(--List-separatorSize) calc(-1 * var(--List-gutter))',
   ...(ownerState.inset === 'gutter' && {
     margin: 'var(--List-separatorSize) var(--List-itemGutter)',
   }),
   ...(ownerState.inset === 'leftAdornment' && {
-    marginLeft: 'var(--List-insetLeft, var(--List-itemGutter))',
+    marginLeft: 'var(--List-itemGutter)',
   }),
   ...(ownerState.inset === 'leftContent' && {
-    marginLeft: 'calc(var(--List-insetLeft, var(--List-gutter)) + var(--List-startAdornment))',
+    marginLeft: 'calc(var(--List-gutter) + var(--List-startAdornment))',
   }),
 }));
 

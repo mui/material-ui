@@ -14,10 +14,6 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      */
     classes?: Partial<ListItemClasses>;
     /**
-     * The nested level of the list
-     */
-    nestedLevel?: number;
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;

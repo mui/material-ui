@@ -23,22 +23,20 @@ const ListRoot = styled('ul', {
   '--List-gutter': '0.375rem',
   //   below variables inherit from ListItem
   //   if there is no ListItem as a parent, use the default values.
-  '--List-radius': 'var(--NestedList-radius, 8px)',
-  '--List-itemGutter': 'var(--NestedList-itemGutter, 0.375rem)',
-  '--List-itemMinHeight': 'var(--NestedList-itemMinHeight, 2.5rem)',
-  '--List-startAdornment': 'var(--NestedList-startAdornment, 3rem)',
-  '--List-separatorSize': 'var(--NestedList-separatorSize, 0.375rem)',
-  //   to override padding-left of the nested ListItem & ListItemButton if this list is inside a ListItem.
-  '--List-insetLeft': 'calc(var(--NestedList-level) * (var(--List-itemGutter) + 1.5rem))',
+  '--List-radius': '8px',
+  '--List-itemGutter': '0.375rem',
+  '--List-itemMinHeight': '2.5rem',
+  '--List-startAdornment': '3rem',
+  '--List-separatorSize': '0.375rem',
+  '--List-insetLeft': 'var(--List-itemGutter)',
 
   // ========= Private variables =========
   //   to reset the ListItemButton in nested list
   '--ListItemButton-margin': 'initial',
 
   borderRadius: 'var(--List-radius)',
-  padding: 'var(--NestedList-padding, 0.375rem var(--List-gutter))',
+  padding: '0.375rem var(--List-gutter)',
   listStyle: 'none',
-  margin: 'var(--NestedList-margin, initial)',
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,

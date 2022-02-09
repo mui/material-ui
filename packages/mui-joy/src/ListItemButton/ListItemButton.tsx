@@ -45,6 +45,7 @@ const ListItemButtonRoot = styled('div', {
     display: 'flex',
     alignItems: 'center',
     textAlign: 'initial',
+    textDecoration: 'initial', // reset native anchor tag
     // In some case, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
     // The value is negative to account for the ListItem's padding
     margin: 'var(--ListItemButton-margin)',

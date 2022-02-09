@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import NextLink from 'next/link';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
@@ -267,22 +268,38 @@ export default function JoyTypography() {
           </List>
 
           {/* ex7 */}
-          <List>
-            <ListItem>
+          <List component="nav">
+            <ListItemButton>
               <ListItemContent>New file</ListItemContent>
               <Typography level="body2">⌘ N</Typography>
-            </ListItem>
-            <ListItem>
+            </ListItemButton>
+            <ListItemButton>
               <ListItemContent>Copy</ListItemContent>
               <Typography level="body2">⌘ C</Typography>
-            </ListItem>
-            <ListItem>
+            </ListItemButton>
+            <ListItemButton>
               <ListItemContent>Check</ListItemContent>
-            </ListItem>
+            </ListItemButton>
             <ListItemSeparator inset="gutter" />
-            <ListItem>
+            <ListItemButton>
               <ListItemContent>Delete</ListItemContent>
               <Typography level="body2">⌘ D</Typography>
+            </ListItemButton>
+          </List>
+
+          {/* ex7 */}
+          <List>
+            <ListItem>
+              <ListItemButton component="a" href="#">
+                <ListItemContent>External Link</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <NextLink href="/" passHref>
+                <ListItemButton component="a">
+                  <ListItemContent>Internal Link</ListItemContent>
+                </ListItemButton>
+              </NextLink>
             </ListItem>
           </List>
 
@@ -290,14 +307,13 @@ export default function JoyTypography() {
           <List
             component="nav"
             sx={{
-              '--List-radius': '8px',
+              '--List-radius': '0px',
+              '--List-gutter': '0px',
               '--List-itemGutter': '1rem',
-              '--List-itemMinHeight': '2rem',
-              '--List-startAdornment': '2rem',
-              '--List-separatorSize': '0.5rem',
+              '--List-itemMinHeight': '3rem',
             }}
           >
-            <ListItemButton selected selectedVariant="contained" color="primary">
+            <ListItemButton selected color="primary">
               <ListItemAdornment>
                 <InboxIcon />
               </ListItemAdornment>
@@ -306,42 +322,19 @@ export default function JoyTypography() {
                 <KeyboardArrowUp />
               </ListItemAdornment>
             </ListItemButton>
+            <ListItemButton>
+              <ListItemAdornment>
+                <Star />
+              </ListItemAdornment>
+              <ListItemContent>Starred</ListItemContent>
+            </ListItemButton>
             <ListItemSeparator component="hr" />
-            <ListItem component="div" nestedLevel={1}>
-              <List component="div">
-                <ListItemButton>
-                  <ListItemAdornment>
-                    <Star />
-                  </ListItemAdornment>
-                  <ListItemContent>Starred</ListItemContent>
-                </ListItemButton>
-                <ListItemSeparator component="hr" inset="gutter" />
-                <ListItemButton>
-                  <ListItemAdornment>
-                    <Favorite />
-                  </ListItemAdornment>
-                  <ListItemContent>Favorite</ListItemContent>
-                </ListItemButton>
-                <ListItemSeparator component="hr" inset="leftAdornment" />
-                <ListItem component="div" nestedLevel={2}>
-                  <List component="div">
-                    <ListItemButton>
-                      <ListItemAdornment>
-                        <Star />
-                      </ListItemAdornment>
-                      <ListItemContent>Starred</ListItemContent>
-                    </ListItemButton>
-                    <ListItemSeparator component="hr" inset="leftContent" />
-                    <ListItemButton>
-                      <ListItemAdornment>
-                        <Favorite />
-                      </ListItemAdornment>
-                      <ListItemContent>Favorite</ListItemContent>
-                    </ListItemButton>
-                  </List>
-                </ListItem>
-              </List>
-            </ListItem>
+            <ListItemButton>
+              <ListItemAdornment>
+                <Favorite />
+              </ListItemAdornment>
+              <ListItemContent>Favorite</ListItemContent>
+            </ListItemButton>
           </List>
         </Box>
       </Box>
