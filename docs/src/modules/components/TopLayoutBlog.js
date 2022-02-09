@@ -107,15 +107,19 @@ const styles = (theme) => ({
       display: 'block',
       margin: 'auto',
     },
+    '& strong': {
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
+    },
     '& pre': {
       fontSize: theme.typography.pxToRem(16),
     },
     '& .blog-description': {
-      fontSize: theme.typography.pxToRem(14),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
+      fontSize: theme.typography.pxToRem(13),
+      textAlign: 'left',
+      color: theme.palette.grey[600],
       '& a': {
-        color: theme.palette.text.secondary,
+        color:
+          theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
         textDecoration: 'underline',
       },
     },
