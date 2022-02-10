@@ -25,11 +25,11 @@ const ListRoot = styled('ul', {
   '--List-radius': '8px',
   '--List-itemMinHeight': '2.5rem',
   '--List-itemGutter': '0.375rem',
+  '--List-startAdornment': '3rem',
+  '--List-separatorGap': '0.75rem',
+  '--List-insetStart': 'var(--List-itemGutter)',
   '--List-itemRadius':
     'max(var(--List-radius) - var(--List-gutter), min(var(--List-gutter) / 2, var(--List-radius) / 2))',
-  '--List-startAdornment': '3rem',
-  '--List-separatorSpacing': '0.375rem',
-  '--List-insetStart': 'var(--List-itemGutter)',
   // ========= Private variables =========
   borderRadius: 'var(--List-radius)',
   padding: '0.375rem var(--List-gutter)',
