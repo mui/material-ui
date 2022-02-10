@@ -14,6 +14,7 @@ describe('Joy <ListItemAdornment />', () => {
     ThemeProvider,
     muiName: 'MuiListItemAdornment',
     refInstanceof: window.HTMLSpanElement,
+    testVariantProps: { end: true },
     skip: ['componentsProp', 'classesRoot'],
   }));
 

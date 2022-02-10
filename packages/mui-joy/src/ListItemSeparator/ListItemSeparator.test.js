@@ -14,6 +14,7 @@ describe('Joy <ListItemSeparator />', () => {
     ThemeProvider,
     muiName: 'MuiListItemSeparator',
     refInstanceof: window.HTMLLIElement,
+    testVariantProps: { inset: 'gutter' },
     skip: ['componentsProp', 'classesRoot'],
   }));
 

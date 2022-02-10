@@ -14,7 +14,7 @@ describe('Joy <ListItemContent />', () => {
     ThemeProvider,
     muiName: 'MuiListItemContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 
   it('should have root className', () => {
