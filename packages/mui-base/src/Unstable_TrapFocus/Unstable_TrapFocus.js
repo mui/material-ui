@@ -196,7 +196,7 @@ function Unstable_TrapFocus(props) {
       }
     };
     // Missing `disableRestoreFocus` which is fine.
-    // We don't support changing this prop on an open TrapFocus
+    // We don't support changing that prop on an open TrapFocus
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, preventScrollOnFocusRestorationRef]);
 
