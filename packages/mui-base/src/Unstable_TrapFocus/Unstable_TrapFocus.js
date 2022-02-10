@@ -148,6 +148,9 @@ function Unstable_TrapFocus(props) {
     activated.current = !disableAutoFocus;
   }, [disableAutoFocus, open]);
 
+  const preventScrollOnFocusRestorationRef = React.useRef(preventScrollOnFocusRestoration);
+  preventScrollOnFocusRestorationRef.current = preventScrollOnFocusRestoration;
+
   React.useEffect(() => {
     // We might render an empty child.
     if (!open || !rootRef.current) {
@@ -184,16 +187,18 @@ function Unstable_TrapFocus(props) {
         // Once IE11 support is dropped the focus() call can be unconditional.
         if (nodeToRestore.current && nodeToRestore.current.focus) {
           ignoreNextEnforceFocus.current = true;
-          nodeToRestore.current.focus({ preventScroll: preventScrollOnFocusRestoration });
+          nodeToRestore.current.focus({
+            preventScroll: preventScrollOnFocusRestorationRef.current,
+          });
         }
 
         nodeToRestore.current = null;
       }
     };
-    // Missing `disableRestoreFocus` / `preventScrollOnFocusRestoration` which is fine.
-    // We don't support changing those props on an open TrapFocus
+    // Missing `disableRestoreFocus` which is fine.
+    // We don't support changing this prop on an open TrapFocus
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, [open, preventScrollOnFocusRestorationRef]);
 
   React.useEffect(() => {
     // We might render an empty child.
