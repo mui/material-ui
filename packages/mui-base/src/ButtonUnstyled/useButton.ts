@@ -7,6 +7,25 @@ import {
 import UseButtonProps from './UseButtonProps';
 import extractEventHandlers from '../utils/extractEventHandlers';
 
+export type ButtonRootProps<TOther> = Omit<
+  TOther,
+  'onBlur' | 'onFocus' | 'onKeyDown' | 'onKeyUp' | 'onMouseDown' | 'onMouseLeave' | 'onMouseUp'
+> & {
+  'aria-disabled'?: boolean;
+  disabled?: boolean;
+  tabIndex: number;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  role?: string;
+  onBlur: React.FocusEventHandler;
+  onFocus: React.FocusEventHandler<HTMLButtonElement>;
+  onKeyDown: React.KeyboardEventHandler;
+  onKeyUp: React.KeyboardEventHandler;
+  onMouseDown: React.MouseEventHandler<HTMLButtonElement>;
+  onMouseLeave: React.MouseEventHandler;
+  onMouseUp: React.MouseEventHandler<HTMLButtonElement>;
+  ref: React.Ref<any>;
+};
+
 export default function useButton(props: UseButtonProps) {
   const { component, components = {}, disabled = false, href, ref, tabIndex = 0, to, type } = props;
 
@@ -170,9 +189,14 @@ export default function useButton(props: UseButtonProps) {
     }
   }
 
-  const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+  const getRootProps = <TOther extends Record<string, React.EventHandler<any>>>(
+    otherHandlers?: TOther,
+  ): ButtonRootProps<TOther> => {
     const propsEventHandlers = extractEventHandlers(props);
-    const externalEventHandlers = { ...propsEventHandlers, ...otherHandlers };
+    const externalEventHandlers: Record<string, React.EventHandler<any>> = {
+      ...propsEventHandlers,
+      ...otherHandlers,
+    };
 
     const ownEventHandlers = {
       onBlur: createHandleBlur(externalEventHandlers),
@@ -184,7 +208,7 @@ export default function useButton(props: UseButtonProps) {
       onMouseUp: createHandleMouseUp(externalEventHandlers),
     };
 
-    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+    const mergedEventHandlers = {
       ...externalEventHandlers,
       ...ownEventHandlers,
     };
@@ -196,9 +220,12 @@ export default function useButton(props: UseButtonProps) {
     return {
       tabIndex: disabled ? -1 : tabIndex,
       type,
-      ...buttonProps,
+      ...(buttonProps as Pick<
+        ButtonRootProps,
+        'type' | 'disabled' | 'tabIndex' | 'role' | 'aria-disabled'
+      >),
       ...mergedEventHandlers,
-      ref: updateRef,
+      ref: updateRef as React.Ref<any>,
     };
   };
 

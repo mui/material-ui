@@ -7,6 +7,24 @@ import areArraysEqual from '../utils/areArraysEqual';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 
+export type ListboxRootProps<TOther = {}> = Omit<TOther, 'onBlur' | 'onKeyDown'> & {
+  'aria-activedescendant'?: string;
+  id?: string;
+  onBlur: React.FocusEventHandler;
+  onKeyDown: React.KeyboardEventHandler;
+  role: string;
+  tabIndex: number;
+  ref: React.Ref<any>;
+};
+
+export type ListboxOptionProps<TOther = {}> = Omit<TOther, 'onClick'> & {
+  'aria-disabled'?: boolean;
+  'aria-selected': boolean;
+  id?: string;
+  onClick: React.MouseEventHandler;
+  role: string;
+};
+
 export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
   const {
     disableListWrap = false,
@@ -135,7 +153,9 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
       });
     };
 
-  const getRootProps = (other: Record<string, React.EventHandler<any>> = {}) => {
+  const getRootProps = <TOther extends Record<string, React.EventHandler<any>>>(
+    other: TOther = {} as TOther,
+  ): ListboxRootProps => {
     return {
       ...other,
       'aria-activedescendant':
@@ -151,7 +171,7 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     };
   };
 
-  const getOptionState = (option: TOption) => {
+  const getOptionState = (option: TOption): OptionState => {
     let selected: boolean;
     const index = options.findIndex((opt) => optionComparer(opt, option));
     if (multiple) {
@@ -168,14 +188,18 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
       selected,
       disabled,
       highlighted: highlightedIndex === index,
-    } as OptionState;
+    };
   };
 
-  const getOptionProps = (option: TOption, other: Record<string, React.EventHandler<any>> = {}) => {
+  const getOptionProps = <TOther extends Record<string, React.EventHandler<any>>>(
+    option: TOption,
+    other: TOther = {} as TOther,
+  ): ListboxOptionProps<TOther> => {
     const { selected, disabled } = getOptionState(option);
     const index = options.findIndex((opt) => optionComparer(opt, option));
 
     return {
+      ...other,
       'aria-disabled': disabled || undefined,
       'aria-selected': selected,
       id: optionIdGenerator(option, index),
