@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@types/react": "^17.0.38",
+    "@types/react": "^17.0.39",
     "case": "1.6.3",
     "deepmerge": "^4.2.2",
     "docs": "^5.0.0",
