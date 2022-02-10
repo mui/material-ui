@@ -12,6 +12,7 @@ import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBan
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 60,
+  order: 1,
   // Fix IE11 position sticky issue.
   marginTop: 60,
   width: 240,

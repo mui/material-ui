@@ -106,6 +106,7 @@ function AppLayoutDocs(props) {
           </AdGuest>
         )}
         <Main disableToc={disableToc}>
+          {disableToc ? null : <AppTableOfContents toc={toc} />}
           <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
@@ -113,7 +114,6 @@ function AppLayoutDocs(props) {
               <AppLayoutDocsFooter />
             </NoSsr>
           </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>
       </AdManager>
     </AppFrame>
