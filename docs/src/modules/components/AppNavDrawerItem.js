@@ -304,4 +304,5 @@ AppNavDrawerItem.propTypes = {
   openImmediately: PropTypes.bool,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
+  legacy: PropTypes.bool,
 };
