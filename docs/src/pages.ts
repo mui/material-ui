@@ -329,13 +329,13 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/styles',
-    title: 'Styles (legacy)',
+    title: 'Styles',
     icon: 'StyleIcon',
     legacy: true,
     children: [
-      { pathname: '/styles/basics' },
-      { pathname: '/styles/advanced' },
-      { pathname: '/styles/api', title: 'API' },
+      { pathname: '/styles/basics', legacy: true },
+      { pathname: '/styles/advanced', legacy: true },
+      { pathname: '/styles/api', title: 'API', legacy: true },
     ],
   },
   {

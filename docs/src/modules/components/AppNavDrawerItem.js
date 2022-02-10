@@ -2,8 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, experimental_sx as sx } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
+import Chip from '@mui/material/Chip';
 import ButtonBase from '@mui/material/ButtonBase';
 import Link from 'docs/src/modules/components/Link';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
@@ -173,6 +174,22 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   },
 );
 
+const LegacyChip = styled(function LegacyChip(props) {
+  return <Chip {...props} label="LEGACY" />;
+})(
+  sx({
+    ml: 1,
+    '&:hover': { bgcolor: 'warning.200' },
+    fontSize: '0.7rem',
+    height: '18px',
+    '& .MuiChip-label': { px: 0.8 },
+    bgcolor: 'warning.100',
+    border: 1,
+    borderColor: 'warning.main',
+    color: 'warning.700',
+  }),
+);
+
 export default function AppNavDrawerItem(props) {
   const {
     children,
@@ -184,6 +201,7 @@ export default function AppNavDrawerItem(props) {
     title,
     linkProps,
     icon,
+    legacy,
     ...other
   } = props;
   const [open, setOpen] = React.useState(openImmediately);
@@ -226,6 +244,7 @@ export default function AppNavDrawerItem(props) {
           >
             {iconElement}
             {title}
+            {legacy && <LegacyChip />}
           </ItemLink>
         </StyledLi>
       </React.Fragment>
@@ -245,6 +264,7 @@ export default function AppNavDrawerItem(props) {
         >
           {iconElement}
           {title}
+          {legacy && <LegacyChip />}
           {depth === 0 && <ItemButtonIcon open={open} className="KeyboardArrowRightRoundedIcon" />}
         </ItemButton>
         {depth === 0 ? (

@@ -403,8 +403,6 @@ function reduceChildRoutes(context) {
     return items;
   }
 
-  const sx = { ...(page.legacy && { textDecoration: 'line-through' }) };
-
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
     const topLevel = activePage
@@ -420,8 +418,8 @@ function reduceChildRoutes(context) {
         topLevel={topLevel && !page.subheader}
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
+        legacy={page.legacy}
         icon={page.icon}
-        sx={sx}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppNavDrawerItem>,
@@ -437,9 +435,9 @@ function reduceChildRoutes(context) {
         key={title}
         title={title}
         href={page.pathname}
+        legacy={page.legacy}
         onClick={onClose}
         icon={page.icon}
-        sx={sx}
       />,
     );
   }
