@@ -310,7 +310,6 @@ function Unstable_TrapFocus(props) {
     disableAutoFocus,
     disableEnforceFocus,
     disableRestoreFocus,
-    preventScrollOnFocusRestoration,
     isEnabled,
     open,
     getTabbable,
