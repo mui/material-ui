@@ -1,0 +1,11 @@
+{
+  "props": {},
+  "name": "MenuUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/mui-base/src/MenuUnstyled/MenuUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material/react-menu/\">Menus</a></li></ul>",
+  "cssComponent": false
+}

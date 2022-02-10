@@ -1,7 +1,7 @@
 ---
 product: base
 title: React Menu unstyled component and hook
-components: MenuUnstyled, MenuItemUnstyled
+components: ''
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#menu
 ---
