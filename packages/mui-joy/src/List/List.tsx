@@ -30,6 +30,7 @@ const ListRoot = styled('ul', {
   '--List-startAdornment': '3rem',
   '--List-separatorSpacing': '0.375rem',
   '--List-insetStart': 'var(--List-itemGutter)',
+  // ========= Private variables =========
   borderRadius: 'var(--List-radius)',
   padding: '0.375rem var(--List-gutter)',
   margin: 'initial',

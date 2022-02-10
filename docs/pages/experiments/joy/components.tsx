@@ -188,7 +188,7 @@ const components = [
                 <Inbox />
               </Box>
             </ListItemAdornment>
-            <ListItemContent sx={{ pl: 1 }}>
+            <ListItemContent>
               Inbox
               <Typography level="body2">Jan 9, 2014</Typography>
             </ListItemContent>
@@ -207,7 +207,7 @@ const components = [
                 <Drafts fontSize="md" />
               </Box>
             </ListItemAdornment>
-            <ListItemContent sx={{ pl: 1 }}>
+            <ListItemContent>
               Drafts
               <Typography level="body2">Jan 7, 2014</Typography>
             </ListItemContent>

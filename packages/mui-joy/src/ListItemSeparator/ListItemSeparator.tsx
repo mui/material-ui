@@ -28,13 +28,15 @@ const ListItemSeparatorRoot = styled('li', {
   // spacing between ListItem can be controlled by `--List-separatorSpacing` on the List
   margin: 'var(--List-separatorSpacing) calc(-1 * var(--List-gutter))',
   ...(ownerState.inset === 'gutter' && {
-    margin: 'var(--List-separatorSpacing) var(--List-itemGutter)',
+    margin: 'var(--List-separatorSpacing)',
+    marginRight: 'var(--List-itemGutter)',
+    marginLeft: 'var(--List-insetStart)',
   }),
   ...(ownerState.inset === 'startAdornment' && {
-    marginLeft: 'var(--List-itemGutter)',
+    marginLeft: 'var(--List-insetStart)',
   }),
   ...(ownerState.inset === 'startContent' && {
-    marginLeft: 'calc(var(--List-gutter) + var(--List-startAdornment))',
+    marginLeft: 'calc(var(--List-insetStart) + var(--List-startAdornment))',
   }),
 }));
 

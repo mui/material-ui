@@ -27,7 +27,7 @@ const ListItemRoot = styled('li', {
   display: 'flex',
   alignItems: 'center',
   padding: 'min(0.375rem, var(--List-itemGutter)) var(--List-itemGutter)',
-  paddingLeft: 'var(--List-insetStart, var(--List-itemGutter))',
+  paddingLeft: 'var(--List-insetStart)',
   minHeight: 'var(--List-itemMinHeight)',
   ...theme.typography.body1,
 }));
