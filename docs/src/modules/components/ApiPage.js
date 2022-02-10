@@ -20,16 +20,16 @@ const Wrapper = styled('div')({
 });
 const Table = styled('table')(({ theme }) => {
   const contentColor = theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff';
-  const shadowColor = theme.palette.mode === 'dark' ? '#000' : 'rgba(0,0,0,0.5)';
+  const shadowColor = theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.2)';
   return {
     borderRadius: 10,
     background: `
-  linear-gradient(to right, ${contentColor} 2%, rgba(0, 0, 0, 0)),
-  linear-gradient(to right, rgba(0, 0, 0, 0), ${contentColor} 100%) 0 100%,
-  linear-gradient(to right, ${shadowColor}, rgba(0, 0, 0, 0.012) 5%),
-  linear-gradient(to left, ${shadowColor}, rgba(0, 0, 0, 0.012) 5%)`,
+  linear-gradient(to right, ${contentColor} 5%, rgba(0, 0, 0, 0)),
+  linear-gradient(to right, rgba(0, 0, 0, 0), ${contentColor} 100%) 100%,
+  linear-gradient(to right, ${shadowColor}, rgba(0, 0, 0, 0) 5%),
+  linear-gradient(to left, ${shadowColor}, rgba(0, 0, 0, 0) 5%)`,
     backgroundAttachment: 'local, local, scroll, scroll',
-    // the above background create thin line on the left, right of the table
+    // the above background create thin line on the left and right sides of the table
     // as a workaround, use negative margin with overflow `hidden` on the parent
     marginLeft: -1,
     marginRight: -1,
