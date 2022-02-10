@@ -1,5 +1,5 @@
-<MenuWrapper contentRef={contentRef} label="Language">
-  {(close) => (
+<MenuWrapper label="Language">
+  {(close, contentRef) => (
     <StyledMenu ref={contentRef}>
       <StyledMenuItem onClick={() => close()}>English</StyledMenuItem>
       <StyledMenuItem onClick={() => close()}>中文</StyledMenuItem>

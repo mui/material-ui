@@ -79,10 +79,11 @@ const Popper = styled(PopperUnstyled)`
 `;
 
 function MenuWrapper(props) {
-  const { children, contentRef, label } = props;
+  const { children, label } = props;
 
   const [isOpen, setOpen] = React.useState(false);
   const buttonRef = React.useRef(null);
+  const contentRef = React.useRef(null);
 
   const close = () => setOpen(false);
 
@@ -106,7 +107,7 @@ function MenuWrapper(props) {
       >
         {isOpen && (
           <ClickAwayListener onClickAway={() => setOpen(false)}>
-            {children?.(close)}
+            {children?.(close, contentRef)}
           </ClickAwayListener>
         )}
       </Popper>
@@ -116,27 +117,13 @@ function MenuWrapper(props) {
 
 MenuWrapper.propTypes = {
   children: PropTypes.func.isRequired,
-  contentRef: PropTypes.shape({
-    current: function (props, propName) {
-      if (props[propName] == null) {
-        return null;
-      } else if (
-        typeof props[propName] !== 'object' ||
-        props[propName].nodeType !== 1
-      ) {
-        return new Error("Expected prop '" + propName + "' to be of type Element");
-      }
-    },
-  }).isRequired,
   label: PropTypes.string,
 };
 
 export default function UnstyledMenuPopup() {
-  const contentRef = React.useRef(null);
-
   return (
-    <MenuWrapper contentRef={contentRef} label="Language">
-      {(close) => (
+    <MenuWrapper label="Language">
+      {(close, contentRef) => (
         <StyledMenu ref={contentRef}>
           <StyledMenuItem onClick={() => close()}>English</StyledMenuItem>
           <StyledMenuItem onClick={() => close()}>中文</StyledMenuItem>
