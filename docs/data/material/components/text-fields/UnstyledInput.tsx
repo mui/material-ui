@@ -3,8 +3,10 @@ import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 
 const blue = {
+  100: '#DAECFF',
   200: '#80BFFF',
   400: '#3399FF',
+  600: '#0072E5',
 };
 
 const grey = {
@@ -39,8 +41,7 @@ const StyledInputElement = styled('input')(
   }
 
   &:focus {
-    outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
-    outline-offset: 2px;
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
   }
 `,
 );
