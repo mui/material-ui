@@ -23,8 +23,10 @@ const ListRoot = styled('ul', {
   // ========= Public variables =========
   '--List-gutter': '0.375rem',
   '--List-radius': '8px',
-  '--List-itemGutter': '0.375rem',
   '--List-itemMinHeight': '2.5rem',
+  '--List-itemGutter': '0.375rem',
+  '--List-itemRadius':
+    'max(var(--List-radius) - var(--List-gutter), min(var(--List-gutter) / 2, var(--List-radius) / 2))',
   '--List-startAdornment': '3rem',
   '--List-separatorSpacing': '0.375rem',
   '--List-insetStart': 'var(--List-itemGutter)',

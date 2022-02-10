@@ -54,8 +54,7 @@ const ListItemButtonRoot = styled('div', {
     paddingLeft: 'var(--List-insetStart, var(--List-itemGutter))',
     minHeight: 'var(--List-itemMinHeight)',
     border: 'none',
-    borderRadius:
-      'max(var(--List-radius) - var(--List-gutter), min(var(--List-gutter) / 2, var(--List-radius) / 2))',
+    borderRadius: 'var(--List-itemRadius)',
     flex: 1,
     minWidth: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.

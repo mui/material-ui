@@ -257,11 +257,12 @@ const components = [
     cssVars: [
       { id: '--List-gutter', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
-      { id: '--List-itemGutter', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-itemMinHeight', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--List-itemGutter', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-startAdornment', type: 'number', unit: 'px', defaultValue: 48 },
       { id: '--List-separatorSpacing', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-insetStart', type: 'number', unit: 'px' },
+      { id: '--List-itemRadius', type: 'number', unit: 'px' },
     ],
   },
 ];
