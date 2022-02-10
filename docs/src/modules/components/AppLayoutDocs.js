@@ -19,20 +19,18 @@ const NAV_WIDTH = 280;
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
-})(({ disableToc, theme }) => {
-  return {
-    display: 'flex',
-    width: '100%',
-    ...(disableToc && {
-      [theme.breakpoints.up('lg')]: {
-        marginRight: '5%',
-      },
-    }),
+})(({ disableToc, theme }) => ({
+  display: 'flex',
+  width: '100%',
+  ...(disableToc && {
     [theme.breakpoints.up('lg')]: {
-      width: `calc(100% - ${NAV_WIDTH}px)`,
+      marginRight: '5%',
     },
-  };
-});
+  }),
+  [theme.breakpoints.up('lg')]: {
+    width: `calc(100% - ${NAV_WIDTH}px)`,
+  },
+}));
 
 const StyledAppContainer = styled(AppContainer, {
   shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'disableToc',
