@@ -299,10 +299,10 @@ AppNavDrawerItem.propTypes = {
   depth: PropTypes.number.isRequired,
   href: PropTypes.string,
   icon: PropTypes.string,
+  legacy: PropTypes.bool,
   linkProps: PropTypes.object,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
-  legacy: PropTypes.bool,
 };
