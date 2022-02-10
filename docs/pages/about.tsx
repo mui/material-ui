@@ -360,6 +360,16 @@ const teamMembers: Array<Profile> = [
     twitter: 'iamcherniavskii',
     github: 'cherniavskii',
   },
+  {
+    src: '/static/branding/about/sycamore.png',
+    name: 'Sam Sycamore',
+    title: 'Developer Advocate',
+    location: 'Saint Paul, Minnesota, USA',
+    locationCountry: 'us',
+    about: 'Musician and edible wild plant enthusiast 🌱',
+    twitter: 'tanoaksam',
+    github: 'samuelsycamore',
+  },
 ];
 
 const contributors = [
