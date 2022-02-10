@@ -19,7 +19,7 @@ export interface ListItemSeparatorTypeMap<P = {}, D extends React.ElementType = 
      * The empty space on the side(s) of the separator.
      */
     inset?: OverridableStringUnion<
-      'gutter' | 'leftAdornment' | 'leftContent',
+      'gutter' | 'startAdornment' | 'startContent',
       ListItemSeparatorInsetOverrides
     >;
     /**

@@ -51,7 +51,7 @@ const ListItemButtonRoot = styled('div', {
     // The value is negative to account for the ListItem's padding
     margin: 'var(--ListItemButton-margin)',
     padding: 'min(0.375rem, var(--List-itemGutter)) var(--List-itemGutter)',
-    paddingLeft: 'var(--List-insetLeft, var(--List-itemGutter))',
+    paddingLeft: 'var(--List-insetStart, var(--List-itemGutter))',
     minHeight: 'var(--List-itemMinHeight)',
     border: 'none',
     borderRadius:

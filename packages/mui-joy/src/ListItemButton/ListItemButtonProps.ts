@@ -57,7 +57,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The empty space on the side(s) of the separator.
      */
-    inset?: 'gutter' | 'leftGutter' | 'leftAdornment';
+    inset?: 'gutter' | 'leftGutter' | 'startAdornment';
     /**
      * Use to apply selected styling.
      * @default false

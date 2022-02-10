@@ -193,7 +193,7 @@ const components = [
               <Typography level="body2">Jan 9, 2014</Typography>
             </ListItemContent>
           </ListItem>
-          <ListItemSeparator inset="leftContent" />
+          <ListItemSeparator inset="startContent" />
           <ListItem>
             <ListItemAdornment>
               <Box
@@ -260,8 +260,8 @@ const components = [
       { id: '--List-itemGutter', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-itemMinHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-startAdornment', type: 'number', unit: 'px', defaultValue: 48 },
-      { id: '--List-separatorSize', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-insetLeft', type: 'number', unit: 'px' },
+      { id: '--List-separatorSpacing', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-insetStart', type: 'number', unit: 'px' },
     ],
   },
 ];
@@ -325,7 +325,7 @@ export default function JoyComponents() {
           <List
             sx={{
               mt: 2,
-              '--List-insetLeft': '1.25rem',
+              '--List-insetStart': '1.25rem',
               '--List-radius': '1rem',
             }}
           >

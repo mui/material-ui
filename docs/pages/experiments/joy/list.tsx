@@ -168,7 +168,7 @@ export default function JoyTypography() {
                 <Typography level="body2">Jan 9, 2014</Typography>
               </ListItemContent>
             </ListItem>
-            <ListItemSeparator inset="leftContent" />
+            <ListItemSeparator inset="startContent" />
             <ListItem>
               <ListItemAdornment>
                 <Box
@@ -187,7 +187,7 @@ export default function JoyTypography() {
                 <Typography level="body2">Jan 7, 2014</Typography>
               </ListItemContent>
             </ListItem>
-            <ListItemSeparator inset="leftContent" />
+            <ListItemSeparator inset="startContent" />
             <ListItem>
               <ListItemAdornment>
                 <Box
@@ -237,7 +237,7 @@ export default function JoyTypography() {
                 </Typography>
               </div>
             </ListItem>
-            <ListItemSeparator inset="leftContent" />
+            <ListItemSeparator inset="startContent" />
             <ListItem>
               <ListItemAdornment sx={{ alignSelf: 'flex-start' }}>
                 <Box

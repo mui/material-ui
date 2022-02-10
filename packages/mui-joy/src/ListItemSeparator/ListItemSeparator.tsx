@@ -25,15 +25,15 @@ const ListItemSeparatorRoot = styled('li', {
   borderBottom: '1px solid',
   borderColor: theme.vars.palette.neutral.outlinedBorder,
   // by default, the separator line is stretched from edge-to-edge of the List
-  // spacing between ListItem can be controlled by `--List-separatorSize` on the List
-  margin: 'var(--List-separatorSize) calc(-1 * var(--List-gutter))',
+  // spacing between ListItem can be controlled by `--List-separatorSpacing` on the List
+  margin: 'var(--List-separatorSpacing) calc(-1 * var(--List-gutter))',
   ...(ownerState.inset === 'gutter' && {
-    margin: 'var(--List-separatorSize) var(--List-itemGutter)',
+    margin: 'var(--List-separatorSpacing) var(--List-itemGutter)',
   }),
-  ...(ownerState.inset === 'leftAdornment' && {
+  ...(ownerState.inset === 'startAdornment' && {
     marginLeft: 'var(--List-itemGutter)',
   }),
-  ...(ownerState.inset === 'leftContent' && {
+  ...(ownerState.inset === 'startContent' && {
     marginLeft: 'calc(var(--List-gutter) + var(--List-startAdornment))',
   }),
 }));
@@ -89,7 +89,7 @@ ListItemSeparator.propTypes /* remove-proptypes */ = {
    * The empty space on the side(s) of the separator.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['gutter', 'leftAdornment', 'leftContent']),
+    PropTypes.oneOf(['gutter', 'startAdornment', 'startContent']),
     PropTypes.string,
   ]),
 } as any;

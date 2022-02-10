@@ -5,10 +5,10 @@ export interface ListItemSeparatorClasses {
   root: string;
   /** Styles applied to the root element if `inset="gutter"`. */
   insetGutter: string;
-  /** Styles applied to the root element if `inset="leftAdornment"`. */
-  insetLeftAdornment: string;
-  /** Styles applied to the root element if `inset="leftContent"`. */
-  insetLeftContent: string;
+  /** Styles applied to the root element if `inset="startAdornment"`. */
+  insetStartAdornment: string;
+  /** Styles applied to the root element if `inset="startContent"`. */
+  insetStartContent: string;
 }
 
 export type ListItemSeparatorClassKey = keyof ListItemSeparatorClasses;
@@ -19,7 +19,7 @@ export function getListItemSeparatorUtilityClass(slot: string): string {
 
 const listItemSeparatorClasses: ListItemSeparatorClasses = generateUtilityClasses(
   'MuiListItemSeparator',
-  ['root', 'insetGutter', 'insetLeftAdornment', 'insetLeftContent'],
+  ['root', 'insetGutter', 'insetStartAdornment', 'insetStartContent'],
 );
 
 export default listItemSeparatorClasses;
