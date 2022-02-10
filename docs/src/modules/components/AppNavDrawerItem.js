@@ -175,18 +175,33 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
 );
 
 const LegacyChip = styled(function LegacyChip(props) {
-  return <Chip {...props} label="LEGACY" />;
+  return <Chip {...props} label="Legacy" />;
 })(
   sx({
     ml: 1,
-    '&:hover': { bgcolor: 'warning.200' },
-    fontSize: '0.7rem',
-    height: '18px',
-    '& .MuiChip-label': { px: 0.8 },
-    bgcolor: 'warning.100',
+    '&:hover': {
+      bgcolor: (theme) =>
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.warning[900], 0.5)
+          : alpha(theme.palette.warning[100], 0.5),
+    },
+    '& .MuiChip-label': { px: 0.6 },
+    fontSize: (theme) => theme.typography.pxToRem(10),
+    fontWeight: 600,
+    textTransform: 'uppercase',
+    letterSpacing: '.04rem',
+    height: '16px',
     border: 1,
-    borderColor: 'warning.main',
-    color: 'warning.700',
+    borderColor: (theme) =>
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.warning[800], 0.5)
+        : theme.palette.warning[300],
+    bgcolor: (theme) =>
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.warning[900], 0.5)
+        : alpha(theme.palette.warning[100], 0.5),
+    color: (theme) =>
+      theme.palette.mode === 'dark' ? theme.palette.warning[300] : theme.palette.warning[700],
   }),
 );
 
