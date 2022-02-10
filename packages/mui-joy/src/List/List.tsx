@@ -22,17 +22,12 @@ const ListRoot = styled('ul', {
 })<{ ownerState: ListProps }>({
   // ========= Public variables =========
   '--List-gutter': '0.375rem',
-  //   below variables inherit from ListItem
-  //   if there is no ListItem as a parent, use the default values.
   '--List-radius': '8px',
   '--List-itemGutter': '0.375rem',
   '--List-itemMinHeight': '2.5rem',
   '--List-startAdornment': '3rem',
   '--List-separatorSize': '0.375rem',
   '--List-insetLeft': 'var(--List-itemGutter)',
-  // ========= Private variables =========
-  //   to reset the ListItemButton in nested list
-  '--ListItemButton-margin': 'initial',
   borderRadius: 'var(--List-radius)',
   padding: '0.375rem var(--List-gutter)',
   margin: 'initial',

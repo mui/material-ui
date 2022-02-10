@@ -47,7 +47,7 @@ const ListItemButtonRoot = styled('div', {
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
-    // In some case, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
+    // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
     // The value is negative to account for the ListItem's padding
     margin: 'var(--ListItemButton-margin)',
     padding: 'min(0.375rem, var(--List-itemGutter)) var(--List-itemGutter)',
@@ -69,11 +69,13 @@ const ListItemButtonRoot = styled('div', {
         theme.variants[ownerState.selectedVariant!]?.[ownerState.color!],
         theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.color!],
         theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.color!],
+        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.color!],
       ]
     : [
         theme.variants.text?.[ownerState.color!],
         theme.variants.textHover?.[ownerState.color!],
         theme.variants.textActive?.[ownerState.color!],
+        theme.variants.textDisabled?.[ownerState.color!],
       ]),
 ]);
 

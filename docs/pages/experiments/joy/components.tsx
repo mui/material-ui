@@ -247,7 +247,7 @@ const components = [
             <Typography level="body2">⌘ C</Typography>
           </ListItemButton>
           <ListItemSeparator inset="gutter" />
-          <ListItemButton>
+          <ListItemButton disabled>
             <ListItemContent>Delete</ListItemContent>
             <Typography level="body2">⌘ D</Typography>
           </ListItemButton>

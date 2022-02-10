@@ -1,3 +1,3 @@
 export { default } from './ListItemAdornment';
-export { default as listItemContentClasses } from './listItemAdornmentClasses';
+export { default as listItemAdornmentClasses } from './listItemAdornmentClasses';
 export * from './ListItemAdornmentProps';
