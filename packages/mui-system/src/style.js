@@ -29,14 +29,7 @@ function getValue(themeMapping, transform, propValueFinal, userValue = propValue
 }
 
 function style(options) {
-  const {
-    prop,
-    cssProperty = options.prop,
-    themeKey,
-    transform,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    internal_designTokensKey,
-  } = options;
+  const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
   const fn = (props) => {
     if (props[prop] == null) {
@@ -45,7 +38,7 @@ function style(options) {
 
     const propValue = props[prop];
     const theme = props.theme;
-    const themeMapping = getPath(theme?.[internal_designTokensKey] ?? theme, themeKey) || {};
+    const themeMapping = getPath(theme, themeKey) || {};
     const styleFromPropValue = (propValueFinal) => {
       let value = getValue(themeMapping, transform, propValueFinal);
 

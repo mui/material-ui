@@ -20,38 +20,32 @@ import { JoyTheme, SxProps } from './defaultTheme';
 
 const borderColor = style({
   prop: 'borderColor',
-  themeKey: 'palette',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.palette',
 });
 
 const borderTopColor = style({
   prop: 'borderTopColor',
-  themeKey: 'palette',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.palette',
 });
 
 const borderRightColor = style({
   prop: 'borderRightColor',
-  themeKey: 'palette',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.palette',
 });
 
 const borderBottomColor = style({
   prop: 'borderBottomColor',
-  themeKey: 'palette',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.palette',
 });
 
 const borderLeftColor = style({
   prop: 'borderLeftColor',
-  themeKey: 'palette',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.palette',
 });
 
 const borderRadius = style({
   prop: 'borderRadius',
-  themeKey: 'radius',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.radius',
 });
 
 const borders = compose(
@@ -70,59 +64,50 @@ const borders = compose(
 
 const color = style({
   prop: 'color',
-  themeKey: 'palette',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.palette',
 });
 
 const bgcolor = style({
   prop: 'bgcolor',
   cssProperty: 'backgroundColor',
-  themeKey: 'palette',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.palette',
 });
 
 const backgroundColor = style({
   prop: 'backgroundColor',
-  themeKey: 'palette',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.palette',
 });
 
 const palette = compose(color, bgcolor, backgroundColor);
 
 const boxShadow = style({
   prop: 'boxShadow',
-  themeKey: 'shadow',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.shadow',
 });
 
 export const fontFamily = style({
   prop: 'fontFamily',
-  themeKey: 'fontFamily',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.fontFamily',
 });
 
 export const fontSize = style({
   prop: 'fontSize',
-  themeKey: 'fontSize',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.fontSize',
 });
 
 export const fontWeight = style({
   prop: 'fontWeight',
-  themeKey: 'fontWeight',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.fontWeight',
 });
 
 export const letterSpacing = style({
   prop: 'letterSpacing',
-  themeKey: 'letterSpacing',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.letterSpacing',
 });
 
 export const lineHeight = style({
   prop: 'lineHeight',
-  themeKey: 'lineHeight',
-  internal_designTokensKey: 'vars',
+  themeKey: 'vars.lineHeight',
 });
 
 const typography = compose(
