@@ -1,7 +1,7 @@
 ---
 product: material
 title: React Menu component
-components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper, MenuUnstyled, MenuItemUnstyled
+components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://material.io/components/menus
 waiAria: https://www.w3.org/TR/wai-aria-practices/#menubutton
@@ -110,23 +110,7 @@ Here is an example of a context menu. (Right click to open.)
 The Menu also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.
 
-### Unstyled component
-
-```jsx
-import MenuUnstyled from '@mui/base/MenuUnstyled';
-```
-
-#### Basic usage
-
-{{"demo": "UnstyledMenuSimple.js"}}
-
-#### Popup menu
-
-The MenuUnstyled component does not include the trigger button or the popup.
-It's just the list of options.
-Developers are free to compose it with their own triggering elements and popups.
-
-{{"demo": "UnstyledMenuPopup.js"}}
+See its docs on the [MUI Base section](/base/react-menu).
 
 ## Complementary projects
 

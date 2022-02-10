@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import MenuItemUnstyledProps from './MenuItemUnstyledProps';
 import { appendOwnerState } from '../utils';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
@@ -33,7 +32,7 @@ function getUtilityClasses(ownerState: MenuItemState) {
  */
 const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
   props: MenuItemUnstyledProps & React.ComponentPropsWithoutRef<'li'>,
-  forwardedRef: React.Ref<any>,
+  ref: React.Ref<any>,
 ) {
   const {
     children,
@@ -45,15 +44,12 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
     ...other
   } = props;
 
-  const ref = React.useRef<any>(null);
-  const handleRef = useForkRef(ref, forwardedRef);
-
   const Root = component ?? components.Root ?? 'li';
 
   const { getRootProps, itemState } = useMenuItem({
     component: Root,
     disabled,
-    ref: handleRef,
+    ref,
   });
 
   if (itemState == null) {

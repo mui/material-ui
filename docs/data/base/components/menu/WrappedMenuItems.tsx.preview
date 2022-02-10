@@ -1,0 +1,12 @@
+<StyledMenu>
+  <li>What would you like to do next?</li>
+  <MenuSection label="Text operations">
+    <StyledMenuItem>Cut</StyledMenuItem>
+    <StyledMenuItem>Copy</StyledMenuItem>
+    <StyledMenuItem disabled>Paste</StyledMenuItem>
+  </MenuSection>
+  <MenuSection label="File">
+    <StyledMenuItem>Save</StyledMenuItem>
+    <StyledMenuItem>Close</StyledMenuItem>
+  </MenuSection>
+</StyledMenu>

@@ -1,0 +1,5 @@
+<Menu>
+  <MenuItem>Cut</MenuItem>
+  <MenuItem>Copy</MenuItem>
+  <MenuItem>Paste</MenuItem>
+</Menu>

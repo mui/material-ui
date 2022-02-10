@@ -47,7 +47,6 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       ...componentsProps.root,
       ...getRootProps(),
       className: clsx(classes.root, className, componentsProps.root?.className),
-      role: 'menu',
     },
     ownerState,
   );
