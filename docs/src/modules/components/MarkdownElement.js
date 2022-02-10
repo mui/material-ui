@@ -149,7 +149,6 @@ const Root = styled('div')(({ theme }) => ({
     // Trade display table for scroll overflow
     display: 'block',
     wordBreak: 'normal',
-    width: '100%',
     overflowX: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     borderCollapse: 'collapse',
