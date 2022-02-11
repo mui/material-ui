@@ -36,7 +36,7 @@ const ListItemSeparatorRoot = styled('li', {
     marginLeft: 'var(--List-insetStart)',
   }),
   ...(ownerState.inset === 'startContent' && {
-    marginLeft: 'calc(var(--List-insetStart) + var(--List-startAdornment))',
+    marginLeft: 'calc(var(--List-insetStart) + var(--List-startAdornmentWidth))',
   }),
 }));
 
