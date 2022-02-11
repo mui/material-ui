@@ -240,3 +240,31 @@ MUI users seem to use low-code tools to build all kinds of applications but main
 <img src="/static/blog/2021-survey/29.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Deliver a React design system: 22.2%; Generate high-quality React codebase after visual building: 19.2%; Building dashboards for rapid data visualization: 18.3%; Higher fidelity prototyping and demoing for accurate design handoff: 13.6%; Building internal apps when pro-code is overkill: 11.4%; Shipping landing pages with my existing React design system: 7.3%; Shipping production simple apps before moving to pro-code: 6.2%; Other: 1.8%" />
 
 Developers are mostly interested in React design systems, codebase generators, tools for internal needs, data visualization, and prototyping. These needs are both for internal and customer-facing use-cases.
+
+## About you
+
+### How did you first hear about MUI?
+
+<img src="/static/blog/2021-survey/30.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+
+### Which of the following best describes your current job role?
+
+<img src="/static/blog/2021-survey/31.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+
+### How many total employees work at your current place of employment?
+
+<img src="/static/blog/2021-survey/32.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+
+### How long have you been developing with JavaScript?
+
+<img src="/static/blog/2021-survey/33.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+
+### How long have you been developing with React?
+
+<img src="/static/blog/2021-survey/34.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+
+### How long have you been developing with MUI?
+
+<img src="/static/blog/2021-survey/35.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+
+## Conclusion
