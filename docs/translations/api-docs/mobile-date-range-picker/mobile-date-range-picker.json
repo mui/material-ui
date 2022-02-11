@@ -48,6 +48,7 @@
     "rifmFormatter": "Custom formatter to be passed into Rifm component.",
     "rightArrowButtonText": "Right arrow icon aria-label text.",
     "shouldDisableDate": "Disable specific date. @DateIOType",
+    "shouldDisableMonth": "Disable specific months dynamically. Works like <code>shouldDisableDate</code> but for month selection view @DateIOType.",
     "shouldDisableYear": "Disable specific years dynamically. Works like <code>shouldDisableDate</code> but for year selection view @DateIOType.",
     "showDaysOutsideCurrentMonth": "If <code>true</code>, days that have <code>outsideCurrentMonth={true}</code> are displayed.",
     "showTodayButton": "If <code>true</code>, the today button is displayed. <strong>Note</strong> that <code>showClearButton</code> has a higher priority.",

@@ -67,4 +67,27 @@ describe('<StaticDatePicker />', () => {
     expect(getYearButton(2030)).to.have.attribute('disabled');
     expect(getYearButton(2031)).not.to.have.attribute('disabled');
   });
+
+  it('prop `shouldDisableMonth` – disables months dynamically', () => {
+    render(
+      <StaticDatePicker
+        renderInput={(params) => <TextField {...params} />}
+        views={['year', 'month']}
+        openTo="month"
+        onChange={() => {}}
+        minDate={adapterToUse.date('2021-01-01T00:00:00.000')}
+        maxDate={adapterToUse.date('2022-01-01T00:00:00.000')}
+        value={adapterToUse.date('2021-05-01T00:00:00.000')}
+        shouldDisableMonth={(month) => {
+          return adapterToUse.getYear(month) === 2021 && adapterToUse.getMonth(month) === 2;
+        }}
+      />,
+    );
+
+    const getMonthButton = (month: string) => screen.getByText(month, { selector: 'button' });
+
+    expect(getMonthButton('Feb')).not.to.have.attribute('disabled');
+    expect(getMonthButton('Mar')).to.have.attribute('disabled');
+    expect(getMonthButton('Apr')).not.to.have.attribute('disabled');
+  });
 });

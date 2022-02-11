@@ -359,6 +359,11 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   shouldDisableDate: PropTypes.func,
   /**
+   * Disable specific months dynamically.
+   * Works like `shouldDisableDate` but for month selection view @DateIOType.
+   */
+  shouldDisableMonth: PropTypes.func,
+  /**
    * Disable specific years dynamically.
    * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */

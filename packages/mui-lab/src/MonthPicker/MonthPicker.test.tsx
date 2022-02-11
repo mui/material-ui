@@ -117,4 +117,28 @@ describe('<MonthPicker />', () => {
     fireEvent.click(screen.getByText('Jul', { selector: 'button' }));
     expect(onChangeMock.callCount).to.equal(0);
   });
+
+  it('does not allow to pick months if disabled by shouldDisableMonth', () => {
+    const onChangeMock = spy();
+    render(
+      <MonthPicker
+        minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
+        maxDate={adapterToUse.date('2020-01-01T00:00:00.000')}
+        date={adapterToUse.date('2019-02-02T00:00:00.000')}
+        onChange={onChangeMock}
+        shouldDisableMonth={(month: Date) => {
+          return adapterToUse.getYear(month) === 2019 && adapterToUse.getMonth(month) === 5;
+        }}
+      />,
+    );
+
+    fireEvent.click(screen.getByText('Apr', { selector: 'button' }));
+    expect(onChangeMock.callCount).to.equal(1);
+
+    fireEvent.click(screen.getByText('Jun', { selector: 'button' }));
+    expect(onChangeMock.callCount).to.equal(1);
+
+    fireEvent.click(screen.getByText('Jul', { selector: 'button' }));
+    expect(onChangeMock.callCount).to.equal(2);
+  });
 });

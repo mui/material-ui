@@ -25,6 +25,7 @@
       "default": "() => <span data-mui-test=\"loading-progress\">...</span>"
     },
     "shouldDisableDate": { "type": { "name": "func" } },
+    "shouldDisableMonth": { "type": { "name": "func" } },
     "shouldDisableYear": { "type": { "name": "func" } },
     "view": {
       "type": {

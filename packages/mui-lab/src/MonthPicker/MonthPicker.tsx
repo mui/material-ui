@@ -40,6 +40,11 @@ export interface MonthPickerProps<TDate> {
   /** Callback fired on date change. */
   onChange: PickerOnChangeFn<TDate>;
   onMonthChange?: (date: TDate) => void | Promise<void>;
+  /**
+   * Disable specific months dynamically.
+   * Works like `shouldDisableDate` but for month selection view @DateIOType.
+   */
+  shouldDisableMonth?: (month: TDate) => boolean;
   /** If `true` picker is readonly */
   readOnly?: boolean;
   /**
@@ -99,6 +104,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     minDate,
     onChange,
     onMonthChange,
+    shouldDisableMonth,
     readOnly,
     ...other
   } = props;
@@ -109,7 +115,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   const now = useNow<TDate>();
   const currentMonth = utils.getMonth(date || now);
 
-  const shouldDisableMonth = (month: TDate) => {
+  const innerShouldDisableMonth = (month: TDate) => {
     const firstEnabledMonth = utils.startOfMonth(
       disablePast && utils.isAfter(now, minDate) ? now : minDate,
     );
@@ -121,7 +127,11 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     const isBeforeFirstEnabled = utils.isBefore(month, firstEnabledMonth);
     const isAfterLastEnabled = utils.isAfter(month, lastEnabledMonth);
 
-    return isBeforeFirstEnabled || isAfterLastEnabled;
+    return (
+      isBeforeFirstEnabled ||
+      isAfterLastEnabled ||
+      (shouldDisableMonth && shouldDisableMonth(month))
+    );
   };
 
   const onMonthSelect = (month: number) => {
@@ -154,7 +164,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
             value={monthNumber}
             selected={monthNumber === currentMonth}
             onSelect={onMonthSelect}
-            disabled={disabled || shouldDisableMonth(month)}
+            disabled={disabled || innerShouldDisableMonth(month)}
           >
             {monthText}
           </PickersMonth>
@@ -213,6 +223,11 @@ MonthPicker.propTypes /* remove-proptypes */ = {
    * If `true` picker is readonly
    */
   readOnly: PropTypes.bool,
+  /**
+   * Disable specific months dynamically.
+   * Works like `shouldDisableDate` but for month selection view @DateIOType.
+   */
+  shouldDisableMonth: PropTypes.func,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

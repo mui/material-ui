@@ -14,6 +14,7 @@
     "reduceAnimations": "Disable heavy animations.",
     "renderLoading": "Component displaying when passed <code>loading</code> true.",
     "shouldDisableDate": "Disable specific date. @DateIOType",
+    "shouldDisableMonth": "Disable specific months dynamically. Works like <code>shouldDisableDate</code> but for month selection view @DateIOType.",
     "shouldDisableYear": "Disable specific years dynamically. Works like <code>shouldDisableDate</code> but for year selection view @DateIOType.",
     "view": "Controlled open view.",
     "views": "Views for calendar picker."

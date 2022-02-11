@@ -96,6 +96,16 @@ export interface CalendarPickerProps<TDate>
    */
   shouldDisableDate?: (day: TDate) => boolean;
   /**
+   * Disable specific months dynamically.
+   * Works like `shouldDisableDate` but for month selection view @DateIOType.
+   */
+  shouldDisableMonth?: (month: TDate) => boolean;
+  /**
+   * Disable specific years dynamically.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
+   */
+  shouldDisableYear?: (day: TDate) => boolean;
+  /**
    * Controlled open view.
    */
   view?: CalendarPickerView;
@@ -188,6 +198,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
     reduceAnimations = defaultReduceAnimations,
     renderLoading = () => <span data-mui-test="loading-progress">...</span>,
     shouldDisableDate,
+    shouldDisableMonth,
     shouldDisableYear,
     view,
     views = ['year', 'day'],
@@ -266,6 +277,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
     minDate,
     maxDate,
     onMonthChange,
+    shouldDisableMonth,
     readOnly: other.readOnly,
   };
 
@@ -418,6 +430,11 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
    * Disable specific date. @DateIOType
    */
   shouldDisableDate: PropTypes.func,
+  /**
+   * Disable specific months dynamically.
+   * Works like `shouldDisableDate` but for month selection view @DateIOType.
+   */
+  shouldDisableMonth: PropTypes.func,
   /**
    * Disable specific years dynamically.
    * Works like `shouldDisableDate` but for year selection view @DateIOType.
