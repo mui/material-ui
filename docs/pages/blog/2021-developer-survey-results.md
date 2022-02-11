@@ -245,26 +245,26 @@ Developers are mostly interested in React design systems, codebase generators, t
 
 ### How did you first hear about MUI?
 
-<img src="/static/blog/2021-survey/30.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+<img src="/static/blog/2021-survey/30.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Organic search: 57.8%; Word of mouth: 25.8%; Social media: 8.4%; Blog: 4.4%; Other: 3.5%" />
 
 ### Which of the following best describes your current job role?
 
-<img src="/static/blog/2021-survey/31.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+<img src="/static/blog/2021-survey/31.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Full-stack developer: 52.6%; Front-end developer: 30.5%; Entrepreneur (I do it all!): 7.5%; Beginner learning web development: 2.6%; Engineering Manager: 2.6%; Back-end developer: 1.1%; Designer: 1%; Product Manager: 0.7%; Other: 1.3%" />
 
 ### How many total employees work at your current place of employment?
 
-<img src="/static/blog/2021-survey/32.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+<img src="/static/blog/2021-survey/32.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="0-1: 187; 2-10: 358; 11-20: 136; 21-50: 139; 51-100: 97; 100+: 305" />
 
 ### How long have you been developing with JavaScript?
 
-<img src="/static/blog/2021-survey/33.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+<img src="/static/blog/2021-survey/33.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Just getting started: 4.8%; 1 year +: 22.2%; 3 years +: 27.9%; 5 years +: 28.2%; 10 years +: 11.1%; 15 years +: 5.9%" />
 
 ### How long have you been developing with React?
 
-<img src="/static/blog/2021-survey/34.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+<img src="/static/blog/2021-survey/34.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Just getting started: 7%; 6 months +: 11%; 1 year +: 20.6%; 2 years +: 21.2%; 3 years +: 27.1%; 5 years +: 11.5%; Bleeding edge baby! 6 years +: 1.6%" />
 
 ### How long have you been developing with MUI?
 
-<img src="/static/blog/2021-survey/35.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
+<img src="/static/blog/2021-survey/35.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Just getting started: 16.6%; 6 months +: 19.4%; 1 year +: 24.4%; 2 years +: 21.2%; 3 years +: 15.6%; I'm a pioneer! 5 years +: 2.8%" />
 
 ## Conclusion
