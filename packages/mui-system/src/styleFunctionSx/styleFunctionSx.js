@@ -1,7 +1,5 @@
 import merge from '../merge';
-import defaultGetThemeValue, {
-  propToStyleFunction as defaultPropToStyleFunction,
-} from '../getThemeValue';
+import { styleFunctionMapping as defaultStyleFunctionMapping } from '../getThemeValue';
 import {
   handleBreakpoints,
   createEmptyBreakpointObject,
@@ -19,7 +17,25 @@ function callIfFn(maybeFn, arg) {
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function unstable_createStyleFunctionSx({ getThemeValue, propToStyleFunction }) {
+export function unstable_createStyleFunctionSx(styleFunctionMapping = defaultStyleFunctionMapping) {
+  const propToStyleFunction = Object.keys(styleFunctionMapping).reduce((acc, styleFnName) => {
+    styleFunctionMapping[styleFnName].filterProps.forEach((propName) => {
+      acc[propName] = styleFunctionMapping[styleFnName];
+    });
+
+    return acc;
+  }, {});
+
+  function getThemeValue(prop, value, theme) {
+    const inputProps = {
+      [prop]: value,
+      theme,
+    };
+
+    const styleFunction = propToStyleFunction[prop];
+    return styleFunction ? styleFunction(inputProps) : { [prop]: value };
+  }
+
   function styleFunctionSx(props) {
     const { sx, theme = {} } = props || {};
     if (!sx) {
@@ -76,10 +92,7 @@ export function unstable_createStyleFunctionSx({ getThemeValue, propToStyleFunct
   return styleFunctionSx;
 }
 
-const styleFunctionSx = unstable_createStyleFunctionSx({
-  getThemeValue: defaultGetThemeValue,
-  propToStyleFunction: defaultPropToStyleFunction,
-});
+const styleFunctionSx = unstable_createStyleFunctionSx();
 
 styleFunctionSx.filterProps = ['sx'];
 

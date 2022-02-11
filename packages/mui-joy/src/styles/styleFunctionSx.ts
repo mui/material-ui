@@ -119,19 +119,6 @@ const typography = compose(
   lineHeight,
 );
 
-const filterPropsMapping = {
-  borders: borders.filterProps,
-  display: display.filterProps,
-  flexbox: flexbox.filterProps,
-  grid: grid.filterProps,
-  positions: positions.filterProps,
-  palette: palette.filterProps,
-  boxShadow: boxShadow.filterProps,
-  sizing: sizing.filterProps,
-  spacing: spacing.filterProps,
-  typography: typography.filterProps,
-};
-
 const styleFunctionMapping = {
   borders,
   display,
@@ -145,31 +132,7 @@ const styleFunctionMapping = {
   typography,
 };
 
-const propToStyleFunction = Object.keys(filterPropsMapping).reduce((acc, styleFnName) => {
-  // @ts-ignore private function
-  filterPropsMapping[styleFnName].forEach((propName) => {
-    // @ts-ignore private function
-    acc[propName] = styleFunctionMapping[styleFnName];
-  });
-
-  return acc;
-}, {});
-
-function getThemeValue(prop: string, value: string | number | object, theme: object) {
-  const inputProps = {
-    [prop]: value,
-    theme,
-  };
-
-  // @ts-ignore private function
-  const styleFunction = propToStyleFunction[prop];
-  return (styleFunction ? styleFunction(inputProps) : { [prop]: value }) as object;
-}
-
-const styleFunctionSx = unstable_createStyleFunctionSx({
-  getThemeValue,
-  propToStyleFunction,
-});
+const styleFunctionSx = unstable_createStyleFunctionSx(styleFunctionMapping);
 
 styleFunctionSx.filterProps = ['sx'];
 

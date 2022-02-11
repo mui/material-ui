@@ -66,10 +66,9 @@ export interface StyleFunctionSx {
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function unstable_createStyleFunctionSx(options: {
-  getThemeValue: (prop: string, value: string | number | object, theme: object) => object;
-  propToStyleFunction: Record<string, (props: object) => object>;
-}): StyleFunctionSx;
+export function unstable_createStyleFunctionSx(
+  styleFunctionMapping: Record<string, StyleFunctionSx>,
+): StyleFunctionSx;
 
 declare const styleFunctionSx: StyleFunctionSx;
 
