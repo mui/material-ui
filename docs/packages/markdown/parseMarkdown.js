@@ -329,7 +329,7 @@ ${headers.components
 
       docs[userLanguage] = {
         description,
-        location: headers.filename || `/docs/src/pages/${pageFilename}/${filename}`,
+        location: headers.filename || `/docs${pageFilename}/${filename}`,
         rendered,
         toc,
         title,

@@ -149,7 +149,6 @@ const Root = styled('div')(({ theme }) => ({
     // Trade display table for scroll overflow
     display: 'block',
     wordBreak: 'normal',
-    width: '100%',
     overflowX: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     borderCollapse: 'collapse',
@@ -202,12 +201,12 @@ const Root = styled('div')(({ theme }) => ({
     borderLeft: '8px solid',
     borderColor:
       theme.palette.mode === 'dark'
-        ? // Support Material design theme
+        ? // Support Material Design theme
           theme.palette.warning[500] ?? theme.palette.warning.dark
         : theme.palette.warning[300] ?? theme.palette.warning.light,
     backgroundColor:
       theme.palette.mode === 'dark'
-        ? // Support Material design theme
+        ? // Support Material Design theme
           alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',

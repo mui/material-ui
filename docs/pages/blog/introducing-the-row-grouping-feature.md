@@ -7,7 +7,7 @@ tags: ['MUI X', 'News']
 ---
 
 A lot of you were asking about it, and we are pleased to announce that the Premium plan is on the road.
-After an incredible year fully focused on improving the DataGrid, we are moving forward by launching the first feature of the Premium plan: the [row grouping](/components/data-grid/group-pivot/#row-grouping) which is released in [v5.3.0](https://github.com/mui-org/material-ui-x/releases/tag/v5.3.0).
+After an incredible year fully focused on improving the DataGrid, we are moving forward by launching the first feature of the Premium plan: the [row grouping](/components/data-grid/group-pivot/#row-grouping) which is released in [v5.3.0](https://github.com/mui/mui-x/releases/tag/v5.3.0).
 
 Let me introduce this new feature.
 
@@ -88,5 +88,5 @@ groupingValueGetter: ({ value }) => `${Math.floor(value.getFullYear() / 10)}0's`
 
 More details about customization can be found in the [documentation](/components/data-grid/group-pivot/#disable-the-row-grouping)
 
-Thanks for reading. To get more information about the v5.3.0 release, visit the [changelog](https://github.com/mui-org/material-ui-x/releases/tag/v5.3.0).
-We hope you will enjoy this new feature. Do not hesitate to open [issues](https://github.com/mui-org/material-ui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
+Thanks for reading. To get more information about the v5.3.0 release, visit the [changelog](https://github.com/mui/mui-x/releases/tag/v5.3.0).
+We hope you will enjoy this new feature. Do not hesitate to open [issues](https://github.com/mui/mui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.

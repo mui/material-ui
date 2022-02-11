@@ -123,13 +123,13 @@ function includePeerDependencies(
 function getMuiPackageVersion(packageName: string, commitRef?: string): string {
   if (
     commitRef === undefined ||
-    process.env.SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui'
+    process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
   ) {
     // #default-branch-switch
     return 'latest';
   }
   const shortSha = commitRef.slice(0, 8);
-  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@mui/${packageName}`;
+  return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
 }
 
 /**

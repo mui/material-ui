@@ -44,7 +44,7 @@ const Container = styled('div')<{ $heightLimit: boolean }>`
     `}
 `;
 
-// https://github.com/mui-org/material-ui/issues/28844
+// https://github.com/mui/material-ui/issues/28844
 interface PropsFooVariant {
   variant: 'foo';
 }

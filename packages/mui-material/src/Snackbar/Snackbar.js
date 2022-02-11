@@ -276,6 +276,9 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
         onMouseLeave={handleMouseLeave}
         ownerState={ownerState}
         ref={ref}
+        // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
+        // See https://github.com/mui-org/material-ui/issues/29080
+        role="presentation"
         {...other}
       >
         <TransitionComponent
