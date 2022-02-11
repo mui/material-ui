@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { UseInputProps } from '@mui/core/InputUnstyled';
+import { UseInputProps } from '@mui/base/InputUnstyled';
 import { InputClasses } from './inputClasses';
 
 export interface InputPropsSizeOverrides {}

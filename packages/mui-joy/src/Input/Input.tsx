@@ -1,10 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/core/composeClasses';
-import { useInput } from '@mui/core/InputUnstyled';
+import composeClasses from '@mui/base/composeClasses';
+import { useInput } from '@mui/base/InputUnstyled';
 import { styled } from '../styles';
-import { rootShouldForwardProp } from '../styles/styled';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 
@@ -22,12 +21,9 @@ const useUtilityClasses = (ownerState: InputProps) => {
 };
 
 const InputRoot = styled('div', {
-  name: 'JoyInput',
+  name: 'MuiInput',
   slot: 'Root',
-  shouldForwardProp: rootShouldForwardProp,
-  overridesResolver: (props, styles) => {
-    return [styles.root];
-  },
+  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: InputProps }>(({ theme, ownerState }) => [
   {
     // CSS variables
@@ -63,11 +59,11 @@ const InputRoot = styled('div', {
     borderColor: theme.vars.palette.neutral[200],
     borderRadius: `calc(var(--joy-Input-height, ${DEFAULT_HEIGHT}px) / 2)`,
     '&:hover': {
-      backgroundColor: theme.vars.palette.brand[100],
+      backgroundColor: theme.vars.palette.primary[100],
     },
     [`&.${inputClasses.focused}`]: {
       outline: '2px solid',
-      outlineColor: theme.vars.palette.brand[200],
+      outlineColor: theme.vars.palette.primary[200],
     },
     [`&.${inputClasses.disabled}`]: {
       cursor: 'default',
@@ -80,11 +76,9 @@ const InputRoot = styled('div', {
 ]);
 
 const InputInput = styled('input', {
-  name: 'JoyInput',
+  name: 'MuiInput',
   slot: 'Input',
-  overridesResolver: (props, styles) => {
-    return [styles.input];
-  },
+  overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: InputProps }>(({ theme }) => ({
   border: 'none',
   outline: 0,
@@ -93,7 +87,7 @@ const InputInput = styled('input', {
   height: '100%',
   color: 'inherit',
   backgroundColor: 'transparent',
-  ...theme.typography.body,
+  ...theme.typography.body1,
   '&::placeholder': {
     color: theme.vars.palette.neutral[400],
   },
