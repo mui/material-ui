@@ -48,7 +48,56 @@ As for the Net Promoter Score, this year we also saw a decrease. Last year, we h
 
 ### What is the main benefit you get from using MUI?
 
-wip
+<img src="/static/blog/2021-survey/3.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="This question results in 2019 - Design: 248; Time: 193; DX: 128; Components: 89; Customizability: 53; Documentation: 25; Accessibility: 5; Typescript: 5; Community support: 4; This question results in 2021 - Time: 597; Design: 407; Components: 309; DX: 306; Customizability: 181; Documentation: 57; Community support: 26; Accessibility: 24; Performance: 17" />
+
+<p class="blog-description">1422 out of 1589 answered this question in 2021</p>
+
+It's interesting to compare this year's answers with the first iteration, done back in 2019. We're only displaying the macro categories on the image, for simplicity sake, but we categorized the micro ones as well, which was fundamental to see some important changes, like: zooming on "Design - look & feel" specifically, answers mentioning Material Design as a main benefit went down by a factor of 2. On the other hand, those mentioning time went up by a factor of 1.4. Community support and performance are also climbing their way up.
+
+You can see all 2021 macro and micro categories sorted in descending order:
+
+<style>th { text-align: left; border-bottom: 2px solid rgba(62, 80, 96, 0.2) !important; } </style>
+
+<table>
+  <tr><th>597</th><th>time</th><tr>
+  <tr><th>597</th><th>design</th><tr>
+  <tr><td>148</td><td>design - look & feel</td><tr>
+  <tr><td>122</td><td>design - look & feel+</td><tr>
+  <tr><td>73</td><td>design - consistency</td><tr>
+  <tr><td>73</td><td>design - Material Design</td><tr>
+  <tr><td>6</td><td>design - ?</td><tr>
+  <tr><td>4</td><td>design - easy</td><tr>
+  <tr><td>2</td><td>design - responsiveness</td><tr>
+  <tr><td>1</td><td>design - time</td><tr>
+  <tr><th>309</th><th>components</th><tr>
+  <tr><td>173</td><td>components - quantity</td><tr>
+  <tr><td>124</td><td>components - quality</td><tr>
+  <tr><td>5</td><td>components - advanced</td><tr>
+  <tr><td>3</td><td>components - data grid</td><tr>
+  <tr><td>2</td><td>components - ?</td><tr>
+  <tr><td>1</td><td>components - autocomplete</td><tr>
+  <tr><td>1</td><td>components - base/unstyled</td><tr>
+  <tr><th>306</th><th>DX</th><tr>
+  <tr><td>221</td><td>DX - easy to use</td><tr>
+  <tr><td>49</td><td>DX - consistency</td><tr>
+  <tr><td>32</td><td>DX - API</td><tr>
+  <tr><td>4</td><td>DX - ?</td><tr>
+  <tr><th>181</th><th>customizability</th><tr>
+  <tr><th>57</th><th>docs</th><tr>
+  <tr><td>39</td><td>docs - ?</td><tr>
+  <tr><td>17</td><td>docs - quality</td><tr>
+  <tr><td>1</td><td>docs - quantity</td><tr>
+  <tr><th>26</th><th>community</th><tr>
+  <tr><th>24</th><th>accessibility</th><tr>
+  <tr><th>17</th><th>performance</th><tr>
+  <tr><td>15</td><td>performance - runtime</td><tr>
+  <tr><td>1</td><td>performance - bundle size</td><tr>
+  <tr><td>1</td><td>performance - ?</td><tr>
+  <tr><th>9</th><th>community support</th><tr>
+  <tr><th>5</th><th>icons</th><tr>
+  <tr><th>3</th><th>typescript</th><tr>
+  <tr><th>2</th><th>animations</th><tr>
+</table>
 
 ### Please rate how much you agree or disagree with the following statements:
 
@@ -199,13 +248,13 @@ Enterprise, dashboards applications, and design systems still continue to be in 
 
 <img src="/static/blog/2021-survey/19.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Single-page app (Create React App, etc): 74.7%; Server-side rendered website (Next.js, Gastby, etc): 20.8%; Desktop app (Electron, etc): 3.5%; Native mobile app (Cordova, etc): 0.6%; Other: 0.4%" />
 
-<p class="blog-description">1509 out of 1589 answered.</p>
+<p class="blog-description">1509 out of 1589 answered</p>
 
 ### What type system are you using?
 
 <img src="/static/blog/2021-survey/20.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="TypeScript: 63.8%; None: 18%; prop-types: 16.6%; Flow: 1.4%; Other: 0.2%" />
 
-<p class="blog-description">1501 out of 1589 answered.</p>
+<p class="blog-description">1501 out of 1589 answered</p>
 
 Very different from last year, Typescript just jumped off and it's the primary type system used out there. It seems reasonable to expect more people to use a type system rather than not.
 
@@ -213,7 +262,7 @@ Very different from last year, Typescript just jumped off and it's the primary t
 
 <img src="/static/blog/2021-survey/21.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Create React App: 62.4%; Next.js: 21.9%; Custom webpack: 10.7%; None: 2.6%; Gatsby: 0.9%; Other: 1.5%" />
 
-<p class="blog-description">1497 out of 1589 answered.</p>
+<p class="blog-description">1497 out of 1589 answered</p>
 
 A considerable bump in Next.js usage, which is not surprising due to the popularity and advancements it gained in 2021.
 
@@ -221,7 +270,7 @@ A considerable bump in Next.js usage, which is not surprising due to the popular
 
 <img src="/static/blog/2021-survey/22.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="MUI Core v4 (JSS): 45%; Styled components: 37.9%; Emotion: 30.2%; SASS: 20.8%; CSS modules: 18.9%; Vanilla CSS: 17.6%; Tailwind CSS: 9.1%; Stitches: 0.4%; Other: 1.2%" />
 
-<p class="blog-description">1492 out of 1589 answered.</p>
+<p class="blog-description">1492 out of 1589 answered</p>
 
 As the MUI Core v5 release is still relatively recent, it's still expected to see a great number of developers using JSS, and there will always probably be some of you who use it because of pure preference.
 
@@ -231,7 +280,7 @@ However, it’s notable the styled-components and emotion growth, and that might
 
 <img src="/static/blog/2021-survey/23.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Yes: 63.3%; No: 36.7%" />
 
-<p class="blog-description">1546 out of 1589 answered.</p>
+<p class="blog-description">1546 out of 1589 answered</p>
 
 Even though a lot of you who answered the survey has migrated, that are still a lot more to convice migrating. 2022 is going to be a lot focused in that.
 
@@ -267,7 +316,7 @@ Even though a lot of you who answered the survey has migrated, that are still a 
 
 <img src="/static/blog/2021-survey/27.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Yes: 16.1%; No: 83.9%" />
 
-<p class="blog-description">1542 out of 1589 answered.</p>
+<p class="blog-description">1542 out of 1589 answered</p>
 
 It’s been a while since we started to play around with ideas on how to broaden the ability to use MUI's component libraries for a wider public, enabling more collaboration and faster development speed. That’s why we had some questions on this year's survey regarding the low-code space. Given that developers are mostly bounded within a product team (considerably tech-literate people), low-code could seem as not necessary, so maybe that’s why over 80% haven’t used it. To expand our knowledge, we had the following questions for the 16% that said yes.
 
@@ -283,7 +332,7 @@ MUI users seem to use low-code tools to build all kinds of applications but main
 
 <img src="/static/blog/2021-survey/29.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Deliver a React design system: 22.2%; Generate high-quality React codebase after visual building: 19.2%; Building dashboards for rapid data visualization: 18.3%; Higher fidelity prototyping and demoing for accurate design handoff: 13.6%; Building internal apps when pro-code is overkill: 11.4%; Shipping landing pages with my existing React design system: 7.3%; Shipping production simple apps before moving to pro-code: 6.2%; Other: 1.8%" />
 
-<p class="blog-description">1200 out of 1589 answered.</p>
+<p class="blog-description">1200 out of 1589 answered</p>
 
 Developers are mostly interested in React design systems, codebase generators, tools for internal needs, data visualization, and prototyping. These needs are both for internal and customer-facing use-cases.
 
@@ -293,37 +342,37 @@ Developers are mostly interested in React design systems, codebase generators, t
 
 <img src="/static/blog/2021-survey/30.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Organic search: 57.8%; Word of mouth: 25.8%; Social media: 8.4%; Blog: 4.4%; Other: 3.5%" />
 
-<p class="blog-description">1417 out of 1589 answered.</p>
+<p class="blog-description">1417 out of 1589 answered</p>
 
 ### Which of the following best describes your current job role?
 
 <img src="/static/blog/2021-survey/31.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Full-stack developer: 52.6%; Front-end developer: 30.5%; Entrepreneur (I do it all!): 7.5%; Beginner learning web development: 2.6%; Engineering Manager: 2.6%; Back-end developer: 1.1%; Designer: 1%; Product Manager: 0.7%; Other: 1.3%" />
 
-<p class="blog-description">1497 out of 1589 answered.</p>
+<p class="blog-description">1497 out of 1589 answered</p>
 
 ### How many total employees work at your current place of employment?
 
 <img src="/static/blog/2021-survey/32.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="0-1: 187; 2-10: 358; 11-20: 136; 21-50: 139; 51-100: 97; 100+: 305" />
 
-<p class="blog-description">1222 out of 1589 answered.</p>
+<p class="blog-description">1222 out of 1589 answered</p>
 
 ### How long have you been developing with JavaScript?
 
 <img src="/static/blog/2021-survey/33.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Just getting started: 4.8%; 1 year +: 22.2%; 3 years +: 27.9%; 5 years +: 28.2%; 10 years +: 11.1%; 15 years +: 5.9%" />
 
-<p class="blog-description">1520 out of 1589 answered.</p>
+<p class="blog-description">1520 out of 1589 answered</p>
 
 ### How long have you been developing with React?
 
 <img src="/static/blog/2021-survey/34.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Just getting started: 7%; 6 months +: 11%; 1 year +: 20.6%; 2 years +: 21.2%; 3 years +: 27.1%; 5 years +: 11.5%; Bleeding edge baby! 6 years +: 1.6%" />
 
-<p class="blog-description">1523 out of 1589 answered.</p>
+<p class="blog-description">1523 out of 1589 answered</p>
 
 ### How long have you been developing with MUI?
 
 <img src="/static/blog/2021-survey/35.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Just getting started: 16.6%; 6 months +: 19.4%; 1 year +: 24.4%; 2 years +: 21.2%; 3 years +: 15.6%; I'm a pioneer! 5 years +: 2.8%" />
 
-<p class="blog-description">1519 out of 1589 answered.</p>
+<p class="blog-description">1519 out of 1589 answered</p>
 
 ## Conclusion
 
