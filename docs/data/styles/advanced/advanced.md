@@ -1,4 +1,4 @@
-# Advanced
+# Advanced (LEGACY)
 
 <p class="description">This section covers more advanced usage of @mui/styles.</p>
 

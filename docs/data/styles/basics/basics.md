@@ -1,4 +1,4 @@
-# @mui/styles
+# @mui/styles (LEGACY)
 
 <p class="description">The legacy styling solution of MUI.</p>
 

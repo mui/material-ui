@@ -2,7 +2,7 @@
 title: Styles API
 ---
 
-# API
+# API (LEGACY)
 
 <p class="description">The API reference of @mui/styles.</p>
 

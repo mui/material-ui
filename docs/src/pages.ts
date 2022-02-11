@@ -333,9 +333,9 @@ const pages: readonly MuiPage[] = [
     icon: 'StyleIcon',
     legacy: true,
     children: [
-      { pathname: '/styles/basics', legacy: true },
-      { pathname: '/styles/advanced', legacy: true },
-      { pathname: '/styles/api', title: 'API', legacy: true },
+      { pathname: '/styles/basics' },
+      { pathname: '/styles/advanced' },
+      { pathname: '/styles/api', title: 'API' },
     ],
   },
   {
