@@ -59,7 +59,7 @@ You can see all 2021 macro and micro categories sorted in descending order:
 <style>th { text-align: left; border-bottom: 2px solid rgba(62, 80, 96, 0.2) !important; } </style>
 
 <table>
-  <tr><th>597</th><th>time</th><tr>
+  <tr><th style="width: 40px;">597</th><th style="width: 700px;">time</th><tr>
   <tr><th>597</th><th>design</th><tr>
   <tr><td>148</td><td>design - look & feel</td><tr>
   <tr><td>122</td><td>design - look & feel+</td><tr>
