@@ -26,7 +26,7 @@ const ListItemSeparatorRoot = styled('li', {
   borderColor: theme.vars.palette.neutral.outlinedBorder,
   // by default, the separator line is stretched from edge-to-edge of the List
   // spacing between ListItem can be controlled by `--List-separatorGap` on the List
-  margin: 'calc(var(--List-separatorGap) / 2) calc(-1 * var(--List-gutter))',
+  margin: 'calc(var(--List-separatorGap) / 2) calc(-1 * var(--List-padding))',
   ...(ownerState.inset === 'gutter' && {
     margin: 'calc(var(--List-separatorGap) / 2)',
     marginRight: 'var(--List-itemGutter)',

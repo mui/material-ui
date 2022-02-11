@@ -20,7 +20,7 @@ const ListRoot = styled('ul', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListProps }>({
-  '--List-gutter': '0.375rem',
+  '--List-padding': '0.375rem',
   '--List-radius': '8px',
   '--List-itemMinHeight': '2.5rem',
   '--List-itemGutter': '0.375rem',
@@ -29,9 +29,9 @@ const ListRoot = styled('ul', {
   '--List-insetStart': 'var(--List-itemGutter)',
   // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
   '--List-itemRadius':
-    'max(var(--List-radius) - var(--List-gutter), min(var(--List-gutter) / 2, var(--List-radius) / 2))',
+    'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
   borderRadius: 'var(--List-radius)',
-  padding: 'var(--List-gutter)',
+  padding: 'var(--List-padding)',
   margin: 'initial',
   listStyle: 'none',
   display: 'flex',

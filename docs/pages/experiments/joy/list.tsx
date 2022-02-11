@@ -308,7 +308,7 @@ export default function JoyTypography() {
             component="nav"
             sx={{
               '--List-radius': '0px',
-              '--List-gutter': '0px',
+              '--List-padding': '0px',
               '--List-itemGutter': '1rem',
               '--List-itemMinHeight': '3rem',
             }}
