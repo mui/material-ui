@@ -19,20 +19,18 @@ const NAV_WIDTH = 280;
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
-})(({ disableToc, theme }) => {
-  return {
-    display: 'flex',
-    width: '100%',
-    ...(disableToc && {
-      [theme.breakpoints.up('lg')]: {
-        marginRight: '5%',
-      },
-    }),
+})(({ disableToc, theme }) => ({
+  display: 'flex',
+  width: '100%',
+  ...(disableToc && {
     [theme.breakpoints.up('lg')]: {
-      width: `calc(100% - ${NAV_WIDTH}px)`,
+      marginRight: '5%',
     },
-  };
-});
+  }),
+  [theme.breakpoints.up('lg')]: {
+    width: `calc(100% - ${NAV_WIDTH}px)`,
+  },
+}));
 
 const StyledAppContainer = styled(AppContainer, {
   shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'disableToc',
@@ -108,6 +106,11 @@ function AppLayoutDocs(props) {
           </AdGuest>
         )}
         <Main disableToc={disableToc}>
+          {/*
+            Render the TOCs first to avoid layout shift when the HTML is streamed.
+            See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
+          */}
+          {disableToc ? null : <AppTableOfContents toc={toc} />}
           <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
@@ -115,7 +118,6 @@ function AppLayoutDocs(props) {
               <AppLayoutDocsFooter />
             </NoSsr>
           </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>
       </AdManager>
     </AppFrame>
