@@ -24,6 +24,10 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
   }
 };
 
+const createPrefixVar = (prefix: string | undefined | null) => {
+  return (cssVar: string) => `--${prefix ? `${prefix}-` : ''}${cssVar.replace(/^--/, '')}`;
+};
+
 /**
  *
  * @param name variant name
@@ -101,8 +105,9 @@ export const createVariantStyle = (
   return result;
 };
 
-export const createContainedOverrides = (theme: JoyTheme) => {
+export const createTextOverrides = (theme: JoyTheme) => {
   const getCssVar = createGetCssVar(theme.prefix);
+  const prefixVar = createPrefixVar(theme.prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -113,13 +118,78 @@ export const createContainedOverrides = (theme: JoyTheme) => {
       result = {
         ...result,
         [color]: {
-          [`--${theme.prefix ? `${theme.prefix}-` : ''}palette-text-primary`]: '#fff',
-          [`--${theme.prefix ? `${theme.prefix}-` : ''}palette-text-secondary`]: getCssVar(
-            `palette-${color}-100`,
-          ),
-          [`--${theme.prefix ? `${theme.prefix}-` : ''}palette-text-tertiary`]: getCssVar(
-            `palette-${color}-200`,
-          ),
+          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
+          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-600`),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+        },
+      };
+    }
+  });
+  return result;
+};
+
+export const createOutlinedOverrides = (theme: JoyTheme) => {
+  const getCssVar = createGetCssVar(theme.prefix);
+  const prefixVar = createPrefixVar(theme.prefix);
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
+          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-600`),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+        },
+      };
+    }
+  });
+  return result;
+};
+
+export const createLightOverrides = (theme: JoyTheme) => {
+  const getCssVar = createGetCssVar(theme.prefix);
+  const prefixVar = createPrefixVar(theme.prefix);
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
+          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-600`),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+        },
+      };
+    }
+  });
+  return result;
+};
+
+export const createContainedOverrides = (theme: JoyTheme) => {
+  const getCssVar = createGetCssVar(theme.prefix);
+  const prefixVar = createPrefixVar(theme.prefix);
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          [prefixVar('--palette-text-primary')]: '#fff',
+          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
           '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
 
           '--variant-textColor': getCssVar(`palette-${color}-100`),

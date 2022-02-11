@@ -10,7 +10,7 @@ export type DefaultVariantProp = 'text' | 'outlined' | 'light' | 'contained';
 
 export type VariantProp = OverridableStringUnion<DefaultVariantProp, VariantPropOverrides>;
 
-export type DefaultContextualOverrides = 'containedOverrides';
+export type DefaultContextualOverrides = `${DefaultVariantProp}Overrides`;
 
 export type ContextualOverrideKeys = OverridableStringUnion<
   DefaultContextualOverrides,
@@ -25,9 +25,10 @@ export type DefaultVariantKey =
   | Exclude<DefaultVariantProp, 'contained'>
   | `${Exclude<DefaultVariantProp, 'contained'>}${State}`;
 
-type BaseContextOverrides = {
-  containedOverrides: Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>;
-};
+type BaseContextOverrides = Record<
+  DefaultContextualOverrides,
+  Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>
+>;
 
 // Split interfaces into multiple chunks so that they can be augmented independently
 

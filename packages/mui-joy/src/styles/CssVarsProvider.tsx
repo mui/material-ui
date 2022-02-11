@@ -16,7 +16,13 @@ import { Variants } from './types/variants';
 import { ColorSystem } from './types/colorSystem';
 import { TypographySystem } from './types/typography';
 import { Components } from './components';
-import { createVariant, createContainedOverrides } from './variantUtils';
+import {
+  createVariant,
+  createTextOverrides,
+  createOutlinedOverrides,
+  createLightOverrides,
+  createContainedOverrides,
+} from './variantUtils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -96,6 +102,11 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
         containedHover: createVariant('containedHover', mergedTheme),
         containedActive: createVariant('containedActive', mergedTheme),
         containedDisabled: createVariant('containedDisabled', mergedTheme),
+
+        // variant overrides
+        textOverrides: createTextOverrides(mergedTheme),
+        outlinedOverrides: createOutlinedOverrides(mergedTheme),
+        lightOverrides: createLightOverrides(mergedTheme),
         containedOverrides: createContainedOverrides(mergedTheme),
       } as typeof mergedTheme.variants,
       mergedTheme.variants,
