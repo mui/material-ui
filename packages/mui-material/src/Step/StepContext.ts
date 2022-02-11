@@ -13,7 +13,7 @@ export interface StepContextType {
 /**
  * @ignore - internal component.
  */
-const StepContext = React.createContext<StepContextType | null>(null);
+const StepContext = React.createContext<StepContextType | {}>({});
 
 if (process.env.NODE_ENV !== 'production') {
   StepContext.displayName = 'StepContext';
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 /**
  * Returns the current StepContext.
  */
-export function useStepContext(): StepContextType | null {
+export function useStepContext(): StepContextType | {} {
   return React.useContext(StepContext);
 }
 
