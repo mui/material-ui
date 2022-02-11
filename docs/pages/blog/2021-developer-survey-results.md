@@ -90,37 +90,37 @@ If you have requests or ideas for improving the above-discussed topics, here are
 
 ### What were you primarily using before MUI?
 
-<img src="/static/blog/2021-survey/7.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/7.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Bootstrap: 40.6%; Started with MUI: 37.4%; Tailwind:: 4.8%; Ant Design: 4.8%; Angular Material: 4%; Semantic-UI: 4%; Other: 3.8%; Chakra UI: 0.7%" />
 
 Not too different from last year with the exception that, this time, we’ve seen way fewer developers claiming to be using custom systems before. Very encouraging to know the number of people starting their products off with MUI!
 
 ### Are you using any of these in addition to MUI?
 
-<img src="/static/blog/2021-survey/8.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/8.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Nope, just MUI: 70.7%; Tailwind: 10.3%; Bootstrap: 9.8%; Ant Design: 4%; Semantic-UI: 1.7%; Other: 1.6%; Chakra UI: 1.2%; Angular Material: 0.8%" />
 
 We're glad to see that for many developers MUI seems to be covering all the needs as far as component UI libraries are concerned. This is definitely something we optimize for.
 
 ### Who are you building for?
 
-<img src="/static/blog/2021-survey/9.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/9.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="For the company I work at: 65.6%; For my personal side project: 20.8%; For a client: 12.9%; Other: 0.7%" />
 
 MUI for client work and for personal use have swapped places this year. Maybe v5 got developers interested enough to try it on their own sites and apps? Interesting to see.
 
 ### Who do you collaborate most with?
 
-<img src="/static/blog/2021-survey/10.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/10.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Other developers: 67.2%; Designers: 34.3%; Product managers: 29.2%; No one, it's just me: 28.9%; Other: 0.9%" />
 
 We didn’t ask this question on the previous iteration but thought that doing so now would be a good idea, given we know that our documentation is not only visited by developers. Optimizing our language, and even the code itself, to be understandable by other team members such as designers and product managers makes the whole design system conversation way more inclusive and approachable. And the results illustrate that this thinking might make a lot of sense indeed.
 
 ### How many web applications did you or your team deliver using MUI this year?
 
-<img src="/static/blog/2021-survey/11.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/11.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="0-1: 494; 2-3: 381; 4-5: 122; 6-10: 26; 10+: 28" />
 
 When discussing potential indicators we could track, perhaps one of the hardest ones is efficacy - or, in other words, how much does MUI actually help shipping products? The only way to properly know, since this is usually private, is by asking developers. The number of apps delivered is, of course, contextual, but, regardless, it's encouraging to know that we might be enabling these applications to be built faster than they would've if developers were to build it all from scratch.
 
 ### Which MUI products do you use in your application?
 
-<img src="/static/blog/2021-survey/12.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/12.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="MUI Core: MIT licensed foundational components, right now available with Material Design: 96.6%; MUI X: collection of advanced components available under MIT and commercial licenses: 14.7%; MIT License: 126 responses; Commercial licenses: 99 responses" />
 
 Definitely not a very surprising answer, we know that most of our user base is here for MUI Core. The proportion of MUI X users in the MIT and commercial license might not be true, though. We emailed those who bought the MUI X commercial license asking to answer the survey, so they had this plus one ad of it.
 
@@ -128,19 +128,19 @@ However, there is a lot of opportunities in the MUI X space to unpack, let's exp
 
 ### Did you know what MUI X was prior to this survey?
 
-<img src="/static/blog/2021-survey/13.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/13.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Yes: 54.5%; No: 45.5%" />
 
 A large chunk of you didn’t know what MUI X is prior to the survey, which makes it clear that we still have a lot to do to expand its reach.
 
 ### Are you currently using any paid UI component library?
 
-<img src="/static/blog/2021-survey/14.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/14.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Yes: 11.8%; No: 88.2%" />
 
 The results are not very different from last year, aside from a slight increase of respondents saying yes. The majority of respondents don’t use any but out of those who do, it is mostly MUI X, which is great news.
 
 ### How can we improve the Data Grid for you?
 
-<img src="/static/blog/2021-survey/15.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/15.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Customizability: 21.9%; Cheaper Pro plan: 17.2%; More features: 12.5%; Fix features: 9.4%; Improve docs: 6.3%; Look & feel: 6.3%; Maintain it: 4.7%; Bugs: 3.1%; DX: MUI Core consistency: 3.1%; Performance: 3.1%; Transition: 3.1%; SSR: 1.6%" />
 
 - **Customizability.** We already touched on this topic before and the frequency that it shows up on the MUI X space is a definitely a hint to double down on efforts to make customizations easier to do. We're aware that we might be missing some stuff, like documention around theming and a headless API.
 - **Cheaper Pro plan.** We know it can be out of range for a lot of developers and that's why the free version is already packed with many features. MUI mainly develops OSS software and we needed a way to sustain the project longer, hence the price we’re currently exercising, which actually is, still, way lower than similar products. However, many who left feedback around the price are individuals, so there might be an opportunity to evolve it for those not backed by their company.
@@ -152,7 +152,7 @@ The results are not very different from last year, aside from a slight increase 
 
 And now, here's what you mentioned about making the commercially licensed version of the Data Grid better:
 
-<img src="/static/blog/2021-survey/16.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/16.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="More features: 39.8%; Customizability: 20.4%; Fix features: 15.1%; Performance: 5.4%; Cheaper Premium plan: 3.2%; Improve docs: 3.2%; DX - API: 2.2%; LGPL license: 2.2%; More components: 2.2%" />
 
 - **More features.** [Grouping](https://mui.com/components/data-grid/group-pivot/#row-grouping) was the most requested feature for the Data Grid Pro, followed by [master detail](https://mui.com/components/data-grid/group-pivot/#master-detail), aggregation, search, [tree data](https://mui.com/components/data-grid/group-pivot/#tree-data), and [column pinning](https://mui.com/components/data-grid/columns/#column-pinning). Good thing is that we released some of these already during the time we were anlayzing the survey results. Check the links to see their docs and demos. Alternatively, you can follow [our public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
 - **Customizability.** The majority of requests about customizability were actually asking for possibilities to tweak Data Grid interactions, which is something we need to understand more exactly what it means. Following next were requests for more styles customizability and documentation around how to do that (similar to the discussed above).
@@ -161,35 +161,35 @@ And now, here's what you mentioned about making the commercially licensed versio
 
 ### What were you using before the Data Grid?
 
-<img src="/static/blog/2021-survey/17.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/17.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="In house: 29.9%; MUI Table: 17.9%; Nothing: 7.5%; material-table: 6%; material-datatables: 6%; Sencha: 6%; Kendo UI: 4.5%; react-table: 4.5%; Bootstrap Table: 3%; AG Grid: 3%; datatables.net: 3%; JSP: 1.5%" />
 
 To finish off the section about MUI X, it's interesting to see that a lot of you are taking the effort yourselves to build Data Grid alike tables. We'd love to understand more why it made sense to build it in-house, especially given we know it's no trivial work at all. Also, it's refreshing to see that the standard MUI table components is already of good help for a lot of you.
 
 ### What are you building?
 
-<img src="/static/blog/2021-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Dashboard admin applications: 26.3%; Enterprise applications: 25.9%; A custom design system: 9.7%; Landing page: 8.1%; E-commerce application: 7.8%; Personal website/portfolio: 6.9%; CMS: 6.1%; Just playing with tech: 4.6%; Blog: 2.8%; Other: 1.4%" />
 
 Enterprise, dashboards applications, and design systems still continue to be in the top 3, similar to last year. The slight changes though are developers using MUI more to build e-commerce apps and portfolios, which is pretty cool. We'd love to see them, feel free to share in the ["Who's using Material UI?" issue](https://github.com/mui/material-ui/issues/22426).
 
 ### What delivery mechanisms are you using?
 
-<img src="/static/blog/2021-survey/19.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/19.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Single-page app (Create React App, etc): 74.7%; Server-side rendered website (Next.js, Gastby, etc): 20.8%; Desktop app (Electron, etc): 3.5%; Native mobile app (Cordova, etc): 0.6%; Other: 0.4%" />
 
 ### What type system are you using?
 
-<img src="/static/blog/2021-survey/20.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/20.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="TypeScript: 63.8%; None: 18%; prop-types: 16.6%; Flow: 1.4%; Other: 0.2%" />
 
 Very different from last year, Typescript just jumped off and it's the primary type system used out there. It seems reasonable to expect more people to use a type system rather than not.
 
 ### Which framework are you using, if any?
 
-<img src="/static/blog/2021-survey/21.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/21.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Create React App: 62.4%; Next.js: 21.9%; Custom webpack: 10.7%; None: 2.6%; Gatsby: 0.9%; Other: 1.5%" />
 
 A considerable bump in Next.js usage, which is not surprising due to the popularity and advancements it gained in 2021.
 
 ### What styling solution are you using?
 
-<img src="/static/blog/2021-survey/22.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/22.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="MUI Core v4 (JSS): 45%; Styled components: 37.9%; Emotion: 30.2%; SASS: 20.8%; CSS modules: 18.9%; Vanilla CSS: 17.6%; Tailwind CSS: 9.1%; Stitches: 0.4%; Other: 1.2%" />
 
 As the MUI Core v5 release is still relatively recent, it's still expected to see a great number of developers using JSS, and there will always probably be some of you who use it because of pure preference.
 
@@ -197,17 +197,17 @@ However, it’s notable the styled-components and emotion growth, and that might
 
 ### Did you recently migrate to MUI Core v5?
 
-<img src="/static/blog/2021-survey/23.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/23.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Yes: 63.3%; No: 36.7%" />
 
 Even though a lot of you who answered the survey has migrated, that are still a lot more to convice migrating. 2022 is going to be a lot focused in that.
 
 ### What's the statement that most defines your migration experience?
 
-<img src="/static/blog/2021-survey/24.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/24.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="It was tricky but MUI's documentation and resources helped me to get it right: 43%; It was smooth and it is now working fine: 38.5%; It wasn't good, I had many problems and it took me a long time to finish: 14.3%; It was bad and I ended up regretting it: 2.8%; Other: 1.4%" />
 
 ### What could MUI do to improve the migration experience?
 
-<img src="/static/blog/2021-survey/25.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/25.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="General documentation improvements: 43.2%; Automation: 20.7%: Fewer breaking changes: 15.6%; Fewer styling soluiton breaking changes: 8.5%; More tutorials: 5.4%; More styling solution migration tutorial: 4.4%; Migrate Core and X together: 1%" />
 
 - **General documentation improvement.** Documentation plays a huge part in defining the developer experience. We definitely need to explore more ways of making the step-by-step easier, add more examples, refine the copywriting, and maybe overall make it more beginner-friendly.
   - There are other topics converging with this one, like requests for more tutorials.
@@ -215,7 +215,7 @@ Even though a lot of you who answered the survey has migrated, that are still a 
 
 ### Could you share the reason why you haven't migrated yet?
 
-<img src="/static/blog/2021-survey/26.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/26.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="No bandwidth: 28.4%; Started in v5: 14.6%; Afraid of amount of breaking changes: 12.3%; Already planned but haven't started: 9.5%; Missing incentive: 8.5%; Not a priority: 7.3%; Don't like new styling solution: 4%; Blocked by 3rd party dependencies: 3.3%; Didn't know about it: 3.3%; Migration is in process: 3.3%; Had regressions, therefore came back to v4: 1.3%; Waiting to become stable: 1.3%" />
 
 - **No bandwidth / not priority / blocked by third-party dependencies.** These are all grouped because they are similar in the sense that migration didn’t happen because of a superior force. Not sure what we can do exactly but we put an effort to always have a clear changelog and reasoning for the changes, to equip you with arguments and resources when the time is right to migrate.
 - **Afraid of the amount of breaking changes.** The fear aspect could probably be attenuated by more documentation, examples, automation, so on and so forth. Things we already covered in previous topics.
@@ -225,18 +225,18 @@ Even though a lot of you who answered the survey has migrated, that are still a 
 
 ### Have you, or someone from your team, using any low-code tool for helping with the development of your product?
 
-<img src="/static/blog/2021-survey/27.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/27.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Yes: 16.1%; No: 83.9%" />
 
 It’s been a while since we started to play around with ideas on how to broaden the ability to use MUI's component libraries for a wider public, enabling more collaboration and faster development speed. That’s why we had some questions on this year's survey regarding the low-code space. Given that developers are mostly bounded within a product team (considerably tech-literate people), low-code could seem as not necessary, so maybe that’s why over 80% haven’t used it. To expand our knowledge, we had the following questions for the 16% that said yes.
 
 ### What did it help you build?
 
-<img src="/static/blog/2021-survey/28.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/28.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="An internal tool: 22.5%; Landing pages: 22.1%; Analytics dashboard: 17.6%; A design system: 15.6%; E-commerce storefront: 8.6%; A simple customer-facing mobile app: 6.6%; Other: 7%" />
 
 MUI users seem to use low-code tools to build all kinds of applications but mainly for internal tools, landing pages, and analytics dashboards. The findings are similar to the question above where we asked ‘What are you building?’. But it is great to see that there are low-code tools in the market that developers trust. Undoubtedly, it leads to an overall faster feedback and development cycle.
 
 ### If MUI considered building a low-code tool, what primary use case would match your needs?
 
-<img src="/static/blog/2021-survey/29.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Word cloud of what we can do to improve MUI" />
+<img src="/static/blog/2021-survey/29.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Deliver a React design system: 22.2%; Generate high-quality React codebase after visual building: 19.2%; Building dashboards for rapid data visualization: 18.3%; Higher fidelity prototyping and demoing for accurate design handoff: 13.6%; Building internal apps when pro-code is overkill: 11.4%; Shipping landing pages with my existing React design system: 7.3%; Shipping production simple apps before moving to pro-code: 6.2%; Other: 1.8%" />
 
 Developers are mostly interested in React design systems, codebase generators, tools for internal needs, data visualization, and prototyping. These needs are both for internal and customer-facing use-cases.
