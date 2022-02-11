@@ -136,7 +136,7 @@ function HideOnScroll(props) {
   const trigger = useScrollTrigger();
   return (
     <Slide in={!trigger}>
-      <div>你好</div>
+      <div>Hello</div>
     </Slide>
   );
 }

@@ -281,12 +281,7 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 <Autocomplete
   onKeyDown={(event) => {
     if (event.key === 'Enter') {
-      // 阻止默认的 'Enter' 行为.
-      event.defaultMuiPrevented = true;
-      // 你的处理程序代码
-    }
-  }}
-/>
+      // Prevent's default 'Enter' behavior.
       event.defaultMuiPrevented = true;
       // your handler code
     }
