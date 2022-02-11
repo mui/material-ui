@@ -61,12 +61,13 @@ The open-source community is always welcome to submit new features and bug fixes
 
 The current status of each MUI version is as follows:
 
-- MUI Core v5 (emotion): ✅ In active development.
-- MUI Core v4 (hooks): ⚠️ Only handle security fixes.
-- MUI Core v3 (change supported browsers): ❌ Inactive.
+- MUI Core v5: **✅ In active development**.
+- [MUI Core v4](https://v4.mui.com/): **⚠️ Only handle security fixes**.
+  - Regarding the security fixes, v4 will remain on long-term support (i.e security updates and fixes for regressions caused by Chrome, React, etc.) until the next major, v6, is fully released, at which time all support for it will end.
+- [MUI Core v3](https://v3.mui.com/): 🅧 **Inactive**.
 - ~MUI Core v2 (never existed)~.
-- MUI Core v1 (rewrite): ❌ Inactive.
-- MUI Core v0.x: ❌ Inactive.
+- [MUI Core v1](https://v1.mui.com/): 🅧 **Inactive**.
+- [MUI Core v0.x](https://v0.mui.com/#/): 🅧 **Inactive**.
 
 For teams and organizations that require additional support for older versions, MUI has [options available](#professional-support-premium).
 
