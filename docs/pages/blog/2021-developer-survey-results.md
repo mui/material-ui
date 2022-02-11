@@ -56,7 +56,7 @@ It's interesting to compare this year's answers with the first iteration, done b
 
 You can see all 2021 macro and micro categories sorted in descending order:
 
-<style>th { text-align: left; border-bottom: 2px solid rgba(62, 80, 96, 0.2) !important; } </style>
+<style>th { text-align: left; border-bottom: 3px solid rgba(62, 80, 96, 0.2) !important; } </style>
 
 <table>
   <tr><th style="width: 40px;">597</th><th style="width: 700px;">time</th><tr>
