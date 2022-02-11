@@ -8,7 +8,7 @@ tags: ['Developer survey']
 
 Keeping up with the tradition, a few months ago we opened the 2021 MUI Developer Survey, to which we received 1,589 responses, 7% more answers than last year. This time, we have almost doubled the survey size, adding more depth to each covered topic, especially opening space for more open-ended questions. We wholeheartedly appreciate everyone who contributed, you are all helping shape the future of MUI as a company, so, thank you!
 
-Just like the previous iterations, the survey was chopped into three sections: ["Your needs"](#your-needs), ["Your product"](#your-product), and "About you". Let’s dive into each one of them.
+Just like the previous iterations, the survey was chopped into three sections: ["Your needs"](#your-needs), ["Your product"](#your-product), and ["About you"](#about-you). Let’s dive into each one of them.
 
 ## Your needs
 
@@ -20,7 +20,7 @@ Fortunately, and similar to 2019 and 2020, over 93% of the respondents would be 
 
 <img src="/static/blog/2021-survey/1.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
 
-<p class="blog-description">1567 out of 1589 answered.</p>
+<p class="blog-description">1567 out of 1589 answered</p>
 
 On the flip side though, the amount of "Very disappointed” alone fell by 10,3%, and the number of "Not disappointed" grew by 1,1%, in comparison with 2020. When choosing the last option, respondents were able to write a free-form answer to justify the choice. Based on the data, here are the main reasons we noticed and possible explanations for why these came to be:
 
@@ -44,7 +44,7 @@ As for the Net Promoter Score, this year we also saw a decrease. Last year, we h
 
 <img src="/static/blog/2021-survey/2.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Detractors: 10.88%, Neutrals: 32.69%, Promoters: 56.43%, Overall NPS: 46. Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 to 100 is excellent." />
 
-<p class="blog-description">1563 out of 1589 answered.</p>
+<p class="blog-description">1563 out of 1589 answered</p>
 
 ### What is the main benefit you get from using MUI?
 
@@ -72,7 +72,7 @@ The notable difference this year seems to be performance climbing its way up, it
 
 <img src="/static/blog/2021-survey/6.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Word cloud of what we can do to improve MUI" />
 
-<p class="blog-description">1007 out of 1589 answered.</p>
+<p class="blog-description">1007 out of 1589 answered</p>
 
 Here are the most recurring topics:
 
@@ -94,7 +94,7 @@ If you have requests or ideas for improving the above-discussed topics, here are
 
 <img src="/static/blog/2021-survey/7.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bootstrap: 40.6%; Started with MUI: 37.4%; Tailwind:: 4.8%; Ant Design: 4.8%; Angular Material: 4%; Semantic-UI: 4%; Other: 3.8%; Chakra UI: 0.7%" />
 
-<p class="blog-description">1389 of 1589 answered.</p>
+<p class="blog-description">1389 of 1589 answered</p>
 
 Not too different from last year with the exception that, this time, we’ve seen way fewer developers claiming to be using custom systems before. Very encouraging to know the number of people starting their products off with MUI!
 
@@ -102,7 +102,7 @@ Not too different from last year with the exception that, this time, we’ve see
 
 <img src="/static/blog/2021-survey/8.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Nope, just MUI: 70.7%; Tailwind: 10.3%; Bootstrap: 9.8%; Ant Design: 4%; Semantic-UI: 1.7%; Other: 1.6%; Chakra UI: 1.2%; Angular Material: 0.8%" />
 
-<p class="blog-description">1468 out of 1589 answered.</p>
+<p class="blog-description">1468 out of 1589 answered</p>
 
 We're glad to see that for many developers MUI seems to be covering all the needs as far as component UI libraries are concerned. This is definitely something we optimize for.
 
@@ -110,7 +110,7 @@ We're glad to see that for many developers MUI seems to be covering all the need
 
 <img src="/static/blog/2021-survey/9.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="For the company I work at: 65.6%; For my personal side project: 20.8%; For a client: 12.9%; Other: 0.7%" />
 
-<p class="blog-description">1523 out of 1589 answered.</p>
+<p class="blog-description">1523 out of 1589 answered</p>
 
 MUI for client work and for personal use have swapped places this year. Maybe v5 got developers interested enough to try it on their own sites and apps? Interesting to see.
 
@@ -118,7 +118,7 @@ MUI for client work and for personal use have swapped places this year. Maybe v5
 
 <img src="/static/blog/2021-survey/10.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Other developers: 67.2%; Designers: 34.3%; Product managers: 29.2%; No one, it's just me: 28.9%; Other: 0.9%" />
 
-<p class="blog-description">1527 out of 1589 answered.</p>
+<p class="blog-description">1527 out of 1589 answered</p>
 
 We didn’t ask this question on the previous iteration but thought that doing so now would be a good idea, given we know that our documentation is not only visited by developers. Optimizing our language, and even the code itself, to be understandable by other team members such as designers and product managers makes the whole design system conversation way more inclusive and approachable. And the results illustrate that this thinking might make a lot of sense indeed.
 
@@ -126,7 +126,7 @@ We didn’t ask this question on the previous iteration but thought that doing s
 
 <img src="/static/blog/2021-survey/11.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="0-1: 494; 2-3: 381; 4-5: 122; 6-10: 26; 10+: 28" />
 
-<p class="blog-description">1051 out of 1589 answered.</p>
+<p class="blog-description">1051 out of 1589 answered</p>
 
 When discussing potential indicators we could track, perhaps one of the hardest ones is efficacy - or, in other words, how much does MUI actually help shipping products? The only way to properly know, since this is usually private, is by asking developers. The number of apps delivered is, of course, contextual, but, regardless, it's encouraging to know that we might be enabling these applications to be built faster than they would've if developers were to build it all from scratch.
 
@@ -134,7 +134,7 @@ When discussing potential indicators we could track, perhaps one of the hardest 
 
 <img src="/static/blog/2021-survey/12.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="MUI Core: MIT licensed foundational components, right now available with Material Design: 96.6%; MUI X: collection of advanced components available under MIT and commercial licenses: 14.7%; MIT License: 126 responses; Commercial licenses: 99 responses" />
 
-<p class="blog-description">1551 out of 1589 answered.</p>
+<p class="blog-description">1551 out of 1589 answered</p>
 
 Definitely not a very surprising answer, we know that most of our user base is here for MUI Core. The proportion of MUI X users in the MIT and commercial license might not be true, though. We emailed those who bought the MUI X commercial license asking to answer the survey, so they had this plus one ad of it.
 
@@ -144,7 +144,7 @@ However, there is a lot of opportunities in the MUI X space to unpack, let's exp
 
 <img src="/static/blog/2021-survey/13.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Yes: 54.5%; No: 45.5%" />
 
-<p class="blog-description">1312 out of 1589 answered.</p>
+<p class="blog-description">1312 out of 1589 answered</p>
 
 A large chunk of you didn’t know what MUI X is prior to the survey, which makes it clear that we still have a lot to do to expand its reach.
 
@@ -152,7 +152,7 @@ A large chunk of you didn’t know what MUI X is prior to the survey, which make
 
 <img src="/static/blog/2021-survey/14.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Yes: 11.8%; No: 88.2%" />
 
-<p class="blog-description">1584 out of 1589 answered.</p>
+<p class="blog-description">1584 out of 1589 answered</p>
 
 The results are not very different from last year, aside from a slight increase of respondents saying yes. The majority of respondents don’t use any but out of those who do, it is mostly MUI X, which is great news.
 
@@ -160,7 +160,7 @@ The results are not very different from last year, aside from a slight increase 
 
 <img src="/static/blog/2021-survey/15.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Customizability: 21.9%; Cheaper Pro plan: 17.2%; More features: 12.5%; Fix features: 9.4%; Improve docs: 6.3%; Look & feel: 6.3%; Maintain it: 4.7%; Bugs: 3.1%; DX: MUI Core consistency: 3.1%; Performance: 3.1%; Transition: 3.1%; SSR: 1.6%" />
 
-<p class="blog-description">64 out of 1589 answered.</p>
+<p class="blog-description">64 out of 1589 answered</p>
 
 - **Customizability.** We already touched on this topic before and the frequency that it shows up on the MUI X space is a definitely a hint to double down on efforts to make customizations easier to do. We're aware that we might be missing some stuff, like documention around theming and a headless API.
 - **Cheaper Pro plan.** We know it can be out of range for a lot of developers and that's why the free version is already packed with many features. MUI mainly develops OSS software and we needed a way to sustain the project longer, hence the price we’re currently exercising, which actually is, still, way lower than similar products. However, many who left feedback around the price are individuals, so there might be an opportunity to evolve it for those not backed by their company.
@@ -174,7 +174,7 @@ And now, here's what you mentioned about making the commercially licensed versio
 
 <img src="/static/blog/2021-survey/16.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="More features: 39.8%; Customizability: 20.4%; Fix features: 15.1%; Performance: 5.4%; Cheaper Premium plan: 3.2%; Improve docs: 3.2%; DX - API: 2.2%; LGPL license: 2.2%; More components: 2.2%" />
 
-<p class="blog-description">75 out of 1589 answered.</p>
+<p class="blog-description">75 out of 1589 answered</p>
 
 - **More features.** [Grouping](https://mui.com/components/data-grid/group-pivot/#row-grouping) was the most requested feature for the Data Grid Pro, followed by [master detail](https://mui.com/components/data-grid/group-pivot/#master-detail), aggregation, search, [tree data](https://mui.com/components/data-grid/group-pivot/#tree-data), and [column pinning](https://mui.com/components/data-grid/columns/#column-pinning). Good thing is that we released some of these already during the time we were anlayzing the survey results. Check the links to see their docs and demos. Alternatively, you can follow [our public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
 - **Customizability.** The majority of requests about customizability were actually asking for possibilities to tweak Data Grid interactions, which is something we need to understand more exactly what it means. Following next were requests for more styles customizability and documentation around how to do that (similar to the discussed above).
@@ -185,7 +185,7 @@ And now, here's what you mentioned about making the commercially licensed versio
 
 <img src="/static/blog/2021-survey/17.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="In house: 29.9%; MUI Table: 17.9%; Nothing: 7.5%; material-table: 6%; material-datatables: 6%; Sencha: 6%; Kendo UI: 4.5%; react-table: 4.5%; Bootstrap Table: 3%; AG Grid: 3%; datatables.net: 3%; JSP: 1.5%" />
 
-<p class="blog-description">149 out of 1589 answered.</p>
+<p class="blog-description">149 out of 1589 answered</p>
 
 To finish off the section about MUI X, it's interesting to see that a lot of you are taking the effort yourselves to build Data Grid alike tables. We'd love to understand more why it made sense to build it in-house, especially given we know it's no trivial work at all. Also, it's refreshing to see that the standard MUI table components is already of good help for a lot of you.
 
@@ -239,13 +239,13 @@ Even though a lot of you who answered the survey has migrated, that are still a 
 
 <img src="/static/blog/2021-survey/24.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="It was tricky but MUI's documentation and resources helped me to get it right: 43%; It was smooth and it is now working fine: 38.5%; It wasn't good, I had many problems and it took me a long time to finish: 14.3%; It was bad and I ended up regretting it: 2.8%; Other: 1.4%" />
 
-<p class="blog-description">930 out of 1589 answered.</p>
+<p class="blog-description">930 out of 1589 answered</p>
 
 ### What could MUI do to improve the migration experience?
 
 <img src="/static/blog/2021-survey/25.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="General documentation improvements: 43.2%; Automation: 20.7%: Fewer breaking changes: 15.6%; Fewer styling soluiton breaking changes: 8.5%; More tutorials: 5.4%; More styling solution migration tutorial: 4.4%; Migrate Core and X together: 1%" />
 
-<p class="blog-description">472 out of 1589 answered.</p>
+<p class="blog-description">472 out of 1589 answered</p>
 
 - **General documentation improvement.** Documentation plays a huge part in defining the developer experience. We definitely need to explore more ways of making the step-by-step easier, add more examples, refine the copywriting, and maybe overall make it more beginner-friendly.
   - There are other topics converging with this one, like requests for more tutorials.
@@ -255,7 +255,7 @@ Even though a lot of you who answered the survey has migrated, that are still a 
 
 <img src="/static/blog/2021-survey/26.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="No bandwidth: 28.4%; Started in v5: 14.6%; Afraid of amount of breaking changes: 12.3%; Already planned but haven't started: 9.5%; Missing incentive: 8.5%; Not a priority: 7.3%; Don't like new styling solution: 4%; Blocked by 3rd party dependencies: 3.3%; Didn't know about it: 3.3%; Migration is in process: 3.3%; Had regressions, therefore came back to v4: 1.3%; Waiting to become stable: 1.3%" />
 
-<p class="blog-description">441 out of 1589 answered.</p>
+<p class="blog-description">441 out of 1589 answered</p>
 
 - **No bandwidth / not priority / blocked by third-party dependencies.** These are all grouped because they are similar in the sense that migration didn’t happen because of a superior force. Not sure what we can do exactly but we put an effort to always have a clear changelog and reasoning for the changes, to equip you with arguments and resources when the time is right to migrate.
 - **Afraid of the amount of breaking changes.** The fear aspect could probably be attenuated by more documentation, examples, automation, so on and so forth. Things we already covered in previous topics.
@@ -273,9 +273,9 @@ It’s been a while since we started to play around with ideas on how to broaden
 
 ### What did it help you build?
 
-<img src="/static/blog/2021-survey/28.png" style="width: 796px; margin-top: 16px; margin-bottom: 88px;" alt="An internal tool: 22.5%; Landing pages: 22.1%; Analytics dashboard: 17.6%; A design system: 15.6%; E-commerce storefront: 8.6%; A simple customer-facing mobile app: 6.6%; Other: 7%" />
+<img src="/static/blog/2021-survey/28.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="An internal tool: 22.5%; Landing pages: 22.1%; Analytics dashboard: 17.6%; A design system: 15.6%; E-commerce storefront: 8.6%; A simple customer-facing mobile app: 6.6%; Other: 7%" />
 
-<p class="blog-description">244 out of 1589 answered.</p>
+<p class="blog-description">244 out of 1589 answered</p>
 
 MUI users seem to use low-code tools to build all kinds of applications but mainly for internal tools, landing pages, and analytics dashboards. The findings are similar to the question above where we asked ‘What are you building?’. But it is great to see that there are low-code tools in the market that developers trust. Undoubtedly, it leads to an overall faster feedback and development cycle.
 
