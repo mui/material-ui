@@ -41,11 +41,6 @@ export function unstable_createStyleFunctionSx(styleFunctionMapping = defaultSty
     if (!sx) {
       return null; // emotion & styled-components will neglect null
     }
-    if (!sxObject) {
-      return null;
-    }
-    const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
-    const breakpointsKeys = Object.keys(emptyBreakpoints);
 
     /*
      * Receive `sxInput` as object or callback
@@ -59,6 +54,9 @@ export function unstable_createStyleFunctionSx(styleFunctionMapping = defaultSty
       } else if (typeof sxInput !== 'object') {
         // value
         return sxInput;
+      }
+      if (!sxObject) {
+        return null;
       }
       const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
       const breakpointsKeys = Object.keys(emptyBreakpoints);
