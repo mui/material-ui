@@ -475,6 +475,9 @@ describe('[Joy] CssVarsProvider', () => {
           'containedHover',
           'containedActive',
           'containedDisabled',
+          'textOverrides',
+          'outlinedOverrides',
+          'lightOverrides',
           'containedOverrides',
         ].join(','),
       );
