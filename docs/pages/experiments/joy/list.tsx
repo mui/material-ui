@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { ColorPaletteProp, CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import NextLink from 'next/link';
-import Box from '@mui/joy/Box';
+import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -46,6 +46,25 @@ const ColorSchemePicker = () => {
     </Button>
   );
 };
+
+const Circle = ({
+  sx = [],
+  color = 'neutral',
+  ...props
+}: Omit<BoxProps, 'color'> & { color?: ColorPaletteProp }) => (
+  <Box
+    {...props}
+    sx={[
+      (theme) => ({
+        display: 'inline-flex',
+        borderRadius: '40px',
+        p: '0.5rem',
+        ...theme.variants.light[color],
+      }),
+      ...(Array.isArray(sx) ? sx : [sx]),
+    ]}
+  />
+);
 
 export default function JoyTypography() {
   return (
@@ -152,16 +171,9 @@ export default function JoyTypography() {
           <List>
             <ListItem>
               <ListItemAdornment>
-                <Box
-                  sx={(theme) => ({
-                    display: 'inline-flex',
-                    borderRadius: '40px',
-                    p: '0.5rem',
-                    ...theme.variants.light.neutral,
-                  })}
-                >
+                <Circle>
                   <InboxIcon />
-                </Box>
+                </Circle>
               </ListItemAdornment>
               <ListItemContent sx={{ pl: 1 }}>
                 Inbox
@@ -171,16 +183,9 @@ export default function JoyTypography() {
             <ListItemSeparator inset="startContent" />
             <ListItem>
               <ListItemAdornment>
-                <Box
-                  sx={(theme) => ({
-                    display: 'inline-flex',
-                    borderRadius: '40px',
-                    p: '0.5rem',
-                    ...theme.variants.light.neutral,
-                  })}
-                >
+                <Circle>
                   <DraftsIcon fontSize="md" />
-                </Box>
+                </Circle>
               </ListItemAdornment>
               <ListItemContent sx={{ pl: 1 }}>
                 Drafts
@@ -190,16 +195,9 @@ export default function JoyTypography() {
             <ListItemSeparator inset="startContent" />
             <ListItem>
               <ListItemAdornment>
-                <Box
-                  sx={(theme) => ({
-                    display: 'inline-flex',
-                    borderRadius: '40px',
-                    p: '0.5rem',
-                    ...theme.variants.light.neutral,
-                  })}
-                >
+                <Circle>
                   <BeachAccess />
-                </Box>
+                </Circle>
               </ListItemAdornment>
               <ListItemContent sx={{ pl: 1 }}>
                 Vacation
@@ -209,7 +207,7 @@ export default function JoyTypography() {
           </List>
 
           {/* ex6 */}
-          <List sx={{ '--List-startAdornment': '56px' }}>
+          <List sx={{ '--List-startAdornmentWidth': '56px' }}>
             <ListItem>
               <ListItemAdornment sx={{ alignSelf: 'flex-start' }}>
                 <Box
@@ -287,7 +285,7 @@ export default function JoyTypography() {
             </ListItemButton>
           </List>
 
-          {/* ex7 */}
+          {/* ex8 */}
           <List>
             <ListItem>
               <ListItemButton component="a" href="#">
@@ -303,7 +301,7 @@ export default function JoyTypography() {
             </ListItem>
           </List>
 
-          {/* ex8 */}
+          {/* ex9 */}
           <List
             component="nav"
             sx={{
@@ -334,6 +332,62 @@ export default function JoyTypography() {
                 <Favorite />
               </ListItemAdornment>
               <ListItemContent>Favorite</ListItemContent>
+            </ListItemButton>
+          </List>
+
+          {/* ex10 */}
+          <List
+            component="nav"
+            sx={{ '--List-startAdornmentWidth': '56px', '--List-separatorGap': '1rem' }}
+          >
+            <ListItemButton selected selectedVariant="light" color="primary">
+              <ListItemAdornment>
+                <Circle color="primary">
+                  <InboxIcon />
+                </Circle>
+              </ListItemAdornment>
+              <ListItemContent>
+                <Typography>Inbox</Typography>
+                <Typography level="body2">Jan 9, 2014</Typography>
+              </ListItemContent>
+              <Button variant="light" size="sm">
+                Clear
+              </Button>
+            </ListItemButton>
+            <ListItemSeparator component="hr" />
+            <ListItemButton selected selectedVariant="outlined" color="danger">
+              <ListItemAdornment>
+                <Circle color="danger">
+                  <Star />
+                </Circle>
+              </ListItemAdornment>
+              <ListItemContent>
+                <Typography>Starred</Typography>
+                <Typography level="body2">Jan 9, 2014</Typography>
+              </ListItemContent>
+              <Button variant="light" color="danger" size="sm">
+                Clear
+              </Button>
+            </ListItemButton>
+            <ListItemSeparator component="hr" />
+            <ListItemButton
+              selected
+              selectedVariant="contained"
+              color="success"
+              sx={(theme) => theme.variants.containedOverrides.success}
+            >
+              <ListItemAdornment>
+                <Circle color="success">
+                  <Favorite />
+                </Circle>
+              </ListItemAdornment>
+              <ListItemContent>
+                <Typography>Favorite</Typography>
+                <Typography level="body2">Jan 9, 2014</Typography>
+              </ListItemContent>
+              <Button variant="outlined" color="context" size="sm">
+                Clear
+              </Button>
             </ListItemButton>
           </List>
         </Box>
