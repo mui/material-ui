@@ -113,6 +113,10 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   containedHoverBg: `var(--joy-palette-${color}-700)`,
   containedActiveBg: `var(--joy-palette-${color}-800)`,
   containedDisabledBg: `var(--joy-palette-${color}-200)`,
+
+  overrideTextPrimary: `var(--joy-palette-${color}-700)`,
+  overrideTextSecondary: `var(--joy-palette-${color}-500)`,
+  overrideTextTertiary: `var(--joy-palette-${color}-400)`,
 });
 
 const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -141,6 +145,10 @@ const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
   containedHoverBg: `var(--joy-palette-${color}-700)`,
   containedActiveBg: `var(--joy-palette-${color}-800)`,
   containedDisabledBg: `var(--joy-palette-${color}-300)`,
+
+  overrideTextPrimary: `var(--joy-palette-${color}-200)`,
+  overrideTextSecondary: `var(--joy-palette-${color}-400)`,
+  overrideTextTertiary: `var(--joy-palette-${color}-500)`,
 });
 
 export const lightColorSystem: BaseColorSystem = {

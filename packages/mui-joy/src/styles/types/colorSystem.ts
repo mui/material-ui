@@ -55,6 +55,11 @@ export interface PaletteVariant {
   // disabled state
   containedDisabledColor: string;
   containedDisabledBg: string;
+
+  // override palette.text
+  overrideTextPrimary: string;
+  overrideTextSecondary: string;
+  overrideTextTertiary: string;
 }
 export interface PaletteRange extends PaletteVariant {
   50: string;

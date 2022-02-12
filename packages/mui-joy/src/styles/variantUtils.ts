@@ -118,55 +118,13 @@ export const createTextOverrides = (theme: JoyTheme) => {
       result = {
         ...result,
         [color]: {
-          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
-          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-600`),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
-        },
-      };
-    }
-  });
-  return result;
-};
-
-export const createOutlinedOverrides = (theme: JoyTheme) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
-  Object.entries(theme.palette).forEach((entry) => {
-    const [color, colorPalette] = entry as [
-      DefaultColorPalette,
-      string | number | Record<string, any>,
-    ];
-    if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
-          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
-          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-600`),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
-        },
-      };
-    }
-  });
-  return result;
-};
-
-export const createLightOverrides = (theme: JoyTheme) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
-  Object.entries(theme.palette).forEach((entry) => {
-    const [color, colorPalette] = entry as [
-      DefaultColorPalette,
-      string | number | Record<string, any>,
-    ];
-    if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
-          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
-          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-600`),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-overrideTextPrimary`),
+          [prefixVar('--palette-text-secondary')]: getCssVar(
+            `palette-${color}-overrideTextSecondary`,
+          ),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(
+            `palette-${color}-overrideTextTertiary`,
+          ),
         },
       };
     }
