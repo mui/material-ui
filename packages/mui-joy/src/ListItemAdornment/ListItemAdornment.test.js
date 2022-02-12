@@ -27,9 +27,4 @@ describe('Joy <ListItemAdornment />', () => {
     const { container } = render(<ListItemAdornment className="foo-bar" />);
     expect(container.firstChild).to.have.class('foo-bar');
   });
-
-  it('should have end classes', () => {
-    const { container } = render(<ListItemAdornment end />);
-    expect(container.firstChild).to.have.class(classes.end);
-  });
 });

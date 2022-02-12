@@ -7,9 +7,9 @@ import { styled, useThemeProps } from '../styles';
 import { ListItemAdornmentProps, ListItemAdornmentTypeMap } from './ListItemAdornmentProps';
 import { getListItemAdornmentUtilityClass } from './listItemAdornmentClasses';
 
-const useUtilityClasses = (ownerState: ListItemAdornmentProps) => {
+const useUtilityClasses = () => {
   const slots = {
-    root: ['root', ownerState.end && 'end'],
+    root: ['root'],
   };
 
   return composeClasses(slots, getListItemAdornmentUtilityClass, {});
@@ -19,12 +19,10 @@ const ListItemAdornmentRoot = styled('span', {
   name: 'MuiListItemAdornment',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemAdornmentProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: ListItemAdornmentProps }>(({ theme }) => ({
   display: 'inline-flex',
   color: theme.vars.palette.text.secondary, // for making icon color less obvious
-  ...(ownerState.end
-    ? { marginLeft: 'var(--List-itemGutter)' }
-    : { minWidth: 'var(--List-startAdornmentWidth)' }),
+  minWidth: 'var(--List-startAdornmentWidth)',
 }));
 
 const ListItemAdornment = React.forwardRef(function ListItemAdornment(inProps, ref) {
@@ -33,14 +31,13 @@ const ListItemAdornment = React.forwardRef(function ListItemAdornment(inProps, r
     name: 'MuiListItemAdornment',
   });
 
-  const { component, className, children, end = false, ...other } = props;
+  const { component, className, children, ...other } = props;
 
   const ownerState = {
-    end,
     ...props,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses();
 
   return (
     <ListItemAdornmentRoot
@@ -73,10 +70,6 @@ ListItemAdornment.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * If `true`, the margin-left is added. Otherwise, the margin-right is added.
-   */
-  end: PropTypes.bool,
 } as any;
 
 export default ListItemAdornment;

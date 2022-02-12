@@ -316,9 +316,7 @@ export default function JoyTypography() {
                 <InboxIcon />
               </ListItemAdornment>
               <ListItemContent>Inbox</ListItemContent>
-              <ListItemAdornment end>
-                <KeyboardArrowUp />
-              </ListItemAdornment>
+              <KeyboardArrowUp />
             </ListItemButton>
             <ListItemButton>
               <ListItemAdornment>

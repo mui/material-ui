@@ -14,10 +14,6 @@ export interface ListItemAdornmentTypeMap<P = {}, D extends React.ElementType = 
      */
     classes?: Partial<ListItemAdornmentClasses>;
     /**
-     * If `true`, the margin-left is added. Otherwise, the margin-right is added.
-     */
-    end?: boolean;
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
