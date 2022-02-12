@@ -19,8 +19,9 @@ const ListItemAdornmentRoot = styled('span', {
   name: 'MuiListItemAdornment',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemAdornmentProps }>(({ ownerState }) => ({
+})<{ ownerState: ListItemAdornmentProps }>(({ theme, ownerState }) => ({
   display: 'inline-flex',
+  color: theme.vars.palette.text.secondary, // for making icon color less obvious
   ...(ownerState.end
     ? { marginLeft: 'var(--List-itemGutter)' }
     : { minWidth: 'var(--List-startAdornmentWidth)' }),
