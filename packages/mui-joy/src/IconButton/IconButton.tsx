@@ -48,7 +48,7 @@ const IconButtonRoot = styled('button', {
     }),
     padding: 'var(--IconButton-padding)',
     ...(ownerState.variant === 'outlined' && {
-      padding: 'calc(var(--IconButton-padding) - var(--variant-outlined-borderWidth))', // account for the border width
+      padding: 'calc(var(--IconButton-padding) - var(--variant-outlinedBorderWidth))', // account for the border width
     }),
     minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content
     minHeight: 'var(--IconButton-size)', // use min-height instead of height to make the button resilient to its content

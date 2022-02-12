@@ -92,6 +92,9 @@ describe('[Joy] CssVarsProvider', () => {
           containedHoverBg: 'var(--joy-palette-primary-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-primary-containedActiveBg)',
           containedDisabledBg: 'var(--joy-palette-primary-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-primary-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-primary-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-primary-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-neutral').textContent).to.equal(
@@ -128,6 +131,9 @@ describe('[Joy] CssVarsProvider', () => {
           containedHoverBg: 'var(--joy-palette-neutral-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-neutral-containedActiveBg)',
           containedDisabledBg: 'var(--joy-palette-neutral-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-neutral-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-neutral-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-neutral-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-danger').textContent).to.equal(
@@ -164,6 +170,9 @@ describe('[Joy] CssVarsProvider', () => {
           containedHoverBg: 'var(--joy-palette-danger-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-danger-containedActiveBg)',
           containedDisabledBg: 'var(--joy-palette-danger-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-danger-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-danger-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-danger-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-info').textContent).to.equal(
@@ -200,6 +209,9 @@ describe('[Joy] CssVarsProvider', () => {
           containedHoverBg: 'var(--joy-palette-info-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-info-containedActiveBg)',
           containedDisabledBg: 'var(--joy-palette-info-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-info-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-info-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-info-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-success').textContent).to.equal(
@@ -236,6 +248,9 @@ describe('[Joy] CssVarsProvider', () => {
           containedHoverBg: 'var(--joy-palette-success-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-success-containedActiveBg)',
           containedDisabledBg: 'var(--joy-palette-success-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-success-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-success-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-success-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-warning').textContent).to.equal(
@@ -272,6 +287,9 @@ describe('[Joy] CssVarsProvider', () => {
           containedHoverBg: 'var(--joy-palette-warning-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-warning-containedActiveBg)',
           containedDisabledBg: 'var(--joy-palette-warning-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-warning-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-warning-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-warning-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-text').textContent).to.equal(
@@ -475,6 +493,9 @@ describe('[Joy] CssVarsProvider', () => {
           'containedHover',
           'containedActive',
           'containedDisabled',
+          'textOverrides',
+          'outlinedOverrides',
+          'lightOverrides',
           'containedOverrides',
         ].join(','),
       );
