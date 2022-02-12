@@ -5,30 +5,30 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListItemSeparatorProps, ListItemSeparatorTypeMap } from './ListItemSeparatorProps';
-import { getListItemSeparatorUtilityClass } from './listItemSeparatorClasses';
+import { ListDividerProps, ListDividerTypeMap } from './ListDividerProps';
+import { getListDividerUtilityClass } from './listDividerClasses';
 
-const useUtilityClasses = (ownerState: ListItemSeparatorProps) => {
+const useUtilityClasses = (ownerState: ListDividerProps) => {
   const slots = {
     root: ['root', ownerState.inset && `inset${capitalize(ownerState.inset)}`],
   };
 
-  return composeClasses(slots, getListItemSeparatorUtilityClass, {});
+  return composeClasses(slots, getListDividerUtilityClass, {});
 };
 
-const ListItemSeparatorRoot = styled('li', {
-  name: 'MuiListItemSeparator',
+const ListDividerRoot = styled('li', {
+  name: 'MuiListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemSeparatorProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: ListDividerProps }>(({ theme, ownerState }) => ({
   border: 'none', // reset the border for `hr` tag
   borderBottom: '1px solid',
   borderColor: theme.vars.palette.neutral.outlinedBorder,
-  // by default, the separator line is stretched from edge-to-edge of the List
-  // spacing between ListItem can be controlled by `--List-separatorGap` on the List
-  margin: 'calc(var(--List-separatorGap) / 2) calc(-1 * var(--List-padding))',
+  // by default, the divider line is stretched from edge-to-edge of the List
+  // spacing between ListItem can be controlled by `--List-dividerGap` on the List
+  margin: 'calc(var(--List-dividerGap) / 2) calc(-1 * var(--List-padding))',
   ...(ownerState.inset === 'gutter' && {
-    margin: 'calc(var(--List-separatorGap) / 2)',
+    margin: 'calc(var(--List-dividerGap) / 2)',
     marginRight: 'var(--List-itemGutter)',
     marginLeft: 'var(--List-insetStart)',
   }),
@@ -40,10 +40,10 @@ const ListItemSeparatorRoot = styled('li', {
   }),
 }));
 
-const ListItemSeparator = React.forwardRef(function ListItemSeparator(inProps, ref) {
+const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemSeparator',
+    name: 'MuiListDivider',
   });
 
   const { component, className, children, inset, ...other } = props;
@@ -56,7 +56,7 @@ const ListItemSeparator = React.forwardRef(function ListItemSeparator(inProps, r
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <ListItemSeparatorRoot
+    <ListDividerRoot
       ref={ref}
       as={component}
       className={clsx(classes.root, className)}
@@ -65,11 +65,11 @@ const ListItemSeparator = React.forwardRef(function ListItemSeparator(inProps, r
       {...other}
     >
       {children}
-    </ListItemSeparatorRoot>
+    </ListDividerRoot>
   );
-}) as OverridableComponent<ListItemSeparatorTypeMap>;
+}) as OverridableComponent<ListDividerTypeMap>;
 
-ListItemSeparator.propTypes /* remove-proptypes */ = {
+ListDivider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -88,7 +88,7 @@ ListItemSeparator.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The empty space on the side(s) of the separator.
+   * The empty space on the side(s) of the divider.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['gutter', 'startAdornment', 'startContent']),
@@ -96,4 +96,4 @@ ListItemSeparator.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default ListItemSeparator;
+export default ListDivider;

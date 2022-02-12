@@ -260,7 +260,7 @@ const components = [
       { id: '--List-itemMinHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-itemGutter', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-startAdornmentWidth', type: 'number', unit: 'px', defaultValue: 48 },
-      { id: '--List-separatorGap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-dividerGap', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-insetStart', type: 'number', unit: 'px' },
       { id: '--List-itemRadius', type: 'number', unit: 'px' },
     ],

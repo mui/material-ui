@@ -25,7 +25,7 @@ const ListRoot = styled('ul', {
   '--List-itemMinHeight': '2.5rem',
   '--List-itemGutter': '0.375rem',
   '--List-startAdornmentWidth': '3rem',
-  '--List-separatorGap': '0.75rem',
+  '--List-dividerGap': '0.75rem',
   '--List-insetStart': 'var(--List-itemGutter)',
   // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
   '--List-itemRadius':

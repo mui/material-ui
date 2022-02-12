@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
-import { ListItemSeparatorClasses } from './listItemSeparatorClasses';
+import { ListDividerClasses } from './listDividerClasses';
 
-export interface ListItemSeparatorInsetOverrides {}
+export interface ListDividerInsetOverrides {}
 
-export interface ListItemSeparatorTypeMap<P = {}, D extends React.ElementType = 'li'> {
+export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
      * The content of the component.
@@ -14,13 +14,13 @@ export interface ListItemSeparatorTypeMap<P = {}, D extends React.ElementType = 
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<ListItemSeparatorClasses>;
+    classes?: Partial<ListDividerClasses>;
     /**
      * The empty space on the side(s) of the separator.
      */
     inset?: OverridableStringUnion<
       'gutter' | 'startAdornment' | 'startContent',
-      ListItemSeparatorInsetOverrides
+      ListDividerInsetOverrides
     >;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -30,9 +30,9 @@ export interface ListItemSeparatorTypeMap<P = {}, D extends React.ElementType = 
   defaultComponent: D;
 }
 
-export type ListItemSeparatorProps<
-  D extends React.ElementType = ListItemSeparatorTypeMap['defaultComponent'],
+export type ListDividerProps<
+  D extends React.ElementType = ListDividerTypeMap['defaultComponent'],
   P = {
     component?: React.ElementType;
   },
-> = OverrideProps<ListItemSeparatorTypeMap<P, D>, D>;
+> = OverrideProps<ListDividerTypeMap<P, D>, D>;

@@ -9,7 +9,7 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemAdornment from '@mui/joy/ListItemAdornment';
 import ListItemContent from '@mui/joy/ListItemContent';
-import ListItemSeparator from '@mui/joy/ListItemSeparator';
+import ListDivider from '@mui/joy/ListDivider';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -125,9 +125,9 @@ export default function JoyTypography() {
           {/* ex2 */}
           <List>
             <ListItem>Inbox</ListItem>
-            <ListItemSeparator />
+            <ListDivider />
             <ListItem>Drafts</ListItem>
-            <ListItemSeparator />
+            <ListDivider />
             <ListItem>Trash</ListItem>
           </List>
 
@@ -163,7 +163,7 @@ export default function JoyTypography() {
               </ListItemAdornment>
               Drafts
             </ListItem>
-            <ListItemSeparator />
+            <ListDivider />
             <ListItem>Trash</ListItem>
           </List>
 
@@ -180,7 +180,7 @@ export default function JoyTypography() {
                 <Typography level="body2">Jan 9, 2014</Typography>
               </ListItemContent>
             </ListItem>
-            <ListItemSeparator inset="startContent" />
+            <ListDivider inset="startContent" />
             <ListItem>
               <ListItemAdornment>
                 <Circle>
@@ -192,7 +192,7 @@ export default function JoyTypography() {
                 <Typography level="body2">Jan 7, 2014</Typography>
               </ListItemContent>
             </ListItem>
-            <ListItemSeparator inset="startContent" />
+            <ListDivider inset="startContent" />
             <ListItem>
               <ListItemAdornment>
                 <Circle>
@@ -235,7 +235,7 @@ export default function JoyTypography() {
                 </Typography>
               </div>
             </ListItem>
-            <ListItemSeparator inset="startContent" />
+            <ListDivider inset="startContent" />
             <ListItem>
               <ListItemAdornment sx={{ alignSelf: 'flex-start' }}>
                 <Box
@@ -278,7 +278,7 @@ export default function JoyTypography() {
             <ListItemButton>
               <ListItemContent>Check</ListItemContent>
             </ListItemButton>
-            <ListItemSeparator inset="gutter" />
+            <ListDivider inset="gutter" />
             <ListItemButton>
               <ListItemContent>Delete</ListItemContent>
               <Typography level="body2">⌘ D</Typography>
@@ -326,7 +326,7 @@ export default function JoyTypography() {
               </ListItemAdornment>
               <ListItemContent>Starred</ListItemContent>
             </ListItemButton>
-            <ListItemSeparator component="hr" />
+            <ListDivider component="hr" />
             <ListItemButton>
               <ListItemAdornment>
                 <Favorite />
@@ -338,7 +338,7 @@ export default function JoyTypography() {
           {/* ex10 */}
           <List
             component="nav"
-            sx={{ '--List-startAdornmentWidth': '56px', '--List-separatorGap': '1rem' }}
+            sx={{ '--List-startAdornmentWidth': '56px', '--List-dividerGap': '1rem' }}
           >
             <ListItemButton selected selectedVariant="light" color="primary">
               <ListItemAdornment>
@@ -354,7 +354,7 @@ export default function JoyTypography() {
                 Clear
               </Button>
             </ListItemButton>
-            <ListItemSeparator component="hr" />
+            <ListDivider component="hr" />
             <ListItemButton selected selectedVariant="outlined" color="danger">
               <ListItemAdornment>
                 <Circle color="danger">
@@ -369,7 +369,7 @@ export default function JoyTypography() {
                 Clear
               </Button>
             </ListItemButton>
-            <ListItemSeparator component="hr" />
+            <ListDivider component="hr" />
             <ListItemButton
               selected
               selectedVariant="contained"
