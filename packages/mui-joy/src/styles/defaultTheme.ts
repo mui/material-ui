@@ -69,6 +69,7 @@ type BaseDesignTokens = {
     warning: PartialRest<PaletteRange, BasePaletteRange>;
     text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
     background: Pick<PaletteBackground, 'body' | 'level1' | 'level2' | 'level3'>;
+    divider: string;
     focusVisible: Palette['focusVisible'];
   };
   radius: Pick<Radius, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
@@ -188,6 +189,7 @@ export const lightColorSystem: BaseColorSystem = {
       level2: 'var(--joy-palette-neutral-100)',
       level3: 'var(--joy-palette-neutral-200)',
     },
+    divider: 'rgba(0 0 0 / 0.12)',
     focusVisible: 'var(--joy-palette-primary-200)',
   },
   shadowRing: '0 0 #000',
@@ -231,6 +233,7 @@ export const darkColorSystem: BaseColorSystem = {
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
     },
+    divider: 'rgba(255 255 255 / 0.16)',
     focusVisible: 'var(--joy-palette-primary-500)',
   },
   shadowRing: '0 0 #000',

@@ -23,7 +23,7 @@ const ListDividerRoot = styled('li', {
 })<{ ownerState: ListDividerProps }>(({ theme, ownerState }) => ({
   border: 'none', // reset the border for `hr` tag
   borderBottom: '1px solid',
-  borderColor: theme.vars.palette.neutral.outlinedBorder,
+  borderColor: theme.vars.palette.divider,
   // by default, the divider line is stretched from edge-to-edge of the List
   // spacing between ListItem can be controlled by `--List-dividerGap` on the List
   margin: 'calc(var(--List-dividerGap) / 2) calc(-1 * var(--List-padding))',
