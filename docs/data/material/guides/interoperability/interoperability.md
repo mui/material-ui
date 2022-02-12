@@ -607,11 +607,13 @@ It works exactly like styled components. You can [use the same guide](/guides/in
 ![stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/tailwindcss)
 
+### Setup
+
 If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind) example project.
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
-2. Remove Tailwind's `base` directive in favor of the `CSSBaseline` component provided by `@mui/material`, as it plays nicer with the MUI components.
+2. Remove Tailwind's `base` directive in favor of the `CssBaseline` component provided by `@mui/material`, as it plays nicer with the MUI components.
 
 **index.css**
 
@@ -621,7 +623,7 @@ If you use a different framework, or already have set up your project, follow th
  @tailwind utilities;
 ```
 
-3. Add the `important` option, using the id of your app wrapper, for example `"#root"`.
+3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js and `"#root"` for CRA:
 
 **tailwind.config.js**
 
@@ -639,12 +641,12 @@ If you use a different framework, or already have set up your project, follow th
 
 ```
 
-This is necessary for ensuring that the [deeper elements](#deeper-elements-5), can be customized using Tailwind's utility classes.
+Most of the CSS used by Material UI has as specificity of 1, hence this `important` property is unnecessary.
+However, in a few edge cases, MUI uses nested CSS selectors that win over Tailwind CSS.
+Use this step to help ensure that the [deeper elements](#deeper-elements-5) can always be customized using Tailwind's utility classes.
 More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy
 
-4. Fix the CSS injection order
-
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done in MUI:
+4. Fix the CSS injection order. Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over Tailwind CSS. To reduce the need for the `important` property, you need to change the CSS injection order. Here's a demo of how it can be done in MUI:
 
 ```jsx
 import * as React from 'react';
@@ -682,9 +684,15 @@ export default function PlainCssPriority() {
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look at the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
 
+### Usage
+
 Now it's all set up and you can start using Tailwind CSS on the MUI components!
 
-**App.js**
+{{"demo": "StyledComponents.js", "hideToolbar": true}}
+
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/github-ndkshy?file=pages%2Findex.tsx)
+
+**index.tsx**
 
 ```jsx
 import * as React from 'react';
@@ -693,7 +701,8 @@ import Slider from '@mui/material/Slider';
 export default function App() {
   return (
     <div>
-      <Slider defaultValue={30} className="color-indigo-500" />
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className="text-teal-600" />
     </div>
   );
 }
@@ -703,9 +712,11 @@ export default function App() {
 
 If you attempt to style the Slider, for example, you'll likely want to customize its child elements.
 
-This example showcases how to override the Slider's `thumb`style.
+This example showcases how to override the Slider's `thumb` style.
 
-**SliderThumbOverrides.js**
+{{"demo": "StyledComponentsDeep.js", "hideToolbar": true}}
+
+**SliderThumbOverrides.tsx**
 
 ```jsx
 import * as React from 'react';
@@ -713,10 +724,14 @@ import Slider from '@mui/material/Slider';
 
 export default function SliderThumbOverrides() {
   return (
-    <Slider
-      className="p-4"
-      componentsProps={{ thumb: { className: 'hover:shadow-none' } }}
-    />
+    <div>
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
+        className="text-teal-600"
+        componentsProps={{ thumb: { className: 'rounded-sm' } }}
+      />
+    </div>
   );
 }
 ```
@@ -726,14 +741,14 @@ export default function SliderThumbOverrides() {
 If you want to style a component's pseudo-state, you can use the appropriate key in the `classes` prop.
 Here is an example of how you can style the Slider's active state:
 
-**SliderPseudoStateOverrides.js**
+**SliderPseudoStateOverrides.tsx**
 
 ```jsx
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 
 export default function SliderThumbOverrides() {
-  return <Slider className="p-4" classes={{ active: 'shadow-none' }} />;
+  return <Slider defaultValue={30} classes={{ active: 'shadow-none' }} />;
 }
 ```
 

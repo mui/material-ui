@@ -2,7 +2,7 @@
 product: material
 title: React Accordion （扩展面板）组件
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
-githubLabel: 'component: Accordion'
+githubLabel: 'component: accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-不过对所有情况下的性能优化，这并不是灵丹妙药。 Be sure to identify bottlenecks first and then try out these optimization strategies.
+不过对所有情况下的性能优化，这并不是灵丹妙药。 一定要先确定哪些地方存在瓶颈，然后再尝试这些优化策略。
 
 ## 无障碍设计
 

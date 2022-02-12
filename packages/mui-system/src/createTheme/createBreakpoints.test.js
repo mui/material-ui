@@ -12,6 +12,29 @@ describe('createBreakpoints', () => {
     },
   });
 
+  it('should sort the values', () => {
+    const orderedValues = createBreakpoints({
+      values: {
+        mobile: 0,
+        tablet: 640,
+        laptop: 1024,
+        desktop: 1280,
+      },
+    });
+
+    const unorderedValues = createBreakpoints({
+      values: {
+        tablet: 640,
+        mobile: 0,
+        laptop: 1024,
+        desktop: 1280,
+      },
+    });
+
+    expect(unorderedValues.keys).to.deep.equal(orderedValues.keys);
+    expect(unorderedValues.values).to.deep.equal(orderedValues.values);
+  });
+
   describe('up', () => {
     it('should work for xs', () => {
       expect(breakpoints.up('xs')).to.equal('@media (min-width:0px)');

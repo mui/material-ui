@@ -65,7 +65,7 @@ Use `color` prop to apply theme palette to component.
 
 ## Unstyled
 
-Badge 组件还有一个无样式的版本。 It's ideal for doing heavy customizations and minimizing bundle size.
+Badge 组件还有一个无样式的版本。 当你有大量的自定义样式需求时，使用它可以更好的帮助你控制住包的大小。
 
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
@@ -75,6 +75,6 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
 ## Accessibility
 
-You can't rely on the content of the badge to be announced correctly. You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`: 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
+您不能指望徽章的内容被正确的读出。 您应该提供一个完整的描述，例如， 使用 `aria-label`：
 
 {{"demo": "AccessibleBadges.js"}}

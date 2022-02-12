@@ -10,16 +10,18 @@ const blue = {
 const grey = {
   400: '#BFC7CF',
   500: '#AAB4BE',
+  600: '#6F7E8C',
 };
 
-const BasicSwitchRoot = styled('span')`
+const BasicSwitchRoot = styled('span')(
+  ({ theme }) => `
   font-size: 0;
   position: relative;
   display: inline-block;
   width: 40px;
   height: 20px;
   margin: 10px;
-  background: ${grey[400]};
+  background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
   border-radius: 10px;
   cursor: pointer;
 
@@ -31,7 +33,8 @@ const BasicSwitchRoot = styled('span')`
   &.Switch-checked {
     background: ${blue[500]};
   }
-`;
+  `,
+);
 
 const BasicSwitchInput = styled('input')`
   cursor: inherit;
