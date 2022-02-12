@@ -8,9 +8,9 @@ import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
-import ListItemAdornment from '@mui/joy/ListItemAdornment';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
-import ListItemSeparator from '@mui/joy/ListItemSeparator';
+import ListDivider from '@mui/joy/ListDivider';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
@@ -176,7 +176,7 @@ const components = [
       >
         <List {...props}>
           <ListItem>
-            <ListItemAdornment>
+            <ListItemDecorator>
               <Box
                 sx={(theme) => ({
                   display: 'inline-flex',
@@ -187,15 +187,15 @@ const components = [
               >
                 <Inbox />
               </Box>
-            </ListItemAdornment>
+            </ListItemDecorator>
             <ListItemContent>
               Inbox
               <Typography level="body2">Jan 9, 2014</Typography>
             </ListItemContent>
           </ListItem>
-          <ListItemSeparator inset="startContent" />
+          <ListDivider inset="startContent" />
           <ListItem>
-            <ListItemAdornment>
+            <ListItemDecorator>
               <Box
                 sx={(theme) => ({
                   display: 'inline-flex',
@@ -206,7 +206,7 @@ const components = [
               >
                 <Drafts fontSize="md" />
               </Box>
-            </ListItemAdornment>
+            </ListItemDecorator>
             <ListItemContent>
               Drafts
               <Typography level="body2">Jan 7, 2014</Typography>
@@ -215,25 +215,23 @@ const components = [
         </List>
         <List component="nav" {...props}>
           <ListItemButton selected color="primary">
-            <ListItemAdornment>
+            <ListItemDecorator>
               <Inbox />
-            </ListItemAdornment>
+            </ListItemDecorator>
             <ListItemContent>Inbox</ListItemContent>
-            <ListItemAdornment end>
-              <KeyboardArrowUp />
-            </ListItemAdornment>
+            <KeyboardArrowUp />
           </ListItemButton>
           <ListItemButton>
-            <ListItemAdornment>
+            <ListItemDecorator>
               <Star />
-            </ListItemAdornment>
+            </ListItemDecorator>
             <ListItemContent>Starred</ListItemContent>
           </ListItemButton>
-          <ListItemSeparator component="hr" />
+          <ListDivider component="hr" />
           <ListItemButton>
-            <ListItemAdornment>
+            <ListItemDecorator>
               <Favorite />
-            </ListItemAdornment>
+            </ListItemDecorator>
             <ListItemContent>Favorite</ListItemContent>
           </ListItemButton>
         </List>
@@ -246,7 +244,7 @@ const components = [
             <ListItemContent>Copy</ListItemContent>
             <Typography level="body2">⌘ C</Typography>
           </ListItemButton>
-          <ListItemSeparator inset="gutter" />
+          <ListDivider inset="gutter" />
           <ListItemButton disabled>
             <ListItemContent>Delete</ListItemContent>
             <Typography level="body2">⌘ D</Typography>
@@ -259,7 +257,7 @@ const components = [
       { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
       { id: '--List-itemMinHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-itemGutter', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-startAdornmentWidth', type: 'number', unit: 'px', defaultValue: 48 },
+      { id: '--List-startDecoratorWidth', type: 'number', unit: 'px', defaultValue: 48 },
       { id: '--List-dividerGap', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-insetStart', type: 'number', unit: 'px' },
       { id: '--List-itemRadius', type: 'number', unit: 'px' },

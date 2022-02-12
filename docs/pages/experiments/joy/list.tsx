@@ -7,7 +7,7 @@ import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
-import ListItemAdornment from '@mui/joy/ListItemAdornment';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
 import Typography from '@mui/joy/Typography';
@@ -134,17 +134,17 @@ export default function JoyTypography() {
           {/* ex3 */}
           <List>
             <ListItem>
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <InboxIcon fontSize="lg" />
-              </ListItemAdornment>
+              </ListItemDecorator>
               Inbox
             </ListItem>
             <ListItem>
-              <ListItemAdornment />
+              <ListItemDecorator />
               Drafts
             </ListItem>
             <ListItem>
-              <ListItemAdornment />
+              <ListItemDecorator />
               Trash
             </ListItem>
           </List>
@@ -152,15 +152,15 @@ export default function JoyTypography() {
           {/* ex4 */}
           <List>
             <ListItem>
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <InboxIcon fontSize="lg" />
-              </ListItemAdornment>
+              </ListItemDecorator>
               Inbox
             </ListItem>
             <ListItem>
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <DraftsIcon fontSize="lg" />
-              </ListItemAdornment>
+              </ListItemDecorator>
               Drafts
             </ListItem>
             <ListDivider />
@@ -170,11 +170,11 @@ export default function JoyTypography() {
           {/* ex5 */}
           <List>
             <ListItem>
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <Circle>
                   <InboxIcon />
                 </Circle>
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent sx={{ pl: 1 }}>
                 Inbox
                 <Typography level="body2">Jan 9, 2014</Typography>
@@ -182,11 +182,11 @@ export default function JoyTypography() {
             </ListItem>
             <ListDivider inset="startContent" />
             <ListItem>
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <Circle>
                   <DraftsIcon fontSize="md" />
                 </Circle>
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent sx={{ pl: 1 }}>
                 Drafts
                 <Typography level="body2">Jan 7, 2014</Typography>
@@ -194,11 +194,11 @@ export default function JoyTypography() {
             </ListItem>
             <ListDivider inset="startContent" />
             <ListItem>
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <Circle>
                   <BeachAccess />
                 </Circle>
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent sx={{ pl: 1 }}>
                 Vacation
                 <Typography level="body2">July 20, 2014</Typography>
@@ -207,9 +207,9 @@ export default function JoyTypography() {
           </List>
 
           {/* ex6 */}
-          <List sx={{ '--List-startAdornmentWidth': '56px' }}>
+          <List sx={{ '--List-startDecoratorWidth': '56px' }}>
             <ListItem>
-              <ListItemAdornment sx={{ alignSelf: 'flex-start' }}>
+              <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                 <Box
                   component="img"
                   src="/static/images/avatar/1.jpg"
@@ -219,7 +219,7 @@ export default function JoyTypography() {
                     borderRadius: '40px',
                   }}
                 />
-              </ListItemAdornment>
+              </ListItemDecorator>
               <div>
                 <Typography>Brunch this weekend?</Typography>
                 <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
@@ -237,7 +237,7 @@ export default function JoyTypography() {
             </ListItem>
             <ListDivider inset="startContent" />
             <ListItem>
-              <ListItemAdornment sx={{ alignSelf: 'flex-start' }}>
+              <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                 <Box
                   component="img"
                   src="/static/images/avatar/2.jpg"
@@ -247,7 +247,7 @@ export default function JoyTypography() {
                     borderRadius: '40px',
                   }}
                 />
-              </ListItemAdornment>
+              </ListItemDecorator>
               <div>
                 <Typography>Summer BBQ</Typography>
                 <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
@@ -312,23 +312,23 @@ export default function JoyTypography() {
             }}
           >
             <ListItemButton selected color="primary">
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <InboxIcon />
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent>Inbox</ListItemContent>
               <KeyboardArrowUp />
             </ListItemButton>
             <ListItemButton>
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <Star />
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent>Starred</ListItemContent>
             </ListItemButton>
             <ListDivider component="hr" />
             <ListItemButton>
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <Favorite />
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent>Favorite</ListItemContent>
             </ListItemButton>
           </List>
@@ -336,14 +336,14 @@ export default function JoyTypography() {
           {/* ex10 */}
           <List
             component="nav"
-            sx={{ '--List-startAdornmentWidth': '56px', '--List-dividerGap': '1rem' }}
+            sx={{ '--List-startDecoratorWidth': '56px', '--List-dividerGap': '1rem' }}
           >
             <ListItemButton selected selectedVariant="light" color="primary">
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <Circle color="primary">
                   <InboxIcon />
                 </Circle>
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent>
                 <Typography>Inbox</Typography>
                 <Typography level="body2">Jan 9, 2014</Typography>
@@ -354,11 +354,11 @@ export default function JoyTypography() {
             </ListItemButton>
             <ListDivider component="hr" />
             <ListItemButton selected selectedVariant="outlined" color="danger">
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <Circle color="danger">
                   <Star />
                 </Circle>
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent>
                 <Typography>Starred</Typography>
                 <Typography level="body2">Jan 9, 2014</Typography>
@@ -374,11 +374,11 @@ export default function JoyTypography() {
               color="success"
               sx={(theme) => theme.variants.containedOverrides.success}
             >
-              <ListItemAdornment>
+              <ListItemDecorator>
                 <Circle color="success">
                   <Favorite />
                 </Circle>
-              </ListItemAdornment>
+              </ListItemDecorator>
               <ListItemContent>
                 <Typography>Favorite</Typography>
                 <Typography level="body2">Jan 9, 2014</Typography>

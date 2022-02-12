@@ -16,10 +16,10 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
      */
     classes?: Partial<ListDividerClasses>;
     /**
-     * The empty space on the side(s) of the separator.
+     * The empty space on the side(s) of the divider.
      */
     inset?: OverridableStringUnion<
-      'gutter' | 'startAdornment' | 'startContent',
+      'gutter' | 'startDecorator' | 'startContent',
       ListDividerInsetOverrides
     >;
     /**

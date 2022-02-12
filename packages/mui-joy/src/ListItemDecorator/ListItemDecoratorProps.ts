@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
-import { ListItemAdornmentClasses } from './listItemAdornmentClasses';
+import { ListItemDecoratorClasses } from './listItemDecoratorClasses';
 
-export interface ListItemAdornmentTypeMap<P = {}, D extends React.ElementType = 'span'> {
+export interface ListItemDecoratorTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
      * The content of the component.
@@ -12,7 +12,7 @@ export interface ListItemAdornmentTypeMap<P = {}, D extends React.ElementType = 
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<ListItemAdornmentClasses>;
+    classes?: Partial<ListItemDecoratorClasses>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -21,9 +21,9 @@ export interface ListItemAdornmentTypeMap<P = {}, D extends React.ElementType = 
   defaultComponent: D;
 }
 
-export type ListItemAdornmentProps<
-  D extends React.ElementType = ListItemAdornmentTypeMap['defaultComponent'],
+export type ListItemDecoratorProps<
+  D extends React.ElementType = ListItemDecoratorTypeMap['defaultComponent'],
   P = {
     component?: React.ElementType;
   },
-> = OverrideProps<ListItemAdornmentTypeMap<P, D>, D>;
+> = OverrideProps<ListItemDecoratorTypeMap<P, D>, D>;

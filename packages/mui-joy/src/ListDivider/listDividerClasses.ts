@@ -5,8 +5,8 @@ export interface ListDividerClasses {
   root: string;
   /** Styles applied to the root element if `inset="gutter"`. */
   insetGutter: string;
-  /** Styles applied to the root element if `inset="startAdornment"`. */
-  insetStartAdornment: string;
+  /** Styles applied to the root element if `inset="startDecorator"`. */
+  insetStartDecorator: string;
   /** Styles applied to the root element if `inset="startContent"`. */
   insetStartContent: string;
 }
@@ -20,7 +20,7 @@ export function getListDividerUtilityClass(slot: string): string {
 const listDividerClasses: ListDividerClasses = generateUtilityClasses('MuiListDivider', [
   'root',
   'insetGutter',
-  'insetStartAdornment',
+  'insetStartDecorator',
   'insetStartContent',
 ]);
 

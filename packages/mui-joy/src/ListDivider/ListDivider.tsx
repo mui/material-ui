@@ -32,11 +32,11 @@ const ListDividerRoot = styled('li', {
     marginRight: 'var(--List-itemGutter)',
     marginLeft: 'var(--List-insetStart)',
   }),
-  ...(ownerState.inset === 'startAdornment' && {
+  ...(ownerState.inset === 'startDecorator' && {
     marginLeft: 'var(--List-insetStart)',
   }),
   ...(ownerState.inset === 'startContent' && {
-    marginLeft: 'calc(var(--List-insetStart) + var(--List-startAdornmentWidth))',
+    marginLeft: 'calc(var(--List-insetStart) + var(--List-startDecoratorWidth))',
   }),
 }));
 
@@ -91,7 +91,7 @@ ListDivider.propTypes /* remove-proptypes */ = {
    * The empty space on the side(s) of the divider.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['gutter', 'startAdornment', 'startContent']),
+    PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
     PropTypes.string,
   ]),
 } as any;

@@ -22,8 +22,8 @@ export * from './ListDivider';
 export { default as ListItem } from './ListItem';
 export * from './ListItem';
 
-export { default as ListItemAdornment } from './ListItemAdornment';
-export * from './ListItemAdornment';
+export { default as ListItemDecorator } from './ListItemDecorator';
+export * from './ListItemDecorator';
 
 export { default as ListItemButton } from './ListItemButton';
 export * from './ListItemButton';

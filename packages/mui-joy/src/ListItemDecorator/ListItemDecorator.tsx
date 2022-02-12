@@ -4,31 +4,31 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListItemAdornmentProps, ListItemAdornmentTypeMap } from './ListItemAdornmentProps';
-import { getListItemAdornmentUtilityClass } from './listItemAdornmentClasses';
+import { ListItemDecoratorProps, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
+import { getListItemDecoratorUtilityClass } from './listItemDecoratorClasses';
 
 const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getListItemAdornmentUtilityClass, {});
+  return composeClasses(slots, getListItemDecoratorUtilityClass, {});
 };
 
-const ListItemAdornmentRoot = styled('span', {
-  name: 'MuiListItemAdornment',
+const ListItemDecoratorRoot = styled('span', {
+  name: 'MuiListItemDecorator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemAdornmentProps }>(({ theme }) => ({
+})<{ ownerState: ListItemDecoratorProps }>(({ theme }) => ({
   display: 'inline-flex',
   color: theme.vars.palette.text.secondary, // for making icon color less obvious
-  minWidth: 'var(--List-startAdornmentWidth)',
+  minWidth: 'var(--List-startDecoratorWidth)',
 }));
 
-const ListItemAdornment = React.forwardRef(function ListItemAdornment(inProps, ref) {
+const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemAdornment',
+    name: 'MuiListItemDecorator',
   });
 
   const { component, className, children, ...other } = props;
@@ -40,7 +40,7 @@ const ListItemAdornment = React.forwardRef(function ListItemAdornment(inProps, r
   const classes = useUtilityClasses();
 
   return (
-    <ListItemAdornmentRoot
+    <ListItemDecoratorRoot
       ref={ref}
       as={component}
       className={clsx(classes.root, className)}
@@ -48,11 +48,11 @@ const ListItemAdornment = React.forwardRef(function ListItemAdornment(inProps, r
       {...other}
     >
       {children}
-    </ListItemAdornmentRoot>
+    </ListItemDecoratorRoot>
   );
-}) as OverridableComponent<ListItemAdornmentTypeMap>;
+}) as OverridableComponent<ListItemDecoratorTypeMap>;
 
-ListItemAdornment.propTypes /* remove-proptypes */ = {
+ListItemDecorator.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -72,4 +72,4 @@ ListItemAdornment.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
 } as any;
 
-export default ListItemAdornment;
+export default ListItemDecorator;

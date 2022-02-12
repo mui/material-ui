@@ -2,29 +2,29 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import ListItemAdornment, { listItemAdornmentClasses as classes } from '@mui/joy/ListItemAdornment';
+import ListItemDecorator, { listItemDecoratorClasses as classes } from '@mui/joy/ListItemDecorator';
 
-describe('Joy <ListItemAdornment />', () => {
+describe('Joy <ListItemDecorator />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItemAdornment />, () => ({
+  describeConformance(<ListItemDecorator />, () => ({
     classes,
     inheritComponent: 'span',
     render,
     ThemeProvider,
-    muiName: 'MuiListItemAdornment',
+    muiName: 'MuiListItemDecorator',
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { end: true },
     skip: ['componentsProp', 'classesRoot'],
   }));
 
   it('should have root className', () => {
-    const { container } = render(<ListItemAdornment />);
+    const { container } = render(<ListItemDecorator />);
     expect(container.firstChild).to.have.class(classes.root);
   });
 
   it('should accept className prop', () => {
-    const { container } = render(<ListItemAdornment className="foo-bar" />);
+    const { container } = render(<ListItemDecorator className="foo-bar" />);
     expect(container.firstChild).to.have.class('foo-bar');
   });
 });
