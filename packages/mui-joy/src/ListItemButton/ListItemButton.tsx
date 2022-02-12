@@ -51,6 +51,11 @@ const ListItemButtonRoot = styled('div', {
     // The value is negative to account for the ListItem's padding
     margin: 'var(--ListItemButton-margin)',
     padding: 'min(0.375rem, var(--List-itemGutter)) var(--List-itemGutter)',
+    ...(ownerState.selected &&
+      ownerState.selectedVariant === 'outlined' && {
+        padding:
+          'calc(min(0.375rem, var(--List-itemGutter)) - var(--variant-outlinedBorderWidth)) calc(var(--List-itemGutter) - var(--variant-outlinedBorderWidth))', // account for the border width
+      }),
     paddingLeft: 'var(--List-insetStart, var(--List-itemGutter))',
     minHeight: 'var(--List-itemMinHeight)',
     border: 'none',
@@ -60,7 +65,12 @@ const ListItemButtonRoot = styled('div', {
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
       'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    ...theme.typography.body1,
+    fontSize: theme.vars.fontSize.md,
+    fontFamily: theme.vars.fontFamily.body,
+    lineHeight: theme.vars.lineHeight.md,
+    ...(ownerState.selected && {
+      fontWeight: theme.vars.fontWeight.md,
+    }),
     '&.Mui-focusVisible': theme.focus.default,
   },
   ...(ownerState.selected
@@ -69,6 +79,8 @@ const ListItemButtonRoot = styled('div', {
         theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.color!],
         theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.color!],
         theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.color!],
+        ownerState.color !== 'context' &&
+          theme.variants[`${ownerState.selectedVariant!}Overrides`]?.[ownerState.color!],
       ]
     : [
         theme.variants.text?.[ownerState.color!],

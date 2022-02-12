@@ -279,7 +279,7 @@ const baseDesignTokens: BaseDesignTokens = {
   fontWeight: {
     xs: 200,
     sm: 300,
-    md: 400,
+    md: 500,
     lg: 700,
     xl: 800,
   },
@@ -369,21 +369,18 @@ const internalDefaultTheme: BaseDesignTokens & {
     },
     body1: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     body2: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-secondary)',
     },
     body3: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-tertiary)',
