@@ -189,7 +189,7 @@ const openRolesData = [
         url: '/company/product-engineer/',
       },
       {
-        title: 'Fullstack Engineer - Studio',
+        title: 'Full-stack Engineer - Studio',
         description:
           'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
         url: '/company/fullstack-engineer/',
@@ -222,8 +222,8 @@ const openRolesData = [
   },
 ];
 
-const futureRolesData = [
-  {
+const futureRolesData =   [
+  /*{
     title: 'Engineering',
     roles: [
       {
@@ -233,8 +233,8 @@ const futureRolesData = [
         url: undefined,
       },
     ],
-  },
-];
+  }, */
+]; 
 
 function renderFAQItem(index: number, defaultExpanded?: boolean) {
   const faq = faqData[index];
