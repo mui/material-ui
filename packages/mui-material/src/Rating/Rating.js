@@ -452,7 +452,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     const newFocus = parseFloat(event.target.value);
     setState((prev) => ({
       hover: prev.hover,
-      focus: newFocus,
+      focus: valueProp ? newFocus : prev.focus,
     }));
   };
 
