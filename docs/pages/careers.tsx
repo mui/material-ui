@@ -188,6 +188,12 @@ const openRolesData = [
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/company/product-engineer/',
       },
+      {
+        title: 'Fullstack Engineer - Studio',
+        description:
+          'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
+        url: '/company/fullstack-engineer/',
+      }
     ],
   },
   {
