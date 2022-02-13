@@ -151,7 +151,7 @@ const openRolesData = [
         title: 'Designer',
         description:
           'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-        url: '/company/designer/',
+        url: '/careers/designer/',
       },
     ],
   },
@@ -162,13 +162,13 @@ const openRolesData = [
         title: 'Full-stack Engineer - Studio',
         description:
           'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
-        url: '/company/fullstack-engineer/',
+        url: '/careers/fullstack-engineer/',
       },
       {
         title: 'React Support Engineer - X',
         description:
           "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/company/react-support-engineer/',
+        url: '/careers/react-support-engineer/',
       },
     ],
   },
@@ -179,7 +179,7 @@ const openRolesData = [
         title: 'Developer Experience Engineer',
         description:
           'You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.',
-        url: '/company/developer-experience-engineer/',
+        url: '/careers/developer-experience-engineer/',
       },
     ],
   },
@@ -193,12 +193,12 @@ const nextRolesData = [
         title: 'React Engineer - X',
         description:
           'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/company/react-engineer/',
+        url: '/careers/react-engineer/',
       },
       {
         title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
-        url: '/company/product-engineer/',
+        url: '/careers/product-engineer/',
       },
     ],
   },
@@ -209,7 +209,7 @@ const nextRolesData = [
         title: 'People Operations Manager',
         description:
           'You will build the HR function from the ground up at a high-growth tech company.',
-        url: '/company/people-operations-manager/',
+        url: '/careers/people-operations-manager/',
       },
     ],
   },
@@ -220,7 +220,7 @@ const nextRolesData = [
         title: 'Support Agent - Store',
         description:
           "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/company/support-agent/',
+        url: '/careers/support-agent/',
       },
     ],
   },
