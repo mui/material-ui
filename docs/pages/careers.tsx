@@ -145,7 +145,6 @@ const faqData = [
 
 const openRolesData = [
   {
-    // 1
     title: 'Product',
     roles: [
       {
@@ -157,7 +156,6 @@ const openRolesData = [
     ],
   },
   {
-    // 2
     title: 'Engineering',
     roles: [
       {
@@ -172,6 +170,24 @@ const openRolesData = [
           "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
         url: '/company/react-support-engineer/',
       },
+    ],
+  },
+  {
+    title: 'Developer Experience',
+    roles: [
+      {
+        title: 'Developer Experience Engineer',
+        description: 'You will focus on providing experiences that delight developers using MUI.',
+        url: '/company/developer-experience-engineer/',
+      },
+    ],
+  },
+];
+
+const futureRolesData = [
+  {
+    title: 'Engineering',
+    roles: [
       {
         title: 'React Engineer - X',
         description:
@@ -186,18 +202,6 @@ const openRolesData = [
     ],
   },
   {
-    // 5
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Experience Engineer',
-        description: 'You will focus on providing experiences that delight developers using MUI.',
-        url: '/company/developer-experience-engineer/',
-      },
-    ],
-  },
-  {
-    // 3
     title: 'People',
     roles: [
       {
@@ -209,7 +213,6 @@ const openRolesData = [
     ],
   },
   {
-    // 4
     title: 'Support',
     roles: [
       {
@@ -220,21 +223,7 @@ const openRolesData = [
       },
     ],
   },
-];
-
-const futureRolesData = [
-  /*{
-    title: 'Engineering',
-    roles: [
-      {
-        title: 'Full-stack Engineer',
-        description:
-          'You will strengthen the team working on a new low-code product. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-        url: undefined,
-      },
-    ],
-  }, */
-];
+] as typeof openRolesData;
 
 function renderFAQItem(index: number, defaultExpanded?: boolean) {
   const faq = faqData[index];
@@ -482,58 +471,64 @@ function CareersContent() {
         </Stack>
       </Container>
       {/* Future roles */}
-      <ThemeProvider theme={brandingDarkTheme}>
-        <Box sx={{ bgcolor: 'primaryDark.700' }}>
-          <Container sx={{ py: { xs: 4, md: 8 } }}>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <div>
-                <Typography variant="h2" sx={{ my: 1 }} id="future-roles">
-                  Future roles
-                </Typography>
-                <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-                  In the future, we will need to fill the following positions. If you don&apos;t
-                  want to wait for the positions to be opened, you can jump ahead and submit an{' '}
-                  <Link href="https://airtable.com/shr9JdBSiE6noobhc">open application.</Link>
-                </Typography>
-              </div>
-            </Box>
-            <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
-            <Stack
-              spacing={2}
-              divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
-            >
-              {futureRolesData.map((category) => {
-                const roles = category.roles;
-                return (
-                  <React.Fragment key={category.title}>
-                    <Typography component="h3" variant="h5" fontWeight="extraBold">
-                      {category.title}
-                    </Typography>
-                    {roles.length > 0 ? (
-                      roles.map((role) => (
-                        <Role
-                          key={role.title}
-                          title={role.title}
-                          description={role.description}
-                          url={role.url}
-                        />
-                      ))
-                    ) : (
-                      <Typography color="text.secondary">No plans yet.</Typography>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </Stack>
-          </Container>
-        </Box>
-      </ThemeProvider>
+      {futureRolesData.length > 0 ? (
+        <ThemeProvider theme={brandingDarkTheme}>
+          <Box sx={{ bgcolor: 'primaryDark.700' }}>
+            <Container sx={{ py: { xs: 4, md: 8 } }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <div>
+                  <Typography variant="h2" sx={{ my: 1 }} id="future-roles">
+                    Future roles
+                  </Typography>
+                  <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+                    We hire in batches, we collect applications a few months before we actively aim
+                    to fill the roles. If none of these roles fit with what you are looking for, you
+                    can still submit an
+                    <Link href="https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Dream%20job&prefill_source=mui.com">
+                      Dream job
+                    </Link>
+                    .
+                  </Typography>
+                </div>
+              </Box>
+              <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
+              <Stack
+                spacing={2}
+                divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
+              >
+                {futureRolesData.map((category) => {
+                  const roles = category.roles;
+                  return (
+                    <React.Fragment key={category.title}>
+                      <Typography component="h3" variant="h5" fontWeight="extraBold">
+                        {category.title}
+                      </Typography>
+                      {roles.length > 0 ? (
+                        roles.map((role) => (
+                          <Role
+                            key={role.title}
+                            title={role.title}
+                            description={role.description}
+                            url={role.url}
+                          />
+                        ))
+                      ) : (
+                        <Typography color="text.secondary">No plans yet.</Typography>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </Stack>
+            </Container>
+          </Box>
+        </ThemeProvider>
+      ) : null}
       {/* Frequently asked questions */}
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
