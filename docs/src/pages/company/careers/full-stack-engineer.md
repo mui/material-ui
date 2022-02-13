@@ -103,7 +103,6 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 [Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Full-stack%20Engineer%20-%20Studio)
 
-
 ## What happens next?
 
 We start by screening applications, looking for candidates that showcase the desired skills and experience. If your application stands out, we'll contact you for a get-to-know conversation, where we'll meet each other.
