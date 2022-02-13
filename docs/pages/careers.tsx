@@ -184,7 +184,7 @@ const openRolesData = [
   },
 ];
 
-const futureRolesData = [
+const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
@@ -470,8 +470,8 @@ function CareersContent() {
           })}
         </Stack>
       </Container>
-      {/* Future roles */}
-      {futureRolesData.length > 0 ? (
+      {/* Next roles */}
+      {nextRolesData.length > 0 ? (
         <ThemeProvider theme={brandingDarkTheme}>
           <Box sx={{ bgcolor: 'primaryDark.700' }}>
             <Container sx={{ py: { xs: 4, md: 8 } }}>
@@ -483,17 +483,17 @@ function CareersContent() {
                 }}
               >
                 <div>
-                  <Typography variant="h2" sx={{ my: 1 }} id="future-roles">
-                    Future roles
+                  <Typography variant="h2" sx={{ my: 1 }} id="next-roles">
+                    Next roles
                   </Typography>
                   <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
                     We hire in batches, we collect applications a few months before we actively aim
                     to fill the roles. If none of these roles fit with what you are looking for, you
-                    can still submit an
+                    can apply to the{' '}
                     <Link href="https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Dream%20job&prefill_source=mui.com">
                       Dream job
-                    </Link>
-                    .
+                    </Link>{' '}
+                    role.
                   </Typography>
                 </div>
               </Box>
@@ -502,7 +502,7 @@ function CareersContent() {
                 spacing={2}
                 divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
               >
-                {futureRolesData.map((category) => {
+                {nextRolesData.map((category) => {
                   const roles = category.roles;
                   return (
                     <React.Fragment key={category.title}>
