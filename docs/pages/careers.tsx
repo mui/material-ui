@@ -157,25 +157,14 @@ const openRolesData = [
     ],
   },
   {
-    // 5
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Experience Engineer',
-        description: 'You will focus on providing experiences that delight developers using MUI.',
-        url: '/company/developer-experience-engineer/',
-      },
-    ],
-  },
-  {
     // 2
     title: 'Engineering',
     roles: [
       {
-        title: 'React Engineer - X',
+        title: 'Full-stack Engineer - Studio',
         description:
-          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/company/react-engineer/',
+          'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
+        url: '/company/fullstack-engineer/',
       },
       {
         title: 'React Support Engineer - X',
@@ -184,15 +173,26 @@ const openRolesData = [
         url: '/company/react-support-engineer/',
       },
       {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
+        url: '/company/react-engineer/',
+      },
+      {
         title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/company/product-engineer/',
       },
+    ],
+  },
+  {
+    // 5
+    title: 'Developer Experience',
+    roles: [
       {
-        title: 'Full-stack Engineer - Studio',
-        description:
-          'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
-        url: '/company/fullstack-engineer/',
+        title: 'Developer Experience Engineer',
+        description: 'You will focus on providing experiences that delight developers using MUI.',
+        url: '/company/developer-experience-engineer/',
       },
     ],
   },
