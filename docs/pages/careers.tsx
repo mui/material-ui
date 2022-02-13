@@ -177,7 +177,7 @@ const openRolesData = [
     roles: [
       {
         title: 'Developer Experience Engineer',
-        description: 'You will focus on providing experiences that delight developers using MUI.',
+        description: 'You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.',
         url: '/company/developer-experience-engineer/',
       },
     ],

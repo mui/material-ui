@@ -1,6 +1,6 @@
 # Developer Experience Engineer
 
-<p class="description">You will focus on providing experiences that delight developers using MUI.</p>
+<p class="description">You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.</p>
 
 ## Details of the Role
 
