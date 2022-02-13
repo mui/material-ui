@@ -51,7 +51,7 @@ const ROUTES = {
   goldSponsor: FEATURE_TOGGLE.enable_redirects
     ? '/material/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',
-  store: 'https://mui.com/store/',
+  store: 'https://material-ui.com/store/',
   dataGridDocs: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/'
     : '/components/data-grid/getting-started/',
@@ -61,19 +61,19 @@ const ROUTES = {
   dataGridFeaturesComparison: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/#feature-comparison'
     : '/components/data-grid/getting-started/#feature-comparison',
-  storePopular: 'https://mui.com/store/#populars',
-  storeDesign: 'https://mui.com/store/#design',
-  storeFigma: 'https://mui.com/store/items/figma-react/',
-  storeSketch: 'https://mui.com/store/items/sketch-react/',
-  storeXD: 'https://mui.com/store/items/adobe-xd-react/',
-  storeTemplateMaterialApp: 'https://mui.com/store/items/material-app/',
-  storeTemplateBarza: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
-  storeTemplateMinimalFree: 'https://mui.com/store/items/minimal-dashboard-free/',
-  storeTemplateMinimalDashboard: 'https://mui.com/store/items/minimal-dashboard/',
-  storeTemplateBerry: 'https://mui.com/store/items/berry-react-material-admin/',
-  storeTemplateWebbee: 'https://mui.com/store/items/webbee-landing-page/',
-  storeTheFront: 'https://mui.com/store/items/the-front-landing-page/',
-  storeFlexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
+  storePopular: 'https://material-ui.com/store/#populars',
+  storeDesign: 'https://material-ui.com/store/#design',
+  storeFigma: 'https://material-ui.com/store/items/figma-react/',
+  storeSketch: 'https://material-ui.com/store/items/sketch-react/',
+  storeXD: 'https://material-ui.com/store/items/adobe-xd-react/',
+  storeTemplateMaterialApp: 'https://material-ui.com/store/items/material-app/',
+  storeTemplateBarza: 'https://material-ui.com/store/items/bazar-pro-react-ecommerce-template/',
+  storeTemplateMinimalFree: 'https://material-ui.com/store/items/minimal-dashboard-free/',
+  storeTemplateMinimalDashboard: 'https://material-ui.com/store/items/minimal-dashboard/',
+  storeTemplateBerry: 'https://material-ui.com/store/items/berry-react-material-admin/',
+  storeTemplateWebbee: 'https://material-ui.com/store/items/webbee-landing-page/',
+  storeTheFront: 'https://material-ui.com/store/items/the-front-landing-page/',
+  storeFlexy: 'https://material-ui.com/store/items/flexy-react-admin-dashboard/',
 };
 
 export default ROUTES;

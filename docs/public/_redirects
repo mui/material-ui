@@ -66,7 +66,7 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 /api/expansion-panel-details/ /api/accordion-details/ 301
 /api/expansion-panel-summary/ /api/accordion-summary/ 301
 # 2020
-/premium-themes* https://mui.com/store/ 301
+/premium-themes* https://material-ui.com/store/ 301
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.mui.com/* https://v1.mui.com/:splat 301!
 https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!

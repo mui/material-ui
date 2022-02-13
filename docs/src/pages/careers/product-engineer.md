@@ -45,7 +45,7 @@ Our solution empowers React developers to build awesome applications – hundred
 
 Depending on the day, you'll:
 
-- Implement new features on https://mui.com/store/ to better support customers and contributors.
+- Implement new features on https://material-ui.com/store/ to better support customers and contributors.
 - Review new items submitted by the contributors to be hosted on the marketplace.
 - Fix root problems raised by customers on the support channel.
 - Own the operations: manage payouts, create sales reports, etc.
