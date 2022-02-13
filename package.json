@@ -143,7 +143,7 @@
     "html-webpack-plugin": "^5.5.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jsdom": "^19.0.0",
-    "karma": "^6.3.15",
+    "karma": "^6.3.16",
     "karma-browserstack-launcher": "~1.4.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
