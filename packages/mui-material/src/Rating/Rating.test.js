@@ -53,6 +53,17 @@ describe('<Rating />', () => {
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
   });
 
+  it('should handle focus correctly', async () => {
+    const { container, getAllByRole } = render(<Rating name="rating-test" value={null} />);
+    const ratings = getAllByRole('radio');
+
+    act(() => {
+      ratings[0].focus();
+    });
+
+    expect(container.querySelectorAll(`.${classes.iconFocus}`).length).to.equal(1);
+  });
+
   it('should clear the rating', () => {
     const handleChange = spy();
     const { container } = render(<Rating name="rating-test" onChange={handleChange} value={2} />);
