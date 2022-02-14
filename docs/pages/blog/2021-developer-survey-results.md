@@ -50,29 +50,25 @@ As for the Net Promoter Score, this year we also saw a decrease. Last year, we h
 
 <p class="blog-description">1422 out of 1589 answered this question in 2021</p>
 
-Here the notable differences between 2019 and 2021:
+Here's what grew in terms of value proposition:
 
-#### Growing value proposition:
-
-- Community (x2.9): On a similar time frame, community size grew by x2.0. It looks like we're witnessing a network effect: with x2 more users, we got x3 more value from the community to the user base.
-- Accessibility (x2.2): Developers seem to be noticing the work we have put in, special thanks to Sebastian Silbermann [(@eps1lon)](https://github.com/eps1lon) and his continued help!
-- Customizability (x1.6): Apparently, you seem to be appreciating the new capabilities introduced in v5. However, it might still be far behind what we were aiming for, especially in light of the number of requests asking to better solve this problem.
-- Components (x1.6): The same goes for components, you seem to be enjoying the newly added components.
+- **Community (x2.9):** On a similar time frame, community size grew by x2.0. It looks like we're witnessing a network effect: with x2 more users, we got x3 more value from the community to the user base.
+- **Accessibility (x2.2):** Developers seem to be noticing the work we have put in, special thanks to Sebastian Silbermann [(@eps1lon)](https://github.com/eps1lon) and his continued help!
+- **Customizability (x1.6):** Apparently, you seem to be appreciating the new capabilities introduced in v5. However, it might still be far behind what we were aiming for, especially in light of the number of requests asking to better solve this problem.
+- **Components (x1.6):** The same goes for components, you seem to be enjoying the newly added components.
   - Component quality (x1.0): It's encouraging to know you don't seem to be experience a decrease in quality. It's a risk we're taking with growing the MUI team, since it takes time for new team members to master the craft since we set the bar very high.
-- Time (x1.4): This is an interesting one. It doesn't feel like MUI worked on this problem specifically. Could it be because the growing pressure it the market for going faster? Or because we somehow made this value proposition more noticeable? It could also be related to the next item.
-- Developer experience (x1.1):
+- **Time (x1.4):** This is an interesting one. It doesn't feel like MUI worked on this problem specifically. Could it be because the growing pressure it the market for going faster? Or because we somehow made this value proposition more noticeable? It could also be related to the next item.
+- **Developer experience (x1.1):**
   - Consistency (x1.75): We didn’t work on this dimension, and yet it grew. It's reasonable to assume it might be because we have more components, and then developers get to notice how consistent we make them be, highlighting this aspect.
   - Ease of use (x1.0): It’s stable. Could it be because this is mostly defined by the React API (hooks) and/or because Material UI hasn’t made any major API changes that optimize for ease of use? There might be a lot of work on this dimension for our new developer experience team.
 
-#### Stable:
+And what has decreased:
 
-- Documentation (x1): Even though we put a lot of effort in it, it's not going up too much. Maybe it's about the nature of the product - the docs are not the main value proposition we offer.
-
-#### Decreasing value proposition:
-
-- Design (x0.75): We suffered from not onboarding a designer sooner.
+- **Design (x0.75):** We suffered from not onboarding a designer sooner.
   - Material Design (x0.4): Its selling power is clearly fading.
   - Look & feel (x1.17): Surprising. This seems to be a transfer effect. It seems that people that used to answer Material Design now care more about the outcome that comes with it than the spec itself.
+    <br/>
+    <br/>
 
 <details>
   <summary>See the broken down categories report.</summary>
@@ -125,7 +121,7 @@ Here the notable differences between 2019 and 2021:
 
 <p class="blog-description">1534 out of 1589 answered</p>
 
-It's definitely a good thing to have a general sense of agreement to most of the statements. However, there's a considerably big gap between _Strongly agree_ and _Agree_ for all but the first statement, which maybe showcases that we need to push for even more quality and focus in each of these dimensions (customizability, customization, performance, and support).
+It's definitely a good thing to have a general sense of agreement to most of the statements. However, there's a considerably big gap between _Strongly agree_ and _Agree_ for all but the first statement, which showcases that we need to continue pushing for even more quality in each of these dimensions (customizability, customization, performance, and support).
 
 ### What are your most important criteria for choosing a UI library?
 
@@ -133,9 +129,7 @@ It's definitely a good thing to have a general sense of agreement to most of the
 
 <p class="blog-description">1500 out of 1589 answered - Check <a href="https://www.typeform.com/help/a/ranking-question-360052767651/">Typeform's documentation</a> to understand ranking average calculations.</p>
 
-This year we experimented using Typeform to run the survey, which allowed developers to rank the criteria available - something that wasn't possible with Google Forms. That way, we didn't have to limit the answers to 3, making for an even richer perspective. But, even so, the results weren’t too different from last year. Design (look and feel) remains the most important criterion for choosing UI libraries, and customization and documentation quality are still there in the top 3.
-
-The notable difference this year seems to be performance climbing its way up, it has been ranked as the fifth most important aspect. We are aware of some improvements opportunities and now that v5 is out, we’ll definitely look into tackling them to make it even more stable.
+This year we experimented using Typeform to run the survey, which allowed developers to rank the criteria available - something that wasn't possible with Google Forms. That way, we didn't have to limit the answers to 3 options, allowing to capture a richer perspective. But, even so, the results weren’t too different from last year. Design (look and feel) remains the most important criterion for choosing UI libraries, and customization and documentation quality are still there in the top 3. The notable difference this year seems to be performance climbing its way up, as it has been ranked as the fifth most important aspect.
 
 ### What else can we do to improve MUI for you?
 
@@ -145,13 +139,13 @@ The notable difference this year seems to be performance climbing its way up, it
 
 Here are the most recurring topics:
 
-- **More components:** There will naturally always be requests for more and we hope to keep up with them. We continue to see requests for more advanced components, as last year, such as Charts, Forms, and Calendar, to name a few.
-- **More examples:** Knowing the "officially recommended" ways of using any product is always helpful. We know that many of the learning resources you find out there right now are outdated (v4), so that's a huge space to explore and update to the latest best practices.
+- **More components:** We continue to see requests for more advanced components, following last year's pattern, such as Charts, Forms, and Calendar, to name a few.
+- **More examples:** Knowing the "officially recommended" ways of using any product is always helpful. We know that many of the learning resources you find out there right now are outdated (based on v4), so that's absolutely worth of investing.
 - **Provide more themes:** Even with the launch of Material v3, Material Design has long been a design language that some find outdated. That's why we are working on a second design system, thought to offer everything that the current Material package does (component quantity and quality) but with an alternative design direction.
-- **Fewer breaking changes:** MUI Core v5 definitely introduced some important breaking changes, especially because of the new styling solution. We’ll continue to explore the v5 migration topic across the post but, for now, it's good to share that we don’t expect to release any major this year. In fact, we aim for majors happening with at least 18 months apart from each other.
+- **Fewer breaking changes:** MUI Core v5 definitely introduced some important breaking changes, especially because of the new styling solution. We’ll continue to explore the v5 migration topic across the post but, for now, it's good to share that we don’t expect to release any major this year. In fact, we aim for majors happening with at least 12 months apart from each other.
 - **Improve customization:** Many of the entries for customization ask for making it easier, to add more examples of common customization use-cases (like font-family and primary/secondary color change), and improvements to theme capabilities. Even with the popularity of emotion and styled-components, there continues to be an enourmous need to facilitate customization.
 
-If you have requests or ideas for improving the above-discussed topics, here are a few tips to have them prioritized faster:
+If you have requests or ideas for improving the above-mentioned topics, here are a few tips to have them prioritized faster:
 
 - In both MUI Core and X repositories, you should label a request issue with `Waiting for upvotes`. If your issue gains a significant amount of upvotes, it will definitely get our attention and consideration.
 - When requesting more components, make sure to benchmark existing implementations of it in the wild as it’s very helpful to see where they succeed and fail, as upfront learning content. It’s also great to explain as best as you can what is the problem you’re trying to solve. Oftentimes, an already available component might already solve it.
