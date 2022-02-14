@@ -591,6 +591,11 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    */
   anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
+   * The amount that the drawer adjusts on initial touch on the swipe area.
+   * @default disableDiscovery ? 15 : 20
+   */
+  appearOffset: PropTypes.number,
+  /**
    * The content of the component.
    */
   children: PropTypes.node,
@@ -612,11 +617,6 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    * @default typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)
    */
   disableSwipeToOpen: PropTypes.bool,
-  /**
-   * The amount that the drawer adjusts on initial touch on the swipe area.
-   * @default disableDiscovery ? 15 : 20
-   */
-  appearOffset: PropTypes.number,
   /**
    * @ignore
    */

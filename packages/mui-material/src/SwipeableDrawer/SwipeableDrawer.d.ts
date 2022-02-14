@@ -3,6 +3,11 @@ import { DrawerProps } from '../Drawer';
 
 export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
   /**
+   * The amount that the drawer adjusts on initial touch on the swipe area.
+   * @default disableDiscovery ? 15 : 20
+   */
+  appearOffset?: number;
+  /**
    * Disable the backdrop transition.
    * This can improve the FPS on low-end devices.
    * @default false
@@ -20,11 +25,6 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    * @default typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)
    */
   disableSwipeToOpen?: boolean;
-  /**
-   * The amount that the drawer adjusts on initial touch on the swipe area.
-   * @default disableDiscovery ? 15 : 20
-   */
-  appearOffset?: number;
   /**
    * Affects how far the drawer must be opened/closed to change its state.
    * Specified as percent (0-1) of the width of the drawer
