@@ -12,33 +12,29 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
-
-export default function SwipeableDiscoveryAmount() {
+export default function SwipeableAppearOffset() {
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
-  const [discoveryAmount, setDiscoveryAmount] = React.useState(20);
 
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event &&
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
+  const [appearOffset, setAppearOffset] = React.useState(20);
 
-      setState({ ...state, [anchor]: open });
-    };
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
 
-  const list = (anchor: Anchor) => (
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
@@ -75,9 +71,9 @@ export default function SwipeableDiscoveryAmount() {
         row
         name="justifyContent"
         aria-label="justifyContent"
-        value={discoveryAmount}
+        value={appearOffset}
         onChange={(event) => {
-          setDiscoveryAmount(parseInt((event.target as HTMLInputElement).value, 10));
+          setAppearOffset(parseInt(event.target.value, 10));
         }}
       >
         <FormControlLabel value={0} control={<Radio />} label="0px" />
@@ -85,10 +81,10 @@ export default function SwipeableDiscoveryAmount() {
         <FormControlLabel value={50} control={<Radio />} label="50px" />
         <FormControlLabel value={100} control={<Radio />} label="100px" />
       </RadioGroup>
-      {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
+      {['left', 'right', 'top', 'bottom'].map((anchor) => (
         <React.Fragment key={anchor}>
           <SwipeableDrawer
-            discoveryAmount={discoveryAmount}
+            appearOffset={appearOffset}
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}

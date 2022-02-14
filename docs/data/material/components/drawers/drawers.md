@@ -54,11 +54,11 @@ const iOS =
 
 You can make the drawer appear slightly when the user touches the screen near where the drawer is located.
 
-The amount the drawer appears by can be configured using `discoveryAmount`, and it can be disabled using `disableDiscovery`.
+The amount the drawer appears by can be configured using `appearOffset`, and it can be disabled using `disableDiscovery`.
 
 Using a mobile device or mobile view, you can touch near the edge of the screen to discover the drawers.
 
-{{"demo": "SwipeableDiscoveryAmount.js"}}
+{{"demo": "SwipeableAppearOffset.js"}}
 
 ### Swipeable edge
 

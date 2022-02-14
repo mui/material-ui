@@ -12,6 +12,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+type Anchor = 'top' | 'left' | 'bottom' | 'right';
+
 export default function SwipeableAppearOffset() {
   const [state, setState] = React.useState({
     top: false,
@@ -19,22 +21,24 @@ export default function SwipeableAppearOffset() {
     bottom: false,
     right: false,
   });
-
   const [appearOffset, setAppearOffset] = React.useState(20);
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
+  const toggleDrawer =
+    (anchor: Anchor, open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event &&
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
 
-    setState({ ...state, [anchor]: open });
-  };
+      setState({ ...state, [anchor]: open });
+    };
 
-  const list = (anchor) => (
+  const list = (anchor: Anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
@@ -73,7 +77,7 @@ export default function SwipeableAppearOffset() {
         aria-label="justifyContent"
         value={appearOffset}
         onChange={(event) => {
-          setAppearOffset(parseInt(event.target.value, 10));
+          setAppearOffset(parseInt((event.target as HTMLInputElement).value, 10));
         }}
       >
         <FormControlLabel value={0} control={<Radio />} label="0px" />
@@ -81,7 +85,7 @@ export default function SwipeableAppearOffset() {
         <FormControlLabel value={50} control={<Radio />} label="50px" />
         <FormControlLabel value={100} control={<Radio />} label="100px" />
       </RadioGroup>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
+      {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <SwipeableDrawer
             appearOffset={appearOffset}

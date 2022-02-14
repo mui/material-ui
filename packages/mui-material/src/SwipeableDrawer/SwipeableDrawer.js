@@ -138,7 +138,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     disableBackdropTransition = false,
     disableDiscovery = false,
     disableSwipeToOpen = iOS,
-    discoveryAmount = disableDiscovery ? 15 : 20,
+    appearOffset = disableDiscovery ? 15 : 20,
     hideBackdrop,
     hysteresis = 0.52,
     minFlingVelocity = 450,
@@ -363,9 +363,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         // Compensate for the part of the drawer displayed on touch start.
         if (!disableDiscovery && !open) {
           if (horizontalSwipe) {
-            swipeInstance.current.startX -= discoveryAmount;
+            swipeInstance.current.startX -= appearOffset;
           } else {
-            swipeInstance.current.startY -= discoveryAmount;
+            swipeInstance.current.startY -= appearOffset;
           }
         }
       }
@@ -489,7 +489,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // The ref may be null when a parent component updates while swiping.
       setPosition(
         getMaxTranslate(horizontalSwipe, paperRef.current) +
-          (disableDiscovery ? discoveryAmount : -discoveryAmount),
+          (disableDiscovery ? appearOffset : -appearOffset),
         {
           changeTransition: false,
         },
@@ -616,7 +616,7 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    * The amount that the drawer adjusts on initial touch on the swipe area.
    * @default disableDiscovery ? 15 : 20
    */
-  discoveryAmount: PropTypes.number,
+  appearOffset: PropTypes.number,
   /**
    * @ignore
    */
