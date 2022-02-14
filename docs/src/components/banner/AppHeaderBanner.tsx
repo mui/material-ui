@@ -26,7 +26,8 @@ export default function AppHeaderBanner() {
           color: '#fff',
         }}
       >
-        🚀 We're hiring a Designer, Full-stack Engineer, React Support Engineer, and more! &nbsp;
+        🚀 We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
+        more!&nbsp;
         <Link
           href={ROUTES.careers} // Fix me!
           target="_blank"
