@@ -2,6 +2,12 @@ import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { UseInputProps } from '@mui/base/InputUnstyled';
 import { InputClasses } from './inputClasses';
+import { SxProps } from '../styles/defaultTheme';
+import { ColorPaletteProp, VariantProp } from '../styles/types';
+
+export interface InputPropsVariantOverrides {}
+
+export interface InputPropsColorOverrides {}
 
 export interface InputPropsSizeOverrides {}
 
@@ -29,6 +35,13 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * Override or extend the styles applied to the component.
        */
       classes?: Partial<InputClasses>;
+      /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       */
+      color?: OverridableStringUnion<
+        Exclude<ColorPaletteProp, 'context'>,
+        InputPropsColorOverrides
+      >;
       /**
        * The component used for the Root slot.
        * Either a string to use a HTML element or a component.
@@ -69,7 +82,11 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * The size of the component.
        */
-      size?: OverridableStringUnion<'small' | 'large', InputPropsSizeOverrides>;
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', InputPropsSizeOverrides>;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
       /**
        * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
        * @default 'text'
@@ -79,6 +96,14 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The value of the `input` element, required for a controlled component.
        */
       value?: unknown;
+      /**
+       * The variant to use.
+       * @default 'outlined'
+       */
+      variant?: OverridableStringUnion<
+        Exclude<VariantProp, 'contained'>,
+        InputPropsVariantOverrides
+      >;
     };
   defaultComponent: D;
 }

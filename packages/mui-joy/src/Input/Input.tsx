@@ -7,8 +7,6 @@ import { styled } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 
-const DEFAULT_HEIGHT = 48;
-
 const useUtilityClasses = (ownerState: InputProps) => {
   const { classes } = ownerState;
 
@@ -26,52 +24,71 @@ const InputRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: InputProps }>(({ theme, ownerState }) => [
   {
-    // CSS variables
-    '--joy-Input-borderWidth': '2px',
-    '--joy-Input-edgePadding': 'calc(1rem - var(--joy-Input-borderWidth))',
-    ...(ownerState.size === 'small' && {
-      '--joy-Input-height': '40px',
+    '--Input-radius': '8px',
+    '--Input-gutter': '0.75rem', // gutter is the padding-x
+    '--Input-adornmentOffsetStep': 1, // negative margin of the start/end icon
+    '--Input-height': '40px',
+    '--Input-gap': '0.5rem',
+    '--Input-adornmentColor': theme.vars.palette.text.secondary,
+    ...(ownerState.size === 'sm' && {
+      '--Input-height': '32px',
+      '--Input-adornmentOffsetStep': 2, // negative margin of the start/end icon
     }),
-    ...(ownerState.size === 'large' && {
-      '--joy-Input-height': '56px',
+    ...(ownerState.size === 'lg' && {
+      '--Input-height': '48px',
+      '--Input-gap': '0.75rem',
+      '--Input-adornmentOffsetStep': 0, // negative margin of the start/end icon
     }),
-  },
-  {
-    // SvgIcon
-    '--joy-SvgIcon-size': theme.fontSize.lg,
-    ...(ownerState.startAdornment && {
-      '--joy-SvgIcon-margin': '0 calc(var(--joy-Input-edgePadding) / 2) 0 0',
-    }),
-    ...(ownerState.endAdornment && {
-      '--joy-SvgIcon-margin': '0 0 0 calc(var(--joy-Input-edgePadding) / 2)',
-    }),
-  },
-  {
     boxSizing: 'border-box',
-    minHeight: `var(--joy-Input-height, ${DEFAULT_HEIGHT}px)`,
+    height: `var(--Input-height)`,
+    cursor: 'text',
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    padding: `0.5rem var(--joy-Input-edgePadding)`,
-    color: theme.vars.palette.neutral[800],
-    backgroundColor: theme.vars.palette.neutral[50],
-    border: 'var(--joy-Input-borderWidth) solid',
-    borderColor: theme.vars.palette.neutral[200],
-    borderRadius: `calc(var(--joy-Input-height, ${DEFAULT_HEIGHT}px) / 2)`,
-    '&:hover': {
-      backgroundColor: theme.vars.palette.primary[100],
-    },
-    [`&.${inputClasses.focused}`]: {
-      outline: '2px solid',
-      outlineColor: theme.vars.palette.primary[200],
-    },
-    [`&.${inputClasses.disabled}`]: {
-      cursor: 'default',
+    padding: `0.25rem var(--Input-gutter)`,
+    borderRadius: 'var(--Input-radius)',
+    '&:before': {
+      boxSizing: 'border-box',
+      content: '""',
+      display: 'block',
+      position: 'absolute',
       pointerEvents: 'none',
-      backgroundColor: '#fff',
-      borderColor: theme.vars.palette.neutral[100],
-      color: theme.vars.palette.neutral[300],
+      margin: -1,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 1,
+      borderRadius: 'inherit',
     },
+    // border: '1px solid',
+    // borderColor: theme.vars.palette[ownerState.color || 'neutral'].outlinedBorder,
+    // '&:hover': {
+    //   borderColor: theme.vars.palette[ownerState.color || 'neutral'].outlinedHoverBorder,
+    // },
+    // [`&.${inputClasses.focused}`]: {
+    //   // ...theme.focus.default,
+    //   borderColor: theme.vars.palette[ownerState.color || 'neutral'].outlinedActiveBorder,
+    // },
+    // [`&.${inputClasses.disabled}`]: {
+    //   cursor: 'not-allowed',
+    //   pointerEvents: 'none',
+    //   backgroundColor: '#fff',
+    // },
+  },
+  theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  {
+    [`&.${inputClasses.focused}`]: {
+      backgroundColor: theme.vars.palette[ownerState.color!]?.[50],
+      borderColor: theme.vars.palette[ownerState.color!]?.[500],
+      '&:before': {
+        boxShadow: `0 0 0 1px ${theme.vars.palette[ownerState.color!]?.[500]}`,
+      },
+    },
+    // override hover cursor
+    cursor: 'text',
   },
 ]);
 
@@ -82,22 +99,41 @@ const InputInput = styled('input', {
 })<{ ownerState: InputProps }>(({ theme }) => ({
   border: 'none',
   outline: 0,
-  padding: 0,
+  padding: '0px min(calc(var(--Input-gap) / 2), 1rem)',
+  margin: '0px max(calc(var(--Input-gap) / -2), -1rem)',
   flexGrow: 1,
   height: '100%',
   color: 'inherit',
   backgroundColor: 'transparent',
-  ...theme.typography.body1,
-  '&::placeholder': {
-    color: theme.vars.palette.neutral[400],
-  },
-  [`&.${inputClasses.disabled}`]: {
-    color: theme.vars.palette.neutral[300],
-    '&::placeholder': {
-      color: theme.vars.palette.neutral[300],
-    },
-  },
+  fontSize: theme.vars.fontSize.md,
+  borderRadius: 'calc(var(--Input-radius) - 0.25rem)', // make it looks good for auto-fill input
+  '&::-webkit-input-placeholder': { opacity: 0.3, color: 'inherit' },
+  '&::-moz-placeholder': { opacity: 0.3, color: 'inherit' }, // Firefox 19+
+  '&:-ms-input-placeholder': { opacity: 0.3, color: 'inherit' }, // IE11
+  '&::-ms-input-placeholder': { opacity: 0.3, color: 'inherit' }, // Edge
 }));
+
+const InputStartAdornment = styled('span', {
+  name: 'MuiInput',
+  slot: 'StartAdornment',
+  overridesResolver: (props, styles) => styles.startIcon,
+})<{ ownerState: InputProps }>({
+  display: 'inherit',
+  marginLeft: 'calc(var(--Input-gutter) * var(--Input-adornmentOffsetStep) * -0.25)',
+  marginRight: 'var(--Input-gap)',
+  color: 'var(--Input-adornmentColor)',
+});
+
+const InputEndAdornment = styled('span', {
+  name: 'MuiInput',
+  slot: 'EndAdornment',
+  overridesResolver: (props, styles) => styles.endIcon,
+})<{ ownerState: InputProps }>({
+  display: 'inherit',
+  marginLeft: 'var(--Input-gap)',
+  marginRight: 'calc(var(--Input-gutter) * var(--Input-adornmentOffsetStep) * -0.25)',
+  color: 'var(--Input-adornmentColor)',
+});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = inProps;
@@ -109,6 +145,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     autoComplete,
     autoFocus,
     className,
+    color = 'neutral',
     component,
     defaultValue,
     disabled,
@@ -129,6 +166,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     type = 'text',
     startAdornment,
     value,
+    variant = 'outlined',
     ...other
   } = props;
 
@@ -156,11 +194,13 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const ownerState = {
     ...props,
+    color,
     disabled: disabledState,
     error: errorState,
     focused,
     formControlContext,
     type,
+    variant,
   };
 
   const propsToForward = {
@@ -200,13 +240,17 @@ const Input = React.forwardRef(function Input(inProps, ref) {
       className={clsx(classes.root, rootStateClasses, className)}
       ownerState={ownerState}
     >
-      {startAdornment}
+      {startAdornment && (
+        <InputStartAdornment ownerState={ownerState}>{startAdornment}</InputStartAdornment>
+      )}
       <InputInput
         {...getInputProps(propsToForward)}
         className={clsx(classes.input, inputStateClasses)}
         ownerState={ownerState}
       />
-      {endAdornment}
+      {endAdornment && (
+        <InputEndAdornment ownerState={ownerState}>{endAdornment}</InputEndAdornment>
+      )}
     </InputRoot>
   );
 }) as OverridableComponent<InputTypeMap>;
