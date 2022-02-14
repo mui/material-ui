@@ -29,7 +29,6 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
     autoFocus?: boolean;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListItemButtonPropsColorOverrides>;
     /**
@@ -63,6 +62,11 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      * @default false
      */
     selected?: boolean;
+    /**
+     * The color of the component when it is selected. It supports those theme colors that make sense for this component.
+     * @default 'primary'
+     */
+    selectedColor?: OverridableStringUnion<ColorPaletteProp, ListItemButtonPropsColorOverrides>;
     /**
      * The variant to use.
      * @default 'light'

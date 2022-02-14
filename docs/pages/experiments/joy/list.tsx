@@ -267,21 +267,23 @@ export default function JoyTypography() {
 
           {/* ex7 */}
           <List component="nav">
-            <ListItemButton>
+            <ListItemButton color="primary">
               <ListItemContent>New file</ListItemContent>
               <Typography level="body2">⌘ N</Typography>
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton color="primary">
               <ListItemContent>Copy</ListItemContent>
               <Typography level="body2">⌘ C</Typography>
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton color="primary">
               <ListItemContent>Check</ListItemContent>
             </ListItemButton>
             <ListDivider inset="gutter" />
-            <ListItemButton>
+            <ListItemButton disabled>
               <ListItemContent>Delete</ListItemContent>
-              <Typography level="body2">⌘ D</Typography>
+              <Typography level="body2" sx={{ color: 'inherit' }}>
+                ⌘ D
+              </Typography>
             </ListItemButton>
           </List>
 
@@ -338,7 +340,7 @@ export default function JoyTypography() {
             component="nav"
             sx={{ '--List-startDecoratorWidth': '56px', '--List-dividerGap': '1rem' }}
           >
-            <ListItemButton selected selectedVariant="light" color="primary">
+            <ListItemButton selected selectedVariant="light" selectedColor="primary">
               <ListItemDecorator>
                 <Circle color="primary">
                   <InboxIcon />
@@ -353,7 +355,7 @@ export default function JoyTypography() {
               </Button>
             </ListItemButton>
             <ListDivider component="hr" />
-            <ListItemButton selected selectedVariant="outlined" color="danger">
+            <ListItemButton selected selectedVariant="outlined" selectedColor="danger">
               <ListItemDecorator>
                 <Circle color="danger">
                   <Star />
@@ -371,7 +373,7 @@ export default function JoyTypography() {
             <ListItemButton
               selected
               selectedVariant="contained"
-              color="success"
+              selectedColor="success"
               sx={(theme) => theme.variants.containedOverrides.success}
             >
               <ListItemDecorator>

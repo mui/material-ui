@@ -47,6 +47,7 @@ const ListItemButtonRoot = styled('div', {
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
+    color: 'initial',
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
     // The value is negative to account for the ListItem's padding
     margin: 'var(--ListItemButton-margin)',
@@ -75,18 +76,16 @@ const ListItemButtonRoot = styled('div', {
   },
   ...(ownerState.selected
     ? [
-        theme.variants[ownerState.selectedVariant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.color!],
-        ownerState.color !== 'context' &&
-          theme.variants[`${ownerState.selectedVariant!}Overrides`]?.[ownerState.color!],
+        theme.variants[ownerState.selectedVariant!]?.[ownerState.selectedColor!],
+        theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.selectedColor!],
+        theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.selectedColor!],
+        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.selectedColor!],
       ]
     : [
         theme.variants.text?.[ownerState.color!],
-        theme.variants.textHover?.[ownerState.color!],
-        theme.variants.textActive?.[ownerState.color!],
-        theme.variants.textDisabled?.[ownerState.color!],
+        theme.variants.textHover?.[ownerState.color || 'neutral'],
+        theme.variants.textActive?.[ownerState.color || 'neutral'],
+        theme.variants.textDisabled?.[ownerState.color || 'neutral'],
       ]),
 ]);
 
@@ -101,9 +100,10 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     className,
     action,
     component = 'div',
-    color = 'neutral',
-    selectedVariant = 'light',
+    color,
     selected = false,
+    selectedColor = 'primary',
+    selectedVariant = 'light',
     ...other
   } = props;
 
@@ -133,9 +133,10 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     ...props,
     component,
     color,
-    selectedVariant,
     focusVisible,
     selected,
+    selectedColor,
+    selectedVariant,
   };
 
   const classes = useUtilityClasses(ownerState);
