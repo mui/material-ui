@@ -13,22 +13,6 @@
 # TODO add back
 # https://material-ui.com/* https://mui.com/:splat 301!
 
-# Redirect all except /store/
-https://material-ui.com https://mui.com 301!
-https://material-ui.com/api-docs/* https://mui.com/api-docs/:splat 301!
-https://material-ui.com/api/* https://mui.com/api/:splat 301!
-https://material-ui.com/blog/* https://mui.com/blog/:splat 301!
-https://material-ui.com/company/* https://mui.com/company/:splat 301!
-https://material-ui.com/components/* https://mui.com/components/:splat 301!
-https://material-ui.com/customization/* https://mui.com/customization/:splat 301!
-https://material-ui.com/discover-more/* https://mui.com/discover-more/:splat 301!
-https://material-ui.com/getting-started/* https://mui.com/getting-started/:splat 301!
-https://material-ui.com/guides/* https://mui.com/guides/:splat 301!
-https://material-ui.com/performance/* https://mui.com/performance/:splat 301!
-https://material-ui.com/styles/* https://mui.com/styles/:splat 301!
-https://material-ui.com/system/* https://mui.com/system/:splat 301!
-https://material-ui.com/versions https://mui.com/versions 301!
-
 # Temporarily access the store from the legacy domain
 https://mui.com/store/* https://material-ui.com/store/:splat 302!
 
