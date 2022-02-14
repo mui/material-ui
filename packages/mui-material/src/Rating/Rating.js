@@ -338,6 +338,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   });
 
   let value = valueRounded;
+  const [prevActiveElement, setPrevActiveElement] = React.useState();
   if (hover !== -1) {
     value = hover;
   }
@@ -444,11 +445,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleFocus = (event) => {
+    // Prevent from focusing on tab reentry https://github.com/mui/material-ui/issues/31020
+    if (document.activeElement === prevActiveElement) {
+      return;
+    }
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setFocusVisible(true);
     }
-
     const newFocus = parseFloat(event.target.value);
     setState((prev) => ({
       hover: prev.hover,
@@ -457,6 +461,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleBlur = (event) => {
+    setPrevActiveElement(document.activeElement);
     if (hover !== -1) {
       return;
     }
