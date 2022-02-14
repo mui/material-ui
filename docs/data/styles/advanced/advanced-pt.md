@@ -1,14 +1,16 @@
-# Avançado
+# Advanced (LEGACY)
 
 <p class="description">Esta seção aborda o uso mais avançado de @material-ui/core/styles.</p>
 
-> **Note**: `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 ## Temas
 
 Adicione um `ThemeProvider` para o nível superior de sua aplicação para passar um tema pela árvore de componentes do React. Dessa maneira, você poderá acessar o objeto de tema em funções de estilo.
 
-> Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/customization/theming/) para aprender como construir seu tema customizado do Material-UI.
+> This example creates a theme object for custom-built components. If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/customization/theming/) to learn how to build your custom MUI theme.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -217,7 +219,7 @@ Note que isto não suporta seletores, ou regras aninhadas.
 
 ## Ordem de injeção do CSS
 
-> É **realmente importante** entender como a especificidade do CSS é calculada pelo navegador, como um dos elementos chave para saber quando sobrescrever estilos. Recomendamos que você leia este parágrafo do MDN: [Como a especificidade é calculada?](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 Por padrão, os estilos são inseridos **por último** no elemento `<head>` da sua página. Eles ganham mais especificidade do que qualquer outra folha de estilo em sua página, por exemplo, módulos CSS, componentes estilizados (styled components).
 
