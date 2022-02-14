@@ -6,7 +6,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { alpha } from '@mui/material/styles';
 
 export default function AppFrameBanner() {
-  return FEATURE_TOGGLE.enable_website_banner ? (
+  return FEATURE_TOGGLE.enable_docsnav_banner ? (
     <Link
       href={ROUTES.careers} // Fix me!
       target="_blank"
