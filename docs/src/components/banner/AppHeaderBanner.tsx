@@ -26,16 +26,21 @@ export default function AppHeaderBanner() {
           color: '#fff',
         }}
       >
-        Fix me! &nbsp;
+        🚀 We're hiring a Designer, Full-stack Engineer, React Support Engineer, and more! &nbsp;
         <Link
-          href={ROUTES.home} // Fix me!
+          href={ROUTES.careers} // Fix me!
           target="_blank"
           data-ga-event-category="$event-category" // Fix me!
           data-ga-event-action="click"
           data-ga-event-label="header"
-          sx={{ color: '#fff', textDecoration: 'underline' }}
+          sx={{
+            fontWeight: 600,
+            color: '#fff',
+            textDecoration: 'underline',
+            '&:hover': { color: (theme) => theme.palette.grey[200] },
+          }}
         >
-          Fix me!
+          Check the careers page →
         </Link>
       </Typography>
     </Box>
