@@ -50,11 +50,32 @@ As for the Net Promoter Score, this year we also saw a decrease. Last year, we h
 
 <p class="blog-description">1422 out of 1589 answered this question in 2021</p>
 
-It's interesting to compare this year's answers with the first iteration, done back in 2019. We're only displaying the macro categories on the image, for simplicity sake, but we categorized the micro ones as well, which was fundamental to see some important changes, like: zooming on "Design - look & feel" specifically, answers mentioning Material Design as a main benefit went down by a factor of 2. On the other hand, those mentioning time went up by a factor of 1.4. Community support and performance are also climbing their way up.
+Here the notable differences between 2019 and 2021:
 
-You can see all 2021 macro and micro categories sorted in descending order:
+#### Growing value proposition:
 
-<style>th { text-align: left; border-bottom: 3px solid rgba(62, 80, 96, 0.2) !important; } </style>
+- Community (x2.9): On a similar time frame, community size grew by x2.0. It looks like we're witnessing a network effect: with x2 more users, we got x3 more value from the community to the user base.
+- Accessibility (x2.2): Developers seem to be noticing the work we have put in, special thanks to Sebastian Silbermann [(@eps1lon)](https://github.com/eps1lon) and his continued help!
+- Customizability (x1.6): Apparently, you seem to be appreciating the new capabilities introduced in v5. However, it might still be far behind what we were aiming for, especially in light of the number of requests asking to better solve this problem.
+- Components (x1.6): The same goes for components, you seem to be enjoying the newly added components.
+  - Component quality (x1.0): It's encouraging to know you don't seem to be experience a decrease in quality. It's a risk we're taking with growing the MUI team, since it takes time for new team members to master the craft since we set the bar very high.
+- Time (x1.4): This is an interesting one. It doesn't feel like MUI worked on this problem specifically. Could it be because the growing pressure it the market for going faster? Or because we somehow made this value proposition more noticeable? It could also be related to the next item.
+- Developer experience (x1.1):
+  - Consistency (x1.75): We didn’t work on this dimension, and yet it grew. It's reasonable to assume it might be because we have more components, and then developers get to notice how consistent we make them be, highlighting this aspect.
+  - Ease of use (x1.0): It’s stable. Could it be because this is mostly defined by the React API (hooks) and/or because Material UI hasn’t made any major API changes that optimize for ease of use? There might be a lot of work on this dimension for our new developer experience team.
+
+#### Stable:
+
+- Documentation (x1): Even though we put a lot of effort in it, it's not going up too much. Maybe it's about the nature of the product - the docs are not the main value proposition we offer.
+
+#### Decreasing value proposition:
+
+- Design (x0.75): We suffered from not onboarding a designer sooner.
+  - Material Design (x0.4): Its selling power is clearly fading.
+  - Look & feel (x1.17): Surprising. This seems to be a transfer effect. It seems that people that used to answer Material Design now care more about the outcome that comes with it than the spec itself.
+
+<details>
+  <summary>See the broken down categories report.</summary>
 
 <table>
   <tr><th style="width: 40px;">597</th><th style="width: 700px;">time</th><tr>
@@ -96,6 +117,7 @@ You can see all 2021 macro and micro categories sorted in descending order:
   <tr><th>3</th><th>typescript</th><tr>
   <tr><th>2</th><th>animations</th><tr>
 </table>
+</details>
 
 ### Please rate how much you agree or disagree with the following statements
 
@@ -119,7 +141,7 @@ The notable difference this year seems to be performance climbing its way up, it
 
 <img src="/static/blog/2021-survey/6.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Word cloud of what we can do to improve MUI" />
 
-<p class="blog-description">1007 out of 1589 answered</p>
+<p class="blog-description">1007 out of 1589 answered this question in 2021</p>
 
 Here are the most recurring topics:
 
