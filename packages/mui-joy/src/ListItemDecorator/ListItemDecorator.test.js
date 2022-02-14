@@ -14,8 +14,7 @@ describe('Joy <ListItemDecorator />', () => {
     ThemeProvider,
     muiName: 'MuiListItemDecorator',
     refInstanceof: window.HTMLSpanElement,
-    testVariantProps: { end: true },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 
   it('should have root className', () => {
