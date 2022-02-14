@@ -109,7 +109,7 @@
     "react-virtualized": "^9.22.3",
     "react-window": "^1.8.6",
     "recast": "^0.20.5",
-    "recharts": "^2.1.8",
+    "recharts": "^2.1.9",
     "rimraf": "^3.0.2",
     "styled-components": "^5.3.3",
     "stylis": "^4.0.13",
