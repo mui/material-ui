@@ -28,6 +28,9 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
     PopperProps,
     PaperProps,
     TransitionComponent,
+    onClear,
+    clearText,
+    clearable,
   } = props;
   const ownInputRef = React.useRef<HTMLInputElement>(null);
   const inputRef = useForkRef(DateInputProps.inputRef, ownInputRef);
@@ -43,6 +46,9 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
         PopperProps={PopperProps}
         PaperProps={PaperProps}
         onClose={onDismiss}
+        onClear={onClear}
+        clearText={clearText}
+        clearable={clearable}
       >
         {children}
       </PickersPopper>

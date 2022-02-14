@@ -17,7 +17,7 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 1. It uses MUI's default `theme` if no theme is available in React context.
 2. 支持根据`name`属性设置主题中的[`styleOverrides`](/customization/theme-components/#global-style-overrides) 和 [`variants`](/customization/theme-components/#adding-new-component-variants)（可忽略）。
 3. 新增对`sx`属性的支持(可忽略）
-4. It adds by default `shouldForwardProp` option that is taking into account all props used internally in the MUI components (can be overridden).
+4. It adds by default the `shouldForwardProp` option (that can be overridden), taking into account all props used internally in the MUI components: `ownerState`, `theme`, `sx`, and `as`.
 
 ## API
 

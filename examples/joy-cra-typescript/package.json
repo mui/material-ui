@@ -1,6 +1,6 @@
 {
   "name": "joy-cra-typescript",
-  "version": "0.1.0",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",

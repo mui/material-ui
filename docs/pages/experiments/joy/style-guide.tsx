@@ -84,14 +84,14 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
     <Box>
       <Box
         ref={ref}
-        sx={(theme) => ({
-          borderRadius: `calc(${theme.getCssVar('radius-md')} / 2)`,
+        sx={{
+          borderRadius: 'sm',
           bgcolor: value,
           width: 64,
           height: 64,
           mb: 1,
-          boxShadow: theme.getCssVar('shadow-sm'),
-        })}
+          boxShadow: 'sm',
+        }}
       />
       <Typography level="body3">{name}</Typography>
       <Typography level="body3">{color}</Typography>
