@@ -21,11 +21,11 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [system] Fix broken behavior when breakpoints input are not ordered (#30996) @mnajdova
 
-### `@mui/lab`
+### `@mui/lab@5.0.0-alpha.69`
 
 - [DatePicker] Fix passing clearable prop (#30786) @alisasanib
 
-### `@mui/joy`
+### `@mui/joy@5.0.0-alpha.15`
 
 - [Joy] Improve variant customization experience (#30878) @siriwatknp
 - [Joy] Make `sx` prop work in Joy (#30955) @siriwatknp
