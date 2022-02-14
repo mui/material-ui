@@ -21,8 +21,8 @@ describe('Joy <ListItemButton />', () => {
   it('should render with the selected class', () => {
     const { getByRole } = render(<ListItemButton selected />);
     expect(getByRole('button')).to.have.class(classes.selected);
-    expect(getByRole('button')).to.have.class(classes.selectedVariantLight);
-    expect(getByRole('button')).to.have.class(classes.colorNeutral);
+    expect(getByRole('button')).to.have.class(classes.selectedVariantLight); // default selected variant
+    expect(getByRole('button')).to.have.class(classes.selectedColorPrimary); // default selected color
   });
 
   it('should render with the selectedVariant class', () => {

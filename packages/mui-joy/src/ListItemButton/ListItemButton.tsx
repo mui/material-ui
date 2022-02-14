@@ -13,8 +13,15 @@ import {
 import { getListItemButtonUtilityClass } from './listItemButtonClasses';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, selectedVariant, selected } =
-    ownerState;
+  const {
+    color,
+    disabled,
+    focusVisible,
+    focusVisibleClassName,
+    selectedVariant,
+    selectedColor,
+    selected,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -23,6 +30,7 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
       focusVisible && 'focusVisible',
       color && `color${capitalize(color)}`,
       selected && 'selected',
+      selected && selectedColor && `selectedColor${capitalize(selectedColor)}`,
       selected && selectedVariant && `selectedVariant${capitalize(selectedVariant)}`,
     ],
   };

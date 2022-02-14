@@ -3,18 +3,6 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface ListItemButtonClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** State class applied to the `component`'s `focusVisibleClassName` prop. */
-  focusVisible: string;
-  /** State class applied to the inner `component` element if `disabled={true}`. */
-  disabled: string;
-  /** State class applied to the root element if `selected={true}`. */
-  selected: string;
-  /** State class applied to the root element if `selectedVariant="light"`. */
-  selectedVariantLight: string;
-  /** State class applied to the root element if `selectedVariant="outlined"`. */
-  selectedVariantOutlined: string;
-  /** State class applied to the root element if `selectedVariant="contained"`. */
-  selectedVariantContained: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -29,6 +17,32 @@ export interface ListItemButtonClasses {
   colorWarning: string;
   /** Styles applied to the root element if `color="context"`. */
   colorContext: string;
+  /** State class applied to the `component`'s `focusVisibleClassName` prop. */
+  focusVisible: string;
+  /** State class applied to the inner `component` element if `disabled={true}`. */
+  disabled: string;
+  /** State class applied to the root element if `selected={true}`. */
+  selected: string;
+  /** State class applied to the root element if `selectedVariant="light"`. */
+  selectedVariantLight: string;
+  /** State class applied to the root element if `selectedVariant="outlined"`. */
+  selectedVariantOutlined: string;
+  /** State class applied to the root element if `selectedVariant="contained"`. */
+  selectedVariantContained: string;
+  /** Styles applied to the root element if `selectedColor="primary"`. */
+  selectedColorPrimary: string;
+  /** Styles applied to the root element if `selectedColor="neutral"`. */
+  selectedColorNeutral: string;
+  /** Styles applied to the root element if `selectedColor="danger"`. */
+  selectedColorDanger: string;
+  /** Styles applied to the root element if `selectedColor="info"`. */
+  selectedColorInfo: string;
+  /** Styles applied to the root element if `selectedColor="success"`. */
+  selectedColorSuccess: string;
+  /** Styles applied to the root element if `selectedColor="warning"`. */
+  selectedColorWarning: string;
+  /** Styles applied to the root element if `selectedColor="context"`. */
+  selectedColorContext: string;
 }
 
 export type ListItemButtonClassKey = keyof ListItemButtonClasses;
@@ -39,12 +53,6 @@ export function getListItemButtonUtilityClass(slot: string): string {
 
 const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('MuiListItemButton', [
   'root',
-  'focusVisible',
-  'disabled',
-  'selected',
-  'selectedVariantLight',
-  'selectedVariantOutlined',
-  'selectedVariantContained',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
@@ -52,6 +60,19 @@ const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('Mui
   'colorSuccess',
   'colorWarning',
   'colorContext',
+  'focusVisible',
+  'disabled',
+  'selected',
+  'selectedVariantLight',
+  'selectedVariantOutlined',
+  'selectedVariantContained',
+  'selectedColorPrimary',
+  'selectedColorNeutral',
+  'selectedColorDanger',
+  'selectedColorInfo',
+  'selectedColorSuccess',
+  'selectedColorWarning',
+  'selectedColorContext',
 ]);
 
 export default listItemButtonClasses;
