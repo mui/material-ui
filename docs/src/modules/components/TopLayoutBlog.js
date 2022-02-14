@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, createTheme } from '@mui/material/styles';
+import { styled, createTheme, alpha } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
 import Head from 'docs/src/modules/components/Head';
 import BrandingProvider from 'docs/src/BrandingProvider';
@@ -100,7 +100,7 @@ const styles = (theme) => ({
       marginBottom: theme.spacing(3),
     },
     '& .markdown-body': {
-      fontSize: theme.typography.pxToRem(17),
+      fontSize: theme.typography.pxToRem(16),
       lineHeight: 1.7,
     },
     '& img, & video': {
@@ -112,6 +112,39 @@ const styles = (theme) => ({
     },
     '& pre': {
       fontSize: theme.typography.pxToRem(16),
+    },
+    '& summary': {
+      padding: 8,
+      fontSize: theme.typography.pxToRem(14),
+      fontWeight: 500,
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    },
+    '& details': {
+      paddingLeft: 16,
+      paddingRight: 16,
+      background:
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.primary[900], 0.3)
+          : alpha(theme.palette.grey[50], 0.5),
+      border: '1px solid',
+      borderRadius: 10,
+      borderColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200],
+      transitionProperty: 'all',
+      transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      transitionDuration: '200ms',
+      '&:hover, &:focus-visible': {
+        background:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primary[900], 0.4)
+            : theme.palette.grey[50],
+        borderColor:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[300],
+      },
+    },
+    '& th': {
+      textAlign: 'left',
+      borderBottom: `3px solid rgba(62, 80, 96, 0.2) !important`,
     },
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(13),
