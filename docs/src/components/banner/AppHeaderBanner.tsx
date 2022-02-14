@@ -35,9 +35,9 @@ export default function AppHeaderBanner() {
           data-ga-event-label="header"
           sx={{
             fontWeight: 600,
-            color: '#fff',
             textDecoration: 'underline',
-            '&:hover': { color: (theme) => theme.palette.grey[200] },
+            color: '#fff',
+            '&:hover': { color: 'grey.200' },
           }}
         >
           Check the careers page →
