@@ -14,7 +14,9 @@ export default function AppFrameBanner() {
       data-ga-event-action="click"
       data-ga-event-label="table-contents"
       sx={(theme) => ({
+        display: { xs: 'none', lg: 'flex' },
         p: 1,
+        maxHeight: '34px',
         background:
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primary[900], 0.3)
