@@ -8,6 +8,8 @@
     },
     "allowSameDateSelection": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
+    "clearable": { "type": { "name": "bool" } },
+    "clearText": { "type": { "name": "node" }, "default": "'Clear'" },
     "components": {
       "type": {
         "name": "shape",
