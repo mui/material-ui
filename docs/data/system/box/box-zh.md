@@ -17,7 +17,7 @@ githubLabel: 'component: Box'
 
 ## `sx` 属性
 
-All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例： In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it: In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
+所有的样式功能都可以通过 [`sx` 属性 ](/system/basics/#the-sx-prop)更改。 同时，您也可通过`sx` 属性 指定任何您想添加的 CSS 规则。 下面是一个使用例：
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
@@ -29,7 +29,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. 但是按钮组件已经定义自己的样式。 The Button component defines its own styles. CSS 继承于事无补。 CSS inheritance doesn't help. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
+但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用CSS继承来解决这个问题。 为了回避这个CSS继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -38,7 +38,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
-For non-Material-UI components, use the `component` prop.
+如该组件的子组件不是一个 Material-UI 组件，您可通过使用 `component` 属性来达到效果。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -59,17 +59,17 @@ import Box from '@material-ui/core/Box';
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |
 | <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                   |
 
-## System props
+## 系统属性
 
-As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top: You can use them as prop directly on the component. For instance, a margin-top: You can use them as prop directly on the component. For instance, a margin-top:
+作为一个CSS通用组件，`Box` 组件同时支持所有的 [`system`](/system/properties/) 属性。 与定义属性一样，您可在组件中直接定义它们。 例如您想定义 margin-top 时
 
 ```jsx
 <Box mt={2}>
 ```
 
-## Create your own `Box` component
+## 创造您专用的 `Box` 组件
 
-If you want to have a different default theme for the `Box` component, you can create your own version of it, using the `createBox()` utility.
+如您想使用与系统默认主题不同主题的 `Box` 组件，您可以通过`createBox()` 方式创造您专用的版本。
 
 ```js
 import { createBox, createTheme } from '@mui/system';

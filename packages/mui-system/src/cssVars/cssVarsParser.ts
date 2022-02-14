@@ -125,14 +125,14 @@ export default function cssVarsParser(
     (keys, val, scope) => {
       if (typeof val === 'string' || typeof val === 'number') {
         let value = val;
-        if (typeof value === 'string' && value.startsWith('var')) {
+        if (typeof value === 'string' && value.match(/var\(\s*--/)) {
           // replace the value of the `scope` object with the prefix or remove basePrefix from the value
           if (!basePrefix && prefix) {
-            value = value.replace(/var\(--/g, `var(--${prefix}-`);
+            value = value.replace(/var\(\s*--/g, `var(--${prefix}-`);
           } else {
             value = prefix
-              ? value.replace(new RegExp(basePrefix, 'g'), prefix)
-              : value.replace(new RegExp(`${basePrefix}-`, 'g'), '');
+              ? value.replace(new RegExp(`var\\(\\s*--${basePrefix}`, 'g'), `var(--${prefix}`) // removing spaces
+              : value.replace(new RegExp(`var\\(\\s*--${basePrefix}-`, 'g'), 'var(--');
           }
 
           // scope is the deepest object in the tree, keys is the theme path keys

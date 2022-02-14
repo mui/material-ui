@@ -7,30 +7,59 @@ import { OverridableStringUnion } from '@mui/types';
  */
 export interface PaletteVariant {
   textColor: string;
+  // hover state
+  textHoverColor: string;
   textHoverBg: string;
+  // active state
+  textActiveColor: string;
   textActiveBg: string;
+  // disabled state
   textDisabledColor: string;
 
   outlinedColor: string;
   outlinedBorder: string;
-  outlinedHoverBg: string;
+  outlinedBg: string;
+  // hover state
+  outlinedHoverColor: string;
   outlinedHoverBorder: string;
+  outlinedHoverBg: string;
+  // active state
+  outlinedActiveColor: string;
+  outlinedActiveBorder: string;
   outlinedActiveBg: string;
+  // disabled state
   outlinedDisabledColor: string;
   outlinedDisabledBorder: string;
+  outlinedDisabledBg: string;
 
   lightColor: string;
   lightBg: string;
+  // hover state
+  lightHoverColor: string;
   lightHoverBg: string;
+  // active state
+  lightActiveColor: string;
   lightActiveBg: string;
+  // disabled state
   lightDisabledColor: string;
   lightDisabledBg: string;
 
   containedColor: string;
   containedBg: string;
+  // hover state
+  containedHoverColor: string;
   containedHoverBg: string;
+  // active state
+  containedActiveColor: string;
   containedActiveBg: string;
+  // disabled state
+  containedDisabledColor: string;
   containedDisabledBg: string;
+
+  // override palette.text
+  overrideTextPrimary: string;
+  overrideTextSecondary: string;
+  overrideTextTertiary: string;
 }
 export interface PaletteRange extends PaletteVariant {
   50: string;
@@ -50,7 +79,6 @@ export interface PaletteText {
   secondary: string;
   tertiary: string;
 }
-
 export interface PaletteBackground {
   body: string;
   level1: string;
@@ -74,11 +102,22 @@ export type ColorPaletteProp = OverridableStringUnion<
   ColorPalettePropOverrides
 >;
 
-export type ColorPalette = {
-  [k in Exclude<ColorPaletteProp, 'context'>]: PaletteRange;
-};
+// Split interfaces into multiple chunks so that they can be augmented independently
 
-export interface Palette extends ColorPalette {
+export interface PalettePrimary extends PaletteRange {}
+export interface PaletteNeutral extends PaletteRange {}
+export interface PaletteDanger extends PaletteRange {}
+export interface PaletteInfo extends PaletteRange {}
+export interface PaletteSuccess extends PaletteRange {}
+export interface PaletteWarning extends PaletteRange {}
+
+export interface Palette {
+  primary: PalettePrimary;
+  neutral: PaletteNeutral;
+  danger: PaletteDanger;
+  info: PaletteInfo;
+  success: PaletteSuccess;
+  warning: PaletteWarning;
   text: PaletteText;
   background: PaletteBackground;
   focusVisible: string;

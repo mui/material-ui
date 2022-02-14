@@ -28,7 +28,7 @@
 涟漪效果完全来自 `BaseButton` 组件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -41,14 +41,6 @@ const theme = createTheme({
     },
   },
 });
-      },
-    },
-  },
-});
-      },
-    },
-  },
-});
 ```
 
 ## 如何在全局禁用 ripple effect（涟漪效果）？
@@ -56,7 +48,7 @@ const theme = createTheme({
 Material-UI 使用相同的主题助手来创建其所有的过渡动画。 因此，您可以通过覆盖主题助手来禁用所有的过渡：
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   transitions: {
@@ -71,7 +63,7 @@ const theme = createTheme({
 您可以更进一步地禁用所有的过渡和动画效果。
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -166,7 +158,7 @@ const element = ref.current;
 ```diff
   resolve: {
 +   alias: {
-+     "@material-ui/styles": path.resolve(appFolder, "node_modules", "@material-ui/styles"),
++     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
 +   }
   }
 ```
@@ -208,7 +200,7 @@ Lerna 根目录下的 package.json 文件示例：
 ```diff
   module.exports = {
     entry: {
-+     vendor: ["@material-ui/styles"],
++     vendor: ["@mui/styles"],
       app1: "./src/app.1.js",
       app2: "./src/app.2.js",
     },
@@ -302,14 +294,6 @@ function App() {
 return (
   <div
     className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${
-      selected ? 'Mui-selected' : ''
-    }`}
-  />
-); 'Mui-disabled' : ''} ${
-      selected ? 'Mui-selected' : ''
-    }`}
-  />
-); 'Mui-disabled' : ''} ${
       selected ? 'Mui-selected' : ''
     }`}
   />
@@ -416,15 +400,9 @@ The class names value relies on the concept of [class name generator](/styles/ad
   ```diff
     "dependencies": {
       ...
-  "dependencies": {
+  -   "@mui/material": "^4.0.0",
+  +   "@mui/material": "4.0.0",
       ...
-  "dependencies": {
-      ...
-  -   "@material-ui/core": "^4.0.0",
-  +   "@material-ui/core": "4.0.0",
-      ...
-    },
-    },
     },
   ```
 
