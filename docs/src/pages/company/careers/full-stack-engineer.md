@@ -1,12 +1,13 @@
-# Product Manager
+# Full-stack Engineer
 
-<p class="description">We are looking for a product manager to guide our roadmap and build a great product.</p>
+<p class="description">We are looking for a full-stack engineer to pioneer the development of a new product vertical.</p>
 
 ## Details of the Role
 
 - Location: Remote (preference for UTC-6 to UTC+3).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
+- Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
@@ -32,7 +33,11 @@ We need talented people to keep that going!
 
 Our mission is to empower as many people as possible to build great UIs, faster.
 The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
-We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written: low-code.
+We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
+
+You will initiate the development of a bold new product vertical. We are looking for an experienced, and ambitious full-stack engineer that is ready to work in an entrepreneurial environment.
+
+## About the role
 
 ### Why this is interesting
 
@@ -41,35 +46,34 @@ Our solution empowers React developers to build awesome applications – hundred
 But providing React components isn't enough.
 In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
 They are looking for ways to move faster.
-They are working on a couple of new projects every year, and where the integration between the UI and the database is key.
-
-You will initiate the exploration of a bold new product vertical.
-
-## About the role
+They are working on a couple of new projects every year, and where the integration between the UI and the data is key.
 
 ### What you'll do on a day-to-day basis
 
 Depending on the day, you'll:
 
-- You will coordinate with the engineering to ensure that the product being delivered at each iteration solves the problem.
-  This involves growing a deep understanding of our technical choices and constraints.
-- You will drive the growth of the product by owning KPIs.
-- You will grow and cultivate a deep understanding of the problems that developers have when they create simple applications (e.g. admins, prototypes). This means that you will observe and reach out to the community, run research interviews and share your insights with the team.
-- You will keep a close eye on feature requests, issues, and general improvements, to curate opportunities based on our strategy.
-- You will build a strategy for your product area and contribute to the overall product strategy, e.g. establishing a go-to-market strategy.
-- You will assess the impact of initiatives through telemetry data and qualitative feedback to help us develop our understanding further, and decide on the next steps.
+- **Define the roadmap** and refine the product direction.
+- **Take ownership of features from idea/mockup to live deployment**. You'll shape user-facing features with everything from database models to UI components.
+- **Ship. Early and often**. You'll iterate and ship frequently. You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
+- **You'll be interacting with the early users** on a regular basis, handling inbound support and feature requests.
 
 ## About you
 
+You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-one).
+You are curious, you enjoy taking risks, and learning.
+
 ### Skills you should have
 
-- 3+ years experience as Product Manager or closely related roles such as Product Owner, Program Manager, or Solutions Architect.
-- Able to switch between the big picture and detailed view multiple times a day.
+- **Expertise in the modern JavaScript ecosystem**. MUI is built on the shoulders of giants, making use of technologies such as ES2021+, TypeScript, Node.js, React, Next.js, and Babel. The knowledge of SQL, Docker, and the AWS stack will prove itself valuable.
+- ​You are autonomous and a faster learner. You are proactive and can start projects without constant direction.
+- You ship code often that is elegant to use and read, and you take ownership of it. You can be relied upon throughout its lifecycle.
+- You can put a lot of thoughts into design, product roadmap, and the details of each feature. You won't only take a project and make it "functional."
+- You communicate your thoughts and decisions clearly and proactively, and engage with the rest of the team with an optimistic and first principles mindset.
 
-### What it would be nice if you had, but isn't required
+### What would be nice if you had, but isn't required
 
-- Experience building developer tools.
-- Experience working with open-source and having interacted with open-source communities.
+- **You've maintained an active repository before.**
+  Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
 
 ## Benefits & Compensation
 
@@ -79,4 +83,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Product%20Manager&prefill_source=mui.com)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Full-stack%20Engineer%20-%20Studio&prefill_source=mui.com)
