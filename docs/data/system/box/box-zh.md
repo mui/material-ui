@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
+在 `@mui/system` 中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -33,24 +33,24 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
--  <Button>Save</Button>
+-  <Button>保存</Button>
 -</Box>
-+<Button sx={{ border: '1px dashed grey' }}>Save</Button>
++<Button sx={{ border: '1px dashed grey' }}>保存</Button>
 ```
 
 如该组件的子组件不是一个 Material-UI 组件，您可通过使用 `component` 属性来达到效果。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
--  <button>Save</button>
+-  <button>保存</button>
 -</Box>
-+<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
++<Box component="button" sx={{ border: '1px dashed grey' }}>保存</Box>
 ```
 
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
 | 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
@@ -75,7 +75,7 @@ import Box from '@material-ui/core/Box';
 import { createBox, createTheme } from '@mui/system';
 
 const defaultTheme = createTheme({
-  // your custom theme values
+  // 自定义主题值
 });
 
 const Box = createBox({ defaultTheme });
