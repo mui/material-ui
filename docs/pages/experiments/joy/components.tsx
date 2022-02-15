@@ -181,8 +181,8 @@ const components = [
       { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
       { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
       { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
-      { id: '--Input-focusedOutlinedThickness', type: 'number', unit: 'px' },
     ],
   },
 ];

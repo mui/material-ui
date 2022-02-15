@@ -41,7 +41,7 @@ const InputRoot = styled('div', {
     '--Input-height': '40px',
     '--Input-gap': '0.5rem',
     '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
-    '--Input-focusedOutlinedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
+    '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     ...(ownerState.size === 'sm' && {
       '--Input-gutter': '0.5rem',
       '--Input-height': '32px',
@@ -93,7 +93,7 @@ const InputRoot = styled('div', {
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
       '&:before': {
-        boxShadow: `inset 0 0 0 var(--Input-focusedOutlinedThickness) ${
+        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) ${
           theme.vars.palette[ownerState.color || 'primary']?.[500]
         }`,
       },
