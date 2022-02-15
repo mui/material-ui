@@ -119,6 +119,7 @@ const SwitchThumb = styled('span', {
   width: 'var(--Switch-thumb-width)',
   height: 'var(--Switch-thumb-size)',
   borderRadius: 'var(--Switch-thumb-radius)',
+  // This should be variable, we need for both checked and unchecked
   backgroundColor: '#fff',
   [`&.${switchClasses.checked}`]: {
     left: 'calc(50% + var(--Switch-track-width) / 2 - var(--Switch-thumb-width) / 2 - var(--Switch-thumb-offset))',
