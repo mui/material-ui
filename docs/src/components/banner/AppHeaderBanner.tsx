@@ -7,11 +7,10 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 export default function AppHeaderBanner() {
   return FEATURE_TOGGLE.enable_website_banner ? (
     <Typography
-      variant="body2"
       fontWeight="medium"
       sx={{
         color: '#fff',
-        p: 1.5,
+        p: 1.2,
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: { xs: 'start', sm: 'center' },
@@ -20,6 +19,7 @@ export default function AppHeaderBanner() {
           theme.palette.mode === 'dark'
             ? `linear-gradient(90deg, ${theme.palette.primary[900]}, ${theme.palette.primary[600]} 120%)`
             : `linear-gradient(-90deg, ${theme.palette.primary[700]}, ${theme.palette.primary[500]} 120%)`,
+        fontSize: (theme) => theme.typography.pxToRem(13),
       }}
     >
       🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
