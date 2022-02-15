@@ -107,23 +107,26 @@ const InputInput = styled('input', {
   name: 'MuiInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: InputProps & InputOwnerState }>({
-  border: 'none',
-  minWidth: 0, // reset the native input width
-  outline: 0,
-  margin: '0px max(calc(var(--Input-gap) / -2), -1rem)', // for auto-filled input to have space on the edge
-  padding: '0px min(calc(var(--Input-gap) / 2), 1rem)', // for auto-filled input to have space on the edge
-  borderRadius: 'calc(var(--Input-radius) - 0.25rem)', // for auto-filled input
+})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+  border: 'none', // remove the native input width
+  minWidth: 0, // remove the native input width
+  outline: 0, // remove the native input outline
+  padding: 0, // remove the native input padding
   flex: 1,
   alignSelf: 'stretch',
   color: 'inherit',
   backgroundColor: 'transparent',
   fontSize: 'inherit',
+  '&:-webkit-autofill': {
+    '-webkit-background-clip': 'text', // remove autofill background
+    '-webkit-text-fill-color':
+      theme.vars.palette[ownerState.color || 'neutral']?.overrideTextPrimary,
+  },
   '&::-webkit-input-placeholder': { opacity: 0.5, color: 'inherit' },
   '&::-moz-placeholder': { opacity: 0.5, color: 'inherit' }, // Firefox 19+
   '&:-ms-input-placeholder': { opacity: 0.5, color: 'inherit' }, // IE11
   '&::-ms-input-placeholder': { opacity: 0.5, color: 'inherit' }, // Edge
-});
+}));
 
 const InputStartAdornment = styled('span', {
   name: 'MuiInput',
