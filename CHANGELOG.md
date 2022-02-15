@@ -4,7 +4,7 @@
 
 _Feb 15, 2022_
 
-A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
 - 🛠 @sydneyjodon-wk improved propTypes of the ToggleButton components (#30883)
 - Several 🐛 bug fixes and 📚 documentation improvements
@@ -47,6 +47,9 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Prefer useEnhancedEffect to avoid server side warnings (#30977) @mnajdova
 - [docs] Fix force redirection to a different locale (#30967) @oliviertassinari
 - [docs] Add live Tailwind CSS demo (#30966) @oliviertassinari
+- [website] Add banner for promoting priority open roles (#31076) @danilo-leal
+- [website] Open Full-stack Engineer role for studio (#31038) @newguy-123
+- [website] Minor security improvements (#31062) @oliviertassinari
 - [website] Improve title of open roles (#30963) @DanailH
 - [website] Add BIMI avatar (#30444) @oliviertassinari
 - [website] Add Sycamore to About page (#31000) @samuelsycamore
@@ -58,8 +61,9 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [core] Fix typo in useSlider (#31061) @ryohey
 - [core] Remove unused draft-js types package (#30993) @michaldudak
 - [test] Test if certain Base members are exported from Material UI (#31067) @michaldudak
+- [core] Remove dead code (#31064) @oliviertassinari
 
-All contributors of this release in alphabetical order: @agauravdev, @alisasanib, @DanailH, @danilo-leal, @huyenltnguyen, @l10nbot, @liradb2000, @mbrookes, @michaldudak, @mnajdova, @oliviertassinari, @ryohey, @samuelsycamore, @siriwatknp, @sydneyjodon-wk
+All contributors of this release in alphabetical order: @agauravdev, @alisasanib, @DanailH, @danilo-leal, @huyenltnguyen, @l10nbot, @liradb2000, @mbrookes, @michaldudak, @mnajdova, @newguy-123, @oliviertassinari, @ryohey, @samuelsycamore, @siriwatknp, @sydneyjodon-wk
 
 ## 5.4.1
 
