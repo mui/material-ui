@@ -85,16 +85,16 @@ const InputRoot = styled('div', {
       margin: 'calc(var(--variant-outlinedBorderWidth) * -1)', // for outlined variant
     },
   },
-  theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
   {
-    color: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
+    color: theme.vars.palette[ownerState.color || 'neutral']?.overrideTextPrimary,
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
       '&:before': {
         boxShadow: `inset 0 0 0 var(--Input-focusedOutlinedThickness) ${
-          theme.vars.palette[ownerState.color!]?.[500]
+          theme.vars.palette[ownerState.color || 'primary']?.[500]
         }`,
       },
     },
@@ -135,7 +135,7 @@ const InputStartAdornment = styled('span', {
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    color: theme.vars.palette[ownerState.color || 'neutral']?.[`${ownerState.variant!}Color`],
   }),
 }));
 
@@ -147,7 +147,7 @@ const InputEndAdornment = styled('span', {
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
   marginRight: 'calc(var(--Input-adornment-offset) * -1)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  color: theme.vars.palette[ownerState.color || 'neutral']?.[`${ownerState.variant!}Color`],
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
@@ -163,7 +163,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     autoComplete,
     autoFocus,
     className,
-    color = 'neutral',
+    color,
     component,
     components = {},
     componentsProps = {},

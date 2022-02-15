@@ -80,16 +80,7 @@ export default function JoyTypography() {
             alignItems: 'center',
           }}
         >
-          <Input
-            placeholder="Placeholder"
-            disabled
-            components={{
-              Input: 'div',
-            }}
-            componentsProps={{
-              input: { role: 'textbox', tabIndex: -1 },
-            }}
-          />
+          <Input placeholder="Placeholder" />
           <Input placeholder="Placeholder" startAdornment={<Mail fontSize="lg" />} size="sm" />
           <Input placeholder="Placeholder" startAdornment={<Mail />} />
           <Input placeholder="Placeholder" startAdornment={<Mail fontSize="xl2" />} size="lg" />
