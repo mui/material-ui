@@ -11,6 +11,7 @@ const useUtilityClasses = (ownerState: ListItemProps) => {
   const { sticky } = ownerState;
   const slots = {
     root: ['root', sticky && 'sticky'],
+    secondaryAction: ['secondaryAction'],
   };
 
   return composeClasses(slots, getListItemUtilityClass, {});
@@ -25,9 +26,13 @@ const ListItemRoot = styled('li', {
   '--List-itemButton-margin':
     'max(-0.375rem, -1 * var(--List-item-paddingX)) calc(-1 * var(--List-item-paddingX))',
   '--List-decorator-color': theme.vars.palette.text.tertiary, // for making icon color less obvious
+  ...(ownerState.secondaryAction && {
+    '--List-item-secondaryActionWidth': '3rem', // for ListItemButton
+  }),
   boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'center',
+  position: 'relative',
   padding: 'min(0.375rem, var(--List-item-paddingX)) var(--List-item-paddingX)',
   paddingLeft: 'var(--List-insetStart)',
   minHeight: 'var(--List-item-minHeight)',
@@ -35,6 +40,7 @@ const ListItemRoot = styled('li', {
   ...(ownerState.sticky && {
     position: 'sticky',
     top: 0,
+    zIndex: 1,
     background: 'var(--List-background)',
   }),
   [`& + .${listItemClasses.root}`]: {
@@ -42,16 +48,29 @@ const ListItemRoot = styled('li', {
   },
 }));
 
+const ListItemSecondaryAction = styled('div', {
+  name: 'MuiListItem',
+  slot: 'SecondaryAction',
+  overridesResolver: (props, styles) => styles.secondaryAction,
+})<{ ownerState: ListItemProps }>({
+  display: 'inherit',
+  position: 'absolute',
+  top: '50%',
+  right: 'var(--List-item-paddingX)',
+  transform: 'translateY(-50%)',
+});
+
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'MuiListItem',
   });
 
-  const { component, className, children, sticky = false, ...other } = props;
+  const { component, className, children, sticky = false, secondaryAction, ...other } = props;
 
   const ownerState = {
     sticky,
+    secondaryAction,
     ...props,
   };
 
@@ -66,6 +85,11 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
       {...other}
     >
       {children}
+      {secondaryAction && (
+        <ListItemSecondaryAction className={classes.secondaryAction} ownerState={ownerState}>
+          {secondaryAction}
+        </ListItemSecondaryAction>
+      )}
     </ListItemRoot>
   );
 }) as OverridableComponent<ListItemTypeMap>;

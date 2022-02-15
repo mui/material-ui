@@ -4,6 +4,7 @@ import { ColorPaletteProp, CssVarsProvider, useColorScheme } from '@mui/joy/styl
 import NextLink from 'next/link';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -19,6 +20,7 @@ import BeachAccess from '@mui/icons-material/BeachAccess';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import Star from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
+import DeleteForever from '@mui/icons-material/DeleteForever';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -344,55 +346,79 @@ export default function JoyTypography() {
             component="nav"
             sx={{ '--List-decorator-width': '56px', '--List-divider-gap': '1rem' }}
           >
-            <ListItemButton selected selectedVariant="light">
-              <ListItemDecorator>
-                <Circle color="primary">
-                  <InboxIcon />
-                </Circle>
-              </ListItemDecorator>
-              <ListItemContent>
-                <Typography>Inbox</Typography>
-                <Typography level="body2">Jan 9, 2014</Typography>
-              </ListItemContent>
-              <Button variant="light" size="sm">
-                Clear
-              </Button>
-            </ListItemButton>
-            <ListDivider component="hr" />
-            <ListItemButton selected selectedVariant="outlined" color="danger">
-              <ListItemDecorator>
-                <Circle color="danger">
-                  <Star />
-                </Circle>
-              </ListItemDecorator>
-              <ListItemContent>
-                <Typography>Starred</Typography>
-                <Typography level="body2">Jan 9, 2014</Typography>
-              </ListItemContent>
-              <Button variant="light" color="danger" size="sm">
-                Clear
-              </Button>
-            </ListItemButton>
-            <ListDivider component="hr" />
-            <ListItemButton
-              selected
-              selectedVariant="contained"
-              color="success"
-              sx={(theme) => theme.variants.containedOverrides.success}
+            <ListItem
+              secondaryAction={
+                <Button variant="light" size="sm">
+                  Clear
+                </Button>
+              }
             >
-              <ListItemDecorator>
-                <Circle color="success">
-                  <Favorite />
-                </Circle>
-              </ListItemDecorator>
-              <ListItemContent>
-                <Typography>Favorite</Typography>
-                <Typography level="body2">Jan 9, 2014</Typography>
-              </ListItemContent>
-              <Button variant="outlined" color="context" size="sm">
-                Clear
-              </Button>
-            </ListItemButton>
+              <ListItemButton selected selectedVariant="light">
+                <ListItemDecorator>
+                  <Circle color="primary">
+                    <InboxIcon />
+                  </Circle>
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Inbox</Typography>
+                  <Typography level="body2">Jan 9, 2014</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListDivider component="hr" />
+            <ListItem
+              secondaryAction={
+                <Button variant="light" color="danger" size="sm">
+                  Clear
+                </Button>
+              }
+            >
+              <ListItemButton selected selectedVariant="outlined" color="danger">
+                <ListItemDecorator>
+                  <Circle color="danger">
+                    <Star />
+                  </Circle>
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Starred</Typography>
+                  <Typography level="body2">Jan 9, 2014</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListDivider component="hr" />
+            <ListItem
+              secondaryAction={
+                <IconButton
+                  variant="outlined"
+                  color="success"
+                  size="sm"
+                  sx={{
+                    borderColor: 'success.200',
+                    color: 'success.100',
+                    '&:hover': { bgcolor: 'success.700' },
+                  }}
+                >
+                  <DeleteForever />
+                </IconButton>
+              }
+            >
+              <ListItemButton
+                selected
+                selectedVariant="contained"
+                color="success"
+                sx={(theme) => theme.variants.containedOverrides.success}
+              >
+                <ListItemDecorator>
+                  <Circle color="success">
+                    <Favorite />
+                  </Circle>
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Favorite</Typography>
+                  <Typography level="body2">Jan 9, 2014</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
           </List>
 
           <List

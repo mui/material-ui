@@ -58,8 +58,9 @@ const ListItemButtonRoot = styled('div', {
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
     // The value is negative to account for the ListItem's padding
     margin: 'var(--List-itemButton-margin)',
-    padding: 'min(0.375rem, var(--List-item-paddingX)) var(--List-item-paddingX)',
+    padding: 'min(0.375rem, var(--List-item-paddingX))',
     paddingLeft: 'var(--List-insetStart, var(--List-item-paddingX))',
+    paddingRight: 'calc(var(--List-item-paddingX) + var(--List-item-secondaryActionWidth, 0px))',
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',

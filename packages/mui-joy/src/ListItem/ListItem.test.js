@@ -31,4 +31,9 @@ describe('Joy <ListItem />', () => {
     const { container } = render(<ListItem sticky />);
     expect(container.firstChild).to.have.class(classes.sticky);
   });
+
+  it('should show action if provided', () => {
+    const { getByText } = render(<ListItem secondaryAction="foo" />);
+    expect(getByText('foo')).toBeVisible();
+  });
 });
