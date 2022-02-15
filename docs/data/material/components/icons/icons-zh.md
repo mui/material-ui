@@ -34,15 +34,7 @@ yarn add @mui/icons-material
 
 这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
-如果你的项目中还没有使用 MUI，那么你可以用以下方法添加它：
-
-```sh
-// 使用 npm 安装
-npm install @mui/material
-
-// 使用 yarn 安装
-yarn add @mui/material
-```
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/getting-started/installation/).
 
 ### 使用
 
@@ -129,7 +121,7 @@ function HomeIcon(props) {
 // ---
 import StarIcon from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 通过 “url-loader” 或 “file-loader” 加载也是可行的。 这是 Create React App 使用的方法。
@@ -144,7 +136,7 @@ import StarIcon from './star.svg';
 // ---
 import { ReactComponent as StarIcon } from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 ### createSvgIcon
@@ -183,7 +175,7 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>;
 ```
@@ -229,16 +221,6 @@ const theme = createTheme({
     MuiIcon: {
       defaultProps: {
         // Replace the `material-icons` default value.
-        baseClassName: 'material-icons-two-tone',
-      },
-    },
-  },
-});
-        baseClassName: 'material-icons-two-tone',
-      },
-    },
-  },
-});
         baseClassName: 'material-icons-two-tone',
       },
     },
@@ -305,22 +287,10 @@ const theme = createTheme({
 对于可聚焦的交互式元素，例如当与图标按钮一起使用时，你可以使用 `aria-label` 属性：
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
-
-<IconButton aria-label="delete">
-  <SvgIcon>
-    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
-  </SvgIcon>
-</IconButton>;
-
-<IconButton aria-label="delete">
-  <SvgIcon>
-    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
-  </SvgIcon>
-</IconButton>;
 
 <IconButton aria-label="delete">
   <SvgIcon>
@@ -339,15 +309,6 @@ import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@mui/utils';
 
 // ...
-
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/utils';
-
-// ...
-
-<Icon>add_circle</Icon>
-<Box component="span" sx={visuallyHidden}>Create a user</Box>
 
 <Icon>add_circle</Icon>
 <Box component="span" sx={visuallyHidden}>Create a user</Box>
