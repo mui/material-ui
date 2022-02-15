@@ -26,4 +26,9 @@ describe('Joy <ListItem />', () => {
     const { container } = render(<ListItem className="foo-bar" />);
     expect(container.firstChild).to.have.class('foo-bar');
   });
+
+  it('should have sticky classes', () => {
+    const { container } = render(<ListItem sticky />);
+    expect(container.firstChild).to.have.class(classes.sticky);
+  });
 });

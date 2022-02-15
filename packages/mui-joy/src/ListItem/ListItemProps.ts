@@ -14,6 +14,11 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      */
     classes?: Partial<ListItemClasses>;
     /**
+     * If `true`, the component has sticky position (with top = 0).
+     * @default false
+     */
+    sticky?: boolean;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;

@@ -113,7 +113,6 @@ export default function JoyTypography() {
             gap: 2,
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             alignItems: 'flex-start',
-            '& > *': { bgcolor: 'background.body' },
           }}
         >
           {/* ex1 */}
@@ -394,6 +393,30 @@ export default function JoyTypography() {
                 Clear
               </Button>
             </ListItemButton>
+          </List>
+
+          <List
+            sx={{
+              maxWidth: 360,
+              maxHeight: 300,
+              overflow: 'auto',
+              '& ul': { p: 0 },
+              '--List-padding': 0,
+              '--List-item-paddingX': '1rem',
+            }}
+          >
+            {[0, 1, 2, 3, 4].map((sectionId) => (
+              <li key={`section-${sectionId}`}>
+                <ul>
+                  <ListItem sticky sx={{ pt: '1.5rem' }}>
+                    <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
+                  </ListItem>
+                  {[0, 1, 2].map((item) => (
+                    <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
+                  ))}
+                </ul>
+              </li>
+            ))}
           </List>
         </Box>
       </Box>

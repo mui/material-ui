@@ -7,9 +7,10 @@ import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: ListItemProps) => {
+  const { sticky } = ownerState;
   const slots = {
-    root: ['root'],
+    root: ['root', sticky && 'sticky'],
   };
 
   return composeClasses(slots, getListItemUtilityClass, {});
@@ -19,7 +20,7 @@ const ListItemRoot = styled('li', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemProps }>(({ theme }) => ({
+})<{ ownerState: ListItemProps }>(({ theme, ownerState }) => ({
   // add negative margin to ListItemButton equal to this ListItem padding
   '--List-itemButton-margin':
     'max(-0.375rem, -1 * var(--List-item-paddingX)) calc(-1 * var(--List-item-paddingX))',
@@ -31,6 +32,11 @@ const ListItemRoot = styled('li', {
   paddingLeft: 'var(--List-insetStart)',
   minHeight: 'var(--List-item-minHeight)',
   ...theme.typography.body1,
+  ...(ownerState.sticky && {
+    position: 'sticky',
+    top: 0,
+    background: 'var(--List-background)',
+  }),
   [`& + .${listItemClasses.root}`]: {
     marginTop: 'var(--List-gap)',
   },
@@ -42,13 +48,14 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'MuiListItem',
   });
 
-  const { component, className, children, ...other } = props;
+  const { component, className, children, sticky = false, ...other } = props;
 
   const ownerState = {
+    sticky,
     ...props,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListItemRoot
@@ -81,6 +88,11 @@ ListItem.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the component has sticky position (with top = 0).
+   * @default false
+   */
+  sticky: PropTypes.bool,
 } as any;
 
 export default ListItem;

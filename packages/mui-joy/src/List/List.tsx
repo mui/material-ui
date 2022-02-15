@@ -23,6 +23,7 @@ const ListRoot = styled('ul', {
   '--List-padding': '0.375rem',
   '--List-gap': '0.375rem', // spacing between ListItem + ListItem or ListItemButton + ListItemButton
   '--List-radius': theme.vars.radius.sm,
+  '--List-background': theme.vars.palette.background.body,
   '--List-item-minHeight': '2.5rem',
   '--List-item-paddingX': '0.375rem',
   '--List-decorator-width': '3rem',
@@ -31,6 +32,7 @@ const ListRoot = styled('ul', {
   // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
   '--List-item-radius':
     'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
+  background: 'var(--List-background)',
   borderRadius: 'var(--List-radius)',
   padding: 'var(--List-padding)',
   margin: 'initial',
@@ -38,6 +40,7 @@ const ListRoot = styled('ul', {
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
+  position: 'relative', // for sticky ListItem
 }));
 
 const List = React.forwardRef(function List(inProps, ref) {
