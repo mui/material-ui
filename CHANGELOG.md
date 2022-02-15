@@ -2,7 +2,7 @@
 
 ## 5.4.2
 
-_Feb 14, 2022_
+_Feb 15, 2022_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
