@@ -452,4 +452,41 @@ describe('<DesktopDatePicker />', () => {
       expect(window.scrollY, 'focus caused scroll').to.equal(scrollYBeforeOpen);
     });
   });
+
+  it('does not reset the input value when clicking outside after changing the date value', () => {
+    const initialDateValue = adapterToUse.date('2022-01-01T00:00:00.000');
+
+    function DemoDesktopDatePicker() {
+      const [value, setValue] = React.useState<Date | null>(initialDateValue);
+      const [open, setOpen] = React.useState<boolean | undefined>(true);
+      const handleChange = (newValue: Date | null) => {
+        setValue(newValue);
+      };
+      return (
+        <DesktopDatePicker
+          onChange={handleChange}
+          value={value}
+          renderInput={(params) => <TextField {...params} />}
+          TransitionComponent={FakeTransitionComponent}
+          open={open}
+          onClose={() => {
+            setOpen(false);
+          }}
+          onOpen={() => {
+            setOpen(true);
+          }}
+        />
+      );
+    }
+
+    render(<DemoDesktopDatePicker />);
+
+    fireEvent.click(screen.getByLabelText(/Choose date/));
+    expect(screen.getByRole('textbox')).to.have.value('01/01/2022');
+
+    fireEvent.click(screen.getByLabelText('Jan 30, 2022'));
+
+    fireEvent.click(document.body);
+    expect(screen.getByRole('textbox')).to.have.value('01/30/2022');
+  });
 });

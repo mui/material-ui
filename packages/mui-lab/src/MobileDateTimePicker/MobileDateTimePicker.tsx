@@ -50,7 +50,6 @@ const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDat
   const validationError = useDateTimeValidation(props) !== null;
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager, true);
 
-
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.
   const { ToolbarComponent = DateTimePickerToolbar, value, onChange, ...other } = props;
