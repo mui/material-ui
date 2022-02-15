@@ -15,7 +15,10 @@
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ badge?: object, root?: object }" },
+      "default": "{}"
+    },
     "invisible": { "type": { "name": "bool" } },
     "max": { "type": { "name": "number" }, "default": "99" },
     "showZero": { "type": { "name": "bool" } },

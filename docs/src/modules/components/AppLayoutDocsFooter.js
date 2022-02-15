@@ -308,7 +308,7 @@ export default function AppLayoutDocsFooter() {
             </PaginationDiv>
           </React.Fragment>
         )}
-        <Collapse in={commentOpen} onEntered={handleEntered}>
+        <Collapse in={commentOpen} unmountOnExit onEntered={handleEntered}>
           <form
             aria-labelledby="feedback-message"
             onReset={handleCancelComment}

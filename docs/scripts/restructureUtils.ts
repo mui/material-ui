@@ -1,46 +1,50 @@
+import startCase from 'lodash/startCase';
+import camelCase from 'lodash/camelCase';
+import { replaceComponentLinks } from '../src/modules/utils/replaceUrl';
+
 export const productPathnames = {
-  material: [
-    '/getting-started',
-    '/components',
-    '/api-docs',
-    '/customization',
-    '/guides',
-    '/discover-more',
-  ],
+  material: ['/getting-started', '/components', '/customization', '/guides', '/discover-more'],
   system: ['/system'],
   styles: ['/styles'],
 } as const;
 
 export const markdown = {
   removeDemoRelativePath: (content: string) =>
-    content.replace(/"pages\/[/\-a-zA-Z]*\/([a-zA-Z]*\.js)"/gm, `"$1"`),
-  addMaterialPrefixToLinks: (content: string) => {
-    productPathnames.material.forEach((path) => {
-      content = content.replace(new RegExp(`\\(${path}`, 'g'), `(/material${path}`);
-    });
-    return content;
+    content.replace(/"pages\/?[^"]*\/([^"]+\.js)"/gm, `"$1"`),
+  updateMaterialTitle: (filePath: string, content: string) => {
+    const match = filePath.match(/\/([^/]+).(ts|js|tsx|md|json|tsx\.preview)$/);
+    if (!match) {
+      return null;
+    }
+    let title = '';
+    const component = match[1];
+    if (component.startsWith('use')) {
+      title = `${camelCase(component)} React Hook`;
+    } else if (component === 'pickers') {
+      title = `React Date,Time Pickers`;
+    } else if (component === 'progress') {
+      title = `React Circular,Linear Progress`;
+    } else if (component.match(/^(material-icons|about-the-lab)$/)) {
+      title = startCase(component);
+    } else if (component.match(/(tabs|breadcrumbs|trap-focus)/)) {
+      title = startCase(`React ${component}`);
+    } else if (component.match(/(x|ch)es$/)) {
+      title = startCase(`React ${component.replace(/(x|ch)es$/, '$1')}`);
+    } else {
+      title = startCase(`React ${component.replace(/s$/, '')}`);
+    }
+
+    return content.replace(/^title:[^\n]*$/, `title: ${title}`);
   },
   addProductFrontmatter: (content: string, product: string) =>
     content.replace('---', `---\nproduct: ${product}`),
-};
-
-export const refactorJsonContent = (content: string) => {
-  let result = content;
-
-  // i. add prefix to "demos" key
-  result = result.replace(/href=\\"\/components/g, 'href=\\"/material/components');
-
-  // ii. add prefix to "pathname" value
-  result = result.replace(/"pathname": "\/api/g, '"pathname": "/material/api');
-
-  return result;
 };
 
 export const getNewDataLocation = (
   filePath: string,
   product: string,
 ): { directory: string; path: string } | null => {
-  const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json)$/);
+  const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
   if (!match) {
     return null;
   }
@@ -53,9 +57,15 @@ export const getNewDataLocation = (
 export const getNewPageLocation = (
   filePath: string,
 ): { directory: string; path: string } | null => {
-  const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json)$/);
+  const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
   if (!match) {
     return null;
+  }
+  if (filePath.match('pages/components')) {
+    return {
+      directory: match[1].replace('docs/pages/components', 'docs/pages/material'),
+      path: replaceComponentLinks(filePath),
+    };
   }
   return {
     directory: match[1].replace('docs/pages', 'docs/pages/material'),

@@ -52,8 +52,8 @@ export default function Home() {
   "url": "https://mui.com/",
   "logo": "https://mui.com/static/logo.png",
   "sameAs": [
-    "https://twitter.com/materialUI",
-    "https://github.com/mui-org/material-ui",
+    "https://twitter.com/MUI_hq",
+    "https://github.com/mui/",
     "https://opencollective.com/mui"
   ]
 }

@@ -38,7 +38,7 @@ const GOLDs = [
     srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
     name: 'Laststance',
     description: 'Organization for OSS activity based on Tokyo.',
-    href: 'https://laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
@@ -71,7 +71,7 @@ export default function GoldSponsors() {
   });
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <Typography
           component="h3"
           variant="h5"
@@ -80,7 +80,7 @@ export default function GoldSponsors() {
             color: (theme) =>
               theme.palette.mode === 'dark'
                 ? theme.palette.warning[500]
-                : theme.palette.warning[800],
+                : theme.palette.warning[700],
           }}
         >
           Gold

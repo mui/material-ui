@@ -82,7 +82,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
     disablePortal?: PortalProps['disablePortal'];
     /**
      * If `true`, the modal will not restore focus to previously focused element once
-     * modal is hidden.
+     * modal is hidden or unmounted.
      * @default false
      */
     disableRestoreFocus?: boolean;

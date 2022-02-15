@@ -13,22 +13,6 @@
 # TODO add back
 # https://material-ui.com/* https://mui.com/:splat 301!
 
-# Redirect all except /store/
-https://material-ui.com https://mui.com 301!
-https://material-ui.com/api-docs/* https://mui.com/api-docs/:splat 301!
-https://material-ui.com/api/* https://mui.com/api/:splat 301!
-https://material-ui.com/blog/* https://mui.com/blog/:splat 301!
-https://material-ui.com/company/* https://mui.com/company/:splat 301!
-https://material-ui.com/components/* https://mui.com/components/:splat 301!
-https://material-ui.com/customization/* https://mui.com/customization/:splat 301!
-https://material-ui.com/discover-more/* https://mui.com/discover-more/:splat 301!
-https://material-ui.com/getting-started/* https://mui.com/getting-started/:splat 301!
-https://material-ui.com/guides/* https://mui.com/guides/:splat 301!
-https://material-ui.com/performance/* https://mui.com/performance/:splat 301!
-https://material-ui.com/styles/* https://mui.com/styles/:splat 301!
-https://material-ui.com/system/* https://mui.com/system/:splat 301!
-https://material-ui.com/versions https://mui.com/versions 301!
-
 # Temporarily access the store from the legacy domain
 https://mui.com/store/* https://material-ui.com/store/:splat 302!
 
@@ -41,7 +25,7 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 /r/issue-template https://codesandbox.io/s/material-ui-issue-latest-s2dsx
 /r/issue-template-next https://codesandbox.io/s/material-ui-issue-next-o7xkt
 /r/issue-template-latest https://codesandbox.io/s/material-ui-issue-latest-s2dsx
-/r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
+/r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /customization/components/#adding-new-component-variants
 /r/x-license https://material-ui.com/store/items/material-ui-pro/
 /r/migration-v4 /guides/migration-v4/
@@ -105,6 +89,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /company/careers/ /careers/ 301
 /discover-more/team/ /about/ 301
 /api/data-grid/grid-export-csv-options/ /api/data-grid/grid-csv-export-options/ 301
+# 2022
+/company/about/ /about/ 301
+/company/jobs/ /careers/ 301
 
 ## Localization
 /fr/* /:splat 301
@@ -119,9 +106,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /store/* https://material-ui-store.netlify.app/:splat 200
 /store-staging/* https://master--material-ui-store.netlify.app/:splat 200
 
-## material-ui-x
+## mui-x
 ## Unlike the store that expect to be hosted under a subfolder,
-## material-ui-x is configured to be hosted at the root.
+## mui-x is configured to be hosted at the root.
 /api/*/ https://docs-v5--material-ui-x.netlify.app/api/:splat/ 200
 /:lang/api/*/ https://docs-v5--material-ui-x.netlify.app/:lang/api/:splat/ 200
 /components/* https://docs-v5--material-ui-x.netlify.app/components/:splat 200

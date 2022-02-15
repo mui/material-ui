@@ -10,36 +10,33 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
-const Nav = styled('nav')(({ theme }) => {
-  return {
-    top: 60,
-    // Fix IE11 position sticky issue.
-    marginTop: 60,
-    width: 240,
-    flexShrink: 0,
-    position: 'sticky',
-    height: 'calc(100vh - 70px)',
-    overflowY: 'auto',
-    padding: theme.spacing(2, 4, 2, 0),
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  };
-});
+const Nav = styled('nav')(({ theme }) => ({
+  top: 60,
+  order: 1,
+  // Fix IE11 position sticky issue.
+  marginTop: 60,
+  width: 240,
+  flexShrink: 0,
+  position: 'sticky',
+  height: 'calc(100vh - 70px)',
+  overflowY: 'auto',
+  padding: theme.spacing(2, 4, 2, 0),
+  display: 'none',
+  [theme.breakpoints.up('sm')]: {
+    display: 'block',
+  },
+}));
 
-const NavLabel = styled(Typography)(({ theme }) => {
-  return {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(1.5),
-    fontSize: theme.typography.pxToRem(11),
-    fontWeight: theme.typography.fontWeightBold,
-    textTransform: 'uppercase',
-    letterSpacing: '.08rem',
-    color: theme.palette.grey[600],
-  };
-});
+const NavLabel = styled(Typography)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(1),
+  paddingLeft: theme.spacing(1.4),
+  fontSize: theme.typography.pxToRem(11),
+  fontWeight: theme.typography.fontWeightBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.08rem',
+  color: theme.palette.grey[600],
+}));
 
 const NavList = styled(Typography)({
   padding: 0,
@@ -68,7 +65,7 @@ const NavItem = styled(Link, {
     margin: theme.spacing(0.5, 0, 1, 0),
     borderLeft: `1px solid transparent`,
     boxSizing: 'border-box',
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     '&:hover': {
       borderLeftColor:
         theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
@@ -204,7 +201,7 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      href={`${activePage.linkProps?.linkAs ?? activePage.pathname}#${item.hash}`}
+      href={`${activePage?.linkProps?.linkAs ?? activePage?.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}

@@ -57,6 +57,8 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
       ref={ref}
       PopperProps={PopperProps}
       TransitionComponent={TransitionComponent}
+      clearText={clearText}
+      clearable={clearable}
       {...other}
     />
   ) : (
@@ -134,7 +136,11 @@ DatePicker.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    leftArrowButton: PropTypes.object,
+    rightArrowButton: PropTypes.object,
+    switchViewButton: PropTypes.object,
+  }),
   /**
    * Default calendar month displayed when `value={null}`.
    */

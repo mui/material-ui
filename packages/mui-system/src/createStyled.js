@@ -1,8 +1,8 @@
 import styledEngineStyled from '@mui/styled-engine';
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
-import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
+import defaultStyleFunctionSx from './styleFunctionSx';
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -53,6 +53,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
+// Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
@@ -68,6 +69,7 @@ export default function createStyled(input = {}) {
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
+    styleFunctionSx = defaultStyleFunctionSx,
   } = input;
   return (tag, inputOptions = {}) => {
     const {
@@ -135,7 +137,12 @@ export default function createStyled(input = {}) {
           const styleOverrides = getStyleOverrides(componentName, theme);
 
           if (styleOverrides) {
-            return overridesResolver(props, styleOverrides);
+            const resolvedStyleOverrides = {};
+            Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
+              resolvedStyleOverrides[slotKey] =
+                typeof slotStyle === 'function' ? slotStyle(props) : slotStyle;
+            });
+            return overridesResolver(props, resolvedStyleOverrides);
           }
 
           return null;
@@ -189,6 +196,11 @@ export default function createStyled(input = {}) {
 
       return Component;
     };
+
+    if (defaultStyledResolver.withConfig) {
+      muiStyledResolver.withConfig = defaultStyledResolver.withConfig;
+    }
+
     return muiStyledResolver;
   };
 }

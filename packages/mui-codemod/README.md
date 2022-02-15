@@ -39,7 +39,7 @@ Examples:
   npx @mui/codemod v5.0.0/preset-safe src --parser=flow
 ```
 
-#### jscodeshift options
+### jscodeshift options
 
 To pass more options directly to jscodeshift, use `--jscodeshift="..."`. For example:
 
@@ -49,7 +49,7 @@ npx @mui/codemod --jscodeshift="--run-in-band --verbose=2"
 
 See all available options [here](https://github.com/facebook/jscodeshift#usage-cli).
 
-#### Recast Options
+### Recast Options
 
 Options to [recast](https://github.com/benjamn/recast)'s printer can be provided
 through jscodeshift's `printOptions` command line argument
@@ -1073,7 +1073,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `mui-replace`
 
-Replace every occurrence of `material-ui` related package with the new package names (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`). [More details about why package names are changed](https://github.com/mui-org/material-ui/issues/27666)
+Replace every occurrence of `material-ui` related package with the new package names (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`). [More details about why package names are changed](https://github.com/mui/material-ui/issues/27666)
 
 **Material Design components**
 
@@ -1247,7 +1247,7 @@ npx @mui/codemod v1.0.0/color-imports <path>
 
 <!-- #default-branch-switch -->
 
-```
+```sh
 npx @mui/codemod v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```
 

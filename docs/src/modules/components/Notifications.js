@@ -93,7 +93,7 @@ export default function Notifications() {
 
     // Soften the pressure on the main thread.
     const timeout = setTimeout(() => {
-      fetch('https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json')
+      fetch('https://raw.githubusercontent.com/mui/material-ui/master/docs/notifications.json')
         .then((response) => {
           return response.json();
         })
@@ -133,14 +133,13 @@ export default function Notifications() {
         enterDelay={300}
       >
         <IconButton
-          color="inherit"
+          color="primary"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
-          sx={{ px: '10px' }}
         >
           <Badge
             color="error"
@@ -192,8 +191,13 @@ export default function Notifications() {
                     messageList.map((message, index) => (
                       <React.Fragment key={message.id}>
                         <ListItem alignItems="flex-start">
-                          <Typography gutterBottom>{message.title}</Typography>
-                          <Typography gutterBottom variant="body2">
+                          <Typography gutterBottom>
+                            <span
+                              // eslint-disable-next-line react/no-danger
+                              dangerouslySetInnerHTML={{ __html: message.title }}
+                            />
+                          </Typography>
+                          <Typography gutterBottom variant="body2" color="text.secondary">
                             <span
                               id="notification-message"
                               // eslint-disable-next-line react/no-danger

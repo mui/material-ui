@@ -1,12 +1,14 @@
+import React from 'react';
 import {
   OverridableComponent,
   OverridableStringUnion,
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import React from 'react';
-import { ColorPaletteProp } from '../styles/types/colorSystem';
-import { VariantProp } from '../styles/types/variants';
+import { SxProps } from '../styles/defaultTheme';
+import { ColorPaletteProp, VariantProp } from '../styles/types';
+
+export type ButtonSlot = 'root';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -28,16 +30,14 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
     /**
-     * The component used for the Root slot.
-     * Either a string to use a HTML element or a component.
-     * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-     */
-    component?: D;
-    /**
      * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
+    /**
+     * Element placed after the children.
+     */
+    endIcon?: React.ReactNode;
     /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
@@ -54,17 +54,23 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     fullWidth?: boolean;
     /**
      * The size of the component.
-     * `small` is equivalent to the dense button styling.
-     * @default 'medium'
      */
-    size?: OverridableStringUnion<'small' | 'large', ButtonPropsSizeOverrides>;
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', ButtonPropsSizeOverrides>;
+    /**
+     * Element placed before the children.
+     */
+    startIcon?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
     /**
      * @default 0
      */
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The variant to use.
-     * @default 'text'
+     * @default 'contained'
      */
     variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
   };
@@ -78,7 +84,9 @@ export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
 
 export type ButtonProps<
   D extends React.ElementType = ButtonTypeMap['defaultComponent'],
-  P = {},
+  P = {
+    component?: React.ElementType;
+  },
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
 
 export type ExtendButton<M extends OverridableTypeMap> = ((

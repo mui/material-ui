@@ -2,8 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, experimental_sx as sx } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
+import Chip from '@mui/material/Chip';
 import ButtonBase from '@mui/material/ButtonBase';
 import Link from 'docs/src/modules/components/Link';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
@@ -16,6 +17,7 @@ import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
+import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
 
 const iconsMap = {
   DescriptionIcon: ArticleRoundedIcon,
@@ -28,6 +30,7 @@ const iconsMap = {
   AddIcon: AddCircleRoundedIcon,
   BookIcon: BookRoundedIcon,
   ReaderIcon: ChromeReaderModeRoundedIcon,
+  TableViewIcon: TableViewRoundedIcon,
 };
 
 const Item = styled(function Item({ component: Component = 'div', ...props }) {
@@ -41,7 +44,7 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
   paddingTop: 5,
   paddingBottom: 5,
   justifyContent: 'flex-start',
-  fontWeight: theme.typography.fontWeightMedium,
+  fontWeight: 500,
   transition: theme.transitions.create(['color', 'background-color'], {
     duration: theme.transitions.duration.shortest,
   }),
@@ -171,6 +174,37 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   },
 );
 
+const LegacyChip = styled(function LegacyChip(props) {
+  return <Chip {...props} label="Legacy" />;
+})(
+  sx({
+    ml: 1,
+    '&:hover': {
+      bgcolor: (theme) =>
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.warning[900], 0.5)
+          : alpha(theme.palette.warning[100], 0.5),
+    },
+    '& .MuiChip-label': { px: 0.6 },
+    fontSize: (theme) => theme.typography.pxToRem(10),
+    fontWeight: 600,
+    textTransform: 'uppercase',
+    letterSpacing: '.04rem',
+    height: '16px',
+    border: 1,
+    borderColor: (theme) =>
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.warning[800], 0.5)
+        : theme.palette.warning[300],
+    bgcolor: (theme) =>
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.warning[900], 0.5)
+        : alpha(theme.palette.warning[100], 0.5),
+    color: (theme) =>
+      theme.palette.mode === 'dark' ? theme.palette.warning[300] : theme.palette.warning[700],
+  }),
+);
+
 export default function AppNavDrawerItem(props) {
   const {
     children,
@@ -182,6 +216,7 @@ export default function AppNavDrawerItem(props) {
     title,
     linkProps,
     icon,
+    legacy,
     ...other
   } = props;
   const [open, setOpen] = React.useState(openImmediately);
@@ -201,7 +236,7 @@ export default function AppNavDrawerItem(props) {
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        py: 0.5,
+        py: 0.3,
       }}
     >
       <IconComponent {...iconProps} />
@@ -224,6 +259,7 @@ export default function AppNavDrawerItem(props) {
           >
             {iconElement}
             {title}
+            {legacy && <LegacyChip />}
           </ItemLink>
         </StyledLi>
       </React.Fragment>
@@ -243,6 +279,7 @@ export default function AppNavDrawerItem(props) {
         >
           {iconElement}
           {title}
+          {legacy && <LegacyChip />}
           {depth === 0 && <ItemButtonIcon open={open} className="KeyboardArrowRightRoundedIcon" />}
         </ItemButton>
         {depth === 0 ? (
@@ -262,6 +299,7 @@ AppNavDrawerItem.propTypes = {
   depth: PropTypes.number.isRequired,
   href: PropTypes.string,
   icon: PropTypes.string,
+  legacy: PropTypes.bool,
   linkProps: PropTypes.object,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,

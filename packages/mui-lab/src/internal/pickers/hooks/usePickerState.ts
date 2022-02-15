@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useOpenState } from './useOpenState';
 import { WrapperVariant } from '../wrappers/WrapperVariantContext';
-import { useUtils, MuiPickersAdapter } from './useUtils';
+import { useOpenState } from './useOpenState';
+import { MuiPickersAdapter, useUtils } from './useUtils';
 
 export interface PickerStateValueManager<TInputValue, TDateValue> {
   areValuesEqual: (
@@ -70,6 +70,8 @@ export function usePickerState<TInput, TDateValue>(
     dispatch({ type: 'reset', payload: parsedDateValue });
   }
 
+  const [initialDate, setInitialDate] = React.useState<TDateValue>(draftState.committed);
+
   // Mobile keyboard view is a special case.
   // When it's open picker should work like closed, cause we are just showing text field
   const [isMobileKeyboardViewOpen, setMobileKeyboardViewOpen] = React.useState(false);
@@ -80,7 +82,7 @@ export function usePickerState<TInput, TDateValue>(
 
       if (needClosePicker) {
         setIsOpen(false);
-
+        setInitialDate(acceptedDate);
         if (onAccept) {
           onAccept(acceptedDate);
         }
@@ -94,7 +96,7 @@ export function usePickerState<TInput, TDateValue>(
       open: isOpen,
       onClear: () => acceptDate(valueManager.emptyValue, true),
       onAccept: () => acceptDate(draftState.draft, true),
-      onDismiss: () => setIsOpen(false),
+      onDismiss: () => acceptDate(initialDate, true),
       onSetToday: () => {
         const now = utils.date() as TDateValue;
         dispatch({ type: 'update', payload: now });
@@ -107,8 +109,8 @@ export function usePickerState<TInput, TDateValue>(
       isOpen,
       utils,
       draftState.draft,
-      setIsOpen,
       valueManager.emptyValue,
+      initialDate,
     ],
   );
 

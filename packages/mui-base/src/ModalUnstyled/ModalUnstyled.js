@@ -330,7 +330,9 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Modal.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -372,7 +374,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
   disablePortal: PropTypes.bool,
   /**
    * If `true`, the modal will not restore focus to previously focused element once
-   * modal is hidden.
+   * modal is hidden or unmounted.
    * @default false
    */
   disableRestoreFocus: PropTypes.bool,

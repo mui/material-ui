@@ -11,7 +11,7 @@ import { useUserLanguage } from 'docs/src/modules/utils/i18n';
  *
  * - /docs/src/modules/components/Link.tsx
  * - /examples/nextjs/src/Link.tsx
- * - /examples/nextjs-with-typescript/src/components/Link.tsx
+ * - /examples/nextjs-with-typescript/src/Link.tsx
  */
 
 // Add support for the sx prop for consistency with the other branches.
@@ -92,7 +92,8 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     userLanguage !== 'en' &&
     pathname &&
     pathname.indexOf('/') === 0 &&
-    pathname.indexOf('/blog') !== 0
+    pathname.indexOf('/blog') !== 0 &&
+    !pathname.startsWith(`/${userLanguage}/`)
   ) {
     linkAs = `/${userLanguage}${linkAs}`;
   }

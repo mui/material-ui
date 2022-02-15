@@ -1,10 +1,10 @@
 ---
-description: 2019 MUI Developer Survey results
+title: 2019 MUI Developer Survey results
+description: Results for the first yearly developer survey, 2019 edition.
+date: 2019-03-16T00:00:00.000Z
+authors: ['oliviertassinari', 'mbrookes']
+tags: ['Developer survey']
 ---
-
-# 2019 MUI Developer Survey results
-
-Olivier Tassinari, Matt Brookes. March 16, 2019.
 
 While we are currently working on the upcoming release of MUI v4, we need to prioritize our
 roadmap for the coming year. To refine our focus, we launched a developer survey last month,
@@ -219,11 +219,11 @@ A nice bell curve, with the majority of developers having 1 to 5 years experienc
 
 ### 10. How long have you been developing with React?
 
-<img src="/static/blog/2019-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 99	x I'm just getting started!, 77	x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
+<img src="/static/blog/2019-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 99 x I'm just getting started!, 77 x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
 
 ### 11. How long have you been developing with MUI?
 
-<img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160	x I'm just getting started!, 147	x 6 months +, 293	x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
+<img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160 x I'm just getting started!, 147 x 6 months +, 293 x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
 
 We missed a trick by not including "2 years +" here, so "1 year +" looks stacked.
 The number of users of MUI continues to grow at a steady pace, and once on board, many
@@ -290,7 +290,7 @@ Multiple options were allowed.
 - Gatsby: 8%
 
 Server-side rendering isn't yet very popular.
-As the React ecosystem matures, we might see a [big](https://www.rank2traffic.com/gatsbyjs.org) [push](https://www.rank2traffic.com/nextjs.org) of server-side rendering in the coming months.
+As the React ecosystem matures, we might see a big push of server-side rendering in the coming months.
 
 ### 18. What styling system are you using?
 

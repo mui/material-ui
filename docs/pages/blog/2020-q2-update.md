@@ -1,10 +1,10 @@
 ---
+title: Q2 2020 Update
 description: An update on our mission for Q2 2020.
+date: 2020-07-17T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['Company update']
 ---
-
-# Q2 2020 Update
-
-Olivier Tassinari. July 17, 2020.
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
 
@@ -12,17 +12,17 @@ This update covers our progress over the last three months, and what we aim to a
 
 Here are the most significant improvements since March 2020:
 
-- 🚧 Work has started on [the next major version: v5](https://github.com/mui-org/material-ui/issues/20012).<br />
+- 🚧 Work has started on [the next major version: v5](https://github.com/mui/material-ui/issues/20012).<br />
   The last 14 months have been spent focusing on improving the library under the v4.x development branch, while not introducing any breaking changes. During this period we have identified several important areas for improvement. While the absence of breaking changes is a significant time-saver for developers, it also limits the scope of the problems that can be solved and the quality of the solutions. We're excited about what comes next!<br /><br />
-  You can find the documentation for the next version at https://mui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui-org/material-ui/issues/20012) and [milestone](https://github.com/mui-org/material-ui/milestone/35).
+  You can find the documentation for the next version at https://mui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui/material-ui/issues/20012) and [milestone](https://github.com/mui/material-ui/milestone/35).
 
 - 📍 The icons package has been updated with changes made by Google, leading to [200+ new icons](https://mui.com/components/material-icons/).
 
   <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="width: 615px; margin-bottom: 24px;" />
 
-- 🎨 [Figma assets](https://material-ui.com/store/items/figma-react/) for MUI extend the support for design tools beyond Sketch.
+- 🎨 [Figma assets](https://mui.com/store/items/figma-react/) for MUI extend the support for design tools beyond Sketch.
 
-  <a href="https://material-ui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
+  <a href="https://mui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
 
   Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 
@@ -94,13 +94,13 @@ We'll do our best, no guarantee!
 
 - 👩‍🎨 We will work with a design agency to do the branding of the company, redo the homepage, do the marketing pages of the enterprise version of the library, improve the documentation, introduce new themes (as alternatives to Material Design).
 
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
 
 ### Company
 
 These are objectives, no guarantees:
 
-- 🏢 We will [hire](/company/jobs/) 3 full-time roles in the team.
+- 🏢 We will [hire](/careers/) 3 full-time roles in the team.
 
   - One person on the open-source side to focus on the design system problem (unstyled, theming, styling, etc.): ✅ starting in two months.
   - One person on the enterprise side to consolidate the development of the advanced components: 🚧 Work in progress.

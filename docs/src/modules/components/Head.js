@@ -21,13 +21,12 @@ export default function Head(props) {
   const preview = card.startsWith('http') ? card : `${HOST}${card}`;
   return (
     <NextHead>
-      <meta name="viewport" content="initial-scale=1, width=device-width" />
       <title>{title}</title>
       <meta name="description" content={description} />
       {/* Twitter */}
       <meta name="twitter:card" content={largeCard ? 'summary_large_image' : 'summary'} />
-      {/* https://twitter.com/MaterialUI */}
-      <meta name="twitter:site" content="@MaterialUI" />
+      {/* https://twitter.com/MUI_hq */}
+      <meta name="twitter:site" content="@MUI_hq" />
       {/* #major-version-switch */}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
