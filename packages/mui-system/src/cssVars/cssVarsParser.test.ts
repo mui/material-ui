@@ -230,6 +230,29 @@ describe('cssVarsParser', () => {
         });
       });
 
+      it('replace default prefix if provided', () => {
+        const theme = {
+          fontFamily: {
+            body: '"Public Sans", var( --joy-fontFamily-fallback)',
+            display: '"Public Sans", var(    --joy-fontFamily-fallback)',
+          },
+        };
+        const { css } = cssVarsParser(theme, {
+          prefix: 'foo-bar',
+          basePrefix: 'joy',
+        });
+        expect(theme).to.deep.equal({
+          fontFamily: {
+            body: '"Public Sans", var(--foo-bar-fontFamily-fallback)',
+            display: '"Public Sans", var(--foo-bar-fontFamily-fallback)',
+          },
+        });
+        expect(css).to.deep.equal({
+          '--foo-bar-fontFamily-body': '"Public Sans", var(--foo-bar-fontFamily-fallback)',
+          '--foo-bar-fontFamily-display': '"Public Sans", var(--foo-bar-fontFamily-fallback)',
+        });
+      });
+
       it('replace value starts with `var` if basePrefix, prefix are different', () => {
         const theme = {
           bg: 'var(--joy-palette-neutral-50)',

@@ -118,6 +118,7 @@ export * from './spacing';
 
 export {
   default as unstable_styleFunctionSx,
+  unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';

@@ -200,13 +200,13 @@ function ProductDrawerButton(props) {
               href={ROUTES.materialDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              Material Design <KeyboardArrowRight fontSize="small" />
+              Material UI <KeyboardArrowRight fontSize="small" />
             </Link>
             <Link
               href={ROUTES.systemDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              System <KeyboardArrowRight fontSize="small" />
+              MUI System <KeyboardArrowRight fontSize="small" />
             </Link>
           </LinksWrapper>
         </li>
@@ -418,6 +418,7 @@ function reduceChildRoutes(context) {
         topLevel={topLevel && !page.subheader}
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
+        legacy={page.legacy}
         icon={page.icon}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
@@ -434,6 +435,7 @@ function reduceChildRoutes(context) {
         key={title}
         title={title}
         href={page.pathname}
+        legacy={page.legacy}
         onClick={onClose}
         icon={page.icon}
       />,
@@ -585,7 +587,7 @@ function AppNavDrawer(props) {
               ])}
             {router.asPath.startsWith('/material/') && (
               <ProductIdentifier
-                name="Material"
+                name="Material UI"
                 metadata="MUI Core"
                 versionSelector={renderVersionSelector([
                   { text: `v${materialPkgJson.version}`, current: true },
@@ -598,7 +600,7 @@ function AppNavDrawer(props) {
             )}
             {router.asPath.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
               <ProductIdentifier
-                name="System"
+                name="MUI System"
                 metadata="MUI Core"
                 versionSelector={renderVersionSelector([
                   { text: `v${systemPkgJson.version}`, current: true },

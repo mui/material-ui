@@ -326,6 +326,9 @@ export * from './Popover';
 export { default as Popper } from './Popper';
 export * from './Popper';
 
+export { default as Portal } from './Portal';
+export * from './Portal';
+
 export { default as Radio } from './Radio';
 export * from './Radio';
 

@@ -285,7 +285,7 @@ export default function useSlider(props: UseSliderProps) {
       setOpen(index);
       otherHandlers?.onFocus?.(event);
     };
-  const createHandleHidenInputBlur =
+  const createHandleHiddenInputBlur =
     (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
       handleBlurVisible(event);
       if (isFocusVisibleRef.current === false) {
@@ -653,7 +653,7 @@ export default function useSlider(props: UseSliderProps) {
     const ownEventHandlers = {
       onChange: createHandleHiddenInputChange(otherHandlers || {}),
       onFocus: createHandleHiddenInputFocus(otherHandlers || {}),
-      onBlur: createHandleHidenInputBlur(otherHandlers || {}),
+      onBlur: createHandleHiddenInputBlur(otherHandlers || {}),
     };
 
     const mergedEventHandlers: Record<string, React.EventHandler<any>> = {

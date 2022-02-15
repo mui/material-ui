@@ -97,6 +97,13 @@ export default function createCssVarsProvider<
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  /**
+   * A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to ThemeProvider.
+   *
+   * The example usage is the variant generation in Joy. We need to combine the token from user-input and the default theme first, then generate
+   * variants from those tokens.
+   */
+  resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
 }): {
   CssVarsProvider: (
     props: React.PropsWithChildren<

@@ -36,15 +36,7 @@ yarn add @mui/icons-material
 
 These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 
-If you aren't already using MUI in your project, you can add it with:
-
-```sh
-// with npm
-npm install @mui/material
-
-// with yarn
-yarn add @mui/material
-```
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/getting-started/installation/).
 
 ### Usage
 
