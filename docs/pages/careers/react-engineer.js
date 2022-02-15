@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/src/pages/company/careers/react-support-engineer.md?@mui/markdown';
+} from 'docs/src/pages/careers/react-engineer.md?@mui/markdown';
 
 export default function Page() {
   return <TopLayoutCompany demos={demos} docs={docs} demoComponents={demoComponents} />;
