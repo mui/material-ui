@@ -13,7 +13,8 @@ export default function AppHeaderBanner() {
         color: '#fff',
         p: 1.5,
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: { xs: 'column', md: 'row' },
+        alignItems: { xs: 'start', sm: 'center' },
         justifyContent: 'center',
         background: (theme) =>
           theme.palette.mode === 'dark'
@@ -21,7 +22,8 @@ export default function AppHeaderBanner() {
             : `linear-gradient(-90deg, ${theme.palette.primary[700]}, ${theme.palette.primary[500]} 120%)`,
       }}
     >
-      🚀 We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and more!&nbsp;
+      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
+      more!&nbsp;&#160;
       <Link
         href={ROUTES.careers} // Fix me!
         target="_blank"
