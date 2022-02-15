@@ -53,7 +53,7 @@ const StaticDateTimePicker = React.forwardRef(function StaticDateTimePicker<TDat
   );
 
   const validationError = useDateTimeValidation(props) !== null;
-  const { pickerProps, inputProps } = usePickerState(props, valueManager);
+  const { pickerProps, inputProps } = usePickerState(props, valueManager, false);
 
   // Note that we are passing down all the value without spread.
   // It saves us >1kb gzip and make any prop available automatically on any level down.

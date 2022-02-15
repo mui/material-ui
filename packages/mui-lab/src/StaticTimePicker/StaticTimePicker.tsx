@@ -50,7 +50,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
   );
 
   const validationError = useTimeValidation(props) !== null;
-  const { pickerProps, inputProps } = usePickerState(props, valueManager);
+  const { pickerProps, inputProps } = usePickerState(props, valueManager, false);
 
   const {
     displayStaticWrapperAs = 'mobile',

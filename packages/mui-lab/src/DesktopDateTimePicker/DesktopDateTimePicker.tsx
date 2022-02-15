@@ -48,7 +48,7 @@ const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TD
   );
 
   const validationError = useDateTimeValidation(props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager, false);
 
   const {
     onChange,

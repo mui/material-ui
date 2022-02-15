@@ -45,7 +45,7 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
   );
 
   const validationError = useTimeValidation(props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager, false);
 
   const {
     onChange,

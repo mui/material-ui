@@ -38,6 +38,7 @@ export interface PickerStateProps<TInput, TDateValue> {
 export function usePickerState<TInput, TDateValue>(
   props: PickerStateProps<TInput, TDateValue>,
   valueManager: PickerStateValueManager<TInput, TDateValue>,
+  resetDateOnDismiss: boolean,
 ) {
   const { disableCloseOnSelect, onAccept, onChange, value } = props;
 
@@ -96,7 +97,7 @@ export function usePickerState<TInput, TDateValue>(
       open: isOpen,
       onClear: () => acceptDate(valueManager.emptyValue, true),
       onAccept: () => acceptDate(draftState.draft, true),
-      onDismiss: () => acceptDate(initialDate, true),
+      onDismiss: () => (resetDateOnDismiss ? acceptDate(initialDate, true) : setIsOpen(false)),
       onSetToday: () => {
         const now = utils.date() as TDateValue;
         dispatch({ type: 'update', payload: now });
@@ -104,13 +105,15 @@ export function usePickerState<TInput, TDateValue>(
       },
     }),
     [
-      acceptDate,
-      disableCloseOnSelect,
       isOpen,
-      utils,
-      draftState.draft,
+      acceptDate,
       valueManager.emptyValue,
+      draftState.draft,
+      resetDateOnDismiss,
       initialDate,
+      setIsOpen,
+      utils,
+      disableCloseOnSelect,
     ],
   );
 
