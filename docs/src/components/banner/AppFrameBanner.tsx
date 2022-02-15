@@ -29,8 +29,8 @@ export default function AppFrameBanner() {
         transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
         transitionDuration: '150ms',
         color:
-          theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[600],
-        fontWeight: 600,
+          theme.palette.mode === 'dark' ? theme.palette.primary[100] : theme.palette.primary[600],
+        fontWeight: 500,
         '&:hover, &:focus-visible': {
           backgroundColor:
             theme.palette.mode === 'dark'
