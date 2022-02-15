@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
@@ -10,11 +9,13 @@ export default function AppFrameBanner() {
     <Link
       href={ROUTES.careers} // Fix me!
       target="_blank"
+      variant="caption"
+      fontWeight="medium"
       data-ga-event-category="$event-category" // Fix me!
       data-ga-event-action="click"
       data-ga-event-label="table-contents"
       sx={(theme) => ({
-        display: { xs: 'none', lg: 'flex' },
+        display: { xs: 'none', lg: 'block' },
         p: 1,
         maxHeight: '34px',
         background:
@@ -28,6 +29,8 @@ export default function AppFrameBanner() {
         transitionProperty: 'all',
         transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
         transitionDuration: '150ms',
+        color:
+          theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[600],
         '&:hover, &:focus-visible': {
           background:
             theme.palette.mode === 'dark'
@@ -40,19 +43,9 @@ export default function AppFrameBanner() {
         },
       })}
     >
-      <Typography
-        component="span"
-        variant="caption"
-        fontWeight="medium"
-        sx={(theme) => ({
-          color:
-            theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[600],
-        })}
-      >
-        🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
-        more!&nbsp;
-        <br />
-      </Typography>
+      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
+      more!&nbsp;
+      <br />
     </Link>
   ) : null;
 }
