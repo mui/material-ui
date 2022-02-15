@@ -18,7 +18,7 @@ export default function AppFrameBanner() {
         display: { xs: 'none', lg: 'block' },
         p: 1,
         maxHeight: '34px',
-        background:
+        backgroundColor:
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primary[900], 0.3)
             : theme.palette.primary[50],
@@ -32,7 +32,7 @@ export default function AppFrameBanner() {
         color:
           theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[600],
         '&:hover, &:focus-visible': {
-          background:
+          backgroundColor:
             theme.palette.mode === 'dark'
               ? alpha(theme.palette.primary[900], 0.6)
               : alpha(theme.palette.primary[100], 0.4),
