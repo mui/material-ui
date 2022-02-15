@@ -43,15 +43,30 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
         InputPropsColorOverrides
       >;
       /**
-       * The component used for the Root slot.
+       * The components used for each slot inside the InputBase.
        * Either a string to use a HTML element or a component.
-       * This is equivalent to `components.Root`. If both are provided, the `component` is used.
        */
-      component?: D | React.ElementType;
+      components?: {
+        Root?: React.ElementType;
+        Input?: React.ElementType;
+      };
+      /**
+       * The props used for each slot inside the Input.
+       * @default {}
+       */
+      componentsProps?: {
+        root?: React.ComponentPropsWithRef<'div'>;
+        input?: React.ComponentPropsWithRef<'input'>;
+      };
       /**
        * Trailing adornment for this input.
        */
       endAdornment?: React.ReactNode;
+      /**
+       * If `true`, the button will take up the full width of its container.
+       * @default false
+       */
+      fullWidth?: boolean;
       /**
        * The id of the `input` element.
        */
@@ -110,7 +125,9 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
 
 export type InputProps<
   D extends React.ElementType = InputTypeMap['defaultComponent'],
-  P = {},
+  P = {
+    component?: React.ElementType;
+  },
 > = OverrideProps<InputTypeMap<P, D>, D>;
 
 export default InputProps;
