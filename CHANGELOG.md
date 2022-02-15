@@ -6,7 +6,6 @@ _Feb 14, 2022_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- ❌ @mbrookes removed the Framer components (#30983)
 - 🛠 @sydneyjodon-wk improved propTypes of the ToggleButton components (#30883)
 - Several 🐛 bug fixes and 📚 documentation improvements
 
