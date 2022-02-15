@@ -13,15 +13,8 @@ import {
 import { getListItemButtonUtilityClass } from './listItemButtonClasses';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
-  const {
-    color,
-    disabled,
-    focusVisible,
-    focusVisibleClassName,
-    selectedVariant,
-    selectedColor,
-    selected,
-  } = ownerState;
+  const { color, disabled, focusVisible, focusVisibleClassName, selectedVariant, selected } =
+    ownerState;
 
   const slots = {
     root: [
@@ -30,7 +23,6 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
       focusVisible && 'focusVisible',
       color && `color${capitalize(color)}`,
       selected && 'selected',
-      selected && selectedColor && `selectedColor${capitalize(selectedColor)}`,
       selected && selectedVariant && `selectedVariant${capitalize(selectedVariant)}`,
     ],
   };
@@ -50,6 +42,9 @@ const ListItemButtonRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps }>(({ theme, ownerState }) => [
   {
+    ...(!ownerState.color && {
+      '--List-decorator-color': theme.vars.palette.text.tertiary, // for making icon color less obvious
+    }),
     boxSizing: 'border-box',
     display: 'flex',
     alignItems: 'center',
@@ -58,17 +53,12 @@ const ListItemButtonRoot = styled('div', {
     color: 'initial',
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
     // The value is negative to account for the ListItem's padding
-    margin: 'var(--ListItemButton-margin)',
-    padding: 'min(0.375rem, var(--List-itemGutter)) var(--List-itemGutter)',
-    ...(ownerState.selected &&
-      ownerState.selectedVariant === 'outlined' && {
-        padding:
-          'calc(min(0.375rem, var(--List-itemGutter)) - var(--variant-outlinedBorderWidth)) calc(var(--List-itemGutter) - var(--variant-outlinedBorderWidth))', // account for the border width
-      }),
-    paddingLeft: 'var(--List-insetStart, var(--List-itemGutter))',
-    minHeight: 'var(--List-itemMinHeight)',
+    margin: 'var(--List-itemButton-margin)',
+    padding: 'min(0.375rem, var(--List-item-paddingX)) var(--List-item-paddingX)',
+    paddingLeft: 'var(--List-insetStart, var(--List-item-paddingX))',
+    minHeight: 'var(--List-item-minHeight)',
     border: 'none',
-    borderRadius: 'var(--List-itemRadius)',
+    borderRadius: 'var(--List-item-radius)',
     flex: 1,
     minWidth: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
@@ -84,10 +74,16 @@ const ListItemButtonRoot = styled('div', {
   },
   ...(ownerState.selected
     ? [
-        theme.variants[ownerState.selectedVariant!]?.[ownerState.selectedColor!],
-        theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.selectedColor!],
-        theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.selectedColor!],
-        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.selectedColor!],
+        {
+          ...(ownerState.selectedVariant === 'outlined' && {
+            padding:
+              'calc(min(0.375rem, var(--List-item-paddingX)) - var(--variant-outlinedBorderWidth)) calc(var(--List-item-paddingX) - var(--variant-outlinedBorderWidth))', // account for the border width
+          }),
+        },
+        theme.variants[ownerState.selectedVariant!]?.[ownerState.color || 'primary'],
+        theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.color || 'primary'],
+        theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.color || 'primary'],
+        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.color || 'primary'],
       ]
     : [
         theme.variants.text?.[ownerState.color!],
@@ -110,7 +106,6 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component = 'div',
     color,
     selected = false,
-    selectedColor = 'primary',
     selectedVariant = 'light',
     ...other
   } = props;
@@ -143,7 +138,6 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     color,
     focusVisible,
     selected,
-    selectedColor,
     selectedVariant,
   };
 
@@ -203,19 +197,6 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   selected: PropTypes.bool,
-  /**
-   * The color of the component when it is selected. It supports those theme colors that make sense for this component.
-   * @default 'primary'
-   */
-  selectedColor: PropTypes.oneOf([
-    'context',
-    'danger',
-    'info',
-    'neutral',
-    'primary',
-    'success',
-    'warning',
-  ]),
   /**
    * The variant to use.
    * @default 'light'

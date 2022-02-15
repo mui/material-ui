@@ -255,12 +255,12 @@ const components = [
     cssVars: [
       { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
-      { id: '--List-itemMinHeight', type: 'number', unit: 'px', defaultValue: 40 },
-      { id: '--List-itemGutter', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-startDecoratorWidth', type: 'number', unit: 'px', defaultValue: 48 },
-      { id: '--List-dividerGap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--List-item-paddingX', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 48 },
+      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-insetStart', type: 'number', unit: 'px' },
-      { id: '--List-itemRadius', type: 'number', unit: 'px' },
+      { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],
   },
 ];

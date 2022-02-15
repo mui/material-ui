@@ -19,11 +19,11 @@ const ListItemDecoratorRoot = styled('span', {
   name: 'MuiListItemDecorator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemDecoratorProps }>(({ theme }) => ({
+})<{ ownerState: ListItemDecoratorProps }>({
   display: 'inline-flex',
-  color: theme.vars.palette.text.secondary, // for making icon color less obvious
-  minWidth: 'var(--List-startDecoratorWidth)',
-}));
+  color: `var(--List-decorator-color)`,
+  minWidth: 'var(--List-decorator-width)',
+});
 
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

@@ -19,16 +19,16 @@ const ListRoot = styled('ul', {
   name: 'MuiList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListProps }>({
+})<{ ownerState: ListProps }>(({ theme }) => ({
   '--List-padding': '0.375rem',
-  '--List-radius': '8px',
-  '--List-itemMinHeight': '2.5rem',
-  '--List-itemGutter': '0.375rem',
-  '--List-startDecoratorWidth': '3rem',
-  '--List-dividerGap': '0.75rem',
-  '--List-insetStart': 'var(--List-itemGutter)',
+  '--List-radius': theme.vars.radius.sm,
+  '--List-item-minHeight': '2.5rem',
+  '--List-item-paddingX': '0.375rem',
+  '--List-decorator-width': '3rem',
+  '--List-divider-gap': '0.75rem',
+  '--List-insetStart': 'var(--List-item-paddingX)',
   // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
-  '--List-itemRadius':
+  '--List-item-radius':
     'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
   borderRadius: 'var(--List-radius)',
   padding: 'var(--List-padding)',
@@ -37,7 +37,7 @@ const ListRoot = styled('ul', {
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
-});
+}));
 
 const List = React.forwardRef(function List(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

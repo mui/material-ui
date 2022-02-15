@@ -207,7 +207,7 @@ export default function JoyTypography() {
           </List>
 
           {/* ex6 */}
-          <List sx={{ '--List-startDecoratorWidth': '56px' }}>
+          <List sx={{ '--List-decorator-width': '56px' }}>
             <ListItem>
               <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                 <Box
@@ -271,11 +271,11 @@ export default function JoyTypography() {
               <ListItemContent>New file</ListItemContent>
               <Typography level="body2">⌘ N</Typography>
             </ListItemButton>
-            <ListItemButton color="primary">
+            <ListItemButton>
               <ListItemContent>Copy</ListItemContent>
               <Typography level="body2">⌘ C</Typography>
             </ListItemButton>
-            <ListItemButton color="primary">
+            <ListItemButton>
               <ListItemContent>Check</ListItemContent>
             </ListItemButton>
             <ListDivider inset="gutter" />
@@ -309,25 +309,25 @@ export default function JoyTypography() {
             sx={{
               '--List-radius': '0px',
               '--List-padding': '0px',
-              '--List-itemGutter': '1rem',
-              '--List-itemMinHeight': '3rem',
+              '--List-item-paddingX': '1rem',
+              '--List-item-minHeight': '3rem',
             }}
           >
-            <ListItemButton selected color="primary">
+            <ListItemButton selected selectedVariant="contained" color="primary">
               <ListItemDecorator>
                 <InboxIcon />
               </ListItemDecorator>
               <ListItemContent>Inbox</ListItemContent>
               <KeyboardArrowUp />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton color="primary">
               <ListItemDecorator>
                 <Star />
               </ListItemDecorator>
               <ListItemContent>Starred</ListItemContent>
             </ListItemButton>
             <ListDivider component="hr" />
-            <ListItemButton>
+            <ListItemButton color="primary">
               <ListItemDecorator>
                 <Favorite />
               </ListItemDecorator>
@@ -338,9 +338,9 @@ export default function JoyTypography() {
           {/* ex10 */}
           <List
             component="nav"
-            sx={{ '--List-startDecoratorWidth': '56px', '--List-dividerGap': '1rem' }}
+            sx={{ '--List-decorator-width': '56px', '--List-divider-gap': '1rem' }}
           >
-            <ListItemButton selected selectedVariant="light" selectedColor="primary">
+            <ListItemButton selected selectedVariant="light">
               <ListItemDecorator>
                 <Circle color="primary">
                   <InboxIcon />
@@ -355,7 +355,7 @@ export default function JoyTypography() {
               </Button>
             </ListItemButton>
             <ListDivider component="hr" />
-            <ListItemButton selected selectedVariant="outlined" selectedColor="danger">
+            <ListItemButton selected selectedVariant="outlined" color="danger">
               <ListItemDecorator>
                 <Circle color="danger">
                   <Star />
@@ -373,7 +373,7 @@ export default function JoyTypography() {
             <ListItemButton
               selected
               selectedVariant="contained"
-              selectedColor="success"
+              color="success"
               sx={(theme) => theme.variants.containedOverrides.success}
             >
               <ListItemDecorator>

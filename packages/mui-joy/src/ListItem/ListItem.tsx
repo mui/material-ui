@@ -21,14 +21,15 @@ const ListItemRoot = styled('li', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemProps }>(({ theme }) => ({
   // add negative margin to ListItemButton equal to this ListItem padding
-  '--ListItemButton-margin':
-    'max(-0.375rem, -1 * var(--List-itemGutter)) calc(-1 * var(--List-itemGutter))',
+  '--List-itemButton-margin':
+    'max(-0.375rem, -1 * var(--List-item-paddingX)) calc(-1 * var(--List-item-paddingX))',
+  '--List-decorator-color': theme.vars.palette.text.tertiary, // for making icon color less obvious
   boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'center',
-  padding: 'min(0.375rem, var(--List-itemGutter)) var(--List-itemGutter)',
+  padding: 'min(0.375rem, var(--List-item-paddingX)) var(--List-item-paddingX)',
   paddingLeft: 'var(--List-insetStart)',
-  minHeight: 'var(--List-itemMinHeight)',
+  minHeight: 'var(--List-item-minHeight)',
   ...theme.typography.body1,
 }));
 

@@ -29,20 +29,6 @@ export interface ListItemButtonClasses {
   selectedVariantOutlined: string;
   /** State class applied to the root element if `selectedVariant="contained"`. */
   selectedVariantContained: string;
-  /** Styles applied to the root element if `selectedColor="primary"`. */
-  selectedColorPrimary: string;
-  /** Styles applied to the root element if `selectedColor="neutral"`. */
-  selectedColorNeutral: string;
-  /** Styles applied to the root element if `selectedColor="danger"`. */
-  selectedColorDanger: string;
-  /** Styles applied to the root element if `selectedColor="info"`. */
-  selectedColorInfo: string;
-  /** Styles applied to the root element if `selectedColor="success"`. */
-  selectedColorSuccess: string;
-  /** Styles applied to the root element if `selectedColor="warning"`. */
-  selectedColorWarning: string;
-  /** Styles applied to the root element if `selectedColor="context"`. */
-  selectedColorContext: string;
 }
 
 export type ListItemButtonClassKey = keyof ListItemButtonClasses;
@@ -66,13 +52,6 @@ const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('Mui
   'selectedVariantLight',
   'selectedVariantOutlined',
   'selectedVariantContained',
-  'selectedColorPrimary',
-  'selectedColorNeutral',
-  'selectedColorDanger',
-  'selectedColorInfo',
-  'selectedColorSuccess',
-  'selectedColorWarning',
-  'selectedColorContext',
 ]);
 
 export default listItemButtonClasses;
