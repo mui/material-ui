@@ -9,9 +9,6 @@ export default function TableOfContentsBanner() {
     <Link
       href={ROUTES.home} // Fix me!
       target="_blank"
-      data-ga-event-category="$event-category" // Fix me!
-      data-ga-event-action="click"
-      data-ga-event-label="table-contents"
       sx={(theme) => ({
         mb: 2,
         p: 1,

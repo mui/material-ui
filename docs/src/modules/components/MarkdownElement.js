@@ -72,20 +72,20 @@ const Root = styled('div')(({ theme }) => ({
   '& h3': {
     ...theme.typography.h6,
     fontFamily: theme.typography.fontFamilySystem,
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
     margin: '24px 0 8px',
   },
   '& h4': {
     ...theme.typography.subtitle1,
     fontFamily: theme.typography.fontFamilySystem,
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     margin: '24px 0 8px',
   },
   '& h5': {
     ...theme.typography.subtitle2,
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     margin: '20px 0 8px',
   },
@@ -133,12 +133,12 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
   '& h1 code': {
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
   },
   '& h2 code': {
     fontSize: theme.typography.pxToRem(24),
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
   },
   '& h3 code': {

@@ -10,7 +10,7 @@ export default function AppHeaderBanner() {
       fontWeight="medium"
       sx={{
         color: '#fff',
-        p: 1.2,
+        p: '12px',
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: { xs: 'start', sm: 'center' },
@@ -27,9 +27,6 @@ export default function AppHeaderBanner() {
       <Link
         href={ROUTES.careers} // Fix me!
         target="_blank"
-        data-ga-event-category="$event-category" // Fix me!
-        data-ga-event-action="click"
-        data-ga-event-label="header"
         sx={{
           fontWeight: 'semiBold',
           textDecoration: 'underline',
