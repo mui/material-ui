@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
@@ -281,6 +282,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
           {startAdornment}
         </InputStartAdornment>
       )}
+
       <InputComponent {...inputProps} />
       {endAdornment && (
         <InputEndAdornment className={classes.endAdornment} ownerState={ownerState}>
@@ -290,5 +292,169 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     </Root>
   );
 }) as OverridableComponent<InputTypeMap>;
+
+Input.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  'aria-describedby': PropTypes.string,
+  /**
+   * @ignore
+   */
+  'aria-label': PropTypes.string,
+  /**
+   * @ignore
+   */
+  'aria-labelledby': PropTypes.string,
+  /**
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
+  autoComplete: PropTypes.string,
+  /**
+   * If `true`, the `input` element is focused during the first mount.
+   */
+  autoFocus: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.any,
+  /**
+   * If `true`, the component is disabled.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Trailing adornment for this input.
+   */
+  endAdornment: PropTypes.node,
+  /**
+   * If `true`, the `input` will indicate an error.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  error: PropTypes.bool,
+  /**
+   * If `true`, the button will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The id of the `input` element.
+   */
+  id: PropTypes.string,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.any.isRequired,
+    }),
+  ]),
+  /**
+   * Name attribute of the `input` element.
+   */
+  name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * The short hint displayed in the `input` before the user enters a value.
+   */
+  placeholder: PropTypes.string,
+  /**
+   * It prevents the user from changing the value of the field
+   * (not from interacting with the field).
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * If `true`, the `input` element is required.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  required: PropTypes.bool,
+  /**
+   * Leading adornment for this input.
+   */
+  startAdornment: PropTypes.node,
+  /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * @default 'text'
+   */
+  type: PropTypes.string,
+  /**
+   * The value of the `input` element, required for a controlled component.
+   */
+  value: PropTypes.any,
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['light', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
+} as any;
 
 export default Input;
