@@ -88,10 +88,10 @@ If your application stands out, we'll contact you for a get-to-know conversation
 
 If that goes well, you'll be invited to up to four additional conversations, those being:
 
-- A walkthrough on one or two selected projects of your career that you believe demonstrate [comparable experience.](https://articles.uie.com/ux-hiring-lets-talk-about-comparable-experience/)
+- A walkthrough of one or two selected projects that you believe demonstrate [comparable experience.](https://articles.uie.com/ux-hiring-lets-talk-about-comparable-experience/)
 - A chat with one of the product managers or engineers that you will work closely with.
 - A chat with one of MUI's founders.
-- A possible follow-up chats if we missed addressing anything relevant in the previous conversations.
+- A possible follow-up chat if we missed addressing anything relevant in the previous conversations.
 
 All these conversations will be 1:1 and over video chat.
 Please ask as many questions as you wish throughout the whole process, it's a two-way discussion.
