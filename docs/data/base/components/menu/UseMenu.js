@@ -5,15 +5,6 @@ import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 import { GlobalStyles } from '@mui/system';
 import clsx from 'clsx';
 
-const blue = {
-  100: '#DAECFF',
-  200: '#99CCF3',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
-};
-
 const grey = {
   100: '#E7EBF0',
   200: '#E0E3E7',
@@ -59,12 +50,13 @@ const styles = `
     border-bottom: none;
   }
 
-  .menu-item.highlighted {
+  .menu-item:focus {
     background-color: ${grey[100]};
     color: ${grey[900]};
+    outline: 0;
   }
 
-  .mode-dark .menu-item.highlighted {
+  .mode-dark .menu-item:focus {
     background-color: ${grey[800]};
     color: ${grey[300]};
   }
@@ -126,7 +118,6 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
 
   const classes = {
     'menu-item': true,
-    highlighted: itemState?.highlighted,
     disabled: itemState?.disabled,
   };
 

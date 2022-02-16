@@ -53,10 +53,10 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
     border-bottom: none;
   }
 
-  &.${menuItemUnstyledClasses.highlighted},
   &:focus {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+    outline: 0;
   }
 
   &.${menuItemUnstyledClasses.disabled} {

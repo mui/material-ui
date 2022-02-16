@@ -4,7 +4,6 @@ import generateUtilityClasses from '../generateUtilityClasses';
 export interface MenuItemUnstyledClasses {
   root: string;
   disabled: string;
-  highlighted: string;
 }
 
 export type MenuItemUnstyledClassKey = keyof MenuItemUnstyledClasses;
@@ -15,7 +14,7 @@ export function getMenuItemUnstyledUtilityClass(slot: string): string {
 
 const menuItemUnstyledClasses: MenuItemUnstyledClasses = generateUtilityClasses(
   'MuiMenuItemUnstyled',
-  ['root', 'disabled', 'highlighted'],
+  ['root', 'disabled'],
 );
 
 export default menuItemUnstyledClasses;
