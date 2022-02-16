@@ -11,7 +11,7 @@ export interface StepContextType {
 }
 
 /**
- * @ignore - internal component.
+ * Provides information about the current step in Stepper.
  */
 const StepContext = React.createContext<StepContextType | {}>({});
 
