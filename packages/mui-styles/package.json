@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "5.4.1",
+  "version": "5.4.2",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The styling solution of MUI.",
@@ -49,9 +49,9 @@
   "dependencies": {
     "@babel/runtime": "^7.17.0",
     "@emotion/hash": "^0.8.0",
-    "@mui/private-theming": "^5.4.1",
-    "@mui/types": "^7.1.1",
-    "@mui/utils": "^5.4.1",
+    "@mui/private-theming": "^5.4.2",
+    "@mui/types": "^7.1.2",
+    "@mui/utils": "^5.4.2",
     "clsx": "^1.1.1",
     "csstype": "^3.0.10",
     "hoist-non-react-statics": "^3.3.2",
