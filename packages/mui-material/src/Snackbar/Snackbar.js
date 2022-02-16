@@ -6,7 +6,6 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
-import { duration } from '../styles/createTransitions';
 import useEventCallback from '../utils/useEventCallback';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -95,6 +94,12 @@ const SnackbarRoot = styled('div', {
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
+  const theme = useTheme();
+  const defaultTransitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     action,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
@@ -113,15 +118,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     open,
     resumeHideDuration,
     TransitionComponent = Grow,
-    transitionDuration = {
-      enter: duration.enteringScreen,
-      exit: duration.leavingScreen,
-    },
+    transitionDuration = defaultTransitionDuration,
     TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
     ...other
   } = props;
 
-  const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
   const ownerState = { ...props, anchorOrigin: { vertical, horizontal }, isRtl };
@@ -416,8 +417,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration: PropTypes.oneOfType([

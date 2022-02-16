@@ -187,7 +187,7 @@ const LegacyChip = styled(function LegacyChip(props) {
     },
     '& .MuiChip-label': { px: 0.6 },
     fontSize: (theme) => theme.typography.pxToRem(10),
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     textTransform: 'uppercase',
     letterSpacing: '.04rem',
     height: '16px',
