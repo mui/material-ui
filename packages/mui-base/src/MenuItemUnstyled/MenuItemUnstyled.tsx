@@ -20,6 +20,7 @@ function getUtilityClasses(ownerState: MenuItemState) {
 
   return composeClasses(slots, getMenuItemUnstyledUtilityClass, {});
 }
+
 /**
  *
  * Demos:
