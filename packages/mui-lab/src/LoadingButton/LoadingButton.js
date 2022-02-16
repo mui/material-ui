@@ -133,11 +133,11 @@ const LoadingButtonLoadingIndicator = styled('div', {
       right: -10,
     }),
   ...(ownerState.loadingPosition === 'start' &&
-      ownerState.size === 'small' && {
+    ownerState.size === 'small' && {
       left: 10,
     }),
   ...(ownerState.loadingPosition === 'end' &&
-      ownerState.size === 'small' && {
+    ownerState.size === 'small' && {
       right: 10,
     }),
 }));
