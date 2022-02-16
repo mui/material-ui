@@ -49,22 +49,39 @@ Você pode seguir os [milestones](https://github.com/mui/material-ui/milestones)
 
 > ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. As informações disponibilizadas destinam-se a traçar a orientação geral do framework. Destina-se apenas a fins informativos. Podemos decidir adicionar/remover itens novos a qualquer momento, com base em nossos recursos de capacidade de entrega ou para manter nossos padrões de qualidade. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. O roadmap não representa um compromisso, obrigação ou promessa que será entregue em um determinado momento.
 
-## Política de suporte
+## Supported versions
 
-Encontre detalhes nas [versões suportadas](/getting-started/support/#supported-versions).
+MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/). The open-source community is always welcome to submit new features and bug fixes as well.
+
+The current status of each MUI version is as follows:
+
+- MUI Core v5: ✅ Active development and continuous support.
+- [MUI Core v4](https://v4.mui.com/): ⚠️ Guaranteed Support (only) for security issues and regressions.
+- [MUI Core v3](https://v3.mui.com/): 🅧 No longer supported.
+- ~MUI Core v2 (never existed)~.
+- [MUI Core v1](https://v1.mui.com/): 🅧 No longer supported.
+- [MUI Core v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
+
+For teams and organizations that require additional support for older versions, MUI has [options available](/getting-started/support/#professional-support-premium).
+
+### Long-term support
+
+MUI will continue to give security updates and regressions support (for example, if there's any regression caused by Chrome, React, etc) to the version prior to the current major until the next one is released.
 
 ## Práticas de descontinuação
 
-Às vezes, **"alterações significativas"**, tais como a remoção do suporte para selecionar APIs e recursos, são necessários.
+Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
 
-Para tornar essas transições o mais fácil possível:
+To make these transitions as easy as possible:
 
-- O número de alterações recentes é minimizado, e ferramentas de migração são disponibilizadas quando possível.
-- A política de descontinuação descrita abaixo é seguida para que dessa forma, você tenha tempo para atualizar seus aplicativos para as versões mais recentes da API bem como aplicar as melhores práticas.
+- The number of breaking changes is minimized, and migration tools provided when possible.
+- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
-### Política de descontinuação
+### Deprecation policy
 
-- Recursos descontinuados são anunciados no log de mudanças, e quando possível, com avisos colocados em tempo de execução.
-- Quando uma descontinuação é anunciada, um caminho para efetuar a atualização é fornecido.
-- O uso já existente da API durante o período de descontinuação é suportado, então seu código continuará a funcionar durante esse período.
-- Atualizações de subdependências do framework (React) que exigem alterações nos seus aplicativos só são feitas em uma versão principal.
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
+- When a deprecation is announced, recommended update path is provided.
+- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
+- Peer dependency updates (React) that require changes to your apps are only made in a major release.
