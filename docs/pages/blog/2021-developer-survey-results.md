@@ -296,7 +296,7 @@ However, it’s notable the styled-components and emotion growth, and that might
 
 <p class="blog-description">1546 out of 1589 answered</p>
 
-Even though a lot of you who answered the survey has migrated, that are still a lot more to convice migrating. 2022 is going to be a lot focused in that.
+Even though a lot of you who answered the survey has migrated, that are still a lot more to convince migrating. 2022 is going to be a lot focused in that.
 
 ### What's the statement that most defines your migration experience?
 
