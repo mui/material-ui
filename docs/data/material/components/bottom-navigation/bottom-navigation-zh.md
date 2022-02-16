@@ -32,6 +32,6 @@ materialDesign: https://material.io/components/bottom-navigation
 
 {{"demo": "FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}
 
-## Third-party routing library（第三方路由库）
+## 第三方路由库
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/).
+一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 这里是 [更详细的指南](/guides/routing/)。

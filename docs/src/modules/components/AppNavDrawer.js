@@ -418,6 +418,7 @@ function reduceChildRoutes(context) {
         topLevel={topLevel && !page.subheader}
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
+        legacy={page.legacy}
         icon={page.icon}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
@@ -434,6 +435,7 @@ function reduceChildRoutes(context) {
         key={title}
         title={title}
         href={page.pathname}
+        legacy={page.legacy}
         onClick={onClose}
         icon={page.icon}
       />,
