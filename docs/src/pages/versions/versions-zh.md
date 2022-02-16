@@ -49,22 +49,39 @@ Material-UI 遵循[语义化版本 2.0.0](https://semver.org/)。 Material-UI �
 
 > ⚠️**免责声明** ：我们在动态的环境中运作，情况随时可能发生变化。 提供的信息旨在概述总体框架方向， 仅供参考。 我们可能会根据我们的交付能力来随时决定增加或删除新的项目来确保我们的质量标准。 The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
 
-## 政策支持
+## Supported versions
 
-您可以查看 [所支持版本](/getting-started/support/#supported-versions) 的详细信息。
+MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/). The open-source community is always welcome to submit new features and bug fixes as well.
+
+The current status of each MUI version is as follows:
+
+- MUI Core v5: ✅ Active development and continuous support.
+- [MUI Core v4](https://v4.mui.com/): ⚠️ Guaranteed Support (only) for security issues and regressions.
+- [MUI Core v3](https://v3.mui.com/): 🅧 No longer supported.
+- ~MUI Core v2 (never existed)~.
+- [MUI Core v1](https://v1.mui.com/): 🅧 No longer supported.
+- [MUI Core v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
+
+For teams and organizations that require additional support for older versions, MUI has [options available](/getting-started/support/#professional-support-premium).
+
+### Long-term support
+
+MUI will continue to give security updates and regressions support (for example, if there's any regression caused by Chrome, React, etc) to the version prior to the current major until the next one is released.
 
 ## 弃用的实践
 
-**“破坏性变更”**有时是必要的，例如取消对某些 API 和功能的支持。
+Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
 
-为了尽可能轻松地实现这些过渡：
+To make these transitions as easy as possible:
 
-- 我们会尽量将破坏性的改变降到最低，并且尽可能提供一些辅助迁移的工具。
-- 请您遵循以下描述的弃用政策，这样就有时间将您的应用程序更新到最新版本的 API 和最佳的实践。
+- The number of breaking changes is minimized, and migration tools provided when possible.
+- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
-### 弃用政策
+### Deprecation policy
 
-- 我们会尽量在更新日志中公布过时的功能，并尽可能在运行时发出警告。
-- 当宣布一个弃用方案时，我们也会推荐一些更新的路径。
-- 在弃用期间我们仍支持已有的稳定 API，所以您的代码将在此期间可以正常运行。
-- 而对于那些需要更新您的应用程序的同版本依赖（React），只会在主版本发布时介绍。
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
+- When a deprecation is announced, recommended update path is provided.
+- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
+- Peer dependency updates (React) that require changes to your apps are only made in a major release.
