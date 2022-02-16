@@ -14,6 +14,10 @@ export interface MenuItemMetadata {
   ref: React.RefObject<HTMLElement>;
 }
 
+export interface MenuItemState {
+  disabled: boolean;
+}
+
 export interface UseMenuProps {
   listboxRef?: React.Ref<HTMLElement>;
 }
@@ -81,6 +85,11 @@ export default function useMenu({ listboxRef: listboxRefProp }: UseMenuProps) {
     role: 'menu',
   });
 
+  const getItemState = (id: string): MenuItemState => {
+    const { disabled } = getOptionState(id);
+    return { disabled };
+  };
+
   React.useDebugValue({ menuItems, highlightedOption });
 
   return {
@@ -88,7 +97,7 @@ export default function useMenu({ listboxRef: listboxRefProp }: UseMenuProps) {
     unregisterItem,
     menuItems,
     getRootProps: getListboxProps,
-    getItemState: getOptionState,
+    getItemState,
     getItemProps: getOptionProps,
     highlightedOption,
   };

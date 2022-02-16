@@ -1,9 +1,14 @@
+/* eslint-disable no-console */
+
 import * as React from 'react';
 import MenuUnstyled from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, {
   menuItemUnstyledClasses,
 } from '@mui/base/MenuItemUnstyled';
 import { styled } from '@mui/system';
+import ContentCut from '@mui/icons-material/ContentCut';
+import ContentCopy from '@mui/icons-material/ContentCopy';
+import ContentPaste from '@mui/icons-material/ContentPaste';
 
 const grey = {
   100: '#E7EBF0',
@@ -24,17 +29,13 @@ const StyledMenu = styled(MenuUnstyled)(
   box-sizing: border-box;
   padding: 5px;
   margin: 10px 0;
-  min-width: 220px;
+  min-width: 200px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 0.75em;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   outline: 0px;
-
-  & .helper {
-    padding: 10px;
-  }
 `,
 );
 
@@ -44,6 +45,9 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   padding: 8px;
   border-radius: 0.45em;
   cursor: default;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 
   &:last-of-type {
     border-bottom: none;
@@ -63,58 +67,25 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
+
+  > svg {
+    opacity: 0.6;
+  }
   `,
 );
-
-interface MenuSectionProps {
-  children: React.ReactNode;
-  label: string;
-}
-
-const MenuSectionRoot = styled('li')`
-  list-style: none;
-
-  & > ul {
-    padding-left: 1em;
-  }
-`;
-
-const MenuSectionLabel = styled('span')`
-  display: block;
-  padding: 15px 0 5px 10px;
-  font-size: 0.75em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  color: ${grey[600]};
-`;
-
-function MenuSection({ children, label }: MenuSectionProps) {
-  return (
-    <MenuSectionRoot>
-      <MenuSectionLabel>{label}</MenuSectionLabel>
-      <ul>{children}</ul>
-    </MenuSectionRoot>
-  );
-}
 
 export default function UnstyledMenuSimple() {
   return (
     <StyledMenu>
-      <MenuSection label="Navigation">
-        <StyledMenuItem>Back</StyledMenuItem>
-        <StyledMenuItem disabled>Forward</StyledMenuItem>
-        <StyledMenuItem>Refresh</StyledMenuItem>
-      </MenuSection>
-      <MenuSection label="Page">
-        <StyledMenuItem>Save as</StyledMenuItem>
-        <StyledMenuItem>Print</StyledMenuItem>
-      </MenuSection>
-      <MenuSection label="View">
-        <StyledMenuItem>Zoom in</StyledMenuItem>
-        <StyledMenuItem>Zoom out</StyledMenuItem>
-      </MenuSection>
-      <li className="helper">Current zoom level: 100%</li>
+      <StyledMenuItem onClick={() => console.log('Cut')}>
+        <ContentCut fontSize="small" /> Cut
+      </StyledMenuItem>
+      <StyledMenuItem onClick={() => console.log('Copy')}>
+        <ContentCopy fontSize="small" /> Copy
+      </StyledMenuItem>
+      <StyledMenuItem onClick={() => console.log('Paste')} disabled>
+        <ContentPaste fontSize="small" /> Paste
+      </StyledMenuItem>
     </StyledMenu>
   );
 }

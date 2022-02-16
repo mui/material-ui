@@ -24,12 +24,14 @@ When not customized, the MenuItem renders a plain `ul` element.
 
 ### Basic usage
 
-{{"demo": "UnstyledMenuSimple.js"}}
+{{"demo": "MenuSimple.js"}}
 
 ### Wrapping MenuItems
 
 MenuItemUnstyled components don't have to be direct descendants of the MenuUnstyled.
 Developers can wrap them in arbitrary components to achieve desired appearance.
+
+Additionally, MenuUnstyled may contain non-interactive children (such as help text).
 
 {{"demo": "WrappedMenuItems.js"}}
 
@@ -39,9 +41,7 @@ The MenuUnstyled component does not include the trigger button or the popup.
 It's just the list of options.
 Developers are free to compose it with their own triggering elements and popups.
 
-Additionally, MenuUnstyled may contain non-interactive children (such as help text).
-
-{{"demo": "UnstyledMenuPopup.js"}}
+{{"demo": "MenuPopup.js"}}
 
 ### Customization
 

@@ -1,5 +1,8 @@
-<Menu>
-  <MenuItem>Cut</MenuItem>
-  <MenuItem>Copy</MenuItem>
-  <MenuItem>Paste</MenuItem>
-</Menu>
+<React.Fragment>
+  <GlobalStyles styles={styles} />
+  <Menu>
+    <MenuItem>Cut</MenuItem>
+    <MenuItem>Copy</MenuItem>
+    <MenuItem>Paste</MenuItem>
+  </Menu>
+</React.Fragment>
