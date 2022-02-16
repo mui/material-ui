@@ -1,6 +1,6 @@
 ---
-title: 'Customize your data grid with row grouping'
-description: Give your users the freedom to reorganize their data using our data grid's new row grouping feature.
+title: Give your users more freedom with data grid row grouping
+description: The new row grouping feature gives your users more customization options for organizing their data.
 date: 2022-01-20T00:00:00.000Z
 authors: ['alexfauquette']
 tags: ['MUI X', 'News']
