@@ -7,7 +7,6 @@ import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
-import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -141,13 +140,18 @@ export function getAnchor(theme, anchor) {
   return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
-const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
  * The props of the [Modal](/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDrawer' });
+  const theme = useTheme();
+  const defaultTransitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     anchor: anchorProp = 'left',
     BackdropProps,
@@ -166,7 +170,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     variant = 'temporary',
     ...other
   } = props;
-  const theme = useTheme();
 
   // Let's assume that the Drawer will always be rendered on user space.
   // We use this state is order to skip the appear transition during the
@@ -334,7 +337,10 @@ Drawer.propTypes /* remove-proptypes */ = {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
-   * @default { enter: duration.enteringScreen, exit: duration.leavingScreen }
+   * @default {
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
+   * }
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
