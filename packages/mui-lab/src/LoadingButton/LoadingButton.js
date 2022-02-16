@@ -103,7 +103,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   display: 'flex',
   ...(ownerState.loadingPosition === 'start' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      left: 10,
+      left: 14,
     }),
   ...(ownerState.loadingPosition === 'start' &&
     ownerState.variant === 'text' && {
@@ -131,6 +131,14 @@ const LoadingButtonLoadingIndicator = styled('div', {
     ownerState.fullWidth && {
       position: 'relative',
       right: -10,
+    }),
+  ...(ownerState.loadingPosition === 'start' &&
+      ownerState.size === 'small' && {
+      left: 10,
+    }),
+  ...(ownerState.loadingPosition === 'end' &&
+      ownerState.size === 'small' && {
+      right: 10,
     }),
 }));
 
