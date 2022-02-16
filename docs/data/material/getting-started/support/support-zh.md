@@ -50,20 +50,7 @@ Receive the latest news on MUI.
 
 ### 支持的版本
 
-MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
-
-我们考虑到时间和资源限制的现实，以及需要不断创新的愿望，所以随着时间的推移，我们有必要将开发的重点转移到框架的最新版本（[我们的版本发布时间表](https://material-ui.com/versions/#release-frequency)），同时让用户尽可能平稳地过渡到新的版本，所以我们做了包括迁移指南在内的多个工作，例如 [这个 v4 版本](/guides/migration-v3/) 的迁移指南。 作为一个开源社区，我们始终欢迎您来提交新的功能和帮助我们修复错误。
-
-The current status of each MUI version is as follows:
-
-- 获取不断地分类所需的工具，并了解您的应用程序所依赖的开源软件。
-- 您的订阅有助于向您使用的软件包的开源社区维护者支付费用，这也能确保它们符合您要求的标准。
-- 使用一些可扫描新的软件安全、证书和维护问题的工具，您可以主动解决问题，并且也可以向参与的开源维护者发出警告，以便他们能够帮助您解决这些问题。
-- Tidelift 有助于衡量和改善你使用的开源软件依赖项的健康状况 — 从而改善您的应用程序的健康状况 — 与此同时会生成一个简短的列表，列出您的团队可以采取的一些积极影响的步骤，以便您进一步改进它们。
-- MUI Core v1 (rewrite): ❌ Inactive.
-- MUI Core v0.x: ❌ Inactive.
-
-各个 Material-UI 版本的当前状态如下所示：
+Find details on the [supported versions](/versions/#supported-versions).
 
 ## 专业支持（高级）
 
@@ -71,25 +58,25 @@ The current status of each MUI version is as follows:
 
 MUI comes in [three plans](/pricing/). The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
 
-The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
+The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
 
-我们当然推荐您试一下，若您想要兼有开源的灵活性和使用商业级软件的自信心。
+The Premium plan goes one step further by providing SLAs on the quality of the support.
 
 ### Tidelift subscription
 
-Tidelift 订阅能够为您管理您的依赖包：
+MUI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 
-我们当然推荐您试一下，若您想要兼有开源的灵活性和使用商业级软件的自信心。
+If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
 
-Tidelift 订阅能够为您管理您的依赖包：
+The Tidelift Subscription manages your dependencies for you:
 
-- 获取不断地分类所需的工具，并了解您的应用程序所依赖的开源软件。
-- 您的订阅有助于向您使用的软件包的开源社区维护者支付费用，这也能确保它们符合您要求的标准。
-- 使用一些可扫描新的软件安全、证书和维护问题的工具，您可以主动解决问题，并且也可以向参与的开源维护者发出警告，以便他们能够帮助您解决这些问题。
-- Tidelift 有助于衡量和改善你使用的开源软件依赖项的健康状况 — 从而改善您的应用程序的健康状况 — 与此同时会生成一个简短的列表，列出您的团队可以采取的一些积极影响的步骤，以便您进一步改进它们。
-- 您可以获得商业保证，而不是只使用免费的开源软件包，例如知识产权赔偿和服务级别协议（SLA）的支持。 您可以期望从专有软件中获得这些商业保证，并且在使用开源软件时也可以获得这些商业保证。
+- Get the tools you need to continuously catalog and understand the open-source software that your application depends on.
+- Your subscription helps pay the open-source community maintainers of the packages you use, to ensure they meet the standards you require.
+- Address issues proactively, with tools that scan for new security, licensing, and maintenance issues, and alert participating open-source maintainers so they can resolve them on your behalf.
+- Tidelift helps measure and improve your open-source dependencies' health – which improves your app's health – and gives a shortlist of high-impact steps your team can take to improve them even more.
+- Get commercial assurances that don't come for free with open-source packages, such as intellectual property indemnification and support under a service level agreement. You expect these guarantees from proprietary software, and you can get them when using open-source as well.
 
-最终结果是什么？ 所有您期望从商业级软件中获得的功能，都可以适用于您所使用的所有开源软件。 这意味着花您可以更少的时间来处理深奥的开源软件的琐事，而把更多精力放在处理您自己的应用程序 — 以及您的业务中。
+The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications – and your business.
 
 <a
   data-ga-event-category="support"
@@ -107,12 +94,12 @@ Tidelift 订阅能够为您管理您的依赖包：
 
 ### 定制的工作 🛠
 
-调整 Material-UI 以满足您的特定要求。 请给我们一个需求摘要；如果可以的话，我们会帮助您。 我们可能：
+Tweak MUI to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
 
-- 如果工作简单明了，会给您一个预估的时间和价格
+- Give you an estimate of time and price if the work is straightforward
 - Suggest alternatives that might not require MUI
-- 由于时间或相关性而不会合作
+- Decline the work due to timing or relevancy
 
-请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 我们的合同价格是 200 美元/小时 或 1500 美元/天。
+Note that work must be MUI related. We don't accept general React development work. Our contracting price is $200/hour or $1,500/day.
 
-[给我们发送一封电子邮件](mailto:custom-work@mui.com)
+[Send us an email](mailto:custom-work@mui.com)
