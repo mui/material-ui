@@ -24,7 +24,7 @@ On the flip side though, the amount of "Very disappointed” alone fell by 10,3%
 
 **The number of available alternatives**
 
-Lately, with every new sunrise, there's a new UI component library. Naturally, considering the amount of iteration each one does on the same problems, patterns start to become more and more established. It's common to see libraries with very simmilar implementations of components, styling solutions, theming, etc. It gets harder to find ways to differentiate, to find something that would make one's iteration more compelling. That's a main reason we do this survey yearly, to shed light into improvements opportunities. Now that we have uncovered a bunch of spaces to explore, and together with our steadily growing team, we hope to focus on more than one scope at once with the same level of attention to detail and quality we've strived to have.
+Lately, with every new sunrise, there's a new UI component library. Naturally, considering the amount of iteration each one does on the same problems, patterns start to become more and more established. It's common to see libraries with very similar implementations of components, styling solutions, theming, etc. It gets harder to find ways to differentiate, to find something that would make one's iteration more compelling. That's a main reason we do this survey yearly, to shed light into improvements opportunities. Now that we have uncovered a bunch of spaces to explore, and together with our steadily growing team, we hope to focus on more than one scope at once with the same level of attention to detail and quality we've strived to have.
 
 **The introduction of a paid product**
 
