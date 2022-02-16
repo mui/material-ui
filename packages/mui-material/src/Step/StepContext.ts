@@ -20,7 +20,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 /**
- * Returns the current StepContext.
+ * Returns the current StepContext or an empty object if no StepContext
+ * has been defined in the component tree.
  */
 export function useStepContext(): StepContextType | {} {
   return React.useContext(StepContext);
