@@ -334,6 +334,7 @@ const internalDefaultTheme = {
     },
   },
   variants: {},
+  vars: baseDesignTokens,
   breakpoints: defaultSystemTheme.breakpoints,
   spacing: defaultSystemTheme.spacing,
 };
