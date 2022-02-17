@@ -2,13 +2,6 @@ import * as React from 'react';
 import getInitColorSchemeScript from './getInitColorSchemeScript';
 import { Mode, Result } from './useCurrentColorScheme';
 
-export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
-  colorSchemes: Record<string, infer ColorSystems>;
-}
-  ? Omit<ThemeInput, 'colorSchemes'> &
-      ColorSystems & { vars: Omit<ThemeInput, 'colorSchemes'> & ColorSystems }
-  : never;
-
 /**
  * DesignSystemColorScheme: is what a design system provide by default. Mostly, `light` and `dark`
  * ApplicationColorScheme: is what developer can extend from a design system. Ex, `comfort` `trueDark` ...any name that they want
