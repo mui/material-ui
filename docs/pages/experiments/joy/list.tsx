@@ -152,16 +152,20 @@ export default function JoyTypography() {
           {/* ex4 */}
           <List>
             <ListItem>
-              <ListItemDecorator>
-                <InboxIcon fontSize="lg" />
-              </ListItemDecorator>
-              Inbox
+              <ListItemButton color="primary">
+                <ListItemDecorator>
+                  <InboxIcon fontSize="lg" />
+                </ListItemDecorator>
+                Inbox
+              </ListItemButton>
             </ListItem>
             <ListItem>
-              <ListItemDecorator>
-                <DraftsIcon fontSize="lg" />
-              </ListItemDecorator>
-              Drafts
+              <ListItemButton color="success">
+                <ListItemDecorator>
+                  <DraftsIcon fontSize="lg" />
+                </ListItemDecorator>
+                Drafts
+              </ListItemButton>
             </ListItem>
             <ListDivider />
             <ListItem>Trash</ListItem>

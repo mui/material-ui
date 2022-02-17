@@ -45,6 +45,10 @@ const ListItemButtonRoot = styled('div', {
     ...(!ownerState.color && {
       '--List-decorator-color': theme.vars.palette.text.tertiary, // for making icon color less obvious
     }),
+    ...(ownerState.color &&
+      ownerState.color !== 'context' && {
+        '--List-decorator-color': theme.vars.palette[ownerState.color]?.textColor,
+      }),
     boxSizing: 'border-box',
     display: 'flex',
     alignItems: 'center',
