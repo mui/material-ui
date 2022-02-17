@@ -48,7 +48,7 @@ We introduced it at the end of 2020 and have been iterating not only on the comp
 
 We still have a lot more ground to cover — only ~0.1% of our developer community has been convinced to upgrade to the Pro plan so far.
 Whether or not you've taken the plunge, we'd love to hear your thoughts about this.
-And if you want to understand more about our view of the MIT/open-source landscape, check our [Stewardship page](https://www.notion.so/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
+And if you want to understand more about our view of the MIT/open-source landscape, check our [Stewardship page](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
 
 **The breaking changes made in v5**
 
