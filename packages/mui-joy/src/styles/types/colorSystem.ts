@@ -62,18 +62,14 @@ export interface PaletteVariant {
   overrideTextSecondary: string;
   overrideTextTertiary: string;
 }
-export interface PaletteRange extends PaletteVariant {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-}
+
+export interface PaletteScaleOverrides {}
+export type ExtendedPaletteScale = OverridableStringUnion<
+  '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900',
+  PaletteScaleOverrides
+>;
+
+export interface PaletteScale extends Record<ExtendedPaletteScale, string> {}
 
 export interface PaletteText {
   primary: string;
@@ -105,12 +101,12 @@ export type ColorPaletteProp = OverridableStringUnion<
 
 // Split interfaces into multiple chunks so that they can be augmented independently
 
-export interface PalettePrimary extends PaletteRange {}
-export interface PaletteNeutral extends PaletteRange {}
-export interface PaletteDanger extends PaletteRange {}
-export interface PaletteInfo extends PaletteRange {}
-export interface PaletteSuccess extends PaletteRange {}
-export interface PaletteWarning extends PaletteRange {}
+export interface PalettePrimary extends PaletteScale, PaletteVariant {}
+export interface PaletteNeutral extends PaletteScale, PaletteVariant {}
+export interface PaletteDanger extends PaletteScale, PaletteVariant {}
+export interface PaletteInfo extends PaletteScale, PaletteVariant {}
+export interface PaletteSuccess extends PaletteScale, PaletteVariant {}
+export interface PaletteWarning extends PaletteScale, PaletteVariant {}
 
 export interface Palette {
   primary: PalettePrimary;

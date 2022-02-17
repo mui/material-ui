@@ -46,7 +46,9 @@ interface JoyThemeInput extends Partial2Level<ThemeScales> {
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<JoyTheme>;
-  colorSchemes?: Partial<Record<DefaultColorScheme, Partial3Level<ColorSystem>>>;
+  colorSchemes?: Partial<
+    Record<DefaultColorScheme | ExtendedColorScheme, Partial3Level<ColorSystem>>
+  >;
 }
 
 const { palette, ...rest } = defaultTheme;
