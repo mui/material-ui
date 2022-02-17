@@ -39,34 +39,21 @@ type Partial3Level<T> = {
 };
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-interface ThemeInput extends Partial2Level<ThemeScales> {
+interface JoyThemeInput extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
   typography?: TypographySystem;
   variants?: Partial2Level<Variants>;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<JoyTheme>;
-}
-
-interface JoyThemeInput extends ThemeInput {
-  colorSchemes: Record<DefaultColorScheme, Partial3Level<ColorSystem>>;
-}
-
-interface ApplicationThemeInput extends ThemeInput {
-  colorSchemes: Record<ExtendedColorScheme, Partial3Level<ColorSystem>>;
+  colorSchemes?: Partial<Record<DefaultColorScheme, Partial3Level<ColorSystem>>>;
 }
 
 const { palette, ...rest } = defaultTheme;
 
-const {
-  CssVarsProvider: SystemCssVarsProvider,
-  useColorScheme,
-  getInitColorSchemeScript,
-} = createCssVarsProvider<
-  JoyThemeInput,
-  DefaultColorScheme,
-  ApplicationThemeInput,
-  ExtendedColorScheme
+const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
+  DefaultColorScheme | ExtendedColorScheme,
+  JoyThemeInput
 >({
   theme: {
     ...rest,
@@ -117,39 +104,5 @@ const {
     keys[0] === 'focus' ||
     keys[0] === 'breakpoints',
 });
-
-type DecideTheme<
-  DesignSystemTheme extends { colorSchemes: Record<DesignSystemColorScheme, any> },
-  DesignSystemColorScheme extends string,
-  ApplicationTheme extends { colorSchemes: Record<ApplicationColorScheme, any> },
-  ApplicationColorScheme extends string | never,
-> = [ApplicationColorScheme] extends [never]
-  ? {
-      theme?: Omit<DesignSystemTheme, 'colorSchemes'> & {
-        colorSchemes?: Partial<
-          Record<
-            DesignSystemColorScheme,
-            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
-          >
-        >;
-      };
-    }
-  : {
-      theme: Omit<ApplicationTheme, 'colorSchemes'> & {
-        colorSchemes: Partial<
-          Record<
-            DesignSystemColorScheme,
-            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
-          >
-        > &
-          Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>;
-      };
-    };
-
-const CssVarsProvider = SystemCssVarsProvider as (
-  props: React.PropsWithChildren<
-    DecideTheme<JoyThemeInput, DefaultColorScheme, ApplicationThemeInput, ExtendedColorScheme>
-  >,
-) => React.ReactElement;
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
