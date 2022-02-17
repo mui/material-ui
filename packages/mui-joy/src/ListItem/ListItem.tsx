@@ -5,7 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
-import { getListItemUtilityClass } from './listItemClasses';
+import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -31,6 +31,9 @@ const ListItemRoot = styled('li', {
   paddingLeft: 'var(--List-insetStart)',
   minHeight: 'var(--List-item-minHeight)',
   ...theme.typography.body1,
+  [`& + .${listItemClasses.root}`]: {
+    marginTop: 'var(--List-gap)',
+  },
 }));
 
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {

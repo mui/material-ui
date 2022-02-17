@@ -21,11 +21,12 @@ const ListRoot = styled('ul', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListProps }>(({ theme }) => ({
   '--List-padding': '0.375rem',
+  '--List-gap': '0.375rem', // spacing between ListItem + ListItem or ListItemButton + ListItemButton
   '--List-radius': theme.vars.radius.sm,
   '--List-item-minHeight': '2.5rem',
   '--List-item-paddingX': '0.375rem',
   '--List-decorator-width': '3rem',
-  '--List-divider-gap': '0.75rem',
+  '--List-divider-gap': 'var(--List-gap)',
   '--List-insetStart': 'var(--List-item-paddingX)',
   // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
   '--List-item-radius':

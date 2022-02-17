@@ -313,6 +313,7 @@ export default function JoyTypography() {
             sx={{
               '--List-radius': '0px',
               '--List-padding': '0px',
+              '--List-gap': '0px',
               '--List-item-paddingX': '1rem',
               '--List-item-minHeight': '3rem',
             }}

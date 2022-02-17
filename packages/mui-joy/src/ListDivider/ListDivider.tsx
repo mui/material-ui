@@ -26,9 +26,9 @@ const ListDividerRoot = styled('li', {
   borderColor: theme.vars.palette.divider,
   // by default, the divider line is stretched from edge-to-edge of the List
   // spacing between ListItem can be controlled by `--List-divider-gap` on the List
-  margin: 'calc(var(--List-divider-gap) / 2) calc(-1 * var(--List-padding))',
+  margin: 'var(--List-divider-gap) calc(-1 * var(--List-padding))',
   ...(ownerState.inset === 'gutter' && {
-    margin: 'calc(var(--List-divider-gap) / 2)',
+    margin: 'var(--List-divider-gap)',
     marginRight: 'var(--List-item-paddingX)',
     marginLeft: 'var(--List-insetStart)',
   }),

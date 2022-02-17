@@ -10,7 +10,7 @@ import {
   ExtendListItemButton,
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
-import { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selectedVariant, selected } =
@@ -73,6 +73,9 @@ const ListItemButtonRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
     }),
     '&.Mui-focusVisible': theme.focus.default,
+    [`& + .${listItemButtonClasses.root}`]: {
+      marginTop: 'var(--List-gap)',
+    },
   },
   ...(ownerState.selected
     ? [

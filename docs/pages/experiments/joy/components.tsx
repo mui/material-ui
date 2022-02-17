@@ -255,6 +255,7 @@ const components = [
     cssVars: [
       { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--List-gap', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-item-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-item-paddingX', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 48 },
