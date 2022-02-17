@@ -204,6 +204,8 @@ function App2() {
 }
 
 // =========================
+// 1. WITH extending color scheme
+//    When developers extend new color schemes, they have to specify those new color schemes in the theme.
 
 interface Joy2ColorSchemeOverrides {}
 
