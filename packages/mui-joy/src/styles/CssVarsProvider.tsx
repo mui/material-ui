@@ -31,9 +31,9 @@ type ThemeInput = Partial2Level<
   ThemeScales & {
     focus: Focus;
     typography: TypographySystem;
-    variants: Partial2Level<Variants>;
   }
 > & {
+  variants?: Partial2Level<Variants>;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<JoyTheme>;
