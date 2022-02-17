@@ -464,6 +464,9 @@ export * from './useMediaQuery';
 export { default as useScrollTrigger } from './useScrollTrigger';
 export * from './useScrollTrigger';
 
+export { default as Portal} from "./Portal";
+export * from './Portal'
+
 export { default as Zoom } from './Zoom';
 export * from './Zoom';
 
