@@ -8,7 +8,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('Joy <Input />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Input startIcon="icon">Conformance?</Input>, () => ({
+  describeConformance(<Input />, () => ({
     render,
     classes,
     ThemeProvider,
