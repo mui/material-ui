@@ -27,15 +27,13 @@ type Partial2Level<T> = {
 };
 
 type Partial3Level<T> = {
-  [K in keyof T]?: T[K] extends Record<any, any>
-    ? {
-        [J in keyof T[K]]?: T[K][J] extends Record<any, any>
-          ? {
-              [P in keyof T[K][J]]?: T[K][J][P];
-            }
-          : T[K][J];
-      }
-    : T[K];
+  [K in keyof T]?: {
+    [J in keyof T[K]]?: T[K][J] extends Record<any, any>
+      ? {
+          [P in keyof T[K][J]]?: T[K][J][P];
+        }
+      : T[K][J];
+  };
 };
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
