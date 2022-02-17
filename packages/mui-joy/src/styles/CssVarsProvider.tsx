@@ -58,7 +58,11 @@ interface ApplicationThemeInput extends ThemeInput {
 
 const { palette, ...rest } = defaultTheme;
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
+const {
+  CssVarsProvider: SystemCssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript,
+} = createCssVarsProvider<
   JoyThemeInput,
   DefaultColorScheme,
   ApplicationThemeInput,
@@ -113,5 +117,39 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     keys[0] === 'focus' ||
     keys[0] === 'breakpoints',
 });
+
+type DecideTheme<
+  DesignSystemTheme extends { colorSchemes: Record<DesignSystemColorScheme, any> },
+  DesignSystemColorScheme extends string,
+  ApplicationTheme extends { colorSchemes: Record<ApplicationColorScheme, any> },
+  ApplicationColorScheme extends string | never,
+> = [ApplicationColorScheme] extends [never]
+  ? {
+      theme?: Omit<DesignSystemTheme, 'colorSchemes'> & {
+        colorSchemes?: Partial<
+          Record<
+            DesignSystemColorScheme,
+            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
+          >
+        >;
+      };
+    }
+  : {
+      theme: Omit<ApplicationTheme, 'colorSchemes'> & {
+        colorSchemes: Partial<
+          Record<
+            DesignSystemColorScheme,
+            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
+          >
+        > &
+          Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>;
+      };
+    };
+
+const CssVarsProvider = SystemCssVarsProvider as (
+  props: React.PropsWithChildren<
+    DecideTheme<JoyThemeInput, DefaultColorScheme, ApplicationThemeInput, ExtendedColorScheme>
+  >,
+) => React.ReactElement;
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
