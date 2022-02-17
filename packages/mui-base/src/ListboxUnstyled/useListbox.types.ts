@@ -176,3 +176,30 @@ export interface OptionState {
   highlighted: boolean;
   selected: boolean;
 }
+
+interface UseListboxRootSlotOwnProps {
+  'aria-activedescendant'?: string;
+  id?: string;
+  onBlur: React.FocusEventHandler;
+  onKeyDown: React.KeyboardEventHandler;
+  role: string;
+  tabIndex: number;
+  ref: React.Ref<any>;
+}
+
+export type UseListboxRootSlotProps<TOther = {}> = Omit<TOther, keyof UseListboxRootSlotOwnProps> &
+  UseListboxRootSlotOwnProps;
+
+interface UseListboxOptionSlotOwnProps {
+  'aria-disabled'?: boolean;
+  'aria-selected': boolean;
+  id?: string;
+  onClick: React.MouseEventHandler;
+  role: string;
+}
+
+export type UseListboxOptionSlotProps<TOther = {}> = Omit<
+  TOther,
+  keyof UseListboxOptionSlotOwnProps
+> &
+  UseListboxOptionSlotOwnProps;

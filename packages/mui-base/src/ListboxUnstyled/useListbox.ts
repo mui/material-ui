@@ -1,29 +1,18 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
-import { UseListboxProps, UseListboxStrictProps, ActionTypes, OptionState } from './types';
+import {
+  UseListboxProps,
+  UseListboxStrictProps,
+  ActionTypes,
+  OptionState,
+  UseListboxOptionSlotProps,
+  UseListboxRootSlotProps,
+} from './useListbox.types';
 import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
-
-export type ListboxRootProps<TOther = {}> = Omit<TOther, 'onBlur' | 'onKeyDown'> & {
-  'aria-activedescendant'?: string;
-  id?: string;
-  onBlur: React.FocusEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
-  role: string;
-  tabIndex: number;
-  ref: React.Ref<any>;
-};
-
-export type ListboxOptionProps<TOther = {}> = Omit<TOther, 'onClick'> & {
-  'aria-disabled'?: boolean;
-  'aria-selected': boolean;
-  id?: string;
-  onClick: React.MouseEventHandler;
-  role: string;
-};
 
 export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
   const {
@@ -154,17 +143,17 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     };
 
   const getRootProps = <TOther extends Record<string, React.EventHandler<any>>>(
-    other: TOther = {} as TOther,
-  ): ListboxRootProps => {
+    otherHandlers: TOther = {} as TOther,
+  ): UseListboxRootSlotProps<TOther> => {
     return {
-      ...other,
+      ...otherHandlers,
       'aria-activedescendant':
         highlightedIndex >= 0
           ? optionIdGenerator(options[highlightedIndex], highlightedIndex)
           : undefined,
       id,
-      onBlur: createHandleBlur(other),
-      onKeyDown: createHandleKeyDown(other),
+      onBlur: createHandleBlur(otherHandlers),
+      onKeyDown: createHandleKeyDown(otherHandlers),
       role: 'listbox',
       tabIndex: 0,
       ref: handleRef,
@@ -193,17 +182,17 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
 
   const getOptionProps = <TOther extends Record<string, React.EventHandler<any>>>(
     option: TOption,
-    other: TOther = {} as TOther,
-  ): ListboxOptionProps<TOther> => {
+    otherHandlers: TOther = {} as TOther,
+  ): UseListboxOptionSlotProps<TOther> => {
     const { selected, disabled } = getOptionState(option);
     const index = options.findIndex((opt) => optionComparer(opt, option));
 
     return {
-      ...other,
+      ...(otherHandlers || ({} as TOther)),
       'aria-disabled': disabled || undefined,
       'aria-selected': selected,
       id: optionIdGenerator(option, index),
-      onClick: createHandleOptionClick(option, other),
+      onClick: createHandleOptionClick(option, otherHandlers),
       role: 'option',
     };
   };

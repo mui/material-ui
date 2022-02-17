@@ -7,7 +7,7 @@ import {
   ListboxState,
   UseListboxProps,
   UseListboxStrictProps,
-} from './types';
+} from './useListbox.types';
 import areArraysEqual from '../utils/areArraysEqual';
 
 /**
