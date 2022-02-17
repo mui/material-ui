@@ -2,7 +2,7 @@
 title: 2021 MUI Developer Survey results
 description: Results for our yearly developer survey, 2021 edition.
 date: 2022-02-22T00:00:00.000Z
-authors: ['danilo-leal']
+authors: ['danilo-leal', 'samuelsycamore', 'oliviertassinari']
 tags: ['Developer survey']
 ---
 

@@ -74,6 +74,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/45398769',
     github: 'alexfauquette',
   },
+  samuelsycamore: {
+    name: 'Sam Sycamore',
+    avatar: 'https://avatars.githubusercontent.com/u/71297412?v=4',
+    github: 'samuelsycamore',
+  },
 };
 
 const styles = (theme) => ({
