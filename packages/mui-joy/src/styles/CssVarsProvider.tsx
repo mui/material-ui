@@ -41,7 +41,7 @@ type Partial3Level<T> = {
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
 interface JoyThemeInput extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
-  typography?: TypographySystem;
+  typography?: Partial<TypographySystem>;
   variants?: Partial2Level<Variants>;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
@@ -60,8 +60,8 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   theme: {
     ...rest,
     colorSchemes: {
-      light: lightColorSystem as ColorSystem,
-      dark: darkColorSystem as ColorSystem,
+      light: lightColorSystem,
+      dark: darkColorSystem,
     },
   },
   defaultColorScheme: {

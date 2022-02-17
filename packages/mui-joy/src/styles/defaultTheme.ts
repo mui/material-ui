@@ -334,7 +334,6 @@ const internalDefaultTheme = {
     },
   },
   variants: {},
-  vars: baseDesignTokens,
   breakpoints: defaultSystemTheme.breakpoints,
   spacing: defaultSystemTheme.spacing,
 };
@@ -371,6 +370,6 @@ export interface JoyTheme extends ThemeScales, ColorSystem {
 
 export type SxProps = SystemSxProps<JoyTheme>;
 
-const defaultTheme = internalDefaultTheme as JoyTheme;
+const defaultTheme = internalDefaultTheme as unknown as JoyTheme;
 
 export default defaultTheme;

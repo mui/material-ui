@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { CSSObject } from '@mui/system';
 import { CssVarsProvider, PaletteScale, PaletteVariant } from '@mui/joy/styles';
+
+// -----------------------------------
+// Extending palete
 
 declare module '@mui/joy/styles' {
   interface ColorSchemeOverrides {
@@ -8,6 +12,11 @@ declare module '@mui/joy/styles' {
 
   interface Palette {
     secondary: PaletteScale & PaletteVariant;
+  }
+
+  interface PaletteScaleOverrides {
+    '100': false;
+    '120': true;
   }
 }
 
@@ -63,14 +72,124 @@ function App5() {
           light: {
             palette: {
               secondary: {
-                primary: {
-                  '500': '',
-                },
+                // @ts-expect-error `100` is removed
+                '100': '',
+                '120': '#ff5252',
               },
             },
           },
         },
       }}
     />
+  );
+}
+
+// -----------------------------------
+// Extending radius
+
+declare module '@mui/joy/styles' {
+  interface Radius {
+    xl2: string;
+  }
+}
+
+function App6() {
+  // theme can be empty
+  return (
+    <CssVarsProvider
+      theme={{
+        radius: {
+          xl2: '20px',
+        },
+      }}
+    />
+  );
+}
+
+// -----------------------------------
+// Extending shadow
+
+declare module '@mui/joy/styles' {
+  interface Shadow {
+    xl2: string;
+  }
+}
+
+function App7() {
+  // theme can be empty
+  return (
+    <CssVarsProvider
+      theme={{
+        shadow: {
+          xl2: '0 0 20px 1px rgba(0,0,0,0.12)',
+        },
+      }}
+    />
+  );
+}
+
+// -----------------------------------
+// Extending focus
+
+declare module '@mui/joy/styles' {
+  interface Focus {
+    bordered: CSSObject;
+  }
+}
+
+function App8() {
+  // theme can be empty
+  return (
+    <CssVarsProvider
+      theme={{
+        focus: {
+          bordered: {
+            '&:after': {
+              position: 'absolute',
+              inset: '2px',
+              outline: '1px solid',
+              outlineColor: 'var(--token)',
+            },
+          },
+        },
+      }}
+    />
+  );
+}
+
+// -----------------------------------
+// Extending typography
+
+declare module '@mui/joy/styles' {
+  interface TypographySystemOverrides {
+    callout: true; // add new typography
+    h1: false; // default the default
+  }
+}
+
+function App9() {
+  // theme can be empty
+  return (
+    <React.Fragment>
+      <CssVarsProvider
+        theme={{
+          typography: {
+            callout: {
+              fontSize: '12px',
+            },
+          },
+        }}
+      />
+      <CssVarsProvider
+        theme={{
+          typography: {
+            // @ts-expect-error 'h1' is removed
+            h1: {
+              fontSize: '12px',
+            },
+          },
+        }}
+      />
+    </React.Fragment>
   );
 }
