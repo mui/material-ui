@@ -15,7 +15,7 @@
 
 MUI started with Material-UI, the most successful React implementation of Google's Material Design.
 It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
-Today, countless teams and organizations rely on our open-source projects to build their design system.
+Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
@@ -92,4 +92,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Product%20Engineer%20-%20Store)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Product%20Engineer%20-%20Store&prefill_source=mui.com)
