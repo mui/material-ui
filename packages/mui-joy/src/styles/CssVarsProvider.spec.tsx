@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CSSObject } from '@mui/system';
-import { CssVarsProvider, PaletteScale, PaletteVariant } from '@mui/joy/styles';
+import { CssVarsProvider, PaletteRange, PaletteVariant } from '@mui/joy/styles';
 
 // -----------------------------------
 // Extending palete
@@ -11,10 +11,10 @@ declare module '@mui/joy/styles' {
   }
 
   interface Palette {
-    secondary: PaletteScale & PaletteVariant;
+    secondary: PaletteRange;
   }
 
-  interface PaletteScaleOverrides {
+  interface PaletteRangeOverrides {
     '100': false;
     '120': true;
   }
