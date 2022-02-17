@@ -34,7 +34,10 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
   prefix?: string;
 }
 
-export default function createCssVarsProvider<ColorScheme extends string, ThemeInput = any>(
+export default function createCssVarsProvider<
+  ColorScheme extends string,
+  ThemeInput extends { colorSchemes?: Partial<Record<ColorScheme, any>> },
+>(
   options: CssVarsProviderConfig<ColorScheme> & {
     /**
      * Design system default theme
