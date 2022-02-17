@@ -122,6 +122,7 @@ createCssVarsProvider<DesignSystemThemeInput, DesignSystemColorScheme>({
 
 // ==============================
 // Test application layer
+// 1. WITHOUT extending color scheme
 
 interface JoyColorSchemeOverrides {}
 
@@ -147,11 +148,6 @@ interface ApplicationThemeInput {
   colorSchemes: Record<JoyExtendedColorScheme, JoyColors>;
   fontSize: string;
   fontFamily: string;
-}
-
-// Simulate color scheme extending, same as module augmentation in real application
-interface JoyColorSchemeOverrides {
-  white: true;
 }
 
 const { CssVarsProvider } = createCssVarsProvider<
@@ -187,8 +183,8 @@ function App() {
   return (
     <CssVarsProvider
       theme={{
-        // @ts-expect-error `white` is missing
-        colorSchemes: {},
+        fontSize: '14px',
+        fontFamily: 'system',
       }}
     />
   );
@@ -198,20 +194,11 @@ function App2() {
   return (
     <CssVarsProvider
       theme={{
+        // colorSchemes must be optional, if color schemes are not extended
+        fontSize: '12px',
         // @ts-expect-error `lineHeight` is not in theme
         lineHeight: 1,
-        colorSchemes: {
-          white: {
-            palette: {
-              primary: {
-                main: '#ff5252',
-              },
-            },
-          },
-        },
       }}
-      // @ts-expect-error `yellow` is not in
-      defaultColorScheme="yellow"
     />
   );
 }
@@ -225,9 +212,9 @@ type Joy2ExtendedColorScheme = OverridableStringUnion<never, Joy2ColorSchemeOver
 type Joy2ColorScheme = 'light' | 'dark';
 
 interface Joy2Colors {
-  palette: {
-    primary: {
-      main: string;
+  palette?: {
+    primary?: {
+      main?: string;
     };
   };
 }
@@ -306,17 +293,14 @@ function App4() {
     <CssVarsProvider2
       theme={{
         colorSchemes: {
-          comfort: {
-            palette: {
-              primary: {
-                main: '',
-              },
-            },
-          },
-          // @ts-expect-error Palette structure is not completed
+          comfort: {},
           trueDark: {},
         },
+        fontSize: '12px',
+        fontFamily: 'system',
       }}
+      // @ts-expect-error `yellow` is not an extended color scheme
+      defaultColorScheme="yellow"
     />
   );
 }

@@ -26,16 +26,6 @@ type Partial2Level<T> = {
     : T[K];
 };
 
-type Partial3Level<T> = {
-  [K in keyof T]?: {
-    [J in keyof T[K]]?: T[K][J] extends Record<any, any>
-      ? {
-          [P in keyof T[K][J]]?: T[K][J][P];
-        }
-      : T[K][J];
-  };
-};
-
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
 type ThemeInput = Partial2Level<
   ThemeScales & {
@@ -50,11 +40,11 @@ type ThemeInput = Partial2Level<
 };
 
 type JoyThemeInput = ThemeInput & {
-  colorSchemes: Record<DefaultColorScheme, Partial3Level<ColorSystem>>;
+  colorSchemes: Record<DefaultColorScheme, Partial2Level<ColorSystem>>;
 };
 
 type ApplicationThemeInput = ThemeInput & {
-  colorSchemes: Record<ExtendedColorScheme, Partial3Level<ColorSystem>>;
+  colorSchemes: Record<ExtendedColorScheme, Partial2Level<ColorSystem>>;
 };
 
 const { palette, ...rest } = defaultTheme;
@@ -68,8 +58,8 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   theme: {
     ...rest,
     colorSchemes: {
-      light: lightColorSystem,
-      dark: darkColorSystem,
+      light: lightColorSystem as ColorSystem,
+      dark: darkColorSystem as ColorSystem,
     },
   },
   defaultColorScheme: {

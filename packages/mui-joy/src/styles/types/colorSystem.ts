@@ -15,6 +15,7 @@ export interface PaletteVariant {
   textActiveBg: string;
   // disabled state
   textDisabledColor: string;
+  textDisabledBg: string;
 
   outlinedColor: string;
   outlinedBorder: string;
