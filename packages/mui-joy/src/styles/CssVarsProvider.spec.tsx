@@ -39,7 +39,7 @@ function App3() {
           trueDark: {
             palette: {
               primary: {
-                '500': '',
+                500: '',
               },
             },
           },
@@ -73,8 +73,8 @@ function App5() {
             palette: {
               secondary: {
                 // @ts-expect-error `100` is removed
-                '100': '',
-                '120': '#ff5252',
+                100: '',
+                120: '#ff5252',
               },
             },
           },
