@@ -9,4 +9,4 @@ export * from './SelectUnstyledProps';
 
 export { default as useSelect } from './useSelect';
 
-export * from './useSelectProps';
+export * from './useSelect.types';

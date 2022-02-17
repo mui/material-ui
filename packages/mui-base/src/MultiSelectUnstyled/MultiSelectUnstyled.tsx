@@ -10,7 +10,7 @@ import MultiSelectUnstyledProps, {
 } from './MultiSelectUnstyledProps';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
 import useSelect from '../SelectUnstyled/useSelect';
-import { SelectChild, SelectOption } from '../SelectUnstyled/useSelectProps';
+import { SelectChild, SelectOption } from '../SelectUnstyled/useSelect.types';
 import { appendOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import {

@@ -7,12 +7,12 @@ interface UseButtonRootSlotOwnProps {
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   role?: string;
   onBlur: React.FocusEventHandler;
-  onFocus: React.FocusEventHandler<HTMLButtonElement>;
+  onFocus: React.FocusEventHandler;
   onKeyDown: React.KeyboardEventHandler;
   onKeyUp: React.KeyboardEventHandler;
-  onMouseDown: React.MouseEventHandler<HTMLButtonElement>;
+  onMouseDown: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  onMouseUp: React.MouseEventHandler<HTMLButtonElement>;
+  onMouseUp: React.MouseEventHandler;
   ref: React.Ref<any>;
 }
 

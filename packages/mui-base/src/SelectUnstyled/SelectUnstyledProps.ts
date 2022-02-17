@@ -1,4 +1,4 @@
-import { SelectOption } from './useSelectProps';
+import { SelectOption } from './useSelect.types';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 
 export interface SelectUnstyledComponentsPropsOverrides {}

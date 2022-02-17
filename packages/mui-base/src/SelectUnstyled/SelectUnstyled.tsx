@@ -8,7 +8,7 @@ import {
 import { SelectUnstyledOwnerState, SelectUnstyledProps } from './SelectUnstyledProps';
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
 import useSelect from './useSelect';
-import { SelectChild, SelectOption } from './useSelectProps';
+import { SelectChild, SelectOption } from './useSelect.types';
 import { appendOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
