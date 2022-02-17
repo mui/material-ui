@@ -15,7 +15,7 @@ import {
   useListbox,
   defaultListboxReducer,
   ActionTypes,
-  UseListboxProps,
+  UseListboxParameters,
   OptionState,
 } from '../ListboxUnstyled';
 
@@ -228,7 +228,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     [props.multiple, props.options, value],
   );
 
-  let useListboxParameters: UseListboxProps<SelectOption<TValue>>;
+  let useListboxParameters: UseListboxParameters<SelectOption<TValue>>;
 
   if (props.multiple) {
     useListboxParameters = {

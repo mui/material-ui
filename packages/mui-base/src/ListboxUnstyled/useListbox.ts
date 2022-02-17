@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import {
-  UseListboxProps,
+  UseListboxParameters,
   UseListboxStrictProps,
   ActionTypes,
   OptionState,
@@ -14,7 +14,7 @@ import areArraysEqual from '../utils/areArraysEqual';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 
-export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
+export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
     disableListWrap = false,
     disabledItemsFocusable = false,
