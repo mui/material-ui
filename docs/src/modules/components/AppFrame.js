@@ -24,6 +24,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
 import NextLink from 'next/link';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -219,6 +220,7 @@ function AppFrame(props) {
           </NextLink>
           <GrowingDiv />
           <Stack direction="row" spacing={1.3}>
+            <AppFrameBanner />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton

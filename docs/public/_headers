@@ -9,3 +9,12 @@
 
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  # Block usage in iframes.
+  X-Frame-Options: DENY
+  # Force the browser to trust the Content-Type header
+  # https://stackoverflow.com/questions/18337630/what-is-x-content-type-options-nosniff
+  X-Content-Type-Options: nosniff
+  # Disable it (default) as it can cause security issues.
+  X-XSS-Protection: 0
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src * data: 'unsafe-inline' 'unsafe-eval'; report-uri https://o210809.ingest.sentry.io/api/6201480/security/?sentry_key=e4a6f58c6cd9470fa2600a8ff6cde99f

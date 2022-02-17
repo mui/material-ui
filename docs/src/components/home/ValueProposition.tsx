@@ -32,7 +32,7 @@ const content = [
   },
   {
     icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
-    title: 'Accessible in mind',
+    title: 'Accessibility in mind',
     description:
       'We care about making it great for everyone. We improve accessibility for all of our components constantly, helping you to reach the largest audience possible!',
   },
