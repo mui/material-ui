@@ -59,7 +59,7 @@ This year we observed a decrease in Net Promoter Score (NPS): from 62 in 2020 to
 Here's what you liked the most about the product in 2021:
 
 - **Community (x2.9):** While appreciation for the community grew by 290%, the community itself doubled in size over that same time frame. It looks like we're witnessing a network effect: with twice as many users, we got three times more value from the community.
-- **Accessibility (x2.2):** Developers seem to be noticing the work we have put in to make our components more accessible. Special thanks to Sebastian Silbermann [(@eps1lon)](https://github.com/eps1lon) for his continued help!
+- **Accessibility (x2.2):** The community has definitely noticed the work we have put in to make our components more accessible. Special thanks to Sebastian Silbermann [(@eps1lon)](https://github.com/eps1lon) for his continued help!
 - **Customizability (x1.6):** Developers seem to be appreciating the new capabilities introduced in v5. That said, we recognize that there is still more work to be done here, given the number of requests we've gotten to better solve this problem.
 - **Components (x1.6):** We'll keep adding new components to the library as long as you continue to appreciate them this much!
   - Component quality (x1.0): You know that we set the bar very high for the quality of our components. That can be challenge as we continue to grow, because we expect nothing but the best from our team. Thankfully, this result shows that our new members have done an excellent job maintaining our standards.
