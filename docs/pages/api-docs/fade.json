@@ -15,7 +15,7 @@
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     }
   },
   "name": "Fade",

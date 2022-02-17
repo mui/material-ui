@@ -54,9 +54,29 @@ You can follow the [milestones](https://github.com/mui/material-ui/milestones) f
 
 > ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
 
-## Support policy
+## Supported versions
 
-Find details on the [supported versions](/getting-started/support/#supported-versions).
+MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be.
+Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy.
+The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/).
+The open-source community is always welcome to submit new features and bug fixes as well.
+
+The current status of each MUI version is as follows:
+
+- MUI Core v5: ✅ Active development and continuous support.
+- [MUI Core v4](https://v4.mui.com/): ⚠️ Guaranteed Support (only) for security issues and regressions.
+- [MUI Core v3](https://v3.mui.com/): 🅧 No longer supported.
+- ~MUI Core v2 (never existed)~.
+- [MUI Core v1](https://v1.mui.com/): 🅧 No longer supported.
+- [MUI Core v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
+
+For teams and organizations that require additional support for older versions, MUI has [options available](/getting-started/support/#professional-support-premium).
+
+### Long-term support
+
+MUI will continue to give security updates and regressions support (for example, if there's any regression caused by Chrome, React, etc) to the version prior to the current major until the next one is released.
 
 ## Deprecation practices
 

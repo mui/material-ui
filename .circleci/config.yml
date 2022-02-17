@@ -235,12 +235,6 @@ jobs:
           name: '`yarn docs:i18n` changes committed?'
           command: git diff --exit-code
       - run:
-          name: '`yarn framer:build` changes committed?'
-          command: yarn workspace framer build
-      - run:
-          name: '`yarn workspace framer build` changes committed?'
-          command: git diff --exit-code
-      - run:
           name: '`yarn extract-error-codes` changes committed?'
           command: |
             yarn extract-error-codes
