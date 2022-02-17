@@ -40,6 +40,7 @@ const InputRoot = styled('div', {
     '--Input-gutter': '0.75rem', // gutter is the padding-x
     '--Input-height': '40px',
     '--Input-gap': '0.5rem',
+    '--Input-placeholderOpacity': 0.5,
     '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     ...(ownerState.size === 'sm' && {
@@ -121,10 +122,10 @@ const InputInput = styled('input', {
     WebkitBackgroundClip: 'text', // remove autofill background
     WebkitTextFillColor: theme.vars.palette[ownerState.color || 'neutral']?.overrideTextPrimary,
   },
-  '&::-webkit-input-placeholder': { opacity: 0.5, color: 'inherit' },
-  '&::-moz-placeholder': { opacity: 0.5, color: 'inherit' }, // Firefox 19+
-  '&:-ms-input-placeholder': { opacity: 0.5, color: 'inherit' }, // IE11
-  '&::-ms-input-placeholder': { opacity: 0.5, color: 'inherit' }, // Edge
+  '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
+  '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
+  '&:-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // IE11
+  '&::-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Edge
 }));
 
 const InputStartAdornment = styled('span', {

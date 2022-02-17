@@ -97,7 +97,17 @@ const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
   );
 };
 
-const components = [
+const components: {
+  name: string;
+  render: (props: any) => React.ReactElement;
+  cssVars: {
+    id: string;
+    type?: 'number';
+    unit?: 'px';
+    defaultValue?: number;
+    inputProps?: React.AllHTMLAttributes<HTMLInputElement>;
+  }[];
+}[] = [
   {
     name: 'Button',
     render: (props: any) => (
@@ -154,46 +164,6 @@ const components = [
       { id: '--Switch-thumb-radius', type: 'number', unit: 'px' },
       { id: '--Switch-thumb-width', type: 'number', unit: 'px' },
       { id: '--Switch-thumb-offset', type: 'number', unit: 'px' },
-    ],
-  },
-  {
-    name: 'Input',
-    render: (props: any) => (
-      <React.Fragment>
-        <Input
-          placeholder="Placeholder"
-          startAdornment={<Key />}
-          endAdornment={
-            <IconButton size="sm" color="neutral">
-              <Visibility />
-            </IconButton>
-          }
-          {...props}
-        />
-        <Input
-          color="primary"
-          placeholder="Placeholder"
-          startAdornment={<Typography color="inherit">$</Typography>}
-          endAdornment={<Typography color="text.tertiary">USD</Typography>}
-          {...props}
-        />
-        <Input placeholder="Placeholder" color="danger" endAdornment={<Info />} {...props} />
-        <Input
-          placeholder="Placeholder"
-          variant="light"
-          color="success"
-          endAdornment={<TaskAlt />}
-          {...props}
-        />
-      </React.Fragment>
-    ),
-    cssVars: [
-      { id: '--Input-height', type: 'number', unit: 'px', defaultValue: 40 },
-      { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
-      { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
-      { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
-      { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
-      { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
     ],
   },
   {
@@ -301,6 +271,56 @@ const components = [
       { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],
   },
+  {
+    name: 'Input',
+    render: (props: any) => (
+      <React.Fragment>
+        <Input
+          placeholder="Placeholder"
+          startAdornment={<Key />}
+          endAdornment={
+            <IconButton size="sm" color="neutral">
+              <Visibility />
+            </IconButton>
+          }
+          {...props}
+        />
+        <Input
+          color="primary"
+          placeholder="Placeholder"
+          startAdornment={<Typography color="inherit">$</Typography>}
+          endAdornment={<Typography color="text.tertiary">USD</Typography>}
+          {...props}
+        />
+        <Input placeholder="Placeholder" color="danger" endAdornment={<Info />} {...props} />
+        <Input
+          placeholder="Placeholder"
+          variant="light"
+          color="success"
+          endAdornment={<TaskAlt />}
+          {...props}
+        />
+      </React.Fragment>
+    ),
+    cssVars: [
+      { id: '--Input-height', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
+      {
+        id: '--Input-placeholderOpacity',
+        type: 'number',
+        defaultValue: 0.5,
+        inputProps: {
+          step: '0.1',
+          max: '1',
+          min: '0',
+        },
+      },
+      { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
+      { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
+    ],
+  },
 ];
 
 function Playground({ initialName }: { initialName?: string }) {
@@ -406,6 +426,9 @@ function Playground({ initialName }: { initialName?: string }) {
               type="number"
               label={cssVar.id}
               unit={cssVar.unit}
+              componentsProps={{
+                input: cssVar.inputProps,
+              }}
               value={
                 componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
                 cssVar.defaultValue ||
