@@ -183,6 +183,7 @@ function App() {
   return (
     <CssVarsProvider
       theme={{
+        // colorSchemes must be optional, if color schemes are not extended
         fontSize: '14px',
         fontFamily: 'system',
       }}
@@ -194,8 +195,8 @@ function App2() {
   return (
     <CssVarsProvider
       theme={{
-        // colorSchemes must be optional, if color schemes are not extended
         fontSize: '12px',
+        fontFamily: 'system',
         // @ts-expect-error `lineHeight` is not in theme
         lineHeight: 1,
       }}
