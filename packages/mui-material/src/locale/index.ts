@@ -1,3 +1,4 @@
+import { LabelDisplayedRowsArgs } from '..';
 import { ComponentsPropsList } from '../styles/props';
 
 export interface Localization {
@@ -1699,7 +1700,7 @@ export const itIT: Localization = {
           return 'Vai alla pagina precedente';
         },
         labelRowsPerPage: 'Righe per pagina:',
-        labelDisplayedRows: ({ from, to, count }) =>
+        labelDisplayedRows: ({ from, to, count }: LabelDisplayedRowsArgs) =>
           `${from}–${to} di ${count !== -1 ? count : `più di ${to}`}`,
       },
     },
