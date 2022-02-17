@@ -341,7 +341,7 @@ function Playground({ initialName }: { initialName?: string }) {
             bottom: '1rem',
           }}
         >
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}
@@ -430,120 +430,6 @@ export default function JoyComponents() {
       }}
     >
       <GlobalStyles styles={{ body: { margin: 0 } }} />
-      <Box sx={{ maxWidth: { md: 1152, xl: 1536 }, mx: 'auto', display: 'flex' }}>
-        <Box
-          sx={{
-            width: 256,
-            minHeight: '100vh',
-            boxShadow: 'var(--joy-shadow-sm)',
-          }}
-        >
-          <Box sx={{ pl: 5, pt: 2 }}>
-            <ColorSchemePicker />
-          </Box>
-          <Box
-            component="ul"
-            sx={{
-              my: 2,
-              px: 2,
-              listStyle: 'none',
-              '& > li': {
-                marginBottom: '0.25rem',
-              },
-              '& button': { justifyContent: 'flex-start' },
-            }}
-          >
-            {components.map((config) => (
-              <li key={config.name}>
-                <Button
-                  fullWidth
-                  variant={config.name === current ? 'outlined' : 'text'}
-                  onClick={() => setCurrent(config.name)}
-                >
-                  {config.name}
-                </Button>
-              </li>
-            ))}
-          </Box>
-        </Box>
-        <Box
-          className="Canvas"
-          sx={{
-            position: 'relative',
-            flexGrow: 1,
-            minWidth: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 2,
-          }}
-        >
-          {data?.render({ sx: componentVars[data.name] })}
-          <Box
-            sx={{
-              position: 'absolute',
-              left: '1rem',
-              right: '1rem',
-              bottom: '1rem',
-            }}
-          >
-            <ThemeProvider theme={brandingDarkTheme}>
-              <HighlightedCode
-                component={MarkdownElement}
-                code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}
-/>`}
-                language="jsx"
-              />
-            </ThemeProvider>
-          </Box>
-        </Box>
-        <Box
-          sx={{ width: 300, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-        >
-          <Box
-            sx={{
-              bgcolor: 'var(--joy-palette-background-level1)',
-              borderRadius: '4px',
-              minHeight: 300,
-              py: 1.5,
-              px: 2,
-            }}
-          >
-            <Typography level="body2" sx={{ mb: 2 }}>
-              CSS variables
-            </Typography>
-            {data?.cssVars.map((cssVar) => (
-              <ControlInput
-                key={cssVar.id}
-                type="number"
-                label={cssVar.id}
-                unit={cssVar.unit}
-                value={
-                  componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
-                  cssVar.defaultValue ||
-                  ''
-                }
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  const value = event.target.value;
-                  setComponentVars((latest) => {
-                    const vars = { ...latest[data.name] };
-                    if (!value) {
-                      delete vars[cssVar.id];
-                    } else {
-                      vars[cssVar.id] = cssVar.unit ? `${value}${cssVar.unit}` : value;
-                    }
-                    return {
-                      ...latest,
-                      [data.name]: vars,
-                    };
-                  });
-                }}
-              />
-            ))}
-          </Box>
-        </Box>
-      </Box>
       {mounted && <Playground initialName={router.query.name as string} />}
     </CssVarsProvider>
   );
