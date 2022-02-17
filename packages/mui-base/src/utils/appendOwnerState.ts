@@ -1,4 +1,3 @@
-import { Extendable } from '@mui/types';
 import isHostComponent from './isHostComponent';
 
 /**
@@ -15,7 +14,7 @@ export default function appendOwnerState<
   elementType: React.ElementType,
   existingProps: TExistingProps = {} as TExistingProps,
   ownerState: TOwnerState,
-): Extendable<TExistingProps & { ownerState?: TOwnerState }> {
+): TExistingProps & { ownerState?: TOwnerState } {
   if (isHostComponent(elementType)) {
     return existingProps;
   }
