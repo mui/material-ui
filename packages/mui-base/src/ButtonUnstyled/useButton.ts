@@ -4,30 +4,11 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import UseButtonProps from './UseButtonProps';
+import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
 import extractEventHandlers from '../utils/extractEventHandlers';
 
-export type ButtonRootProps<TOther> = Omit<
-  TOther,
-  'onBlur' | 'onFocus' | 'onKeyDown' | 'onKeyUp' | 'onMouseDown' | 'onMouseLeave' | 'onMouseUp'
-> & {
-  'aria-disabled'?: boolean;
-  disabled?: boolean;
-  tabIndex: number;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  role?: string;
-  onBlur: React.FocusEventHandler;
-  onFocus: React.FocusEventHandler<HTMLButtonElement>;
-  onKeyDown: React.KeyboardEventHandler;
-  onKeyUp: React.KeyboardEventHandler;
-  onMouseDown: React.MouseEventHandler<HTMLButtonElement>;
-  onMouseLeave: React.MouseEventHandler;
-  onMouseUp: React.MouseEventHandler<HTMLButtonElement>;
-  ref: React.Ref<any>;
-};
-
-export default function useButton(props: UseButtonProps) {
-  const { component, components = {}, disabled = false, href, ref, tabIndex = 0, to, type } = props;
+export default function useButton(props: UseButtonParameters) {
+  const { component = 'button', disabled = false, href, ref, tabIndex = 0, to, type } = props;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -86,12 +67,10 @@ export default function useButton(props: UseButtonProps) {
       otherHandlers.onFocus?.(event);
     };
 
-  const elementType = component ?? components.Root ?? 'button';
-
   const isNonNativeButton = () => {
     const button = buttonRef.current;
     return (
-      elementType !== 'button' && !(button?.tagName === 'A' && (button as HTMLAnchorElement)?.href)
+      component !== 'button' && !(button?.tagName === 'A' && (button as HTMLAnchorElement)?.href)
     );
   };
 
@@ -191,9 +170,9 @@ export default function useButton(props: UseButtonProps) {
 
   const getRootProps = <TOther extends Record<string, React.EventHandler<any>>>(
     otherHandlers?: TOther,
-  ): ButtonRootProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(props);
-    const externalEventHandlers: Record<string, React.EventHandler<any>> = {
+  ): UseButtonRootSlotProps<TOther> => {
+    const propsEventHandlers = extractEventHandlers(props) as TOther;
+    const externalEventHandlers: TOther = {
       ...propsEventHandlers,
       ...otherHandlers,
     };
@@ -215,14 +194,14 @@ export default function useButton(props: UseButtonProps) {
 
     // onFocusVisible can be present on the props, but since it's not a valid React event handler,
     // it must not be forwarded to the inner component.
-    delete mergedEventHandlers.onFocusVisible;
+    delete (mergedEventHandlers as any).onFocusVisible;
 
     return {
       tabIndex: disabled ? -1 : tabIndex,
       type,
       ...(buttonProps as Pick<
-        ButtonRootProps,
-        'type' | 'disabled' | 'tabIndex' | 'role' | 'aria-disabled'
+        UseButtonRootSlotProps<TOther>,
+        'type' | 'disabled' | 'role' | 'aria-disabled'
       >),
       ...mergedEventHandlers,
       ref: updateRef as React.Ref<any>,

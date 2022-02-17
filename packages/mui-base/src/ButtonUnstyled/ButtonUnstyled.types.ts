@@ -1,6 +1,6 @@
 import { OverrideProps } from '@mui/types';
 import React from 'react';
-import UseButtonProps from './UseButtonProps';
+import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
 
 export interface ButtonUnstyledActions {
   focusVisible(): void;
@@ -8,7 +8,7 @@ export interface ButtonUnstyledActions {
 
 export interface ButtonUnstyledComponentsPropsOverrides {}
 
-export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'ref'> {
+export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'> {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -20,7 +20,7 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'ref'> {
   };
 }
 
-type ButtonUnstyledProps<
+export type ButtonUnstyledProps<
   D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<ButtonUnstyledTypeMap<P, D>, D> & {
@@ -37,4 +37,13 @@ export interface ButtonUnstyledTypeMap<P = {}, D extends React.ElementType = 'bu
   defaultComponent: D;
 }
 
-export default ButtonUnstyledProps;
+export type ButtonUnstyledOwnerState = ButtonUnstyledOwnProps & {
+  active: boolean;
+  focusVisible: boolean;
+};
+
+export type ButtonUnstyledRootSlotProps = UseButtonRootSlotProps & {
+  ownerState: ButtonUnstyledOwnerState;
+  className: string;
+  children: React.ReactNode;
+};

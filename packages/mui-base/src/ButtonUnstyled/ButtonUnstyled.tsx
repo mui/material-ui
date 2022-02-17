@@ -4,10 +4,11 @@ import clsx from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
-import ButtonUnstyledProps, {
+import {
+  ButtonUnstyledProps,
   ButtonUnstyledOwnProps,
   ButtonUnstyledTypeMap,
-} from './ButtonUnstyledProps';
+} from './ButtonUnstyled.types';
 import useButton from './useButton';
 import appendOwnerState from '../utils/appendOwnerState';
 
@@ -38,7 +39,7 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  */
 const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
->(props: ButtonUnstyledProps<D>, ref: React.ForwardedRef<any>) {
+>(props: ButtonUnstyledProps<D>, forwardedRef: React.ForwardedRef<any>) {
   const {
     className,
     component,
@@ -58,10 +59,13 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   } = props;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
-  const handleRef = useForkRef(buttonRef, ref);
+  const handleRef = useForkRef(buttonRef, forwardedRef);
+
+  const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
 
   const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
+    component: ButtonRoot,
     ref: handleRef,
   });
 
@@ -76,16 +80,15 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     [setFocusVisible],
   );
 
-  const ownerState = {
+  const ownerState: ButtonUnstyledOwnerState = {
     ...props,
     active,
     focusVisible,
   };
 
-  const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
   const buttonRootProps = appendOwnerState(
     ButtonRoot,
-    { ...other, ...componentsProps.root },
+    { ...getRootProps(), ...other, ...componentsProps.root },
     ownerState,
   );
 
@@ -93,7 +96,6 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   return (
     <ButtonRoot
-      {...getRootProps()}
       {...buttonRootProps}
       className={clsx(classes.root, className, buttonRootProps.className)}
     >
