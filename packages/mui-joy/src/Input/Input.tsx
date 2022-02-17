@@ -132,6 +132,7 @@ const InputStartAdornment = styled('span', {
   slot: 'StartAdornment',
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   marginLeft: 'calc(var(--Input-adornment-offset) * -1)',
   marginRight: 'var(--Input-gap)',
