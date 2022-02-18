@@ -76,7 +76,7 @@ export const authors = {
   },
   samuelsycamore: {
     name: 'Sam Sycamore',
-    avatar: 'https://avatars.githubusercontent.com/u/71297412?v=4',
+    avatar: 'https://avatars.githubusercontent.com/u/71297412',
     github: 'samuelsycamore',
   },
 };
@@ -121,7 +121,7 @@ const styles = (theme) => ({
     '& summary': {
       padding: 8,
       fontSize: theme.typography.pxToRem(14),
-      fontWeight: 500,
+      fontWeight: theme.typography.fontWeightMedium,
       color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     },
     '& details': {

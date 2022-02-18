@@ -10,9 +10,6 @@ export default function AppFrameBanner() {
       href={ROUTES.careers} // Fix me!
       target="_blank"
       variant="caption"
-      data-ga-event-category="$event-category" // Fix me!
-      data-ga-event-action="click"
-      data-ga-event-label="table-contents"
       sx={(theme) => ({
         display: { xs: 'none', lg: 'block' },
         p: 1,
@@ -30,7 +27,7 @@ export default function AppFrameBanner() {
         transitionDuration: '150ms',
         color:
           theme.palette.mode === 'dark' ? theme.palette.primary[100] : theme.palette.primary[600],
-        fontWeight: 500,
+        fontWeight: 'medium',
         '&:hover, &:focus-visible': {
           backgroundColor:
             theme.palette.mode === 'dark'

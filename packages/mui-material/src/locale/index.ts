@@ -2199,8 +2199,8 @@ export const plPL: Localization = {
           return 'Przejdź do poprzedniej strony';
         },
         labelRowsPerPage: 'Wierszy na stronę:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} z ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} z ${count !== -1 ? count : `ponad ${to}`}`,
       },
     },
     MuiRating: {
