@@ -5,6 +5,12 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemContent from '@mui/joy/ListItemContent';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import ListItemButton from '@mui/joy/ListItemButton';
+import ListDivider from '@mui/joy/ListDivider';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
@@ -12,6 +18,11 @@ import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Add from '@mui/icons-material/Add';
 import DeleteForever from '@mui/icons-material/DeleteForever';
+import Inbox from '@mui/icons-material/Inbox';
+import Drafts from '@mui/icons-material/Drafts';
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
+import Star from '@mui/icons-material/StarBorder';
+import Favorite from '@mui/icons-material/FavoriteBorder';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
@@ -148,12 +159,116 @@ const components = [
       { id: '--Switch-thumb-offset', type: 'number', unit: 'px' },
     ],
   },
+  {
+    name: 'List',
+    render: (props: any) => (
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          minWidth: 375,
+          gap: 2,
+          p: 2,
+          mt: '-80px',
+          bgcolor: 'var(--joy-palette-background-level2)',
+          '& > *': { bgcolor: 'var(--joy-palette-background-body)' },
+        }}
+      >
+        <List {...props}>
+          <ListItem>
+            <ListItemDecorator>
+              <Box
+                sx={(theme) => ({
+                  display: 'inline-flex',
+                  borderRadius: '40px',
+                  p: '0.5rem',
+                  ...theme.variants.light.neutral,
+                })}
+              >
+                <Inbox />
+              </Box>
+            </ListItemDecorator>
+            <ListItemContent>
+              Inbox
+              <Typography level="body2">Jan 9, 2014</Typography>
+            </ListItemContent>
+          </ListItem>
+          <ListDivider inset="startContent" />
+          <ListItem>
+            <ListItemDecorator>
+              <Box
+                sx={(theme) => ({
+                  display: 'inline-flex',
+                  borderRadius: '40px',
+                  p: '0.5rem',
+                  ...theme.variants.light.neutral,
+                })}
+              >
+                <Drafts fontSize="md" />
+              </Box>
+            </ListItemDecorator>
+            <ListItemContent>
+              Drafts
+              <Typography level="body2">Jan 7, 2014</Typography>
+            </ListItemContent>
+          </ListItem>
+        </List>
+        <List component="nav" {...props}>
+          <ListItemButton selected color="primary">
+            <ListItemDecorator>
+              <Inbox />
+            </ListItemDecorator>
+            <ListItemContent>Inbox</ListItemContent>
+            <KeyboardArrowUp />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemDecorator>
+              <Star />
+            </ListItemDecorator>
+            <ListItemContent>Starred</ListItemContent>
+          </ListItemButton>
+          <ListDivider component="hr" />
+          <ListItemButton>
+            <ListItemDecorator>
+              <Favorite />
+            </ListItemDecorator>
+            <ListItemContent>Favorite</ListItemContent>
+          </ListItemButton>
+        </List>
+        <List component="nav" {...props}>
+          <ListItemButton>
+            <ListItemContent>New file</ListItemContent>
+            <Typography level="body2">⌘ N</Typography>
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemContent>Copy</ListItemContent>
+            <Typography level="body2">⌘ C</Typography>
+          </ListItemButton>
+          <ListDivider inset="gutter" />
+          <ListItemButton disabled>
+            <ListItemContent>Delete</ListItemContent>
+            <Typography level="body2">⌘ D</Typography>
+          </ListItemButton>
+        </List>
+      </Box>
+    ),
+    cssVars: [
+      { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--List-gap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--List-item-paddingX', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 48 },
+      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-insetStart', type: 'number', unit: 'px' },
+      { id: '--List-item-radius', type: 'number', unit: 'px' },
+    ],
+  },
 ];
 
-export default function JoyComponents() {
+function Playground({ initialName }: { initialName?: string }) {
   const router = useRouter();
-  const match = components.find(({ name }) => name === router.query.name);
-  const [current, setCurrent] = React.useState(match ? router.query.name : components[0].name);
+  const [current, setCurrent] = React.useState(initialName || components[0].name);
   const [componentVars, setComponentVars] = React.useState<Record<string, any>>(
     components.reduce((result, curr) => ({ ...result, [curr.name]: {} }), {}),
   );
@@ -163,6 +278,7 @@ export default function JoyComponents() {
         .map(([key, value]) => `  '${key}': '${value}',`)
         .join('\n')
     : null;
+
   React.useEffect(() => {
     if (router.query.name !== current) {
       router.replace({
@@ -170,6 +286,124 @@ export default function JoyComponents() {
       });
     }
   }, [current, router]);
+  return (
+    <Box sx={{ maxWidth: { md: 1152, xl: 1536 }, mx: 'auto', display: 'flex' }}>
+      <Box
+        sx={{
+          width: 256,
+          minHeight: '100vh',
+          boxShadow: 'var(--joy-shadow-sm)',
+        }}
+      >
+        <Box sx={{ pl: 5, pt: 2 }}>
+          <ColorSchemePicker />
+        </Box>
+        <List
+          sx={{
+            mt: 2,
+            '--List-insetStart': '1.25rem',
+            '--List-radius': '1rem',
+          }}
+        >
+          {components.map((config) => (
+            <ListItem key={config.name} sx={{ mb: 1 }}>
+              <ListItemButton
+                color={config.name === current ? 'primary' : 'neutral'}
+                selected={config.name === current}
+                onClick={() => setCurrent(config.name)}
+              >
+                {config.name}
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+      <Box
+        className="Canvas"
+        sx={{
+          position: 'relative',
+          flexGrow: 1,
+          minWidth: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          pt: '100px',
+          gap: 2,
+        }}
+      >
+        {data?.render({ sx: componentVars[data.name] })}
+        <Box
+          sx={{
+            position: 'absolute',
+            left: '1rem',
+            right: '1rem',
+            bottom: '1rem',
+          }}
+        >
+          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+            <HighlightedCode
+              component={MarkdownElement}
+              code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}
+/>`}
+              language="jsx"
+            />
+          </ThemeProvider>
+        </Box>
+      </Box>
+      <Box sx={{ width: 300, display: 'flex', flexDirection: 'column', pt: '100px' }}>
+        <Box
+          sx={{
+            bgcolor: 'var(--joy-palette-background-level1)',
+            borderRadius: '4px',
+            minHeight: 300,
+            py: 1.5,
+            px: 2,
+          }}
+        >
+          <Typography level="body2" sx={{ mb: 2 }}>
+            CSS variables
+          </Typography>
+          {data?.cssVars.map((cssVar) => (
+            <ControlInput
+              key={cssVar.id}
+              type="number"
+              label={cssVar.id}
+              unit={cssVar.unit}
+              value={
+                componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
+                cssVar.defaultValue ||
+                ''
+              }
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                const value = event.target.value;
+                setComponentVars((latest) => {
+                  const vars = { ...latest[data.name] };
+                  if (!value) {
+                    delete vars[cssVar.id];
+                  } else {
+                    vars[cssVar.id] = cssVar.unit ? `${value}${cssVar.unit}` : value;
+                  }
+                  return {
+                    ...latest,
+                    [data.name]: vars,
+                  };
+                });
+              }}
+            />
+          ))}
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+export default function JoyComponents() {
+  const router = useRouter();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <CssVarsProvider
       theme={{
@@ -195,120 +429,7 @@ export default function JoyComponents() {
       }}
     >
       <GlobalStyles styles={{ body: { margin: 0 } }} />
-      <Box sx={{ maxWidth: { md: 1152, xl: 1536 }, mx: 'auto', display: 'flex' }}>
-        <Box
-          sx={{
-            width: 256,
-            minHeight: '100vh',
-            boxShadow: 'var(--joy-shadow-sm)',
-          }}
-        >
-          <Box sx={{ pl: 5, pt: 2 }}>
-            <ColorSchemePicker />
-          </Box>
-          <Box
-            component="ul"
-            sx={{
-              my: 2,
-              px: 2,
-              listStyle: 'none',
-              '& > li': {
-                marginBottom: '0.25rem',
-              },
-              '& button': { justifyContent: 'flex-start' },
-            }}
-          >
-            {components.map((config) => (
-              <li key={config.name}>
-                <Button
-                  fullWidth
-                  variant={config.name === current ? 'outlined' : 'text'}
-                  onClick={() => setCurrent(config.name)}
-                >
-                  {config.name}
-                </Button>
-              </li>
-            ))}
-          </Box>
-        </Box>
-        <Box
-          className="Canvas"
-          sx={{
-            position: 'relative',
-            flexGrow: 1,
-            minWidth: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 2,
-          }}
-        >
-          {data?.render({ sx: componentVars[data.name] })}
-          <Box
-            sx={{
-              position: 'absolute',
-              left: '1rem',
-              right: '1rem',
-              bottom: '1rem',
-            }}
-          >
-            <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
-              <HighlightedCode
-                component={MarkdownElement}
-                code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}
-/>`}
-                language="jsx"
-              />
-            </ThemeProvider>
-          </Box>
-        </Box>
-        <Box
-          sx={{ width: 300, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-        >
-          <Box
-            sx={{
-              bgcolor: 'var(--joy-palette-background-level1)',
-              borderRadius: '4px',
-              minHeight: 300,
-              py: 1.5,
-              px: 2,
-            }}
-          >
-            <Typography level="body2" sx={{ mb: 2 }}>
-              CSS variables
-            </Typography>
-            {data?.cssVars.map((cssVar) => (
-              <ControlInput
-                key={cssVar.id}
-                type="number"
-                label={cssVar.id}
-                unit={cssVar.unit}
-                value={
-                  componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
-                  cssVar.defaultValue ||
-                  ''
-                }
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  const value = event.target.value;
-                  setComponentVars((latest) => {
-                    const vars = { ...latest[data.name] };
-                    if (!value) {
-                      delete vars[cssVar.id];
-                    } else {
-                      vars[cssVar.id] = cssVar.unit ? `${value}${cssVar.unit}` : value;
-                    }
-                    return {
-                      ...latest,
-                      [data.name]: vars,
-                    };
-                  });
-                }}
-              />
-            ))}
-          </Box>
-        </Box>
-      </Box>
+      {mounted && <Playground initialName={router.query.name as string} />}
     </CssVarsProvider>
   );
 }

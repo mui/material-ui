@@ -117,6 +117,7 @@ export interface Palette {
   warning: PaletteWarning;
   text: PaletteText;
   background: PaletteBackground;
+  divider: string;
   focusVisible: string;
 }
 

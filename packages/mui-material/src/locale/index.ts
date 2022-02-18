@@ -1699,8 +1699,8 @@ export const itIT: Localization = {
           return 'Vai alla pagina precedente';
         },
         labelRowsPerPage: 'Righe per pagina:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} di ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} di ${count !== -1 ? count : `più di ${to}`}`,
       },
     },
     MuiRating: {
