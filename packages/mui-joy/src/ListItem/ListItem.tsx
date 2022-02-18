@@ -6,6 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
+import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
   const { sticky } = ownerState;
@@ -43,7 +44,7 @@ const ListItemRoot = styled('li', {
     zIndex: 1,
     background: 'var(--List-background)',
   }),
-  [`& + .${listItemClasses.root}`]: {
+  [`& + .${listItemClasses.root}, & + .${listItemButtonClasses.root}`]: {
     marginTop: 'var(--List-gap)',
   },
 }));

@@ -11,6 +11,7 @@ import {
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import listItemClasses from '../ListItem/listItemClasses';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selectedVariant, selected } =
@@ -74,7 +75,7 @@ const ListItemButtonRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
     }),
     '&.Mui-focusVisible': theme.focus.default,
-    [`& + .${listItemButtonClasses.root}`]: {
+    [`& + .${listItemButtonClasses.root}, & + .${listItemClasses.root}`]: {
       marginTop: 'var(--List-gap)',
     },
   },
