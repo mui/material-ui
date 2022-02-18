@@ -76,7 +76,7 @@ export const authors = {
   },
   samuelsycamore: {
     name: 'Sam Sycamore',
-    avatar: 'https://avatars.githubusercontent.com/u/71297412?v=4',
+    avatar: 'https://avatars.githubusercontent.com/u/71297412',
     github: 'samuelsycamore',
   },
 };
