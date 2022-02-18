@@ -37,6 +37,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   checkedColor: ['primary', 'danger', 'info', 'success', 'warning'],
+  variant: ['outlined', 'light', 'contained'],
 } as const;
 
 export default function JoySwitch() {
@@ -261,7 +262,7 @@ export default function JoySwitch() {
             {[undefined, { defaultChecked: true }].map((data, index) => (
               <Switch
                 key={index}
-                checkedColor="success"
+                checkedColor="info"
                 {...data}
                 sx={{
                   // '--Switch-thumb-shadow': '0 ',

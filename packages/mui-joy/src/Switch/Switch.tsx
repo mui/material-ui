@@ -64,7 +64,12 @@ const SwitchRoot = styled('span', {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return [
     {
-      ...(!ownerState.checked && theme.variants[ownerState.variant!]?.[ownerState.color!]), // color & bg will be overridden by the CSS variables
+      ...(!ownerState.checked &&
+        ownerState.variant === 'outlined' &&
+        theme.variants.outlined[ownerState.color!]),
+      ...(ownerState.checked &&
+        ownerState.checkedVariant === 'outlined' &&
+        theme.variants.outlined[ownerState.checkedColor!]),
       '--Switch-track-radius': theme.vars.radius.lg,
       '--Switch-track-width': '48px',
       '--Switch-track-height': '24px',
