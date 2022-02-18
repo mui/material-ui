@@ -511,7 +511,7 @@ export default function JoyTypography() {
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
             </List>
-            <List size="lg">
+            <List size="lg" sx={{ mt: 1 }}>
               <ListItem>
                 <Typography color="text.secondary">Large size</Typography>
               </ListItem>
