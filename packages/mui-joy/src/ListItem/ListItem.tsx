@@ -113,6 +113,10 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The element to display at the end of ListItem.
+   */
+  secondaryAction: PropTypes.node,
+  /**
    * If `true`, the component has sticky position (with top = 0).
    * @default false
    */
