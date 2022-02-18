@@ -1,14 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled } from '../styles';
+import { styled, JoyTheme } from '../styles';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
 
 const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) => {
-  const { classes, checked, disabled, focusVisible, readOnly } = ownerState;
+  const {
+    classes,
+    checked,
+    disabled,
+    focusVisible,
+    readOnly,
+    color,
+    variant,
+    checkedColor,
+    checkedVariant,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -17,6 +28,10 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       readOnly && 'readOnly',
+      variant && !checked && `variant${capitalize(variant)}`,
+      checkedVariant && checked && `variant${capitalize(checkedVariant)}`,
+      color && !checked && `color${capitalize(color)}`,
+      checkedColor && checked && `color${capitalize(checkedColor)}`,
     ],
     thumb: ['thumb', checked && 'checked'],
     track: ['track', checked && 'checked'],
@@ -26,11 +41,27 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
   return composeClasses(slots, getSwitchUtilityClass, classes);
 };
 
+const switchColorVariables =
+  ({ theme, ownerState }: { theme: JoyTheme; ownerState: SwitchProps }) =>
+  (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
+    const variant = data.checked ? ownerState.checkedVariant : ownerState.variant;
+    const color = data.checked ? ownerState.checkedColor : ownerState.color;
+    return {
+      '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
+      '--Switch-track-borderColor':
+        variant === 'outlined'
+          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
+          : 'currentColor',
+      '--Switch-thumb-color': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
+    };
+  };
+
 const SwitchRoot = styled('span', {
   name: 'MuiSwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
+  const getColorVariables = switchColorVariables({ theme, ownerState });
   return [
     {
       ...(!ownerState.checked && theme.variants[ownerState.variant!]?.[ownerState.color!]), // color & bg will be overridden by the CSS variables
@@ -38,6 +69,7 @@ const SwitchRoot = styled('span', {
       '--Switch-track-width': '48px',
       '--Switch-track-height': '24px',
       '--Switch-thumb-size': '16px',
+      '--Switch-thumb-shadow': 'none',
       ...(ownerState.size === 'sm' && {
         '--Switch-track-width': '40px',
         '--Switch-track-height': '20px',
@@ -52,49 +84,19 @@ const SwitchRoot = styled('span', {
       '--Switch-thumb-width': 'var(--Switch-thumb-size)',
       '--Switch-thumb-offset':
         'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
-      '--Switch-track-background':
-        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Bg`],
-      '--Switch-track-borderColor':
-        ownerState.variant === 'outlined'
-          ? theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Border`]
-          : 'currentColor',
-      '--Switch-thumb-color':
-        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+      ...getColorVariables(),
       '&:hover': {
-        '--Switch-track-background':
-          theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBg`],
-        '--Switch-track-borderColor':
-          ownerState.variant === 'outlined'
-            ? theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBorder`]
-            : 'currentColor',
-        '--Switch-thumb-color':
-          theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverColor`],
+        ...getColorVariables({ state: 'Hover' }),
       },
       [`&.${switchClasses.checked}`]: {
-        '--Switch-track-background':
-          theme.vars.palette[ownerState.checkedColor!]?.[`${ownerState.checkedVariant!}Bg`],
-        '--Switch-track-borderColor':
-          ownerState.checkedVariant === 'outlined'
-            ? theme.vars.palette[ownerState.checkedColor!]?.[
-                `${ownerState.checkedVariant!}HoverBorder`
-              ]
-            : 'currentColor',
-        '--Switch-thumb-color':
-          theme.vars.palette[ownerState.checkedColor!]?.[`${ownerState.checkedVariant!}Color`],
+        ...getColorVariables({ checked: true }),
         '&:hover': {
-          '--Switch-track-background':
-            theme.vars.palette[ownerState.checkedColor!]?.[`${ownerState.checkedVariant!}HoverBg`],
-          '--Switch-track-borderColor':
-            ownerState.checkedVariant === 'outlined'
-              ? theme.vars.palette[ownerState.checkedColor!]?.[
-                  `${ownerState.checkedVariant!}HoverBorder`
-                ]
-              : 'currentColor',
-          '--Switch-thumb-color':
-            theme.vars.palette[ownerState.checkedColor!]?.[
-              `${ownerState.checkedVariant!}HoverColor`
-            ],
+          ...getColorVariables({ checked: true, state: 'Hover' }),
         },
+      },
+      [`&.${switchClasses.disabled}`]: {
+        pointerEvents: 'none',
+        ...getColorVariables({ state: 'Disabled', checked: ownerState.checked }),
       },
       display: 'inline-block',
       width: 'var(--Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
@@ -103,14 +105,9 @@ const SwitchRoot = styled('span', {
       position: 'relative',
       padding:
         'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
-      backgroundColor: 'var(--Switch-track-background)',
+      backgroundColor: 'initial',
       color: 'var(--Switch-thumb-color)',
       borderColor: 'var(--Switch-track-borderColor)',
-      [`&.${switchClasses.disabled}`]: {
-        pointerEvents: 'none',
-        cursor: 'default',
-        opacity: 0.6,
-      },
       [`&.${switchClasses.focusVisible}`]: theme.focus.default,
     },
   ];
@@ -142,7 +139,7 @@ const SwitchTrack = styled('span', {
   height: 'calc(var(--Switch-track-height) - 2 * var(--variant-outlinedBorderWidth, 0px))', // account for the border width
   width: 'calc(var(--Switch-track-width) - 2 * var(--variant-outlinedBorderWidth, 0px))', // account for the border width
   display: 'block',
-  backgroundColor: 'inherit', // need to inherit from root, so that hover state can change the background (the track is covered by input)
+  backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
 }));
 
@@ -159,6 +156,7 @@ const SwitchThumb = styled('span', {
   width: 'var(--Switch-thumb-width)',
   height: 'var(--Switch-thumb-size)',
   borderRadius: 'var(--Switch-thumb-radius)',
+  boxShadow: 'var(--Switch-thumb-shadow)',
   color: 'inherit',
   backgroundColor: 'currentColor',
   [`&.${switchClasses.checked}`]: {
