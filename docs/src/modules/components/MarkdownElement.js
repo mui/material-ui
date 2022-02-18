@@ -121,7 +121,7 @@ const Root = styled('div')(({ theme }) => ({
     '&:hover .anchor-link-style': {
       display: 'inline-block',
       textAlign: 'center',
-      lineHeight: '23px',
+      lineHeight: '21.5px',
       marginLeft: 10,
       height: '26px',
       width: '26px',
