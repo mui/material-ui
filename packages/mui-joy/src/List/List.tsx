@@ -1,15 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: ListProps) => {
+  const { size } = ownerState;
   const slots = {
-    root: ['root'],
+    root: ['root', size && `size${capitalize(size)}`],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
@@ -71,7 +73,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     ...props,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListRoot
@@ -105,9 +107,12 @@ List.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The size of the component.
+   * The size of the component (affect other nested list* components).
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default List;
