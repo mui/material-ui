@@ -21,6 +21,9 @@ import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import Star from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
 import DeleteForever from '@mui/icons-material/DeleteForever';
+import CommentIcon from '@mui/icons-material/Comment';
+import CheckBox from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -67,6 +70,45 @@ const Circle = ({
     ]}
   />
 );
+
+function CheckboxList() {
+  const [checked, setChecked] = React.useState([0]);
+
+  const handleToggle = (value: number) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+  };
+
+  return (
+    <List>
+      {[0, 1, 2, 3].map((value) => (
+        <ListItem
+          key={value}
+          secondaryAction={
+            <IconButton aria-label="comments" size="sm">
+              <CommentIcon />
+            </IconButton>
+          }
+        >
+          <ListItemButton role={undefined} onClick={handleToggle(value)}>
+            <ListItemDecorator>
+              {checked.indexOf(value) !== -1 ? <CheckBox /> : <CheckBoxOutlineBlank />}
+            </ListItemDecorator>
+            Line item {value + 1}
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
+  );
+}
 
 export default function JoyTypography() {
   return (
@@ -493,6 +535,8 @@ export default function JoyTypography() {
               </ListItem>
             </List>
           </Box>
+
+          <CheckboxList />
         </Box>
       </Box>
     </CssVarsProvider>
