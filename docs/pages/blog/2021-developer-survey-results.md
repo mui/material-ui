@@ -39,7 +39,7 @@ We're working hard to expand outward from our core products in order to provide 
 **The introduction of a paid product**
 
 A big challenge with open-source is that the proportion of value captured by maintainers is close to zero.
-The MIT licensed model enabled a lot of growth but it naturally has reached a limit.
+The MIT licensed model has enabled a lot of growth, but it does have its limitations.
 In order to push our mission as much as we believe it's possible, we needed to introduce a way to capture more value.
 [Open-core](https://en.wikipedia.org/wiki/Open-core_model) allows us to still offer an MIT licensed (free) version of the X components while charging for additional features that require more attention (including support).
 
