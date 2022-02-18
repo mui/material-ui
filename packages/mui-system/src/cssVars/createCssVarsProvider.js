@@ -64,7 +64,10 @@ export default function createCssVarsProvider(options) {
   }) {
     // make sure that baseTheme is always independent of each <CssVarsProvider /> call.
     // JSON.parse(JSON.stringify(...)) is okay to be used as long as the baseTheme is a plain object.
-    const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
+    // const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
+    // TODO: this is not working for MD theme where there are functions, like
+    // transitions.create, palette.getContrastText etc.
+    const clonedBaseTheme = { ...baseTheme };
 
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;

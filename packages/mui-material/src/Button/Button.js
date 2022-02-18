@@ -79,7 +79,7 @@ const ButtonRoot = styled(ButtonBase, {
     ...theme.typography.button,
     minWidth: 64,
     padding: '6px 16px',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     transition: theme.transitions.create(
       ['background-color', 'box-shadow', 'border-color', 'color'],
       {
@@ -106,7 +106,7 @@ const ButtonRoot = styled(ButtonBase, {
         }),
       ...(ownerState.variant === 'outlined' &&
         ownerState.color !== 'inherit' && {
-          border: `1px solid ${theme.palette[ownerState.color].main}`,
+          border: `1px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
           backgroundColor: alpha(
             theme.palette[ownerState.color].main,
             theme.palette.action.hoverOpacity,
@@ -117,46 +117,46 @@ const ButtonRoot = styled(ButtonBase, {
           },
         }),
       ...(ownerState.variant === 'contained' && {
-        backgroundColor: theme.palette.grey.A100,
-        boxShadow: theme.shadows[4],
+        backgroundColor: (theme.vars || theme).palette.grey.A100,
+        boxShadow: (theme.vars || theme).shadows[4],
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          boxShadow: theme.shadows[2],
-          backgroundColor: theme.palette.grey[300],
+          boxShadow: (theme.vars || theme).shadows[2],
+          backgroundColor: (theme.vars || theme).palette.grey[300],
         },
       }),
       ...(ownerState.variant === 'contained' &&
         ownerState.color !== 'inherit' && {
-          backgroundColor: theme.palette[ownerState.color].dark,
+          backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
-            backgroundColor: theme.palette[ownerState.color].main,
+            backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
           },
         }),
     },
     '&:active': {
       ...(ownerState.variant === 'contained' && {
-        boxShadow: theme.shadows[8],
+        boxShadow: (theme.vars || theme).shadows[8],
       }),
     },
     [`&.${buttonClasses.focusVisible}`]: {
       ...(ownerState.variant === 'contained' && {
-        boxShadow: theme.shadows[6],
+        boxShadow: (theme.vars || theme).shadows[6],
       }),
     },
     [`&.${buttonClasses.disabled}`]: {
-      color: theme.palette.action.disabled,
+      color: (theme.vars || theme).palette.action.disabled,
       ...(ownerState.variant === 'outlined' && {
-        border: `1px solid ${theme.palette.action.disabledBackground}`,
+        border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
       }),
       ...(ownerState.variant === 'outlined' &&
         ownerState.color === 'secondary' && {
-          border: `1px solid ${theme.palette.action.disabled}`,
+          border: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
         }),
       ...(ownerState.variant === 'contained' && {
-        color: theme.palette.action.disabled,
-        boxShadow: theme.shadows[0],
-        backgroundColor: theme.palette.action.disabledBackground,
+        color: (theme.vars || theme).palette.action.disabled,
+        boxShadow: (theme.vars || theme).shadows[0],
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       }),
     },
     ...(ownerState.variant === 'text' && {
@@ -164,7 +164,7 @@ const ButtonRoot = styled(ButtonBase, {
     }),
     ...(ownerState.variant === 'text' &&
       ownerState.color !== 'inherit' && {
-        color: theme.palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color].main,
       }),
     ...(ownerState.variant === 'outlined' && {
       padding: '5px 15px',
@@ -174,18 +174,18 @@ const ButtonRoot = styled(ButtonBase, {
     }),
     ...(ownerState.variant === 'outlined' &&
       ownerState.color !== 'inherit' && {
-        color: theme.palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color].main,
         border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
       }),
     ...(ownerState.variant === 'contained' && {
-      color: theme.palette.getContrastText(theme.palette.grey[300]),
-      backgroundColor: theme.palette.grey[300],
-      boxShadow: theme.shadows[2],
+      color: theme.palette.getContrastText?.(theme.palette.grey[300]),
+      backgroundColor: (theme.vars || theme).palette.grey[300],
+      boxShadow: (theme.vars || theme).shadows[2],
     }),
     ...(ownerState.variant === 'contained' &&
       ownerState.color !== 'inherit' && {
-        color: theme.palette[ownerState.color].contrastText,
-        backgroundColor: theme.palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color].contrastText,
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
       }),
     ...(ownerState.color === 'inherit' && {
       color: 'inherit',
