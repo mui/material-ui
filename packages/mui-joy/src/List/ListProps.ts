@@ -16,7 +16,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     classes?: Partial<ListClasses>;
     /**
-     * The size of the component.
+     * The size of the component (affect other nested list* components).
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', ListPropsSizeOverrides>;
     /**
