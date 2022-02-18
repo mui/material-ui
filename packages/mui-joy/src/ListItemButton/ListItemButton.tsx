@@ -48,7 +48,8 @@ const ListItemButtonRoot = styled('div', {
     }),
     ...(ownerState.color &&
       ownerState.color !== 'context' && {
-        '--List-decorator-color': theme.vars.palette[ownerState.color]?.textColor,
+        '--List-decorator-color':
+          theme.vars.palette[ownerState.color]?.[`${ownerState.selectedVariant || 'text'}Color`],
       }),
     boxSizing: 'border-box',
     display: 'flex',
