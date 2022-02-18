@@ -2576,7 +2576,7 @@ You can use one of these two options, by order of preference:
 
 We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
-> Note: Usually, you wouldn't write the styles like this if you were to write them manually. However, this is the best trasnformation that can be created via codemod we could come up with.
+> Note: Usually, you wouldn't write the styles like this if you were to write them manually. However, this is the best transformation that can be created via codemod we could come up with.
 > So, if you want to refine them later, you can refer to the examples shown in the sections below.
 
 ```sh
