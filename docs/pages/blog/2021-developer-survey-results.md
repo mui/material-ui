@@ -192,7 +192,7 @@ Here are the most recurring topics for improvement:
 
 Got ideas for improvements? Please share them with us! Here's how to make sure that your requests get top priority:
 
-- When you create an issue to request features or components in the MUI Core or X repositories, we'll label it as `Waiting for upvotes`.
+- When you create an issue to request features or components in the MUI Core or MUI X repositories, we'll label it as `Waiting for upvotes`.
   The more votes your issue receives, the higher a priority it will become—so make sure to structure, research, and justify your request so it resonates with other community members.
 - When requesting a new component, make sure to benchmark existing implementations of it in the wild so we can see what works and what we could better.
 - Try to explain the problem you're having as clearly as possible — it's often the case that we already have a component to solve it.
