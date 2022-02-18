@@ -67,7 +67,7 @@ export default function createCssVarsProvider(options) {
     // const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
     // TODO: this is not working for MD theme where there are functions, like
     // transitions.create, palette.getContrastText etc.
-    const clonedBaseTheme = { ...baseTheme };
+    const clonedBaseTheme = React.useMemo(() => ({ ...baseTheme }), []);
 
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;

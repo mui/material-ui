@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme, createTheme } from '@mui/material/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Button from '@mui/material/Button';
@@ -45,31 +45,51 @@ export default function Page() {
           <Button>Text</Button>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-          <Button color="secondary" variant="contained">Text</Button>
-          <Button color="secondary" variant="outlined">Text</Button>
+          <Button color="secondary" variant="contained">
+            Text
+          </Button>
+          <Button color="secondary" variant="outlined">
+            Text
+          </Button>
           <Button color="secondary">Text</Button>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-          <Button color="error" variant="contained">Text</Button>
-          <Button color="error" variant="outlined">Text</Button>
+          <Button color="error" variant="contained">
+            Text
+          </Button>
+          <Button color="error" variant="outlined">
+            Text
+          </Button>
           <Button color="error">Text</Button>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-          <Button color="info" variant="contained">Text</Button>
-          <Button color="info" variant="outlined">Text</Button>
+          <Button color="info" variant="contained">
+            Text
+          </Button>
+          <Button color="info" variant="outlined">
+            Text
+          </Button>
           <Button color="info">Text</Button>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-          <Button color="warning" variant="contained">Text</Button>
-          <Button color="warning" variant="outlined">Text</Button>
+          <Button color="warning" variant="contained">
+            Text
+          </Button>
+          <Button color="warning" variant="outlined">
+            Text
+          </Button>
           <Button color="warning">Text</Button>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-          <Button color="success" variant="contained">Text</Button>
-          <Button color="success" variant="outlined">Text</Button>
+          <Button color="success" variant="contained">
+            Text
+          </Button>
+          <Button color="success" variant="outlined">
+            Text
+          </Button>
           <Button color="success">Text</Button>
         </Box>
       </Box>
     </CssVarsProvider>
-  );    
+  );
 }

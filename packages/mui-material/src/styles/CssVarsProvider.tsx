@@ -1,5 +1,4 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import { deepmerge } from '@mui/utils';
 import createTheme, { ThemeOptions, Theme } from './createTheme';
 import { PaletteOptions } from './createPalette';
 
@@ -12,18 +11,13 @@ interface ThemeInput extends ThemeOptions {
   >;
 }
 
-interface ThemeWithColorSchemes extends Theme {
-  mode: 'light' | 'dark';
-  colorSchemes: Record<
-    'light' | 'dark',
-    Omit<PaletteOptions, 'getContrastText' | 'contrastThreshold' | 'tonalOffset' | 'mode'>
-  >;
-}
-
 const defaultTheme = createTheme();
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<'light' | 'dark', ThemeInput>({
+const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
+  'light' | 'dark',
+  ThemeInput
+>({
   theme: {
     ...defaultTheme,
     colorSchemes: {
@@ -35,10 +29,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
-  },
-  resolveTheme: (mergedTheme) => {
-    console.log(mergedTheme);
-    return mergedTheme;
   },
   shouldSkipGeneratingVar: (keys) =>
     keys[0] === 'typography' || keys[0] === 'mixins' || keys[0] === 'breakpoints',
