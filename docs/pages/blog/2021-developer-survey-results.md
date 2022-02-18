@@ -41,7 +41,7 @@ We're working hard to expand outward from our core products in order to provide 
 A big challenge with open-source is that the proportion of value captured by maintainers is close to zero.
 The MIT licensed model has enabled a lot of growth, but it does have its limitations.
 In order to push our mission as much as we believe it's possible, we needed to introduce a way to capture more value.
-[Open-core](https://en.wikipedia.org/wiki/Open-core_model) allows us to still offer an MIT licensed (free) version of the X components while charging for additional features that require more attention (including support).
+[Open-core](https://en.wikipedia.org/wiki/Open-core_model) allows us to still offer an MIT licensed (free) version of the MUI X components while charging for additional features that require more attention (including support).
 
 It’s still the early days of MUI X, though.
 We introduced it at the end of 2020 and have been iterating not only on the components but on the model itself.
