@@ -2,10 +2,9 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
-import { Mode } from 'packages/mui-system/src/cssVars/useCurrentColorScheme';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useColorScheme, useThemeProps } from '../styles';
+import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getPaperUtilityClass } from './paperClasses';
 import { PaperProps, PaperTypeMap } from './PaperProps';
@@ -37,7 +36,7 @@ const PaperRoot = styled('div', {
       ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})<{ ownerState: PaperProps & { mode?: Mode } }>(({ theme, ownerState }) => {
+})<{ ownerState: PaperProps }>(({ theme, ownerState }) => {
   return [
     {
       // TODO: discuss the theme transition.
@@ -59,7 +58,6 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
     name: 'MuiPaper',
   });
 
-  const { mode } = useColorScheme();
   const { className, color = 'neutral', component = 'div', variant, elevation, ...other } = props;
 
   const ownerState = {
@@ -68,7 +66,6 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
     component,
     elevation,
     variant,
-    mode,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -111,7 +108,7 @@ Paper.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * Shadow depth, corresponds to `dp` in the spec.
+   * Shadow depth, corresponds to the `theme.shadow` scale.
    * It accepts theme values between 'xs' and 'xl'.
    */
   elevation: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
