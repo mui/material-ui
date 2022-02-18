@@ -27,7 +27,7 @@ const ListItemRoot = styled('li', {
     'max(-0.375rem, -1 * var(--List-item-paddingX)) calc(-1 * var(--List-item-paddingX))',
   '--List-decorator-color': theme.vars.palette.text.tertiary, // for making icon color less obvious
   ...(ownerState.secondaryAction && {
-    '--List-item-secondaryActionWidth': '3rem', // for ListItemButton
+    '--List-item-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
   }),
   boxSizing: 'border-box',
   display: 'flex',
