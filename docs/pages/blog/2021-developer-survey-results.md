@@ -8,7 +8,7 @@ tags: ['Developer survey']
 
 Keeping up with the tradition, a few months ago we opened the 2021 MUI Developer Survey.
 Your feedback helps us to build better products, and we can't thank you enough for being a part of our community.
-Nearly 1,600 of you responded to this year's survey, and we take your input very seriously.
+1,591 of you responded to this year's survey, and we take your input very seriously.
 Here's what we've learned about your needs after poring over the results.
 
 Just like the previous iterations, the survey was chopped into three sections: ["Your needs"](#your-needs), ["Your product"](#your-product), and ["About you"](#about-you).
