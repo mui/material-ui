@@ -2293,8 +2293,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
   ```diff
-  -<TextareAutosize rowsMax={6}>
-  +<TextareAutosize maxRows={6}>
+  -<TextareaAutosize rowsMax={6}>
+  +<TextareaAutosize maxRows={6}>
   ```
 
 - Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
@@ -2302,8 +2302,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
   ```diff
-  -<TextareAutosize rowsMin={1}>
-  +<TextareAutosize minRows={1}>
+  -<TextareaAutosize rowsMin={1}>
+  +<TextareaAutosize minRows={1}>
   ```
 
 ### ToggleButton
