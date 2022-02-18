@@ -173,7 +173,7 @@ export default function JoyTypography() {
           </List>
 
           {/* ex5 */}
-          <List>
+          <List sx={{ '--List-decorator-width': '3rem' }}>
             <ListItem>
               <ListItemDecorator>
                 <Circle>
@@ -444,6 +444,55 @@ export default function JoyTypography() {
               </li>
             ))}
           </List>
+
+          <Box>
+            <List size="sm">
+              <ListItem>
+                <Typography level="body2">Small size</Typography>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star fontSize="lg" />
+                </ListItemDecorator>
+                <ListItemButton>This is a small list</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star fontSize="lg" />
+                </ListItemDecorator>
+                <ListItemButton>This is a small list</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star fontSize="lg" />
+                </ListItemDecorator>
+                <ListItemButton>This is a small list</ListItemButton>
+              </ListItem>
+            </List>
+            <List size="lg">
+              <ListItem>
+                <Typography color="text.secondary">Large size</Typography>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star />
+                </ListItemDecorator>
+                <ListItemButton>This is a large list</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star />
+                </ListItemDecorator>
+                <ListItemButton>This is a large list</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star />
+                </ListItemDecorator>
+                <ListItemButton>This is a large list</ListItemButton>
+              </ListItem>
+            </List>
+          </Box>
         </Box>
       </Box>
     </CssVarsProvider>

@@ -19,16 +19,31 @@ const ListRoot = styled('ul', {
   name: 'MuiList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListProps }>(({ theme }) => ({
+})<{ ownerState: ListProps }>(({ theme, ownerState }) => ({
   '--List-padding': '0.375rem',
   '--List-gap': '0.375rem', // spacing between ListItem + ListItem or ListItemButton + ListItemButton
   '--List-radius': theme.vars.radius.sm,
-  '--List-background': theme.vars.palette.background.body,
   '--List-item-minHeight': '2.5rem',
   '--List-item-paddingX': '0.375rem',
-  '--List-decorator-width': '3rem',
+  '--List-decorator-width': '2.5rem',
+  ...(ownerState.size === 'sm' && {
+    '--List-padding': '0.25rem',
+    '--List-gap': '0.25rem',
+    '--List-radius': theme.vars.radius.xs,
+    '--List-item-minHeight': '2rem',
+    '--List-item-paddingX': '0.25rem',
+    '--List-decorator-width': '2rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--List-padding': '0.5rem',
+    '--List-gap': '0.5rem',
+    '--List-item-minHeight': '3rem',
+    '--List-item-paddingX': '0.5rem',
+    '--List-decorator-width': '3rem',
+  }),
   '--List-divider-gap': 'var(--List-gap)',
   '--List-insetStart': 'var(--List-item-paddingX)',
+  '--List-background': theme.vars.palette.background.body,
   // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
   '--List-item-radius':
     'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
@@ -49,9 +64,10 @@ const List = React.forwardRef(function List(inProps, ref) {
     name: 'MuiList',
   });
 
-  const { component, className, children, ...other } = props;
+  const { component, className, children, size = 'md', ...other } = props;
 
   const ownerState = {
+    size,
     ...props,
   };
 
