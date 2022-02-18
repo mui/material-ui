@@ -21,14 +21,46 @@ describe('<FormControlLabel />', () => {
     skip: ['componentProp', 'componentsProp'],
   }));
 
-  it('should render the label text inside an additional element', () => {
-    const { container, getByText } = render(<FormControlLabel label="Pizza" control={<div />} />);
-    const root = container.firstChild;
+  describe('prop: label', () => {
+    it('should render the label text inside an additional element', () => {
+      const { container, getByText } = render(<FormControlLabel label="Pizza" control={<div />} />);
+      const root = container.firstChild;
 
-    expect(root).to.have.property('nodeName', 'LABEL');
-    expect(root).to.have.class(classes.root);
-    expect(getByText(/Pizza/)).not.to.have.class(classes.root);
-    expect(getByText(/Pizza/)).to.have.class(classes.label);
+      expect(root).to.have.property('nodeName', 'LABEL');
+      expect(root).to.have.class(classes.root);
+      expect(getByText(/Pizza/)).not.to.have.class(classes.root);
+      expect(getByText(/Pizza/)).to.have.class(classes.label);
+    });
+
+    it('should render numberic labels', () => {
+      const { getByText } = render(<FormControlLabel label={5} control={<div />} />);
+
+      expect(getByText(/5/)).not.to.equal(null);
+    });
+
+    it('should render node labels', () => {
+      const { getByText } = render(<FormControlLabel label={<p>Pizza</p>} control={<div />} />);
+
+      expect(getByText(/Pizza/)).not.to.equal(null);
+      expect(getByText(/Pizza/).tagName).to.equal('P');
+    });
+
+    it('should render fragment labels', () => {
+      const { getByText } = render(
+        <FormControlLabel
+          label={
+            <React.Fragment>
+              <strong>Delicious</strong>
+              <p>Pizza</p>
+            </React.Fragment>
+          }
+          control={<div />}
+        />,
+      );
+
+      expect(getByText(/Pizza/)).not.to.equal(null);
+      expect(getByText(/Pizza/).tagName).to.equal('P');
+    });
   });
 
   describe('prop: disabled', () => {

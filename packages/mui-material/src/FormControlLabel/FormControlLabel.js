@@ -192,7 +192,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * A text or an element to be used in an enclosing label element.
    */
-  label: PropTypes.oneOfType([PropTypes.element, PropTypes.number, PropTypes.string]).isRequired,
+  label: PropTypes.node,
   /**
    * The position of the label.
    * @default 'end'
