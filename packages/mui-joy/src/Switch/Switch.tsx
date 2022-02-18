@@ -31,48 +31,89 @@ const SwitchRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
-  return {
-    '--Switch-track-radius': theme.vars.radius.lg,
-    '--Switch-track-width': '48px',
-    '--Switch-track-height': '24px',
-    '--Switch-thumb-size': '16px',
-    ...(ownerState.size === 'sm' && {
-      '--Switch-track-width': '40px',
-      '--Switch-track-height': '20px',
-      '--Switch-thumb-size': '12px',
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Switch-track-width': '64px',
-      '--Switch-track-height': '32px',
-      '--Switch-thumb-size': '24px',
-    }),
-    '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
-    '--Switch-thumb-width': 'var(--Switch-thumb-size)',
-    '--Switch-thumb-offset':
-      'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
-    display: 'inline-block',
-    width: 'var(--Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
-    borderRadius: 'var(--Switch-track-radius)',
-    position: 'relative',
-    padding:
-      'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
-    color: theme.vars.palette.neutral.containedBg,
-    '&:hover': {
-      color: theme.vars.palette.neutral.containedBg,
-    },
-    [`&.${switchClasses.checked}`]: {
-      color: theme.vars.palette[ownerState.color!].containedBg,
+  return [
+    {
+      ...(!ownerState.checked && theme.variants[ownerState.variant!]?.[ownerState.color!]), // color & bg will be overridden by the CSS variables
+      '--Switch-track-radius': theme.vars.radius.lg,
+      '--Switch-track-width': '48px',
+      '--Switch-track-height': '24px',
+      '--Switch-thumb-size': '16px',
+      ...(ownerState.size === 'sm' && {
+        '--Switch-track-width': '40px',
+        '--Switch-track-height': '20px',
+        '--Switch-thumb-size': '12px',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Switch-track-width': '64px',
+        '--Switch-track-height': '32px',
+        '--Switch-thumb-size': '24px',
+      }),
+      '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
+      '--Switch-thumb-width': 'var(--Switch-thumb-size)',
+      '--Switch-thumb-offset':
+        'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
+      '--Switch-track-background':
+        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Bg`],
+      '--Switch-track-borderColor':
+        ownerState.variant === 'outlined'
+          ? theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Border`]
+          : 'currentColor',
+      '--Switch-thumb-color':
+        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
       '&:hover': {
-        color: theme.vars.palette[ownerState.color!].containedHoverBg,
+        '--Switch-track-background':
+          theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBg`],
+        '--Switch-track-borderColor':
+          ownerState.variant === 'outlined'
+            ? theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBorder`]
+            : 'currentColor',
+        '--Switch-thumb-color':
+          theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverColor`],
       },
+      [`&.${switchClasses.checked}`]: {
+        '--Switch-track-background':
+          theme.vars.palette[ownerState.checkedColor!]?.[`${ownerState.checkedVariant!}Bg`],
+        '--Switch-track-borderColor':
+          ownerState.checkedVariant === 'outlined'
+            ? theme.vars.palette[ownerState.checkedColor!]?.[
+                `${ownerState.checkedVariant!}HoverBorder`
+              ]
+            : 'currentColor',
+        '--Switch-thumb-color':
+          theme.vars.palette[ownerState.checkedColor!]?.[`${ownerState.checkedVariant!}Color`],
+        '&:hover': {
+          '--Switch-track-background':
+            theme.vars.palette[ownerState.checkedColor!]?.[`${ownerState.checkedVariant!}HoverBg`],
+          '--Switch-track-borderColor':
+            ownerState.checkedVariant === 'outlined'
+              ? theme.vars.palette[ownerState.checkedColor!]?.[
+                  `${ownerState.checkedVariant!}HoverBorder`
+                ]
+              : 'currentColor',
+          '--Switch-thumb-color':
+            theme.vars.palette[ownerState.checkedColor!]?.[
+              `${ownerState.checkedVariant!}HoverColor`
+            ],
+        },
+      },
+      display: 'inline-block',
+      width: 'var(--Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
+      borderRadius: 'var(--Switch-track-radius)',
+      boxSizing: 'border-box',
+      position: 'relative',
+      padding:
+        'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
+      backgroundColor: 'var(--Switch-track-background)',
+      color: 'var(--Switch-thumb-color)',
+      borderColor: 'var(--Switch-track-borderColor)',
+      [`&.${switchClasses.disabled}`]: {
+        pointerEvents: 'none',
+        cursor: 'default',
+        opacity: 0.6,
+      },
+      [`&.${switchClasses.focusVisible}`]: theme.focus.default,
     },
-    [`&.${switchClasses.disabled}`]: {
-      pointerEvents: 'none',
-      cursor: 'default',
-      opacity: 0.6,
-    },
-    [`&.${switchClasses.focusVisible}`]: theme.focus.default,
-  };
+  ];
 });
 
 const SwitchInput = styled('input', {
@@ -81,14 +122,13 @@ const SwitchInput = styled('input', {
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: SwitchProps }>(() => ({
   margin: 0,
-  height: '100%',
-  width: '100%',
+  height: 'var(--Switch-track-height)', // don't use 100% because root can have border width
+  width: 'var(--Switch-track-width)', // don't use 100% because root can have border width
   opacity: 0,
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   position: 'absolute',
-  top: 0,
-  left: 0,
-  bottom: 0,
-  right: 0,
   cursor: 'pointer',
 }));
 
@@ -99,10 +139,10 @@ const SwitchTrack = styled('span', {
 })<{ ownerState: SwitchProps & { focusVisible: boolean } }>(() => ({
   position: 'relative',
   color: 'inherit',
-  height: 'var(--Switch-track-height)',
-  width: 'var(--Switch-track-width)',
+  height: 'calc(var(--Switch-track-height) - 2 * var(--variant-outlinedBorderWidth, 0px))', // account for the border width
+  width: 'calc(var(--Switch-track-width) - 2 * var(--variant-outlinedBorderWidth, 0px))', // account for the border width
   display: 'block',
-  backgroundColor: 'currentColor',
+  backgroundColor: 'inherit', // need to inherit from root, so that hover state can change the background (the track is covered by input)
   borderRadius: 'var(--Switch-track-radius)',
 }));
 
@@ -119,7 +159,8 @@ const SwitchThumb = styled('span', {
   width: 'var(--Switch-thumb-width)',
   height: 'var(--Switch-thumb-size)',
   borderRadius: 'var(--Switch-thumb-radius)',
-  backgroundColor: '#fff',
+  color: 'inherit',
+  backgroundColor: 'currentColor',
   [`&.${switchClasses.checked}`]: {
     left: 'calc(50% + var(--Switch-track-width) / 2 - var(--Switch-thumb-width) / 2 - var(--Switch-thumb-offset))',
   },
@@ -140,7 +181,10 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
-    color = 'primary',
+    color = 'neutral',
+    checkedColor = 'primary',
+    variant = 'contained',
+    checkedVariant = variant,
     size,
     ...otherProps
   } = props;
@@ -165,6 +209,9 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     focusVisible,
     readOnly,
     color,
+    checkedColor,
+    variant,
+    checkedVariant,
     size,
   };
 
