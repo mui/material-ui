@@ -159,7 +159,7 @@ And what has decreased:
 <p class="blog-description">1534 out of 1589 answered</p>
 
 It's definitely a good thing to have a general sense of agreement to most of the statements.
-However, there's a considerably big gap between _Strongly agree_ and _Agree_ for all but the first statement, which showcases that we need to continue pushing for even more quality in each of these dimensions (customizability, customization, performance, and support).
+However, there's a considerably big gap between _Strongly agree_ and _Agree_ for all but the first statement, which showcases that we need to continue pushing for even more quality in each of these dimensions (customizability, customization, performance, and community support).
 
 ### What are your most important criteria for choosing a UI library?
 
