@@ -397,7 +397,7 @@ const synonyms = {
   ChildFriendly:
     'baby care carriage children infant kid newborn stroller toddler young',
   ChromeReaderMode: 'text',
-  Circle: 'button full geometry moon radio',
+  Circle: 'button full geometry moon radio bullet dot period',
   CircleNotifications: 'active alarm alert bell chime notify reminder ring sound',
   Class:
     'archive bookmark category favorite item label library reading remember ribbon save tag',

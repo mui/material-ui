@@ -69,6 +69,7 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   containedBg: `var(--joy-palette-${color}-600)`,
   containedHoverBg: `var(--joy-palette-${color}-700)`,
   containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledColor: `#fff`,
   containedDisabledBg: `var(--joy-palette-${color}-200)`,
 
   overrideTextPrimary: `var(--joy-palette-${color}-700)`,
@@ -101,6 +102,7 @@ const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
   containedBg: `var(--joy-palette-${color}-600)`,
   containedHoverBg: `var(--joy-palette-${color}-700)`,
   containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledColor: `#fff`,
   containedDisabledBg: `var(--joy-palette-${color}-300)`,
 
   overrideTextPrimary: `var(--joy-palette-${color}-200)`,
@@ -145,6 +147,7 @@ export const lightColorSystem = {
       level2: 'var(--joy-palette-neutral-100)',
       level3: 'var(--joy-palette-neutral-200)',
     },
+    divider: 'rgba(0 0 0 / 0.12)',
     focusVisible: 'var(--joy-palette-primary-200)',
   },
   shadowRing: '0 0 #000',
@@ -188,6 +191,7 @@ export const darkColorSystem = {
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
     },
+    divider: 'rgba(255 255 255 / 0.16)',
     focusVisible: 'var(--joy-palette-primary-500)',
   },
   shadowRing: '0 0 #000',
@@ -236,7 +240,7 @@ const baseDesignTokens = {
   fontWeight: {
     xs: 200,
     sm: 300,
-    md: 400,
+    md: 500,
     lg: 700,
     xl: 800,
   },
@@ -313,21 +317,18 @@ const internalDefaultTheme = {
     },
     body1: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     body2: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-secondary)',
     },
     body3: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-tertiary)',

@@ -2293,8 +2293,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
   ```diff
-  -<TextareAutosize rowsMax={6}>
-  +<TextareAutosize maxRows={6}>
+  -<TextareaAutosize rowsMax={6}>
+  +<TextareaAutosize maxRows={6}>
   ```
 
 - Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
@@ -2302,8 +2302,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
   ```diff
-  -<TextareAutosize rowsMin={1}>
-  +<TextareAutosize minRows={1}>
+  -<TextareaAutosize rowsMin={1}>
+  +<TextareaAutosize minRows={1}>
   ```
 
 ### ToggleButton
@@ -2576,7 +2576,7 @@ You can use one of these two options, by order of preference:
 
 We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
-> Note: Usually, you wouldn't write the styles like this if you were to write them manually. However, this is the best trasnformation that can be created via codemod we could come up with.
+> Note: Usually, you wouldn't write the styles like this if you were to write them manually. However, this is the best transformation that can be created via codemod we could come up with.
 > So, if you want to refine them later, you can refer to the examples shown in the sections below.
 
 ```sh

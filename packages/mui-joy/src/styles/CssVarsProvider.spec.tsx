@@ -30,7 +30,6 @@ function App2() {
 }
 
 function App3() {
-  // theme can be empty
   return (
     <CssVarsProvider
       theme={{
@@ -50,7 +49,6 @@ function App3() {
 }
 
 function App4() {
-  // theme can be empty
   return (
     <CssVarsProvider
       theme={{
@@ -64,7 +62,6 @@ function App4() {
 }
 
 function App5() {
-  // theme can be empty
   return (
     <CssVarsProvider
       theme={{
@@ -94,7 +91,6 @@ declare module '@mui/joy/styles' {
 }
 
 function App6() {
-  // theme can be empty
   return (
     <CssVarsProvider
       theme={{
@@ -116,7 +112,6 @@ declare module '@mui/joy/styles' {
 }
 
 function App7() {
-  // theme can be empty
   return (
     <CssVarsProvider
       theme={{
@@ -138,7 +133,6 @@ declare module '@mui/joy/styles' {
 }
 
 function App8() {
-  // theme can be empty
   return (
     <CssVarsProvider
       theme={{
@@ -168,7 +162,6 @@ declare module '@mui/joy/styles' {
 }
 
 function App9() {
-  // theme can be empty
   return (
     <React.Fragment>
       <CssVarsProvider
