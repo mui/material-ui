@@ -104,6 +104,10 @@ List.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The size of the component.
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
 } as any;
 
 export default List;
