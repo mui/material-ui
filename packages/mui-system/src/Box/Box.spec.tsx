@@ -13,8 +13,6 @@ function Test(props: TestProps) {
 function ResponsiveTest() {
   <Box sx={{ p: [2, 3, 4] }} />;
   <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }} />;
-  // @ts-expect-error value for the breakpoint should be valid
-  <Box sx={{ p: { xs: 2, sm: { you: "are dealing with 'any' here" }, md: 4 } }} />;
   <Box sx={{ fontSize: [12, 18, 24] }}>Array API</Box>;
   <Box
     sx={{
@@ -41,6 +39,22 @@ function GapTest() {
   >
     Gap
   </Box>;
+}
+
+function CssVarsTest() {
+  <Box
+    sx={{
+      '--token': '',
+      '&:hover': {
+        '--token': '',
+        '--token-2': (theme) => theme.palette.mode,
+      },
+      '&.checked': {
+        '--token': '',
+        '--token-2': (theme) => theme.palette.mode,
+      },
+    }}
+  />;
 }
 
 function ComponentPropTest() {
