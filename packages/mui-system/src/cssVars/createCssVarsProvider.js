@@ -62,11 +62,7 @@ export default function createCssVarsProvider(options) {
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
   }) {
-    // make sure that baseTheme is always independent of each <CssVarsProvider /> call.
-    // JSON.parse(JSON.stringify(...)) is okay to be used as long as the baseTheme is a plain object.
-    const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
-
-    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
+    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
     const hasMounted = React.useRef(false);
 
@@ -107,15 +103,18 @@ export default function createCssVarsProvider(options) {
       return colorScheme;
     })();
 
-    const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, {
+    const {
+      css: rootCss,
+      vars: rootVars,
+      parsedTheme,
+    } = cssVarsParser(mergedTheme, {
       prefix,
       basePrefix: designSystemPrefix,
       shouldSkipGeneratingVar,
     });
 
     mergedTheme = {
-      ...mergedTheme,
-      ...colorSchemes[resolvedColorScheme],
+      ...parsedTheme,
       components,
       colorSchemes,
       prefix,
@@ -130,12 +129,22 @@ export default function createCssVarsProvider(options) {
     const styleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = cssVarsParser(scheme, {
+      const {
+        css,
+        vars,
+        parsedTheme: parsedScheme,
+      } = cssVarsParser(scheme, {
         prefix,
         basePrefix: designSystemPrefix,
         shouldSkipGeneratingVar,
       });
       mergedTheme.vars = deepmerge(mergedTheme.vars, vars);
+      if (key === resolvedColorScheme) {
+        mergedTheme = {
+          ...mergedTheme,
+          ...parsedScheme,
+        };
+      }
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
           return defaultColorScheme;
