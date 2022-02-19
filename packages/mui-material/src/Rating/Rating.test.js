@@ -34,6 +34,24 @@ describe('<Rating />', () => {
     );
   });
 
+  it('should only render a single RatingDecimal child', () => {
+    const { container } = render(<Rating name="rating-test" value={2.5} precision={0.1} />);
+
+    expect(container.querySelectorAll('.MuiRating-decimal')).to.have.length(1);
+  });
+
+  it('should only render two children under RatingDecimal', () => {
+    const { container } = render(<Rating name="rating-test" value={2.5} precision={0.1} />);
+
+    expect(container.querySelector('.MuiRating-decimal').querySelectorAll('label')).to.have.length(2);
+  });
+
+  it('should render partially filled RatingItem under RatingDecimal', () => {
+    const { container } = render(<Rating name="rating-test" value={2.54} precision={0.1} />);
+
+    expect(container.querySelector('.MuiRating-decimal').querySelectorAll('label')[0].style).to.have.property('width', '50%');
+  });
+
   it('should handle mouse hover correctly', () => {
     const { container } = render(<Rating />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
