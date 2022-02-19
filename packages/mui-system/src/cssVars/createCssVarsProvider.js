@@ -22,8 +22,8 @@ export default function createCssVarsProvider(options) {
     theme: baseTheme = {},
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
-    disableTransitionOnChange = false,
-    enableColorScheme = true,
+    disableTransitionOnChange: designSystemTransitionOnChange = false,
+    enableColorScheme: designSystemEnableColorScheme = true,
     prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar,
     resolveTheme,
@@ -61,6 +61,8 @@ export default function createCssVarsProvider(options) {
     attribute = DEFAULT_ATTRIBUTE,
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
+    disableTransitionOnChange = designSystemTransitionOnChange,
+    enableColorScheme = designSystemEnableColorScheme,
   }) {
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
@@ -183,7 +185,7 @@ export default function createCssVarsProvider(options) {
       return () => {
         document.documentElement.style.setProperty('color-scheme', priorColorScheme);
       };
-    }, [mode, systemMode]);
+    }, [mode, systemMode, enableColorScheme]);
 
     React.useEffect(() => {
       let timer;
@@ -203,7 +205,7 @@ export default function createCssVarsProvider(options) {
       return () => {
         clearTimeout(timer);
       };
-    }, [colorScheme]);
+    }, [colorScheme, disableTransitionOnChange]);
 
     React.useEffect(() => {
       hasMounted.current = true;
@@ -250,6 +252,14 @@ export default function createCssVarsProvider(options) {
      * The initial mode used.
      */
     defaultMode: PropTypes.string,
+    /**
+     * Disable CSS transitions when switching between modes or color schemes
+     */
+    disableTransitionOnChange: PropTypes.bool,
+    /**
+     * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
+     */
+    enableColorScheme: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */

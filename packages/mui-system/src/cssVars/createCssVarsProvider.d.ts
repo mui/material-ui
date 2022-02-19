@@ -9,7 +9,9 @@ export interface ColorSchemeContextValue<SupportedColorScheme extends string>
 
 export interface CssVarsProviderConfig<ColorScheme extends string> {
   /**
-   * Design system default color scheme
+   * Design system default color scheme.
+   * - provides string if the design system has one default color scheme (either light or dark)
+   * - provides object if the design system has default light & dark color schemes
    */
   defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
   /**
