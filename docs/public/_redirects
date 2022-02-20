@@ -9,13 +9,6 @@
 # To add when we finish work on v6
 # https://next.mui.com/* https://mui.com/:splat 301!
 
-# Support multiple domains
-# TODO add back
-# https://material-ui.com/* https://mui.com/:splat 301!
-
-# Temporarily access the store from the legacy domain
-https://mui.com/store/* https://material-ui.com/store/:splat 302!
-
 # For links hosted in the code published on npm
 /r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
 /r/caveat-with-refs-guide /guides/composition/#caveat-with-refs 302
@@ -27,7 +20,7 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 /r/issue-template-latest https://codesandbox.io/s/material-ui-issue-latest-s2dsx
 /r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /customization/components/#adding-new-component-variants
-/r/x-license https://material-ui.com/store/items/material-ui-pro/
+/r/x-license https://mui.com/store/items/material-ui-pro/
 /r/migration-v4 /guides/migration-v4/
 
 /x/license/ https://docs.google.com/document/d/1nkd5JP5wCefo6UwpVi6PnbTaw8DxhstkCZlfHV5ZgfI/edit?usp=sharing 301
@@ -103,8 +96,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 # Proxies
 
 ## Store
-/store/* https://material-ui-store.netlify.app/:splat 200
-/store-staging/* https://master--material-ui-store.netlify.app/:splat 200
+/store/* https://mui-store.netlify.app/:splat 200
+/store-staging/* https://master--mui-store.netlify.app/:splat 200
 
 ## mui-x
 ## Unlike the store that expect to be hosted under a subfolder,
