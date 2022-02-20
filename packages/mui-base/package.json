@@ -54,7 +54,7 @@
     "@babel/runtime": "^7.17.2",
     "@emotion/is-prop-valid": "^1.1.2",
     "@mui/utils": "^5.4.4",
-    "@popperjs/core": "^2.4.4",
+    "@popperjs/core": "^2.11.2",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2"
