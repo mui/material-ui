@@ -3,7 +3,7 @@ title: Q2 2020 Update
 description: An update on our mission for Q2 2020.
 date: 2020-07-17T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.

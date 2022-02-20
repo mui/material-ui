@@ -175,11 +175,6 @@ const PostPreview = (props: BlogPost) => {
 
 const PAGE_SIZE = 5;
 
-const PARENT_TAG = {
-  'MUI X': 'All products',
-  'MUI Core': 'All products',
-} as Record<string, string>;
-
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const postListRef = React.useRef<HTMLDivElement | null>(null);
@@ -206,13 +201,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
     }
 
     return post.tags.some((tag) => {
-      return (
-        Object.keys(selectedTags).includes(tag) ||
-        Object.keys(selectedTags)
-          .map((selectedTag) => PARENT_TAG[selectedTag])
-          .includes(tag) ||
-        Object.keys(selectedTags).includes(PARENT_TAG[tag])
-      );
+      return Object.keys(selectedTags).includes(tag);
     });
   });
   const pageStart = page * PAGE_SIZE;
