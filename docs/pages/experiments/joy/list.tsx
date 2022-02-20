@@ -669,7 +669,7 @@ export default function JoyTypography() {
           {/* ex10 */}
           <List
             component="nav"
-            sx={{ '--List-decorator-width': '56px', '--List-divider-gap': '1rem' }}
+            sx={{ '--List-decorator-width': '56px', '--List-divider-gap': '0.5rem' }}
           >
             <ListItem
               secondaryAction={
