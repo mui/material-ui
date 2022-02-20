@@ -11,6 +11,8 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
+import NestedList from '@mui/joy/NestedList';
+import NestedListItem from '@mui/joy/NestedListItem';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -148,7 +150,7 @@ function Gmail() {
           </Typography>
         </ListItemButton>
       </ListItem>
-      <ListItem nestedLevel={1}>
+      <NestedListItem>
         <ListItemButton
           selected={index === 1}
           color={index === 1 ? 'info' : undefined}
@@ -160,7 +162,9 @@ function Gmail() {
           </ListItemDecorator>
           Categories
         </ListItemButton>
-        <List sx={{ '--List-decorator-width': 'calc(var(--NestedList-decorator-width) + 13px)' }}>
+        <NestedList
+          sx={{ '--List-decorator-width': 'calc(var(--NestedList-decorator-width) + 13px)' }}
+        >
           <ListItem>
             <ListItemButton
               selected={index === 2}
@@ -187,8 +191,8 @@ function Gmail() {
               <Typography level="body2">22,252</Typography>
             </ListItemButton>
           </ListItem>
-        </List>
-      </ListItem>
+        </NestedList>
+      </NestedListItem>
     </List>
   );
 }
@@ -282,7 +286,7 @@ function MuiNav() {
         '--List-nestedItem-startGap': '28px',
       })}
     >
-      <ListItem nestedLevel={1}>
+      <NestedListItem>
         <ListItemButton selectedColor="primary" sx={{ mb: '2px' }}>
           <ListItemDecorator>
             <Article fontSize="md" />
@@ -290,7 +294,7 @@ function MuiNav() {
           <ListItemContent>Getting Started</ListItemContent>
           <KeyboardArrowDown fontSize="md" />
         </ListItemButton>
-        <List
+        <NestedList
           sx={{
             '--List-gap': '4px',
             '& .MuiListItemButton-root:not(.Mui-selected)': {
@@ -310,9 +314,9 @@ function MuiNav() {
           <ListItem>
             <ListItemButton selectedColor="primary">Example projects</ListItemButton>
           </ListItem>
-        </List>
-      </ListItem>
-      <ListItem nestedLevel={1}>
+        </NestedList>
+      </NestedListItem>
+      <NestedListItem>
         <ListItemButton selectedColor="primary">
           <ListItemDecorator>
             <ToggleOff fontSize="md" />
@@ -320,8 +324,8 @@ function MuiNav() {
           <ListItemContent>Components</ListItemContent>
           <KeyboardArrowDown fontSize="md" />
         </ListItemButton>
-        <List sx={{ '--List-gap': '10px', '--List-nestedItem-startGap': '0px' }}>
-          <ListItem nestedLevel={2}>
+        <NestedList sx={{ '--List-gap': '10px', '--List-nestedItem-startGap': '0px' }}>
+          <NestedListItem>
             <ListItemContent
               sx={{
                 color: 'text.tertiary',
@@ -334,7 +338,7 @@ function MuiNav() {
               <ListItemDecorator />
               Inputs
             </ListItemContent>
-            <List
+            <NestedList
               sx={{
                 '--List-gap': '4px',
                 '& .MuiListItemButton-root:not(.Mui-selected)': {
@@ -352,9 +356,9 @@ function MuiNav() {
               <ListItem>
                 <ListItemButton selectedColor="primary">Checkbox</ListItemButton>
               </ListItem>
-            </List>
-          </ListItem>
-          <ListItem nestedLevel={2}>
+            </NestedList>
+          </NestedListItem>
+          <NestedListItem>
             <ListItemContent
               sx={{
                 color: 'text.tertiary',
@@ -367,7 +371,7 @@ function MuiNav() {
               <ListItemDecorator />
               Data Display
             </ListItemContent>
-            <List
+            <NestedList
               sx={{
                 '--List-gap': '4px',
                 '& .MuiListItemButton-root:not(.Mui-selected)': {
@@ -385,10 +389,10 @@ function MuiNav() {
               <ListItem>
                 <ListItemButton selectedColor="primary">Chip</ListItemButton>
               </ListItem>
-            </List>
-          </ListItem>
-        </List>
-      </ListItem>
+            </NestedList>
+          </NestedListItem>
+        </NestedList>
+      </NestedListItem>
     </List>
   );
 }
@@ -826,16 +830,16 @@ export default function JoyTypography() {
               '--List-nestedItem-startGap': '24px', // increase start gap on nested list item
             }}
           >
-            <ListItem nestedLevel={1}>
+            <NestedListItem>
               <ListItemButton>
                 <Typography level="body2">Category 1</Typography>
               </ListItemButton>
-              <List>
-                <ListItem nestedLevel={2}>
+              <NestedList>
+                <NestedListItem>
                   <ListItem component="div">
                     <Typography level="body2">Subcategory 1.1</Typography>
                   </ListItem>
-                  <List>
+                  <NestedList>
                     <ListItem>
                       <ListItemButton>Menu item 1.1.1</ListItemButton>
                     </ListItem>
@@ -845,16 +849,16 @@ export default function JoyTypography() {
                     <ListItem>
                       <ListItemButton>Menu item 1.1.3</ListItemButton>
                     </ListItem>
-                  </List>
-                </ListItem>
+                  </NestedList>
+                </NestedListItem>
                 <ListItem>
                   <ListItemButton>Menu item 1.2</ListItemButton>
                 </ListItem>
                 <ListItem>
                   <ListItemButton>Menu item 1.3</ListItemButton>
                 </ListItem>
-              </List>
-            </ListItem>
+              </NestedList>
+            </NestedListItem>
             <ListItem>
               <ListItemButton>Menu item 2</ListItemButton>
             </ListItem>

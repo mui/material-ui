@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
-import { ListItemClasses } from './listItemClasses';
+import { NestedListItemClasses } from './nestedListItemClasses';
 
-export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
+export interface NestedListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
      * The content of the component.
@@ -12,9 +12,9 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<ListItemClasses>;
+    classes?: Partial<NestedListItemClasses>;
     /**
-     * The element to display at the end of ListItem.
+     * The element to display at the end of NestedListItem.
      */
     secondaryAction?: React.ReactNode;
     /**
@@ -30,9 +30,9 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   defaultComponent: D;
 }
 
-export type ListItemProps<
-  D extends React.ElementType = ListItemTypeMap['defaultComponent'],
+export type NestedListItemProps<
+  D extends React.ElementType = NestedListItemTypeMap['defaultComponent'],
   P = {
     component?: React.ElementType;
   },
-> = OverrideProps<ListItemTypeMap<P, D>, D>;
+> = OverrideProps<NestedListItemTypeMap<P, D>, D>;
