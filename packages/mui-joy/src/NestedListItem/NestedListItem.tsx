@@ -5,8 +5,9 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { NestedListItemProps, NestedListItemTypeMap } from './NestedListItemProps';
-import { getNestedListItemUtilityClass } from './nestedListItemClasses';
+import nestedListItemClasses, { getNestedListItemUtilityClass } from './nestedListItemClasses';
 import { listItemClasses } from '../ListItem';
+import { listItemButtonClasses } from '../ListItemButton';
 
 const useUtilityClasses = (ownerState: NestedListItemProps) => {
   const { sticky } = ownerState;
@@ -27,8 +28,7 @@ const NestedListItemRoot = styled('li', {
     '--List-item-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
   }),
   // add negative margin to NestedList equal to this ListItem padding & clear the padding
-  '--NestedList-margin':
-    'calc(-1 * var(--List-item-paddingY)) calc(-1 * (var(--List-item-paddingX) + var(--List-padding)))',
+  '--NestedList-margin': '0px calc(-1 * var(--List-item-paddingX))',
   '--NestedList-padding': 'var(--List-padding)',
   '--NestedList-radius': 'var(--List-radius)',
   '--NestedList-gap': 'var(--List-gap)',
@@ -41,20 +41,16 @@ const NestedListItemRoot = styled('li', {
   '--NestedList-divider-gap': 'var(--List-divider-gap)',
   '--NestedList-nestedItem-startGap': 'var(--List-nestedItem-startGap)',
   '--NestedList-insetStart': `calc(var(--List-insetStart) + var(--List-nestedItem-startGap))`,
-  // insetStart has no effect on nested list item
   '--List-itemButton-margin':
-    'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingX))',
-  [`& > .${listItemClasses.root}`]: {
-    // in case of using ListItem as a wrapper inside nested ListItem
-    margin: 'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingX))',
-  },
+    'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingX)) 0px',
+  '--List-item-margin':
+    'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingX)) 0px',
   boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   position: 'relative',
   padding: 'var(--List-item-paddingY) var(--List-item-paddingX)',
   minHeight: 'var(--List-item-minHeight)',
-  marginBottom: 'var(--List-gap)',
   ...theme.typography.body1,
   ...(ownerState.sticky && {
     position: 'sticky',
@@ -62,6 +58,15 @@ const NestedListItemRoot = styled('li', {
     zIndex: 1,
     background: 'var(--List-background)',
   }),
+  [`& + .${listItemClasses.root}`]: {
+    marginTop: 'var(--List-gap)',
+  },
+  [`& + .${listItemButtonClasses.root}`]: {
+    marginTop: 'var(--List-gap)',
+  },
+  [`& + .${nestedListItemClasses.root}`]: {
+    marginTop: 'var(--List-gap)',
+  },
 }));
 
 const NestedListItemSecondaryAction = styled('div', {

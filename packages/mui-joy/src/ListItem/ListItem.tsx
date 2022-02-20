@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
-import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
+import { listItemButtonClasses } from '../ListItemButton';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
   const { sticky } = ownerState;
@@ -37,6 +37,7 @@ const ListItemRoot = styled('li', {
   padding: 'var(--List-item-paddingY) var(--List-item-paddingX)',
   paddingLeft: 'var(--List-insetStart)',
   minHeight: 'var(--List-item-minHeight)',
+  margin: 'var(--List-item-margin)',
   ...theme.typography.body1,
   ...(ownerState.sticky && {
     position: 'sticky',
@@ -44,7 +45,10 @@ const ListItemRoot = styled('li', {
     zIndex: 1,
     background: 'var(--List-background)',
   }),
-  [`& + .${listItemClasses.root}, & + .${listItemButtonClasses.root}`]: {
+  [`& + .${listItemClasses.root}`]: {
+    marginTop: 'var(--List-gap)',
+  },
+  [`& + .${listItemButtonClasses.root}`]: {
     marginTop: 'var(--List-gap)',
   },
 }));

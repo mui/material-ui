@@ -89,7 +89,10 @@ const ListItemButtonRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
     }),
     '&.Mui-focusVisible': theme.focus.default,
-    [`& + .${listItemButtonClasses.root}, & + .${listItemClasses.root}`]: {
+    [`& + .${listItemButtonClasses.root}`]: {
+      marginTop: 'var(--List-gap)',
+    },
+    [`& + .${listItemClasses.root}`]: {
       marginTop: 'var(--List-gap)',
     },
   },

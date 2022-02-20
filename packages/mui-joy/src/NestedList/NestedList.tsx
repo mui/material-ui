@@ -6,9 +6,6 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { NestedListProps, NestedListTypeMap } from './NestedListProps';
 import { getNestedListUtilityClass } from './nestedListClasses';
-import { listItemClasses } from '../ListItem';
-import { listItemButtonClasses } from '../ListItemButton';
-import { listItemContentClasses } from '../ListItemContent';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -35,22 +32,16 @@ const NestedListRoot = styled('ul', {
   '--List-item-paddingY': 'var(--NestedList-item-paddingY)',
   '--List-insetStart': 'var(--NestedList-insetStart)',
   '--List-nestedItem-startGap': 'var(--NestedList-nestedItem-startGap)',
-  borderRadius: 'var(--List-radius)',
-  padding: 'var(--List-padding)',
-  margin: 'var(--NestedList-margin, initial)',
+  '--List-itemButton-margin': '0px',
+  '--List-item-margin': '0px',
+  padding: 0,
+  margin: 'var(--NestedList-margin)',
+  marginTop: 'var(--List-gap)',
   listStyle: 'none',
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
   position: 'relative', // for sticky ListItem
-  [`.${listItemClasses.root} + &, .${listItemButtonClasses.root} + &`]: {
-    // add margin-top because ListItemButton has negative margin due to ListItem.
-    marginTop: 'var(--NestedList-item-paddingY)',
-  },
-  [`.${listItemContentClasses.root} + &`]: {
-    // clear negative margin due to ListItem if the previous sibling component is ListItemContent.
-    marginTop: 0,
-  },
 }));
 
 const NestedList = React.forwardRef(function NestedList(inProps, ref) {

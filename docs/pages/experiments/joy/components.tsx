@@ -11,6 +11,8 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListDivider from '@mui/joy/ListDivider';
+import NestedList from '@mui/joy/NestedList';
+import NestedListItem from '@mui/joy/NestedListItem';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
@@ -188,7 +190,7 @@ const components = [
           <ListDivider inset="startContent" />
         </List>
         <List component="nav" {...props}>
-          <ListItem nestedLevel={1}>
+          <NestedListItem>
             <ListItemButton selected color="primary">
               <ListItemDecorator>
                 <Inbox />
@@ -196,15 +198,14 @@ const components = [
               <ListItemContent>Inbox</ListItemContent>
               <KeyboardArrowUp />
             </ListItemButton>
-            <List>
-              <ListItem
+            <NestedList>
+              <NestedListItem
                 component="div"
                 secondaryAction={
                   <IconButton variant="text" color="danger">
                     <DeleteForever />
                   </IconButton>
                 }
-                nestedLevel={2}
                 sx={{ '--List-secondaryAction-top': '20px' }}
               >
                 <ListItemButton>
@@ -213,7 +214,7 @@ const components = [
                   </ListItemDecorator>
                   <ListItemContent>Starred</ListItemContent>
                 </ListItemButton>
-                <List>
+                <NestedList>
                   <ListItem>
                     <ListItemButton>
                       <ListItemDecorator>
@@ -222,10 +223,10 @@ const components = [
                       Draft
                     </ListItemButton>
                   </ListItem>
-                </List>
-              </ListItem>
-            </List>
-          </ListItem>
+                </NestedList>
+              </NestedListItem>
+            </NestedList>
+          </NestedListItem>
           <ListDivider component="hr" />
           <ListItemButton>
             <ListItemDecorator>

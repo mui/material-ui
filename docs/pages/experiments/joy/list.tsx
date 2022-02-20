@@ -262,7 +262,6 @@ function MuiNav() {
         '& *': { fontFamily: '"IBM Plex Sans"', WebkitFontSmoothing: 'antialiased' },
 
         '& .MuiListItemContent-root': {
-          fontWeight: 500,
           fontSize: 'sm',
         },
         '& .MuiListItemButton-root': {
@@ -280,7 +279,7 @@ function MuiNav() {
         '--List-decorator-width': '28px',
         '--List-radius': '0px',
         '--List-item-radius': '5px',
-        '--List-gap': '8px',
+        '--List-gap': '12px',
         '--List-item-paddingX': '2px',
         '--List-item-paddingY': '0px',
         '--List-nestedItem-startGap': '28px',
@@ -324,7 +323,7 @@ function MuiNav() {
           <ListItemContent>Components</ListItemContent>
           <KeyboardArrowDown fontSize="md" />
         </ListItemButton>
-        <NestedList sx={{ '--List-gap': '10px', '--List-nestedItem-startGap': '0px' }}>
+        <NestedList sx={{ '--List-gap': '17px', '--List-nestedItem-startGap': '0px' }}>
           <NestedListItem>
             <ListItemContent
               sx={{
@@ -332,7 +331,7 @@ function MuiNav() {
                 textTransform: 'uppercase',
                 fontSize: '11px !important',
                 letterSpacing: '1.28px',
-                mt: '10px',
+                fontWeight: 'lg',
               }}
             >
               <ListItemDecorator />
@@ -365,7 +364,7 @@ function MuiNav() {
                 textTransform: 'uppercase',
                 fontSize: '11px !important',
                 letterSpacing: '1.28px',
-                mt: '10px',
+                fontWeight: '700 !important',
               }}
             >
               <ListItemDecorator />
@@ -832,7 +831,7 @@ export default function JoyTypography() {
           >
             <NestedListItem>
               <ListItemButton>
-                <Typography level="body2">Category 1</Typography>
+                <Typography>Category 1</Typography>
               </ListItemButton>
               <NestedList>
                 <NestedListItem>
