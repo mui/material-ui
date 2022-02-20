@@ -28,6 +28,7 @@ const ListRoot = styled('ul', {
   '--List-item-minHeight': '2.5rem',
   '--List-item-paddingX': '0.375rem',
   '--List-item-paddingY': '0.375rem',
+  '--List-item-fontSize': theme.vars.fontSize.md,
   '--List-decorator-width': '2.5rem',
   ...(ownerState.size === 'sm' && {
     '--List-padding': '0.25rem',

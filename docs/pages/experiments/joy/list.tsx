@@ -132,6 +132,7 @@ function Gmail() {
         '--List-item-minHeight': '32px',
         '--List-item-secondaryActionWidth': '12px',
         '--List-gap': '0px',
+        '--List-nestedItem-startGap': '13px',
         '& .MuiListItemDecorator-root': { justifyContent: 'flex-end', pr: '18px' },
       }}
     >
@@ -162,9 +163,7 @@ function Gmail() {
           </ListItemDecorator>
           Categories
         </ListItemButton>
-        <NestedList
-          sx={{ '--List-decorator-width': 'calc(var(--NestedList-decorator-width) + 13px)' }}
-        >
+        <NestedList>
           <ListItem>
             <ListItemButton
               selected={index === 2}
@@ -261,12 +260,8 @@ function MuiNav() {
         },
         '& *': { fontFamily: '"IBM Plex Sans"', WebkitFontSmoothing: 'antialiased' },
 
-        '& .MuiListItemContent-root': {
-          fontSize: 'sm',
-        },
         '& .MuiListItemButton-root': {
           fontWeight: 500,
-          fontSize: 'sm',
           '&:not(.Mui-selected):hover': {
             color: 'var(--joy-palette-text-primary)',
           },
@@ -282,6 +277,7 @@ function MuiNav() {
         '--List-gap': '12px',
         '--List-item-paddingX': '2px',
         '--List-item-paddingY': '0px',
+        '--List-item-fontSize': theme.vars.fontSize.sm,
         '--List-nestedItem-startGap': '28px',
       })}
     >
@@ -835,9 +831,9 @@ export default function JoyTypography() {
               </ListItemButton>
               <NestedList>
                 <NestedListItem>
-                  <ListItem component="div">
+                  <ListItemButton>
                     <Typography level="body2">Subcategory 1.1</Typography>
-                  </ListItem>
+                  </ListItemButton>
                   <NestedList>
                     <ListItem>
                       <ListItemButton>Menu item 1.1.1</ListItemButton>

@@ -38,7 +38,8 @@ const ListItemRoot = styled('li', {
   paddingLeft: 'var(--List-insetStart)',
   minHeight: 'var(--List-item-minHeight)',
   margin: 'var(--List-item-margin)',
-  ...theme.typography.body1,
+  fontSize: 'var(--List-item-fontSize)',
+  fontFamily: theme.vars.fontFamily.body,
   ...(ownerState.sticky && {
     position: 'sticky',
     top: 0,

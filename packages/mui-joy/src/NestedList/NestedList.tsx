@@ -20,18 +20,8 @@ const NestedListRoot = styled('ul', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: NestedListProps }>(() => ({
-  '--List-padding': `var(--NestedList-padding)`,
-  '--List-radius': `var(--NestedList-radius)`,
-  '--List-gap': `var(--NestedList-gap)`,
-  '--List-background': `var(--NestedList-background)`, // TODO, remove
-  '--List-item-minHeight': `var(--NestedList-item-minHeight)`,
-  '--List-item-paddingX': `var(--NestedList-item-paddingX)`,
-  '--List-decorator-width': `var(--NestedList-decorator-width)`,
-  '--List-divider-gap': `var(--NestedList-divider-gap)`,
-  '--List-item-radius': 'var(--NestedList-item-radius)',
-  '--List-item-paddingY': 'var(--NestedList-item-paddingY)',
   '--List-insetStart': 'var(--NestedList-insetStart)',
-  '--List-nestedItem-startGap': 'var(--NestedList-nestedItem-startGap)',
+  // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
   '--List-itemButton-margin': '0px',
   '--List-item-margin': '0px',
   padding: 0,
