@@ -14,6 +14,11 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      */
     classes?: Partial<ListItemClasses>;
     /**
+     * The value is a positive integer starts from 1 to create nested content.
+     * The nested list item will communicate with the children (List) to allow variables to be inherited from the top.
+     */
+    nestedLevel?: number;
+    /**
      * The element to display at the end of ListItem.
      */
     secondaryAction?: React.ReactNode;

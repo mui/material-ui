@@ -14,17 +14,25 @@ import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItem
 import listItemClasses from '../ListItem/listItemClasses';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, selectedVariant, selected } =
-    ownerState;
+  const {
+    color,
+    disabled,
+    focusVisible,
+    focusVisibleClassName,
+    selectedVariant,
+    selectedColor,
+    selected,
+  } = ownerState;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
-      color && `color${capitalize(color)}`,
+      color && !selected && `color${capitalize(color)}`,
       selected && 'selected',
       selected && selectedVariant && `selectedVariant${capitalize(selectedVariant)}`,
+      selectedColor && selected && `color${capitalize(selectedColor)}`,
     ],
   };
 
@@ -49,7 +57,12 @@ const ListItemButtonRoot = styled('div', {
     ...(ownerState.color &&
       ownerState.color !== 'context' && {
         '--List-decorator-color':
-          theme.vars.palette[ownerState.color]?.[`${ownerState.selectedVariant || 'text'}Color`],
+          theme.vars.palette[ownerState.color]?.[`${ownerState.selectedVariant!}Color`],
+      }),
+    ...(ownerState.selected &&
+      ownerState.selectedColor !== 'context' && {
+        '--List-decorator-color':
+          theme.vars.palette[ownerState.selectedColor!]?.[`${ownerState.selectedVariant!}Color`],
       }),
     boxSizing: 'border-box',
     display: 'flex',
@@ -60,8 +73,8 @@ const ListItemButtonRoot = styled('div', {
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
     // The value is negative to account for the ListItem's padding
     margin: 'var(--List-itemButton-margin)',
-    padding: 'min(0.375rem, var(--List-item-paddingX))',
-    paddingLeft: 'var(--List-insetStart, var(--List-item-paddingX))',
+    padding: 'var(--List-item-paddingY) var(--List-item-paddingX)',
+    paddingLeft: 'var(--List-insetStart)',
     paddingRight: 'calc(var(--List-item-paddingX) + var(--List-item-secondaryActionWidth, 0px))',
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
@@ -85,13 +98,13 @@ const ListItemButtonRoot = styled('div', {
         {
           ...(ownerState.selectedVariant === 'outlined' && {
             padding:
-              'calc(min(0.375rem, var(--List-item-paddingX)) - var(--variant-outlinedBorderWidth)) calc(var(--List-item-paddingX) - var(--variant-outlinedBorderWidth))', // account for the border width
+              'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth)) calc(var(--List-item-paddingX) - var(--variant-outlinedBorderWidth))', // account for the border width
           }),
         },
-        theme.variants[ownerState.selectedVariant!]?.[ownerState.color || 'primary'],
-        theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.color || 'primary'],
-        theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.color || 'primary'],
-        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.color || 'primary'],
+        theme.variants[ownerState.selectedVariant!]?.[ownerState.selectedColor!],
+        theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.selectedColor!],
+        theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.selectedColor!],
+        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.selectedColor!],
       ]
     : [
         theme.variants.text?.[ownerState.color!],
@@ -115,6 +128,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     color,
     selected = false,
     selectedVariant = 'light',
+    selectedColor = color ?? 'primary',
     ...other
   } = props;
 
@@ -147,6 +161,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     focusVisible,
     selected,
     selectedVariant,
+    selectedColor,
   };
 
   const classes = useUtilityClasses(ownerState);

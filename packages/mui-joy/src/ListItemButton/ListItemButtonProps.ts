@@ -63,6 +63,10 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     selected?: boolean;
     /**
+     * The color of the component when selected. It supports those theme colors that make sense for this component.
+     */
+    selectedColor?: OverridableStringUnion<ColorPaletteProp, ListItemButtonPropsColorOverrides>;
+    /**
      * The variant to use.
      * @default 'light'
      */

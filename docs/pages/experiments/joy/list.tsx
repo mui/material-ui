@@ -24,6 +24,13 @@ import DeleteForever from '@mui/icons-material/DeleteForever';
 import CommentIcon from '@mui/icons-material/Comment';
 import CheckBox from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
+import Label from '@mui/icons-material/Label';
+import People from '@mui/icons-material/People';
+import Info from '@mui/icons-material/Info';
+import Article from '@mui/icons-material/ArticleRounded';
+import ToggleOff from '@mui/icons-material/ToggleOffRounded';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDownRounded';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -106,6 +113,282 @@ function CheckboxList() {
           </ListItemButton>
         </ListItem>
       ))}
+    </List>
+  );
+}
+
+function Gmail() {
+  const [index, setIndex] = React.useState(0);
+  return (
+    <List
+      sx={{
+        '--List-padding': '0px',
+        '--List-radius': '0px',
+        '--List-item-paddingX': '0px',
+        '--List-item-radius': '0 20px 20px 0',
+        '--List-decorator-width': '64px',
+        '--List-item-minHeight': '32px',
+        '--List-item-secondaryActionWidth': '12px',
+        '--List-gap': '0px',
+        '& .MuiListItemDecorator-root': { justifyContent: 'flex-end', pr: '18px' },
+      }}
+    >
+      <ListItem>
+        <ListItemButton
+          selected={index === 0}
+          color={index === 0 ? 'danger' : undefined}
+          onClick={() => setIndex(0)}
+        >
+          <ListItemDecorator sx={{ color: 'inherit' }}>
+            <InboxIcon fontSize="lg" />
+          </ListItemDecorator>
+          <ListItemContent>Inbox</ListItemContent>
+          <Typography level="body2" sx={{ fontWeight: 'bold', color: 'inherit' }}>
+            1,950
+          </Typography>
+        </ListItemButton>
+      </ListItem>
+      <ListItem nestedLevel={1}>
+        <ListItemButton
+          selected={index === 1}
+          color={index === 1 ? 'info' : undefined}
+          onClick={() => setIndex(1)}
+        >
+          <ListItemDecorator>
+            <ArrowDropDown fontSize="lg" />
+            <Label fontSize="lg" />
+          </ListItemDecorator>
+          Categories
+        </ListItemButton>
+        <List sx={{ '--List-decorator-width': 'calc(var(--NestedList-decorator-width) + 13px)' }}>
+          <ListItem>
+            <ListItemButton
+              selected={index === 2}
+              color={index === 2 ? 'primary' : undefined}
+              onClick={() => setIndex(2)}
+            >
+              <ListItemDecorator>
+                <People fontSize="lg" />
+              </ListItemDecorator>
+              <ListItemContent>Social</ListItemContent>
+              <Typography level="body2">4,320</Typography>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton
+              selected={index === 3}
+              color={index === 3 ? 'warning' : undefined}
+              onClick={() => setIndex(3)}
+            >
+              <ListItemDecorator>
+                <Info fontSize="lg" />
+              </ListItemDecorator>
+              <ListItemContent>Updates</ListItemContent>
+              <Typography level="body2">22,252</Typography>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </ListItem>
+    </List>
+  );
+}
+
+function MuiNav() {
+  const grey = {
+    // same as branding theme
+    50: '#F3F6F9',
+    100: '#E7EBF0',
+    200: '#E0E3E7',
+    300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+    400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+    500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+    600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+    700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+    800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
+    900: '#1A2027',
+  };
+  const blue = {
+    50: '#F0F7FF',
+    100: '#C2E0FF',
+    200: '#99CCF3',
+    300: '#66B2FF',
+    400: '#3399FF',
+    main: '#007FFF',
+    500: '#007FFF',
+    600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
+    700: '#0059B2',
+    800: '#004C99',
+    900: '#003A75',
+  };
+  function createCssVars(object: any, prefix = '') {
+    const result: Record<string, string> = {};
+    Object.entries(object).forEach((entry) => {
+      const [key, value] = entry as [string, string];
+      result[`--joy-${prefix}-${key}`] = value;
+    });
+    return result;
+  }
+  return (
+    <List
+      sx={(theme) => ({
+        ...createCssVars(grey, 'palette-neutral'),
+        ...createCssVars(blue, 'palette-primary'),
+        '--joy-palette-text-primary': theme.vars.palette.neutral[900],
+        '--joy-palette-text-secondary': theme.vars.palette.neutral[700],
+        '--joy-palette-text-tertiary': theme.vars.palette.neutral[600],
+        '--joy-palette-neutral-textHoverBg': theme.vars.palette.neutral[50],
+        '--joy-palette-neutral-textActiveBg': theme.vars.palette.neutral[50],
+        '--joy-palette-primary-textColor': theme.vars.palette.primary[500],
+        '--joy-palette-primary-lightColor': theme.vars.palette.primary[500],
+        '--joy-palette-primary-lightBg': theme.vars.palette.primary[50],
+        '--joy-palette-primary-lightHoverBg': 'rgba(0, 127, 255, 0.12)',
+        '--joy-palette-primary-lightActiveBg': 'rgba(0, 127, 255, 0.12)',
+        '[data-mui-color-scheme="dark"] &': {
+          '--joy-palette-text-primary': '#fff',
+          '--joy-palette-text-secondary': theme.vars.palette.neutral[400],
+          '--joy-palette-neutral-textHoverBg': 'rgba(19, 47, 76, 0.4)',
+          '--joy-palette-neutral-textActiveBg': 'rgba(19, 47, 76, 0.4)',
+          '--joy-palette-primary-textColor': theme.vars.palette.primary[400],
+          '--joy-palette-primary-lightColor': theme.vars.palette.primary[300],
+          '--joy-palette-primary-lightBg': '#132f4c',
+          '--joy-palette-primary-lightHoverBg': 'rgba(51, 153, 255, 0.24)',
+          '--joy-palette-primary-lightActiveBg': 'rgba(51, 153, 255, 0.24)',
+          '--List-background': 'rgb(10, 25, 41)',
+        },
+        '& *': { fontFamily: '"IBM Plex Sans"', WebkitFontSmoothing: 'antialiased' },
+
+        '& .MuiListItemContent-root': {
+          fontWeight: 500,
+          fontSize: 'sm',
+        },
+        '& .MuiListItemButton-root': {
+          fontWeight: 500,
+          fontSize: 'sm',
+          '&:not(.Mui-selected):hover': {
+            color: 'var(--joy-palette-text-primary)',
+          },
+        },
+        '& .MuiSvgIcon-root': {
+          color: 'var(--joy-palette-primary-textColor)',
+        },
+
+        '--List-item-minHeight': '27px',
+        '--List-decorator-width': '28px',
+        '--List-radius': '0px',
+        '--List-item-radius': '5px',
+        '--List-gap': '8px',
+        '--List-item-paddingX': '2px',
+        '--List-item-paddingY': '0px',
+        '--List-nestedItem-startGap': '28px',
+      })}
+    >
+      <ListItem nestedLevel={1}>
+        <ListItemButton selectedColor="primary" sx={{ mb: '2px' }}>
+          <ListItemDecorator>
+            <Article fontSize="md" />
+          </ListItemDecorator>
+          <ListItemContent>Getting Started</ListItemContent>
+          <KeyboardArrowDown fontSize="md" />
+        </ListItemButton>
+        <List
+          sx={{
+            '--List-gap': '4px',
+            '& .MuiListItemButton-root:not(.Mui-selected)': {
+              color: 'text.secondary',
+              '&:hover': { color: 'text.primary' },
+            },
+          }}
+        >
+          <ListItem>
+            <ListItemButton selected selectedColor="primary">
+              Installation
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton selectedColor="primary">Usage</ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton selectedColor="primary">Example projects</ListItemButton>
+          </ListItem>
+        </List>
+      </ListItem>
+      <ListItem nestedLevel={1}>
+        <ListItemButton selectedColor="primary">
+          <ListItemDecorator>
+            <ToggleOff fontSize="md" />
+          </ListItemDecorator>
+          <ListItemContent>Components</ListItemContent>
+          <KeyboardArrowDown fontSize="md" />
+        </ListItemButton>
+        <List sx={{ '--List-gap': '10px', '--List-nestedItem-startGap': '0px' }}>
+          <ListItem nestedLevel={2}>
+            <ListItemContent
+              sx={{
+                color: 'text.tertiary',
+                textTransform: 'uppercase',
+                fontSize: '11px !important',
+                letterSpacing: '1.28px',
+                mt: '10px',
+              }}
+            >
+              <ListItemDecorator />
+              Inputs
+            </ListItemContent>
+            <List
+              sx={{
+                '--List-gap': '4px',
+                '& .MuiListItemButton-root:not(.Mui-selected)': {
+                  color: 'text.secondary',
+                  '&:hover': { color: 'text.primary' },
+                },
+              }}
+            >
+              <ListItem>
+                <ListItemButton selectedColor="primary">Autocomplete</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton selectedColor="primary">Button</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton selectedColor="primary">Checkbox</ListItemButton>
+              </ListItem>
+            </List>
+          </ListItem>
+          <ListItem nestedLevel={2}>
+            <ListItemContent
+              sx={{
+                color: 'text.tertiary',
+                textTransform: 'uppercase',
+                fontSize: '11px !important',
+                letterSpacing: '1.28px',
+                mt: '10px',
+              }}
+            >
+              <ListItemDecorator />
+              Data Display
+            </ListItemContent>
+            <List
+              sx={{
+                '--List-gap': '4px',
+                '& .MuiListItemButton-root:not(.Mui-selected)': {
+                  color: 'text.secondary',
+                  '&:hover': { color: 'text.primary' },
+                },
+              }}
+            >
+              <ListItem>
+                <ListItemButton selectedColor="primary">Avatar</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton selectedColor="primary">Badge</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton selectedColor="primary">Chip</ListItemButton>
+              </ListItem>
+            </List>
+          </ListItem>
+        </List>
+      </ListItem>
     </List>
   );
 }
@@ -537,6 +820,52 @@ export default function JoyTypography() {
           </Box>
 
           <CheckboxList />
+
+          <List
+            sx={{
+              '--List-nestedItem-startGap': '24px', // increase start gap on nested list item
+            }}
+          >
+            <ListItem nestedLevel={1}>
+              <ListItemButton>
+                <Typography level="body2">Category 1</Typography>
+              </ListItemButton>
+              <List>
+                <ListItem nestedLevel={2}>
+                  <ListItemButton>
+                    <Typography level="body2">Subcategory 1.1</Typography>
+                  </ListItemButton>
+                  <List>
+                    <ListItem>
+                      <ListItemButton>Menu item 1.1.1</ListItemButton>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemButton>Menu item 1.1.2</ListItemButton>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemButton>Menu item 1.1.3</ListItemButton>
+                    </ListItem>
+                  </List>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>Menu item 1.2</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>Menu item 1.3</ListItemButton>
+                </ListItem>
+              </List>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Menu item 2</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Menu item 3</ListItemButton>
+            </ListItem>
+          </List>
+
+          <Gmail />
+
+          <MuiNav />
         </Box>
       </Box>
     </CssVarsProvider>

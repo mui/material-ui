@@ -7,11 +7,14 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
+import { useListItemContext } from '../ListItem/ListItemContext';
+import { listItemButtonClasses } from '../ListItemButton';
+import { listItemContentClasses } from '../ListItemContent';
 
-const useUtilityClasses = (ownerState: ListProps) => {
-  const { size } = ownerState;
+const useUtilityClasses = (ownerState: ListProps & { nestedLevel: number | undefined }) => {
+  const { size, nestedLevel } = ownerState;
   const slots = {
-    root: ['root', size && `size${capitalize(size)}`],
+    root: ['root', size && `size${capitalize(size)}`, !!nestedLevel && `nestedLevel${nestedLevel}`],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
@@ -21,12 +24,13 @@ const ListRoot = styled('ul', {
   name: 'MuiList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: ListProps & { nestedLevel: number | undefined } }>(({ theme, ownerState }) => ({
   '--List-padding': '0.375rem',
   '--List-gap': '0.375rem', // spacing between ListItem + ListItem or ListItemButton + ListItemButton
   '--List-radius': theme.vars.radius.sm,
   '--List-item-minHeight': '2.5rem',
   '--List-item-paddingX': '0.375rem',
+  '--List-item-paddingY': '0.375rem',
   '--List-decorator-width': '2.5rem',
   ...(ownerState.size === 'sm' && {
     '--List-padding': '0.25rem',
@@ -49,6 +53,7 @@ const ListRoot = styled('ul', {
   // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
   '--List-item-radius':
     'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
+  '--List-nestedItem-startGap': 'var(--List-item-paddingX)',
   background: 'var(--List-background)',
   borderRadius: 'var(--List-radius)',
   padding: 'var(--List-padding)',
@@ -58,6 +63,29 @@ const ListRoot = styled('ul', {
   flexDirection: 'column',
   flexGrow: 1,
   position: 'relative', // for sticky ListItem
+  ...(ownerState.nestedLevel && {
+    '--List-padding': `var(--NestedList-padding)`,
+    '--List-radius': `var(--NestedList-radius)`,
+    '--List-gap': `var(--NestedList-gap)`,
+    '--List-background': `var(--NestedList-background)`,
+    '--List-item-minHeight': `var(--NestedList-item-minHeight)`,
+    '--List-item-paddingX': `var(--NestedList-item-paddingX)`,
+    '--List-decorator-width': `var(--NestedList-decorator-width)`,
+    '--List-divider-gap': `var(--NestedList-divider-gap)`,
+    '--List-item-radius': 'var(--NestedList-item-radius)',
+    '--List-item-paddingY': 'var(--NestedList-item-paddingY)',
+    '--List-insetStart': 'var(--NestedList-insetStart)',
+    '--List-nestedItem-startGap': 'var(--NestedList-nestedItem-startGap)',
+    margin: 'var(--NestedList-margin, initial)',
+    [`.${listItemButtonClasses.root} + &`]: {
+      // add margin-top because ListItemButton has negative margin due to ListItem.
+      marginTop: 'var(--NestedList-item-paddingY)',
+    },
+    [`.${listItemContentClasses.root} + &`]: {
+      // clear negative margin due to ListItem if the previous sibling component is ListItemContent.
+      marginTop: 0,
+    },
+  }),
 }));
 
 const List = React.forwardRef(function List(inProps, ref) {
@@ -65,11 +93,13 @@ const List = React.forwardRef(function List(inProps, ref) {
     props: inProps,
     name: 'MuiList',
   });
+  const { nestedLevel } = useListItemContext();
 
   const { component, className, children, size = 'md', ...other } = props;
 
   const ownerState = {
     size,
+    nestedLevel,
     ...props,
   };
 
