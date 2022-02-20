@@ -175,18 +175,10 @@ const components = [
         }}
       >
         <List {...props}>
+          <ListDivider inset="startContent" />
           <ListItem>
             <ListItemDecorator>
-              <Box
-                sx={(theme) => ({
-                  display: 'inline-flex',
-                  borderRadius: '40px',
-                  p: '0.5rem',
-                  ...theme.variants.light.neutral,
-                })}
-              >
-                <Inbox />
-              </Box>
+              <Inbox />
             </ListItemDecorator>
             <ListItemContent>
               Inbox
@@ -194,47 +186,45 @@ const components = [
             </ListItemContent>
           </ListItem>
           <ListDivider inset="startContent" />
-          <ListItem>
-            <ListItemDecorator>
-              <Box
-                sx={(theme) => ({
-                  display: 'inline-flex',
-                  borderRadius: '40px',
-                  p: '0.5rem',
-                  ...theme.variants.light.neutral,
-                })}
-              >
-                <Drafts fontSize="md" />
-              </Box>
-            </ListItemDecorator>
-            <ListItemContent>
-              Drafts
-              <Typography level="body2">Jan 7, 2014</Typography>
-            </ListItemContent>
-          </ListItem>
         </List>
         <List component="nav" {...props}>
-          <ListItemButton selected color="primary">
-            <ListItemDecorator>
-              <Inbox />
-            </ListItemDecorator>
-            <ListItemContent>Inbox</ListItemContent>
-            <KeyboardArrowUp />
-          </ListItemButton>
-          <ListItem
-            component="div"
-            secondaryAction={
-              <IconButton variant="text" color="danger">
-                <DeleteForever />
-              </IconButton>
-            }
-          >
-            <ListItemButton>
+          <ListItem nestedLevel={1}>
+            <ListItemButton selected color="primary">
               <ListItemDecorator>
-                <Star />
+                <Inbox />
               </ListItemDecorator>
-              <ListItemContent>Starred</ListItemContent>
+              <ListItemContent>Inbox</ListItemContent>
+              <KeyboardArrowUp />
             </ListItemButton>
+            <List>
+              <ListItem
+                component="div"
+                secondaryAction={
+                  <IconButton variant="text" color="danger">
+                    <DeleteForever />
+                  </IconButton>
+                }
+                nestedLevel={2}
+                sx={{ '--List-secondaryAction-top': '20px' }}
+              >
+                <ListItemButton>
+                  <ListItemDecorator>
+                    <Star />
+                  </ListItemDecorator>
+                  <ListItemContent>Starred</ListItemContent>
+                </ListItemButton>
+                <List>
+                  <ListItem>
+                    <ListItemButton>
+                      <ListItemDecorator>
+                        <Drafts />
+                      </ListItemDecorator>
+                      Draft
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </ListItem>
+            </List>
           </ListItem>
           <ListDivider component="hr" />
           <ListItemButton>
@@ -267,10 +257,12 @@ const components = [
       { id: '--List-gap', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-item-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-item-paddingX', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 48 },
+      { id: '--List-item-paddingY', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-insetStart', type: 'number', unit: 'px' },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
+      { id: '--List-nestedItem-startGap', type: 'number', unit: 'px' },
     ],
   },
 ];

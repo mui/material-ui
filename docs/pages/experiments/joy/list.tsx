@@ -832,9 +832,9 @@ export default function JoyTypography() {
               </ListItemButton>
               <List>
                 <ListItem nestedLevel={2}>
-                  <ListItemButton>
+                  <ListItem component="div">
                     <Typography level="body2">Subcategory 1.1</Typography>
-                  </ListItemButton>
+                  </ListItem>
                   <List>
                     <ListItem>
                       <ListItemButton>Menu item 1.1.1</ListItemButton>

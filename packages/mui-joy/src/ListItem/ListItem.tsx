@@ -70,6 +70,10 @@ const ListItemRoot = styled('li', {
     paddingLeft: 'var(--List-item-paddingX)',
     '--List-itemButton-margin':
       'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingX))',
+    [`& > .${listItemClasses.root}`]: {
+      // in case of using ListItem as a wrapper inside nested ListItem
+      margin: 'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingX))',
+    },
   }),
 }));
 
@@ -80,7 +84,7 @@ const ListItemSecondaryAction = styled('div', {
 })<{ ownerState: ListItemProps }>({
   display: 'inherit',
   position: 'absolute',
-  top: '50%',
+  top: 'var(--List-secondaryAction-top, 50%)',
   right: 'var(--List-item-paddingX)',
   transform: 'translateY(-50%)',
 });

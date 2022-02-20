@@ -8,6 +8,7 @@ import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import { useListItemContext } from '../ListItem/ListItemContext';
+import { listItemClasses } from '../ListItem';
 import { listItemButtonClasses } from '../ListItemButton';
 import { listItemContentClasses } from '../ListItemContent';
 
@@ -77,7 +78,7 @@ const ListRoot = styled('ul', {
     '--List-insetStart': 'var(--NestedList-insetStart)',
     '--List-nestedItem-startGap': 'var(--NestedList-nestedItem-startGap)',
     margin: 'var(--NestedList-margin, initial)',
-    [`.${listItemButtonClasses.root} + &`]: {
+    [`.${listItemClasses.root} + &, .${listItemButtonClasses.root} + &`]: {
       // add margin-top because ListItemButton has negative margin due to ListItem.
       marginTop: 'var(--NestedList-item-paddingY)',
     },
