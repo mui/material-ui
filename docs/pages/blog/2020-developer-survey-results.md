@@ -3,7 +3,7 @@ title: 2020 MUI Developer Survey results
 description: Results for our yearly developer survey, 2020 edition.
 date: 2020-06-27T00:00:00.000Z
 authors: ['mnajdova', 'oliviertassinari', 'mbrookes']
-tags: ['All products']
+tags: ['Developer survey']
 ---
 
 Continuing the tradition from last year, we launched a developer survey a few months ago, to which we received 1488 responses. This is twice as many as last year (734), so we thank you all for the participation!

@@ -3,7 +3,7 @@ title: November 2019 Update
 description: Here are the most significant improvements in November.
 date: 2019-12-12T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['MUI Core', 'News']
+tags: ['Company update']
 ---
 
 Here are the most significant improvements in November:

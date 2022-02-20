@@ -3,7 +3,7 @@ title: September 2019 Update
 description: Here are the most significant improvements in September.
 date: 2019-10-12T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['MUI Core', 'News']
+tags: ['Company update']
 ---
 
 Here are the most significant improvements in September:

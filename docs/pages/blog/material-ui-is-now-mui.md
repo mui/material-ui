@@ -3,7 +3,7 @@ title: Material-UI is now MUI!
 description: Starting today, we are evolving our brand identity. We are clarifying the difference between our company and our products.
 date: 2021-09-16T00:00:00.000Z
 authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
-tags: ['Company', 'News']
+tags: ['Company update']
 card: true
 ---
 
@@ -12,7 +12,6 @@ card: true
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
 - Material-UI: the organization is now called [**MUI**](https://github.com/mui/).
-  It includes [the company](https://www.infogreffe.com/entreprise-societe/852357748-material-ui-750119B189960000.html) and [the non-profit](https://opencollective.com/mui) entities.
 - Material-UI: the set of foundational MIT React components is now called [**MUI Core**](https://github.com/mui/material-ui).
 - Material UI: the Material Design components developed by MUI. Also, we ditched the hyphen!
 - Material-UI X: the set of advanced React components is now called [**MUI X**](https://github.com/mui/mui-x).

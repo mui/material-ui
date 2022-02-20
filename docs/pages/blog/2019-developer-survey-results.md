@@ -3,7 +3,7 @@ title: 2019 MUI Developer Survey results
 description: Results for the first yearly developer survey, 2019 edition.
 date: 2019-03-16T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
-tags: ['MUI Core']
+tags: ['Developer survey']
 ---
 
 While we are currently working on the upcoming release of MUI v4, we need to prioritize our
