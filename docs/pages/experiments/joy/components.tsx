@@ -221,12 +221,21 @@ const components = [
             <ListItemContent>Inbox</ListItemContent>
             <KeyboardArrowUp />
           </ListItemButton>
-          <ListItemButton>
-            <ListItemDecorator>
-              <Star />
-            </ListItemDecorator>
-            <ListItemContent>Starred</ListItemContent>
-          </ListItemButton>
+          <ListItem
+            component="div"
+            secondaryAction={
+              <IconButton variant="text" color="danger">
+                <DeleteForever />
+              </IconButton>
+            }
+          >
+            <ListItemButton>
+              <ListItemDecorator>
+                <Star />
+              </ListItemDecorator>
+              <ListItemContent>Starred</ListItemContent>
+            </ListItemButton>
+          </ListItem>
           <ListDivider component="hr" />
           <ListItemButton>
             <ListItemDecorator>

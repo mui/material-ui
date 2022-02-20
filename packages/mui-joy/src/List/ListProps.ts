@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ListClasses } from './listClasses';
+
+export interface ListPropsSizeOverrides {}
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
@@ -13,6 +15,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<ListClasses>;
+    /**
+     * The size of the component (affect other nested list* components).
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', ListPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

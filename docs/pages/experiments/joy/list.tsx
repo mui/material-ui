@@ -4,6 +4,7 @@ import { ColorPaletteProp, CssVarsProvider, useColorScheme } from '@mui/joy/styl
 import NextLink from 'next/link';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -19,6 +20,10 @@ import BeachAccess from '@mui/icons-material/BeachAccess';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import Star from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
+import DeleteForever from '@mui/icons-material/DeleteForever';
+import CommentIcon from '@mui/icons-material/Comment';
+import CheckBox from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -65,6 +70,45 @@ const Circle = ({
     ]}
   />
 );
+
+function CheckboxList() {
+  const [checked, setChecked] = React.useState([0]);
+
+  const handleToggle = (value: number) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+  };
+
+  return (
+    <List>
+      {[0, 1, 2, 3].map((value) => (
+        <ListItem
+          key={value}
+          secondaryAction={
+            <IconButton aria-label="comments" size="sm">
+              <CommentIcon />
+            </IconButton>
+          }
+        >
+          <ListItemButton role={undefined} onClick={handleToggle(value)}>
+            <ListItemDecorator>
+              {checked.indexOf(value) !== -1 ? <CheckBox /> : <CheckBoxOutlineBlank />}
+            </ListItemDecorator>
+            Line item {value + 1}
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
+  );
+}
 
 export default function JoyTypography() {
   return (
@@ -113,7 +157,6 @@ export default function JoyTypography() {
             gap: 2,
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             alignItems: 'flex-start',
-            '& > *': { bgcolor: 'background.body' },
           }}
         >
           {/* ex1 */}
@@ -172,7 +215,7 @@ export default function JoyTypography() {
           </List>
 
           {/* ex5 */}
-          <List>
+          <List sx={{ '--List-decorator-width': '3rem' }}>
             <ListItem>
               <ListItemDecorator>
                 <Circle>
@@ -345,56 +388,155 @@ export default function JoyTypography() {
             component="nav"
             sx={{ '--List-decorator-width': '56px', '--List-divider-gap': '1rem' }}
           >
-            <ListItemButton selected selectedVariant="light">
-              <ListItemDecorator>
-                <Circle color="primary">
-                  <InboxIcon />
-                </Circle>
-              </ListItemDecorator>
-              <ListItemContent>
-                <Typography>Inbox</Typography>
-                <Typography level="body2">Jan 9, 2014</Typography>
-              </ListItemContent>
-              <Button variant="light" size="sm">
-                Clear
-              </Button>
-            </ListItemButton>
-            <ListDivider component="hr" />
-            <ListItemButton selected selectedVariant="outlined" color="danger">
-              <ListItemDecorator>
-                <Circle color="danger">
-                  <Star />
-                </Circle>
-              </ListItemDecorator>
-              <ListItemContent>
-                <Typography>Starred</Typography>
-                <Typography level="body2">Jan 9, 2014</Typography>
-              </ListItemContent>
-              <Button variant="light" color="danger" size="sm">
-                Clear
-              </Button>
-            </ListItemButton>
-            <ListDivider component="hr" />
-            <ListItemButton
-              selected
-              selectedVariant="contained"
-              color="success"
-              sx={(theme) => theme.variants.containedOverrides.success}
+            <ListItem
+              secondaryAction={
+                <Button variant="light" size="sm">
+                  Clear
+                </Button>
+              }
             >
-              <ListItemDecorator>
-                <Circle color="success">
-                  <Favorite />
-                </Circle>
-              </ListItemDecorator>
-              <ListItemContent>
-                <Typography>Favorite</Typography>
-                <Typography level="body2">Jan 9, 2014</Typography>
-              </ListItemContent>
-              <Button variant="outlined" color="context" size="sm">
-                Clear
-              </Button>
-            </ListItemButton>
+              <ListItemButton selected selectedVariant="light">
+                <ListItemDecorator>
+                  <Circle color="primary">
+                    <InboxIcon />
+                  </Circle>
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Inbox</Typography>
+                  <Typography level="body2">Jan 9, 2014</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListDivider component="hr" />
+            <ListItem
+              secondaryAction={
+                <Button variant="light" color="danger" size="sm">
+                  Clear
+                </Button>
+              }
+            >
+              <ListItemButton selected selectedVariant="outlined" color="danger">
+                <ListItemDecorator>
+                  <Circle color="danger">
+                    <Star />
+                  </Circle>
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Starred</Typography>
+                  <Typography level="body2">Jan 9, 2014</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListDivider component="hr" />
+            <ListItem
+              secondaryAction={
+                <IconButton
+                  variant="outlined"
+                  color="success"
+                  size="sm"
+                  sx={{
+                    borderColor: 'success.200',
+                    color: 'success.100',
+                    '&:hover': { bgcolor: 'success.700' },
+                  }}
+                >
+                  <DeleteForever />
+                </IconButton>
+              }
+            >
+              <ListItemButton
+                selected
+                selectedVariant="contained"
+                color="success"
+                sx={(theme) => theme.variants.containedOverrides.success}
+              >
+                <ListItemDecorator>
+                  <Circle color="success">
+                    <Favorite />
+                  </Circle>
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Favorite</Typography>
+                  <Typography level="body2">Jan 9, 2014</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
           </List>
+
+          <List
+            sx={{
+              maxWidth: 360,
+              maxHeight: 300,
+              overflow: 'auto',
+              '& ul': { p: 0 },
+              '--List-padding': 0,
+              '--List-item-paddingX': '1rem',
+            }}
+          >
+            {[0, 1, 2, 3, 4].map((sectionId) => (
+              <li key={`section-${sectionId}`}>
+                <ul>
+                  <ListItem sticky sx={{ pt: '1.5rem' }}>
+                    <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
+                  </ListItem>
+                  {[0, 1, 2].map((item) => (
+                    <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </List>
+
+          <Box>
+            <List size="sm">
+              <ListItem>
+                <Typography level="body2">Small size</Typography>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star fontSize="lg" />
+                </ListItemDecorator>
+                <ListItemButton>This is a small list</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star fontSize="lg" />
+                </ListItemDecorator>
+                <ListItemButton>This is a small list</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star fontSize="lg" />
+                </ListItemDecorator>
+                <ListItemButton>This is a small list</ListItemButton>
+              </ListItem>
+            </List>
+            <List size="lg" sx={{ mt: 1 }}>
+              <ListItem>
+                <Typography color="text.secondary">Large size</Typography>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star />
+                </ListItemDecorator>
+                <ListItemButton>This is a large list</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star />
+                </ListItemDecorator>
+                <ListItemButton>This is a large list</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Star />
+                </ListItemDecorator>
+                <ListItemButton>This is a large list</ListItemButton>
+              </ListItem>
+            </List>
+          </Box>
+
+          <CheckboxList />
         </Box>
       </Box>
     </CssVarsProvider>
