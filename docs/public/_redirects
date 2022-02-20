@@ -9,13 +9,6 @@
 # To add when we finish work on v6
 # https://next.mui.com/* https://mui.com/:splat 301!
 
-# Support multiple domains
-# TODO add back
-# https://material-ui.com/* https://mui.com/:splat 301!
-
-# Temporarily access the store from the legacy domain
-https://mui.com/store/* https://material-ui.com/store/:splat 302!
-
 # For links hosted in the code published on npm
 /r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
 /r/caveat-with-refs-guide /guides/composition/#caveat-with-refs 302
@@ -27,7 +20,7 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 /r/issue-template-latest https://codesandbox.io/s/material-ui-issue-latest-s2dsx
 /r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /customization/components/#adding-new-component-variants
-/r/x-license https://material-ui.com/store/items/material-ui-pro/
+/r/x-license https://mui.com/store/items/material-ui-pro/
 /r/migration-v4 /guides/migration-v4/
 
 /x/license/ https://docs.google.com/document/d/1nkd5JP5wCefo6UwpVi6PnbTaw8DxhstkCZlfHV5ZgfI/edit?usp=sharing 301
@@ -66,7 +59,7 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 /api/expansion-panel-details/ /api/accordion-details/ 301
 /api/expansion-panel-summary/ /api/accordion-summary/ 301
 # 2020
-/premium-themes* https://material-ui.com/store/ 301
+/premium-themes* https://mui.com/store/ 301
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.mui.com/* https://v1.mui.com/:splat 301!
 https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
