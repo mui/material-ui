@@ -106,13 +106,12 @@ const SwitchRoot = styled('span', {
       display: 'inline-block',
       width: 'var(--Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
       borderRadius: 'var(--Switch-track-radius)',
-      boxSizing: 'border-box',
       position: 'relative',
       padding:
         'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
       backgroundColor: 'initial',
       color: 'var(--Switch-thumb-color)',
-      borderColor: 'var(--Switch-track-borderColor)',
+      border: 'none',
       [`&.${switchClasses.focusVisible}`]: theme.focus.default,
     },
   ];
@@ -124,13 +123,14 @@ const SwitchInput = styled('input', {
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: SwitchProps }>(() => ({
   margin: 0,
-  height: 'var(--Switch-track-height)', // don't use 100% because root can have border width
-  width: 'var(--Switch-track-width)', // don't use 100% because root can have border width
+  height: '100%',
+  width: '100%',
   opacity: 0,
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
   position: 'absolute',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
   cursor: 'pointer',
 }));
 
@@ -141,9 +141,12 @@ const SwitchTrack = styled('span', {
 })<{ ownerState: SwitchProps & { focusVisible: boolean } }>(() => ({
   position: 'relative',
   color: 'inherit',
-  height: 'calc(var(--Switch-track-height) - 2 * var(--variant-outlinedBorderWidth, 0px))', // account for the border width
-  width: 'calc(var(--Switch-track-width) - 2 * var(--variant-outlinedBorderWidth, 0px))', // account for the border width
+  height: 'var(--Switch-track-height)',
+  width: 'var(--Switch-track-width)',
   display: 'block',
+  boxSizing: 'border-box',
+  border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+  borderColor: 'var(--Switch-track-borderColor)',
   backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
 }));
