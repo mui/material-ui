@@ -225,6 +225,18 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   selected: PropTypes.bool,
   /**
+   * The color of the component when selected. It supports those theme colors that make sense for this component.
+   */
+  selectedColor: PropTypes.oneOf([
+    'context',
+    'danger',
+    'info',
+    'neutral',
+    'primary',
+    'success',
+    'warning',
+  ]),
+  /**
    * The variant to use.
    * @default 'light'
    */

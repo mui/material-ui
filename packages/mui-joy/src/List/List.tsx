@@ -68,6 +68,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     props: inProps,
     name: 'MuiList',
   });
+
   const { component, className, children, size = 'md', ...other } = props;
 
   const ownerState = {
