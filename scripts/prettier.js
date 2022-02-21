@@ -48,7 +48,7 @@ function runPrettier(options) {
     });
 
   const files = glob
-    .sync('**/*.{js,md,tsx,ts,json}', {
+    .sync('**/*.{js,jsx,md,tsx,ts,json,prisma}', {
       cwd: workspaceRoot,
       gitignore: true,
       ignore: [
