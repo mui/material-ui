@@ -9,7 +9,7 @@ _Feb 21, 2022_
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 🛠 @michaldudak exported `useStepContext` (#31021)
-- 🛠 @hbjORbj made components use theme duration/easing values by default
+- 🛠 @hbjORbj made components use theme duration/easing values by default (#30894)
 - A meaningful number of 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.4.3`
@@ -45,7 +45,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - &#8203;<!-- 17 -->[core] Add jsx, html, css and prisma to prettier extensions (#31161) @Janpot
 - &#8203;<!-- 16 -->[core] Allow to run material-ui.com/store alongside mui.com/store (#31065) @oliviertassinari
 - &#8203;<!-- 15 -->[core] Polish design tokens (#31095) @oliviertassinari
-
 
 All contributors of this release in alphabetical order: @alexfauquette, @cameliaben, @danilo-leal, @frab90, @gnowland, @hbjORbj, @huyenltnguyen, @Janpot, @Jastor11, @michaldudak, @oliviertassinari, @pppp606, @siriwatknp, @ThomasTheHuman
 
