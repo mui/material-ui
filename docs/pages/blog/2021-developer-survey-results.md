@@ -80,22 +80,22 @@ Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 
 
 Here's what you liked the most about the product in 2021:
 
-- **Community (x2.9):** While appreciation for the community grew by 290%, the community itself doubled in size over that same time frame.
+- **Community (2.9x):** While appreciation for the community grew by 290%, the community itself doubled in size over that same time frame.
   It looks like we're witnessing a network effect: with twice as many users, we got three times more value from the community.
-- **Accessibility (x2.2):** The community has definitely noticed the work we have put in to make our components more accessible.
+- **Accessibility (2.2x):** The community has definitely noticed the work we have put in to make our components more accessible.
   Special thanks to Sebastian Silbermann [(@eps1lon)](https://github.com/eps1lon) for his continued help!
-- **Customizability (x1.6):** Developers seem to be appreciating the new capabilities introduced in v5.
+- **Customizability (1.6x):** Developers seem to be appreciating the new capabilities introduced in v5.
   That said, we recognize that there is still more work to be done here, given the number of requests we've gotten to better solve this problem.
-- **Components (x1.6):** We'll keep adding new components to the library as long as you continue to appreciate them this much!
-  - Component quality (x1.0): You know that we set the bar very high for the quality of our components.
+- **Components (1.6x):** We'll keep adding new components to the library as long as you continue to appreciate them this much!
+  - Component quality (1.0x): You know that we set the bar very high for the quality of our components.
     That can be challenge as we continue to grow, because we expect nothing but the best from our team.
     Thankfully, this result shows that our new members have done an excellent job maintaining our standards.
-- **Time (x1.4):** This is an interesting one, because it's not an issue that we specifically addressed.
+- **Time (1.4x):** This is an interesting one, because it's not an issue that we specifically addressed.
   Could this just be a result of the growing pressure in the market to build faster? Or because we somehow made this value proposition more noticeable? It could also be related to the next item.
-- **Developer experience (x1.1):**
-  - Consistency (x1.75): We didn’t work on this dimension, and yet it grew.
+- **Developer experience (1.1x):**
+  - Consistency (1.75x): We didn’t work on this dimension, and yet it grew.
     It's reasonable to assume that because we have more components than ever before, developers have started to notice how much more consistent their work is when they use MUI.
-  - Ease of use (x1.0): This remains unchanged.
+  - Ease of use (1.0x): This remains unchanged.
     Could it be because ease of use is mostly defined by the React API (hooks), or is it because we haven't made any major API changes to optimize for ease of use? There could be a lot of work here for our new developer experience team.
 
 And what has decreased:
