@@ -64,10 +64,8 @@ const ListItemButtonRoot = styled('div', {
     display: 'flex',
     alignItems: 'center',
     textAlign: 'initial',
-    textDecoration: 'initial',
-    // color: 'var(--List-item-color, inherit)',
-    // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
-    // The value is negative to account for the ListItem's padding
+    textDecoration: 'initial', // reset native anchor tag
+    // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
     margin: 'var(--List-itemButton-margin)',
     padding: 'var(--List-item-paddingY) var(--List-item-paddingX)',
     paddingLeft: 'var(--List-insetStart)',
