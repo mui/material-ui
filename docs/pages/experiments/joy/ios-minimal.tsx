@@ -4,6 +4,11 @@ import { CssVarsProvider, useColorScheme, styled, JoyTheme } from '@mui/joy/styl
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
+import JoyList from '@mui/joy/List';
+import JoyListItem from '@mui/joy/ListItem';
+import ListDivider from '@mui/joy/ListDivider';
+import JoyListItemDecorator from '@mui/joy/ListItemDecorator';
+import JoyListItemContent from '@mui/joy/ListItemContent';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import NearMe from '@mui/icons-material/NearMe';
@@ -116,6 +121,26 @@ const StatusBar = () => (
       <Battery60 fontSize="xl" sx={{ transform: 'rotate(90deg)', ml: '2px' }} />
     </Box>
   </StatusToolBar>
+);
+
+const Step = ({ number }: { number: number }) => (
+  <Box
+    sx={[
+      (theme) => theme.typography.body1,
+      (theme) => theme.variants.contained.primary,
+      {
+        borderRadius: '40px',
+        width: 24,
+        height: 24,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+      },
+    ]}
+  >
+    {number}
+  </Box>
 );
 
 const StepItem = ({
@@ -707,29 +732,69 @@ export default function IosMinimalPage() {
             <Typography component="h1" level="h2" sx={{ textAlign: 'center', mb: '30px' }}>
               How this app works?
             </Typography>
-            <StepItem
-              number={1}
-              primary="Stepper number one. This app is something!"
-              secondary="This app is only for you and people in your social networks friends list."
-            />
-            <StepItem
-              number={2}
-              primary="Second stepper is finally here"
-              secondary="You decide which conversations you want."
-            />
-            <StepItem
-              number={3}
-              primary="Use the third stepper in any case"
-              secondary="One morning, when Gregor Samsa woke from troubled dreams."
-            />
-            <StepItem
-              number={4}
-              primary="What about fourth? A collection of textile samples lay spread out on the table — Samsa was a travelling salesman"
-            />
-            <StepItem
-              number={5}
-              primary="What a serious stepper! We just wanted to get your attention here"
-            />
+            <JoyList
+              sx={{
+                '--List-padding': '0px',
+                '--List-item-paddingX': '0px',
+                '--List-decorator-width': '34px',
+                '--List-gap': '1.5rem',
+              }}
+            >
+              <JoyListItem>
+                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Step number={1} />
+                </JoyListItemDecorator>
+                <JoyListItemContent>
+                  <Typography>Stepper number one. This app is something!</Typography>
+                  <Typography level="body2" sx={{ mt: '5px' }}>
+                    This app is only for you and people in your social networks friends list.
+                  </Typography>
+                </JoyListItemContent>
+              </JoyListItem>
+              <JoyListItem>
+                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Step number={2} />
+                </JoyListItemDecorator>
+                <JoyListItemContent>
+                  <Typography>Second stepper is finally here</Typography>
+                  <Typography level="body2" sx={{ mt: '5px' }}>
+                    You decide which conversations you want.
+                  </Typography>
+                </JoyListItemContent>
+              </JoyListItem>
+              <JoyListItem>
+                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Step number={3} />
+                </JoyListItemDecorator>
+                <JoyListItemContent>
+                  <Typography>Use the third stepper in any case</Typography>
+                  <Typography level="body2" sx={{ mt: '5px' }}>
+                    One morning, when Gregor Samsa woke from troubled dreams.
+                  </Typography>
+                </JoyListItemContent>
+              </JoyListItem>
+              <JoyListItem>
+                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Step number={4} />
+                </JoyListItemDecorator>
+                <JoyListItemContent>
+                  <Typography>
+                    What about fourth? A collection of textile samples lay spread out on the table —
+                    Samsa was a travelling salesman
+                  </Typography>
+                </JoyListItemContent>
+              </JoyListItem>
+              <JoyListItem>
+                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Step number={5} />
+                </JoyListItemDecorator>
+                <JoyListItemContent>
+                  <Typography>
+                    What a serious stepper! We just wanted to get your attention here
+                  </Typography>
+                </JoyListItemContent>
+              </JoyListItem>
+            </JoyList>
             <Box
               sx={[
                 {
@@ -776,25 +841,90 @@ export default function IosMinimalPage() {
               Settings
             </Typography>
           </Header>
-          <ListSubheader>Manage profiles</ListSubheader>
-          <List>
-            <ListItem avatar primary="Diana Shelton" secondary="Chief Design Officer" />
-            <Divider />
-            <ListItem
-              avatar
-              primary="Ricky Mclaughlin"
-              secondary="Senior UX designer"
-              end={
-                <Typography sx={{ color: (theme) => theme.vars.palette.warning.textColor }}>
-                  Sign out
+          <ListSubheader>Mange profiles</ListSubheader>
+          <JoyList
+            sx={{
+              '--List-decorator-width': '72px',
+              '--List-radius': '0px',
+              '--List-padding': '6px 14px',
+              borderTop: '1px solid',
+              borderBottom: '1px solid',
+              borderColor: 'separator.opaque',
+            }}
+          >
+            <JoyListItem>
+              <JoyListItemDecorator>
+                <Box
+                  sx={{
+                    width: 60,
+                    height: 60,
+                    flexShrink: 0,
+                    borderRadius: '60px',
+                    bgcolor: (theme) => theme.vars.palette.neutral[200],
+                  }}
+                />
+              </JoyListItemDecorator>
+              <JoyListItemContent>
+                <Typography level="h5" sx={{ fontWeight: 400 }}>
+                  Diana Shelton
                 </Typography>
-              }
-            />
-          </List>
+                <Typography level="body3" sx={{ mt: '2px' }}>
+                  Chief Design Officer
+                </Typography>
+              </JoyListItemContent>
+              <ArrowForwardIos
+                fontSize="lg"
+                sx={{
+                  color: (theme: JoyTheme) => theme.vars.palette.text.tertiary,
+                  mx: '-0.25rem',
+                }}
+              />
+            </JoyListItem>
+            <ListDivider inset="startContent" />
+            <JoyListItem>
+              <JoyListItemDecorator>
+                <Box
+                  sx={{
+                    width: 60,
+                    height: 60,
+                    flexShrink: 0,
+                    borderRadius: '60px',
+                    bgcolor: (theme) => theme.vars.palette.neutral[200],
+                  }}
+                />
+              </JoyListItemDecorator>
+              <JoyListItemContent>
+                <Typography level="h5" sx={{ fontWeight: 400 }}>
+                  Ricky Mclaughlin
+                </Typography>
+                <Typography level="body3" sx={{ mt: '2px' }}>
+                  Senior UX designer
+                </Typography>
+              </JoyListItemContent>
+              <Typography sx={{ color: 'warning.textColor', mr: '0.75rem' }}>Sign out</Typography>
+              <ArrowForwardIos
+                fontSize="lg"
+                sx={{
+                  color: (theme: JoyTheme) => theme.vars.palette.text.tertiary,
+                  mx: '-0.25rem',
+                }}
+              />
+            </JoyListItem>
+          </JoyList>
+
           <ListSubheader>Reward</ListSubheader>
-          <List>
-            <ListItem
-              avatar={
+          <JoyList
+            sx={{
+              '--List-decorator-width': '48px',
+              '--List-radius': '0px',
+              '--List-padding': '6px 14px',
+              borderTop: '1px solid',
+              borderBottom: '1px solid',
+              borderColor: 'separator.opaque',
+            }}
+          >
+            <JoyListItem>
+              <JoyListItemDecorator>
                 <Box
                   sx={[
                     {
@@ -807,12 +937,25 @@ export default function IosMinimalPage() {
                 >
                   <CurrencyYen />
                 </Box>
-              }
-              small
-              primary="Bitcoin Local Offers"
-              secondary="Join now and let the digital economics grow"
-            />
-          </List>
+              </JoyListItemDecorator>
+              <JoyListItemContent>
+                <Typography level="body1" sx={{ fontWeight: 400 }}>
+                  Bitcoin Local Offers
+                </Typography>
+                <Typography level="footnote" sx={{ mt: '2px' }}>
+                  Join now and let the digital economics grow
+                </Typography>
+              </JoyListItemContent>
+              <ArrowForwardIos
+                fontSize="lg"
+                sx={{
+                  color: (theme: JoyTheme) => theme.vars.palette.text.tertiary,
+                  mx: '-0.25rem',
+                }}
+              />
+            </JoyListItem>
+          </JoyList>
+
           <Box
             sx={{ px: '20px', py: '4px', bgcolor: (theme) => theme.vars.palette.background.level2 }}
           >
@@ -822,6 +965,7 @@ export default function IosMinimalPage() {
             </Typography>
           </Box>
           <ListSubheader>Configuration</ListSubheader>
+
           <List>
             <ListItem
               small
