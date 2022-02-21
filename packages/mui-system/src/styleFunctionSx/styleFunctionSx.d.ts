@@ -24,11 +24,13 @@ export interface CSSSelectorObject<Theme extends object = {}> {
   [cssSelector: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme>;
 }
 
+type CssVariableType = string | number;
+
 /**
  * Map all nested selectors and CSS variables.
  */
 export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
-  [cssSelectorOrVariable: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme> | string | number;
+  [cssSelectorOrVariable: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme> | CssVariableType;
 }
 
 /**
