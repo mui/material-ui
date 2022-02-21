@@ -1,12 +1,22 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import createTheme, { ThemeOptions, Theme } from './createTheme';
-import { PaletteOptions } from './createPalette';
+import { PaletteOptions, PaletteColorOptions } from './createPalette';
 
-interface ThemeInput extends ThemeOptions {
+export interface ThemeInput extends ThemeOptions {
   colorSchemes?: Partial<
     Record<
       'light' | 'dark',
-      Omit<PaletteOptions, 'getContrastText' | 'contrastThreshold' | 'tonalOffset' | 'mode'>
+      {
+        palette: Partial<
+          Record<
+            keyof Omit<
+              PaletteOptions,
+              'getContrastText' | 'contrastThreshold' | 'tonalOffset' | 'mode'
+            >,
+            PaletteColorOptions
+          >
+        >;
+      }
     >
   >;
 }
@@ -30,6 +40,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     light: 'light',
     dark: 'dark',
   },
+  prefix: 'md',
   shouldSkipGeneratingVar: (keys) =>
     keys[0] === 'typography' || keys[0] === 'mixins' || keys[0] === 'breakpoints',
 });
