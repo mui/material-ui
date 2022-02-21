@@ -184,6 +184,13 @@ module.exports = {
         if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
           return;
         }
+        // The blog is not translated
+        if (
+          userLanguage !== 'en' &&
+          (page.pathname === '/blog' || page.pathname.startsWith('/blog/'))
+        ) {
+          return;
+        }
         if (!page.children) {
           // map api-docs to api
           // i: /api-docs/* > /api/* (old structure)
