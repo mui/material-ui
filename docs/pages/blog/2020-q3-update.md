@@ -13,7 +13,7 @@ This update covers our progress over the last three months, and what we aim to a
 
 Here are the most significant improvements since June 2020. This was a dense quarter!
 
-- 🚧 We have started the quarter with the first pre-release [v5.0.0-alpha.1](https://github.com/mui-org/material-ui/releases?after=v5.0.0-alpha.1) of the next major iteration of the library.
+- 🚧 We have started the quarter with the first pre-release [v5.0.0-alpha.1](https://github.com/mui/material-ui/releases?after=v5.0.0-alpha.1) of the next major iteration of the library.
   There have been eleven more pre-releases since then. During the alpha development stage of version 5, we are focusing on making the planned breaking changes, as well as developing new features.
   On the breaking changes side, we have made almost half of the changes that we have planned.
 - 🧪 We have promoted 7 components from the lab to the core: Alert, Autocomplete, Pagination, Rating, Skeleton, SpeedDial, and ToggleButton.
@@ -73,22 +73,22 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
   After 6 months of development since the initial commit (March 15th, 2020), you can start using the component! (It targets v4.)
 
-- ⚡️ The data grid effort has led to the introduction of a new repository: [_mui-org/material-ui-x_](https://github.com/mui-org/material-ui-x). This is the repository that will host all the future commercial components, all the components that we can't sustain with the open-source model. MUI X is our next iteration in scaling MUI, both as a company and as a comprehensive React library of components. While we have an existing sustainability model that can support, in long term, up to 10 people full-time, we are keen to push it by an order of magnitude.
+- ⚡️ The data grid effort has led to the introduction of a new repository: [_mui/mui-x_](https://github.com/mui/mui-x). This is the repository that will host all the future commercial components, all the components that we can't sustain with the open-source model. MUI X is our next iteration in scaling MUI, both as a company and as a comprehensive React library of components. While we have an existing sustainability model that can support, in long term, up to 10 people full-time, we are keen to push it by an order of magnitude.
 - 🛠 We have migrated parts of the codebase to TypeScript.<br />
-  We had to work on the code infrastructure of _mui-org/material-ui_ to prepare to host the date picker components that are written in TypeScript inside the lab (coming from _mui-org/material-ui-pickers_ that we will archive once we can).
+  We had to work on the code infrastructure of _mui/material-ui_ to prepare to host the date picker components that are written in TypeScript inside the lab (coming from _mui/material-ui-pickers_ that we will archive once we can).
 
   <img src="/static/blog/2020-q3-update/typescript-mui.png" alt="" style="width: 299px; margin-bottom: 8px;" />
 
   <p class="blog-description">MUI's repository</p>
 
-  On the other hand, we started using TypeScript from day one for _mui-org/material-ui-x_.
+  On the other hand, we started using TypeScript from day one for _mui/mui-x_.
 
   <img src="/static/blog/2020-q3-update/typescript-mui-x.png" alt="" style="width: 299px; margin-bottom: 8px;" />
 
   <p class="blog-description">MUI X's repository</p>
 
 - 🐙 We have migrated large parts of the test suite to react-testing-library.<br>
-  15 months ago, we introduced the very [first test](https://github.com/mui-org/material-ui/pull/15732) using the library (to replace enzyme). Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme!
+  15 months ago, we introduced the very [first test](https://github.com/mui/material-ui/pull/15732) using the library (to replace enzyme). Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme!
 
   <img src="/static/blog/2020-q3-update/react-testing-library.png" alt="" style="width: 640px; margin-bottom: 40px; margin-top: 24px;" />
 
@@ -105,7 +105,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
 - 👩‍🎨 We have completed the first iteration of the new styling solution of v5.<br />
   You can find a [new version](/components/slider/) of the slider in the lab powered by [emotion](https://emotion.sh/docs/introduction).<br />
-  If you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
+  If you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
   The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or emotion.<br />
   Last but not least, this change allows us to take advantage of dynamic style props. We will use them for dynamic color props, variant props, and new style props available in the core components.
 
@@ -117,8 +117,8 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
   <p class="blog-description">Slider powered by styled-components</p>
 
-- ♿︎ We have kept investing in accessibility, we have fixed [13 bugs](https://github.com/mui-org/material-ui/pulls?q=is%3Apr+label%3Aaccessibility+is%3Aclosed+sort%3Aupdated-desc).
-- 🗓 We have introduced public quarterly roadmaps, both for [community](https://github.com/mui-org/material-ui/projects) and [enterprise](https://github.com/mui-org/material-ui-x/projects).
+- ♿︎ We have kept investing in accessibility, we have fixed [13 bugs](https://github.com/mui/material-ui/pulls?q=is%3Apr+label%3Aaccessibility+is%3Aclosed+sort%3Aupdated-desc).
+- 🗓 We have introduced public quarterly roadmaps, both for [MUI Core](https://github.com/mui/material-ui/projects/25) and [MUI X](https://github.com/mui/mui-x/projects/1).
 
 ## Company
 
@@ -141,7 +141,7 @@ We are thrilled to welcome two new full-time developers to MUI:
 
   <p class="blog-description">% of download relative to react-dom</p>
 
-- ⭐️ From 59.0k to 61.6k stars, leave us yours [🌟](https://github.com/mui-org/material-ui).
+- ⭐️ From 59.0k to 61.6k stars, leave us yours [🌟](https://github.com/mui/material-ui).
 - 👨‍👩‍👧‍👦 From 1,825 to 1,934 contributors on GitHub. We add on average 1 new contributor every day.
 - 🏢 We have welcomed two new full-time developers to MUI.
 
@@ -151,20 +151,20 @@ We'll do our best, no guarantee!
 
 ### Community
 
-- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
+- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui/material-ui/projects/25).
 - 👩‍🎨 Simplify the migration experience from v4 to v5.
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
+- ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Enterprise
 
 - 👩‍🎨 Complete the collaboration we started with a design agency last quarter to update the branding of the company, redesign the homepage, and design the marketing pages for the enterprise package.
-- 🗓 Execute on all the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui-x/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
+- 🗓 Execute on all the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Company
 
 These are objectives, no guarantees:
 
-- 🏢 We might hire a full-time designer that has coding skills. One of the objectives would be to solve [#22485](https://github.com/mui-org/material-ui/issues/22485).
+- 🏢 We might hire a full-time designer that has coding skills. One of the objectives would be to solve [#22485](https://github.com/mui/material-ui/issues/22485).
 - 🏝 We have put the company-wide team retreat on hold because of the continued risk presented by COVID-19.
   Hopefully, we will be able to hold it in Q2 2021.

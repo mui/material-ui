@@ -55,9 +55,9 @@ _(We'll do our best, no guarantee!)_
   ![autocomplete](/static/blog/september-2019-update/autocomplete.png)
   <p class="blog-description">Autocomplete (free options)</p>
 
-- 📅 We will start to work on a [major upgrade](https://github.com/mui-org/material-ui-pickers/issues/1293) of the date/time picker components.
+- 📅 We will start to work on a [major upgrade](https://github.com/mui/material-ui-pickers/issues/1293) of the date/time picker components.
 
 - 🧮 We will start to work on a Data Table component.
   ⭐️ Notice that the advanced features of the data grid will be paid, behind an enterprise subscription. This is an effort part of [our roadmap](/discover-more/roadmap/) to answer enterprise needs.
 
-- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

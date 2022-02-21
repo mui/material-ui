@@ -11,7 +11,7 @@ export type UseListboxStrictProps<TOption> = Omit<
 > &
   Required<Pick<UseListboxProps<TOption>, UseListboxStrictPropsRequiredKeys>>;
 
-export enum ActionTypes {
+enum ActionTypes {
   blur = 'blur',
   focus = 'focus',
   keyDown = 'keyDown',
@@ -19,6 +19,9 @@ export enum ActionTypes {
   setControlledValue = 'setControlledValue',
   optionsChange = 'optionsChange',
 }
+
+// split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
+export { ActionTypes };
 
 interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
@@ -78,9 +81,19 @@ export type ListboxReducer<TOption> = (
 
 interface UseListboxCommonProps<TOption> {
   /**
-   * Array of options to be rendered in the list.
+   * If `true`, it will be possible to highlight disabled options.
+   * @default false
    */
-  options: TOption[];
+  disabledItemsFocusable?: boolean;
+  /**
+   * If `true`, the highlight will not wrap around the list if arrow keys are used.
+   * @default false
+   */
+  disableListWrap?: boolean;
+  /**
+   * Ref of the listbox DOM element.
+   */
+  listboxRef?: React.Ref<any>;
   /**
    * Id attribute of the listbox.
    */
@@ -91,34 +104,27 @@ interface UseListboxCommonProps<TOption> {
    */
   isOptionDisabled?: (option: TOption, index: number) => boolean;
   /**
+   * Callback fired when the highlighted option changes.
+   */
+  onHighlightChange?: (option: TOption | null) => void;
+  /**
    * A function that tests equality between two options.
    * @default (a, b) => a === b
    */
   optionComparer?: (optionA: TOption, optionB: TOption) => boolean;
   /**
-   * If `true`, the highlight will not wrap around the list if arrow keys are used.
-   * @default false
-   */
-  disableListWrap?: boolean;
-  /**
-   * If `true`, it will be possible to highlight disabled options.
-   * @default false
-   */
-  disabledItemsFocusable?: boolean;
-  /**
    * A function that generates the id attribute of individual options.
    */
   optionIdGenerator?: (option: TOption, index: number) => string;
+  /**
+   * Array of options to be rendered in the list.
+   */
+  options: TOption[];
   /**
    * Custom state reducer function. It calculates the new state (highlighted and selected options)
    * based on the previous one and the performed action.
    */
   stateReducer?: ListboxReducer<TOption>;
-  /**
-   * Callback fired when the highlighted option changes.
-   */
-  onHighlightChange?: (option: TOption | null) => void;
-  listboxRef?: React.Ref<Element>;
 }
 
 interface UseSingleSelectListboxProps<TOption> extends UseListboxCommonProps<TOption> {
@@ -168,7 +174,5 @@ export type UseListboxProps<TOption> =
 export interface OptionState {
   disabled: boolean;
   highlighted: boolean;
-  index: number;
-  // option: TOption;
   selected: boolean;
 }

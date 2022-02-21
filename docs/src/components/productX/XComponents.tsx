@@ -217,7 +217,6 @@ export default function XComponents() {
                           sx={{ fontWeight: 500 }}
                         />
                       </Box>
-
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                         Subscribe to our newsletter to get first-hand info about the development and
                         release of new components.

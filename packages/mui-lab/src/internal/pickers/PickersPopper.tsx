@@ -6,8 +6,20 @@ import TrapFocus, { TrapFocusProps as MuiTrapFocusProps } from '@mui/material/Un
 import { useForkRef, useEventCallback, ownerDocument } from '@mui/material/utils';
 import { styled } from '@mui/material/styles';
 import { TransitionProps as MuiTransitionProps } from '@mui/material/transitions';
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
 
 export interface ExportedPickerPaperProps {
+  /**
+   * If `true`, it shows the clear action in the picker dialog.
+   * @default false
+   */
+  clearable?: boolean;
+  /**
+   * Clear text message.
+   * @default 'Clear'
+   */
+  clearText?: React.ReactNode;
   /**
    * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
    */
@@ -34,6 +46,7 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, ExportedPi
   children?: React.ReactNode;
   onClose: () => void;
   onBlur?: () => void;
+  onClear?: () => void;
 }
 
 const PickersPopperRoot = styled(Popper)<{ ownerState: PickerPopperProps }>(({ theme }) => ({
@@ -48,6 +61,19 @@ const PickersPopperPaper = styled(Paper)<{
   ...(ownerState.placement === 'top' && {
     transformOrigin: 'bottom center',
   }),
+}));
+
+const PickersPopperAction = styled(DialogActions)<{
+  ownerState: PickerPopperProps;
+}>(({ ownerState }) => ({
+  ...(ownerState.clearable
+    ? {
+        justifyContent: 'flex-start',
+        '& > *:first-of-type': {
+          marginRight: 'auto',
+        },
+      }
+    : { padding: 0 }),
 }));
 
 function clickedRootScrollbar(event: MouseEvent, doc: Document) {
@@ -198,6 +224,9 @@ const PickersPopper = (props: PickerPopperProps) => {
     children,
     containerRef = null,
     onClose,
+    onClear,
+    clearable = false,
+    clearText = 'Clear',
     open,
     PopperProps,
     role,
@@ -287,6 +316,13 @@ const PickersPopper = (props: PickerPopperProps) => {
               {...otherPaperProps}
             >
               {children}
+              <PickersPopperAction ownerState={ownerState}>
+                {clearable && (
+                  <Button data-mui-test="clear-action-button" onClick={onClear}>
+                    {clearText}
+                  </Button>
+                )}
+              </PickersPopperAction>
             </PickersPopperPaper>
           </TransitionComponent>
         </TrapFocus>

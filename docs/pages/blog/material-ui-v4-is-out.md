@@ -10,7 +10,7 @@ tags: ['Company update']
 
 Material-UI v4 has finally arrived. We are so excited about this release, as it defines better foundations for the UI components. Thank you to everyone, especially to [the team](/about/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
 
-✨✨✨ See the **[4.0.0 Release Note](https://github.com/mui-org/material-ui/releases/tag/v4.0.0)** on GitHub. ✨✨✨
+✨✨✨ See the **[4.0.0 Release Note](https://github.com/mui/material-ui/releases/tag/v4.0.0)** on GitHub. ✨✨✨
 
 ![TypeScript switch](/static/blog/material-ui-v4-is-out/banner.png)
 
@@ -157,14 +157,14 @@ import {
 
 <p class="blog-description">A -15% bundle size reduction. ⚠️ Please don't use the absolute number to compare different UI libraries. Nobody should import the whole barrel index.js file. What matters is the cost of the individual modules you import.</p>
 
-- **Continuous bundle size tracking**. This bundle size reduction is only possible because we track this metric in each pull request. We have improved our strategy moving from [size-limit](https://github.com/ai/size-limit) to a React [inspired solution](https://github.com/mui-org/material-ui/pull/14662).
+- **Continuous bundle size tracking**. This bundle size reduction is only possible because we track this metric in each pull request. We have improved our strategy moving from [size-limit](https://github.com/ai/size-limit) to a React [inspired solution](https://github.com/mui/material-ui/pull/14662).
 
 ![trackbundle](/static/blog/material-ui-v4-is-out/trackbundle.png)
 
 <p class="blog-description">Fine level tracking</p>
 
-- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui-org/material-ui/blob/HEAD/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
-- **Runtime performance**. We have heard that some people struggle with the runtime cost of using Material-UI. We have solved a few problems reported, but nothing systematic. We have observed [a slight gain](https://github.com/mui-org/material-ui/pull/15023) by moving from the classes API to the hooks API. However, it's hard to make progress as we lack a properly setup performance bench. It's something to consider for v5.
+- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui/material-ui/blob/HEAD/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
+- **Runtime performance**. We have heard that some people struggle with the runtime cost of using Material-UI. We have solved a few problems reported, but nothing systematic. We have observed [a slight gain](https://github.com/mui/material-ui/pull/15023) by moving from the classes API to the hooks API. However, it's hard to make progress as we lack a properly setup performance bench. It's something to consider for v5.
 
 ### Preparing for the future
 
@@ -193,7 +193,7 @@ function MyButton() {
 
   ![devtools](/static/blog/material-ui-v4-is-out/devtools.png)
 
-  <p class="blog-description">React Dev Tools output for one Typography element in production (<a href="https://github.com/mui-org/material-ui/pull/15023">this POC</a> might further improve the situation).</p>
+  <p class="blog-description">React Dev Tools output for one Typography element in production (<a href="https://github.com/mui/material-ui/pull/15023">this POC</a> might further improve the situation).</p>
 
 - **Concurrent mode**. React has shared its [release timeline](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) for the important features coming into React. [Concurrent mode](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) should be released within the next few months. Concurrent Mode lets React apps be more responsive by rendering component trees without blocking the main thread. We have worked on getting ready for it. Most of the work was related to fixing the [<React.StrictMode>](https://reactjs.org/docs/strict-mode.html) warnings. You should soon be able to leverage it 🔥.
 - **Shallow tests.** We have removed the majority of our internal shallow tests to rely on [full mount tests](https://twitter.com/dan_abramov/status/1109461529227866112).
@@ -239,7 +239,7 @@ An application example of the Box component.
 
 An example of the new spacing helper API.
 
-- A new [@material-ui/pickers](https://github.com/mui-org/material-ui-pickers) package created and supported by [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) 📅.
+- A new [@material-ui/pickers](https://github.com/mui/material-ui-pickers) package created and supported by [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) 📅.
 
 ![Inline pickers](/static/blog/material-ui-v4-is-out/pickers.png)
 

@@ -14,7 +14,8 @@
     "LinkComponent": "The component used to render a link when the <code>href</code> prop is provided.",
     "onFocusVisible": "Callback fired when the component is focused with a keyboard. We trigger a <code>onFocus</code> callback too.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
-    "TouchRippleProps": "Props applied to the <code>TouchRipple</code> element."
+    "TouchRippleProps": "Props applied to the <code>TouchRipple</code> element.",
+    "touchRippleRef": "A ref that points to the <code>TouchRippple</code> element."
   },
   "classDescriptions": {
     "root": {

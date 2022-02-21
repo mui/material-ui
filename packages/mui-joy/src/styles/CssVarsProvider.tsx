@@ -16,7 +16,7 @@ import { Variants } from './types/variants';
 import { ColorSystem } from './types/colorSystem';
 import { TypographySystem } from './types/typography';
 import { Components } from './components';
-import { createVariant, createContainedOverrides } from './variantUtils';
+import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -37,33 +37,23 @@ type Partial3Level<T> = {
 };
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-type ThemeInput = Partial2Level<
-  ThemeScales & {
-    focus: Focus;
-    typography: TypographySystem;
-    variants: Partial2Level<Variants>;
-  }
-> & {
+interface JoyThemeInput extends Partial2Level<ThemeScales> {
+  focus?: Partial<Focus>;
+  typography?: Partial<TypographySystem>;
+  variants?: Partial2Level<Variants>;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<JoyTheme>;
-};
-
-type JoyThemeInput = ThemeInput & {
-  colorSchemes: Record<DefaultColorScheme, Partial3Level<ColorSystem>>;
-};
-
-type ApplicationThemeInput = ThemeInput & {
-  colorSchemes: Record<ExtendedColorScheme, Partial3Level<ColorSystem>>;
-};
+  colorSchemes?: Partial<
+    Record<DefaultColorScheme | ExtendedColorScheme, Partial3Level<ColorSystem>>
+  >;
+}
 
 const { palette, ...rest } = defaultTheme;
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  JoyThemeInput,
-  DefaultColorScheme,
-  ApplicationThemeInput,
-  ExtendedColorScheme
+  DefaultColorScheme | ExtendedColorScheme,
+  JoyThemeInput
 >({
   theme: {
     ...rest,
@@ -96,6 +86,11 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
         containedHover: createVariant('containedHover', mergedTheme),
         containedActive: createVariant('containedActive', mergedTheme),
         containedDisabled: createVariant('containedDisabled', mergedTheme),
+
+        // variant overrides
+        textOverrides: createTextOverrides(mergedTheme),
+        outlinedOverrides: createTextOverrides(mergedTheme),
+        lightOverrides: createTextOverrides(mergedTheme),
         containedOverrides: createContainedOverrides(mergedTheme),
       } as typeof mergedTheme.variants,
       mergedTheme.variants,
