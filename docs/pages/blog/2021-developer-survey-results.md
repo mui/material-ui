@@ -105,7 +105,6 @@ And what has decreased:
   - Look & feel (x1.17): This is surprising.
     It seems to be a transfer effect: people who previously cared more about Material Design now care more about the outcome than the spec itself.
     <br/>
-    <br/>
 
 <details>
   <summary>Click to see the breakdown of categories.</summary>
@@ -514,6 +513,42 @@ The majority of respondents don’t use any paid libraries, but those who do are
 - **Improvements to the look and feel:** Data grid builders want more default design options beyond Material.
   In terms of UX, many developers mention the filtering experience specifically.
 
+<details>
+  <summary>Click to see the breakdown of categories.</summary>
+  <table>
+    <tr><th style="width: 40px;">14</th><th style="width: 700px;">customizability</th><tr>
+    <tr><td>9</td><td>customizability - style</td><tr>
+    <tr><td>3</td><td>customizability - ?</td><tr>
+    <tr><td>2</td><td>customizability - docs</td><tr>
+    <tr><th>11</th><th>cheaper Pro plan</th><tr>
+    <tr><th>8</th><th>more features</th><tr>
+    <tr><td>3</td><td>more features - ?</td><tr>
+    <tr><td>2</td><td>more features - master detail</td><tr>
+    <tr><td>1</td><td>more features - row editing</td><tr>
+    <tr><td>1</td><td>more features - column pinning</td><tr>
+    <tr><td>1</td><td>more features - column resizing</td><tr>
+    <tr><th>6</th><th>fix features</th><tr>
+    <tr><td>3</td><td>fix features - filtering</td><tr>
+    <tr><td>1</td><td>fix features - editing</td><tr>
+    <tr><td>1</td><td>fix features - pagination</td><tr>
+    <tr><td>1</td><td>fix features - server-side</td><tr>
+    <tr><th>5</th><th>docs</th><tr>
+    <tr><td>4</td><td>docs - ?</td><tr>
+    <tr><td>1</td><td>docs - more examples</td><tr>
+    <tr><th>4</th><th>look and feel</th><tr>
+    <tr><th>3</th><th>maintain it</th><tr>
+    <tr><th>2</th><th>bugs</th><tr>
+    <tr><th>2</th><th>DX - MUI Core consistency</th><tr>
+    <tr><th>2</th><th>performance</th><tr>
+    <tr><th>2</th><th>translation</th><tr>
+    <tr><th>1</th><th>a11y</th><tr>
+    <tr><th>1</th><th>easier installation</th><tr>
+    <tr><th>1</th><th>fewer breaking changes</th><tr>
+    <tr><th>1</th><th>hook-only API</th><tr>
+    <tr><th>1</th><th>SSR</th><tr>
+  </table>
+</details>
+
 ### How can we improve the Data Grid Pro for you?
 
 <img src="/static/blog/2021-survey/16.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="More features: 39.8%; Customizability: 20.4%; Fix features: 15.1%; Performance: 5.4%; Cheaper Premium plan: 3.2%; Improve docs: 3.2%; DX - API: 2.2%; LGPL license: 2.2%; More components: 2.2%" />
@@ -531,6 +566,49 @@ The majority of respondents don’t use any paid libraries, but those who do are
 - **Performance:** Requests about performance were mostly spread out between runtime and bundle size.
   We must admit that we have put almost no effort into optimizing the bundle size so far.
   There are likely some low-hanging fruits there.
+
+<details>
+  <summary>Click to see the breakdown of categories.</summary>
+  <table>
+    <tr><th style="width: 40px;">37</th><th style="width: 700px;">more features</th><tr>
+    <tr><td>6</td><td>more features - grouping</td><tr>
+    <tr><td>6</td><td>more features - master detail</td><tr>
+    <tr><td>6</td><td>more features - roadmap</td><tr>
+    <tr><td>4</td><td>more features - ?</td><tr>
+    <tr><td>3</td><td>more features - aggregation</td><tr>
+    <tr><td>3</td><td>more features - search</td><tr>
+    <tr><td>3</td><td>more features - tree data</td><tr>
+    <tr><td>2</td><td>more features - column pinning</td><tr>
+    <tr><td>2</td><td>more features - pivot</td><tr>
+    <tr><td>1</td><td>more features - excel</td><tr>
+    <tr><td>1</td><td>more features - row reordering</td><tr>
+    <tr><th>19</th><th>customizability</th><tr>
+    <tr><td>7</td><td>customizability - behavior</td><tr>
+    <tr><td>5</td><td>customizability - style</td><tr>
+    <tr><td>4</td><td>customizability - docs</td><tr>
+    <tr><td>2</td><td>customizability - ?</td><tr>
+    <tr><td>1</td><td>customizability - charts in cells</td><tr>
+    <tr><th>14</th><th>fix features</th><tr>
+    <tr><td>10</td><td>fix features - filtering</td><tr>
+    <tr><td>2</td><td>fix features - lazy loading</td><tr>
+    <tr><td>2</td><td>fix features - server-side</td><tr>
+    <tr><th>5</th><th>performance</th><tr>
+    <tr><td>3</td><td>performance - ?</td><tr>
+    <tr><td>1</td><td>performance - bundle size</td><tr>
+    <tr><td>1</td><td>performance - runtime</td><tr>
+    <tr><th>4</th><th>docs</th><tr>
+    <tr><td>3</td><td>docs - ?</td><tr>
+    <tr><td>1</td><td>docs - more examples</td><tr>
+    <tr><th>3</th><th>cheaper premium plan</th><tr>
+    <tr><th>2</th><th>bugs</th><tr>
+    <tr><th>2</th><th>DX - API</th><tr>
+    <tr><th>2</th><th>LGPL License</th><tr>
+    <tr><th>2</th><th>more components - treeview</th><tr>
+    <tr><th>2</th><th>overflow text</th><tr>
+    <tr><th>1</th><th>DX - MUI Core consistency</th><tr>
+    <tr><th>1</th><th>UX</th><tr>
+  </table>
+</details>
 
 ### What were you using before the data grid?
 
