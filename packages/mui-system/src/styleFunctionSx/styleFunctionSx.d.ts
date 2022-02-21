@@ -25,6 +25,13 @@ export interface CSSSelectorObject<Theme extends object = {}> {
 }
 
 /**
+ * Map all nested selectors and CSS variables.
+ */
+export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
+  [cssSelectorOrVariable: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme> | string | number;
+}
+
+/**
  * Map of all available CSS properties (including aliases) and their raw value.
  * Only used internally to map CSS properties to input types (responsive value,
  * theme function or nested) in `SystemCssProperties`.
@@ -48,8 +55,7 @@ export type SystemCssProperties<Theme extends object = {}> = {
 export type SystemStyleObject<Theme extends object = {}> =
   | SystemCssProperties<Theme>
   | CSSPseudoSelectorProps<Theme>
-  | CSSSelectorObject<Theme>
-  | { [cssVariable: string]: string | number }
+  | CSSSelectorObjectOrCssVariables<Theme>
   | null;
 
 /**
