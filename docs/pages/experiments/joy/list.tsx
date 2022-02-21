@@ -37,9 +37,24 @@ import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import Label from '@mui/icons-material/Label';
 import People from '@mui/icons-material/People';
 import Info from '@mui/icons-material/Info';
-import Article from '@mui/icons-material/ArticleRounded';
-import ToggleOff from '@mui/icons-material/ToggleOffRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDownRounded';
+
+// MuiNavDrawer
+import pages from 'docs/data/material/pages';
+import { MuiPage } from 'docs/src/pages';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
+import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -220,9 +235,23 @@ const MuiListItemContent = styled(ListItemContent)(
   }),
 );
 
+const iconsMap = {
+  DescriptionIcon: ArticleRoundedIcon,
+  ToggleOnIcon: ToggleOffRoundedIcon,
+  CodeIcon: CodeRoundedIcon,
+  BuildIcon: HandymanRoundedIcon,
+  CreateIcon: EditRoundedIcon,
+  VisibilityIcon: VisibilityRoundedIcon,
+  StyleIcon: InvertColorsRoundedIcon,
+  AddIcon: AddCircleRoundedIcon,
+  BookIcon: BookRoundedIcon,
+  ReaderIcon: ChromeReaderModeRoundedIcon,
+  TableViewIcon: TableViewRoundedIcon,
+};
+
 function MuiNav() {
-  const [open, setOpen] = React.useState(false);
-  const [open2, setOpen2] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean[]>([...Array(pages.length).map(() => false)]);
+  const t = useTranslate();
   const grey = {
     // same as branding theme
     50: '#F3F6F9',
@@ -260,6 +289,7 @@ function MuiNav() {
   return (
     <List
       sx={(theme) => ({
+        // Actually, this part should be inside the theme but put it here for specific instance.
         ...createCssVars(grey, 'palette-neutral'),
         ...createCssVars(blue, 'palette-primary'),
         '--joy-palette-text-primary': theme.vars.palette.neutral[900],
@@ -284,104 +314,99 @@ function MuiNav() {
           '--joy-palette-primary-lightActiveBg': 'rgba(51, 153, 255, 0.24)',
           '--List-background': 'rgb(10, 25, 41)',
         },
-        '& *': { fontFamily: '"IBM Plex Sans"', WebkitFontSmoothing: 'antialiased' },
-
-        '& .MuiListItemButton-root': {
+        '& *': {
+          fontFamily: '"IBM Plex Sans"',
+          WebkitFontSmoothing: 'antialiased',
           fontWeight: 500,
-          '&:not(.Mui-selected):hover': {
-            color: 'var(--joy-palette-text-primary)',
-          },
         },
-        '& .MuiSvgIcon-root': {
-          color: 'var(--joy-palette-primary-textColor)',
-        },
+        // ===============================================================
 
+        // This is what we have to customize
         '--List-item-minHeight': '27px',
         '--List-decorator-width': '28px',
         '--List-radius': '0px',
         '--List-item-radius': '5px',
-        '--List-gap': '12px',
+        '--List-gap': '10px',
+        '--List-padding': '10px',
         '--List-item-paddingX': '2px',
         '--List-item-paddingY': '0px',
         '--List-item-fontSize': theme.vars.fontSize.sm,
         '--List-insetStartAddition': '28px',
+        '--List-decorator-color': theme.vars.palette.primary.textColor,
       })}
     >
-      <NestedListItem>
-        <ListItemButton
-          selectedColor="primary"
-          sx={{ mb: '2px' }}
-          onClick={() => setOpen((bool) => !bool)}
-        >
-          <ListItemDecorator>
-            <Article fontSize="md" />
-          </ListItemDecorator>
-          <ListItemContent sx={{ color: 'text.primary' }}>Getting Started</ListItemContent>
-          <KeyboardArrowDown fontSize="md" sx={{ transform: open ? 'unset' : 'rotate(-90deg)' }} />
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <NestedList sx={{ '--List-gap': '4px' }}>
-            <ListItem>
-              <ListItemButton selected selectedColor="primary">
-                Installation
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton selectedColor="primary">Usage</ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton selectedColor="primary">Example projects</ListItemButton>
-            </ListItem>
-          </NestedList>
-        </Collapse>
-      </NestedListItem>
-      <NestedListItem>
-        <ListItemButton selectedColor="primary" onClick={() => setOpen2((bool) => !bool)}>
-          <ListItemDecorator>
-            <ToggleOff fontSize="md" />
-          </ListItemDecorator>
-          <ListItemContent sx={{ color: 'text.primary' }}>Components</ListItemContent>
-          <KeyboardArrowDown fontSize="md" sx={{ transform: open ? 'unset' : 'rotate(-90deg)' }} />
-        </ListItemButton>
-        <Collapse in={open2} timeout="auto" unmountOnExit>
-          <NestedList sx={{ '--List-gap': '17px', '--List-insetStartAddition': '0px' }}>
-            <NestedListItem>
-              <MuiListItemContent>
-                <ListItemDecorator />
-                Inputs
-              </MuiListItemContent>
-              <NestedList sx={{ '--List-gap': '4px' }}>
-                <ListItem>
-                  <ListItemButton selectedColor="primary">Autocomplete</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton selectedColor="primary">Button</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton selectedColor="primary">Checkbox</ListItemButton>
-                </ListItem>
+      {(pages as MuiPage[]).map((aPage, index) => {
+        const hasDeeperLevel = (aPage.children || []).some(
+          (nestedPage) => (nestedPage.children || []).length,
+        );
+        const IconComponent = aPage.icon ? iconsMap[aPage.icon as keyof typeof iconsMap] : null;
+        return (
+          <NestedListItem>
+            <ListItemButton
+              selectedColor="primary"
+              sx={{ mb: '2px' }}
+              onClick={() =>
+                setOpen((bool) => {
+                  const newBool = [...bool];
+                  newBool[index] = !newBool[index];
+                  return newBool;
+                })
+              }
+            >
+              <ListItemDecorator>
+                <IconComponent fontSize="md" />
+              </ListItemDecorator>
+              <ListItemContent sx={{ color: 'text.primary' }}>
+                {pageToTitleI18n(aPage, t) || ''}
+              </ListItemContent>
+              <KeyboardArrowDown
+                fontSize="md"
+                sx={{
+                  transform: open[index] ? 'unset' : 'rotate(-90deg)',
+                  color: 'var(--joy-palette-primary-textColor)',
+                }}
+              />
+            </ListItemButton>
+            <Collapse in={open[index]} timeout="auto" unmountOnExit>
+              <NestedList
+                sx={{
+                  '--List-gap': hasDeeperLevel ? '17px' : '4px',
+                  '--List-insetStartAddition': '0px',
+                }}
+              >
+                {(aPage.children || []).map((nestedPage, nestedIndex) => {
+                  if (!(nestedPage.children || []).length) {
+                    return (
+                      <ListItem>
+                        <ListItemButton selectedColor="primary" selected={nestedIndex === 0}>
+                          {pageToTitleI18n(nestedPage, t) || ''}
+                        </ListItemButton>
+                      </ListItem>
+                    );
+                  }
+                  return (
+                    <NestedListItem>
+                      <MuiListItemContent>
+                        <ListItemDecorator />
+                        {pageToTitleI18n(nestedPage, t) || ''}
+                      </MuiListItemContent>
+                      <NestedList sx={{ '--List-gap': '4px' }}>
+                        {(nestedPage.children || []).map((deepestPage) => (
+                          <ListItem>
+                            <ListItemButton selectedColor="primary">
+                              {pageToTitleI18n(deepestPage, t) || ''}
+                            </ListItemButton>
+                          </ListItem>
+                        ))}
+                      </NestedList>
+                    </NestedListItem>
+                  );
+                })}
               </NestedList>
-            </NestedListItem>
-            <NestedListItem>
-              <MuiListItemContent>
-                <ListItemDecorator />
-                Data Display
-              </MuiListItemContent>
-              <NestedList sx={{ '--List-gap': '4px' }}>
-                <ListItem>
-                  <ListItemButton selectedColor="primary">Avatar</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton selectedColor="primary">Badge</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton selectedColor="primary">Chip</ListItemButton>
-                </ListItem>
-              </NestedList>
-            </NestedListItem>
-          </NestedList>
-        </Collapse>
-      </NestedListItem>
+            </Collapse>
+          </NestedListItem>
+        );
+      })}
     </List>
   );
 }

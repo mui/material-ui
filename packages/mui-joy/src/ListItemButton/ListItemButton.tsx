@@ -91,22 +91,23 @@ const ListItemButtonRoot = styled('div', {
       marginTop: 'var(--List-gap)',
     },
     // default color & background styles when `color` prop is not specified or set as default
-    ...(!ownerState.color && {
-      color: theme.vars.palette.text.secondary,
-      cursor: 'pointer',
-      '&:hover': {
-        color: theme.vars.palette.text.primary,
-        backgroundColor: theme.vars.palette.neutral.textHoverBg,
-      },
-      '&:active': {
-        backgroundColor: theme.vars.palette.neutral.textActiveBg,
-      },
-      [`&.${listItemButtonClasses.disabled}`]: {
-        cursor: 'default',
-        pointerEvents: 'none',
-        opacity: 0.5,
-      },
-    }),
+    ...(!ownerState.color &&
+      !ownerState.selected && {
+        color: theme.vars.palette.text.secondary,
+        cursor: 'pointer',
+        '&:hover': {
+          color: theme.vars.palette.text.primary,
+          backgroundColor: theme.vars.palette.neutral.textHoverBg,
+        },
+        '&:active': {
+          backgroundColor: theme.vars.palette.neutral.textActiveBg,
+        },
+        [`&.${listItemButtonClasses.disabled}`]: {
+          cursor: 'default',
+          pointerEvents: 'none',
+          opacity: 0.5,
+        },
+      }),
   },
   ...(ownerState.color
     ? [
