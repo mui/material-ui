@@ -43,6 +43,28 @@ export default function createCssVarsProvider<
   options: CssVarsProviderConfig<ColorScheme> & {
     /**
      * Design system default theme
+     *
+     * The structure inside `theme.colorSchemes[colorScheme]` should be exactly the same in all color schemes because
+     * those object of the color scheme will be used when the color scheme is active.
+     *
+     *  {
+     *    colorSchemes: {
+     *      light: { ...lightColorSchemeValues },
+     *      dark: { ...darkColorSchemeValues }
+     *    }
+     *  }
+     *
+     *  If colorScheme is 'light', the `lightColorSchemeValues` will be merged to theme as `{ ...theme, ...lightColorSchemeValues }`
+     *  likewise, if colorScheme is 'dark', the `darkColorSchemeValues` will be merged to theme as `{ ...theme, ...darkColorSchemeValues }`
+     *
+     *  !!! Don't provided the same keys as in colorSchemes to theme because they will be replaced internally when the selected colorScheme is calculated.
+     *  Ex. {
+     *    colorSchemes: {
+     *      light: { palette: { ... } },
+     *      dark: { palette: { ... } }
+     *    },
+     *    palette: { ... }, // This values will be replaced by the `palette` from the light | dark color scheme at runtime.
+     *  }
      */
     theme: any;
     /**
