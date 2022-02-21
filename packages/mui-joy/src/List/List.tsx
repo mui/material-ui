@@ -30,6 +30,8 @@ const ListRoot = styled('ul', {
   '--List-item-paddingY': '0.375rem',
   '--List-item-fontSize': theme.vars.fontSize.md,
   '--List-decorator-width': '2.5rem',
+  '--List-decorator-color': theme.vars.palette.text.tertiary,
+  '--List-insetStartAddition': '0.75rem',
   ...(ownerState.size === 'sm' && {
     '--List-padding': '0.25rem',
     '--List-gap': '0.25rem',
@@ -51,7 +53,6 @@ const ListRoot = styled('ul', {
   // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
   '--List-item-radius':
     'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
-  '--List-nestedItem-startGap': 'var(--List-item-paddingX)',
   background: 'var(--List-background)',
   borderRadius: 'var(--List-radius)',
   padding: 'var(--List-padding)',

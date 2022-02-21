@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
-import { ColorPaletteProp, CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import {
+  ColorPaletteProp,
+  CssVarsProvider,
+  useColorScheme,
+  styled,
+  experimental_sx as sx,
+} from '@mui/joy/styles';
 import NextLink from 'next/link';
+import Collapse from '@mui/material/Collapse';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
@@ -98,23 +105,30 @@ function CheckboxList() {
 
   return (
     <List>
-      {[0, 1, 2, 3].map((value) => (
-        <ListItem
-          key={value}
-          secondaryAction={
-            <IconButton aria-label="comments" size="sm">
-              <CommentIcon />
-            </IconButton>
-          }
-        >
-          <ListItemButton role={undefined} onClick={handleToggle(value)}>
-            <ListItemDecorator>
-              {checked.indexOf(value) !== -1 ? <CheckBox /> : <CheckBoxOutlineBlank />}
-            </ListItemDecorator>
-            Line item {value + 1}
-          </ListItemButton>
-        </ListItem>
-      ))}
+      {[0, 1, 2, 3].map((value) => {
+        const selected = checked.indexOf(value) !== -1;
+        return (
+          <ListItem
+            key={value}
+            secondaryAction={
+              <IconButton aria-label="comments" size="sm">
+                <CommentIcon />
+              </IconButton>
+            }
+          >
+            <ListItemButton
+              color={selected ? 'success' : undefined}
+              role={undefined}
+              onClick={handleToggle(value)}
+            >
+              <ListItemDecorator>
+                {selected ? <CheckBox /> : <CheckBoxOutlineBlank />}
+              </ListItemDecorator>
+              Line item {value + 1}
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
     </List>
   );
 }
@@ -132,7 +146,7 @@ function Gmail() {
         '--List-item-minHeight': '32px',
         '--List-item-secondaryActionWidth': '12px',
         '--List-gap': '0px',
-        '--List-nestedItem-startGap': '13px',
+        '--List-insetStartAddition': '13px',
         '& .MuiListItemDecorator-root': { justifyContent: 'flex-end', pr: '18px' },
       }}
     >
@@ -196,7 +210,19 @@ function Gmail() {
   );
 }
 
+const MuiListItemContent = styled(ListItemContent)(
+  sx({
+    color: 'text.tertiary',
+    textTransform: 'uppercase',
+    fontSize: '11px',
+    letterSpacing: '1.28px',
+    fontWeight: 'lg',
+  }),
+);
+
 function MuiNav() {
+  const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
   const grey = {
     // same as branding theme
     50: '#F3F6F9',
@@ -278,115 +304,83 @@ function MuiNav() {
         '--List-item-paddingX': '2px',
         '--List-item-paddingY': '0px',
         '--List-item-fontSize': theme.vars.fontSize.sm,
-        '--List-nestedItem-startGap': '28px',
+        '--List-insetStartAddition': '28px',
       })}
     >
       <NestedListItem>
-        <ListItemButton selectedColor="primary" sx={{ mb: '2px' }}>
+        <ListItemButton
+          selectedColor="primary"
+          sx={{ mb: '2px' }}
+          onClick={() => setOpen((bool) => !bool)}
+        >
           <ListItemDecorator>
             <Article fontSize="md" />
           </ListItemDecorator>
-          <ListItemContent>Getting Started</ListItemContent>
-          <KeyboardArrowDown fontSize="md" />
+          <ListItemContent sx={{ color: 'text.primary' }}>Getting Started</ListItemContent>
+          <KeyboardArrowDown fontSize="md" sx={{ transform: open ? 'unset' : 'rotate(-90deg)' }} />
         </ListItemButton>
-        <NestedList
-          sx={{
-            '--List-gap': '4px',
-            '& .MuiListItemButton-root:not(.Mui-selected)': {
-              color: 'text.secondary',
-              '&:hover': { color: 'text.primary' },
-            },
-          }}
-        >
-          <ListItem>
-            <ListItemButton selected selectedColor="primary">
-              Installation
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton selectedColor="primary">Usage</ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton selectedColor="primary">Example projects</ListItemButton>
-          </ListItem>
-        </NestedList>
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <NestedList sx={{ '--List-gap': '4px' }}>
+            <ListItem>
+              <ListItemButton selected selectedColor="primary">
+                Installation
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton selectedColor="primary">Usage</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton selectedColor="primary">Example projects</ListItemButton>
+            </ListItem>
+          </NestedList>
+        </Collapse>
       </NestedListItem>
       <NestedListItem>
-        <ListItemButton selectedColor="primary">
+        <ListItemButton selectedColor="primary" onClick={() => setOpen2((bool) => !bool)}>
           <ListItemDecorator>
             <ToggleOff fontSize="md" />
           </ListItemDecorator>
-          <ListItemContent>Components</ListItemContent>
-          <KeyboardArrowDown fontSize="md" />
+          <ListItemContent sx={{ color: 'text.primary' }}>Components</ListItemContent>
+          <KeyboardArrowDown fontSize="md" sx={{ transform: open ? 'unset' : 'rotate(-90deg)' }} />
         </ListItemButton>
-        <NestedList sx={{ '--List-gap': '17px', '--List-nestedItem-startGap': '0px' }}>
-          <NestedListItem>
-            <ListItemContent
-              sx={{
-                color: 'text.tertiary',
-                textTransform: 'uppercase',
-                fontSize: '11px !important',
-                letterSpacing: '1.28px',
-                fontWeight: 'lg',
-              }}
-            >
-              <ListItemDecorator />
-              Inputs
-            </ListItemContent>
-            <NestedList
-              sx={{
-                '--List-gap': '4px',
-                '& .MuiListItemButton-root:not(.Mui-selected)': {
-                  color: 'text.secondary',
-                  '&:hover': { color: 'text.primary' },
-                },
-              }}
-            >
-              <ListItem>
-                <ListItemButton selectedColor="primary">Autocomplete</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton selectedColor="primary">Button</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton selectedColor="primary">Checkbox</ListItemButton>
-              </ListItem>
-            </NestedList>
-          </NestedListItem>
-          <NestedListItem>
-            <ListItemContent
-              sx={{
-                color: 'text.tertiary',
-                textTransform: 'uppercase',
-                fontSize: '11px !important',
-                letterSpacing: '1.28px',
-                fontWeight: '700 !important',
-              }}
-            >
-              <ListItemDecorator />
-              Data Display
-            </ListItemContent>
-            <NestedList
-              sx={{
-                '--List-gap': '4px',
-                '& .MuiListItemButton-root:not(.Mui-selected)': {
-                  color: 'text.secondary',
-                  '&:hover': { color: 'text.primary' },
-                },
-              }}
-            >
-              <ListItem>
-                <ListItemButton selectedColor="primary">Avatar</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton selectedColor="primary">Badge</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton selectedColor="primary">Chip</ListItemButton>
-              </ListItem>
-            </NestedList>
-          </NestedListItem>
-        </NestedList>
+        <Collapse in={open2} timeout="auto" unmountOnExit>
+          <NestedList sx={{ '--List-gap': '17px', '--List-insetStartAddition': '0px' }}>
+            <NestedListItem>
+              <MuiListItemContent>
+                <ListItemDecorator />
+                Inputs
+              </MuiListItemContent>
+              <NestedList sx={{ '--List-gap': '4px' }}>
+                <ListItem>
+                  <ListItemButton selectedColor="primary">Autocomplete</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton selectedColor="primary">Button</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton selectedColor="primary">Checkbox</ListItemButton>
+                </ListItem>
+              </NestedList>
+            </NestedListItem>
+            <NestedListItem>
+              <MuiListItemContent>
+                <ListItemDecorator />
+                Data Display
+              </MuiListItemContent>
+              <NestedList sx={{ '--List-gap': '4px' }}>
+                <ListItem>
+                  <ListItemButton selectedColor="primary">Avatar</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton selectedColor="primary">Badge</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton selectedColor="primary">Chip</ListItemButton>
+                </ListItem>
+              </NestedList>
+            </NestedListItem>
+          </NestedList>
+        </Collapse>
       </NestedListItem>
     </List>
   );
@@ -822,7 +816,7 @@ export default function JoyTypography() {
 
           <List
             sx={{
-              '--List-nestedItem-startGap': '24px', // increase start gap on nested list item
+              '--List-insetStartAddition': '24px', // increase start gap on nested list item
             }}
           >
             <NestedListItem>

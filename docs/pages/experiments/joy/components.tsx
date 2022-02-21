@@ -261,9 +261,9 @@ const components = [
       { id: '--List-item-paddingY', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-insetStartAddition', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--List-insetStart', type: 'number', unit: 'px' },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
-      { id: '--List-nestedItem-startGap', type: 'number', unit: 'px' },
     ],
   },
 ];

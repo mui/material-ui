@@ -51,13 +51,9 @@ const ListItemButtonRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps }>(({ theme, ownerState }) => [
   {
-    ...(!ownerState.color && {
-      '--List-decorator-color': theme.vars.palette.text.tertiary, // for making icon color less obvious
-    }),
     ...(ownerState.color &&
       ownerState.color !== 'context' && {
-        '--List-decorator-color':
-          theme.vars.palette[ownerState.color]?.[`${ownerState.selectedVariant!}Color`],
+        '--List-decorator-color': theme.vars.palette[ownerState.color]?.textColor,
       }),
     ...(ownerState.selected &&
       ownerState.selectedColor !== 'context' && {
@@ -68,8 +64,8 @@ const ListItemButtonRoot = styled('div', {
     display: 'flex',
     alignItems: 'center',
     textAlign: 'initial',
-    textDecoration: 'initial', // reset native anchor tag
-    color: 'initial',
+    textDecoration: 'initial',
+    // color: 'var(--List-item-color, inherit)',
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
     // The value is negative to account for the ListItem's padding
     margin: 'var(--List-itemButton-margin)',
@@ -96,7 +92,32 @@ const ListItemButtonRoot = styled('div', {
     [`& + .${listItemClasses.root}`]: {
       marginTop: 'var(--List-gap)',
     },
+    // default color & background styles when `color` prop is not specified or set as default
+    ...(!ownerState.color && {
+      color: theme.vars.palette.text.secondary,
+      cursor: 'pointer',
+      '&:hover': {
+        color: theme.vars.palette.text.primary,
+        backgroundColor: theme.vars.palette.neutral.textHoverBg,
+      },
+      '&:active': {
+        backgroundColor: theme.vars.palette.neutral.textActiveBg,
+      },
+      [`&.${listItemButtonClasses.disabled}`]: {
+        cursor: 'default',
+        pointerEvents: 'none',
+        opacity: 0.5,
+      },
+    }),
   },
+  ...(ownerState.color
+    ? [
+        theme.variants.text?.[ownerState.color],
+        theme.variants.textHover?.[ownerState.color],
+        theme.variants.textActive?.[ownerState.color],
+        theme.variants.textDisabled?.[ownerState.color],
+      ]
+    : []),
   ...(ownerState.selected
     ? [
         {
@@ -110,12 +131,7 @@ const ListItemButtonRoot = styled('div', {
         theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.selectedColor!],
         theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.selectedColor!],
       ]
-    : [
-        theme.variants.text?.[ownerState.color!],
-        theme.variants.textHover?.[ownerState.color || 'neutral'],
-        theme.variants.textActive?.[ownerState.color || 'neutral'],
-        theme.variants.textDisabled?.[ownerState.color || 'neutral'],
-      ]),
+    : []),
 ]);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {

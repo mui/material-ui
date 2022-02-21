@@ -29,7 +29,7 @@ const NestedListItemRoot = styled('li', {
   }),
   // add negative margin to NestedList equal to this ListItem padding
   '--NestedList-margin': '0px calc(-1 * var(--List-item-paddingX))',
-  '--NestedList-insetStart': `calc(var(--List-insetStart) + var(--List-nestedItem-startGap))`,
+  '--NestedList-insetStart': `calc(var(--List-insetStart) + var(--List-insetStartAddition))`,
   // add negative margin to ListItem, ListItemButton to make them start from the edge.
   '--List-itemButton-margin':
     'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingX)) 0px',
