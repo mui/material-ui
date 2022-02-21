@@ -62,7 +62,7 @@ const ListItemSecondaryAction = styled('div', {
 })<{ ownerState: ListItemProps }>({
   display: 'inherit',
   position: 'absolute',
-  top: 'var(--List-secondaryAction-top, 50%)',
+  top: '50%',
   right: 'var(--List-item-paddingX)',
   transform: 'translateY(-50%)',
 });

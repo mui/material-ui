@@ -66,7 +66,7 @@ const NestedListItemSecondaryAction = styled('div', {
 })<{ ownerState: NestedListItemProps }>({
   display: 'inherit',
   position: 'absolute',
-  top: 'var(--List-secondaryAction-top, 50%)',
+  top: 'calc(var(--List-item-minHeight) / 2)',
   right: 'var(--List-item-paddingX)',
   transform: 'translateY(-50%)',
 });
