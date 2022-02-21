@@ -38,6 +38,8 @@ const ListRoot = styled('ul', {
     '--List-radius': theme.vars.radius.xs,
     '--List-item-minHeight': '2rem',
     '--List-item-paddingX': '0.25rem',
+    '--List-item-paddingY': '0.25rem',
+    '--List-item-fontSize': theme.vars.fontSize.sm,
     '--List-decorator-width': '2rem',
   }),
   ...(ownerState.size === 'lg' && {
@@ -45,6 +47,7 @@ const ListRoot = styled('ul', {
     '--List-gap': '0.5rem',
     '--List-item-minHeight': '3rem',
     '--List-item-paddingX': '0.5rem',
+    '--List-item-paddingY': '0.5rem',
     '--List-decorator-width': '3rem',
   }),
   '--List-divider-gap': 'var(--List-gap)',

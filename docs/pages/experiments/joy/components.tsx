@@ -235,7 +235,7 @@ const components = [
             <ListItemContent>Favorite</ListItemContent>
           </ListItemButton>
         </List>
-        <List component="nav" {...props}>
+        <List component="nav" size="sm" {...props}>
           <ListItemButton>
             <ListItemContent>New file</ListItemContent>
             <Typography level="body2">⌘ N</Typography>
@@ -259,6 +259,7 @@ const components = [
       { id: '--List-item-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-item-paddingX', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-item-paddingY', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-fontSize', type: 'number', unit: 'px', defaultValue: 16 },
       { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-insetStartAddition', type: 'number', unit: 'px', defaultValue: 12 },

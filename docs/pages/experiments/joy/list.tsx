@@ -341,7 +341,7 @@ function MuiNav() {
         );
         const IconComponent = aPage.icon ? iconsMap[aPage.icon as keyof typeof iconsMap] : null;
         return (
-          <NestedListItem>
+          <NestedListItem key={aPage.pathname}>
             <ListItemButton
               selectedColor="primary"
               sx={{ mb: '2px' }}
@@ -377,7 +377,7 @@ function MuiNav() {
                 {(aPage.children || []).map((nestedPage, nestedIndex) => {
                   if (!(nestedPage.children || []).length) {
                     return (
-                      <ListItem>
+                      <ListItem key={nestedPage.pathname}>
                         <ListItemButton selectedColor="primary" selected={nestedIndex === 0}>
                           {pageToTitleI18n(nestedPage, t) || ''}
                         </ListItemButton>
@@ -385,14 +385,14 @@ function MuiNav() {
                     );
                   }
                   return (
-                    <NestedListItem>
+                    <NestedListItem key={nestedPage.pathname}>
                       <MuiListItemContent>
                         <ListItemDecorator />
                         {pageToTitleI18n(nestedPage, t) || ''}
                       </MuiListItemContent>
                       <NestedList sx={{ '--List-gap': '4px' }}>
                         {(nestedPage.children || []).map((deepestPage) => (
-                          <ListItem>
+                          <ListItem key={deepestPage.pathname}>
                             <ListItemButton selectedColor="primary">
                               {pageToTitleI18n(deepestPage, t) || ''}
                             </ListItemButton>
