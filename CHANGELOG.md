@@ -8,7 +8,6 @@ _Feb 21, 2022_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
-- 🛠 @michaldudak exported `useStepContext` (#31021)
 - 🛠 @hbjORbj made components use theme duration/easing values by default (#30894)
 - A meaningful number of 🐛 bug fixes and 📚 documentation improvements
 
