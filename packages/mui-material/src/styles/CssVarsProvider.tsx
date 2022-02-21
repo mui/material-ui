@@ -1,5 +1,5 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import createTheme, { ThemeOptions, Theme } from './createTheme';
+import createTheme, { ThemeOptions } from './createTheme';
 import { PaletteOptions, PaletteColorOptions } from './createPalette';
 
 export interface ThemeInput extends ThemeOptions {
