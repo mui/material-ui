@@ -45,6 +45,7 @@ The MUI Studio application offers a wide variety of engineering challenges. Incl
 
 - In-browser sandboxing and manipulation of live web applications
 - Drag & drop visual editor
+- Realtime collaborative editing
 - Interfacing with many different types of backends
 - Databinding and complex state management
 
@@ -80,7 +81,7 @@ We're looking for someone with both strong front-end and back-end skills. More i
 ### Skills you should have
 
 - **Expertise in the modern JavaScript ecosystem**. MUI Studio is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
-- **Expertise in backend development**. MUI Studio interfaces with multiple databases, both SQL and NoSQL, as well as APIs such as REST and GraphQL. You’ll need to be comfortable in learning and integrating new backend technologies fast.
+- **Expertise in backend development**. MUI Studio interfaces with multiple databases, both SQL and NoSQL, as well as APIs such as REST and GraphQL. You’ll need to be comfortable in learning and integrating new backend technologies fast. You'll need to have a good understanding of distributed systems and some knowledge of CRDTs is a plus.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**. As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
