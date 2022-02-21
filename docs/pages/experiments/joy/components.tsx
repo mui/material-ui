@@ -145,6 +145,10 @@ const components = [
     name: 'Switch',
     render: (props: any) => (
       <React.Fragment>
+        <Switch variant="outlined" {...props} />
+        <Switch variant="outlined" defaultChecked {...props} />
+        <Switch variant="light" {...props} />
+        <Switch variant="light" defaultChecked {...props} />
         <Switch {...props} />
         <Switch defaultChecked {...props} />
       </React.Fragment>

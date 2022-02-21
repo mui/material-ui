@@ -74,7 +74,7 @@ const SwitchRoot = styled('span', {
       '--Switch-track-width': '48px',
       '--Switch-track-height': '24px',
       '--Switch-thumb-size': '16px',
-      '--Switch-thumb-shadow': 'none',
+      '--Switch-thumb-shadow': '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
       ...(ownerState.size === 'sm' && {
         '--Switch-track-width': '40px',
         '--Switch-track-height': '20px',
