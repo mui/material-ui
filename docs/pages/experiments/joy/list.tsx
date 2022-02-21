@@ -84,7 +84,7 @@ const ColorSchemePicker = () => {
 };
 
 const Circle = ({
-  sx = [],
+  sx: sxProp = [],
   color = 'neutral',
   ...props
 }: Omit<BoxProps, 'color'> & { color?: ColorPaletteProp }) => (
@@ -97,7 +97,7 @@ const Circle = ({
         p: '0.5rem',
         ...theme.variants.light[color],
       }),
-      ...(Array.isArray(sx) ? sx : [sx]),
+      ...(Array.isArray(sxProp) ? sxProp : [sxProp]),
     ]}
   />
 );
