@@ -30,7 +30,10 @@ type CssVariableType = string | number;
  * Map all nested selectors and CSS variables.
  */
 export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
-  [cssSelectorOrVariable: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme> | CssVariableType;
+  [cssSelectorOrVariable: string]:
+    | ((theme: Theme) => SystemStyleObject<Theme>)
+    | SystemStyleObject<Theme>
+    | CssVariableType;
 }
 
 /**
