@@ -1,6 +1,6 @@
 ---
-title: 2020 MUI Developer Survey results
-description: Results for our yearly developer survey, 2020 edition.
+title: 'The 2020 MUI developer survey: here's what we discovered'
+description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
 date: 2020-06-27T00:00:00.000Z
 authors: ['mnajdova', 'oliviertassinari', 'mbrookes']
 tags: ['Developer survey']
