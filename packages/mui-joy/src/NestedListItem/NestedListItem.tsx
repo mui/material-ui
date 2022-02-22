@@ -25,7 +25,7 @@ const NestedListItemRoot = styled('li', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: NestedListItemProps }>(({ theme, ownerState }) => ({
   ...(ownerState.secondaryAction && {
-    '--List-item-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
+    '--internal-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
   }),
   // add negative margin to NestedList equal to this ListItem padding
   '--NestedList-margin': '0px calc(-1 * var(--List-item-paddingX))',

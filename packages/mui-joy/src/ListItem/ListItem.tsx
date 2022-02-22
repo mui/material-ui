@@ -29,7 +29,7 @@ const ListItemRoot = styled('li', {
     calc(-1 * var(--List-item-paddingY))
     calc(-1 * var(--List-insetStart))`,
   ...(ownerState.secondaryAction && {
-    '--List-item-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
+    '--internal-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
   }),
   boxSizing: 'border-box',
   display: 'flex',
@@ -63,7 +63,7 @@ const ListItemSecondaryAction = styled('div', {
   display: 'inherit',
   position: 'absolute',
   top: '50%',
-  right: 'var(--List-item-secondaryActionRight)',
+  right: 'var(--List-item-paddingX)',
   transform: 'translateY(-50%)',
 });
 

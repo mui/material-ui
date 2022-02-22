@@ -69,7 +69,8 @@ const ListItemButtonRoot = styled('div', {
     margin: 'var(--List-itemButton-margin)',
     padding: 'var(--List-item-paddingY) var(--List-item-paddingX)',
     paddingLeft: 'var(--List-insetStart)',
-    paddingRight: 'calc(var(--List-item-paddingX) + var(--List-item-secondaryActionWidth, 0px))',
+    paddingRight:
+      'calc(var(--List-item-paddingX) + var(--List-item-secondaryActionWidth, var(--internal-secondaryActionWidth, 0px)))', // --internal variable makes it possible to customize the secondaryActionWidth from the top List
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
