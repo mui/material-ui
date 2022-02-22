@@ -2744,7 +2744,7 @@ yarn add tss-react
  import { render } from 'react-dom';
 -import { StylesProvider } from '@material-ui/core/styles';
 +import createCache from '@emotion/cache';
-+import { ThemeProvider } from '@mui/material/styles';
++import { CacheProvider } from "@emotion/react";
 
 +export const muiCache = createCache({
 +  'key': 'mui',
