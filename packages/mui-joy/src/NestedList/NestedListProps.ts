@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 
-export interface NestedListPropsSizeOverrides {}
+export type NestedListSlot = 'root';
 
 export interface NestedListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {

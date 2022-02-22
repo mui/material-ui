@@ -4,6 +4,17 @@ import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
+import { ListProps, ListSlot } from '../List/ListProps';
+import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
+import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
+import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
+import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListItemButtonProps';
+import {
+  ListItemDecoratorProps,
+  ListItemDecoratorSlot,
+} from '../ListItemDecorator/ListItemDecoratorProps';
+import { NestedListProps, NestedListSlot } from '../NestedList/NestedListProps';
+import { NestedListItemProps, NestedListItemSlot } from '../NestedListItem/NestedListItemProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -40,5 +51,37 @@ export interface Components<Theme = unknown> {
   MuiSvgIcon?: {
     defaultProps?: Partial<SvgIconProps>;
     styleOverrides?: OverridesStyleRules<SvgIconSlot, SvgIconProps, Theme>;
+  };
+  MuiList?: {
+    defaultProps: Partial<ListProps>;
+    styleOverrides?: OverridesStyleRules<ListSlot, ListProps, Theme>;
+  };
+  MuiListDivider?: {
+    defaultProps: Partial<ListDividerProps>;
+    styleOverrides?: OverridesStyleRules<ListDividerSlot, ListDividerProps, Theme>;
+  };
+  MuiListItem?: {
+    defaultProps: Partial<ListItemProps>;
+    styleOverrides?: OverridesStyleRules<ListItemSlot, ListItemProps, Theme>;
+  };
+  MuiListItemContent?: {
+    defaultProps: Partial<ListItemContentProps>;
+    styleOverrides?: OverridesStyleRules<ListItemContentSlot, ListItemContentProps, Theme>;
+  };
+  MuiListItemDecorator?: {
+    defaultProps: Partial<ListItemDecoratorProps>;
+    styleOverrides?: OverridesStyleRules<ListItemDecoratorSlot, ListItemDecoratorProps, Theme>;
+  };
+  MuiListItemButton?: {
+    defaultProps: Partial<ListItemButtonProps>;
+    styleOverrides?: OverridesStyleRules<ListItemButtonSlot, ListItemButtonProps, Theme>;
+  };
+  MuiNestedList?: {
+    defaultProps: Partial<NestedListProps>;
+    styleOverrides?: OverridesStyleRules<NestedListSlot, NestedListProps, Theme>;
+  };
+  MuiNestedListItem?: {
+    defaultProps: Partial<NestedListItemProps>;
+    styleOverrides?: OverridesStyleRules<NestedListItemSlot, NestedListItemProps, Theme>;
   };
 }

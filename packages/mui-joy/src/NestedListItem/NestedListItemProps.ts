@@ -3,6 +3,8 @@ import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { NestedListItemClasses } from './nestedListItemClasses';
 
+export type NestedListItemSlot = 'root' | 'secondaryAction';
+
 export interface NestedListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**

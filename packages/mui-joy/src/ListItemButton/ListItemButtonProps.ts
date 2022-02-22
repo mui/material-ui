@@ -9,6 +9,8 @@ import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
+export type ListItemButtonSlot = 'root';
+
 export interface ListItemButtonPropsVariantOverrides {}
 
 export interface ListItemButtonPropsColorOverrides {}
