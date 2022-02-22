@@ -743,7 +743,7 @@ export default function SliderThumbOverrides() {
 
 [TSS](https://docs.tss-react.dev) integrates well with MUI and provide a better TypeScript support than JSS.
 
-> If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout [migration guide](https://mui.com/guides/migration-v4/#2-use-tss-react).
+> If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout [migration guide](/guides/migration-v4/#2-use-tss-react).
 
 ```tsx
 import { render } from 'react-dom';
@@ -821,4 +821,4 @@ For info on how to setup SSR or anything else, please refer to [the TSS document
 
 > ⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly, it's a peer dependency of `@mui/material`.
 
-> ⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10. Material-ui and TSS runs emotion 11 so there is [some changes](https://github.com/garronej/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32) to be made to your `.storybook/main.js` to make it uses emotion 11.
+> ⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10. Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32) to be made to your `.storybook/main.js` to make it uses emotion 11.
