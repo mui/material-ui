@@ -42,6 +42,8 @@ export default function InteractiveStack() {
               pb: value + 1,
               color: 'text.secondary',
               typography: 'body2',
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
             }}
           >
             {`Item ${value + 1}`}
