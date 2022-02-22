@@ -5,6 +5,8 @@ import { InputClasses } from './inputClasses';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
+export type InputSlot = 'root' | 'input' | 'startAdornment' | 'endAdornment';
+
 export interface InputPropsVariantOverrides {}
 
 export interface InputPropsColorOverrides {}
