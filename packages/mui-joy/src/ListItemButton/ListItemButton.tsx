@@ -251,7 +251,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default 'light'
    */
   selectedVariant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
     PropTypes.string,
   ]),
 } as any;

@@ -30,7 +30,6 @@ const ListItemRoot = styled('li', {
     calc(-1 * var(--List-insetStart))`,
   ...(ownerState.secondaryAction && {
     '--List-item-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
-    '--List-item-secondaryActionRight': 'var(--List-item-paddingX)',
   }),
   boxSizing: 'border-box',
   display: 'flex',

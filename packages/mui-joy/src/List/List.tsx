@@ -32,6 +32,7 @@ const ListRoot = styled('ul', {
   '--List-decorator-width': '2.5rem',
   '--List-decorator-color': theme.vars.palette.text.tertiary,
   '--List-insetStartAddition': '0.75rem',
+  '--List-item-secondaryActionRight': '0.375rem',
   ...(ownerState.size === 'sm' && {
     '--List-padding': '0.25rem',
     '--List-gap': '0.25rem',
@@ -41,6 +42,7 @@ const ListRoot = styled('ul', {
     '--List-item-paddingY': '0.25rem',
     '--List-item-fontSize': theme.vars.fontSize.sm,
     '--List-decorator-width': '2rem',
+    '--List-item-secondaryActionRight': '0.25rem',
   }),
   ...(ownerState.size === 'lg' && {
     '--List-padding': '0.5rem',
@@ -49,6 +51,7 @@ const ListRoot = styled('ul', {
     '--List-item-paddingX': '0.5rem',
     '--List-item-paddingY': '0.5rem',
     '--List-decorator-width': '3rem',
+    '--List-item-secondaryActionRight': '0.5rem',
   }),
   '--List-divider-gap': 'var(--List-gap)',
   '--List-insetStart': 'var(--List-item-paddingX)',

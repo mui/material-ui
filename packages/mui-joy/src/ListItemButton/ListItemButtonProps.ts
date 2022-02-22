@@ -70,10 +70,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      * The variant to use.
      * @default 'light'
      */
-    selectedVariant?: OverridableStringUnion<
-      Exclude<VariantProp, 'text'>,
-      ListItemButtonPropsVariantOverrides
-    >;
+    selectedVariant?: OverridableStringUnion<VariantProp, ListItemButtonPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
