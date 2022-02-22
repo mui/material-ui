@@ -52,7 +52,7 @@ const InputLabelRoot = styled(FormLabel, {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  maxWidth: '100%',
+  maxWidth: 'calc(100% - 24px)',
   ...(ownerState.formControl && {
     position: 'absolute',
     left: 0,
@@ -83,7 +83,7 @@ const InputLabelRoot = styled(FormLabel, {
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(12px, 16px) scale(1)',
-    maxWidth: 'calc(100% - 24px)',
+    maxWidth: 'calc(100% - 48px)',
     ...(ownerState.size === 'small' && {
       transform: 'translate(12px, 13px) scale(1)',
     }),
@@ -102,7 +102,7 @@ const InputLabelRoot = styled(FormLabel, {
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(14px, 16px) scale(1)',
-    maxWidth: 'calc(100% - 24px)',
+    maxWidth: 'calc(100% - 48px)',
     ...(ownerState.size === 'small' && {
       transform: 'translate(14px, 9px) scale(1)',
     }),
