@@ -801,3 +801,16 @@ Your feedback from this survey helped us to better understand the areas where we
 If you want to continue to influence our roadmap, you can visit the [MUI Core](https://github.com/mui/material-ui) and [MUI X](https://github.com/mui/mui-x) repositories, open issues, upvoting the ones you’re most interested in, or leave your comments and impressions about anything else you want to be improved, we'll be happy to hear from you.
 
 Thanks again and until the next survey!
+
+### Read more
+
+Here are related content to some of the topics covered throughout the post:
+
+- [How to migrate from v4 to v5](/guides/migration-v4/)
+- [Style Library Interoperability](/guides/interoperability/)
+- [Approaches to customizing Material-UI components](/customization/how-to-customize/)
+
+Also, check out the last two iterations on the MUI Developer Survey:
+
+- [2020](/blog/2020-developer-survey-results/)
+- [2019](/blog/2019-developer-survey-results/)
