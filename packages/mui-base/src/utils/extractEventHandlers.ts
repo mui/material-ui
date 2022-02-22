@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 /**
  * Extracts event handlers from a given object.
  * A prop is considered an event handler if it is a function and its name starts with `on`.
@@ -7,7 +9,7 @@
 export default function extractEventHandlers(
   object: Record<string, any> | undefined,
   excludeKeys: string[] = [],
-): Record<string, any> {
+): Record<string, React.EventHandler<any>> {
   if (object === undefined) {
     return {};
   }

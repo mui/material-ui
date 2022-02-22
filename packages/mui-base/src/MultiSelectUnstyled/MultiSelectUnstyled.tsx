@@ -5,9 +5,13 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import MultiSelectUnstyledProps, {
+import {
+  MultiSelectUnstyledProps,
+  MultiSelectUnstyledListboxSlotProps,
   MultiSelectUnstyledOwnerState,
-} from './MultiSelectUnstyledProps';
+  MultiSelectUnstyledPopperSlotProps,
+  MultiSelectUnstyledRootSlotProps,
+} from './MultiSelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
 import useSelect from '../SelectUnstyled/useSelect';
 import { SelectChild, SelectOption } from '../SelectUnstyled/useSelect.types';
@@ -19,6 +23,7 @@ import {
 } from '../SelectUnstyled/SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from '../SelectUnstyled/selectUnstyledClasses';
+import { WithOptionalOwnerState } from '../utils/types';
 
 function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
@@ -153,28 +158,31 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     return options.filter((o) => (value as TValue[]).includes(o.value));
   }, [options, value]);
 
-  const buttonProps = appendOwnerState(
-    Button,
-    {
-      ...other,
-      ...componentsProps.root,
-      ...getButtonProps(),
-      className: clsx(className, componentsProps.root?.className, classes.root),
-    },
-    ownerState,
-  );
+  const buttonProps: WithOptionalOwnerState<MultiSelectUnstyledRootSlotProps<TValue>> =
+    appendOwnerState(
+      Button,
+      {
+        ...other,
+        ...componentsProps.root,
+        ...getButtonProps(),
+        className: clsx(className, componentsProps.root?.className, classes.root),
+      },
+      ownerState,
+    );
 
-  const listboxProps = appendOwnerState(
-    ListboxRoot,
-    {
-      ...componentsProps.listbox,
-      ...getListboxProps(),
-      className: clsx(componentsProps.listbox?.className, classes.listbox),
-    },
-    ownerState,
-  );
+  const listboxProps: WithOptionalOwnerState<MultiSelectUnstyledListboxSlotProps<TValue>> =
+    appendOwnerState(
+      ListboxRoot,
+      {
+        ...componentsProps.listbox,
+        ...getListboxProps(),
+        className: clsx(componentsProps.listbox?.className, classes.listbox),
+      },
+      ownerState,
+    );
 
-  const popperProps = appendOwnerState(
+  // Popper must be a (non-host) component, therefore ownerState will be present within the props
+  const popperProps: MultiSelectUnstyledPopperSlotProps<TValue> = appendOwnerState(
     Popper,
     {
       open: listboxOpen,
@@ -186,7 +194,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
       className: clsx(componentsProps.popper?.className, classes.popper),
     },
     ownerState,
-  );
+  ) as MultiSelectUnstyledPopperSlotProps<TValue>;
 
   const context: SelectUnstyledContextType = {
     getOptionProps,
@@ -236,7 +244,7 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
+  components: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     Listbox: PropTypes.elementType,
     Popper: PropTypes.elementType,
     Root: PropTypes.elementType,

@@ -141,7 +141,3 @@ export type Extendable<T> = T & Record<string, any>;
 export type SlotComponentProps<TOwnerState> = Extendable<{
   ownerState?: TOwnerState;
 }>;
-
-export type SlotComponentType<TOwnerState> = React.ElementType<SlotComponentProps<TOwnerState>>;
-
-export type EventHandlers = Record<string, React.EventHandler<any>>;

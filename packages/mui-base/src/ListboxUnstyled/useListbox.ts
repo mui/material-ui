@@ -11,6 +11,7 @@ import {
 import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
+import { EventHandlers } from '../utils/types';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 
@@ -142,7 +143,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       });
     };
 
-  const getRootProps = <TOther extends Record<string, React.EventHandler<any>>>(
+  const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseListboxRootSlotProps<TOther> => {
     return {
@@ -180,7 +181,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     };
   };
 
-  const getOptionProps = <TOther extends Record<string, React.EventHandler<any>>>(
+  const getOptionProps = <TOther extends EventHandlers = {}>(
     option: TOption,
     otherHandlers: TOther = {} as TOther,
   ): UseListboxOptionSlotProps<TOther> => {
@@ -188,7 +189,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     const index = options.findIndex((opt) => optionComparer(opt, option));
 
     return {
-      ...(otherHandlers || ({} as TOther)),
+      ...otherHandlers,
       'aria-disabled': disabled || undefined,
       'aria-selected': selected,
       id: optionIdGenerator(option, index),

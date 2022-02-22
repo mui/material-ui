@@ -45,5 +45,5 @@ export type ButtonUnstyledOwnerState = ButtonUnstyledOwnProps & {
 export type ButtonUnstyledRootSlotProps = UseButtonRootSlotProps & {
   ownerState: ButtonUnstyledOwnerState;
   className: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };

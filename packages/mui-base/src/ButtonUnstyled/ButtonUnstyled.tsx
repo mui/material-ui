@@ -8,9 +8,11 @@ import {
   ButtonUnstyledProps,
   ButtonUnstyledOwnProps,
   ButtonUnstyledTypeMap,
+  ButtonUnstyledRootSlotProps,
 } from './ButtonUnstyled.types';
 import useButton from './useButton';
 import appendOwnerState from '../utils/appendOwnerState';
+import { WithOptionalOwnerState } from '../utils/types';
 
 export interface ButtonUnstyledOwnerState extends ButtonUnstyledOwnProps {
   focusVisible: boolean;
@@ -86,22 +88,20 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     focusVisible,
   };
 
-  const buttonRootProps = appendOwnerState(
+  const classes = useUtilityClasses(ownerState);
+
+  const buttonRootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = appendOwnerState(
     ButtonRoot,
-    { ...getRootProps(), ...other, ...componentsProps.root },
+    {
+      ...getRootProps(),
+      ...other,
+      ...componentsProps.root,
+      className: clsx(classes.root, className, componentsProps.root?.className),
+    },
     ownerState,
   );
 
-  const classes = useUtilityClasses(ownerState);
-
-  return (
-    <ButtonRoot
-      {...buttonRootProps}
-      className={clsx(classes.root, className, buttonRootProps.className)}
-    >
-      {children}
-    </ButtonRoot>
-  );
+  return <ButtonRoot {...buttonRootProps}>{children}</ButtonRoot>;
 });
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {
@@ -131,18 +131,9 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    * @default 'button'
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Button.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
   /**
    * @ignore
    */

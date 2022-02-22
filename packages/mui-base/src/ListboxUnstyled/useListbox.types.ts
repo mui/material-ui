@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 type UseListboxStrictPropsRequiredKeys =
   | 'isOptionDisabled'
   | 'disableListWrap'
@@ -178,11 +180,11 @@ export interface OptionState {
 }
 
 interface UseListboxRootSlotOwnProps {
-  'aria-activedescendant'?: string;
+  'aria-activedescendant'?: React.AriaAttributes['aria-activedescendant'];
   id?: string;
   onBlur: React.FocusEventHandler;
   onKeyDown: React.KeyboardEventHandler;
-  role: string;
+  role: React.AriaRole;
   tabIndex: number;
   ref: React.Ref<any>;
 }
@@ -191,11 +193,11 @@ export type UseListboxRootSlotProps<TOther = {}> = Omit<TOther, keyof UseListbox
   UseListboxRootSlotOwnProps;
 
 interface UseListboxOptionSlotOwnProps {
-  'aria-disabled'?: boolean;
-  'aria-selected': boolean;
+  'aria-disabled': React.AriaAttributes['aria-disabled'];
+  'aria-selected': React.AriaAttributes['aria-selected'];
   id?: string;
   onClick: React.MouseEventHandler;
-  role: string;
+  role: React.AriaRole;
 }
 
 export type UseListboxOptionSlotProps<TOther = {}> = Omit<

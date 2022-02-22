@@ -3,7 +3,6 @@ import {
   unstable_useControlled as useControlled,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { EventHandlers } from '@mui/types';
 import { useButton } from '../ButtonUnstyled';
 import {
   SelectOption,
@@ -23,6 +22,7 @@ import {
   ActionTypes,
   UseListboxParameters,
 } from '../ListboxUnstyled';
+import { EventHandlers } from '../utils/types';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;

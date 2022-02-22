@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 interface UseButtonRootSlotOwnProps {
-  'aria-disabled'?: boolean;
+  'aria-disabled'?: React.AriaAttributes['aria-disabled'];
   disabled?: boolean;
   tabIndex: number;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  role?: string;
+  role?: React.AriaRole;
   onBlur: React.FocusEventHandler;
   onFocus: React.FocusEventHandler;
   onKeyDown: React.KeyboardEventHandler;

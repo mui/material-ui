@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { SelectUnstyled, PopperUnstyled } from '@mui/base';
-import { SlotComponentProps, SlotComponentType } from '@mui/types';
-import { SelectUnstyledOwnerState } from '.';
+import { SelectUnstyled, PopperUnstyled, SelectUnstyledRootSlotProps } from '@mui/base';
+import { SelectUnstyledPopperSlotProps } from '.';
 
 const SelectUnstyledComponentsPropsOverridesTest = (
   <SelectUnstyled
@@ -23,19 +22,30 @@ const SelectUnstyledComponentsPropsOverridesTest = (
   />
 );
 
-const CustomRoot: SlotComponentType<SelectUnstyledOwnerState<string>> = (
-  props: SlotComponentProps<SelectUnstyledOwnerState<string>>,
-) => {
+function CustomRoot<TValue>(props: SelectUnstyledRootSlotProps<TValue>) {
   const { ownerState, ...other } = props;
   return <div {...other} />;
-};
+}
 
-const SelectUnstyledComponentsOverridesTest = (
+function CustomPopper<TValue>(props: SelectUnstyledPopperSlotProps<TValue>) {
+  const { ownerState, ...other } = props;
+  return <PopperUnstyled {...other} />;
+}
+
+const SelectUnstyledRootComponentOverridesTest = (
   <SelectUnstyled
     components={{
       Root: CustomRoot,
       Listbox: 'ul',
       Popper: PopperUnstyled,
+    }}
+  />
+);
+
+const SelectUnstyledPopperComponentOverridesTest = (
+  <SelectUnstyled
+    components={{
+      Popper: CustomPopper,
     }}
   />
 );

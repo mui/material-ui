@@ -1,10 +1,10 @@
-import { EventHandlers } from '@mui/types';
 import { UseButtonRootSlotProps } from '../ButtonUnstyled';
 import {
   OptionState,
   UseListboxOptionSlotProps,
   UseListboxRootSlotProps,
 } from '../ListboxUnstyled';
+import { EventHandlers } from '../utils/types';
 
 export interface SelectOption<TValue> {
   value: TValue;
@@ -61,7 +61,7 @@ interface UseSelectButtonSlotEventHandlers {
   onMouseDown: React.MouseEventHandler<HTMLElement>;
 }
 
-export type UseSelectButtonSlotProps<TOther> = UseButtonRootSlotProps<
+export type UseSelectButtonSlotProps<TOther = {}> = UseButtonRootSlotProps<
   Omit<TOther, keyof UseSelectButtonSlotEventHandlers> & UseSelectButtonSlotEventHandlers
 > & {
   'aria-expanded': boolean;
@@ -73,7 +73,7 @@ interface UseSelectListboxSlotEventHandlers {
   onKeyUp: React.KeyboardEventHandler;
 }
 
-export type UseSelectListboxSlotProps<TOther> = UseListboxRootSlotProps<
+export type UseSelectListboxSlotProps<TOther = {}> = UseListboxRootSlotProps<
   Omit<TOther, keyof UseSelectListboxSlotEventHandlers> & UseSelectListboxSlotEventHandlers
 >;
 
@@ -81,7 +81,7 @@ interface UseSelectOptionSlotEventHandlers {
   onClick: React.MouseEventHandler;
 }
 
-export type UseSelectOptionSlotProps<TOther> = UseListboxOptionSlotProps<
+export type UseSelectOptionSlotProps<TOther = {}> = UseListboxOptionSlotProps<
   Omit<TOther, keyof UseSelectOptionSlotEventHandlers> & UseSelectOptionSlotEventHandlers
 >;
 
@@ -89,13 +89,13 @@ interface UseSelectCommonResult<TValue> {
   buttonActive: boolean;
   buttonFocusVisible: boolean;
   disabled: boolean;
-  getButtonProps: <TOther extends EventHandlers>(
+  getButtonProps: <TOther extends EventHandlers = {}>(
     otherHandlers?: TOther,
   ) => UseSelectButtonSlotProps<TOther>;
-  getListboxProps: <TOther extends EventHandlers>(
+  getListboxProps: <TOther extends EventHandlers = {}>(
     otherHandlers?: TOther,
   ) => UseSelectListboxSlotProps<TOther>;
-  getOptionProps: <TOther extends EventHandlers>(
+  getOptionProps: <TOther extends EventHandlers = {}>(
     option: SelectOption<TValue>,
     otherHandlers?: TOther,
   ) => UseSelectOptionSlotProps<TOther>;
