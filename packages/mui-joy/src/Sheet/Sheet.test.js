@@ -14,7 +14,13 @@ describe('<Sheet />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'text' },
-    skip: ['themeVariants', 'classesRoot', 'componentsProp', 'themeDefaultProps'],
+    skip: [
+      'themeVariants',
+      'classesRoot',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+    ],
   }));
 
   describe('prop: variant', () => {

@@ -131,6 +131,8 @@ export default function JoySheet() {
                     })}
                   </Box>
                 );
+              } else {
+                return null;
               }
             });
           })}
