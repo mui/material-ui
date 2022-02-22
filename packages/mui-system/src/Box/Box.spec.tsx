@@ -75,4 +75,12 @@ function CssVariablesWithNestedSelectors() {
       },
     }}
   />;
+  <Box
+    sx={{
+      '--md-palette-primary-main': '#FF0000',
+      '& .foo-bar': {
+        backgroundColor: '#EE0000',
+      },
+    }}
+  />;
 }
