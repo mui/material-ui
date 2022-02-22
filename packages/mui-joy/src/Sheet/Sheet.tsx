@@ -27,15 +27,7 @@ const useUtilityClasses = (ownerState: SheetProps) => {
 const SheetRoot = styled('div', {
   name: 'MuiSheet',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      styles[ownerState.variant],
-      ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
-    ];
-  },
+  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
   return [
     {
