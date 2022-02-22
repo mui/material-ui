@@ -56,6 +56,14 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
 import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
 
+// Firebash
+import ArrowRight from '@mui/icons-material/ArrowRight';
+import Home from '@mui/icons-material/Home';
+import Settings from '@mui/icons-material/Settings';
+import PermMedia from '@mui/icons-material/PermMedia';
+import Dns from '@mui/icons-material/Dns';
+import Public from '@mui/icons-material/Public';
+
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -410,6 +418,158 @@ function MuiNav() {
     </List>
   );
 }
+
+const Firebash = () => {
+  const [open, setOpen] = React.useState(true);
+  const data = [
+    { icon: <People />, label: 'Authentication' },
+    { icon: <Dns />, label: 'Database' },
+    { icon: <PermMedia />, label: 'Storage' },
+    { icon: <Public />, label: 'Hosting' },
+  ];
+  return (
+    <Box data-mui-color-scheme="dark">
+      <List
+        sx={{
+          '& *': {
+            fontFamily: 'Roboto',
+          },
+
+          '--joy-palette-neutral-textHoverBg': 'rgba(255, 255, 255, 0.08)',
+          '--joy-palette-neutral-textActiveBg': 'rgba(255, 255, 255, 0.08)',
+          '--joy-palette-text-primary': '#fff',
+          '--joy-palette-text-secondary': 'rgba(255,255,255,0.8)',
+          '--joy-palette-text-tertiary': 'rgba(255,255,255,0.5)',
+
+          '--List-gap': '0px',
+          '--List-padding': '0px',
+          '--List-item-paddingY': '8px',
+          '--List-item-paddingX': '24px',
+          '--List-item-radius': '0px',
+          '--List-item-fontSize': '14px',
+          '--List-insetStartAddition': '0px',
+          '--List-divider-gap': '0px',
+          '--List-background': 'rgb(5, 30, 52)',
+          '--List-decorator-width': '36px',
+          '--List-decorator-color': 'rgba(255, 255, 255, 0.8)',
+          '& .MuiListItemButton-root, & .MuiListItemContent-root': {
+            fontWeight: 500,
+            letterSpacing: '0.00938em',
+          },
+        }}
+      >
+        <ListItemButton component="a">
+          <ListItemDecorator sx={{ fontSize: '20px' }}>🔥</ListItemDecorator>
+          <Typography level="h5">Firebash</Typography>
+        </ListItemButton>
+        <ListDivider />
+        <ListItem
+          sx={{ '--List-item-minHeight': '56px', '--List-item-secondaryActionRight': '0px' }}
+          secondaryAction={
+            <IconButton
+              variant="text"
+              color="neutral"
+              sx={{
+                '--IconButton-padding': '12px',
+                right: 0,
+                borderRadius: '50%',
+                '& svg': {
+                  color: 'rgba(255,255,255,0.8)',
+                  transition: '0.2s',
+                  transform: 'translateX(0) rotate(0)',
+                },
+                '&:hover, &:focus': {
+                  bgcolor: 'unset',
+                  '& svg:first-of-type': {
+                    transform: 'translateX(-4px) rotate(-20deg)',
+                  },
+                  '& svg:last-of-type': {
+                    right: 0,
+                    opacity: 1,
+                  },
+                },
+                '&:after': {
+                  content: '""',
+                  position: 'absolute',
+                  height: '80%',
+                  display: 'block',
+                  left: 0,
+                  width: '1px',
+                  bgcolor: 'divider',
+                },
+              }}
+            >
+              <Settings fontSize="lg" />
+              <ArrowRight sx={{ position: 'absolute', right: 4, opacity: 0 }} />
+            </IconButton>
+          }
+        >
+          <ListItemButton color="primary">
+            <ListItemDecorator>
+              <Home />
+            </ListItemDecorator>
+            Project Overview
+          </ListItemButton>
+        </ListItem>
+        <ListDivider />
+        <NestedListItem
+          sx={{
+            bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
+          }}
+        >
+          <ListItemButton
+            onClick={() => setOpen(!open)}
+            sx={{
+              pt: '24px',
+              pb: open ? 0 : 2,
+              '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
+            }}
+          >
+            <ListItemContent>
+              <Typography>Build</Typography>
+              <Typography
+                noWrap
+                level="body3"
+                sx={{
+                  opacity: open ? 0 : 1,
+                  fontWeight: 400,
+                }}
+              >
+                Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions,
+                and Machine Learning
+              </Typography>
+            </ListItemContent>
+            <KeyboardArrowDown
+              sx={{
+                alignSelf: 'flex-start',
+                mr: -1,
+                opacity: 0,
+                transform: open ? 'rotate(-180deg)' : 'rotate(0)',
+                transition: '0.2s',
+              }}
+            />
+          </ListItemButton>
+          <NestedList
+            sx={{
+              '--List-item-minHeight': '32px',
+              '--List-item-paddingY': '0px',
+            }}
+          >
+            {open &&
+              data.map((item) => (
+                <ListItemButton key={item.label}>
+                  <ListItemDecorator>
+                    {React.cloneElement(item.icon, { fontSize: 'lg' })}
+                  </ListItemDecorator>
+                  <ListItemContent>{item.label}</ListItemContent>
+                </ListItemButton>
+              ))}
+          </NestedList>
+        </NestedListItem>
+      </List>
+    </Box>
+  );
+};
 
 export default function JoyTypography() {
   return (
@@ -884,6 +1044,8 @@ export default function JoyTypography() {
           <Gmail />
 
           <MuiNav />
+
+          <Firebash />
         </Box>
       </Box>
     </CssVarsProvider>
