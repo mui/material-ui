@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import Sheet, { SheetClasses as classes } from '@mui/joy/Sheet';
+import Sheet, { sheetClasses as classes } from '@mui/joy/Sheet';
 
 describe('<Sheet />', () => {
   const { render } = createRenderer();
@@ -18,13 +18,10 @@ describe('<Sheet />', () => {
   }));
 
   describe('prop: variant', () => {
-    it('undefined by default', () => {
+    it('contained by default', () => {
       const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
 
-      expect(getByTestId('root')).not.to.have.class(classes.variantText);
-      expect(getByTestId('root')).not.to.have.class(classes.variantOutlined);
-      expect(getByTestId('root')).not.to.have.class(classes.variantLight);
-      expect(getByTestId('root')).not.to.have.class(classes.variantContained);
+      expect(getByTestId('root')).to.have.class(classes.variantContained);
     });
 
     it('adds a text class', () => {

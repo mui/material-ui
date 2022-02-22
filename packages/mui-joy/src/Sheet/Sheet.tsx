@@ -43,12 +43,8 @@ const SheetRoot = styled('div', {
       // This value is copied from mui-material Sheet.
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       boxShadow: theme.shadow[ownerState.elevation!],
-      ...(!ownerState.variant &&
-        ownerState.color && {
-          backgroundColor: theme.vars.palette[ownerState.color]?.textColor,
-        }),
     },
-    ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -58,7 +54,14 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     name: 'MuiSheet',
   });
 
-  const { className, color = 'neutral', component = 'div', variant, elevation, ...other } = props;
+  const {
+    className,
+    color = 'neutral',
+    component = 'div',
+    variant = 'contained',
+    elevation,
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
@@ -117,6 +120,7 @@ Sheet.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
+   * @default 'contained'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

@@ -30,6 +30,7 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
     sx?: SxProps;
     /**
      * The variant to use.
+     * @default 'contained'
      */
     variant?: OverridableStringUnion<VariantProp, SheetPropsVariantOverrides>;
   };

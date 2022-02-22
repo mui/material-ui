@@ -40,6 +40,7 @@ export default function JoySheet() {
     color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
     elevation: ['xs', 'sm', 'md', 'lg', 'xl'],
   } as const;
+
   return (
     <CssVarsProvider
       theme={{
@@ -93,6 +94,46 @@ export default function JoySheet() {
               ))}
             </Box>
           ))}
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+          {Object.entries(SheetProps).map(([propName, propValue], index) => {
+            return Object.entries(SheetProps).map(([propName2, propValue2], index2) => {
+              if (index < index2) {
+                return (
+                  <Box
+                    key={propName}
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 5,
+                      p: 2,
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Typography level="body2" sx={{ fontWeight: 'bold' }}>
+                      {`${propName} && ${propName2}`}
+                    </Typography>
+                    {propValue.map((value) => {
+                      return propValue2.map((value2) => (
+                        <Box key={value}>
+                          <Sheet
+                            {...{ [propName]: value, [propName2]: value2 }}
+                            sx={{
+                              width: 250,
+                              height: 150,
+                            }}
+                          />
+                          <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
+                            {`${value} && ${value2}` || 'default'}
+                          </Typography>
+                        </Box>
+                      ));
+                    })}
+                  </Box>
+                );
+              }
+            });
+          })}
         </Box>
       </Box>
     </CssVarsProvider>
