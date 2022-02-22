@@ -1,6 +1,6 @@
 # Installation
 
-<p class="description">Install MUI Base, the foundation components & hooks to build amazing UIs.</p>
+<p class="description">Install Base UI, the unstyled components & foundation hooks for building accessible UIs</p>
 
 ## npm
 

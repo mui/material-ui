@@ -192,7 +192,7 @@ function ProductDrawerButton(props) {
               href={ROUTES.baseDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              Base <KeyboardArrowRight fontSize="small" />
+              Base UI <KeyboardArrowRight fontSize="small" />
             </Link>
             <Link
               href={ROUTES.materialDocs}
@@ -478,13 +478,17 @@ function AppNavDrawer(props) {
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
             }}
-            endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
+            endIcon={
+              versions.length > 1 ? (
+                <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
+              ) : null
+            }
             sx={(theme) => ({
               py: 0.1,
               minWidth: 0,
               fontSize: theme.typography.pxToRem(13),
               fontWeight: 500,
-              lineHeight: 0,
+              // lineHeight: 0,
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[300]
@@ -608,7 +612,7 @@ function AppNavDrawer(props) {
             )}
             {router.asPath.startsWith('/base/') && (
               <ProductIdentifier
-                name="Base"
+                name="Base UI"
                 metadata="MUI Core"
                 versionSelector={renderVersionSelector([
                   { text: `v${basePkgJson.version}`, current: true },
