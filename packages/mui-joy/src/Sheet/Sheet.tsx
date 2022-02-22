@@ -50,7 +50,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     className,
     color = 'neutral',
     component = 'div',
-    variant = 'contained',
+    variant = 'text',
     elevation,
     ...other
   } = props;
@@ -112,7 +112,7 @@ Sheet.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

@@ -120,11 +120,8 @@ export default function JoySheet() {
                           sx={{
                             width: 250,
                             height: 150,
-                          }}
-                        />
-                        <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
-                          {`${value} && ${value2}` || 'default'}
-                        </Typography>
+                            textAlign: 'center',
+                          }}>{`${value} && ${value2}` || 'default'}</Sheet>
                       </Box>
                     ));
                   })}
