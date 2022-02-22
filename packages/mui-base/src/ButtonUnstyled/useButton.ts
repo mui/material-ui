@@ -8,8 +8,8 @@ import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
 import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
-export default function useButton(props: UseButtonParameters) {
-  const { component = 'button', disabled = false, href, ref, tabIndex = 0, to, type } = props;
+export default function useButton(parameters: UseButtonParameters) {
+  const { component = 'button', disabled = false, href, ref, tabIndex = 0, to, type } = parameters;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -170,13 +170,21 @@ export default function useButton(props: UseButtonParameters) {
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseButtonRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(props) as Partial<UseButtonParameters>;
-    const externalEventHandlers: TOther = {
+    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseButtonParameters>;
+    const externalEventHandlers = {
       ...propsEventHandlers,
       ...otherHandlers,
     };
 
-    const ownEventHandlers = {
+    // onFocusVisible can be present on the props, but since it's not a valid React event handler,
+    // it must not be forwarded to the inner component.
+    delete externalEventHandlers.onFocusVisible;
+
+    return {
+      tabIndex: disabled ? -1 : tabIndex,
+      type,
+      ...externalEventHandlers,
+      ...buttonProps,
       onBlur: createHandleBlur(externalEventHandlers),
       onFocus: createHandleFocus(externalEventHandlers),
       onKeyDown: createHandleKeyDown(externalEventHandlers),
@@ -184,26 +192,8 @@ export default function useButton(props: UseButtonParameters) {
       onMouseDown: createHandleMouseDown(externalEventHandlers),
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       onMouseUp: createHandleMouseUp(externalEventHandlers),
-    };
-
-    const mergedEventHandlers: Omit<typeof externalEventHandlers, keyof typeof ownEventHandlers> &
-      typeof ownEventHandlers = {
-      ...externalEventHandlers,
-      ...ownEventHandlers,
-    };
-
-    // onFocusVisible can be present on the props, but since it's not a valid React event handler,
-    // it must not be forwarded to the inner component.
-    delete (mergedEventHandlers as any).onFocusVisible;
-
-    // TODO: fix type cast
-    return {
-      tabIndex: disabled ? -1 : tabIndex,
-      type,
-      ...buttonProps,
-      ...mergedEventHandlers,
       ref: updateRef as React.Ref<any>,
-    } as unknown as UseButtonRootSlotProps<TOther>;
+    };
   };
 
   return {
