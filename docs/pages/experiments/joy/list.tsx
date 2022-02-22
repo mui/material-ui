@@ -64,6 +64,9 @@ import PermMedia from '@mui/icons-material/PermMedia';
 import Dns from '@mui/icons-material/Dns';
 import Public from '@mui/icons-material/Public';
 
+// Gatsby
+import ReceiptLong from '@mui/icons-material/ReceiptLong';
+
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -464,7 +467,11 @@ const Firebash = () => {
         </ListItemButton>
         <ListDivider />
         <ListItem
-          sx={{ '--List-item-minHeight': '56px', '--List-item-secondaryActionRight': '0px' }}
+          sx={{
+            '--List-item-minHeight': '56px',
+            '--List-item-secondaryActionRight': '0px',
+            '& .MuiListItem-secondaryAction': { right: '0px' },
+          }}
           secondaryAction={
             <IconButton
               variant="text"
@@ -564,6 +571,134 @@ const Firebash = () => {
                   <ListItemContent>{item.label}</ListItemContent>
                 </ListItemButton>
               ))}
+          </NestedList>
+        </NestedListItem>
+      </List>
+    </Box>
+  );
+};
+
+const Gatsby = () => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Box sx={{ maxWidth: 280, pl: '24px', bgcolor: 'background.body' }}>
+      <List
+        size="sm"
+        sx={{
+          '--joy-palette-primary-textColor': '#8a4baf',
+          '--joy-palette-neutral-textHoverBg': 'transparent',
+          '--joy-palette-neutral-textActiveBg': 'transparent',
+          '--joy-palette-primary-textHoverBg': 'transparent',
+          '--joy-palette-primary-textActiveBg': 'transparent',
+          '[data-mui-color-scheme="light"] &': {
+            '--joy-palette-text-secondary': '#635e69',
+          },
+
+          '--List-insetStartAddition': '0px',
+          '--List-radius': '0px',
+          '--List-padding': '0px',
+          '--List-insetStart': '32px',
+          '--List-gap': '0px',
+          '--List-item-paddingY': '0px',
+          '--List-item-secondaryActionRight': 'initial',
+          '--List-item-secondaryActionLeft': '0px',
+          '--List-item-secondaryActionTransform': 'translate(-50%, -50%)',
+
+          '& .MuiListItemButton-root': {
+            borderLeft: '1px solid',
+            borderColor: 'divider',
+          },
+          '& .MuiListItemButton-root.Mui-selected': {
+            borderColor: 'currentColor',
+          },
+          '& .MuiNestedListItem-root > .MuiListItemButton-root': {
+            border: 'none',
+          },
+          '& [class*="secondaryAction"]': {
+            right: 'unset',
+            left: '0px',
+            transform: 'translate(-50%, -50%)',
+            color: 'var(--joy-palette-text-tertiary)',
+          },
+        }}
+      >
+        <NestedListItem>
+          <ListItem component="div" secondaryAction={<ReceiptLong />}>
+            <Typography level="body3" sx={{ textTransform: 'uppercase' }}>
+              Documentation
+            </Typography>
+          </ListItem>
+          <NestedList>
+            <ListItem>
+              <ListItemButton selected selectedVariant="text">
+                Overview
+              </ListItemButton>
+            </ListItem>
+          </NestedList>
+        </NestedListItem>
+        <ListItem>
+          <ListItemButton>Quick Start</ListItemButton>
+        </ListItem>
+        <NestedListItem
+          sx={{ my: 1 }}
+          secondaryAction={
+            <IconButton variant="text" size="sm" color="neutral" onClick={() => setOpen(!open)}>
+              <KeyboardArrowDown sx={{ transform: open ? 'initial' : 'rotate(-90deg)' }} />
+            </IconButton>
+          }
+        >
+          <ListItemButton>
+            <Typography level="inherit" sx={{ fontWeight: open ? 'bold' : undefined }}>
+              Tutorial
+            </Typography>
+            <Typography component="span" level="body3" sx={{ ml: 1 }}>
+              9
+            </Typography>
+          </ListItemButton>
+          <Collapse in={open}>
+            <NestedList sx={{ '--List-item-paddingY': '8px' }}>
+              <ListItem>
+                <ListItemButton>Overview</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>0. Set Up Your Development Environment</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>1. Create and Deploy Your First Gatsby Site</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>2. Use and Style React components</ListItemButton>
+              </ListItem>
+            </NestedList>
+          </Collapse>
+        </NestedListItem>
+        <NestedListItem
+          sx={{ my: 1 }}
+          secondaryAction={
+            <IconButton variant="text" size="sm" color="neutral">
+              <KeyboardArrowDown />
+            </IconButton>
+          }
+        >
+          <ListItemButton>
+            <Typography level="inherit">How-to Guides</Typography>
+            <Typography component="span" level="body3" sx={{ ml: 1 }}>
+              39
+            </Typography>
+          </ListItemButton>
+          <NestedList sx={{ '--List-item-paddingY': '8px' }}>
+            <ListItem>
+              <ListItemButton>Overview</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Local Development</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Routing</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Styling</ListItemButton>
+            </ListItem>
           </NestedList>
         </NestedListItem>
       </List>
@@ -1046,6 +1181,8 @@ export default function JoyTypography() {
           <MuiNav />
 
           <Firebash />
+
+          <Gatsby />
         </Box>
       </Box>
     </CssVarsProvider>
