@@ -89,7 +89,7 @@ const InputRoot = styled('div', {
   theme.variants[`${ownerState.variant!}`]?.[ownerState.color || 'neutral'],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
   theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
-  {
+  ownerState.variant !== 'contained' && {
     color: theme.vars.palette[ownerState.color || 'neutral']?.overrideTextPrimary,
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
@@ -99,6 +99,8 @@ const InputRoot = styled('div', {
         }`,
       },
     },
+  },
+  {
     // override pointer cursor from variantHover
     cursor: 'text',
   },
@@ -456,7 +458,7 @@ Input.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['light', 'outlined', 'text']),
+    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
     PropTypes.string,
   ]),
 } as any;

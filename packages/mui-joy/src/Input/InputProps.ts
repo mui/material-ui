@@ -117,10 +117,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The variant to use.
        * @default 'outlined'
        */
-      variant?: OverridableStringUnion<
-        Exclude<VariantProp, 'contained'>,
-        InputPropsVariantOverrides
-      >;
+      variant?: OverridableStringUnion<VariantProp, InputPropsVariantOverrides>;
     };
   defaultComponent: D;
 }

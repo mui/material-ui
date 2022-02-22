@@ -300,6 +300,13 @@ const components: {
           endAdornment={<TaskAlt />}
           {...props}
         />
+        <Input
+          placeholder="Placeholder"
+          variant="contained"
+          color="info"
+          endAdornment={<TaskAlt />}
+          {...props}
+        />
       </React.Fragment>
     ),
     cssVars: [
