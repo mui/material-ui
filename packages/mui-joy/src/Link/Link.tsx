@@ -187,6 +187,27 @@ Link.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Applies the theme typography styles.
+   * @default 'body1'
+   */
+  level: PropTypes.oneOf([
+    'body1',
+    'body2',
+    'body3',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'inherit',
+  ]),
+  /**
    * @ignore
    */
   onBlur: PropTypes.func,
