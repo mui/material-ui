@@ -4,6 +4,7 @@ import MenuUnstyled from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, {
   menuItemUnstyledClasses,
 } from '@mui/base/MenuItemUnstyled';
+import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import { ClickAwayListener, PopperUnstyled } from '@mui/base';
 
@@ -56,11 +57,8 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
     border-bottom: none;
   }
 
-  &:focus-visible {
+  &.${menuItemUnstyledClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
-  }
-
-  &:focus {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
@@ -97,7 +95,7 @@ const TriggerButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:focus-visible {
+  &.${buttonUnstyledClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
   }
 

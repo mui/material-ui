@@ -61,8 +61,9 @@ The MenuUnstyled does not set any state classes.
 
 The MenuItemUnstyled can set the following classes:
 
-- `MuiMenuItemUnstyled-disabled` - set when the MenuItem has the `disabled` prop.
-- `MuiMenuItemUnstyled-highlighted` - set when the MenuItem is highligthed via keyboard navigation.
+- `Mui-disabled` - set when the MenuItem has the `disabled` prop.
+- `Mui-focusVisible` - set when the MenuItem is highligthed via keyboard navigation.
+  This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in Safari.
 
 ## useMenu and useMenuItem hooks
 

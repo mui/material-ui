@@ -35,7 +35,7 @@ export default function useMenuItem(props: UseMenuItemProps) {
     return () => unregisterItem(id);
   }, [id, registerItem, unregisterItem, disabled, ref]);
 
-  const { getRootProps: getButtonProps } = useButton({
+  const { getRootProps: getButtonProps, focusVisible } = useButton({
     component,
     ref: handleRef,
     disabled,
@@ -50,6 +50,7 @@ export default function useMenuItem(props: UseMenuItemProps) {
         role: 'menuitem',
       }),
       itemState: null,
+      focusVisible,
     };
   }
 
@@ -68,5 +69,6 @@ export default function useMenuItem(props: UseMenuItemProps) {
       };
     },
     itemState,
+    focusVisible,
   };
 }

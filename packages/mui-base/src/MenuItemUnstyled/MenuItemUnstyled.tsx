@@ -9,13 +9,14 @@ import composeClasses from '../composeClasses';
 
 export interface MenuItemState {
   disabled: boolean;
+  focusVisible: boolean;
 }
 
 function getUtilityClasses(ownerState: MenuItemState) {
-  const { disabled } = ownerState;
+  const { disabled, focusVisible } = ownerState;
 
   const slots = {
-    root: ['root', disabled && 'disabled'],
+    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
   };
 
   return composeClasses(slots, getMenuItemUnstyledUtilityClass, {});
@@ -47,7 +48,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
 
   const Root = component ?? components.Root ?? 'li';
 
-  const { getRootProps, itemState } = useMenuItem({
+  const { getRootProps, itemState, focusVisible } = useMenuItem({
     component: Root,
     disabled,
     ref,
@@ -57,7 +58,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
     return null;
   }
 
-  const ownerState: MenuItemState = { ...props, ...itemState };
+  const ownerState: MenuItemState = { ...props, ...itemState, focusVisible };
 
   const classes = getUtilityClasses(ownerState);
 
