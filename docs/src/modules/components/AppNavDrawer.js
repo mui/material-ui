@@ -115,7 +115,7 @@ function ProductDrawerButton(props) {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button
         id="mui-product-selector"
         aria-controls="drawer-open-button"
@@ -128,7 +128,6 @@ function ProductDrawerButton(props) {
           minWidth: 0,
           fontSize: theme.typography.pxToRem(13),
           fontWeight: 500,
-          lineHeight: 0,
           color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
           '& svg': {
@@ -234,7 +233,7 @@ function ProductDrawerButton(props) {
           </LinksWrapper>
         </li>
       </Menu>
-    </div>
+    </React.Fragment>
   );
 }
 
@@ -243,38 +242,23 @@ ProductDrawerButton.propTypes = {
 };
 
 const ProductIdentifier = ({ name, metadata, versionSelector }) => (
-  <Box
-    sx={{
-      width: '100%',
-      display: 'flex',
-      flex: 'auto',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    }}
-  >
-    <div>
-      <Typography
-        sx={(theme) => ({
-          ml: 1,
-          color: theme.palette.grey[600],
-          fontSize: theme.typography.pxToRem(11),
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '.08rem',
-        })}
-      >
-        {metadata}
-      </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'end',
-        }}
-      >
-        <ProductDrawerButton productName={name} />
-        {versionSelector}
-      </Box>
-    </div>
+  <Box sx={{ flexGrow: 1 }}>
+    <Typography
+      sx={(theme) => ({
+        ml: 1,
+        color: theme.palette.grey[600],
+        fontSize: theme.typography.pxToRem(11),
+        fontWeight: 700,
+        textTransform: 'uppercase',
+        letterSpacing: '.08rem',
+      })}
+    >
+      {metadata}
+    </Typography>
+    <Box sx={{ display: 'flex' }}>
+      <ProductDrawerButton productName={name} />
+      {versionSelector}
+    </Box>
   </Box>
 );
 
