@@ -135,9 +135,3 @@ export interface OverridableTypeMap {
   props: {};
   defaultComponent: React.ElementType;
 }
-
-export type Extendable<T> = T & Record<string, any>;
-
-export type SlotComponentProps<TOwnerState> = Extendable<{
-  ownerState?: TOwnerState;
-}>;
