@@ -115,32 +115,40 @@ const Popper = styled(PopperUnstyled)`
 function MenuWrapper(props) {
   const { children, label } = props;
 
-  const [isOpen, setOpen] = React.useState(false);
-  const buttonRef = React.useRef(null);
   const contentRef = React.useRef(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const isOpen = Boolean(anchorEl);
 
-  const close = () => setOpen(false);
+  const handleButtonClick = (event) => {
+    if (isOpen) {
+      setAnchorEl(null);
+    } else {
+      setAnchorEl(event.currentTarget);
+    }
+  };
+
+  const close = () => setAnchorEl(null);
 
   React.useEffect(() => {
     if (isOpen) {
       contentRef.current?.focus();
     }
-  }, [isOpen, contentRef]);
+  }, [isOpen]);
 
   return (
     <React.Fragment>
-      <TriggerButton type="button" ref={buttonRef} onClick={() => setOpen(!isOpen)}>
+      <TriggerButton type="button" onClick={handleButtonClick}>
         {label}
       </TriggerButton>
       <Popper
         placement="bottom-start"
-        open={isOpen && buttonRef.current != null}
-        anchorEl={buttonRef.current}
+        open={isOpen}
+        anchorEl={anchorEl}
         keepMounted
         disablePortal
       >
         {isOpen && (
-          <ClickAwayListener onClickAway={() => setOpen(false)}>
+          <ClickAwayListener onClickAway={close}>
             {children?.(close, contentRef)}
           </ClickAwayListener>
         )}

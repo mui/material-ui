@@ -57,9 +57,9 @@ Similarly to MenuUnstyled, it can be customized by setting the `component` or `c
 
 #### CSS classes
 
-The MenuUnstyled does not receive any state classes.
+The MenuUnstyled does not set any state classes.
 
-The MenuItemUnstyled can receive the following classes:
+The MenuItemUnstyled can set the following classes:
 
 - `MuiMenuItemUnstyled-disabled` - set when the MenuItem has the `disabled` prop.
 - `MuiMenuItemUnstyled-highlighted` - set when the MenuItem is highligthed via keyboard navigation.
