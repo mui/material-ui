@@ -85,11 +85,13 @@ export default function JoySheet() {
                     sx={{
                       width: 250,
                       height: 150,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
                     }}
-                  />
-                  <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
-                    {value || 'default'}
-                  </Typography>
+                  >
+                    <Typography sx={{ color: 'inherit' }}>{value}</Typography>
+                  </Sheet>
                 </Box>
               ))}
             </Box>
@@ -120,8 +122,15 @@ export default function JoySheet() {
                           sx={{
                             width: 250,
                             height: 150,
-                            textAlign: 'center',
-                          }}>{`${value} && ${value2}` || 'default'}</Sheet>
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Typography
+                            sx={{ color: 'inherit' }}
+                          >{`${value} && ${value2}`}</Typography>
+                        </Sheet>
                       </Box>
                     ));
                   })}
