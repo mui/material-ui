@@ -24,10 +24,10 @@ describe('<Sheet />', () => {
   }));
 
   describe('prop: variant', () => {
-    it('contained by default', () => {
+    it('text by default', () => {
       const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantContained);
+      expect(getByTestId('root')).to.have.class(classes.variantText);
     });
 
     it('adds a text class', () => {
