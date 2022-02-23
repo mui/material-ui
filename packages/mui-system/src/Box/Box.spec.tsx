@@ -41,22 +41,6 @@ function GapTest() {
   </Box>;
 }
 
-function CssVarsTest() {
-  <Box
-    sx={{
-      '--token': '',
-      '&:hover': {
-        '--token': '',
-        '--token-2': (theme) => theme.palette.mode,
-      },
-      '&.checked': {
-        '--token': '',
-        '--token-2': (theme) => theme.palette.mode,
-      },
-    }}
-  />;
-}
-
 function ComponentPropTest() {
   <Box component="img" src="https://mui.com/" alt="Material UI" />;
   <Box component={Test} test="Test string" />;
