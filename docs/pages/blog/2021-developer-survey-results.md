@@ -798,7 +798,7 @@ Your feedback from this survey helped us to better understand the areas where we
   TypeScript has potential, and MUI System's speed needs work.
   We welcome your suggestions!
 
-If you want to continue to influence our roadmap, you can visit the [MUI Core](https://github.com/mui/material-ui) and [MUI X](https://github.com/mui/mui-x) repositories, open issues, upvoting the ones you’re most interested in, or leave your comments and impressions about anything else you want to be improved, we'll be happy to hear from you.
+If you want to continue to influence our roadmap, you can visit the [MUI Core](https://github.com/mui/material-ui) and [MUI X](https://github.com/mui/mui-x) repositories, open issues, upvote the ones you’re most interested in, or leave your thoughts about anything else you want to be improved. We'd love to hear from you.
 
 Thanks again and until the next survey!
 
