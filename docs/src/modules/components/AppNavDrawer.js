@@ -349,7 +349,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
 
 const SwipeableDrawerPaperComponent = styled('div')(({ theme }) => {
   return {
-    width: 280,
+    width: 292,
     boxShadow: 'none',
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
@@ -598,7 +598,7 @@ function AppNavDrawer(props) {
                 name="MUI Base"
                 metadata="MUI Core"
                 versionSelector={renderVersionSelector([
-                  { text: `v${basePkgJson.version.replace('.0.0', '')}`, current: true },
+                  { text: `v${basePkgJson.version}`, current: true },
                 ])}
               />
             )}
