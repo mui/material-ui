@@ -11,6 +11,7 @@ import {
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import listItemClasses from '../ListItem/listItemClasses';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selectedVariant, selected } =
@@ -47,7 +48,8 @@ const ListItemButtonRoot = styled('div', {
     }),
     ...(ownerState.color &&
       ownerState.color !== 'context' && {
-        '--List-decorator-color': theme.vars.palette[ownerState.color]?.textColor,
+        '--List-decorator-color':
+          theme.vars.palette[ownerState.color]?.[`${ownerState.selectedVariant || 'text'}Color`],
       }),
     boxSizing: 'border-box',
     display: 'flex',
@@ -58,8 +60,9 @@ const ListItemButtonRoot = styled('div', {
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
     // The value is negative to account for the ListItem's padding
     margin: 'var(--List-itemButton-margin)',
-    padding: 'min(0.375rem, var(--List-item-paddingX)) var(--List-item-paddingX)',
+    padding: 'min(0.375rem, var(--List-item-paddingX))',
     paddingLeft: 'var(--List-insetStart, var(--List-item-paddingX))',
+    paddingRight: 'calc(var(--List-item-paddingX) + var(--List-item-secondaryActionWidth, 0px))',
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
@@ -73,7 +76,7 @@ const ListItemButtonRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
     }),
     '&.Mui-focusVisible': theme.focus.default,
-    [`& + .${listItemButtonClasses.root}`]: {
+    [`& + .${listItemButtonClasses.root}, & + .${listItemClasses.root}`]: {
       marginTop: 'var(--List-gap)',
     },
   },

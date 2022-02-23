@@ -26,4 +26,15 @@ describe('Joy <ListItem />', () => {
     const { container } = render(<ListItem className="foo-bar" />);
     expect(container.firstChild).to.have.class('foo-bar');
   });
+
+  it('should have sticky classes', () => {
+    const { container } = render(<ListItem sticky />);
+    expect(container.firstChild).to.have.class(classes.sticky);
+  });
+
+  it('should show action if provided', () => {
+    const { getByText } = render(<ListItem secondaryAction="foo" />);
+    expect(getByText('foo')).toBeVisible();
+    expect(getByText('foo')).to.have.class(classes.secondaryAction);
+  });
 });

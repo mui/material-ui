@@ -68,3 +68,35 @@ function ThemeCallbackTest() {
   <Box sx={{ '& .some-class': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box maxWidth={(theme) => theme.breakpoints.values.sm} />;
 }
+
+function CssVariablesWithNestedSelectors() {
+  <Box
+    sx={(theme) => ({
+      '--md-palette-primary-main': '#FF0000',
+    })}
+  />;
+  <Box
+    sx={(theme) => ({
+      '--md-palette-primary-main': '#FF0000',
+      '&:hover': {
+        backgroundColor: theme.palette.primary.main,
+      },
+    })}
+  />;
+  <Box
+    sx={{
+      '--md-palette-primary-main': '#FF0000',
+      '&:hover': {
+        backgroundColor: '#EE0000',
+      },
+    }}
+  />;
+  <Box
+    sx={{
+      '--md-palette-primary-main': '#FF0000',
+      '& .foo-bar': {
+        backgroundColor: '#EE0000',
+      },
+    }}
+  />;
+}

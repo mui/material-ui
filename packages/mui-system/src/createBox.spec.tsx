@@ -15,20 +15,6 @@ function Test(props: TestProps) {
 function ResponsiveTest() {
   <Box sx={{ p: [2, 3, 4] }} />;
   <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }} />;
-  <Box sx={{ p: { xs: 2, sm: { you: "are dealing with 'any' here" }, md: 4 } }} />;
-  <Box
-    sx={{
-      '--token': '',
-      '&:hover': {
-        '--token': '',
-        '--token-2': (theme) => theme.palette.mode,
-      },
-      '&.checked': {
-        '--token': '',
-        '--token-2': (theme) => theme.palette.mode,
-      },
-    }}
-  />;
   <Box sx={{ fontSize: [12, 18, 24] }}>Array API</Box>;
   <Box
     sx={{

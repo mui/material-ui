@@ -54,7 +54,7 @@ In order to prevent screen readers from marking non-interactive children as "cli
 </ClickAwayListern>
 ```
 
-This is also required to fix a quirk in NVDA when using FireFox that prevents announcement of alert messages (see [mui-org/material-ui#29080](https://github.com/mui-org/material-ui/issues/29080)).
+This is also required to fix a quirk in NVDA when using Firefox that prevents announcement of alert messages (see [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080)).
 
 ## Unstyled
 
