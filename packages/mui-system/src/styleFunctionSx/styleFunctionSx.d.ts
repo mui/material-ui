@@ -18,15 +18,10 @@ export type CSSPseudoSelectorProps<Theme extends object = {}> = {
 };
 
 /**
- * Map all nested selectors (including CSS Variables).
+ * Map all nested selectors.
  */
 export interface CSSSelectorObject<Theme extends object = {}> {
-  [cssSelector: string]:
-    | ((theme: Theme) => SystemStyleObject<Theme> | string | number)
-    | SystemStyleObject<Theme>
-    // string | number are for CSS variables
-    | string
-    | number;
+  [cssSelector: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme>;
 }
 
 type CssVariableType = string | number;
