@@ -804,7 +804,7 @@ Thanks again and until the next survey!
 
 ### Read more
 
-Here are related content to some of the topics covered throughout the post:
+Here is some additional content related to the topics covered throughout this post:
 
 - [How to migrate from v4 to v5](/guides/migration-v4/)
 - [Style Library Interoperability](/guides/interoperability/)
