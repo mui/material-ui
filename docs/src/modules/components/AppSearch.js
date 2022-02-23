@@ -18,7 +18,7 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useRouter } from 'next/router';
-import replaceUrl, { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
+import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -306,7 +306,6 @@ export default function AppSearch() {
                 parseUrl.href = item.url;
 
                 let hash = parseUrl.hash;
-                let pathname = parseUrl.pathname;
 
                 if (['lvl2', 'lvl3'].includes(item.type)) {
                   // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
@@ -314,12 +313,9 @@ export default function AppSearch() {
                   hash = hash.replace('#heading-', '#');
                 }
 
-                // TODO: remove this logic once the migration to new structure is done.
-                // This logic covers us during the ~60 minutes that it takes Algolia to run a crawl and update its index.
-                // It also allows us to have a search bar that works in dev mode while the new structure is not pushed to production.
-                pathname = replaceUrl(pathname, router.asPath);
-
-                const { canonicalAs, canonicalPathname } = pathnameToLanguage(`${pathname}${hash}`);
+                const { canonicalAs, canonicalPathname } = pathnameToLanguage(
+                  `${parseUrl.pathname}${hash}`,
+                );
 
                 return {
                   ...item,
