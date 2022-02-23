@@ -68,7 +68,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.0",
+    "@babel/runtime": "^7.17.2",
     "@date-io/date-fns": "^2.13.1",
     "@date-io/dayjs": "^2.13.1",
     "@date-io/luxon": "^2.13.1",

@@ -18,9 +18,9 @@
     "typescript:transpile:dev": "echo 'Use `yarn docs:typescript'` instead && exit 1"
   },
   "dependencies": {
-    "@babel/core": "^7.17.0",
+    "@babel/core": "^7.17.5",
     "@babel/plugin-transform-object-assign": "^7.16.7",
-    "@babel/runtime-corejs2": "^7.17.0",
+    "@babel/runtime-corejs2": "^7.17.2",
     "@date-io/core": "^2.13.1",
     "@date-io/date-fns-jalali": "^2.13.1",
     "@docsearch/react": "^3.0.0-alpha.50",
@@ -119,7 +119,7 @@
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-constant-elements": "^7.16.7",
+    "@babel/plugin-transform-react-constant-elements": "^7.17.6",
     "@babel/preset-typescript": "^7.16.7",
     "@types/marked": "^4.0.2",
     "@types/recharts": "^2.0.0",
