@@ -1,6 +1,6 @@
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
-function isNewLocation(url: string) {
+export function isNewLocation(url: string) {
   url = url.replace(/^\/[a-z]{2}\//, '/');
   if (url === '/x' || url === '/x/') {
     // skipped if it is the X marketing page

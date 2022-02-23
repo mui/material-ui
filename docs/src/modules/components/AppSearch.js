@@ -18,7 +18,7 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useRouter } from 'next/router';
-import replaceUrl from 'docs/src/modules/utils/replaceUrl';
+import replaceUrl, { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -192,6 +192,8 @@ export default function AppSearch() {
     setIsOpen(true);
   }, [setIsOpen]);
   const router = useRouter();
+  const isNewDocStructure = isNewLocation(router.asPath);
+
   const keyboardNavigator = {
     navigate({ item }) {
       const as = item.userLanguage !== 'en' ? `/${item.userLanguage}${item.as}` : item.as;
@@ -285,7 +287,12 @@ export default function AppSearch() {
         createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
-            apiKey="1d8534f83b9b0cfea8f16498d19fbcab"
+            appId={isNewDocStructure ? 'TZGZ85B9TB' : 'BH4D9OD16A'}
+            apiKey={
+              isNewDocStructure
+                ? '8177dfb3e2be72b241ffb8c5abafa899'
+                : '1d8534f83b9b0cfea8f16498d19fbcab'
+            }
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
