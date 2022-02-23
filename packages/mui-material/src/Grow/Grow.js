@@ -131,23 +131,25 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       duration = transitionDuration;
     }
 
-    node.style.transition = [
-      theme.transitions.create('opacity', {
-        duration,
-        delay,
-      }),
-      theme.transitions.create('transform', {
-        duration: duration * 0.666,
-        delay: delay || duration * 0.333,
-        easing: transitionTimingFunction,
-      }),
-    ].join(',');
+    if (node) {
+      node.style.transition = [
+        theme.transitions.create('opacity', {
+          duration,
+          delay,
+        }),
+        theme.transitions.create('transform', {
+          duration: duration * 0.666,
+          delay: delay || duration * 0.333,
+          easing: transitionTimingFunction,
+        }),
+      ].join(',');
 
-    node.style.opacity = '0';
-    node.style.transform = getScale(0.75);
+      node.style.opacity = '0';
+      node.style.transform = getScale(0.75);
 
-    if (onExit) {
-      onExit(node);
+      if (onExit) {
+        onExit(node);
+      }
     }
   });
 
