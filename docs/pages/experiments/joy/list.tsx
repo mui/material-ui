@@ -771,13 +771,14 @@ export default function JoyTypography() {
           </List>
 
           {/* ex3 */}
-          <List>
+          <List sx={{ '--List-insetStart': '20px' }}>
             <ListItem>
               <ListItemDecorator>
                 <InboxIcon fontSize="lg" />
               </ListItemDecorator>
               Inbox
             </ListItem>
+            <ListDivider inset="startDecorator" />
             <ListItem>
               <ListItemDecorator />
               Drafts

@@ -22,20 +22,18 @@ const ListRoot = styled('ul', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListProps }>(({ theme, ownerState }) => ({
-  '--List-padding': '0.375rem',
+  '--List-padding': '0px',
   '--List-gap': '0.375rem', // spacing between ListItem + ListItem or ListItemButton + ListItemButton
-  '--List-radius': theme.vars.radius.sm,
+  '--List-radius': '0px',
   '--List-item-minHeight': '2.5rem',
-  '--List-item-paddingX': '0.375rem',
+  '--List-item-paddingX': '0.75rem',
   '--List-item-paddingY': '0.375rem',
   '--List-item-fontSize': theme.vars.fontSize.md,
   '--List-decorator-width': '2.5rem',
   '--List-decorator-color': theme.vars.palette.text.tertiary,
   '--List-insetStartAddition': '0.75rem',
   ...(ownerState.size === 'sm' && {
-    '--List-padding': '0.25rem',
     '--List-gap': '0.25rem',
-    '--List-radius': theme.vars.radius.xs,
     '--List-item-minHeight': '2rem',
     '--List-item-paddingX': '0.25rem',
     '--List-item-paddingY': '0.25rem',
@@ -43,7 +41,6 @@ const ListRoot = styled('ul', {
     '--List-decorator-width': '2rem',
   }),
   ...(ownerState.size === 'lg' && {
-    '--List-padding': '0.5rem',
     '--List-gap': '0.5rem',
     '--List-item-minHeight': '3rem',
     '--List-item-paddingX': '0.5rem',
