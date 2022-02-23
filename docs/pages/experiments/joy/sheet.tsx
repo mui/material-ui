@@ -5,7 +5,9 @@ import Button from '@mui/joy/Button';
 import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
+import { GlobalStyles } from '@mui/system';
 import * as React from 'react';
+import Info from '@mui/icons-material/InfoOutlined';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -65,10 +67,34 @@ export default function JoySheet() {
         },
       }}
     >
+      <GlobalStyles
+        styles={{ body: { backgroundColor: 'var(--joy-palette-background-level2)' } }}
+      />
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3, pb: 4 }}>
           <ColorSchemePicker />
         </Box>
+        <Sheet
+          elevation="sm"
+          sx={{ p: 2, display: 'flex', gap: 2, borderRadius: 'sm', alignItems: 'center' }}
+        >
+          <Sheet variant="light" color="primary" sx={{ p: 1, borderRadius: 'xs' }}>
+            <Sheet
+              variant="contained"
+              color="primary"
+              sx={{ borderRadius: 'xs', display: 'flex', p: 1 }}
+            >
+              <Info />
+            </Sheet>
+          </Sheet>
+          <Box>
+            <Typography sx={{ fontWeight: 'bold' }}>Read the documentation</Typography>
+            <Typography level="body2">
+              Discover the concepts, reference, guides and tutorials.
+            </Typography>
+          </Box>
+        </Sheet>
+        <br />
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(SheetProps).map(([propName, propValue]) => (
             <Box
