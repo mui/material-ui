@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, describeConformance } from 'test/utils';
 import Typography from '@mui/joy/Typography';
 import Link, { linkClasses as classes } from '@mui/joy/Link';
+import { ThemeProvider } from '@mui/joy/styles';
 
 function focusVisible(element) {
   act(() => {
@@ -20,6 +21,7 @@ describe('<Link />', () => {
     classes,
     inheritComponent: Typography,
     render,
+    ThemeProvider,
     muiName: 'MuiLink',
     refInstanceof: window.HTMLAnchorElement,
     testVariantProps: { color: 'primary', variant: 'text' },
@@ -77,14 +79,17 @@ describe('<Link />', () => {
   });
 
   describe('prop: variant', () => {
-    it('text by default', () => {
+    it('undefined by default', () => {
       const { getByTestId } = render(
         <Link href="/" data-testid="root">
           Hello World
         </Link>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.variantText);
+      expect(getByTestId('root')).not.to.have.class(classes.variantText);
+      expect(getByTestId('root')).not.to.have.class(classes.variantOutlined);
+      expect(getByTestId('root')).not.to.have.class(classes.variantLight);
+      expect(getByTestId('root')).not.to.have.class(classes.variantContained);
     });
 
     it('adds a text class', () => {

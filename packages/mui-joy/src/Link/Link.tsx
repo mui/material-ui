@@ -51,7 +51,6 @@ const LinkRoot = styled(Typography, {
       }),
       ...(ownerState.underline === 'always' && {
         textDecoration: 'underline',
-        // textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
         '&:hover': {
           textDecorationColor: 'inherit',
         },
@@ -68,6 +67,7 @@ const LinkRoot = styled(Typography, {
         borderRadius: 0,
         padding: 0, // Remove the padding in Firefox
         cursor: 'pointer',
+        color: theme.vars.palette[ownerState.color!]?.textColor,
         userSelect: 'none',
         verticalAlign: 'middle',
         MozAppearance: 'none', // Reset
@@ -75,9 +75,7 @@ const LinkRoot = styled(Typography, {
         '&::-moz-focus-inner': {
           borderStyle: 'none', // Remove Firefox dotted outline.
         },
-        [`&.${linkClasses.focusVisible}`]: {
-          outline: 'auto',
-        },
+        [`&.${linkClasses.focusVisible}`]: theme.focus.default,
       }),
     },
     ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level],
@@ -103,7 +101,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     onFocus,
     level = 'body1',
     underline = 'always',
-    variant = 'text',
+    variant,
     ...other
   } = props;
 
