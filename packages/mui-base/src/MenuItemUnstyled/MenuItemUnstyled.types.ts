@@ -1,6 +1,13 @@
+import * as React from 'react';
+
 export interface MenuItemUnstyledComponentsPropsOverrides {}
 
-export default interface MenuItemUnstyledProps {
+export interface MenuItemOwnerState extends MenuItemUnstyledProps {
+  disabled: boolean;
+  focusVisible: boolean;
+}
+
+export interface MenuItemUnstyledProps {
   children?: React.ReactNode;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;

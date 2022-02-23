@@ -7,22 +7,9 @@ import {
   useListbox,
   ActionTypes,
 } from '../ListboxUnstyled';
+import { MenuItemMetadata, MenuItemState, UseMenuParameters } from './useMenu.types';
 
-export interface MenuItemMetadata {
-  id: string;
-  disabled: boolean;
-  ref: React.RefObject<HTMLElement>;
-}
-
-export interface MenuItemState {
-  disabled: boolean;
-}
-
-export interface UseMenuProps {
-  listboxRef?: React.Ref<HTMLElement>;
-}
-
-export default function useMenu({ listboxRef: listboxRefProp }: UseMenuProps) {
+export default function useMenu({ listboxRef: listboxRefProp }: UseMenuParameters) {
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
 
   const listboxRef = React.useRef<HTMLElement>(null);

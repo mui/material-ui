@@ -1,18 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MenuItemUnstyledProps from './MenuItemUnstyledProps';
+import { MenuItemOwnerState, MenuItemUnstyledProps } from './MenuItemUnstyled.types';
 import { appendOwnerState } from '../utils';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
 import useMenuItem from './useMenuItem';
 import composeClasses from '../composeClasses';
 
-export interface MenuItemState {
-  disabled: boolean;
-  focusVisible: boolean;
-}
-
-function getUtilityClasses(ownerState: MenuItemState) {
+function getUtilityClasses(ownerState: MenuItemOwnerState) {
   const { disabled, focusVisible } = ownerState;
 
   const slots = {
@@ -58,7 +53,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
     return null;
   }
 
-  const ownerState: MenuItemState = { ...props, ...itemState, focusVisible };
+  const ownerState: MenuItemOwnerState = { ...props, ...itemState, focusVisible };
 
   const classes = getUtilityClasses(ownerState);
 

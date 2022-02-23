@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface MenuUnstyledComponentsPropsOverrides {}
 
-export default interface MenuUnstyledProps {
+export interface MenuUnstyledProps {
   children?: React.ReactNode;
   className?: string;
   component?: React.ElementType;
@@ -12,11 +12,4 @@ export default interface MenuUnstyledProps {
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'ul'> & MenuUnstyledComponentsPropsOverrides;
   };
-}
-
-export interface MenuItemMetadata {
-  id: string;
-  disabled: boolean;
-  onClick?: React.MouseEventHandler<HTMLElement>;
-  ref: React.RefObject<HTMLElement>;
 }

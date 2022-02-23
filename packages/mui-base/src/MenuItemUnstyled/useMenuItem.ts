@@ -2,15 +2,9 @@ import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { MenuUnstyledContext } from '../MenuUnstyled';
 import { useButton } from '../ButtonUnstyled';
+import { UseMenuItemParameters } from './useMenuItem.types';
 
-export interface UseMenuItemProps {
-  component: React.ElementType;
-  disabled?: boolean;
-  onClick?: React.MouseEventHandler<any>;
-  ref: React.Ref<any>;
-}
-
-export default function useMenuItem(props: UseMenuItemProps) {
+export default function useMenuItem(props: UseMenuItemParameters) {
   const { component, disabled = false, ref } = props;
 
   const id = useId();
