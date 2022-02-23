@@ -472,7 +472,6 @@ function AppNavDrawer(props) {
               minWidth: 0,
               fontSize: theme.typography.pxToRem(13),
               fontWeight: 500,
-              // lineHeight: 0,
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[300]
