@@ -9,11 +9,13 @@ import {
 } from '../ListboxUnstyled';
 import { MenuItemMetadata, MenuItemState, UseMenuParameters } from './useMenu.types';
 
-export default function useMenu({ listboxRef: listboxRefProp }: UseMenuParameters) {
+export default function useMenu(parameters: UseMenuParameters) {
+  const { listboxRef: listboxRefProp, open = false, onClose } = parameters;
+
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
 
-  const listboxRef = React.useRef<HTMLElement>(null);
-  const handleRef = useForkRef(listboxRefProp, listboxRef);
+  const listboxRef = React.useRef<HTMLElement | null>(null);
+  const intermediaryListboxRef = useForkRef(listboxRefProp, listboxRef);
 
   const registerItem = React.useCallback((id, metadata) => {
     setMenuItems((previousState) => {
@@ -48,6 +50,31 @@ export default function useMenu({ listboxRef: listboxRefProp }: UseMenuParameter
     return newState;
   };
 
+  // Ensure the menu is focused after opening
+  const [focusRequested, requestFocus] = React.useState(false);
+
+  const focusMenuIfRequested = React.useCallback(() => {
+    if (focusRequested && listboxRef.current != null) {
+      listboxRef.current.focus();
+      requestFocus(false);
+    }
+  }, [focusRequested]);
+
+  const updateMenuRef = (listboxElement: HTMLUListElement) => {
+    listboxRef.current = listboxElement;
+    focusMenuIfRequested();
+  };
+
+  const handleRef = useForkRef(intermediaryListboxRef, updateMenuRef);
+
+  React.useEffect(() => {
+    focusMenuIfRequested();
+  }, [focusMenuIfRequested]);
+
+  React.useEffect(() => {
+    requestFocus(open ?? false);
+  }, [open]);
+
   const { getOptionState, getOptionProps, getRootProps, highlightedOption } = useListbox({
     options: Object.keys(menuItems),
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
@@ -56,6 +83,15 @@ export default function useMenu({ listboxRef: listboxRefProp }: UseMenuParameter
     stateReducer,
     disabledItemsFocusable: true,
   });
+
+  const createHandleBlur =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (e: React.FocusEvent) => {
+      otherHandlers?.onBlur(e);
+
+      if (!listboxRef.current?.contains(e.relatedTarget)) {
+        onClose?.();
+      }
+    };
 
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)
@@ -68,6 +104,7 @@ export default function useMenu({ listboxRef: listboxRefProp }: UseMenuParameter
     ...otherHandlers,
     ...getRootProps({
       ...otherHandlers,
+      onBlur: createHandleBlur(otherHandlers),
     }),
     role: 'menu',
   });

@@ -3,6 +3,8 @@ import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface MenuUnstyledClasses {
   root: string;
+  popper: string;
+  expanded: string;
 }
 
 export type MenuUnstyledClassKey = keyof MenuUnstyledClasses;
@@ -13,6 +15,8 @@ export function getMenuUnstyledUtilityClass(slot: string): string {
 
 const menuUnstyledClasses: MenuUnstyledClasses = generateUtilityClasses('MuiMenuUnstyled', [
   'root',
+  'popper',
+  'expanded',
 ]);
 
 export default menuUnstyledClasses;

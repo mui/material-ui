@@ -1,11 +1,14 @@
-<StyledMenu>
-  <StyledMenuItem onClick={() => console.log('Cut')}>
-    <ContentCut fontSize="small" /> Cut
-  </StyledMenuItem>
-  <StyledMenuItem onClick={() => console.log('Copy')}>
-    <ContentCopy fontSize="small" /> Copy
-  </StyledMenuItem>
-  <StyledMenuItem onClick={() => console.log('Paste')} disabled>
-    <ContentPaste fontSize="small" /> Paste
-  </StyledMenuItem>
+<TriggerButton type="button" onClick={handleButtonClick}>
+  Language
+</TriggerButton>
+
+<StyledMenu
+  open={isOpen}
+  onClose={close}
+  anchorEl={anchorEl}
+  components={{ Popper }}
+>
+  <StyledMenuItem onClick={() => close()}>English</StyledMenuItem>
+  <StyledMenuItem onClick={() => close()}>中文</StyledMenuItem>
+  <StyledMenuItem onClick={() => close()}>Português</StyledMenuItem>
 </StyledMenu>

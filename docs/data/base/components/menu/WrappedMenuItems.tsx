@@ -3,7 +3,18 @@ import MenuUnstyled from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, {
   menuItemUnstyledClasses,
 } from '@mui/base/MenuItemUnstyled';
+import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
+
+const blue = {
+  100: '#DAECFF',
+  200: '#99CCF3',
+  400: '#3399FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  900: '#003A75',
+};
 
 const grey = {
   100: '#E7EBF0',
@@ -66,6 +77,42 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   `,
 );
 
+const TriggerButton = styled('button')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  min-height: calc(1.5em + 22px);
+  min-width: 200px;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
+  border-radius: 0.75em;
+  margin: 0.5em;
+  padding: 10px;
+  text-align: left;
+  line-height: 1.5;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+
+  &:hover {
+    background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+  }
+
+  &.${buttonUnstyledClasses.focusVisible} {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+  }
+
+  &::after {
+    content: '▾';
+    float: right;
+  }
+  `,
+);
+
+const Popper = styled(PopperUnstyled)`
+  z-index: 1;
+`;
+
 interface MenuSectionProps {
   children: React.ReactNode;
   label: string;
@@ -98,23 +145,46 @@ function MenuSection({ children, label }: MenuSectionProps) {
   );
 }
 
-export default function UnstyledMenuSimple() {
+export default function WrappedMenuItems() {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const isOpen = Boolean(anchorEl);
+
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (isOpen) {
+      setAnchorEl(null);
+    } else {
+      setAnchorEl(event.currentTarget);
+    }
+  };
+
+  const close = () => setAnchorEl(null);
+
   return (
-    <StyledMenu>
-      <MenuSection label="Navigation">
-        <StyledMenuItem>Back</StyledMenuItem>
-        <StyledMenuItem disabled>Forward</StyledMenuItem>
-        <StyledMenuItem>Refresh</StyledMenuItem>
-      </MenuSection>
-      <MenuSection label="Page">
-        <StyledMenuItem>Save as</StyledMenuItem>
-        <StyledMenuItem>Print</StyledMenuItem>
-      </MenuSection>
-      <MenuSection label="View">
-        <StyledMenuItem>Zoom in</StyledMenuItem>
-        <StyledMenuItem>Zoom out</StyledMenuItem>
-      </MenuSection>
-      <li className="helper">Current zoom level: 100%</li>
-    </StyledMenu>
+    <div>
+      <TriggerButton type="button" onClick={handleButtonClick}>
+        Options
+      </TriggerButton>
+      <StyledMenu
+        open={isOpen}
+        onClose={close}
+        anchorEl={anchorEl}
+        components={{ Popper }}
+      >
+        <MenuSection label="Navigation">
+          <StyledMenuItem onClick={() => close()}>Back</StyledMenuItem>
+          <StyledMenuItem disabled>Forward</StyledMenuItem>
+          <StyledMenuItem onClick={() => close()}>Refresh</StyledMenuItem>
+        </MenuSection>
+        <MenuSection label="Page">
+          <StyledMenuItem onClick={() => close()}>Save as</StyledMenuItem>
+          <StyledMenuItem onClick={() => close()}>Print</StyledMenuItem>
+        </MenuSection>
+        <MenuSection label="View">
+          <StyledMenuItem onClick={() => close()}>Zoom in</StyledMenuItem>
+          <StyledMenuItem onClick={() => close()}>Zoom out</StyledMenuItem>
+        </MenuSection>
+        <li className="helper">Current zoom level: 100%</li>
+      </StyledMenu>
+    </div>
   );
 }

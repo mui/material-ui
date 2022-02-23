@@ -18,7 +18,7 @@ import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
 ```
 
 The MenuUnstyled components can be used to create custom menus.
-It renders a list of items and allows mouse and keyboard navigation through them.
+It renders a list of items in a popup and allows mouse and keyboard navigation through them.
 
 When not customized, the MenuItem renders a plain `ul` element.
 
@@ -35,29 +35,24 @@ Additionally, MenuUnstyled may contain non-interactive children (such as help te
 
 {{"demo": "WrappedMenuItems.js"}}
 
-### Popup menu
-
-The MenuUnstyled component does not include the trigger button or the popup.
-It's just the list of options.
-Developers are free to compose it with their own triggering elements and popups.
-
-{{"demo": "MenuPopup.js"}}
-
 ### Customization
 
 #### Slots
 
-The MenuUnstyled has just the root slot.
-It is set to `ul` by default.
-It can be customized by setting the `component` or `components.Root` props.
+The MenuUnstyled has two slots:
 
-The MenuItemUnstyled also has just the root slot.
+- Root - can be customized by setting the `component` or `components.Root` props. By default set to `ul`.
+- Popper - set to `PopperUnstyled` by default.
+
+The MenuItemUnstyled has just the root slot.
 It renders `li` by default.
 Similarly to MenuUnstyled, it can be customized by setting the `component` or `components.Root` props.
 
 #### CSS classes
 
-The MenuUnstyled does not set any state classes.
+The MenuUnstyled can set the following class:
+
+- `Mui-expanded` - set when the menu is open. This class is set on both Root and Popper slots.
 
 The MenuItemUnstyled can set the following classes:
 
