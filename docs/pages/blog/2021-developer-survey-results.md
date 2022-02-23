@@ -810,7 +810,7 @@ Here is some additional content related to the topics covered throughout this po
 - [Style Library Interoperability](/guides/interoperability/)
 - [Approaches to customizing Material-UI components](/customization/how-to-customize/)
 
-Also, check out the last two iterations on the MUI Developer Survey:
+Lastly, check out the last two iterations on the MUI Developer Survey:
 
-- [2020](/blog/2020-developer-survey-results/)
-- [2019](/blog/2019-developer-survey-results/)
+- [2020 edition](/blog/2020-developer-survey-results/)
+- [2019 edition](/blog/2019-developer-survey-results/)
