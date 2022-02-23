@@ -18,7 +18,7 @@ Material-UI started as an open-source project. Over time, the audience and usage
   - [MUI Base](/customization/unstyled-components/): the unstyled version of the components.
   - [MUI System](/system/basics/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
-- [MUI X](/x/): as mentioned, a growing set of advanced components. Today, the flagship is the [Data Grid](/components/data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
+- [MUI X](/x/): 如上所述，这是一系列不断增长的高级组件。 Today, the flagship is the [Data Grid](/components/data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
 - MUI Studio: a very recent endeavor aimed at exploring how our users can visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
 We also know, especially due to [our annual developer survey](/blog/2020-developer-survey-results/), that design quality plays a huge part when developers are considering component library options. Therefore, we need to grow the design team to help us push these initiatives further.
