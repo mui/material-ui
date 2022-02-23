@@ -13,7 +13,7 @@ githubLabel: 'component: Stack'
 
 ## Usage
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 {{"demo": "BasicStack.js", "bg": true}}
 
@@ -23,7 +23,8 @@ The prop is converted into a CSS property using the [`theme.spacing()`](/customi
 
 ## Direction
 
-By default, `Stack` arranges items vertically in a `column`. However, the `direction` prop can be used to position items horizontally in a `row` as well.
+By default, `Stack` arranges items vertically in a `column`.
+However, the `direction` prop can be used to position items horizontally in a `row` as well.
 
 {{"demo": "DirectionStack.js", "bg": true}}
 
