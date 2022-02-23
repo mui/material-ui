@@ -4,11 +4,12 @@ import { CssVarsProvider, useColorScheme, styled, JoyTheme } from '@mui/joy/styl
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
-import JoyList from '@mui/joy/List';
-import JoyListItem from '@mui/joy/ListItem';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
-import JoyListItemDecorator from '@mui/joy/ListItemDecorator';
-import JoyListItemContent from '@mui/joy/ListItemContent';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import ListItemContent from '@mui/joy/ListItemContent';
+import ListItemButton from '@mui/joy/ListItemButton';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import NearMe from '@mui/icons-material/NearMe';
@@ -143,42 +144,6 @@ const Step = ({ number }: { number: number }) => (
   </Box>
 );
 
-const StepItem = ({
-  number,
-  primary,
-  secondary,
-}: {
-  number: number;
-  primary: string;
-  secondary?: string;
-}) => (
-  <Box sx={{ mb: '20px', display: 'flex', gap: '10px', minHeight: 69 }}>
-    <Box
-      sx={[
-        (theme) => theme.typography.body1,
-        (theme) => theme.variants.contained.primary,
-        {
-          borderRadius: '40px',
-          width: 24,
-          height: 24,
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        },
-      ]}
-    >
-      {number}
-    </Box>
-    <Box>
-      <Typography>{primary}</Typography>
-      <Typography level="body2" sx={{ mt: '5px' }}>
-        {secondary}
-      </Typography>
-    </Box>
-  </Box>
-);
-
 const Header = ({ children }: { children: React.ReactNode }) => (
   <Box
     sx={{
@@ -197,63 +162,6 @@ const ListSubheader = styled('div')(({ theme }) => ({
   ...theme.typography.rubric2,
   backgroundColor: theme.vars.palette.background.level2,
 }));
-
-const List = styled('ul')(({ theme }) => ({
-  margin: 0,
-  padding: 0,
-  listStyle: 'none',
-  borderTop: '1px solid',
-  borderBottom: '1px solid',
-  borderColor: theme.vars.palette.separator.opaque,
-}));
-
-const Divider = styled('div')(({ theme }) => ({
-  marginLeft: '60px',
-  borderBottom: '1px solid',
-  borderColor: theme.vars.palette.separator.opaque,
-}));
-
-const ListItem = ({
-  avatar,
-  primary,
-  secondary,
-  small,
-  end,
-}: {
-  avatar?: true | React.ReactElement;
-  primary: string;
-  secondary?: string;
-  small?: boolean;
-  end?: React.ReactNode;
-}) => (
-  <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px', px: '20px', py: '9px' }}>
-    {typeof avatar === 'boolean' && avatar && (
-      <Box
-        sx={{
-          width: 60,
-          height: 60,
-          flexShrink: 0,
-          borderRadius: '60px',
-          bgcolor: (theme) => theme.vars.palette.neutral[200],
-        }}
-      />
-    )}
-    {typeof avatar !== 'boolean' && avatar}
-    <Box sx={{ flex: 1 }}>
-      <Typography level={small ? 'body1' : 'h5'} sx={{ fontWeight: 400 }}>
-        {primary}
-      </Typography>
-      <Typography level={small ? 'footnote' : 'body3'} sx={{ mt: '2px' }}>
-        {secondary}
-      </Typography>
-    </Box>
-    {end}
-    <ArrowForwardIos
-      fontSize="lg"
-      sx={{ color: (theme: JoyTheme) => theme.vars.palette.text.tertiary, mx: '-0.25rem' }}
-    />
-  </Box>
-);
 
 const ItemLine = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -732,7 +640,7 @@ export default function IosMinimalPage() {
             <Typography component="h1" level="h2" sx={{ textAlign: 'center', mb: '30px' }}>
               How this app works?
             </Typography>
-            <JoyList
+            <List
               sx={{
                 '--List-padding': '0px',
                 '--List-item-paddingX': '0px',
@@ -740,61 +648,61 @@ export default function IosMinimalPage() {
                 '--List-gap': '1.5rem',
               }}
             >
-              <JoyListItem>
-                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+              <ListItem>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                   <Step number={1} />
-                </JoyListItemDecorator>
-                <JoyListItemContent>
+                </ListItemDecorator>
+                <ListItemContent>
                   <Typography>Stepper number one. This app is something!</Typography>
                   <Typography level="body2" sx={{ mt: '5px' }}>
                     This app is only for you and people in your social networks friends list.
                   </Typography>
-                </JoyListItemContent>
-              </JoyListItem>
-              <JoyListItem>
-                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                </ListItemContent>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                   <Step number={2} />
-                </JoyListItemDecorator>
-                <JoyListItemContent>
+                </ListItemDecorator>
+                <ListItemContent>
                   <Typography>Second stepper is finally here</Typography>
                   <Typography level="body2" sx={{ mt: '5px' }}>
                     You decide which conversations you want.
                   </Typography>
-                </JoyListItemContent>
-              </JoyListItem>
-              <JoyListItem>
-                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                </ListItemContent>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                   <Step number={3} />
-                </JoyListItemDecorator>
-                <JoyListItemContent>
+                </ListItemDecorator>
+                <ListItemContent>
                   <Typography>Use the third stepper in any case</Typography>
                   <Typography level="body2" sx={{ mt: '5px' }}>
                     One morning, when Gregor Samsa woke from troubled dreams.
                   </Typography>
-                </JoyListItemContent>
-              </JoyListItem>
-              <JoyListItem>
-                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                </ListItemContent>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                   <Step number={4} />
-                </JoyListItemDecorator>
-                <JoyListItemContent>
+                </ListItemDecorator>
+                <ListItemContent>
                   <Typography>
                     What about fourth? A collection of textile samples lay spread out on the table —
                     Samsa was a travelling salesman
                   </Typography>
-                </JoyListItemContent>
-              </JoyListItem>
-              <JoyListItem>
-                <JoyListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                </ListItemContent>
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                   <Step number={5} />
-                </JoyListItemDecorator>
-                <JoyListItemContent>
+                </ListItemDecorator>
+                <ListItemContent>
                   <Typography>
                     What a serious stepper! We just wanted to get your attention here
                   </Typography>
-                </JoyListItemContent>
-              </JoyListItem>
-            </JoyList>
+                </ListItemContent>
+              </ListItem>
+            </List>
             <Box
               sx={[
                 {
@@ -842,7 +750,7 @@ export default function IosMinimalPage() {
             </Typography>
           </Header>
           <ListSubheader>Mange profiles</ListSubheader>
-          <JoyList
+          <List
             sx={{
               '--List-decorator-width': '72px',
               '--List-radius': '0px',
@@ -852,8 +760,8 @@ export default function IosMinimalPage() {
               borderColor: 'separator.opaque',
             }}
           >
-            <JoyListItem>
-              <JoyListItemDecorator>
+            <ListItem>
+              <ListItemDecorator>
                 <Box
                   sx={{
                     width: 60,
@@ -863,15 +771,15 @@ export default function IosMinimalPage() {
                     bgcolor: (theme) => theme.vars.palette.neutral[200],
                   }}
                 />
-              </JoyListItemDecorator>
-              <JoyListItemContent>
+              </ListItemDecorator>
+              <ListItemContent>
                 <Typography level="h5" sx={{ fontWeight: 400 }}>
                   Diana Shelton
                 </Typography>
                 <Typography level="body3" sx={{ mt: '2px' }}>
                   Chief Design Officer
                 </Typography>
-              </JoyListItemContent>
+              </ListItemContent>
               <ArrowForwardIos
                 fontSize="lg"
                 sx={{
@@ -879,10 +787,10 @@ export default function IosMinimalPage() {
                   mx: '-0.25rem',
                 }}
               />
-            </JoyListItem>
+            </ListItem>
             <ListDivider inset="startContent" />
-            <JoyListItem>
-              <JoyListItemDecorator>
+            <ListItem>
+              <ListItemDecorator>
                 <Box
                   sx={{
                     width: 60,
@@ -892,15 +800,15 @@ export default function IosMinimalPage() {
                     bgcolor: (theme) => theme.vars.palette.neutral[200],
                   }}
                 />
-              </JoyListItemDecorator>
-              <JoyListItemContent>
+              </ListItemDecorator>
+              <ListItemContent>
                 <Typography level="h5" sx={{ fontWeight: 400 }}>
                   Ricky Mclaughlin
                 </Typography>
                 <Typography level="body3" sx={{ mt: '2px' }}>
                   Senior UX designer
                 </Typography>
-              </JoyListItemContent>
+              </ListItemContent>
               <Typography sx={{ color: 'warning.textColor', mr: '0.75rem' }}>Sign out</Typography>
               <ArrowForwardIos
                 fontSize="lg"
@@ -909,11 +817,11 @@ export default function IosMinimalPage() {
                   mx: '-0.25rem',
                 }}
               />
-            </JoyListItem>
-          </JoyList>
+            </ListItem>
+          </List>
 
           <ListSubheader>Reward</ListSubheader>
-          <JoyList
+          <List
             sx={{
               '--List-decorator-width': '48px',
               '--List-radius': '0px',
@@ -923,8 +831,8 @@ export default function IosMinimalPage() {
               borderColor: 'separator.opaque',
             }}
           >
-            <JoyListItem>
-              <JoyListItemDecorator>
+            <ListItem>
+              <ListItemDecorator>
                 <Box
                   sx={[
                     {
@@ -937,15 +845,15 @@ export default function IosMinimalPage() {
                 >
                   <CurrencyYen />
                 </Box>
-              </JoyListItemDecorator>
-              <JoyListItemContent>
+              </ListItemDecorator>
+              <ListItemContent>
                 <Typography level="body1" sx={{ fontWeight: 400 }}>
                   Bitcoin Local Offers
                 </Typography>
                 <Typography level="footnote" sx={{ mt: '2px' }}>
                   Join now and let the digital economics grow
                 </Typography>
-              </JoyListItemContent>
+              </ListItemContent>
               <ArrowForwardIos
                 fontSize="lg"
                 sx={{
@@ -953,8 +861,8 @@ export default function IosMinimalPage() {
                   mx: '-0.25rem',
                 }}
               />
-            </JoyListItem>
-          </JoyList>
+            </ListItem>
+          </List>
 
           <Box
             sx={{ px: '20px', py: '4px', bgcolor: (theme) => theme.vars.palette.background.level2 }}
@@ -966,39 +874,65 @@ export default function IosMinimalPage() {
           </Box>
           <ListSubheader>Configuration</ListSubheader>
 
-          <List>
-            <ListItem
-              small
-              primary="Receive Updates"
-              secondary="New components, templates, kits and 3 more..."
-              end={
-                <Typography sx={{ color: (theme) => theme.vars.palette.text.secondary }}>
-                  Push
+          <List
+            sx={{
+              '--List-radius': '0px',
+              '--List-item-paddingX': '14px',
+            }}
+          >
+            <ListItem>
+              <ListItemContent>
+                <Typography level="body1" sx={{ fontWeight: 400 }}>
+                  Receive Updates
                 </Typography>
-              }
-            />
-            <Divider sx={{ ml: '20px' }} />
-            <ListItem
-              small
-              primary="Discounts & Deals"
-              secondary="Sometimes we cut the price"
-              end={
-                <Typography sx={{ color: (theme) => theme.vars.palette.text.secondary }}>
-                  Everyday
+                <Typography level="footnote" sx={{ mt: '2px' }}>
+                  New components, templates, kits and 3 more...
                 </Typography>
-              }
-            />
-            <Divider sx={{ ml: '20px' }} />
-            <ListItem
-              small
-              primary="Use Auto-layout"
-              secondary="Most iOS kit based on Figma power"
-              end={
-                <Typography sx={{ color: (theme) => theme.vars.palette.text.secondary }}>
-                  Ogo!
+              </ListItemContent>
+              <ArrowForwardIos
+                fontSize="lg"
+                sx={{
+                  color: (theme: JoyTheme) => theme.vars.palette.text.tertiary,
+                  mx: '-0.25rem',
+                }}
+              />
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemContent>
+                <Typography level="body1" sx={{ fontWeight: 400 }}>
+                  Discounts & Deals
                 </Typography>
-              }
-            />
+                <Typography level="footnote" sx={{ mt: '2px' }}>
+                  Sometimes we cut the price
+                </Typography>
+              </ListItemContent>
+              <ArrowForwardIos
+                fontSize="lg"
+                sx={{
+                  color: (theme: JoyTheme) => theme.vars.palette.text.tertiary,
+                  mx: '-0.25rem',
+                }}
+              />
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemContent>
+                <Typography level="body1" sx={{ fontWeight: 400 }}>
+                  Use Auto-layout
+                </Typography>
+                <Typography level="footnote" sx={{ mt: '2px' }}>
+                  Most iOS kit based on Figma power
+                </Typography>
+              </ListItemContent>
+              <ArrowForwardIos
+                fontSize="lg"
+                sx={{
+                  color: (theme: JoyTheme) => theme.vars.palette.text.tertiary,
+                  mx: '-0.25rem',
+                }}
+              />
+            </ListItem>
           </List>
           <Box
             sx={{ px: '20px', py: '8px', bgcolor: (theme) => theme.vars.palette.background.level2 }}
@@ -1008,9 +942,31 @@ export default function IosMinimalPage() {
             </Typography>
           </Box>
           <ListSubheader>Downloads</ListSubheader>
-          <ListItem small primary="Automatically" />
-          <Divider sx={{ ml: '20px' }} />
-          <ListItem small primary="Manually" />
+          <List
+            sx={{ '--List-radius': '0px', '--List-item-paddingX': '20px', '--List-padding': '0px' }}
+          >
+            <ListItemButton>
+              <ListItemContent>Automatically</ListItemContent>
+              <ArrowForwardIos
+                fontSize="lg"
+                sx={{
+                  color: (theme: JoyTheme) => theme.vars.palette.text.tertiary,
+                  mx: '-0.25rem',
+                }}
+              />
+            </ListItemButton>
+            <ListDivider inset="startDecorator" />
+            <ListItemButton>
+              <ListItemContent>Manually</ListItemContent>
+              <ArrowForwardIos
+                fontSize="lg"
+                sx={{
+                  color: (theme: JoyTheme) => theme.vars.palette.text.tertiary,
+                  mx: '-0.25rem',
+                }}
+              />
+            </ListItemButton>
+          </List>
         </ViewPort>
         <ViewPort>
           <Header>
@@ -1035,85 +991,194 @@ export default function IosMinimalPage() {
               </Typography>
             </Box>
           </Header>
-          <Box sx={{ py: '10px' }}>
-            <ItemLine>
+          <List
+            sx={{
+              py: '10px',
+              '--List-padding': '0px',
+              '--List-radius': '0px',
+              '--List-item-paddingX': '20px',
+              '--List-item-minHeight': '44px',
+              '--List-gap': '0px',
+              '--List-decorator-color': 'var(--joy-palette-separator-opaque)',
+            }}
+          >
+            <ListItem>
               <Typography level="h4">Featured</Typography>
-            </ItemLine>
-            <ItemLine>
-              <Stars />
-              <Typography sx={{ flex: 1 }}>Special Events</Typography>
-              <Check checked />
-            </ItemLine>
-            <ItemLine>
-              <BusinessCenter />
-              <Typography sx={{ flex: 1 }}>Lunchtime Sessions</Typography>
-              <Check />
-            </ItemLine>
-          </Box>
-          <Box sx={{ py: '10px' }}>
-            <ItemLine>
-              <Typography sx={{ flex: 1 }} level="h4">
-                Design
-              </Typography>
-            </ItemLine>
-            <ItemLine>
-              <DesignServices />
-              <Typography sx={{ flex: 1 }}>Interaction Design</Typography>
-              <Check />
-            </ItemLine>
-            <ItemLine>
-              <Handyman />
-              <Typography sx={{ flex: 1 }}>Speed Prototyping</Typography>
-              <Check />
-            </ItemLine>
-            <ItemLine>
-              <MusicNote />
-              <Typography sx={{ flex: 1 }}>Sound and Haptics</Typography>
-              <Check checked />
-            </ItemLine>
-            <ItemLine>
-              <Loupe />
-              <Typography sx={{ flex: 1 }}>Visual Design</Typography>
-              <Check checked />
-            </ItemLine>
-            <ItemLine>
-              <Title />
-              <Typography sx={{ flex: 1 }}>Typography</Typography>
-              <Check checked />
-            </ItemLine>
-          </Box>
-          <Box sx={{ py: '10px' }}>
-            <ItemLine>
-              <Typography sx={{ flex: 1 }} level="h4">
-                Frameworks
-              </Typography>
-            </ItemLine>
-            <ItemLine>
-              <OutlinedFlag />
-              <Typography sx={{ flex: 1 }}>Accessibility</Typography>
-              <Check checked />
-            </ItemLine>
-            <ItemLine>
-              <BeachAccess />
-              <Typography sx={{ flex: 1 }}>Accessories</Typography>
-              <Check checked />
-            </ItemLine>
-            <ItemLine>
-              <ViewInAr />
-              <Typography sx={{ flex: 1 }}>Styled Components</Typography>
-              <Check />
-            </ItemLine>
-            <ItemLine>
-              <AddModerator />
-              <Typography sx={{ flex: 1 }}>Security</Typography>
-              <Check />
-            </ItemLine>
-            <ItemLine>
-              <CreditCard />
-              <Typography sx={{ flex: 1 }}>Apple Pay and Wallet</Typography>
-              <Check />
-            </ItemLine>
-          </Box>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Stars />
+                </ListItemDecorator>
+                <Typography sx={{ flex: 1 }}>Special Events</Typography>
+                <Check checked />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <BusinessCenter />
+                </ListItemDecorator>
+                <Typography sx={{ flex: 1 }}>Lunchtime Sessions</Typography>
+                <Check />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+          </List>
+          <List
+            sx={{
+              py: '10px',
+              '--List-padding': '0px',
+              '--List-radius': '0px',
+              '--List-item-paddingX': '20px',
+              '--List-item-minHeight': '44px',
+              '--List-gap': '0px',
+              '--List-decorator-color': 'var(--joy-palette-separator-opaque)',
+            }}
+          >
+            <ListItem>
+              <Typography level="h4">Design</Typography>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <DesignServices />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Interaction Design</Typography>
+                </ListItemContent>
+                <Check />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Handyman />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Speed Prototyping</Typography>
+                </ListItemContent>
+                <Check />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <MusicNote />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Sound and Haptics</Typography>
+                </ListItemContent>
+                <Check checked />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Loupe />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Visual Design</Typography>
+                </ListItemContent>
+                <Check checked />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Title />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Typography</Typography>
+                </ListItemContent>
+                <Check checked />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+          </List>
+          <List
+            sx={{
+              py: '10px',
+              '--List-padding': '0px',
+              '--List-radius': '0px',
+              '--List-item-paddingX': '20px',
+              '--List-item-minHeight': '44px',
+              '--List-gap': '0px',
+              '--List-decorator-color': 'var(--joy-palette-separator-opaque)',
+            }}
+          >
+            <ListItem>
+              <Typography level="h4">Frameworks</Typography>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <OutlinedFlag />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Accessibility</Typography>
+                </ListItemContent>
+                <Check checked />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <BeachAccess />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Accessories</Typography>
+                </ListItemContent>
+                <Check checked />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <ViewInAr />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Styled Components</Typography>
+                </ListItemContent>
+                <Check />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <AddModerator />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Security</Typography>
+                </ListItemContent>
+                <Check />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <CreditCard />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography>Apple Pay and Wallet</Typography>
+                </ListItemContent>
+                <Check />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider inset="startDecorator" />
+          </List>
         </ViewPort>
         <ViewPort>
           <StatusBar />
