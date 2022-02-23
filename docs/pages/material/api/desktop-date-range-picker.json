@@ -35,6 +35,7 @@
       },
       "default": "{}"
     },
+    "currentCalendarMonth": { "type": { "name": "any" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "disableAutoMonthSwitching": { "type": { "name": "bool" } },
     "disableCloseOnSelect": {
