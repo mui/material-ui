@@ -2608,22 +2608,24 @@ If you want to apply styles to components by importing a css file, you need to b
 ...and to edit your providers:
 
 ```diff
- import * as React from 'react';
- import { CacheProvider } from '@emotion/react';
- import createCache from '@emotion/cache';
+ import { render } from 'react-dom';
+-import { StylesProvider } from '@material-ui/core/styles';
++import createCache from '@emotion/cache';
++import { CacheProvider } from "@emotion/react";
 
- const cache = createCache({
-   key: 'css',
-+  prepend: true,
- });
++export const muiCache = createCache({
++  'key': 'mui',
++  'prepend': true,
++});
 
- export default function PlainCssPriority() {
-   return (
-     <CacheProvider value={cache}>
-       {/* Your component tree. Now you can override MUI's styles. */}
-     </CacheProvider>
-   );
- }
+ render(
+-  <StylesProvider injectFirst>
++  <CacheProvider value={muiCache}>
+     <Root />
+-  </StylesProvider>,
++  </CacheProvider>,
+   document.getElementById('root')
+ );
 ```
 
 Then here is one example:
