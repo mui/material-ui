@@ -1,4 +1,4 @@
-import { OverridableComponent, OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
@@ -37,11 +37,7 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
   defaultComponent: D;
 }
 
-declare const Sheet: OverridableComponent<SheetTypeMap>;
-
 export type SheetProps<
   D extends React.ElementType = SheetTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<SheetTypeMap<P, D>, D>;
-
-export default Sheet;
