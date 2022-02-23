@@ -27,12 +27,18 @@ export interface ButtonClasses {
   focusVisible: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string;
-  /** Styles applied to the root element if `size="large"`. */
-  sizeLarge: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
+  /** Styles applied to the startIcon element if supplied. */
+  startIcon: string;
+  /** Styles applied to the endIcon element if supplied. */
+  endIcon: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -55,9 +61,12 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'variantContained',
   'focusVisible',
   'disabled',
-  'sizeSmall',
-  'sizeLarge',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
   'fullWidth',
+  'startIcon',
+  'endIcon',
 ]);
 
 export default buttonClasses;

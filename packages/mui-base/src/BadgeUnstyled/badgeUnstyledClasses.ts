@@ -10,22 +10,14 @@ export interface BadgeUnstyledClasses {
   dot: string;
   /** Class name applied to the badge `span` element if `variant="standard"`. */
   standard: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
-  anchorOriginTopRightRectangular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
-  anchorOriginBottomRightRectangular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
-  anchorOriginTopLeftRectangular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
-  anchorOriginBottomLeftRectangular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
-  anchorOriginTopRightCircular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
-  anchorOriginBottomRightCircular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
-  anchorOriginTopLeftCircular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
-  anchorOriginBottomLeftCircular: string;
+  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
+  anchorOriginTopRight: string;
+  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
+  anchorOriginBottomRight: string;
+  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`. */
+  anchorOriginTopLeft: string;
+  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
+  anchorOriginBottomLeft: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
 }
@@ -41,14 +33,10 @@ const badgeUnstyledClasses: BadgeUnstyledClasses = generateUtilityClasses('MuiBa
   'badge',
   'dot',
   'standard',
-  'anchorOriginTopLeftCircular',
-  'anchorOriginTopLeftRectangular',
-  'anchorOriginTopRightCircular',
-  'anchorOriginTopRightRectangular',
-  'anchorOriginBottomLeftCircular',
-  'anchorOriginBottomLeftRectangular',
-  'anchorOriginBottomRightCircular',
-  'anchorOriginBottomRightRectangular',
+  'anchorOriginTopLeft',
+  'anchorOriginTopRight',
+  'anchorOriginBottomLeft',
+  'anchorOriginBottomRight',
   'invisible',
 ]);
 

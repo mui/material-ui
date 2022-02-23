@@ -158,13 +158,31 @@ class DispatchingProfiler implements Profiler {
 const UsedProfiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
 const traceSync = enableDispatchingProfiler ? traceByStackSync : noTrace;
 
-// holes are *All* selectors which aren't necessary for id selectors
-const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
-  function queryAllDescriptionsOf(container, element) {
-    return Array.from(container.querySelectorAll(`#${element.getAttribute('aria-describedby')}`));
-  },
+function queryAllDescriptionsOf(baseElement: HTMLElement, element: Element): HTMLElement[] {
+  const ariaDescribedBy = element.getAttribute('aria-describedby');
+  if (ariaDescribedBy === null) {
+    return [];
+  }
+  return ariaDescribedBy
+    .split(' ')
+    .map((id) => {
+      return document.getElementById(id);
+    })
+    .filter((maybeElement): maybeElement is HTMLElement => {
+      return maybeElement !== null && baseElement.contains(maybeElement);
+    });
+}
+
+const [
+  queryDescriptionOf,
+  getAllDescriptionsOf,
+  getDescriptionOf,
+  findAllDescriptionsOf,
+  findDescriptionOf,
+] = buildQueries<[Element]>(
+  queryAllDescriptionsOf,
   function getMultipleError() {
-    return `Found multiple descriptions. An element should be described by a unique element.`;
+    return `Found multiple descriptions.`;
   },
   function getMissingError() {
     return `Found no describing element.`;
@@ -185,8 +203,11 @@ const [queryByMuiTest, getAllByMuiTest, getByMuiTest, findAllByMuiTest, findByMu
 
 const customQueries = {
   queryDescriptionOf,
+  queryAllDescriptionsOf,
   getDescriptionOf,
+  getAllDescriptionsOf,
   findDescriptionOf,
+  findAllDescriptionsOf,
   /**
    * @deprecated Use `queryAllByTestId` instead
    */

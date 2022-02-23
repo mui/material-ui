@@ -91,7 +91,11 @@ describe('[Joy] CssVarsProvider', () => {
           containedBg: 'var(--joy-palette-primary-containedBg)',
           containedHoverBg: 'var(--joy-palette-primary-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-primary-containedActiveBg)',
+          containedDisabledColor: 'var(--joy-palette-primary-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-primary-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-primary-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-primary-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-primary-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-neutral').textContent).to.equal(
@@ -127,7 +131,11 @@ describe('[Joy] CssVarsProvider', () => {
           containedBg: 'var(--joy-palette-neutral-containedBg)',
           containedHoverBg: 'var(--joy-palette-neutral-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-neutral-containedActiveBg)',
+          containedDisabledColor: 'var(--joy-palette-neutral-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-neutral-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-neutral-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-neutral-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-neutral-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-danger').textContent).to.equal(
@@ -163,7 +171,11 @@ describe('[Joy] CssVarsProvider', () => {
           containedBg: 'var(--joy-palette-danger-containedBg)',
           containedHoverBg: 'var(--joy-palette-danger-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-danger-containedActiveBg)',
+          containedDisabledColor: 'var(--joy-palette-danger-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-danger-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-danger-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-danger-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-danger-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-info').textContent).to.equal(
@@ -199,7 +211,11 @@ describe('[Joy] CssVarsProvider', () => {
           containedBg: 'var(--joy-palette-info-containedBg)',
           containedHoverBg: 'var(--joy-palette-info-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-info-containedActiveBg)',
+          containedDisabledColor: 'var(--joy-palette-info-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-info-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-info-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-info-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-info-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-success').textContent).to.equal(
@@ -235,7 +251,11 @@ describe('[Joy] CssVarsProvider', () => {
           containedBg: 'var(--joy-palette-success-containedBg)',
           containedHoverBg: 'var(--joy-palette-success-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-success-containedActiveBg)',
+          containedDisabledColor: 'var(--joy-palette-success-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-success-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-success-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-success-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-success-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-warning').textContent).to.equal(
@@ -271,7 +291,11 @@ describe('[Joy] CssVarsProvider', () => {
           containedBg: 'var(--joy-palette-warning-containedBg)',
           containedHoverBg: 'var(--joy-palette-warning-containedHoverBg)',
           containedActiveBg: 'var(--joy-palette-warning-containedActiveBg)',
+          containedDisabledColor: 'var(--joy-palette-warning-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-warning-containedDisabledBg)',
+          overrideTextPrimary: 'var(--joy-palette-warning-overrideTextPrimary)',
+          overrideTextSecondary: 'var(--joy-palette-warning-overrideTextSecondary)',
+          overrideTextTertiary: 'var(--joy-palette-warning-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-text').textContent).to.equal(
@@ -283,7 +307,7 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('palette-background').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-palette-background-default)',
+          body: 'var(--joy-palette-background-body)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',
@@ -316,7 +340,6 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('font-size').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontSize-default)',
           xs: 'var(--joy-fontSize-xs)',
           sm: 'var(--joy-fontSize-sm)',
           md: 'var(--joy-fontSize-md)',
@@ -331,7 +354,7 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('font-family').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontFamily-default)',
+          body: 'var(--joy-fontFamily-body)',
           display: 'var(--joy-fontFamily-display)',
           code: 'var(--joy-fontFamily-code)',
           fallback: 'var(--joy-fontFamily-fallback)',
@@ -339,7 +362,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('font-weight').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontWeight-default)',
           xs: 'var(--joy-fontWeight-xs)',
           sm: 'var(--joy-fontWeight-sm)',
           md: 'var(--joy-fontWeight-md)',
@@ -349,7 +371,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('line-height').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-lineHeight-default)',
           sm: 'var(--joy-lineHeight-sm)',
           md: 'var(--joy-lineHeight-md)',
           lg: 'var(--joy-lineHeight-lg)',
@@ -357,7 +378,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('letter-spacing').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-letterSpacing-default)',
           sm: 'var(--joy-letterSpacing-sm)',
           md: 'var(--joy-letterSpacing-md)',
           lg: 'var(--joy-letterSpacing-lg)',
@@ -370,7 +390,7 @@ describe('[Joy] CssVarsProvider', () => {
         const theme = useTheme();
         return (
           <div>
-            <div data-testid="border-radius">{JSON.stringify(theme.vars.borderRadius)}</div>
+            <div data-testid="radius">{JSON.stringify(theme.vars.radius)}</div>
           </div>
         );
       };
@@ -381,25 +401,24 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('border-radius').textContent).to.equal(
+      expect(screen.getByTestId('radius').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-borderRadius-default)',
-          xs: 'var(--joy-borderRadius-xs)',
-          sm: 'var(--joy-borderRadius-sm)',
-          md: 'var(--joy-borderRadius-md)',
-          lg: 'var(--joy-borderRadius-lg)',
-          xl: 'var(--joy-borderRadius-xl)',
+          xs: 'var(--joy-radius-xs)',
+          sm: 'var(--joy-radius-sm)',
+          md: 'var(--joy-radius-md)',
+          lg: 'var(--joy-radius-lg)',
+          xl: 'var(--joy-radius-xl)',
         }),
       );
     });
 
-    it('elevation ring & channel', () => {
+    it('shadow ring & channel', () => {
       const Vars = () => {
         const theme = useTheme();
         return (
           <div>
-            <div data-testid="elevation-ring">{theme.vars.elevationRing}</div>
-            <div data-testid="elevation-channel">{theme.vars.elevationChannel}</div>
+            <div data-testid="shadow-ring">{theme.vars.shadowRing}</div>
+            <div data-testid="shadow-channel">{theme.vars.shadowChannel}</div>
           </div>
         );
       };
@@ -410,10 +429,8 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('elevation-ring').textContent).to.equal('var(--joy-elevationRing)');
-      expect(screen.getByTestId('elevation-channel').textContent).to.equal(
-        'var(--joy-elevationChannel)',
-      );
+      expect(screen.getByTestId('shadow-ring').textContent).to.equal('var(--joy-shadowRing)');
+      expect(screen.getByTestId('shadow-channel').textContent).to.equal('var(--joy-shadowChannel)');
     });
   });
 
@@ -482,6 +499,9 @@ describe('[Joy] CssVarsProvider', () => {
           'containedHover',
           'containedActive',
           'containedDisabled',
+          'textOverrides',
+          'outlinedOverrides',
+          'lightOverrides',
           'containedOverrides',
         ].join(','),
       );

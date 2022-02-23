@@ -15,7 +15,7 @@ export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunctio
 export type StyleFunction<Props> = (props: Props) => any;
 export type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<
   Partial<Record<PropKey, any>>
->;
+> & { filterProps: string[] };
 
 // borders.js
 export const borders: SimpleStyleFunction<
@@ -123,6 +123,7 @@ export const typography: SimpleStyleFunction<
   | 'letterSpacing'
   | 'lineHeight'
   | 'textAlign'
+  | 'textTransform'
 >;
 
 // compose.js

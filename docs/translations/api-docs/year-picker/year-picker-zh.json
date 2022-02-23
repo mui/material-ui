@@ -1,12 +1,12 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "onYearChange": "Callback firing on year change @DateIOType.",
-    "shouldDisableYear": "Disable specific years dynamically. Works like <code>shouldDisableDate</code> but for year selection view @DateIOType."
+    "onYearChange": "年份改变时的回调函数。",
+    "shouldDisableYear": "动态地禁选某些年份，用法和 <code>shouldDisableDate</code> 一致。"
   },
   "classDescriptions": {
     "root": {
-      "description": "Styles applied to the root element."
+      "description": "组件根元素的全局类名"
     }
   }
 }

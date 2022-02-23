@@ -55,6 +55,12 @@ export interface Breakpoints {
    * @see [API documentation](https://mui.com/customization/breakpoints/#theme-breakpoints-only-key-media-query)
    */
   only: (key: Breakpoint) => string;
+  /**
+   * @param key - A breakpoint key (`xs`, `sm`, etc.).
+   * @returns A media query string ready to be used with most styling solutions, which matches screen widths stopping at
+   *          the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
+   */
+  not: (key: Breakpoint) => string;
 }
 
 export interface BreakpointsOptions extends Partial<Breakpoints> {

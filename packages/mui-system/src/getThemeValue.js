@@ -22,7 +22,7 @@ const filterPropsMapping = {
   typography: typography.filterProps,
 };
 
-const styleFunctionMapping = {
+export const styleFunctionMapping = {
   borders,
   display,
   flexbox,

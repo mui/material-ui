@@ -240,6 +240,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     componentsProps = {},
     defaultValue,
     disabled,
+    disableInjectingGlobalStyles,
     endAdornment,
     error,
     fullWidth = false,
@@ -491,7 +492,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      {inputGlobalStyles}
+      {!disableInjectingGlobalStyles && inputGlobalStyles}
       <Root
         {...rootProps}
         {...(!isHostComponent(Root) && {
@@ -595,7 +596,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -605,6 +609,12 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, GlobalStyles for the auto-fill keyframes will not be injected/removed on mount/unmount. Make sure to inject them at the top of your application.
+   * This option is intended to help with boosting the initial rendering performance if you are loading a big amount of Input components at once.
+   * @default false
+   */
+  disableInjectingGlobalStyles: PropTypes.bool,
   /**
    * End `InputAdornment` for this component.
    */

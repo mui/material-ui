@@ -88,6 +88,7 @@ export const fontWeight: SimpleStyleFunction<'fontWeight'>;
 export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
 export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
+export const textTransform: SimpleStyleFunction<'textTransform'>;
 export type TypographyProps = PropsFor<typeof typography>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -117,6 +118,7 @@ export * from './spacing';
 
 export {
   default as unstable_styleFunctionSx,
+  unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
@@ -161,4 +163,5 @@ export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
 export { default as unstable_createCssVarsProvider } from './cssVars';
+export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export * from './cssVars';

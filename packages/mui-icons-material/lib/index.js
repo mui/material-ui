@@ -16451,6 +16451,36 @@ Object.defineProperty(exports, "EightMpTwoTone", {
     return _EightMpTwoTone.default;
   }
 });
+Object.defineProperty(exports, "EighteenMp", {
+  enumerable: true,
+  get: function () {
+    return _EighteenMp.default;
+  }
+});
+Object.defineProperty(exports, "EighteenMpOutlined", {
+  enumerable: true,
+  get: function () {
+    return _EighteenMpOutlined.default;
+  }
+});
+Object.defineProperty(exports, "EighteenMpRounded", {
+  enumerable: true,
+  get: function () {
+    return _EighteenMpRounded.default;
+  }
+});
+Object.defineProperty(exports, "EighteenMpSharp", {
+  enumerable: true,
+  get: function () {
+    return _EighteenMpSharp.default;
+  }
+});
+Object.defineProperty(exports, "EighteenMpTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _EighteenMpTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "EightteenMp", {
   enumerable: true,
   get: function () {
@@ -18669,6 +18699,36 @@ Object.defineProperty(exports, "FiberSmartRecordTwoTone", {
   enumerable: true,
   get: function () {
     return _FiberSmartRecordTwoTone.default;
+  }
+});
+Object.defineProperty(exports, "FifteenMp", {
+  enumerable: true,
+  get: function () {
+    return _FifteenMp.default;
+  }
+});
+Object.defineProperty(exports, "FifteenMpOutlined", {
+  enumerable: true,
+  get: function () {
+    return _FifteenMpOutlined.default;
+  }
+});
+Object.defineProperty(exports, "FifteenMpRounded", {
+  enumerable: true,
+  get: function () {
+    return _FifteenMpRounded.default;
+  }
+});
+Object.defineProperty(exports, "FifteenMpSharp", {
+  enumerable: true,
+  get: function () {
+    return _FifteenMpSharp.default;
+  }
+});
+Object.defineProperty(exports, "FifteenMpTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _FifteenMpTwoTone.default;
   }
 });
 Object.defineProperty(exports, "FileCopy", {
@@ -64776,6 +64836,16 @@ var _EggSharp = _interopRequireDefault(require("./EggSharp"));
 
 var _EggTwoTone = _interopRequireDefault(require("./EggTwoTone"));
 
+var _EighteenMp = _interopRequireDefault(require("./EighteenMp"));
+
+var _EighteenMpOutlined = _interopRequireDefault(require("./EighteenMpOutlined"));
+
+var _EighteenMpRounded = _interopRequireDefault(require("./EighteenMpRounded"));
+
+var _EighteenMpSharp = _interopRequireDefault(require("./EighteenMpSharp"));
+
+var _EighteenMpTwoTone = _interopRequireDefault(require("./EighteenMpTwoTone"));
+
 var _EightK = _interopRequireDefault(require("./EightK"));
 
 var _EightKOutlined = _interopRequireDefault(require("./EightKOutlined"));
@@ -65555,6 +65625,16 @@ var _FiberSmartRecordRounded = _interopRequireDefault(require("./FiberSmartRecor
 var _FiberSmartRecordSharp = _interopRequireDefault(require("./FiberSmartRecordSharp"));
 
 var _FiberSmartRecordTwoTone = _interopRequireDefault(require("./FiberSmartRecordTwoTone"));
+
+var _FifteenMp = _interopRequireDefault(require("./FifteenMp"));
+
+var _FifteenMpOutlined = _interopRequireDefault(require("./FifteenMpOutlined"));
+
+var _FifteenMpRounded = _interopRequireDefault(require("./FifteenMpRounded"));
+
+var _FifteenMpSharp = _interopRequireDefault(require("./FifteenMpSharp"));
+
+var _FifteenMpTwoTone = _interopRequireDefault(require("./FifteenMpTwoTone"));
 
 var _FileCopy = _interopRequireDefault(require("./FileCopy"));
 

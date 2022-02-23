@@ -7,13 +7,16 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
-import find from 'lodash/find';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import pages from 'docs/src/pages';
+import basePages from 'docs/data/base/pages';
+import materialPages from 'docs/data/material/pages';
+import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
@@ -27,6 +30,8 @@ import {
 } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
+import findActivePage from 'docs/src/modules/utils/findActivePage';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -39,17 +44,23 @@ function LanguageNegotiation() {
   const router = useRouter();
   const userLanguage = useUserLanguage();
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
-    const preferedLanguage =
-      LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
-      acceptLanguage.get(navigator.language) ||
-      userLanguage;
 
-    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
-      window.location =
-        preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
-    } else if (userLanguage !== userLanguageUrl) {
+    // Only consider a redirection if coming to the naked folder.
+    if (userLanguageUrl === 'en') {
+      const preferedLanguage =
+        LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
+        acceptLanguage.get(navigator.language) ||
+        userLanguage;
+
+      if (userLanguage !== preferedLanguage) {
+        window.location =
+          preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
+      }
+    }
+
+    if (userLanguage !== userLanguageUrl) {
       setUserLanguage(userLanguageUrl);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -156,32 +167,6 @@ Tip: you can access the documentation \`theme\` object directly in the console.
     'font-family:monospace;color:#1976d2;font-size:12px;',
   );
 }
-
-function findActivePage(currentPages, pathname) {
-  const activePage = find(currentPages, (page) => {
-    if (page.children) {
-      if (pathname.indexOf(`${page.pathname}/`) === 0) {
-        // Check if one of the children matches (for /components)
-        return findActivePage(page.children, pathname);
-      }
-    }
-
-    // Should be an exact match if no children
-    return pathname === page.pathname;
-  });
-
-  if (!activePage) {
-    return null;
-  }
-
-  // We need to drill down
-  if (activePage.pathname !== pathname) {
-    return findActivePage(activePage.children, pathname);
-  }
-
-  return activePage;
-}
-
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
@@ -198,10 +183,22 @@ function AppWrapper(props) {
     }
   }, []);
 
-  const activePage = findActivePage(pages, router.pathname);
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  let productPages = pages;
+  if (asPathWithoutLang.startsWith('/base')) {
+    productPages = basePages;
+  }
+  if (asPathWithoutLang.startsWith('/material')) {
+    productPages = materialPages;
+  }
+  if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
+    productPages = systemPages;
+  }
+
+  const activePage = findActivePage(productPages, router.pathname);
 
   let fonts = [];
-  if (router.pathname.match(/onepirate/)) {
+  if (asPathWithoutLang.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
@@ -210,13 +207,15 @@ function AppWrapper(props) {
   return (
     <React.Fragment>
       <NextHead>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
         {fonts.map((font) => (
           <link rel="stylesheet" href={font} key={font} />
         ))}
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+        <LanguageNegotiation />
         <CodeVariantProvider>
-          <PageContext.Provider value={{ activePage, pages }}>
+          <PageContext.Provider value={{ activePage, pages: productPages }}>
             <ThemeProvider>
               <DocsStyledEngineProvider cacheLtr={emotionCache}>
                 {children}
@@ -224,7 +223,6 @@ function AppWrapper(props) {
               </DocsStyledEngineProvider>
             </ThemeProvider>
           </PageContext.Provider>
-          <LanguageNegotiation />
         </CodeVariantProvider>
       </UserLanguageProvider>
     </React.Fragment>

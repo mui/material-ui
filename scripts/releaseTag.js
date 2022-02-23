@@ -19,7 +19,7 @@ function execDry(command, options) {
 }
 
 /**
- * Find the remote pointing to mui-org/material-ui.
+ * Find the remote pointing to mui/material-ui.
  *
  * Conventionally this should be named `upstream` but some collaborators might've used a different naming scheme.
  */
@@ -35,11 +35,11 @@ async function findMuiOrgRemote() {
     .find((remote) => {
       // test: https://regex101.com/r/fBVJUX/1
       // matching:
-      // - https://github.com/mui-org/material-ui
-      // - git@github.com:mui-org/material-ui.git
+      // - https://github.com/mui/material-ui
+      // - git@github.com:mui/material-ui.git
       // but not:
-      // - git@github.com:mui-org/material-ui-docs.git
-      return /mui-org\/material-ui(\.git)?$/.test(remote.url) && remote.method === '(push)';
+      // - git@github.com:mui/material-ui-docs.git
+      return /mui\/material-ui(\.git)?$/.test(remote.url) && remote.method === '(push)';
     });
 }
 
@@ -61,8 +61,8 @@ async function main(argv) {
   const muiOrgRemote = await findMuiOrgRemote();
   if (muiOrgRemote === undefined) {
     throw new TypeError(
-      'Unable to find the upstream remote. It should be a remote pointing to "mui-org/material-ui". ' +
-        'Did you forget to add it via `git remote add upstream git@github.com:mui-org/material-ui.git`? ' +
+      'Unable to find the upstream remote. It should be a remote pointing to "mui/material-ui". ' +
+        'Did you forget to add it via `git remote add upstream git@github.com:mui/material-ui.git`? ' +
         'If you think this is a bug please include `git remote -v` in your report.',
     );
   }
@@ -78,7 +78,7 @@ async function main(argv) {
 yargs
   .command({
     command: '$0',
-    description: 'Tags the current release and pushes these changes to mui-org/material-ui.',
+    description: 'Tags the current release and pushes these changes to mui/material-ui.',
     builder: (command) => {
       return command.option('dryRun', {
         default: false,

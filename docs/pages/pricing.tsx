@@ -13,7 +13,7 @@ import FAQ from 'docs/src/components/pricing/FAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import SurveyBanner from 'docs/src/components/home/SurveyBanner';
+import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function Pricing() {
   return (
@@ -22,7 +22,7 @@ export default function Pricing() {
         title="Pricing - MUI"
         description="The community edition lets you get going right away. Switch to a commercial plan for more components & professional support."
       />
-      <SurveyBanner />
+      <AppHeaderBanner />
       <AppHeader />
       <main>
         <HeroPricing />

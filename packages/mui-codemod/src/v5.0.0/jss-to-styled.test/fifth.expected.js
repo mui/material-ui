@@ -68,7 +68,7 @@ function SellHero() {
           Sell themes
         </Typography>
         <Typography component="h2" align="center" variant="h3" color="textSecondary">
-          {'Build your React themes business on the official MUI store.'}
+          {'Build your React themes business on the official MUI Store.'}
         </Typography>
         <div className={classes.actions}>
           <Button

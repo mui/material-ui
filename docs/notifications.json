@@ -7,11 +7,16 @@
   },
   {
     "id": 53,
-    "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI\">follow us on Twitter</a> to receive exclusive tips and updates about MUI and the React ecosystem."
+    "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MUI_hq\">follow us on Twitter</a> to receive exclusive tips and updates about MUI and the React ecosystem."
   },
   {
-    "id": 55,
-    "title": "2021 MUI developer survey",
-    "text": "Help shape the future of MUI! 🚀<br />Please take a few minutes to complete the <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://mui-org.typeform.com/2021-dev-survey\">2021 MUI developer survey</a>."
+    "id": 56,
+    "title": "🚀 <b>Data Grid</b> — Introducing the Row Grouping feature",
+    "text": "Released in <code>@mui/x-data-grid-pro v5.3.0</code>. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-the-row-grouping-feature\" href=\"/blog/introducing-the-row-grouping-feature/\">Read the blog post</a> or <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://github.com/mui/mui-x/releases/tag/v5.3.0\">the changelog</a> for more details."
+  },
+  {
+    "id": 57,
+    "title": "🚀 <b>System</b> — Introducing callback support in style overrides",
+    "text": "Released in <code>@mui/material v5.3.0</code>. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"callback-support-in-style-overrides\" href=\"/blog/callback-support-in-style-overrides/\">Read the blog post</a> or <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://github.com/mui/material-ui/releases/tag/v5.3.0\">the changelog</a> for more details."
   }
 ]

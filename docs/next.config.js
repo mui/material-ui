@@ -3,6 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
+const FEATURE_TOGGLE = require('./src/featureToggle');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -15,8 +16,7 @@ const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY =
 const vercelDeploy = Boolean(process.env.VERCEL);
 
 const staging =
-  process.env.REPOSITORY_URL === undefined ||
-  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+  process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
@@ -99,7 +99,7 @@ module.exports = {
             oneOf: [
               {
                 resourceQuery: /@mui\/markdown/,
-                use: require.resolve('@mui/markdown/loader'),
+                use: [options.defaultLoaders.babel, require.resolve('@mui/markdown/loader')],
               },
               {
                 // used in some /getting-started/templates
@@ -167,8 +167,8 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
-    SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
+    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     STAGING: staging,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -184,8 +184,18 @@ module.exports = {
         if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
           return;
         }
+        // The blog is not translated
+        if (
+          userLanguage !== 'en' &&
+          (page.pathname === '/blog' || page.pathname.startsWith('/blog/'))
+        ) {
+          return;
+        }
         if (!page.children) {
-          map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
+          // map api-docs to api
+          // i: /api-docs/* > /api/* (old structure)
+          // ii: /*/api-docs/* > /*/api/* (for new structure)
+          map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
             page: page.pathname,
             query: {
               userLanguage,
@@ -216,12 +226,106 @@ module.exports = {
   },
   reactStrictMode,
   trailingSlash: true,
+  // rewrites has no effect when run `next export` for production
   async rewrites() {
     return [
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
       // Make sure to include the trailing slash if `trailingSlash` option is set
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
     ];
+  },
+  // For developement, adjust the redirects here (no effect on production because of `next export`)
+  // For production, configure at `docs/public/_redirects` (netlify)
+  async redirects() {
+    if (FEATURE_TOGGLE.enable_redirects) {
+      return [
+        {
+          source: '/styles/:path*',
+          destination: '/system/styles/:path*',
+          permanent: false,
+        },
+        {
+          source: '/getting-started/:path*',
+          destination: '/material/getting-started/:path*',
+          permanent: false,
+        },
+        {
+          source: '/customization/:path*',
+          destination: '/material/customization/:path*',
+          permanent: false,
+        },
+        {
+          source: '/guides/:path*',
+          destination: '/material/guides/:path*',
+          permanent: false,
+        },
+        {
+          source: '/discover-more/:path*',
+          destination: '/material/discover-more/:path*',
+          permanent: false,
+        },
+        {
+          source: '/components/data-grid/:path*',
+          destination: '/x/react-data-grid/:path*',
+          permanent: false,
+        },
+        {
+          source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
+          destination: '/material/:slug',
+          permanent: false,
+        },
+        {
+          source: '/components/:path(tabs|breadcrumbs)',
+          destination: '/material/react-:path',
+          permanent: false,
+        },
+        ...['checkboxes', 'switches'].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material/react-${component.replace(/es$/, '')}`,
+          permanent: false,
+        })),
+        ...[
+          'buttons',
+          'radio-buttons',
+          'selects',
+          'text-fields',
+          'avatars',
+          'badges',
+          'chips',
+          'dividers',
+          'lists',
+          'tables',
+          'tooltips',
+          'dialogs',
+          'snackbars',
+          'cards',
+          'drawers',
+          'links',
+          'menus',
+          'steppers',
+        ].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material/react-${component.replace(/s$/, '')}`,
+          permanent: false,
+        })),
+        {
+          source: '/components/:path',
+          destination: '/material/react-:path',
+          permanent: false,
+        },
+        {
+          source: '/api/data-grid/:path*',
+          destination: '/x/api/data-grid/:path*',
+          permanent: false,
+        },
+        {
+          source: '/api/:path*',
+          destination: '/material/api/:path*',
+          permanent: false,
+        },
+      ];
+    }
+    return [];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,
