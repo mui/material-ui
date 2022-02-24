@@ -53,7 +53,7 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-swipeable-views": "^0.13.1",
     "@types/react-swipeable-views-utils": "^0.13.3",
-    "@types/react-virtualized": "^9.21.16",
+    "@types/react-virtualized": "^9.21.20",
     "@types/react-window": "^1.8.5",
     "@types/styled-components": "5.1.22",
     "accept-language": "^3.0.18",
