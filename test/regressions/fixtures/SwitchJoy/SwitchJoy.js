@@ -9,7 +9,7 @@ export default function SwitchJoy() {
       <Box sx={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(4, min-content)' }}>
         <Switch />
         <Switch defaultChecked />
-        <Switch defaultChecked checkedColor="success" />
+        <Switch defaultChecked color="success" />
         <Switch variant="outlined" />
         <Switch variant="outlined" defaultChecked />
         <Switch variant="light" />

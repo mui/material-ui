@@ -44,22 +44,6 @@ export interface SwitchProps
    */
   color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SwitchPropsColorOverrides>;
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
-   */
-  checkedColor?: OverridableStringUnion<
-    Exclude<ColorPaletteProp, 'context'>,
-    SwitchPropsColorOverrides
-  >;
-  /**
-   * The variant to use.
-   * @default 'contained'
-   */
-  checkedVariant?: OverridableStringUnion<
-    Exclude<VariantProp, 'text'>,
-    SwitchPropsVariantOverrides
-  >;
-  /**
    * The size of the component.
    * @default 'md'
    */

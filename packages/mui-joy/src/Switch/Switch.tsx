@@ -9,17 +9,7 @@ import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
 
 const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) => {
-  const {
-    classes,
-    checked,
-    disabled,
-    focusVisible,
-    readOnly,
-    color,
-    variant,
-    checkedColor,
-    checkedVariant,
-  } = ownerState;
+  const { classes, checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
 
   const slots = {
     root: [
@@ -28,10 +18,8 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       readOnly && 'readOnly',
-      variant && !checked && `variant${capitalize(variant)}`,
-      checkedVariant && checked && `variant${capitalize(checkedVariant)}`,
-      color && !checked && `color${capitalize(color)}`,
-      checkedColor && checked && `color${capitalize(checkedColor)}`,
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
     ],
     thumb: ['thumb', checked && 'checked'],
     track: ['track', checked && 'checked'],
@@ -44,8 +32,8 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
 const switchColorVariables =
   ({ theme, ownerState }: { theme: JoyTheme; ownerState: SwitchProps }) =>
   (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
-    const variant = data.checked ? ownerState.checkedVariant : ownerState.variant;
-    const color = data.checked ? ownerState.checkedColor : ownerState.color;
+    const variant = ownerState.variant;
+    const color = ownerState.color;
     return {
       '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
       '--Switch-track-borderColor':
@@ -64,12 +52,7 @@ const SwitchRoot = styled('span', {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return [
     {
-      ...(!ownerState.checked &&
-        ownerState.variant === 'outlined' &&
-        theme.variants.outlined[ownerState.color!]),
-      ...(ownerState.checked &&
-        ownerState.checkedVariant === 'outlined' &&
-        theme.variants.outlined[ownerState.checkedColor!]),
+      ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
       '--Switch-track-radius': theme.vars.radius.lg,
       '--Switch-track-width': '48px',
       '--Switch-track-height': '24px',
@@ -187,10 +170,8 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
-    color = 'neutral',
-    checkedColor = 'primary',
+    color,
     variant = 'contained',
-    checkedVariant = variant,
     size,
     ...otherProps
   } = props;
@@ -214,10 +195,8 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     disabled,
     focusVisible,
     readOnly,
-    color,
-    checkedColor,
+    color: checked ? color || 'primary' : color || 'neutral',
     variant,
-    checkedVariant,
     size,
   };
 
@@ -260,22 +239,6 @@ Switch.propTypes /* remove-proptypes */ = {
    * If `true`, the component is checked.
    */
   checked: PropTypes.bool,
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
-   */
-  checkedColor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-    PropTypes.string,
-  ]),
-  /**
-   * The variant to use.
-   * @default 'contained'
-   */
-  checkedVariant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
-    PropTypes.string,
-  ]),
   /**
    * @ignore
    */

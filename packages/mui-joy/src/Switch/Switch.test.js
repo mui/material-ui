@@ -73,15 +73,6 @@ describe('<Switch />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', true);
   });
 
-  it('the switch has correct color & variant classes when checked', () => {
-    const { container } = render(
-      <Switch defaultChecked checkedColor="success" checkedVariant="light" />,
-    );
-
-    expect(container.firstChild).to.have.class(classes.colorSuccess);
-    expect(container.firstChild).to.have.class(classes.variantLight);
-  });
-
   it('the switch can be disabled', () => {
     const { getByRole } = render(<Switch disabled />);
 
