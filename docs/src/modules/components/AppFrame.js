@@ -74,10 +74,12 @@ export function DeferredAppSearch() {
     <React.Fragment>
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense fallback={null}>
+        <React.Suspense fallback={<Box sx={{ minWidth: { sm: 200 } }} />}>
           <AppSearch />
         </React.Suspense>
-      ) : null}
+      ) : (
+        <Box sx={{ minWidth: { sm: 200 } }} />
+      )}
     </React.Fragment>
   );
 }

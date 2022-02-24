@@ -18,7 +18,7 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useRouter } from 'next/router';
-import replaceUrl from 'docs/src/modules/utils/replaceUrl';
+import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -192,6 +192,8 @@ export default function AppSearch() {
     setIsOpen(true);
   }, [setIsOpen]);
   const router = useRouter();
+  const isNewDocStructure = isNewLocation(router.asPath);
+
   const keyboardNavigator = {
     navigate({ item }) {
       const as = item.userLanguage !== 'en' ? `/${item.userLanguage}${item.as}` : item.as;
@@ -285,7 +287,12 @@ export default function AppSearch() {
         createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
-            apiKey="1d8534f83b9b0cfea8f16498d19fbcab"
+            appId={isNewDocStructure ? 'TZGZ85B9TB' : 'BH4D9OD16A'}
+            apiKey={
+              isNewDocStructure
+                ? '8177dfb3e2be72b241ffb8c5abafa899'
+                : '1d8534f83b9b0cfea8f16498d19fbcab'
+            }
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
@@ -299,7 +306,6 @@ export default function AppSearch() {
                 parseUrl.href = item.url;
 
                 let hash = parseUrl.hash;
-                let pathname = parseUrl.pathname;
 
                 if (['lvl2', 'lvl3'].includes(item.type)) {
                   // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
@@ -307,12 +313,9 @@ export default function AppSearch() {
                   hash = hash.replace('#heading-', '#');
                 }
 
-                // TODO: remove this logic once the migration to new structure is done.
-                // This logic covers us during the ~60 minutes that it takes Algolia to run a crawl and update its index.
-                // It also allows us to have a search bar that works in dev mode while the new structure is not pushed to production.
-                pathname = replaceUrl(pathname, router.asPath);
-
-                const { canonicalAs, canonicalPathname } = pathnameToLanguage(`${pathname}${hash}`);
+                const { canonicalAs, canonicalPathname } = pathnameToLanguage(
+                  `${parseUrl.pathname}${hash}`,
+                );
 
                 return {
                   ...item,
