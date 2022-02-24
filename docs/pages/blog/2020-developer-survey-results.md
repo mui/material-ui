@@ -34,7 +34,7 @@ As last year, we again calculated the [Net Promoter Score](https://en.wikipedia.
 
 ### 3. Who do you think would most benefit from MUI?
 
-<img src="/static/blog/2020-survey/3.jpg" style="width: 512px; margin-top: 32px; margin-bottom: 16px;" alt="Word cloud of who would benefit most" />
+<img src="/static/blog/2020-survey/3.png" style="width: 512px; margin-top: 32px; margin-bottom: 16px;" alt="Word cloud of who would benefit most" />
 
 <p class="blog-description">This word cloud was generated with wordclouds.com.</p>
 
@@ -43,7 +43,7 @@ of the majority of respondents. We will push hard on making the experience for y
 
 ### 4. What is the main benefit you receive from MUI?
 
-<img src="/static/blog/2020-survey/4.jpg" style="width: 512px; margin-top: 32px; margin-bottom: 32px; " alt="Word cloud of the main benefit of MUI" />
+<img src="/static/blog/2020-survey/4.png" style="width: 512px; margin-top: 32px; margin-bottom: 32px; " alt="Word cloud of the main benefit of MUI" />
 
 The responses to this question are a very clear indicator to us about what we need to continue to do more of. Some of the most common points were: the range of components, ease of use, documentation quality, as well as the design. We will, of course, continue to work on all of these.
 
@@ -54,7 +54,7 @@ As the answers to these questions were pretty different, we grouped them into di
 <style>th { text-align: left; border-bottom: 3px solid !important; }</style>
 
 <table>
-  <tr><th>306</th><th>more components</th><tr>
+  <tr><th style="width: 40px;">306</th><th style="width: 700px;">more components</th><tr>
   <tr><td>202</td><td>more components - ?</td><tr>
   <tr><td>15</td><td>more components - data grid</td><tr>
   <tr><td>12</td><td>more components - carousel</td><tr>
