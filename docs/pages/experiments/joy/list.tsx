@@ -165,11 +165,10 @@ function Gmail() {
       sx={{
         '--List-padding': '0px',
         '--List-radius': '0px',
-        '--List-item-paddingX': '0px',
+        '--List-item-paddingLeft': '0px',
         '--List-item-radius': '0 20px 20px 0',
         '--List-decorator-width': '64px',
         '--List-item-minHeight': '32px',
-        '--List-item-actionWidth': '12px',
         '--List-gap': '0px',
         '--List-nestedInset': '13px',
         '& .MuiListItemDecorator-root': { justifyContent: 'flex-end', pr: '18px' },
@@ -342,7 +341,8 @@ function MuiNav() {
         '--List-item-radius': '5px',
         '--List-gap': '10px',
         '--List-padding': '10px',
-        '--List-item-paddingX': '2px',
+        '--List-item-paddingLeft': '2px',
+        '--List-item-paddingRight': '2px',
         '--List-item-paddingY': '0px',
         '--List-item-fontSize': theme.vars.fontSize.sm,
         '--List-nestedInset': '28px',
@@ -404,7 +404,6 @@ function MuiNav() {
                   return (
                     <ListItem nested key={nestedPage.pathname}>
                       <MuiListItemContent>
-                        <ListItemDecorator />
                         {pageToTitleI18n(nestedPage, t) || ''}
                       </MuiListItemContent>
                       <NestedList sx={{ '--List-gap': '4px' }}>
@@ -451,7 +450,8 @@ const Firebash = () => {
           '--List-gap': '0px',
           '--List-padding': '0px',
           '--List-item-paddingY': '8px',
-          '--List-item-paddingX': '24px',
+          '--List-item-paddingLeft': '24px',
+          '--List-item-paddingRight': '24px',
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
           '--List-nestedInset': '0px',
@@ -473,8 +473,7 @@ const Firebash = () => {
         <ListItem
           sx={{
             '--List-item-minHeight': '56px',
-            '--List-item-secondaryActionRight': '0px',
-            '& .MuiListItem-secondaryAction': { right: '0px' },
+            '--List-item-endActionTranslateX': '0px',
           }}
           endAction={
             <IconButton
@@ -597,17 +596,18 @@ const Gatsby = () => {
           '--joy-palette-primary-textActiveBg': 'transparent',
           '[data-mui-color-scheme="light"] &': {
             '--joy-palette-text-secondary': '#635e69',
+            '--joy-palette-primary-textColor': '#d48cff',
           },
 
           '--List-nestedInset': '0px',
           '--List-radius': '0px',
           '--List-padding': '0px',
           '--List-insetStart': '32px',
-          '--List-gap': '0px',
           '--List-item-paddingY': '0px',
-          '--List-item-secondaryActionRight': 'initial',
-          '--List-item-secondaryActionLeft': '0px',
-          '--List-item-secondaryActionTransform': 'translate(-50%, -50%)',
+          '--List-item-paddingRight': '16px',
+          '--List-item-paddingLeft': '21px',
+          '--List-item-startActionWidth': '0px',
+          '--List-item-startActionTranslateX': '-50%',
 
           '& .MuiListItemButton-root': {
             borderLeft: '1px solid',
@@ -616,13 +616,10 @@ const Gatsby = () => {
           '& .MuiListItemButton-root.Mui-selected': {
             borderColor: 'currentColor',
           },
-          '& .MuiNestedListItem-root > .MuiListItemButton-root': {
+          '& .MuiListItem-nested > .MuiListItemButton-root': {
             border: 'none',
           },
-          '& [class*="secondaryAction"]': {
-            right: 'unset',
-            left: '0px',
-            transform: 'translate(-50%, -50%)',
+          '& [class*="startAction"]': {
             color: 'var(--joy-palette-text-tertiary)',
           },
         }}
@@ -633,13 +630,13 @@ const Gatsby = () => {
               Documentation
             </Typography>
           </ListItem>
-          <NestedList>
+          <NestedList sx={{ '--List-gap': '0px' }}>
             <ListItem>
               <ListItemButton selected>Overview</ListItemButton>
             </ListItem>
           </NestedList>
         </ListItem>
-        <ListItem>
+        <ListItem sx={{ '--List-gap': '0px' }}>
           <ListItemButton>Quick Start</ListItemButton>
         </ListItem>
         <ListItem
@@ -652,7 +649,13 @@ const Gatsby = () => {
           }
         >
           <ListItemButton>
-            <Typography level="inherit" sx={{ fontWeight: open ? 'bold' : undefined }}>
+            <Typography
+              level="inherit"
+              sx={{
+                fontWeight: open ? 'bold' : undefined,
+                color: open ? 'text.primary' : 'inherit',
+              }}
+            >
               Tutorial
             </Typography>
             <Typography component="span" level="body3" sx={{ ml: 1 }}>
@@ -660,7 +663,7 @@ const Gatsby = () => {
             </Typography>
           </ListItemButton>
           <Collapse in={open}>
-            <NestedList sx={{ '--List-item-paddingY': '8px' }}>
+            <NestedList sx={{ '--List-item-paddingY': '8px', '--List-gap': '0px' }}>
               <ListItem>
                 <ListItemButton>Overview</ListItemButton>
               </ListItem>
@@ -691,7 +694,7 @@ const Gatsby = () => {
               39
             </Typography>
           </ListItemButton>
-          <NestedList sx={{ '--List-item-paddingY': '8px' }}>
+          <NestedList sx={{ '--List-item-paddingY': '8px', '--List-gap': '0px' }}>
             <ListItem>
               <ListItemButton>Overview</ListItemButton>
             </ListItem>

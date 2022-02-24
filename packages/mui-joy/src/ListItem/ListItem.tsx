@@ -81,25 +81,25 @@ const ListItemStartAction = styled('div', {
   name: 'MuiListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
-})<{ ownerState: ListItemProps }>({
+})<{ ownerState: ListItemProps }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
-  top: '50%',
+  top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
   left: 0,
   transform: 'translate(var(--List-item-startActionTranslateX), -50%)',
-});
+}));
 
 const ListItemEndAction = styled('div', {
   name: 'MuiListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
-})<{ ownerState: ListItemProps }>({
+})<{ ownerState: ListItemProps }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
-  top: '50%',
+  top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
   right: 0,
   transform: 'translate(var(--List-item-endActionTranslateX), -50%)',
-});
+}));
 
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
