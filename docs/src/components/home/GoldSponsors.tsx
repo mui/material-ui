@@ -50,9 +50,9 @@ const GOLDs = [
   {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
     srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
-    name: 'TopAussieCasinos.com',
+    name: 'online-aussie-casino',
     description: 'Aussie Gambling Guide.',
-    href: 'https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
