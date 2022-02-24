@@ -13,7 +13,7 @@ githubLabel: 'component: Stack'
 
 ## Uso
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 {{"demo": "BasicStack.js", "bg": true}}
 
