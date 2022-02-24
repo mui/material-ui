@@ -1,5 +1,14 @@
 {
-  "props": {},
+  "props": {
+    "anchorEl": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } }
+  },
   "name": "MenuUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
