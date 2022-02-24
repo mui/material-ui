@@ -9,10 +9,11 @@ import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
-  const { sticky } = ownerState;
+  const { sticky, nested } = ownerState;
   const slots = {
-    root: ['root', sticky && 'sticky'],
-    secondaryAction: ['secondaryAction'],
+    root: ['root', nested && 'nested', sticky && 'sticky'],
+    startAction: ['startAction'],
+    endAction: ['endAction'],
   };
 
   return composeClasses(slots, getListItemUtilityClass, {});
@@ -22,49 +23,82 @@ const ListItemRoot = styled('li', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemProps }>(({ theme, ownerState }) => ({
-  // add negative margin to ListItemButton equal to this ListItem padding
-  '--List-itemButton-margin': `calc(-1 * var(--List-item-paddingY))
-    calc(-1 * var(--List-item-paddingX))
-    calc(-1 * var(--List-item-paddingY))
-    calc(-1 * var(--List-insetStart))`,
-  ...(ownerState.secondaryAction && {
-    '--internal-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
-  }),
-  boxSizing: 'border-box',
-  display: 'flex',
-  alignItems: 'center',
-  position: 'relative',
-  padding: 'var(--List-item-paddingY) var(--List-item-paddingX)',
-  paddingLeft: 'var(--List-insetStart)',
-  minHeight: 'var(--List-item-minHeight)',
-  margin: 'var(--List-item-margin)',
-  fontSize: 'var(--List-item-fontSize)',
-  fontFamily: theme.vars.fontFamily.body,
-  ...(ownerState.sticky && {
-    position: 'sticky',
-    top: 0,
-    zIndex: 1,
-    background: 'var(--List-background)',
-  }),
-  [`& + .${listItemClasses.root}`]: {
-    marginTop: 'var(--List-gap)',
+})<{ ownerState: ListItemProps }>(({ theme, ownerState }) => [
+  !ownerState.nested && {
+    // add negative margin to ListItemButton equal to this ListItem padding
+    '--List-itemButton-margin': `calc(-1 * var(--List-item-paddingY))
+calc(-1 * var(--List-item-paddingRight))
+calc(-1 * var(--List-item-paddingY))
+calc(-1 * var(--List-item-paddingLeft))`,
+    alignItems: 'center',
+    margin: 'var(--List-item-margin)',
   },
-  [`& + .${listItemButtonClasses.root}`]: {
-    marginTop: 'var(--List-gap)',
+  ownerState.nested && {
+    // add negative margin to NestedList equal to this ListItem padding
+    '--NestedList-margin':
+      '0px calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+    '--NestedList-item-paddingLeft': `calc(var(--List-item-paddingLeft) + var(--List-nestedInset))`,
+    // add negative margin to ListItem, ListItemButton to make them start from the edge.
+    '--List-itemButton-margin':
+      'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+    '--List-item-margin':
+      'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+    flexDirection: 'column',
   },
-}));
+  // Base styles
+  {
+    ...(ownerState.startAction && {
+      '--internal-startActionWidth': '3rem', // to add sufficient padding-left on ListItemButton
+    }),
+    ...(ownerState.endAction && {
+      '--internal-endActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
+    }),
+    boxSizing: 'border-box',
+    display: 'flex',
+    position: 'relative',
+    padding: 'var(--List-item-paddingY)',
+    paddingLeft: 'var(--List-item-paddingLeft)',
+    paddingRight: 'var(--List-item-paddingRight)',
+    minHeight: 'var(--List-item-minHeight)',
+    fontSize: 'var(--List-item-fontSize)',
+    fontFamily: theme.vars.fontFamily.body,
+    ...(ownerState.sticky && {
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      background: 'var(--List-background)',
+    }),
+    [`& + .${listItemClasses.root}`]: {
+      marginTop: 'var(--List-gap)',
+    },
+    [`& + .${listItemButtonClasses.root}`]: {
+      marginTop: 'var(--List-gap)',
+    },
+  },
+]);
 
-const ListItemSecondaryAction = styled('div', {
+const ListItemStartAction = styled('div', {
   name: 'MuiListItem',
-  slot: 'SecondaryAction',
-  overridesResolver: (props, styles) => styles.secondaryAction,
+  slot: 'StartAction',
+  overridesResolver: (props, styles) => styles.startAction,
 })<{ ownerState: ListItemProps }>({
   display: 'inherit',
   position: 'absolute',
   top: '50%',
-  right: 'var(--List-item-paddingX)',
-  transform: 'translateY(-50%)',
+  left: 0,
+  transform: 'translate(var(--List-item-startActionTranslateX), -50%)',
+});
+
+const ListItemEndAction = styled('div', {
+  name: 'MuiListItem',
+  slot: 'StartAction',
+  overridesResolver: (props, styles) => styles.startAction,
+})<{ ownerState: ListItemProps }>({
+  display: 'inherit',
+  position: 'absolute',
+  top: '50%',
+  right: 0,
+  transform: 'translate(var(--List-item-endActionTranslateX), -50%)',
 });
 
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
@@ -73,11 +107,20 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'MuiListItem',
   });
 
-  const { component, className, children, sticky = false, secondaryAction, ...other } = props;
+  const {
+    component,
+    className,
+    children,
+    sticky = false,
+    startAction,
+    endAction,
+    ...other
+  } = props;
 
   const ownerState = {
     sticky,
-    secondaryAction,
+    startAction,
+    endAction,
     ...props,
   };
 
@@ -91,11 +134,16 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
+      {startAction && (
+        <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
+          {startAction}
+        </ListItemStartAction>
+      )}
       {children}
-      {secondaryAction && (
-        <ListItemSecondaryAction className={classes.secondaryAction} ownerState={ownerState}>
-          {secondaryAction}
-        </ListItemSecondaryAction>
+      {endAction && (
+        <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
+          {endAction}
+        </ListItemEndAction>
       )}
     </ListItemRoot>
   );

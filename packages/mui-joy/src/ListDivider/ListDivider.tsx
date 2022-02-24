@@ -29,14 +29,14 @@ const ListDividerRoot = styled('li', {
   margin: 'var(--List-divider-gap) calc(-1 * var(--List-padding))',
   ...(ownerState.inset === 'gutter' && {
     margin: 'var(--List-divider-gap)',
-    marginRight: 'var(--List-item-paddingX)',
-    marginLeft: 'var(--List-insetStart)',
+    marginRight: 'var(--List-item-paddingRight)',
+    marginLeft: 'var(--List-item-paddingLeft)',
   }),
   ...(ownerState.inset === 'startDecorator' && {
-    marginLeft: 'var(--List-insetStart)',
+    marginLeft: 'var(--List-item-paddingLeft)',
   }),
   ...(ownerState.inset === 'startContent' && {
-    marginLeft: 'calc(var(--List-insetStart) + var(--List-decorator-width))',
+    marginLeft: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
   }),
 }));
 

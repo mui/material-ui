@@ -34,8 +34,5 @@ export * from './ListItemContent';
 export { default as NestedList } from './NestedList';
 export * from './NestedList';
 
-export { default as NestedListItem } from './NestedListItem';
-export * from './NestedListItem';
-
 export { default as Input } from './Input';
 export * from './Input';

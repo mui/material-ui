@@ -19,7 +19,6 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
 import NestedList from '@mui/joy/NestedList';
-import NestedListItem from '@mui/joy/NestedListItem';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -136,7 +135,7 @@ function CheckboxList() {
         return (
           <ListItem
             key={value}
-            secondaryAction={
+            endAction={
               <IconButton aria-label="comments" size="sm">
                 <CommentIcon />
               </IconButton>
@@ -170,9 +169,9 @@ function Gmail() {
         '--List-item-radius': '0 20px 20px 0',
         '--List-decorator-width': '64px',
         '--List-item-minHeight': '32px',
-        '--List-item-secondaryActionWidth': '12px',
+        '--List-item-actionWidth': '12px',
         '--List-gap': '0px',
-        '--List-insetStartAddition': '13px',
+        '--List-nestedInset': '13px',
         '& .MuiListItemDecorator-root': { justifyContent: 'flex-end', pr: '18px' },
       }}
     >
@@ -192,7 +191,7 @@ function Gmail() {
           </Typography>
         </ListItemButton>
       </ListItem>
-      <NestedListItem>
+      <ListItem nested>
         <ListItemButton
           selected={index === 1}
           variant={index === 1 ? 'light' : 'text'}
@@ -235,7 +234,7 @@ function Gmail() {
             </ListItemButton>
           </ListItem>
         </NestedList>
-      </NestedListItem>
+      </ListItem>
     </List>
   );
 }
@@ -346,7 +345,7 @@ function MuiNav() {
         '--List-item-paddingX': '2px',
         '--List-item-paddingY': '0px',
         '--List-item-fontSize': theme.vars.fontSize.sm,
-        '--List-insetStartAddition': '28px',
+        '--List-nestedInset': '28px',
         '--List-decorator-color': theme.vars.palette.primary.textColor,
       })}
     >
@@ -356,7 +355,7 @@ function MuiNav() {
         );
         const IconComponent = aPage.icon ? iconsMap[aPage.icon as keyof typeof iconsMap] : null;
         return (
-          <NestedListItem key={aPage.pathname}>
+          <ListItem nested key={aPage.pathname}>
             <ListItemButton
               sx={{ mb: '2px' }}
               onClick={() =>
@@ -385,7 +384,7 @@ function MuiNav() {
               <NestedList
                 sx={{
                   '--List-gap': hasDeeperLevel ? '17px' : '4px',
-                  '--List-insetStartAddition': '0px',
+                  '--List-nestedInset': '0px',
                 }}
               >
                 {(aPage.children || []).map((nestedPage, nestedIndex) => {
@@ -403,7 +402,7 @@ function MuiNav() {
                     );
                   }
                   return (
-                    <NestedListItem key={nestedPage.pathname}>
+                    <ListItem nested key={nestedPage.pathname}>
                       <MuiListItemContent>
                         <ListItemDecorator />
                         {pageToTitleI18n(nestedPage, t) || ''}
@@ -415,12 +414,12 @@ function MuiNav() {
                           </ListItem>
                         ))}
                       </NestedList>
-                    </NestedListItem>
+                    </ListItem>
                   );
                 })}
               </NestedList>
             </Collapse>
-          </NestedListItem>
+          </ListItem>
         );
       })}
     </List>
@@ -455,7 +454,7 @@ const Firebash = () => {
           '--List-item-paddingX': '24px',
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
-          '--List-insetStartAddition': '0px',
+          '--List-nestedInset': '0px',
           '--List-divider-gap': '0px',
           '--List-background': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
@@ -477,7 +476,7 @@ const Firebash = () => {
             '--List-item-secondaryActionRight': '0px',
             '& .MuiListItem-secondaryAction': { right: '0px' },
           }}
-          secondaryAction={
+          endAction={
             <IconButton
               variant="text"
               color="neutral"
@@ -524,7 +523,8 @@ const Firebash = () => {
           </ListItemButton>
         </ListItem>
         <ListDivider />
-        <NestedListItem
+        <ListItem
+          nested
           sx={{
             bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
           }}
@@ -577,7 +577,7 @@ const Firebash = () => {
                 </ListItemButton>
               ))}
           </NestedList>
-        </NestedListItem>
+        </ListItem>
       </List>
     </Box>
   );
@@ -599,7 +599,7 @@ const Gatsby = () => {
             '--joy-palette-text-secondary': '#635e69',
           },
 
-          '--List-insetStartAddition': '0px',
+          '--List-nestedInset': '0px',
           '--List-radius': '0px',
           '--List-padding': '0px',
           '--List-insetStart': '32px',
@@ -627,8 +627,8 @@ const Gatsby = () => {
           },
         }}
       >
-        <NestedListItem>
-          <ListItem component="div" secondaryAction={<ReceiptLong />}>
+        <ListItem nested>
+          <ListItem component="div" startAction={<ReceiptLong />}>
             <Typography level="body3" sx={{ textTransform: 'uppercase' }}>
               Documentation
             </Typography>
@@ -638,13 +638,14 @@ const Gatsby = () => {
               <ListItemButton selected>Overview</ListItemButton>
             </ListItem>
           </NestedList>
-        </NestedListItem>
+        </ListItem>
         <ListItem>
           <ListItemButton>Quick Start</ListItemButton>
         </ListItem>
-        <NestedListItem
+        <ListItem
+          nested
           sx={{ my: 1 }}
-          secondaryAction={
+          startAction={
             <IconButton variant="text" size="sm" color="neutral" onClick={() => setOpen(!open)}>
               <KeyboardArrowDown sx={{ transform: open ? 'initial' : 'rotate(-90deg)' }} />
             </IconButton>
@@ -674,10 +675,11 @@ const Gatsby = () => {
               </ListItem>
             </NestedList>
           </Collapse>
-        </NestedListItem>
-        <NestedListItem
+        </ListItem>
+        <ListItem
+          nested
           sx={{ my: 1 }}
-          secondaryAction={
+          startAction={
             <IconButton variant="text" size="sm" color="neutral">
               <KeyboardArrowDown />
             </IconButton>
@@ -703,7 +705,7 @@ const Gatsby = () => {
               <ListItemButton>Styling</ListItemButton>
             </ListItem>
           </NestedList>
-        </NestedListItem>
+        </ListItem>
       </List>
     </Box>
   );
@@ -989,7 +991,7 @@ export default function JoyTypography() {
             sx={{ '--List-decorator-width': '56px', '--List-divider-gap': '0.5rem' }}
           >
             <ListItem
-              secondaryAction={
+              endAction={
                 <Button variant="light" size="sm">
                   Clear
                 </Button>
@@ -1009,7 +1011,7 @@ export default function JoyTypography() {
             </ListItem>
             <ListDivider component="hr" />
             <ListItem
-              secondaryAction={
+              endAction={
                 <Button variant="light" color="danger" size="sm">
                   Clear
                 </Button>
@@ -1029,7 +1031,7 @@ export default function JoyTypography() {
             </ListItem>
             <ListDivider component="hr" />
             <ListItem
-              secondaryAction={
+              endAction={
                 <IconButton
                   variant="outlined"
                   color="success"
@@ -1140,15 +1142,15 @@ export default function JoyTypography() {
 
           <List
             sx={{
-              '--List-insetStartAddition': '24px', // increase start gap on nested list item
+              '--List-nestedInset': '24px', // increase start gap on nested list item
             }}
           >
-            <NestedListItem>
+            <ListItem nested>
               <ListItemButton>
                 <Typography>Category 1</Typography>
               </ListItemButton>
               <NestedList>
-                <NestedListItem>
+                <ListItem nested>
                   <ListItemButton>
                     <Typography level="body2">Subcategory 1.1</Typography>
                   </ListItemButton>
@@ -1163,7 +1165,7 @@ export default function JoyTypography() {
                       <ListItemButton>Menu item 1.1.3</ListItemButton>
                     </ListItem>
                   </NestedList>
-                </NestedListItem>
+                </ListItem>
                 <ListItem>
                   <ListItemButton>Menu item 1.2</ListItemButton>
                 </ListItem>
@@ -1171,7 +1173,7 @@ export default function JoyTypography() {
                   <ListItemButton>Menu item 1.3</ListItemButton>
                 </ListItem>
               </NestedList>
-            </NestedListItem>
+            </ListItem>
             <ListItem>
               <ListItemButton>Menu item 2</ListItemButton>
             </ListItem>

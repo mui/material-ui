@@ -54,10 +54,11 @@ const ListItemButtonRoot = styled('div', {
     textDecoration: 'initial', // reset native anchor tag
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
     margin: 'var(--List-itemButton-margin)',
-    padding: 'var(--List-item-paddingY) var(--List-item-paddingX)',
-    paddingLeft: 'var(--List-insetStart)',
+    padding: 'var(--List-item-paddingY)',
+    paddingLeft:
+      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
     paddingRight:
-      'calc(var(--List-item-paddingX) + var(--List-item-secondaryActionWidth, var(--internal-secondaryActionWidth, 0px)))', // --internal variable makes it possible to customize the secondaryActionWidth from the top List
+      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
@@ -90,8 +91,11 @@ const ListItemButtonRoot = styled('div', {
   {
     ...(ownerState.variant === 'outlined' && {
       // account for the border width
-      padding:
-        'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth)) calc(var(--List-item-paddingX) - var(--variant-outlinedBorderWidth))',
+      padding: 'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth))',
+      paddingLeft:
+        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+      paddingRight:
+        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     }),
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
