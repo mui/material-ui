@@ -2,8 +2,8 @@ import addImports from 'jscodeshift-add-imports';
 
 export default function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
-  const importModule = '@mui/material';
-  const targetModule = '@mui/material';
+  const importModule = options.importModule || '@mui/material';
+  const targetModule = options.targetModule || '@mui/material';
 
   let requirePath = importModule;
 
