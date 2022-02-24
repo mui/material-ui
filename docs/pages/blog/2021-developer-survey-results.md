@@ -34,13 +34,13 @@ Here are the biggest reasons we observed:
 Lately, with every new sunrise, there's a new UI component library.
 Because they aim to solve the same problems, these libraries often arrive at solutions that are very similar to one another.
 The establishment of common industrywide patterns makes it that much more difficult to stand out from the crowd.
-We're working hard to expand outward from our core products in order to provide you with tools that our competitors can't match.
+We're working hard to expand outward from our core products to provide you with tools that our competitors can't match.
 
 **The introduction of a paid product**
 
 A big challenge with open-source is that the proportion of value captured by maintainers is close to zero.
 The MIT licensed model has enabled a lot of growth, but it does have its limitations.
-In order to push our mission as much as we believe it's possible, we needed to introduce a way to capture more value.
+To push our mission as much as we believe it's possible, we needed to introduce a way to capture more value.
 [Open-core](https://en.wikipedia.org/wiki/Open-core_model) allows us to still offer an MIT licensed (free) version of the MUI X components while charging for additional features that require more attention (including support).
 
 It’s still the early days of MUI X, though.
@@ -65,7 +65,7 @@ What can we do to help you succeed? If you have any ideas or suggestions, you’
 This year we observed a decrease in Net Promoter Score (NPS): from 62 in 2020 to 46 in 2021.
 56.4% of you were Promoters this year, down almost 6 percentage points from last year (62.2%).
 We're still in a good place — an NPS score between 30 and 70 is considered great.
-But we definitely have much more to do to achieve an excellent score.
+But we have much more to do to achieve an excellent score.
 
 <img src="/static/blog/2021-survey/2.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Detractors: 10.88%, Neutrals: 32.69%, Promoters: 56.43%, Overall NPS: 46.
 Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 to 100 is excellent." />
@@ -88,9 +88,9 @@ Here's what you liked the most about the product in 2021:
   That said, we recognize that there is still more work to be done here, given the number of requests we've gotten to better solve this problem.
 - **Components (1.6x):** We'll keep adding new components to the library as long as you continue to appreciate them this much!
   - Component quality (1.0x): You know that we set the bar very high for the quality of our components.
-    That can be challenge as we continue to grow, because we expect nothing but the best from our team.
+    That can be challenging as we continue to grow, because we expect nothing but the best from our team.
     Thankfully, this result shows that our new members have done an excellent job maintaining our standards.
-- **Time (1.4x):** This is an interesting one, because it's not an issue that we specifically addressed.
+- **Time (1.4x):** This is an interesting one because it's not an issue that we specifically addressed.
   Could this just be a result of the growing pressure in the market to build faster? Or because we somehow made this value proposition more noticeable? It could also be related to the next item.
 - **Developer experience (1.1x):**
   - Consistency (1.75x): We didn’t work on this dimension, and yet it grew.
@@ -157,7 +157,7 @@ And what has decreased:
 
 <p class="blog-description">1534 out of 1589 answered.</p>
 
-It's definitely a good thing to have a general sense of agreement to most of the statements.
+It's a good thing to have a general sense of agreement to most of the statements.
 However, there's a considerably big gap between _Strongly agree_ and _Agree_ for all but the first statement, which showcases that we need to continue pushing for even more quality in each of these dimensions (customizability, customization, performance, and community support).
 
 ### What are your most important criteria for choosing a UI library?
@@ -184,10 +184,10 @@ Here are the most recurring topics for improvement:
 - **More examples:** Many of the existing learning resources out there are now outdated following the v5 upgrade, so we have a lot of work to do to show you how to make the most of our products.
 - **Provide more themes:** Even with the launch of Material v3, Material Design is seen as outdated by many.
   That's why we're working on a second design system that will offer the same high standard of quality as Material, but with an alternative design direction.
-- **Fewer breaking changes:** MUI Core v5 definitely introduced some important breaking changes, especially because of the new styling solution.
+- **Fewer breaking changes:** MUI Core v5 introduced some important breaking changes, especially because of the new styling solution.
   Rest assured that we don’t expect to release any major updates this year—in fact, we aim to keep majors at least 12 months apart from each other.
-- **Improve customization:** Common requests include making customization easier, providing more examples of common use-cases (like font-family and primary/secondary colors), and improving to theme capabilities.
-  Even with the popularity of Emotion and styled-components, there continues to be an enormous need to facilitate customization.
+- **Improve customization:** Common requests include making customization easier, providing more examples of common use-cases (like font-family and primary/secondary colors), and improving the theme capabilities.
+  Even with the popularity of emotion and styled-components, there continues to be an enormous need to facilitate customization.
 
 Got ideas for improvements? Please share them with us! Here's how to make sure that your requests get top priority:
 
@@ -668,7 +668,7 @@ This year we'll be focusing on expanding and refining [MUI System](https://mui.c
 
 <p class="blog-description">1546 out of 1589 answered.</p>
 
-Though many of you who answered the survey have already migrated, we still have a many more to convince to come along with us.
+Though many of you who answered the survey have already migrated, we still have many more to convince to come along with us.
 That'll be a major focus of ours for the year ahead.
 
 ### What's the statement that most defines your migration experience?
@@ -679,7 +679,7 @@ That'll be a major focus of ours for the year ahead.
 
 ### What could MUI do to improve the migration experience?
 
-<img src="/static/blog/2021-survey/25.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="General documentation improvements: 43.2%; Automation: 20.7%: Fewer breaking changes: 15.6%; Fewer styling soluiton breaking changes: 8.5%; More tutorials: 5.4%; More styling solution migration tutorial: 4.4%; Migrate Core and X together: 1%" />
+<img src="/static/blog/2021-survey/25.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="General documentation improvements: 43.2%; Automation: 20.7%: Fewer breaking changes: 15.6%; Fewer styling solution breaking changes: 8.5%; More tutorials: 5.4%; More styling solution migration tutorial: 4.4%; Migrate Core and X together: 1%" />
 
 <p class="blog-description">472 out of 1589 answered.</p>
 
@@ -789,7 +789,7 @@ Your feedback from this survey helped us to better understand the areas where we
 - **Design quality:** Design continues to be the main driving aspect that guides a decision towards a given component library.
   A growing number of developers are moving away from MUI because of Material Design being the default design direction, and that’s a huge warning sign for us to explore other roads.
 - **Breaking changes:** The need for fewer breaking changes does highlight one very positive point: numerous applications depend on MUI as their component library of choice.
-  To continue supporting your products, we'll definitely look for ways to minimize the number of breaking changes in future updates.
+  To continue supporting your products, we'll look for ways to minimize the number of breaking changes in future updates.
   We’ll also continue exploring automation tools to ease the pain of any breaking changes that do come up.
 - **Commercial vs.
   MIT balance:** MUI will always be an OSS project first and foremost, but we are getting a lot of positive feedback from our paid products and support services, which tells us that we're heading in the right direction.
