@@ -99,7 +99,7 @@ function AppLayoutDocs(props) {
       <GlobalStyles
         styles={{
           ':root': {
-            '--MuiDocs-navDrawer-width': '308px',
+            '--MuiDocs-navDrawer-width': '300px',
             '--MuiDocs-toc-width': '240px',
             '--MuiDocs-header-height': '64px',
           },

@@ -16,7 +16,7 @@ const Nav = styled('nav')(({ theme }) => ({
   width: 240,
   flexShrink: 0,
   position: 'sticky',
-  height: 'calc(100vh - 70px)',
+  height: 'calc(100vh - var(--MuiDocs-header-height))',
   overflowY: 'auto',
   padding: theme.spacing(2, 4, 2, 0),
   display: 'none',

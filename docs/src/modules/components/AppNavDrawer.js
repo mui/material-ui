@@ -327,6 +327,7 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
     padding: theme.spacing(1.45, 2),
+    paddingRight: 0,
     height: 'var(--MuiDocs-header-height)',
     display: 'flex',
     flexGrow: 1,
