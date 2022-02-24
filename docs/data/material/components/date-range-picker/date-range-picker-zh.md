@@ -7,11 +7,11 @@ packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://mui.com/store/items/material-ui-pro/)
+# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://mui.com/store/items/material-ui-pro/) 日期范围选择器
 
 <p class="description">日期选择器让用户选择一系列的日期。</p>
 
-> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 [Early access](https://mui.com/store/items/material-ui-pro/) starts at an affordable price.
+> ⚠️ Pro component <br /><br /> The date range picker is intended for MUI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 您现在可以以实惠的价格 [提前使用](https://mui.com/store/items/material-ui-pro/)。
 
 日期范围选择器让用户选择一个日期范围。
 
@@ -24,9 +24,9 @@ materialDesign: https://material.io/components/date-pickers
 请安装这些库中的任何一个，并使用 `LocalizationProvider` 来包裹到你的 root（或者包裹到该选择器你想要应用的最高位置）来设置正确的日期引擎。
 
 ```jsx
-// 或者使用 @material-ui/lab/Adapter{dayjs,luxon,moment} 或者使用任何可适用的 date-io 适配器
-import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// 或者使用 @mui/lab/Adapter{dayjs,luxon,moment} 或者使用任何可适用的 date-io 适配器
+import DateFnsAdapter from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function App() {
   return (
