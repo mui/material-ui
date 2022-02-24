@@ -635,9 +635,7 @@ const Gatsby = () => {
           </ListItem>
           <NestedList>
             <ListItem>
-              <ListItemButton selected selectedVariant="text">
-                Overview
-              </ListItemButton>
+              <ListItemButton selected>Overview</ListItemButton>
             </ListItem>
           </NestedList>
         </NestedListItem>

@@ -22,8 +22,8 @@ export default function createCssVarsProvider(options) {
     theme: baseTheme = {},
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
-    disableTransitionOnChange = false,
-    enableColorScheme = true,
+    disableTransitionOnChange: designSystemTransitionOnChange = false,
+    enableColorScheme: designSystemEnableColorScheme = true,
     prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar,
     resolveTheme,
@@ -61,12 +61,10 @@ export default function createCssVarsProvider(options) {
     attribute = DEFAULT_ATTRIBUTE,
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
+    disableTransitionOnChange = designSystemTransitionOnChange,
+    enableColorScheme = designSystemEnableColorScheme,
   }) {
-    // make sure that baseTheme is always independent of each <CssVarsProvider /> call.
-    // JSON.parse(JSON.stringify(...)) is okay to be used as long as the baseTheme is a plain object.
-    const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
-
-    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
+    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
     const hasMounted = React.useRef(false);
 
@@ -107,15 +105,18 @@ export default function createCssVarsProvider(options) {
       return colorScheme;
     })();
 
-    const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, {
+    const {
+      css: rootCss,
+      vars: rootVars,
+      parsedTheme,
+    } = cssVarsParser(mergedTheme, {
       prefix,
       basePrefix: designSystemPrefix,
       shouldSkipGeneratingVar,
     });
 
     mergedTheme = {
-      ...mergedTheme,
-      ...colorSchemes[resolvedColorScheme],
+      ...parsedTheme,
       components,
       colorSchemes,
       prefix,
@@ -130,12 +131,22 @@ export default function createCssVarsProvider(options) {
     const styleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = cssVarsParser(scheme, {
+      const {
+        css,
+        vars,
+        parsedTheme: parsedScheme,
+      } = cssVarsParser(scheme, {
         prefix,
         basePrefix: designSystemPrefix,
         shouldSkipGeneratingVar,
       });
       mergedTheme.vars = deepmerge(mergedTheme.vars, vars);
+      if (key === resolvedColorScheme) {
+        mergedTheme = {
+          ...mergedTheme,
+          ...parsedScheme,
+        };
+      }
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
           return defaultColorScheme;
@@ -174,7 +185,7 @@ export default function createCssVarsProvider(options) {
       return () => {
         document.documentElement.style.setProperty('color-scheme', priorColorScheme);
       };
-    }, [mode, systemMode]);
+    }, [mode, systemMode, enableColorScheme]);
 
     React.useEffect(() => {
       let timer;
@@ -194,7 +205,7 @@ export default function createCssVarsProvider(options) {
       return () => {
         clearTimeout(timer);
       };
-    }, [colorScheme]);
+    }, [colorScheme, disableTransitionOnChange]);
 
     React.useEffect(() => {
       hasMounted.current = true;
@@ -241,6 +252,14 @@ export default function createCssVarsProvider(options) {
      * The initial mode used.
      */
     defaultMode: PropTypes.string,
+    /**
+     * Disable CSS transitions when switching between modes or color schemes
+     */
+    disableTransitionOnChange: PropTypes.bool,
+    /**
+     * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
+     */
+    enableColorScheme: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */

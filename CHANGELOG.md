@@ -1,5 +1,52 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.4.3
+
+<!-- generated comparing v5.4.2..master -->
+
+_Feb 21, 2022_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 @hbjORbj made components use theme duration/easing values by default (#30894)
+- A meaningful number of 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.4.3`
+
+- &#8203;<!-- 18 -->[ButtonBase] Fix typo (#31135) @Jastor11
+- &#8203;<!-- 05 -->[Stepper] Export useStepContext (#31021) @michaldudak
+- &#8203;<!-- 04 -->[Transitions] Some components do not use transition duration/easing values from theme (#30894) @hbjORbj
+
+### `@mui/icons-material@5.4.3`
+
+- &#8203;<!-- 11 -->[icons] Add "circle" icon synonyms (#31118) @gnowland
+
+### `@mui/joy@5.0.0-alpha.16`
+
+- &#8203;<!-- 10 -->[Joy] `List` second iteration (#31134) @siriwatknp
+- &#8203;<!-- 09 -->[Joy] Fix typings (#31120) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Add initial `List` components (#30987) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 19 -->[website] Improve full-stack role job description (#31160) @Janpot
+- &#8203;<!-- 14 -->[docs] Fix typo of migration guides v4 (#31136) @pppp606
+- &#8203;<!-- 13 -->[docs] Update on the support page to account for v4 LTS support (#31029) @danilo-leal
+- &#8203;<!-- 12 -->[docs] Fix small typo in chips.md (#31092) @cameliaben
+- &#8203;<!-- 07 -->[l10n] Add it-IT translation for labelDisplayedRows (#31131) @frab90
+- &#8203;<!-- 06 -->[l10n] Add pl-PL translation for labelDisplayedRows (#31088) @ThomasTheHuman
+- &#8203;<!-- 03 -->[website] Sync MUI X table feature (#30913) @alexfauquette
+- &#8203;<!-- 02 -->[website] Prefill source in job application links (#31036) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix a grammar mistake (#31099) @huyenltnguyen
+
+### Core
+
+- &#8203;<!-- 17 -->[core] Add jsx, html, css and prisma to prettier extensions (#31161) @Janpot
+- &#8203;<!-- 16 -->[core] Allow to run material-ui.com/store alongside mui.com/store (#31065) @oliviertassinari
+- &#8203;<!-- 15 -->[core] Polish design tokens (#31095) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @cameliaben, @danilo-leal, @frab90, @gnowland, @hbjORbj, @huyenltnguyen, @Janpot, @Jastor11, @michaldudak, @oliviertassinari, @pppp606, @siriwatknp, @ThomasTheHuman
+
 ## 5.4.2
 
 _Feb 15, 2022_
