@@ -1,11 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import ButtonUnstyled, {
   ButtonUnstyledProps,
   ButtonUnstyledRootSlotProps,
 } from '@mui/base/ButtonUnstyled';
 
-function CustomButtonRoot(props: ButtonUnstyledRootSlotProps) {
+const CustomButtonRoot = React.forwardRef(function CustomButtonRoot(
+  props: ButtonUnstyledRootSlotProps,
+) {
   const { ownerState, ...other } = props;
   const classes = clsx(
     other.className,
@@ -14,8 +16,8 @@ function CustomButtonRoot(props: ButtonUnstyledRootSlotProps) {
   );
 
   return <button type="button" {...other} className={classes} />;
-}
+});
 
-function CustomButton(props: ButtonUnstyledProps) {
+function ButtonWithCustomRoot(props: ButtonUnstyledProps) {
   return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
 }
