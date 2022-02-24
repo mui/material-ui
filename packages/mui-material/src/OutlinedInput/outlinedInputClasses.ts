@@ -42,11 +42,7 @@ export function getOutlinedInputUtilityClass(slot: string): string {
 
 const outlinedInputClasses: OutlinedInputClasses = {
   ...inputBaseClasses,
-  ...generateUtilityClasses('MuiOutlinedInput', [
-    'root',
-    'notchedOutline',
-    'input',
-  ]),
+  ...generateUtilityClasses('MuiOutlinedInput', ['root', 'notchedOutline', 'input']),
 };
 
 export default outlinedInputClasses;

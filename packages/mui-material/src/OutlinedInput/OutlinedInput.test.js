@@ -50,7 +50,13 @@ describe('<OutlinedInput />', () => {
   });
 
   it('should respect the classes coming from InputBase', () => {
-    render(<OutlinedInput data-test="test" multiline sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }} />);
+    render(
+      <OutlinedInput
+        data-test="test"
+        multiline
+        sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }}
+      />,
+    );
     expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
   });
 });

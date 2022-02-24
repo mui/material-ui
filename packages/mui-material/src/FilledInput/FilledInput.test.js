@@ -42,7 +42,13 @@ describe('<FilledInput />', () => {
   });
 
   it('should respect the classes coming from InputBase', () => {
-    render(<FilledInput data-test="test" multiline sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }} />);
+    render(
+      <FilledInput
+        data-test="test"
+        multiline
+        sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }}
+      />,
+    );
     expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
   });
 });
