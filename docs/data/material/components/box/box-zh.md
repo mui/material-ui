@@ -8,7 +8,7 @@ githubLabel: 'component: Box'
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
+在`@mui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -22,7 +22,7 @@ githubLabel: 'component: Box'
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
-## 覆盖 Material-UI 组件
+## 覆盖 MUI 组件
 
 Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默认情况下为 `<div>`，并可以通过 ` component ` 属性进行更改。 假设您想使用 `<span>`：
 
@@ -30,7 +30,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您的目标是下层的 DOM 元素。 例如，你可能想要更改 Button 组件的边框。 Button 组件已经定义好了它自己的样式。 所以使用 CSS 继承是于事无补的。 为了回避这个CSS继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
+但是，有时您的目标是下层的 DOM 元素。 例如，你可能想要更改 Button 组件的边框。 Button 组件已经定义好了它自己的样式。 所以使用 CSS 继承是于事无补的。 为了回避 CSS 继承无效的问题， 如该组件的子组件是一个 MUI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -51,7 +51,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
 | 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
