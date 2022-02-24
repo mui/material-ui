@@ -170,7 +170,7 @@ function Gmail() {
         '--List-decorator-width': '64px',
         '--List-item-minHeight': '32px',
         '--List-gap': '0px',
-        '--List-nestedInset': '13px',
+        '--List-nestedInsetStart': '13px',
         '& .MuiListItemDecorator-root': { justifyContent: 'flex-end', pr: '18px' },
       }}
     >
@@ -345,7 +345,7 @@ function MuiNav() {
         '--List-item-paddingRight': '2px',
         '--List-item-paddingY': '0px',
         '--List-item-fontSize': theme.vars.fontSize.sm,
-        '--List-nestedInset': '28px',
+        '--List-nestedInsetStart': '28px',
         '--List-decorator-color': theme.vars.palette.primary.textColor,
       })}
     >
@@ -384,7 +384,7 @@ function MuiNav() {
               <NestedList
                 sx={{
                   '--List-gap': hasDeeperLevel ? '17px' : '4px',
-                  '--List-nestedInset': '0px',
+                  '--List-nestedInsetStart': '0px',
                 }}
               >
                 {(aPage.children || []).map((nestedPage, nestedIndex) => {
@@ -454,7 +454,7 @@ const Firebash = () => {
           '--List-item-paddingRight': '24px',
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
-          '--List-nestedInset': '0px',
+          '--List-nestedInsetStart': '0px',
           '--List-divider-gap': '0px',
           '--List-background': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
@@ -599,7 +599,7 @@ const Gatsby = () => {
             '--joy-palette-primary-textColor': '#d48cff',
           },
 
-          '--List-nestedInset': '0px',
+          '--List-nestedInsetStart': '0px',
           '--List-radius': '0px',
           '--List-padding': '0px',
           '--List-insetStart': '32px',
@@ -1145,7 +1145,7 @@ export default function JoyTypography() {
 
           <List
             sx={{
-              '--List-nestedInset': '24px', // increase start gap on nested list item
+              '--List-nestedInsetStart': '24px', // increase start gap on nested list item
             }}
           >
             <ListItem nested>
