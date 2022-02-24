@@ -15,6 +15,7 @@ import {
 } from '../ListItemDecorator/ListItemDecoratorProps';
 import { NestedListProps, NestedListSlot } from '../NestedList/NestedListProps';
 import { NestedListItemProps, NestedListItemSlot } from '../NestedListItem/NestedListItemProps';
+import { InputProps, InputSlot } from '../Input/InputProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -83,5 +84,9 @@ export interface Components<Theme = unknown> {
   MuiNestedListItem?: {
     defaultProps: Partial<NestedListItemProps>;
     styleOverrides?: OverridesStyleRules<NestedListItemSlot, NestedListItemProps, Theme>;
+  };
+  MuiInput?: {
+    defaultProps?: Partial<InputProps>;
+    styleOverrides?: OverridesStyleRules<InputSlot, InputProps, Theme>;
   };
 }
