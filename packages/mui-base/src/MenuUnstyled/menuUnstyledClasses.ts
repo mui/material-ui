@@ -3,7 +3,7 @@ import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface MenuUnstyledClasses {
   root: string;
-  popper: string;
+  listbox: string;
   expanded: string;
 }
 
@@ -15,7 +15,7 @@ export function getMenuUnstyledUtilityClass(slot: string): string {
 
 const menuUnstyledClasses: MenuUnstyledClasses = generateUtilityClasses('MuiMenuUnstyled', [
   'root',
-  'popper',
+  'listbox',
   'expanded',
 ]);
 

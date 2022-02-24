@@ -89,10 +89,15 @@ const Menu = React.forwardRef(function Menu(
 ) {
   const { children, ...other } = props;
 
-  const { registerItem, unregisterItem, getRootProps, getItemProps, getItemState } =
-    useMenu({
-      listboxRef: ref,
-    });
+  const {
+    registerItem,
+    unregisterItem,
+    getListboxProps,
+    getItemProps,
+    getItemState,
+  } = useMenu({
+    listboxRef: ref,
+  });
 
   const contextValue: MenuUnstyledContextType = {
     registerItem,
@@ -102,7 +107,7 @@ const Menu = React.forwardRef(function Menu(
   };
 
   return (
-    <ul className="menu-root" {...other} {...getRootProps()}>
+    <ul className="menu-root" {...other} {...getListboxProps()}>
       <MenuUnstyledContext.Provider value={contextValue}>
         {children}
       </MenuUnstyledContext.Provider>

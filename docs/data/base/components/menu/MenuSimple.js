@@ -133,7 +133,7 @@ export default function UnstyledMenuSimple() {
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}
-        components={{ Popper }}
+        components={{ Root: Popper }}
       >
         <StyledMenuItem onClick={() => close()}>English</StyledMenuItem>
         <StyledMenuItem onClick={() => close()}>中文</StyledMenuItem>

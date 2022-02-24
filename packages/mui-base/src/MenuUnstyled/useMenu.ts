@@ -120,7 +120,7 @@ export default function useMenu(parameters: UseMenuParameters) {
     registerItem,
     unregisterItem,
     menuItems,
-    getRootProps: getListboxProps,
+    getListboxProps,
     getItemState,
     getItemProps: getOptionProps,
     highlightedOption,

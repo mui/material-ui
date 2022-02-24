@@ -41,8 +41,10 @@ Additionally, MenuUnstyled may contain non-interactive children (such as help te
 
 The MenuUnstyled has two slots:
 
-- Root - can be customized by setting the `component` or `components.Root` props. By default set to `ul`.
-- Popper - set to `PopperUnstyled` by default.
+- Root - represents the popup container the menu is placed in.
+  Can be customized by setting the `component` or `components.Root` props.
+  By default set to `PopperUnstyled`.
+- Listbox - set to `ul` by default.
 
 The MenuItemUnstyled has just the root slot.
 It renders `li` by default.

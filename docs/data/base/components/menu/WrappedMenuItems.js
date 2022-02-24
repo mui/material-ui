@@ -169,7 +169,7 @@ export default function WrappedMenuItems() {
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}
-        components={{ Popper }}
+        components={{ Root: Popper }}
       >
         <MenuSection label="Navigation">
           <StyledMenuItem onClick={() => close()}>Back</StyledMenuItem>

@@ -14,24 +14,33 @@ describe('MenuUnstyled', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
-  describeConformanceUnstyled(<MenuUnstyled />, () => ({
-    inheritComponent: 'ul',
+  const defaultProps = {
+    anchorEl: document.createElement('div'),
+    open: true,
+  };
+
+  describeConformanceUnstyled(<MenuUnstyled {...defaultProps} />, () => ({
+    inheritComponent: 'div',
     render,
     mount,
-    refInstanceof: window.HTMLUListElement,
-    testComponentPropWith: 'span',
+    refInstanceof: window.HTMLDivElement,
     muiName: 'MuiMenuUnstyled',
     slots: {
       root: {
         expectedClassName: menuUnstyledClasses.root,
+        testWithElement: null,
+      },
+      listbox: {
+        expectedClassName: menuUnstyledClasses.listbox,
       },
     },
+    skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'componentsProp'],
   }));
 
   describe('keyboard navigation', () => {
     it('changes the highlighted item using the arrow keys', () => {
       const { getByTestId } = render(
-        <MenuUnstyled>
+        <MenuUnstyled {...defaultProps}>
           <MenuItemUnstyled data-testid="item-1">1</MenuItemUnstyled>
           <MenuItemUnstyled data-testid="item-2">2</MenuItemUnstyled>
           <MenuItemUnstyled data-testid="item-3">3</MenuItemUnstyled>
@@ -58,7 +67,7 @@ describe('MenuUnstyled', () => {
 
     it('changes the highlighted item using the Home and End keys', () => {
       const { getByTestId } = render(
-        <MenuUnstyled>
+        <MenuUnstyled {...defaultProps}>
           <MenuItemUnstyled data-testid="item-1">1</MenuItemUnstyled>
           <MenuItemUnstyled data-testid="item-2">2</MenuItemUnstyled>
           <MenuItemUnstyled data-testid="item-3">3</MenuItemUnstyled>
@@ -81,7 +90,7 @@ describe('MenuUnstyled', () => {
 
     it('includes disabled items during keyboard navigation', () => {
       const { getByTestId } = render(
-        <MenuUnstyled>
+        <MenuUnstyled {...defaultProps}>
           <MenuItemUnstyled data-testid="item-1">1</MenuItemUnstyled>
           <MenuItemUnstyled disabled data-testid="item-2">
             2
