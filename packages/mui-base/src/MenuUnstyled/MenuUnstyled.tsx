@@ -128,14 +128,14 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   components: PropTypes.shape({
-    Popper: PropTypes.elementType,
+    Listbox: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
   /**
    * @ignore
    */
   componentsProps: PropTypes.shape({
-    popper: PropTypes.object,
+    listbox: PropTypes.object,
     root: PropTypes.object,
   }),
   /**
