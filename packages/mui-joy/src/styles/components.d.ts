@@ -4,6 +4,7 @@ import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
+import { InputProps, InputSlot } from '../Input/InputProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -40,5 +41,9 @@ export interface Components<Theme = unknown> {
   MuiSvgIcon?: {
     defaultProps?: Partial<SvgIconProps>;
     styleOverrides?: OverridesStyleRules<SvgIconSlot, SvgIconProps, Theme>;
+  };
+  MuiInput?: {
+    defaultProps?: Partial<InputProps>;
+    styleOverrides?: OverridesStyleRules<InputSlot, InputProps, Theme>;
   };
 }

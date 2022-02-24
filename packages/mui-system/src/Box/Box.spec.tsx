@@ -13,8 +13,6 @@ function Test(props: TestProps) {
 function ResponsiveTest() {
   <Box sx={{ p: [2, 3, 4] }} />;
   <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }} />;
-  // @ts-expect-error value for the breakpoint should be valid
-  <Box sx={{ p: { xs: 2, sm: { you: "are dealing with 'any' here" }, md: 4 } }} />;
   <Box sx={{ fontSize: [12, 18, 24] }}>Array API</Box>;
   <Box
     sx={{
@@ -53,4 +51,36 @@ function ThemeCallbackTest() {
   <Box sx={{ ':hover': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box sx={{ '& .some-class': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box maxWidth={(theme) => theme.breakpoints.values.sm} />;
+}
+
+function CssVariablesWithNestedSelectors() {
+  <Box
+    sx={(theme) => ({
+      '--md-palette-primary-main': '#FF0000',
+    })}
+  />;
+  <Box
+    sx={(theme) => ({
+      '--md-palette-primary-main': '#FF0000',
+      '&:hover': {
+        backgroundColor: theme.palette.primary.main,
+      },
+    })}
+  />;
+  <Box
+    sx={{
+      '--md-palette-primary-main': '#FF0000',
+      '&:hover': {
+        backgroundColor: '#EE0000',
+      },
+    }}
+  />;
+  <Box
+    sx={{
+      '--md-palette-primary-main': '#FF0000',
+      '& .foo-bar': {
+        backgroundColor: '#EE0000',
+      },
+    }}
+  />;
 }
