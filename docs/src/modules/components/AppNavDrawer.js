@@ -327,7 +327,7 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
     padding: theme.spacing(1.45, 2),
-    height: 64,
+    height: 'var(--MuiDocs-header-height)',
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -349,7 +349,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
 
 const SwipeableDrawerPaperComponent = styled('div')(({ theme }) => {
   return {
-    width: 292,
+    width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',

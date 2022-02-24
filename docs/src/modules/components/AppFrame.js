@@ -129,7 +129,7 @@ const StyledAppBar = styled(AppBar, {
     }),
     ...(!disablePermanent && {
       [theme.breakpoints.up('lg')]: {
-        width: 'calc(100% - 240px)',
+        width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
       },
     }),
     boxShadow: 'none',
@@ -173,7 +173,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
-      width: 280,
+      width: 'var(--MuiDocs-navDrawer-width)',
     },
   };
 });
