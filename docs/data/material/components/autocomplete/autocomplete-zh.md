@@ -119,7 +119,7 @@ import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 为了方便使用以及向后兼容，`useAutocomplete` hook 也在 @mui/material 中重新导出了。
 
 ```tsx
-import { createFilterOptions } from '@material-ui/core/Autocomplete';
+import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 - 📦 [4.5kB 的压缩包](/size-snapshot)。
