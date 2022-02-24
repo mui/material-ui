@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import Paper, { paperClasses as classes } from '@mui/joy/Paper';
+import Sheet, { SheetClasses as classes } from '@mui/joy/Sheet';
 
-describe('<Paper />', () => {
+describe('<Sheet />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Paper />, () => ({
+  describeConformance(<Sheet />, () => ({
     classes,
     inheritComponent: 'div',
     render,
-    muiName: 'MuiPaper',
+    muiName: 'MuiSheet',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'text' },
@@ -19,7 +19,7 @@ describe('<Paper />', () => {
 
   describe('prop: variant', () => {
     it('undefined by default', () => {
-      const { getByTestId } = render(<Paper data-testid="root">Hello World</Paper>);
+      const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
 
       expect(getByTestId('root')).not.to.have.class(classes.variantText);
       expect(getByTestId('root')).not.to.have.class(classes.variantOutlined);
@@ -29,9 +29,9 @@ describe('<Paper />', () => {
 
     it('adds a text class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" variant="text">
+        <Sheet data-testid="root" variant="text">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.variantText);
@@ -39,9 +39,9 @@ describe('<Paper />', () => {
 
     it('adds a outlined class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" variant="outlined">
+        <Sheet data-testid="root" variant="outlined">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.variantOutlined);
@@ -49,9 +49,9 @@ describe('<Paper />', () => {
 
     it('adds a light class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" variant="light">
+        <Sheet data-testid="root" variant="light">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.variantLight);
@@ -59,9 +59,9 @@ describe('<Paper />', () => {
 
     it('adds a contained class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" variant="contained">
+        <Sheet data-testid="root" variant="contained">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.variantContained);
@@ -70,16 +70,16 @@ describe('<Paper />', () => {
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByTestId } = render(<Paper data-testid="root">Hello World</Paper>);
+      const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
 
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
     it('adds a primary class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" color="primary">
+        <Sheet data-testid="root" color="primary">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.colorPrimary);
@@ -87,9 +87,9 @@ describe('<Paper />', () => {
 
     it('adds a neutral class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" color="neutral">
+        <Sheet data-testid="root" color="neutral">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
@@ -97,9 +97,9 @@ describe('<Paper />', () => {
 
     it('adds a info class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" color="info">
+        <Sheet data-testid="root" color="info">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.colorInfo);
@@ -107,9 +107,9 @@ describe('<Paper />', () => {
 
     it('adds a success class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" color="success">
+        <Sheet data-testid="root" color="success">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.colorSuccess);
@@ -117,9 +117,9 @@ describe('<Paper />', () => {
 
     it('adds a warning class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" color="warning">
+        <Sheet data-testid="root" color="warning">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.colorWarning);
@@ -127,9 +127,9 @@ describe('<Paper />', () => {
 
     it('adds a danger class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" color="danger">
+        <Sheet data-testid="root" color="danger">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.colorDanger);
@@ -138,7 +138,7 @@ describe('<Paper />', () => {
 
   describe('prop: elevation', () => {
     it('undefined by default', () => {
-      const { getByTestId } = render(<Paper data-testid="root">Hello World</Paper>);
+      const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
 
       expect(getByTestId('root')).not.to.have.class(classes.elevationXs);
       expect(getByTestId('root')).not.to.have.class(classes.elevationSm);
@@ -149,9 +149,9 @@ describe('<Paper />', () => {
 
     it('adds a xs class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" elevation="xs">
+        <Sheet data-testid="root" elevation="xs">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.elevationXs);
@@ -159,9 +159,9 @@ describe('<Paper />', () => {
 
     it('adds a sm class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" elevation="sm">
+        <Sheet data-testid="root" elevation="sm">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.elevationSm);
@@ -169,9 +169,9 @@ describe('<Paper />', () => {
 
     it('adds a md class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" elevation="md">
+        <Sheet data-testid="root" elevation="md">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.elevationMd);
@@ -179,9 +179,9 @@ describe('<Paper />', () => {
 
     it('adds a lg class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" elevation="lg">
+        <Sheet data-testid="root" elevation="lg">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.elevationLg);
@@ -189,9 +189,9 @@ describe('<Paper />', () => {
 
     it('adds a xl class', () => {
       const { getByTestId } = render(
-        <Paper data-testid="root" elevation="xl">
+        <Sheet data-testid="root" elevation="xl">
           Hello World
-        </Paper>,
+        </Sheet>,
       );
 
       expect(getByTestId('root')).to.have.class(classes.elevationXl);

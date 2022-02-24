@@ -1,6 +1,6 @@
 import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 
-export interface PaperClasses {
+export interface SheetClasses {
   /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the root element if `color="primary"`. */
@@ -35,13 +35,13 @@ export interface PaperClasses {
   elevationXl: string;
 }
 
-export type PaperClassKey = keyof PaperClasses;
+export type SheetClassKey = keyof SheetClasses;
 
-export function getPaperUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiPaper', slot);
+export function getSheetUtilityClass(slot: string): string {
+  return generateUtilityClass('MuiSheet', slot);
 }
 
-const paperClasses: PaperClasses = generateUtilityClasses('MuiPaper', [
+const sheetClasses: SheetClasses = generateUtilityClasses('MuiSheet', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -60,4 +60,4 @@ const paperClasses: PaperClasses = generateUtilityClasses('MuiPaper', [
   'elevationXl',
 ]);
 
-export default paperClasses;
+export default sheetClasses;

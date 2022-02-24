@@ -2,7 +2,7 @@ import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Paper from '@mui/joy/Paper';
+import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
@@ -34,8 +34,8 @@ const ColorSchemePicker = () => {
   );
 };
 
-export default function JoyPaper() {
-  const paperProps = {
+export default function JoySheet() {
+  const SheetProps = {
     variant: ['text', 'outlined', 'light', 'contained'],
     color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
     elevation: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -69,7 +69,7 @@ export default function JoyPaper() {
           <ColorSchemePicker />
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
-          {Object.entries(paperProps).map(([propName, propValue]) => (
+          {Object.entries(SheetProps).map(([propName, propValue]) => (
             <Box
               key={propName}
               sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
@@ -79,12 +79,11 @@ export default function JoyPaper() {
               </Typography>
               {propValue.map((value) => (
                 <Box key={value}>
-                  <Paper
+                  <Sheet
                     {...{ [propName]: value }}
                     sx={{
                       width: 250,
                       height: 150,
-                      ...(propName === 'elevation' && { bgcolor: 'white' }),
                     }}
                   />
                   <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>

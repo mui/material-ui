@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getPaperUtilityClass } from './paperClasses';
-import { PaperProps, PaperTypeMap } from './PaperProps';
+import { getSheetUtilityClass } from './sheetClasses';
+import { SheetProps, SheetTypeMap } from './SheetProps';
 
-const useUtilityClasses = (ownerState: PaperProps) => {
+const useUtilityClasses = (ownerState: SheetProps) => {
   const { elevation, variant, color } = ownerState;
 
   const slots = {
@@ -21,11 +21,11 @@ const useUtilityClasses = (ownerState: PaperProps) => {
     ],
   };
 
-  return composeClasses(slots, getPaperUtilityClass, {});
+  return composeClasses(slots, getSheetUtilityClass, {});
 };
 
-const PaperRoot = styled('div', {
-  name: 'MuiPaper',
+const SheetRoot = styled('div', {
+  name: 'MuiSheet',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
@@ -36,11 +36,11 @@ const PaperRoot = styled('div', {
       ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})<{ ownerState: PaperProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
   return [
     {
       // TODO: discuss the theme transition.
-      // This value is copied from mui-material Paper.
+      // This value is copied from mui-material Sheet.
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       boxShadow: theme.shadow[ownerState.elevation!],
       ...(!ownerState.variant &&
@@ -52,10 +52,10 @@ const PaperRoot = styled('div', {
   ];
 });
 
-const Paper = React.forwardRef(function Paper(inProps, ref) {
-  const props = useThemeProps<typeof inProps & PaperProps>({
+const Sheet = React.forwardRef(function Sheet(inProps, ref) {
+  const props = useThemeProps<typeof inProps & SheetProps>({
     props: inProps,
-    name: 'MuiPaper',
+    name: 'MuiSheet',
   });
 
   const { className, color = 'neutral', component = 'div', variant, elevation, ...other } = props;
@@ -71,7 +71,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <PaperRoot
+    <SheetRoot
       as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
@@ -79,9 +79,9 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
       {...other}
     />
   );
-}) as OverridableComponent<PaperTypeMap>;
+}) as OverridableComponent<SheetTypeMap>;
 
-Paper.propTypes /* remove-proptypes */ = {
+Sheet.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -124,4 +124,4 @@ Paper.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default Paper;
+export default Sheet;

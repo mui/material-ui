@@ -3,10 +3,12 @@ import * as React from 'react';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export interface PaperPropsColorOverrides {}
-export interface PaperPropsVariantOverrides {}
+export type SheetSlot = 'root';
 
-export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface SheetPropsColorOverrides {}
+export interface SheetPropsVariantOverrides {}
+
+export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
      * The content of the component.
@@ -16,7 +18,7 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, PaperPropsColorOverrides>;
+    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SheetPropsColorOverrides>;
     /**
      * Shadow depth, corresponds to the `theme.shadow` scale.
      * It accepts theme values between 'xs' and 'xl'.
@@ -29,16 +31,16 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The variant to use.
      */
-    variant?: OverridableStringUnion<VariantProp, PaperPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, SheetPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
 
-declare const Paper: OverridableComponent<PaperTypeMap>;
+declare const Sheet: OverridableComponent<SheetTypeMap>;
 
-export type PaperProps<
-  D extends React.ElementType = PaperTypeMap['defaultComponent'],
+export type SheetProps<
+  D extends React.ElementType = SheetTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
-> = OverrideProps<PaperTypeMap<P, D>, D>;
+> = OverrideProps<SheetTypeMap<P, D>, D>;
 
-export default Paper;
+export default Sheet;
