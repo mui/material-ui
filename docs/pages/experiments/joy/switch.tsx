@@ -102,7 +102,7 @@ export default function JoySwitch() {
             <Typography color="info.textColor">Fluent</Typography>
             {(
               [
-                { variant: 'outlined' },
+                { checked: false, variant: 'outlined' },
                 { checked: true, variant: 'contained' },
                 { disabled: true, variant: 'outlined' },
                 { disabled: true, checked: true, variant: 'contained' },
