@@ -139,6 +139,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           {startAction}
         </ListItemStartAction>
       )}
+
       {children}
       {endAction && (
         <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
@@ -170,7 +171,11 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The element to display at the end of ListItem.
    */
-  secondaryAction: PropTypes.node,
+  endAction: PropTypes.node,
+  /**
+   * The element to display at the start of ListItem.
+   */
+  startAction: PropTypes.node,
   /**
    * If `true`, the component has sticky position (with top = 0).
    * @default false
