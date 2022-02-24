@@ -575,7 +575,7 @@ function AppNavDrawer(props) {
                   { text: `v${process.env.LIB_VERSION}`, current: true },
                   { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
                 ],
-                { mr: 1 },
+                { mr: 2 },
               )}
             {router.asPath.startsWith('/material/') && (
               <ProductIdentifier
