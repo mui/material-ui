@@ -11,8 +11,6 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListDivider from '@mui/joy/ListDivider';
-import NestedList from '@mui/joy/NestedList';
-import NestedListItem from '@mui/joy/NestedListItem';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import Input from '@mui/joy/Input';
@@ -197,7 +195,7 @@ const components: {
           <ListDivider inset="startContent" />
         </List>
         <List component="nav" {...props}>
-          <NestedListItem>
+          <ListItem nested>
             <ListItemButton selected color="primary">
               <ListItemDecorator>
                 <Inbox />
@@ -205,8 +203,9 @@ const components: {
               <ListItemContent>Inbox</ListItemContent>
               <KeyboardArrowUp />
             </ListItemButton>
-            <NestedList>
-              <NestedListItem
+            <List>
+              <ListItem
+                nested
                 component="div"
                 secondaryAction={
                   <IconButton variant="text" color="danger">
@@ -221,7 +220,7 @@ const components: {
                   </ListItemDecorator>
                   <ListItemContent>Starred</ListItemContent>
                 </ListItemButton>
-                <NestedList>
+                <List>
                   <ListItem>
                     <ListItemButton>
                       <ListItemDecorator>
@@ -230,10 +229,10 @@ const components: {
                       Draft
                     </ListItemButton>
                   </ListItem>
-                </NestedList>
-              </NestedListItem>
-            </NestedList>
-          </NestedListItem>
+                </List>
+              </ListItem>
+            </List>
+          </ListItem>
           <ListDivider component="hr" />
           <ListItemButton>
             <ListItemDecorator>

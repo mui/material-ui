@@ -7,6 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
+import { useNestedList } from './NestedListContext';
 
 const useUtilityClasses = (ownerState: ListProps) => {
   const { size } = ownerState;
@@ -21,54 +22,68 @@ const ListRoot = styled('ul', {
   name: 'MuiList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListProps }>(({ theme, ownerState }) => ({
-  '--List-padding': '0px', // the value must be the 1-value syntax (represents all edges)
-  '--List-gap': '0.375rem', // spacing between ListItem + ListItem or ListItemButton + ListItemButton
-  '--List-radius': '0px',
-  '--List-item-minHeight': '2.5rem',
-  '--List-item-paddingY': '0.375rem',
-  '--List-item-paddingLeft': '0.75rem',
-  '--List-item-paddingRight': '0.75rem',
-  '--List-item-fontSize': theme.vars.fontSize.md,
-  '--List-decorator-width': '2.5rem',
-  '--List-decorator-color': theme.vars.palette.text.tertiary,
-  '--List-nestedInsetStart': '0.75rem',
-  ...(ownerState.size === 'sm' && {
-    '--List-gap': '0.25rem',
-    '--List-item-minHeight': '2rem',
-    '--List-item-paddingY': '0.25rem',
-    '--List-item-paddingLeft': '0.25rem',
-    '--List-item-paddingRight': '0.25rem',
-    '--List-item-fontSize': theme.vars.fontSize.sm,
-    '--List-decorator-width': '2rem',
-  }),
-  ...(ownerState.size === 'lg' && {
-    '--List-gap': '0.5rem',
-    '--List-item-minHeight': '3rem',
-    '--List-item-paddingY': '0.5rem',
-    '--List-item-paddingLeft': '0.5rem',
-    '--List-item-paddingRight': '0.5rem',
-    '--List-decorator-width': '3rem',
-  }),
-  '--List-divider-gap': 'var(--List-gap)',
-  '--List-background': theme.vars.palette.background.body,
-  // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
-  '--List-item-radius':
-    'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
-  '--List-item-startActionTranslateX': 'var(--List-item-paddingLeft)',
-  '--List-item-endActionTranslateX': 'calc(-1 * var(--List-item-paddingLeft))',
-  background: 'var(--List-background)',
-  borderRadius: 'var(--List-radius)',
-  padding: 'var(--List-padding)',
-  margin: 'initial',
-  listStyle: 'none',
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  position: 'relative', // for sticky ListItem
-}));
+})<{ ownerState: ListProps & { nested: boolean } }>(({ theme, ownerState }) => [
+  ownerState.nested && {
+    '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
+    // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+    '--List-itemButton-margin': '0px',
+    '--List-item-margin': '0px',
+    padding: 0,
+    margin: 'var(--NestedList-margin)',
+    marginTop: 'var(--List-gap)',
+  },
+  !ownerState.nested && {
+    '--List-padding': '0px', // the value must be the 1-value syntax (represents all edges)
+    '--List-gap': '0.375rem', // spacing between ListItem + ListItem or ListItemButton + ListItemButton
+    '--List-radius': '0px',
+    '--List-item-minHeight': '2.5rem',
+    '--List-item-paddingY': '0.375rem',
+    '--List-item-paddingLeft': '0.75rem',
+    '--List-item-paddingRight': '0.75rem',
+    '--List-item-fontSize': theme.vars.fontSize.md,
+    '--List-decorator-width': '2.5rem',
+    '--List-decorator-color': theme.vars.palette.text.tertiary,
+    '--List-nestedInsetStart': '0.75rem',
+    ...(ownerState.size === 'sm' && {
+      '--List-gap': '0.25rem',
+      '--List-item-minHeight': '2rem',
+      '--List-item-paddingY': '0.25rem',
+      '--List-item-paddingLeft': '0.25rem',
+      '--List-item-paddingRight': '0.25rem',
+      '--List-item-fontSize': theme.vars.fontSize.sm,
+      '--List-decorator-width': '2rem',
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--List-gap': '0.5rem',
+      '--List-item-minHeight': '3rem',
+      '--List-item-paddingY': '0.5rem',
+      '--List-item-paddingLeft': '0.5rem',
+      '--List-item-paddingRight': '0.5rem',
+      '--List-decorator-width': '3rem',
+    }),
+    '--List-divider-gap': 'var(--List-gap)',
+    '--List-background': theme.vars.palette.background.body,
+    // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
+    '--List-item-radius':
+      'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
+    '--List-item-startActionTranslateX': 'var(--List-item-paddingLeft)',
+    '--List-item-endActionTranslateX': 'calc(-1 * var(--List-item-paddingLeft))',
+    background: 'var(--List-background)',
+    borderRadius: 'var(--List-radius)',
+    padding: 'var(--List-padding)',
+    margin: 'initial',
+  },
+  {
+    listStyle: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    position: 'relative', // for sticky ListItem
+  },
+]);
 
 const List = React.forwardRef(function List(inProps, ref) {
+  const nested = useNestedList();
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'MuiList',
@@ -78,6 +93,7 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const ownerState = {
     size,
+    nested,
     ...props,
   };
 

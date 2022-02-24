@@ -7,6 +7,7 @@ import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
+import NestedListContext from '../List/NestedListContext';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
   const { sticky, nested } = ownerState;
@@ -111,6 +112,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     component,
     className,
     children,
+    nested = false,
     sticky = false,
     startAction,
     endAction,
@@ -127,26 +129,27 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <ListItemRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {startAction && (
-        <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
-          {startAction}
-        </ListItemStartAction>
-      )}
-
-      {children}
-      {endAction && (
-        <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
-          {endAction}
-        </ListItemEndAction>
-      )}
-    </ListItemRoot>
+    <NestedListContext.Provider value={nested}>
+      <ListItemRoot
+        ref={ref}
+        as={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        {...other}
+      >
+        {startAction && (
+          <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
+            {startAction}
+          </ListItemStartAction>
+        )}
+        {children}
+        {endAction && (
+          <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
+            {endAction}
+          </ListItemEndAction>
+        )}
+      </ListItemRoot>
+    </NestedListContext.Provider>
   );
 }) as OverridableComponent<ListItemTypeMap>;
 
