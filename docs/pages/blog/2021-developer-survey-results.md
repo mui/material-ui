@@ -178,7 +178,7 @@ The notable difference this year seems to be performance climbing its way up, as
 
 <p class="blog-description">1007 out of 1589 answered this question in 2021.</p>
 
-Here are the most recurring topics for improvement:
+Here are the most recurring topics for improvement this year:
 
 - **More components:** We continue to see requests for more advanced components such as charts, forms, and calendars, to name a few.
 - **More examples:** Many of the existing learning resources out there are now outdated following the v5 upgrade, so we have a lot of work to do to show you how to make the most of our products.
@@ -188,6 +188,16 @@ Here are the most recurring topics for improvement:
   Rest assured that we don’t expect to release any major updates this year—in fact, we aim to keep majors at least 12 months apart from each other.
 - **Improve customization:** Common requests include making customization easier, providing more examples of common use-cases (like font-family and primary/secondary colors), and improving the theme capabilities.
   Even with the popularity of emotion and styled-components, there continues to be an enormous need to facilitate customization.
+
+In comparison with 2020, here are the growing pain points:
+
+- **Drop Material Design:** At this point, it's an expected request. We have been seeing this trend growing and this year has highlighted it.
+- **Nurture the community:** It seems like there needs to be more focused in enganging with you all, reviewing and accepting contributions faster. An indicator of this is that until Q3 2021, we never had more than 35 PRs and 400 issues whereas today, we're topping 100 and 800 respectively.
+- **Free vs. paid (9.5x):** We already discussed this a bit above but there seems to be growing concern about how that can affect the MIT product.
+- **Accessibility (4.5x):** Even though it has been mentioned as a positive aspect above, there seems to be more developers using Material UI to build applications that heavily depend on accessibility support features than ever before. Another hypothesis might just be that there is more general interest in the topic, which is a good thing.
+- **More icons (2x):** A bit of an unclear request since we've added 2x more icons this year. There might be a correlation to FontAwesome v6, in which they doubled the amount of new icons.
+- **Typescript (1.8x):** The main feedback about it is that IntelliSense is slow, at least slower than it used to be in previous versions.
+- **Material Design update (1.7x):** A pretty much natural reaction given the launch of Material's third version this year.
 
 Got ideas for improvements? Please share them with us! Here's how to make sure that your requests get top priority:
 
