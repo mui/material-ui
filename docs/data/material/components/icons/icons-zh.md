@@ -8,9 +8,9 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 # Icons 图标
 
-<p class="description">我们提供了一些建议和指导，能够帮助您在 Material-UI 中使用图标。</p>
+<p class="description">我们提供了一些建议和指导，能够帮助您在 MUI 中使用图标。</p>
 
-Material-UI 通过以下三种方式来支持图标的使用：
+MUI通过以下三种方式来支持图标的使用：
 
 1. 您可以将标准的 [Material Design 图标](#material-icons) 导出为 React 组件 (SVG icons)。
 1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
@@ -32,7 +32,7 @@ npm install @mui/icons-material
 yarn add @mui/icons-material
 ```
 
-这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
+这些组件使用 MUI的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
 If you aren't already using Material UI in your project, you can add it following the [installation guide](/getting-started/installation/).
 
@@ -55,21 +55,21 @@ If you aren't already using Material UI in your project, you can add it followin
 
 对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。
 
-每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 例如，`@material-ui/icons/Delete` 图标可以：
+每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 例如，`@mui/icons/Delete` 图标可以：
 
-- 导出为 Filled 主题（默认值）：`@material-ui/icons/Delete`，
-- 导出为 Outlined 主题：`@material-ui/icons/DeleteOutlined`，
-- 导出为 Rounded 主题：`@material-ui/icons/DeleteRounded`，
-- 导出为 Twotone 主题：`@material-ui/icons/DeleteTwoTone`，
-- 导出为 Sharp 主题：`@material-ui/icons/DeleteSharp`，
+- 导出为 Filled 主题（默认值）：`@mui/icons/Delete`，
+- 导出为 Outlined 主题：`@mui/icons/DeleteOutlined`，
+- 导出为 Rounded 主题：`@mui/icons/DeleteRounded`，
+- 导出为 Twotone 主题：`@mui/icons/DeleteTwoTone`，
+- 导出为 Sharp 主题：`@mui/icons/DeleteSharp`，
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
 
 {{"demo": "SvgMaterialIcons.js"}}
 
 ### 测试
 
-出于测试目的，每个从 `@material-ui/icons` 暴露的图标都有一个 `data-testid` 属性，这其中包含了图标的名称。 就像这样：
+出于测试目的，每个从 `@mui/icons` 暴露的图标都有一个 `data-testid` 属性，这其中包含了图标的名称。 就像这样：
 
 ```jsx
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -168,7 +168,7 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 
 [materialdesignicons.com](https://materialdesignicons.com/) 提供了 2000 多个图标。 对于你想要使用的图标，可以复制它们所提供的 SVG `path`，并将其作为 `SvgIcon` 组件的子组件，或者也可以使用 `createSvgIcon()` 来应用它。
 
-友情提示：[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) 已经将每个 SVG 图标用 `SvgIcon` 组件包装起来，你可以高枕无忧了。
+友情提示：[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) 已经将每个 SVG 图标用 `SvgIcon` 组件包装起来，您可以高枕无忧了。
 
 ## Icon (Font icons)
 
