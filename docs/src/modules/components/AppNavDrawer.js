@@ -452,7 +452,7 @@ function AppNavDrawer(props) {
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
-    const renderVersionSelector = (versions = []) => {
+    const renderVersionSelector = (versions = [], sx) => {
       if (!versions?.length) {
         return null;
       }
@@ -468,40 +468,43 @@ function AppNavDrawer(props) {
                 <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
               ) : null
             }
-            sx={(theme) => ({
-              py: 0.1,
-              minWidth: 0,
-              fontSize: theme.typography.pxToRem(13),
-              fontWeight: 500,
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[600],
-              '& svg': {
-                ml: -0.6,
-                width: 18,
-                height: 18,
-              },
-              ...(!isProductScoped && {
-                px: 1,
-                py: 0.4,
-                border: `1px solid ${
+            sx={[
+              (theme) => ({
+                py: 0.1,
+                minWidth: 0,
+                fontSize: theme.typography.pxToRem(13),
+                fontWeight: 500,
+                color:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200]
-                }`,
-                '&:hover': {
-                  borderColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[300],
-                  background:
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.primaryDark[700], 0.4)
-                      : theme.palette.grey[50],
+                    ? theme.palette.primary[300]
+                    : theme.palette.primary[600],
+                '& svg': {
+                  ml: -0.6,
+                  width: 18,
+                  height: 18,
                 },
+                ...(!isProductScoped && {
+                  px: 1,
+                  py: 0.4,
+                  border: `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[700]
+                      : theme.palette.grey[200]
+                  }`,
+                  '&:hover': {
+                    borderColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[600]
+                        : theme.palette.grey[300],
+                    background:
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.primaryDark[700], 0.4)
+                        : theme.palette.grey[50],
+                  },
+                }),
               }),
-            })}
+              ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
           >
             {versions[0].text}
           </Button>
@@ -567,10 +570,13 @@ function AppNavDrawer(props) {
               </Box>
             </NextLink>
             {!isProductScoped &&
-              renderVersionSelector([
-                { text: `v${process.env.LIB_VERSION}`, current: true },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-              ])}
+              renderVersionSelector(
+                [
+                  { text: `v${process.env.LIB_VERSION}`, current: true },
+                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
+                ],
+                { mr: 1 },
+              )}
             {router.asPath.startsWith('/material/') && (
               <ProductIdentifier
                 name="Material UI"
