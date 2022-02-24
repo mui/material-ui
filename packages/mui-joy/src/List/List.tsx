@@ -22,7 +22,7 @@ const ListRoot = styled('ul', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListProps }>(({ theme, ownerState }) => ({
-  '--List-padding': '0px',
+  '--List-padding': '0px', // the value must be the 1-value syntax (represents all edges)
   '--List-gap': '0.375rem', // spacing between ListItem + ListItem or ListItemButton + ListItemButton
   '--List-radius': '0px',
   '--List-item-minHeight': '2.5rem',

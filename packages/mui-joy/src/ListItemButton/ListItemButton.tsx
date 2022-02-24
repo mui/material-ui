@@ -14,25 +14,16 @@ import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItem
 import listItemClasses from '../ListItem/listItemClasses';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
-  const {
-    color,
-    disabled,
-    focusVisible,
-    focusVisibleClassName,
-    selectedVariant,
-    selectedColor,
-    selected,
-  } = ownerState;
+  const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
-      color && !selected && `color${capitalize(color)}`,
+      color && `color${capitalize(color)}`,
       selected && 'selected',
-      selected && selectedVariant && `selectedVariant${capitalize(selectedVariant)}`,
-      selectedColor && selected && `color${capitalize(selectedColor)}`,
+      variant && `variant${capitalize(variant)}`,
     ],
   };
 
@@ -53,12 +44,8 @@ const ListItemButtonRoot = styled('div', {
   {
     ...(ownerState.color &&
       ownerState.color !== 'context' && {
-        '--List-decorator-color': theme.vars.palette[ownerState.color]?.textColor,
-      }),
-    ...(ownerState.selected &&
-      ownerState.selectedColor !== 'context' && {
         '--List-decorator-color':
-          theme.vars.palette[ownerState.selectedColor!]?.[`${ownerState.selectedVariant!}Color`],
+          theme.vars.palette[ownerState.color]?.[`${ownerState.variant!}Color`],
       }),
     boxSizing: 'border-box',
     display: 'flex',
@@ -95,43 +82,22 @@ const ListItemButtonRoot = styled('div', {
     ...(!ownerState.color &&
       !ownerState.selected && {
         color: theme.vars.palette.text.secondary,
-        cursor: 'pointer',
         '&:hover': {
           color: theme.vars.palette.text.primary,
-          backgroundColor: theme.vars.palette.neutral.textHoverBg,
-        },
-        '&:active': {
-          backgroundColor: theme.vars.palette.neutral.textActiveBg,
-        },
-        [`&.${listItemButtonClasses.disabled}`]: {
-          cursor: 'default',
-          pointerEvents: 'none',
-          opacity: 0.5,
         },
       }),
   },
-  ...(ownerState.color
-    ? [
-        theme.variants.text?.[ownerState.color],
-        theme.variants.textHover?.[ownerState.color],
-        theme.variants.textActive?.[ownerState.color],
-        theme.variants.textDisabled?.[ownerState.color],
-      ]
-    : []),
-  ...(ownerState.selected
-    ? [
-        {
-          ...(ownerState.selectedVariant === 'outlined' && {
-            padding:
-              'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth)) calc(var(--List-item-paddingX) - var(--variant-outlinedBorderWidth))', // account for the border width
-          }),
-        },
-        theme.variants[ownerState.selectedVariant!]?.[ownerState.selectedColor!],
-        theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.selectedColor!],
-        theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.selectedColor!],
-        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.selectedColor!],
-      ]
-    : []),
+  {
+    ...(ownerState.variant === 'outlined' && {
+      // account for the border width
+      padding:
+        'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth)) calc(var(--List-item-paddingX) - var(--variant-outlinedBorderWidth))',
+    }),
+  },
+  theme.variants[ownerState.variant!]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
 ]);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
@@ -145,10 +111,9 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     className,
     action,
     component = 'div',
-    color,
     selected = false,
-    selectedVariant = 'light',
-    selectedColor = color ?? 'primary',
+    color = selected ? 'primary' : undefined,
+    variant = 'text',
     ...other
   } = props;
 
@@ -180,8 +145,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     color,
     focusVisible,
     selected,
-    selectedVariant,
-    selectedColor,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -241,17 +205,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   selected: PropTypes.bool,
   /**
-   * The color of the component when selected. It supports those theme colors that make sense for this component.
-   */
-  selectedColor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-    PropTypes.string,
-  ]),
-  /**
    * The variant to use.
-   * @default 'light'
+   * @default 'text'
    */
-  selectedVariant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
     PropTypes.string,
   ]),

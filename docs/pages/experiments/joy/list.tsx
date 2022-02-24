@@ -179,6 +179,7 @@ function Gmail() {
       <ListItem>
         <ListItemButton
           selected={index === 0}
+          variant={index === 0 ? 'light' : 'text'}
           color={index === 0 ? 'danger' : undefined}
           onClick={() => setIndex(0)}
         >
@@ -194,6 +195,7 @@ function Gmail() {
       <NestedListItem>
         <ListItemButton
           selected={index === 1}
+          variant={index === 1 ? 'light' : 'text'}
           color={index === 1 ? 'info' : undefined}
           onClick={() => setIndex(1)}
         >
@@ -207,6 +209,7 @@ function Gmail() {
           <ListItem>
             <ListItemButton
               selected={index === 2}
+              variant={index === 2 ? 'light' : 'text'}
               color={index === 2 ? 'primary' : undefined}
               onClick={() => setIndex(2)}
             >
@@ -220,6 +223,7 @@ function Gmail() {
           <ListItem>
             <ListItemButton
               selected={index === 3}
+              variant={index === 3 ? 'light' : 'text'}
               color={index === 3 ? 'warning' : undefined}
               onClick={() => setIndex(3)}
             >
@@ -354,7 +358,6 @@ function MuiNav() {
         return (
           <NestedListItem key={aPage.pathname}>
             <ListItemButton
-              selectedColor="primary"
               sx={{ mb: '2px' }}
               onClick={() =>
                 setOpen((bool) => {
@@ -389,7 +392,11 @@ function MuiNav() {
                   if (!(nestedPage.children || []).length) {
                     return (
                       <ListItem key={nestedPage.pathname}>
-                        <ListItemButton selectedColor="primary" selected={nestedIndex === 0}>
+                        <ListItemButton
+                          color={nestedIndex === 0 ? 'primary' : undefined}
+                          selected={nestedIndex === 0}
+                          variant={nestedIndex === 0 ? 'light' : 'text'}
+                        >
                           {pageToTitleI18n(nestedPage, t) || ''}
                         </ListItemButton>
                       </ListItem>
@@ -404,9 +411,7 @@ function MuiNav() {
                       <NestedList sx={{ '--List-gap': '4px' }}>
                         {(nestedPage.children || []).map((deepestPage) => (
                           <ListItem key={deepestPage.pathname}>
-                            <ListItemButton selectedColor="primary">
-                              {pageToTitleI18n(deepestPage, t) || ''}
-                            </ListItemButton>
+                            <ListItemButton>{pageToTitleI18n(deepestPage, t) || ''}</ListItemButton>
                           </ListItem>
                         ))}
                       </NestedList>
@@ -958,7 +963,7 @@ export default function JoyTypography() {
               '--List-item-minHeight': '3rem',
             }}
           >
-            <ListItemButton selected selectedVariant="contained" color="primary">
+            <ListItemButton selected variant="contained">
               <ListItemDecorator>
                 <InboxIcon />
               </ListItemDecorator>
@@ -992,7 +997,7 @@ export default function JoyTypography() {
                 </Button>
               }
             >
-              <ListItemButton selected selectedVariant="light">
+              <ListItemButton selected variant="light">
                 <ListItemDecorator>
                   <Circle color="primary">
                     <InboxIcon />
@@ -1012,7 +1017,7 @@ export default function JoyTypography() {
                 </Button>
               }
             >
-              <ListItemButton selected selectedVariant="outlined" color="danger">
+              <ListItemButton selected variant="outlined" color="danger">
                 <ListItemDecorator>
                   <Circle color="danger">
                     <Star />
@@ -1043,7 +1048,7 @@ export default function JoyTypography() {
             >
               <ListItemButton
                 selected
-                selectedVariant="contained"
+                variant="contained"
                 color="success"
                 sx={(theme) => theme.variants.containedOverrides.success}
               >

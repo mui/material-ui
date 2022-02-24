@@ -23,12 +23,14 @@ export interface ListItemButtonClasses {
   disabled: string;
   /** State class applied to the root element if `selected={true}`. */
   selected: string;
-  /** State class applied to the root element if `selectedVariant="light"`. */
-  selectedVariantLight: string;
-  /** State class applied to the root element if `selectedVariant="outlined"`. */
-  selectedVariantOutlined: string;
-  /** State class applied to the root element if `selectedVariant="contained"`. */
-  selectedVariantContained: string;
+  /** State class applied to the root element if `variant="text"`. */
+  variantText: string;
+  /** State class applied to the root element if `variant="light"`. */
+  variantLight: string;
+  /** State class applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** State class applied to the root element if `variant="contained"`. */
+  variantContained: string;
 }
 
 export type ListItemButtonClassKey = keyof ListItemButtonClasses;
@@ -49,9 +51,10 @@ const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('Mui
   'focusVisible',
   'disabled',
   'selected',
-  'selectedVariantLight',
-  'selectedVariantOutlined',
-  'selectedVariantContained',
+  'variantText',
+  'variantLight',
+  'variantOutlined',
+  'variantContained',
 ]);
 
 export default listItemButtonClasses;
