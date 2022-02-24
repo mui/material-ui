@@ -115,7 +115,7 @@ function ProductDrawerButton(props) {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button
         id="mui-product-selector"
         aria-controls="drawer-open-button"
@@ -128,7 +128,6 @@ function ProductDrawerButton(props) {
           minWidth: 0,
           fontSize: theme.typography.pxToRem(13),
           fontWeight: 500,
-          lineHeight: 0,
           color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
           '& svg': {
@@ -188,14 +187,12 @@ function ProductDrawerButton(props) {
             description="Ready-to-use foundational components, free forever."
           />
           <LinksWrapper>
-            {FEATURE_TOGGLE.enable_mui_base_scope && (
-              <Link
-                href={ROUTES.baseDocs}
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
-              >
-                Base <KeyboardArrowRight fontSize="small" />
-              </Link>
-            )}
+            <Link
+              href={ROUTES.baseDocs}
+              // eslint-disable-next-line material-ui/no-hardcoded-labels
+            >
+              MUI Base <KeyboardArrowRight fontSize="small" />
+            </Link>
             <Link
               href={ROUTES.materialDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
@@ -236,7 +233,7 @@ function ProductDrawerButton(props) {
           </LinksWrapper>
         </li>
       </Menu>
-    </div>
+    </React.Fragment>
   );
 }
 
@@ -245,38 +242,23 @@ ProductDrawerButton.propTypes = {
 };
 
 const ProductIdentifier = ({ name, metadata, versionSelector }) => (
-  <Box
-    sx={{
-      width: '100%',
-      display: 'flex',
-      flex: 'auto',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    }}
-  >
-    <div>
-      <Typography
-        sx={(theme) => ({
-          ml: 1,
-          color: theme.palette.grey[600],
-          fontSize: theme.typography.pxToRem(11),
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '.08rem',
-        })}
-      >
-        {metadata}
-      </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'end',
-        }}
-      >
-        <ProductDrawerButton productName={name} />
-        {versionSelector}
-      </Box>
-    </div>
+  <Box sx={{ flexGrow: 1 }}>
+    <Typography
+      sx={(theme) => ({
+        ml: 1,
+        color: theme.palette.grey[600],
+        fontSize: theme.typography.pxToRem(11),
+        fontWeight: 700,
+        textTransform: 'uppercase',
+        letterSpacing: '.08rem',
+      })}
+    >
+      {metadata}
+    </Typography>
+    <Box sx={{ display: 'flex' }}>
+      <ProductDrawerButton productName={name} />
+      {versionSelector}
+    </Box>
   </Box>
 );
 
@@ -326,7 +308,8 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
     padding: theme.spacing(1.45, 2),
-    height: 64,
+    paddingRight: 0,
+    height: 'var(--MuiDocs-header-height)',
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -348,7 +331,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
 
 const SwipeableDrawerPaperComponent = styled('div')(({ theme }) => {
   return {
-    width: 280,
+    width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
@@ -384,7 +367,7 @@ function reduceChildRoutes(context) {
     return items;
   }
 
-  if (page.children && page.children.length > 1) {
+  if (page.children && page.children.length >= 1) {
     const title = pageToTitleI18n(page, t);
     const topLevel = activePage
       ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
@@ -450,7 +433,7 @@ function AppNavDrawer(props) {
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
-    const renderVersionSelector = (versions = []) => {
+    const renderVersionSelector = (versions = [], sx) => {
       if (!versions?.length) {
         return null;
       }
@@ -461,42 +444,48 @@ function AppNavDrawer(props) {
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
             }}
-            endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
-            sx={(theme) => ({
-              py: 0.1,
-              minWidth: 0,
-              fontSize: theme.typography.pxToRem(13),
-              fontWeight: 500,
-              lineHeight: 0,
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[600],
-              '& svg': {
-                ml: -0.6,
-                width: 18,
-                height: 18,
-              },
-              ...(!isProductScoped && {
-                px: 1,
-                py: 0.4,
-                border: `1px solid ${
+            endIcon={
+              versions.length > 1 ? (
+                <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
+              ) : null
+            }
+            sx={[
+              (theme) => ({
+                py: 0.1,
+                minWidth: 0,
+                fontSize: theme.typography.pxToRem(13),
+                fontWeight: 500,
+                color:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200]
-                }`,
-                '&:hover': {
-                  borderColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[300],
-                  background:
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.primaryDark[700], 0.4)
-                      : theme.palette.grey[50],
+                    ? theme.palette.primary[300]
+                    : theme.palette.primary[600],
+                '& svg': {
+                  ml: -0.6,
+                  width: 18,
+                  height: 18,
                 },
+                ...(!isProductScoped && {
+                  px: 1,
+                  py: 0.4,
+                  border: `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[700]
+                      : theme.palette.grey[200]
+                  }`,
+                  '&:hover': {
+                    borderColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[600]
+                        : theme.palette.grey[300],
+                    background:
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.primaryDark[700], 0.4)
+                        : theme.palette.grey[50],
+                  },
+                }),
               }),
-            })}
+              ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
           >
             {versions[0].text}
           </Button>
@@ -562,10 +551,13 @@ function AppNavDrawer(props) {
               </Box>
             </NextLink>
             {!isProductScoped &&
-              renderVersionSelector([
-                { text: `v${process.env.LIB_VERSION}`, current: true },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-              ])}
+              renderVersionSelector(
+                [
+                  { text: `v${process.env.LIB_VERSION}`, current: true },
+                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
+                ],
+                { mr: 2 },
+              )}
             {router.asPath.startsWith('/material/') && (
               <ProductIdentifier
                 name="Material UI"
@@ -591,7 +583,7 @@ function AppNavDrawer(props) {
             )}
             {router.asPath.startsWith('/base/') && (
               <ProductIdentifier
-                name="Base"
+                name="MUI Base"
                 metadata="MUI Core"
                 versionSelector={renderVersionSelector([
                   { text: `v${basePkgJson.version}`, current: true },

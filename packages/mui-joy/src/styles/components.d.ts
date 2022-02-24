@@ -1,9 +1,10 @@
-import { CSSInterpolation } from '@mui/system';
 import { GlobalStateSlot } from '@mui/base';
+import { CSSInterpolation } from '@mui/system';
 import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
+import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
+import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
-import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { ListProps, ListSlot } from '../List/ListProps';
 import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
 import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
@@ -78,5 +79,9 @@ export interface Components<Theme = unknown> {
   MuiInput?: {
     defaultProps?: Partial<InputProps>;
     styleOverrides?: OverridesStyleRules<InputSlot, InputProps, Theme>;
+  };
+  MuiSheet?: {
+    defaultProps?: Partial<SheetProps>;
+    styleOverrides?: OverridesStyleRules<SheetSlot, SheetProps, Theme>;
   };
 }
