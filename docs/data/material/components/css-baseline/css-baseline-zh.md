@@ -6,7 +6,7 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline 基线
 
-<p class="description">Material-UI 提供了一个 CssBaseline 组件，用于启动一个优雅、一致且简单的基线。</p>
+<p class="description">MUI 提供了一个 CssBaseline 组件，用于启动一个优雅、一致且简单的基线。</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -16,7 +16,7 @@ githubLabel: 'component: CssBaseline'
 
 ```jsx
 import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp() {
   return (
@@ -34,7 +34,7 @@ However, you might be progressively migrating a website to MUI, using a global r
 
 ```jsx
 import * as React from 'react';
-import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import MyApp from './MyApp';
 
 export default function MyApp() {
@@ -70,7 +70,7 @@ export default function MyApp() {
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode).
 
 ```jsx
-import darkScrollbar from '@material-ui/core/darkScrollbar';
+import darkScrollbar from '@mui/core/darkScrollbar';
 
 const theme = createTheme({
   components: {
