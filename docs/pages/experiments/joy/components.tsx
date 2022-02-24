@@ -440,7 +440,7 @@ function Playground({ initialName }: { initialName?: string }) {
               }}
               value={
                 componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
-                cssVar.defaultValue ||
+                cssVar.defaultValue?.toString() ||
                 ''
               }
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

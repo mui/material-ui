@@ -31,8 +31,5 @@ export * from './ListItemButton';
 export { default as ListItemContent } from './ListItemContent';
 export * from './ListItemContent';
 
-export { default as NestedList } from './NestedList';
-export * from './NestedList';
-
 export { default as Input } from './Input';
 export * from './Input';

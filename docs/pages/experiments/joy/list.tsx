@@ -18,7 +18,6 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
-import NestedList from '@mui/joy/NestedList';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -203,7 +202,7 @@ function Gmail() {
           </ListItemDecorator>
           Categories
         </ListItemButton>
-        <NestedList>
+        <List>
           <ListItem>
             <ListItemButton
               selected={index === 2}
@@ -232,7 +231,7 @@ function Gmail() {
               <Typography level="body2">22,252</Typography>
             </ListItemButton>
           </ListItem>
-        </NestedList>
+        </List>
       </ListItem>
     </List>
   );
@@ -381,7 +380,7 @@ function MuiNav() {
               />
             </ListItemButton>
             <Collapse in={open[index]} timeout="auto" unmountOnExit>
-              <NestedList
+              <List
                 sx={{
                   '--List-gap': hasDeeperLevel ? '17px' : '4px',
                   '--List-nestedInsetStart': '0px',
@@ -406,17 +405,17 @@ function MuiNav() {
                       <MuiListItemContent>
                         {pageToTitleI18n(nestedPage, t) || ''}
                       </MuiListItemContent>
-                      <NestedList sx={{ '--List-gap': '4px' }}>
+                      <List sx={{ '--List-gap': '4px' }}>
                         {(nestedPage.children || []).map((deepestPage) => (
                           <ListItem key={deepestPage.pathname}>
                             <ListItemButton>{pageToTitleI18n(deepestPage, t) || ''}</ListItemButton>
                           </ListItem>
                         ))}
-                      </NestedList>
+                      </List>
                     </ListItem>
                   );
                 })}
-              </NestedList>
+              </List>
             </Collapse>
           </ListItem>
         );
@@ -560,7 +559,7 @@ const Firebash = () => {
               }}
             />
           </ListItemButton>
-          <NestedList
+          <List
             sx={{
               '--List-item-minHeight': '32px',
               '--List-item-paddingY': '0px',
@@ -575,7 +574,7 @@ const Firebash = () => {
                   <ListItemContent>{item.label}</ListItemContent>
                 </ListItemButton>
               ))}
-          </NestedList>
+          </List>
         </ListItem>
       </List>
     </Box>
@@ -630,11 +629,11 @@ const Gatsby = () => {
               Documentation
             </Typography>
           </ListItem>
-          <NestedList sx={{ '--List-gap': '0px' }}>
+          <List sx={{ '--List-gap': '0px' }}>
             <ListItem>
               <ListItemButton selected>Overview</ListItemButton>
             </ListItem>
-          </NestedList>
+          </List>
         </ListItem>
         <ListItem sx={{ '--List-gap': '0px' }}>
           <ListItemButton>Quick Start</ListItemButton>
@@ -663,7 +662,7 @@ const Gatsby = () => {
             </Typography>
           </ListItemButton>
           <Collapse in={open}>
-            <NestedList sx={{ '--List-item-paddingY': '8px', '--List-gap': '0px' }}>
+            <List sx={{ '--List-item-paddingY': '8px', '--List-gap': '0px' }}>
               <ListItem>
                 <ListItemButton>Overview</ListItemButton>
               </ListItem>
@@ -676,7 +675,7 @@ const Gatsby = () => {
               <ListItem>
                 <ListItemButton>2. Use and Style React components</ListItemButton>
               </ListItem>
-            </NestedList>
+            </List>
           </Collapse>
         </ListItem>
         <ListItem
@@ -694,7 +693,7 @@ const Gatsby = () => {
               39
             </Typography>
           </ListItemButton>
-          <NestedList sx={{ '--List-item-paddingY': '8px', '--List-gap': '0px' }}>
+          <List sx={{ '--List-item-paddingY': '8px', '--List-gap': '0px' }}>
             <ListItem>
               <ListItemButton>Overview</ListItemButton>
             </ListItem>
@@ -707,7 +706,7 @@ const Gatsby = () => {
             <ListItem>
               <ListItemButton>Styling</ListItemButton>
             </ListItem>
-          </NestedList>
+          </List>
         </ListItem>
       </List>
     </Box>
@@ -1152,12 +1151,12 @@ export default function JoyTypography() {
               <ListItemButton>
                 <Typography>Category 1</Typography>
               </ListItemButton>
-              <NestedList>
+              <List size="sm">
                 <ListItem nested>
                   <ListItemButton>
                     <Typography level="body2">Subcategory 1.1</Typography>
                   </ListItemButton>
-                  <NestedList>
+                  <List>
                     <ListItem>
                       <ListItemButton>Menu item 1.1.1</ListItemButton>
                     </ListItem>
@@ -1167,7 +1166,7 @@ export default function JoyTypography() {
                     <ListItem>
                       <ListItemButton>Menu item 1.1.3</ListItemButton>
                     </ListItem>
-                  </NestedList>
+                  </List>
                 </ListItem>
                 <ListItem>
                   <ListItemButton>Menu item 1.2</ListItemButton>
@@ -1175,7 +1174,7 @@ export default function JoyTypography() {
                 <ListItem>
                   <ListItemButton>Menu item 1.3</ListItemButton>
                 </ListItem>
-              </NestedList>
+              </List>
             </ListItem>
             <ListItem>
               <ListItemButton>Menu item 2</ListItemButton>
