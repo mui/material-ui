@@ -367,7 +367,7 @@
     "/material-ui/react-chip": "Chip",
     "/material-ui/react-divider": "Divider",
     "/material-ui/icons": "Icons",
-    "/material-ui/material-ui-icons": "Material Ui Icons",
+    "/material-ui/material-icons": "Material Icons",
     "/material-ui/react-list": "List",
     "/material-ui/react-table": "Table",
     "/material-ui/react-tooltip": "Tooltip",
