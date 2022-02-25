@@ -2,13 +2,13 @@
   Language
 </TriggerButton>
 
-<StyledMenu
+<MenuUnstyled
   open={isOpen}
   onClose={close}
   anchorEl={anchorEl}
-  components={{ Root: Popper }}
+  components={{ Root: Popper, Listbox: StyledListbox }}
 >
   <StyledMenuItem onClick={() => close()}>English</StyledMenuItem>
   <StyledMenuItem onClick={() => close()}>中文</StyledMenuItem>
   <StyledMenuItem onClick={() => close()}>Português</StyledMenuItem>
-</StyledMenu>
+</MenuUnstyled>

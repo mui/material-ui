@@ -28,7 +28,7 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledMenu = styled(MenuUnstyled)(
+const StyledListbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -129,16 +129,16 @@ export default function UnstyledMenuSimple() {
         Language
       </TriggerButton>
 
-      <StyledMenu
+      <MenuUnstyled
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}
-        components={{ Root: Popper }}
+        components={{ Root: Popper, Listbox: StyledListbox }}
       >
         <StyledMenuItem onClick={() => close()}>English</StyledMenuItem>
         <StyledMenuItem onClick={() => close()}>中文</StyledMenuItem>
         <StyledMenuItem onClick={() => close()}>Português</StyledMenuItem>
-      </StyledMenu>
+      </MenuUnstyled>
     </div>
   );
 }

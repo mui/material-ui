@@ -28,7 +28,7 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledMenu = styled(MenuUnstyled)(
+const StyledListbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -164,11 +164,11 @@ export default function WrappedMenuItems() {
       <TriggerButton type="button" onClick={handleButtonClick}>
         Options
       </TriggerButton>
-      <StyledMenu
+      <MenuUnstyled
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}
-        components={{ Root: Popper }}
+        components={{ Root: Popper, Listbox: StyledListbox }}
       >
         <MenuSection label="Navigation">
           <StyledMenuItem onClick={() => close()}>Back</StyledMenuItem>
@@ -184,7 +184,7 @@ export default function WrappedMenuItems() {
           <StyledMenuItem onClick={() => close()}>Zoom out</StyledMenuItem>
         </MenuSection>
         <li className="helper">Current zoom level: 100%</li>
-      </StyledMenu>
+      </MenuUnstyled>
     </div>
   );
 }
