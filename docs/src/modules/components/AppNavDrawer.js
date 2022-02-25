@@ -427,7 +427,7 @@ function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const isProductScoped =
       router.asPath.startsWith('/x') ||
-      router.asPath.startsWith('/material') ||
+      router.asPath.startsWith('/material-ui') ||
       (router.asPath.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) ||
       router.asPath.startsWith('/base');
 
