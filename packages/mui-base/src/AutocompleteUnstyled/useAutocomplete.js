@@ -528,8 +528,7 @@ export default function useAutocomplete(props) {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
         if (
           inputRef.current &&
-          inputRef.current.nodeName === 'TEXTAREA' &&
-          componentName === 'Autocomplete'
+          inputRef.current.nodeName === 'TEXTAREA'
         ) {
           console.warn(
             [
