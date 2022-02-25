@@ -246,22 +246,22 @@ module.exports = {
         },
         {
           source: '/getting-started/:path*',
-          destination: '/material/getting-started/:path*',
+          destination: '/material-ui/getting-started/:path*',
           permanent: false,
         },
         {
           source: '/customization/:path*',
-          destination: '/material/customization/:path*',
+          destination: '/material-ui/customization/:path*',
           permanent: false,
         },
         {
           source: '/guides/:path*',
-          destination: '/material/guides/:path*',
+          destination: '/material-ui/guides/:path*',
           permanent: false,
         },
         {
           source: '/discover-more/:path*',
-          destination: '/material/discover-more/:path*',
+          destination: '/material-ui/discover-more/:path*',
           permanent: false,
         },
         {
@@ -271,17 +271,17 @@ module.exports = {
         },
         {
           source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
-          destination: '/material/:slug',
+          destination: '/material-ui/:slug',
           permanent: false,
         },
         {
           source: '/components/:path(tabs|breadcrumbs)',
-          destination: '/material/react-:path',
+          destination: '/material-ui/react-:path',
           permanent: false,
         },
         ...['checkboxes', 'switches'].map((component) => ({
           source: `/components/${component}`,
-          destination: `/material/react-${component.replace(/es$/, '')}`,
+          destination: `/material-ui/react-${component.replace(/es$/, '')}`,
           permanent: false,
         })),
         ...[
@@ -305,12 +305,12 @@ module.exports = {
           'steppers',
         ].map((component) => ({
           source: `/components/${component}`,
-          destination: `/material/react-${component.replace(/s$/, '')}`,
+          destination: `/material-ui/react-${component.replace(/s$/, '')}`,
           permanent: false,
         })),
         {
           source: '/components/:path',
-          destination: '/material/react-:path',
+          destination: '/material-ui/react-:path',
           permanent: false,
         },
         {
@@ -320,7 +320,7 @@ module.exports = {
         },
         {
           source: '/api/:path*',
-          destination: '/material/api/:path*',
+          destination: '/material-ui/api/:path*',
           permanent: false,
         },
       ];

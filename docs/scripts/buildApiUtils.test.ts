@@ -15,9 +15,9 @@ describe('buildApiUtils', () => {
   describe('extractApiPage', () => {
     it('return info for api page', () => {
       expect(
-        extractApiPage('/material-ui/docs/pages/material/api/accordion-actions.js'),
+        extractApiPage('/material-ui/docs/pages/material-ui/api/accordion-actions.js'),
       ).to.deep.equal({
-        apiPathname: '/material/api/accordion-actions',
+        apiPathname: '/material-ui/api/accordion-actions',
       });
     });
   });

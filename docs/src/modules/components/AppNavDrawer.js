@@ -558,7 +558,7 @@ function AppNavDrawer(props) {
                 ],
                 { mr: 2 },
               )}
-            {router.asPath.startsWith('/material/') && (
+            {router.asPath.startsWith('/material-ui/') && (
               <ProductIdentifier
                 name="Material UI"
                 metadata="MUI Core"

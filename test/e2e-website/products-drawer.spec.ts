@@ -9,7 +9,7 @@ test.beforeEach(async () => {
 });
 
 test('able to navigate between products', async ({ page }) => {
-  await page.goto('/material/getting-started/installation/');
+  await page.goto('/material-ui/getting-started/installation/');
 
   await page.click('#mui-product-selector');
 
