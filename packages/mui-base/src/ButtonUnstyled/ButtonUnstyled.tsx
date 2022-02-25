@@ -135,13 +135,16 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * @ignore
+   * The components used for each slot inside the Button.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   components: PropTypes.shape({
     Root: PropTypes.elementType,
   }),
   /**
-   * @ignore
+   * The props used for each slot inside the Button.
+   * @default {}
    */
   componentsProps: PropTypes.shape({
     root: PropTypes.object,

@@ -15,9 +15,18 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
   action?: React.Ref<ButtonUnstyledActions>;
   children?: React.ReactNode;
   className?: string;
+  /**
+   * The components used for each slot inside the Button.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
   components?: {
     Root?: React.ElementType;
   };
+  /**
+   * The props used for each slot inside the Button.
+   * @default {}
+   */
   componentsProps?: {
     root?: React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonUnstyledComponentsPropsOverrides;
   };
