@@ -267,7 +267,7 @@ const components: {
       { id: '--List-item-paddingRight', type: 'number', unit: 'px', defaultValue: 6 },
       { id: '--List-item-fontSize', type: 'number', unit: 'px', defaultValue: 16 },
       { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
-      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],

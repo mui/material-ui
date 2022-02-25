@@ -77,9 +77,9 @@ const ListRoot = styled('ul', {
         ...applySizeVars(ownerState.size),
         '--List-padding': '0px',
         '--List-radius': '0px',
+        '--List-divider-gap': '0px',
         '--List-decorator-color': theme.vars.palette.text.tertiary,
         '--List-nestedInsetStart': '0.75rem',
-        '--List-divider-gap': 'var(--List-gap)',
         '--List-background': theme.vars.palette.background.body,
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
         '--List-item-radius':

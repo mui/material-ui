@@ -69,6 +69,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
       zIndex: 1,
       background: 'var(--List-background)',
     }),
+    // Using :last-child or :first-child selector would complicate ListDivider margin
     [`& + .${listItemClasses.root}`]: {
       marginTop: 'var(--List-gap)',
     },

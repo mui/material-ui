@@ -21,14 +21,15 @@ const ListDividerRoot = styled('li', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListDividerProps }>(({ theme, ownerState }) => ({
+  '--List-divider-marginY': 'calc(var(--List-gap) + var(--List-divider-gap))',
   border: 'none', // reset the border for `hr` tag
   borderBottom: '1px solid',
   borderColor: theme.vars.palette.divider,
   // by default, the divider line is stretched from edge-to-edge of the List
   // spacing between ListItem can be controlled by `--List-divider-gap` on the List
-  margin: 'var(--List-divider-gap) calc(-1 * var(--List-padding))',
+  margin: 'var(--List-divider-marginY) calc(-1 * var(--List-padding))',
   ...(ownerState.inset === 'gutter' && {
-    margin: 'var(--List-divider-gap)',
+    margin: 'var(--List-divider-marginY)',
     marginRight: 'var(--List-item-paddingRight)',
     marginLeft: 'var(--List-item-paddingLeft)',
   }),

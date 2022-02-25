@@ -73,6 +73,8 @@ const ListItemButtonRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
     }),
     '&.Mui-focusVisible': theme.focus.default,
+    // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
+    // We want to be specific on what siblings the gap should be added.
     [`& + .${listItemButtonClasses.root}`]: {
       marginTop: 'var(--List-gap)',
     },
