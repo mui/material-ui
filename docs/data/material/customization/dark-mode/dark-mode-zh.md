@@ -1,6 +1,6 @@
 # Dark mode
 
-<p class="description">MUI comes with two palette modes: light (the default) and dark.</p>
+<p class="description">MUI 带有两种调色盘模式：浅色模式(默认)和夜间模式。</p>
 
 你可以通过设置 `mode: 'dark'` 来启用夜间模式。
 
