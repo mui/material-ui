@@ -3,6 +3,7 @@ import { withStyles } from '@mui/styles';
 
 import {
   ThemeProvider,
+  createTheme,
   MenuItem,
   Tab,
   Tabs as MuiTabs,
@@ -58,4 +59,3 @@ import {
   ClickAwayListener,
   ListSubheader,
 } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
