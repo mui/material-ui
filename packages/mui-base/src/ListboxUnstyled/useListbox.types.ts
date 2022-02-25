@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 type UseListboxStrictPropsRequiredKeys =
   | 'isOptionDisabled'
   | 'disableListWrap'
@@ -6,10 +8,10 @@ type UseListboxStrictPropsRequiredKeys =
   | 'multiple';
 
 export type UseListboxStrictProps<TOption> = Omit<
-  UseListboxProps<TOption>,
+  UseListboxParameters<TOption>,
   UseListboxStrictPropsRequiredKeys
 > &
-  Required<Pick<UseListboxProps<TOption>, UseListboxStrictPropsRequiredKeys>>;
+  Required<Pick<UseListboxParameters<TOption>, UseListboxStrictPropsRequiredKeys>>;
 
 enum ActionTypes {
   blur = 'blur',
@@ -127,7 +129,7 @@ interface UseListboxCommonProps<TOption> {
   stateReducer?: ListboxReducer<TOption>;
 }
 
-interface UseSingleSelectListboxProps<TOption> extends UseListboxCommonProps<TOption> {
+interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
   /**
    * The default selected value. Use when the component is not controlled.
    */
@@ -147,7 +149,7 @@ interface UseSingleSelectListboxProps<TOption> extends UseListboxCommonProps<TOp
   onChange?: (value: TOption) => void;
 }
 
-interface UseMultiSelectListboxProps<TOption> extends UseListboxCommonProps<TOption> {
+interface UseMultiSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
   /**
    * The default selected value. Use when the component is not controlled.
    */
@@ -167,12 +169,39 @@ interface UseMultiSelectListboxProps<TOption> extends UseListboxCommonProps<TOpt
   onChange?: (value: TOption[]) => void;
 }
 
-export type UseListboxProps<TOption> =
-  | UseSingleSelectListboxProps<TOption>
-  | UseMultiSelectListboxProps<TOption>;
+export type UseListboxParameters<TOption> =
+  | UseSingleSelectListboxParameters<TOption>
+  | UseMultiSelectListboxParameters<TOption>;
 
 export interface OptionState {
   disabled: boolean;
   highlighted: boolean;
   selected: boolean;
 }
+
+interface UseListboxRootSlotOwnProps {
+  'aria-activedescendant'?: React.AriaAttributes['aria-activedescendant'];
+  id?: string;
+  onBlur: React.FocusEventHandler;
+  onKeyDown: React.KeyboardEventHandler;
+  role: React.AriaRole;
+  tabIndex: number;
+  ref: React.Ref<any>;
+}
+
+export type UseListboxRootSlotProps<TOther = {}> = Omit<TOther, keyof UseListboxRootSlotOwnProps> &
+  UseListboxRootSlotOwnProps;
+
+interface UseListboxOptionSlotOwnProps {
+  'aria-disabled': React.AriaAttributes['aria-disabled'];
+  'aria-selected': React.AriaAttributes['aria-selected'];
+  id?: string;
+  onClick: React.MouseEventHandler;
+  role: React.AriaRole;
+}
+
+export type UseListboxOptionSlotProps<TOther = {}> = Omit<
+  TOther,
+  keyof UseListboxOptionSlotOwnProps
+> &
+  UseListboxOptionSlotOwnProps;
