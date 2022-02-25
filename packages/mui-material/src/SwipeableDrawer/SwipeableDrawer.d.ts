@@ -3,6 +3,20 @@ import { DrawerProps } from '../Drawer';
 
 export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
   /**
+   * Callback to determine what children of the drawer the user can use to drag open the drawer.
+   * Can be a custom function to control the behavior.
+   * Set or return true / false to allow / disallow the swipe event.
+   *
+   * @param {TouchEvent} event The 'touchstart' event
+   * @param {HTMLDivElement} swipeArea The swipe area element
+   * @param {HTMLDivElement} paper The drawer's paper element
+   *
+   * @default false
+   */
+  AllowSwipeInChildren?:
+    | boolean
+    | ((e: TouchEvent, swipeArea: HTMLDivElement, paper: HTMLDivElement) => boolean);
+  /**
    * Disable the backdrop transition.
    * This can improve the FPS on low-end devices.
    * @default false
@@ -49,19 +63,6 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    * If `true`, the component is shown.
    */
   open: boolean;
-  /**
-   * Callback to determine if the 'touchstart' event is ignored.
-   * This is useful if you have a swipeable edge, with a button in it,
-   * that you want to be able to both click, and drag to open the drawer.
-   *
-   * @param {TouchEvent} event The 'touchstart' event
-   * @param {HTMLDivElement} swipeArea The swipe area element
-   *
-   * @default function defaultSwipeAreaIgnoreTouchStartEvent(event, swipeArea) {
-   *   return event.target !== swipeArea;
-   * }
-   */
-  swipeAreaIgnoreTouchStartEvent?: (e: TouchEvent, swipeArea: HTMLDivElement) => boolean;
   /**
    * The element is used to intercept the touch events on the edge.
    */

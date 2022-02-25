@@ -53,10 +53,6 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
   );
 }
 
-function defaultSwipeAreaIgnoreTouchStartEvent(event, swipeArea) {
-  return event.target !== swipeArea;
-}
-
 /**
  * @param {Element | null} element
  * @param {Element} rootNode
@@ -149,13 +145,13 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     disableSwipeToOpen = iOS,
     hideBackdrop,
     hysteresis = 0.52,
+    AllowSwipeInChildren = false,
     minFlingVelocity = 450,
     ModalProps: { BackdropProps, ...ModalPropsProp } = {},
     onClose,
     onOpen,
     open,
     PaperProps = {},
-    swipeAreaIgnoreTouchStartEvent = defaultSwipeAreaIgnoreTouchStartEvent,
     SwipeAreaProps,
     swipeAreaWidth = 20,
     transitionDuration = transitionDurationDefault,
@@ -476,7 +472,20 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     );
 
     if (!open) {
-      if (disableSwipeToOpen || swipeAreaIgnoreTouchStartEvent(nativeEvent, swipeAreaRef.current)) {
+      // logic for if swipe should be ignored:
+      // if disableSwipeToOpen
+      // if target != swipeArea, and target is not a child of paper ref
+      // if is a child of paper ref, but `AllowSwipeInChildren` disallows it
+      if (
+        disableSwipeToOpen ||
+        !(
+          nativeEvent.target === swipeAreaRef.current ||
+          (paperRef.current?.contains(nativeEvent.target) &&
+            (typeof AllowSwipeInChildren === 'function'
+              ? AllowSwipeInChildren(nativeEvent, swipeAreaRef.current, paperRef.current)
+              : AllowSwipeInChildren))
+        )
+      ) {
         return;
       }
       if (horizontalSwipe) {
@@ -565,7 +574,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         PaperProps={{
           ...PaperProps,
           style: {
-            pointerEvents: variant === 'temporary' && !open ? 'none' : '',
+            pointerEvents: variant === 'temporary' && !open && !AllowSwipeInChildren ? 'none' : '',
             ...PaperProps.style,
           },
           ref: paperRef,
@@ -595,6 +604,18 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * Callback to determine what children of the drawer the user can use to drag open the drawer.
+   * Can be a custom function to control the behavior.
+   * Set or return true / false to allow / disallow the swipe event.
+   *
+   * @param {TouchEvent} event The 'touchstart' event
+   * @param {HTMLDivElement} swipeArea The swipe area element
+   * @param {HTMLDivElement} paper The drawer's paper element
+   *
+   * @default false
+   */
+  AllowSwipeInChildren: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   /**
    * @ignore
    */
@@ -669,19 +690,6 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
     component: elementTypeAcceptingRef,
     style: PropTypes.object,
   }),
-  /**
-   * Callback to determine if the 'touchstart' event is ignored.
-   * This is useful if you have a swipeable edge, with a button in it,
-   * that you want to be able to both click, and drag to open the drawer.
-   *
-   * @param {TouchEvent} event The 'touchstart' event
-   * @param {HTMLDivElement} swipeArea The swipe area element
-   *
-   * @default function defaultSwipeAreaIgnoreTouchStartEvent(event, swipeArea) {
-   *   return event.target !== swipeArea;
-   * }
-   */
-  swipeAreaIgnoreTouchStartEvent: PropTypes.func,
   /**
    * The element is used to intercept the touch events on the edge.
    */
