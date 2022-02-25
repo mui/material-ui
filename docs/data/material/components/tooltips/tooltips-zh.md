@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Tooltip（工具提示）组件
 components: Tooltip
 githubLabel: 'component: tooltip'

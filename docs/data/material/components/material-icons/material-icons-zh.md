@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Material 图标
 components: Icon, SvgIcon
 materialDesign: https://material.io/design/iconography/system-icons.html

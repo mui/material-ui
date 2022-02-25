@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Detectar clique fora
 components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
