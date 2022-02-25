@@ -20,7 +20,7 @@ const pages = [
     pathname: '/material-ui/react-',
     scopePathnames: [
       '/material-ui/icons',
-      '/material-ui/material-ui-icons',
+      '/material-ui/material-icons',
       '/material-ui/about-the-lab',
       '/material-ui/transitions',
       '/material-ui/pickers',
@@ -56,7 +56,7 @@ const pages = [
           { pathname: '/material-ui/react-chip', title: 'Chip' },
           { pathname: '/material-ui/react-divider', title: 'Divider' },
           { pathname: '/material-ui/icons' },
-          { pathname: '/material-ui/material-ui-icons' },
+          { pathname: '/material-ui/material-icons' },
           { pathname: '/material-ui/react-list', title: 'List' },
           { pathname: '/material-ui/react-table', title: 'Table' },
           { pathname: '/material-ui/react-tooltip', title: 'Tooltip' },
