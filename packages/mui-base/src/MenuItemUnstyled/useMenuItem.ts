@@ -33,6 +33,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
     component,
     ref: handleRef,
     disabled,
+    allowFocusWhenDisabled: true,
   });
 
   // Ensure the menu item is focused when highlighted

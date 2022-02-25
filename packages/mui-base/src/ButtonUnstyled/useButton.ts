@@ -9,7 +9,16 @@ import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
 export default function useButton(parameters: UseButtonParameters) {
-  const { component = 'button', disabled = false, href, ref, tabIndex = 0, to, type } = parameters;
+  const {
+    allowFocusWhenDisabled,
+    component = 'button',
+    disabled = false,
+    href,
+    ref,
+    tabIndex = 0,
+    to,
+    type,
+  } = parameters;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -23,7 +32,7 @@ export default function useButton(parameters: UseButtonParameters) {
   } = useIsFocusVisible();
 
   const [focusVisible, setFocusVisible] = React.useState(false);
-  if (disabled && focusVisible) {
+  if (disabled && !allowFocusWhenDisabled && focusVisible) {
     setFocusVisible(false);
   }
 
@@ -164,7 +173,11 @@ export default function useButton(parameters: UseButtonParameters) {
 
   if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
-    buttonProps.disabled = disabled;
+    if (allowFocusWhenDisabled) {
+      buttonProps['aria-disabled'] = disabled;
+    } else {
+      buttonProps.disabled = disabled;
+    }
   } else if (hostElementName !== '') {
     if (!href && !to) {
       buttonProps.role = 'button';

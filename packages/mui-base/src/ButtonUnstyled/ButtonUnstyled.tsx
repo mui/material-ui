@@ -43,6 +43,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
 >(props: ButtonUnstyledProps<D>, forwardedRef: React.ForwardedRef<any>) {
   const {
+    allowFocusWhenDisabled,
     className,
     component,
     components = {},
@@ -120,6 +121,10 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
       }),
     }),
   ]),
+  /**
+   * If `true`, allows a disabled button to receive focus.
+   */
+  allowFocusWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */
