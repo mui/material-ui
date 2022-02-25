@@ -31,7 +31,7 @@ type CssVariableType = string | number;
  */
 export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
   [cssSelectorOrVariable: string]:
-    | ((theme: Theme) => SystemStyleObject<Theme>)
+    | ((theme: Theme) => SystemStyleObject<Theme> | string | number)
     | SystemStyleObject<Theme>
     | CssVariableType;
 }

@@ -64,6 +64,8 @@ function CssVariablesWithNestedSelectors() {
       '--md-palette-primary-main': '#FF0000',
       '&:hover': {
         backgroundColor: theme.palette.primary.main,
+        '--md-palette-primary-main': (t) => theme.palette.primary.main,
+        '--md-spacing': (t) => theme.shape.borderRadius,
       },
     })}
   />;
