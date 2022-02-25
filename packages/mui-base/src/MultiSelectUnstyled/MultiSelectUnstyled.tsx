@@ -162,9 +162,9 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     appendOwnerState(
       Button,
       {
+        ...getButtonProps(),
         ...other,
         ...componentsProps.root,
-        ...getButtonProps(),
         className: clsx(className, componentsProps.root?.className, classes.root),
       },
       ownerState,
@@ -174,8 +174,8 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     appendOwnerState(
       ListboxRoot,
       {
-        ...componentsProps.listbox,
         ...getListboxProps(),
+        ...componentsProps.listbox,
         className: clsx(componentsProps.listbox?.className, classes.listbox),
       },
       ownerState,

@@ -156,9 +156,9 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue>> = appendOwnerState(
     Button,
     {
+      ...getButtonProps(),
       ...other,
       ...componentsProps.root,
-      ...getButtonProps(),
       className: clsx(className, componentsProps.root?.className, classes.root),
     },
     ownerState,
@@ -168,8 +168,8 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     appendOwnerState(
       ListboxRoot,
       {
-        ...componentsProps.listbox,
         ...getListboxProps(),
+        ...componentsProps.listbox,
         className: clsx(componentsProps.listbox?.className, classes.listbox),
       },
       ownerState,

@@ -137,6 +137,12 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * @ignore
+   */
   componentsProps: PropTypes.shape({
     root: PropTypes.object,
   }),

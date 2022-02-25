@@ -1,3 +1,4 @@
+import React from 'react';
 import { UseButtonRootSlotProps } from '../ButtonUnstyled';
 import {
   OptionState,
@@ -64,8 +65,8 @@ interface UseSelectButtonSlotEventHandlers {
 export type UseSelectButtonSlotProps<TOther = {}> = UseButtonRootSlotProps<
   Omit<TOther, keyof UseSelectButtonSlotEventHandlers> & UseSelectButtonSlotEventHandlers
 > & {
-  'aria-expanded': boolean;
-  'aria-haspopup': 'listbox';
+  'aria-expanded': React.AriaAttributes['aria-expanded'];
+  'aria-haspopup': React.AriaAttributes['aria-haspopup'];
 };
 
 interface UseSelectListboxSlotEventHandlers {
