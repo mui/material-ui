@@ -142,6 +142,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
             {startAction}
           </ListItemStartAction>
         )}
+
         {children}
         {endAction && (
           <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
@@ -175,6 +176,11 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The element to display at the end of ListItem.
    */
   endAction: PropTypes.node,
+  /**
+   * If `true`, the component can contain NestedList.
+   * @default false
+   */
+  nested: PropTypes.bool,
   /**
    * The element to display at the start of ListItem.
    */

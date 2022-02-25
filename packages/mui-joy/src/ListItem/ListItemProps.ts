@@ -3,7 +3,7 @@ import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ListItemClasses } from './listItemClasses';
 
-export type ListItemSlot = 'root' | 'secondaryAction';
+export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
 export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {

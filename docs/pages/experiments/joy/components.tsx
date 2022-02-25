@@ -207,12 +207,11 @@ const components: {
               <ListItem
                 nested
                 component="div"
-                secondaryAction={
+                endAction={
                   <IconButton variant="text" color="danger">
                     <DeleteForever />
                   </IconButton>
                 }
-                sx={{ '--List-secondaryAction-top': '20px' }}
               >
                 <ListItemButton>
                   <ListItemDecorator>
