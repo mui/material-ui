@@ -4,4 +4,4 @@
   <StyledOption value={30}>Thirty</StyledOption>
 </CustomSelect>
 
-<p>Selected value: {value}</p>
+<Paragraph>Selected value: {value}</Paragraph>

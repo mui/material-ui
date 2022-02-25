@@ -1,5 +1,117 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.4.3
+
+<!-- generated comparing v5.4.2..master -->
+
+_Feb 21, 2022_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 @hbjORbj made components use theme duration/easing values by default (#30894)
+- A meaningful number of 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.4.3`
+
+- &#8203;<!-- 18 -->[ButtonBase] Fix typo (#31135) @Jastor11
+- &#8203;<!-- 05 -->[Stepper] Export useStepContext (#31021) @michaldudak
+- &#8203;<!-- 04 -->[Transitions] Some components do not use transition duration/easing values from theme (#30894) @hbjORbj
+
+### `@mui/icons-material@5.4.3`
+
+- &#8203;<!-- 11 -->[icons] Add "circle" icon synonyms (#31118) @gnowland
+
+### `@mui/joy@5.0.0-alpha.16`
+
+- &#8203;<!-- 10 -->[Joy] `List` second iteration (#31134) @siriwatknp
+- &#8203;<!-- 09 -->[Joy] Fix typings (#31120) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Add initial `List` components (#30987) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 19 -->[website] Improve full-stack role job description (#31160) @Janpot
+- &#8203;<!-- 14 -->[docs] Fix typo of migration guides v4 (#31136) @pppp606
+- &#8203;<!-- 13 -->[docs] Update on the support page to account for v4 LTS support (#31029) @danilo-leal
+- &#8203;<!-- 12 -->[docs] Fix small typo in chips.md (#31092) @cameliaben
+- &#8203;<!-- 07 -->[l10n] Add it-IT translation for labelDisplayedRows (#31131) @frab90
+- &#8203;<!-- 06 -->[l10n] Add pl-PL translation for labelDisplayedRows (#31088) @ThomasTheHuman
+- &#8203;<!-- 03 -->[website] Sync MUI X table feature (#30913) @alexfauquette
+- &#8203;<!-- 02 -->[website] Prefill source in job application links (#31036) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix a grammar mistake (#31099) @huyenltnguyen
+
+### Core
+
+- &#8203;<!-- 17 -->[core] Add jsx, html, css and prisma to prettier extensions (#31161) @Janpot
+- &#8203;<!-- 16 -->[core] Allow to run material-ui.com/store alongside mui.com/store (#31065) @oliviertassinari
+- &#8203;<!-- 15 -->[core] Polish design tokens (#31095) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @cameliaben, @danilo-leal, @frab90, @gnowland, @hbjORbj, @huyenltnguyen, @Janpot, @Jastor11, @michaldudak, @oliviertassinari, @pppp606, @siriwatknp, @ThomasTheHuman
+
+## 5.4.2
+
+_Feb 15, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 @sydneyjodon-wk improved propTypes of the ToggleButton components (#30883)
+- Several 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.4.2`
+
+- [Select] Allow customizing Select based on its variant (#30788) @michaldudak
+- [Portal] Re-export 'Portal' in material (#31003) @liradb2000
+- [ToggleButton] Add prop types for `onClick` and `onChange` (#30883) @sydneyjodon-wk
+- [Typescript] Added TypeText declaration to the exports file (#30890) @agauravdev
+
+### `@mui/system@5.4.2`
+
+- [system] Fix broken behavior when breakpoints input are not ordered (#30996) @mnajdova
+
+### `@mui/lab@5.0.0-alpha.69`
+
+- [DatePicker] Fix passing clearable prop (#30786) @alisasanib
+
+### `@mui/joy@5.0.0-alpha.15`
+
+- [Joy] Improve variant customization experience (#30878) @siriwatknp
+- [Joy] Make `sx` prop work in Joy (#30955) @siriwatknp
+
+### Framer
+
+- [design] Remove framer components (#30983) @mbrookes
+- [design] Remove framer leftovers (#31070) @michaldudak
+
+### Docs
+
+- [docs] Update installation guide of the icons package (#31026) @huyenltnguyen
+- [docs] Improve the indication for the legacy APIs (#30995) @mnajdova
+- [docs] Specify which props are added in the default `shouldForwardProp` option (#30978) @mnajdova
+- [docs] Fix layout shift on loading (#31017) @oliviertassinari
+- [docs] Increase scroll affordance in wide tables (#30713) @danilo-leal
+- [docs] Fix look & feel of the Masonry demos (#30971) @oliviertassinari
+- [docs] Improve Base component demos (#30884) @danilo-leal
+- [docs] Use full product names (Material UI, MUI System) (#30960) @oliviertassinari
+- [docs] Prefer useEnhancedEffect to avoid server side warnings (#30977) @mnajdova
+- [docs] Fix force redirection to a different locale (#30967) @oliviertassinari
+- [docs] Add live Tailwind CSS demo (#30966) @oliviertassinari
+- [website] Add banner for promoting priority open roles (#31076) @danilo-leal
+- [website] Open Full-stack Engineer role for studio (#31038) @newguy-123
+- [website] Minor security improvements (#31062) @oliviertassinari
+- [website] Improve title of open roles (#30963) @DanailH
+- [website] Add BIMI avatar (#30444) @oliviertassinari
+- [website] Add Sycamore to About page (#31000) @samuelsycamore
+
+### Core
+
+- [benchmark] Add missing dependency (#30994) @michaldudak
+- [core] Bump date-io version (#31016) @michaldudak
+- [core] Fix typo in useSlider (#31061) @ryohey
+- [core] Remove unused draft-js types package (#30993) @michaldudak
+- [test] Test if certain Base members are exported from Material UI (#31067) @michaldudak
+- [core] Remove dead code (#31064) @oliviertassinari
+
+All contributors of this release in alphabetical order: @agauravdev, @alisasanib, @DanailH, @danilo-leal, @huyenltnguyen, @l10nbot, @liradb2000, @mbrookes, @michaldudak, @mnajdova, @newguy-123, @oliviertassinari, @ryohey, @samuelsycamore, @siriwatknp, @sydneyjodon-wk
+
 ## 5.4.1
 
 <!-- generated comparing v5.4.0..master -->

@@ -519,7 +519,7 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   TouchRippleProps: PropTypes.object,
   /**
-   * A ref that points to the `TouchRippple` element.
+   * A ref that points to the `TouchRipple` element.
    */
   touchRippleRef: PropTypes.oneOfType([
     PropTypes.func,

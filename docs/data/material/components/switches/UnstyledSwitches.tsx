@@ -9,9 +9,11 @@ const blue = {
 const grey = {
   400: '#BFC7CF',
   500: '#AAB4BE',
+  600: '#6F7E8C',
 };
 
-const Root = styled('span')`
+const Root = styled('span')(
+  ({ theme }) => `
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -26,7 +28,7 @@ const Root = styled('span')`
   }
 
   & .${switchUnstyledClasses.track} {
-    background: ${grey[400]};
+    background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
     border-radius: 10px;
     display: block;
     height: 100%;
@@ -74,7 +76,8 @@ const Root = styled('span')`
     z-index: 1;
     margin: 0;
   }
-`;
+  `,
+);
 
 export default function UnstyledSwitches() {
   const label = { componentsProps: { input: { 'aria-label': 'Demo switch' } } };

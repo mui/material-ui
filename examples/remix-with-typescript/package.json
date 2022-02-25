@@ -1,8 +1,7 @@
 {
+  "name": "remix-with-typescript",
+  "version": "5.0.0",
   "private": true,
-  "name": "remix-app-template",
-  "description": "",
-  "license": "",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
