@@ -1,11 +1,10 @@
 ---
+title: August 2019 Update
 description: Here are the most significant improvements in August.
+date: 2019-09-07T00:00:00.000Z
+authors: ['oliviertassinari']
 tags: ['Company update']
 ---
-
-# August 2019 Update
-
-Olivier Tassinari. September 7, 2019.
 
 Here are the most significant improvements in August:
 
@@ -36,4 +35,4 @@ _(We'll do our best, no guarantee!)_
 
 - 🔍 We will keep working on providing ready-to-use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
 
-- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

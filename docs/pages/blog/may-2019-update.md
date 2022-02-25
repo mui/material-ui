@@ -1,16 +1,15 @@
 ---
+title: May 2019 Update
 description: Here are the most significant improvements in May.
+date: 2019-06-08T00:00:00.000Z
+authors: ['oliviertassinari']
 tags: ['Company update']
 ---
-
-# May 2019 Update
-
-Olivier Tassinari. June 8, 2019.
 
 Here are the most significant improvements in May:
 
 - 🎉 We released MUI v4 stable during the React Europe conference.
-  You can find the details in our [blog post 📝](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) and a quick introduction in this [5 minutes talk](https://www.youtube.com/watch?v=m54_CPfbWow).
+  You can find the details in our [blog post 📝](/blog/material-ui-v4-is-out/) and a quick introduction in this [5 minutes talk](https://www.youtube.com/watch?v=m54_CPfbWow).
 - 🐛 We have made two subsequent releases after v4.0.0, containing a significant number of fixes (v4.0.1 and v4.0.2).
 
 But this summary is just scratching the surface. We have accepted 206 commits from 78 different contributors. We have changed 3,031 files with 96,616 additions and 85,768 deletions.
@@ -36,4 +35,4 @@ _(We'll do our best, no guarantee!)_
 
 You can contact us at contact@mui.com.
 
-- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

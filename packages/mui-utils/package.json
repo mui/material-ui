@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.3.0",
+  "version": "5.4.2",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -13,14 +13,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-utils"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-utils",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-utils",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -42,7 +42,7 @@
     "react": "^17.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.7",
+    "@babel/runtime": "^7.17.2",
     "@types/prop-types": "^15.7.4",
     "@types/react-is": "^16.7.1 || ^17.0.0",
     "prop-types": "^15.7.2",

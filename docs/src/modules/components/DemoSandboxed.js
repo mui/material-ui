@@ -2,6 +2,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
+import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
@@ -39,7 +40,7 @@ function FramedDemo(props) {
         key: `iframe-demo-${theme.direction}`,
         prepend: true,
         container: document.head,
-        stylisPlugins: theme.direction === 'rtl' ? [rtlPlugin] : [],
+        stylisPlugins: theme.direction === 'rtl' ? [prefixer, rtlPlugin] : [prefixer],
       }),
     [document, theme.direction],
   );

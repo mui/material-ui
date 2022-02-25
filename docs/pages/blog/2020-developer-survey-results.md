@@ -1,15 +1,10 @@
 ---
 title: 2020 MUI Developer Survey results
 description: Results for our yearly developer survey, 2020 edition.
-date: 2020-07-27T00:00:00.000Z
+date: 2020-06-27T00:00:00.000Z
 authors: ['mnajdova', 'oliviertassinari', 'mbrookes']
-card: false
 tags: ['Developer survey']
 ---
-
-# 2020 MUI Developer Survey results
-
-Marija Najdova, Olivier Tassinari, Matt Brookes. June 27, 2020.
 
 Continuing the tradition from last year, we launched a developer survey a few months ago, to which we received 1488 responses. This is twice as many as last year (734), so we thank you all for the participation!
 The survey is closed and we can now give a detailed summary of the results.
@@ -197,7 +192,7 @@ Decreasing pain:
 - x0.1: Autocomplete. We added a new component, and have resolved a large number of issues opened since. This will be moved from lab to the core in v5.
 - x0.2: Fewer breaking changes. Only releasing minor versions under v4 for over a year helps a lot. However, we still need to be careful with CSS changes.
 - x0.3: Accessibility. We have been able to leverage GitHub issues opened by a11y experts, often coming from large companies using MUI at scale to improve it a lot this year.
-- x0.4: Material design. We didn't do much for it this year, at least not as much as we could have. Maybe the reduction is because fewer people care? It seems that we start to resonate more with developers building custom design systems.
+- x0.4: Material Design. We didn't do much for it this year, at least not as much as we could have. Maybe the reduction is because fewer people care? It seems that we start to resonate more with developers building custom design systems.
 - x0.4: TypeScript. The continued migration of all the demos to TypeScript and of all the props to IntelliSense is paying off.
 - x0.5: Date picker. We did a lot for it this year. We probably still need the range feature, and to move it into the main repository (docs migration, etc.) for consistency.
 - x0.7: Performance. We didn't do much this year, so perhaps developers are leveraging React more effectively with virtualization, update pruning, etc?

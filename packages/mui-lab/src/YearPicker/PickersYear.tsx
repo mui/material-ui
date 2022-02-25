@@ -54,7 +54,7 @@ const useUtilityClasses = (ownerState: YearProps & { wrapperVariant: WrapperVari
   return composeClasses(slots, getPickersYearUtilityClass, classes);
 };
 
-const PickersYearRoot = styled('div', { skipSx: true })<{
+const PickersYearRoot = styled('div')<{
   ownerState: YearProps & { wrapperVariant: WrapperVariant };
 }>(({ ownerState }) => ({
   flexBasis: '33.3%',
@@ -66,7 +66,7 @@ const PickersYearRoot = styled('div', { skipSx: true })<{
   }),
 }));
 
-const PickersYearButton = styled('button', { skipSx: true })<{
+const PickersYearButton = styled('button')<{
   ownerState: YearProps & { wrapperVariant: WrapperVariant };
 }>(({ theme }) => ({
   color: 'unset',

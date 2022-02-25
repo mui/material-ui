@@ -7,7 +7,7 @@ const workspaceRoot = path.resolve(__dirname, '../');
 const browserStack = {
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
-  build: `material-ui-profile-${new Date().toISOString()}`,
+  build: `mui-core-profile-${new Date().toISOString()}`,
 };
 
 process.env.CHROME_BIN = chromium.executablePath();

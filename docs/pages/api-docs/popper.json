@@ -18,7 +18,7 @@
     "modifiers": {
       "type": {
         "name": "arrayOf",
-        "description": "Array&lt;{ data?: object, effect?: func, enabled?: bool, fn?: func, name: any, options?: object, phase?: 'afterMain'<br>&#124;&nbsp;'afterRead'<br>&#124;&nbsp;'afterWrite'<br>&#124;&nbsp;'beforeMain'<br>&#124;&nbsp;'beforeRead'<br>&#124;&nbsp;'beforeWrite'<br>&#124;&nbsp;'main'<br>&#124;&nbsp;'read'<br>&#124;&nbsp;'write', requires?: Array&lt;string&gt;, requiresIfExists?: Array&lt;string&gt; }&gt;"
+        "description": "Array&lt;{ data?: object, effect?: func, enabled?: bool, fn?: func, name?: any, options?: object, phase?: 'afterMain'<br>&#124;&nbsp;'afterRead'<br>&#124;&nbsp;'afterWrite'<br>&#124;&nbsp;'beforeMain'<br>&#124;&nbsp;'beforeRead'<br>&#124;&nbsp;'beforeWrite'<br>&#124;&nbsp;'main'<br>&#124;&nbsp;'read'<br>&#124;&nbsp;'write', requires?: Array&lt;string&gt;, requiresIfExists?: Array&lt;string&gt; }&gt;"
       }
     },
     "placement": {
