@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { withStyles } from '@mui/styles';
+
+import { ThemeProvider } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Tab from '@mui/material/Tab';
 import MuiTabs from '@mui/material/Tabs';
