@@ -186,18 +186,10 @@ const components: {
         }}
       >
         <List {...props}>
+          <ListDivider inset="startContent" />
           <ListItem>
             <ListItemDecorator>
-              <Box
-                sx={(theme) => ({
-                  display: 'inline-flex',
-                  borderRadius: '40px',
-                  p: '0.5rem',
-                  ...theme.variants.light.neutral,
-                })}
-              >
-                <Inbox />
-              </Box>
+              <Inbox />
             </ListItemDecorator>
             <ListItemContent>
               Inbox
@@ -205,47 +197,44 @@ const components: {
             </ListItemContent>
           </ListItem>
           <ListDivider inset="startContent" />
-          <ListItem>
-            <ListItemDecorator>
-              <Box
-                sx={(theme) => ({
-                  display: 'inline-flex',
-                  borderRadius: '40px',
-                  p: '0.5rem',
-                  ...theme.variants.light.neutral,
-                })}
-              >
-                <Drafts fontSize="md" />
-              </Box>
-            </ListItemDecorator>
-            <ListItemContent>
-              Drafts
-              <Typography level="body2">Jan 7, 2014</Typography>
-            </ListItemContent>
-          </ListItem>
         </List>
         <List component="nav" {...props}>
-          <ListItemButton selected color="primary">
-            <ListItemDecorator>
-              <Inbox />
-            </ListItemDecorator>
-            <ListItemContent>Inbox</ListItemContent>
-            <KeyboardArrowUp />
-          </ListItemButton>
-          <ListItem
-            component="div"
-            secondaryAction={
-              <IconButton variant="text" color="danger">
-                <DeleteForever />
-              </IconButton>
-            }
-          >
-            <ListItemButton>
+          <ListItem nested>
+            <ListItemButton selected color="primary">
               <ListItemDecorator>
-                <Star />
+                <Inbox />
               </ListItemDecorator>
-              <ListItemContent>Starred</ListItemContent>
+              <ListItemContent>Inbox</ListItemContent>
+              <KeyboardArrowUp />
             </ListItemButton>
+            <List>
+              <ListItem
+                nested
+                component="div"
+                endAction={
+                  <IconButton variant="text" color="danger">
+                    <DeleteForever />
+                  </IconButton>
+                }
+              >
+                <ListItemButton>
+                  <ListItemDecorator>
+                    <Star />
+                  </ListItemDecorator>
+                  <ListItemContent>Starred</ListItemContent>
+                </ListItemButton>
+                <List>
+                  <ListItem>
+                    <ListItemButton>
+                      <ListItemDecorator>
+                        <Drafts />
+                      </ListItemDecorator>
+                      Draft
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </ListItem>
+            </List>
           </ListItem>
           <ListDivider component="hr" />
           <ListItemButton>
@@ -255,7 +244,7 @@ const components: {
             <ListItemContent>Favorite</ListItemContent>
           </ListItemButton>
         </List>
-        <List component="nav" {...props}>
+        <List component="nav" size="sm" {...props}>
           <ListItemButton>
             <ListItemContent>New file</ListItemContent>
             <Typography level="body2">⌘ N</Typography>
@@ -273,14 +262,17 @@ const components: {
       </Box>
     ),
     cssVars: [
-      { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-gap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-item-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
-      { id: '--List-item-paddingX', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 48 },
-      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-insetStart', type: 'number', unit: 'px' },
+      { id: '--List-item-paddingY', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-paddingLeft', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-paddingRight', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-fontSize', type: 'number', unit: 'px', defaultValue: 16 },
+      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 0 },
+      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],
   },
@@ -451,7 +443,7 @@ function Playground({ initialName }: { initialName?: string }) {
               }}
               value={
                 componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
-                cssVar.defaultValue ||
+                cssVar.defaultValue?.toString() ||
                 ''
               }
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

@@ -3,6 +3,8 @@ import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ListItemContentClasses } from './listItemContentClasses';
 
+export type ListItemContentSlot = 'root';
+
 export interface ListItemContentTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
