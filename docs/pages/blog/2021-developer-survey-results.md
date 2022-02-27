@@ -189,24 +189,7 @@ Here are the most recurring topics for improvement this year:
 - **Improve customization:** Common requests include making customization easier, providing more examples of common use-cases (like font-family and primary/secondary colors), and improving the theme capabilities.
   Even with the popularity of emotion and styled-components, there continues to be an enormous need to facilitate customization.
 
-In comparison with 2020, here are the growing pain points:
-
-- **Drop Material Design:** At this point, it's an expected request. We have been seeing this trend growing and this year has highlighted it.
-- **Nurture the community:** It seems like there needs to be more focused in enganging with you all, reviewing and accepting contributions faster. An indicator of this is that until Q3 2021, we never had more than 35 PRs and 400 issues whereas today, we're topping 100 and 800 respectively.
-- **Free vs. paid (9.5x):** We already discussed this a bit above but there seems to be growing concern about how that can affect the MIT product.
-- **Accessibility (4.5x):** Even though it has been mentioned as a positive aspect above, there seems to be more developers using Material UI to build applications that heavily depend on accessibility support features than ever before. Another hypothesis might just be that there is more general interest in the topic, which is a good thing.
-- **More icons (2x):** A bit of an unclear request since we've added 2x more icons this year. There might be a correlation to FontAwesome v6, in which they doubled the amount of new icons.
-- **Typescript (1.8x):** The main feedback about it is that IntelliSense is slow, at least slower than it used to be in previous versions.
-- **Material Design update (1.7x):** A pretty much natural reaction given the launch of Material's third version this year.
-
-Got ideas for improvements? Please share them with us! Here's how to make sure that your requests get top priority:
-
-- When you create an issue to request features or components in the MUI Core or MUI X repositories, we'll label it as `Waiting for upvotes`.
-  The more votes your issue receives, the higher a priority it will become—so make sure to structure, research, and justify your request so it resonates with other community members.
-- When requesting a new component, make sure to benchmark existing implementations of it in the wild so we can see what works and what we could better.
-- Try to explain the problem you're having as clearly as possible — it's often the case that we already have a component to solve it.
-- If you're requesting easier customization, make sure to demonstrate the desired outcome, and explain where you're having trouble in as much detail as you can.
-  These requests often highlight opportunities for us to improve our documentation.
+If you are interested in an analysis of the growing and decreasing pain, you can [head to the appendix](https://mui-org.notion.site/Raw-data-aa374141dcb3453dbfea301dcc437126#30728bf1bc8d4f70a1739fa20f11459a).
 
 <details>
   <summary>Click to see the breakdown of categories.</summary>
@@ -429,6 +412,15 @@ Got ideas for improvements? Please share them with us! Here's how to make sure t
     <tr><th>2</th><th>class components</th><tr>
   </table>
 </details>
+
+Got ideas for improvements? Please share them with us! Here's how to make sure that your requests get top priority:
+
+- When you create an issue to request features or components in the MUI Core or MUI X repositories, we'll label it as `Waiting for upvotes`.
+  The more votes your issue receives, the higher a priority it will become—so make sure to structure, research, and justify your request so it resonates with other community members.
+- When requesting a new component, make sure to benchmark existing implementations of it in the wild so we can see what works and what we could better.
+- Try to explain the problem you're having as clearly as possible — it's often the case that we already have a component to solve it.
+- If you're requesting easier customization, make sure to demonstrate the desired outcome, and explain where you're having trouble in as much detail as you can.
+  These requests often highlight opportunities for us to improve our documentation.
 
 ## Your product
 
