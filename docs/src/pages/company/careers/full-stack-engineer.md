@@ -44,7 +44,7 @@ You will initiate the development of a bold new product vertical. We are looking
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
 But providing React components isn't enough.
-In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
+In our [last developer survey](/blog/2021-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
 They are looking for ways to move faster.
 They are working on a couple of new projects every year, and where the integration between the UI and the data is key.
 
