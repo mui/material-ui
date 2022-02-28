@@ -18,8 +18,7 @@ As with the previous iterations, the survey was divided into three sections: ["Y
 ### How would you feel if you could no longer use MUI?
 
 Over 93% of you would be disappointed if you could no longer use MUI (a sum of _"Very disappointed"_ and _“Somewhat disappointed”_).
-That's in keeping with 94% of you who felt the same way when we asked this question in 2019 and 2020.
-We'll continue to do our best to keep you satisfied over the long term!
+That's in keeping with 94% of you who felt the same way when we asked this question in 2019 and 2020. The _"Somewhat disappointed"_ also saw a growth of 9%. These indicators highlight that the evolution of the product that MUI provides might be pointed in the right direction!
 
 <img src="/static/blog/2021-survey/1.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
 
@@ -38,9 +37,9 @@ Meanwhile, we're working hard to expand beyond our core products to provide you 
 
 **The introduction of a paid product**
 
-A big challenge with open-source is that the proportion of value captured by maintainers is close to zero.
-The MIT licensed model has enabled a lot of growth, but it does have its limitations.
-To push our mission as much as we believe it's possible, we needed to introduce a way to capture more value.
+A big challenge with open-source is that maintainers capture very little value.
+The MIT licensed model has enabled growing a large community of contributors and the MUI team, but it does have its limitations.
+To push the products as forward as we believe it's possible, we needed a way to invest more in them.
 [Open-core](https://en.wikipedia.org/wiki/Open-core_model) allows us to still offer an MIT licensed (free) version of the MUI X components while charging for additional features that require more attention (including support).
 
 It’s still early days for MUI X, though.
@@ -78,9 +77,9 @@ Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 
 
 <p class="blog-description">1422 out of 1589 answered this question in 2021.</p>
 
-Here's what you liked the most about the product in 2021:
+Here's what you liked the most about the product in 2021, compared to 2020:
 
-- **Community (2.9x):** While appreciation for the community grew by 190%, the community itself doubled in size over that same time frame.
+- **Community (2.9x):** While the community itself doubled in size, appreciation for the community grew by 190% over that same time frame.
   It looks like we're witnessing a network effect: with twice as many users, developers got three times more value from the community.
 - **Accessibility (2.2x):** The community has definitely noticed the work we have put in to make our components more accessible.
   Special thanks to Sebastian Silbermann [(@eps1lon)](https://github.com/eps1lon) for his continued help!
@@ -90,7 +89,7 @@ Here's what you liked the most about the product in 2021:
   - Component quality (1.0x): You know that we set the bar very high for the quality of our components.
     This can be challenging as we continue to grow, because we expect nothing but the best from our team.
     Thankfully, this result shows that our team of maintainers has done an excellent job, aiming for high standards.
-- **Time (1.4x):** This is an interesting one because it's not an issue that we specifically addressed.
+- **Time (1.4x):** Mostly referring to saved time during UI development. This is an interesting one because it's not an issue that we specifically addressed.
   Could this just be a result of the growing pressure in the market to build faster? Or because we somehow made this value proposition more noticeable? It could also be related to the next item.
 - **Developer experience (1.1x):**
   - Consistency (1.75x): We didn’t work on this dimension, and yet it grew.
@@ -669,7 +668,7 @@ This year we'll be focusing on expanding and refining [MUI System](https://mui.c
 <p class="blog-description">1546 out of 1589 answered.</p>
 
 Though many of you who answered the survey have already migrated, we still have many more to convince to come along with us.
-That'll be a major focus of ours for the year ahead.
+We'll strongly focus on documentation refinement and automation tools for the year ahead.
 
 ### What's the statement that most defines your migration experience?
 
