@@ -298,14 +298,14 @@ describe('<Link />', () => {
   });
 
   describe('prop: underline', () => {
-    it('always by default', () => {
+    it('hover by default', () => {
       const { getByTestId } = render(
         <Link href="/" data-testid="root">
           Hello World
         </Link>,
       );
 
-      expect(getByTestId('root')).have.class(classes.underlineAlways);
+      expect(getByTestId('root')).have.class(classes.underlineHover);
     });
 
     it('adds a none class', () => {

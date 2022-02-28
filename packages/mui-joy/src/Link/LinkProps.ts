@@ -36,7 +36,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
     sx?: SxProps;
     /**
      * Controls when the link should have an underline.
-     * @default 'always'
+     * @default 'hover'
      */
     underline?: 'none' | 'hover' | 'always';
     /**

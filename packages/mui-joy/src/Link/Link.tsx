@@ -66,6 +66,10 @@ const LinkRoot = styled(Typography, {
         margin: 0, // Remove the margin in Safari
         borderRadius: 0,
         padding: 0, // Remove the padding in Firefox
+        ...(!!ownerState.variant && {
+          paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+          marginInline: '-0.25em',
+        }),
         cursor: 'pointer',
         color: theme.vars.palette[ownerState.color!]?.textColor,
         userSelect: 'none',
@@ -100,7 +104,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     onBlur,
     onFocus,
     level = 'body1',
-    underline = 'always',
+    underline = 'hover',
     variant,
     ...other
   } = props;
@@ -215,7 +219,7 @@ Link.propTypes /* remove-proptypes */ = {
   onFocus: PropTypes.func,
   /**
    * Controls when the link should have an underline.
-   * @default 'always'
+   * @default 'hover'
    */
   underline: PropTypes.oneOf(['always', 'hover', 'none']),
   /**
