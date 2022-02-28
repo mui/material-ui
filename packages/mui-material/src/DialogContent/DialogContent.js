@@ -39,7 +39,7 @@ const DialogContentRoot = styled('div', {
       }
     : {
         [`.${dialogTitleClasses.root} + &`]: {
-          paddingTop: 0,
+          paddingTop: 8,
         },
       }),
 }));
