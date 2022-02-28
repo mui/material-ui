@@ -19,7 +19,6 @@ import * as React from 'react';
 <Link color="neutral" />;
 
 // `level`
-<Link level="h1" />;
 <Link level="h2" />;
 <Link level="h3" />;
 <Link level="h4" />;
