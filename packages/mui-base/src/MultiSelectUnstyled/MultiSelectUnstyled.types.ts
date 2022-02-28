@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Simplify } from '@mui/types';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import {
   SelectOption,
@@ -58,17 +59,21 @@ export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyl
   focusVisible: boolean;
 }
 
-export type MultiSelectUnstyledRootSlotProps<TValue> = UseSelectButtonSlotProps & {
-  className: string;
-  children?: React.ReactNode;
-  ownerState: MultiSelectUnstyledOwnerState<TValue>;
-};
+export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
+  UseSelectButtonSlotProps & {
+    className: string;
+    children?: React.ReactNode;
+    ownerState: MultiSelectUnstyledOwnerState<TValue>;
+  }
+>;
 
-export type MultiSelectUnstyledListboxSlotProps<TValue> = UseSelectListboxSlotProps & {
-  className: string;
-  children?: React.ReactNode;
-  ownerState: MultiSelectUnstyledOwnerState<TValue>;
-};
+export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
+  UseSelectListboxSlotProps & {
+    className: string;
+    children?: React.ReactNode;
+    ownerState: MultiSelectUnstyledOwnerState<TValue>;
+  }
+>;
 
 export type MultiSelectUnstyledPopperSlotProps<TValue> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
