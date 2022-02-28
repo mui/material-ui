@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: 用于响应式设计的 React 中的媒体查询
 githubLabel: 'hook: useMediaQuery'
 ---
@@ -30,8 +30,8 @@ githubLabel: 'hook: useMediaQuery'
 按照如下所示的例子，你可以这样使用 Material-UI 的 [断点辅助功能](/customization/breakpoints/) ：
 
 ```jsx
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@mui/core/styles';
+import useMediaQuery from '@mui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -46,7 +46,7 @@ function MyComponent() {
 或者你也可以使用一个回调函数，其第一个参数是 theme：
 
 ```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/core/useMediaQuery';
 
 function MyComponent() {
   const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -136,7 +136,7 @@ const theme = createTheme({
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -244,7 +244,7 @@ function handleRender(req, res) {
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('(min-width:600px)');
