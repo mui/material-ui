@@ -4,6 +4,7 @@ export { default as FormControlUnstyledContext } from './FormControlContext';
 export * from './FormControlContext';
 
 export type { default as FormControlUnstyledProps } from './FormControlUnstyledProps';
+export * from './FormControlUnstyledProps';
 
 export { default as formControlUnstyledClasses } from './formControlUnstyledClasses';
 export * from './formControlUnstyledClasses';
