@@ -25,8 +25,7 @@ The number of respondents who would not be disappointed has moved down from 6.5%
 
 ### 2. How likely is it that you would recommend MUI to a friend or colleague?
 
-<img src="/static/blog/2020-survey/2a.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Bar chart: 0.20% - 1, 0% - 2, 0.20% - 3, 0.20% - 4, 1.02% - 5, 1.97% - 6, 8.71% - 7, 22.52% - 8, 20.88% - 9, 44.29% - 10" />
-<br />
+<img src="/static/blog/2020-survey/2a.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 0.20% - 1, 0% - 2, 0.20% - 3, 0.20% - 4, 1.02% - 5, 1.97% - 6, 8.71% - 7, 22.52% - 8, 20.88% - 9, 44.29% - 10" />
 <img src="/static/blog/2020-survey/2b.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Pie chart: 73.3% Very disappointed, 21.3% somewhat disappointed, 5.4% not disappointed." />
 
 As last year, we again calculated the [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter)
@@ -311,5 +310,5 @@ We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
-<img src="/static/blog/2019-survey/vote.gif" style="width: 550px;" alt="How to upvote on GitHub" />
+<img src="/static/blog/2019-survey/vote.gif" style="width: 550px; margin-bottom: 8px;" alt="How to upvote on GitHub" />
 <p class="blog-description">Help us prioritize by upvoting.</p>
