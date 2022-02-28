@@ -137,7 +137,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "fast-glob": "^3.2.11",
     "format-util": "^1.0.5",
-    "fs-extra": "^10.0.0",
+    "fs-extra": "^10.0.1",
     "globby": "^11.1.0",
     "html-webpack-plugin": "^5.5.0",
     "istanbul-instrumenter-loader": "^3.0.1",
