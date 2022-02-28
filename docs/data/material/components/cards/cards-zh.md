@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Card（卡片）组件
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 githubLabel: 'component: card'
