@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Accordion （扩展面板）组件
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: accordion'
