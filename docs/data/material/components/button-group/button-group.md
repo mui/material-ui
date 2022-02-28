@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React ButtonGroup component
 components: Button, ButtonGroup
 githubLabel: 'component: ButtonGroup'

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Botão
 components: Button, IconButton, ButtonBase
 materialDesign: https://material.io/components/buttons

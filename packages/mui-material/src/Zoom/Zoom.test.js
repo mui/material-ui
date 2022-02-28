@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { describeConformance, createRenderer } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Zoom from '@mui/material/Zoom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 describe('<Zoom />', () => {
   const { clock, render } = createRenderer();
@@ -116,6 +117,66 @@ describe('<Zoom />', () => {
 
       expect(element.style).to.have.property('transform', 'scale(0)');
       expect(element.style).to.have.property('visibility', 'hidden');
+    });
+  });
+
+  describe('prop: timeout', () => {
+    it('should render the default theme values by default', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      const { getByTestId } = render(
+        <Zoom in appear>
+          <div data-testid="child">Foo</div>
+        </Zoom>,
+      );
+
+      const child = getByTestId('child');
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it('should render the custom theme values', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <Zoom in appear>
+            <div data-testid="child">Foo</div>
+          </Zoom>
+        </ThemeProvider>,
+      );
+
+      const child = getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
+
+    it('should render the values provided via prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByTestId } = render(
+        <Zoom in appear timeout={{ enter: 1 }}>
+          <div data-testid="child">Foo</div>
+        </Zoom>,
+      );
+
+      const child = getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });
 });

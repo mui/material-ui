@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Bottom Navigation（底部导航栏）组件
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'

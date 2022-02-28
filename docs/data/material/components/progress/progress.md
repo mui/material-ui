@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
 githubLabel: 'component: progress'

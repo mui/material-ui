@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: 超过 9 个免费的 React 模板
 ---
 
