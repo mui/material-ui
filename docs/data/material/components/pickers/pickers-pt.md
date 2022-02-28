@@ -1,10 +1,11 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Data e Hora
-components: DatePicker, DateTimePicker, TimePicker, TextField
+components: DatePicker,DateTimePicker,TimePicker,TextField
 githubLabel: 'component: date picker'
 materialDesign: https://material.io/components/date-pickers
 waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
+packageName: '>>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)'
 ---
 
 # Seletores Data / Hora
