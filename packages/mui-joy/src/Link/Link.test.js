@@ -5,6 +5,7 @@ import { act, createRenderer, fireEvent, describeConformance } from 'test/utils'
 import Typography from '@mui/joy/Typography';
 import Link, { linkClasses as classes } from '@mui/joy/Link';
 import { ThemeProvider } from '@mui/joy/styles';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 
 function focusVisible(element) {
   act(() => {
@@ -92,44 +93,16 @@ describe('<Link />', () => {
       expect(getByTestId('root')).not.to.have.class(classes.variantContained);
     });
 
-    it('adds a text class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" variant="text">
-          Hello World
-        </Link>,
-      );
+    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+      it(`should render ${variant}`, () => {
+        const { getByTestId } = render(
+          <Link href="/" data-testid="root" variant={variant}>
+            Hello World
+          </Link>,
+        );
 
-      expect(getByTestId('root')).to.have.class(classes.variantText);
-    });
-
-    it('adds a outlined class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" variant="outlined">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.variantOutlined);
-    });
-
-    it('adds a light class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" variant="light">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.variantLight);
-    });
-
-    it('adds a contained class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" variant="contained">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.variantContained);
+        expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
+      });
     });
   });
 
@@ -144,64 +117,16 @@ describe('<Link />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
 
-    it('adds a primary class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" color="primary">
-          Hello World
-        </Link>,
-      );
+    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+      it(`should render ${color}`, () => {
+        const { getByTestId } = render(
+          <Link href="/" data-testid="root" color={color}>
+            Hello World
+          </Link>,
+        );
 
-      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
-    });
-
-    it('adds a neutral class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" color="neutral">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
-    });
-
-    it('adds a info class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" color="info">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorInfo);
-    });
-
-    it('adds a success class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" color="success">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorSuccess);
-    });
-
-    it('adds a warning class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" color="warning">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorWarning);
-    });
-
-    it('adds a danger class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" color="danger">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorDanger);
+        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 
@@ -216,84 +141,16 @@ describe('<Link />', () => {
       expect(getByTestId('root')).have.class(classes.body1);
     });
 
-    it('adds a body2 class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" level="body2">
-          Hello World
-        </Link>,
-      );
+    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'].forEach((level) => {
+      it(`should render ${level}`, () => {
+        const { getByTestId } = render(
+          <Link href="/" data-testid="root" level={level}>
+            Hello World
+          </Link>,
+        );
 
-      expect(getByTestId('root')).to.have.class(classes.body2);
-    });
-
-    it('adds a body3 class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" level="body3">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.body3);
-    });
-
-    it('adds a h1 class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" level="h1">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.h1);
-    });
-
-    it('adds a h2 class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" level="h2">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.h2);
-    });
-
-    it('adds a h3 class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" level="h3">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.h3);
-    });
-
-    it('adds a h4 class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" level="h4">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.h4);
-    });
-
-    it('adds a h5 class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" level="h5">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.h5);
-    });
-
-    it('adds a h6 class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" level="h6">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.h6);
+        expect(getByTestId('root')).to.have.class(classes[level]);
+      });
     });
   });
 
@@ -308,24 +165,16 @@ describe('<Link />', () => {
       expect(getByTestId('root')).have.class(classes.underlineHover);
     });
 
-    it('adds a none class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" underline="none">
-          Hello World
-        </Link>,
-      );
+    ['none', 'always', 'hover'].forEach((underline) => {
+      it(`should render ${underline}`, () => {
+        const { getByTestId } = render(
+          <Link href="/" data-testid="root" underline={underline}>
+            Hello World
+          </Link>,
+        );
 
-      expect(getByTestId('root')).have.class(classes.underlineNone);
-    });
-
-    it('adds a hover class', () => {
-      const { getByTestId } = render(
-        <Link href="/" data-testid="root" underline="hover">
-          Hello World
-        </Link>,
-      );
-
-      expect(getByTestId('root')).have.class(classes.underlineHover);
+        expect(getByTestId('root')).to.have.class(classes[`underline${capitalize(underline)}`]);
+      });
     });
   });
 });
