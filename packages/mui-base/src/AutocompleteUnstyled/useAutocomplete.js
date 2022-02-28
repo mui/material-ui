@@ -527,10 +527,7 @@ export default function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
-        if (
-          inputRef.current &&
-          inputRef.current.nodeName === 'TEXTAREA'
-        ) {
+        if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA') {
           console.warn(
             [
               `A textarea element was provided to ${componentName} where input was expected.`,
