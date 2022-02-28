@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Radio buttons（单选按钮）组件
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
@@ -76,7 +76,7 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 ### API
 
 ```jsx
-import { useRadioGroup } from '@material-ui/core/RadioGroup';
+import { useRadioGroup } from '@mui/core/RadioGroup';
 ```
 
 #### 返回结果
