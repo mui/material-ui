@@ -11,45 +11,45 @@ const ROUTES = {
   about: '/about/',
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
   baseDocs: '/base/getting-started/installation/',
-  materialDocs: '/material/getting-started/installation/',
+  materialDocs: '/material-ui/getting-started/installation/',
   systemDocs: '/system/basics/',
   materialIcons: FEATURE_TOGGLE.enable_redirects
-    ? '/material/material-icons/'
+    ? '/material-ui/material-icons/'
     : '/components/material-icons/',
   freeTemplates: FEATURE_TOGGLE.enable_redirects
-    ? '/material/getting-started/templates/'
+    ? '/material-ui/getting-started/templates/'
     : '/getting-started/templates/',
   components: FEATURE_TOGGLE.enable_redirects
-    ? '/material/getting-started/supported-components/'
+    ? '/material-ui/getting-started/supported-components/'
     : '/getting-started/supported-components/',
   customization: FEATURE_TOGGLE.enable_redirects
-    ? '/material/customization/how-to-customize/'
+    ? '/material-ui/customization/how-to-customize/'
     : '/customization/how-to-customize/',
   theming: FEATURE_TOGGLE.enable_redirects
-    ? '/material/customization/theming/'
+    ? '/material-ui/customization/theming/'
     : '/customization/theming/',
   documentation: FEATURE_TOGGLE.enable_redirects
-    ? '/material/getting-started/installation/'
+    ? '/material-ui/getting-started/installation/'
     : '/getting-started/installation/',
   communityHelp: FEATURE_TOGGLE.enable_redirects
-    ? '/material/getting-started/support/#community-help-free'
+    ? '/material-ui/getting-started/support/#community-help-free'
     : '/getting-started/support/#community-help-free',
   blog: '/blog/',
   showcase: FEATURE_TOGGLE.enable_redirects
-    ? '/material/discover-more/showcase/'
+    ? '/material-ui/discover-more/showcase/'
     : '/discover-more/showcase/',
   roadmap: 'https://github.com/mui/mui-x/projects/1',
   languages: FEATURE_TOGGLE.enable_redirects
-    ? '/material/discover-more/languages/'
+    ? '/material-ui/discover-more/languages/'
     : '/discover-more/languages/',
   vision: FEATURE_TOGGLE.enable_redirects
-    ? '/material/discover-more/vision/'
+    ? '/material-ui/discover-more/vision/'
     : '/discover-more/vision/',
   support: FEATURE_TOGGLE.enable_redirects
-    ? '/material/getting-started/support/#professional-support-premium'
+    ? '/material-ui/getting-started/support/#professional-support-premium'
     : '/getting-started/support/#professional-support-premium',
   goldSponsor: FEATURE_TOGGLE.enable_redirects
-    ? '/material/discover-more/backers/#gold'
+    ? '/material-ui/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',
   store: 'https://mui.com/store/',
   dataGridDocs: FEATURE_TOGGLE.enable_redirects

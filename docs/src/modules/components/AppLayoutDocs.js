@@ -84,7 +84,7 @@ function AppLayoutDocs(props) {
 
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   let productName = 'MUI';
-  if (asPathWithoutLang.startsWith('/material')) {
+  if (asPathWithoutLang.startsWith('/material-ui')) {
     productName = 'Material UI';
   }
   if (asPathWithoutLang.startsWith('/base')) {

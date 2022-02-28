@@ -60,26 +60,26 @@ describe('findActivePage', () => {
   describe('new structure', () => {
     const pages = [
       {
-        pathname: '/material/components',
+        pathname: '/material-ui/components',
         icon: 'ToggleOnIcon',
         children: [
           {
-            pathname: '/material/components',
+            pathname: '/material-ui/components',
             subheader: '/components/inputs',
             children: [
-              { pathname: '/material/react-autocomplete' },
-              { pathname: '/material/react-buttons', title: 'Button' },
-              { pathname: '/material/react-button-group' },
-              { pathname: '/material/react-checkboxes', title: 'Checkbox' },
-              { pathname: '/material/react-floating-action-button' },
-              { pathname: '/material/react-radio-buttons', title: 'Radio button' },
-              { pathname: '/material/react-rating' },
-              { pathname: '/material/react-selects', title: 'Select' },
-              { pathname: '/material/react-slider' },
-              { pathname: '/material/react-switches', title: 'Switch' },
-              { pathname: '/material/react-text-fields', title: 'Text field' },
-              { pathname: '/material/react-transfer-list' },
-              { pathname: '/material/react-toggle-button' },
+              { pathname: '/material-ui/react-autocomplete' },
+              { pathname: '/material-ui/react-buttons', title: 'Button' },
+              { pathname: '/material-ui/react-button-group' },
+              { pathname: '/material-ui/react-checkboxes', title: 'Checkbox' },
+              { pathname: '/material-ui/react-floating-action-button' },
+              { pathname: '/material-ui/react-radio-buttons', title: 'Radio button' },
+              { pathname: '/material-ui/react-rating' },
+              { pathname: '/material-ui/react-selects', title: 'Select' },
+              { pathname: '/material-ui/react-slider' },
+              { pathname: '/material-ui/react-switches', title: 'Switch' },
+              { pathname: '/material-ui/react-text-fields', title: 'Text field' },
+              { pathname: '/material-ui/react-transfer-list' },
+              { pathname: '/material-ui/react-toggle-button' },
             ],
           },
         ],
@@ -87,8 +87,8 @@ describe('findActivePage', () => {
     ];
 
     it('return deep nested page', () => {
-      expect(findActivePage(pages, '/material/react-radio-buttons')).to.deep.equal({
-        pathname: '/material/react-radio-buttons',
+      expect(findActivePage(pages, '/material-ui/react-radio-buttons')).to.deep.equal({
+        pathname: '/material-ui/react-radio-buttons',
         title: 'Radio button',
       });
     });

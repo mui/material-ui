@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Popover component
 components: Grow, Popover
 githubLabel: 'component: Popover'

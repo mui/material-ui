@@ -2724,7 +2724,7 @@ In some cases, you might want to create multiple styled components in a file ins
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
-> Note: This API will not work if you are [using `styled-components` as underlying styling engine in place of `@emotion`](https://mui.com/guides/interoperability/#styled-components).
+> Note: This API will not work if you are [using `styled-components` as underlying styling engine in place of `@emotion`](/guides/interoperability/#styled-components).
 
 The API is similar to JSS `makeStyles` but, under the hood, it uses `@emotion/react`.
 It is also features a much better TypeScript support than v4's `makeStyles`.
