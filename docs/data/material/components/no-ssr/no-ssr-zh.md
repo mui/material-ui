@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React No SSR（非服务端渲染）的组件
 components: NoSsr
 ---
