@@ -25,7 +25,7 @@ We'll continue to do our best to keep you satisfied over the long term!
 
 <p class="blog-description">1567 out of 1589 answered.</p>
 
-Interestingly, the percentage who would be _"Very disappointed"_ to stop using MUI fell by 10%, while those who would be _"Not disappointed"_ grew by 1%.
+Interestingly, the percentage who would be _"Very disappointed"_ for no longer being able to use MUI fell by 10%, while those who would be _"Not disappointed"_ grew by 1%.
 Those who chose the latter option were asked to explain why.
 Here are the biggest reasons we observed:
 
@@ -34,7 +34,7 @@ Here are the biggest reasons we observed:
 Lately, with every new sunrise, there's a new UI component library.
 Because they aim to solve the same problems, these libraries often arrive at solutions that are very similar to one another.
 The establishment of common industrywide patterns makes it that much more difficult to stand out from the crowd.
-We're working hard to expand outward from our core products to provide you with tools that our competitors can't match.
+We're working hard to expand outward from our core products to provide you with experiences that our competitors can't match.
 
 **The introduction of a paid product**
 
@@ -48,7 +48,7 @@ We introduced it at the end of 2020 and have been iterating not only on the comp
 
 We still have a lot more ground to cover — only ~0.1% of our developer community has been convinced to upgrade to the paid Pro plan so far.
 Whether or not you've taken the plunge, we'd love to hear your thoughts about this.
-And if you want to understand more about our view of the MIT/open-source landscape, check our [Stewardship page](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
+And if you want to understand more about our view of the MIT/open-source balance, check our [Stewardship page](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
 
 **The breaking changes made in v5**
 
@@ -81,7 +81,7 @@ Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 
 Here's what you liked the most about the product in 2021:
 
 - **Community (2.9x):** While appreciation for the community grew by 290%, the community itself doubled in size over that same time frame.
-  It looks like we're witnessing a network effect: with twice as many users, we got three times more value from the community.
+  It looks like we're witnessing a network effect: with twice as many users, developers got three times more value from the community.
 - **Accessibility (2.2x):** The community has definitely noticed the work we have put in to make our components more accessible.
   Special thanks to Sebastian Silbermann [(@eps1lon)](https://github.com/eps1lon) for his continued help!
 - **Customizability (1.6x):** Developers seem to be appreciating the new capabilities introduced in v5.
@@ -89,7 +89,7 @@ Here's what you liked the most about the product in 2021:
 - **Components (1.6x):** We'll keep adding new components to the library as long as you continue to appreciate them this much!
   - Component quality (1.0x): You know that we set the bar very high for the quality of our components.
     That can be challenging as we continue to grow, because we expect nothing but the best from our team.
-    Thankfully, this result shows that our new members have done an excellent job maintaining our standards.
+    Thankfully, this result shows that our team of maintainers has done an excellent job, aiming for high standards.
 - **Time (1.4x):** This is an interesting one because it's not an issue that we specifically addressed.
   Could this just be a result of the growing pressure in the market to build faster? Or because we somehow made this value proposition more noticeable? It could also be related to the next item.
 - **Developer experience (1.1x):**
@@ -430,7 +430,7 @@ Got ideas for improvements? Please share them with us! Here's how to make sure t
 
 <p class="blog-description">1389 of 1589 answered.</p>
 
-These results are not too different from last year, with the exception that far fewer developers reported using custom systems before MUI.
+These results are not too different from last year, with the exception that far more developers reported starting with MUI (13% in 2020, and 37% in 2021).
 It's very encouraging to know that so many of you are building your products with MUI right from the start!
 
 ### Are you using any of these in addition to MUI?
@@ -465,7 +465,7 @@ It's crucial for our docs—and even the code itself—to be easily understood b
 
 <p class="blog-description">1051 out of 1589 answered.</p>
 
-Efficacy is one of the toughest metrics to track—how much does MUI actually help developers in shipping their products? The number of apps delivered may vary widely between teams and industries, but it's still encouraging to see that we are enabling developers to build much faster than if they started from scratch.
+It might be a possible interpration that MUI could be one of the enablers of this high-speed development, which is very encouraging. Shipping 28 apps in a year is already a huge accomplishment but 122 to 494 is just wild!
 
 ### Which MUI products do you use in your application?
 
@@ -642,7 +642,7 @@ We'd love to see them! Feel free to share in the ["Who's using Material UI?" iss
 
 <p class="blog-description">1501 out of 1589 answered.</p>
 
-These results are very different from last year—Typescript just jumped off and it's now the primary type system used out there.
+These results are very different from last year—TypeScript just jumped off and it's now the primary type system used out there.
 It seems reasonable to expect more people to start using type systems.
 
 ### Which framework are you using, if any?
@@ -651,7 +651,7 @@ It seems reasonable to expect more people to start using type systems.
 
 <p class="blog-description">1497 out of 1589 answered.</p>
 
-This year we saw a considerable bump in Next.js usage, which is not surprising due to its increasing popularity and the advancements it gained in 2021.
+This year we saw a considerable bump the use of Next.js (compared with 12.4% in 2020), which is not surprising due to its increasing popularity and the advancements it gained in 2021.
 
 ### What styling solution are you using?
 
@@ -789,15 +789,16 @@ Your feedback from this survey helped us to better understand the areas where we
 - **Customization:** A new styling tool was an important step in the right direction for more customizability.
   We recognize that there are still many more opportunities to improve the experience of customizing MUI components.
 - **Design quality:** Design continues to be the main driving aspect that guides a decision towards a given component library.
-  A growing number of developers are moving away from MUI because of Material Design being the default design direction, and that’s a huge warning sign for us to explore other roads.
+  A growing number of developers are moving away from MUI because of Material Design being the only design direction provided out-of-the-box, and that’s a huge warning sign for us to explore other roads.
 - **Breaking changes:** The need for fewer breaking changes does highlight one very positive point: numerous applications depend on MUI as their component library of choice.
   To continue supporting your products, we'll look for ways to minimize the number of breaking changes in future updates.
   We’ll also continue exploring automation tools to ease the pain of any breaking changes that do come up.
 - **Commercial vs.
   MIT balance:** MUI will always be an OSS project first and foremost, but we are getting a lot of positive feedback from our paid products and support services, which tells us that we're heading in the right direction.
-  We are rapidly expanding our team to better address the needs of all of our users, and we look forward to making both our MIT-licensed and commercial offerings even more robust and compelling.
+  We are rapidly expanding our team to better address the needs of all of our users, and we look forward to making both our MIT-licensed and commercial offerings even more robust and compelling. If you want to understand more about our view of the MIT/open-source balance, check our [Stewardship page](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
 - **Performance:** We're still looking for the most effective ways to optimize performance.
   TypeScript has potential, and MUI System's speed needs work.
+  This is especially [important for mobile experiences](https://www.youtube.com/watch?v=mLjxXPHuIJo&t=76s).
   We welcome your suggestions!
 
 If you want to continue to influence our roadmap, you can visit the [MUI Core](https://github.com/mui/material-ui) and [MUI X](https://github.com/mui/mui-x) repositories, open issues, upvote the ones you’re most interested in, or leave your thoughts about anything else you want to be improved. We'd love to hear from you.
