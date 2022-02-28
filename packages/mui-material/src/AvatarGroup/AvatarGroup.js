@@ -67,6 +67,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const {
     children: childrenProp,
     className,
+    componentsProps = {},
     max = 5,
     spacing = 'medium',
     total,
@@ -122,11 +123,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       {extraAvatars ? (
         <AvatarGroupAvatar
           ownerState={ownerState}
-          className={classes.avatar}
-          style={{
-            marginLeft,
-          }}
           variant={variant}
+          {...componentsProps.additionalAvatar}
+          className={clsx(classes.avatar, componentsProps.additionalAvatar?.className)}
+          style={{ marginLeft, ...componentsProps.additionalAvatar?.style }}
         >
           +{extraAvatars}
         </AvatarGroupAvatar>
@@ -165,6 +165,13 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The props used for each slot inside the AvatarGroup.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    additionalAvatar: PropTypes.object,
+  }),
   /**
    * Max avatars to show before +x.
    * @default 5

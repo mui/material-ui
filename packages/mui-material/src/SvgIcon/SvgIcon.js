@@ -40,21 +40,21 @@ const SvgIconRoot = styled('svg', {
   display: 'inline-block',
   fill: 'currentColor',
   flexShrink: 0,
-  transition: theme.transitions.create('fill', {
-    duration: theme.transitions.duration.shorter,
+  transition: theme.transitions?.create?.('fill', {
+    duration: theme.transitions?.duration?.shorter,
   }),
   fontSize: {
     inherit: 'inherit',
-    small: theme.typography.pxToRem(20),
-    medium: theme.typography.pxToRem(24),
-    large: theme.typography.pxToRem(35),
+    small: theme.typography?.pxToRem?.(20) || '1.25rem',
+    medium: theme.typography?.pxToRem?.(24) || '1.5rem',
+    large: theme.typography?.pxToRem?.(35) || '2.1875',
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color:
-    theme.palette[ownerState.color]?.main ??
+    theme.palette?.[ownerState.color]?.main ??
     {
-      action: theme.palette.action.active,
-      disabled: theme.palette.action.disabled,
+      action: theme.palette?.action?.active,
+      disabled: theme.palette?.action?.disabled,
       inherit: undefined,
     }[ownerState.color],
 }));

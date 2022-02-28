@@ -25,11 +25,13 @@ declare module '@mui/material/styles/createPalette' {
 
 declare module '@mui/material/styles/createTypography' {
   interface TypographyOptions {
+    fontWeightSemiBold?: number;
     fontWeightExtraBold?: number;
     fontFamilyCode?: string;
   }
 
   interface Typography {
+    fontWeightSemiBold: number;
     fontWeightExtraBold: number;
     fontFamilyCode: string;
   }
@@ -200,6 +202,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
+      fontWeightSemiBold: 600,
       fontWeightExtraBold: 800,
       h1: {
         fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
@@ -291,10 +294,8 @@ export function getThemedComponents(theme: Theme) {
             fontWeight: 700,
           },
           sizeSmall: {
-            padding: theme.spacing(0.5, 0),
-            [theme.breakpoints.up('md')]: {
-              padding: theme.spacing(0.5, 1),
-            },
+            padding: theme.spacing(0.5, 1),
+            marginLeft: theme.spacing(-1),
           },
           containedPrimary: {
             backgroundColor: theme.palette.primary[500],
@@ -684,8 +685,7 @@ export function getThemedComponents(theme: Theme) {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            paddingTop: 7,
-            paddingBottom: 7,
+            padding: '5px 9px',
           },
         },
       },

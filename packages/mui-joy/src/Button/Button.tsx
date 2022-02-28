@@ -22,6 +22,8 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
+    startIcon: ['startIcon'],
+    endIcon: ['endIcon'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, {});
@@ -33,6 +35,26 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
   return composedClasses;
 };
 
+const ButtonStartIcon = styled('span', {
+  name: 'MuiButton',
+  slot: 'StartIcon',
+  overridesResolver: (props, styles) => styles.startIcon,
+})<{ ownerState: ButtonProps }>({
+  display: 'inherit',
+  marginLeft: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
+  marginRight: 'var(--Button-gap)',
+});
+
+const ButtonEndIcon = styled('span', {
+  name: 'MuiButton',
+  slot: 'EndIcon',
+  overridesResolver: (props, styles) => styles.endIcon,
+})<{ ownerState: ButtonProps }>({
+  display: 'inherit',
+  marginLeft: 'var(--Button-gap)',
+  marginRight: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
+});
+
 const ButtonRoot = styled('button', {
   name: 'MuiButton',
   slot: 'Root',
@@ -40,8 +62,26 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      padding: '0.25rem 1.5rem', // the padding-top, bottom act as a minimum spacing between content and root element
-      minHeight: '40px',
+      '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
+      '--Button-gutter': '1.5rem', // gutter is the padding-x
+      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
+      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
+      ...(ownerState.size === 'sm' && {
+        '--Button-minHeight': '2rem',
+        '--Button-gutter': '1rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Button-minHeight': '3rem',
+        '--Button-gutter': '2rem',
+      }),
+    },
+    {
+      padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
+      ...(ownerState.variant === 'outlined' && {
+        padding:
+          'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-gutter) - var(--variant-outlinedBorderWidth))', // account for the border width
+      }),
+      minHeight: 'var(--Button-minHeight)',
       borderRadius: theme.vars.radius.sm,
       border: 'none',
       backgroundColor: 'transparent',
@@ -55,17 +95,10 @@ const ButtonRoot = styled('button', {
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...theme.typography.body1,
       ...(ownerState.size === 'sm' && {
-        paddingLeft: '1rem',
-        paddingRight: '1rem',
-        minHeight: '32px',
         ...theme.typography.body2,
+        lineHeight: '1.25rem',
       }),
-      ...(ownerState.size === 'lg' && {
-        paddingLeft: '2rem',
-        paddingRight: '2rem',
-        minHeight: '48px',
-        ...theme.typography.h6,
-      }),
+      ...(ownerState.size === 'lg' && theme.typography.h6),
       [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
@@ -93,6 +126,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant = 'contained',
     size = 'md',
     fullWidth = false,
+    startIcon: startIconProp,
+    endIcon: endIconProp,
     ...other
   } = props;
 
@@ -130,6 +165,18 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const startIcon = startIconProp && (
+    <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
+      {startIconProp}
+    </ButtonStartIcon>
+  );
+
+  const endIcon = endIconProp && (
+    <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
+      {endIconProp}
+    </ButtonEndIcon>
+  );
+
   return (
     <ButtonRoot
       as={ComponentProp}
@@ -138,7 +185,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       {...other}
       {...getRootProps()}
     >
+      {startIcon}
       {children}
+      {endIcon}
     </ButtonRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;
@@ -171,12 +220,19 @@ Button.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * Element placed after the children.
+   */
+  endIcon: PropTypes.node,
   /**
    * If `true`, the button will take up the full width of its container.
    * @default false
@@ -185,12 +241,22 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
+  /**
+   * Element placed before the children.
+   */
+  startIcon: PropTypes.node,
   /**
    * The variant to use.
    * @default 'contained'
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default Button;

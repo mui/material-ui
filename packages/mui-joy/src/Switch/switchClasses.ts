@@ -33,6 +33,12 @@ export interface SwitchClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** Styles applied to the root element if `variant="light"`. */
+  variantLight: string;
+  /** Styles applied to the root element if `variant="contained"`. */
+  variantContained: string;
 }
 
 export type SwitchClassKey = keyof SwitchClasses;
@@ -58,6 +64,9 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'variantOutlined',
+  'variantLight',
+  'variantContained',
 ]);
 
 export default switchClasses;

@@ -274,10 +274,8 @@ export default function FAQ() {
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related problems, please open
-              <Link href="https://github.com/mui-org/material-ui-x/issues/new/choose">
-                a new GitHub issue
-              </Link>
-              . If you need to share private information, you can{' '}
+              <Link href="https://github.com/mui/mui-x/issues/new/choose">a new GitHub issue</Link>.
+              If you need to share private information, you can{' '}
               <Link href="mailto:x@mui.com">email us</Link>.
             </Typography>
           </Paper>

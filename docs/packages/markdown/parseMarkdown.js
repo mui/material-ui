@@ -211,8 +211,14 @@ function createRender(context) {
 
       let finalHref = href;
 
-      if (userLanguage !== 'en' && finalHref.indexOf('/') === 0 && finalHref !== '/size-snapshot') {
-        finalHref = `/${userLanguage}${finalHref}`;
+      if (
+        userLanguage !== 'en' &&
+        href.indexOf('/') === 0 &&
+        href !== '/size-snapshot' &&
+        // The blog is not translated
+        !href.startsWith('/blog/')
+      ) {
+        finalHref = `/${userLanguage}${href}`;
       }
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
@@ -329,7 +335,7 @@ ${headers.components
 
       docs[userLanguage] = {
         description,
-        location: headers.filename || `/docs/src/pages/${pageFilename}/${filename}`,
+        location: headers.filename || `/docs${pageFilename}/${filename}`,
         rendered,
         toc,
         title,

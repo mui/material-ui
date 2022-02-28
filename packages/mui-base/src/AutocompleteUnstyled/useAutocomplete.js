@@ -101,6 +101,7 @@ export default function useAutocomplete(props) {
     open: openProp,
     openOnFocus = false,
     options,
+    readOnly = false,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
@@ -211,7 +212,7 @@ export default function useAutocomplete(props) {
   const inputValueIsSelectedValue =
     !multiple && value != null && inputValue === getOptionLabel(value);
 
-  const popupOpen = open;
+  const popupOpen = open && !readOnly;
 
   const filteredOptions = popupOpen
     ? filterOptions(
@@ -235,7 +236,7 @@ export default function useAutocomplete(props) {
       )
     : [];
 
-  const listboxAvailable = open && filteredOptions.length > 0;
+  const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
   if (process.env.NODE_ENV !== 'production') {
     if (value !== null && !freeSolo && options.length > 0) {
@@ -526,16 +527,27 @@ export default function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
-        console.error(
-          [
-            `MUI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
-            `Instead, ${componentName} expects an input element.`,
-            '',
-            componentName === 'useAutocomplete'
-              ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
-              : 'Make sure you have customized the input component correctly.',
-          ].join('\n'),
-        );
+        if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA') {
+          console.warn(
+            [
+              `A textarea element was provided to ${componentName} where input was expected.`,
+              `This is not a supported scenario but it may work under certain conditions.`,
+              `A textarea keyboard navigation may conflict with Autocomplete controls (e.g. enter and arrow keys).`,
+              `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
+            ].join('\n'),
+          );
+        } else {
+          console.error(
+            [
+              `MUI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
+              `Instead, ${componentName} expects an input element.`,
+              '',
+              componentName === 'useAutocomplete'
+                ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
+                : 'Make sure you have customized the input component correctly.',
+            ].join('\n'),
+          );
+        }
       }
     }, [componentName]);
   }
@@ -823,7 +835,7 @@ export default function useAutocomplete(props) {
           }
           break;
         case 'Backspace':
-          if (multiple && inputValue === '' && value.length > 0) {
+          if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
             newValue.splice(index, 1);
@@ -1041,7 +1053,7 @@ export default function useAutocomplete(props) {
       key: index,
       'data-tag-index': index,
       tabIndex: -1,
-      onDelete: handleTagDelete(index),
+      ...(!readOnly && { onDelete: handleTagDelete(index) }),
     }),
     getListboxProps: () => ({
       role: 'listbox',
