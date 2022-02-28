@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Chip
 components: Chip
 githubLabel: 'component: chip'
