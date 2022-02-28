@@ -23,8 +23,8 @@
     },
     "variant": {
       "type": {
-        "name": "enum",
-        "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'"
+        "name": "union",
+        "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
       "default": "'text'"
     }

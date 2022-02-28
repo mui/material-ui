@@ -187,6 +187,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }, [autoFocus]);
 
   React.useEffect(() => {
+    if (!labelId) {
+      return undefined;
+    }
     const label = ownerDocument(displayRef.current).getElementById(labelId);
     if (label) {
       const handler = () => {
@@ -281,7 +284,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (onChange) {
         // Redefine target to allow name and value to be read.
         // This allows seamless integration with the most popular form libraries.
-        // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+        // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
         // Clone the event to not override `target` of the original event.
         const nativeEvent = event.nativeEvent || event;
         const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
@@ -499,8 +502,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          // eslint-disable-next-line react/no-danger
-          <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+          <span className="notranslate">&#8203;</span>
         ) : (
           display
         )}

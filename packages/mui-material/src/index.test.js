@@ -17,4 +17,21 @@ describe('material-ui', () => {
       expect(Boolean(MaterialUI[exportKey])).to.equal(true),
     );
   });
+
+  it('should reexport certain members from @mui/base', () => {
+    const expectedReexports = [
+      'ClickAwayListener',
+      'generateUtilityClass',
+      'generateUtilityClasses',
+      'NoSsr',
+      'Portal',
+      'TextareaAutosize',
+      'unstable_ClassNameGenerator',
+      'unstable_composeClasses',
+    ];
+
+    const exportedNames = Object.keys(MaterialUI);
+
+    expectedReexports.forEach((reexport) => expect(exportedNames).to.contain(reexport));
+  });
 });

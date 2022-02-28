@@ -13,7 +13,7 @@ import {
 
 export interface SlotTestingOptions {
   testWithComponent?: React.ComponentType;
-  testWithElement?: keyof JSX.IntrinsicElements;
+  testWithElement?: keyof JSX.IntrinsicElements | null;
   expectedClassName: string;
   isOptional?: boolean;
 }
@@ -140,17 +140,28 @@ function testComponentsProp(
       expect(renderedElement).to.have.class(slotOptions.expectedClassName);
     });
 
-    it(`allows overriding the ${capitalize(slotName)} slot with an element`, () => {
-      const slotElement = slotOptions.testWithElement ?? 'i';
+    if (slotOptions.testWithElement !== null) {
+      it(`allows overriding the ${capitalize(slotName)} slot with an element`, () => {
+        const slotElement = slotOptions.testWithElement ?? 'i';
 
-      const components = {
-        [capitalize(slotName)]: slotElement,
-      };
+        const components = {
+          [capitalize(slotName)]: slotElement,
+        };
 
-      const { container } = render(React.cloneElement(element, { components }));
-      const renderedElement = container.querySelector(slotElement);
-      expect(renderedElement).to.have.class(slotOptions.expectedClassName);
-    });
+        const componentsProps = {
+          [slotName]: {
+            'data-testid': 'customized',
+          },
+        };
+
+        const { getByTestId } = render(
+          React.cloneElement(element, { components, componentsProps }),
+        );
+        const renderedElement = getByTestId('customized');
+        expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
+        expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+      });
+    }
 
     if (slotOptions.isOptional) {
       it(`alows omitting the optional ${capitalize(slotName)} slot by providing null`, () => {

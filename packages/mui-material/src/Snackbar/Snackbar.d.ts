@@ -104,8 +104,8 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration?: TransitionProps['timeout'];

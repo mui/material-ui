@@ -9,14 +9,14 @@
   },
   "devDependencies": {
     "@types/eslint": "^7.29.0",
-    "@typescript-eslint/parser": "^5.8.0"
+    "@typescript-eslint/parser": "^5.12.1"
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js'"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/mui/material-ui.git"
   },
   "license": "MIT"
 }

@@ -50,6 +50,7 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'spa
     classes?: Partial<BadgeUnstyledClasses>;
     /**
      * If `true`, the badge is invisible.
+     * @default false
      */
     invisible?: boolean;
     /**

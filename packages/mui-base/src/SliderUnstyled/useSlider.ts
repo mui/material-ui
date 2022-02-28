@@ -68,11 +68,15 @@ function findClosest(values: number[], currentValue: number) {
   return closestIndex;
 }
 
-// TODO: Set the correct event type
-function trackFinger(event: any, touchId: React.RefObject<any>) {
-  if (touchId.current !== undefined && event.changedTouches) {
-    for (let i = 0; i < event.changedTouches.length; i += 1) {
-      const touch = event.changedTouches[i];
+function trackFinger(
+  event: TouchEvent | MouseEvent | React.MouseEvent,
+  touchId: React.RefObject<any>,
+) {
+  // The event is TouchEvent
+  if (touchId.current !== undefined && (event as TouchEvent).changedTouches) {
+    const touchEvent = event as TouchEvent;
+    for (let i = 0; i < touchEvent.changedTouches.length; i += 1) {
+      const touch = touchEvent.changedTouches[i];
       if (touch.identifier === touchId.current) {
         return {
           x: touch.clientX,
@@ -84,9 +88,10 @@ function trackFinger(event: any, touchId: React.RefObject<any>) {
     return false;
   }
 
+  // The event is MouseEvent
   return {
-    x: event.clientX,
-    y: event.clientY,
+    x: (event as MouseEvent).clientX,
+    y: (event as MouseEvent).clientY,
   };
 }
 
@@ -144,7 +149,6 @@ function focusThumb({
     !sliderRef.current?.contains(doc.activeElement) ||
     Number(doc?.activeElement?.getAttribute('data-index')) !== activeIndex
   ) {
-    // @ts-ignore TODO: Property focus does not exists on type string
     sliderRef.current?.querySelector(`[type="range"][data-index="${activeIndex}"]`).focus();
   }
 
@@ -233,11 +237,10 @@ export default function useSlider(props: UseSliderProps) {
     ((event: Event | React.SyntheticEvent, value: number | number[], thumbIndex: number) => {
       // Redefine target to allow name and value to be read.
       // This allows seamless integration with the most popular form libraries.
-      // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+      // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
       // Clone the event to not override `target` of the original event.
-      // @ts-ignore nativeEvent does not exists on Event
-      const nativeEvent = event.nativeEvent || event;
-      // @ts-ignore TODO: check this again
+      const nativeEvent = (event as React.SyntheticEvent).nativeEvent || event;
+      // @ts-ignore The nativeEvent is function, not object
       const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
 
       Object.defineProperty(clonedEvent, 'target', {
@@ -245,7 +248,6 @@ export default function useSlider(props: UseSliderProps) {
         value: { value, name },
       });
 
-      // @ts-ignore TODO: value could be undefined?
       onChange(clonedEvent, value, thumbIndex);
     });
 
@@ -283,7 +285,7 @@ export default function useSlider(props: UseSliderProps) {
       setOpen(index);
       otherHandlers?.onFocus?.(event);
     };
-  const createHandleHidenInputBlur =
+  const createHandleHiddenInputBlur =
     (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
       handleBlurVisible(event);
       if (isFocusVisibleRef.current === false) {
@@ -651,7 +653,7 @@ export default function useSlider(props: UseSliderProps) {
     const ownEventHandlers = {
       onChange: createHandleHiddenInputChange(otherHandlers || {}),
       onFocus: createHandleHiddenInputFocus(otherHandlers || {}),
-      onBlur: createHandleHidenInputBlur(otherHandlers || {}),
+      onBlur: createHandleHiddenInputBlur(otherHandlers || {}),
     };
 
     const mergedEventHandlers: Record<string, React.EventHandler<any>> = {

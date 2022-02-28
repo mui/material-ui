@@ -16,8 +16,7 @@ const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY =
 const vercelDeploy = Boolean(process.env.VERCEL);
 
 const staging =
-  process.env.REPOSITORY_URL === undefined ||
-  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+  process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
@@ -168,8 +167,8 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
-    SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
+    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     STAGING: staging,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -183,6 +182,13 @@ module.exports = {
 
       pages2.forEach((page) => {
         if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+          return;
+        }
+        // The blog is not translated
+        if (
+          userLanguage !== 'en' &&
+          (page.pathname === '/blog' || page.pathname.startsWith('/blog/'))
+        ) {
           return;
         }
         if (!page.children) {
@@ -220,6 +226,7 @@ module.exports = {
   },
   reactStrictMode,
   trailingSlash: true,
+  // rewrites has no effect when run `next export` for production
   async rewrites() {
     return [
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
@@ -227,6 +234,8 @@ module.exports = {
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
     ];
   },
+  // For developement, adjust the redirects here (no effect on production because of `next export`)
+  // For production, configure at `docs/public/_redirects` (netlify)
   async redirects() {
     if (FEATURE_TOGGLE.enable_redirects) {
       return [
@@ -237,27 +246,22 @@ module.exports = {
         },
         {
           source: '/getting-started/:path*',
-          destination: '/material/getting-started/:path*',
+          destination: '/material-ui/getting-started/:path*',
           permanent: false,
         },
         {
           source: '/customization/:path*',
-          destination: '/material/customization/:path*',
+          destination: '/material-ui/customization/:path*',
           permanent: false,
         },
         {
           source: '/guides/:path*',
-          destination: '/material/guides/:path*',
+          destination: '/material-ui/guides/:path*',
           permanent: false,
         },
         {
           source: '/discover-more/:path*',
-          destination: '/material/discover-more/:path*',
-          permanent: false,
-        },
-        {
-          source: '/components/about-the-lab',
-          destination: '/material/about-the-lab',
+          destination: '/material-ui/discover-more/:path*',
           permanent: false,
         },
         {
@@ -266,8 +270,47 @@ module.exports = {
           permanent: false,
         },
         {
-          source: '/components/:path*',
-          destination: '/material/react-:path*',
+          source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
+          destination: '/material-ui/:slug',
+          permanent: false,
+        },
+        {
+          source: '/components/:path(tabs|breadcrumbs)',
+          destination: '/material-ui/react-:path',
+          permanent: false,
+        },
+        ...['checkboxes', 'switches'].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material-ui/react-${component.replace(/es$/, '')}`,
+          permanent: false,
+        })),
+        ...[
+          'buttons',
+          'radio-buttons',
+          'selects',
+          'text-fields',
+          'avatars',
+          'badges',
+          'chips',
+          'dividers',
+          'lists',
+          'tables',
+          'tooltips',
+          'dialogs',
+          'snackbars',
+          'cards',
+          'drawers',
+          'links',
+          'menus',
+          'steppers',
+        ].map((component) => ({
+          source: `/components/${component}`,
+          destination: `/material-ui/react-${component.replace(/s$/, '')}`,
+          permanent: false,
+        })),
+        {
+          source: '/components/:path',
+          destination: '/material-ui/react-:path',
           permanent: false,
         },
         {
@@ -276,15 +319,8 @@ module.exports = {
           permanent: false,
         },
         {
-          source:
-            // if this regex change, make sure to update `replaceMarkdownLinks`
-            '/api/:path(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)',
-          destination: '/material/api/:path*',
-          permanent: false,
-        },
-        {
           source: '/api/:path*',
-          destination: '/material/api/:path*',
+          destination: '/material-ui/api/:path*',
           permanent: false,
         },
       ];

@@ -319,6 +319,11 @@ export default function HeaderNavBar() {
             About us
           </Link>
         </li>
+        <li role="none">
+          <Link role="menuitem" href={ROUTES.blog}>
+            Blog
+          </Link>
+        </li>
       </ul>
     </Navigation>
   );

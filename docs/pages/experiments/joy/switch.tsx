@@ -1,46 +1,11 @@
 import * as React from 'react';
-// @ts-ignore
-import { jsx as _jsx } from 'react/jsx-runtime';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
-import SvgIcon from '@mui/joy/SvgIcon';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-
-function createSvgIcon(path: any, displayName: any, initialProps?: any) {
-  const Component = (props: any, ref: any) =>
-    (
-      <SvgIcon
-        data-testid={`${displayName}Icon`}
-        ref={ref}
-        viewBox="0 0 24 24"
-        fontSize="xl"
-        {...initialProps}
-        {...props}
-        sx={{ ...initialProps?.sx, ...props.sx }}
-      >
-        {path}
-      </SvgIcon>
-    ) as unknown as typeof SvgIcon;
-
-  // @ts-ignore
-  return React.memo(React.forwardRef(Component));
-}
-
-export const Moon = createSvgIcon(
-  _jsx('path', {
-    d: 'M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z',
-  }),
-  'DarkMode',
-);
-
-export const Sun = createSvgIcon(
-  _jsx('path', {
-    d: 'M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z',
-  }),
-  'LightMode',
-);
+import Moon from '@mui/icons-material/DarkMode';
+import Sun from '@mui/icons-material/LightMode';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -72,25 +37,58 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
+  variant: ['outlined', 'light', 'contained'],
 } as const;
 
 export default function JoySwitch() {
   return (
-    <CssVarsProvider>
+    <CssVarsProvider
+      theme={{
+        components: {
+          MuiSvgIcon: {
+            defaultProps: {
+              fontSize: 'xl',
+            },
+            styleOverrides: {
+              root: ({ ownerState, theme }) => ({
+                ...(ownerState.fontSize &&
+                  ownerState.fontSize !== 'inherit' && {
+                    fontSize: theme.vars.fontSize[ownerState.fontSize],
+                  }),
+                ...(ownerState.color &&
+                  ownerState.color !== 'inherit' && {
+                    color: theme.vars.palette[ownerState.color].textColor,
+                  }),
+              }),
+            },
+          },
+        },
+      }}
+    >
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
         </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 5,
+            '& > div': {
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 5,
+              p: 2,
+              alignItems: 'center',
+            },
+          }}
+        >
           {Object.entries(props).map(([propName, propValue]) => (
-            <Box
-              key={propName}
-              sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
-            >
+            <Box key={propName}>
               <Typography sx={{ textDecoration: 'underline' }}>{propName}</Typography>
               {propValue.map((value) => (
-                <Box>
-                  <Switch defaultChecked {...{ [propName]: value }} />
+                <Box key={value}>
+                  <Switch checked {...{ [propName]: value }} />
                   {value && (
                     <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                       {value}
@@ -100,6 +98,240 @@ export default function JoySwitch() {
               ))}
             </Box>
           ))}
+          <Box>
+            <Typography color="info.textColor">Fluent</Typography>
+            {(
+              [
+                { checked: false, variant: 'outlined' },
+                { checked: true, variant: 'contained' },
+                { disabled: true, variant: 'outlined' },
+                { disabled: true, checked: true, variant: 'contained' },
+              ] as const
+            ).map((data, index) => (
+              <Switch
+                key={index}
+                {...data}
+                sx={{
+                  '--Switch-track-width': '40px',
+                  '--Switch-track-height': '20px',
+                  '--Switch-thumb-size': '12px',
+                  '--Switch-track-borderColor': '#8A8886', // grey110 in Fluent design
+                  '--Switch-track-background': (theme) => theme.vars.palette.background.body,
+                  '&:hover': {
+                    '--Switch-track-borderColor': '#323130', // grey160 in Fluent design
+                    '--Switch-track-background': (theme) => theme.vars.palette.background.body,
+                  },
+                  '&.Mui-checked': {
+                    '--Switch-track-background': '#0078D4',
+                    '&:hover': {
+                      '--Switch-track-background': '#106EBE',
+                    },
+                  },
+                  '&.Mui-disabled': {
+                    '--Switch-thumb-color': '#C8C6C4',
+                    '--Switch-track-borderColor': '#C8C6C4',
+                  },
+                  '&.Mui-disabled.Mui-checked': {
+                    '--Switch-track-background': '#C8C6C4',
+                    '--Switch-thumb-color': '#F3F2F1',
+                  },
+                }}
+              />
+            ))}
+          </Box>
+          <Box>
+            <Typography color="info.textColor">iOS</Typography>
+            {(
+              [
+                { checked: false },
+                { checked: true, color: 'success' },
+                { disabled: true, checked: false },
+                { disabled: true, checked: true, color: 'success' },
+              ] as const
+            ).map((data, index) => (
+              <Switch
+                key={index}
+                {...data}
+                sx={{
+                  '--Switch-thumb-shadow': '0 3px 7px 0 rgba(0 0 0 / 0.12)',
+                  '--Switch-thumb-size': '27px',
+                  '--Switch-track-width': '51px',
+                  '--Switch-track-height': '31px',
+                  '--joy-palette-neutral-containedBg': '#E9E9EA',
+                  '--joy-palette-neutral-containedHoverBg': '#E9E9EA',
+                  '&.Mui-checked': {
+                    '--joy-palette-success-containedBg': '#65C466',
+                    '--joy-palette-success-containedHoverBg': '#65C466',
+                  },
+                }}
+              />
+            ))}
+          </Box>
+          <Box>
+            <Typography color="info.textColor">strapi</Typography>
+            {(
+              [
+                { checked: false, color: 'danger' },
+                { checked: true, color: 'success' },
+                { disabled: true, checked: false, color: 'danger' },
+                { disabled: true, checked: true, color: 'success' },
+              ] as const
+            ).map((data, index) => (
+              <Switch
+                key={index}
+                {...data}
+                sx={{
+                  '--Switch-thumb-size': '16px',
+                  '--Switch-track-width': '40px',
+                  '--Switch-track-height': '24px',
+                  '--joy-palette-danger-containedBg': '#EE5E52',
+                  '--joy-palette-danger-containedHoverBg': '#EE5E52',
+                  '--joy-palette-success-containedBg': '#5CB176',
+                  '--joy-palette-success-containedHoverBg': '#5CB176',
+                }}
+              />
+            ))}
+          </Box>
+          <Box>
+            <Typography color="info.textColor">Material</Typography>
+            {(
+              [
+                { checked: false, variant: 'contained' },
+                { checked: true, variant: 'light' },
+                { disabled: true, checked: false, variant: 'contained' },
+                { disabled: true, checked: true, variant: 'light' },
+              ] as const
+            ).map((data, index) => (
+              <Switch
+                key={index}
+                {...data}
+                sx={{
+                  '--Switch-thumb-shadow':
+                    'rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px',
+                  '--Switch-thumb-size': '20px',
+                  '--Switch-track-width': '34px',
+                  '--Switch-track-height': '14px',
+                  '--joy-palette-neutral-containedBg': 'rgb(0, 0, 0, 0.38)',
+                  '--joy-palette-neutral-containedHoverBg': 'rgb(0, 0, 0, 0.38)',
+                  '&.Mui-checked': {
+                    '--joy-palette-primary-lightColor': 'rgb(25, 118, 210)',
+                    '--joy-palette-primary-lightBg': 'rgba(25, 118, 210, 0.5)',
+                    '--joy-palette-primary-lightHoverBg': 'rgba(25, 118, 210, 0.5)',
+                  },
+                  '&.Mui-disabled': {
+                    '--joy-palette-neutral-containedDisabledBg': 'rgb(0, 0, 0, 0.12)',
+                    '--Switch-thumb-color': 'rgb(245, 245, 245)',
+                  },
+                  '&.Mui-disabled.Mui-checked': {
+                    '--joy-palette-primary-lightDisabledBg': 'rgba(25, 118, 210, 0.12)',
+                    '--Switch-thumb-color': 'rgb(167, 202, 237)',
+                  },
+                }}
+              />
+            ))}
+          </Box>
+          <Box>
+            <Typography color="info.textColor">Chakra UI</Typography>
+            {[
+              { checked: false },
+              { checked: true },
+              { disabled: true, checked: false },
+              { disabled: true, checked: true },
+            ].map((data, index) => (
+              <Switch
+                key={index}
+                {...data}
+                sx={{
+                  '--Switch-thumb-size': '16px',
+                  '--Switch-track-width': '34px',
+                  '--Switch-track-height': '20px',
+                  '--joy-palette-neutral-containedBg': '#CBD5E0',
+                  '--joy-palette-neutral-containedDisabledBg': '#CBD5E0',
+                  '--joy-palette-neutral-containedHoverBg': '#CBD5E0',
+                  '--joy-palette-neutral-containedDisabledHoverBg': '#CBD5E0',
+                  '--joy-palette-primary-containedBg': '#3182ce',
+                  '--joy-palette-primary-containedHoverBg': '#3182ce',
+                  '--joy-palette-primary-containedDisabledBg': '#3182ce',
+                  '&.Mui-disabled': {
+                    opacity: 0.4,
+                  },
+                }}
+              />
+            ))}
+          </Box>
+          <Box>
+            <Typography color="info.textColor">Tailwind UI</Typography>
+            {([{ checked: false }, { checked: true, color: 'info' }] as const).map(
+              (data, index) => (
+                <Switch
+                  key={index}
+                  {...data}
+                  sx={{
+                    '--Switch-thumb-size': '20px',
+                    '--Switch-track-width': '48px',
+                    '--Switch-track-height': '24px',
+                    '--joy-palette-neutral-containedBg': '#E9E9EA',
+                    '--joy-palette-neutral-containedHoverBg': '#E9E9EA',
+                    '--joy-palette-success-containedBg': '#65C466',
+                    '--joy-palette-success-containedHoverBg': '#65C466',
+                  }}
+                />
+              ),
+            )}
+            {[{ checked: false }, { checked: true }].map((data, index) => (
+              <Switch
+                key={index}
+                {...data}
+                sx={{
+                  '--joy-shadowRing': '0 0 0 1px var(--Switch-track-background)',
+                  '--Switch-thumb-shadow': 'var(--joy-shadowRing), 0 1px 4px 0 rgba(0,0,0,0.38)',
+                  '--Switch-thumb-size': '20px',
+                  '--Switch-track-width': '40px',
+                  '--Switch-track-height': '16px',
+                  '--joy-palette-neutral-containedBg': '#E9E9EA',
+                  '--joy-palette-neutral-containedHoverBg': '#E9E9EA',
+                  '--joy-palette-success-containedBg': '#65C466',
+                  '--joy-palette-success-containedHoverBg': '#65C466',
+                }}
+              />
+            ))}
+          </Box>
+          <Box>
+            <Typography color="info.textColor">Mantine</Typography>
+            {(
+              [
+                { checked: false, variant: 'outlined' },
+                { checked: true, variant: 'contained' },
+                { disabled: true, checked: false, variant: 'outlined' },
+                { disabled: true, checked: true, variant: 'contained' },
+              ] as const
+            ).map((data, index) => (
+              <Switch
+                key={index}
+                {...data}
+                sx={{
+                  '--Switch-thumb-size': '14px',
+                  '--Switch-thumb-shadow': 'inset 0 0 0 1px #dee2e6',
+                  '--Switch-track-width': '38px',
+                  '--Switch-track-height': '20px',
+                  '--Switch-track-borderColor': '#dee2e6',
+                  '--Switch-thumb-color': '#fff',
+                  '--Switch-track-background': '#e9ecef',
+                  '&.Mui-checked': {
+                    '--Switch-thumb-shadow': 'none',
+                    '--Switch-track-background': '#228be6',
+                    '&:hover': {
+                      '--Switch-track-background': '#228be6',
+                    },
+                  },
+                  '&.Mui-disabled': {
+                    '--Switch-thumb-color': '#f8f9fa',
+                    '--Switch-track-background': '#e9ecef',
+                  },
+                }}
+              />
+            ))}
+          </Box>
         </Box>
       </Box>
     </CssVarsProvider>

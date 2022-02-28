@@ -17,9 +17,9 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
 
-We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
+We also have a list of [good to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
 You can also work on any other issue you choose to.
 The "good first" and "good to take" issues are just issues where we have a clear picture about scope and timeline.
@@ -43,7 +43,7 @@ When in doubt, keep your Pull Requests small. To give a Pull Request the best ch
 ```sh
 git clone https://github.com/<your username>/material-ui.git
 cd material-ui
-git remote add upstream https://github.com/mui-org/material-ui.git
+git remote add upstream https://github.com/mui/material-ui.git
 ```
 
 <!-- #default-branch-switch -->
@@ -73,7 +73,7 @@ git checkout -b my-topic-branch
 git push -u origin HEAD
 ```
 
-7. Go to [the repository](https://github.com/mui-org/material-ui) and make a Pull Request.
+7. Go to [the repository](https://github.com/mui/material-ui) and make a Pull Request.
 
 The core team is monitoring for Pull Requests. We will review your Pull Request and either merge it, request changes to it, or close it with an explanation.
 
@@ -106,9 +106,9 @@ Make sure the following is true:
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
-- When adding new features or modifying existing ones, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).
+- When adding new features or modifying existing ones, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
-- When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-lab).
+- When submitting a new component, please add it to the [lab](https://github.com/mui/material-ui/tree/HEAD/packages/mui-lab).
 - The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
 
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
@@ -256,7 +256,7 @@ If you are not familiar with that language, write the demo in JavaScript, a core
 
 ### 4. You are done 🎉
 
-In case you missed something, [we have a real example that can be used as a summary report](https://github.com/mui-org/material-ui/pull/19582/files).
+In case you missed something, [we have a real example that can be used as a summary report](https://github.com/mui/material-ui/pull/19582/files).
 
 ## How can I use a change that wasn't released yet?
 
@@ -274,7 +274,7 @@ index 791a7da1f4..a5db13b414 100644
      "@babel/runtime": "^7.4.4",
      "@mui/styled-engine": "^5.0.0-alpha.16",
 -    "@mui/material": "^5.0.0-alpha.15",
-+    "@mui/material": "https://pkg.csb.dev/mui-org/material-ui/commit/371c952b/@mui/material",
++    "@mui/material": "https://pkg.csb.dev/mui/material-ui/commit/371c952b/@mui/material",
      "@mui/system": "^5.0.0-alpha.16",
 ```
 
@@ -293,4 +293,4 @@ To get a sense of where MUI is heading, or for ideas on where you could contribu
 
 ## License
 
-By contributing your code to the [mui-org/material-ui](https://github.com/mui-org/material-ui) GitHub repository, you agree to license your contribution under the [MIT license](/LICENSE).
+By contributing your code to the [mui/material-ui](https://github.com/mui/material-ui) GitHub repository, you agree to license your contribution under the [MIT license](/LICENSE).

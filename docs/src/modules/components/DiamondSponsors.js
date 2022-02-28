@@ -28,11 +28,11 @@ export default function DiamondSponsors(props) {
         size="small"
         endIcon={<InfoOutlinedIcon fontSize="small" />}
         sx={{
+          mb: 1,
           fontSize: theme.typography.pxToRem(12.5),
           fontWeight: 500,
           color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-          mb: 0.5,
           '& svg': {
             width: 14,
             height: 14,

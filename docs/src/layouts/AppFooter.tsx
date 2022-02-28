@@ -20,7 +20,8 @@ export default function AppFooter() {
     <Container component="footer">
       <Box
         sx={{
-          py: 8,
+          pt: 4,
+          pb: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
           alignItems: 'center',
@@ -142,7 +143,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/mui-org"
+              href="https://github.com/mui"
               aria-label="github"
               title="GitHub"
               size="small"

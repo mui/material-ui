@@ -18,7 +18,7 @@ export default function useBadge(props: UseBadgeProps) {
       horizontal: 'right',
     },
     badgeContent: badgeContentProp,
-    invisible: invisibleProp,
+    invisible: invisibleProp = false,
     max: maxProp = 99,
     showZero = false,
     variant: variantProp = 'standard',
@@ -34,7 +34,7 @@ export default function useBadge(props: UseBadgeProps) {
   let invisible = invisibleProp;
 
   if (
-    invisibleProp == null &&
+    invisibleProp === false &&
     ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
   ) {
     invisible = true;

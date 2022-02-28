@@ -11,7 +11,11 @@
     }
   },
   "name": "FormGroup",
-  "styles": { "classes": ["root", "row"], "globalClasses": {}, "name": "MuiFormGroup" },
+  "styles": {
+    "classes": ["root", "row", "error"],
+    "globalClasses": { "error": "Mui-error" },
+    "name": "MuiFormGroup"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/FormGroup/FormGroup.js",

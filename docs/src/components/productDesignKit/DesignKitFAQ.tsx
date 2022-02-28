@@ -153,7 +153,9 @@ export default function DesignKitFAQ() {
           <Paper
             variant="outlined"
             sx={{
-              p: 2,
+              pt: 2,
+              pb: 1,
+              px: 2,
               borderStyle: 'dashed',
               borderColor: (theme) =>
                 theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
@@ -175,6 +177,7 @@ export default function DesignKitFAQ() {
               size="small"
               href="mailto:sales@mui.com"
               endIcon={<KeyboardArrowRightRounded />}
+              sx={{ ml: -1 }}
             >
               Contact sales
             </Button>

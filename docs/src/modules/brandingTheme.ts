@@ -25,11 +25,13 @@ declare module '@mui/material/styles/createPalette' {
 
 declare module '@mui/material/styles/createTypography' {
   interface TypographyOptions {
+    fontWeightSemiBold?: number;
     fontWeightExtraBold?: number;
     fontFamilyCode?: string;
   }
 
   interface Typography {
+    fontWeightSemiBold: number;
     fontWeightExtraBold: number;
     fontFamilyCode: string;
   }
@@ -200,6 +202,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
+      fontWeightSemiBold: 600,
       fontWeightExtraBold: 800,
       h1: {
         fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
@@ -291,7 +294,8 @@ export function getThemedComponents(theme: Theme) {
             fontWeight: 700,
           },
           sizeSmall: {
-            padding: '0.375rem 0rem',
+            padding: theme.spacing(0.5, 1),
+            marginLeft: theme.spacing(-1),
           },
           containedPrimary: {
             backgroundColor: theme.palette.primary[500],
@@ -336,6 +340,10 @@ export function getThemedComponents(theme: Theme) {
                 color: theme.palette.grey[400],
               },
               '& .MuiButton-endIcon': {
+                display: 'inline-block',
+                position: 'absolute',
+                right: 0,
+                marginRight: 10,
                 color:
                   theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
               },
@@ -493,6 +501,44 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            fontWeight: 500,
+          },
+          outlined: {
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.grey[900],
+            backgroundColor: 'transparent',
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[600]
+                : theme.palette.grey[300],
+          },
+          filled: {
+            border: '1px solid transparent',
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[800],
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.primary[100],
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.primary[200],
+            },
+          },
+          deleteIcon: {
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
+            '&:hover': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.grey[100]
+                  : theme.palette.primary[900],
+            },
+          },
+        },
+      },
       MuiList: {
         styleOverrides: {
           root: {
@@ -639,8 +685,7 @@ export function getThemedComponents(theme: Theme) {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            paddingTop: 7,
-            paddingBottom: 7,
+            padding: '5px 9px',
           },
         },
       },
@@ -676,6 +721,37 @@ export function getThemedComponents(theme: Theme) {
             flexShrink: 0,
             width: '14px',
             height: '14px',
+          },
+        },
+      },
+      MuiPaginationItem: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            fontWeight: 700,
+            color:
+              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.grey[200],
+            '&.Mui-selected': {
+              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? `${theme.palette.primary[700]} !important`
+                  : `${theme.palette.primary[500]} !important`,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.primary[50],
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.primary[100],
+              },
+            },
           },
         },
       },

@@ -51,7 +51,10 @@
     },
     "scale": { "type": { "name": "func" }, "default": "(x) => x" },
     "size": {
-      "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
+      "type": {
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "step": { "type": { "name": "number" }, "default": "1" },

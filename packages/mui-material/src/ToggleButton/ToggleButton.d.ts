@@ -1,5 +1,6 @@
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
+import * as React from 'react';
 import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
@@ -45,6 +46,20 @@ export type ToggleButtonTypeMap<
      * @default false
      */
     fullWidth?: boolean;
+    /**
+     * Callback fired when the state changes.
+     *
+     * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+     * @param {any} value of the selected button.
+     */
+    onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
+    /**
+     * Callback fired when the button is clicked.
+     *
+     * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+     * @param {any} value of the selected button.
+     */
+    onClick?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
     /**
      * If `true`, the button is rendered in an active state.
      */

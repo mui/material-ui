@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import replaceMarkdownLinks from 'docs/src/modules/utils/replaceMarkdownLinks';
+import replaceHtmlLinks from 'docs/src/modules/utils/replaceHtmlLinks';
 
 function mapTranslations(req) {
   const translations = {};
@@ -72,7 +72,7 @@ export function useTranslate() {
         // TODO: remove this logic once the migration to new structure is done.
         function pointToNewHref(translation) {
           if (typeof translation === 'string') {
-            return replaceMarkdownLinks(translation, router.asPath);
+            return replaceHtmlLinks(translation, router.asPath);
           }
           return translation;
         }

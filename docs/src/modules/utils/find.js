@@ -91,7 +91,7 @@ function findPagesMarkdownNew(
 
     pagesMarkdown.push({
       // Relative location in the path (URL) system.
-      pathname: pathname.replace('components/', 'react-'),
+      pathname,
       // Relative location in the file system.
       filename: itemPath,
     });
