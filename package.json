@@ -83,7 +83,7 @@
     "@emotion/styled": "^11.8.1",
     "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
     "@octokit/rest": "^18.12.0",
-    "@playwright/test": "1.17.1",
+    "@playwright/test": "1.19.2",
     "@rollup/plugin-replace": "^4.0.0",
     "@testing-library/dom": "^8.11.3",
     "@testing-library/react": "^12.1.3",
