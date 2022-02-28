@@ -10,7 +10,7 @@ import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListI
 import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
 import {
   ListItemDecoratorProps,
-  ListItemDecoratorSlot
+  ListItemDecoratorSlot,
 } from '../ListItemDecorator/ListItemDecoratorProps';
 import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
 import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
@@ -84,6 +84,7 @@ export interface Components<Theme = unknown> {
   MuiSheet?: {
     defaultProps?: Partial<SheetProps>;
     styleOverrides?: OverridesStyleRules<SheetSlot, SheetProps, Theme>;
+  };
   MuiLink?: {
     defaultProps?: Partial<LinkProps>;
     styleOverrides?: OverridesStyleRules<LinkSlot, LinkProps, Theme>;
