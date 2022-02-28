@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Consulta de mídia no React para design responsivo
 githubLabel: 'hook: useMediaQuery'
 ---

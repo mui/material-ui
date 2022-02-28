@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Trap Focus React component
 components: Unstable_TrapFocus
 githubLabel: 'component: TrapFocus'

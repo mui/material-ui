@@ -427,7 +427,7 @@ function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const isProductScoped =
       router.asPath.startsWith('/x') ||
-      router.asPath.startsWith('/material') ||
+      router.asPath.startsWith('/material-ui') ||
       (router.asPath.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) ||
       router.asPath.startsWith('/base');
 
@@ -558,7 +558,7 @@ function AppNavDrawer(props) {
                 ],
                 { mr: 2 },
               )}
-            {router.asPath.startsWith('/material/') && (
+            {router.asPath.startsWith('/material-ui/') && (
               <ProductIdentifier
                 name="Material UI"
                 metadata="MUI Core"

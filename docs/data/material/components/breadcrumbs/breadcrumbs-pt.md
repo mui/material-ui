@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Navegação estrutural
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'

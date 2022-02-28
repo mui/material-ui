@@ -16,6 +16,6 @@
   "spread": false,
   "filename": "/packages/mui-base/src/Unstable_TrapFocus/Unstable_TrapFocus.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material/react-trap-focus/\">Trap Focus</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-trap-focus/\">Trap Focus</a></li></ul>",
   "cssComponent": false
 }
