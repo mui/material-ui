@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 components: GlobalStyles
 ---
 
@@ -144,8 +144,8 @@ Using the `styled()` utility offers a simple way for adding dynamic styles based
 
 ```tsx
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Slider, { SliderProps } from '@material-ui/core/Slider';
+import { styled } from '@mui/core/styles';
+import Slider, { SliderProps } from '@mui/core/Slider';
 
 interface StyledSliderProps extends SliderProps {
   success?: boolean;
