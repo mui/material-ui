@@ -83,7 +83,7 @@ Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next
 - The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
   ```tsx
-  import Button from '@material-ui/core/Button';
+  import Button from '@mui/core/Button';
   import { NextLinkComposed } from '../src/Link';
 
   export default function Index() {
@@ -101,7 +101,7 @@ Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next
   }
   ```
 
-- The second version of the adapter is the `Link` component. This component is styled. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`.
+- The second version of the adapter is the `Link` component. This component is styled. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';
