@@ -103,7 +103,7 @@ O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-ref
   }
   ```
 
-- A segunda versão do adaptador é o componente `Link`. Este componente é estilizado. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+- A segunda versão do adaptador é o componente `Link`. Este componente é estilizado. It leverages the [link component of MUI](/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';
