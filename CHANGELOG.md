@@ -8,7 +8,7 @@ _Feb 28, 2022_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- ✨ New `Input` and `Sheet` components were added in the experimental joy design system by @hbjORbj (#31124, #31086) @hbjORbj
+- ✨ New `Input` and `Sheet` components were added in the experimental Joy design system by @hbjORbj (#31124, #31086) @hbjORbj
 - Several 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.4.4`
