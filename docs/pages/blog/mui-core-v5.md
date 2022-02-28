@@ -671,7 +671,7 @@ Figma is the first design kit that benefits from the v5 update, and we're more e
 
 Some major changes to the components:
 
-- We’ve added the new colors that v5 introduces (error, warning, info & success)
+- We've added the new colors that v5 introduces (error, warning, info & success)
 - All new components are covered
 - States such as hover have been added for all relevant components
 
@@ -705,7 +705,7 @@ You can use our public roadmap on GitHub to learn about what features we're work
 - [MUI Core](https://github.com/mui/material-ui/projects/25)
 - [MUI X](https://github.com/mui/mui-x/projects/1)
 
-We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we’re building.
+We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we're building.
 
 From a high-level perspective, we plan to focus in the upcoming period on the following topics:
 
