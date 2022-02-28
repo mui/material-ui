@@ -98,131 +98,131 @@ function run() {
 /zh/styles/* /zh/system/styles/:splat 301
 /pt/styles/* /pt/system/styles/:splat 301
 
-/getting-started/* /material/getting-started/:splat 301
-/zh/getting-started/* /zh/material/getting-started/:splat 301
-/pt/getting-started/* /pt/material/getting-started/:splat 301
+/getting-started/* /material-ui/getting-started/:splat 301
+/zh/getting-started/* /zh/material-ui/getting-started/:splat 301
+/pt/getting-started/* /pt/material-ui/getting-started/:splat 301
 
-/customization/* /material/customization/:splat 301
-/zh/customization/* /zh/material/customization/:splat 301
-/pt/customization/* /pt/material/customization/:splat 301
+/customization/* /material-ui/customization/:splat 301
+/zh/customization/* /zh/material-ui/customization/:splat 301
+/pt/customization/* /pt/material-ui/customization/:splat 301
 
-/guides/* /material/guides/:splat 301
-/zh/guides/* /zh/material/guides/:splat 301
-/pt/guides/* /pt/material/guides/:splat 301
+/guides/* /material-ui/guides/:splat 301
+/zh/guides/* /zh/material-ui/guides/:splat 301
+/pt/guides/* /pt/material-ui/guides/:splat 301
 
-/discover-more/* /material/discover-more/:splat 301
-/zh/discover-more/* /zh/material/discover-more/:splat 301
-/pt/discover-more/* /pt/material/discover-more/:splat 301
+/discover-more/* /material-ui/discover-more/:splat 301
+/zh/discover-more/* /zh/material-ui/discover-more/:splat 301
+/pt/discover-more/* /pt/material-ui/discover-more/:splat 301
 
 ### Exceptions
-/components/icons/ /material/icons/ 301
-/zh/components/icons/ /zh/material/icons/ 301
-/pt/components/icons/ /pt/material/icons/ 301
+/components/icons/ /material-ui/icons/ 301
+/zh/components/icons/ /zh/material-ui/icons/ 301
+/pt/components/icons/ /pt/material-ui/icons/ 301
 
-/components/material-icons/ /material/material-icons/ 301
-/zh/components/material-icons/ /zh/material/material-icons/ 301
-/pt/components/material-icons/ /pt/material/material-icons/ 301
+/components/material-icons/ /material-ui/material-icons/ 301
+/zh/components/material-icons/ /zh/material-ui/material-icons/ 301
+/pt/components/material-icons/ /pt/material-ui/material-icons/ 301
 
-/components/pickers/ /material/pickers/ 301
-/zh/components/about-the-lab/ /zh/material/about-the-lab/ 301
-/pt/components/transitions/ /pt/material/transitions/ 301
+/components/pickers/ /material-ui/pickers/ 301
+/zh/components/about-the-lab/ /zh/material-ui/about-the-lab/ 301
+/pt/components/transitions/ /pt/material-ui/transitions/ 301
 
 ### React plural
-/components/tabs/ /material/react-tabs/ 301
-/zh/components/tabs/ /zh/material/react-tabs/ 301
-/pt/components/tabs/ /pt/material/react-tabs/ 301
+/components/tabs/ /material-ui/react-tabs/ 301
+/zh/components/tabs/ /zh/material-ui/react-tabs/ 301
+/pt/components/tabs/ /pt/material-ui/react-tabs/ 301
 
-/components/breadcrumbs/ /material/react-breadcrumbs/ 301
-/zh/components/breadcrumbs/ /zh/material/react-breadcrumbs/ 301
-/pt/components/breadcrumbs/ /pt/material/react-breadcrumbs/ 301
+/components/breadcrumbs/ /material-ui/react-breadcrumbs/ 301
+/zh/components/breadcrumbs/ /zh/material-ui/react-breadcrumbs/ 301
+/pt/components/breadcrumbs/ /pt/material-ui/react-breadcrumbs/ 301
 
-/components/checkboxes/ /material/react-checkbox/ 301
-/zh/components/checkboxes/ /zh/material/react-checkbox/ 301
-/pt/components/checkboxes/ /pt/material/react-checkbox/ 301
+/components/checkboxes/ /material-ui/react-checkbox/ 301
+/zh/components/checkboxes/ /zh/material-ui/react-checkbox/ 301
+/pt/components/checkboxes/ /pt/material-ui/react-checkbox/ 301
 
-/components/switches/ /material/react-switch/ 301
-/zh/components/switches/ /zh/material/react-switch/ 301
-/pt/components/switches/ /pt/material/react-switch/ 301
+/components/switches/ /material-ui/react-switch/ 301
+/zh/components/switches/ /zh/material-ui/react-switch/ 301
+/pt/components/switches/ /pt/material-ui/react-switch/ 301
 
-/components/buttons/ /material/react-button/ 301
-/zh/components/buttons/ /zh/material/react-button/ 301
-/pt/components/buttons/ /pt/material/react-button/ 301
+/components/buttons/ /material-ui/react-button/ 301
+/zh/components/buttons/ /zh/material-ui/react-button/ 301
+/pt/components/buttons/ /pt/material-ui/react-button/ 301
 
-/components/radio-buttons/ /material/react-radio-button/ 301
-/zh/components/radio-buttons/ /zh/material/react-radio-button/ 301
-/pt/components/radio-buttons/ /pt/material/react-radio-button/ 301
+/components/radio-buttons/ /material-ui/react-radio-button/ 301
+/zh/components/radio-buttons/ /zh/material-ui/react-radio-button/ 301
+/pt/components/radio-buttons/ /pt/material-ui/react-radio-button/ 301
 
-/components/selects/ /material/react-select/ 301
-/zh/components/selects/ /zh/material/react-select/ 301
-/pt/components/selects/ /pt/material/react-select/ 301
+/components/selects/ /material-ui/react-select/ 301
+/zh/components/selects/ /zh/material-ui/react-select/ 301
+/pt/components/selects/ /pt/material-ui/react-select/ 301
 
-/components/text-fields/ /material/react-text-field/ 301
-/zh/components/text-fields/ /zh/material/react-text-field/ 301
-/pt/components/text-fields/ /pt/material/react-text-field/ 301
+/components/text-fields/ /material-ui/react-text-field/ 301
+/zh/components/text-fields/ /zh/material-ui/react-text-field/ 301
+/pt/components/text-fields/ /pt/material-ui/react-text-field/ 301
 
-/components/avatars/ /material/react-avatar/ 301
-/zh/components/avatars/ /zh/material/react-avatar/ 301
-/pt/components/avatars/ /pt/material/react-avatar/ 301
+/components/avatars/ /material-ui/react-avatar/ 301
+/zh/components/avatars/ /zh/material-ui/react-avatar/ 301
+/pt/components/avatars/ /pt/material-ui/react-avatar/ 301
 
-/components/badges/ /material/react-badge/ 301
-/zh/components/badges/ /zh/material/react-badge/ 301
-/pt/components/badges/ /pt/material/react-badge/ 301
+/components/badges/ /material-ui/react-badge/ 301
+/zh/components/badges/ /zh/material-ui/react-badge/ 301
+/pt/components/badges/ /pt/material-ui/react-badge/ 301
 
-/components/chips/ /material/react-chip/ 301
-/zh/components/chips/ /zh/material/react-chip/ 301
-/pt/components/chips/ /pt/material/react-chip/ 301
+/components/chips/ /material-ui/react-chip/ 301
+/zh/components/chips/ /zh/material-ui/react-chip/ 301
+/pt/components/chips/ /pt/material-ui/react-chip/ 301
 
-/components/dividers/ /material/react-divider/ 301
-/zh/components/dividers/ /zh/material/react-divider/ 301
-/pt/components/dividers/ /pt/material/react-divider/ 301
+/components/dividers/ /material-ui/react-divider/ 301
+/zh/components/dividers/ /zh/material-ui/react-divider/ 301
+/pt/components/dividers/ /pt/material-ui/react-divider/ 301
 
-/components/lists/ /material/react-list/ 301
-/zh/components/lists/ /zh/material/react-list/ 301
-/pt/components/lists/ /pt/material/react-list/ 301
+/components/lists/ /material-ui/react-list/ 301
+/zh/components/lists/ /zh/material-ui/react-list/ 301
+/pt/components/lists/ /pt/material-ui/react-list/ 301
 
-/components/tables/ /material/react-table/ 301
-/zh/components/tables/ /zh/material/react-table/ 301
-/pt/components/tables/ /pt/material/react-table/ 301
+/components/tables/ /material-ui/react-table/ 301
+/zh/components/tables/ /zh/material-ui/react-table/ 301
+/pt/components/tables/ /pt/material-ui/react-table/ 301
 
-/components/tooltips/ /material/react-tooltip/ 301
-/zh/components/tooltips/ /zh/material/react-tooltip/ 301
-/pt/components/tooltips/ /pt/material/react-tooltip/ 301
+/components/tooltips/ /material-ui/react-tooltip/ 301
+/zh/components/tooltips/ /zh/material-ui/react-tooltip/ 301
+/pt/components/tooltips/ /pt/material-ui/react-tooltip/ 301
 
-/components/dialogs/ /material/react-dialog/ 301
-/zh/components/dialogs/ /zh/material/react-dialog/ 301
-/pt/components/dialogs/ /pt/material/react-dialog/ 301
+/components/dialogs/ /material-ui/react-dialog/ 301
+/zh/components/dialogs/ /zh/material-ui/react-dialog/ 301
+/pt/components/dialogs/ /pt/material-ui/react-dialog/ 301
 
-/components/snackbars/ /material/react-snackbar/ 301
-/zh/components/snackbars/ /zh/material/react-snackbar/ 301
-/pt/components/snackbars/ /pt/material/react-snackbar/ 301
+/components/snackbars/ /material-ui/react-snackbar/ 301
+/zh/components/snackbars/ /zh/material-ui/react-snackbar/ 301
+/pt/components/snackbars/ /pt/material-ui/react-snackbar/ 301
 
-/components/cards/ /material/react-card/ 301
-/zh/components/cards/ /zh/material/react-card/ 301
-/pt/components/cards/ /pt/material/react-card/ 301
+/components/cards/ /material-ui/react-card/ 301
+/zh/components/cards/ /zh/material-ui/react-card/ 301
+/pt/components/cards/ /pt/material-ui/react-card/ 301
 
-/components/drawers/ /material/react-drawer/ 301
-/zh/components/drawers/ /zh/material/react-drawer/ 301
-/pt/components/drawers/ /pt/material/react-drawer/ 301
+/components/drawers/ /material-ui/react-drawer/ 301
+/zh/components/drawers/ /zh/material-ui/react-drawer/ 301
+/pt/components/drawers/ /pt/material-ui/react-drawer/ 301
 
-/components/links/ /material/react-link/ 301
-/zh/components/links/ /zh/material/react-link/ 301
-/pt/components/links/ /pt/material/react-link/ 301
+/components/links/ /material-ui/react-link/ 301
+/zh/components/links/ /zh/material-ui/react-link/ 301
+/pt/components/links/ /pt/material-ui/react-link/ 301
 
-/components/menus/ /material/react-menu/ 301
-/zh/components/menus/ /zh/material/react-menu/ 301
-/pt/components/menus/ /pt/material/react-menu/ 301
+/components/menus/ /material-ui/react-menu/ 301
+/zh/components/menus/ /zh/material-ui/react-menu/ 301
+/pt/components/menus/ /pt/material-ui/react-menu/ 301
 
-/components/steppers/ /material/react-stepper/ 301
-/zh/components/steppers/ /zh/material/react-stepper/ 301
-/pt/components/steppers/ /pt/material/react-stepper/ 301
+/components/steppers/ /material-ui/react-stepper/ 301
+/zh/components/steppers/ /zh/material-ui/react-stepper/ 301
+/pt/components/steppers/ /pt/material-ui/react-stepper/ 301
 
-/components/* /material/react-:splat 301
-/zh/components/* /zh/material/react-:splat 301
-/pt/components/* /pt/material/react-:splat 301
+/components/* /material-ui/react-:splat 301
+/zh/components/* /zh/material-ui/react-:splat 301
+/pt/components/* /pt/material-ui/react-:splat 301
 
-/api/* /material/api/:splat 301
-/zh/api/* /zh/material/api/:splat 301
-/pt/api/* /pt/material/api/:splat 301`,
+/api/* /material-ui/api/:splat 301
+/zh/api/* /zh/material-ui/api/:splat 301
+/pt/api/* /pt/material-ui/api/:splat 301`,
   );
 
   // remove X redirects because of the above redirects

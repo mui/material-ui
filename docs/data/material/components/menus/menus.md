@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Menu component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper, MenuUnstyled, MenuItemUnstyled
 githubLabel: 'component: menu'

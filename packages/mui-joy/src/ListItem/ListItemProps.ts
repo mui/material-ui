@@ -3,6 +3,8 @@ import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ListItemClasses } from './listItemClasses';
 
+export type ListItemSlot = 'root' | 'startAction' | 'endAction';
+
 export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
@@ -14,9 +16,18 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      */
     classes?: Partial<ListItemClasses>;
     /**
+     * The element to display at the start of ListItem.
+     */
+    startAction?: React.ReactNode;
+    /**
      * The element to display at the end of ListItem.
      */
-    secondaryAction?: React.ReactNode;
+    endAction?: React.ReactNode;
+    /**
+     * If `true`, the component can contain NestedList.
+     * @default false
+     */
+    nested?: boolean;
     /**
      * If `true`, the component has sticky position (with top = 0).
      * @default false

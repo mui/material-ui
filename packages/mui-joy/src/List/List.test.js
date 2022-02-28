@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { describeConformance, createRenderer } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
 
 describe('Joy <List />', () => {
   const { render } = createRenderer();
@@ -36,5 +37,14 @@ describe('Joy <List />', () => {
   it('should have lg classes', () => {
     const { container } = render(<List size="lg" />);
     expect(container.firstChild).to.have.class(classes.sizeLg);
+  });
+
+  it('should have nested classes', () => {
+    const { getByRole } = render(
+      <ListItem nested>
+        <List />
+      </ListItem>,
+    );
+    expect(getByRole('list')).to.have.class(classes.nested);
   });
 });

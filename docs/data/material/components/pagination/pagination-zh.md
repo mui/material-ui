@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Pagination（分页）组件
 components: Pagination, PaginationItem
 githubLabel: 'component: pagination'

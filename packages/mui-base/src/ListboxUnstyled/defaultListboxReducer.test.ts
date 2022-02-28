@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ActionTypes, ListboxAction, ListboxState } from './types';
+import { ActionTypes, ListboxAction, ListboxState } from './useListbox.types';
 import defaultReducer from './defaultListboxReducer';
 
 describe('useListbox defaultReducer', () => {

@@ -20,7 +20,9 @@ const ListItemDecoratorRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemDecoratorProps }>({
+  boxSizing: 'border-box',
   display: 'inline-flex',
+  alignItems: 'center',
   color: `var(--List-decorator-color)`,
   minWidth: 'var(--List-decorator-width)',
 });
