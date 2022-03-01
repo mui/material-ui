@@ -26,7 +26,6 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
@@ -196,36 +195,39 @@ function ProductDrawerButton(props) {
             description="Ready-to-use foundational components, free forever."
           />
           <LinksWrapper>
-            <Link
-              href={ROUTES.materialDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
+            <Link href={ROUTES.materialDocs}>
               <div>
                 <ProductLabel>Material UI</ProductLabel>
-                <Typography color="text.secondary" variant="body2">
+                <Typography
+                  color="text.secondary"
+                  variant="body2"
+                  // eslint-disable-next-line material-ui/no-hardcoded-labels
+                >
                   React components that implement Google Material Design.
                 </Typography>
               </div>
             </Link>
-            <Link
-              href={ROUTES.baseDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
+            <Link href={ROUTES.baseDocs}>
               <div>
                 <ProductLabel>MUI Base</ProductLabel>
-                <Typography color="text.secondary" variant="body2">
+                <Typography
+                  color="text.secondary"
+                  variant="body2"
+                  // eslint-disable-next-line material-ui/no-hardcoded-labels
+                >
                   Unstyled React components and low-level hooks.
                 </Typography>
               </div>
             </Link>
 
-            <Link
-              href={ROUTES.systemDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
+            <Link href={ROUTES.systemDocs}>
               <div>
                 <ProductLabel>MUI System</ProductLabel>
-                <Typography color="text.secondary" variant="body2">
+                <Typography
+                  color="text.secondary"
+                  variant="body2"
+                  // eslint-disable-next-line material-ui/no-hardcoded-labels
+                >
                   CSS utilities for rapidly laying out custom designs.
                 </Typography>
               </div>
@@ -238,13 +240,12 @@ function ProductDrawerButton(props) {
             sx={{
               p: 2,
               '&:hover': {
-                backgroundColor:
+                backgroundColor: (theme) =>
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.primaryDark[700], 0.4)
                     : theme.palette.grey[50],
               },
             }}
-            // eslint-disable-next-line material-ui/no-hardcoded-labels
           >
             <ProductSubMenu
               role="menuitem"
