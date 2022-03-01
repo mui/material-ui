@@ -42,10 +42,7 @@ const LinksWrapper = styled('div')(({ theme }) => {
     '& > a': {
       display: 'flex',
       justifyContent: 'space-between',
-      paddingTop: theme.spacing(0.5),
-      paddingBottom: theme.spacing(0.5),
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
+      padding: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       fontWeight: 500,
       fontSize: theme.typography.pxToRem(14),
@@ -64,6 +61,15 @@ const LinksWrapper = styled('div')(({ theme }) => {
     },
   };
 });
+
+const ProductLabel = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(0.2),
+  fontSize: theme.typography.pxToRem(12),
+  fontWeight: theme.typography.fontWeightBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.05rem',
+  color: theme.palette.primary[600],
+}));
 
 function ProductSubMenu(props) {
   return (
@@ -149,7 +155,7 @@ function ProductDrawerButton(props) {
         }}
         PaperProps={{
           sx: {
-            width: { xs: 310, sm: 360 },
+            width: { xs: 340, sm: 464 },
             overflow: 'hidden',
             borderRadius: '10px',
             borderColor: (theme) =>
@@ -191,41 +197,36 @@ function ProductDrawerButton(props) {
           />
           <LinksWrapper>
             <Link
-              href={ROUTES.baseDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
-              <div>
-                <Typography color="text.primary" variant="body2" fontWeight="700">
-                  MUI Base
-                </Typography>
-                <Typography color="text.secondary" variant="body2">
-                  Ready-to-use foundational components, free forever.
-                </Typography>
-              </div>
-            </Link>
-            <Link
               href={ROUTES.materialDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
               <div>
-                <Typography color="text.primary" variant="body2" fontWeight="700">
-                  Material UI
-                </Typography>
+                <ProductLabel>Material UI</ProductLabel>
                 <Typography color="text.secondary" variant="body2">
-                  Ready-to-use foundational components, free forever.
+                  React components that implement Google Material Design.
                 </Typography>
               </div>
             </Link>
+            <Link
+              href={ROUTES.baseDocs}
+              // eslint-disable-next-line material-ui/no-hardcoded-labels
+            >
+              <div>
+                <ProductLabel>MUI Base</ProductLabel>
+                <Typography color="text.secondary" variant="body2">
+                  Unstyled components and low-level react hooks.
+                </Typography>
+              </div>
+            </Link>
+
             <Link
               href={ROUTES.systemDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
               <div>
-                <Typography color="text.primary" variant="body2" fontWeight="700">
-                  MUI System
-                </Typography>
+                <ProductLabel>MUI System</ProductLabel>
                 <Typography color="text.secondary" variant="body2">
-                  Ready-to-use foundational components, free forever.
+                  CSS utilities for rapidly laying out custom designs.
                 </Typography>
               </div>
             </Link>
