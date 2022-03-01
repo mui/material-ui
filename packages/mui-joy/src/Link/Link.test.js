@@ -27,7 +27,13 @@ describe('<Link />', () => {
     refInstanceof: window.HTMLAnchorElement,
     testVariantProps: { color: 'primary', variant: 'text' },
     testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
-    skip: ['classesRoot', 'componentsProp', 'themeDefaultProps', 'propsSpread'],
+    skip: [
+      'classesRoot',
+      'componentsProp',
+      'themeDefaultProps',
+      'propsSpread',
+      'themeStyleOverrides',
+    ],
   }));
 
   it('should render children', () => {
