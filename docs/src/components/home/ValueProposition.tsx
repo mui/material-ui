@@ -42,11 +42,10 @@ const ValueProposition = () => {
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <SectionHeadline
-        overline="Developer experience"
+        overline="Why build with MUI?"
         title={
           <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-            Powerful tools to help you build <GradientText>all types</GradientText> of user
-            interfaces
+            An <GradientText>intuitive</GradientText> experience for you and your users
           </Typography>
         }
       />
