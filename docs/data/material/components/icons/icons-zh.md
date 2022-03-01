@@ -18,7 +18,7 @@ MUI通过以下三种方式来支持图标的使用：
 
 ## Material Icons
 
-Google has created over 1,900 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. You can [search the full list of these icons](/components/material-icons/).
+谷歌制作了 1 900 多个官方 Material 图标，每个图标分为五个不同的“主题”（见下文）。 对于每个 SVG 图标，我们从`@mui/icons-material` 包中导出相应的 React 组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
 ### 安装
 
@@ -34,7 +34,7 @@ yarn add @mui/icons-material
 
 这些组件使用 MUI的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
-If you aren't already using Material UI in your project, you can add it following the [installation guide](/getting-started/installation/).
+如果你没有在你的项目中使用 Material UI，你可以按照 [安装指南](/getting-started/installation/) 添加它。
 
 ### 使用
 
@@ -63,7 +63,7 @@ If you aren't already using Material UI in your project, you can add it followin
 - 导出为 Twotone 主题：`@mui/icons/DeleteTwoTone`，
 - 导出为 Sharp 主题：`@mui/icons/DeleteSharp`，
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
+> 注意：Material Design 指南使用“snake_case”命名方式（例如，`delete_forever`，`add_a_photo`），而 `@mui/icons-materials` 使用“PascalCase”命名方式导出相应的图标（例如，`DeleteForever`，`AddAPhoto`）。 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
 
 {{"demo": "SvgMaterialIcons.js"}}
 
@@ -86,7 +86,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
-- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
+- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 使用 `viewBox` 属性，您可以随意自定义。 要继承原始图像的 `viewBox` 值，可以使用 `inheritViewBox` 属性。
 - 默认情况下，此组件会继承当前的颜色。 当然，通过 `color` 这个属性，你可以让图标使用主题里的颜色。
 
 ```jsx
@@ -109,7 +109,7 @@ function HomeIcon(props) {
 
 ### 组件属性
 
-即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. 譬如，使用 webpack ： For example, with webpack:
+即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 [svgr](https://github.com/gregberge/svgr) 有导入SVG 文件的加载器并将其用作 React 组件。 譬如，使用 webpack ：
 
 ```jsx
 // webpack.config.js
@@ -170,9 +170,9 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 
 友情提示：[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) 已经将每个 SVG 图标用 `SvgIcon` 组件包装起来，您可以高枕无忧了。
 
-## Icon (Font icons)
+## Icon（字体图标）
 
-The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
+对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 作为先决条件，您必须在项目中导入一个 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web)。 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
 ```jsx
 import Icon from '@mui/material/Icon';
@@ -220,7 +220,7 @@ const theme = createTheme({
   components: {
     MuiIcon: {
       defaultProps: {
-        // Replace the `material-icons` default value.
+        // 更改 `material-icons` 的默认值。
         baseClassName: 'material-icons-two-tone',
       },
     },
