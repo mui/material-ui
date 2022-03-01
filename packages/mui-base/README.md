@@ -1,6 +1,6 @@
 # @mui/base
 
-This package hosts unstyled React components that can be used for creating custom design systems.
+This package hosts unstyled React components and hooks that can be used for creating custom design systems.
 
 ## Installation
 

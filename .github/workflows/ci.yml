@@ -24,9 +24,10 @@ jobs:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14
+          cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: yarn install
         env:
           # Don't need playwright in this job

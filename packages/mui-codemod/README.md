@@ -39,7 +39,7 @@ Examples:
   npx @mui/codemod v5.0.0/preset-safe src --parser=flow
 ```
 
-#### jscodeshift options
+### jscodeshift options
 
 To pass more options directly to jscodeshift, use `--jscodeshift="..."`. For example:
 
@@ -49,7 +49,7 @@ npx @mui/codemod --jscodeshift="--run-in-band --verbose=2"
 
 See all available options [here](https://github.com/facebook/jscodeshift#usage-cli).
 
-#### Recast Options
+### Recast Options
 
 Options to [recast](https://github.com/benjamn/recast)'s printer can be provided
 through jscodeshift's `printOptions` command line argument
@@ -959,6 +959,24 @@ npx @mui/codemod v5.0.0/theme-typography-round <path>
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
 
+#### `top-level-imports`
+
+Converts all `@mui/material` submodule imports to the root module:
+
+```diff
+-import List from '@mui/material/List';
+-import Grid from '@mui/material/Grid';
++import { List, Grid } from '@mui/material';
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @mui/codemod v5.0.0/top-level-imports <path>
+```
+
+Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+
 #### `transitions`
 
 Renames import `transitions` to `createTransitions`
@@ -1073,7 +1091,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `mui-replace`
 
-Replace every occurrence of `material-ui` related package with the new package names (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`). [More details about why package names are changed](https://github.com/mui-org/material-ui/issues/27666)
+Replace every occurrence of `material-ui` related package with the new package names (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`). [More details about why package names are changed](https://github.com/mui/material-ui/issues/27666)
 
 **Material Design components**
 
@@ -1247,13 +1265,13 @@ npx @mui/codemod v1.0.0/color-imports <path>
 
 <!-- #default-branch-switch -->
 
-```
+```sh
 npx @mui/codemod v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```
 
 #### `svg-icon-imports`
 
-Updates the `svg-icons` import paths from `material-ui/svg-icons/<category>/<icon-name>` to `@material-ui/icons/<IconName>`, to use the new [`@material-ui/icons`](https://github.com/mui-org/material-ui/tree/next/packages/mui-material-icons) package.
+Updates the `svg-icons` import paths from `material-ui/svg-icons/<category>/<icon-name>` to `@material-ui/icons/<IconName>`, to use the new `@material-ui/icons` package.
 The diff should look like this:
 
 ```diff

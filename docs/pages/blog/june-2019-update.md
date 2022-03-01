@@ -1,10 +1,10 @@
 ---
+title: June 2019 Update
 description: Here are the most significant improvements in June.
+date: 2019-07-08T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['Company update']
 ---
-
-# June 2019 Update
-
-Olivier Tassinari. July 8, 2019.
 
 Here are the most significant improvements in June:
 
@@ -31,4 +31,4 @@ _(We'll do our best, no guarantee!)_
   You can already [preview it](https://deploy-preview-16455--material-ui.netlify.app/components/rating/).
   ![Rating](/static/blog/june-2019-update/rating.png)
 
-- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

@@ -20,7 +20,8 @@ export default function AppFooter() {
     <Container component="footer">
       <Box
         sx={{
-          py: 8,
+          pt: 4,
+          pb: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
           alignItems: 'center',
@@ -101,8 +102,9 @@ export default function AppFooter() {
               <Box
                 sx={{
                   px: 0.5,
-                  py: 0.3,
+                  py: '3px',
                   ml: 1,
+                  mb: '1px',
                   borderRadius: 0.5,
                   fontSize: (theme) => theme.typography.pxToRem(9),
                   fontWeight: 700,
@@ -141,12 +143,12 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/mui-org"
+              href="https://github.com/mui"
               aria-label="github"
               title="GitHub"
               size="small"
             >
-              <GitHubIcon />
+              <GitHubIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -156,17 +158,17 @@ export default function AppFooter() {
               title="Stack Overflow"
               size="small"
             >
-              <SvgStackOverflow />
+              <SvgStackOverflow fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://twitter.com/MaterialUI"
+              href="https://twitter.com/MUI_hq"
               aria-label="twitter"
               title="Twitter"
               size="small"
             >
-              <TwitterIcon />
+              <TwitterIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -176,7 +178,7 @@ export default function AppFooter() {
               title="LinkedIn"
               size="small"
             >
-              <LinkedInIcon />
+              <LinkedInIcon fontSize="small" />
             </IconButton>
           </Stack>
         </Box>

@@ -23,7 +23,7 @@ export type StandardProps<
 
 /**
  * @internal
- * ONLY USE FROM WITHIN mui-org/material-ui
+ * ONLY USE FROM WITHIN mui/material-ui
  *
  * Internal helper type for conform (describeConformance) components
  * However, we don't declare classes on this type.
@@ -73,8 +73,6 @@ export { colors };
 export * from './styles';
 
 export * from './utils';
-
-export * from '@mui/base';
 
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
@@ -328,6 +326,9 @@ export * from './Popover';
 export { default as Popper } from './Popper';
 export * from './Popper';
 
+export { default as Portal } from './Portal';
+export * from './Portal';
+
 export { default as Radio } from './Radio';
 export * from './Radio';
 
@@ -476,3 +477,10 @@ export * from './GlobalStyles';
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
  */
 export { StyledEngineProvider } from './styles';
+
+export { default as unstable_composeClasses } from '@mui/base/composeClasses';
+
+export { default as generateUtilityClass } from '@mui/base/generateUtilityClass';
+export * from '@mui/base/generateUtilityClass';
+
+export { default as generateUtilityClasses } from '@mui/base/generateUtilityClasses';

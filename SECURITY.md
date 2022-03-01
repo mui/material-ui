@@ -1,6 +1,6 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+## Supported versions
 
 The versions of the project that are currently supported with security updates.
 
@@ -10,6 +10,6 @@ The versions of the project that are currently supported with security updates.
 | 4.x     | :white_check_mark: |
 | < 4.0   | :x:                |
 
-## Reporting a Vulnerability
+## Reporting a vulnerability
 
 You can report a vulnerability by contacting us via email at [security@mui.com](mailto:security@mui.com).

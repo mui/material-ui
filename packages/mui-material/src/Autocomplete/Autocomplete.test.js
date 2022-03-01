@@ -12,11 +12,12 @@ import {
 import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import Chip from '@mui/material/Chip';
+import Chip, { chipClasses } from '@mui/material/Chip';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/material/Autocomplete';
+import { paperClasses } from '@mui/material/Paper';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -500,6 +501,30 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(firstSelectedValue, { key: 'ArrowRight' });
       expect(textbox).toHaveFocus();
+    });
+
+    it('should not call onChange function for duplicate values', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          freeSolo
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+
+      fireEvent.change(textbox, { target: { value: 'two' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(0);
+
+      fireEvent.change(textbox, { target: { value: 'three' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
     });
 
     it('has no textbox value', () => {
@@ -1384,11 +1409,6 @@ describe('<Autocomplete />', () => {
       }).toWarnDev([
         'returns duplicated headers',
         !strictModeDoubleLoggingSupressed && 'returns duplicated headers',
-        // React 18 Strict Effects run mount effects twice which lead to a cascading update
-        React.version.startsWith('18') && 'returns duplicated headers',
-        React.version.startsWith('18') &&
-          !strictModeDoubleLoggingSupressed &&
-          'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
@@ -2360,5 +2380,121 @@ describe('<Autocomplete />', () => {
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleChange.callCount).to.equal(0);
     expect(handleSubmit.callCount).to.equal(1);
+  });
+
+  describe('prop: componentsProps', () => {
+    it('should apply the props on the Paper component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            paper: { 'data-testid': 'paperRoot', elevation: 2, className: 'my-class' },
+          }}
+        />,
+      );
+
+      const paperRoot = screen.getByTestId('paperRoot');
+      expect(paperRoot).to.have.class(paperClasses.elevation2);
+      expect(paperRoot).to.have.class('my-class');
+    });
+  });
+
+  describe('prop: readOnly', () => {
+    it('should make the input readonly', () => {
+      render(
+        <Autocomplete
+          readOnly
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const input = screen.getByRole('textbox');
+      expect(input).to.have.attribute('readonly');
+    });
+
+    it('should not render the clear button', () => {
+      render(
+        <Autocomplete
+          readOnly
+          defaultValue="one"
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      expect(screen.queryByTitle('Clear')).to.equal(null);
+    });
+
+    it('should not apply the hasClearIcon class', () => {
+      const { container } = render(
+        <Autocomplete
+          readOnly
+          defaultValue="one"
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+    });
+
+    it('should focus on input when clicked', () => {
+      render(
+        <Autocomplete
+          readOnly
+          defaultValue="one"
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('textbox');
+      fireEvent.click(textbox);
+      expect(textbox).toHaveFocus();
+
+      act(() => {
+        textbox.blur();
+      });
+      fireEvent.click(screen.queryByTitle('Open'));
+
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should not open the popup', () => {
+      render(
+        <Autocomplete
+          readOnly
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      fireEvent.mouseDown(textbox);
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
+
+    it('should not be able to delete the tag when multiple=true', () => {
+      const { container } = render(
+        <Autocomplete
+          readOnly
+          multiple
+          defaultValue={['one', 'two']}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const chip = container.querySelector(`.${chipClasses.root}`);
+      expect(chip).not.to.have.class(chipClasses.deletable);
+
+      const textbox = screen.getByRole('textbox');
+      act(() => {
+        textbox.focus();
+      });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+    });
   });
 });

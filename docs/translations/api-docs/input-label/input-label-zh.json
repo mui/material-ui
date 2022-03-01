@@ -5,13 +5,13 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "disableAnimation": "If <code>true</code>, the transition animation is disabled.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "error": "If <code>true</code>, the label is displayed in an error state.",
+    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
+    "error": "If <code>true</code>, the label should be displayed in an error state.",
     "focused": "If <code>true</code>, the <code>input</code> of this label is focused.",
     "margin": "If <code>dense</code>, will adjust vertical spacing. This is normally obtained via context from FormControl.",
     "required": "if <code>true</code>, the label will indicate that the <code>input</code> is required.",
     "shrink": "If <code>true</code>, the label is shrunk.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "variant": "The variant to use."
   },
   "classDescriptions": {
@@ -19,27 +19,27 @@
       "description": "Styles applied to the root element."
     },
     "focused": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>focused={true}</code>"
     },
     "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "error": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     },
     "required": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>required={true}</code>"
     },
     "asterisk": {
-      "description": "State class applied to {{nodeName}}.",
+      "description": "Pseudo-class applied to {{nodeName}}.",
       "nodeName": "the asterisk element"
     },
     "formControl": {

@@ -7,9 +7,9 @@
     "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
     "disableGutters": "如果 <code>true</code>, 它会移除两个打开的折叠面板的边距和增加的高度。",
     "expanded": "如果 <code>true</code>, 则打开折叠面板, 否则关闭折叠面板。 设置此属性允许控制折叠面板.",
-    "onChange": "Callback fired when the expand/collapse state is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, expanded: boolean) =&gt; void</code><br><em>event:</em> The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.<br><em>expanded:</em> The <code>expanded</code> state of the accordion.",
+    "onChange": "Callback fired when the expand/collapse state is changed.<br><br><strong>Signature:</strong><br><code>function(event: object, expanded: boolean) =&gt; void</code><br><em>event:</em> The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.<br><em>expanded:</em> The <code>expanded</code> state of the accordion.",
     "square": "如果 <code>true</code>, 圆角将被禁用。",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "TransitionComponent": "用于过渡的组件。 <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> 了解更多关于此组件的要求。",
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
   },

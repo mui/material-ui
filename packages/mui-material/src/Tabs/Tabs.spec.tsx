@@ -11,3 +11,5 @@ function testOnChange() {
     onChange={handleElementChange}
   />;
 }
+
+const TabTest = () => <Tabs TabIndicatorProps={{ style: { backgroundColor: 'green' } }} />;

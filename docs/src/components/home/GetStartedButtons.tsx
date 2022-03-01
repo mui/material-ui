@@ -9,7 +9,7 @@ import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 
 export default function GetStartedButtons({
-  installation = 'npm install @mui/material',
+  installation = 'npm install @mui/material @emotion/react @emotion/styled',
   to = ROUTES.documentation,
   ...props
 }: { installation?: string; to?: string } & BoxProps) {
@@ -37,17 +37,27 @@ export default function GetStartedButtons({
         size="large"
         variant="contained"
         endIcon={<KeyboardArrowRightRounded />}
+        sx={{ mr: { xs: 0, sm: 2 } }}
       >
         Get started
       </Button>
-      <Box sx={{ width: 16, height: 16 }} />
+      <Box sx={{ py: 1, display: { xs: 'block', sm: 'hidden' } }} />
       <Button
         size="large"
         // @ts-expect-error
         variant="code"
-        startIcon="$"
         endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
         onClick={handleCopy}
+        sx={{
+          maxWidth: '324px',
+          display: 'inline-block',
+          justifyContent: 'start',
+          overflowX: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+          position: 'relative',
+          pr: 5,
+        }}
       >
         {installation}
       </Button>
