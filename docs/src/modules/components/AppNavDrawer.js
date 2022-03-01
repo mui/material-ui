@@ -176,6 +176,9 @@ function ProductDrawerButton(props) {
             '& li': {
               p: 2,
             },
+            '& li:last-of-type': {
+              p: 0,
+            },
           },
         }}
       >
@@ -191,46 +194,73 @@ function ProductDrawerButton(props) {
               href={ROUTES.baseDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              MUI Base <KeyboardArrowRight fontSize="small" />
+              <div>
+                <Typography color="text.primary" variant="body2" fontWeight="700">
+                  MUI Base
+                </Typography>
+                <Typography color="text.secondary" variant="body2">
+                  Ready-to-use foundational components, free forever.
+                </Typography>
+              </div>
             </Link>
             <Link
               href={ROUTES.materialDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              Material UI <KeyboardArrowRight fontSize="small" />
+              <div>
+                <Typography color="text.primary" variant="body2" fontWeight="700">
+                  Material UI
+                </Typography>
+                <Typography color="text.secondary" variant="body2">
+                  Ready-to-use foundational components, free forever.
+                </Typography>
+              </div>
             </Link>
             <Link
               href={ROUTES.systemDocs}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
-              MUI System <KeyboardArrowRight fontSize="small" />
+              <div>
+                <Typography color="text.primary" variant="body2" fontWeight="700">
+                  MUI System
+                </Typography>
+                <Typography color="text.secondary" variant="body2">
+                  Ready-to-use foundational components, free forever.
+                </Typography>
+              </div>
             </Link>
           </LinksWrapper>
         </li>
         <li role="none">
-          <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-advanced" />}
-            name={
-              <Box
-                component="span"
-                display="inline-flex"
-                alignItems="center"
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
-              >
-                MUI&nbsp;X
-              </Box>
-            }
-            description="Advanced and powerful components for complex use-cases."
-          />
-          <LinksWrapper>
-            <Link
-              href={ROUTES.dataGridSpace}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
-              Data Grid <KeyboardArrowRight fontSize="small" />
-            </Link>
-          </LinksWrapper>
+          <Link
+            href={ROUTES.dataGridSpace}
+            sx={{
+              p: 2,
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.4)
+                    : theme.palette.grey[50],
+              },
+            }}
+            // eslint-disable-next-line material-ui/no-hardcoded-labels
+          >
+            <ProductSubMenu
+              role="menuitem"
+              icon={<IconImage name="product-advanced" />}
+              name={
+                <Box
+                  component="span"
+                  display="inline-flex"
+                  alignItems="center"
+                  // eslint-disable-next-line material-ui/no-hardcoded-labels
+                >
+                  MUI&nbsp;X
+                </Box>
+              }
+              description="Advanced and powerful components for complex use-cases."
+            />
+          </Link>
         </li>
       </Menu>
     </React.Fragment>
