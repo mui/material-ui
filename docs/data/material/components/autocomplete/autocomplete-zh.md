@@ -157,7 +157,7 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 ### Google Maps Places
 
-一个自定义 UI 来配合 Google 地图位置的自动完成功能。 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
+一个自定义 UI 来配合 Google 地图位置的自动完成功能。 在这个示例中，我们需要加载 [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) 和 [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API。
 
 {{"demo": "GoogleMaps.js"}}
 
@@ -205,7 +205,7 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 {{"demo": "GitHubLabel.js"}}
 
-Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+您也可以浏览 [自定义 hook](#customized-hook) 章节，查看一下使用 `useAutocomplete` hook 的自定义例子来代替使用组件。
 
 ## 高亮显示
 
@@ -240,7 +240,7 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 #### 返回结果
 
-`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
+`过滤选项`：返回的过滤器方法可以直接提供给 ` Autocomplete` 组件的 `filterOptions` 属性， 或者可以传给 hook 的同名参数。
 
 `filterOptions`：返回的 filter（过滤）方法可以直接提供给带有 `filterOptions` 属性的 `Autocomplete` 组件，或者和 hooks 同名的参数。
 
@@ -293,9 +293,9 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component. 然而，这样的功能会削弱用户的组件体验。 However, this can harm the UX of the component.
+浏览器有启发式方法来帮助用户填写表格输入。 但是这可能会损坏组件的 UX。
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
+默认情况下，该组件通过 `autoComplete="off"` 属性禁用了输入组件的 **自动完成** 功能（记住用户在之前会话中为特定字段输入的内容）。 Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
 
 除了记住过去输入的值，浏览器还可能发出 **自动填写（autofill）**建议（保存的登录名、地址或支付详情）。 若您不需要自动填充，您可以尝试以下的方式：
 
