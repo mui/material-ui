@@ -1,8 +1,12 @@
-# Advanced
+# Advanced (LEGACY)
 
 <p class="description">This section covers more advanced usage of @mui/styles.</p>
 
-> **Note**: `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI.
+> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
+> If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 ## Theming
 
@@ -396,15 +400,15 @@ Refer to the plugin's page for setup and usage instructions.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## Class names
 
@@ -470,7 +474,7 @@ You can also combine JSS generated class names with global ones.
 ## CSS prefixes
 
 JSS uses feature detection to apply the correct prefixes.
-[Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
+[Don't be surprised](https://github.com/mui/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
 
 ## TypeScript usage
 
@@ -627,8 +631,7 @@ interface Props {
 However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
 
 ```ts
-import { createStyles } from '@mui/styles';
-import { WithStyles } from '@mui/material';
+import { createStyles, WithStyles } from '@mui/styles';
 
 const styles = (theme: Theme) =>
   createStyles({

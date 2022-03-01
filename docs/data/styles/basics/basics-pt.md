@@ -3,8 +3,8 @@
 <p class="description">Você pode usar a solução de estilo do Material-UI na sua aplicação, esteja ou não usando componentes de Material-UI.</p>
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
-
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
+> 
+> ⚠️ `@mui/styles` is not compatible with [React. StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 MUI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in MUI components** as the `@mui/styles` package. Você pode usá-la, mas você não é obrigado, já que Material-UI também é [ interoperável com](/guides/interoperability/) todas as outras soluções de estilo principais.
 
@@ -18,7 +18,7 @@ MUI's styling solution is inspired by many other styling libraries such as [styl
 
 <!-- #default-branch-switch -->
 
-- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/tree/master/benchmark/server#material-uistyles).
+- 🚀 It's [blazing fast](https://github.com/mui/material-ui/tree/master/benchmark/server#material-uistyles).
 - 🧩 É extensível através de uma API de [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md).
 - ⚡️Ela usa [JSS](https://github.com/cssinjs/jss) em seu núcleo – um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript para o compilador CSS, que funciona em tempo de execução e no lado do servidor.
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
@@ -117,8 +117,7 @@ const styles = {
 function HigherOrderComponent(props) {
   const { classes } = props;
   return <Button className={classes.root}>Higher-order component</Button>;
-}
-HigherOrderComponent.propTypes = {
+} HigherOrderComponent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 

@@ -7,16 +7,14 @@
 - Use `@mui/material` if you want to use the components following the Material Design guidelines.
 
   > 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
-
 - Use `@mui/base` if you want to style the components from scratch using your preferred styling method.
 
   > 💡 This package can be imported alongside `@mui/material` without an installation.
-
 - Use `@mui/system` if you want APIs that enable building your own design system from scratch.
 
 ---
 
-product: material
+product: material-ui
 
 ## MUI packages
 
@@ -42,7 +40,7 @@ The packages can be categorized into 3 layers, as shown in the picture below:
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
 > 📖 Glossary
->
+> 
 > - **install** refers to running `yarn add $module` or `npm install $module`.
 > - **import** refers to making a module API available in your code by adding `import ... from '$module'`.
 
@@ -59,7 +57,7 @@ These adapters unify the APIs of both `emotion` and `styled-components`, so that
 
 The previous style library `@mui/styles` (JSS wrapper) is deprecated and will be removed in the future.
 
-> The details about the change in styling solution are in [this RFC](https://github.com/mui-org/material-ui/issues/22342).
+> The details about the change in styling solution are in [this RFC](https://github.com/mui/material-ui/issues/22342).
 
 ## System
 

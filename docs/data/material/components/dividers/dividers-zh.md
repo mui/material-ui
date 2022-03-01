@@ -1,12 +1,12 @@
 ---
-product: material
+product: material-ui
 title: React Divider（分隔线）组件
 components: Divider
 githubLabel: 'component: divider'
 materialDesign: https://material.io/components/dividers
 ---
 
-# Divider 分隔线
+# Divider
 
 <p class="description">分隔线是对列表和布局中的内容进行分组的一条细线。</p>
 

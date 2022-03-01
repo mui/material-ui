@@ -82,7 +82,7 @@ Você pode aninhar vários provedores de tema. Isso pode ser muito útil ao lida
 O tema interno **sobrescreverá** o tema externo. Você pode estender o tema externo fornecendo uma função:
 
 ```jsx
-<ThemeProvider theme={…} >
+<ThemeProvider theme={…} <ThemeProvider theme={…} >
   <Child1 />
   <ThemeProvider theme={outerTheme => ({ darkMode: true, ...outerTheme })}>
     <Child2 />
@@ -285,7 +285,13 @@ A abordagem mais simples é adicionar um comentário HTML no `<head>` que determ
 ```
 
 ```jsx
-insertionPoint: 'jss-insertion-point',
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@mui/styles';
+
+const jss = create({
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: 'jss-insertion-point',
 });
 
 export default function App() {
@@ -311,7 +317,13 @@ export default function App() {
 ```
 
 ```jsx
-insertionPoint: 'jss-insertion-point',
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@mui/styles';
+
+const jss = create({
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: 'jss-insertion-point',
 });
 
 export default function App() {
@@ -342,6 +354,12 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 const jss = create({
   ...jssPreset(),
   // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
+  insertionPoint: 'jss-insertion-point',
+});
+
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
 ```
 
 ## Renderização do lado servidor
@@ -380,15 +398,15 @@ Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-mate
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
+Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## Nomes de classes
 
@@ -451,7 +469,7 @@ Você também pode combinar nomes de classe gerados pelo JSS com nomes globais.
 
 ## Prefixos CSS
 
-O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui-org/material-ui/issues/9293) se você não conseguir ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa disso.
+O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui/material-ui/issues/9293) se você não conseguir ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa disso.
 
 ## TypeScript usage
 
@@ -608,25 +626,25 @@ interface Props {
 No entanto isto não é muito elegante de acordo com o princípio de software [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), porque requer que você mantenha os nomes das classes (`'root'`, `'paper'`, `'button'`, ...) em dois locais diferentes. Nós fornecemos um operador de tipo `WithStyles` para ajudar com isso, assim você pode apenas escrever:
 
 ```ts
-import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
+import { createStyles, WithStyles } from '@mui/styles';
 
-const StyledTextField = styled(TextField)`
-  label.focused {
-    color: green; 💚
-  }
-  . MuiOutlinedInput-root {
-    fieldset {
-      border-color: red; 💔
-    }
-    &:hover fieldset {
-      border-color: yellow; 💛
-    }
-    &. Mui-focused fieldset {
-      border-color: green; 💚
-    }
-  }
-`;
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
+
+interface Props extends WithStyles<typeof styles> {
+  foo: number;
+  bar: boolean;
+}
 ```
 
 ### Decorando componentes
@@ -641,7 +659,7 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 ));
 
 const DecoratedClass = withStyles(styles)(
-  class extends React.Component<Props> {
+  class extends React. Component<Props> {
     render() {
       const { text, type, color, classes } = this.props;
       return (

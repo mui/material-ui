@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Chip
 components: Chip
 githubLabel: 'component: chip'
@@ -39,7 +39,7 @@ Você pode usar as seguintes ações.
 
 ### Clicável e deletável
 
-{{"demo": "ClickeableAndDeleteableChips.js"}}
+{{"demo": "ClickableAndDeletableChips.js"}}
 
 ### Link clicável
 

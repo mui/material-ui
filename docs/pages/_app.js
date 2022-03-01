@@ -12,6 +12,7 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import pages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
@@ -43,17 +44,23 @@ function LanguageNegotiation() {
   const router = useRouter();
   const userLanguage = useUserLanguage();
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
-    const preferedLanguage =
-      LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
-      acceptLanguage.get(navigator.language) ||
-      userLanguage;
 
-    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
-      window.location =
-        preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
-    } else if (userLanguage !== userLanguageUrl) {
+    // Only consider a redirection if coming to the naked folder.
+    if (userLanguageUrl === 'en') {
+      const preferedLanguage =
+        LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
+        acceptLanguage.get(navigator.language) ||
+        userLanguage;
+
+      if (userLanguage !== preferedLanguage) {
+        window.location =
+          preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
+      }
+    }
+
+    if (userLanguage !== userLanguageUrl) {
       setUserLanguage(userLanguageUrl);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -181,7 +188,7 @@ function AppWrapper(props) {
   if (asPathWithoutLang.startsWith('/base')) {
     productPages = basePages;
   }
-  if (asPathWithoutLang.startsWith('/material')) {
+  if (asPathWithoutLang.startsWith('/material-ui')) {
     productPages = materialPages;
   }
   if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
@@ -206,6 +213,7 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+        <LanguageNegotiation />
         <CodeVariantProvider>
           <PageContext.Provider value={{ activePage, pages: productPages }}>
             <ThemeProvider>
@@ -215,7 +223,6 @@ function AppWrapper(props) {
               </DocsStyledEngineProvider>
             </ThemeProvider>
           </PageContext.Provider>
-          <LanguageNegotiation />
         </CodeVariantProvider>
       </UserLanguageProvider>
     </React.Fragment>

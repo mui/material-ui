@@ -14,7 +14,7 @@ Você também pode fazer com que um botão execute ações de navegação. Se se
 
 ## Global theme Link
 
-Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. For instance, with react-router: The theme of Material-UI allows configuring this component once.
+Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. For instance, with react-router: The theme of Material-UI allows configuring this component once. For instance, with react-router:
 
 ```jsx
 const LinkBehavior = React.forwardRef<
@@ -80,9 +80,9 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Next.js
 
-O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
+O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
 
-- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui-org/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. Este componente não tem estilo e é o único responsável pelo manuseio da navegação. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
+- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. Este componente não tem estilo e é o único responsável pelo manuseio da navegação. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
   ```tsx
   import Button from '@material-ui/core/Button';

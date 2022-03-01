@@ -15,73 +15,96 @@ import replaceHtmlLinks from 'docs/src/modules/utils/replaceHtmlLinks';
 
 const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
+const Wrapper = styled('div')({
+  overflow: 'hidden',
+});
+const Table = styled('table')(({ theme }) => {
+  const contentColor = theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff';
+  const shadowColor = theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.2)';
+  return {
+    borderRadius: 10,
+    background: `
+  linear-gradient(to right, ${contentColor} 5%, rgba(0, 0, 0, 0)),
+  linear-gradient(to right, rgba(0, 0, 0, 0), ${contentColor} 100%) 100%,
+  linear-gradient(to right, ${shadowColor}, rgba(0, 0, 0, 0) 5%),
+  linear-gradient(to left, ${shadowColor}, rgba(0, 0, 0, 0) 5%)`,
+    backgroundAttachment: 'local, local, scroll, scroll',
+    // the above background create thin line on the left and right sides of the table
+    // as a workaround, use negative margin with overflow `hidden` on the parent
+    marginLeft: -1,
+    marginRight: -1,
+  };
+});
+
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
   const t = useTranslate();
   const router = useRouter();
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th align="left">{t('api-docs.name')}</th>
-          <th align="left">{t('api-docs.type')}</th>
-          <th align="left">{t('api-docs.default')}</th>
-          <th align="left">{t('api-docs.description')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.entries(componentProps).map(([propName, propData]) => {
-          const typeDescription = propData.type.description || propData.type.name;
-          const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
-          return (
-            propData.description !== '@ignore' && (
-              <tr key={propName}>
-                <td align="left">
-                  <span className={clsx('prop-name', propData.required ? 'required' : null)}>
-                    {propName}
-                    {propData.required && (
-                      <sup>
-                        <Asterisk title="required">*</Asterisk>
-                      </sup>
-                    )}
-                  </span>
-                </td>
-                <td align="left">
-                  <span
-                    className="prop-type"
-                    dangerouslySetInnerHTML={{ __html: typeDescription }}
-                  />
-                </td>
-                <td align="left">
-                  {propDefault && <span className="prop-default">{propDefault}</span>}
-                </td>
-                <td align="left">
-                  {propData.deprecated && (
-                    <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-                      <strong>{t('api-docs.deprecated')}</strong>
-                      {propData.deprecationInfo && ' - '}
-                      {propData.deprecationInfo && (
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: propData.deprecationInfo,
-                          }}
-                        />
+    <Wrapper>
+      <Table>
+        <thead>
+          <tr>
+            <th align="left">{t('api-docs.name')}</th>
+            <th align="left">{t('api-docs.type')}</th>
+            <th align="left">{t('api-docs.default')}</th>
+            <th align="left">{t('api-docs.description')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(componentProps).map(([propName, propData]) => {
+            const typeDescription = propData.type.description || propData.type.name;
+            const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
+            return (
+              propData.description !== '@ignore' && (
+                <tr key={propName}>
+                  <td align="left">
+                    <span className={clsx('prop-name', propData.required ? 'required' : null)}>
+                      {propName}
+                      {propData.required && (
+                        <sup>
+                          <Asterisk title="required">*</Asterisk>
+                        </sup>
                       )}
-                    </Alert>
-                  )}
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: replaceHtmlLinks(propDescriptions[propName] || '', router.asPath),
-                    }}
-                  />
-                </td>
-              </tr>
-            )
-          );
-        })}
-      </tbody>
-    </table>
+                    </span>
+                  </td>
+                  <td align="left">
+                    <span
+                      className="prop-type"
+                      dangerouslySetInnerHTML={{ __html: typeDescription }}
+                    />
+                  </td>
+                  <td align="left">
+                    {propDefault && <span className="prop-default">{propDefault}</span>}
+                  </td>
+                  <td align="left">
+                    {propData.deprecated && (
+                      <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
+                        <strong>{t('api-docs.deprecated')}</strong>
+                        {propData.deprecationInfo && ' - '}
+                        {propData.deprecationInfo && (
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: propData.deprecationInfo,
+                            }}
+                          />
+                        )}
+                      </Alert>
+                    )}
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: replaceHtmlLinks(propDescriptions[propName] || '', router.asPath),
+                      }}
+                    />
+                  </td>
+                </tr>
+              )
+            );
+          })}
+        </tbody>
+      </Table>
+    </Wrapper>
   );
 }
 

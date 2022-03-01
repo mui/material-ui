@@ -2,6 +2,18 @@ import * as React from 'react';
 import { useSelect, SelectOption } from '@mui/base';
 import { styled } from '@mui/system';
 
+const grey = {
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
+};
+
 const Root = styled('div')`
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -11,34 +23,62 @@ const Root = styled('div')`
   color: #000;
 `;
 
-const Toggle = styled('div')`
-  min-width: 150px;
-  min-height: calc(1.5em + 10px);
-  padding: 5px;
-  background-color: var(--color, #333);
-  box-shadow: 0 5px 13px -3px var(--color, #333);
+const Toggle = styled('div')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  min-height: calc(1.5em + 22px);
+  min-width: 320px;
+  background: var(--color, ${theme.palette.mode === 'dark' ? grey[900] : '#fff'});
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
+  box-shadow: ${
+    theme.palette.mode === 'dark'
+      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
+      : `0 5px 13px -3px ${grey[200]}`
+  };
+  border-radius: 0.75em;
+  margin: 0.5em;
+  padding: 10px;
+  text-align: left;
+  line-height: 1.5;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
   cursor: default;
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
 
   & .placeholder {
     opacity: 0.8;
   }
-`;
+  `,
+);
 
-const Listbox = styled('ul')`
-  background: #eee;
+const Listbox = styled('ul')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 5px 0 0 0;
   list-style: none;
-  padding: 0;
-  margin: 10px 0 0 0;
   position: absolute;
   height: auto;
   transition: opacity 0.1s ease;
   width: 100%;
-  box-shadow: 0 5px 13px -3px #333;
+  box-shadow: ${
+    theme.palette.mode === 'dark'
+      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
+      : `0 5px 13px -3px ${grey[200]}`
+  };
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
+  border-radius: 0.75em;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  overflow: auto;
+  z-index: 1;
+  outline: 0px;
 
   &.hidden {
     opacity: 0;
@@ -47,17 +87,19 @@ const Listbox = styled('ul')`
   }
 
   & > li {
-    padding: 5px;
+    padding: 8px;
+    border-radius: 0.45em;
 
     &:hover {
-      background: #ccc;
+      background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     }
 
     &[aria-selected='true'] {
-      background: #ccc;
+      background: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     }
   }
-`;
+  `,
+);
 
 interface Props {
   options: SelectOption<string>[];

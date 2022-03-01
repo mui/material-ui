@@ -140,6 +140,7 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
   }),
   /**
    * If `true`, the badge is invisible.
+   * @default false
    */
   invisible: PropTypes.bool,
   /**

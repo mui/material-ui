@@ -1,8 +1,8 @@
 # 学习使用 Material-UI
 
-<p class="description">New to MUI? 如果你知道从哪里开始，就很容易学会！ 而接下来的教程将帮助你快速入门。</p>
+<p class="description">New to MUI? 如果你知道从哪里开始，就很容易学会！ It's easy to learn if you know where to start! 而接下来的教程将帮助你快速入门。</p>
 
-Developers come to MUI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. 与任何新技术一样，Material-UI 的确有一个学习曲线。 Like any unfamiliar technology, MUI does have a learning curve. 有了练习和耐心，你很快就会掌握其中的诀窍。
+Developers come to MUI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. Like any unfamiliar technology, MUI does have a learning curve. 有了练习和耐心，你很快就会掌握其中的诀窍。 With practice and some patience, you will soon get the hang of it.
 
 ## First example
 
@@ -18,7 +18,9 @@ Developers come to MUI from different backgrounds and with different learning st
 
 ## 推荐资源
 
-When first learning MUI, you might find third-party blog posts, books and video courses more helpful than the official documentation. 以下是一些推荐资源，其中一些是免费的。
+> ⚠️ Note that the resources linked below are using MUI v4, which is not the latest major version. As v5 has been released recently, it will take some time till new contents are created. If you have created any learning material for v5, let us know and we can link them here.
+
+When first learning MUI, you might find third-party blog posts, books and video courses more helpful than the official documentation. 以下是一些推荐资源，其中一些是免费的。 Here are some recommended resources, some of which are free.
 
 ### 免费的资源
 

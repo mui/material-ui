@@ -18,10 +18,10 @@ StackOverflow is also visited from time to time by the maintainers of MUI.
 ### GitHub
 
 MUI uses GitHub issues as a bug and feature request tracker.
-If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
+If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
 
-- [Open an issue on MUI Core](https://github.com/mui-org/material-ui/issues/new/choose)
-- [Open an issue on MUI X](https://github.com/mui-org/material-ui-x/issues/new/choose)
+- [Open an issue on MUI Core](https://github.com/mui/material-ui/issues/new/choose)
+- [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose)
 
 #### New issue guidelines
 
@@ -52,23 +52,7 @@ Receive the latest news on MUI.
 
 ### Supported versions
 
-MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be.
-Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy.
-The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
-
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://mui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/).
-The open-source community is always welcome to submit new features and bug fixes as well.
-
-The current status of each MUI version is as follows:
-
-- MUI Core v5 (emotion): ✅ In active development.
-- MUI Core v4 (hooks): ⚠️ Only handle security fixes.
-- MUI Core v3 (change supported browsers): ❌ Inactive.
-- ~MUI Core v2 (never existed)~.
-- MUI Core v1 (rewrite): ❌ Inactive.
-- MUI Core v0.x: ❌ Inactive.
-
-For teams and organizations that require additional support for older versions, MUI has [options available](#professional-support-premium).
+Find details on the [supported versions](/versions/#supported-versions).
 
 ## Professional support (premium)
 

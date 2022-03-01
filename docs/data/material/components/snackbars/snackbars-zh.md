@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Snackbar（消息条）组件
 components: Snackbar, SnackbarContent
 githubLabel: 'component: snackbar'
@@ -16,8 +16,6 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 消息条包含了一行直接与所执行操作相关的文本。 它们可能包含一些文本操作，但并不会展示图标。 您也可以用他们展示通知。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
-
-#### 频率
 
 我们规定一次只能显示一个消息条。
 
@@ -105,7 +103,7 @@ For more advanced use cases you might be able to take advantage of:
 
 默认情况下，消息条不会自动隐藏。 但是，如果您决定使用 `autoHideDuration` 属性，我们建议给用户提供 [足够的时间](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) 来响应。
 
-当消息条打开时，如果<kbd class="key">Escape 键</kbd>被按下，**每个**`Snackbar`将会消失。 Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
+当消息条打开时，如果<kbd class="key">Escape 键</kbd>被按下，**每个**`Snackbar`将会消失。 Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
 
 ```jsx
 export default function MyComponent() {
@@ -119,6 +117,12 @@ export default function MyComponent() {
           // `reason === 'escapeKeyDown'` if `Escape` was pressed
           setOpen(false);
           // call `event.preventDefault` to only close one Snackbar at a time.
+        }}
+      />
+      <Snackbar open={open} onClose={() => setOpen(false)} />
+    </React.Fragment>
+  );
+}
         }}
       />
       <Snackbar open={open} onClose={() => setOpen(false)} />

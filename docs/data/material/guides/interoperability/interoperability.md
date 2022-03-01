@@ -12,6 +12,7 @@ There are examples for the following styling solutions:
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
 - [Tailwind CSS](#tailwind-css)
+- [~~JSS~~ TSS](#jss-tss)
 
 ## Plain CSS
 
@@ -88,7 +89,7 @@ export default function PlainCssPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the [`StyledEngineProvider`](https://github.com/mui-org/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
 
 ### Deeper elements
 
@@ -241,7 +242,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the [`StyledEngineProvider`](https://github.com/mui-org/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
 
 ### Deeper elements
 
@@ -293,8 +294,8 @@ however, you would like to use `styled-components`, you can configure your app b
 
 <!-- #default-branch-switch -->
 
-- [Create React App with styled-components](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
-- [Create React App with styled-components and typescript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
+- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components)
+- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
@@ -496,7 +497,7 @@ export default function CssModulesPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the [`StyledEngineProvider`](https://github.com/mui-org/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
 
 ### Deeper elements
 
@@ -606,11 +607,13 @@ It works exactly like styled components. You can [use the same guide](/guides/in
 ![stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/tailwindcss)
 
-If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui-org/material-ui/tree/master/examples/tailwind) example project.
+### Setup
+
+If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind-css) example project.
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
-2. Remove Tailwind's `base` directive in favor of the `CSSBaseline` component provided by `@mui/material`, as it plays nicer with the MUI components.
+2. Remove Tailwind's `base` directive in favor of the `CssBaseline` component provided by `@mui/material`, as it plays nicer with the MUI components.
 
 **index.css**
 
@@ -620,7 +623,7 @@ If you use a different framework, or already have set up your project, follow th
  @tailwind utilities;
 ```
 
-3. Add the `important` option, using the id of your app wrapper, for example `"#root"`.
+3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js and `"#root"` for CRA:
 
 **tailwind.config.js**
 
@@ -638,12 +641,12 @@ If you use a different framework, or already have set up your project, follow th
 
 ```
 
-This is necessary for ensuring that the [deeper elements](#deeper-elements-5), can be customized using Tailwind's utility classes.
+Most of the CSS used by Material UI has as specificity of 1, hence this `important` property is unnecessary.
+However, in a few edge cases, MUI uses nested CSS selectors that win over Tailwind CSS.
+Use this step to help ensure that the [deeper elements](#deeper-elements-5) can always be customized using Tailwind's utility classes.
 More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy
 
-4. Fix the CSS injection order
-
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done in MUI:
+4. Fix the CSS injection order. Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over Tailwind CSS. To reduce the need for the `important` property, you need to change the CSS injection order. Here's a demo of how it can be done in MUI:
 
 ```jsx
 import * as React from 'react';
@@ -679,11 +682,17 @@ export default function PlainCssPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look at the [`StyledEngineProvider`](https://github.com/mui-org/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look at the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
+
+### Usage
 
 Now it's all set up and you can start using Tailwind CSS on the MUI components!
 
-**App.js**
+{{"demo": "StyledComponents.js", "hideToolbar": true}}
+
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/github-ndkshy?file=pages%2Findex.tsx)
+
+**index.tsx**
 
 ```jsx
 import * as React from 'react';
@@ -692,7 +701,8 @@ import Slider from '@mui/material/Slider';
 export default function App() {
   return (
     <div>
-      <Slider defaultValue={30} className="color-indigo-500" />
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className="text-teal-600" />
     </div>
   );
 }
@@ -702,9 +712,11 @@ export default function App() {
 
 If you attempt to style the Slider, for example, you'll likely want to customize its child elements.
 
-This example showcases how to override the Slider's `thumb`style.
+This example showcases how to override the Slider's `thumb` style.
 
-**SliderThumbOverrides.js**
+{{"demo": "StyledComponentsDeep.js", "hideToolbar": true}}
+
+**SliderThumbOverrides.tsx**
 
 ```jsx
 import * as React from 'react';
@@ -712,10 +724,14 @@ import Slider from '@mui/material/Slider';
 
 export default function SliderThumbOverrides() {
   return (
-    <Slider
-      className="p-4"
-      componentsProps={{ thumb: { className: 'hover:shadow-none' } }}
-    />
+    <div>
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
+        className="text-teal-600"
+        componentsProps={{ thumb: { className: 'rounded-sm' } }}
+      />
+    </div>
   );
 }
 ```
@@ -725,13 +741,107 @@ export default function SliderThumbOverrides() {
 If you want to style a component's pseudo-state, you can use the appropriate key in the `classes` prop.
 Here is an example of how you can style the Slider's active state:
 
-**SliderPseudoStateOverrides.js**
+**SliderPseudoStateOverrides.tsx**
 
 ```jsx
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 
 export default function SliderThumbOverrides() {
-  return <Slider className="p-4" classes={{ active: 'shadow-none' }} />;
+  return <Slider defaultValue={30} classes={{ active: 'shadow-none' }} />;
 }
 ```
+
+## ~~JSS~~ TSS
+
+[JSS](https://cssinjs.org/) itself is no longer supported in MUI however,
+if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`](https://codesandbox.io/s/j3l06yyqpw) was offering you can opt for [`tss-react`](https://github.com/garronej/tss-react).
+
+[TSS](https://docs.tss-react.dev) integrates well with MUI and provide a better
+TypeScript support than JSS.
+
+> If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout
+> [migration guide](/guides/migration-v4/#2-use-tss-react).
+
+```tsx
+import { render } from 'react-dom';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { ThemeProvider } from '@mui/material/styles';
+
+export const muiCache = createCache({
+  key: 'mui',
+  prepend: true,
+});
+
+//NOTE: Don't use <StyledEngineProvider injectFirst/>
+render(
+  <CacheProvider value={muiCache}>
+    <ThemeProvider theme={myTheme}>
+      <Root />
+    </ThemeProvider>
+  </CacheProvider>,
+  document.getElementById('root'),
+);
+```
+
+Now you can simply  
+`import { makeStyles, withStyles } from 'tss-react/mui'`.  
+The theme object that will be passed to your callbacks functions will be the one you
+get with  
+`import { useTheme } from '@mui/material/styles'`.
+
+If you want to take controls over what the `theme` object should be,
+you can re-export `makeStyles` and `withStyles` from a file called, for example, `makesStyles.ts`:
+
+```ts
+import { useTheme } from '@mui/material/styles';
+//WARNING: tss-react require TypeScript v4.4 or newer. If you can't update use:
+//import { createMakeAndWithStyles } from "tss-react/compat";
+import { createMakeAndWithStyles } from 'tss-react';
+
+export const { makeStyles, withStyles } = createMakeAndWithStyles({
+  useTheme,
+  /*
+    OR, if you have extended the default mui theme adding your own custom properties: 
+    Let's assume the myTheme object that you provide to the <ThemeProvider /> is of 
+    type MyTheme then you'll write:
+    */
+  //"useTheme": useTheme as (()=> MyTheme)
+});
+```
+
+Then, the library is used like this:
+
+```tsx
+import { makeStyles } from 'tss-react/mui';
+
+export function MyComponent(props: Props) {
+  const { className } = props;
+
+  const [color, setColor] = useState<'red' | 'blue'>('red');
+
+  const { classes, cx } = useStyles({ color });
+
+  //Thanks to cx, className will take priority over classes.root
+  return <span className={cx(classes.root, className)}>hello world</span>;
+}
+
+const useStyles = makeStyles<{ color: 'red' | 'blue' }>()((theme, { color }) => ({
+  root: {
+    color,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+}));
+```
+
+For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).
+
+> ⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
+> it's a peer dependency of `@mui/material`.
+
+> ⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
+> Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
+> to be made to your `.storybook/main.js` to make it uses emotion 11.

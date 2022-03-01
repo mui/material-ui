@@ -30,11 +30,12 @@ const theme = createTheme(
 
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
+> ⚠️ For [`DataGrid` and `DataGridPro`](/components/data-grid/) components, they have their own [localization](/components/data-grid/localization/).
+
 ### Localidades suportadas
 
 | Localidade | Etiqueta do idioma BCP 47 | Nome da importação |
-|:---
-product: material-------------------- |:------------------------- |:------------------ |
+|:---------- | ------------------------- | ------------------ |
 | Amharic | am-ET | `amET` |
 | Arabic (Egypt) | ar-EG | `arEG` |
 | Arabic (Sudan) | ar-SD | `arSD` |
@@ -82,7 +83,7 @@ product: material-------------------- |:------------------------- |:------------
 
 <!-- #default-branch-switch -->
 
-Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
+Você pode [encontrar o fonte](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
 
 Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 

@@ -6,5 +6,5 @@
   ))}
 </CustomSelect>
 
-<p>Selected character:</p>
-<pre>{JSON.stringify(character, null, 2)}</pre>
+<Paragraph>Selected character:</Paragraph>
+<Pre>{JSON.stringify(character, null, 2)}</Pre>

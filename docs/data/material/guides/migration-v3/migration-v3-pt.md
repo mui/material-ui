@@ -4,7 +4,7 @@
 
 Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
+> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introdução
 
@@ -138,7 +138,7 @@ yarn add @material-ui/styles
 
   Dica: você pode fornecer mais de 1 argumento:`theme.spacing (1, 2) // = '8px 16px'` \*.
 
-  Você pode usar o \[auxiliar de migração\] (https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
+  Você pode usar o \[auxiliar de migração\] (https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
 
 ### Leiaute
 
@@ -267,7 +267,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   Isso também se aplica aos componentes `Dialog` e `Popover`.
 
 - [Modal] Remova a API de customização de classes para o componente Modal (redução do tamanho do pacote -74% quando usado de forma independente).
-- [Modal] event.defaultPrevented é agora ignorado. A nova lógica fecha o Modal mesmo se `event.preventDefault()` é chamado no evento down da tecla escape (Esc). `event.preventDefault()` destina-se a impedir comportamentos padrão, como clicar em uma caixa de seleção para verificá-lo, apertar um botão para enviar um formulário e pressionar a seta para a esquerda para mover o cursor em uma entrada de texto, etc. Apenas elementos HTML especiais possuem esses comportamentos padrão. Você deve usar `event.stopPropagation()` se você não quer acionar o evento `onClose` no modal.
+- [Modal] event.defaultPrevented é agora ignorado. A nova lógica fecha o Modal mesmo se `event.preventDefault()` é chamado no evento down da tecla escape (Esc). `event.preventDefault()` destina-se a impedir comportamentos padrão, como clicar em uma caixa de seleção para verificá-lo, apertar um botão para enviar um formulário e pressionar a seta para a esquerda para mover o cursor em uma entrada de texto, etc. Apenas elementos HTML especiais possuem esses comportamentos padrão. Only special HTML elements have these default behaviors. Você deve usar `event.stopPropagation()` se você não quer acionar o evento `onClose` no modal.
 
 ### Paper
 
@@ -406,7 +406,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 - [Typography] Modifique a variante padrão de `body2` para `body1`. Um tamanho de fonte de 16px é um padrão melhor que 14px. Bootstrap, material.io e até a documentação usam 16px como tamanho de fonte padrão. 14px como o Ant Design usa, é compreensível, já que os usuários chineses têm um alfabeto diferente. Recomenda-se 12px como o tamanho de fonte padrão para japonês.
 - [Typography] Remova a cor padrão das variantes de tipografia. A cor deve herdar a maior parte do tempo. É o comportamento padrão da web.
-- [Typography] Renomeie `color="default"` para `color="initial"` seguindo a lógica [desta discussão](https://github.com/mui-org/material-ui/issues/13028). O uso de _default_ deve ser evitado, isso perde semântica.
+- [Typography] Renomeie `color="default"` para `color="initial"` seguindo a lógica [desta discussão](https://github.com/mui/material-ui/issues/13028). O uso de _default_ deve ser evitado, isso perde semântica.
 
 ### Node
 

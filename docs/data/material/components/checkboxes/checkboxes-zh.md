@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Checkbox（选择框）组件
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
@@ -53,7 +53,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
-> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. It has no accessibility or UX implications.
+> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. It has no accessibility or UX implications. It has no accessibility or UX implications.
 
 ## 表单组
 

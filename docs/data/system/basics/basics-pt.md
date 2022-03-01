@@ -186,16 +186,16 @@ Contras:
 
 - O desempenho em tempo de execução é impactado.
 
-  | Benchmark                             | Fragmento de código   | Tempo normalizado |
-  | :------------------------------------ | :-------------------- | ----------------- |
-  | a. Renderizar 1.000 Box               | `<div className="…">` | 100ms             |
+  | Benchmark                             | Fragmento de código         | Tempo normalizado |
+  |:------------------------------------- |:--------------------------- | ----------------- |
+  | c. Renderizar 1,000 styled components | `<div className="…">` | 100ms             |
   | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
-  | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
+  | c. Render 1,000 styled components     | `<StyledDiv>`         | 160ms             |
   | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
 
 <!-- #default-branch-switch -->
 
-_Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+_Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
 
 Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
 
@@ -233,7 +233,7 @@ Estas abreviações são **opcionais**, elas são ótimas para economizar tempo 
 
 ### Super conjunto de CSS
 
-Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos:
+Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos: Here are a few examples:
 
 - Usando pseudo seletores:
 
@@ -267,7 +267,7 @@ Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores f
   <Box
     sx={{
       // some styles
-      '& .ChildSelector': {
+      '& . ChildSelector': {
         bgcolor: 'primary.main',
       },
     }}
@@ -383,4 +383,4 @@ const Div = styled('div')``;
 
 ### 4. Qualquer elemento com o plugin babel
 
-A fazer [#23220](https://github.com/mui-org/material-ui/issues/23220).
+A fazer [#23220](https://github.com/mui/material-ui/issues/23220).

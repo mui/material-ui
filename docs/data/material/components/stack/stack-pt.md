@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Stack component
 components: Stack
 githubLabel: 'component: Stack'
@@ -7,7 +7,7 @@ githubLabel: 'component: Stack'
 
 # Stack
 
-<p class="description">The Stack component manages layout of immediate children along the vertical or horizontal axis with optional spacing and/or dividers between each child.</p>
+<p class="description">O componente Stack gerencia o leiaute de filhos imediatos ao longo do eixo vertical ou horizontal com espaçamento e/ou divisão opcional entre cada filho.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

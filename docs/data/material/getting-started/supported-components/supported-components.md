@@ -9,7 +9,7 @@ feature of every component, but rather to provide the building blocks to
 allow developers to create compelling user interfaces and experiences.
 
 If you wish to add support for a component or feature not highlighted
-here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one
+here, please search for the relevant [GitHub Issue](https://github.com/mui/material-ui/issues), or create a new one
 to discuss the approach before submitting a pull request.
 
 - **[Accordion](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (_Legacy Material v1_)

@@ -8,7 +8,7 @@
 
 ## 安装
 
-You need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
+You need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
 
 ## 导入
 
@@ -67,6 +67,9 @@ function App() {
     </LocalizationProvider>
   )
 );
+    </LocalizationProvider>
+  )
+);
 ```
 
 ## 渲染输入
@@ -119,8 +122,7 @@ function App() {
 
 - ````diff <DatePicker
   -  format="DD-MMM-YYYY"
-  +  inputFormat="DD-MMM-YYYY" ```
-  ````
+  +  inputFormat="DD-MMM-YYYY" ``` ````
 
 除此之外还有很多改动，需要当心，确保你的测试和构建通过。 如果你对日期选择器有进阶使用方法，可能会更简单地重写它。
 

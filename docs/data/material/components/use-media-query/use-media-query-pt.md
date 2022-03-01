@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Consulta de mídia no React para design responsivo
 githubLabel: 'hook: useMediaQuery'
 ---
@@ -145,25 +145,24 @@ function handleRender(req, res) {
     }),
   });
 
-  const html = ReactDOMServer.renderToString(
-    <ThemeProvider
-      theme={{
-        props: {
-          // Modifica as opções padrão de useMediaQuery
-          MuiUseMediaQuery: { ssrMatchMedia },
+  const theme = createTheme({
+    components: {
+      // Modifica as opções padrão de useMediaQuery
+      MuiUseMediaQuery: {
+        defaultProps: {
+          ssrMatchMedia,
         },
-      }}
-    >
+      },
+    },
+  });
+
+  const html = ReactDOMServer.renderToString(
+    <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>,
   );
 
   // …
-}
-}
-}
-}
-}
 }
 ```
 

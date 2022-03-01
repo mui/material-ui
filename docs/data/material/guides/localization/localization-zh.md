@@ -2,7 +2,7 @@
 
 <p class="description">本地化（也称为“i10n”），是将一个产品或者一些内容适应到特定的地区或市场的过程。</p>
 
-The default locale of MUI is English (United States). 如果您想使用其他语言环境，您可以遵循以下的说明。
+The default locale of MUI is English (United States). 如果您想使用其他语言环境，您可以遵循以下的说明。 If you want to use other locales, follow the instructions below.
 
 ## 本地化的文本
 
@@ -30,11 +30,12 @@ const theme = createTheme(
 
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
+> ⚠️ For [`DataGrid` and `DataGridPro`](/components/data-grid/) components, they have their own [localization](/components/data-grid/localization/).
+
 ### 支持的地区
 
 | 地区 | BCP 47 语言标签 | 导入名称 |
-|:---
-product: material-------------------- |:----------- |:------ |
+|:-- | ----------- | ---- |
 | Amharic | am-ET | `amET` |
 | Arabic (Egypt) | ar-EG | `arEG` |
 | Arabic (Sudan) | ar-SD | `arSD` |
@@ -82,7 +83,7 @@ product: material-------------------- |:----------- |:------ |
 
 <!-- #default-branch-switch -->
 
-您可以在 GitHub 库中找到 [源文件](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/locale/index.ts)。
+您可以在 GitHub 库中找到 [源文件](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts)。
 
 要创建自己的翻译，或自定义英文文本，请将此文件复制到您的项目中，进行所需的任何更改并从那里导入语言环境。
 

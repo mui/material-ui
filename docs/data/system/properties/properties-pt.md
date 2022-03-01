@@ -7,7 +7,7 @@
 Note that this table only lists custom properties, all other regular CSS properties and selectors are supported. You can check out the [legend](/system/properties/#legend) below.
 
 | Chave(s) do sistema   | Propriedade CSS/propriedades                                                                 | Função de estilo do sistema                                  | Mapeamento no tema                                                                      |
-| :-------------------- | :------------------------------------------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------------------------------------------------------------- |
+|:--------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |:--------------------------------------------------------------------------------------- |
 | `border`              | `border`                                                                                     | [`border`](/system/borders/#border)                          | `${value}px solid`                                                                      |
 | `borderBottom`        | `border-bottom`                                                                              | [`borderBottom`](/system/borders/#border)                    | `${value}px solid`                                                                      |
 | `borderColor`         | `border-color`                                                                               | [`borderColor`](/system/borders/#border-color)               | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
@@ -95,7 +95,7 @@ Note that this table only lists custom properties, all other regular CSS propert
 Let's take one row from [the table above](#properties-reference-table), for example:
 
 | Chave(s) do sistema  | Propriedade CSS/propriedades | Função de estilo do sistema   | Mapeamento no tema                                                            |
-| :------------------- | :--------------------------- | :---------------------------- | :---------------------------------------------------------------------------- |
+|:-------------------- |:---------------------------- |:----------------------------- |:----------------------------------------------------------------------------- |
 | `mb`, `marginBottom` | `margin-bottom`              | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 <br />

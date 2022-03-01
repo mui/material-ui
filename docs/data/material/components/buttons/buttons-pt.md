@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Botão
 components: Button, IconButton, ButtonBase
 materialDesign: https://material.io/components/buttons
@@ -185,7 +185,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 #### Customizando o elemento raiz
 
-By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
+By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components. Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 

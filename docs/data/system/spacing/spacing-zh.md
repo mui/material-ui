@@ -76,11 +76,13 @@ const theme = {
 <Box sx={{ p: 1 }}>…
 <Box sx={{ m: 1 }}>…
 <Box sx={{ p: 2 }}>…
+<Box sx={{ m: 1 }}>…
+<Box sx={{ p: 2 }}>…
 ```
 
 ## 水平居中
 
-The CSS flex and grid display properties are often used to align elements at the center. The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
+The CSS flex and grid display properties are often used to align elements at the center. The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering: However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
 
 {{"demo": "HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -94,8 +96,8 @@ The CSS flex and grid display properties are often used to align elements at the
 import { spacing } from '@material-ui/system';
 ```
 
-| 导入名称  | 属性 | CSS 属性                        | Theme key                                                        |
-| :-------- | :--- | :------------------------------ | :--------------------------------------------------------------- |
+| 导入名称      | 属性   | CSS 属性                          | Theme key                                                        |
+|:--------- |:---- |:------------------------------- |:---------------------------------------------------------------- |
 | `spacing` | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing` | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing` | `mr` | `margin-right`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |

@@ -4,11 +4,11 @@
 
 您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md)。
+> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md)。
 
 ## 简介
 
-This is a reference for upgrading your site from MUI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
+This is a reference for upgrading your site from MUI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 While there's a lot covered here, you probably won't need to do everything for your site. 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
 
 ## 为什么您需要迁移呢
 
@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Styles（样式表单）
 
-- ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
+- ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 JSS v10 is not backward compatible with v9. 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
 - 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是为从未出现的可能的未来选项的一个占位符。）
 
   It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
@@ -138,7 +138,7 @@ yarn add @material-ui/styles
 
   提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。 `
 
-  您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
+  您可以在项目中使用 [迁移小帮手](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
 
 ### 布局
 
@@ -330,7 +330,7 @@ function MySelect({ children }) {
 
   ![一个更简单的标签项的 DOM 结构](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
-- [Tabs] 移除了弃用的 <0>fullWidth</0> 和 <0>scrollable</0> 属性：:
+- [Tabs] 移除了弃用的
 
   ```diff
   -<Tabs fullWidth scrollable />
@@ -406,7 +406,7 @@ function MySelect({ children }) {
 
 - [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为 16px 的字体大小比默认为 14px 好。 Bootstrap，material.io，甚至本文档都使用的是 16px 作为默认字体大小。 像 Ant Design 一样使用 14px 是可以理解的，因为中国的用户使用了不同的字母表。 我们建议将 12px 作为日语的默认字体大小。
 - [Typography] 移除了铸排变体的默认颜色。 大多数情况下，字体颜色应该是继承而来的。 这是网站的默认行为。
-- [Typography] 按照 [该讨论](https://github.com/mui-org/material-ui/issues/13028) 的逻辑，我们将 `color="default"` 重命名为 `color="initial"`。 你不应该再使用 _default_，因为它缺少明确的语义。
+- [Typography] 按照 [该讨论](https://github.com/mui/material-ui/issues/13028) 的逻辑，我们将 `color="default"` 重命名为 `color="initial"`。 你不应该再使用 _default_，因为它缺少明确的语义。
 
 ### Node
 

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Lista
 components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 githubLabel: 'component: list'
@@ -48,7 +48,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Alinhar itens da lista
 
-When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
+When displaying three lines or more, the avatar is not aligned at the top. When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
 
 {{"demo": "AlignItemsList.js", "bg": true}}
 

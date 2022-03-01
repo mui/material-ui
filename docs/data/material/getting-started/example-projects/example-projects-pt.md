@@ -4,22 +4,24 @@
 
 ## Exemplos oficiais
 
-Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https://github.com/mui-org/material-ui) na pasta [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples):
+Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https://github.com/mui/material-ui) na pasta [`/examples`](https://github.com/mui/material-ui/tree/master/examples):
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([Versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) ([versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript))
-- [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
-- [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
-- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
+- [Next.js](https://github.com/mui/material-ui/tree/master/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript))
+- [Create React App](https://github.com/mui/material-ui/tree/master/examples/create-react-app) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript))
+- [Remix](https://github.com/mui/material-ui/tree/master/examples/remix-with-typescript)
+- [Gatsby](https://github.com/mui/material-ui/tree/master/examples/gatsby)
+- [Preact](https://github.com/mui/material-ui/tree/master/examples/preact)
+- [CDN](https://github.com/mui/material-ui/tree/master/examples/cdn)
+- [Plain server-side](https://github.com/mui/material-ui/tree/master/examples/ssr)
+- [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind-css)
+- [Vite.js](https://github.com/mui/material-ui/tree/master/examples/vitejs)
+- [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
 Create React App é um projeto incrível para aprender React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
-O código-fonte deste site de documentação também está incluído no repositório. Este é um projeto um pouco mais complexo. Confira a pasta [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) para instruções de compilação.
+O código-fonte deste site de documentação também está incluído no repositório. Este é um projeto um pouco mais complexo. Confira a pasta [`/docs`](https://github.com/mui/material-ui/tree/master/docs) para instruções de compilação.
 
 ## Projetos de exemplo mais avançados
 
@@ -46,31 +48,26 @@ If you want to start with a more complete and real-world example, you could take
   - Todos os recursos PWA incluídos (SW, Notificações, prompt de instalação diferido e muito mais)
   - Desempenho otimizado e escalável (todos ~100 pontos em Lighthouse)
 
+<!-- TODO: revert this once it is migrated to v5
 - [React SaaS Template](https://github.com/dunky11/react-saas-template):
 
-  - ![estrelas](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
-  - Criado com o Create React App
-  - Apresentando uma página inicial, um blog, uma área para login/registro e um painel de administração
-  - Totalmente roteado usando react-router
-  - De forma tardia, carrega componentes para aumentar o desempenho
-  - Componentes para estatísticas, texto com suporte a emoji, upload de imagens e muito mais...
+  - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
+  - Created with Create React App
+  - Features a landing page, a blog, an area to login/register and an admin-dashboard
+  - Fully routed using react-router
+  - Lazy loads components to boost performance
+  - Components for statistics, text with emoji support, image upload and much more...
+-->
 
+<!-- TODO: revert this once it is migrated to v5
 - [Material Sense](https://github.com/alexanmtz/material-sense):
 
-  - ![estrelas](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
-  - Gráfico usando recharts
-  - React Router incluído com um exemplo de navegação
-  - Um contêiner docker com um servidor Nginx para compilação de produção
-  - Criado com o Create React App
-
-- [RMUIF](https://github.com/phoqe/rmuif):
-
-  - ![estrelas](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
-  - Bootstrapped com Create React App, as mesmas ferramentas de trabalho de get-go
-  - Construído sobre o Firebase com todos os seus produtos para a web incluído
-  - Roteamento robusto com React Router, incluindo rotas protegidas e manipulação de erros
-  - Suporte móvel extensivo com diálogos de tela cheia e react-swipeable-views para abas
-  - Monitoramento de aplicativos entre plataformas com foco no relatório de erros com Sentry
+  - ![stars](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
+  - Graph using recharts
+  - React Router included with a navigation example
+  - A docker container with an Nginx server for production build
+  - Created with Create React App
+-->
 
 ### Pago
 

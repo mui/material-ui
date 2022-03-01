@@ -12,7 +12,7 @@ The rendered UI is either:
 
 1. located inside a separate file in `./fixtures` and written as a React component.
 
-   Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
+   Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
 
 2. a demo from `docs/data`
 

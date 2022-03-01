@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Icon Component
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
@@ -36,15 +36,7 @@ yarn add @mui/icons-material
 
 These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 
-If you aren't already using MUI in your project, you can add it with:
-
-```sh
-// with npm
-npm install @mui/material
-
-// with yarn
-yarn add @mui/material
-```
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/getting-started/installation/).
 
 ### Usage
 
@@ -100,7 +92,7 @@ This component extends the native `<svg>` element:
 - It comes with built-in accessibility.
 - SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons.
   This can be customized with the `viewBox` attribute.
-  To inherit the `viewBox` value from the original image, the `inheritViewBox` attribute can be used.
+  To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
 
 ```jsx

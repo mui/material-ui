@@ -1,12 +1,12 @@
 ---
-product: material
+product: material-ui
 title: Componente React Avaliação
 components: Rating
 githubLabel: 'component: rating'
 waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 ---
 
-# Avaliação
+# Rating
 
 <p class="description">Avaliações fornecem informações sobre as opiniões e experiências dos outros e permitem que o usuário envie sua própria avaliação.</p>
 

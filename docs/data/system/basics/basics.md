@@ -202,7 +202,7 @@ Cons:
 
 <!-- #default-branch-switch -->
 
-_Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+_Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
 
 We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
@@ -401,4 +401,4 @@ const Div = styled('div')``;
 
 ### 4. Any element with the babel plugin
 
-TODO [#23220](https://github.com/mui-org/material-ui/issues/23220).
+TODO [#23220](https://github.com/mui/material-ui/issues/23220).

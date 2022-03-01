@@ -118,6 +118,16 @@ DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, it shows the clear action in the picker dialog.
+   * @default false
+   */
+  clearable: PropTypes.bool,
+  /**
+   * Clear text message.
+   * @default 'Clear'
+   */
+  clearText: PropTypes.node,
+  /**
    * The components used for each slot.
    * Either a string to use a HTML element or a component.
    * @default {}

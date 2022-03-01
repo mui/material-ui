@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Snackbar
 components: Snackbar, SnackbarContent
 githubLabel: 'component: snackbar'
@@ -16,8 +16,6 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 Snackbars contêm uma única linha de texto diretamente relacionada à operação realizada. Eles podem conter uma ação de texto, mas não ícones. Você pode usá-los para exibir notificações.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
-
-#### Frequência
 
 Apenas um snackbar pode ser exibido por vez.
 
@@ -112,7 +110,7 @@ export default function MyComponent() {
   const [open, setOpen] = React.useState(true);
 
   return (
-    <React.Fragment>
+    <React. Fragment>
       <Snackbar
         open={open}
         onClose={(event, reason) => {
@@ -122,7 +120,7 @@ export default function MyComponent() {
         }}
       />
       <Snackbar open={open} onClose={() => setOpen(false)} />
-    </React.Fragment>
+    </React. Fragment>
   );
 }
 ```

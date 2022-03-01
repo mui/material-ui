@@ -13,8 +13,7 @@ Se você se deparar com esta situação, precisará usar a mesma propriedade `mu
 Vamos ver um exemplo:
 
 ```jsx
-const WrappedIcon = (props) => <Icon {...props} />;
-WrappedIcon.muiName = Icon.muiName;
+const WrappedIcon = (props) => <Icon {...props} />; WrappedIcon.muiName = Icon.muiName;
 ```
 
 {{"demo": "Composition.js"}}
@@ -165,11 +164,11 @@ Esta seção aborda advertências ao usar um componente customizado como `childr
 Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função está obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
 
 - Qualquer componente do Material-UI
-- Componentes de classe, ou seja, `React.Component` ou `React.PureComponent`
-- Componentes DOM (ou hospedeiro), por exemplo, `div` ou `button`
-- [Componentes React.forwardRef](https://pt-br.reactjs.org/docs/react-api.html#reactforwardref)
-- [Componentes React.lazy](https://pt-br.reactjs.org/docs/react-api.html#reactlazy)
-- [Componentes React.memo](https://pt-br.reactjs.org/docs/react-api.html#reactmemo)
+- Componentes de classe, ou seja, `React. Component` ou `React.</li>
+<li>Componentes DOM (ou hospedeiro), por exemplo, <code>div` ou `button`
+- [Componentes React.forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref)
+- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactlazy)
+- [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 

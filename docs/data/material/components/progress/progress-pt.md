@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componentes React para progresso circular, linear
 components: CircularProgress, LinearProgress
 githubLabel: 'component: CircularProgress'
@@ -104,7 +104,7 @@ Quando o processamento é particularmente lento, você pode perder a animação 
 
 ![carga pesada](/static/images/progress/heavy-load.gif)
 
-Quando não for possível, você pode utilizar a propriedade `disableShrink` para atenuar o problema. Veja [este problema](https://github.com/mui-org/material-ui/issues/10327).
+Quando não for possível, você pode utilizar a propriedade `disableShrink` para atenuar o problema. Veja [este problema](https://github.com/mui/material-ui/issues/10327).
 
 {{"demo": "CircularUnderLoad.js"}}
 
@@ -115,7 +115,9 @@ O `LinearProgress` usa uma transição na propriedade de transformação do CSS 
 Se você precisar executar 30 renderizações por segundo ou mais, recomendamos desabilitar a transição:
 
 ```css
-Indicadores de <a href="https://material.io/design/components/progress-indicators.html#linear-progress-indicators">progresso linear</a>.
+.MuiLinearProgress-bar {
+  transition: none;
+}
 ```
 
 ### IE 11

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Circular progress（进度环组件），React Linear progress （进度条组件）
 components: CircularProgress, LinearProgress
 githubLabel: 'component: CircularProgress'
@@ -70,8 +70,7 @@ materialDesign: https://material.io/components/progress-indicators
 ```jsx
 // MIN = 最小期待值
 // MAX = 最大期待值
-// 使数值正常化的功能（MIN/MAX 可以整合）。
-const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
+// 使数值正常化的功能（MIN/MAX 可以整合）。 const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
 // 此示例组件在渲染时优化了“ normalise”函数。
 function Progress(props) {
@@ -104,7 +103,7 @@ function Progress(props) {
 
 ![高负载](/static/images/progress/heavy-load.gif)
 
-当这个方法不可行的时候，您可以利用 `disableShrink` 属性来缓解这个问题。 请查看 [这个问题](https://github.com/mui-org/material-ui/issues/10327)。
+当这个方法不可行的时候，您可以利用 `disableShrink` 属性来缓解这个问题。 请查看 [这个问题](https://github.com/mui/material-ui/issues/10327)。
 
 {{"demo": "CircularUnderLoad.js"}}
 
