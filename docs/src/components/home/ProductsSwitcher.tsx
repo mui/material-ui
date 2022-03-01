@@ -100,7 +100,7 @@ const ProductsSwitcher = ({
       aria-label="Go to core components page"
       icon={<IconImage name="product-core" />}
       name="MUI Core"
-      description="The only React UI library you need. Free forever."
+      description="The only React UI library you need. Includes Material UI."
       href={ROUTES.productCore}
     />,
     <ProductItem
@@ -118,7 +118,7 @@ const ProductsSwitcher = ({
       aria-label="Go to templates page"
       icon={<IconImage name="product-templates" />}
       name="Templates"
-      description="Battle-tested user interfaces, ready to ship today."
+      description="Battle-tested user interfaces, ready for production."
       href={ROUTES.productTemplates}
     />,
     <ProductItem
