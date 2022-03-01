@@ -8,9 +8,10 @@ import {
   ActionTypes,
 } from '../ListboxUnstyled';
 import { MenuItemMetadata, MenuItemState, UseMenuParameters } from './useMenu.types';
+import { EventHandlers } from '../utils';
 
 export default function useMenu(parameters: UseMenuParameters) {
-  const { listboxRef: listboxRefProp, open = false, onClose } = parameters;
+  const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;
 
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
 
@@ -80,18 +81,29 @@ export default function useMenu(parameters: UseMenuParameters) {
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
     listboxRef: handleRef,
     focusManagement: 'DOM',
+    id: listboxId,
     stateReducer,
     disabledItemsFocusable: true,
   });
 
-  const createHandleBlur =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (e: React.FocusEvent) => {
-      otherHandlers?.onBlur(e);
+  const createHandleKeyDown = (otherHandlers?: EventHandlers) => (e: React.KeyboardEvent) => {
+    otherHandlers?.onKeyDown?.(e);
+    if (e.defaultPrevented) {
+      return;
+    }
 
-      if (!listboxRef.current?.contains(e.relatedTarget)) {
-        onClose?.();
-      }
-    };
+    if (e.key === 'Escape' && open) {
+      onClose?.();
+    }
+  };
+
+  const createHandleBlur = (otherHandlers?: EventHandlers) => (e: React.FocusEvent) => {
+    otherHandlers?.onBlur(e);
+
+    if (!listboxRef.current?.contains(e.relatedTarget)) {
+      onClose?.();
+    }
+  };
 
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)
@@ -100,11 +112,12 @@ export default function useMenu(parameters: UseMenuParameters) {
     }
   }, [highlightedOption, menuItems]);
 
-  const getListboxProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => ({
+  const getListboxProps = (otherHandlers?: EventHandlers) => ({
     ...otherHandlers,
     ...getRootProps({
       ...otherHandlers,
       onBlur: createHandleBlur(otherHandlers),
+      onKeyDown: createHandleKeyDown(otherHandlers),
     }),
     role: 'menu',
   });

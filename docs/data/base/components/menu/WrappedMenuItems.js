@@ -149,6 +149,7 @@ MenuSection.propTypes = {
 export default function WrappedMenuItems() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isOpen = Boolean(anchorEl);
+  const buttonRef = React.useRef(null);
 
   const handleButtonClick = (event) => {
     if (isOpen) {
@@ -158,11 +159,29 @@ export default function WrappedMenuItems() {
     }
   };
 
-  const close = () => setAnchorEl(null);
+  const handleButtonKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setAnchorEl(event.currentTarget);
+    }
+  };
+
+  const close = () => {
+    setAnchorEl(null);
+    buttonRef.current.focus();
+  };
 
   return (
     <div>
-      <TriggerButton type="button" onClick={handleButtonClick}>
+      <TriggerButton
+        type="button"
+        onClick={handleButtonClick}
+        onKeyDown={handleButtonKeyDown}
+        ref={buttonRef}
+        aria-controls={isOpen ? 'wrapped-menu' : undefined}
+        aria-expanded={isOpen || undefined}
+        aria-haspopup="menu"
+      >
         Options
       </TriggerButton>
       <MenuUnstyled
@@ -170,6 +189,7 @@ export default function WrappedMenuItems() {
         onClose={close}
         anchorEl={anchorEl}
         components={{ Root: Popper, Listbox: StyledListbox }}
+        componentsProps={{ listbox: { id: 'simple-menu' } }}
       >
         <MenuSection label="Navigation">
           <StyledMenuItem onClick={() => close()}>Back</StyledMenuItem>

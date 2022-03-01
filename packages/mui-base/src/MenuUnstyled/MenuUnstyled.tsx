@@ -30,7 +30,7 @@ function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  * - [MenuUnstyled API](https://mui.com/api/menu-unstyled/)
  */
 const MenuUnstyled = React.forwardRef(function MenuUnstyled(
-  props: MenuUnstyledProps,
+  props: MenuUnstyledProps & React.HTMLAttributes<HTMLElement>,
   forwardedRef: React.Ref<any>,
 ) {
   const {
@@ -48,6 +48,8 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
   const { registerItem, unregisterItem, getListboxProps, getItemProps, getItemState } = useMenu({
     open,
     onClose,
+    listboxRef: componentsProps.listbox?.ref,
+    listboxId: componentsProps.listbox?.id,
   });
 
   const ownerState: MenuUnstyledOwnerState = {
@@ -64,6 +66,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       ...other,
       anchorEl,
       open,
+      role: undefined,
       ...componentsProps.root,
       className: clsx(classes.root, className, componentsProps.root?.className),
     },

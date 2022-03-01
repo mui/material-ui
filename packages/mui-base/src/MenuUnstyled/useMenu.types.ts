@@ -13,5 +13,6 @@ export interface MenuItemState {
 export interface UseMenuParameters {
   open?: boolean;
   onClose?: () => void;
+  listboxId?: string;
   listboxRef?: React.Ref<HTMLElement>;
 }
