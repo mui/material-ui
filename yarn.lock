@@ -1369,19 +1369,19 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
-"@docsearch/css@3.0.0-alpha.50":
-  version "3.0.0-alpha.50"
-  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.0.0-alpha.50.tgz#794c6a8d301840a49b55f5b331c7be84b9723643"
-  integrity sha512-QeWFCQOtS9D+Fi20liKsPXF2j/xWKh52e+P2Z1UATIdPMqmH6zoB2lcUz+cgv6PPVgWUtECeR6VSSUm71LT94w==
+"@docsearch/css@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.0.0.tgz#fe57b474802ffd706d3246eab25d52fac8aa3698"
+  integrity sha512-1kkV7tkAsiuEd0shunYRByKJe3xQDG2q7wYg24SOw1nV9/2lwEd4WrUYRJC/ukGTl2/kHeFxsaUvtiOy0y6fFA==
 
-"@docsearch/react@^3.0.0-alpha.50":
-  version "3.0.0-alpha.50"
-  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-3.0.0-alpha.50.tgz#a7dc547836c2b221fd3aa8eb87bfb47a579ef141"
-  integrity sha512-oDGV1zZCRYv7MWsh6CyQVthYTRc3b4q+6kKwNYb1/g/Wf/4nJHutpxolFLHdEUDhrJ4Xi8wxwQG+lEwAVBTHPg==
+"@docsearch/react@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-3.0.0.tgz#d02ebdc67573412185a6a4df13bc254c7c0da491"
+  integrity sha512-yhMacqS6TVQYoBh/o603zszIb5Bl8MIXuOc6Vy617I74pirisDzzcNh0NEaYQt50fVVR3khUbeEhUEWEWipESg==
   dependencies:
     "@algolia/autocomplete-core" "1.5.2"
     "@algolia/autocomplete-preset-algolia" "1.5.2"
-    "@docsearch/css" "3.0.0-alpha.50"
+    "@docsearch/css" "3.0.0"
     algoliasearch "^4.0.0"
 
 "@emotion/babel-plugin@^11.7.1":
