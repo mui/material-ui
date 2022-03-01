@@ -41,7 +41,10 @@ describe('<Avatar />', () => {
       expect(avatar).not.to.have.class(classes.colorDefault);
       expect(img).to.have.class(classes.img);
       expect(img).to.have.attribute('alt', 'Hello World!');
-      expect(img).to.have.property('src', new URL('/fake.png', window.origin).toString());
+      const expectedSrc = /jsdom/.test(window.navigator.userAgent)
+        ? '/fake.png'
+        : new URL('/fake.png', window.origin).toString();
+      expect(img).to.have.property('src', expectedSrc);
     });
 
     it('should be able to add more props to the image', () => {
