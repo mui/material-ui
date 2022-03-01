@@ -225,7 +225,7 @@ function ProductDrawerButton(props) {
           />
           <LinksWrapper>
             <Link
-              href={ROUTES.dataGridDocs}
+              href={ROUTES.dataGridSpace}
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
               Data Grid <KeyboardArrowRight fontSize="small" />

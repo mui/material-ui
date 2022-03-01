@@ -52,6 +52,7 @@ const ROUTES = {
     ? '/material-ui/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',
   store: 'https://mui.com/store/',
+  dataGridSpace: '/x/react-data-grid/getting-started/',
   dataGridDocs: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/'
     : '/components/data-grid/getting-started/',
