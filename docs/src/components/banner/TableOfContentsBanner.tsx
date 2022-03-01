@@ -5,13 +5,10 @@ import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 export default function TableOfContentsBanner() {
-  return FEATURE_TOGGLE.enable_website_banner ? (
+  return FEATURE_TOGGLE.enable_toc_banner ? (
     <Link
       href={ROUTES.home} // Fix me!
       target="_blank"
-      data-ga-event-category="$event-category" // Fix me!
-      data-ga-event-action="click"
-      data-ga-event-label="table-contents"
       sx={(theme) => ({
         mb: 2,
         p: 1,

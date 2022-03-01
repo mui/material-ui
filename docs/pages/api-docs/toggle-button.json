@@ -14,6 +14,8 @@
     "disableFocusRipple": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
+    "onClick": { "type": { "name": "func" } },
     "selected": { "type": { "name": "bool" } },
     "size": {
       "type": {

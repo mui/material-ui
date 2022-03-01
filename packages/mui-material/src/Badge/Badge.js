@@ -226,7 +226,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     componentsProps = {},
     overlap: overlapProp = 'rectangular',
     color: colorProp = 'default',
-    invisible: invisibleProp,
+    invisible: invisibleProp = false,
     badgeContent: badgeContentProp,
     showZero = false,
     variant: variantProp = 'standard',
@@ -242,7 +242,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   let invisible = invisibleProp;
 
   if (
-    invisibleProp == null &&
+    invisibleProp === false &&
     ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
   ) {
     invisible = true;
@@ -351,6 +351,7 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
   /**
    * If `true`, the badge is invisible.
+   * @default false
    */
   invisible: PropTypes.bool,
   /**

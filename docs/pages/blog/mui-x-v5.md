@@ -8,7 +8,7 @@ card: true
 tags: ['News']
 ---
 
-We are excited to introduce [MUI X v5.0.0](https://github.com/mui-org/material-ui-x/releases/tag/v5.0.0)!
+We are excited to introduce [MUI X v5.0.0](https://github.com/mui/mui-x/releases/tag/v5.0.0)!
 
 [MUI X](/x/) is our collection of advanced components (with both MIT and commercially licensed "Pro" features).
 Currently, it only includes a data grid.
@@ -64,7 +64,7 @@ To address these problems, we took the following actions:
 
 The result of these changes is shown in the bottom part of the comparison.
 The number of frames that could be drawn in the same amount of time dramatically increased, compared to the previous virtualization approach.
-In our [benchmark](https://github.com/mui-org/material-ui-x/pull/2673), the FPS (frames per second) went from 22 to 42, on average.
+In our [benchmark](https://github.com/mui/mui-x/pull/2673), the FPS (frames per second) went from 22 to 42, on average.
 The time each frame takes to be rendered, indicated by the width of each block, was reduced.
 
 The idea of delaying the re-rendering also can be seen in the large voids between the blocks.
@@ -201,7 +201,7 @@ Please check [the v4 migration guide](/components/data-grid/migration-v4/) to ac
 ## What's next?
 
 More exciting things are coming! We have big plans for the rest of this quarter in terms of features we expect to release in both the `DataGrid` and `DataGridPro` components.
-Features such as **[tree data](/components/data-grid/group-pivot/#tree-data)**, **[column pinning](/components/data-grid/columns/#column-pinning)**, and **[variable row height](https://github.com/mui-org/material-ui-x/issues/438)** are part of our roadmap.
+Features such as **[tree data](/components/data-grid/group-pivot/#tree-data)**, **[column pinning](/components/data-grid/columns/#column-pinning)**, and **[variable row height](https://github.com/mui/mui-x/issues/438)** are part of our roadmap.
 
 ### Public roadmap
 
@@ -210,7 +210,7 @@ We plan to focus on it as long as necessary to deliver most of the advanced feat
 
 Once we would have grown the team and made enough progress, we will expand to more components.
 
-You can view our [public roadmap](https://github.com/mui-org/material-ui-x/projects/1) on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you.
+You can view our [public roadmap](https://github.com/mui/mui-x/projects/1) on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you.
 
 ## Thank you
 

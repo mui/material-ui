@@ -16,7 +16,7 @@ const content = [
     icon: <InvertColorsRoundedIcon fontSize="small" color="primary" />,
     title: 'Beautifully designed',
     description:
-      "You can start your projects with Google's Material Design or build your own designs using the sophisticated theming features.",
+      "You can start your projects with Google's Material Design or build your designs using sophisticated theming features.",
   },
   {
     icon: <HandymanRoundedIcon fontSize="small" color="primary" />,
@@ -32,7 +32,7 @@ const content = [
   },
   {
     icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
-    title: 'Accessible in mind',
+    title: 'Accessibility in mind',
     description:
       'We care about making it great for everyone. We improve accessibility for all of our components constantly, helping you to reach the largest audience possible!',
   },

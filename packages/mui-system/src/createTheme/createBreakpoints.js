@@ -2,6 +2,15 @@
 // It can't be configured as it's used statically for propTypes.
 export const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'];
 
+const sortBreakpointsValues = (values) => {
+  const breakpointsAsArray = Object.keys(values).map((key) => ({ key, val: values[key] })) || [];
+  // Sort in ascending order
+  breakpointsAsArray.sort((breakpoint1, breakpoint2) => breakpoint1.val - breakpoint2.val);
+  return breakpointsAsArray.reduce((acc, obj) => {
+    return { ...acc, [obj.key]: obj.val };
+  }, {});
+};
+
 // Keep in mind that @media is inclusive by the CSS specification.
 export default function createBreakpoints(breakpoints) {
   const {
@@ -19,7 +28,8 @@ export default function createBreakpoints(breakpoints) {
     ...other
   } = breakpoints;
 
-  const keys = Object.keys(values);
+  const sortedValues = sortBreakpointsValues(values);
+  const keys = Object.keys(sortedValues);
 
   function up(key) {
     const value = typeof values[key] === 'number' ? values[key] : key;
@@ -70,7 +80,7 @@ export default function createBreakpoints(breakpoints) {
 
   return {
     keys,
-    values,
+    values: sortedValues,
     up,
     down,
     between,
