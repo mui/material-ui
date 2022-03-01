@@ -207,10 +207,7 @@ function ProductDrawerButton(props) {
             <Link href={ROUTES.baseDocs}>
               <div>
                 <ProductLabel>MUI Base</ProductLabel>
-                <Typography
-                  color="text.secondary"
-                  variant="body2"
-                >
+                <Typography color="text.secondary" variant="body2">
                   Unstyled React components and low-level hooks.
                 </Typography>
               </div>
@@ -219,10 +216,7 @@ function ProductDrawerButton(props) {
             <Link href={ROUTES.systemDocs}>
               <div>
                 <ProductLabel>MUI System</ProductLabel>
-                <Typography
-                  color="text.secondary"
-                  variant="body2"
-                >
+                <Typography color="text.secondary" variant="body2">
                   CSS utilities for rapidly laying out custom designs.
                 </Typography>
               </div>
@@ -246,11 +240,7 @@ function ProductDrawerButton(props) {
               role="menuitem"
               icon={<IconImage name="product-advanced" />}
               name={
-                <Box
-                  component="span"
-                  display="inline-flex"
-                  alignItems="center"
-                >
+                <Box component="span" display="inline-flex" alignItems="center">
                   MUI&nbsp;X
                 </Box>
               }
