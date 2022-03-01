@@ -214,7 +214,7 @@ function ProductDrawerButton(props) {
               <div>
                 <ProductLabel>MUI Base</ProductLabel>
                 <Typography color="text.secondary" variant="body2">
-                  Unstyled components and low-level react hooks.
+                  Unstyled React components and low-level hooks.
                 </Typography>
               </div>
             </Link>
