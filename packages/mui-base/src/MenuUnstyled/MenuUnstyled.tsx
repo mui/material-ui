@@ -4,11 +4,17 @@ import clsx from 'clsx';
 import { HTMLElementType } from '@mui/utils';
 import appendOwnerState from '../utils/appendOwnerState';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
-import { MenuUnstyledOwnerState, MenuUnstyledProps } from './MenuUnstyled.types';
+import {
+  MenuUnstyledListboxSlotProps,
+  MenuUnstyledOwnerState,
+  MenuUnstyledProps,
+  MenuUnstyledRootSlotProps,
+} from './MenuUnstyled.types';
 import { getMenuUnstyledUtilityClass } from './menuUnstyledClasses';
 import useMenu from './useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
+import { WithOptionalOwnerState } from '../utils';
 
 function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -60,7 +66,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
   const classes = getUtilityClasses(ownerState);
 
   const Popper = component ?? components.Root ?? PopperUnstyled;
-  const popperProps = appendOwnerState(
+  const popperProps: MenuUnstyledRootSlotProps = appendOwnerState(
     Popper,
     {
       ...other,
@@ -71,10 +77,10 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       className: clsx(classes.root, className, componentsProps.root?.className),
     },
     ownerState,
-  );
+  ) as MenuUnstyledRootSlotProps;
 
   const Listbox = components.Listbox ?? 'ul';
-  const listboxProps = appendOwnerState(
+  const listboxProps: WithOptionalOwnerState<MenuUnstyledListboxSlotProps> = appendOwnerState(
     Listbox,
     {
       ...componentsProps.listbox,

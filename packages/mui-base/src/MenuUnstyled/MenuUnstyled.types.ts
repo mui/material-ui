@@ -1,5 +1,6 @@
 import React from 'react';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
+import { UseMenuListboxSlotProps } from './useMenu.types';
 
 export interface MenuUnstyledComponentsPropsOverrides {}
 
@@ -36,3 +37,16 @@ export interface MenuUnstyledProps {
 export interface MenuUnstyledOwnerState extends MenuUnstyledProps {
   open: boolean;
 }
+
+export type MenuUnstyledRootSlotProps = {
+  anchorEl: PopperUnstyledProps['anchorEl'];
+  children?: React.ReactNode;
+  className: string | undefined;
+  open: boolean;
+  ownerState: MenuUnstyledOwnerState;
+};
+
+export type MenuUnstyledListboxSlotProps = UseMenuListboxSlotProps & {
+  className: string | undefined;
+  ownerState: MenuUnstyledOwnerState;
+};
