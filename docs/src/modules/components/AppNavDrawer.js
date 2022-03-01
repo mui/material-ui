@@ -119,6 +119,7 @@ function ProductDrawerButton(props) {
     setAnchorEl(null);
   };
 
+  /* eslint-disable material-ui/no-hardcoded-labels */
   return (
     <React.Fragment>
       <Button
@@ -198,12 +199,8 @@ function ProductDrawerButton(props) {
             <Link href={ROUTES.materialDocs}>
               <div>
                 <ProductLabel>Material UI</ProductLabel>
-                <Typography
-                  color="text.secondary"
-                  variant="body2"
-                  // eslint-disable-next-line material-ui/no-hardcoded-labels
-                >
-                  React components that implement Google's Material Design.
+                <Typography color="text.secondary" variant="body2">
+                  {"React components that implement Google's Material Design."}
                 </Typography>
               </div>
             </Link>
@@ -213,7 +210,6 @@ function ProductDrawerButton(props) {
                 <Typography
                   color="text.secondary"
                   variant="body2"
-                  // eslint-disable-next-line material-ui/no-hardcoded-labels
                 >
                   Unstyled React components and low-level hooks.
                 </Typography>
@@ -226,7 +222,6 @@ function ProductDrawerButton(props) {
                 <Typography
                   color="text.secondary"
                   variant="body2"
-                  // eslint-disable-next-line material-ui/no-hardcoded-labels
                 >
                   CSS utilities for rapidly laying out custom designs.
                 </Typography>
@@ -255,7 +250,6 @@ function ProductDrawerButton(props) {
                   component="span"
                   display="inline-flex"
                   alignItems="center"
-                  // eslint-disable-next-line material-ui/no-hardcoded-labels
                 >
                   MUI&nbsp;X
                 </Box>
@@ -267,6 +261,7 @@ function ProductDrawerButton(props) {
       </Menu>
     </React.Fragment>
   );
+  /* eslint-enable material-ui/no-hardcoded-labels */
 }
 
 ProductDrawerButton.propTypes = {
