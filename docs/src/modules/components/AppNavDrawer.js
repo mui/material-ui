@@ -68,7 +68,7 @@ const ProductLabel = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightBold,
   textTransform: 'uppercase',
   letterSpacing: '.05rem',
-  color: theme.palette.primary[600],
+  color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
 }));
 
 function ProductSubMenu(props) {
