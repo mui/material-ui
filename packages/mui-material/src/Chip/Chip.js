@@ -76,6 +76,7 @@ const ChipRoot = styled('div', {
     const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
 
     return {
+      maxWidth: '100%',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.pxToRem(13),
       display: 'inline-flex',

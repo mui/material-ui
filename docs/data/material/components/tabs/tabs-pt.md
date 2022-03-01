@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Abas
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'

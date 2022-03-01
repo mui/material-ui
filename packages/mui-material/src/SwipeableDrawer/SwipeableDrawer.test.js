@@ -6,6 +6,7 @@ import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
 import { backdropClasses } from '@mui/material/Backdrop';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import useForkRef from '../utils/useForkRef';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
@@ -737,5 +738,60 @@ describe('<SwipeableDrawer />', () => {
 
     expect(handleTouchMove.callCount).to.equal(1);
     expect(handleTouchMove.firstCall.args[0]).to.have.property('defaultPrevented', false);
+  });
+
+  describe('prop: transitionDuration', () => {
+    it('should render the default theme values by default', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      render(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />);
+
+      const backdropRoot = document.querySelector(`.${backdropClasses.root}`);
+      expect(backdropRoot).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it('should render the custom theme values', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />
+        </ThemeProvider>,
+      );
+
+      const backdropRoot = document.querySelector(`.${backdropClasses.root}`);
+      expect(backdropRoot).toHaveComputedStyle({
+        transitionDuration: '0.001s',
+      });
+    });
+
+    it('should render the values provided via prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      render(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open transitionDuration={1} />);
+
+      const backdropRoot = document.querySelector(`.${backdropClasses.root}`);
+      expect(backdropRoot).toHaveComputedStyle({
+        transitionDuration: '0.001s',
+      });
+    });
   });
 });

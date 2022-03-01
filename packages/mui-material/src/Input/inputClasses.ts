@@ -1,4 +1,5 @@
 import { generateUtilityClasses, generateUtilityClass } from '@mui/base';
+import { inputBaseClasses } from '../InputBase';
 
 export interface InputClasses {
   /** Styles applied to the root element. */
@@ -37,21 +38,9 @@ export function getInputUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInput', slot);
 }
 
-const inputClasses: InputClasses = generateUtilityClasses('MuiInput', [
-  'root',
-  'formControl',
-  'focused',
-  'disabled',
-  'colorSecondary',
-  'underline',
-  'error',
-  'sizeSmall',
-  'multiline',
-  'fullWidth',
-  'input',
-  'inputSizeSmall',
-  'inputMultiline',
-  'inputTypeSearch',
-]);
+const inputClasses: InputClasses = {
+  ...inputBaseClasses,
+  ...generateUtilityClasses('MuiInput', ['root', 'underline', 'input']),
+};
 
 export default inputClasses;

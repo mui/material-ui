@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Assistente
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 githubLabel: 'component: stepper'

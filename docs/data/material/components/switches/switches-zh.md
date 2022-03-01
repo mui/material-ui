@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Switch（开关）组件
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
 githubLabel: 'component: switch'

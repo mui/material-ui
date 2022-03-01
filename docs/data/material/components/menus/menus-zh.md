@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Menu（菜单）组件
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'

@@ -344,13 +344,6 @@ module.exports = {
       },
     },
     {
-      files: ['framer/Material-UI.framerfx/code/**/*.tsx'],
-      rules: {
-        // framer requires named exports
-        'import/prefer-default-export': 'off',
-      },
-    },
-    {
       files: ['packages/typescript-to-proptypes/src/**/*.ts'],
       rules: {
         // Working with flags is common in TypeScript compiler

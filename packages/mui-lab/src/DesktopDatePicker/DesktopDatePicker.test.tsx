@@ -268,6 +268,42 @@ describe('<DesktopDatePicker />', () => {
     expect(screen.getByMuiTest('picker-toolbar')).toBeVisible();
   });
 
+  it('prop `clearable` - renders clear button in Desktop mode', () => {
+    function DesktopDatePickerClearable() {
+      const [value, setValue] = React.useState<Date | null>(
+        adapterToUse.date('2018-01-01T00:00:00.000'),
+      );
+      const [open, setOpen] = React.useState<boolean | undefined>(true);
+      const handleChange = (newValue: Date | null) => {
+        setValue(newValue);
+      };
+      return (
+        <DesktopDatePicker
+          onChange={handleChange}
+          value={value}
+          clearable
+          renderInput={(params) => <TextField {...params} />}
+          TransitionComponent={FakeTransitionComponent}
+          open={open}
+          onClose={() => {
+            setOpen(false);
+          }}
+          onOpen={() => {
+            setOpen(true);
+          }}
+        />
+      );
+    }
+    render(<DesktopDatePickerClearable />);
+
+    expect(screen.getByRole('textbox')).to.have.value('01/01/2018');
+
+    fireEvent.click(screen.getByText('Clear'));
+
+    expect(screen.getByRole('textbox')).to.have.value('');
+    expect(screen.queryByRole('dialog')).to.equal(null);
+  });
+
   it('switches between views uncontrolled', () => {
     const handleViewChange = spy();
     render(
