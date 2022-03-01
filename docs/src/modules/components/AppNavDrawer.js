@@ -203,7 +203,7 @@ function ProductDrawerButton(props) {
                   variant="body2"
                   // eslint-disable-next-line material-ui/no-hardcoded-labels
                 >
-                  React components that implement Google Material Design.
+                  React components that implement Google's Material Design.
                 </Typography>
               </div>
             </Link>
@@ -260,7 +260,7 @@ function ProductDrawerButton(props) {
                   MUI&nbsp;X
                 </Box>
               }
-              description="Advanced and powerful components for complex use-cases."
+              description="Advanced and powerful components for complex use cases."
             />
           </Link>
         </li>
