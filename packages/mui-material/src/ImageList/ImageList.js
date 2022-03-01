@@ -153,7 +153,10 @@ ImageList.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'standard'
    */
-  variant: PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']),
+    PropTypes.string,
+  ]),
 };
 
 export default ImageList;

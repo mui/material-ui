@@ -87,7 +87,8 @@ const styles = (theme) => ({
   back: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+    marginLeft: theme.spacing(-1),
   },
   container: {
     paddingTop: 60 + 20,
@@ -127,7 +128,7 @@ const styles = (theme) => ({
 const AuthorsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(4),
   '& .author': {
     display: 'flex',
     alignItems: 'center',
@@ -152,6 +153,7 @@ function TopLayoutBlog(props) {
         title={`${finalTitle} - MUI`}
         description={description}
         largeCard={headers.card === 'true' ? true : undefined}
+        disableAlternateLocale
         card={
           headers.card === 'true' ? `https://mui.com/static${router.pathname}/card.png` : undefined
         }
@@ -211,7 +213,6 @@ function TopLayoutBlog(props) {
                   </div>
                 ))}
               </AuthorsContainer>
-              <Divider sx={{ marginBottom: (theme) => theme.spacing(6) }} />
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {

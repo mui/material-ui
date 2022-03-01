@@ -129,7 +129,9 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   );
 
   let Input = components.Input ?? 'input';
-  let inputProps = appendOwnerState(
+
+  // TODO: type this properly
+  let inputProps: Record<string, any> = appendOwnerState(
     Input,
     {
       ...getInputProps({ ...componentsProps.input, ...propsToForward }),

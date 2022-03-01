@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.66",
+  "version": "5.0.0-alpha.71",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -15,12 +15,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-lab"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
   "homepage": "https://mui.com/components/about-the-lab/",
   "funding": {
@@ -68,14 +68,14 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.7",
-    "@date-io/date-fns": "^2.11.0",
-    "@date-io/dayjs": "^2.11.0",
-    "@date-io/luxon": "^2.11.1",
-    "@date-io/moment": "^2.11.0",
-    "@mui/base": "5.0.0-alpha.66",
-    "@mui/system": "^5.3.0",
-    "@mui/utils": "^5.3.0",
+    "@babel/runtime": "^7.17.2",
+    "@date-io/date-fns": "^2.13.1",
+    "@date-io/dayjs": "^2.13.1",
+    "@date-io/luxon": "^2.13.1",
+    "@date-io/moment": "^2.13.1",
+    "@mui/base": "5.0.0-alpha.70",
+    "@mui/system": "^5.4.4",
+    "@mui/utils": "^5.4.4",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
@@ -83,8 +83,8 @@
     "rifm": "^0.12.1"
   },
   "devDependencies": {
-    "@mui/types": "^7.1.0",
-    "@types/luxon": "^2.0.8",
+    "@mui/types": "^7.1.2",
+    "@types/luxon": "^2.0.9",
     "date-fns": "^2.28.0",
     "dayjs": "^1.10.7",
     "luxon": "^1.21.3 || ^2.x",

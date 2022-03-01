@@ -35,4 +35,4 @@ _(We'll do our best, no guarantee!)_
 
 - 🔍 We will keep working on providing ready-to-use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
 
-- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

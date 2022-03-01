@@ -22,5 +22,7 @@
   // MD029/ol-prefix. Buggy
   "MD029": false,
   // MD004/ul-style. Buggy
-  "MD004": false
+  "MD004": false,
+  // MD028/no-blanks-blockquote prevent double blockquote
+  "MD028": false
 }

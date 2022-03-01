@@ -191,7 +191,7 @@ const Widget = ({
   icon: React.ReactElement;
 }) => {
   return (
-    <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
+    <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
       <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
         <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
           {icon}
@@ -276,10 +276,10 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danilo Leal',
     src: '/static/branding/about/danilo.png',
-    title: 'Design Lead',
+    title: 'Lead designer',
     location: 'São Paulo, Brazil',
     locationCountry: 'br',
-    about: 'Music production and hiking!',
+    about: 'Music production, hiking, and traveling!',
     github: 'danilo-leal',
     twitter: 'danilobleal',
   },
@@ -327,7 +327,7 @@ const teamMembers: Array<Profile> = [
     title: 'MUI Studio engineer',
     location: 'Brussels, Belgium',
     locationCountry: 'be',
-    about: 'Always curious, I enjoy cinema, and hiking',
+    about: 'Always curious, I enjoy cinema and hiking',
     github: 'janpot',
   },
   {
@@ -343,10 +343,10 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jose.png',
     name: 'José Freitas',
-    title: 'MUI X Technical PM',
+    title: 'MUI X PM',
     location: 'Augsburg, Germany',
     locationCountry: 'de',
-    about: 'Art, fiction',
+    about: 'Art, fiction, and bar philosophy',
     twitter: 'zehdefreitas',
     github: 'joserodolfofreitas',
   },
@@ -359,6 +359,16 @@ const teamMembers: Array<Profile> = [
     about: 'Love playing music - electric and bass guitar 🎸',
     twitter: 'iamcherniavskii',
     github: 'cherniavskii',
+  },
+  {
+    src: '/static/branding/about/sycamore.png',
+    name: 'Sam Sycamore',
+    title: 'Developer Advocate',
+    location: 'Saint Paul, Minnesota, USA',
+    locationCountry: 'us',
+    about: 'Musician and edible wild plant enthusiast 🌱',
+    twitter: 'tanoaksam',
+    github: 'samuelsycamore',
   },
 ];
 
@@ -480,7 +490,7 @@ const emeriti = [
   {
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
-    twitter: 'dmtrKovalenko',
+    twitter: 'goose_plus_plus',
     title: 'MUI X, date pickers',
     location: 'Kharkiv, Ukraine',
     locationCountry: 'ua',
@@ -589,6 +599,7 @@ function AboutContent() {
               endIcon={<KeyboardArrowRightRounded fontSize="small" />}
               variant="contained"
               size="large"
+              sx={{ width: { xs: '100%', sm: 'auto' } }}
             >
               See open roles
             </Button>
@@ -688,7 +699,7 @@ function AboutContent() {
                 // @ts-expect-error
                 variant="link"
                 size="small"
-                href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
+                href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 Leave your feedback{' '}
@@ -713,22 +724,22 @@ function AboutContent() {
               >
                 <li>
                   Add new features by{' '}
-                  <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                  <Link href="https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
                     submitting a pull request
                   </Link>
                   .
                 </li>
                 <li>
                   Fix bugs or{' '}
-                  <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
+                  <Link href="https://github.com/mui/material-ui/tree/HEAD/docs">
                     improve our documentation
                   </Link>
                   .
                 </li>
                 <li>
                   Help others by reviewing and commenting on existing{' '}
-                  <Link href="https://github.com/mui-org/material-ui/pulls">PRs</Link> and{' '}
-                  <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
+                  <Link href="https://github.com/mui/material-ui/pulls">PRs</Link> and{' '}
+                  <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
                 </li>
                 <li>
                   Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
@@ -743,7 +754,7 @@ function AboutContent() {
                 // @ts-expect-error
                 variant="link"
                 size="small"
-                href="https://github.com/mui-org/material-ui"
+                href="https://github.com/mui/material-ui"
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 See the repository

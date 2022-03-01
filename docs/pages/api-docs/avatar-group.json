@@ -2,6 +2,10 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
+      "default": "{}"
+    },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
     "spacing": {
       "type": {

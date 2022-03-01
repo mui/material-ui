@@ -266,7 +266,10 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'text'
    */
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 };
 
 export default LoadingButton;

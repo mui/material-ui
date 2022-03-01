@@ -16,8 +16,7 @@ const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY =
 const vercelDeploy = Boolean(process.env.VERCEL);
 
 const staging =
-  process.env.REPOSITORY_URL === undefined ||
-  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+  process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
@@ -168,8 +167,8 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
-    SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
+    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     STAGING: staging,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -185,7 +184,11 @@ module.exports = {
         if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
           return;
         }
-        if (!FEATURE_TOGGLE.enable_blog_index && page.pathname === '/blog') {
+        // The blog is not translated
+        if (
+          userLanguage !== 'en' &&
+          (page.pathname === '/blog' || page.pathname.startsWith('/blog/'))
+        ) {
           return;
         }
         if (!page.children) {
@@ -243,22 +246,22 @@ module.exports = {
         },
         {
           source: '/getting-started/:path*',
-          destination: '/material/getting-started/:path*',
+          destination: '/material-ui/getting-started/:path*',
           permanent: false,
         },
         {
           source: '/customization/:path*',
-          destination: '/material/customization/:path*',
+          destination: '/material-ui/customization/:path*',
           permanent: false,
         },
         {
           source: '/guides/:path*',
-          destination: '/material/guides/:path*',
+          destination: '/material-ui/guides/:path*',
           permanent: false,
         },
         {
           source: '/discover-more/:path*',
-          destination: '/material/discover-more/:path*',
+          destination: '/material-ui/discover-more/:path*',
           permanent: false,
         },
         {
@@ -268,17 +271,17 @@ module.exports = {
         },
         {
           source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
-          destination: '/material/:slug',
+          destination: '/material-ui/:slug',
           permanent: false,
         },
         {
           source: '/components/:path(tabs|breadcrumbs)',
-          destination: '/material/react-:path',
+          destination: '/material-ui/react-:path',
           permanent: false,
         },
         ...['checkboxes', 'switches'].map((component) => ({
           source: `/components/${component}`,
-          destination: `/material/react-${component.replace(/es$/, '')}`,
+          destination: `/material-ui/react-${component.replace(/es$/, '')}`,
           permanent: false,
         })),
         ...[
@@ -302,12 +305,12 @@ module.exports = {
           'steppers',
         ].map((component) => ({
           source: `/components/${component}`,
-          destination: `/material/react-${component.replace(/s$/, '')}`,
+          destination: `/material-ui/react-${component.replace(/s$/, '')}`,
           permanent: false,
         })),
         {
           source: '/components/:path',
-          destination: '/material/react-:path',
+          destination: '/material-ui/react-:path',
           permanent: false,
         },
         {
@@ -317,7 +320,7 @@ module.exports = {
         },
         {
           source: '/api/:path*',
-          destination: '/material/api/:path*',
+          destination: '/material-ui/api/:path*',
           permanent: false,
         },
       ];
