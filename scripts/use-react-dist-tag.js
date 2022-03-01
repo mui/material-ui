@@ -50,7 +50,8 @@ async function main(options) {
 
   packageJson.devDependencies['@eps1lon/enzyme-adapter-react-17'] =
     'npm:@eps1lon/enzyme-adapter-react-next';
-  packageJson.devDependencies['@testing-library/react'] = 'alpha';
+  packageJson.devDependencies['@testing-library/react'] =
+    'https://pkg.csb.dev/testing-library/react-testing-library/commit/f8e434fa/@testing-library/react';
 
   // add newline for clean diff
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
