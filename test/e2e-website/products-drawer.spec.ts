@@ -24,15 +24,9 @@ test('able to navigate between products', async ({ page }) => {
     '/system/basics/',
   );
 
-  if (FEATURE_TOGGLE.enable_redirects) {
-    await expect(
-      page.locator('#mui-product-menu a[href="/x/react-data-grid/getting-started/"]'),
-    ).toBeVisible();
-  } else {
-    await expect(
-      page.locator('#mui-product-menu a[href="/components/data-grid/getting-started/"]'),
-    ).toBeVisible();
-  }
+  await expect(
+    page.locator('#mui-product-menu a[href="/x/react-data-grid/getting-started/"]'),
+  ).toBeVisible();
 
   if (FEATURE_TOGGLE.enable_mui_base_scope) {
     await expect(
