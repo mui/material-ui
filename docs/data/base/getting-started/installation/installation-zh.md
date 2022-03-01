@@ -1,6 +1,6 @@
 # 安装
 
-<p class="description">Install MUI Base, the unstyled components & foundation hooks for building accessible UIs</p>
+<p class="description">通过安装 MUI 基础套件来使用无样式组件和基础 hooks 来构建可访问的 UI。</p>
 
 ## npm
 
@@ -16,4 +16,4 @@ yarn add @mui/base
 
 <!-- #react-peer-version -->
 
-请注意，安装依赖于 [react](https://www.npmjs.com/package/react) 的 17.0.0 及以上版本，和 [react-dom](https://www.npmjs.com/package/react-dom) 17.0.0 及以上版本。
+请注意，安装是依赖于 [react](https://www.npmjs.com/package/react) 的 17.0.0 及以上版本，和 [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 及以上版本。
