@@ -6,7 +6,7 @@ githubLabel: 'component: Grid'
 materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
-# Grid
+# Grid 栅格
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局在不同尺寸之间的一致性。</p>
 
@@ -63,7 +63,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## 响应式的值
 
-您可以根据活动的断点切换属性的值。 For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+您可以根据活动的断点切换属性的值。 例如，我们可以实现 Material Design [“推荐”](https://material.io/design/layout/responsive-layout-grid.html)的响应式布局。
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 
@@ -128,7 +128,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ## 列
 
-You can change the default number of columns (12) with the `columns` prop.
+你可以使用 `columns` 属性来更改默认列数（12）。
 
 {{"demo": "ColumnsGrid.js", "bg": true}}
 
@@ -136,7 +136,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ### 负边距
 
-项目之间的边距以负边距的形式来实现。 这样做的话可能会产生意料之外的结果。 For instance, to apply a background color, you need to apply `display: flex;` to the parent.
+项目之间的边距以负边距的形式来实现。 这样做的话可能会产生意料之外的结果。 例如，要应用背景颜色，您需要应用 `display: flex;` 到父布局。
 
 ### white-space: nowrap;
 
@@ -160,17 +160,17 @@ You can change the default number of columns (12) with the `columns` prop.
 
 `direction="column"` 和 `direction="column-reverse"` 的容器**不支持**和断点有关的 `xs`, `sm`, `md`, `lg`，以及 `xl` 这几个属性。
 
-They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers. If used, these props may have undesirable effects on the height of the `Grid` item elements.
+它们定义组件用于某个断点的网格数量。 它们旨在使用 `flex-basis` 在 `row` 容器中控制 **width**，但它们会影响 `column` 容器的高度。 如果使用，这些属性可能会对 `Grid` 项目元素的高度产生不良影响。
 
 ## CSS 栅格布局
 
-The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+`Grid` 组件在内部使用 CSS flexbox。 但如下文所述，您也可以使用 [系统（system）](/system/grid/)和 CSS 网格来轻松地布局您的页面。
 
 {{"demo": "CSSGrid.js", "bg": true}}
 
 ## 系统属性
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
+作为一个 CSS 实用组件, `Grid` 支持所有 [`system`](/system/properties/) 属性。 您可以直接在组件上使用它们作为 props。 例如您想定义  padding 时：
 
 ```jsx
 <Grid item p={2}>
