@@ -40,6 +40,7 @@ const LinkRoot = styled(Typography, {
 })<{ ownerState: LinkProps }>(({ theme, ownerState }) => {
   return [
     {
+      ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
       }),
@@ -70,8 +71,6 @@ const LinkRoot = styled(Typography, {
           paddingInline: '0.25em', // better than left, right because it also works with writing mode.
           marginInline: '-0.25em',
         }),
-        cursor: 'pointer',
-        color: theme.vars.palette[ownerState.color!]?.textColor,
         userSelect: 'none',
         verticalAlign: 'middle',
         MozAppearance: 'none', // Reset
@@ -81,12 +80,14 @@ const LinkRoot = styled(Typography, {
         },
         [`&.${linkClasses.focusVisible}`]: theme.focus.default,
       }),
+      color: theme.vars.palette[ownerState.color!]?.textColor,
+      cursor: 'pointer',
     },
-    ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level],
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
+    ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+    ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
+    ownerState.variant &&
+      theme.variants[`${ownerState.variant || 'text'}Disabled`]?.[ownerState.color!],
   ];
 });
 
