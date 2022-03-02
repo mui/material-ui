@@ -155,17 +155,7 @@ function ProductDrawerButton(props) {
         }}
         PaperProps={{
           sx: {
-            width: { xs: 340, sm: 464 },
-            overflow: 'hidden',
-            borderRadius: '10px',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-            boxShadow: (theme) =>
-              `0px 4px 20px ${
-                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-              }`,
+            width: { xs: 340, sm: 480 },
             '& ul': {
               margin: 0,
               padding: 0,
