@@ -58,9 +58,7 @@ export type FormControlUnstyledOwnerState = Omit<
  *
  * - [FormControlUnstyled API](https://mui.com/api/form-control-unstyled/)
  */
-const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
-  D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],
->(props: FormControlUnstyledProps<D>, ref: React.ForwardedRef<any>) {
+const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(props, ref) {
   const {
     defaultValue,
     children,
@@ -75,7 +73,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     required = false,
     value: incomingValue,
     ...other
-  } = props;
+  } = props as typeof props & { component?: React.ElementType };
 
   const [value, setValue] = useControlled({
     controlled: incomingValue,
