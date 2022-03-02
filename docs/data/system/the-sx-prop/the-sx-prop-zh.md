@@ -2,7 +2,7 @@
 
 <p class="description">`sx`属性可以用来自定义组件样式</p>
 
-The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`. 你可以在它的 prop 上设置任何可用的 css。 You can specify any valid CSS using this prop.
+The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`. 你可以在它的 prop 上设置任何可用的 css。 你可以用这个参数来设定任何合法的css
 
 ## Example
 
