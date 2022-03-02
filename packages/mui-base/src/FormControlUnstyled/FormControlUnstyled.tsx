@@ -58,7 +58,9 @@ export type FormControlUnstyledOwnerState = Omit<
  *
  * - [FormControlUnstyled API](https://mui.com/api/form-control-unstyled/)
  */
-const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(props, ref) {
+const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
+  D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],
+>(props: FormControlUnstyledProps<D>, ref: React.ForwardedRef<any>) {
   const {
     defaultValue,
     children,
@@ -74,7 +76,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(props,
     value: incomingValue,
     extraContextProps,
     ...other
-  } = props as typeof props & { component?: React.ElementType };
+  } = props;
 
   const [value, setValue] = useControlled({
     controlled: incomingValue,
@@ -212,6 +214,11 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   error: PropTypes.bool,
+  /**
+   * Extra properties to be placed on the FormControlContext.
+   * @default {}
+   */
+  extraContextProps: PropTypes.object,
   /**
    * If `true`, the component is displayed in focused state.
    * @default false
