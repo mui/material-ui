@@ -1,6 +1,6 @@
 module.exports = {
   extends: 'stylelint-config-standard',
-  customSyntax: "@stylelint/postcss-css-in-js",
+  customSyntax: '@stylelint/postcss-css-in-js',
   ignoreFiles: [
     // TypeScript declaration files contain no styles.
     // Stylelint is also reporting parseError on `docs/types/react-docgen.d.ts`.

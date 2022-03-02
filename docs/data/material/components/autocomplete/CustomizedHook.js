@@ -27,7 +27,7 @@ const InputWrapper = styled('div')(
   background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
   border-radius: 4px;
   padding: 1px;
-  display: flex;
+  display: -webkit-flex;
   flex-wrap: wrap;
 
   &:hover {
