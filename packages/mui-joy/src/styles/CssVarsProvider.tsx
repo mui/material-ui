@@ -64,19 +64,22 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     components: {
       // TODO: find a way to abstract SvgIcon out of @mui/material
       MuiSvgIcon: {
+        // Note: do not specify default props here because it will break the adaptive component.
+        //       To fix this we need to know if developer pass fontSize through `inProps` or not which is impossible right not in theming
+        //       because `ownerState.fontSize` is the merged value by theme default props.
         styleOverrides: {
           root: ({ ownerState, theme }) => {
             return {
+              fontSize: `var(--SvgIcon-fontSize, ${theme.fontSize.xl})`,
+              ...(ownerState.color &&
+                ownerState.color !== 'inherit' && {
+                  color: theme.vars.palette[ownerState.color].textColor,
+                }),
               ...(ownerState.fontSize &&
                 // @ts-ignore
                 ownerState.fontSize !== 'medium' &&
                 ownerState.fontSize !== 'inherit' && {
                   '--SvgIcon-fontSize': theme.vars.fontSize[ownerState.fontSize],
-                }),
-              fontSize: `var(--SvgIcon-fontSize, ${theme.fontSize.xl})`,
-              ...(ownerState.color &&
-                ownerState.color !== 'inherit' && {
-                  color: theme.vars.palette[ownerState.color].textColor,
                 }),
             };
           },
