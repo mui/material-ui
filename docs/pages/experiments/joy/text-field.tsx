@@ -139,6 +139,11 @@ export default function JoyTypography() {
             <Input id="textfield4" placeholder="Placeholder" />
             <FormHelperText>Helper text</FormHelperText>
           </FormControl>
+          <FormControl color="primary" disabled>
+            <FormLabel htmlFor="textfield4">Label</FormLabel>
+            <Input id="textfield4" placeholder="Placeholder" />
+            <FormHelperText>Helper text</FormHelperText>
+          </FormControl>
         </Box>
         <Box
           sx={{

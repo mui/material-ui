@@ -44,8 +44,8 @@ const FormControlRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${formControlClasses.disabled}`]: {
-    '--FormLabel-color': theme.vars.palette.neutral.textDisabledColor,
-    '--FormHelperText-color': theme.vars.palette.neutral.textDisabledColor,
+    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
+    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
   },
   display: 'flex',
   flexDirection: 'column',
