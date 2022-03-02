@@ -88,6 +88,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     props: inProps,
     name: 'MuiCheckbox',
   });
+
   const {
     checked: checkedProp,
     checkedIcon = defaultCheckedIcon,
@@ -157,6 +158,11 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   checked: PropTypes.bool,
   /**
+   * The icon to display when the component is checked.
+   * @default <CheckIcon />
+   */
+  checkedIcon: PropTypes.node,
+  /**
    * @ignore
    */
   children: PropTypes.node,
@@ -185,6 +191,19 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the component appears indeterminate.
+   * This does not set the native input element to indeterminate due
+   * to inconsistent behavior across browsers.
+   * However, we set a `data-indeterminate` attribute on the `input`.
+   * @default false
+   */
+  indeterminate: PropTypes.bool,
+  /**
+   * The icon to display when the component is indeterminate.
+   * @default <IndeterminateCheckBoxIcon />
+   */
+  indeterminateIcon: PropTypes.node,
   /**
    * @ignore
    */
