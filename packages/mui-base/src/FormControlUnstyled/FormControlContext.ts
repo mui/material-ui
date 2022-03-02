@@ -1,16 +1,17 @@
 import * as React from 'react';
-import FormControlUnstyledProps from './FormControlUnstyledProps';
 
-type ContextFromPropsKey = 'disabled' | 'error' | 'onChange' | 'required' | 'value';
-
-export interface FormControlUnstyledState
-  extends Pick<FormControlUnstyledProps, ContextFromPropsKey> {
-  filled: boolean;
-  focused: boolean;
-  onBlur: () => void;
-  onFocus: () => void;
-  registerEffect: () => void;
-}
+export type FormControlUnstyledState = {
+  disabled?: boolean;
+  error?: boolean;
+  filled?: boolean;
+  focused?: boolean;
+  required?: boolean;
+  value?: unknown;
+  onBlur?: () => void;
+  onFocus?: () => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
+  registerEffect?: () => void;
+};
 
 /**
  * @ignore - internal component.

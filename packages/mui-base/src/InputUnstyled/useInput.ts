@@ -19,22 +19,10 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
 
   const formControlContext = useFormControl();
 
-  let value: unknown;
-  let required: boolean;
-  let disabled: boolean;
-  let error: boolean;
-
-  if (formControlContext) {
-    value = formControlContext.value;
-    disabled = formControlContext.disabled ?? false;
-    required = formControlContext.required ?? false;
-    error = formControlContext.error ?? false;
-  } else {
-    value = valueProp;
-    disabled = disabledProp;
-    required = requiredProp;
-    error = errorProp;
-  }
+  const value = formControlContext?.value ?? valueProp;
+  const disabled = formControlContext?.disabled ?? disabledProp;
+  const error = formControlContext?.error ?? errorProp;
+  const required = formControlContext?.required ?? requiredProp;
 
   const { current: isControlled } = React.useRef(value != null);
 
@@ -81,11 +69,8 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
 
       otherHandlers.onFocus?.(event);
 
-      if (formControlContext && formControlContext.onFocus) {
-        formControlContext?.onFocus?.();
-      } else {
-        setFocused(true);
-      }
+      formControlContext?.onFocus?.();
+      setFocused(true);
     };
 
   const handleBlur =
@@ -93,11 +78,8 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     (event: React.FocusEvent<HTMLInputElement>) => {
       otherHandlers.onBlur?.(event);
 
-      if (formControlContext && formControlContext.onBlur) {
-        formControlContext.onBlur();
-      } else {
-        setFocused(false);
-      }
+      formControlContext?.onBlur?.();
+      setFocused(false);
     };
 
   const handleChange =
@@ -173,7 +155,7 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
   return {
     disabled,
     error,
-    focused: formControlContext ? formControlContext.focused : focused,
+    focused: formControlContext?.focused ?? focused,
     formControlContext,
     getInputProps,
     getRootProps,
