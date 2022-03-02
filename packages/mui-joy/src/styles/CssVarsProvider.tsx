@@ -61,6 +61,25 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       light: lightColorSystem,
       dark: darkColorSystem,
     },
+    components: {
+      MuiSvgIcon: {
+        defaultProps: {
+          fontSize: 'xl',
+        },
+        styleOverrides: {
+          root: ({ ownerState, theme }) => ({
+            ...(ownerState.fontSize &&
+              ownerState.fontSize !== 'inherit' && {
+                fontSize: theme.vars.fontSize[ownerState.fontSize],
+              }),
+            ...(ownerState.color &&
+              ownerState.color !== 'inherit' && {
+                color: theme.vars.palette[ownerState.color].textColor,
+              }),
+          }),
+        },
+      },
+    } as Components<JoyTheme>,
   },
   defaultColorScheme: {
     light: 'light',
