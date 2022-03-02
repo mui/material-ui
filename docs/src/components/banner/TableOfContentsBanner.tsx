@@ -49,11 +49,12 @@ export default function TableOfContentsBanner() {
         color="text.primary"
         sx={(theme) => ({
           p: 1,
+          width: '100%',
           backgroundColor:
             theme.palette.mode === 'dark' ? 'rgba(255, 215, 0, 0.15)' : 'rgba(255, 215, 0, 0.08)',
         })}
       >
-        Find out how you can help.
+        Find out here how you can help.
       </Typography>
     </Link>
   ) : null;
