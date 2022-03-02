@@ -202,6 +202,10 @@ describe('<FormControlUnstyled />', () => {
       );
 
       expect(getByRole('textbox').dataset).to.have.property('filled', 'true');
+
+      fireEvent.change(getByRole('textbox'), { target: { value: 'a' } });
+
+      expect(getByRole('textbox')).to.have.value('a');
     });
 
     it('should be set if a controlled inner input sets its value', () => {
