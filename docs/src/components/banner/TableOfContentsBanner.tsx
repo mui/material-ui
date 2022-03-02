@@ -53,7 +53,7 @@ export default function TableOfContentsBanner() {
             theme.palette.mode === 'dark' ? 'rgba(255, 215, 0, 0.15)' : 'rgba(255, 215, 0, 0.08)',
         })}
       >
-        Click here to help by requesting the end of the war.
+        Find out how you can help.
       </Typography>
     </Link>
   ) : null;
