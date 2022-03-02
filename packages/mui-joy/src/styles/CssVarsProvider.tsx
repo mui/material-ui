@@ -70,7 +70,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
         styleOverrides: {
           root: ({ ownerState, theme }) => {
             return {
-              fontSize: `var(--SvgIcon-fontSize, ${theme.fontSize.xl})`,
+              fontSize: `var(--Icon-fontSize, ${theme.fontSize.xl})`,
               ...(ownerState.color &&
                 ownerState.color !== 'inherit' && {
                   color: theme.vars.palette[ownerState.color].textColor,
@@ -79,7 +79,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
                 // @ts-ignore
                 ownerState.fontSize !== 'medium' &&
                 ownerState.fontSize !== 'inherit' && {
-                  '--SvgIcon-fontSize': theme.vars.fontSize[ownerState.fontSize],
+                  '--Icon-fontSize': theme.vars.fontSize[ownerState.fontSize],
                 }),
             };
           },

@@ -67,12 +67,12 @@ const ButtonRoot = styled('button', {
       ...(ownerState.size === 'sm' && {
         '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
-        '--SvgIcon-fontSize': '1.25rem',
+        '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'lg' && {
         '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
-        '--SvgIcon-fontSize': '1.75rem',
+        '--Icon-fontSize': '1.75rem',
       }),
       '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
       '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
