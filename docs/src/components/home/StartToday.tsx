@@ -37,7 +37,7 @@ export default function StartToday() {
               Showcase
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              Check out some great examples of MUI's products in action.
+              Check out some great examples of MUI&apos;s products in action.
             </Typography>
             <Typography
               color="primary"

@@ -10,7 +10,6 @@ import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
-import { ContextConsumer } from 'react-is';
 
 const content = [
   {
