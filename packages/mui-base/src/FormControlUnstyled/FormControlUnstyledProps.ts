@@ -40,7 +40,7 @@ export interface FormControlUnstyledOwnProps {
    * Extra properties to be placed on the FormControlContext.
    * @default {}
    */
-  extraContextProperties?: object;
+  extraContextProps?: object;
   /**
    * If `true`, the component is displayed in focused state.
    * @default false

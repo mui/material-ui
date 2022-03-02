@@ -252,14 +252,14 @@ describe('<FormControlUnstyled />', () => {
     });
   });
 
-  describe('prop: extraContextProperties', () => {
+  describe('prop: extraContextProps', () => {
     it('should be able to receive extra context properies inside the child', () => {
       function TestComponent() {
         const context = useFormControlUnstyled<{ text: string }>();
         return <div>{context?.text}</div>;
       }
       const { getByText } = render(
-        <FormControlUnstyled extraContextProperties={{ text: 'foo' }}>
+        <FormControlUnstyled extraContextProps={{ text: 'foo' }}>
           <TestComponent />
         </FormControlUnstyled>,
       );
