@@ -31,7 +31,7 @@
       "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the `component`'s `focusVisibleClassName` prop",
       "conditions": "<code>button={true}</code>"
     },
@@ -46,7 +46,7 @@
       "conditions": "<code>alignItems=\"flex-start\"</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the inner `component` element",
       "conditions": "<code>disabled={true}</code>"
     },
@@ -76,7 +76,7 @@
       "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
     },
     "selected": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     }

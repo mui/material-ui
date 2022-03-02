@@ -2,16 +2,15 @@
 
 ## Component
 
-> **Public components** are considered all components exported from `@material-ui/core` or `@material-ui/lab`.
+> **Public components** are considered all components exported from `@mui/material` or `@mui/lab`.
 >
-> **Internal components** are considered all components that are not exported from the packages, but only used in some public component. There is no need to have `sx` prop on these components
+> **Internal components** are considered all components that are not exported from the packages, but only used in some public component.
 
 ### `Props Interface`
 
 - export interface `{ComponentName}classes` from `{component}Classes.ts` and add comment for generating api docs (for internal components, may or may not expose classes but don't need comment)
 - export interface `{ComponentName}Props`
 - always export props interface (use `interface` over `type`) from the component file
-- provide `sx` only for public component
 
 <details>
   <summary>Public component</summary>
@@ -64,6 +63,7 @@ export interface BarClasses {
 
 export interface BarProps {
   classes?: Partial<BarClasses>;
+  sx?: SxProps<Theme>;
 }
 ```
 
@@ -99,9 +99,9 @@ export function getFooUtilityClass(slot: string) {
   return generateUtilityClass('MuiFoo', slot);
 }
 
-const useUtilityClasses = (styleProps: FooProps & { extraProp: boolean }) => {
+const useUtilityClasses = (ownerState: FooProps & { extraProp: boolean }) => {
   // extraProp might be the key/value from react context that this component access
-  const { foo, disabled, classes } = styleProps;
+  const { foo, disabled, classes } = ownerState;
 
   const slots = {
     root: ['root', foo && 'foo', disabled && 'disabled'],
@@ -127,7 +127,6 @@ const classes = generateUtilityClasses('PrivateBar', ['root', 'bar']);
 ### `StyledComponent`
 
 - naming using slot `{ComponentName}{Slot}`
-- use `skipSx` for internal component without specifying `name`, `slot` and `overridesResolver`
 - to extend interface of the styled component, pass argument to generic
 
 <details>
@@ -148,7 +147,7 @@ const FooRoot = styled(Typography, {
   <summary>internal component</summary>
 
 ```ts
-const BarRoot = styled(Typography, { skipSx: true })({
+const BarRoot = styled(Typography)({
   // styling
 });
 ```
@@ -158,14 +157,14 @@ const BarRoot = styled(Typography, { skipSx: true })({
   <summary>extends interface</summary>
 
 ```ts
-const BarRoot = styled(Typography, { skipSx: true })<{
+const BarRoot = styled(Typography)<{
   component?: React.ElementType;
-  styleProps: BarProps;
-}>(({ theme, styleProps }) => ({
+  ownerState: BarProps;
+}>(({ theme, ownerState }) => ({
   // styling
 }));
-// passing `component` to BarRoot is safe and we don't forget to pass styleProps
-// <BarRoot component="span" styleProps={styleProps} />
+// passing `component` to BarRoot is safe and we don't forget to pass ownerState
+// <BarRoot component="span" ownerState={ownerState} />
 ```
 
 </details>
@@ -175,7 +174,7 @@ const BarRoot = styled(Typography, { skipSx: true })<{
 - prefer `function Component() {}` over `React.FC`
 - naming the render function in `React.forwardRef` (for devtools)
 - `useThemeProps` is needed only for public component
-- pass `styleProps` to StyledComponent for styling
+- pass `ownerState` to StyledComponent for styling
 
 <details>
   <summary>public component</summary>
@@ -191,15 +190,15 @@ const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, re
 
   // ...implementation
 
-  const styleProps = { ...props, ...otherValue }
+  const ownerState = { ...props, ...otherValue }
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FooRoot
       ref={ref}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {children}
@@ -215,7 +214,7 @@ const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, re
 ```ts
 const classes = generateUtilityClasses('PrivateBar', ['selected']);
 
-const BarRoot = styled('div', { skipSx: true })(({ theme }) => ({
+const BarRoot = styled('div')(({ theme }) => ({
   [`&.${classes.selected}`]: {
     color: theme.palette.text.primary,
   },

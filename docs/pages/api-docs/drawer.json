@@ -16,13 +16,18 @@
     "open": { "type": { "name": "bool" } },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "SlideProps": { "type": { "name": "object" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     },
     "variant": {
       "type": {
@@ -53,9 +58,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Drawer/Drawer.js",
+  "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

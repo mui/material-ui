@@ -48,7 +48,7 @@ function runPrettier(options) {
     });
 
   const files = glob
-    .sync('**/*.{js,md,tsx,ts,json}', {
+    .sync('**/*.{js,jsx,md,tsx,ts,json,html,css,prisma}', {
       cwd: workspaceRoot,
       gitignore: true,
       ignore: [
@@ -139,7 +139,8 @@ yargs
           default: 'write-changed',
         })
         .option('branch', {
-          default: 'next',
+          // #default-branch-switch
+          default: 'master',
           describe: 'The branch to diff against',
           type: 'string',
         });

@@ -18,7 +18,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object, switchViewButton?: object }"
+      },
+      "default": "{}"
+    },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "DialogProps": { "type": { "name": "object" } },
     "disableCloseOnSelect": {
@@ -42,6 +48,8 @@
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
+    "maxDate": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
     "okText": { "type": { "name": "node" }, "default": "'OK'" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
@@ -99,9 +107,8 @@
   "name": "MobileDatePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui-lab/src/MobileDatePicker/MobileDatePicker.tsx",
+  "filename": "/packages/mui-lab/src/MobileDatePicker/MobileDatePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

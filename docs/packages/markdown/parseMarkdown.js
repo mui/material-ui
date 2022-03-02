@@ -1,17 +1,13 @@
-const marked = require('marked');
+const { marked } = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
 
-// TODO: pass as argument
-const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja'];
-
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
-const descriptionRegExp = /<p class="description">(.*)<\/p>/s;
-const headerKeyValueRegExp = /(.*?): (.*)/g;
+const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
+const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g;
 const emptyRegExp = /^\s*$/;
-const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
 /**
  * Extract information from the top of the markdown.
@@ -44,10 +40,13 @@ function getHeaders(markdown) {
   // eslint-disable-next-line no-cond-assign
   while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
     const key = regexMatches[1];
-    const value = regexMatches[2].replace(/(.*)/, '$1');
+    let value = regexMatches[2].replace(/(.*)/, '$1');
     if (value[0] === '[') {
       // Need double quotes to JSON parse.
-      headers[key] = JSON.parse(value.replace(/'/g, '"'));
+      value = value.replace(/'/g, '"');
+      // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
+      value = value.replace(/,\s+\]$/g, ']');
+      headers[key] = JSON.parse(value);
     } else {
       // Remove trailing single quote yml escaping.
       headers[key] = value.replace(/^'|'$/g, '');
@@ -80,7 +79,7 @@ function getTitle(markdown) {
     throw new Error('Missing title in the page');
   }
 
-  return matches[1];
+  return matches[1].replace(/`/g, '');
 }
 
 function getDescription(markdown) {
@@ -89,7 +88,7 @@ function getDescription(markdown) {
     return undefined;
   }
 
-  return matches[1].trim();
+  return matches[1].trim().replace(/`/g, '');
 }
 
 /**
@@ -212,8 +211,14 @@ function createRender(context) {
 
       let finalHref = href;
 
-      if (userLanguage !== 'en' && finalHref.indexOf('/') === 0 && finalHref !== '/size-snapshot') {
-        finalHref = `/${userLanguage}${finalHref}`;
+      if (
+        userLanguage !== 'en' &&
+        href.indexOf('/') === 0 &&
+        href !== '/size-snapshot' &&
+        // The blog is not translated
+        !href.startsWith('/blog/')
+      ) {
+        finalHref = `/${userLanguage}${href}`;
       }
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
@@ -239,11 +244,11 @@ function createRender(context) {
 
 /**
  * @param {object} config
- * @param {() => string} config.requireRaw - returnvalue of require.context
+ * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
 function prepareMarkdown(config) {
-  const { pageFilename, requireRaw } = config;
+  const { pageFilename, translations, componentPackageMapping = {} } = config;
 
   const demos = {};
   /**
@@ -252,27 +257,31 @@ function prepareMarkdown(config) {
   const docs = {};
   const headingHashes = {};
 
-  // Process the English markdown before the other locales.
-  // English ToC anchor links are used in all languages
-  let filenames = [];
-  requireRaw.keys().forEach((filename) => {
-    if (filename.match(notEnglishMarkdownRegExp)) {
-      filenames.push(filename);
-    } else {
-      filenames = [filename].concat(filenames);
+  /**
+   * @param {string} product
+   * @example 'material'
+   * @param {string} componentPkg
+   * @example 'mui-base'
+   * @param {string} component
+   * @example 'ButtonUnstyled'
+   * @returns {string}
+   */
+  function resolveComponentApiUrl(product, componentPkg, component) {
+    if (!product) {
+      return `/api/${kebabCase(component)}/`;
     }
-  });
+    if (componentPkg === 'mui-base') {
+      return `/base/api/${kebabCase(component)}/`;
+    }
+    return `/${product}/api/${kebabCase(component)}/`;
+  }
 
-  filenames.forEach((filename) => {
-    if (filename.indexOf('.md') !== -1) {
-      const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
-
-      const userLanguage =
-        matchNotEnglishMarkdown && LANGUAGES_IN_PROGRESS.indexOf(matchNotEnglishMarkdown[1]) !== -1
-          ? matchNotEnglishMarkdown[1]
-          : 'en';
-
-      const markdown = requireRaw(filename);
+  translations
+    // Process the English markdown before the other locales.
+    // English ToC anchor links are used in all languages
+    .sort((a) => (a.userLanguage === 'en' ? -1 : 1))
+    .forEach((translation) => {
+      const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
@@ -283,7 +292,19 @@ function prepareMarkdown(config) {
 ## API
 
 ${headers.components
-  .map((component) => `- [\`<${component} />\`](/api/${kebabCase(component)}/)`)
+  .map((component) => {
+    return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
+
+    // TODO: enable the code below once the migration is done.
+    // eslint-disable-next-line no-unreachable
+    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
+    return `- [\`<${component} />\`](${resolveComponentApiUrl(
+      headers.product,
+      componentPkg,
+      component,
+    )})`;
+  })
   .join('\n')}
   `);
       }
@@ -314,39 +335,19 @@ ${headers.components
 
       docs[userLanguage] = {
         description,
-        location: headers.filename || `/docs/src/pages/${pageFilename}/${filename}`,
+        location: headers.filename || `/docs${pageFilename}/${filename}`,
         rendered,
         toc,
         title,
         headers,
       };
-    } else if (filename.indexOf('.tsx') !== -1) {
-      const demoName = `pages/${pageFilename}/${filename
-        .replace(/\.\//g, '')
-        .replace(/\.tsx/g, '.js')}`;
-
-      demos[demoName] = {
-        ...demos[demoName],
-        moduleTS: filename,
-        rawTS: requireRaw(filename),
-      };
-    } else {
-      const demoName = `pages/${pageFilename}/${filename.replace(/\.\//g, '')}`;
-
-      demos[demoName] = {
-        ...demos[demoName],
-        module: filename,
-        raw: requireRaw(filename),
-      };
-    }
-  });
+    });
 
   return { demos, docs };
 }
 
 module.exports = {
   createRender,
-  notEnglishMarkdownRegExp,
   getContents,
   getDescription,
   getHeaders,

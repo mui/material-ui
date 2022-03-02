@@ -6,8 +6,14 @@
  * @author ocodia
  */
 
-code[class*="language-"],
-pre[class*="language-"] {
+/* inline code */
+code {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+code[class*='language-'] {
   color: #f8f8f2;
   background: none;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
@@ -30,26 +36,6 @@ pre[class*="language-"] {
   hyphens: none;
 }
 
-/* Code blocks */
-pre[class*="language-"] {
-  padding: 1em;
-  margin: .5em 0;
-  overflow: auto;
-  border-radius: 0.3em;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #272822;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-}
-
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -62,7 +48,7 @@ pre[class*="language-"] {
 }
 
 .namespace {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .token.property,
@@ -126,8 +112,7 @@ pre[class*="language-"] {
 
 /* Overrides to reach AA, copied from https://reactjs.org */
 
-code[class*="language-"],
-pre[class*="language-"] {
+code[class*='language-'] {
   text-shadow: none;
 }
 

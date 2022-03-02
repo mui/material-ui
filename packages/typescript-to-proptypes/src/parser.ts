@@ -91,6 +91,7 @@ export function parseFromProgram(
 
   const checker = program.getTypeChecker();
   const sourceFile = program.getSourceFile(filePath);
+  const reactComponentName = filePath.match(/.*\/([^/]+)/)?.[1];
 
   const programNode = t.createProgram();
   const reactImports: string[] = [];
@@ -341,7 +342,9 @@ export function parseFromProgram(
     }
 
     console.warn(
-      `Unable to handle node of type "ts.TypeFlags.${ts.TypeFlags[type.flags]}", using any`,
+      `${reactComponentName}: Unable to handle node of type "ts.TypeFlags.${
+        ts.TypeFlags[type.flags]
+      }", using any`,
     );
     return t.createAnyType({ jsDoc: getDocumentation(type.symbol) });
   }
@@ -434,15 +437,16 @@ export function parseFromProgram(
       declaration &&
       ts.isPropertySignature(declaration)
     ) {
-      parsedType = declaration.questionToken
-        ? t.createUnionType({
-            jsDoc: getDocumentation(symbol),
-            types: [
-              t.createUndefinedType({ jsDoc: undefined }),
-              t.createAnyType({ jsDoc: undefined }),
-            ],
-          })
-        : t.createAnyType({ jsDoc: getDocumentation(symbol) });
+      parsedType =
+        symbol.flags & ts.SymbolFlags.Optional
+          ? t.createUnionType({
+              jsDoc: getDocumentation(symbol),
+              types: [
+                t.createUndefinedType({ jsDoc: undefined }),
+                t.createAnyType({ jsDoc: undefined }),
+              ],
+            })
+          : t.createAnyType({ jsDoc: getDocumentation(symbol) });
     } else {
       parsedType = checkType(type, location, typeStack, symbol.getName());
     }
@@ -500,7 +504,7 @@ export function parseFromProgram(
       return;
     }
 
-    const type = checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+    const type = checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!);
     type.getCallSignatures().forEach((signature) => {
       if (!isTypeJSXElementLike(signature.getReturnType())) {
         return;
@@ -509,7 +513,7 @@ export function parseFromProgram(
       parsePropsSymbol(
         componentName,
         signature.parameters[0],
-        signature.parameters[0].valueDeclaration,
+        signature.parameters[0].valueDeclaration!,
         node.getSourceFile(),
       );
     });
@@ -649,7 +653,7 @@ export function parseFromProgram(
                 parsePropsSymbol(
                   variableNode.name.getText(),
                   symbol,
-                  symbol.valueDeclaration,
+                  symbol.valueDeclaration!,
                   node.getSourceFile(),
                 );
               }
@@ -674,10 +678,14 @@ export function parseFromProgram(
       node.heritageClauses.length === 1
     ) {
       const heritage = node.heritageClauses[0];
-      if (heritage.types.length !== 1) return;
+      if (heritage.types.length !== 1) {
+        return;
+      }
 
       const arg = heritage.types[0];
-      if (!arg.typeArguments) return;
+      if (!arg.typeArguments) {
+        return;
+      }
 
       if (reactImports.includes(arg.expression.getText())) {
         parsePropsSymbol(

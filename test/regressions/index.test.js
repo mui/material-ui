@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as playwright from 'playwright';
 
 async function main() {
-  const baseUrl = 'http://localhost:5000';
+  const baseUrl = 'http://localhost:3000';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
@@ -66,7 +66,11 @@ async function main() {
   async function takeScreenshot({ testcase, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
     await fse.ensureDir(path.dirname(screenshotPath));
-    await testcase.screenshot({ path: screenshotPath, type: 'png' });
+
+    const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
+    const screenshotTarget = explicitScreenshotTarget || testcase;
+
+    await screenshotTarget.screenshot({ path: screenshotPath, type: 'png' });
   }
 
   // prepare screenshots

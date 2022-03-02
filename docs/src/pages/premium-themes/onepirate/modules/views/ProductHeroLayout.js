@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   color: theme.palette.common.white,
@@ -17,7 +17,7 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   },
 }));
 
-const Background = styled(Box)(() => ({
+const Background = styled(Box)({
   position: 'absolute',
   left: 0,
   right: 0,
@@ -26,7 +26,7 @@ const Background = styled(Box)(() => ({
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   zIndex: -2,
-}));
+});
 
 function ProductHeroLayout(props) {
   const { sxBackground, children } = props;
@@ -77,7 +77,13 @@ function ProductHeroLayout(props) {
 
 ProductHeroLayout.propTypes = {
   children: PropTypes.node,
-  sxBackground: PropTypes.object,
+  sxBackground: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default ProductHeroLayout;

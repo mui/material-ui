@@ -19,6 +19,11 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select component `select` class"
     },
+    "multiple": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
+      "conditions": "<code>multiple={true}</code>"
+    },
     "filled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the select component",

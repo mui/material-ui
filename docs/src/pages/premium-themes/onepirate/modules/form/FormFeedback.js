@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { experimentalStyled as styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Typography from '../components/Typography';
 
 const BoxStyled = styled(Box, {

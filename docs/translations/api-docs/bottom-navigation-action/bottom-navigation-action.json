@@ -12,12 +12,12 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "selected": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "selected"
     },
     "iconOnly": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>showLabel={false}</code> and not selected"
     },

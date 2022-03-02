@@ -179,7 +179,11 @@ async function generateProptypes(
 ): Promise<void> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
-      if (name.toLowerCase().endsWith('classes') || name === 'theme' || name.endsWith('Props')) {
+      if (
+        name.toLowerCase().endsWith('classes') ||
+        name === 'theme' ||
+        (name.endsWith('Props') && name !== 'componentsProps')
+      ) {
         return false;
       }
       return undefined;
@@ -190,6 +194,18 @@ async function generateProptypes(
   if (proptypes.body.length === 0) {
     return;
   }
+
+  // exclude internal slot components, eg. ButtonRoot
+  proptypes.body = proptypes.body.filter((data) => {
+    if (data.propsFilename?.endsWith('.tsx')) {
+      // only check for .tsx
+      const match = data.propsFilename.match(/.*\/([A-Z][a-zA-Z]+)\.tsx/);
+      if (match) {
+        return data.name === match[1];
+      }
+    }
+    return true;
+  });
 
   proptypes.body.forEach((component) => {
     component.types.forEach((prop) => {
@@ -208,6 +224,7 @@ async function generateProptypes(
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
   const unstyledFile = getUnstyledFilename(tsFile, true);
+  const unstyledPropsFile = unstyledFile.replace('.d.ts', 'Props.ts');
 
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
@@ -258,7 +275,8 @@ async function generateProptypes(
 
       prop.filenames.forEach((filename) => {
         const isExternal = filename !== tsFile;
-        const implementedByUnstyledVariant = filename === unstyledFile;
+        const implementedByUnstyledVariant =
+          filename === unstyledFile || filename === unstyledPropsFile;
         if (!isExternal || implementedByUnstyledVariant) {
           shouldDocument = true;
         }
@@ -304,9 +322,11 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
-      path.resolve(__dirname, '../packages/material-ui-unstyled/src'),
-      path.resolve(__dirname, '../packages/material-ui/src'),
-      path.resolve(__dirname, '../packages/material-ui-lab/src'),
+      path.resolve(__dirname, '../packages/mui-base/src'),
+      path.resolve(__dirname, '../packages/mui-material/src'),
+      path.resolve(__dirname, '../packages/mui-lab/src'),
+      path.resolve(__dirname, '../packages/mui-material-next/src'),
+      path.resolve(__dirname, '../packages/mui-joy/src'),
     ].map((folderPath) =>
       glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
         absolute: true,

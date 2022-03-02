@@ -1,6 +1,12 @@
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@3.0.0
 
 parameters:
+  browserstack-force:
+    description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
+    type: boolean
+    default: false
   react-dist-tag:
     description: The dist-tag of react to be used
     type: string
@@ -9,6 +15,10 @@ parameters:
     description: The name of the workflow to run
     type: string
     default: pipeline
+  e2e-base-url:
+    description: The base url for running end-to-end test
+    type: string
+    default: ''
 
 defaults: &defaults
   parameters:
@@ -20,12 +30,18 @@ defaults: &defaults
       description: A particular type of tests that should be run
       type: string
       default: undefined
+    e2e-base-url:
+      description: The base url for running end-to-end test
+      type: string
+      default: << pipeline.parameters.e2e-base-url >>
   environment:
     # Keep in sync with "Save playwright cache"
     PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
     # expose it globally otherwise we have to thread it from each job to the install command
+    BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_DIST_TAG: << parameters.react-dist-tag >>
     TEST_GATE: << parameters.test-gate >>
+    AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:12
@@ -61,12 +77,11 @@ commands:
       - restore_cache:
           name: Restore yarn cache
           keys:
-            - v7-yarn-{{ checksum "yarn.lock" }}
-            - v7-yarn-
+            - v8-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: Set yarn cache folder
           command: |
-            # Keep path in sync with `save_cache` for key "v7-yarn-"
+            # Keep path in sync with `save_cache` for key "v8-yarn-"
             yarn config set cache-folder /tmp/yarn-cache
             # Debug information
             yarn cache dir
@@ -84,8 +99,6 @@ commands:
                 name: Restore playwright cache
                 keys:
                   - v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
-                  - v5-playwright-{{ arch }}-
-                  - v5-playwright-
       - run:
           name: Install js dependencies
           command: yarn install --verbose
@@ -93,10 +106,10 @@ commands:
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
       - save_cache:
           name: Save yarn cache
-          key: v7-yarn-{{ checksum "yarn.lock" }}
+          key: v8-yarn-{{ checksum "yarn.lock" }}
           paths:
             # Keep path in sync with "Set yarn cache folder"
-            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
+            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
             - /tmp/yarn-cache
       - when:
           condition: << parameters.browsers >>
@@ -106,7 +119,7 @@ commands:
                 key: v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
                 paths:
                   # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
-                  # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
+                  # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
                   - /tmp/pw-browsers
 
 jobs:
@@ -147,13 +160,13 @@ jobs:
             # latest commit
             LATEST_COMMIT=$(git rev-parse HEAD)
 
-            # latest commit where packages/material-ui-icons was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-icons)
+            # latest commit where packages/mui-icons-material was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/mui-icons-material)
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
-              yarn workspace @material-ui/icons build:typings
-              yarn workspace @material-ui/icons test:built-typings
+              yarn workspace @mui/icons-material build:typings
+              yarn workspace @mui/icons-material test:built-typings
             else
               echo "no changes"
             fi
@@ -174,7 +187,10 @@ jobs:
             fi
       - run:
           name: Coverage
-          command: bash <(curl -s https://codecov.io/bash) -Z -F $REACT_DIST_TAG
+          command: |
+            curl -Os https://uploader.codecov.io/latest/linux/codecov
+            chmod +x codecov
+            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_DIST_TAG-jsdom"
   test_lint:
     <<: *defaults
     steps:
@@ -189,6 +205,9 @@ jobs:
       - run:
           name: Lint JSON
           command: yarn jsonlint
+      - run:
+          name: Lint Markdown
+          command: yarn markdownlint
   test_static:
     <<: *defaults
     steps:
@@ -216,12 +235,6 @@ jobs:
           name: '`yarn docs:i18n` changes committed?'
           command: git diff --exit-code
       - run:
-          name: '`yarn framer:build` changes committed?'
-          command: yarn workspace framer build
-      - run:
-          name: '`yarn workspace framer build` changes committed?'
-          command: git diff --exit-code
-      - run:
           name: '`yarn extract-error-codes` changes committed?'
           command: |
             yarn extract-error-codes
@@ -243,23 +256,24 @@ jobs:
       - run:
           name: Test module augmenation
           command: |
-            yarn workspace @material-ui/core typescript:module-augmentation
-            yarn workspace @material-ui/unstyled typescript:module-augmentation
+            yarn workspace @mui/material typescript:module-augmentation
+            yarn workspace @mui/base typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files
           keys:
-            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
+            # #default-branch-switch
+            # We assume that the target branch is `master` and that declaration files are persisted in commit order.
             # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-next
+            - typescript-declaration-files-master
 
       - run:
           name: Diff declaration files
           command: |
-            git add -f packages/material-ui/build || echo '/core declarations do not exist'
-            git add -f packages/material-ui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/material-ui-utils/build || echo '/utils declarations do not exist'
-            yarn lerna run --parallel build:types
+            git add -f packages/mui-material/build || echo '/material declarations do not exist'
+            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
+            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
+            yarn lerna run build:types
             git --no-pager diff
 
       - run:
@@ -270,9 +284,9 @@ jobs:
           key: typescript-declaration-files-{{ .Branch }}-{{ .Revision }}
           paths:
             # packages with generated declaration files
-            - packages/material-ui/build
-            - packages/material-ui-lab/build
-            - packages/material-ui-utils/build
+            - packages/mui-material/build
+            - packages/mui-lab/build
+            - packages/mui-utils/build
   test_types_next:
     <<: *defaults
     steps:
@@ -306,10 +320,10 @@ jobs:
       - run:
           name: Diff declaration files
           command: |
-            git add -f packages/material-ui/build || echo '/core declarations do not exist'
-            git add -f packages/material-ui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/material-ui-utils/build || echo '/utils declarations do not exist'
-            yarn lerna run --parallel build:types
+            git add -f packages/mui-material/build || echo '/core declarations do not exist'
+            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
+            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
+            yarn lerna run build:types
             git --no-pager diff
 
       - run:
@@ -324,7 +338,7 @@ jobs:
   test_browser:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -334,6 +348,19 @@ jobs:
       - run:
           name: Tests real browsers
           command: yarn test:karma
+      - run:
+          name: Check coverage generated
+          command: |
+            if ! [[ -s coverage/lcov.info ]]
+            then
+              exit 1
+            fi
+      - run:
+          name: Coverage
+          command: |
+            curl -Os https://uploader.codecov.io/latest/linux/codecov
+            chmod +x codecov
+            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_DIST_TAG-browser"
       - store_artifacts:
           # hardcoded in karma-webpack
           path: /tmp/_karma_webpack_
@@ -341,7 +368,7 @@ jobs:
   test_e2e:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -352,15 +379,30 @@ jobs:
           name: yarn test:e2e
           command: yarn test:e2e
       - run:
-          name: Can we generate the @material-ui/core umd build?
-          command: yarn workspace @material-ui/core build:umd
+          name: Can we generate the @mui/material umd build?
+          command: yarn workspace @mui/material build:umd
       - run:
           name: Test umd release
           command: yarn test:umd
+  test_e2e_website:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout
+      - install_js:
+          browsers: true
+      - run:
+          name: yarn test:e2e-website
+          command: yarn test:e2e-website
+          environment:
+            PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -387,7 +429,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -407,7 +449,7 @@ jobs:
       - install_js
       - run:
           name: Build packages for fixtures
-          command: yarn lerna run --scope "@material-ui/*" build
+          command: yarn lerna run --scope "@mui/*" build
       - persist_to_workspace:
           root: packages
           paths:
@@ -441,7 +483,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -465,7 +507,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -489,7 +531,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -513,7 +555,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -537,7 +579,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -561,7 +603,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -589,7 +631,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -608,6 +650,101 @@ jobs:
       - run:
           name: Test fixture
           command: yarn start
+  test_bundle_size_monitor:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: prepare danger on PRs
+          command: yarn danger ci
+          environment:
+            DANGER_COMMAND: prepareBundleSizeReport
+      - run:
+          name: build @mui packages
+          command: yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
+      - run:
+          name: create @mui/material canary distributable
+          command: |
+            cd packages/mui-material/build
+            npm version 0.0.0-canary.${CIRCLE_SHA1} --no-git-tag-version
+            npm pack
+            mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
+      - when:
+          # don't run on PRs
+          condition:
+            not:
+              matches:
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: '^pull/.+$'
+                value: << pipeline.git.branch >>
+          steps:
+            # Upload distributables to S3
+            - aws-s3/copy:
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: mui-material.tgz
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+      - store_artifacts:
+          path: mui-material.tgz
+          destination: mui-material.tgz
+      - run:
+          name: create a size snapshot
+          command: yarn size:snapshot
+      - store_artifacts:
+          name: persist size snapshot as pipeline artifact
+          path: size-snapshot.json
+          destination: size-snapshot.json
+      - when:
+          # don't run on PRs
+          condition:
+            not:
+              matches:
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: '^pull/.+$'
+                value: << pipeline.git.branch >>
+          steps:
+            # persist size snapshot on S3
+            - aws-s3/copy:
+                arguments: --content-type application/json
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: size-snapshot.json
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+            # symlink size-snapshot to latest
+            - aws-s3/copy:
+                arguments: --content-type application/json
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: size-snapshot.json
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
+      - run:
+          name: run danger on PRs
+          command: yarn danger ci --fail-on-errors
+          environment:
+            DANGER_COMMAND: 'reportBundleSize'
+  test_benchmark:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout
+      - install_js:
+          browsers: true
+      - run: yarn benchmark:browser
+      - store_artifacts:
+          name: Publish benchmark results as a pipeline artifact.
+          path: tmp/benchmarks
+          destination: benchmarks
 workflows:
   version: 2
   pipeline:
@@ -636,6 +773,18 @@ workflows:
       - test_e2e:
           requires:
             - checkout
+      - test_bundle_size_monitor:
+          requires:
+            - checkout
+  e2e-website:
+    when:
+      equal: [e2e-website, << pipeline.parameters.workflow >>]
+    jobs:
+      - checkout
+      - test_e2e_website:
+          requires:
+            - checkout
+
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
@@ -678,7 +827,6 @@ workflows:
             branches:
               only:
                 - master
-                - next
     jobs:
       - test_unit:
           react-dist-tag: next
@@ -696,6 +844,10 @@ workflows:
             branches:
               only:
                 - master
-                - next
     jobs:
       - test_types_next
+  benchmark:
+    when:
+      equal: [benchmark, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_benchmark

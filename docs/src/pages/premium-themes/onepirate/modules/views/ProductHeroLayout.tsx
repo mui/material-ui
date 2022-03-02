@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Theme, styled } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import { Theme, styled } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   color: theme.palette.common.white,
@@ -16,7 +16,7 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   },
 }));
 
-const Background = styled(Box)(() => ({
+const Background = styled(Box)({
   position: 'absolute',
   left: 0,
   right: 0,
@@ -25,7 +25,7 @@ const Background = styled(Box)(() => ({
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   zIndex: -2,
-}));
+});
 
 interface ProductHeroLayoutProps {
   sxBackground: SxProps<Theme>;

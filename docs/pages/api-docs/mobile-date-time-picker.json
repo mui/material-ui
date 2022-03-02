@@ -20,7 +20,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object, switchViewButton?: object }"
+      },
+      "default": "{}"
+    },
     "dateRangeIcon": { "type": { "name": "node" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "DialogProps": { "type": { "name": "object" } },
@@ -51,18 +57,12 @@
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
-    "maxDateTime": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
-    "minDateTime": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
+    "maxDate": { "type": { "name": "any" } },
+    "maxDateTime": { "type": { "name": "any" } },
+    "maxTime": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
+    "minDateTime": { "type": { "name": "any" } },
+    "minTime": { "type": { "name": "any" } },
     "minutesStep": { "type": { "name": "number" }, "default": "1" },
     "okText": { "type": { "name": "node" }, "default": "'OK'" },
     "onAccept": { "type": { "name": "func" } },
@@ -77,7 +77,7 @@
     "openTo": {
       "type": {
         "name": "enum",
-        "description": "'day'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'"
+        "description": "'day'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
       }
     },
     "orientation": {
@@ -116,16 +116,15 @@
     "views": {
       "type": {
         "name": "arrayOf",
-        "description": "Array&lt;'day'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'year'&gt;"
+        "description": "Array&lt;'day'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'&gt;"
       }
     }
   },
   "name": "MobileDateTimePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui-lab/src/MobileDateTimePicker/MobileDateTimePicker.tsx",
+  "filename": "/packages/mui-lab/src/MobileDateTimePicker/MobileDateTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

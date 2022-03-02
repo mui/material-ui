@@ -1,0 +1,3 @@
+<CircularProgress color="secondary" />
+<CircularProgress color="success" />
+<CircularProgress color="inherit" />

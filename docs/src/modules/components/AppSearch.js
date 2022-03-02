@@ -1,277 +1,576 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles } from '@material-ui/styles';
-import { alpha, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import SearchIcon from '@material-ui/icons/Search';
-import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
-import docsearch from 'docsearch.js';
+import { createPortal } from 'react-dom';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import ReactDOMServer from 'react-dom/server';
+import PropTypes from 'prop-types';
+import NextLink from 'next/link';
+import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import SearchIcon from '@mui/icons-material/Search';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import Link from 'docs/src/modules/components/Link';
+import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import { useRouter } from 'next/router';
+import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 
-const useStyles = makeStyles(
-  (theme) => ({
-    '@global': {
-      '.algolia-autocomplete': {
-        '& .ds-dropdown-menu': {
-          boxShadow: theme.shadows[1],
-          borderRadius: theme.shape.borderRadius,
-          '&::before': {
-            display: 'none',
-          },
-          '& [class^=ds-dataset-]': {
-            border: 0,
-            maxHeight: 'calc(100vh - 100px)',
-            borderRadius: theme.shape.borderRadius,
-            backgroundColor: theme.palette.background.paper,
-          },
-        },
-        '& .algolia-docsearch-suggestion--category-header-lvl0': {
-          color: theme.palette.text.primary,
-        },
-        '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--subcategory-column': {
-          opacity: 1,
-          padding: '5.33px 10.66px',
-          textAlign: 'right',
-          width: '25%',
-        },
-        '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
-          float: 'right',
-          padding: '5.33px 0 5.33px 10.66px',
-          width: '75%',
-        },
-        '& .algolia-docsearch-suggestion--subcategory-column-text': {
-          color: theme.palette.text.secondary,
-          fontWeight: theme.typography.fontWeightRegular,
-        },
-        '& .algolia-docsearch-suggestion--highlight': {
-          color: theme.palette.mode === 'light' ? '#174d8c' : '#acccf1',
-        },
-        '& .algolia-docsearch-suggestion': {
-          textDecoration: 'none',
-          backgroundColor: theme.palette.background.paper,
-        },
-        '& .algolia-docsearch-suggestion--title': {
-          ...theme.typography.h6,
-          color: theme.palette.text.primary,
-        },
-        '& .algolia-docsearch-suggestion--text': {
-          ...theme.typography.body2,
-          color: theme.palette.text.secondary,
-        },
-        '&& .algolia-docsearch-suggestion--no-results': {
-          width: '100%',
-          '&::before': {
-            display: 'none',
-          },
-        },
-        '& .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion--content': {
-          backgroundColor: `${theme.palette.action.selected} !important`,
-        },
-      },
-    },
-    root: {
-      fontFamily: theme.typography.fontFamily,
-      position: 'relative',
-      marginRight: theme.spacing(2),
-      marginLeft: theme.spacing(1),
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-      },
-      '& $inputInput': {
-        transition: theme.transitions.create('width'),
-        width: 140,
-        '&:focus': {
-          width: 170,
-        },
-      },
-    },
-    search: {
-      width: theme.spacing(9),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
+const SearchButton = styled('button')(({ theme }) => {
+  return {
+    minHeight: 34,
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing(1),
+    [theme.breakpoints.only('xs')]: {
+      backgroundColor: 'transparent',
+      padding: 0,
+      minWidth: 34,
       justifyContent: 'center',
-    },
-    inputRoot: {
-      color: 'inherit',
-    },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 9),
-    },
-    shortcut: {
-      fontSize: theme.typography.pxToRem(13),
-      lineHeight: '21px',
-      color: alpha(theme.palette.common.white, 0.8),
-      border: `1px solid ${alpha(theme.palette.common.white, 0.4)}`,
-      backgroundColor: alpha(theme.palette.common.white, 0.1),
-      padding: theme.spacing(0, 0.5),
-      position: 'absolute',
-      right: theme.spacing(1),
-      height: 23,
-      top: 'calc(50% - 11px)',
-      borderRadius: theme.shape.borderRadius,
-      transition: theme.transitions.create('opacity', {
-        duration: theme.transitions.duration.shortest,
-      }),
-      // So that clicks target the input.
-      // Makes the text non selectable but neither is the placeholder or adornment.
-      pointerEvents: 'none',
-      '&.Mui-focused': {
-        opacity: 0,
+      '& > *:not(.MuiSvgIcon-root)': {
+        display: 'none',
       },
     },
-  }),
-  { name: 'AppSearch' },
-);
+    [theme.breakpoints.up('sm')]: {
+      minWidth: 200,
+    },
+    fontFamily: theme.typography.fontFamily,
+    position: 'relative',
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : theme.palette.grey[50],
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(14),
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
+    }`,
+    borderRadius: 10,
+    cursor: 'pointer',
+    transitionProperty: 'all',
+    transitionDuration: '150ms',
+    '&:hover': {
+      background:
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.primaryDark[700], 0.4)
+          : alpha(theme.palette.grey[100], 0.7),
+      borderColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
+    },
+  };
+});
 
-/**
- * When using this component it is recommend to include a preload link
- * `<link rel="preload" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" as="style" />`
- * to potentially reduce load times
- */
+const SearchLabel = styled('span')(({ theme }) => {
+  return {
+    marginLeft: theme.spacing(1),
+    marginRight: 'auto',
+  };
+});
+
+const Shortcut = styled('div')(({ theme }) => {
+  return {
+    fontSize: theme.typography.pxToRem(12),
+    fontWeight: 700,
+    lineHeight: '20px',
+    marginLeft: theme.spacing(0.5),
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
+    }`,
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
+    padding: theme.spacing(0, 0.8),
+    borderRadius: 5,
+  };
+});
+
+const NewStartScreen = () => {
+  const startScreenOptions = [
+    {
+      category: {
+        name: 'Getting started',
+        icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+      },
+      items: [
+        { name: 'Installation', href: '/getting-started/installation/' },
+        { name: 'Usage', href: '/getting-started/usage/' },
+        { name: 'Learn', href: '/getting-started/learn/' },
+      ],
+    },
+    {
+      category: {
+        name: 'Popular searches',
+        icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+      },
+      items: [
+        { name: 'Material Icons', href: '/components/material-icons/' },
+        { name: 'Text Fields', href: '/components/text-fields/' },
+        { name: 'Button', href: '/components/buttons/' },
+      ],
+    },
+    {
+      category: {
+        name: 'Customization',
+        icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+      },
+      items: [
+        { name: 'How To Customize', href: '/customization/how-to-customize/' },
+        { name: 'Theming', href: '/customization/theming/' },
+        { name: 'Default Theme', href: '/customization/default-theme/' },
+      ],
+    },
+    {
+      category: {
+        name: 'System',
+        icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+      },
+      items: [
+        { name: 'Basics', href: '/system/basics/' },
+        { name: 'Properties', href: '/system/properties/' },
+        { name: 'The sx prop', href: '/system/the-sx-prop/' },
+      ],
+    },
+  ];
+  return (
+    <div className="DocSearch-NewStartScreen">
+      {startScreenOptions.map(({ category, items }) => (
+        <div key={category.name} className="DocSearch-NewStartScreenCategory">
+          <div className="DocSearch-NewStartScreenTitle">
+            {category.icon}
+            {category.name}
+          </div>
+          {items.map(({ name, href }) => (
+            <NextLink key={name} href={href}>
+              <a href={href} className="DocSearch-NewStartScreenItem">
+                {name}
+                <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
+              </a>
+            </NextLink>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+function DocSearcHit(props) {
+  const { children, hit } = props;
+
+  if (hit.pathname) {
+    return (
+      <Link href={hit.pathname} as={hit.as}>
+        {children}
+      </Link>
+    );
+  }
+
+  // DocSearch stores the old results in its cache
+  // hit.pathname won't be defined for them.
+  return <Link href={hit.url}>{children}</Link>;
+}
+
+DocSearcHit.propTypes = {
+  children: PropTypes.node,
+  hit: PropTypes.object.isRequired,
+};
+
 export default function AppSearch() {
-  const classes = useStyles();
-  const inputRef = React.useRef(null);
-  const [focused, setFocused] = React.useState(false);
-  const theme = useTheme();
-  const userLanguage = useUserLanguage();
+  useLazyCSS(
+    'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
+    '#app-search',
+  );
+  const FADE_DURATION = 100; // ms
   const t = useTranslate();
-
-  useLazyCSS('https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css', '#app-search');
-
-  React.useEffect(() => {
-    const handleKeyDown = (nativeEvent) => {
-      if (nativeEvent.defaultPrevented) {
-        return;
-      }
-
-      if (nativeEvent.key === 'Escape' && document.activeElement === inputRef.current) {
-        inputRef.current.blur();
-        return;
-      }
-
-      const matchMainShortcut =
-        (nativeEvent.ctrlKey || nativeEvent.metaKey) && nativeEvent.key === 'k';
-      const matchNonkeyboardNode =
-        ['INPUT', 'SELECT', 'TEXTAREA'].indexOf(document.activeElement.tagName) === -1 &&
-        !document.activeElement.isContentEditable;
-
-      if (matchMainShortcut && matchNonkeyboardNode) {
-        nativeEvent.preventDefault();
-        inputRef.current.focus();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-
-  const desktop = useMediaQuery(theme.breakpoints.up('sm'));
-
-  React.useEffect(() => {
-    if (desktop) {
-      // In non-SSR languages, fall back to English.
-      const facetFilterLanguage =
-        LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
-
-      // This assumes that by the time this effect runs the Input component is committed
-      // this holds true as long as the effect and the component are in the same
-      // suspense boundary. If you move effect and component apart be sure to check
-      // that this assumption still holds
-      const search = docsearch({
-        apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
-        indexName: 'material-ui',
-        inputSelector: '#docsearch-input',
-        algoliaOptions: {
-          facetFilters: ['version:next', facetFilterLanguage],
-        },
-        autocompleteOptions: {
-          openOnFocus: true,
-        },
-        handleSelected: (input, event, suggestion) => {
-          event.button = 0;
-          const parseUrl = document.createElement('a');
-          parseUrl.href = suggestion.url;
-          handleEvent(event, parseUrl.pathname + parseUrl.hash);
-          input.close();
-        },
-        // debug: true, // Set debug to true if you want to inspect the dropdown.
-      });
-
-      search.autocomplete.on('autocomplete:cursorchanged', (event) => {
-        const combobox = event.target;
-        const selectedOptionNode = document.getElementById(
-          combobox.getAttribute('aria-activedescendant'),
-        );
-        const listboxNode = document.querySelector('.ds-suggestions').parentElement;
-
-        if (selectedOptionNode === null || listboxNode === null) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.warn('Cant scroll to selected option.');
-          }
-          return;
-        }
-
-        // Scroll active descendant into view.
-        // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
-        //
-        // Consider this API instead once it has a better browser support:
-        // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-        if (listboxNode.scrollHeight > listboxNode.clientHeight) {
-          const element = selectedOptionNode;
-
-          const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
-          const elementBottom = element.offsetTop + element.offsetHeight;
-          if (elementBottom > scrollBottom) {
-            listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-          } else if (element.offsetTop < listboxNode.scrollTop) {
-            listboxNode.scrollTop = element.offsetTop;
-          }
-        }
-      });
-    }
-  }, [desktop, userLanguage]);
-
+  const userLanguage = useUserLanguage();
+  const searchButtonRef = React.useRef(null);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [initialQuery, setInitialQuery] = React.useState(undefined);
+  const facetFilterLanguage =
+    LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const onOpen = React.useCallback(() => {
+    setIsOpen(true);
+  }, [setIsOpen]);
+  const router = useRouter();
+  const isNewDocStructure = isNewLocation(router.asPath);
+
+  const keyboardNavigator = {
+    navigate({ item }) {
+      const as = item.userLanguage !== 'en' ? `/${item.userLanguage}${item.as}` : item.as;
+      router.push(item.pathname, as);
+    },
+  };
+
+  const onClose = React.useCallback(() => {
+    const modal = document.querySelector('.DocSearch-Container');
+    if (modal) {
+      // fade out transition
+      modal.style.opacity = 0;
+      setTimeout(() => {
+        setIsOpen(false);
+      }, FADE_DURATION);
+    }
+  }, [setIsOpen]);
+
+  const onInput = React.useCallback(
+    (event) => {
+      setIsOpen(true);
+      setInitialQuery(event.key);
+    },
+    [setIsOpen, setInitialQuery],
+  );
+
+  useDocSearchKeyboardEvents({
+    isOpen,
+    onOpen,
+    onClose,
+    onInput,
+    searchButtonRef,
+  });
+
+  React.useEffect(() => {
+    const addStartScreen = () => {
+      const dropDown = document.querySelector('.DocSearch-Dropdown');
+      const isExisting = document.querySelector('.DocSearch-NewStartScreen');
+      if (dropDown && !isExisting) {
+        dropDown.insertAdjacentHTML(
+          'beforeend',
+          ReactDOMServer.renderToStaticMarkup(<NewStartScreen />),
+        );
+      }
+    };
+    // add transition to Modal
+    if (isOpen) {
+      const modal = document.querySelector('.DocSearch-Container');
+      const searchInput = document.querySelector('.DocSearch-Input');
+      if (modal) {
+        modal.style.opacity = 1;
+        addStartScreen();
+      }
+      if (searchInput) {
+        const handleInput = (event) => {
+          const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
+          if (newStartScreen) {
+            newStartScreen.style.display = event.target.value !== '' ? 'none' : 'grid';
+          }
+        };
+        searchInput.addEventListener('input', handleInput);
+        return () => {
+          searchInput.removeEventListener('input', handleInput);
+        };
+      }
+    }
+    return () => {};
+  }, [isOpen]);
+
+  const search = `${t('algoliaSearch')}…`;
 
   return (
-    <div className={classes.root} style={{ display: desktop ? 'flex' : 'none' }}>
-      <div className={classes.search}>
-        <SearchIcon />
-      </div>
-      <Input
-        disableUnderline
-        placeholder={`${t('algoliaSearch')}…`}
-        inputProps={{
-          'aria-label': t('algoliaSearch'),
-        }}
-        type="search"
-        id="docsearch-input"
-        inputRef={inputRef}
-        onFocus={() => {
-          setFocused(true);
-        }}
-        onBlur={() => {
-          setFocused(false);
-        }}
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
+    <React.Fragment>
+      <SearchButton ref={searchButtonRef} onClick={onOpen}>
+        <SearchIcon
+          fontSize="small"
+          sx={{
+            color: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[300]
+                : theme.palette.primary[500],
+          }}
+        />
+        <SearchLabel>{search}</SearchLabel>
+        <Shortcut>
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+          {macOS ? '⌘' : 'Ctrl+'}K
+        </Shortcut>
+      </SearchButton>
+      {isOpen &&
+        createPortal(
+          <DocSearchModal
+            initialQuery={initialQuery}
+            appId={isNewDocStructure ? 'TZGZ85B9TB' : 'BH4D9OD16A'}
+            apiKey={
+              isNewDocStructure
+                ? '8177dfb3e2be72b241ffb8c5abafa899'
+                : '1d8534f83b9b0cfea8f16498d19fbcab'
+            }
+            indexName="material-ui"
+            searchParameters={{
+              facetFilters: ['version:master', facetFilterLanguage],
+            }}
+            placeholder={search}
+            transformItems={(items) => {
+              return items.map((item) => {
+                // `url` contains the domain
+                // but we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
+                const parseUrl = document.createElement('a');
+                parseUrl.href = item.url;
+
+                let hash = parseUrl.hash;
+
+                if (['lvl2', 'lvl3'].includes(item.type)) {
+                  // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
+                  // this will make the title appear under the Header
+                  hash = hash.replace('#heading-', '#');
+                }
+
+                const { canonicalAs, canonicalPathname } = pathnameToLanguage(
+                  // TODO: Remove the replace() after algolia crawler has indexed the production site
+                  `${parseUrl.pathname.replace('/material/', '/material-ui/')}${hash}`,
+                );
+
+                return {
+                  ...item,
+                  pathname: canonicalPathname,
+                  as: canonicalAs,
+                  userLanguage,
+                };
+              });
+            }}
+            hitComponent={DocSearcHit}
+            initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
+            onClose={onClose}
+            navigator={keyboardNavigator}
+          />,
+          document.body,
+        )}
+      <GlobalStyles
+        styles={(theme) => ({
+          html: {
+            ':root': {
+              '--docsearch-primary-color':
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[300]
+                  : theme.palette.primary[500],
+              '--docsearch-text-color': theme.palette.text.primary,
+              '--docsearch-muted-color': theme.palette.grey[600],
+              '--docsearch-searchbox-shadow': 0,
+              '--docsearch-hit-shadow': 0,
+              '--docsearch-footer-shadow': 0,
+              '--docsearch-spacing': theme.spacing(1.5),
+              '--docsearch-hit-active-color':
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[600],
+              '--docsearch-logo-color': theme.palette.grey[600],
+              '--docsearch-searchbox-focus-background': 'unset',
+              '--docsearch-footer-background': 'unset',
+              '--docsearch-modal-background': theme.palette.background.paper,
+            },
+          },
+          body: {
+            '.DocSearch-Container': {
+              transition: `opacity ${FADE_DURATION}ms`,
+              opacity: 0,
+              zIndex: theme.zIndex.tooltip + 100,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.grey[900], 0.7)
+                  : alpha(theme.palette.grey[600], 0.2),
+              backdropFilter: 'blur(4px)',
+            },
+            '& .DocSearch-StartScreen': {
+              display: 'none',
+            },
+            '& .DocSearch-NewStartScreen': {
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: theme.spacing(2),
+              padding: theme.spacing(2, 1),
+            },
+            '& .DocSearch-NewStartScreenCategory': {
+              display: 'flex',
+              flexDirection: 'column',
+            },
+            '& .DocSearch-NewStartScreenTitle': {
+              display: 'flex',
+              alignItems: 'center',
+              padding: theme.spacing(1, 1),
+              fontSize: theme.typography.pxToRem(14),
+              color: theme.palette.text.secondary,
+            },
+            '& .DocSearch-NewStartScreenTitleIcon': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[300]
+                  : theme.palette.primary[500],
+              marginRight: theme.spacing(1.5),
+              fontSize: theme.typography.pxToRem(16),
+            },
+            '& .DocSearch-NewStartScreenItem': {
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              width: '100%',
+              padding: theme.spacing(0.5, 4.6),
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[300]
+                  : theme.palette.primary[500],
+              fontWeight: 500,
+              fontSize: theme.typography.pxToRem(14),
+              '&:hover, &:focus': {
+                '.DocSearch-NewStartScreenItemIcon': {
+                  marginLeft: theme.spacing(1),
+                },
+              },
+            },
+            '& .DocSearch-NewStartScreenItemIcon': {
+              marginLeft: theme.spacing(0.5),
+              transition: 'margin 0.2s',
+              fontSize: theme.typography.pxToRem(16),
+            },
+            '& .DocSearch-Modal': {
+              maxWidth: '700px',
+              boxShadow: `0px 4px 20px ${
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.background.paper, 0.7)
+                  : alpha(theme.palette.grey[700], 0.2)
+              }`,
+              ...(theme.palette.mode === 'dark' && {
+                border: '1px solid',
+                borderColor: theme.palette.primaryDark[700],
+              }),
+              // docsearch.css: <= 750px will be full screen modal
+              borderRadius: `clamp(0px, (100vw - 750px) * 9999, ${theme.shape.borderRadius}px)`,
+            },
+            '& .DocSearch-SearchBar': {
+              borderBottom: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              padding: theme.spacing(1),
+            },
+            '& .DocSearch-Form': {
+              '& .DocSearch-Reset': {
+                display: 'none',
+              },
+              '& .DocSearch-Input': {
+                paddingLeft: theme.spacing(2.5),
+              },
+              '& .DocSearch-Search-Icon': {
+                width: '20px',
+                height: '20px',
+              },
+            },
+            '& .DocSearch-Cancel': {
+              display: 'block',
+              alignSelf: 'center',
+              height: '1.5rem',
+              marginRight: theme.spacing(1),
+              padding: theme.spacing(0.3, 0.8, 0.6, 0.8),
+              fontSize: 0,
+              borderRadius: 5,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[800]
+                  : theme.palette.grey[50],
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.grey[300],
+              '&::before': {
+                content: '"esc"',
+                fontSize: theme.typography.pxToRem(12),
+                letterSpacing: '.08rem',
+                fontWeight: 700,
+                color: theme.palette.text.secondary,
+              },
+            },
+            '& .DocSearch-Dropdown': {
+              minHeight: 384, // = StartScreen height, to prevent layout shift when first char
+              '&::-webkit-scrollbar-thumb': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[900]
+                    : theme.palette.background.paper,
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[500],
+              },
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: theme.palette.background.paper,
+              },
+            },
+            '& .DocSearch-Dropdown-Container': {
+              '& .DocSearch-Hits:first-of-type': {
+                '& .DocSearch-Hit-source': {
+                  paddingTop: theme.spacing(1),
+                },
+              },
+            },
+            '& .DocSearch-Hit-source': {
+              top: 'initial',
+              paddingTop: theme.spacing(2),
+              background: theme.palette.background.paper,
+              fontSize: theme.typography.pxToRem(13),
+              fontWeight: 500,
+              color: theme.palette.text.secondary,
+            },
+            '& .DocSearch-Hit': {
+              paddingBottom: 0,
+              '&:not(:first-of-type)': {
+                marginTop: -1,
+              },
+            },
+            '& .DocSearch-Hit a': {
+              backgroundColor: 'transparent',
+              padding: theme.spacing(0.25, 0),
+              paddingLeft: theme.spacing(2),
+              border: '1px solid transparent',
+              borderBottomColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[100],
+            },
+            '& .DocSearch-Hit-content-wrapper': {
+              paddingLeft: theme.spacing(2),
+            },
+            '& .DocSearch-Hit-title': {
+              fontSize: theme.typography.pxToRem(14),
+              color: `${theme.palette.text.primary}`,
+            },
+            '& .DocSearch-Hit-path': {
+              fontSize: theme.typography.pxToRem(12),
+              color: `${theme.palette.text.secondary}`,
+            },
+            '& .DocSearch-Hit-Select-Icon': {
+              height: '15px',
+              width: '15px',
+            },
+            '& .DocSearch-Hit[aria-selected="true"] a': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[800]
+                  : theme.palette.primary[50],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[400]
+                  : theme.palette.primary[500],
+              borderRadius: theme.shape.borderRadius,
+            },
+            '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
+              color: `${
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[400]
+                  : theme.palette.primary[500]
+              }`,
+            },
+            '& .DocSearch-Footer': {
+              borderTop: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              '& .DocSearch-Commands': {
+                display: 'none',
+              },
+            },
+          },
+        })}
       />
-      <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-        {macOS ? '⌘' : 'Ctrl+'}K
-      </div>
-    </div>
+    </React.Fragment>
   );
 }

@@ -26,7 +26,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object, switchViewButton?: object }"
+      },
+      "default": "{}"
+    },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "disableAutoMonthSwitching": { "type": { "name": "bool" } },
     "disableCloseOnSelect": {
@@ -55,8 +61,8 @@
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" }, "default": "'__/__/____'" },
-    "maxDate": { "type": { "name": "any" }, "default": "defaultMaxDate" },
-    "minDate": { "type": { "name": "any" }, "default": "defaultMinDate" },
+    "maxDate": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
@@ -94,9 +100,8 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "forwardsRefTo": "undefined",
-  "filename": "/packages/material-ui-lab/src/StaticDateRangePicker/StaticDateRangePicker.tsx",
+  "filename": "/packages/mui-lab/src/StaticDateRangePicker/StaticDateRangePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -27,14 +27,19 @@
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     },
     "TransitionProps": { "type": { "name": "object" } }
   },
@@ -62,9 +67,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Dialog/Dialog.js",
+  "filename": "/packages/mui-material/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

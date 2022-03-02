@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
-import MenuList from '@material-ui/core/MenuList';
-import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@mui/material/Paper';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
 
 export default function SimpleMenuList() {
   return (

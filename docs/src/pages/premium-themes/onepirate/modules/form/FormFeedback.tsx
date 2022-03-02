@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Box, { BoxProps as MuiBoxProps } from '@material-ui/core/Box';
+import { experimentalStyled as styled } from '@mui/material/styles';
+import Box, { BoxProps as MuiBoxProps } from '@mui/material/Box';
 import Typography from '../components/Typography';
 
 interface FormFeedbackProps extends MuiBoxProps {

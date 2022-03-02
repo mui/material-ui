@@ -1,4 +1,4 @@
-import { createRender } from '@material-ui/markdown';
+import { createRender } from '@mui/markdown';
 
 const notEnglishJsonRegExp = /-([a-z]{2})\.json$/;
 

@@ -8,6 +8,8 @@
     },
     "allowSameDateSelection": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
+    "clearable": { "type": { "name": "bool" } },
+    "clearText": { "type": { "name": "node" }, "default": "'Clear'" },
     "components": {
       "type": {
         "name": "shape",
@@ -15,7 +17,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object, switchViewButton?: object }"
+      },
+      "default": "{}"
+    },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "disableCloseOnSelect": {
       "type": { "name": "bool" },
@@ -38,6 +46,8 @@
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
+    "maxDate": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
@@ -56,6 +66,7 @@
     "orientation": {
       "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
     },
+    "PaperProps": { "type": { "name": "object" } },
     "PopperProps": { "type": { "name": "object" } },
     "readOnly": { "type": { "name": "bool" } },
     "reduceAnimations": {
@@ -94,9 +105,8 @@
   "name": "DesktopDatePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui-lab/src/DesktopDatePicker/DesktopDatePicker.tsx",
+  "filename": "/packages/mui-lab/src/DesktopDatePicker/DesktopDatePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

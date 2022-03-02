@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import { styled } from '@material-ui/core/styles';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { renderInline as renderInlineMarkdown } from '@material-ui/markdown';
+import { renderInline as renderInlineMarkdown } from '@mui/markdown';
 
 const ErrorMessageSection = styled('div')({
   // reset display: block from Demo
@@ -99,7 +99,7 @@ export default function ErrorDecoder() {
         Seems like we&apos;re having some issues loading the original message. Try
         reloading the page. If the error persists please report this isse on our{' '}
         <Link
-          href="https://github.com/mui-org/material-ui/issues/new?template=1.bug.md"
+          href="https://github.com/mui/material-ui/issues/new?template=1.bug.md"
           target="_blank"
         >
           issue tracker

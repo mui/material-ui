@@ -42,10 +42,6 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "label": {
-      "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the `label` wrapper element"
-    },
     "sizeSmall": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",

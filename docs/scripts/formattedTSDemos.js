@@ -9,7 +9,7 @@
  * List of demos to ignore when transpiling
  * Example: "app-bar/BottomAppBar.tsx"
  */
-const ignoreList = [];
+const ignoreList = ['/pages.ts'];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -34,25 +34,32 @@ const workspaceRoot = path.join(__dirname, '../../');
 async function getFiles(root) {
   const files = [];
 
-  await Promise.all(
-    (
-      await fse.readdir(root)
-    ).map(async (name) => {
-      const filePath = path.join(root, name);
-      const stat = await fse.stat(filePath);
+  try {
+    await Promise.all(
+      (
+        await fse.readdir(root)
+      ).map(async (name) => {
+        const filePath = path.join(root, name);
+        const stat = await fse.stat(filePath);
 
-      if (stat.isDirectory()) {
-        files.push(...(await getFiles(filePath)));
-      } else if (
-        stat.isFile() &&
-        /\.tsx?$/.test(filePath) &&
-        !filePath.endsWith('.d.ts') &&
-        !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
-      ) {
-        files.push(filePath);
-      }
-    }),
-  );
+        if (stat.isDirectory()) {
+          files.push(...(await getFiles(filePath)));
+        } else if (
+          stat.isFile() &&
+          /\.tsx?$/.test(filePath) &&
+          !filePath.endsWith('.d.ts') &&
+          !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
+        ) {
+          files.push(filePath);
+        }
+      }),
+    );
+  } catch (error) {
+    if (error.message?.includes('no such file or directory')) {
+      return [];
+    }
+    throw error;
+  }
 
   return files;
 }
@@ -67,7 +74,17 @@ async function transpileFile(tsxPath, program) {
   try {
     const source = await fse.readFile(tsxPath, 'utf8');
 
-    const { code } = await babel.transformAsync(source, { ...babelConfig, filename: tsxPath });
+    const transformOptions = { ...babelConfig, filename: tsxPath };
+    const enableJSXPreview = !tsxPath.includes(path.join('pages', 'premium-themes'));
+    if (enableJSXPreview) {
+      transformOptions.plugins = transformOptions.plugins.concat([
+        [
+          require.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
+          { maxLines: 16, outputFilename: `${tsxPath}.preview` },
+        ],
+      ]);
+    }
+    const { code } = await babel.transformAsync(source, transformOptions);
 
     if (/import \w* from 'prop-types'/.test(code)) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
@@ -120,11 +137,12 @@ async function main(argv) {
     console.log(`Only considering demos matching ${filePattern}`);
   }
 
-  const tsxFiles = (await getFiles(path.join(workspaceRoot, 'docs/src/pages'))).filter(
-    (fileName) => {
-      return filePattern.test(fileName);
-    },
-  );
+  const tsxFiles = [
+    ...(await getFiles(path.join(workspaceRoot, 'docs/src/pages'))), // old structure
+    ...(await getFiles(path.join(workspaceRoot, 'docs/data'))), // new structure
+  ].filter((fileName) => {
+    return filePattern.test(fileName);
+  });
 
   const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
 
