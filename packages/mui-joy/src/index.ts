@@ -36,3 +36,6 @@ export * from './Input';
 
 export { default as Sheet } from './Sheet';
 export * from './Sheet';
+
+export { default as Checkbox } from './Checkbox';
+export * from './Checkbox';

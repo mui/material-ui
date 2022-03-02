@@ -15,6 +15,7 @@ import {
   ListItemDecoratorSlot,
 } from '../ListItemDecorator/ListItemDecoratorProps';
 import { InputProps, InputSlot } from '../Input/InputProps';
+import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -83,5 +84,9 @@ export interface Components<Theme = unknown> {
   MuiSheet?: {
     defaultProps?: Partial<SheetProps>;
     styleOverrides?: OverridesStyleRules<SheetSlot, SheetProps, Theme>;
+  };
+  MuiCheckbox?: {
+    defaultProps?: Partial<CheckboxProps>;
+    styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
   };
 }
