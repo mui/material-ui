@@ -3,6 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface CheckboxClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the input element. */
+  input: string;
   /** State class applied to the input component's `checked` class. */
   checked: string;
   /** State class applied to the input component's disabled class. */
@@ -43,6 +45,7 @@ export function getCheckboxUtilityClass(slot: string): string {
 
 const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'root',
+  'input',
   'checked',
   'disabled',
   'focusVisible',
