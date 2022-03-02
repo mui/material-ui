@@ -173,7 +173,7 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
   return {
     disabled,
     error,
-    focused,
+    focused: formControlContext ? formControlContext.focused : focused,
     formControlContext,
     getInputProps,
     getRootProps,
