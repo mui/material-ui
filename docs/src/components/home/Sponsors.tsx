@@ -17,7 +17,7 @@ const Sponsors = () => {
             <GradientText>You</GradientText> make this possible
           </Typography>
         }
-        description="The continued maintenance and development of our open source tools is made possible by our generous sponsors."
+        description="The continued development of our open source tools is made possible by our generous sponsors."
       />
       <DiamondSponsors />
       <Box sx={{ mb: 4 }} />
