@@ -15,7 +15,7 @@ import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkTypeMap } from './LinkProps';
 
 const useUtilityClasses = (ownerState: LinkProps) => {
-  const { component, level, color, variant, underline, focusVisible, disabled } = ownerState;
+  const { level, color, variant, underline, focusVisible, disabled } = ownerState;
 
   const slots = {
     root: [
@@ -26,7 +26,6 @@ const useUtilityClasses = (ownerState: LinkProps) => {
       level,
       underline && `underline${capitalize(underline)}`,
       variant && `variant${capitalize(variant)}`,
-      component === 'button' && 'button',
     ],
   };
 

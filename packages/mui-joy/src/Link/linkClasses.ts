@@ -3,8 +3,6 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface LinkClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `component="button"`. */
-  button: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -63,7 +61,6 @@ export function getLinkUtilityClass(slot: string): string {
 
 const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'root',
-  'button',
   'disabled',
   'focusVisible',
   'colorPrimary',
