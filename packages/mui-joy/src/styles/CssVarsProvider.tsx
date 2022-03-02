@@ -64,20 +64,22 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     components: {
       // TODO: find a way to abstract SvgIcon out of @mui/material
       MuiSvgIcon: {
-        defaultProps: {
-          fontSize: 'xl',
-        },
         styleOverrides: {
-          root: ({ ownerState, theme }) => ({
-            ...(ownerState.fontSize &&
-              ownerState.fontSize !== 'inherit' && {
-                fontSize: theme.vars.fontSize[ownerState.fontSize],
-              }),
-            ...(ownerState.color &&
-              ownerState.color !== 'inherit' && {
-                color: theme.vars.palette[ownerState.color].textColor,
-              }),
-          }),
+          root: ({ ownerState, theme }) => {
+            return {
+              ...(ownerState.fontSize &&
+                // @ts-ignore
+                ownerState.fontSize !== 'medium' &&
+                ownerState.fontSize !== 'inherit' && {
+                  '--SvgIcon-fontSize': theme.vars.fontSize[ownerState.fontSize],
+                }),
+              fontSize: `var(--SvgIcon-fontSize, ${theme.fontSize.xl})`,
+              ...(ownerState.color &&
+                ownerState.color !== 'inherit' && {
+                  color: theme.vars.palette[ownerState.color].textColor,
+                }),
+            };
+          },
         },
       },
     } as Components<JoyTheme>,
