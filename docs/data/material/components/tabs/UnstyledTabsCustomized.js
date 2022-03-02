@@ -37,6 +37,7 @@ const Tab = styled(TabUnstyled)`
   &:hover {
     background-color: ${blue[400]};
   }
+
   &:focus {
     color: #fff;
     border-radius: 3px;
