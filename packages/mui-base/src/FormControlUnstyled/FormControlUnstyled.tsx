@@ -72,6 +72,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(props,
     onChange,
     required = false,
     value: incomingValue,
+    extraContextProperties,
     ...other
   } = props as typeof props & { component?: React.ElementType };
 
@@ -127,6 +128,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(props,
   };
 
   const childContext: FormControlUnstyledState = {
+    ...extraContextProperties,
     disabled,
     error,
     filled,

@@ -251,4 +251,19 @@ describe('<FormControlUnstyled />', () => {
       expect(handleChange.args[0][0].target).to.have.property('value', 'test');
     });
   });
+
+  describe('prop: extraContextProperties', () => {
+    it('should be able to receive extra context properies inside the child', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled<{ text: string }>();
+        return <div>{context?.text}</div>;
+      }
+      const { getByText } = render(
+        <FormControlUnstyled extraContextProperties={{ text: 'foo' }}>
+          <TestComponent />
+        </FormControlUnstyled>,
+      );
+      expect(getByText('foo')).toBeVisible();
+    });
+  });
 });
