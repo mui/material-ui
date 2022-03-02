@@ -65,7 +65,7 @@ test.describe('Material docs', () => {
       const links = await Promise.all(handles.map((elm) => elm.getAttribute('href')));
 
       links.forEach((link) => {
-        expect(link.startsWith('/material')).toBeFalsy();
+        expect(link.startsWith('/material-ui')).toBeFalsy();
       });
     });
   });

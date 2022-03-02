@@ -3,7 +3,7 @@ import camelCase from 'lodash/camelCase';
 import { replaceComponentLinks } from '../src/modules/utils/replaceUrl';
 
 export const productPathnames = {
-  material: ['/getting-started', '/components', '/customization', '/guides', '/discover-more'],
+  'material-ui': ['/getting-started', '/components', '/customization', '/guides', '/discover-more'],
   system: ['/system'],
   styles: ['/styles'],
 } as const;
@@ -49,8 +49,11 @@ export const getNewDataLocation = (
     return null;
   }
   return {
-    directory: match[1].replace('src/pages', product === 'material' ? `data/${product}` : 'data'),
-    path: filePath.replace('src/pages', product === 'material' ? `data/${product}` : 'data'),
+    directory: match[1].replace(
+      'src/pages',
+      product === 'material-ui' ? `data/${product}` : 'data',
+    ),
+    path: filePath.replace('src/pages', product === 'material-ui' ? `data/${product}` : 'data'),
   };
 };
 
@@ -63,12 +66,12 @@ export const getNewPageLocation = (
   }
   if (filePath.match('pages/components')) {
     return {
-      directory: match[1].replace('docs/pages/components', 'docs/pages/material'),
+      directory: match[1].replace('docs/pages/components', 'docs/pages/material-ui'),
       path: replaceComponentLinks(filePath),
     };
   }
   return {
-    directory: match[1].replace('docs/pages', 'docs/pages/material'),
-    path: filePath.replace('docs/pages', 'docs/pages/material'),
+    directory: match[1].replace('docs/pages', 'docs/pages/material-ui'),
+    path: filePath.replace('docs/pages', 'docs/pages/material-ui'),
   };
 };

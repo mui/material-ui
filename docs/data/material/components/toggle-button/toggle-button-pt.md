@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Botões de Alternância
 components: ToggleButton, ToggleButtonGroup
 githubLabel: 'component: toggle button'

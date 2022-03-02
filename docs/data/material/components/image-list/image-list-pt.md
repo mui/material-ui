@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Lista de Imagem
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://material.io/components/image-lists

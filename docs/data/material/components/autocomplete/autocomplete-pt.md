@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Autocompletar
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'

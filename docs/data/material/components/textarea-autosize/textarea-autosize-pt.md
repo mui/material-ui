@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React de texto autoajustável
 components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'

@@ -8,7 +8,7 @@ export function isNewLocation(url: string) {
   }
   return (
     url.startsWith('/x') ||
-    url.startsWith('/material') ||
+    url.startsWith('/material-ui') ||
     url.startsWith('/base') ||
     (FEATURE_TOGGLE.enable_system_scope && url.startsWith('/system'))
   );
@@ -20,7 +20,7 @@ export const replaceMaterialLinks = (url: string) => {
   }
   return url.replace(
     new RegExp(`(guides|customization|getting-started|discover-more)`),
-    'material/$1',
+    'material-ui/$1',
   );
 };
 
@@ -33,9 +33,9 @@ export const replaceComponentLinks = (url: string) => {
     return url;
   }
   if (url.match(/components\/(icons|material-icons|transitions|pickers|about-the-lab)/)) {
-    url = url.replace(/\/components\/(.*)/, '/material/$1');
+    url = url.replace(/\/components\/(.*)/, '/material-ui/$1');
   } else {
-    url = url.replace(/\/components\/(.*)/, '/material/react-$1');
+    url = url.replace(/\/components\/(.*)/, '/material-ui/react-$1');
     if (!url.match(/\/react-(tabs|breadcrumbs)/)) {
       url = url
         .replace(/(react-[-a-z]+)(x|ch)es([^a-z-])/, '$1$2$3')
@@ -67,14 +67,14 @@ export const replaceAPILinks = (url: string) => {
 
   url = url.replace(
     /\/api\/(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)(.*)/,
-    '/material/api/$1$2',
+    '/material-ui/api/$1$2',
   );
 
   if (isNewLocation(url)) {
     return url;
   }
 
-  return url.replace(/\/api\/(.*)/, '/material/api/$1');
+  return url.replace(/\/api\/(.*)/, '/material-ui/api/$1');
 };
 
 export default function replaceUrl(url: string, asPath: string) {
