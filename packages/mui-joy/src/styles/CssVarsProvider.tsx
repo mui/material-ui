@@ -62,6 +62,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       dark: darkColorSystem,
     },
     components: {
+      // TODO: find a way to abstract SvgIcon out of @mui/material
       MuiSvgIcon: {
         defaultProps: {
           fontSize: 'xl',
