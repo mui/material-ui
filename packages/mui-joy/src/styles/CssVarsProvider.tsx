@@ -14,7 +14,7 @@ import defaultTheme, {
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Variants } from './types/variants';
 import { ColorSystem } from './types/colorSystem';
-import { TypographySystem } from './types/typography';
+import { TypographySystem, FontSize } from './types/typography';
 import { Components } from './components';
 import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
 
@@ -64,22 +64,24 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     components: {
       // TODO: find a way to abstract SvgIcon out of @mui/material
       MuiSvgIcon: {
-        // Note: do not specify default props here because it will break the adaptive component.
-        //       To fix this we need to know if developer pass fontSize through `inProps` or not which is impossible right not in theming
-        //       because `ownerState.fontSize` is the merged value by theme default props.
+        defaultProps: {
+          fontSize: 'xl',
+        },
         styleOverrides: {
           root: ({ ownerState, theme }) => {
+            const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
             return {
-              fontSize: `var(--Icon-fontSize, ${theme.fontSize.xl})`,
+              ...(ownerState.fontSize &&
+                ownerState.fontSize !== 'inherit' && {
+                  fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
+                }),
               ...(ownerState.color &&
                 ownerState.color !== 'inherit' && {
                   color: theme.vars.palette[ownerState.color].textColor,
                 }),
-              ...(ownerState.fontSize &&
-                // @ts-ignore
-                ownerState.fontSize !== 'medium' &&
-                ownerState.fontSize !== 'inherit' && {
-                  '--Icon-fontSize': theme.vars.fontSize[ownerState.fontSize],
+              ...(instanceFontSize &&
+                instanceFontSize !== 'inherit' && {
+                  '--Icon-fontSize': theme.vars.fontSize[instanceFontSize],
                 }),
             };
           },
