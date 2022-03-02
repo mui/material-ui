@@ -56,30 +56,27 @@ const LinkRoot = styled(Typography, {
           textDecorationColor: 'inherit',
         },
       }),
-      // Same reset as ButtonBase.root
-      ...(ownerState.component === 'button' && {
-        position: 'relative',
-        WebkitTapHighlightColor: 'transparent',
-        backgroundColor: 'transparent', // Reset default value
-        // We disable the focus ring for mouse, touch and keyboard users.
-        outline: 0,
-        border: 0,
-        margin: 0, // Remove the margin in Safari
-        borderRadius: 0,
-        padding: 0, // Remove the padding in Firefox
-        ...(!!ownerState.variant && {
-          paddingInline: '0.25em', // better than left, right because it also works with writing mode.
-          marginInline: '-0.25em',
-        }),
-        userSelect: 'none',
-        verticalAlign: 'middle',
-        MozAppearance: 'none', // Reset
-        WebkitAppearance: 'none', // Reset
-        '&::-moz-focus-inner': {
-          borderStyle: 'none', // Remove Firefox dotted outline.
-        },
-        [`&.${linkClasses.focusVisible}`]: theme.focus.default,
+      position: 'relative',
+      WebkitTapHighlightColor: 'transparent',
+      backgroundColor: 'transparent', // Reset default value
+      // We disable the focus ring for mouse, touch and keyboard users.
+      outline: 0,
+      border: 0,
+      margin: 0, // Remove the margin in Safari
+      borderRadius: 0,
+      padding: 0, // Remove the padding in Firefox
+      ...(!!ownerState.variant && {
+        paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+        marginInline: '-0.25em',
       }),
+      userSelect: 'none',
+      verticalAlign: 'middle',
+      MozAppearance: 'none', // Reset
+      WebkitAppearance: 'none', // Reset
+      '&::-moz-focus-inner': {
+        borderStyle: 'none', // Remove Firefox dotted outline.
+      },
+      [`&.${linkClasses.focusVisible}`]: theme.focus.default,
       color: theme.vars.palette[ownerState.color!]?.textColor,
       cursor: 'pointer',
     },
