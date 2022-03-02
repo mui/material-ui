@@ -9,8 +9,8 @@ The default locale of MUI is English (United States). 如果您想使用其他�
 使用 theme 来全局地配置语言环境文本：
 
 ```jsx
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { zhCN } from '@material-ui/core/locale';
+import { createTheme, ThemeProvider } from '@mui/core/styles';
+import { zhCN } from '@mui/core/locale';
 
 const theme = createTheme(
   {
@@ -34,12 +34,55 @@ const theme = createTheme(
 
 ### 支持的地区
 
-| 地区 | BCP 47 语言标签 | 导入名称 |
-|:-- | ----------- | ---- |
-|    |             |      |
- product: material-------------------- |:----------- |:------ | | Amharic | am-ET | 
-
-`amET` | | Arabic (Egypt) | ar-EG | `arEG` | | Arabic (Sudan) | ar-SD | `arSD` | | 亚美尼亚语 | hy-AM | `hyAM` | | 阿塞拜疆语 | az-AZ | `azAZ` | | Bangla | bn-BD | `bnBD` | | 保加利亚语 | bg-BG | `bgBG` | | 加泰罗尼亚语 | ca-ES | `caES` | | Chinese (Hong Kong) | zh-HK | `zhHK` | | 简体中文 | zh-CN | `zhCN` | | Chinese (Taiwan) | zh-TW | `zhTW` | | 捷克语 | cs-CZ | `csCZ` | | Danish | da-DK | `daDK` | | Dutch | nl-NL | `nlNL` | | English (United States) | en-US | `enUS` | | Estonian | et-EE | `etEE` | | Finnish | fi-FI | `fiFI` | | French | fr-FR | `frFR` | | German | de-DE | `deDE` | | Greek | el-GR | `elGR` | | Hebrew | he-IL | `heIL` | | Hindi | hi-IN | `hiIN` | | Hungarian | hu-HU | `huHU` | | Icelandic | is-IS | `isIS` | | Indonesian | id-ID | `idID` | | Italian | it-IT | `itIT` | | Japanese | ja-JP | `jaJP` | | Khmer | kh-KH | `khKH` | | Kazakh | kz-KZ | `kzKZ` | | Korean | ko-KR | `koKR` | | Persian | fa-IR | `faIR` | | Polish | pl-PL | `plPL` | | Portuguese | pt-PT | `ptPT` | | Portuguese (Brazil) | pt-BR | `ptBR` | | Romanian | ro-RO | `roRO` | | Russian | ru-RU | `ruRU` | | Sinhalese | si-LK | `siLK` | | Slovak | sk-SK | `skSK` | | Spanish | es-ES | `esES` | | Swedish | sv-SE | `svSE` | | Thai | th-TH | `thTH` | | Turkish | tr-TR | `trTR` | | Ukrainian | uk-UA | `ukUA` | | Vietnamese | vi-VN | `viVN` |
+| 地区                      | BCP 47 语言标签 | 导入名称   |
+|:----------------------- |:----------- |:------ |
+| Amharic                 | am-ET       | `amET` |
+| Arabic (Egypt)          | ar-EG       | `arEG` |
+| Arabic (Sudan)          | ar-SD       | `arSD` |
+| Armenian                | hy-AM       | `hyAM` |
+| Azerbaijani             | az-AZ       | `azAZ` |
+| Bangla                  | bn-BD       | `bnBD` |
+| Bulgarian               | bg-BG       | `bgBG` |
+| Catalan                 | ca-ES       | `caES` |
+| Chinese (Hong Kong)     | zh-HK       | `zhHK` |
+| Chinese (Simplified)    | zh-CN       | `zhCN` |
+| Chinese (Taiwan)        | zh-TW       | `zhTW` |
+| Croatian                | hr-HR       | `hrHR` |
+| Czech                   | cs-CZ       | `csCZ` |
+| Danish                  | da-DK       | `daDK` |
+| Dutch                   | nl-NL       | `nlNL` |
+| English (United States) | en-US       | `enUS` |
+| Estonian                | et-EE       | `etEE` |
+| Finnish                 | fi-FI       | `fiFI` |
+| French                  | fr-FR       | `frFR` |
+| German                  | de-DE       | `deDE` |
+| Greek                   | el-GR       | `elGR` |
+| Hebrew                  | he-IL       | `heIL` |
+| Hindi                   | hi-IN       | `hiIN` |
+| Hungarian               | hu-HU       | `huHU` |
+| Icelandic               | is-IS       | `isIS` |
+| Indonesian              | id-ID       | `idID` |
+| Italian                 | it-IT       | `itIT` |
+| Japanese                | ja-JP       | `jaJP` |
+| Khmer                   | kh-KH       | `khKH` |
+| Kazakh                  | kz-KZ       | `kzKZ` |
+| Korean                  | ko-KR       | `koKR` |
+| Norwegian (bokmål)      | nb-NO       | `nbNO` |
+| Persian                 | fa-IR       | `faIR` |
+| Polish                  | pl-PL       | `plPL` |
+| Portuguese              | pt-PT       | `ptPT` |
+| Portuguese (Brazil)     | pt-BR       | `ptBR` |
+| Romanian                | ro-RO       | `roRO` |
+| Russian                 | ru-RU       | `ruRU` |
+| Serbian                 | sr-RS       | `srRS` |
+| Sinhalese               | si-LK       | `siLK` |
+| Slovak                  | sk-SK       | `skSK` |
+| Spanish                 | es-ES       | `esES` |
+| Swedish                 | sv-SE       | `svSE` |
+| Thai                    | th-TH       | `thTH` |
+| Turkish                 | tr-TR       | `trTR` |
+| Ukrainian               | uk-UA       | `ukUA` |
+| Vietnamese              | vi-VN       | `viVN` |
 
 <!-- #default-branch-switch -->
 
