@@ -82,8 +82,7 @@ const LinkRoot = styled(Typography, {
     ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
     ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
     ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
-    ownerState.variant &&
-      theme.variants[`${ownerState.variant || 'text'}Disabled`]?.[ownerState.color!],
+    theme.variants[`${ownerState.variant || 'text'}Disabled`]?.[ownerState.color!],
   ];
 });
 
