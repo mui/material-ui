@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type FormControlUnstyledState = {
+export interface FormControlUnstyledState {
   disabled?: boolean;
   error?: boolean;
   filled?: boolean;
@@ -11,7 +11,7 @@ export type FormControlUnstyledState = {
   onFocus?: () => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   registerEffect?: () => void;
-};
+}
 
 /**
  * @ignore - internal component.
