@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MenuUnstyled from '@mui/base/MenuUnstyled';
+import MenuUnstyled, { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, {
   menuItemUnstyledClasses,
 } from '@mui/base/MenuItemUnstyled';
@@ -149,6 +149,7 @@ export default function WrappedMenuItems() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const isOpen = Boolean(anchorEl);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const menuActions = React.useRef<MenuUnstyledActions>(null);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isOpen) {
@@ -162,6 +163,9 @@ export default function WrappedMenuItems() {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       setAnchorEl(event.currentTarget);
+      if (event.key === 'ArrowUp') {
+        menuActions.current?.highlightLastItem();
+      }
     }
   };
 
@@ -184,6 +188,7 @@ export default function WrappedMenuItems() {
         Options
       </TriggerButton>
       <MenuUnstyled
+        actions={menuActions}
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}

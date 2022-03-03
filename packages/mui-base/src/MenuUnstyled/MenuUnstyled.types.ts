@@ -4,7 +4,16 @@ import { UseMenuListboxSlotProps } from './useMenu.types';
 
 export interface MenuUnstyledComponentsPropsOverrides {}
 
+export interface MenuUnstyledActions {
+  highlightFirstItem: () => void;
+  highlightLastItem: () => void;
+}
+
 export interface MenuUnstyledProps {
+  /**
+   * Actions to highlight memu items.
+   */
+  actions?: React.Ref<MenuUnstyledActions>;
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.

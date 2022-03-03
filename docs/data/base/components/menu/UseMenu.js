@@ -98,6 +98,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     unregisterItem,
     getItemState,
     getItemProps,
+    open: true,
   };
 
   return (

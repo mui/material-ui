@@ -150,6 +150,7 @@ export default function WrappedMenuItems() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isOpen = Boolean(anchorEl);
   const buttonRef = React.useRef(null);
+  const menuActions = React.useRef(null);
 
   const handleButtonClick = (event) => {
     if (isOpen) {
@@ -163,6 +164,9 @@ export default function WrappedMenuItems() {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       setAnchorEl(event.currentTarget);
+      if (event.key === 'ArrowUp') {
+        menuActions.current?.highlightLastItem();
+      }
     }
   };
 
@@ -185,6 +189,7 @@ export default function WrappedMenuItems() {
         Options
       </TriggerButton>
       <MenuUnstyled
+        actions={menuActions}
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}

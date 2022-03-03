@@ -40,6 +40,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
   forwardedRef: React.Ref<any>,
 ) {
   const {
+    actions,
     anchorEl,
     children,
     className,
@@ -67,7 +68,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
   });
 
   React.useImperativeHandle(
-    forwardedRef,
+    actions,
     () => ({
       highlightFirstItem,
       highlightLastItem,
