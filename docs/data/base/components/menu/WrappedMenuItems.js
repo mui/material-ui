@@ -175,6 +175,14 @@ export default function WrappedMenuItems() {
     buttonRef.current.focus();
   };
 
+  const createHandleMenuClick = (menuItem) => {
+    return () => {
+      // eslint-disable-next-line no-console
+      console.log(`Clicked on ${menuItem}`);
+      close();
+    };
+  };
+
   return (
     <div>
       <TriggerButton
@@ -197,17 +205,31 @@ export default function WrappedMenuItems() {
         componentsProps={{ listbox: { id: 'simple-menu' } }}
       >
         <MenuSection label="Navigation">
-          <StyledMenuItem onClick={() => close()}>Back</StyledMenuItem>
-          <StyledMenuItem disabled>Forward</StyledMenuItem>
-          <StyledMenuItem onClick={() => close()}>Refresh</StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Back')}>
+            Back
+          </StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Forward')} disabled>
+            Forward
+          </StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Refresh')}>
+            Refresh
+          </StyledMenuItem>
         </MenuSection>
         <MenuSection label="Page">
-          <StyledMenuItem onClick={() => close()}>Save as</StyledMenuItem>
-          <StyledMenuItem onClick={() => close()}>Print</StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Save as...')}>
+            Save as...
+          </StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Print...')}>
+            Print...
+          </StyledMenuItem>
         </MenuSection>
         <MenuSection label="View">
-          <StyledMenuItem onClick={() => close()}>Zoom in</StyledMenuItem>
-          <StyledMenuItem onClick={() => close()}>Zoom out</StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Zoom in')}>
+            Zoom in
+          </StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Zoom out')}>
+            Zoom out
+          </StyledMenuItem>
         </MenuSection>
         <li className="helper">Current zoom level: 100%</li>
       </MenuUnstyled>

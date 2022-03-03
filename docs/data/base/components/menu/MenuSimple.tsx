@@ -138,6 +138,14 @@ export default function UnstyledMenuSimple() {
     buttonRef.current!.focus();
   };
 
+  const createHandleMenuClick = (menuItem: string) => {
+    return () => {
+      // eslint-disable-next-line no-console
+      console.log(`Clicked on ${menuItem}`);
+      close();
+    };
+  };
+
   return (
     <div>
       <TriggerButton
@@ -160,9 +168,13 @@ export default function UnstyledMenuSimple() {
         components={{ Root: Popper, Listbox: StyledListbox }}
         componentsProps={{ listbox: { id: 'simple-menu' } }}
       >
-        <StyledMenuItem onClick={() => close()}>English</StyledMenuItem>
-        <StyledMenuItem onClick={() => close()}>中文</StyledMenuItem>
-        <StyledMenuItem onClick={() => close()}>Português</StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('English')}>
+          English
+        </StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('中文')}>中文</StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('Português')}>
+          Português
+        </StyledMenuItem>
       </MenuUnstyled>
     </div>
   );
