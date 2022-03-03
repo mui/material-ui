@@ -389,19 +389,25 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       foundMatch = true;
     }
 
-    const hasOptionSelected = () => {
-      if (arr.find((item) => areEqualValues(value, item.props.value))) {
-        return selected;
-      }
-      return true;
-    };
-
     if (child.props.value === undefined) {
       return React.cloneElement(child, {
         'aria-readonly': true,
         role: 'option',
       });
     }
+
+    const isFirstSelectableElement = () => {
+      const firstSelectableElement = arr.find(
+        (item) => item.props.value !== undefined && item.props.disabled !== true,
+      );
+      if (child === firstSelectableElement) {
+        if (value) {
+          return selected;
+        }
+        return true;
+      }
+      return selected;
+    };
 
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
@@ -419,7 +425,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         }
       },
       role: 'option',
-      selected: index === 1 && arr[0].props.value === undefined ? hasOptionSelected() : selected,
+      selected:
+        arr[0].props.value === undefined || arr[0].props.disabled === true
+          ? isFirstSelectableElement()
+          : selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
       'data-value': child.props.value, // Instead, we provide it as a data attribute.
     });
