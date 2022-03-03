@@ -33,7 +33,63 @@ const ColorSchemePicker = () => {
 
 export default function Page() {
   return (
-    <CssVarsProvider>
+    <CssVarsProvider
+      theme={{
+        colorSchemes: {
+          light: {
+            palette: {
+              primary: {
+                mainChannel: '25 117 210',
+              },
+              secondary: {
+                mainChannel: '156 39 176',
+              },
+              error: {
+                mainChannel: '211 47 47',
+              },
+              info: {
+                mainChannel: '2 136 209',
+              },
+              success: {
+                mainChannel: '46 125 50',
+              },
+              warning: {
+                mainChannel: '237 108 2',
+              },
+            },
+          },
+          dark: {
+            palette: {
+              primary: {
+                mainChannel: '144 202 249',
+              },
+              secondary: {
+                mainChannel: '206 147 216',
+              },
+              error: {
+                mainChannel: '244 67 54',
+              },
+              info: {
+                mainChannel: '41 182 246',
+              },
+              success: {
+                mainChannel: '102 187 106',
+              },
+              warning: {
+                mainChannel: '255 167 38',
+              },
+            },
+          },
+        },
+        opacity: {
+          active: 0.54,
+          hover: 0.04,
+          selected: 0.08,
+          disabled: 0.26,
+          focus: 0.12,
+        },
+      }}
+    >
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ pb: 4 }}>
           <ColorSchemePicker />
