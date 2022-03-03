@@ -18,7 +18,7 @@ export default function TableOfContentsBanner() {
         backgroundColor:
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primary[900], 0.2)
-            : alpha(theme.palette.grey[50], 0.5),
+            : alpha(theme.palette.grey[50], 0.4),
         border: '1px solid',
         borderColor:
           theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200],
@@ -30,7 +30,7 @@ export default function TableOfContentsBanner() {
           borderColor:
             theme.palette.mode === 'dark'
               ? theme.palette.primaryDark[500]
-              : theme.palette.grey[300],
+              : theme.palette.primary[200],
         },
       })}
     >
