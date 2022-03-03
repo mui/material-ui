@@ -1,7 +1,9 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { alpha } from '@mui/material/styles';
 
 export default function TableOfContentsBanner() {
   return FEATURE_TOGGLE.enable_toc_banner ? (
@@ -13,6 +15,10 @@ export default function TableOfContentsBanner() {
         display: 'flex',
         flexDirection: 'column',
         overflow: 'auto',
+        backgroundColor:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primary[900], 0.2)
+            : alpha(theme.palette.grey[50], 0.5),
         border: '1px solid',
         borderColor:
           theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200],
@@ -28,34 +34,24 @@ export default function TableOfContentsBanner() {
         },
       })}
     >
-      <Typography
-        component="span"
-        variant="caption"
-        fontWeight="500"
-        color="text.primary"
-        sx={(theme) => ({
-          p: 1,
-          backgroundColor:
-            theme.palette.mode === 'dark' ? 'rgba(0, 87, 183, 0.2)' : 'rgba(0, 87, 183, 0.1)',
-        })}
-      >
-        MUI stands in solidarity with the Ukrainian people against the Russian invasion.
-        <br />
-      </Typography>
-      <Typography
-        component="span"
-        variant="caption"
-        fontWeight="normal"
-        color="text.primary"
-        sx={(theme) => ({
-          p: 1,
-          width: '100%',
-          backgroundColor:
-            theme.palette.mode === 'dark' ? 'rgba(255, 215, 0, 0.16)' : 'rgba(255, 215, 0, 0.08)',
-        })}
-      >
-        Find out here how you can help.
-      </Typography>
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ height: '12px', backgroundColor: '#0057b7' }} />
+        <Box sx={{ height: '12px', backgroundColor: '#ffd700' }} />
+      </Box>
+      <Box sx={{ p: 1 }}>
+        <Typography
+          component="span"
+          variant="caption"
+          fontWeight="500"
+          color="text.primary"
+          sx={{ mb: 1 }}
+        >
+          MUI stands in solidarity with the Ukrainian people against the Russian invasion.
+        </Typography>
+        <Typography component="span" variant="caption" fontWeight="normal" color="text.secondary">
+          Find out here how you can help.
+        </Typography>
+      </Box>
     </Link>
   ) : null;
 }
