@@ -10,13 +10,41 @@ import {
 import { MenuItemMetadata, MenuItemState, UseMenuParameters } from './useMenu.types';
 import { EventHandlers } from '../utils';
 
+function stateReducer(
+  state: ListboxState<string>,
+  action: ListboxAction<string>,
+): ListboxState<string> {
+  if (
+    action.type === ActionTypes.blur ||
+    action.type === ActionTypes.optionHover ||
+    action.type === ActionTypes.setValue
+  ) {
+    return state;
+  }
+
+  const newState = defaultListboxReducer(state, action);
+
+  if (
+    action.type !== ActionTypes.setHighlight &&
+    newState.highlightedValue === null &&
+    action.props.options.length > 0
+  ) {
+    return {
+      ...newState,
+      highlightedValue: action.props.options[0],
+    };
+  }
+
+  return newState;
+}
+
 export default function useMenu(parameters: UseMenuParameters) {
   const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;
 
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
 
   const listboxRef = React.useRef<HTMLElement | null>(null);
-  const intermediaryListboxRef = useForkRef(listboxRefProp, listboxRef);
+  const handleRef = useForkRef(listboxRef, listboxRefProp);
 
   const registerItem = React.useCallback((id, metadata) => {
     setMenuItems((previousState) => {
@@ -34,49 +62,13 @@ export default function useMenu(parameters: UseMenuParameters) {
     });
   }, []);
 
-  const stateReducer = (state: ListboxState<string>, action: ListboxAction<string>) => {
-    if (action.type === ActionTypes.blur || action.type === ActionTypes.optionHover) {
-      return state;
-    }
-
-    const newState = defaultListboxReducer(state, action);
-
-    if (newState.highlightedIndex === -1 && action.props.options.length > 0) {
-      return {
-        ...newState,
-        highlightedIndex: 0,
-      };
-    }
-
-    return newState;
-  };
-
-  // Ensure the menu is focused after opening
-  const [focusRequested, requestFocus] = React.useState(false);
-
-  const focusMenuIfRequested = React.useCallback(() => {
-    if (focusRequested && listboxRef.current != null) {
-      listboxRef.current.focus();
-      requestFocus(false);
-    }
-  }, [focusRequested]);
-
-  const updateMenuRef = (listboxElement: HTMLUListElement) => {
-    listboxRef.current = listboxElement;
-    focusMenuIfRequested();
-  };
-
-  const handleRef = useForkRef(intermediaryListboxRef, updateMenuRef);
-
-  React.useEffect(() => {
-    focusMenuIfRequested();
-  }, [focusMenuIfRequested]);
-
-  React.useEffect(() => {
-    requestFocus(open ?? false);
-  }, [open]);
-
-  const { getOptionState, getOptionProps, getRootProps, highlightedOption } = useListbox({
+  const {
+    getOptionState,
+    getOptionProps,
+    getRootProps,
+    highlightedOption,
+    setHighlightedValue: setListboxHighlight,
+  } = useListbox({
     options: Object.keys(menuItems),
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
     listboxRef: handleRef,
@@ -85,6 +77,24 @@ export default function useMenu(parameters: UseMenuParameters) {
     stateReducer,
     disabledItemsFocusable: true,
   });
+
+  const highlightFirstItem = React.useCallback(() => {
+    if (Object.keys(menuItems).length > 0) {
+      setListboxHighlight(menuItems[Object.keys(menuItems)[0]].id);
+    }
+  }, [menuItems, setListboxHighlight]);
+
+  const highlightLastItem = React.useCallback(() => {
+    if (Object.keys(menuItems).length > 0) {
+      setListboxHighlight(menuItems[Object.keys(menuItems)[Object.keys(menuItems).length - 1]].id);
+    }
+  }, [menuItems, setListboxHighlight]);
+
+  React.useEffect(() => {
+    if (!open) {
+      highlightFirstItem();
+    }
+  }, [open, highlightFirstItem]);
 
   const createHandleKeyDown = (otherHandlers?: EventHandlers) => (e: React.KeyboardEvent) => {
     otherHandlers?.onKeyDown?.(e);
@@ -123,8 +133,8 @@ export default function useMenu(parameters: UseMenuParameters) {
   });
 
   const getItemState = (id: string): MenuItemState => {
-    const { disabled } = getOptionState(id);
-    return { disabled };
+    const { disabled, highlighted } = getOptionState(id);
+    return { disabled, highlighted };
   };
 
   React.useDebugValue({ menuItems, highlightedOption });
@@ -137,5 +147,7 @@ export default function useMenu(parameters: UseMenuParameters) {
     getItemState,
     getItemProps: getOptionProps,
     highlightedOption,
+    highlightFirstItem,
+    highlightLastItem,
   };
 }

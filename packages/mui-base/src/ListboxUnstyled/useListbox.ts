@@ -14,6 +14,7 @@ import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
+const defaultIsOptionDisabled = () => false;
 
 export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
@@ -21,7 +22,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     disableListWrap = false,
     focusManagement = 'activeDescendant',
     id: idProp,
-    isOptionDisabled = () => false,
+    isOptionDisabled = defaultIsOptionDisabled,
     listboxRef: externalListboxRef,
     multiple = false,
     optionComparer = defaultOptionComparer,
@@ -39,8 +40,9 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const propsWithDefaults: UseListboxStrictProps<TOption> = {
     ...props,
-    disableListWrap,
     disabledItemsFocusable,
+    disableListWrap,
+    focusManagement,
     isOptionDisabled,
     multiple,
     optionComparer,
@@ -49,11 +51,17 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
 
-  const [{ highlightedIndex, selectedValue }, dispatch] = useControllableReducer(
+  const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
     propsWithDefaults,
   );
+
+  const highlightedIndex = React.useMemo(() => {
+    return highlightedValue == null
+      ? -1
+      : options.findIndex((option) => optionComparer(option, highlightedValue));
+  }, [highlightedValue, options, optionComparer]);
 
   const previousOptions = React.useRef<TOption[]>([]);
 
@@ -74,6 +82,26 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     // No need to re-run this effect if props change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, optionComparer, dispatch]);
+
+  const setSelectedValue = React.useCallback(
+    (option: TOption | TOption[] | null) => {
+      dispatch({
+        type: ActionTypes.setValue,
+        value: option,
+      });
+    },
+    [dispatch],
+  );
+
+  const setHighlightedValue = React.useCallback(
+    (option: TOption | null) => {
+      dispatch({
+        type: ActionTypes.setHighlight,
+        highlight: option,
+      });
+    },
+    [dispatch],
+  );
 
   const createHandleOptionClick =
     (option: TOption, other: Record<string, React.EventHandler<any>>) =>
@@ -166,8 +194,8 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     return {
       ...otherHandlers,
       'aria-activedescendant':
-        focusManagement === 'activeDescendant' && highlightedIndex >= 0
-          ? optionIdGenerator(options[highlightedIndex], highlightedIndex)
+        focusManagement === 'activeDescendant' && highlightedValue != null
+          ? optionIdGenerator(highlightedValue, highlightedIndex)
           : undefined,
       id,
       onBlur: createHandleBlur(otherHandlers),
@@ -244,5 +272,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     getOptionState,
     highlightedOption: options[highlightedIndex] ?? null,
     selectedOption: selectedValue,
+    setSelectedValue,
+    setHighlightedValue,
   };
 }

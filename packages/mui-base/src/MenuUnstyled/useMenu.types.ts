@@ -9,6 +9,7 @@ export interface MenuItemMetadata {
 
 export interface MenuItemState {
   disabled: boolean;
+  highlighted: boolean;
 }
 
 export interface UseMenuParameters {

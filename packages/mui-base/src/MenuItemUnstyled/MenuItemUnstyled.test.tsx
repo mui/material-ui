@@ -15,6 +15,7 @@ const testContext = {
   getItemProps: () => ({}),
   registerItem: () => {},
   unregisterItem: () => {},
+  open: false,
 };
 
 describe('MenuItemUnstyled', () => {

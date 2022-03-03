@@ -51,12 +51,29 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
     ...other
   } = props;
 
-  const { registerItem, unregisterItem, getListboxProps, getItemProps, getItemState } = useMenu({
+  const {
+    registerItem,
+    unregisterItem,
+    getListboxProps,
+    getItemProps,
+    getItemState,
+    highlightFirstItem,
+    highlightLastItem,
+  } = useMenu({
     open,
     onClose,
     listboxRef: componentsProps.listbox?.ref,
     listboxId: componentsProps.listbox?.id,
   });
+
+  React.useImperativeHandle(
+    forwardedRef,
+    () => ({
+      highlightFirstItem,
+      highlightLastItem,
+    }),
+    [highlightFirstItem, highlightLastItem],
+  );
 
   const ownerState: MenuUnstyledOwnerState = {
     ...props,
@@ -72,6 +89,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       ...other,
       anchorEl,
       open,
+      keepMounted: true,
       role: undefined,
       ...componentsProps.root,
       className: clsx(classes.root, className, componentsProps.root?.className),
@@ -95,6 +113,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
     unregisterItem,
     getItemState,
     getItemProps,
+    open,
   };
 
   return (

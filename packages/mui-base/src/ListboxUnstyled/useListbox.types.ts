@@ -22,7 +22,8 @@ enum ActionTypes {
   optionClick = 'optionClick',
   optionHover = 'optionHover',
   optionsChange = 'optionsChange',
-  setControlledValue = 'setControlledValue',
+  setValue = 'setValue',
+  setHighlight = 'setHighlight',
 }
 
 // split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
@@ -60,10 +61,14 @@ interface KeyDownAction<TOption> {
   props: UseListboxStrictProps<TOption>;
 }
 
-interface SetControlledValueAction<TOption> {
-  type: ActionTypes.setControlledValue;
+interface SetValueAction<TOption> {
+  type: ActionTypes.setValue;
   value: TOption | TOption[] | null;
-  props: UseListboxStrictProps<TOption>;
+}
+
+interface SetHighlightAction<TOption> {
+  type: ActionTypes.setHighlight;
+  highlight: TOption | null;
 }
 
 interface OptionsChangeAction<TOption> {
@@ -79,11 +84,12 @@ export type ListboxAction<TOption> =
   | FocusAction<TOption>
   | BlurAction<TOption>
   | KeyDownAction<TOption>
-  | SetControlledValueAction<TOption>
+  | SetHighlightAction<TOption>
+  | SetValueAction<TOption>
   | OptionsChangeAction<TOption>;
 
 export interface ListboxState<TOption> {
-  highlightedIndex: number;
+  highlightedValue: TOption | null;
   selectedValue: TOption | TOption[] | null;
 }
 

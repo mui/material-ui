@@ -113,6 +113,8 @@ export default function UnstyledMenuSimple() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const isOpen = Boolean(anchorEl);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
+  // TODO: Use correct type
+  const menuRef = React.useRef<any>(null);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isOpen) {
@@ -126,6 +128,9 @@ export default function UnstyledMenuSimple() {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       setAnchorEl(event.currentTarget);
+      if (event.key === 'ArrowUp') {
+        menuRef.current.highlightLastItem();
+      }
     }
   };
 
@@ -154,6 +159,7 @@ export default function UnstyledMenuSimple() {
         anchorEl={anchorEl}
         components={{ Root: Popper, Listbox: StyledListbox }}
         componentsProps={{ listbox: { id: 'simple-menu' } }}
+        ref={menuRef}
       >
         <StyledMenuItem onClick={() => close()}>English</StyledMenuItem>
         <StyledMenuItem onClick={() => close()}>中文</StyledMenuItem>

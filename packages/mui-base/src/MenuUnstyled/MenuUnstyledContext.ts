@@ -9,6 +9,7 @@ export interface MenuUnstyledContextType {
     id: string,
     otherHandlers?: Record<string, React.EventHandler<any>>,
   ) => Record<string, any>;
+  open: boolean;
 }
 
 const MenuUnstyledContext = React.createContext<MenuUnstyledContextType | null>(null);

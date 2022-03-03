@@ -42,6 +42,7 @@ export type MenuUnstyledRootSlotProps = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: React.ReactNode;
   className: string | undefined;
+  keepMounted: PopperUnstyledProps['keepMounted'];
   open: boolean;
   ownerState: MenuUnstyledOwnerState;
 };

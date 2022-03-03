@@ -17,7 +17,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
     throw new Error('MenuItemUnstyled must be used within a MenuUnstyled');
   }
 
-  const { registerItem, unregisterItem } = menuContext;
+  const { registerItem, unregisterItem, open } = menuContext;
 
   React.useEffect(() => {
     if (id === undefined) {
@@ -34,7 +34,30 @@ export default function useMenuItem(props: UseMenuItemParameters) {
     ref: handleRef,
     disabled,
   });
+
+  // Ensure the menu item is focused when highlighted
+  const [focusRequested, requestFocus] = React.useState(false);
+
+  const focusIfRequested = React.useCallback(() => {
+    if (focusRequested && itemRef.current != null) {
+      itemRef.current.focus();
+      requestFocus(false);
+    }
+  }, [focusRequested]);
+
+  React.useEffect(() => {
+    focusIfRequested();
+  });
+
   React.useDebugValue({ id, disabled });
+
+  const itemState = menuContext.getItemState(id ?? '');
+
+  const { highlighted } = itemState ?? { highlighted: false };
+
+  React.useEffect(() => {
+    requestFocus(highlighted && open);
+  }, [highlighted, open]);
 
   if (id === undefined) {
     return {
@@ -47,8 +70,6 @@ export default function useMenuItem(props: UseMenuItemParameters) {
       focusVisible,
     };
   }
-
-  const itemState = menuContext.getItemState(id);
 
   return {
     getRootProps: (other?: Record<string, any>) => {
