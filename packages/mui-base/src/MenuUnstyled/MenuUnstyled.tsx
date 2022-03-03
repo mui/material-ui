@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { HTMLElementType } from '@mui/utils';
+import { HTMLElementType, refType } from '@mui/utils';
 import appendOwnerState from '../utils/appendOwnerState';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
@@ -131,6 +131,11 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
+  /**
+   * A ref with imperative actions.
+   * It allows to select the first or last menu item.
+   */
+  actions: refType,
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.

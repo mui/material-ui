@@ -11,7 +11,8 @@ export interface MenuUnstyledActions {
 
 export interface MenuUnstyledProps {
   /**
-   * Actions to highlight memu items.
+   * A ref with imperative actions.
+   * It allows to select the first or last menu item.
    */
   actions?: React.Ref<MenuUnstyledActions>;
   /**
