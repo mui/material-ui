@@ -624,7 +624,7 @@ export default function MaterialDesignComponents() {
             color="text.secondary"
             sx={{ mb: 0.5, maxWidth: 250, mx: 'auto' }}
           >
-            Check out our docs for details on our complete component library.
+            Check out the docs for details of the complete library.
           </Typography>
           <Button
             component={Link}

@@ -14,7 +14,7 @@ const DIAMONDs = [
     src: '/static/sponsors/octopus.svg',
     srcSet: '/static/sponsors/octopus.svg',
     name: 'Octopus Deploy',
-    description: 'Unified DevOps automation platform for your team.',
+    description: 'A unified DevOps automation platform for your team.',
     href: 'https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -28,7 +28,7 @@ const DIAMONDs = [
     src: '/static/sponsors/aptugo.svg',
     srcSet: '/static/sponsors/aptugo.svg',
     name: 'Aptugo',
-    description: 'Visual interface for building scalable web and mobile apps with ease.',
+    description: 'A visual interface for building scalable web and mobile apps with ease.',
     href: 'https://www.aptugo.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];

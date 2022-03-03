@@ -23,7 +23,7 @@ const GOLDs = [
     src: 'https://avatars.githubusercontent.com/u/24789812?size=40',
     srcSet: 'https://avatars.githubusercontent.com/u/24789812?size=80 2x',
     name: 'Bit',
-    description: 'Component-driven development platform.',
+    description: 'A component-driven development platform.',
     href: 'https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -37,21 +37,21 @@ const GOLDs = [
     src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
     srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
     name: 'Laststance',
-    description: 'Organization for OSS activity in Tokyo.',
+    description: 'An organization for OSS activity in Tokyo.',
     href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
     srcSet: 'https://images.opencollective.com/movavi-software/a1d0167/logo/80.png 2x',
     name: 'Movavi',
-    description: 'All-in-one video maker for Mac.',
+    description: 'An all-in-one video maker for Mac.',
     href: 'https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
     srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
     name: 'CasinoHEX Australia',
-    description: 'A guide to online gambling for Australians.',
+    description: 'A guide to online gambling in Australia.',
     href: 'https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
