@@ -74,7 +74,6 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     onChange,
     required = false,
     value: incomingValue,
-    extraContextProps,
     ...other
   } = props;
 
@@ -130,7 +129,6 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   };
 
   const childContext: FormControlUnstyledState = {
-    ...extraContextProps,
     disabled,
     error,
     filled,
@@ -214,11 +212,6 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   error: PropTypes.bool,
-  /**
-   * Extra properties to be placed on the FormControlContext.
-   * @default {}
-   */
-  extraContextProps: PropTypes.object,
   /**
    * If `true`, the component is displayed in focused state.
    * @default false
