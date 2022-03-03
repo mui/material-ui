@@ -35,7 +35,7 @@ const ColorSchemePicker = () => {
 };
 
 const props = {
-  size: ['sm', 'md', 'lg'],
+  size: ['xs', 'sm', 'md', 'lg', 'xl'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
   variant: ['outlined', 'light', 'contained'],
 } as const;

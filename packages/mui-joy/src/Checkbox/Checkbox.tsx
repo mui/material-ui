@@ -37,15 +37,7 @@ const CheckboxRoot = styled('span', {
 })<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => {
   return [
     {
-      ...(ownerState.size === 'sm' && {
-        '--Checkbox-size': '1rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Checkbox-size': '1.25rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Checkbox-size': '1.5rem',
-      }),
+      '--Checkbox-size': theme.vars.iconSize[ownerState.size!],
       '--Icon-fontSize': 'var(--Checkbox-size)',
       borderRadius: theme.vars.radius.xs,
       boxSizing: 'border-box',
@@ -233,7 +225,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     PropTypes.string,
   ]),
   /**
