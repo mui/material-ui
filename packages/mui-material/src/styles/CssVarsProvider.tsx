@@ -21,8 +21,8 @@ export interface ThemeInput extends ThemeOptions {
   >;
 }
 
-const defaultTheme = createTheme();
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
+const { palette: lightPalette, ...defaultTheme } = createTheme();
+const { palette: darkPalette } = createTheme({ palette: { mode: 'dark' } });
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   'light' | 'dark',
@@ -32,8 +32,8 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     ...defaultTheme,
     colorSchemes: {
       // TODO: Shuold we remove the non color scheme values from here, like getContrastText, contrastThreshold etc.
-      light: { palette: defaultTheme.palette },
-      dark: { palette: darkTheme.palette },
+      light: { palette: lightPalette },
+      dark: { palette: darkPalette },
     },
   },
   defaultColorScheme: {
@@ -42,7 +42,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
   prefix: 'md',
   shouldSkipGeneratingVar: (keys) =>
-    keys[0] === 'typography' || keys[0] === 'mixins' || keys[0] === 'breakpoints',
+    !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/),
 });
 
 export { useColorScheme, getInitColorSchemeScript, CssVarsProvider };
