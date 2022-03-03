@@ -1,20 +1,21 @@
 import { GlobalStateSlot } from '@mui/base';
 import { CSSInterpolation } from '@mui/system';
 import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
-import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
-import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
-import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
-import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { InputProps, InputSlot } from '../Input/InputProps';
+import { LinkProps, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListSlot } from '../List/ListProps';
 import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
 import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
-import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
 import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListItemButtonProps';
+import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
 import {
   ListItemDecoratorProps,
   ListItemDecoratorSlot,
 } from '../ListItemDecorator/ListItemDecoratorProps';
-import { InputProps, InputSlot } from '../Input/InputProps';
+import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
+import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
+import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
+import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -83,5 +84,9 @@ export interface Components<Theme = unknown> {
   MuiSheet?: {
     defaultProps?: Partial<SheetProps>;
     styleOverrides?: OverridesStyleRules<SheetSlot, SheetProps, Theme>;
+  };
+  MuiLink?: {
+    defaultProps?: Partial<LinkProps>;
+    styleOverrides?: OverridesStyleRules<LinkSlot, LinkProps, Theme>;
   };
 }
