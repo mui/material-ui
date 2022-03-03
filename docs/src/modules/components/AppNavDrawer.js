@@ -38,20 +38,39 @@ const LinksWrapper = styled('div')(({ theme }) => {
     paddingTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
+    height: 128,
     '& > a': {
       display: 'flex',
-      justifyContent: 'space-between',
-      padding: theme.spacing(1),
+      flexDirection: 'column',
+      alignItems: 'initial',
+      padding: theme.spacing(0, 1),
       borderRadius: theme.shape.borderRadius,
       fontWeight: 500,
       fontSize: theme.typography.pxToRem(14),
       color:
         theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+      transition: theme.transitions.create(),
       '&:hover': {
         backgroundColor:
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[700], 0.4)
             : theme.palette.grey[50],
+        padding: theme.spacing(1),
+        '& .MuiTypography-body1': {
+          transform: 'translateY(0px)',
+        },
+        '& .MuiTypography-body2': {
+          opacity: 1,
+        },
+      },
+      '& .MuiTypography-body1': {
+        transform: 'translateY(12px)',
+        transition: theme.transitions.create(),
+      },
+      '& .MuiTypography-body2': {
+        opacity: 0,
+        transition: theme.transitions.create(),
+        fontSize: theme.typography.pxToRem(12),
       },
       '& svg': {
         width: 18,
@@ -187,29 +206,22 @@ function ProductDrawerButton(props) {
           />
           <LinksWrapper>
             <Link href={ROUTES.materialDocs}>
-              <div>
-                <ProductLabel>Material UI</ProductLabel>
-                <Typography color="text.secondary" variant="body2">
-                  {"React components that implement Google's Material Design."}
-                </Typography>
-              </div>
+              <ProductLabel>Material UI</ProductLabel>
+              <Typography color="text.secondary" variant="body2">
+                {"React components that implement Google's Material Design."}
+              </Typography>
             </Link>
             <Link href={ROUTES.baseDocs}>
-              <div>
-                <ProductLabel>MUI Base</ProductLabel>
-                <Typography color="text.secondary" variant="body2">
-                  Unstyled React components and low-level hooks.
-                </Typography>
-              </div>
+              <ProductLabel>MUI Base</ProductLabel>
+              <Typography color="text.secondary" variant="body2">
+                Unstyled React components and low-level hooks.
+              </Typography>
             </Link>
-
             <Link href={ROUTES.systemDocs}>
-              <div>
-                <ProductLabel>MUI System</ProductLabel>
-                <Typography color="text.secondary" variant="body2">
-                  CSS utilities for rapidly laying out custom designs.
-                </Typography>
-              </div>
+              <ProductLabel>MUI System</ProductLabel>
+              <Typography color="text.secondary" variant="body2">
+                CSS utilities for rapidly laying out custom designs.
+              </Typography>
             </Link>
           </LinksWrapper>
         </li>
