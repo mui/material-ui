@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente Barra de Aplicativos para React
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'

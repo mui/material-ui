@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/joy/SvgIcon';
 import { ThemeProvider } from '@mui/joy/styles';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import defaultTheme from '../styles/defaultTheme';
 
 describe('<SvgIcon />', () => {
@@ -73,39 +74,12 @@ describe('<SvgIcon />', () => {
       expect(container.firstChild).to.have.class(classes.colorInherit);
     });
 
-    it('should render with the primary color', () => {
-      const { container } = render(<SvgIcon color="primary">{path}</SvgIcon>);
-      expect(container.firstChild).to.have.class(classes.colorPrimary);
-    });
+    ['inherit', 'primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+      it(`should render ${color}`, () => {
+        const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
 
-    it('should render with the info color', () => {
-      const { container } = render(<SvgIcon color="info">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.colorInfo);
-    });
-
-    it('should render with the danger color', () => {
-      const { container } = render(<SvgIcon color="danger">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.colorDanger);
-    });
-
-    it('should render with the warning color', () => {
-      const { container } = render(<SvgIcon color="warning">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.colorWarning);
-    });
-
-    it('should render with the success color', () => {
-      const { container } = render(<SvgIcon color="success">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.colorSuccess);
-    });
-
-    it('should render with the neutral color', () => {
-      const { container } = render(<SvgIcon color="neutral">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.colorNeutral);
+        expect(container.firstChild).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 
@@ -126,86 +100,15 @@ describe('<SvgIcon />', () => {
       });
     });
 
-    it('should render with `xs` size', () => {
-      const { container } = render(<SvgIcon fontSize="xs">{path}</SvgIcon>);
+    ['inherit', 'xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6'].forEach(
+      (fontSize) => {
+        it(`should render ${fontSize}`, () => {
+          const { container } = render(<SvgIcon fontSize={fontSize}>{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.fontSizeXs);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.xs,
-      });
-    });
-
-    it('should render with `sm` size', () => {
-      const { container } = render(<SvgIcon fontSize="sm">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeSm);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.sm,
-      });
-    });
-
-    it('should render with `md` size', () => {
-      const { container } = render(<SvgIcon fontSize="md">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeMd);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.md,
-      });
-    });
-
-    it('should render with `lg` size', () => {
-      const { container } = render(<SvgIcon fontSize="lg">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeLg);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.lg,
-      });
-    });
-
-    it('should render with `xl2` size', () => {
-      const { container } = render(<SvgIcon fontSize="xl2">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeXl2);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.xl2,
-      });
-    });
-
-    it('should render with `xl3` size', () => {
-      const { container } = render(<SvgIcon fontSize="xl3">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeXl3);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.xl3,
-      });
-    });
-
-    it('should render with `xl4` size', () => {
-      const { container } = render(<SvgIcon fontSize="xl4">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeXl4);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.xl4,
-      });
-    });
-
-    it('should render with `xl5` size', () => {
-      const { container } = render(<SvgIcon fontSize="xl5">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeXl5);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.xl5,
-      });
-    });
-
-    it('should render with `xl6` size', () => {
-      const { container } = render(<SvgIcon fontSize="xl6">{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeXl6);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.xl6,
-      });
-    });
+          expect(container.firstChild).to.have.class(classes[`fontSize${capitalize(fontSize)}`]);
+        });
+      },
+    );
   });
 
   describe('prop: inheritViewBox', () => {

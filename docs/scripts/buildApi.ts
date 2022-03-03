@@ -147,7 +147,7 @@ const MIGRATION_SETTINGS: Settings[] = [
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
-    getApiPages: () => findApiPages('docs/pages/material/api'),
+    getApiPages: () => findApiPages('docs/pages/material-ui/api'),
     getComponentInfo: getMaterialComponentInfo,
   },
   {

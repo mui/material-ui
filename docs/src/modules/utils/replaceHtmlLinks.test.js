@@ -19,10 +19,10 @@ describe('replaceHtmlLinks', () => {
     `),
     ).to.equal(`
       <ul>
-      <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/material/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material/getting-started/usage/">Get started</a>
-      <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
+      <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
+      <a href="/material-ui/customization/theme-components/#default-props">default props</a>
+      <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
+      <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `);
   });
@@ -31,18 +31,18 @@ describe('replaceHtmlLinks', () => {
     expect(
       replaceMaterialLinks(`
       <ul>
-      <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/material/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material/getting-started/usage/">Get started</a>
-      <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
+      <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
+      <a href="/material-ui/customization/theme-components/#default-props">default props</a>
+      <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
+      <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `),
     ).to.equal(`
       <ul>
-      <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/material/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material/getting-started/usage/">Get started</a>
-      <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
+      <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
+      <a href="/material-ui/customization/theme-components/#default-props">default props</a>
+      <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
+      <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `);
   });
@@ -86,36 +86,36 @@ describe('replaceHtmlLinks', () => {
     `),
     ).to.equal(`
       <ul>
-      <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-button/">Buttons</a></li>
-      <li><a href="/material/react-checkbox/#main-content">text</a></li>
-      <li><a href="/material/react-radio-button#main-content">text</a></li>
-      <li><a href="/material/react-select/#main-content">text</a></li>
-      <li><a href="/material/react-switch/#main-content">text</a></li>
-      <li><a href="/material/react-text-field/#main-content">text</a></li>
-      <li><a href="/material/react-avatar/#main-content">text</a></li>
-      <li><a href="/material/react-badge/#main-content">text</a></li>
-      <li><a href="/material/react-chip/#main-content">text</a></li>
-      <li><a href="/material/react-divider/#main-content">text</a></li>
-      <li><a href="/material/icons/#main-content">text</a></li>
-      <li><a href="/material/material-icons/#main-content">text</a></li>
-      <li><a href="/material/react-list/#main-content">text</a></li>
-      <li><a href="/material/react-table/#main-content">text</a></li>
-      <li><a href="/material/react-tooltip/#main-content">text</a></li>
-      <li><a href="/material/react-dialog/#main-content">text</a></li>
-      <li><a href="/material/react-snackbar/#main-content">text</a></li>
-      <li><a href="/material/react-card/#main-content">text</a></li>
-      <li><a href="/material/react-breadcrumbs/#main-content">text</a></li>
-      <li><a href="/material/react-drawer/#main-content">text</a></li>
-      <li><a href="/material/react-link/#main-content">text</a></li>
-      <li><a href="/material/react-menu/#main-content">text</a></li>
-      <li><a href="/material/react-stepper/#main-content">text</a></li>
-      <li><a href="/material/react-tabs/#main-content">text</a></li>
-      <li><a href="/material/transitions/#main-content">text</a></li>
-      <li><a href="/material/pickers/#main-content">text</a></li>
-      <li><a href="/material/react-progress/#main-content">text</a></li>
+      <li><a href="/material-ui/react-button-group/">Button Group</a></li>
+      <li><a href="/material-ui/react-button/">Buttons</a></li>
+      <li><a href="/material-ui/react-checkbox/#main-content">text</a></li>
+      <li><a href="/material-ui/react-radio-button#main-content">text</a></li>
+      <li><a href="/material-ui/react-select/#main-content">text</a></li>
+      <li><a href="/material-ui/react-switch/#main-content">text</a></li>
+      <li><a href="/material-ui/react-text-field/#main-content">text</a></li>
+      <li><a href="/material-ui/react-avatar/#main-content">text</a></li>
+      <li><a href="/material-ui/react-badge/#main-content">text</a></li>
+      <li><a href="/material-ui/react-chip/#main-content">text</a></li>
+      <li><a href="/material-ui/react-divider/#main-content">text</a></li>
+      <li><a href="/material-ui/icons/#main-content">text</a></li>
+      <li><a href="/material-ui/material-icons/#main-content">text</a></li>
+      <li><a href="/material-ui/react-list/#main-content">text</a></li>
+      <li><a href="/material-ui/react-table/#main-content">text</a></li>
+      <li><a href="/material-ui/react-tooltip/#main-content">text</a></li>
+      <li><a href="/material-ui/react-dialog/#main-content">text</a></li>
+      <li><a href="/material-ui/react-snackbar/#main-content">text</a></li>
+      <li><a href="/material-ui/react-card/#main-content">text</a></li>
+      <li><a href="/material-ui/react-breadcrumbs/#main-content">text</a></li>
+      <li><a href="/material-ui/react-drawer/#main-content">text</a></li>
+      <li><a href="/material-ui/react-link/#main-content">text</a></li>
+      <li><a href="/material-ui/react-menu/#main-content">text</a></li>
+      <li><a href="/material-ui/react-stepper/#main-content">text</a></li>
+      <li><a href="/material-ui/react-tabs/#main-content">text</a></li>
+      <li><a href="/material-ui/transitions/#main-content">text</a></li>
+      <li><a href="/material-ui/pickers/#main-content">text</a></li>
+      <li><a href="/material-ui/react-progress/#main-content">text</a></li>
       -
-      <li><a href="/material/react-tree-view/">Tree view</a></li>
+      <li><a href="/material-ui/react-tree-view/">Tree view</a></li>
       <li><a href="/x/react-data-grid/demo/">Demo</a></li>
       </ul>
     `);
@@ -125,69 +125,69 @@ describe('replaceHtmlLinks', () => {
     expect(
       replaceComponentLinks(`
       <ul>
-      <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-button/">Buttons</a></li>
-      <li><a href="/material/react-checkbox/#main-content">text</a></li>
-      <li><a href="/material/react-radio-button#main-content">text</a></li>
-      <li><a href="/material/react-select/#main-content">text</a></li>
-      <li><a href="/material/react-switch/#main-content">text</a></li>
-      <li><a href="/material/react-text-field/#main-content">text</a></li>
-      <li><a href="/material/react-avatar/#main-content">text</a></li>
-      <li><a href="/material/react-badge/#main-content">text</a></li>
-      <li><a href="/material/react-chip/#main-content">text</a></li>
-      <li><a href="/material/react-divider/#main-content">text</a></li>
-      <li><a href="/material/icons/#main-content">text</a></li>
-      <li><a href="/material/material-icons/#main-content">text</a></li>
-      <li><a href="/material/react-list/#main-content">text</a></li>
-      <li><a href="/material/react-table/#main-content">text</a></li>
-      <li><a href="/material/react-tooltip/#main-content">text</a></li>
-      <li><a href="/material/react-dialog/#main-content">text</a></li>
-      <li><a href="/material/react-snackbar/#main-content">text</a></li>
-      <li><a href="/material/react-card/#main-content">text</a></li>
-      <li><a href="/material/react-breadcrumbs/#main-content">text</a></li>
-      <li><a href="/material/react-drawer/#main-content">text</a></li>
-      <li><a href="/material/react-link/#main-content">text</a></li>
-      <li><a href="/material/react-menu/#main-content">text</a></li>
-      <li><a href="/material/react-stepper/#main-content">text</a></li>
-      <li><a href="/material/react-tabs/#main-content">text</a></li>
-      <li><a href="/material/transitions/#main-content">text</a></li>
-      <li><a href="/material/pickers/#main-content">text</a></li>
+      <li><a href="/material-ui/react-button-group/">Button Group</a></li>
+      <li><a href="/material-ui/react-button/">Buttons</a></li>
+      <li><a href="/material-ui/react-checkbox/#main-content">text</a></li>
+      <li><a href="/material-ui/react-radio-button#main-content">text</a></li>
+      <li><a href="/material-ui/react-select/#main-content">text</a></li>
+      <li><a href="/material-ui/react-switch/#main-content">text</a></li>
+      <li><a href="/material-ui/react-text-field/#main-content">text</a></li>
+      <li><a href="/material-ui/react-avatar/#main-content">text</a></li>
+      <li><a href="/material-ui/react-badge/#main-content">text</a></li>
+      <li><a href="/material-ui/react-chip/#main-content">text</a></li>
+      <li><a href="/material-ui/react-divider/#main-content">text</a></li>
+      <li><a href="/material-ui/icons/#main-content">text</a></li>
+      <li><a href="/material-ui/material-icons/#main-content">text</a></li>
+      <li><a href="/material-ui/react-list/#main-content">text</a></li>
+      <li><a href="/material-ui/react-table/#main-content">text</a></li>
+      <li><a href="/material-ui/react-tooltip/#main-content">text</a></li>
+      <li><a href="/material-ui/react-dialog/#main-content">text</a></li>
+      <li><a href="/material-ui/react-snackbar/#main-content">text</a></li>
+      <li><a href="/material-ui/react-card/#main-content">text</a></li>
+      <li><a href="/material-ui/react-breadcrumbs/#main-content">text</a></li>
+      <li><a href="/material-ui/react-drawer/#main-content">text</a></li>
+      <li><a href="/material-ui/react-link/#main-content">text</a></li>
+      <li><a href="/material-ui/react-menu/#main-content">text</a></li>
+      <li><a href="/material-ui/react-stepper/#main-content">text</a></li>
+      <li><a href="/material-ui/react-tabs/#main-content">text</a></li>
+      <li><a href="/material-ui/transitions/#main-content">text</a></li>
+      <li><a href="/material-ui/pickers/#main-content">text</a></li>
       -
-      <li><a href="/material/react-tree-view/">Tree view</a></li>
+      <li><a href="/material-ui/react-tree-view/">Tree view</a></li>
       <li><a href="/x/react-data-grid/demo/">Demo</a></li>
       </ul>
     `),
     ).to.equal(`
       <ul>
-      <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-button/">Buttons</a></li>
-      <li><a href="/material/react-checkbox/#main-content">text</a></li>
-      <li><a href="/material/react-radio-button#main-content">text</a></li>
-      <li><a href="/material/react-select/#main-content">text</a></li>
-      <li><a href="/material/react-switch/#main-content">text</a></li>
-      <li><a href="/material/react-text-field/#main-content">text</a></li>
-      <li><a href="/material/react-avatar/#main-content">text</a></li>
-      <li><a href="/material/react-badge/#main-content">text</a></li>
-      <li><a href="/material/react-chip/#main-content">text</a></li>
-      <li><a href="/material/react-divider/#main-content">text</a></li>
-      <li><a href="/material/icons/#main-content">text</a></li>
-      <li><a href="/material/material-icons/#main-content">text</a></li>
-      <li><a href="/material/react-list/#main-content">text</a></li>
-      <li><a href="/material/react-table/#main-content">text</a></li>
-      <li><a href="/material/react-tooltip/#main-content">text</a></li>
-      <li><a href="/material/react-dialog/#main-content">text</a></li>
-      <li><a href="/material/react-snackbar/#main-content">text</a></li>
-      <li><a href="/material/react-card/#main-content">text</a></li>
-      <li><a href="/material/react-breadcrumbs/#main-content">text</a></li>
-      <li><a href="/material/react-drawer/#main-content">text</a></li>
-      <li><a href="/material/react-link/#main-content">text</a></li>
-      <li><a href="/material/react-menu/#main-content">text</a></li>
-      <li><a href="/material/react-stepper/#main-content">text</a></li>
-      <li><a href="/material/react-tabs/#main-content">text</a></li>
-      <li><a href="/material/transitions/#main-content">text</a></li>
-      <li><a href="/material/pickers/#main-content">text</a></li>
+      <li><a href="/material-ui/react-button-group/">Button Group</a></li>
+      <li><a href="/material-ui/react-button/">Buttons</a></li>
+      <li><a href="/material-ui/react-checkbox/#main-content">text</a></li>
+      <li><a href="/material-ui/react-radio-button#main-content">text</a></li>
+      <li><a href="/material-ui/react-select/#main-content">text</a></li>
+      <li><a href="/material-ui/react-switch/#main-content">text</a></li>
+      <li><a href="/material-ui/react-text-field/#main-content">text</a></li>
+      <li><a href="/material-ui/react-avatar/#main-content">text</a></li>
+      <li><a href="/material-ui/react-badge/#main-content">text</a></li>
+      <li><a href="/material-ui/react-chip/#main-content">text</a></li>
+      <li><a href="/material-ui/react-divider/#main-content">text</a></li>
+      <li><a href="/material-ui/icons/#main-content">text</a></li>
+      <li><a href="/material-ui/material-icons/#main-content">text</a></li>
+      <li><a href="/material-ui/react-list/#main-content">text</a></li>
+      <li><a href="/material-ui/react-table/#main-content">text</a></li>
+      <li><a href="/material-ui/react-tooltip/#main-content">text</a></li>
+      <li><a href="/material-ui/react-dialog/#main-content">text</a></li>
+      <li><a href="/material-ui/react-snackbar/#main-content">text</a></li>
+      <li><a href="/material-ui/react-card/#main-content">text</a></li>
+      <li><a href="/material-ui/react-breadcrumbs/#main-content">text</a></li>
+      <li><a href="/material-ui/react-drawer/#main-content">text</a></li>
+      <li><a href="/material-ui/react-link/#main-content">text</a></li>
+      <li><a href="/material-ui/react-menu/#main-content">text</a></li>
+      <li><a href="/material-ui/react-stepper/#main-content">text</a></li>
+      <li><a href="/material-ui/react-tabs/#main-content">text</a></li>
+      <li><a href="/material-ui/transitions/#main-content">text</a></li>
+      <li><a href="/material-ui/pickers/#main-content">text</a></li>
       -
-      <li><a href="/material/react-tree-view/">Tree view</a></li>
+      <li><a href="/material-ui/react-tree-view/">Tree view</a></li>
       <li><a href="/x/react-data-grid/demo/">Demo</a></li>
       </ul>
     `);
@@ -216,18 +216,18 @@ describe('replaceHtmlLinks', () => {
     `),
     ).to.equal(`
     <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-<li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
+<li><a href="/material-ui/api/button/"><code>&lt;Button /&gt;</code></a></li>
 <li><a href="/base/api/no-ssr/"><code>&lt;Text /&gt;</code></a></li>
 <li><a href="/base/api/portal/"><code>&lt;Text /&gt;</code></a></li>
 <li><a href="/base/api/textarea-autosize/"><code>&lt;Text /&gt;</code></a></li>
-<li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+<li><a href="/material-ui/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
 <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
 <li><a href="/base/api/tabs-list-unstyled/"><code>&lt;TabListUnstyled /&gt;</code></a></li>
 <li><a href="/base/api/tab-panel-unstyled/"><code>&lt;TabListUnstyled /&gt;</code></a></li>
 <li><a href="/base/api/unstable-trap-focus/"><code>&lt;UnstableTrapFocus /&gt;</code></a></li>
 <li><a href="/base/api/click-away-listener/"><code>&lt;UnstableTrapFocus /&gt;</code></a></li>
-<li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-<li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+<li><a href="/material-ui/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+<li><a href="/material-ui/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
 <li><a href="/x/api/data-grid/data-grid/">DataGrid</a></li>
 <li><a href="/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
 <li><a href="/system/basics/">System</a></li>
@@ -239,25 +239,25 @@ describe('replaceHtmlLinks', () => {
     expect(
       replaceAPILinks(`
       <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-  <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
-  <li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+  <li><a href="/material-ui/api/button/"><code>&lt;Button /&gt;</code></a></li>
+  <li><a href="/material-ui/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
   <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-  <li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-  <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+  <li><a href="/material-ui/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+  <li><a href="/material-ui/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
   </ul>
       `),
     ).to.equal(`
       <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-  <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
-  <li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+  <li><a href="/material-ui/api/button/"><code>&lt;Button /&gt;</code></a></li>
+  <li><a href="/material-ui/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
   <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-  <li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-  <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+  <li><a href="/material-ui/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+  <li><a href="/material-ui/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
   </ul>
       `);
   });
 
-  it('only replace links for new routes (/material/* & /x/*)', () => {
+  it('only replace links for new routes (/material-ui/* & /x/*)', () => {
     expect(
       replaceHtmlLinks(
         `
@@ -283,29 +283,29 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `,
-        '/material/react-buttons',
+        '/material-ui/react-buttons',
       ),
     ).to.equal(`
     <ul>
-    <li><a href="/material/react-button-group/">Button Group</a></li>
-    <li><a href="/material/react-button/">Buttons</a></li>
-    <li><a href="/material/react-css-baseline/"></a></li>
-    <li><a href="/material/react-image-list/"></a></li>
-    <li><a href="/material/react-trap-focus/"></a></li>
-    <li><a href="/material/react-tree-view/">Tree view</a></li>
+    <li><a href="/material-ui/react-button-group/">Button Group</a></li>
+    <li><a href="/material-ui/react-button/">Buttons</a></li>
+    <li><a href="/material-ui/react-css-baseline/"></a></li>
+    <li><a href="/material-ui/react-image-list/"></a></li>
+    <li><a href="/material-ui/react-trap-focus/"></a></li>
+    <li><a href="/material-ui/react-tree-view/">Tree view</a></li>
     <li><a href="/x/react-data-grid/demo/">Demo</a></li>
-    <li><a href="/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
-    <li><a href="/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+    <li><a href="/material-ui/api/button/"><code>&lt;Button /&gt;</code></a></li>
+    <li><a href="/material-ui/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
     <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-    <li><a href="/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-    <li><a href="/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+    <li><a href="/material-ui/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+    <li><a href="/material-ui/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/x/api/data-grid/data-grid/">DataGrid</a></li>
     <li><a href="/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
     <li><a href="/system/basics/">System</a></li>
-    <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-    <a href="/material/customization/theme-components/#default-props">default props</a>
-    <a data-no-markdown-link="true" tabindex="0" href="/material/getting-started/usage/">Get started</a>
-    <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
+    <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
+    <a href="/material-ui/customization/theme-components/#default-props">default props</a>
+    <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
+    <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `);
     if (FEATURE_TOGGLE.enable_system_scope) {
@@ -319,7 +319,7 @@ describe('replaceHtmlLinks', () => {
     }
   });
 
-  it('[i18n] only replace links for new routes (/material/* & /x/*)', () => {
+  it('[i18n] only replace links for new routes (/material-ui/* & /x/*)', () => {
     expect(
       replaceHtmlLinks(
         `
@@ -342,26 +342,26 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/zh/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `,
-        '/zh/material/react-buttons',
+        '/zh/material-ui/react-buttons',
       ),
     ).to.equal(`
     <ul>
-    <li><a href="/zh/material/react-button-group/">Button Group</a></li>
-    <li><a href="/zh/material/react-button/">Buttons</a></li>
-    <li><a href="/zh/material/react-tree-view/">Tree view</a></li>
+    <li><a href="/zh/material-ui/react-button-group/">Button Group</a></li>
+    <li><a href="/zh/material-ui/react-button/">Buttons</a></li>
+    <li><a href="/zh/material-ui/react-tree-view/">Tree view</a></li>
     <li><a href="/zh/x/react-data-grid/demo/">Demo</a></li>
-    <li><a href="/zh/material/api/button/"><code>&lt;Button /&gt;</code></a></li>
-    <li><a href="/zh/material/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
+    <li><a href="/zh/material-ui/api/button/"><code>&lt;Button /&gt;</code></a></li>
+    <li><a href="/zh/material-ui/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
     <li><a href="/zh/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-    <li><a href="/zh/material/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-    <li><a href="/zh/material/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
+    <li><a href="/zh/material-ui/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
+    <li><a href="/zh/material-ui/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/zh/x/api/data-grid/data-grid/">DataGrid</a></li>
     <li><a href="/zh/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
     <li><a href="/zh/system/basics/">System</a></li>
-    <a href="/zh/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-    <a href="/zh/material/customization/theme-components/#default-props">default props</a>
-    <a data-no-markdown-link="true" tabindex="0" href="/zh/material/getting-started/usage/">Get started</a>
-    <li><a href="/zh/material/discover-more/related-projects/">Tree view</a></li>
+    <a href="/zh/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
+    <a href="/zh/material-ui/customization/theme-components/#default-props">default props</a>
+    <a data-no-markdown-link="true" tabindex="0" href="/zh/material-ui/getting-started/usage/">Get started</a>
+    <li><a href="/zh/material-ui/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `);
     if (FEATURE_TOGGLE.enable_system_scope) {
@@ -380,15 +380,15 @@ describe('replaceHtmlLinks', () => {
       importDifference:
         'You can learn about the difference by <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>.',
     };
-    expect(replaceHtmlLinks(JSON.stringify(json), '/material/api/')).to.equal(
-      '{"importDifference":"You can learn about the difference by <a href=\\"/material/guides/minimizing-bundle-size/\\">reading this guide on minimizing bundle size</a>."}',
+    expect(replaceHtmlLinks(JSON.stringify(json), '/material-ui/api/')).to.equal(
+      '{"importDifference":"You can learn about the difference by <a href=\\"/material-ui/guides/minimizing-bundle-size/\\">reading this guide on minimizing bundle size</a>."}',
     );
     const json2 = {
       styleOverrides:
         'The name <code>{{componentStyles.name}}</code> can be used when providing <a href="/customization/theme-components/#default-props">default props</a> or <a href="/customization/theme-components/#global-style-overrides">style overrides</a> in the theme.',
     };
-    expect(replaceHtmlLinks(JSON.stringify(json2), '/material/api/')).to.equal(
-      '{"styleOverrides":"The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\\"/material/customization/theme-components/#default-props\\">default props</a> or <a href=\\"/material/customization/theme-components/#global-style-overrides\\">style overrides</a> in the theme."}',
+    expect(replaceHtmlLinks(JSON.stringify(json2), '/material-ui/api/')).to.equal(
+      '{"styleOverrides":"The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\\"/material-ui/customization/theme-components/#default-props\\">default props</a> or <a href=\\"/material-ui/customization/theme-components/#global-style-overrides\\">style overrides</a> in the theme."}',
     );
   });
 

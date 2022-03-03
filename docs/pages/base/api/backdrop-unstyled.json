@@ -23,6 +23,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/BackdropUnstyled/BackdropUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material/react-backdrop/\">Backdrop</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-backdrop/\">Backdrop</a></li></ul>",
   "cssComponent": false
 }

@@ -54,6 +54,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/BadgeUnstyled/BadgeUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material/react-badge/\">Badges</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-badge/\">Badges</a></li></ul>",
   "cssComponent": false
 }

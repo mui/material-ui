@@ -162,8 +162,8 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     filename,
     name,
     muiName: getMuiName(name),
-    apiPathname: `/material/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/material/api`),
+    apiPathname: `/material-ui/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/material-ui/api`),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -177,7 +177,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material'}/api/${kebabCase(
+            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material-ui'}/api/${kebabCase(
                 inheritedComponent,
               )}/`,
       };
@@ -187,7 +187,10 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
         ...markdown,
         components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
       }));
-      return findNewComponentDemos(name, allMarkdowns);
+      return findNewComponentDemos(name, allMarkdowns).map((info) => ({
+        ...info,
+        demoPathname: info.demoPathname,
+      }));
     },
   };
 };
