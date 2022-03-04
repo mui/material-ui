@@ -2406,7 +2406,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const input = screen.getByRole('textbox');
+      const input = screen.getByRole('combobox');
       expect(input).to.have.attribute('readonly');
     });
 
@@ -2445,7 +2445,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       fireEvent.click(textbox);
       expect(textbox).toHaveFocus();
 
@@ -2465,7 +2465,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       fireEvent.mouseDown(textbox);
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
@@ -2484,7 +2484,7 @@ describe('<Autocomplete />', () => {
       const chip = container.querySelector(`.${chipClasses.root}`);
       expect(chip).not.to.have.class(chipClasses.deletable);
 
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       act(() => {
         textbox.focus();
       });
