@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useId as useId } from '@mui/utils';
+import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import FormLabel from '../FormLabel';
 import FormHelperText from '../FormHelperText';
@@ -12,9 +12,17 @@ import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
 
 const useUtilityClasses = (ownerState: TextFieldProps) => {
-  const { error, disabled } = ownerState;
+  const { error, disabled, variant, size, color, fullWidth } = ownerState;
   const slots = {
-    root: ['root', error && 'error', disabled && 'disabled'],
+    root: [
+      'root',
+      error && 'error',
+      disabled && 'disabled',
+      fullWidth && 'fullWidth',
+      variant && `variant${capitalize(variant)}`,
+      size && `size${capitalize(size)}`,
+      color && `color${capitalize(color)}`,
+    ],
   };
 
   return composeClasses(slots, getTextFieldUtilityClass, {});
@@ -42,6 +50,9 @@ const TextFieldRoot = styled('div', {
   },
   display: 'flex',
   flexDirection: 'column',
+  ...(ownerState.fullWidth && {
+    width: '100%',
+  }),
 }));
 
 const TextField = React.forwardRef(function TextField(inProps, ref) {
@@ -75,6 +86,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     required = false,
     size = 'md',
     variant = 'outlined',
+    fullWidth = false,
     startAdornment,
     endAdornment,
     ...other
@@ -94,6 +106,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     required,
     size,
     variant,
+    fullWidth,
     ...props,
   };
 
@@ -111,6 +124,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         <FormLabel
           htmlFor={id}
           id={formLabelId}
+          required={required}
           {...componentsProps.label}
           {...(components.Label && {
             component: components.Label,
@@ -132,6 +146,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         required={required}
         color={color}
         size={size}
+        fullWidth={fullWidth}
         variant={variant}
         defaultValue={defaultValue}
         value={value}

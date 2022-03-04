@@ -9,11 +9,11 @@ describe('Joy <FormHelperText />', () => {
 
   describeConformance(<FormHelperText />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: 'p',
     render,
     ThemeProvider,
     muiName: 'MuiFormHelperText',
-    refInstanceof: window.HTMLSpanElement,
+    refInstanceof: window.HTMLParagraphElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 

@@ -78,6 +78,7 @@ export default function JoyTypography() {
           }}
         >
           <TextField
+            required
             label="Label"
             placeholder="Placeholder"
             helperText="Helper text"
@@ -145,7 +146,7 @@ export default function JoyTypography() {
             label="Label"
             placeholder="Placeholder"
             helperText="Helper text"
-            componentsProps={{ label: { endDecorator: <Info fontSize="md" color="neutral" /> } }}
+            componentsProps={{ label: { endDecorator: <Info fontSize="md" /> } }}
           />
 
           <TextField
@@ -154,7 +155,7 @@ export default function JoyTypography() {
             label="Label"
             placeholder="Placeholder"
             helperText="Helper text"
-            componentsProps={{ label: { endDecorator: <Info fontSize="md" color="neutral" /> } }}
+            componentsProps={{ label: { endDecorator: <Info fontSize="md" /> } }}
           />
         </Box>
         <Box

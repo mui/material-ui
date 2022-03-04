@@ -13,6 +13,7 @@ export interface TextFieldTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'disabled'
       | 'error'
       | 'required'
+      | 'fullWidth'
       | 'inputRef'
       | 'placeholder'
       | 'defaultValue'

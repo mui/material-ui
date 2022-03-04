@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { useFormControlUnstyled } from '@mui/base/FormControlUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';
@@ -58,9 +57,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     name: 'MuiFormLabel',
   });
 
-  const { children, className, component, endDecorator, ...other } = props;
-
-  const formControlContext = useFormControlUnstyled();
+  const { children, className, component, endDecorator, required = false, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -77,7 +74,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
       {...other}
     >
       {children}
-      {formControlContext?.required && (
+      {required && (
         <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
         </AsteriskComponent>

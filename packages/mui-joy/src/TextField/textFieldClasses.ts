@@ -9,6 +9,32 @@ export interface TextFieldClasses {
   error: string;
   /** Styles applied to the root element if the component is focused. */
   focused: string;
+  /** Styles applied to the root element if `color="primary"`. */
+  colorPrimary: string;
+  /** Styles applied to the root element if `color="neutral"`. */
+  colorNeutral: string;
+  /** Styles applied to the root element if `color="danger"`. */
+  colorDanger: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
+  /** Styles applied to the root element if `variant="text"`. */
+  variantText: string;
+  /** Styles applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** Styles applied to the root element if `variant="light"`. */
+  variantLight: string;
+  /** Styles applied to the root element if `fullWidth={true}`. */
+  fullWidth: string;
 }
 
 export type TextFieldClassKey = keyof TextFieldClasses;
@@ -22,6 +48,19 @@ const textFieldClasses: TextFieldClasses = generateUtilityClasses('MuiTextField'
   'disabled',
   'error',
   'focused',
+  'colorPrimary',
+  'colorNeutral',
+  'colorDanger',
+  'colorInfo',
+  'colorSuccess',
+  'colorWarning',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
+  'variantText',
+  'variantOutlined',
+  'variantLight',
+  'fullWidth',
 ]);
 
 export default textFieldClasses;

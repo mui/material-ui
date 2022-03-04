@@ -9,9 +9,13 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
      */
     children?: React.ReactNode;
     /**
-     * The content at the end of the label (or asterisk if required).
+     * The content at the end of the label (or after the asterisk if required).
      */
     endDecorator?: React.ReactNode;
+    /**
+     * The asterisk is added if required=`true`
+     */
+    required?: boolean;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

@@ -9,11 +9,11 @@ describe('Joy <FormLabel />', () => {
 
   describeConformance(<FormLabel />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: 'label',
     render,
     ThemeProvider,
     muiName: 'MuiFormLabel',
-    refInstanceof: window.HTMLSpanElement,
+    refInstanceof: window.HTMLLabelElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 
@@ -25,5 +25,10 @@ describe('Joy <FormLabel />', () => {
   it('should accept className prop', () => {
     const { container } = render(<FormLabel className="foo-bar" />);
     expect(container.firstChild).to.have.class('foo-bar');
+  });
+
+  it('should have end decorator', () => {
+    const { container } = render(<FormLabel endDecorator={<span>foo</span>} />);
+    expect(container.firstChild).to.have.text('foo');
   });
 });

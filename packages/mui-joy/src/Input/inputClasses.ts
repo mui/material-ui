@@ -29,6 +29,12 @@ export interface InputClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
   /** Styles applied to the root element if `variant="text"`. */
   variantText: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -60,6 +66,9 @@ const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
   'variantText',
   'variantOutlined',
   'variantLight',
