@@ -23,11 +23,10 @@ const FormHelperTextRoot = styled('p', {
   display: 'flex',
   alignItems: 'center',
   fontFamily: theme.vars.fontFamily.body,
-  fontSize: theme.vars.fontSize.sm,
+  fontSize: `var(--FormHelperText-fontSize, ${theme.vars.fontSize.sm})`,
   lineHeight: theme.vars.lineHeight.sm,
   color: `var(--FormHelperText-color, ${theme.vars.palette.text.secondary})`,
-  margin: 'initial',
-  marginTop: 'var(--FormControl-gap)',
+  margin: 'var(--FormHelperText-margin, initial)',
 }));
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {

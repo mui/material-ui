@@ -3,10 +3,6 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import FormHelperText from '@mui/joy/FormHelperText';
-import Input from '@mui/joy/Input';
 import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
@@ -81,69 +77,85 @@ export default function JoyTypography() {
             alignItems: 'center',
           }}
         >
-          <FormControl>
-            <FormLabel htmlFor="textfield0" endDecorator={<Info fontSize="md" color="neutral" />}>
-              Label
-            </FormLabel>
-            <Input id="textfield0" placeholder="Placeholder" />
-            <FormHelperText>Helper text</FormHelperText>
-          </FormControl>
-          <FormControl color="warning">
-            <FormLabel
-              htmlFor="textfield1"
-              endDecorator={
-                <Typography component="span" level="body3" sx={{ ml: 'auto' }}>
-                  0 / 50
-                </Typography>
-              }
-            >
-              Label
-            </FormLabel>
-            <Input id="textfield1" placeholder="Placeholder" />
-            <FormHelperText>Helper text</FormHelperText>
-          </FormControl>
-          <FormControl variant="light" color="primary">
-            <FormLabel
-              htmlFor="textfield2"
-              endDecorator={
-                <Typography level="body3" sx={{ fontWeight: 400 }}>
-                  {' '}
-                  • Optional
-                </Typography>
-              }
-            >
-              Label
-            </FormLabel>
-            <Input id="textfield2" placeholder="Placeholder" />
-            <FormHelperText>
-              <Info fontSize="md" />
-              Helper text
-            </FormHelperText>
-          </FormControl>
-          <FormControl required error>
-            <FormLabel
-              htmlFor="textfield3"
-              endDecorator={
-                <Typography component="span" level="body3" sx={{ width: '100%' }}>
-                  Basic helper text if case you need me.
-                </Typography>
-              }
-            >
-              Label
-            </FormLabel>
-            <Input id="textfield3" placeholder="Placeholder" endAdornment={<Info />} />
-            <FormHelperText>Helper text</FormHelperText>
-          </FormControl>
-          <FormControl disabled>
-            <FormLabel htmlFor="textfield4">Label</FormLabel>
-            <Input id="textfield4" placeholder="Placeholder" />
-            <FormHelperText>Helper text</FormHelperText>
-          </FormControl>
-          <FormControl color="primary" disabled>
-            <FormLabel htmlFor="textfield4">Label</FormLabel>
-            <Input id="textfield4" placeholder="Placeholder" />
-            <FormHelperText>Helper text</FormHelperText>
-          </FormControl>
+          <TextField
+            label="Label"
+            placeholder="Placeholder"
+            helperText="Helper text"
+            componentsProps={{ label: { endDecorator: <Info fontSize="md" color="neutral" /> } }}
+          />
+
+          <TextField
+            color="warning"
+            label="Label"
+            placeholder="Placeholder"
+            helperText="Helper text"
+            componentsProps={{
+              label: {
+                endDecorator: (
+                  <Typography component="span" level="body3" sx={{ ml: 'auto' }}>
+                    0 / 50
+                  </Typography>
+                ),
+              },
+            }}
+          />
+
+          <TextField
+            variant="light"
+            color="primary"
+            label="Label"
+            placeholder="Placeholder"
+            helperText={
+              <React.Fragment>
+                <Info fontSize="md" /> Helper text
+              </React.Fragment>
+            }
+            componentsProps={{
+              label: {
+                endDecorator: (
+                  <Typography level="body3" sx={{ fontWeight: 400 }}>
+                    {' '}
+                    • Optional
+                  </Typography>
+                ),
+              },
+            }}
+          />
+
+          <TextField
+            required
+            error
+            label="Label"
+            placeholder="Placeholder"
+            helperText="Helper text"
+            endAdornment={<Info />}
+            componentsProps={{
+              label: {
+                endDecorator: (
+                  <Typography component="span" level="body3" sx={{ width: '100%' }}>
+                    Basic helper text if case you need me.
+                  </Typography>
+                ),
+              },
+            }}
+          />
+
+          <TextField
+            disabled
+            label="Label"
+            placeholder="Placeholder"
+            helperText="Helper text"
+            componentsProps={{ label: { endDecorator: <Info fontSize="md" color="neutral" /> } }}
+          />
+
+          <TextField
+            color="primary"
+            disabled
+            label="Label"
+            placeholder="Placeholder"
+            helperText="Helper text"
+            componentsProps={{ label: { endDecorator: <Info fontSize="md" color="neutral" /> } }}
+          />
         </Box>
         <Box
           sx={{
@@ -160,12 +172,14 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             defaultValue="Hello world"
             helperText="This is a helper text."
-            FormLabelProps={{
-              endDecorator: (
-                <Typography component="span" level="body3" sx={{ ml: 'auto' }}>
-                  0 / 50
-                </Typography>
-              ),
+            componentsProps={{
+              label: {
+                endDecorator: (
+                  <Typography component="span" level="body3" sx={{ ml: 'auto' }}>
+                    0 / 50
+                  </Typography>
+                ),
+              },
             }}
           />
           <TextField
@@ -177,12 +191,14 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             defaultValue="Hello world"
             helperText="This is a helper text."
-            FormLabelProps={{
-              endDecorator: (
-                <Typography component="span" level="body3" sx={{ width: '100%' }}>
-                  Basic helper text if case you need me.
-                </Typography>
-              ),
+            componentsProps={{
+              label: {
+                endDecorator: (
+                  <Typography component="span" level="body3" sx={{ width: '100%' }}>
+                    Basic helper text if case you need me.
+                  </Typography>
+                ),
+              },
             }}
           />
           <TextField
@@ -192,16 +208,16 @@ export default function JoyTypography() {
             size="lg"
             placeholder="Placeholder"
             helperText="This is a helper text."
-            InputProps={{
-              startAdornment: <Key fontSize="lg" />,
-              endAdornment: <Verified fontSize="lg" />,
-            }}
-            FormLabelProps={{
-              endDecorator: (
-                <Typography component="span" level="body3" sx={{ width: '100%' }}>
-                  Basic helper text if case you need me.
-                </Typography>
-              ),
+            startAdornment={<Key fontSize="lg" />}
+            endAdornment={<Verified fontSize="lg" />}
+            componentsProps={{
+              label: {
+                endDecorator: (
+                  <Typography component="span" level="body3" sx={{ width: '100%' }}>
+                    Basic helper text if case you need me.
+                  </Typography>
+                ),
+              },
             }}
           />
         </Box>

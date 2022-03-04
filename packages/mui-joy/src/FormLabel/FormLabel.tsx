@@ -27,11 +27,11 @@ const FormLabelRoot = styled('label', {
   alignItems: 'center',
   flexWrap: 'wrap',
   fontFamily: theme.vars.fontFamily.body,
-  fontSize: theme.vars.fontSize.sm,
+  fontSize: `var(--FormLabel-fontSize, ${theme.vars.fontSize.sm})`,
   fontWeight: theme.vars.fontWeight.md,
   lineHeight: theme.vars.lineHeight.md,
   color: `var(--FormLabel-color, ${theme.vars.palette.text.primary})`,
-  marginBottom: 'var(--FormControl-gap)',
+  margin: 'var(--FormLabel-margin, initial)',
 }));
 
 const AsteriskComponent = styled('span', {
