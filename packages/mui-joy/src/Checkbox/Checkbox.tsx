@@ -121,13 +121,19 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useCheckboxProps);
 
+  const isCheckboxActive = checked || indeterminate;
+  const activeColor = color || 'primary';
+  const inactiveColor = color || 'neutral';
+  const activeVariant = variant || 'contained';
+  const inactiveVariant = variant || 'outlined';
+
   const ownerState = {
     ...props,
     checked,
     disabled,
     focusVisible,
-    color: checked || indeterminate ? color || 'primary' : color || 'neutral',
-    variant: checked || indeterminate ? variant || 'contained' : variant || 'outlined',
+    color: isCheckboxActive ? activeColor : inactiveColor,
+    variant: isCheckboxActive ? activeVariant : inactiveVariant,
     size,
   };
 
