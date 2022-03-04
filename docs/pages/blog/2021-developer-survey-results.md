@@ -555,7 +555,7 @@ The majority of respondents don’t use any paid libraries, but those who do are
 
 <p class="blog-description">75 out of 1589 answered.</p>
 
-- **More features:** [Grouping](https://mui.com/components/data-grid/group-pivot/#row-grouping) was the most requested feature for the Data Grid Pro, followed by [master detail](https://mui.com/components/data-grid/group-pivot/#master-detail), aggregation, search, [tree data](https://mui.com/components/data-grid/group-pivot/#tree-data), and [column pinning](https://mui.com/components/data-grid/columns/#column-pinning).
+- **More features:** [Grouping](/components/data-grid/group-pivot/#row-grouping) was the most requested feature for the Data Grid Pro, followed by [master detail](/components/data-grid/group-pivot/#master-detail), aggregation, search, [tree data](/components/data-grid/group-pivot/#tree-data), and [column pinning](/components/data-grid/columns/#column-pinning).
   We've already released some of these in the time it took us to analyze the survey results.
   Check the links to see their docs and demos.
   Alternatively, you can follow [the public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
@@ -659,7 +659,7 @@ This year we saw a considerable bump the use of Next.js (compared with 12.4% in 
 As the MUI Core v5 release is relatively recent, we expect to see many developers still using JSS, and there will probably always be some of you who prefer it.
 
 But the growth of Emotion and styled-components here is noteworthy, because they are what our new styling solution is based on.
-This year we'll be focusing on expanding and refining [MUI System](https://mui.com/system/basics/) to further improve upon this new styling solution.
+This year we'll be focusing on expanding and refining [MUI System](/system/basics/) to further improve upon this new styling solution.
 
 ### Did you recently migrate to MUI Core v5?
 
@@ -777,7 +777,7 @@ The annual survey is one of the most important resources we have for deciding on
 We appreciate all the time you invested in answering our questions, and we can't stress enough how much we value your input.
 
 In 2021, we released the largest update that MUI has ever seen.
-We also began investing in complementary products, such as [MUI X](https://mui.com/x/), our [design kits](https://mui.com/design-kits/), and [premium templates](https://mui.com/templates/).
+We also began investing in complementary products, such as [MUI X](/x/), our [design kits](/design-kits/), and [premium templates](/templates/).
 
 Your feedback from this survey helped us to better understand the areas where we need to improve:
 
