@@ -492,7 +492,7 @@ A large chunk of you didn't know what MUI X is prior to the survey, which makes 
 <p class="blog-description">1584 out of 1589 answered.</p>
 
 The results are not very different from last year, aside from a slight increase of respondents saying yes.
-The majority of respondents don't use any paid libraries, but those who do are mostly using MUI X, which is great news.
+The majority of respondents don’t use any paid libraries, but those who do are mostly using MUI X. This demonstrates that some of our assumptions and execution might be correct! Developers' needs appears to not be completely fulfilled by the OSS ecosystem.
 
 ### How can we improve the Data Grid for you?
 
@@ -668,7 +668,7 @@ This year we'll be focusing on expanding and refining [MUI System](https://mui.c
 <p class="blog-description">1546 out of 1589 answered.</p>
 
 Though many of you who answered the survey have already migrated, we still have many more to convince to come along with us.
-We'll strongly focus on documentation refinement and automation tools for the year ahead.
+For the year ahead we'll focus strongly on refining the documentation, and improving automation tools.
 
 ### What's the statement that most defines your migration experience?
 
