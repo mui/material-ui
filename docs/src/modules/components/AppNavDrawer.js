@@ -38,24 +38,22 @@ const LinksWrapper = styled('div')(({ theme }) => {
     paddingTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
-    height: 128,
+    height: 125,
     '& > a': {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'initial',
       padding: theme.spacing(0, 1),
       borderRadius: theme.shape.borderRadius,
-      fontWeight: 500,
-      fontSize: theme.typography.pxToRem(14),
       color:
         theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
       transition: theme.transitions.create(),
       '&:hover': {
+        padding: theme.spacing(1),
         backgroundColor:
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[700], 0.4)
             : theme.palette.grey[50],
-        padding: theme.spacing(1),
         '& .MuiTypography-body1': {
           transform: 'translateY(0px)',
         },
@@ -70,7 +68,6 @@ const LinksWrapper = styled('div')(({ theme }) => {
       '& .MuiTypography-body2': {
         opacity: 0,
         transition: theme.transitions.create(),
-        fontSize: theme.typography.pxToRem(12),
       },
       '& svg': {
         width: 18,
@@ -81,9 +78,9 @@ const LinksWrapper = styled('div')(({ theme }) => {
 });
 
 const ProductLabel = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(0.2),
+  marginBottom: theme.spacing(0.3),
   fontSize: theme.typography.pxToRem(12),
-  fontWeight: theme.typography.fontWeightBold,
+  fontWeight: theme.typography.fontWeightSemiBold,
   textTransform: 'uppercase',
   letterSpacing: '.05rem',
   color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
@@ -152,7 +149,7 @@ function ProductDrawerButton(props) {
           py: 0.1,
           minWidth: 0,
           fontSize: theme.typography.pxToRem(13),
-          fontWeight: 500,
+          fontWeight: theme.typography.fontWeightMedium,
           color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
           '& svg': {
@@ -205,13 +202,13 @@ function ProductDrawerButton(props) {
             description="Ready-to-use foundational components, free forever."
           />
           <LinksWrapper>
-            <Link href={ROUTES.materialDocs}>
+            <Link href={ROUTES.materialDocs} sx={{ my: -0.5 }}>
               <ProductLabel>Material UI</ProductLabel>
               <Typography color="text.secondary" variant="body2">
                 {"React components that implement Google's Material Design."}
               </Typography>
             </Link>
-            <Link href={ROUTES.baseDocs}>
+            <Link href={ROUTES.baseDocs} sx={{ mb: -0.5 }}>
               <ProductLabel>MUI Base</ProductLabel>
               <Typography color="text.secondary" variant="body2">
                 Unstyled React components and low-level hooks.
@@ -230,6 +227,7 @@ function ProductDrawerButton(props) {
             href={ROUTES.dataGridSpace}
             sx={{
               p: 2,
+              width: '100%',
               '&:hover': {
                 backgroundColor: (theme) =>
                   theme.palette.mode === 'dark'
