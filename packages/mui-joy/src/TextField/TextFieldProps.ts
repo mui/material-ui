@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { FormHelperTextProps } from '../FormHelperText';
-import { FormLabelProps } from '../FormLabel';
-import { InputProps } from '../Input';
+import { FormHelperTextProps } from '../FormHelperText/FormHelperTextProps';
+import { FormLabelProps } from '../FormLabel/FormLabelProps';
+import { InputProps } from '../Input/InputProps';
 
 export type TextFieldSlot = 'root';
 
