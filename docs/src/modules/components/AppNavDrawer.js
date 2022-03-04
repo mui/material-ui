@@ -62,7 +62,7 @@ const LinksWrapper = styled('div')(({ theme }) => {
         },
       },
       '& .MuiTypography-body1': {
-        transform: 'translateY(12px)',
+        transform: 'translateY(8px)',
         transition: theme.transitions.create(),
       },
       '& .MuiTypography-body2': {
@@ -80,7 +80,7 @@ const LinksWrapper = styled('div')(({ theme }) => {
 const ProductLabel = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(0.3),
   fontSize: theme.typography.pxToRem(12),
-  fontWeight: theme.typography.fontWeightSemiBold,
+  fontWeight: theme.typography.fontWeightBold,
   textTransform: 'uppercase',
   letterSpacing: '.05rem',
   color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
