@@ -89,7 +89,7 @@ export interface Components<Theme = unknown> {
   MuiLink?: {
     defaultProps?: Partial<LinkProps>;
     styleOverrides?: OverridesStyleRules<LinkSlot, LinkProps, Theme>;
-  }
+  };
   MuiCheckbox?: {
     defaultProps?: Partial<CheckboxProps>;
     styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
