@@ -64,16 +64,18 @@ const ButtonRoot = styled('button', {
     {
       '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
       '--Button-gutter': '1.5rem', // gutter is the padding-x
-      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
-      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
       ...(ownerState.size === 'sm' && {
         '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
+        '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'lg' && {
         '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
+        '--Icon-fontSize': '1.75rem',
       }),
+      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
+      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
     },
     {
       padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element

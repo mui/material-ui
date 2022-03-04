@@ -156,7 +156,9 @@ describe('buildApiUtils', () => {
         name: 'Button',
         apiPathname: '/material-ui/api/button/',
         muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/material-ui/api')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(path.join('docs', 'pages', 'material-ui', 'api')),
+        ),
       });
 
       expect(info.getInheritance('ButtonBase')).to.deep.equal({
@@ -199,7 +201,9 @@ describe('buildApiUtils', () => {
         name: 'ButtonUnstyled',
         apiPathname: '/base/api/button-unstyled/',
         muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/base/api')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(path.join('docs', 'pages', 'base', 'api')),
+        ),
       });
 
       info.readFile();
