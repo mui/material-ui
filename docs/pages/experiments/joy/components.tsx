@@ -477,29 +477,7 @@ export default function JoyComponents() {
   }, []);
 
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       {mounted && <Playground initialName={router.query.name as string} />}
     </CssVarsProvider>

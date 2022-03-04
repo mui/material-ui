@@ -43,29 +43,7 @@ const ColorSchemePicker = () => {
 
 export default function JoyTypography() {
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 2 }}>
