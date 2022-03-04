@@ -103,7 +103,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   display: 'flex',
   ...(ownerState.loadingPosition === 'start' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      left: 14,
+      left: ownerState.size === 'small' ? 10 : 14,
     }),
   ...(ownerState.loadingPosition === 'start' &&
     ownerState.variant === 'text' && {
@@ -116,7 +116,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   }),
   ...(ownerState.loadingPosition === 'end' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      right: 14,
+      right: ownerState.size === 'small' ? 10 : 14,
     }),
   ...(ownerState.loadingPosition === 'end' &&
     ownerState.variant === 'text' && {
@@ -131,14 +131,6 @@ const LoadingButtonLoadingIndicator = styled('div', {
     ownerState.fullWidth && {
       position: 'relative',
       right: -10,
-    }),
-  ...(ownerState.loadingPosition === 'start' &&
-    ownerState.size === 'small' && {
-      left: 10,
-    }),
-  ...(ownerState.loadingPosition === 'end' &&
-    ownerState.size === 'small' && {
-      right: 10,
     }),
 }));
 

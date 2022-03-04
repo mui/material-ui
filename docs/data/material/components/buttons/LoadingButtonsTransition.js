@@ -13,7 +13,7 @@ export default function LoadingButtonsTransition() {
   }
 
   return (
-    <Box sx={{ '& > button': { m: 1 } }}>
+    <Box>
       <FormControlLabel
         sx={{
           display: 'block',
@@ -28,41 +28,85 @@ export default function LoadingButtonsTransition() {
         }
         label="Loading"
       />
-      <LoadingButton
-        onClick={handleClick}
-        loading={loading}
-        variant="outlined"
-        disabled
-      >
-        disabled
-      </LoadingButton>
-      <LoadingButton
-        onClick={handleClick}
-        loading={loading}
-        loadingIndicator="Loading..."
-        variant="outlined"
-      >
-        Fetch data
-      </LoadingButton>
-      <LoadingButton
-        onClick={handleClick}
-        endIcon={<SendIcon />}
-        loading={loading}
-        loadingPosition="end"
-        variant="contained"
-      >
-        Send
-      </LoadingButton>
-      <LoadingButton
-        color="secondary"
-        onClick={handleClick}
-        loading={loading}
-        loadingPosition="start"
-        startIcon={<SaveIcon />}
-        variant="contained"
-      >
-        Save
-      </LoadingButton>
+      <Box sx={{ '& > button': { m: 1 } }}>
+        <LoadingButton
+          size="small"
+          onClick={handleClick}
+          loading={loading}
+          variant="outlined"
+          disabled
+        >
+          disabled
+        </LoadingButton>
+        <LoadingButton
+          size="small"
+          onClick={handleClick}
+          loading={loading}
+          loadingIndicator="Loading..."
+          variant="outlined"
+        >
+          Fetch data
+        </LoadingButton>
+        <LoadingButton
+          size="small"
+          onClick={handleClick}
+          endIcon={<SendIcon />}
+          loading={loading}
+          loadingPosition="end"
+          variant="contained"
+        >
+          Send
+        </LoadingButton>
+        <LoadingButton
+          size="small"
+          color="secondary"
+          onClick={handleClick}
+          loading={loading}
+          loadingPosition="start"
+          startIcon={<SaveIcon />}
+          variant="contained"
+        >
+          Save
+        </LoadingButton>
+      </Box>
+
+      <Box sx={{ '& > button': { m: 1 } }}>
+        <LoadingButton
+          onClick={handleClick}
+          loading={loading}
+          variant="outlined"
+          disabled
+        >
+          disabled
+        </LoadingButton>
+        <LoadingButton
+          onClick={handleClick}
+          loading={loading}
+          loadingIndicator="Loading..."
+          variant="outlined"
+        >
+          Fetch data
+        </LoadingButton>
+        <LoadingButton
+          onClick={handleClick}
+          endIcon={<SendIcon />}
+          loading={loading}
+          loadingPosition="end"
+          variant="contained"
+        >
+          Send
+        </LoadingButton>
+        <LoadingButton
+          color="secondary"
+          onClick={handleClick}
+          loading={loading}
+          loadingPosition="start"
+          startIcon={<SaveIcon />}
+          variant="contained"
+        >
+          Save
+        </LoadingButton>
+      </Box>
     </Box>
   );
 }
