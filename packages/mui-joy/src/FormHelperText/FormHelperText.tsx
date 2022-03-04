@@ -35,7 +35,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     name: 'MuiFormHelperText',
   });
 
-  const { children, className, component = 'p', ...other } = props;
+  const { children, className, component, ...other } = props;
 
   const ownerState = {
     ...props,

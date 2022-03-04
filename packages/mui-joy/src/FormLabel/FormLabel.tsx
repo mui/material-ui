@@ -58,7 +58,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     name: 'MuiFormLabel',
   });
 
-  const { children, className, component = 'label', endDecorator, ...other } = props;
+  const { children, className, component, endDecorator, ...other } = props;
 
   const formControlContext = useFormControlUnstyled();
 
