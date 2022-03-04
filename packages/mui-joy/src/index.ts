@@ -36,3 +36,12 @@ export * from './Input';
 
 export { default as Sheet } from './Sheet';
 export * from './Sheet';
+
+export { default as FormLabel } from './FormLabel';
+export * from './FormLabel';
+
+export { default as FormHelperText } from './FormHelperText';
+export * from './FormHelperText';
+
+export { default as TextField } from './TextField';
+export * from './TextField';
