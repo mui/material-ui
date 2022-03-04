@@ -11,9 +11,10 @@ import { styled, useThemeProps } from '../styles';
 import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: TextFieldProps) => {
+  const { error, disabled } = ownerState;
   const slots = {
-    root: ['root'],
+    root: ['root', error && 'error', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getTextFieldUtilityClass, {});
@@ -96,7 +97,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     ...props,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <TextFieldRoot
@@ -189,7 +190,10 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -296,7 +300,10 @@ TextField.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'outlined'
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default TextField;
