@@ -2,6 +2,8 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 
+export type FormLabelSlot = 'root' | 'asterisk' | 'separator';
+
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
   props: P & {
     /**

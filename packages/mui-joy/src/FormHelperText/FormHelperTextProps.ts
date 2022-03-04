@@ -3,6 +3,8 @@ import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { FormHelperTextClasses } from './formHelperTextClasses';
 
+export type FormHelperTextSlot = 'root';
+
 export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {
   props: P & {
     /**

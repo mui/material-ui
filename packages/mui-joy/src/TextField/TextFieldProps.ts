@@ -4,6 +4,8 @@ import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
 import { InputProps } from '../Input';
 
+export type TextFieldSlot = 'root';
+
 export interface TextFieldTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     Pick<

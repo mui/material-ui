@@ -15,6 +15,9 @@ import {
   ListItemDecoratorSlot,
 } from '../ListItemDecorator/ListItemDecoratorProps';
 import { InputProps, InputSlot } from '../Input/InputProps';
+import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
+import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
+import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -83,5 +86,17 @@ export interface Components<Theme = unknown> {
   MuiSheet?: {
     defaultProps?: Partial<SheetProps>;
     styleOverrides?: OverridesStyleRules<SheetSlot, SheetProps, Theme>;
+  };
+  MuiFormLabel?: {
+    defaultProps?: Partial<FormLabelProps>;
+    styleOverrides?: OverridesStyleRules<FormLabelSlot, FormLabelProps, Theme>;
+  };
+  MuiFormHelperText?: {
+    defaultProps?: Partial<FormHelperTextProps>;
+    styleOverrides?: OverridesStyleRules<FormHelperTextSlot, FormHelperTextProps, Theme>;
+  };
+  MuiTextField?: {
+    defaultProps?: Partial<TextFieldProps>;
+    styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldProps, Theme>;
   };
 }
