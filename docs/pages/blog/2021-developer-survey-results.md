@@ -18,7 +18,7 @@ As with the previous iterations, the survey was divided into three sections: ["Y
 ### How would you feel if you could no longer use MUI?
 
 Over 93% of you would be disappointed if you could no longer use MUI (a sum of _"Very disappointed"_ and _"Somewhat disappointed"_).
-That's in keeping with 94% of you who felt the same way when we asked this question in 2019 and 2020. The _"Somewhat disappointed"_ also saw a growth of 9%. These indicators highlight that the evolution of the product that MUI provides might be pointed in the right direction!
+That's in keeping with 94% of you who felt the same way when we asked this question in 2019 and 2020. The _"Somewhat disappointed"_ also saw a growth of 9%. These indicators suggest to us that we're on the right track with our products and their continued evolution.
 
 <img src="/static/blog/2021-survey/1.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
 
@@ -38,7 +38,7 @@ Meanwhile, we're working hard to expand beyond our core products to provide you 
 **The introduction of a paid product**
 
 A big challenge with open-source is that maintainers capture very little value.
-The MIT licensed model has enabled growing a large community of contributors and the MUI team, but it does have its limitations.
+The MIT licensed model has enabled the growth of a large community of contributors as well as the MUI team itself, but it does have its limitations.
 To push the products as forward as we believe it's possible, we needed a way to invest more in them.
 [Open-core](https://en.wikipedia.org/wiki/Open-core_model) allows us to still offer an MIT licensed (free) version of the MUI X components while charging for additional features that require more attention (including support).
 
@@ -77,7 +77,7 @@ Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 
 
 <p class="blog-description">1422 out of 1589 answered this question in 2021.</p>
 
-Here's what you liked the most about the product in 2021, compared to 2020:
+Here's what you liked the most about the product in 2021, compared to 2019:
 
 - **Community (2.9x):** While the community itself doubled in size, appreciation for the community grew by 190% over that same time frame.
   It looks like we're witnessing a network effect: with twice as many users, developers got three times more value from the community.
@@ -86,7 +86,7 @@ Here's what you liked the most about the product in 2021, compared to 2020:
 - **Customizability (1.6x):** Developers seem to be appreciating the new capabilities introduced in v5.
   That said, we recognize that there is still more work to be done here, given the number of requests we've received to better solve this problem.
 - **Components (1.6x):** We'll keep adding new components to the library as long as you continue to appreciate them this much!
-  - Component quality (1.0x): You know that we set the bar very high for the quality of our components.
+  - Component quality (no change): You know that we set the bar very high for the quality of our components.
     This can be challenging as we continue to grow, because we expect nothing but the best from our team.
     Thankfully, this result shows that our team of maintainers has done an excellent job, aiming for high standards.
 - **Time (1.4x):** Mostly referring to saved time during UI development. This is an interesting one because it's not an issue that we specifically addressed.
@@ -94,8 +94,7 @@ Here's what you liked the most about the product in 2021, compared to 2020:
 - **Developer experience (1.1x):**
   - Consistency (1.75x): We didn't work on this dimension, and yet it grew.
     It's reasonable to assume that because we have more components than ever before, developers have started to notice how much more consistent their work is when they use MUI.
-  - Ease of use (1.0x): This remains unchanged.
-    Could it be because ease of use is mostly defined by the React API (hooks), or is it because we haven't made any major API changes to optimize for ease of use? There could be a lot of work here for our new developer experience team.
+  - Ease of use (no change): Could it be because ease of use is mostly defined by the React API (hooks), or is it because we haven't made any major API changes to optimize for ease of use? There could be a lot of work here for our new Developer Experience team.
 
 And what has decreased:
 
