@@ -6,14 +6,9 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { appendOwnerState } from '@mui/base/utils';
 import { useInput, InputOwnerState } from '@mui/base/InputUnstyled';
-import { FormControlUnstyledState } from '@mui/base/FormControlUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
-
-type FormControlContext =
-  | (FormControlUnstyledState & Pick<InputProps, 'color' | 'variant' | 'size'>)
-  | undefined;
 
 const useUtilityClasses = (ownerState: InputProps) => {
   const { classes, disabled, fullWidth, variant, color, size } = ownerState;
@@ -174,7 +169,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     autoComplete,
     autoFocus,
     className,
-    color: colorProp,
+    color,
     component,
     components = {},
     componentsProps = {},
@@ -198,8 +193,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     type = 'text',
     startAdornment,
     value,
-    variant: variantProp = 'outlined',
-    size: sizeProp = 'md',
+    variant = 'outlined',
+    size = 'md',
     ...other
   } = props;
 
@@ -225,19 +220,13 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     inputRef,
   );
 
-  const typedFormControlContext = formControlContext as FormControlContext;
-
-  const color = inProps.color || typedFormControlContext?.color || colorProp;
-  const variant = inProps.variant || typedFormControlContext?.variant || variantProp;
-  const size = inProps.size || typedFormControlContext?.size || sizeProp;
-
   const ownerState = {
     ...props,
     fullWidth,
     color: errorState ? 'danger' : color,
     disabled: disabledState,
     error: errorState,
-    focused: formControlContext?.focused || focused,
+    focused,
     formControl: formControlContext!,
     type,
     variant,
@@ -247,7 +236,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const rootStateClasses = {
     [inputClasses.disabled]: disabledState,
     [inputClasses.error]: errorState,
-    [inputClasses.focused]: ownerState.focused,
+    [inputClasses.focused]: focused,
     [inputClasses.formControl]: Boolean(formControlContext),
     [inputClasses.adornedStart]: Boolean(startAdornment),
     [inputClasses.adornedEnd]: Boolean(endAdornment),
