@@ -105,9 +105,13 @@ FormLabel.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The content at the end of the label (or asterisk if required).
+   * The content at the end of the label (or after the asterisk if required).
    */
   endDecorator: PropTypes.node,
+  /**
+   * The asterisk is added if required=`true`
+   */
+  required: PropTypes.bool,
 } as any;
 
 export default FormLabel;
