@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'

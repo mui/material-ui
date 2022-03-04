@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Drawer（抽屉）组件
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'

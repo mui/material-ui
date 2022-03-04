@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Backdrop React Component
 components: Backdrop, BackdropUnstyled
 githubLabel: 'component: backdrop'

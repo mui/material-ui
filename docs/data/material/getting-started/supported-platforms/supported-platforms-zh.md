@@ -8,10 +8,9 @@ Material-UI 支持所有主流浏览器和平台的最新稳定版本。 您不�
 
 <!-- #stable-snapshot -->
 
-| Edge | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE |
-|:---- | ------- | ------ | -------------- | ------------ | -- |
-|      |         |        |                |              |    |
- product: material-- |:------- |:------ |:-------------- |:------------ |:-------------------- | | >= 85 | >= 78 | >= 84 | >= 13 | >= 12.1 | 11 (partial support) |
+| Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE                   |
+| :---- | :------ | :----- | :------------- | :----------- | :------------------- |
+| >= 91 | >= 78   | >= 90  | >= 14          | >= 12.5      | 11 (partial support) |
 
 <!-- #default-branch-switch -->
 

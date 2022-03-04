@@ -1392,6 +1392,85 @@ export const hiIN: Localization = {
   },
 };
 
+// Croatian - Hrvatski
+export const hrHR: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Pokaži putanju',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Idi na prvu stranicu';
+          }
+          if (type === 'last') {
+            return 'Idi na posljednju stranicu';
+          }
+          if (type === 'next') {
+            return 'Idi na sljedeću stranicu';
+          }
+          // if (type === 'previous') {
+          return 'Idi na prethodnu stranicu';
+        },
+        labelRowsPerPage: 'Redova po stranici:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} od ${count !== -1 ? count : `više nego ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          const lastTwoDigits = value % 100;
+          if ([2, 3, 4].includes(lastDigit) && ![12, 13, 14].includes(lastTwoDigits)) {
+            return 'Zvijezde';
+          }
+          return 'Zvijezda';
+        },
+        emptyLabelText: 'Prazno',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Briši',
+        closeText: 'Zatvori',
+        loadingText: 'Učitavanje…',
+        noOptionsText: 'Nema opcija',
+        openText: 'Otvori',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Zatvori',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigacija po stranicama',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Idi na '}stranicu ${page}`;
+          }
+          if (type === 'first') {
+            return 'Idi na prvu stranicu';
+          }
+          if (type === 'last') {
+            return 'Idi na zadnju stranicu';
+          }
+          if (type === 'next') {
+            return 'Idi na sljedeću stranicu';
+          }
+          // if (type === 'previous') {
+          return 'Idi na prethodnu stranicu';
+        },
+      },
+    },
+  },
+};
+
 export const huHU: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -1699,8 +1778,8 @@ export const itIT: Localization = {
           return 'Vai alla pagina precedente';
         },
         labelRowsPerPage: 'Righe per pagina:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} di ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} di ${count !== -1 ? count : `più di ${to}`}`,
       },
     },
     MuiRating: {
@@ -2199,8 +2278,8 @@ export const plPL: Localization = {
           return 'Przejdź do poprzedniej strony';
         },
         labelRowsPerPage: 'Wierszy na stronę:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} z ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} z ${count !== -1 ? count : `ponad ${to}`}`,
       },
     },
     MuiRating: {
@@ -2465,6 +2544,85 @@ export const roRO: Localization = {
           }
           // if (type === 'previous') {
           return 'Mergi la pagina precedentă';
+        },
+      },
+    },
+  },
+};
+
+// Serbian - Srpski
+export const srRS: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Pokaži putanju',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Idi na prvu stranicu';
+          }
+          if (type === 'last') {
+            return 'Idi na poslednju stranicu';
+          }
+          if (type === 'next') {
+            return 'Idi na sledeću stranicu';
+          }
+          // if (type === 'previous') {
+          return 'Idi na prethodnu stranicu';
+        },
+        labelRowsPerPage: 'Redova po stranici:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} od ${count !== -1 ? count : `više nego ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          const lastTwoDigits = value % 100;
+          if ([2, 3, 4].includes(lastDigit) && ![12, 13, 14].includes(lastTwoDigits)) {
+            return 'Zvezde';
+          }
+          return 'Zvezda';
+        },
+        emptyLabelText: 'Prazno',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Briši',
+        closeText: 'Zatvori',
+        loadingText: 'Učitavanje…',
+        noOptionsText: 'Nema opcija',
+        openText: 'Otvori',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Zatvori',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigacija po stranicama',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Idi na '}stranicu ${page}`;
+          }
+          if (type === 'first') {
+            return 'Idi na prvu stranicu';
+          }
+          if (type === 'last') {
+            return 'Idi na zadnju stranicu';
+          }
+          if (type === 'next') {
+            return 'Idi na sledeću stranicu';
+          }
+          // if (type === 'previous') {
+          return 'Idi na prethodnu stranicu';
         },
       },
     },

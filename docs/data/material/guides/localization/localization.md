@@ -47,6 +47,7 @@ const theme = createTheme(
 | Chinese (Hong Kong)     | zh-HK               | `zhHK`      |
 | Chinese (Simplified)    | zh-CN               | `zhCN`      |
 | Chinese (Taiwan)        | zh-TW               | `zhTW`      |
+| Croatian                | hr-HR               | `hrHR`      |
 | Czech                   | cs-CZ               | `csCZ`      |
 | Danish                  | da-DK               | `daDK`      |
 | Dutch                   | nl-NL               | `nlNL`      |
@@ -73,6 +74,7 @@ const theme = createTheme(
 | Portuguese (Brazil)     | pt-BR               | `ptBR`      |
 | Romanian                | ro-RO               | `roRO`      |
 | Russian                 | ru-RU               | `ruRU`      |
+| Serbian                 | sr-RS               | `srRS`      |
 | Sinhalese               | si-LK               | `siLK`      |
 | Slovak                  | sk-SK               | `skSK`      |
 | Spanish                 | es-ES               | `esES`      |

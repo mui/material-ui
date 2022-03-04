@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Grid component
 components: Grid
 githubLabel: 'component: Grid'

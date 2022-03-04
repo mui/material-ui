@@ -175,7 +175,14 @@ export default function createStyled(input = {}) {
         // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
         transformedStyleArg = [...styleArg, ...placeholders];
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
-      } else if (typeof styleArg === 'function') {
+      } else if (
+        typeof styleArg === 'function' &&
+        // On the server emotion doesn't use React.forwardRef for creating components, so the created
+        // component stays as a function. This condition makes sure that we do not interpolate functions
+        // which are basically components used as a selectors.
+        // eslint-disable-next-line no-underscore-dangle
+        styleArg.__emotion_real !== styleArg
+      ) {
         // If the type is function, we need to define the default theme.
         transformedStyleArg = ({ theme: themeInput, ...other }) =>
           styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });

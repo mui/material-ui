@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Tree View React component
 components: TreeView, TreeItem
 githubLabel: 'component: tree view'

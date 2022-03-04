@@ -325,10 +325,6 @@ const RowHead = ({
   </Box>
 );
 
-function getUrl(hash: string) {
-  return `https://mui.com/components/data-grid${hash}`;
-}
-
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
   '@mui/base': <ColumnHead label="@mui/base" tooltip="The unstyled components and react hooks." />,
@@ -343,126 +339,161 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   // Advanced
   'data-grid/column-groups': (
-    <ColumnHead label="Column groups" nested href={getUrl('/columns/#column-groups')} />
+    <ColumnHead label="Column groups" nested href="/components/data-grid/columns/#column-groups" />
   ),
   'data-grid/column-spanning': (
-    <ColumnHead label="Column spanning" nested href={getUrl('/columns/#column-spanning')} />
+    <ColumnHead
+      label="Column spanning"
+      nested
+      href="/components/data-grid/columns/#column-spanning"
+    />
   ),
   'data-grid/column-resizing': (
-    <ColumnHead label="Column resizing" nested href={getUrl('/columns/#resizing')} />
+    <ColumnHead label="Column resizing" nested href="/components/data-grid/columns/#resizing" />
   ),
   'data-grid/column-reorder': (
-    <ColumnHead label="Column reorder" nested href={getUrl('/columns/#column-reorder')} />
+    <ColumnHead
+      label="Column reorder"
+      nested
+      href="/components/data-grid/columns/#column-reorder"
+    />
   ),
   'data-grid/column-pinning': (
-    <ColumnHead label="Column pinning" nested href={getUrl('/columns/#column-pinning')} />
+    <ColumnHead
+      label="Column pinning"
+      nested
+      href="/components/data-grid/columns/#column-pinning"
+    />
   ),
-  'data-grid/row-sorting': (
-    <ColumnHead label="Row sorting" nested href={getUrl('/rows/#row-sorting')} />
+  'data-grid/column-sorting': (
+    <ColumnHead label="Column sorting" nested href="/components/data-grid/sorting/" />
+  ),
+  'data-grid/multi-column-sorting': (
+    <ColumnHead
+      label="Multi-column sorting"
+      nested
+      href="/components/data-grid/sorting/#multi-sorting"
+    />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href={getUrl('/rows/#row-height')} />
+    <ColumnHead label="Row height" nested href="/components/data-grid/rows/#row-height" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href={getUrl('/rows/#row-spanning')} />
+    <ColumnHead label="Row spanning" nested href="/components/data-grid/rows/#row-spanning" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href={getUrl('/rows/#row-reorder')} />
+    <ColumnHead label="Row reordering" nested href="/components/data-grid/rows/#row-reorder" />
   ),
   'data-grid/row-selection': (
-    <ColumnHead label="Row selection" nested href={getUrl('/selection/#row-selection')} />
+    <ColumnHead
+      label="Row selection"
+      nested
+      href="/components/data-grid/selection/#row-selection"
+    />
   ),
   'data-grid/row-multiselection': (
     <ColumnHead
       label="Multi-row selection"
       nested
-      href={getUrl('/selection/#multiple-row-selection')}
+      href="/components/data-grid/selection/#multiple-row-selection"
     />
   ),
   'data-grid/row-rangeselection': (
-    <ColumnHead label="Range selection" nested href={getUrl('/selection/#range-selection')} />
+    <ColumnHead
+      label="Range selection"
+      nested
+      href="/components/data-grid/selection/#range-selection"
+    />
   ),
   'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" nested href={getUrl('/filtering/#quick-filter')} />
+    <ColumnHead label="Quick filter" nested href="/components/data-grid/filtering/#quick-filter" />
   ),
   'data-grid/filter-column': (
-    <ColumnHead label="Column filters" nested href={getUrl('/filtering/#column-filters')} />
+    <ColumnHead label="Column filters" nested href="/components/data-grid/filtering/" />
   ),
   'data-grid/filter-multicolumn': (
     <ColumnHead
       label="Multi-column filtering"
       nested
-      href={getUrl('/filtering/#multi-column-filtering')}
+      href="/components/data-grid/filtering/#single-and-multi-filtering"
     />
   ),
-  'data-grid/pagination': <ColumnHead label="Pagination" nested href={getUrl('/pagination/')} />,
+  'data-grid/pagination': (
+    <ColumnHead label="Pagination" nested href="/components/data-grid/pagination/" />
+  ),
   'data-grid/pagination-large': (
     <ColumnHead
       label="Pagination > 100 rows per page"
       nested
-      href={getUrl('/pagination/#paginate-gt-100-rows')}
+      href="/components/data-grid/pagination/#size-of-the-page"
     />
   ),
   'data-grid/edit-row': (
-    <ColumnHead label="Row editing" nested href={getUrl('/editing/#row-editing')} />
+    <ColumnHead label="Row editing" nested href="/components/data-grid/editing/#row-editing" />
   ),
   'data-grid/edit-cell': (
-    <ColumnHead label="Cell editing" nested href={getUrl('/editing/#cell-editing')} />
+    <ColumnHead label="Cell editing" nested href="/components/data-grid/editing/#cell-editing" />
   ),
   'data-grid/file-csv': (
-    <ColumnHead label="CSV export" nested href={getUrl('/export/#csv-export')} />
+    <ColumnHead label="CSV export" nested href="/components/data-grid/export/#csv-export" />
   ),
-  'data-grid/file-print': <ColumnHead label="Print" nested href={getUrl('/export/#print')} />,
+  'data-grid/file-print': (
+    <ColumnHead label="Print" nested href="/components/data-grid/export/#print-export" />
+  ),
   'data-grid/file-clipboard': (
-    <ColumnHead label="Clipboard" nested href={getUrl('/export/#clipboard')} />
+    <ColumnHead label="Clipboard" nested href="/components/data-grid/export/#clipboard" />
   ),
   'data-grid/file-excel': (
-    <ColumnHead label="Excel export" nested href={getUrl('/export/#excel-export')} />
+    <ColumnHead label="Excel export" nested href="/components/data-grid/export/#excel-export" />
   ),
   'data-grid/customizable-components': (
-    <ColumnHead label="Customizable components" nested href={getUrl('/components/')} />
+    <ColumnHead label="Customizable components" nested href="/components/data-grid/components/" />
   ),
   'data-grid/virtualize-column': (
     <ColumnHead
       label="Column virtualization"
       nested
-      href={getUrl('/virtualization/#column-virtualization')}
+      href="/components/data-grid/virtualization/#column-virtualization"
     />
   ),
   'data-grid/virtualize-row': (
     <ColumnHead
       label="Row virtualization > 100 rows"
       nested
-      href={getUrl('/virtualization/#row-virtualization')}
+      href="/components/data-grid/virtualization/#row-virtualization"
     />
   ),
   'data-grid/tree-data': (
-    <ColumnHead label="Tree data" nested href={getUrl('/group-pivot/#tree-data')} />
+    <ColumnHead label="Tree data" nested href="/components/data-grid/group-pivot/#tree-data" />
   ),
   'data-grid/master-detail': (
-    <ColumnHead label="Master detail" nested href={getUrl('/group-pivot/#master-detail')} />
+    <ColumnHead
+      label="Master detail"
+      nested
+      href="/components/data-grid/group-pivot/#master-detail"
+    />
   ),
   'data-grid/grouping': (
-    <ColumnHead label="Grouping" nested href={getUrl('/group-pivot/#grouping')} />
+    <ColumnHead label="Grouping" nested href="/components/data-grid/group-pivot/#grouping" />
   ),
   'data-grid/aggregation': (
-    <ColumnHead label="Aggregation" nested href={getUrl('/group-pivot/#aggregation')} />
+    <ColumnHead label="Aggregation" nested href="/components/data-grid/group-pivot/#aggregation" />
   ),
   'data-grid/pivoting': (
-    <ColumnHead label="Pivoting" nested href={getUrl('/group-pivot/#pivoting')} />
+    <ColumnHead label="Pivoting" nested href="/components/data-grid/group-pivot/#pivoting" />
   ),
   'data-grid/accessibility': (
-    <ColumnHead label="Accessibility" nested href={getUrl('/accessibility/')} />
+    <ColumnHead label="Accessibility" nested href="/components/data-grid/accessibility/" />
   ),
   'data-grid/keyboard-nav': (
     <ColumnHead
       label="Keyboard navigation"
       nested
-      href={getUrl('/accessibility/#keyboard-navigation')}
+      href="/components/data-grid/accessibility/#keyboard-navigation"
     />
   ),
   'data-grid/localization': (
-    <ColumnHead label="Localization" nested href={getUrl('/localization/')} />
+    <ColumnHead label="Localization" nested href="/components/data-grid/localization/" />
   ),
   'data-grid-pro': <ColumnHead label="Data Grid Pro Updates" />,
   'date-range-picker': <ColumnHead label="Date Range Picker" />,
@@ -530,7 +561,6 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/column-resizing': no,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
-  'data-grid/row-sorting': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
@@ -540,6 +570,8 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/filter-quick': pending,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': no,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': no,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': no,
   'data-grid/edit-row': yes,
@@ -582,7 +614,6 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
-  'data-grid/row-sorting': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': pending,
@@ -592,6 +623,8 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/filter-quick': pending,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
   'data-grid/edit-row': yes,
@@ -604,7 +637,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/virtualize-column': yes,
   'data-grid/virtualize-row': yes,
   'data-grid/tree-data': yes,
-  'data-grid/master-detail': pending,
+  'data-grid/master-detail': yes,
   'data-grid/grouping': no,
   'data-grid/aggregation': no,
   'data-grid/pivoting': no,
@@ -634,7 +667,6 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
-  'data-grid/row-sorting': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': pending,
@@ -644,6 +676,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/filter-quick': pending,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
   'data-grid/edit-row': yes,
@@ -656,8 +690,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/virtualize-column': yes,
   'data-grid/virtualize-row': yes,
   'data-grid/tree-data': yes,
-  'data-grid/master-detail': pending,
-  'data-grid/grouping': pending,
+  'data-grid/master-detail': yes,
+  'data-grid/grouping': yes,
   'data-grid/aggregation': pending,
   'data-grid/pivoting': pending,
   'data-grid/accessibility': yes,
@@ -975,8 +1009,6 @@ export default function PricingTable({
         {renderRow('data-grid/column-pinning')}
         {nestedDivider}
         <RowCategory>Row features</RowCategory>
-        {renderRow('data-grid/row-sorting')}
-        {nestedDivider}
         {renderRow('data-grid/row-height')}
         {nestedDivider}
         {renderRow('data-grid/row-spanning')}
@@ -996,6 +1028,11 @@ export default function PricingTable({
         {renderRow('data-grid/filter-column')}
         {nestedDivider}
         {renderRow('data-grid/filter-multicolumn')}
+        {nestedDivider}
+        <RowCategory>Sorting</RowCategory>
+        {renderRow('data-grid/column-sorting')}
+        {nestedDivider}
+        {renderRow('data-grid/multi-column-sorting')}
         {nestedDivider}
         <RowCategory>Pagination features</RowCategory>
         {renderRow('data-grid/pagination')}

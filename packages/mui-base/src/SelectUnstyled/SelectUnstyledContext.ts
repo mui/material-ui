@@ -1,6 +1,6 @@
 import React from 'react';
 import { OptionState } from '../ListboxUnstyled';
-import { SelectOption } from './useSelectProps';
+import { SelectOption } from './useSelect.types';
 
 export interface SelectUnstyledContextType {
   getOptionState: (value: SelectOption<any>) => OptionState;

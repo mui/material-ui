@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Date Range Picker component
 components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
 githubLabel: 'component: date range picker'

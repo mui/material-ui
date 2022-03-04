@@ -165,7 +165,7 @@ CustomSelect.propTypes = {
    */
   components: PropTypes.shape({
     Listbox: PropTypes.elementType,
-    Popper: PropTypes.elementType,
+    Popper: PropTypes.func,
     Root: PropTypes.elementType,
   }),
 };

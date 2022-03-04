@@ -6,7 +6,7 @@
 
 MUI started with Material-UI, the most successful React implementation of Google's Material Design.
 It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
-Today, countless teams and organizations rely on our open-source projects to build their design system.
+Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
@@ -29,7 +29,7 @@ Currently, we have five main projects that are not at all related to MD:
   - [MUI Base](/customization/unstyled-components/): the unstyled version of the components.
   - [MUI System](/system/basics/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
-- [MUI X](/x): as mentioned, a growing set of advanced components.
+- [MUI X](/x/): as mentioned, a growing set of advanced components.
   Today, the flagship is the [Data Grid](/components/data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
 - MUI Studio: a very recent endeavor aimed at exploring how our users can visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
@@ -69,7 +69,7 @@ You'll also be the second designer of a growing design team, so we'll also need 
   You should be capable of tweaking JSX and CSS, ensuring that your designs are implemented with the highest fidelity.
   But don't worry, you'll always have the support of your teams' developers.
 
-Previous experience with design systems would be great, but is not required.
+Previous experience with design systems would be great but is not required.
 
 ## Benefits & Compensation
 
@@ -79,7 +79,7 @@ Other perks are described on [the careers page](/careers/#perks-amp-benefits/).
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Designer).
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Designer&prefill_source=mui.com).
 
 ## What happens next?
 
@@ -88,7 +88,7 @@ If your application stands out, we'll contact you for a get-to-know conversation
 
 If that goes well, you'll be invited to up to four additional conversations, those being:
 
-- A walkthrough on one or two selected projects of your career that you believe demonstrates [comparable experience.](https://articles.uie.com/ux-hiring-lets-talk-about-comparable-experience/)
+- A walkthrough of one or two selected projects that you believe demonstrate [comparable experience.](https://articles.uie.com/ux-hiring-lets-talk-about-comparable-experience/)
 - A chat with one of the product managers or engineers that you will work closely with.
 - A chat with one of MUI's founders.
 - A possible follow-up chat if we missed addressing anything relevant in the previous conversations.
