@@ -118,6 +118,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
           {label}
         </FormLabel>
       )}
+
       <Input
         id={id}
         inputRef={inputRef}
@@ -168,7 +169,17 @@ TextField.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component.
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
+  autoComplete: PropTypes.string,
+  /**
+   * If `true`, the `input` element is focused during the first mount.
+   */
+  autoFocus: PropTypes.bool,
+  /**
+   * @ignore
    */
   children: PropTypes.node,
   /**
@@ -176,10 +187,116 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  components: PropTypes.shape({
+    HelperText: PropTypes.elementType,
+    InputInput: PropTypes.elementType,
+    InputRoot: PropTypes.elementType,
+    Label: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * @ignore
+   */
+  componentsProps: PropTypes.shape({
+    helperText: PropTypes.object,
+    inputInput: PropTypes.object,
+    inputRoot: PropTypes.object,
+    label: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.any,
+  /**
+   * If `true`, the component is disabled.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Trailing adornment for this input.
+   */
+  endAdornment: PropTypes.node,
+  /**
+   * If `true`, the `input` will indicate an error.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  error: PropTypes.bool,
+  /**
+   * The helper text content.
+   */
+  helperText: PropTypes.node,
+  /**
+   * The id of the `input` element.
+   * Use this prop to make `label` and `helperText` accessible for screen readers.
+   */
+  id: PropTypes.string,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.any.isRequired,
+    }),
+  ]),
+  /**
+   * The label content.
+   */
+  label: PropTypes.node,
+  /**
+   * Name attribute of the `input` element.
+   */
+  name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * The short hint displayed in the `input` before the user enters a value.
+   */
+  placeholder: PropTypes.string,
+  /**
+   * If `true`, the `input` element is required.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  required: PropTypes.bool,
+  /**
+   * The size of the component.
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * Leading adornment for this input.
+   */
+  startAdornment: PropTypes.node,
+  /**
+   * The value of the `input` element, required for a controlled component.
+   */
+  value: PropTypes.any,
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;
 
 export default TextField;

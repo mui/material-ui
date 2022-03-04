@@ -82,6 +82,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
           &thinsp;{'*'}
         </AsteriskComponent>
       )}
+
       {endDecorator && <Separator ownerState={ownerState} className={classes.separator} />}
       {endDecorator}
     </FormLabelRoot>
@@ -106,6 +107,10 @@ FormLabel.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The content at the end of the label (or asterisk if required).
+   */
+  endDecorator: PropTypes.node,
 } as any;
 
 export default FormLabel;

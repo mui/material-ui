@@ -454,6 +454,10 @@ Input.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
+   * The size of the component.
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
    * Leading adornment for this input.
    */
   startAdornment: PropTypes.node,
