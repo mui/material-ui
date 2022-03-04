@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Trap Focus（容器焦点）组件
 components: Unstable_TrapFocus
 githubLabel: 'component: TrapFocus'

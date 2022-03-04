@@ -3,8 +3,10 @@ import { useInput } from '@mui/base';
 import { styled } from '@mui/system';
 
 const blue = {
+  100: '#DAECFF',
   200: '#80BFFF',
   400: '#3399FF',
+  600: '#0072E5',
 };
 
 const grey = {
@@ -32,7 +34,6 @@ const StyledInputElement = styled('input')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 8px;
   padding: 12px 12px;
-  transition: all 200ms ease;
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? null : grey[100]};
@@ -40,8 +41,7 @@ const StyledInputElement = styled('input')(
   }
 
   &:focus {
-    outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
-    outline-offset: 2px;
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
   }
 `,
 );

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Skeleton component
 components: Skeleton
 githubLabel: 'component: skeleton'

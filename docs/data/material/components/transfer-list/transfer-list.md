@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Transfer List React component
 components: List, ListItem, Checkbox, Switch
 githubLabel: 'component: transfer list'

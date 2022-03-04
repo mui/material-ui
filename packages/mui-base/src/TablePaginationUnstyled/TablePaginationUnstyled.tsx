@@ -143,7 +143,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className={clsx(classes.root, rootProps.className, className)}
       >
         <Toolbar {...toolbarProps} className={clsx(classes.toolbar, toolbarProps?.className)}>
-          <Spacer {...spacerProps} className={clsx(classes.spacer, toolbarProps?.spacer)} />
+          <Spacer {...spacerProps} className={clsx(classes.spacer, spacerProps?.className)} />
           {rowsPerPageOptions.length > 1 && (
             <SelectLabel
               {...selectLabelProps}

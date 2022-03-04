@@ -153,6 +153,7 @@ function TopLayoutBlog(props) {
         title={`${finalTitle} - MUI`}
         description={description}
         largeCard={headers.card === 'true' ? true : undefined}
+        disableAlternateLocale
         card={
           headers.card === 'true' ? `https://mui.com/static${router.pathname}/card.png` : undefined
         }

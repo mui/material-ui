@@ -5,9 +5,9 @@ import {
   ListboxAction,
   ListboxReducer,
   ListboxState,
-  UseListboxProps,
+  UseListboxParameters,
   UseListboxStrictProps,
-} from './types';
+} from './useListbox.types';
 import areArraysEqual from '../utils/areArraysEqual';
 
 /**
@@ -16,11 +16,11 @@ import areArraysEqual from '../utils/areArraysEqual';
 function useReducerReturnValueHandler<TOption>(
   state: ListboxState<TOption>,
   value: TOption | TOption[] | null,
-  options: UseListboxProps<TOption>['options'],
+  options: UseListboxParameters<TOption>['options'],
   optionComparer: React.RefObject<(option: TOption, value: TOption) => boolean>,
   setValueState: (newValue: TOption | TOption[] | null) => void,
-  onValueChange: UseListboxProps<TOption>['onChange'],
-  onHighlightChange: UseListboxProps<TOption>['onHighlightChange'],
+  onValueChange: UseListboxParameters<TOption>['onChange'],
+  onHighlightChange: UseListboxParameters<TOption>['onHighlightChange'],
 ) {
   const valueRef = React.useRef(value);
   valueRef.current = value;

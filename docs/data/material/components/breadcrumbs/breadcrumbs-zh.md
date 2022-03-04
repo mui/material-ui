@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Breadcrumbs（面包屑导航）组件
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'

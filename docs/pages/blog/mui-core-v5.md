@@ -479,7 +479,7 @@ Although each product has its unique vision and mission statements, they complem
 MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
-It's why we are using an [open core license model](https://medium.com/open-consensus/2-open-core-definition-examples-tradeoffs-e4d0c044da7c) for this new product.
+It's why we are using an [open core license model](https://en.m.wikipedia.org/wiki/Open-core_model) for this new product.
 The X components come in [three different plans](/pricing/):
 
 - **Community.** This plan contains the MIT components that are sustainable by the contributions of the open-source community. Free forever.
