@@ -30,7 +30,7 @@ Here are the biggest reasons we observed:
 
 **The number of available alternatives**
 
-Lately, with every new sunrise, there's a new UI component library.
+Lately, with each new day a new UI component library appears.
 Because they aim to solve the same problems, these libraries often arrive at solutions that are very similar to one another.
 The establishment of common industry-wide patterns makes it that much more difficult to stand out from the crowd.
 Meanwhile, we're working hard to expand beyond our core products to provide you with experiences that other libraries can't match.
