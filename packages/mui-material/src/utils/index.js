@@ -23,7 +23,7 @@ export const unstable_ClassNameGenerator = {
   configure: (generator) => {
     console.warn(
       [
-        'MUI: This module has been moved to another folder to fix the className issue.',
+        'MUI: `ClassNameGenerator` import from `@mui/material/utils` is outdated and might cause unexpected issues.',
         '',
         "You should use `import { unstable_ClassNameGenerator } from '@mui/material/className'` instead",
         '',
