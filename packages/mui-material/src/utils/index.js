@@ -1,4 +1,4 @@
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/base/generateUtilityClass';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/base/className';
 
 export { default as capitalize } from './capitalize';
 export { default as createChainedFunction } from './createChainedFunction';
