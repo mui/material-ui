@@ -34,35 +34,39 @@ function getHeaders(markdown) {
 
   header = header[1];
 
-  let regexMatches;
-  const headers = {};
+  try {
+    let regexMatches;
+    const headers = {};
 
-  // eslint-disable-next-line no-cond-assign
-  while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
-    const key = regexMatches[1];
-    let value = regexMatches[2].replace(/(.*)/, '$1');
-    if (value[0] === '[') {
-      // Need double quotes to JSON parse.
-      value = value.replace(/'/g, '"');
-      // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
-      value = value.replace(/,\s+\]$/g, ']');
-      headers[key] = JSON.parse(value);
-    } else {
-      // Remove trailing single quote yml escaping.
-      headers[key] = value.replace(/^'|'$/g, '');
+    // eslint-disable-next-line no-cond-assign
+    while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
+      const key = regexMatches[1];
+      let value = regexMatches[2].replace(/(.*)/, '$1');
+      if (value[0] === '[') {
+        // Need double quotes to JSON parse.
+        value = value.replace(/'/g, '"');
+        // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
+        value = value.replace(/,\s+\]$/g, ']');
+        headers[key] = JSON.parse(value);
+      } else {
+        // Remove trailing single quote yml escaping.
+        headers[key] = value.replace(/^'|'$/g, '');
+      }
     }
-  }
 
-  if (headers.components) {
-    headers.components = headers.components
-      .split(',')
-      .map((x) => x.trim())
-      .sort();
-  } else {
-    headers.components = [];
-  }
+    if (headers.components) {
+      headers.components = headers.components
+        .split(',')
+        .map((x) => x.trim())
+        .sort();
+    } else {
+      headers.components = [];
+    }
 
-  return headers;
+    return headers;
+  } catch (err) {
+    throw new Error(`${err.message} in getHeader(markdown) with markdown: \n\n${header}`);
+  }
 }
 
 function getContents(markdown) {

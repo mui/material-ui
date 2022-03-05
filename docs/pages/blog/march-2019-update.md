@@ -3,7 +3,7 @@ title: March 2019 Update
 description: Here are the most significant improvements in March.
 date: 2019-04-05T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 Here are the most significant improvements in March:
