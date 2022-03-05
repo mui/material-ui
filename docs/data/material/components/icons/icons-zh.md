@@ -18,7 +18,7 @@ MUI通过以下三种方式来支持图标的使用：
 
 ## Material Icons
 
-谷歌制作了 1 900 多个官方 Material 图标，每个图标分为五个不同的“主题”（见下文）。 对于每个 SVG 图标，我们从`@mui/icons-material` 包中导出相应的 React 组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
+Google has created over 2,000 official Material icons, each in five different "themes" (see below). 对于每个 SVG 图标，我们从`@mui/icons-material` 包中导出相应的 React 组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
 ### 安装
 
