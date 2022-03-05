@@ -9,9 +9,9 @@ githubLabel: 'package: icons'
 
 # Material 图标
 
-<p class="description">你可以在我们的官网上找到 1 900 多个 React Material icons。</p>
+<p class="description">2,000+ React Material icons ready-to-use from the official website.</p>
 
-[@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) 这个 npm 包包含了 1 900 多个已经被转换成 [`SvgIcon`](/api/svg-icon/) 的官方 [Material icons](https://fonts.google.com/icons) 。
+The following npm package, [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material), includes the 2,000+ official [Material icons](https://fonts.google.com/icons) converted to [`SvgIcon`](/api/svg-icon/) components.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
