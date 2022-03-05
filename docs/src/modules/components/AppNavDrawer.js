@@ -35,10 +35,10 @@ const savedScrollTop = {};
 const LinksWrapper = styled('div')(({ theme }) => {
   return {
     paddingLeft: theme.spacing(5.5),
-    paddingTop: theme.spacing(1),
+    paddingTop: theme.spacing(1.5),
     display: 'flex',
     flexDirection: 'column',
-    height: 125,
+    height: 128,
     '& > a': {
       display: 'flex',
       flexDirection: 'column',
@@ -59,14 +59,17 @@ const LinksWrapper = styled('div')(({ theme }) => {
         },
         '& .MuiTypography-body2': {
           opacity: 1,
+          transform: 'translateY(0px)',
         },
       },
       '& .MuiTypography-body1': {
-        transform: 'translateY(8px)',
+        zIndex: 1,
+        transform: 'translateY(11px)',
         transition: theme.transitions.create(),
       },
       '& .MuiTypography-body2': {
         opacity: 0,
+        transform: 'translateY(-5px)',
         transition: theme.transitions.create(),
       },
       '& svg': {
