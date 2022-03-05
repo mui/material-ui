@@ -1011,8 +1011,6 @@ export default function useAutocomplete(props) {
   return {
     getRootProps: (other = {}) => ({
       'aria-owns': listboxAvailable ? `${id}-listbox` : null,
-      role: 'combobox',
-      'aria-expanded': listboxAvailable,
       ...other,
       onKeyDown: handleKeyDown(other),
       onMouseDown: handleMouseDown,
@@ -1034,12 +1032,14 @@ export default function useAutocomplete(props) {
       'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
       'aria-controls': listboxAvailable ? `${id}-listbox` : undefined,
+      'aria-expanded': listboxAvailable,
       // Disable browser's suggestion that might overlap with the popup.
       // Handle autocomplete but not autofill.
       autoComplete: 'off',
       ref: inputRef,
       autoCapitalize: 'none',
       spellCheck: 'false',
+      role: 'combobox',
     }),
     getClearProps: () => ({
       tabIndex: -1,

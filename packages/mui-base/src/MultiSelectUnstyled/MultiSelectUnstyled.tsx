@@ -88,6 +88,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const [buttonDefined, setButtonDefined] = React.useState(false);
   const buttonRef = React.useRef<HTMLElement | null>(null);
+  const listboxRef = React.useRef<HTMLElement>(null);
 
   const Button = component ?? components.Root ?? 'button';
   const ListboxRoot = components.Listbox ?? 'ul';
@@ -102,6 +103,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   };
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleListboxRef = useForkRef(listboxRef, componentsProps.listbox?.ref);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -129,7 +131,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     defaultValue,
     disabled: disabledProp,
     listboxId: componentsProps.listbox?.id,
-    listboxRef: componentsProps.listbox?.ref,
+    listboxRef: handleListboxRef,
     multiple: true,
     onChange,
     onOpenChange: handleOpenChange,
@@ -199,6 +201,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const context: SelectUnstyledContextType = {
     getOptionProps,
     getOptionState,
+    listboxRef,
   };
 
   return (

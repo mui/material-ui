@@ -1,5 +1,5 @@
 {
-  "version": "5.4.3",
+  "version": "5.4.4",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -35,7 +35,7 @@
     "jsonlint": "node ./scripts/jsonlint.js",
     "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
-    "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables 'docs/**/*.{js,ts,tsx}'",
+    "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables docs/**/*.{js,ts,tsx}",
     "markdownlint": "markdownlint '**/*.md' --config .markdownlint.jsonc",
     "prettier": "node ./scripts/prettier.js",
     "prettier:all": "node ./scripts/prettier.js write",

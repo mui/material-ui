@@ -131,7 +131,8 @@ export const getGenericComponentInfo = (filename: string): ComponentInfo => {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdown().map((markdown) => ({
         ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
+        components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+          .components as string[],
       }));
       return findComponentDemos(name, allMarkdowns);
     },
@@ -185,7 +186,8 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdownNew().map((markdown) => ({
         ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
+        components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+          .components as string[],
       }));
       return findNewComponentDemos(name, allMarkdowns).map((info) => ({
         ...info,
@@ -226,7 +228,8 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdownNew().map((markdown) => ({
         ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
+        components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+          .components as string[],
       }));
       return findNewComponentDemos(name, allMarkdowns);
     },

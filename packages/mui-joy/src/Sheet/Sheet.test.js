@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import Sheet, { sheetClasses as classes } from '@mui/joy/Sheet';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Sheet />', () => {
   const { render } = createRenderer();
@@ -30,44 +31,16 @@ describe('<Sheet />', () => {
       expect(getByTestId('root')).to.have.class(classes.variantText);
     });
 
-    it('adds a text class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" variant="text">
-          Hello World
-        </Sheet>,
-      );
+    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+      it(`should render ${variant}`, () => {
+        const { getByTestId } = render(
+          <Sheet data-testid="root" variant={variant}>
+            Hello World
+          </Sheet>,
+        );
 
-      expect(getByTestId('root')).to.have.class(classes.variantText);
-    });
-
-    it('adds a outlined class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" variant="outlined">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.variantOutlined);
-    });
-
-    it('adds a light class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" variant="light">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.variantLight);
-    });
-
-    it('adds a contained class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" variant="contained">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.variantContained);
+        expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
+      });
     });
   });
 
@@ -78,64 +51,16 @@ describe('<Sheet />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    it('adds a primary class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" color="primary">
-          Hello World
-        </Sheet>,
-      );
+    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+      it(`should render ${color}`, () => {
+        const { getByTestId } = render(
+          <Sheet data-testid="root" color={color}>
+            Hello World
+          </Sheet>,
+        );
 
-      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
-    });
-
-    it('adds a neutral class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" color="neutral">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
-    });
-
-    it('adds a info class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" color="info">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorInfo);
-    });
-
-    it('adds a success class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" color="success">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorSuccess);
-    });
-
-    it('adds a warning class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" color="warning">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorWarning);
-    });
-
-    it('adds a danger class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" color="danger">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.colorDanger);
+        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 
@@ -149,55 +74,16 @@ describe('<Sheet />', () => {
       expect(getByTestId('root')).not.to.have.class(classes.elevationLg);
       expect(getByTestId('root')).not.to.have.class(classes.elevationXl);
     });
+    ['xs', 'sm', 'md', 'lg', 'xl'].forEach((elevation) => {
+      it(`should render ${elevation}`, () => {
+        const { getByTestId } = render(
+          <Sheet data-testid="root" elevation={elevation}>
+            Hello World
+          </Sheet>,
+        );
 
-    it('adds a xs class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" elevation="xs">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.elevationXs);
-    });
-
-    it('adds a sm class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" elevation="sm">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.elevationSm);
-    });
-
-    it('adds a md class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" elevation="md">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.elevationMd);
-    });
-
-    it('adds a lg class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" elevation="lg">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.elevationLg);
-    });
-
-    it('adds a xl class', () => {
-      const { getByTestId } = render(
-        <Sheet data-testid="root" elevation="xl">
-          Hello World
-        </Sheet>,
-      );
-
-      expect(getByTestId('root')).to.have.class(classes.elevationXl);
+        expect(getByTestId('root')).to.have.class(classes[`elevation${capitalize(elevation)}`]);
+      });
     });
   });
 });
