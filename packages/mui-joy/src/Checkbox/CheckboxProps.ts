@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp, IconSize } from '../styles/types';
+import { ColorPaletteProp, VariantProp } from '../styles/types';
 
 export type CheckboxSlot = 'root' | 'input';
 
@@ -54,7 +54,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The size of the component.
        * @default 'md'
        */
-      size?: OverridableStringUnion<keyof IconSize, CheckboxPropsSizeOverrides>;
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', CheckboxPropsSizeOverrides>;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */

@@ -37,7 +37,15 @@ const CheckboxRoot = styled('span', {
 })<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => {
   return [
     {
-      '--Checkbox-size': theme.vars.iconSize[ownerState.size!],
+      ...(ownerState.size === 'sm' && {
+        '--Checkbox-size': '1rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Checkbox-size': '1.25rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Checkbox-size': '1.5rem',
+      }),
       '--Icon-fontSize': 'var(--Checkbox-size)',
       borderRadius: theme.vars.radius.xs,
       boxSizing: 'border-box',
@@ -113,13 +121,19 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useCheckboxProps);
 
+  const isCheckboxActive = checked || indeterminate;
+  const activeColor = color || 'primary';
+  const inactiveColor = color || 'neutral';
+  const activeVariant = variant || 'contained';
+  const inactiveVariant = variant || 'outlined';
+
   const ownerState = {
     ...props,
     checked,
     disabled,
     focusVisible,
-    color: checked || indeterminate ? color || 'primary' : color || 'neutral',
-    variant: checked || indeterminate ? variant || 'contained' : variant || 'outlined',
+    color: isCheckboxActive ? activeColor : inactiveColor,
+    variant: isCheckboxActive ? activeVariant : inactiveVariant,
     size,
   };
 
@@ -225,7 +239,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
   /**
