@@ -51,6 +51,33 @@ describe('<Checkbox />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', false);
   });
 
+  it('should have configurable color', () => {
+    const { container, rerender } = render(<Checkbox />);
+
+    expect(container.firstChild).to.have.class(classes.colorNeutral); // default
+
+    rerender(<Checkbox color="primary" />);
+    expect(container.firstChild).to.have.class(classes.colorPrimary);
+  });
+
+  it('should have configurable variant', () => {
+    const { container, rerender } = render(<Checkbox />);
+
+    expect(container.firstChild).to.have.class(classes.variantOutlined); // default
+
+    rerender(<Checkbox variant="light" />);
+    expect(container.firstChild).to.have.class(classes.variantLight);
+  });
+
+  it('should have configurable size', () => {
+    const { container, rerender } = render(<Checkbox />);
+
+    expect(container.firstChild).to.have.class(classes.sizeMd); // default
+
+    rerender(<Checkbox size="sm" />);
+    expect(container.firstChild).to.have.class(classes.sizeSm);
+  });
+
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       const { getByTestId } = render(<Checkbox indeterminate />);

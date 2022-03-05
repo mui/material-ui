@@ -19,6 +19,8 @@ export interface CheckboxClasses {
   colorDanger: string;
   /** Styles applied to the root element if `color="info"`. */
   colorInfo: string;
+  /** Styles applied to the root element if `color="neutral"`. */
+  colorNeutral: string;
   /** Styles applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
@@ -53,6 +55,7 @@ const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'colorPrimary',
   'colorDanger',
   'colorInfo',
+  'colorNeutral',
   'colorSuccess',
   'colorWarning',
   'sizeSm',
