@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Acesso Rápido
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'

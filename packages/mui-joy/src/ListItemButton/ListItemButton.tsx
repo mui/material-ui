@@ -14,8 +14,7 @@ import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItem
 import listItemClasses from '../ListItem/listItemClasses';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, selectedVariant, selected } =
-    ownerState;
+  const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
 
   const slots = {
     root: [
@@ -24,7 +23,7 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
       focusVisible && 'focusVisible',
       color && `color${capitalize(color)}`,
       selected && 'selected',
-      selected && selectedVariant && `selectedVariant${capitalize(selectedVariant)}`,
+      variant && `variant${capitalize(variant)}`,
     ],
   };
 
@@ -43,26 +42,23 @@ const ListItemButtonRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps }>(({ theme, ownerState }) => [
   {
-    ...(!ownerState.color && {
-      '--List-decorator-color': theme.vars.palette.text.tertiary, // for making icon color less obvious
-    }),
     ...(ownerState.color &&
       ownerState.color !== 'context' && {
         '--List-decorator-color':
-          theme.vars.palette[ownerState.color]?.[`${ownerState.selectedVariant || 'text'}Color`],
+          theme.vars.palette[ownerState.color]?.[`${ownerState.variant!}Color`],
       }),
     boxSizing: 'border-box',
     display: 'flex',
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
-    color: 'initial',
-    // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem.
-    // The value is negative to account for the ListItem's padding
+    // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
     margin: 'var(--List-itemButton-margin)',
-    padding: 'min(0.375rem, var(--List-item-paddingX))',
-    paddingLeft: 'var(--List-insetStart, var(--List-item-paddingX))',
-    paddingRight: 'calc(var(--List-item-paddingX) + var(--List-item-secondaryActionWidth, 0px))',
+    padding: 'var(--List-item-paddingY)',
+    paddingLeft:
+      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+    paddingRight:
+      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
@@ -71,34 +67,43 @@ const ListItemButtonRoot = styled('div', {
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
       'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    ...theme.typography.body1,
+    fontSize: 'var(--List-item-fontSize)',
+    fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.selected && {
       fontWeight: theme.vars.fontWeight.md,
     }),
     '&.Mui-focusVisible': theme.focus.default,
-    [`& + .${listItemButtonClasses.root}, & + .${listItemClasses.root}`]: {
+    // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
+    // We want to be specific on what siblings the gap should be added.
+    [`& + .${listItemButtonClasses.root}`]: {
       marginTop: 'var(--List-gap)',
     },
-  },
-  ...(ownerState.selected
-    ? [
-        {
-          ...(ownerState.selectedVariant === 'outlined' && {
-            padding:
-              'calc(min(0.375rem, var(--List-item-paddingX)) - var(--variant-outlinedBorderWidth)) calc(var(--List-item-paddingX) - var(--variant-outlinedBorderWidth))', // account for the border width
-          }),
+    [`& + .${listItemClasses.root}`]: {
+      marginTop: 'var(--List-gap)',
+    },
+    // default color & background styles when `color` prop is not specified or set as default
+    ...(!ownerState.color &&
+      !ownerState.selected && {
+        color: theme.vars.palette.text.secondary,
+        '&:hover': {
+          color: theme.vars.palette.text.primary,
         },
-        theme.variants[ownerState.selectedVariant!]?.[ownerState.color || 'primary'],
-        theme.variants[`${ownerState.selectedVariant!}Hover`]?.[ownerState.color || 'primary'],
-        theme.variants[`${ownerState.selectedVariant!}Active`]?.[ownerState.color || 'primary'],
-        theme.variants[`${ownerState.selectedVariant!}Disabled`]?.[ownerState.color || 'primary'],
-      ]
-    : [
-        theme.variants.text?.[ownerState.color!],
-        theme.variants.textHover?.[ownerState.color || 'neutral'],
-        theme.variants.textActive?.[ownerState.color || 'neutral'],
-        theme.variants.textDisabled?.[ownerState.color || 'neutral'],
-      ]),
+      }),
+  },
+  {
+    ...(ownerState.variant === 'outlined' && {
+      // account for the border width
+      padding: 'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth))',
+      paddingLeft:
+        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+      paddingRight:
+        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+    }),
+  },
+  theme.variants[ownerState.variant!]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
 ]);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
@@ -112,9 +117,9 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     className,
     action,
     component = 'div',
-    color,
     selected = false,
-    selectedVariant = 'light',
+    color = selected ? 'primary' : undefined,
+    variant = 'text',
     ...other
   } = props;
 
@@ -146,7 +151,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     color,
     focusVisible,
     selected,
-    selectedVariant,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -207,10 +212,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   selected: PropTypes.bool,
   /**
    * The variant to use.
-   * @default 'light'
+   * @default 'text'
    */
-  selectedVariant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
     PropTypes.string,
   ]),
 } as any;

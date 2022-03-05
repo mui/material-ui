@@ -1,9 +1,21 @@
-import { CSSInterpolation } from '@mui/system';
 import { GlobalStateSlot } from '@mui/base';
+import { CSSInterpolation } from '@mui/system';
 import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
+import { InputProps, InputSlot } from '../Input/InputProps';
+import { LinkProps, LinkSlot } from '../Link/LinkProps';
+import { ListProps, ListSlot } from '../List/ListProps';
+import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
+import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
+import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListItemButtonProps';
+import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
+import {
+  ListItemDecoratorProps,
+  ListItemDecoratorSlot,
+} from '../ListItemDecorator/ListItemDecoratorProps';
+import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
+import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
-import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -40,5 +52,41 @@ export interface Components<Theme = unknown> {
   MuiSvgIcon?: {
     defaultProps?: Partial<SvgIconProps>;
     styleOverrides?: OverridesStyleRules<SvgIconSlot, SvgIconProps, Theme>;
+  };
+  MuiList?: {
+    defaultProps: Partial<ListProps>;
+    styleOverrides?: OverridesStyleRules<ListSlot, ListProps, Theme>;
+  };
+  MuiListDivider?: {
+    defaultProps: Partial<ListDividerProps>;
+    styleOverrides?: OverridesStyleRules<ListDividerSlot, ListDividerProps, Theme>;
+  };
+  MuiListItem?: {
+    defaultProps: Partial<ListItemProps>;
+    styleOverrides?: OverridesStyleRules<ListItemSlot, ListItemProps, Theme>;
+  };
+  MuiListItemContent?: {
+    defaultProps: Partial<ListItemContentProps>;
+    styleOverrides?: OverridesStyleRules<ListItemContentSlot, ListItemContentProps, Theme>;
+  };
+  MuiListItemDecorator?: {
+    defaultProps: Partial<ListItemDecoratorProps>;
+    styleOverrides?: OverridesStyleRules<ListItemDecoratorSlot, ListItemDecoratorProps, Theme>;
+  };
+  MuiListItemButton?: {
+    defaultProps: Partial<ListItemButtonProps>;
+    styleOverrides?: OverridesStyleRules<ListItemButtonSlot, ListItemButtonProps, Theme>;
+  };
+  MuiInput?: {
+    defaultProps?: Partial<InputProps>;
+    styleOverrides?: OverridesStyleRules<InputSlot, InputProps, Theme>;
+  };
+  MuiSheet?: {
+    defaultProps?: Partial<SheetProps>;
+    styleOverrides?: OverridesStyleRules<SheetSlot, SheetProps, Theme>;
+  };
+  MuiLink?: {
+    defaultProps?: Partial<LinkProps>;
+    styleOverrides?: OverridesStyleRules<LinkSlot, LinkProps, Theme>;
   };
 }

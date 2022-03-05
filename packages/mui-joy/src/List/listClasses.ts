@@ -3,6 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface ListClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the root element if wrapped with nested context. */
+  nested: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -19,6 +21,7 @@ export function getListUtilityClass(slot: string): string {
 
 const listClasses: ListClasses = generateUtilityClasses('MuiList', [
   'root',
+  'nested',
   'sizeSm',
   'sizeMd',
   'sizeLg',

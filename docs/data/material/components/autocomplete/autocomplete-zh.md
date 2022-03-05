@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Autocomplete（自动补全）组件
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'

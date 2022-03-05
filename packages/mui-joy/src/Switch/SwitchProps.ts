@@ -3,9 +3,11 @@ import { OverridableStringUnion } from '@mui/types';
 import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { SwitchClasses } from './switchClasses';
 import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp } from '../styles/types';
 
 export type SwitchSlot = 'root' | 'input' | 'track' | 'thumb';
+
+export interface SwitchPropsVariantOverrides {}
 
 export interface SwitchPropsColorOverrides {}
 
@@ -38,12 +40,9 @@ export interface SwitchProps
   classes?: Partial<SwitchClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
-  color?: OverridableStringUnion<
-    Exclude<ColorPaletteProp, 'context' | 'neutral'>,
-    SwitchPropsColorOverrides
-  >;
+  color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SwitchPropsColorOverrides>;
   /**
    * The size of the component.
    * @default 'md'
@@ -53,4 +52,9 @@ export interface SwitchProps
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps;
+  /**
+   * The variant to use.
+   * @default 'contained'
+   */
+  variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, SwitchPropsVariantOverrides>;
 }

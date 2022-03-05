@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Table（表格）组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
 githubLabel: 'component: table'

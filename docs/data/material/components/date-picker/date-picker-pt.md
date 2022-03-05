@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Seletor de data
 components: CalendarPicker, CalendarPickerSkeleton, DatePicker, DesktopDatePicker, MobileDatePicker, MonthPicker, PickersDay, StaticDatePicker, YearPicker
 githubLabel: 'component: date picker'

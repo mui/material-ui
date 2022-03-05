@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: 用于响应式设计的 React 中的媒体查询
 githubLabel: 'hook: useMediaQuery'
 ---

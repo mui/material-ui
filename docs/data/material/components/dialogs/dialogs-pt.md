@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente Diálogo para React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'

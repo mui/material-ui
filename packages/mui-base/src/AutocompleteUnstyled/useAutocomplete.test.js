@@ -295,7 +295,7 @@ describe('useAutocomplete', () => {
         return <input {...getInputProps()} />;
       };
       render(<Test options={['foo', 'bar']} />);
-      const input = screen.getByRole('textbox');
+      const input = screen.getByRole('combobox');
 
       act(() => {
         fireEvent.change(input, { target: { value: 'free' } });
