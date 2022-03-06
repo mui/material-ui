@@ -313,7 +313,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const columnsContext = React.useContext(GridContext);
 
   // colums set with default breakpoint unit of 12
-  const columns = container ? (columnsProp || 12) : columnsContext 
+  const columns = container ? columnsProp || 12 : columnsContext;
 
   const ownerState = {
     ...props,
@@ -334,8 +334,9 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const wrapChild = (element) =>
-      <GridContext.Provider value={columns}>{element}</GridContext.Provider>
+  const wrapChild = (element) => (
+    <GridContext.Provider value={columns}>{element}</GridContext.Provider>
+  );
 
   return wrapChild(
     <GridRoot

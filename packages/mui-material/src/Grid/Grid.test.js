@@ -50,7 +50,7 @@ describe('<Grid />', () => {
       const { getByTestId } = render(
         <Grid container columns={16}>
           <Grid item xs={8}>
-            <Grid container  data-testid="nested-container-in-item">
+            <Grid container data-testid="nested-container-in-item">
               <Grid item xs={12} />
             </Grid>
           </Grid>
@@ -58,9 +58,9 @@ describe('<Grid />', () => {
       );
       const container = getByTestId('nested-container-in-item');
 
-            // test whether the class of the child of the container is correct or not
-            expect(container.firstChild).to.have.class(classes.item);
-            
+      // test whether the class of the child of the container is correct or not
+      expect(container.firstChild).to.have.class(classes.item);
+
       expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
     });
   });
@@ -378,32 +378,6 @@ describe('<Grid />', () => {
         },
       });
     });
-
-    it('should generate responsive grid when grid item misses breakpoints of its container and breakpoint starts from the middle', () => {
-      const theme = createTheme();
-      expect(
-        generateGrid({
-          ownerState: {
-            columns: { sm: 8, md: 12 },
-            sm: 4,
-            item: true,
-          },
-          theme,
-        }),
-      ).to.deep.equal({
-        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
-          flexBasis: '50%',
-          flexGrow: 0,
-          maxWidth: '50%',
-        },
-        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
-          flexBasis: '33.333333%',
-          flexGrow: 0,
-          maxWidth: '33.333333%',
-        },
-      });
-    });
-
   });
 
   describe('spacing', () => {
