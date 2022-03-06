@@ -72,6 +72,14 @@ export default function RealisticShadow() {
             },
           },
           variants: {
+            contained: {
+              primary: {
+                '--variant-shadowChannel': 'var(--joy-palette-primary-shadowChannel)',
+              },
+              danger: {
+                '--variant-shadowChannel': 'var(--joy-palette-danger-shadowChannel)',
+              },
+            },
             light: {
               primary: {
                 '--variant-shadowChannel': 'var(--joy-palette-primary-shadowChannel)',
