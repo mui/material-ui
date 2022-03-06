@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { ColorPaletteProp } from './types';
+import { ColorPaletteProp, VariantProp } from './types';
 
-const VariantOverride = React.createContext(false);
+const VariantOverride = React.createContext<VariantProp | undefined>(undefined);
 
-export const useVariantOverride = () => {
-  const isVariantOverride = React.useContext(VariantOverride);
+export const useVariantOverride = (childVariant: VariantProp | undefined) => {
+  const upperVariant = React.useContext(VariantOverride);
   return {
     getColor: (
       instanceColorProp: ColorPaletteProp | undefined,
       themeColorProp: ColorPaletteProp | undefined,
-      defaultColor: ColorPaletteProp | undefined,
+      defaultColor?: ColorPaletteProp,
     ) => {
-      if (isVariantOverride) {
-        return instanceColorProp || 'context';
+      if (upperVariant && upperVariant.match(/^(light|contained)$/)) {
+        if (upperVariant !== 'light' || childVariant !== 'contained') {
+          return instanceColorProp || 'context';
+        }
       }
       return instanceColorProp || themeColorProp || defaultColor;
     },
@@ -21,12 +23,10 @@ export const useVariantOverride = () => {
 
 export const VariantOverrideProvider = ({
   children,
-  value,
-}: React.PropsWithChildren<{ value: boolean }>) => {
-  const isNestedVariantOverride = React.useContext(VariantOverride);
+  variant,
+}: React.PropsWithChildren<{ variant: VariantProp | undefined }>) => {
+  const upperVariant = React.useContext(VariantOverride);
   return (
-    <VariantOverride.Provider value={isNestedVariantOverride || value}>
-      {children}
-    </VariantOverride.Provider>
+    <VariantOverride.Provider value={variant || upperVariant}>{children}</VariantOverride.Provider>
   );
 };

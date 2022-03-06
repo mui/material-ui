@@ -6,3 +6,4 @@ export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 export { default as useThemeProps } from './useThemeProps';
 export { sx as experimental_sx } from './styleFunctionSx';
+export * from './VariantOverride';
