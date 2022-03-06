@@ -68,6 +68,7 @@ const InputRoot = styled(InputBaseRoot, {
         pointerEvents: 'none', // Transparent to the hover style.
       },
       [`&.${inputClasses.focused}:after`]: {
+        willChange: 'transform',
         transform: 'scaleX(1)',
       },
       [`&.${inputClasses.error}:after`]: {
