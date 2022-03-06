@@ -78,7 +78,7 @@ export interface PaletteVariant {
 
 export interface PaletteRangeOverrides {}
 export type ExtendedPaletteRange = OverridableStringUnion<
-  '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900',
+  '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | 'mainChannel',
   PaletteRangeOverrides
 >;
 
@@ -94,6 +94,9 @@ export interface PaletteBackground {
   level1: string;
   level2: string;
   level3: string;
+  hover: string;
+  active: string;
+  disabled: string;
 }
 
 export interface ColorPalettePropOverrides {}

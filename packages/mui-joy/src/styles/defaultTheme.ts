@@ -6,6 +6,7 @@ import {
   CSSObject,
   SxProps as SystemSxProps,
   unstable_createGetCssVar as systemCreateGetCssVar,
+  hexToRgb,
 } from '@mui/system';
 import colors from '../colors';
 import { ColorSystem, ColorPaletteProp } from './types/colorSystem';
@@ -44,6 +45,11 @@ export interface Focus {
   default: CSSObject;
 }
 
+function hexToChannel(hex: string) {
+  const rgb = hexToRgb(hex);
+  return rgb.replace('rgb(', '').replace(')', '').replace(/,/g, ' ');
+}
+
 const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   textColor: `var(--joy-palette-${color}-600)`,
   textHoverBg: `var(--joy-palette-${color}-100)`,
@@ -71,10 +77,6 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   containedActiveBg: `var(--joy-palette-${color}-800)`,
   containedDisabledColor: `#fff`,
   containedDisabledBg: `var(--joy-palette-${color}-200)`,
-
-  overrideTextPrimary: `var(--joy-palette-${color}-700)`,
-  overrideTextSecondary: `var(--joy-palette-${color}-500)`,
-  overrideTextTertiary: `var(--joy-palette-${color}-400)`,
 });
 
 const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -104,36 +106,38 @@ const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
   containedActiveBg: `var(--joy-palette-${color}-800)`,
   containedDisabledColor: `#fff`,
   containedDisabledBg: `var(--joy-palette-${color}-300)`,
-
-  overrideTextPrimary: `var(--joy-palette-${color}-200)`,
-  overrideTextSecondary: `var(--joy-palette-${color}-400)`,
-  overrideTextTertiary: `var(--joy-palette-${color}-500)`,
 });
 
 export const lightColorSystem = {
   palette: {
     primary: {
       ...colors.blue,
+      mainChannel: hexToChannel(colors.blue[600]),
       ...createLightModeVariantVariables('primary'),
     },
     neutral: {
       ...colors.grey,
+      mainChannel: hexToChannel(colors.grey[600]),
       ...createLightModeVariantVariables('neutral'),
     },
     danger: {
       ...colors.red,
+      mainChannel: hexToChannel(colors.red[600]),
       ...createLightModeVariantVariables('danger'),
     },
     info: {
       ...colors.teal,
+      mainChannel: hexToChannel(colors.teal[600]),
       ...createLightModeVariantVariables('info'),
     },
     success: {
       ...colors.green,
+      mainChannel: hexToChannel(colors.green[600]),
       ...createLightModeVariantVariables('success'),
     },
     warning: {
       ...colors.yellow,
+      mainChannel: hexToChannel(colors.yellow[600]),
       ...createLightModeVariantVariables('warning'),
     },
     text: {
@@ -146,6 +150,9 @@ export const lightColorSystem = {
       level1: 'var(--joy-palette-neutral-50)',
       level2: 'var(--joy-palette-neutral-100)',
       level3: 'var(--joy-palette-neutral-200)',
+      hover: `rgba(0 0 0 / 0.12)`,
+      active: `rgba(0 0 0 / 0.2)`,
+      disabled: `rgba(0 0 0 / 0.28)`,
     },
     divider: 'rgba(0 0 0 / 0.12)',
     focusVisible: 'var(--joy-palette-primary-200)',
@@ -158,26 +165,32 @@ export const darkColorSystem = {
   palette: {
     primary: {
       ...colors.blue,
+      mainChannel: hexToChannel(colors.blue[600]),
       ...createDarkModeVariantVariables('primary'),
     },
     neutral: {
       ...colors.grey,
+      mainChannel: hexToChannel(colors.grey[600]),
       ...createDarkModeVariantVariables('neutral'),
     },
     danger: {
       ...colors.red,
+      mainChannel: hexToChannel(colors.red[600]),
       ...createDarkModeVariantVariables('danger'),
     },
     info: {
       ...colors.teal,
+      mainChannel: hexToChannel(colors.teal[600]),
       ...createDarkModeVariantVariables('info'),
     },
     success: {
       ...colors.green,
+      mainChannel: hexToChannel(colors.green[600]),
       ...createDarkModeVariantVariables('success'),
     },
     warning: {
       ...colors.yellow,
+      mainChannel: hexToChannel(colors.yellow[600]),
       ...createDarkModeVariantVariables('warning'),
     },
     text: {
@@ -190,6 +203,9 @@ export const darkColorSystem = {
       level1: 'var(--joy-palette-neutral-800)',
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
+      hover: `rgba(255 255 255 / 0.12)`,
+      active: `rgba(255 255 255 / 0.2)`,
+      disabled: `rgba(255 255 255 / 0.28)`,
     },
     divider: 'rgba(255 255 255 / 0.16)',
     focusVisible: 'var(--joy-palette-primary-500)',
