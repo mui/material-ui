@@ -761,6 +761,7 @@ describe('<Tooltip />', () => {
                   name: 'foo',
                   enabled: true,
                   phase: 'main',
+                  fn: () => {},
                 },
               ],
             },

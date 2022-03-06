@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Masonry component
 components: Masonry
 githubLabel: 'component: Masonry'

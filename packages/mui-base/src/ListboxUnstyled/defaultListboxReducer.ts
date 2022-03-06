@@ -1,5 +1,10 @@
 import React from 'react';
-import { ListboxState, UseListboxStrictProps, ListboxAction, ActionTypes } from './types';
+import {
+  ListboxState,
+  UseListboxStrictProps,
+  ListboxAction,
+  ActionTypes,
+} from './useListbox.types';
 
 type OptionPredicate<TOption> = (option: TOption, index: number) => boolean;
 

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Popper component
 components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'

@@ -57,6 +57,8 @@ const DatePicker = React.forwardRef(function DatePicker<TDate>(
       ref={ref}
       PopperProps={PopperProps}
       TransitionComponent={TransitionComponent}
+      clearText={clearText}
+      clearable={clearable}
       {...other}
     />
   ) : (

@@ -55,6 +55,9 @@ export function unstable_createStyleFunctionSx(styleFunctionMapping = defaultSty
         // value
         return sxInput;
       }
+      if (!sxObject) {
+        return null;
+      }
       const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
       const breakpointsKeys = Object.keys(emptyBreakpoints);
 

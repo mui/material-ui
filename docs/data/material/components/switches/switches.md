@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
 githubLabel: 'component: switch'

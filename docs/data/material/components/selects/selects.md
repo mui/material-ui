@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Select component
 components: Select, NativeSelect, SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 githubLabel: 'component: select'
