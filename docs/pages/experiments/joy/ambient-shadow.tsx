@@ -53,12 +53,38 @@ export default function RealisticShadow() {
     height: 200,
     borderRadius: 2,
   };
+  const enableAmbientShadow = true;
   return (
-    <CssVarsProvider>
-      <Background
-        color="primary"
-        sx={{ '--variant-shadowChannel': '177 195 219', ...ambientShadow.set() }}
-      >
+    // @ts-ignore
+    <CssVarsProvider
+      {...(enableAmbientShadow && {
+        theme: {
+          colorSchemes: {
+            light: {
+              palette: {
+                primary: {
+                  shadowChannel: '177 195 219',
+                },
+                danger: {
+                  shadowChannel: '126 41 7',
+                },
+              },
+            },
+          },
+          variants: {
+            light: {
+              primary: {
+                '--variant-shadowChannel': 'var(--joy-palette-primary-shadowChannel)',
+              },
+              danger: {
+                '--variant-shadowChannel': 'var(--joy-palette-danger-shadowChannel)',
+              },
+            },
+          },
+        },
+      })}
+    >
+      <Background color="primary" sx={ambientShadow.set()}>
         <Box
           sx={{
             ...boxStyle,
@@ -66,18 +92,9 @@ export default function RealisticShadow() {
             boxShadow: 'xl', // DOES NOT WORK, can't override global var from parent!
           }}
         />
-        <Box
-          sx={[
-            {
-              ...boxStyle,
-              bgcolor: 'primary.100',
-              '--variant-shadowChannel': '171 196 176',
-            },
-            ambientShadow.apply('xl'),
-          ]}
-        />
+        <Background variant="light" color="primary" sx={[boxStyle, ambientShadow.apply('xl')]} />
       </Background>
-      <Background color="danger" variant="contained" sx={ambientShadow.set('126 41 7')}>
+      <Background color="danger" variant="contained" sx={ambientShadow.set()}>
         <Background
           color="info"
           sx={[
