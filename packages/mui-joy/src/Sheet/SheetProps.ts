@@ -18,12 +18,17 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SheetPropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, SheetPropsColorOverrides>;
     /**
      * Shadow depth, corresponds to the `theme.shadow` scale.
      * It accepts theme values between 'xs' and 'xl'.
      */
     elevation?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    /**
+     * If `true`, the component create CSS variables that can override children with `context` color.
+     * @default false
+     */
+    enableVariantOverride?: boolean;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

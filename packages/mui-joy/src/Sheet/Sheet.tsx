@@ -8,6 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetTypeMap } from './SheetProps';
+import { VariantOverrideProvider, useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { elevation, variant, color } = ownerState;
@@ -38,21 +39,27 @@ const SheetRoot = styled('div', {
       backgroundColor: theme.vars.palette.background.body,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
+    ownerState.enableVariantOverride &&
+      ownerState.color !== 'context' &&
+      theme.variants[`${ownerState.variant!}Overrides`]?.[ownerState.color!],
   ];
 });
 
 const Sheet = React.forwardRef(function Sheet(inProps, ref) {
+  const { getColor } = useVariantOverride();
   const props = useThemeProps<typeof inProps & SheetProps>({
     props: inProps,
     name: 'MuiSheet',
   });
 
+  const color = getColor(inProps.color, props.color, 'neutral');
+
   const {
     className,
-    color = 'neutral',
     component = 'div',
     variant = 'text',
     elevation,
+    enableVariantOverride = false,
     ...other
   } = props;
 
@@ -62,18 +69,21 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     component,
     elevation,
     variant,
+    enableVariantOverride,
   };
 
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <SheetRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    />
+    <VariantOverrideProvider value={enableVariantOverride}>
+      <SheetRoot
+        as={component}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        ref={ref}
+        {...other}
+      />
+    </VariantOverrideProvider>
   );
 }) as OverridableComponent<SheetTypeMap>;
 
@@ -111,6 +121,11 @@ Sheet.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
     PropTypes.string,
   ]),
+  /**
+   * If `true`, the component create CSS variables that can override children with `context` color.
+   * @default false
+   */
+  enableVariantOverride: PropTypes.bool,
   /**
    * The variant to use.
    * @default 'text'

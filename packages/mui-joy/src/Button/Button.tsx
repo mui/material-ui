@@ -7,6 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
@@ -114,17 +115,19 @@ const ButtonRoot = styled('button', {
 });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
+  const { getColor } = useVariantOverride();
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'MuiButton',
   });
+
+  const color = getColor(inProps.color, props.color, 'primary');
 
   const {
     children,
     className,
     action,
     component = 'button',
-    color = 'primary',
     variant = 'contained',
     size = 'md',
     fullWidth = false,

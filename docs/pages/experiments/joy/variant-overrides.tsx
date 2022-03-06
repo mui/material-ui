@@ -10,6 +10,12 @@ import ScheduleRounded from '@mui/icons-material/ScheduleRounded';
 import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import Sheet from '@mui/joy/Sheet';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+
+/**
+ * <Sheet variant="contained" color="primary" enableVariantOverrides>
+ */
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -116,8 +122,68 @@ export default function JoyVariant() {
   return (
     <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
-      <Box sx={{ px: 3, pb: 4 }}>
+      <Box sx={{ px: 3, py: 4 }}>
         <ColorSchemePicker />
+      </Box>
+      <Box
+        sx={{
+          maxWidth: { md: 1152, xl: 1536 },
+          py: 3,
+          mx: 'auto',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 2,
+        }}
+      >
+        <Typography>
+          <b>Without</b> variant overrides
+        </Typography>
+        <Typography>
+          Variant overrides <b>enabled</b>
+        </Typography>
+        <Sheet variant="contained" color="primary" sx={{ py: 10, px: 5, bgcolor: 'primary.800' }}>
+          <Typography level="body2" sx={{ textTransform: 'uppercase', letterSpacing: 'md' }}>
+            Benble home colony
+          </Typography>
+          <Typography level="h2">
+            Now It&apos;s Easy To Find{' '}
+            <Typography component="span" level="inherit" color="primary.300">
+              Your Home
+            </Typography>
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>
+            There is an anti-aging revolbeficiary.dti-aging medicine are the breakthroughs and
+            techadvancese exciting. The 6-step akthroughs and tecO.
+          </Typography>
+          <Box sx={{ height: '1rem' }} />
+          <Button endIcon={<KeyboardArrowRight />} size="lg" sx={{ borderRadius: '0px' }}>
+            Get Started
+          </Button>
+        </Sheet>
+        <Sheet
+          variant="contained"
+          color="primary"
+          enableVariantOverride
+          sx={{ py: 10, px: 5, bgcolor: 'primary.800' }}
+        >
+          <Typography level="body2" sx={{ textTransform: 'uppercase', letterSpacing: 'md' }}>
+            Benble home colony
+          </Typography>
+          <Typography level="h2">
+            Now It&apos;s Easy To Find{' '}
+            <Typography component="span" level="inherit" color="primary.300">
+              Your Home
+            </Typography>
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>
+            There is an anti-aging revolbeficiary.dti-aging medicine are the breakthroughs and
+            techadvancese exciting. The 6-step akthroughs and tecO.
+          </Typography>
+          <Box sx={{ height: '1rem' }} />
+          <Button endIcon={<KeyboardArrowRight />} size="lg" sx={{ borderRadius: '0px' }}>
+            Get Started
+          </Button>
+        </Sheet>
       </Box>
       <Box
         sx={{
