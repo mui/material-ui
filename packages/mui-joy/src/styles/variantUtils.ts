@@ -118,13 +118,110 @@ export const createTextOverrides = (theme: JoyTheme) => {
       result = {
         ...result,
         [color]: {
-          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-overrideTextPrimary`),
-          [prefixVar('--palette-text-secondary')]: getCssVar(
-            `palette-${color}-overrideTextSecondary`,
-          ),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(
-            `palette-${color}-overrideTextTertiary`,
-          ),
+          '[data-mui-color-scheme="light"] &': {
+            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
+            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-500`),
+            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-400`),
+          },
+          '[data-mui-color-scheme="dark"] &': {
+            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-200`),
+            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-400`),
+            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+          },
+        },
+      };
+    }
+  });
+  return result;
+};
+
+export const createLightOverrides = (theme: JoyTheme) => {
+  const getCssVar = createGetCssVar(theme.prefix);
+  const prefixVar = createPrefixVar(theme.prefix);
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          '[data-mui-color-scheme="light"] &': {
+            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
+            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-500`),
+            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-400`),
+            '--variant-textColor': 'rgba(0 0 0 / 0.6)',
+            '--variant-textHoverColor': 'rgba(0 0 0 / 0.72)',
+            '--variant-textHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
+            '--variant-textActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
+            '--variant-textDisabledColor': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.6)`,
+
+            '--variant-outlinedColor': getCssVar(`palette-${color}-700`),
+            '--variant-outlinedBg': 'initial',
+            '--variant-outlinedBorder': getCssVar(`palette-${color}-400`),
+            '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-600`),
+            '--variant-outlinedHoverBg': getCssVar(`palette-${color}-200`),
+            '--variant-outlinedActiveBg': getCssVar(`palette-${color}-300`),
+            '--variant-outlinedDisabledColor': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.6)`,
+            '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.2)`,
+
+            '--variant-lightColor': getCssVar(`palette-${color}-700`),
+            '--variant-lightBg': getCssVar(`palette-${color}-50`),
+            '--variant-lightHoverBg': getCssVar(`palette-${color}-200`),
+            '--variant-lightActiveBg': getCssVar(`palette-${color}-300`),
+            '--variant-lightDisabledColor': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.6)`,
+            '--variant-lightDisabledBg': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.12)`,
+          },
+          '[data-mui-color-scheme="dark"] &': {
+            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-200`),
+            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-400`),
+            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+            '--variant-textColor': 'rgba(255 255 255 / 0.72)',
+            '--variant-textHoverColor': '#fff',
+            '--variant-textHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
+            '--variant-textActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
+            '--variant-textDisabledColor': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.6)`,
+
+            '--variant-outlinedColor': 'rgba(255 255 255 / 0.72)',
+            '--variant-outlinedHoverColor': '#fff',
+            '--variant-outlinedBg': 'initial',
+            '--variant-outlinedBorder': getCssVar(`palette-${color}-700`),
+            '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-500`),
+            '--variant-outlinedHoverBg': getCssVar(`palette-${color}-800`),
+            '--variant-outlinedActiveBg': getCssVar(`palette-${color}-700`),
+            '--variant-outlinedDisabledColor': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.6)`,
+            '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.2)`,
+
+            '--variant-lightColor': getCssVar(`palette-${color}-100`),
+            '--variant-lightBg': getCssVar(`palette-${color}-800`),
+            '--variant-lightHoverColor': '#fff',
+            '--variant-lightHoverBg': getCssVar(`palette-${color}-700`),
+            '--variant-lightActiveBg': getCssVar(`palette-${color}-800`),
+            '--variant-lightDisabledColor': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.6)`,
+            '--variant-lightDisabledBg': `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.12)`,
+          },
         },
       };
     }
@@ -165,16 +262,18 @@ export const createContainedOverrides = (theme: JoyTheme) => {
           '--variant-outlinedDisabledColor': getCssVar(`palette-${color}-300`),
           '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
 
-          '--variant-lightColor': '#fff',
-          '--variant-lightBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-lightHoverBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-lightActiveBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-lightColor': getCssVar(`palette-${color}-100`),
+          '--variant-lightHoverColor': '#fff',
+          '--variant-lightBg': getCssVar(`palette-${color}-700`),
+          '--variant-lightHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-lightActiveBg': `rgba(255 255 255 / 0.2)`,
           '--variant-lightDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-lightDisabledBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-lightDisabledBg': `rgba(0 0 0 / 0.08)`,
 
-          '--variant-containedBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
-          '--variant-containedHoverBg': 'rgba(0 0 0 / 0.32)',
-          '--variant-containedActiveBg': 'rgba(0 0 0 / 0.48)',
+          '--variant-containedColor': getCssVar(`palette-${color}-600`),
+          '--variant-containedBg': getCssVar(`palette-${color}-50`, 'rgba(0 0 0 / 0.16)'),
+          '--variant-containedHoverBg': '#fff',
+          '--variant-containedActiveBg': getCssVar(`palette-${color}-100`),
           '--variant-containedDisabledColor': getCssVar(`palette-${color}-300`),
           '--variant-containedDisabledBg': `rgba(255 255 255 / 0.08)`,
         },
@@ -218,6 +317,7 @@ export const createVariant = (variant: VariantKey, theme?: JoyTheme) => {
 
     outlinedColor: 'var(--variant-outlinedColor)',
     outlinedBorder: 'var(--variant-outlinedBorder)',
+    outlinedBg: 'var(--variant-outlinedBg)',
     outlinedHoverColor: `var(--variant-outlinedHoverColor)`,
     outlinedHoverBorder: `var(--variant-outlinedHoverBorder)`,
     outlinedHoverBg: `var(--variant-outlinedHoverBg)`,
@@ -227,16 +327,20 @@ export const createVariant = (variant: VariantKey, theme?: JoyTheme) => {
 
     lightColor: 'var(--variant-lightColor)',
     lightBg: 'var(--variant-lightBg)',
+    lightHoverColor: 'var(--variant-lightHoverColor)',
     lightHoverBg: 'var(--variant-lightHoverBg)',
     lightActiveBg: 'var(--variant-lightActiveBg)',
     lightDisabledColor: 'var(--variant-lightDisabledColor)',
     lightDisabledBg: 'var(--variant-lightDisabledBg)',
 
-    containedBg: 'var(--variant-containedBg)',
-    containedHoverBg: 'var(--variant-containedHoverBg)',
-    containedActiveBg: 'var(--variant-containedActiveBg)',
-    containedDisabledColor: 'var(--variant-containedDisabledColor)',
-    containedDisabledBg: 'var(--variant-containedDisabledBg)',
+    ...(variant.startsWith('contained') && {
+      containedColor: 'var(--variant-containedColor)',
+      containedBg: 'var(--variant-containedBg)',
+      containedHoverBg: 'var(--variant-containedHoverBg)',
+      containedActiveBg: 'var(--variant-containedActiveBg)',
+      containedDisabledColor: 'var(--variant-containedDisabledColor)',
+      containedDisabledBg: 'var(--variant-containedDisabledBg)',
+    }),
   });
   return result;
 };

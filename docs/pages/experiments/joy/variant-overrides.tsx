@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
-import Box, { BoxProps } from '@mui/joy/Box';
+import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemButton from '@mui/joy/ListItemButton';
 import { CssVarsProvider, ColorPaletteProp, VariantProp, useColorScheme } from '@mui/joy/styles';
 import CodeRounded from '@mui/icons-material/CodeRounded';
 import ScheduleRounded from '@mui/icons-material/ScheduleRounded';
@@ -12,6 +15,10 @@ import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Sheet from '@mui/joy/Sheet';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
+import Explore from '@mui/icons-material/Explore';
+import DocumentScanner from '@mui/icons-material/DocumentScanner';
+import Settings from '@mui/icons-material/Settings';
 
 /**
  * <Sheet variant="contained" color="primary" enableVariantOverrides>
@@ -44,31 +51,6 @@ const ColorSchemePicker = () => {
   );
 };
 
-// how to add more color and use with variants
-const Tile = ({
-  children,
-  variant = 'light',
-  color = 'primary',
-  sx = [],
-  ...props
-}: {
-  variant?: 'light' | 'contained';
-  color?: ColorPaletteProp | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) => {
-  return (
-    <Box
-      sx={[
-        { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
-        (theme) => theme.variants[variant][color],
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
-};
-
 export default function JoyVariant() {
   const renderContent = (variant: VariantProp, color: ColorPaletteProp) => (
     <React.Fragment>
@@ -79,18 +61,17 @@ export default function JoyVariant() {
         </Typography>
       </Box>
       <Box sx={{ my: 'auto' }}>
-        <Tile
-          variant={variant.match(/(contained)/) ? 'light' : 'contained'}
-          color={color}
+        <Sheet
+          variant={variant === 'contained' ? 'contained' : 'light'}
           sx={{
-            ...(variant.match(/(contained)/) && {
-              bgcolor: 'background.body',
-            }),
+            display: 'inline-flex',
+            p: 0.75,
+            borderRadius: '4px',
             boxShadow: 'md',
           }}
         >
           <CodeRounded />
-        </Tile>
+        </Sheet>
         <Typography level="h6" component="div" sx={{ mt: 1.5, fontWeight: 500 }}>
           Check the docs for getting every component API
         </Typography>
@@ -119,6 +100,128 @@ export default function JoyVariant() {
       </Box>
     </React.Fragment>
   );
+  const renderBanner = (enableVariantOverride = false) => (
+    <Sheet
+      variant="contained"
+      color="primary"
+      enableVariantOverride={enableVariantOverride}
+      sx={{
+        py: 10,
+        px: 5,
+        background: (theme) =>
+          `linear-gradient(45deg, ${theme.vars.palette.primary[800]}, ${theme.vars.palette.primary[600]})`,
+      }}
+    >
+      <Typography level="body2" sx={{ textTransform: 'uppercase', letterSpacing: 'md' }}>
+        Benble home colony
+      </Typography>
+      <Typography level="h2">
+        Now It&apos;s Easy To Find{' '}
+        <Typography component="span" level="inherit" color="primary.300">
+          Your Home
+        </Typography>
+      </Typography>
+      <Typography sx={{ color: 'text.secondary' }}>
+        There is an anti-aging revolbeficiary.dti-aging medicine are the breakthroughs and
+        techadvancese exciting. The 6-step akthroughs and tecO.
+      </Typography>
+      <Box sx={{ height: '1rem' }} />
+      <Button endIcon={<KeyboardArrowRight />} size="lg" sx={{ borderRadius: '0px' }}>
+        Get Started
+      </Button>
+    </Sheet>
+  );
+  const renderNav = (enableVariantOverride = false, rightVariant?: VariantProp) => (
+    <Box sx={{ display: 'grid', gridTemplateColumns: '72px 1fr' }}>
+      <Sheet
+        variant="contained"
+        color="primary"
+        enableVariantOverride={enableVariantOverride}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          py: 2,
+          bgcolor: 'primary.700',
+        }}
+      >
+        <IconButton variant="text">
+          <Explore />
+        </IconButton>
+        <IconButton variant="contained">
+          <DocumentScanner />
+        </IconButton>
+        <IconButton variant="text">
+          <Settings />
+        </IconButton>
+      </Sheet>
+      <Sheet variant={rightVariant} color="primary" enableVariantOverride={enableVariantOverride}>
+        <List
+          sx={{
+            '--List-padding': '12px',
+            '--List-radius': '8px',
+            '--List-nestedInsetStart': '0px',
+          }}
+        >
+          <ListItem>
+            <ListItemButton selected>Policies</ListItemButton>
+          </ListItem>
+          <ListItem nested>
+            <ListItemButton>
+              Components <KeyboardArrowUp sx={{ ml: 'auto' }} />
+            </ListItemButton>
+            <List
+              size="sm"
+              sx={{
+                pl: 'calc(var(--List-item-paddingLeft) * 2)',
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  width: '1px',
+                  top: 0,
+                  bottom: 0,
+                  left: 'var(--List-item-paddingLeft)',
+                  bgcolor: 'currentColor',
+                  opacity: 0.32,
+                },
+              }}
+            >
+              <ListItem>
+                <ListItemButton variant="light" selected>
+                  Resources
+                </ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton variant="contained" selected>
+                  Actions
+                </ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton variant="outlined" selected>
+                  Users
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>Policy model</ListItemButton>
+          </ListItem>
+        </List>
+      </Sheet>
+    </Box>
+  );
+  const widgetSx = {
+    minWidth: 280,
+    maxWidth: 360,
+    minHeight: 280,
+    display: 'flex',
+    flexDirection: 'column',
+    p: 2.5,
+    boxShadow: 'md',
+    borderRadius: 'sm',
+  };
   return (
     <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
@@ -141,49 +244,12 @@ export default function JoyVariant() {
         <Typography>
           Variant overrides <b>enabled</b>
         </Typography>
-        <Sheet variant="contained" color="primary" sx={{ py: 10, px: 5, bgcolor: 'primary.800' }}>
-          <Typography level="body2" sx={{ textTransform: 'uppercase', letterSpacing: 'md' }}>
-            Benble home colony
-          </Typography>
-          <Typography level="h2">
-            Now It&apos;s Easy To Find{' '}
-            <Typography component="span" level="inherit" color="primary.300">
-              Your Home
-            </Typography>
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            There is an anti-aging revolbeficiary.dti-aging medicine are the breakthroughs and
-            techadvancese exciting. The 6-step akthroughs and tecO.
-          </Typography>
-          <Box sx={{ height: '1rem' }} />
-          <Button endIcon={<KeyboardArrowRight />} size="lg" sx={{ borderRadius: '0px' }}>
-            Get Started
-          </Button>
-        </Sheet>
-        <Sheet
-          variant="contained"
-          color="primary"
-          enableVariantOverride
-          sx={{ py: 10, px: 5, bgcolor: 'primary.800' }}
-        >
-          <Typography level="body2" sx={{ textTransform: 'uppercase', letterSpacing: 'md' }}>
-            Benble home colony
-          </Typography>
-          <Typography level="h2">
-            Now It&apos;s Easy To Find{' '}
-            <Typography component="span" level="inherit" color="primary.300">
-              Your Home
-            </Typography>
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            There is an anti-aging revolbeficiary.dti-aging medicine are the breakthroughs and
-            techadvancese exciting. The 6-step akthroughs and tecO.
-          </Typography>
-          <Box sx={{ height: '1rem' }} />
-          <Button endIcon={<KeyboardArrowRight />} size="lg" sx={{ borderRadius: '0px' }}>
-            Get Started
-          </Button>
-        </Sheet>
+        {renderBanner(false)}
+        {renderBanner(true)}
+        {renderNav(false, 'light')}
+        {renderNav(true, 'light')}
+        {renderNav(false, 'contained')}
+        {renderNav(true, 'contained')}
       </Box>
       <Box
         sx={{
@@ -195,71 +261,18 @@ export default function JoyVariant() {
           gap: 2,
         }}
       >
-        <Box
-          sx={(theme) => ({
-            '--shadow-channel': '0 0 0',
-            minWidth: 280,
-            maxWidth: 360,
-            minHeight: 280,
-            display: 'flex',
-            flexDirection: 'column',
-            p: 2.5,
-            boxShadow: 'md',
-            borderRadius: 'sm',
-            ...theme.variants.contained.primary,
-            ...theme.variants.containedOverrides.primary,
-          })}
-        >
+        <Sheet enableVariantOverride variant="contained" color="primary" sx={widgetSx}>
           {renderContent('contained', 'primary')}
-        </Box>
-        <Box
-          sx={(theme) => ({
-            minWidth: 280,
-            maxWidth: 360,
-            minHeight: 280,
-            display: 'flex',
-            flexDirection: 'column',
-            p: 2.5,
-            boxShadow: 'md',
-            borderRadius: 'sm',
-            ...theme.variants.text.info,
-            ...theme.variants.textOverrides.info,
-          })}
-        >
+        </Sheet>
+        <Sheet variant="text" color="info" enableVariantOverride sx={widgetSx}>
           {renderContent('text', 'info')}
-        </Box>
-        <Box
-          sx={(theme) => ({
-            minWidth: 280,
-            maxWidth: 360,
-            minHeight: 280,
-            display: 'flex',
-            flexDirection: 'column',
-            p: 2.5,
-            boxShadow: 'md',
-            borderRadius: 'sm',
-            ...theme.variants.outlined.neutral,
-            ...theme.variants.outlinedOverrides.neutral,
-          })}
-        >
+        </Sheet>
+        <Sheet variant="outlined" color="neutral" enableVariantOverride sx={widgetSx}>
           {renderContent('outlined', 'neutral')}
-        </Box>
-        <Box
-          sx={(theme) => ({
-            minWidth: 280,
-            maxWidth: 360,
-            minHeight: 280,
-            display: 'flex',
-            flexDirection: 'column',
-            p: 2.5,
-            boxShadow: 'md',
-            borderRadius: 'sm',
-            ...theme.variants.light.success,
-            ...theme.variants.lightOverrides.success,
-          })}
-        >
+        </Sheet>
+        <Sheet variant="light" color="success" enableVariantOverride sx={widgetSx}>
           {renderContent('light', 'success')}
-        </Box>
+        </Sheet>
       </Box>
     </CssVarsProvider>
   );
