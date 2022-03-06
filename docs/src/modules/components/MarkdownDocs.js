@@ -53,8 +53,6 @@ function MarkdownDocs(props) {
           return <Component key={index} headers={headers} options={renderedMarkdownOrDemo} />;
         }
 
-
-
         const name = renderedMarkdownOrDemo.demo;
         const demo = demos?.[name];
         if (demo === undefined) {
@@ -84,9 +82,9 @@ function MarkdownDocs(props) {
           );
         }
 
-        const splitLocationBySlash = location.split("/");
+        const splitLocationBySlash = location.split('/');
         splitLocationBySlash.pop();
-        const fileNameWithLocation = `${splitLocationBySlash.join("/")}/${name}`;
+        const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
 
         return (
           <Demo
