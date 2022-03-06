@@ -53,6 +53,8 @@ function MarkdownDocs(props) {
           return <Component key={index} headers={headers} options={renderedMarkdownOrDemo} />;
         }
 
+
+
         const name = renderedMarkdownOrDemo.demo;
         const demo = demos?.[name];
         if (demo === undefined) {
@@ -82,6 +84,10 @@ function MarkdownDocs(props) {
           );
         }
 
+        const splitLocationBySlash = location.split("/");
+        splitLocationBySlash.pop();
+        const fileNameWithLocation = `${splitLocationBySlash.join("/")}/${name}`;
+
         return (
           <Demo
             key={index}
@@ -94,7 +100,7 @@ function MarkdownDocs(props) {
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}
-            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
+            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
           />
         );
       })}
