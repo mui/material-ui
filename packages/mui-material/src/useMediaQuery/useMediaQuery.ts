@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getThemeProps, useThemeWithoutDefault as useTheme } from '@mui/system';
+import { getThemeProps, useThemeWithoutDefault as useTheme, Theme } from '@mui/system';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 /**
@@ -126,11 +126,11 @@ function useMediaQueryNew(
   return match;
 }
 
-export default function useMediaQuery<Theme = unknown>(
-  queryInput: string | ((theme: Theme) => string),
+export default function useMediaQuery<T = Theme>(
+  queryInput: string | ((theme: T) => string),
   options: Options = {},
 ): boolean {
-  const theme = useTheme<Theme>();
+  const theme = useTheme<T>();
   // Wait for jsdom to support the match media feature.
   // All the browsers MUI support have this built-in.
   // This defensive check is here for simplicity.
