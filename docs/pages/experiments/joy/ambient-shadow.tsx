@@ -1,20 +1,38 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import { CssVarsProvider, styled, VariantProp, ColorPaletteProp } from '@mui/joy/styles';
+import {
+  CssVarsProvider,
+  styled,
+  VariantProp,
+  ColorPaletteProp,
+  ShadowProp,
+  JoyTheme,
+} from '@mui/joy/styles';
+import { SystemStyleObject } from '@mui/system';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function ambientShadow(channel?: string) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  return () => ({
-    // needs target children to make nested ambient shadow works
-    '& > *': {
-      '--joy-shadowChannel': channel as React.CSSProperties,
-    },
-  });
-}
+/**
+ * ambientShadow.set(): create ambient context by looking at the parent --variant-shadowChannel
+ *
+ * ambientShadow.apply($scale): apply --shadowChannel with the ambient variable that connect to the nearest ambient context
+ *  - $scale: shadow scale 'xs', ..., 'xl'
+ */
+
+const ambientShadow = {
+  set(channel?: string) {
+    return {
+      '--ambient-shadowChannel': channel || 'var(--variant-shadowChannel)',
+    };
+  },
+  apply(scale: ShadowProp) {
+    return (theme: JoyTheme): SystemStyleObject<JoyTheme> => ({
+      '--joy-shadowChannel': 'var(--ambient-shadowChannel)',
+      boxShadow: theme.shadow[scale],
+    });
+  },
+};
 
 const Background = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'color',
+  shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'color' && prop !== 'sx',
 })<{
   variant?: VariantProp;
   color?: ColorPaletteProp;
@@ -37,98 +55,58 @@ export default function RealisticShadow() {
   };
   return (
     <CssVarsProvider>
-      <Background>
-        <Box
-          sx={(theme) => ({
-            ...boxStyle,
-            bgcolor: theme.getCssVar('palette-background-body'),
-            boxShadow: theme.getCssVar('shadow-xl'),
-          })}
-        />
-        <Box
-          sx={(theme) => ({
-            ...boxStyle,
-            bgcolor: theme.getCssVar('palette-background-body'),
-            boxShadow: theme.getCssVar('shadow-xl'),
-          })}
-        />
-      </Background>
-      <Background color="primary" sx={[ambientShadow('177 195 219')]}>
-        <Box
-          sx={(theme) => ({
-            ...boxStyle,
-            bgcolor: theme.getCssVar('palette-primary-100'),
-            boxShadow: theme.getCssVar('shadow-xl'), // DOES NOT WORK, can't override global var from parent!
-          })}
-        />
-        <Box
-          sx={(theme) => ({
-            ...boxStyle,
-            bgcolor: theme.getCssVar('palette-primary-100'),
-            boxShadow: theme.shadow.xl, // This works, the variable must not be referenced.
-          })}
-        />
-      </Background>
       <Background
-        color="success"
-        sx={[
-          // 2 options
-          // - calculated by algorithm
-          // - handpicked and query from theme
-          ambientShadow('171 196 176'),
-        ]}
+        color="primary"
+        sx={{ '--variant-shadowChannel': '177 195 219', ...ambientShadow.set() }}
       >
         <Box
-          sx={(theme) => ({
+          sx={{
             ...boxStyle,
-            bgcolor: theme.getCssVar('palette-success-100'),
-            boxShadow: theme.getCssVar('shadow-xl'),
-          })}
+            bgcolor: 'primary.100',
+            boxShadow: 'xl', // DOES NOT WORK, can't override global var from parent!
+          }}
         />
         <Box
-          sx={(theme) => ({
-            ...boxStyle,
-            bgcolor: theme.getCssVar('palette-success-100'),
-            boxShadow: theme.shadow.xl,
-          })}
+          sx={[
+            {
+              ...boxStyle,
+              bgcolor: 'primary.100',
+              '--variant-shadowChannel': '171 196 176',
+            },
+            ambientShadow.apply('xl'),
+          ]}
         />
       </Background>
-      <Background
-        color="danger"
-        variant="contained"
-        sx={[
-          // 2 options
-          // - calculated by algorithm
-          // - handpicked and query from theme
-          ambientShadow('126 41 7'),
-        ]}
-      >
+      <Background color="danger" variant="contained" sx={ambientShadow.set('126 41 7')}>
         <Background
           color="info"
           sx={[
-            (theme) => ({
+            {
               borderRadius: 2,
               width: '80%',
               height: '70%',
-              boxShadow: theme.shadow.xl,
-            }),
-            ambientShadow('160 189 197'),
+            },
+            ambientShadow.apply('xl'),
           ]}
         >
-          <Box
-            sx={(theme) => ({
-              ...boxStyle,
-              bgcolor: theme.getCssVar('palette-background-body'),
-              boxShadow: theme.getCssVar('shadow-xl'),
-            })}
-          />
-          <Box
-            sx={(theme) => ({
-              ...boxStyle,
-              bgcolor: theme.getCssVar('palette-background-body'),
-              boxShadow: theme.shadow.xl,
-            })}
-          />
+          <Box sx={[ambientShadow.set('160 189 197'), { display: 'flex', gap: '100px' }]}>
+            <Box
+              sx={{
+                ...boxStyle,
+                bgcolor: 'background.body',
+                boxShadow: 'xl',
+              }}
+            />
+            <Box
+              sx={[
+                {
+                  ...boxStyle,
+                  bgcolor: 'background.body',
+                },
+                ambientShadow.apply('xl'),
+              ]}
+            />
+          </Box>
         </Background>
       </Background>
     </CssVarsProvider>
