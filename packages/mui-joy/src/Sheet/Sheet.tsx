@@ -46,13 +46,10 @@ const SheetRoot = styled('div', {
 });
 
 const Sheet = React.forwardRef(function Sheet(inProps, ref) {
-  const { getColor } = useVariantOverride();
   const props = useThemeProps<typeof inProps & SheetProps>({
     props: inProps,
     name: 'MuiSheet',
   });
-
-  const color = getColor(inProps.color, props.color, 'neutral');
 
   const {
     className,
@@ -62,6 +59,8 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     enableVariantOverride = false,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, props.color);
 
   const ownerState = {
     ...props,
@@ -75,7 +74,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <VariantOverrideProvider value={enableVariantOverride}>
+    <VariantOverrideProvider variant={enableVariantOverride ? variant : undefined}>
       <SheetRoot
         as={component}
         ownerState={ownerState}

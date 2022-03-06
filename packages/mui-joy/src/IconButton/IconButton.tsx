@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
-import { styled, useThemeProps } from '../styles';
+import { styled, useThemeProps, useVariantOverride } from '../styles';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
@@ -83,11 +83,12 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     className,
     action,
     component = 'button',
-    color = 'primary',
     variant = 'light',
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, props.color, 'primary');
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

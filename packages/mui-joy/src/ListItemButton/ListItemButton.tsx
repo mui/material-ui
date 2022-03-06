@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/ButtonUnstyled';
-import { styled, useThemeProps } from '../styles';
+import { styled, useThemeProps, useVariantOverride } from '../styles';
 import {
   ListItemButtonProps,
   ExtendListItemButton,
@@ -85,8 +85,13 @@ const ListItemButtonRoot = styled('div', {
     ...(!ownerState.color &&
       !ownerState.selected && {
         color: theme.vars.palette.text.secondary,
+        cursor: 'pointer',
         '&:hover': {
           color: theme.vars.palette.text.primary,
+          backgroundColor: theme.vars.palette.background.hover,
+        },
+        '&:active': {
+          backgroundColor: theme.vars.palette.background.active,
         },
       }),
   },
@@ -101,9 +106,9 @@ const ListItemButtonRoot = styled('div', {
     }),
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
 ]);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
@@ -111,17 +116,17 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     props: inProps,
     name: 'MuiListItemButton',
   });
-
   const {
     children,
     className,
     action,
     component = 'div',
     selected = false,
-    color = selected ? 'primary' : undefined,
     variant = 'text',
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, props.color, selected ? 'primary' : undefined);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

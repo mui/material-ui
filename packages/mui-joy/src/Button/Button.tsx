@@ -115,14 +115,10 @@ const ButtonRoot = styled('button', {
 });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const { getColor } = useVariantOverride();
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'MuiButton',
   });
-
-  const color = getColor(inProps.color, props.color, 'primary');
-
   const {
     children,
     className,
@@ -135,6 +131,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     endIcon: endIconProp,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, props.color, 'primary');
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
