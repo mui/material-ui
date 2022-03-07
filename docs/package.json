@@ -102,7 +102,7 @@
     "react-intersection-observer": "^8.33.1",
     "react-is": "^17.0.2",
     "react-number-format": "^4.9.0",
-    "react-router-dom": "^6.2.1",
+    "react-router-dom": "^6.2.2",
     "react-spring": "^8.0.27",
     "react-swipeable-views": "^0.14.0",
     "react-transition-group": "^4.4.2",
