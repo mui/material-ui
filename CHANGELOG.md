@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.5.0
+
 <!-- generated comparing v5.4.4..master -->
+
 _Mar 7, 2022_
 
 A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
@@ -21,6 +23,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   - import { unstable_ClassNameGenerator } from '@mui/material/utils';
   + import { unstable_ClassNameGenerator } from '@mui/material/className';
   ```
+
 #### Changes
 
 - &#8203;<!-- 28 -->[Autocomplete] Fix failing unit tests (#31302) @michaldudak
