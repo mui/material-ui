@@ -168,26 +168,20 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       !open &&
       (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
     ) {
-      const optionToSelect = action.props.options[newState.highlightedIndex];
-
       return {
         ...newState,
-        selectedValue: optionToSelect,
+        selectedValue: newState.highlightedValue,
       };
     }
 
     if (
       action.type === ActionTypes.blur ||
-      action.type === ActionTypes.setControlledValue ||
+      action.type === ActionTypes.setValue ||
       action.type === ActionTypes.optionsChange
     ) {
-      const selectedOptionIndex = action.props.options.findIndex((o) =>
-        action.props.optionComparer(o, newState.selectedValue as SelectOption<TValue>),
-      );
-
       return {
         ...newState,
-        highlightedIndex: selectedOptionIndex,
+        highlightedValue: newState.selectedValue as SelectOption<TValue>,
       };
     }
 
@@ -250,6 +244,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionProps: getListboxOptionProps,
     getOptionState,
     highlightedOption,
+    selectedOption: listboxSelectedOption,
   } = useListbox(useListboxParameters);
 
   const getButtonProps = <TOther extends EventHandlers>(
@@ -286,7 +281,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     });
   };
 
-  React.useDebugValue({ value, open, highlightedOption });
+  React.useDebugValue({
+    selectedOption: listboxSelectedOption as TValue | null,
+    open,
+    highlightedOption,
+  });
 
   return {
     buttonActive,
