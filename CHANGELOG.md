@@ -232,7 +232,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - &#8203;<!-- 20 -->[docs] Clarify what the name of @mui/material is (#30866) @oliviertassinari
 - &#8203;<!-- 19 -->[docs] Remove migration from the releases page (#30863) @mnajdova
 - &#8203;<!-- 18 -->[docs] Update Instructions for Google Maps Autocomplete (#30849) @kjschabra
-- &#8203;<!-- 17 -->[docs] Hotfix notification <b> (#30862) @siriwatknp
+- &#8203;<!-- 17 -->[docs] Hotfix notification (#30862) @siriwatknp
 - &#8203;<!-- 04 -->[website] Sample GA to avoid hit limit (#30919) @oliviertassinari
 - &#8203;<!-- 03 -->[website] Hide scrollbars of hero containers (#29474) @theiliad
 - &#8203;<!-- 02 -->[website] Polishing spacing and other small things (#30828) @danilo-leal
@@ -3641,7 +3641,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 53 -->[DateTimePicker] `date` is nullable in `onChange` (#25981) @eps1lon
 - &#8203;<!-- 39 -->[internal][pickers] Remove unused TView type argument (#25936) @eps1lon
 - &#8203;<!-- 48 -->[internal][pickers] Inline some BasePickerProps usages (#25971) @eps1lon
-- &#8203;<!-- 44 -->[internal][pickers] Entangle what *Props vs All*Props means (#25938) @eps1lon
+- &#8203;<!-- 44 -->[internal][pickers] Entangle what Props vs AllProps means (#25938) @eps1lon
 - &#8203;<!-- 19 -->[lab] Update slot components to use overridesResolver (#25906) @mnajdova
 - &#8203;<!-- 40 -->[Timeline] Remove use of nth-child in favor of nth-of-type (#25915) @wellwellmissesanderson
 - &#8203;<!-- 06 -->[Timeline] Migrate Timeline to emotion (#25838) @siriwatknp
