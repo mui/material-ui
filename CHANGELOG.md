@@ -75,6 +75,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 23 -->[core] Fix running markdownlint on Windows (#31352) @michaldudak
 - &#8203;<!-- 22 -->[core] Fix the stylelint script on Windows (#31281) @mnajdova
 - &#8203;<!-- 02 -->[test] Fix buildApiUtils tests on Windows (#31304) @michaldudak
 - &#8203;<!-- 01 -->[test] Remove legacyRoot option from test renderer (#31284) @eps1lon
