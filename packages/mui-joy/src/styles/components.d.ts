@@ -16,6 +16,7 @@ import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
 import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -88,5 +89,9 @@ export interface Components<Theme = unknown> {
   MuiLink?: {
     defaultProps?: Partial<LinkProps>;
     styleOverrides?: OverridesStyleRules<LinkSlot, LinkProps, Theme>;
+  };
+  MuiCheckbox?: {
+    defaultProps?: Partial<CheckboxProps>;
+    styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
   };
 }
