@@ -20,7 +20,3 @@ title: React Button component
 ## Upload
 
 ## Third-party routing library
-
-## API
-
-- [`Button`](/joy-ui/api/button/)
