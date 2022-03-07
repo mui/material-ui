@@ -100,7 +100,7 @@
     "@types/sinon": "^10.0.11",
     "@types/stylis": "^4.0.2",
     "@types/webpack": "^5.28.0",
-    "@types/yargs": "^17.0.8",
+    "@types/yargs": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "argos-cli": "^0.3.3",
