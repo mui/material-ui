@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.71",
+  "version": "5.0.0-alpha.72",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -73,8 +73,8 @@
     "@date-io/dayjs": "^2.13.1",
     "@date-io/luxon": "^2.13.1",
     "@date-io/moment": "^2.13.1",
-    "@mui/base": "5.0.0-alpha.70",
-    "@mui/system": "^5.4.4",
+    "@mui/base": "5.0.0-alpha.71",
+    "@mui/system": "^5.5.0",
     "@mui/utils": "^5.4.4",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
