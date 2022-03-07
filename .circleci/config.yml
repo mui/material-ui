@@ -45,6 +45,7 @@ defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:12
+
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
@@ -241,6 +242,7 @@ jobs:
             git diff --exit-code
   test_types:
     <<: *defaults
+    resource_class: 'medium+'
     steps:
       - checkout
       - install_js
@@ -289,6 +291,7 @@ jobs:
             - packages/mui-utils/build
   test_types_next:
     <<: *defaults
+    resource_class: 'medium+'
     steps:
       - checkout
       - run:
