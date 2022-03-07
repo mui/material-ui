@@ -3,7 +3,7 @@ title: Material-UI v1 is out 🎉
 description: Material-UI v1 is out 🎉
 date: 2018-05-18T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 > React components that implement Google's Material Design.

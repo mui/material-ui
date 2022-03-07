@@ -38,6 +38,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/InputUnstyled/InputUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material/react-text-field/\">Text Fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Fields</a></li></ul>",
   "cssComponent": false
 }

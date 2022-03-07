@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Navegação inferior
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'

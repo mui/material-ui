@@ -6,13 +6,15 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
-import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
+import { listItemButtonClasses } from '../ListItemButton';
+import NestedListContext from '../List/NestedListContext';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
-  const { sticky } = ownerState;
+  const { sticky, nested } = ownerState;
   const slots = {
-    root: ['root', sticky && 'sticky'],
-    secondaryAction: ['secondaryAction'],
+    root: ['root', nested && 'nested', sticky && 'sticky'],
+    startAction: ['startAction'],
+    endAction: ['endAction'],
   };
 
   return composeClasses(slots, getListItemUtilityClass, {});
@@ -22,44 +24,84 @@ const ListItemRoot = styled('li', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemProps }>(({ theme, ownerState }) => ({
-  // add negative margin to ListItemButton equal to this ListItem padding
-  '--List-itemButton-margin':
-    'max(-0.375rem, -1 * var(--List-item-paddingX)) calc(-1 * var(--List-item-paddingX))',
-  '--List-decorator-color': theme.vars.palette.text.tertiary, // for making icon color less obvious
-  ...(ownerState.secondaryAction && {
-    '--List-item-secondaryActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
-  }),
-  boxSizing: 'border-box',
-  display: 'flex',
-  alignItems: 'center',
-  position: 'relative',
-  padding: 'min(0.375rem, var(--List-item-paddingX)) var(--List-item-paddingX)',
-  paddingLeft: 'var(--List-insetStart)',
-  minHeight: 'var(--List-item-minHeight)',
-  ...theme.typography.body1,
-  ...(ownerState.sticky && {
-    position: 'sticky',
-    top: 0,
-    zIndex: 1,
-    background: 'var(--List-background)',
-  }),
-  [`& + .${listItemClasses.root}, & + .${listItemButtonClasses.root}`]: {
-    marginTop: 'var(--List-gap)',
+})<{ ownerState: ListItemProps }>(({ theme, ownerState }) => [
+  !ownerState.nested && {
+    // add negative margin to ListItemButton equal to this ListItem padding
+    '--List-itemButton-margin': `calc(-1 * var(--List-item-paddingY))
+calc(-1 * var(--List-item-paddingRight))
+calc(-1 * var(--List-item-paddingY))
+calc(-1 * var(--List-item-paddingLeft))`,
+    alignItems: 'center',
+    margin: 'var(--List-item-margin)',
   },
-}));
+  ownerState.nested && {
+    // add negative margin to NestedList equal to this ListItem padding
+    '--NestedList-margin':
+      '0px calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+    '--NestedList-item-paddingLeft': `calc(var(--List-item-paddingLeft) + var(--List-nestedInsetStart))`,
+    // add negative margin to ListItem, ListItemButton to make them start from the edge.
+    '--List-itemButton-margin':
+      'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+    '--List-item-margin':
+      'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+    flexDirection: 'column',
+  },
+  // Base styles
+  {
+    ...(ownerState.startAction && {
+      '--internal-startActionWidth': '3rem', // to add sufficient padding-left on ListItemButton
+    }),
+    ...(ownerState.endAction && {
+      '--internal-endActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
+    }),
+    boxSizing: 'border-box',
+    display: 'flex',
+    position: 'relative',
+    padding: 'var(--List-item-paddingY)',
+    paddingLeft: 'var(--List-item-paddingLeft)',
+    paddingRight: 'var(--List-item-paddingRight)',
+    minHeight: 'var(--List-item-minHeight)',
+    fontSize: 'var(--List-item-fontSize)',
+    fontFamily: theme.vars.fontFamily.body,
+    ...(ownerState.sticky && {
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      background: 'var(--List-background)',
+    }),
+    // Using :last-child or :first-child selector would complicate ListDivider margin
+    [`& + .${listItemClasses.root}`]: {
+      marginTop: 'var(--List-gap)',
+    },
+    [`& + .${listItemButtonClasses.root}`]: {
+      marginTop: 'var(--List-gap)',
+    },
+  },
+]);
 
-const ListItemSecondaryAction = styled('div', {
+const ListItemStartAction = styled('div', {
   name: 'MuiListItem',
-  slot: 'SecondaryAction',
-  overridesResolver: (props, styles) => styles.secondaryAction,
-})<{ ownerState: ListItemProps }>({
+  slot: 'StartAction',
+  overridesResolver: (props, styles) => styles.startAction,
+})<{ ownerState: ListItemProps }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
-  top: '50%',
-  right: 'var(--List-item-paddingX)',
-  transform: 'translateY(-50%)',
-});
+  top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
+  left: 0,
+  transform: 'translate(var(--List-item-startActionTranslateX), -50%)',
+}));
+
+const ListItemEndAction = styled('div', {
+  name: 'MuiListItem',
+  slot: 'StartAction',
+  overridesResolver: (props, styles) => styles.startAction,
+})<{ ownerState: ListItemProps }>(({ ownerState }) => ({
+  display: 'inherit',
+  position: 'absolute',
+  top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
+  right: 0,
+  transform: 'translate(var(--List-item-endActionTranslateX), -50%)',
+}));
 
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -67,31 +109,49 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'MuiListItem',
   });
 
-  const { component, className, children, sticky = false, secondaryAction, ...other } = props;
+  const {
+    component,
+    className,
+    children,
+    nested = false,
+    sticky = false,
+    startAction,
+    endAction,
+    ...other
+  } = props;
 
   const ownerState = {
     sticky,
-    secondaryAction,
+    startAction,
+    endAction,
     ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <ListItemRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-      {secondaryAction && (
-        <ListItemSecondaryAction className={classes.secondaryAction} ownerState={ownerState}>
-          {secondaryAction}
-        </ListItemSecondaryAction>
-      )}
-    </ListItemRoot>
+    <NestedListContext.Provider value={nested}>
+      <ListItemRoot
+        ref={ref}
+        as={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        {...other}
+      >
+        {startAction && (
+          <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
+            {startAction}
+          </ListItemStartAction>
+        )}
+
+        {children}
+        {endAction && (
+          <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
+            {endAction}
+          </ListItemEndAction>
+        )}
+      </ListItemRoot>
+    </NestedListContext.Provider>
   );
 }) as OverridableComponent<ListItemTypeMap>;
 
@@ -116,7 +176,16 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The element to display at the end of ListItem.
    */
-  secondaryAction: PropTypes.node,
+  endAction: PropTypes.node,
+  /**
+   * If `true`, the component can contain NestedList.
+   * @default false
+   */
+  nested: PropTypes.bool,
+  /**
+   * The element to display at the start of ListItem.
+   */
+  startAction: PropTypes.node,
   /**
    * If `true`, the component has sticky position (with top = 0).
    * @default false

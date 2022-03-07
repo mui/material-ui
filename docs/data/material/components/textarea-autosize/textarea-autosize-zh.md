@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Textarea Autosize（自适应文本框）组件
 components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'

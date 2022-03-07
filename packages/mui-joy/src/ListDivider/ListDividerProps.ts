@@ -3,6 +3,8 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ListDividerClasses } from './listDividerClasses';
 
+export type ListDividerSlot = 'root';
+
 export interface ListDividerInsetOverrides {}
 
 export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> {

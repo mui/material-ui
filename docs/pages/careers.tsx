@@ -172,17 +172,6 @@ const openRolesData = [
       },
     ],
   },
-  {
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Experience Engineer',
-        description:
-          'You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.',
-        url: '/careers/developer-experience-engineer/',
-      },
-    ],
-  },
 ];
 
 const nextRolesData = [

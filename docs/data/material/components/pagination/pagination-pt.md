@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Paginação
 components: Pagination, PaginationItem
 githubLabel: 'component: pagination'

@@ -41,10 +41,12 @@ const IconButtonRoot = styled('button', {
     '--IconButton-padding': '0.25rem',
     ...(ownerState.size === 'sm' && {
       '--IconButton-size': '2rem',
+      '--Icon-fontSize': '1.25rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--IconButton-size': '3rem',
       '--IconButton-padding': '0.5rem',
+      '--Icon-fontSize': '1.75rem',
     }),
     padding: 'var(--IconButton-padding)',
     ...(ownerState.variant === 'outlined' && {
