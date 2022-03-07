@@ -63,7 +63,8 @@ const GOLDs = [
   },
   {
     src: 'https://avatars.githubusercontent.com/u/32841130?s=400&u=3db059b38a2b22764265b33c93f79ea7e22e7468&v=4?size=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/32841130?s=400&u=3db059b38a2b22764265b33c93f79ea7e22e7468&v=4?size=80 2x',
+    srcSet:
+      'https://avatars.githubusercontent.com/u/32841130?s=400&u=3db059b38a2b22764265b33c93f79ea7e22e7468&v=4?size=80 2x',
     name: 'MegaFamous',
     description: 'Best Place To Buy Instagram Followers & Likes',
     href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
