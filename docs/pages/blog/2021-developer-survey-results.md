@@ -17,16 +17,15 @@ As with the previous iterations, the survey was divided into three sections: ["Y
 
 ### How would you feel if you could no longer use MUI?
 
-Over 93% of you would be disappointed if you could no longer use MUI (a sum of _"Very disappointed"_ and _"Somewhat disappointed"_).
-That's in keeping with 94% of you who felt the same way when we asked this question in 2019 and 2020. The _"Somewhat disappointed"_ also saw a growth of 9%. These indicators suggest to us that we're on the right track with our products and their continued evolution.
+Over 93% of you would be disappointed if you could no longer use MUI (a sum of "Very disappointed" and "Somewhat disappointed"). That's in keeping with 94% of you who felt the same way when we asked this question in 2019 and 2020.
 
 <img src="/static/blog/2021-survey/1.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 62.7% Very disappointed, 30.4% Somewhat disappointed, 6.9% Not disappointed." />
 
 <p class="blog-description">1567 out of 1589 answered.</p>
 
-Interestingly, the percentage who would be _"Very disappointed"_ for no longer being able to use MUI fell by 10%, while those who would be _"Not disappointed"_ grew by 1%.
-Those who chose the latter option were asked to explain why.
-Here are the biggest reasons we observed:
+Notably, 2021 saw a 10% loss in the "Very disappointed" category, and a comparable gain in those who would only be "Somewhat disappointed." This suggests that some of you may be less enthusiastic about MUI's products when compared with previous years, and that's something we need to evaluate moving forward.
+
+Those who would be "Not disappointed"—a group that grew by 1%—were asked to explain why. Here's what they said:
 
 **The number of available alternatives**
 
