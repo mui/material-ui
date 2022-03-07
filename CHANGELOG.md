@@ -8,7 +8,7 @@ _Mar 7, 2022_
 
 A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
-- ♿️ made the `Autocomplete` conform to [ARIA 1.2](https://www.w3.org/TR/wai-aria-1.2/#combobox) (#30601) @EdmundMai
+- ♿️ made the `Autocomplete` conform to [ARIA combobox 1.2](https://www.w3.org/TR/wai-aria-1.2/#combobox) (#30601) @EdmundMai
 - Several 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.5.0`
