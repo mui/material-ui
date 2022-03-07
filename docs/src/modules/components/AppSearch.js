@@ -20,6 +20,7 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useRouter } from 'next/router';
 import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
+import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -158,7 +159,7 @@ function DocSearcHit(props) {
   const { children, hit } = props;
 
   function displayTag(pathname) {
-    if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
+    if (!pathname.match(/^\/(material-ui|joy-ui|base|x\/(react-data-grid|api))\//)) {
       return null;
     }
     let text = '';
@@ -221,7 +222,7 @@ export default function AppSearch() {
   }, [setIsOpen]);
   const router = useRouter();
   const isNewDocStructure = isNewLocation(router.asPath);
-  const productSpace = router.asPath.replace(/\/[a-zA-Z]{2}\//, '').replace(/\/.*/, '');
+  const productSpace = getUrlProduct(router.asPath);
 
   const keyboardNavigator = {
     navigate({ item }) {
@@ -325,7 +326,7 @@ export default function AppSearch() {
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters: [`product:${productSpace}`],
+              optionalFilters: isNewDocStructure ? [`product:${productSpace}`] : [],
             }}
             placeholder={search}
             transformItems={(items) => {
