@@ -5,6 +5,7 @@ import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
+import Chip from '@mui/material/Chip';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -156,17 +157,44 @@ const NewStartScreen = () => {
 function DocSearcHit(props) {
   const { children, hit } = props;
 
+  function displayTag(pathname) {
+    if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
+      return null;
+    }
+    let text = '';
+    if (pathname.startsWith('/material-ui/')) {
+      text = 'Material UI';
+    }
+    if (pathname.startsWith('/joy-ui/')) {
+      text = 'Joy UI';
+    }
+    if (pathname.startsWith('/base/')) {
+      text = 'MUI Base';
+    }
+    return <Chip label={text} size="small" sx={{ mr: 1 }} />;
+  }
+
   if (hit.pathname) {
     return (
-      <Link href={hit.pathname} as={hit.as}>
+      <Link
+        href={hit.pathname}
+        as={hit.as}
+        sx={{ display: 'flex !important', '& .DocSearch-Hit-Container': { flex: 1, minWidth: 0 } }}
+      >
         {children}
+        {displayTag(hit.pathname)}
       </Link>
     );
   }
 
   // DocSearch stores the old results in its cache
   // hit.pathname won't be defined for them.
-  return <Link href={hit.url}>{children}</Link>;
+  return (
+    <Link href={hit.url}>
+      {children}
+      {displayTag(hit.pathname)}
+    </Link>
+  );
 }
 
 DocSearcHit.propTypes = {
@@ -193,6 +221,7 @@ export default function AppSearch() {
   }, [setIsOpen]);
   const router = useRouter();
   const isNewDocStructure = isNewLocation(router.asPath);
+  const productSpace = router.asPath.replace(/\/[a-zA-Z]{2}\//, '').replace(/\/.*/, '');
 
   const keyboardNavigator = {
     navigate({ item }) {
@@ -296,6 +325,7 @@ export default function AppSearch() {
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
+              optionalFilters: [`product:${productSpace}`],
             }}
             placeholder={search}
             transformItems={(items) => {
