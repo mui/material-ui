@@ -2351,44 +2351,45 @@
     "@types/mdx" "^2.0.0"
     "@types/react" ">=16"
 
-"@mui/x-data-grid-generator@^5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-5.5.1.tgz#a873f8ee2d16c8c377bb84d8c7768f2e38bba645"
-  integrity sha512-lMykoXORV8PcgwlDsnSfdm3rAfpiS4vzDkyZ3P7wF0J9NXKe199Kj+E8QLouGS6EPT8fE7gEJdIEd/++hT63hQ==
+"@mui/x-data-grid-generator@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-5.6.0.tgz#3bbbd3ff313f79bce943eafb0c6c904fb7acc91f"
+  integrity sha512-JaRUFfbJZNpxDJI2A6laOXKcMGaEgJYijVWrWZi6Tf3UXOYjHyGHac0VBG5N8dKt9jCN6YQr6nHItZIImjTo/A==
   dependencies:
-    "@mui/base" "^5.0.0-alpha.68"
-    "@types/chance" "^1.1.3"
-    chance "^1.1.7"
+    "@mui/base" "^5.0.0-alpha.69"
+    "@mui/x-data-grid-pro" "5.6.0"
+    chance "^1.1.8"
     clsx "^1.1.1"
     lru-cache "^6.0.0"
 
-"@mui/x-data-grid-pro@^5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-5.5.1.tgz#2e11f9cb6d61f2ed5aebbb54c097a72447b84d5f"
-  integrity sha512-Fh5zWvu6Mz135uIAH7he64Zx4AWCp+ztgsc5EHISd457Mcc4rWJqpSVE6bMOo4tfNT32NFPoApJqc/LFK/33ng==
+"@mui/x-data-grid-pro@5.6.0", "@mui/x-data-grid-pro@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-5.6.0.tgz#4c1c9d2316a236bdff0bdea73d6078d74aae976f"
+  integrity sha512-+xKN33SuoM1AAX0OOqf2W7nYhwPVXTUR0ZUtoogiOxYsqszA7pE7tKzaueAbCwP886lyCwYIVt2a/RgXqO3hZA==
   dependencies:
-    "@mui/utils" "^5.4.1"
-    "@mui/x-license-pro" "5.5.1"
+    "@mui/utils" "^5.4.2"
+    "@mui/x-data-grid" "5.6.0"
+    "@mui/x-license-pro" "5.6.0"
     clsx "^1.0.4"
     prop-types "^15.8.1"
     reselect "^4.1.5"
 
-"@mui/x-data-grid@^5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.5.1.tgz#7e0aafba7f28006057d7b7437c13d7609a958097"
-  integrity sha512-0Lf7P2wr1IoK//4KLsIIps++G6XGMdlxhGxNprM4DhQZRfccX97E3o+t15W4f4YP8IdTKmdD2TjM31xcGF+HxQ==
+"@mui/x-data-grid@5.6.0", "@mui/x-data-grid@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.6.0.tgz#8f0c5e6bb9ac949fe50dc653463c7dd8d80d0895"
+  integrity sha512-Ys6L0eHelc14waRrgRw7jdoDNc6fgJcb4ev9AHvjX9zLss3xCQ4Zdk4rn+4nLUZPQcr2zbZl5pHvLx1Nq0DPTg==
   dependencies:
-    "@mui/utils" "^5.4.1"
+    "@mui/utils" "^5.4.2"
     clsx "^1.1.1"
     prop-types "^15.8.1"
     reselect "^4.1.5"
 
-"@mui/x-license-pro@5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-5.5.1.tgz#c135721cc547f985495a073935c67b691fbe2245"
-  integrity sha512-GPx9u9vceYwLZWbpgItVAtBFAruwGkeOKV7fPz1oGMQo7nF5yKbJAycLzFG6gAh7dxjzSi3w5Vg561QeV1TKFQ==
+"@mui/x-license-pro@5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-5.6.0.tgz#5ddc6eb6701114edc8b48da1994b40ceb6df8a09"
+  integrity sha512-W1RhyJ011G7BhJKYgp+l6gEkFDYx0D8S3COSTsa0IOpg7wRrbis4YcyC5pXyZJ2eSM3cK8MkG/oggifHJpvjIg==
   dependencies:
-    "@mui/utils" "^5.4.1"
+    "@mui/utils" "^5.4.2"
     esm "^3.2.25"
     yargs "^17.3.1"
 
@@ -3080,11 +3081,6 @@
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.3.0.tgz#23509ebc1fa32f1b4d50d6a66c4032d5b8eaabdc"
   integrity sha512-/ceqdqeRraGolFTcfoXNiqjyQhZzbINDngeoAq9GoHa8PPK1yNzTaxWjA6BFWp5Ua9JpXEMSS4s5i9tS0hOJtw==
-
-"@types/chance@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@types/chance/-/chance-1.1.3.tgz#d19fe9391288d60fdccd87632bfc9ab2b4523fea"
-  integrity sha512-X6c6ghhe4/sQh4XzcZWSFaTAUOda38GQHmq9BUanYkOE/EO7ZrkazwKmtsj3xzTjkLWmwULE++23g3d3CCWaWw==
 
 "@types/cheerio@*":
   version "0.22.30"
@@ -5406,7 +5402,7 @@ chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.1, chalk@^4.1.2:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-chance@^1.1.7:
+chance@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/chance/-/chance-1.1.8.tgz#5d6c2b78c9170bf6eb9df7acdda04363085be909"
   integrity sha512-v7fi5Hj2VbR6dJEGRWLmJBA83LJMS47pkAbmROFxHWd9qmE1esHRZW8Clf1Fhzr3rjxnNZVCjOEv/ivFxeIMtg==
