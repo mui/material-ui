@@ -34,3 +34,4 @@ export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export * from './CssVarsProvider';
+export { default as unstable_createTheme } from './unstable_createTheme';

@@ -2,19 +2,17 @@ import * as React from 'react';
 import {
   CssVarsProvider,
   useColorScheme,
-  createTheme,
-  ThemeInput,
+  unstable_createTheme,
   alpha,
   darken,
 } from '@mui/material/styles';
-import { deepmerge } from '@mui/utils';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { teal, deepOrange, orange, cyan } from '@mui/material/colors';
 
-const ColorSchemePicker = ({ modeChanged }: { modeChanged: (mode: 'light' | 'dark') => void }) => {
+const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -30,10 +28,8 @@ const ColorSchemePicker = ({ modeChanged }: { modeChanged: (mode: 'light' | 'dar
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
-          modeChanged('dark');
         } else {
           setMode('light');
-          modeChanged('light');
         }
       }}
     >
@@ -42,149 +38,26 @@ const ColorSchemePicker = ({ modeChanged }: { modeChanged: (mode: 'light' | 'dar
   );
 };
 
-// const defaultTheme = createTheme({
-//   palette: {
-//     primary: teal,
-//     secondary: deepOrange,
-//   },
-// });
-
-// const darkTheme = createTheme({
-//   palette: {
-//     primary: cyan,
-//     secondary: orange,
-//   },
-// });
-
-// const themeWithColorSchemes = {
-//   ...defaultTheme,
-//   colorSchemes: {
-//     light: {
-//       palette: {
-//         primary: defaultTheme.palette.primary,
-//         secondary: defaultTheme.palette.secondary,
-//       },
-//     },
-//     dark: {
-//       palette: {
-//         primary: defaultTheme.palette.primary,
-//         secondary: defaultTheme.palette.secondary,
-//       },
-//     },
-//   },
-// };
-
-// const darkThemeWithColorSchemes = {
-//   ...darkTheme,
-//   colorSchemes: {
-//     light: {
-//       palette: {
-//         primary: defaultTheme.palette.primary,
-//         secondary: defaultTheme.palette.secondary,
-//       },
-//     },
-//     dark: {
-//       palette: {
-//         primary: darkTheme.palette.primary,
-//         secondary: darkTheme.palette.secondary,
-//       },
-//     },
-//   },
-// };
+const theme = unstable_createTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: teal,
+        secondary: deepOrange,
+      },
+    },
+    dark: {
+      palette: {
+        primary: cyan,
+        secondary: orange,
+      },
+    },
+  },
+});
 
 export default function Page() {
-  // const [theme, setTheme] = React.useState<ThemeInput>(themeWithColorSchemes);
-
-  // const modeChanged = (newMode: 'light' | 'dark') => {
-  //   setTheme(newMode === 'dark' ? darkThemeWithColorSchemes : themeWithColorSchemes);
-  // };
-
   return (
-    <CssVarsProvider
-      theme={{
-        colorSchemes: {
-          light: {
-            palette: deepmerge(
-              {
-                primary: {
-                  light: teal[400],
-                  main: teal[600],
-                  dark: teal[800],
-                },
-                secondary: {
-                  light: deepOrange[400],
-                  main: deepOrange[600],
-                  dark: deepOrange[800],
-                },
-              },
-              {
-                primary: {
-                  mainChannel: '0 137 123',
-                },
-                secondary: {
-                  mainChannel: '244 81 30',
-                },
-                error: {
-                  mainChannel: '211 47 47',
-                },
-                info: {
-                  mainChannel: '2 136 209',
-                },
-                success: {
-                  mainChannel: '46 125 50',
-                },
-                warning: {
-                  mainChannel: '237 108 2',
-                },
-              },
-            ),
-          },
-          dark: {
-            palette: deepmerge(
-              {
-                primary: {
-                  light: cyan[100],
-                  main: cyan[400],
-                  dark: cyan[600],
-                },
-                secondary: {
-                  light: orange[200],
-                  main: orange[300],
-                  dark: orange[700],
-                },
-              },
-              {
-                primary: {
-                  mainChannel: '38 198 218',
-                },
-                secondary: {
-                  mainChannel: '255 183 77',
-                },
-                error: {
-                  mainChannel: '244 67 54',
-                },
-                info: {
-                  mainChannel: '41 182 246',
-                },
-                success: {
-                  mainChannel: '102 187 106',
-                },
-                warning: {
-                  mainChannel: '255 167 38',
-                },
-              },
-            ),
-          },
-        },
-        opacity: {
-          active: 0.54,
-          hover: 0.04,
-          selected: 0.08,
-          disabled: 0.26,
-          focus: 0.12,
-        },
-      }}
-    >
+    <CssVarsProvider theme={theme}>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ pb: 4 }}>
           <ColorSchemePicker />

@@ -1,21 +1,13 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import createTheme, { ThemeOptions } from './createTheme';
-import { PaletteOptions, PaletteColorOptions } from './createPalette';
+import createTheme, { Theme } from './createTheme';
+import { PaletteWithChannels } from './createPalette';
 
-export interface ThemeInput extends ThemeOptions {
-  colorSchemes?: Partial<
+export interface ThemeInput extends Theme {
+  colorSchemes: Partial<
     Record<
       'light' | 'dark',
       {
-        palette: Partial<
-          Record<
-            keyof Omit<
-              PaletteOptions,
-              'getContrastText' | 'contrastThreshold' | 'tonalOffset' | 'mode'
-            >,
-            PaletteColorOptions
-          >
-        >;
+        palette: PaletteWithChannels;
       }
     >
   >;
