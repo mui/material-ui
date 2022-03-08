@@ -1,7 +1,7 @@
 ---
 title: 'The 2021 MUI developer survey: here's what we discovered'
 description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
-date: 2022-03-07T00:00:00.000Z
+date: 2022-03-15T00:00:00.000Z
 authors: ['danilo-leal', 'samuelsycamore', 'oliviertassinari']
 tags: ['Developer survey']
 ---
