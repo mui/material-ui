@@ -141,6 +141,7 @@ const SwitchTrack = styled('span', {
   borderColor: 'var(--Switch-track-borderColor)',
   backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
+  fontFamily: theme.vars.fontFamily.body,
   ...(ownerState.size === 'sm' && {
     fontSize: theme.vars.fontSize.xs,
   }),
