@@ -15,6 +15,8 @@ import {
 export interface YearProps {
   autoFocus?: boolean;
   children: React.ReactNode;
+  // The below line triggers a false-positive ESLint error - `classes` are used below.
+  // eslint-disable-next-line react/no-unused-prop-types
   classes?: {
     root?: string;
     modeDesktop?: string;
@@ -25,7 +27,6 @@ export interface YearProps {
   };
   className?: string;
   disabled?: boolean;
-  forwardedRef?: React.Ref<HTMLButtonElement>;
   onClick: (event: React.MouseEvent, value: number) => void;
   onKeyDown: (event: React.KeyboardEvent, value: number) => void;
   selected: boolean;

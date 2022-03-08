@@ -247,6 +247,7 @@ export default function AppNavDrawerItem(props) {
     return (
       <React.Fragment>
         <StyledLi {...other} depth={depth}>
+          {/* Fix overloading with prefetch={false}, only prefetch on hover */}
           <ItemLink
             component={Link}
             activeClassName="app-drawer-active"
@@ -255,6 +256,7 @@ export default function AppNavDrawerItem(props) {
             onClick={onClick}
             depth={depth}
             hasIcon={hasIcon}
+            prefetch={false}
             {...linkProps}
           >
             {iconElement}

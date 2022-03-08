@@ -4,6 +4,7 @@ import { GlobalStyles } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Checkbox from '@mui/joy/Checkbox';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -333,6 +334,17 @@ const components: {
       { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
     ],
   },
+  {
+    name: 'Checkbox',
+    render: (props: any) => (
+      <React.Fragment>
+        <Checkbox {...props} />
+        <Checkbox checked {...props} />
+        <Checkbox indeterminate {...props} />
+      </React.Fragment>
+    ),
+    cssVars: [{ id: '--Checkbox-size', type: 'number', unit: 'px', defaultValue: 20 }],
+  },
 ];
 
 function Playground({ initialName }: { initialName?: string }) {
@@ -477,29 +489,7 @@ export default function JoyComponents() {
   }, []);
 
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       {mounted && <Playground initialName={router.query.name as string} />}
     </CssVarsProvider>

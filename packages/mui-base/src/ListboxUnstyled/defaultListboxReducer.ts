@@ -47,21 +47,26 @@ function findValidOptionToHighlight<TOption>(
   }
 }
 
-function getNewHighlightedIndex<TOption>(
+function getNewHighlightedOption<TOption>(
   options: TOption[],
-  previouslyHighlightedIndex: number,
+  previouslyHighlightedOption: TOption | null,
   diff: number | 'reset' | 'start' | 'end',
   lookupDirection: 'previous' | 'next',
   highlightDisabled: boolean,
   isOptionDisabled: OptionPredicate<TOption>,
   wrapAround: boolean,
-) {
+  optionComparer: (optionA: TOption, optionB: TOption) => boolean,
+): TOption | null {
   const maxIndex = options.length - 1;
   const defaultHighlightedIndex = -1;
   let nextIndexCandidate: number;
+  const previouslyHighlightedIndex =
+    previouslyHighlightedOption == null
+      ? -1
+      : options.findIndex((option) => optionComparer(option, previouslyHighlightedOption));
 
   if (diff === 'reset') {
-    return defaultHighlightedIndex;
+    return defaultHighlightedIndex === -1 ? null : options[defaultHighlightedIndex] ?? null;
   }
 
   if (diff === 'start') {
@@ -97,7 +102,7 @@ function getNewHighlightedIndex<TOption>(
     wrapAround,
   );
 
-  return nextIndex;
+  return options[nextIndex] ?? null;
 }
 
 function handleOptionSelection<TOption>(
@@ -123,7 +128,7 @@ function handleOptionSelection<TOption>(
 
     return {
       selectedValue: newSelectedValues,
-      highlightedIndex: optionIndex,
+      highlightedValue: option,
     };
   }
 
@@ -133,7 +138,7 @@ function handleOptionSelection<TOption>(
 
   return {
     selectedValue: option,
-    highlightedIndex: optionIndex,
+    highlightedValue: option,
   };
 }
 
@@ -142,21 +147,23 @@ function handleKeyDown<TOption>(
   state: Readonly<ListboxState<TOption>>,
   props: UseListboxStrictProps<TOption>,
 ): ListboxState<TOption> {
-  const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable } = props;
+  const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable, optionComparer } =
+    props;
 
   const moveHighlight = (
     diff: number | 'reset' | 'start' | 'end',
     direction: 'next' | 'previous',
     wrapAround: boolean,
   ) => {
-    return getNewHighlightedIndex(
+    return getNewHighlightedOption(
       options,
-      state.highlightedIndex,
+      state.highlightedValue,
       diff,
       direction,
       disabledItemsFocusable ?? false,
       isOptionDisabled ?? (() => false),
       wrapAround,
+      optionComparer,
     );
   };
 
@@ -164,48 +171,48 @@ function handleKeyDown<TOption>(
     case 'Home':
       return {
         ...state,
-        highlightedIndex: moveHighlight('start', 'next', false),
+        highlightedValue: moveHighlight('start', 'next', false),
       };
 
     case 'End':
       return {
         ...state,
-        highlightedIndex: moveHighlight('end', 'previous', false),
+        highlightedValue: moveHighlight('end', 'previous', false),
       };
 
     case 'PageUp':
       return {
         ...state,
-        highlightedIndex: moveHighlight(-pageSize, 'previous', false),
+        highlightedValue: moveHighlight(-pageSize, 'previous', false),
       };
 
     case 'PageDown':
       return {
         ...state,
-        highlightedIndex: moveHighlight(pageSize, 'next', false),
+        highlightedValue: moveHighlight(pageSize, 'next', false),
       };
 
     case 'ArrowUp':
       // TODO: extend current selection with Shift modifier
       return {
         ...state,
-        highlightedIndex: moveHighlight(-1, 'previous', !(disableListWrap ?? false)),
+        highlightedValue: moveHighlight(-1, 'previous', !(disableListWrap ?? false)),
       };
 
     case 'ArrowDown':
       // TODO: extend current selection with Shift modifier
       return {
         ...state,
-        highlightedIndex: moveHighlight(1, 'next', !(disableListWrap ?? false)),
+        highlightedValue: moveHighlight(1, 'next', !(disableListWrap ?? false)),
       };
 
     case 'Enter':
     case ' ':
-      if (state.highlightedIndex === -1 || options[state.highlightedIndex] === undefined) {
+      if (state.highlightedValue === null) {
         return state;
       }
 
-      return handleOptionSelection(options[state.highlightedIndex], state, props);
+      return handleOptionSelection(state.highlightedValue, state, props);
 
     default:
       break;
@@ -217,7 +224,7 @@ function handleKeyDown<TOption>(
 function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption> {
   return {
     ...state,
-    highlightedIndex: -1,
+    highlightedValue: null,
   };
 }
 
@@ -229,10 +236,10 @@ function handleOptionsChange<TOption>(
 ): ListboxState<TOption> {
   const { multiple, optionComparer } = props;
 
-  const highlightedOption = previousOptions[state.highlightedIndex];
-  const hightlightedOptionNewIndex = options.findIndex((option) =>
-    optionComparer(option, highlightedOption),
-  );
+  const newHighlightedOption =
+    state.highlightedValue == null
+      ? null
+      : options.find((option) => optionComparer(option, state.highlightedValue!)) ?? null;
 
   if (multiple) {
     // exclude selected values that are no longer in the options
@@ -242,7 +249,7 @@ function handleOptionsChange<TOption>(
     );
 
     return {
-      highlightedIndex: hightlightedOptionNewIndex,
+      highlightedValue: newHighlightedOption,
       selectedValue: newSelectedValues,
     };
   }
@@ -251,7 +258,7 @@ function handleOptionsChange<TOption>(
     options.find((option) => optionComparer(option, state.selectedValue as TOption)) ?? null;
 
   return {
-    highlightedIndex: hightlightedOptionNewIndex,
+    highlightedValue: newHighlightedOption,
     selectedValue: newSelectedValue,
   };
 }
@@ -269,10 +276,15 @@ export default function defaultListboxReducer<TOption>(
       return handleOptionSelection(action.option, state, action.props);
     case ActionTypes.blur:
       return handleBlur(state);
-    case ActionTypes.setControlledValue:
+    case ActionTypes.setValue:
       return {
         ...state,
         selectedValue: action.value,
+      };
+    case ActionTypes.setHighlight:
+      return {
+        ...state,
+        highlightedValue: action.highlight,
       };
     case ActionTypes.optionsChange:
       return handleOptionsChange(action.options, action.previousOptions, state, action.props);

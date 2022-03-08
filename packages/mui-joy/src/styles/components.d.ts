@@ -16,6 +16,7 @@ import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
 import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
 import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
 import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
@@ -91,6 +92,10 @@ export interface Components<Theme = unknown> {
   MuiLink?: {
     defaultProps?: Partial<LinkProps>;
     styleOverrides?: OverridesStyleRules<LinkSlot, LinkProps, Theme>;
+  };
+  MuiCheckbox?: {
+    defaultProps?: Partial<CheckboxProps>;
+    styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
   };
   MuiFormLabel?: {
     defaultProps?: Partial<FormLabelProps>;
