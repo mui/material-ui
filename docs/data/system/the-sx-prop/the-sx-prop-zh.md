@@ -1,10 +1,10 @@
-# The `sx` prop
+# `sx` 属性
 
-<p class="description">`sx`属性可以用来自定义组件样式</p>
+<p class="description">`sx` 属性可以用来自定义组件样式。</p>
 
-The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`. 你可以在它的 prop 上设置任何可用的 css。 你可以用这个参数来设定任何合法的css
+The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`. 你可以用这个参数来设定任何合法的css
 
-## Example
+## 示例
 
 {{"demo": "Example.js", "bg": true, "defaultCodeOpen": true}}
 
@@ -14,7 +14,7 @@ On the example above, you can notice that some of the values are not valid CSS p
 
 ### Borders
 
-The `border` property can receive only a number as a value. It creates a solid black border using the number as the width. It creates a solid black border using the number as the width.
+The `border` property can receive only a number as a value. It creates a solid black border using the number as the width.
 
 ```jsx
 <Box sx={{ border: 1 }} />
@@ -67,7 +67,7 @@ The `color` and `backgroundColor` properties can receive a string, which represe
 // equivalent to color: theme => theme.palette.primary.main
 ```
 
-The `backgroundColor` property is also available trough its alias `bgcolor`.
+The `backgroundColor` property is also available through its alias `bgcolor`.
 
 ```jsx
 <Box sx={{ bgcolor: 'primary.main' }} />
@@ -105,11 +105,10 @@ The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth` a
 ```js
 function transform(value) {
   return value <= 1 ? `${value * 100}%` : value;
-} `${value * 100}%` : value;
 }
 ```
 
-If the value is between [0, 1], it's converted to percent. Otherwise, it is directly set on the CSS property. Otherwise, it is directly set on the CSS property.
+If the value is between [0, 1], it's converted to percent. Otherwise, it is directly set on the CSS property.
 
 ```jsx
 <Box sx={{ width: 1/2 }} /> // equivalent to width: '50%'
@@ -164,7 +163,7 @@ The same can be achieved by omitting the CSS property prefix `fontWeight`.
 // equivalent to fontWeight: theme.typography.fontWeightLight
 ```
 
-There is additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
+There is an additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
 
 ```jsx
 <Box sx={{ typography: 'body1' }} />
@@ -175,11 +174,11 @@ _Head to the [typography page](/system/typography/) for more details._
 
 ## Responsive values
 
-All properties as part of the `sx` prop also have a support for defining different values for specific breakpoints. For more details on this, take a look at the [Responsive values section](/system/basics/#responsive-values). For more details on this, take a look at the [Responsive values section](/system/basics/#responsive-values).
+All properties as part of the `sx` prop also have a support for defining different values for specific breakpoints. For more details on this, take a look at the [Responsive values section](/system/basics/#responsive-values).
 
 ## Callback values
 
-Each property in the `sx` prop can receive a function callback as a value. This is useful when you want to use the `theme` for calculating some value. This is useful when you want to use the `theme` for calculating some value.
+Each property in the `sx` prop can receive a function callback as a value. This is useful when you want to use the `theme` for calculating some value.
 
 ```jsx
 <Box sx={{ height: (theme) => theme.spacing(10) }} />
@@ -262,12 +261,9 @@ export default function App() {
 //    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.
 //      Property 'flexDirection' is incompatible with index signature.
 //        Type 'string' is not assignable to type 'SystemStyleObject<Theme>'.
-//    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.
-//      Property 'flexDirection' is incompatible with index signature.
-//        Type 'string' is not assignable to type 'SystemStyleObject<Theme>'.
 ```
 
-The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. To fix this, you can cast the object/function passed to the `sx` prop to const:
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. To fix this, you can cast the object/function passed to the `sx` prop to const:
 
 ```ts
 const style = {
@@ -289,7 +285,7 @@ export default function App() {
 
 ### `fill` callback gives theme type as `any`
 
-Since `sx` can be an array type, there is a conflict in type of `Array.fill` and CSS's `fill` property when define value as a callback. As a workaround, you can explicitly define the theme like this: As a workaround, you can explicitly define the theme like this:
+Since `sx` can be an array type, there is a conflict in type of `Array.fill` and CSS's `fill` property when define value as a callback. As a workaround, you can explicitly define the theme like this:
 
 ```tsx
 import { Theme } from '@mui/material/styles';
@@ -301,7 +297,7 @@ import { Theme } from '@mui/material/styles';
 />;
 ```
 
-> Let us know or [submit a PR](https://github.com/mui/material-ui/pulls) if you have a proper way to fix this issue. 🙏 🙏
+> Let us know or [submit a PR](https://github.com/mui/material-ui/pulls) if you have a proper way to fix this issue. 🙏
 
 ## Performance
 
