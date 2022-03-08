@@ -35,38 +35,37 @@ const savedScrollTop = {};
 const LinksWrapper = styled('div')(({ theme }) => {
   return {
     paddingLeft: theme.spacing(5.5),
-    paddingTop: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
-    height: 125,
+    paddingTop: theme.spacing(1.5),
+    height: 124,
     '& > a': {
+      position: 'relative',
       display: 'flex',
+      minHeight: 40,
       flexDirection: 'column',
       alignItems: 'initial',
       padding: theme.spacing(0, 1),
+      paddingTop: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       color:
         theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
       transition: theme.transitions.create(),
       '&:hover': {
-        padding: theme.spacing(1),
+        paddingBottom: theme.spacing(3.5),
         backgroundColor:
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[700], 0.4)
             : theme.palette.grey[50],
-        '& .MuiTypography-body1': {
-          transform: 'translateY(0px)',
-        },
         '& .MuiTypography-body2': {
           opacity: 1,
         },
       },
       '& .MuiTypography-body1': {
-        transform: 'translateY(8px)',
-        transition: theme.transitions.create(),
+        zIndex: 1,
       },
       '& .MuiTypography-body2': {
         opacity: 0,
+        position: 'absolute',
+        top: '28px',
         transition: theme.transitions.create(),
       },
       '& svg': {
