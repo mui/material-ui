@@ -66,7 +66,7 @@ const GOLDs = [
     srcSet:
       'https://avatars.githubusercontent.com/u/32841130?s=400&u=3db059b38a2b22764265b33c93f79ea7e22e7468&v=4?size=80 2x',
     name: 'MegaFamous',
-    description: 'Best Place To Buy Instagram Followers & Likes',
+    description: 'The best place to buy Instagram followers & likes.',
     href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
