@@ -4,6 +4,7 @@ import { GlobalStyles } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Checkbox from '@mui/joy/Checkbox';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -332,6 +333,17 @@ const components: {
       { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
       { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
     ],
+  },
+  {
+    name: 'Checkbox',
+    render: (props: any) => (
+      <React.Fragment>
+        <Checkbox {...props} />
+        <Checkbox checked {...props} />
+        <Checkbox indeterminate {...props} />
+      </React.Fragment>
+    ),
+    cssVars: [{ id: '--Checkbox-size', type: 'number', unit: 'px', defaultValue: 20 }],
   },
 ];
 

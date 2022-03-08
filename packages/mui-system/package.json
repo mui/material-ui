@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.4.4",
+  "version": "5.5.0",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -62,7 +62,7 @@
     "@mui/types": "^7.1.2",
     "@mui/utils": "^5.4.4",
     "clsx": "^1.1.1",
-    "csstype": "^3.0.10",
+    "csstype": "^3.0.11",
     "prop-types": "^15.7.2"
   },
   "sideEffects": false,
