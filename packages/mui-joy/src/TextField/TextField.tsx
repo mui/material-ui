@@ -160,7 +160,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
           Input: components.InputInput,
         }}
         componentsProps={{
-          root: componentsProps.root,
+          root: componentsProps.inputRoot,
           input: componentsProps.inputInput,
         }}
       />
@@ -307,7 +307,10 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * Leading adornment for this input.
    */

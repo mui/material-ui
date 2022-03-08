@@ -4,7 +4,6 @@ import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import TextField from '@mui/joy/TextField';
-import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Key from '@mui/icons-material/Key';
@@ -77,28 +76,13 @@ export default function JoyTypography() {
             alignItems: 'center',
           }}
         >
-          <TextField
-            required
-            label="Label"
-            placeholder="Placeholder"
-            helperText="Helper text"
-            componentsProps={{ label: { endDecorator: <Info fontSize="md" color="neutral" /> } }}
-          />
+          <TextField required label="Label" placeholder="Placeholder" helperText="Helper text" />
 
           <TextField
             color="warning"
             label="Label"
             placeholder="Placeholder"
             helperText="Helper text"
-            componentsProps={{
-              label: {
-                endDecorator: (
-                  <Typography component="span" level="body3" sx={{ ml: 'auto' }}>
-                    0 / 50
-                  </Typography>
-                ),
-              },
-            }}
           />
 
           <TextField
@@ -108,19 +92,9 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             helperText={
               <React.Fragment>
-                <Info fontSize="md" /> Helper text
+                <Info fontSize="md" sx={{ mr: 0.5 }} /> Helper text
               </React.Fragment>
             }
-            componentsProps={{
-              label: {
-                endDecorator: (
-                  <Typography level="body3" sx={{ fontWeight: 400 }}>
-                    {' '}
-                    • Optional
-                  </Typography>
-                ),
-              },
-            }}
           />
 
           <TextField
@@ -130,24 +104,9 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             helperText="Helper text"
             endAdornment={<Info />}
-            componentsProps={{
-              label: {
-                endDecorator: (
-                  <Typography component="span" level="body3" sx={{ width: '100%' }}>
-                    Basic helper text if case you need me.
-                  </Typography>
-                ),
-              },
-            }}
           />
 
-          <TextField
-            disabled
-            label="Label"
-            placeholder="Placeholder"
-            helperText="Helper text"
-            componentsProps={{ label: { endDecorator: <Info fontSize="md" /> } }}
-          />
+          <TextField disabled label="Label" placeholder="Placeholder" helperText="Helper text" />
 
           <TextField
             color="primary"
@@ -155,7 +114,6 @@ export default function JoyTypography() {
             label="Label"
             placeholder="Placeholder"
             helperText="Helper text"
-            componentsProps={{ label: { endDecorator: <Info fontSize="md" /> } }}
           />
         </Box>
         <Box
@@ -173,15 +131,6 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             defaultValue="Hello world"
             helperText="This is a helper text."
-            componentsProps={{
-              label: {
-                endDecorator: (
-                  <Typography component="span" level="body3" sx={{ ml: 'auto' }}>
-                    0 / 50
-                  </Typography>
-                ),
-              },
-            }}
           />
           <TextField
             label="Label"
@@ -192,15 +141,6 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             defaultValue="Hello world"
             helperText="This is a helper text."
-            componentsProps={{
-              label: {
-                endDecorator: (
-                  <Typography component="span" level="body3" sx={{ width: '100%' }}>
-                    Basic helper text if case you need me.
-                  </Typography>
-                ),
-              },
-            }}
           />
           <TextField
             label="Label"
@@ -211,15 +151,6 @@ export default function JoyTypography() {
             helperText="This is a helper text."
             startAdornment={<Key fontSize="lg" />}
             endAdornment={<Verified fontSize="lg" />}
-            componentsProps={{
-              label: {
-                endDecorator: (
-                  <Typography component="span" level="body3" sx={{ width: '100%' }}>
-                    Basic helper text if case you need me.
-                  </Typography>
-                ),
-              },
-            }}
           />
         </Box>
       </Box>

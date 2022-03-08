@@ -11,7 +11,6 @@ const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
     asterisk: ['asterisk'],
-    separator: ['separator'],
   };
 
   return composeClasses(slots, getFormLabelUtilityClass, {});
@@ -41,23 +40,13 @@ const AsteriskComponent = styled('span', {
   color: 'var(--FormLabel-asterisk-color)',
 });
 
-const Separator = styled('span', {
-  name: 'MuiFormLabel',
-  slot: 'separator',
-  overridesResolver: (props, styles) => styles.separator,
-})<{ ownerState: FormLabelProps }>({
-  width: '0.25rem',
-  maxHeight: 0,
-  visibility: 'hidden',
-});
-
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'MuiFormLabel',
   });
 
-  const { children, className, component, endDecorator, required = false, ...other } = props;
+  const { children, className, component, required = false, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -79,9 +68,6 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
           &thinsp;{'*'}
         </AsteriskComponent>
       )}
-
-      {endDecorator && <Separator ownerState={ownerState} className={classes.separator} />}
-      {endDecorator}
     </FormLabelRoot>
   );
 }) as OverridableComponent<FormLabelTypeMap>;
@@ -104,10 +90,6 @@ FormLabel.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The content at the end of the label (or after the asterisk if required).
-   */
-  endDecorator: PropTypes.node,
   /**
    * The asterisk is added if required=`true`
    */
