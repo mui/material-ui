@@ -27,8 +27,8 @@ describe('Joy <FormLabel />', () => {
     expect(container.firstChild).to.have.class('foo-bar');
   });
 
-  it('should have end decorator', () => {
-    const { container } = render(<FormLabel endDecorator={<span>foo</span>} />);
-    expect(container.firstChild).to.have.text('foo');
+  it('should accept htmlFor', () => {
+    const { container } = render(<FormLabel htmlFor="input" className="foo-bar" />);
+    expect(container.firstChild).to.have.attribute('for', 'input');
   });
 });
