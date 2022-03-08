@@ -1,6 +1,7 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import createTheme, { Theme } from './createTheme';
 import { PaletteWithChannels } from './createPalette';
+import createTypography from './createTypography';
 
 export interface ThemeInput extends Theme {
   colorSchemes: Partial<
@@ -23,7 +24,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   theme: {
     ...defaultTheme,
     colorSchemes: {
-      // TODO: Shuold we remove the non color scheme values from here, like getContrastText, contrastThreshold etc.
       light: { palette: lightPalette },
       dark: { palette: darkPalette },
     },
@@ -33,6 +33,14 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     dark: 'dark',
   },
   prefix: 'md',
+  resolveTheme: (theme) => {
+    const newTheme = {
+      ...theme,
+      typography: createTypography(theme.palette, theme.typography),
+    };
+
+    return newTheme;
+  },
   shouldSkipGeneratingVar: (keys) =>
     !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/),
 });

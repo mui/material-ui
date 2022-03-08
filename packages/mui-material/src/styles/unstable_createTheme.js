@@ -4,7 +4,6 @@ import { createTheme as systemCreateTheme, decomposeColor } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
-import createTypography from './createTypography';
 import shadows from './shadows';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
@@ -17,7 +16,6 @@ function createTheme(options = {}, ...args) {
     breakpoints: breakpointsInput,
     mixins: mixinsInput = {},
     spacing: spacingInput,
-    // palette: paletteInput = {},
     colorSchemes: colorSchemesInput = {},
     transitions: transitionsInput = {},
     typography: typographyInput = {},
@@ -26,13 +24,15 @@ function createTheme(options = {}, ...args) {
     ...other
   } = options;
 
-  const colorSchemesInitial = deepmerge(
-    {
-      light: { palette: lightPalette },
-      dark: { palette: darkPalette },
-    },
-    colorSchemesInput,
-  );
+  const colorSchemesInitial = colorSchemesInput;
+
+  if (!colorSchemesInitial.light) {
+    colorSchemesInitial.light = { palette: lightPalette };
+  }
+
+  if (!colorSchemesInitial.dark) {
+    colorSchemesInitial.dark = { palette: darkPalette };
+  }
 
   const colorSchemes = {};
 
@@ -54,7 +54,7 @@ function createTheme(options = {}, ...args) {
     });
     colorSchemes[key] = { palette };
   });
-  const palette = createPalette({});
+
   const systemTheme = systemCreateTheme(options);
   const opacity = {
     active: 0.54,
@@ -67,10 +67,11 @@ function createTheme(options = {}, ...args) {
 
   let muiTheme = deepmerge(systemTheme, {
     mixins: createMixins(systemTheme.breakpoints, systemTheme.spacing, mixinsInput),
-    palette,
     // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
     shadows: shadows.slice(),
-    typography: createTypography(palette, typographyInput),
+    // TODO: At this moment this is not processed, as we need to know the color scheme
+    // which is not part of the CssVarsProvider
+    typography: typographyInput,
     transitions: createTransitions(transitionsInput),
     zIndex: { ...zIndex },
     colorSchemes,

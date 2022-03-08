@@ -9,6 +9,7 @@ import {
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import { teal, deepOrange, orange, cyan } from '@mui/material/colors';
 
@@ -144,6 +145,33 @@ export default function Page() {
           >
             Text
           </Button>
+        </Box>
+      </Box>
+      <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+          <Chip variant="filled" label="Text" />
+          <Chip variant="outlined" label="Text" />
+          <Chip variant="notification" label="Text" />
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+          <Chip color="primary" variant="filled" label="Text" />
+          <Chip color="primary" variant="outlined" label="Text" />
+          <Chip color="primary" variant="notification" label="Text" />
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+          <Chip color="secondary" variant="filled" label="Text" />
+          <Chip color="secondary" variant="outlined" label="Text" />
+          <Chip color="secondary" variant="notification" label="Text" />
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+          <Chip color="error" variant="filled" label="Text" />
+          <Chip color="error" variant="outlined" label="Text" />
+          <Chip color="error" variant="notification" label="Text" />
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+          <Chip color="warning" variant="filled" label="Text" />
+          <Chip color="warning" variant="outlined" label="Text" />
+          <Chip color="warning" variant="notification" label="Text" />
         </Box>
       </Box>
     </CssVarsProvider>
