@@ -1,7 +1,7 @@
 ---
 product: material-ui
 title: React Menu（菜单）组件
-components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper, MenuUnstyled, MenuItemUnstyled
 githubLabel: 'component: menu'
 materialDesign: https://material.io/components/menus
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
@@ -97,12 +97,18 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 {{"demo": "ContextMenu.js"}}
 
+## Unstyled
+
+The Menu also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+See its docs on the [MUI Base section](/base/react-menu).
+
 ## Complementary projects
 
-对于更高级的用例，您可以利用：
+For more advanced use cases you might be able to take advantage of:
 
 ### PopupState helper
 
-这里有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 在大部分情况下，它都能帮你处理好菜单组件的状态。
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
 {{"demo": "MenuPopupState.js"}}
