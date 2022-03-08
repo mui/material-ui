@@ -5,6 +5,8 @@ import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import LocationOn from '@mui/icons-material/LocationOn';
+import Groups from '@mui/icons-material/Groups';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -45,6 +47,39 @@ export default function JoyTypography() {
             {`${level} - typography`}
           </Typography>
         ))}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(300px, 1fr))',
+            gap: 2,
+            mt: 4,
+          }}
+        >
+          <Box>
+            <Typography level="body2">
+              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
+            </Typography>
+            <Typography level="body2">
+              <Groups fontSize="lg" sx={{ mr: '0.25em' }} /> 5 - 10 people
+            </Typography>
+          </Box>
+          <Box>
+            <Typography>
+              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
+            </Typography>
+            <Typography>
+              <Groups fontSize="xl" sx={{ mr: '0.25em' }} /> 5 - 10 people
+            </Typography>
+          </Box>
+          <Box>
+            <Typography level="h5">
+              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
+            </Typography>
+            <Typography level="h5">
+              <Groups fontSize="xl2" sx={{ mr: '0.25em' }} /> 5 - 10 people
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </CssVarsProvider>
   );
