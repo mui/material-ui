@@ -29,6 +29,7 @@ import ROUTES from 'docs/src/route';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
+import joyPkgJson from '../../../../packages/mui-joy/package.json';
 
 const savedScrollTop = {};
 
@@ -445,6 +446,7 @@ function AppNavDrawer(props) {
     const isProductScoped =
       router.asPath.startsWith('/x') ||
       router.asPath.startsWith('/material-ui') ||
+      router.asPath.startsWith('/joy-ui') ||
       (router.asPath.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) ||
       router.asPath.startsWith('/base');
 
@@ -585,6 +587,15 @@ function AppNavDrawer(props) {
                     text: 'v4',
                     href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
                   },
+                ])}
+              />
+            )}
+            {router.asPath.startsWith('/joy-ui/') && (
+              <ProductIdentifier
+                name="Joy UI"
+                metadata="MUI Core"
+                versionSelector={renderVersionSelector([
+                  { text: `v${joyPkgJson.version}`, current: true },
                 ])}
               />
             )}

@@ -10,6 +10,7 @@ export function isNewLocation(url: string) {
     url.startsWith('/x') ||
     url.startsWith('/material-ui') ||
     url.startsWith('/base') ||
+    url.startsWith('/joy-ui') ||
     (FEATURE_TOGGLE.enable_system_scope && url.startsWith('/system'))
   );
 }

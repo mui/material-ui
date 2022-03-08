@@ -7,6 +7,23 @@ const pages = [
     children: [{ pathname: '/base/getting-started/installation' }],
   },
   {
+    pathname: '/base/react-',
+    title: 'Components',
+    icon: 'ToggleOnIcon',
+    children: [
+      {
+        pathname: '/base/components/inputs',
+        subheader: 'inputs',
+        children: [{ pathname: '/base/react-button', title: 'Button' }],
+      },
+      {
+        pathname: '/base/components/navigation',
+        subheader: 'navigation',
+        children: [{ pathname: '/base/react-menu', title: 'Menu' }],
+      },
+    ],
+  },
+  {
     title: 'Component API',
     pathname: '/base/api',
     icon: 'CodeIcon',

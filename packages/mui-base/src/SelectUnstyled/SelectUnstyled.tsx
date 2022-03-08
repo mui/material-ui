@@ -86,6 +86,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
 
   const [buttonDefined, setButtonDefined] = React.useState(false);
   const buttonRef = React.useRef<HTMLElement | null>(null);
+  const listboxRef = React.useRef<HTMLElement>(null);
 
   const Button = component ?? components.Root ?? 'button';
   const ListboxRoot = components.Listbox ?? 'ul';
@@ -100,6 +101,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   };
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleListboxRef = useForkRef(listboxRef, componentsProps.listbox?.ref);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -127,7 +129,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     defaultValue,
     disabled: disabledProp,
     listboxId: componentsProps.listbox?.id,
-    listboxRef: componentsProps.listbox?.ref,
+    listboxRef: handleListboxRef,
     multiple: false,
     onChange,
     onOpenChange: handleOpenChange,
@@ -193,6 +195,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   const context: SelectUnstyledContextType = {
     getOptionProps,
     getOptionState,
+    listboxRef,
   };
 
   return (

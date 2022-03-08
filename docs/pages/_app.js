@@ -16,6 +16,7 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import pages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
+import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
@@ -190,6 +191,9 @@ function AppWrapper(props) {
   }
   if (asPathWithoutLang.startsWith('/material-ui')) {
     productPages = materialPages;
+  }
+  if (asPathWithoutLang.startsWith('/joy-ui')) {
+    productPages = joyPages;
   }
   if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
     productPages = systemPages;
