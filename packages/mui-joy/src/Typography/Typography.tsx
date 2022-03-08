@@ -28,6 +28,7 @@ export const TypographyRoot = styled('span', {
   margin: 0,
   display: 'flex',
   alignItems: 'center',
+  fontFamily: theme.vars.fontFamily.body,
   ...(ownerState.component === 'span' && {
     display: 'inline-flex',
   }),
