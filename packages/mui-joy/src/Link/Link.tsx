@@ -39,6 +39,7 @@ const LinkRoot = styled(Typography, {
 })<{ ownerState: LinkProps }>(({ theme, ownerState }) => {
   return [
     {
+      '--Icon-fontSize': '1.25em',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
@@ -55,6 +56,8 @@ const LinkRoot = styled(Typography, {
           textDecorationColor: 'inherit',
         },
       }),
+      display: 'inline-flex',
+      alignItems: 'center',
       position: 'relative',
       WebkitTapHighlightColor: 'transparent',
       backgroundColor: 'transparent', // Reset default value
