@@ -13,6 +13,9 @@ export * from './Switch';
 export { default as SvgIcon } from './SvgIcon';
 export * from './SvgIcon';
 
+export { default as Link } from './Link';
+export * from './Link';
+
 export { default as List } from './List';
 export * from './List';
 
@@ -36,3 +39,6 @@ export * from './Input';
 
 export { default as Sheet } from './Sheet';
 export * from './Sheet';
+
+export { default as Checkbox } from './Checkbox';
+export * from './Checkbox';

@@ -13,13 +13,17 @@ export type UseListboxStrictProps<TOption> = Omit<
 > &
   Required<Pick<UseListboxParameters<TOption>, UseListboxStrictPropsRequiredKeys>>;
 
+export type FocusManagementType = 'DOM' | 'activeDescendant';
+
 enum ActionTypes {
   blur = 'blur',
   focus = 'focus',
   keyDown = 'keyDown',
   optionClick = 'optionClick',
-  setControlledValue = 'setControlledValue',
+  optionHover = 'optionHover',
   optionsChange = 'optionsChange',
+  setValue = 'setValue',
+  setHighlight = 'setHighlight',
 }
 
 // split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
@@ -27,6 +31,13 @@ export { ActionTypes };
 
 interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
+  option: TOption;
+  event: React.MouseEvent;
+  props: UseListboxStrictProps<TOption>;
+}
+
+interface OptionHoverAction<TOption> {
+  type: ActionTypes.optionHover;
   option: TOption;
   event: React.MouseEvent;
   props: UseListboxStrictProps<TOption>;
@@ -50,10 +61,14 @@ interface KeyDownAction<TOption> {
   props: UseListboxStrictProps<TOption>;
 }
 
-interface SetControlledValueAction<TOption> {
-  type: ActionTypes.setControlledValue;
+interface SetValueAction<TOption> {
+  type: ActionTypes.setValue;
   value: TOption | TOption[] | null;
-  props: UseListboxStrictProps<TOption>;
+}
+
+interface SetHighlightAction<TOption> {
+  type: ActionTypes.setHighlight;
+  highlight: TOption | null;
 }
 
 interface OptionsChangeAction<TOption> {
@@ -65,14 +80,16 @@ interface OptionsChangeAction<TOption> {
 
 export type ListboxAction<TOption> =
   | OptionClickAction<TOption>
+  | OptionHoverAction<TOption>
   | FocusAction<TOption>
   | BlurAction<TOption>
   | KeyDownAction<TOption>
-  | SetControlledValueAction<TOption>
+  | SetHighlightAction<TOption>
+  | SetValueAction<TOption>
   | OptionsChangeAction<TOption>;
 
 export interface ListboxState<TOption> {
-  highlightedIndex: number;
+  highlightedValue: TOption | null;
   selectedValue: TOption | TOption[] | null;
 }
 
@@ -92,10 +109,7 @@ interface UseListboxCommonProps<TOption> {
    * @default false
    */
   disableListWrap?: boolean;
-  /**
-   * Ref of the listbox DOM element.
-   */
-  listboxRef?: React.Ref<any>;
+  focusManagement?: FocusManagementType;
   /**
    * Id attribute of the listbox.
    */
@@ -105,6 +119,10 @@ interface UseListboxCommonProps<TOption> {
    * @default () => false
    */
   isOptionDisabled?: (option: TOption, index: number) => boolean;
+  /**
+   * Ref of the listbox DOM element.
+   */
+  listboxRef?: React.Ref<any>;
   /**
    * Callback fired when the highlighted option changes.
    */
