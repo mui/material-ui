@@ -34,6 +34,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingRight': '0.25rem',
           '--List-item-fontSize': theme.vars.fontSize.sm,
           '--List-decorator-width': '2rem',
+          '--Icon-fontSize': '1.125rem',
         };
       }
       if (size === 'md') {
@@ -45,6 +46,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingRight': '0.75rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
           '--List-decorator-width': '2.5rem',
+          '--Icon-fontSize': '1.25rem',
         };
       }
       if (size === 'lg') {
@@ -56,6 +58,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingRight': '0.5rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
           '--List-decorator-width': '3rem',
+          '--Icon-fontSize': '1.5rem',
         };
       }
       return {};
