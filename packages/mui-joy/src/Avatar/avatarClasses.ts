@@ -31,8 +31,6 @@ export interface AvatarClasses {
   sizeLg: string;
   /** Styles applied to the img element if either `src` or `srcSet` is defined. */
   img: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
   /** Styles applied to the root element if `variant="light"`. */
@@ -63,7 +61,6 @@ const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
   'sizeMd',
   'sizeLg',
   'img',
-  'variantText',
   'variantOutlined',
   'variantLight',
   'variantContained',

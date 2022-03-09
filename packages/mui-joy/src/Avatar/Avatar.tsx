@@ -1,14 +1,14 @@
-import * as React from 'react';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import * as React from 'react';
 import Person from '../internal/svg-icons/Person';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAvatarUtilityClass } from './avatarClasses';
-import { AvatarProps, AvatarShapeProp, AvatarTypeMap } from './AvatarProps';
+import { AvatarProps, AvatarTypeMap } from './AvatarProps';
 
 const useUtilityClasses = (ownerState: AvatarProps) => {
   const { size, variant, color, shape, src, srcSet } = ownerState;
@@ -36,13 +36,13 @@ const AvatarRoot = styled('div', {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Avatar-size': '3rem',
+        '--Avatar-size': '2rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Avatar-size': '4rem',
+        '--Avatar-size': '2.5rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Avatar-size': '5rem',
+        '--Avatar-size': '3rem',
       }),
       position: 'relative',
       display: 'flex',
@@ -63,9 +63,6 @@ const AvatarRoot = styled('div', {
       }),
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   ];
 });
 
@@ -153,7 +150,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     color = 'neutral',
     component = 'div',
     size = 'md',
-    shape = 'circular' as AvatarShapeProp,
+    shape = 'circular',
     variant = 'contained',
     imgProps,
     src,

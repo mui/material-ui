@@ -7,8 +7,7 @@ export type AvatarSlot = 'root';
 
 export interface AvatarPropsColorOverrides {}
 export interface AvatarPropsVariantOverrides {}
-export type AvatarShapeProp = 'circlular' | 'rounded' | 'square';
-export type AvatarSizeProp = 'sm' | 'md' | 'lg';
+export interface AvatarPropsSizeOverrides {};
 
 export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -38,13 +37,13 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The shape of the component.
      * @default 'circlular'
      */
-    shape?: AvatarShapeProp;
+    shape?: 'circlular' | 'rounded' | 'square';
     /**
      * The size of the component.
      * It accepts theme values between 'xs' and 'xl'.
      * @default 'md'
      */
-    size?: AvatarSizeProp;
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', AvatarPropsSizeOverrides>;
     /**
      * The `src` attribute for the `img` element.
      */
