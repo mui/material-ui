@@ -7,7 +7,7 @@ export type AvatarSlot = 'root';
 
 export interface AvatarPropsColorOverrides {}
 export interface AvatarPropsVariantOverrides {}
-export interface AvatarPropsSizeOverrides {};
+export interface AvatarPropsSizeOverrides {}
 
 export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
