@@ -6,7 +6,7 @@ import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui
 import composeClasses from '@mui/base/composeClasses';
 import FormLabel from '../FormLabel';
 import FormHelperText from '../FormHelperText';
-import Input from '../Input';
+import JoyInput from '../Input';
 import { styled, useThemeProps } from '../styles';
 import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
@@ -112,6 +112,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const Input = components.Input || JoyInput;
+
   return (
     <TextFieldRoot
       ref={ref}
@@ -135,6 +137,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       )}
 
       <Input
+        {...componentsProps.input}
         id={id}
         inputRef={inputRef}
         aria-describedby={helperTextId}
@@ -155,14 +158,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         onFocus={onFocus}
         startAdornment={startAdornment}
         endAdornment={endAdornment}
-        components={{
-          Root: components.InputRoot,
-          Input: components.InputInput,
-        }}
-        componentsProps={{
-          root: componentsProps.inputRoot,
-          input: componentsProps.inputInput,
-        }}
       />
       {helperText && (
         <FormHelperText
@@ -219,8 +214,7 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   components: PropTypes.shape({
     HelperText: PropTypes.elementType,
-    InputInput: PropTypes.elementType,
-    InputRoot: PropTypes.elementType,
+    Input: PropTypes.elementType,
     Label: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
@@ -229,8 +223,7 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.shape({
     helperText: PropTypes.object,
-    inputInput: PropTypes.object,
-    inputRoot: PropTypes.object,
+    input: PropTypes.object,
     label: PropTypes.object,
     root: PropTypes.object,
   }),

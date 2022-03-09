@@ -6,43 +6,41 @@ import { InputProps } from '../Input/InputProps';
 
 export type TextFieldSlot = 'root';
 
+type InputRootKeys =
+  | 'autoComplete'
+  | 'autoFocus'
+  | 'disabled'
+  | 'error'
+  | 'required'
+  | 'fullWidth'
+  | 'inputRef'
+  | 'placeholder'
+  | 'defaultValue'
+  | 'value'
+  | 'onChange'
+  | 'onFocus'
+  | 'onBlur'
+  | 'type'
+  | 'variant'
+  | 'color'
+  | 'size'
+  | 'startAdornment'
+  | 'endAdornment';
+
 export interface TextFieldTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Pick<
-      InputProps,
-      | 'autoComplete'
-      | 'autoFocus'
-      | 'disabled'
-      | 'error'
-      | 'required'
-      | 'fullWidth'
-      | 'inputRef'
-      | 'placeholder'
-      | 'defaultValue'
-      | 'value'
-      | 'onChange'
-      | 'onFocus'
-      | 'onBlur'
-      | 'type'
-      | 'variant'
-      | 'color'
-      | 'size'
-      | 'startAdornment'
-      | 'endAdornment'
-    > & {
+    Pick<InputProps, InputRootKeys> & {
       components?: {
         Root?: React.ElementType;
         Label?: React.ElementType;
+        Input?: React.ElementType;
         HelperText?: React.ElementType;
-        InputRoot?: React.ElementType;
-        InputInput?: React.ElementType;
       };
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'div'>;
         label?: FormLabelProps;
+        input?: Omit<InputProps, InputRootKeys>;
         helperText?: FormHelperTextProps;
-        inputRoot?: React.ComponentPropsWithRef<'div'>;
-        inputInput?: React.ComponentPropsWithRef<'input'>;
       };
       /**
        * The id of the `input` element.
