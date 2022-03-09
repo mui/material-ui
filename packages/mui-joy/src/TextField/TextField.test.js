@@ -110,8 +110,21 @@ describe('Joy <TextField />', () => {
     const handleChange = spy();
     const handleFocus = spy();
     const handleBlur = spy();
+    const handleKeyUp = spy();
+    const handleKeyDown = spy();
     const { getByRole } = render(
-      <TextField value="bar" onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} />,
+      <TextField
+        componentsProps={{
+          input: {
+            onKeyUp: handleKeyUp,
+            onKeyDown: handleKeyDown,
+          },
+        }}
+        value="bar"
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />,
     );
     const input = getByRole('textbox');
 
@@ -122,8 +135,14 @@ describe('Joy <TextField />', () => {
     });
     expect(handleFocus.callCount).to.equal(1);
 
+    fireEvent.keyDown(input, { key: 'a' });
+    expect(handleKeyDown.callCount).to.equal(1);
+
     fireEvent.change(input, { target: { value: 'a' } });
     expect(handleChange.callCount).to.equal(1);
+
+    fireEvent.keyUp(input, { key: 'a' });
+    expect(handleKeyUp.callCount).to.equal(1);
 
     act(() => {
       input.blur();
