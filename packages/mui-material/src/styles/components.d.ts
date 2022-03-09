@@ -368,6 +368,9 @@ export interface Components<Theme = unknown> {
     styleOverrides?: ComponentsOverrides<Theme>['MuiPaper'];
     variants?: ComponentsVariants['MuiPaper'];
   };
+  MuiPopper?: {
+    defaultProps?: ComponentsProps['MuiPopper'];
+  };
   MuiPopover?: {
     defaultProps?: ComponentsProps['MuiPopover'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiPopover'];
