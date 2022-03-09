@@ -1,9 +1,9 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import createTheme, { Theme } from './createTheme';
+import createTheme, { ThemeOptions } from './createTheme';
 import { PaletteWithChannels } from './createPalette';
 import createTypography from './createTypography';
 
-export interface ThemeInput extends Theme {
+export interface ThemeInput extends ThemeOptions {
   colorSchemes: Partial<
     Record<
       'light' | 'dark',
