@@ -88,9 +88,8 @@ const ButtonRoot = styled(ButtonBase, {
     ),
     '&:hover': {
       textDecoration: 'none',
-      // backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       backgroundColor: theme.vars
-        ? `rgba(0,0,0,${theme.vars.opacity?.hover})`
+        ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.opacity?.hover})`
         : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -98,10 +97,6 @@ const ButtonRoot = styled(ButtonBase, {
       },
       ...(ownerState.variant === 'text' &&
         ownerState.color !== 'inherit' && {
-          // backgroundColor: alpha(
-          //   theme.palette[ownerState.color].main,
-          //   theme.palette.action.hoverOpacity,
-          // ),
           backgroundColor: theme.vars
             ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
                 theme.vars.opacity?.hover
@@ -115,10 +110,6 @@ const ButtonRoot = styled(ButtonBase, {
       ...(ownerState.variant === 'outlined' &&
         ownerState.color !== 'inherit' && {
           border: `1px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
-          // backgroundColor: alpha(
-          //   theme.palette[ownerState.color].main,
-          //   theme.palette.action.hoverOpacity,
-          // ),
           backgroundColor: theme.vars
             ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
                 theme.vars.opacity?.hover
