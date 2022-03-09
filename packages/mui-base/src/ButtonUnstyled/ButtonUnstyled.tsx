@@ -33,7 +33,7 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  *
  * Demos:
  *
- * - [Buttons](https://mui.com/components/buttons/)
+ * - [Mui](https://mui.comD:/workspace/mui/)
  *
  * API:
  *
