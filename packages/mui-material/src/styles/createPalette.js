@@ -224,7 +224,7 @@ export default function createPalette(palette) {
 
     if (!color.hasOwnProperty('main')) {
       throw new MuiError(
-        'MUI: The color %s provided to augmentColor(color) is invalid.\n' +
+        'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
           'The color object needs to have a `main` property or a `%s` property.',
         name ? ` (${name})` : '',
         mainShade,

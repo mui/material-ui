@@ -6,6 +6,7 @@ import createPalette from './createPalette';
 function createTheme(options = {}, ...args) {
   const { colorSchemes: colorSchemesInput = {}, opacity: opacityInput = {}, ...input } = options;
 
+  // eslint-disable-next-line prefer-const
   let { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
     ...input,
     ...(colorSchemesInput.light && { palette: colorSchemesInput.light.palette }),

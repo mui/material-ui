@@ -129,19 +129,19 @@ export default function Page() {
               Text
             </Button>
             <Button
-              sx={(theme) => ({
+              sx={{
                 '--md-palette-primary-main': '#FF0000',
                 '--md-palette-primary-mainChannel': '255 0 0',
-              })}
+              }}
               variant="outlined"
             >
               Text
             </Button>
             <Button
-              sx={(theme) => ({
+              sx={{
                 '--md-palette-primary-main': '#FF0000',
                 '--md-palette-primary-mainChannel': '255 0 0',
-              })}
+              }}
             >
               Text
             </Button>
