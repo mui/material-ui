@@ -22,7 +22,7 @@ const DIAMONDs = [
     srcSet: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
     description: 'Management platform for Google Cloud and AWS.',
-    href: 'https://www.doit-intl.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors/aptugo.svg',
@@ -43,7 +43,7 @@ export default function DiamondSponsors() {
   const spotIsAvailable = maxNumberOfDiamondSponsors > DIAMONDs.length;
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <Typography
           component="h3"
           variant="h5"

@@ -91,6 +91,7 @@ export function parseFromProgram(
 
   const checker = program.getTypeChecker();
   const sourceFile = program.getSourceFile(filePath);
+  const reactComponentName = filePath.match(/.*\/([^/]+)/)?.[1];
 
   const programNode = t.createProgram();
   const reactImports: string[] = [];
@@ -341,7 +342,9 @@ export function parseFromProgram(
     }
 
     console.warn(
-      `Unable to handle node of type "ts.TypeFlags.${ts.TypeFlags[type.flags]}", using any`,
+      `${reactComponentName}: Unable to handle node of type "ts.TypeFlags.${
+        ts.TypeFlags[type.flags]
+      }", using any`,
     );
     return t.createAnyType({ jsDoc: getDocumentation(type.symbol) });
   }
@@ -434,15 +437,16 @@ export function parseFromProgram(
       declaration &&
       ts.isPropertySignature(declaration)
     ) {
-      parsedType = declaration.questionToken
-        ? t.createUnionType({
-            jsDoc: getDocumentation(symbol),
-            types: [
-              t.createUndefinedType({ jsDoc: undefined }),
-              t.createAnyType({ jsDoc: undefined }),
-            ],
-          })
-        : t.createAnyType({ jsDoc: getDocumentation(symbol) });
+      parsedType =
+        symbol.flags & ts.SymbolFlags.Optional
+          ? t.createUnionType({
+              jsDoc: getDocumentation(symbol),
+              types: [
+                t.createUndefinedType({ jsDoc: undefined }),
+                t.createAnyType({ jsDoc: undefined }),
+              ],
+            })
+          : t.createAnyType({ jsDoc: getDocumentation(symbol) });
     } else {
       parsedType = checkType(type, location, typeStack, symbol.getName());
     }

@@ -11,7 +11,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 export default function StartToday() {
   return (
-    <Grid container spacing={{ xs: 2, md: 4 }} alignItems="center">
+    <Grid container spacing={{ xs: 5, md: 4 }} alignItems="center">
       <Grid item xs={12} sm={6} md={6} sx={{ mb: { md: 4 } }}>
         <SectionHeadline
           overline="Go live!"
@@ -40,9 +40,13 @@ export default function StartToday() {
               See more projects and companies that rely on MUI.
             </Typography>
             <Typography
-              color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+              color="primary"
               variant="body2"
               fontWeight="bold"
+              sx={{
+                '& > svg': { transition: '0.2s' },
+                '&:hover > svg': { transform: 'translateX(2px)' },
+              }}
             >
               Learn more{' '}
               <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
@@ -53,8 +57,6 @@ export default function StartToday() {
           <Paper
             component={Link}
             href={ROUTES.blog}
-            target="_blank"
-            rel="noreferrer noopener"
             noLinkStyle
             variant="outlined"
             sx={{ p: 2, height: '100%' }}
@@ -66,9 +68,13 @@ export default function StartToday() {
               Check behind the scenes and news from the company.
             </Typography>
             <Typography
-              color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+              color="primary"
               variant="body2"
               fontWeight="bold"
+              sx={{
+                '& > svg': { transition: '0.2s' },
+                '&:hover > svg': { transform: 'translateX(2px)' },
+              }}
             >
               Learn more{' '}
               <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />

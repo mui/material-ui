@@ -3,6 +3,7 @@
     "autoWidth": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "default": "{}" },
+    "defaultOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "any" } },
     "displayEmpty": { "type": { "name": "bool" } },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },

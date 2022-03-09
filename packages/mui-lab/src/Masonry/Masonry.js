@@ -182,27 +182,16 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const handleResize = (elements) => {
-    if (!elements) {
+  const handleResize = (masonryChildren) => {
+    if (!masonryRef.current || !masonryChildren || masonryChildren.length === 0) {
       return;
     }
-    let masonry;
-    let masonryFirstChild;
-    let parentWidth;
-    let childWidth;
-    if (elements[0].target.className.includes(classes.root)) {
-      masonry = elements[0].target;
-      parentWidth = elements[0].contentRect.width;
-      masonryFirstChild = elements[1]?.target || masonry.firstChild;
-      childWidth = masonryFirstChild?.contentRect?.width || masonryFirstChild?.clientWidth || 0;
-    } else {
-      masonryFirstChild = elements[0].target;
-      childWidth = elements[0].contentRect.width;
-      masonry = elements[1]?.target || masonryFirstChild.parentElement;
-      parentWidth = masonry.contentRect?.width || masonry.clientWidth;
-    }
+    const masonry = masonryRef.current;
+    const masonryFirstChild = masonryRef.current.firstChild;
+    const parentWidth = masonry.clientWidth;
+    const firstChildWidth = masonryFirstChild.clientWidth;
 
-    if (parentWidth === 0 || childWidth === 0 || !masonry || !masonryFirstChild) {
+    if (parentWidth === 0 || firstChildWidth === 0) {
       return;
     }
 
@@ -211,7 +200,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
 
     const currentNumberOfColumns = Math.round(
-      parentWidth / (childWidth + firstChildMarginLeft + firstChildMarginRight),
+      parentWidth / (firstChildWidth + firstChildMarginLeft + firstChildMarginRight),
     );
 
     const columnHeights = new Array(currentNumberOfColumns).fill(0);
@@ -265,14 +254,10 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       return undefined;
     }
 
-    const container = masonryRef.current;
-    if (container && resizeObserver) {
-      // only the masonry container and its first child are observed for resizing;
-      // this might cause unforeseen problems in some use cases;
-      resizeObserver.observe(container);
-      if (container.firstChild) {
-        resizeObserver.observe(container.firstChild);
-      }
+    if (masonryRef.current) {
+      masonryRef.current.childNodes.forEach((childNode) => {
+        resizeObserver.observe(childNode);
+      });
     }
     return () => (resizeObserver ? resizeObserver.disconnect() : {});
   }, [columns, spacing, children]);

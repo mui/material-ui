@@ -96,17 +96,17 @@ const DemoRoot = styled('div', {
     }),
     /* Make no difference between the demo and the markdown. */
     ...(bg === 'inline' && {
-      padding: theme.spacing(3),
+      padding: theme.spacing(0),
     }),
     ...(hiddenToolbar && {
-      paddingTop: theme.spacing(3),
+      paddingTop: theme.spacing(1),
     }),
   },
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
     backgroundColor: theme.palette.background.paper,
-    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+    border: `1px solid ${alpha(theme.palette.action.active, 0.1)}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
   }),

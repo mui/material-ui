@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.13",
+  "version": "6.0.0-alpha.26",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design components built using @mui/base.",
@@ -14,12 +14,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-material-next"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
   "homepage": "https://mui.com/",
   "funding": {
@@ -43,8 +43,8 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -58,15 +58,16 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "@mui/base": "5.0.0-alpha.59",
-    "@mui/system": "^5.2.3",
-    "@mui/types": "^7.1.0",
-    "@mui/utils": "^5.2.3",
-    "@popperjs/core": "^2.4.4",
+    "@babel/runtime": "^7.17.2",
+    "@mui/base": "5.0.0-alpha.71",
+    "@mui/material": "^5.5.0",
+    "@mui/system": "^5.5.0",
+    "@mui/types": "^7.1.2",
+    "@mui/utils": "^5.4.4",
+    "@popperjs/core": "^2.11.2",
     "@types/react-transition-group": "^4.4.4",
     "clsx": "^1.1.1",
-    "csstype": "^3.0.10",
+    "csstype": "^3.0.11",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",

@@ -2,6 +2,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
+import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
@@ -39,7 +40,7 @@ function FramedDemo(props) {
         key: `iframe-demo-${theme.direction}`,
         prepend: true,
         container: document.head,
-        stylisPlugins: theme.direction === 'rtl' ? [rtlPlugin] : [],
+        stylisPlugins: theme.direction === 'rtl' ? [prefixer, rtlPlugin] : [prefixer],
       }),
     [document, theme.direction],
   );
@@ -121,8 +122,21 @@ DemoFrame.propTypes = {
 
 // Use the default MUI theme for the demos
 const getTheme = (outerTheme) => {
+  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
+  const isCustomized =
+    outerTheme.palette.primary?.main &&
+    outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main;
   const resultTheme = createTheme(
-    { palette: { mode: outerTheme.palette.mode || 'light' } },
+    {
+      palette: {
+        mode: outerTheme.palette.mode || 'light',
+        ...(isCustomized && {
+          // Apply color from the color playground
+          primary: { main: outerTheme.palette.primary.main },
+          secondary: { main: outerTheme.palette.secondary.main },
+        }),
+      },
+    },
     // To make DensityTool playground works
     // check from MuiFormControl because brandingTheme does not customize this component
     outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
@@ -132,12 +146,6 @@ const getTheme = (outerTheme) => {
   }
   if (outerTheme.spacing) {
     resultTheme.spacing = outerTheme.spacing;
-  }
-  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
-  // Apply color from the color playground
-  if (outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main) {
-    resultTheme.palette.primary = outerTheme.palette.primary;
-    resultTheme.palette.secondary = outerTheme.palette.secondary;
   }
   return resultTheme;
 };

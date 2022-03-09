@@ -112,5 +112,36 @@ declare module '@mui/joy/styles' {
         lineHeight: 1,
       },
     },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: ({ ownerState, theme }) => {
+            const { color, variant } = ownerState;
+            const styles = [];
+            if (color === 'primary') {
+              styles.push({
+                width: 120,
+                height: 48,
+              });
+            }
+            if (variant === 'contained') {
+              styles.push(theme.typography.body1);
+            }
+            return styles;
+          },
+        },
+      },
+      MuiSwitch: {
+        styleOverrides: {
+          thumb: ({ ownerState, theme }) => [
+            ownerState.color === 'primary' && {
+              '&:hover': {
+                backgroundColor: theme.vars.palette.primary.containedHoverBg,
+              },
+            },
+          ],
+        },
+      },
+    },
   }}
 />;

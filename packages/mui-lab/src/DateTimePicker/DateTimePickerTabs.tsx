@@ -14,7 +14,7 @@ type TabValue = 'date' | 'time';
 
 const viewToTab = (openView: DateTimePickerView): TabValue => {
   // TODO: what happens if `openView` is `month`?
-  if (openView === 'day' || openView === 'year') {
+  if (['day', 'month', 'year'].includes(openView)) {
     return 'date';
   }
 
@@ -38,7 +38,7 @@ export interface DateTimePickerTabsProps {
 
 type OwnerState = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
-const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ ownerState: OwnerState }>(
+const DateTimePickerTabsRoot = styled(Tabs)<{ ownerState: OwnerState }>(
   ({ ownerState, theme }) => ({
     boxShadow: `0 -1px 0 0 inset ${theme.palette.divider}`,
     ...(ownerState.wrapperVariant === 'desktop' && {

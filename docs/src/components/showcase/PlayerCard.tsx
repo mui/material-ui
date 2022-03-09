@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -108,28 +110,29 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
       <Fade in timeout={700}>
         <Card
           variant="outlined"
-          sx={{ p: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}
+          sx={{
+            p: 1,
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+          }}
         >
-          <Box
+          <CardMedia
+            component="img"
+            width="124"
+            height="124"
+            alt="Beside Myself album cover"
+            src="/static/images/cards/basement-beside-myself.jpeg"
             sx={{
-              display: 'flex',
-              mb: { xs: 1, sm: 0 },
-              justifyContent: { xs: 'center', sm: 'flex-start' },
+              borderRadius: 0.5,
+              width: 'clamp(124px, (304px - 100%) * 999 , 100%)',
             }}
-          >
-            <img
-              alt="Beside Myself album cover"
-              style={{ borderRadius: 5, objectFit: 'cover' }}
-              src="/static/images/cards/basement-beside-myself.jpeg"
-              width="124"
-              height="124"
-            />
-          </Box>
-          <Box sx={{ alignSelf: 'center', mx: 2 }}>
+          />
+          <Box sx={{ alignSelf: 'center', px: { xs: 0, sm: 2 } }}>
             <Typography
               variant="body1"
-              fontWeight={500}
-              sx={{ textAlign: { xs: 'center', sm: 'start' } }}
+              color="text.primary"
+              fontWeight={600}
+              sx={{ textAlign: { xs: 'center', sm: 'start' }, mt: { xs: 1.5, sm: 0 } }}
             >
               Ultraviolet
             </Typography>
@@ -137,17 +140,22 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
               component="div"
               variant="caption"
               color="text.secondary"
-              sx={{ textAlign: { xs: 'center', sm: 'start' } }}
+              fontWeight={500}
+              sx={{ textAlign: { xm: 'center', sm: 'start' } }}
             >
               Basement • Beside Myself
             </Typography>
-            <Box sx={{ mt: 2 }}>
+            <Stack
+              direction="row"
+              spacing={1}
+              sx={{ mt: 2, justifyContent: { xs: 'space-between', sm: 'flex-start' } }}
+            >
               <IconButton aria-label="fast rewind" disabled>
                 <FastRewindRounded />
               </IconButton>
               <IconButton
                 aria-label={paused ? 'play' : 'pause'}
-                sx={{ mx: 2 }}
+                sx={{ mx: 1 }}
                 onClick={() => setPaused((val) => !val)}
               >
                 {paused ? <PlayArrowRounded /> : <PauseRounded />}
@@ -155,7 +163,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
               <IconButton aria-label="fast forward" disabled>
                 <FastForwardRounded />
               </IconButton>
-            </Box>
+            </Stack>
           </Box>
         </Card>
       </Fade>

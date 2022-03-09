@@ -210,6 +210,16 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, it shows the clear action in the picker dialog.
+   * @default false
+   */
+  clearable: PropTypes.bool,
+  /**
+   * Clear text message.
+   * @default 'Clear'
+   */
+  clearText: PropTypes.node,
+  /**
    * The components used for each slot.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -227,7 +237,11 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    leftArrowButton: PropTypes.object,
+    rightArrowButton: PropTypes.object,
+    switchViewButton: PropTypes.object,
+  }),
   /**
    * Default calendar month displayed when `value={null}`.
    */

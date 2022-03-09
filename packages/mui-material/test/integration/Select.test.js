@@ -131,7 +131,7 @@ describe('<Select> integration', () => {
     });
 
     it('does not stays in an active state if an open action did not actually open', () => {
-      // test for https://github.com/mui-org/material-ui/issues/17294
+      // test for https://github.com/mui/material-ui/issues/17294
       // we used to set a flag to stop blur propagation when we wanted to open the
       // select but never considered what happened if the select never opened
       const { container, getByRole } = render(

@@ -10,6 +10,8 @@
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
+    "clearable": { "type": { "name": "bool" } },
+    "clearText": { "type": { "name": "node" }, "default": "'Clear'" },
     "components": {
       "type": {
         "name": "shape",
@@ -17,7 +19,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object, switchViewButton?: object }"
+      },
+      "default": "{}"
+    },
     "dateRangeIcon": { "type": { "name": "node" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "disableCloseOnSelect": {

@@ -407,6 +407,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     PaperComponent = Paper,
     PopperComponent = Popper,
     popupIcon = <ArrowDropDownIcon />,
+    readOnly = false,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
@@ -439,7 +440,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
-  const hasClearIcon = !disableClearable && !disabled && dirty;
+  const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   const ownerState = {
@@ -573,6 +574,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           inputProps: {
             className: clsx(classes.input),
             disabled,
+            readOnly,
             ...getInputProps(),
           },
         })}
@@ -590,7 +592,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           anchorEl={anchorEl}
           open
         >
-          <AutocompletePaper as={PaperComponent} className={classes.paper} ownerState={ownerState}>
+          <AutocompletePaper
+            ownerState={ownerState}
+            as={PaperComponent}
+            {...componentsProps.paper}
+            className={clsx(classes.paper, componentsProps.paper?.className)}
+          >
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
                 {loadingText}
@@ -693,7 +700,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If `true`, the input's text is cleared on blur if no value is selected.
    *
    * Set to `true` if you want to help the user enter a new value.
-   * Set to `false` if you want to help the user resume his search.
+   * Set to `false` if you want to help the user resume their search.
    * @default !props.freeSolo
    */
   clearOnBlur: PropTypes.bool,
@@ -720,7 +727,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    clearIndicator: PropTypes.object,
+    paper: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
@@ -971,6 +981,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default <ArrowDropDownIcon />
    */
   popupIcon: PropTypes.node,
+  /**
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * @default false
+   */
+  readOnly: PropTypes.bool,
   /**
    * Render the group.
    *

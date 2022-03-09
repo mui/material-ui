@@ -6,6 +6,14 @@ export interface MuiPage {
   disableDrawer?: boolean;
   icon?: string;
   /**
+   * Indicates if the pages are regarding some legacy API.
+   */
+  legacy?: boolean;
+  /**
+   * In case the children have pathnames out of pathname value, use this field to scope other pathnames
+   */
+  scopePathnames?: string[];
+  /**
    * Pages are considered to be ordered depth-first.
    * If a page should be excluded from this order, set `order: false`.
    * You want to set `ordered: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
@@ -321,8 +329,9 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/styles',
-    title: 'Styles (legacy)',
+    title: 'Styles',
     icon: 'StyleIcon',
+    legacy: true,
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },
@@ -344,7 +353,7 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: 'https://material-ui.com/store/',
+    pathname: 'https://mui.com/store/',
     title: 'Templates',
     icon: 'ReaderIcon',
     linkProps: {
@@ -355,7 +364,7 @@ const pages: readonly MuiPage[] = [
   },
   { pathname: '/versions', ordered: false },
   { pathname: '/', ordered: false, disableDrawer: true },
-  { pathname: 'https://medium.com/material-ui', title: 'Blog', icon: 'BookIcon' },
+  { pathname: '/blog', title: 'Blog', icon: 'BookIcon' },
 ];
 
 export default pages;

@@ -41,7 +41,8 @@ export type IconImageProps = {
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
-export default function IconImage({ name, title, ...props }: IconImageProps) {
+export default function IconImage(props: IconImageProps) {
+  const { name, title, ...other } = props;
   const theme = useTheme();
   let width = '';
   let height = '';
@@ -94,7 +95,7 @@ export default function IconImage({ name, title, ...props }: IconImageProps) {
       loading="lazy"
       width={width}
       height={height}
-      {...props}
+      {...other}
     />
   );
   if (!title) {

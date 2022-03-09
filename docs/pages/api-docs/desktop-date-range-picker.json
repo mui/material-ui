@@ -19,6 +19,8 @@
       "default": "2"
     },
     "className": { "type": { "name": "string" } },
+    "clearable": { "type": { "name": "bool" } },
+    "clearText": { "type": { "name": "node" }, "default": "'Clear'" },
     "components": {
       "type": {
         "name": "shape",
@@ -26,7 +28,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object, switchViewButton?: object }"
+      },
+      "default": "{}"
+    },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "disableAutoMonthSwitching": { "type": { "name": "bool" } },
     "disableCloseOnSelect": {

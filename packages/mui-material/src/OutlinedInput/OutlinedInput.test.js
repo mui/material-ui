@@ -27,6 +27,18 @@ describe('<OutlinedInput />', () => {
     expect(container.querySelector('.notched-outlined')).not.to.equal(null);
   });
 
+  it('should set correct label prop on outline', () => {
+    const { container } = render(
+      <OutlinedInput
+        classes={{ notchedOutline: 'notched-outlined' }}
+        label={<div data-testid="label">label</div>}
+        required
+      />,
+    );
+    const notchOutlined = container.querySelector('.notched-outlined legend');
+    expect(notchOutlined).to.have.text('label\xa0*');
+  });
+
   it('should forward classes to InputBase', () => {
     render(<OutlinedInput error classes={{ error: 'error' }} />);
     expect(document.querySelector('.error')).not.to.equal(null);
@@ -35,5 +47,16 @@ describe('<OutlinedInput />', () => {
   it('should respects the componentsProps if passed', () => {
     render(<OutlinedInput componentsProps={{ root: { 'data-test': 'test' } }} />);
     expect(document.querySelector('[data-test=test]')).not.to.equal(null);
+  });
+
+  it('should respect the classes coming from InputBase', () => {
+    render(
+      <OutlinedInput
+        data-test="test"
+        multiline
+        sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }}
+      />,
+    );
+    expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
   });
 });

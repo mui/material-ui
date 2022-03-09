@@ -1,5 +1,5 @@
 // This codemod attempts to fix the color imports breaking change introduced in
-// https://github.com/mui-org/material-ui/releases/tag/v1.0.0-alpha.21
+// https://github.com/mui/material-ui/releases/tag/v1.0.0-alpha.21
 
 // List of colors that are in the `common` module
 const commonColors = [

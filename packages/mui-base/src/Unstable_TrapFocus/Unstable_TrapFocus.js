@@ -365,7 +365,7 @@ Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
   disableEnforceFocus: PropTypes.bool,
   /**
    * If `true`, the trap focus will not restore focus to previously focused element once
-   * trap focus is hidden.
+   * trap focus is hidden or unmounted.
    * @default false
    */
   disableRestoreFocus: PropTypes.bool,

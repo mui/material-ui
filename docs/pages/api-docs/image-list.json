@@ -17,8 +17,8 @@
     },
     "variant": {
       "type": {
-        "name": "enum",
-        "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'"
+        "name": "union",
+        "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string"
       },
       "default": "'standard'"
     }
