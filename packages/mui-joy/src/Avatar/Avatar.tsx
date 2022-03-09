@@ -11,7 +11,7 @@ import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarTypeMap } from './AvatarProps';
 
 const useUtilityClasses = (ownerState: AvatarProps) => {
-  const { size, variant, color, shape, src, srcSet } = ownerState;
+  const { size, variant, color, src, srcSet } = ownerState;
 
   const slots = {
     root: [
@@ -19,7 +19,6 @@ const useUtilityClasses = (ownerState: AvatarProps) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      shape && `shape${capitalize(shape)}`,
     ],
     img: [(src || srcSet) && 'img'],
     fallback: ['fallback'],
@@ -55,12 +54,6 @@ const AvatarRoot = styled('div', {
       borderRadius: '50%',
       overflow: 'hidden',
       userSelect: 'none',
-      ...(ownerState.shape === 'rounded' && {
-        borderRadius: theme.vars.radius[ownerState.size!],
-      }),
-      ...(ownerState.shape === 'square' && {
-        borderRadius: 0,
-      }),
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
@@ -150,7 +143,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     color = 'neutral',
     component = 'div',
     size = 'md',
-    shape = 'circular',
     variant = 'contained',
     imgProps,
     src,
@@ -172,7 +164,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     component,
     size,
     variant,
-    shape,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -239,14 +230,6 @@ Avatar.propTypes /* remove-proptypes */ = {
    * It can be used to listen for the loading error event.
    */
   imgProps: PropTypes.object,
-  /**
-   * The shape of the component.
-   * @default 'circlular'
-   */
-  shape: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['circlular', 'rounded', 'square']),
-    PropTypes.string,
-  ]),
   /**
    * The size of the component.
    * It accepts theme values between 'xs' and 'xl'.

@@ -17,12 +17,6 @@ export interface AvatarClasses {
   colorWarning: string;
   /** Styles applied to the fallback icon */
   fallback: string;
-  /** Styles applied to the root element if `shape="circular"`. */
-  shapeCircular: string;
-  /** Styles applied to the root element if `shape="rounded"`. */
-  shapeRounded: string;
-  /** Styles applied to the root element if `shape="square"`. */
-  shapeSquare: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -54,9 +48,6 @@ const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
   'colorSuccess',
   'colorWarning',
   'fallback',
-  'shapeCircular',
-  'shapeRounded',
-  'shapeSquare',
   'sizeSm',
   'sizeMd',
   'sizeLg',

@@ -34,11 +34,6 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
       sx?: SxProps;
     };
     /**
-     * The shape of the component.
-     * @default 'circlular'
-     */
-    shape?: 'circlular' | 'rounded' | 'square';
-    /**
      * The size of the component.
      * It accepts theme values between 'xs' and 'xl'.
      * @default 'md'

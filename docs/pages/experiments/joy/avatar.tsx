@@ -38,7 +38,6 @@ const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
   variant: ['contained', 'outlined', 'light'],
-  shape: ['rounded', 'circular', 'square'],
 } as const;
 
 export default function JoySvgIcon() {
