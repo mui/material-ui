@@ -193,7 +193,6 @@ function DocSearcHit(props) {
   return (
     <Link href={hit.url}>
       {children}
-      {displayTag(hit.pathname)}
     </Link>
   );
 }
