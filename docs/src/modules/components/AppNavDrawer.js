@@ -26,7 +26,6 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
@@ -37,26 +36,39 @@ const savedScrollTop = {};
 const LinksWrapper = styled('div')(({ theme }) => {
   return {
     paddingLeft: theme.spacing(5.5),
-    paddingTop: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
+    paddingTop: theme.spacing(1.5),
+    height: 124,
     '& > a': {
+      position: 'relative',
       display: 'flex',
-      justifyContent: 'space-between',
-      paddingTop: theme.spacing(0.5),
-      paddingBottom: theme.spacing(0.5),
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
+      minHeight: 40,
+      flexDirection: 'column',
+      alignItems: 'initial',
+      padding: theme.spacing(0, 1),
+      paddingTop: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
-      fontWeight: 500,
-      fontSize: theme.typography.pxToRem(14),
       color:
         theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+      transition: theme.transitions.create(),
       '&:hover': {
+        paddingBottom: theme.spacing(3.5),
         backgroundColor:
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[700], 0.4)
             : theme.palette.grey[50],
+        '& .MuiTypography-body2': {
+          opacity: 1,
+          transform: 'translateY(0px)',
+        },
+      },
+      '& .MuiTypography-body1': {
+        zIndex: 1,
+      },
+      '& .MuiTypography-body2': {
+        opacity: 0,
+        position: 'absolute',
+        top: '28px',
+        transition: theme.transitions.create(),
       },
       '& svg': {
         width: 18,
@@ -65,6 +77,15 @@ const LinksWrapper = styled('div')(({ theme }) => {
     },
   };
 });
+
+const ProductLabel = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(0.3),
+  fontSize: theme.typography.pxToRem(12),
+  fontWeight: theme.typography.fontWeightBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.05rem',
+  color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+}));
 
 function ProductSubMenu(props) {
   return (
@@ -115,6 +136,7 @@ function ProductDrawerButton(props) {
     setAnchorEl(null);
   };
 
+  /* eslint-disable material-ui/no-hardcoded-labels */
   return (
     <React.Fragment>
       <Button
@@ -128,7 +150,7 @@ function ProductDrawerButton(props) {
           py: 0.1,
           minWidth: 0,
           fontSize: theme.typography.pxToRem(13),
-          fontWeight: 500,
+          fontWeight: theme.typography.fontWeightMedium,
           color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
           '& svg': {
@@ -150,17 +172,7 @@ function ProductDrawerButton(props) {
         }}
         PaperProps={{
           sx: {
-            width: { xs: 310, sm: 360 },
-            overflow: 'hidden',
-            borderRadius: '10px',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-            boxShadow: (theme) =>
-              `0px 4px 20px ${
-                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-              }`,
+            width: { xs: 340, sm: 480 },
             '& ul': {
               margin: 0,
               padding: 0,
@@ -177,6 +189,9 @@ function ProductDrawerButton(props) {
             '& li': {
               p: 2,
             },
+            '& li:last-of-type': {
+              p: 0,
+            },
           },
         }}
       >
@@ -188,60 +203,56 @@ function ProductDrawerButton(props) {
             description="Ready-to-use foundational components, free forever."
           />
           <LinksWrapper>
-            <Link
-              href={ROUTES.materialDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
-              Material UI <KeyboardArrowRight fontSize="small" />
+            <Link href={ROUTES.materialDocs} sx={{ my: -0.5 }}>
+              <ProductLabel>Material UI</ProductLabel>
+              <Typography color="text.secondary" variant="body2">
+                {"React components that implement Google's Material Design."}
+              </Typography>
             </Link>
-            <Link
-              href={ROUTES.joyDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
-              Joy UI <KeyboardArrowRight fontSize="small" />
+            <Link href={ROUTES.baseDocs} sx={{ mb: -0.5 }}>
+              <ProductLabel>MUI Base</ProductLabel>
+              <Typography color="text.secondary" variant="body2">
+                Unstyled React components and low-level hooks.
+              </Typography>
             </Link>
-            <Link
-              href={ROUTES.baseDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
-              MUI Base <KeyboardArrowRight fontSize="small" />
-            </Link>
-            <Link
-              href={ROUTES.systemDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
-              MUI System <KeyboardArrowRight fontSize="small" />
+            <Link href={ROUTES.systemDocs}>
+              <ProductLabel>MUI System</ProductLabel>
+              <Typography color="text.secondary" variant="body2">
+                CSS utilities for rapidly laying out custom designs.
+              </Typography>
             </Link>
           </LinksWrapper>
         </li>
         <li role="none">
-          <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-advanced" />}
-            name={
-              <Box
-                component="span"
-                display="inline-flex"
-                alignItems="center"
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
-              >
-                MUI&nbsp;X
-              </Box>
-            }
-            description="Advanced and powerful components for complex use-cases."
-          />
-          <LinksWrapper>
-            <Link
-              href={ROUTES.dataGridSpace}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
-              Data Grid <KeyboardArrowRight fontSize="small" />
-            </Link>
-          </LinksWrapper>
+          <Link
+            href={ROUTES.dataGridSpace}
+            sx={{
+              p: 2,
+              width: '100%',
+              '&:hover': {
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.4)
+                    : theme.palette.grey[50],
+              },
+            }}
+          >
+            <ProductSubMenu
+              role="menuitem"
+              icon={<IconImage name="product-advanced" />}
+              name={
+                <Box component="span" display="inline-flex" alignItems="center">
+                  MUI&nbsp;X
+                </Box>
+              }
+              description="Advanced and powerful components for complex use cases."
+            />
+          </Link>
         </li>
       </Menu>
     </React.Fragment>
   );
+  /* eslint-enable material-ui/no-hardcoded-labels */
 }
 
 ProductDrawerButton.propTypes = {
