@@ -299,6 +299,7 @@ TextField.propTypes /* remove-proptypes */ = {
   required: PropTypes.bool,
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
