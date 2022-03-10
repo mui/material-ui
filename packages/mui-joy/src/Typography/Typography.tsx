@@ -24,7 +24,14 @@ export const TypographyRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TypographyProps }>(({ theme, ownerState }) => ({
+  '--Icon-fontSize': '1.25em',
   margin: 0,
+  display: 'flex',
+  alignItems: 'center',
+  fontFamily: theme.vars.fontFamily.body,
+  ...(ownerState.component === 'span' && {
+    display: 'inline-flex',
+  }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
   ...(ownerState.noWrap && {
     overflow: 'hidden',
