@@ -36,22 +36,27 @@ const InputRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => [
   {
-    '--Input-radius': theme.vars.radius.sm, // radius is used by
-    '--Input-gutter': '0.75rem', // gutter is the padding-x
-    '--Input-height': '40px',
-    '--Input-gap': '0.5rem',
-    '--Input-placeholderOpacity': 0.5,
-    '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
-    '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     ...(ownerState.size === 'sm' && {
       '--Input-gutter': '0.5rem',
       '--Input-height': '32px',
+      '--Icon-fontSize': '1.25rem',
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Input-gutter': '0.75rem', // gutter is the padding-x
+      '--Input-height': '40px',
+      '--Icon-fontSize': '1.5rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--Input-gutter': '1rem',
       '--Input-height': '48px',
       '--Input-gap': '0.75rem',
+      '--Icon-fontSize': '1.75rem',
     }),
+    '--Input-radius': theme.vars.radius.sm, // radius is used by
+    '--Input-gap': '0.5rem',
+    '--Input-placeholderOpacity': 0.5,
+    '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
+    '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     boxSizing: 'border-box',
     height: `var(--Input-height)`,
     minWidth: 0, // forces the Input to stay inside a container by default
@@ -192,6 +197,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     required,
     type = 'text',
     startAdornment,
+    size = 'md',
     value,
     variant = 'outlined',
     size = 'md',
@@ -229,6 +235,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     focused,
     formControl: formControlContext!,
     type,
+    size,
     variant,
     size,
   };
@@ -444,6 +451,7 @@ Input.propTypes /* remove-proptypes */ = {
   required: PropTypes.bool,
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**

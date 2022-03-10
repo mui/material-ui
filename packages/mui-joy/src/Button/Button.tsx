@@ -62,12 +62,15 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
-      '--Button-gutter': '1.5rem', // gutter is the padding-x
       ...(ownerState.size === 'sm' && {
         '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
         '--Icon-fontSize': '1.25rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
+        '--Button-gutter': '1.5rem', // gutter is the padding-x
+        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
       }),
       ...(ownerState.size === 'lg' && {
         '--Button-minHeight': '3rem',

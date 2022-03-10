@@ -762,7 +762,7 @@ export default function JoyTypography() {
           <List sx={{ '--List-insetStart': '20px' }}>
             <ListItem>
               <ListItemDecorator>
-                <InboxIcon fontSize="lg" />
+                <InboxIcon />
               </ListItemDecorator>
               Inbox
             </ListItem>
@@ -782,7 +782,7 @@ export default function JoyTypography() {
             <ListItem>
               <ListItemButton color="primary">
                 <ListItemDecorator>
-                  <InboxIcon fontSize="lg" />
+                  <InboxIcon />
                 </ListItemDecorator>
                 Inbox
               </ListItemButton>
@@ -790,7 +790,7 @@ export default function JoyTypography() {
             <ListItem>
               <ListItemButton color="success">
                 <ListItemDecorator>
-                  <DraftsIcon fontSize="lg" />
+                  <DraftsIcon />
                 </ListItemDecorator>
                 Drafts
               </ListItemButton>
@@ -1079,19 +1079,19 @@ export default function JoyTypography() {
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
