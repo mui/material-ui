@@ -30,7 +30,6 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
-import joyPkgJson from '../../../../packages/mui-joy/package.json';
 
 const savedScrollTop = {};
 
@@ -193,12 +192,6 @@ function ProductDrawerButton(props) {
               // eslint-disable-next-line material-ui/no-hardcoded-labels
             >
               Material UI <KeyboardArrowRight fontSize="small" />
-            </Link>
-            <Link
-              href={ROUTES.joyDocs}
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
-            >
-              Joy UI <KeyboardArrowRight fontSize="small" />
             </Link>
             <Link
               href={ROUTES.baseDocs}
@@ -576,15 +569,6 @@ function AppNavDrawer(props) {
                     text: 'v4',
                     href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
                   },
-                ])}
-              />
-            )}
-            {router.asPath.startsWith('/joy-ui/') && (
-              <ProductIdentifier
-                name="Joy UI"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${joyPkgJson.version}`, current: true },
                 ])}
               />
             )}
