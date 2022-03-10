@@ -7,6 +7,10 @@ import {
   CalendarPickerView,
 } from '@mui/x-date-pickers/CalendarPicker';
 import {
+  CalendarPicker as CalendarPickerWithOtherName,
+  CalendarPickerView as CalendarPickerViewWithOtherName,
+} from '@mui/x-date-pickers/CalendarPicker';
+import {
   CalendarPickerSkeleton,
   calendarPickerSkeletonClasses,
   CalendarPickerSkeletonClassKey,
@@ -73,4 +77,9 @@ import {
   YearPickerClassKey,
   YearPickerProps,
 } from '@mui/x-date-pickers/YearPicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { AdapterMoment as AdapterMomentWithOtherName } from '@mui/x-date-pickers/AdapterMoment';
 import Timeline from '@mui/lab/Timeline';

@@ -1,4 +1,20 @@
 const exports = {
+  AdapterDateFns: {
+    default: 'AdapterDateFns',
+    named: [],
+  },
+  AdapterDayjs: {
+    default: 'AdapterDayjs',
+    named: [],
+  },
+  AdapterLuxon: {
+    default: 'AdapterLuxon',
+    named: [],
+  },
+  AdapterMoment: {
+    default: 'AdapterMoment',
+    named: [],
+  },
   CalendarPicker: {
     default: 'CalendarPicker',
     named: [
@@ -176,12 +192,17 @@ export default function transformer(fileInfo, api, options) {
       if (subPackageImportMatch !== null) {
         const subModule = subPackageImportMatch[1];
 
+        if (subModule.startsWith('internal')) {
+          console.warn('Imports from `@mui/lab/internal` are not supported');
+          return;
+        }
+
         if (exports[subModule]) {
           /**
            * @type {import('jscodeshift').ASTPath}
            */
           const sourcePath = path.get('source');
-          const targetPackage = lookup[subModule].isPro
+          const targetPackage = exports[subModule].isPro
             ? '@mui/x-date-pickers-pro'
             : '@mui/x-date-pickers';
           const targetImportPath = `${targetPackage}/${subModule}`;
@@ -190,9 +211,8 @@ export default function transformer(fileInfo, api, options) {
           const importDeclaration = path.value;
           importDeclaration.specifiers = importDeclaration.specifiers.map((specifier) => {
             if (specifier.type === 'ImportDefaultSpecifier') {
-              const name = specifier.local.name;
-              const namedImport = j.importSpecifier(j.identifier(name));
-              return namedImport;
+              const localName = specifier.local.name;
+              return j.importSpecifier(j.identifier(subModule), j.identifier(localName));
             }
             return specifier;
           });

@@ -3,7 +3,10 @@ import CalendarPicker, {
   CalendarPickerClasses,
   CalendarPickerClassKey,
   CalendarPickerProps,
-  CalendarPickerView
+  CalendarPickerView,
+} from '@mui/lab/CalendarPicker';
+import CalendarPickerWithOtherName, {
+  CalendarPickerView as CalendarPickerViewWithOtherName
 } from '@mui/lab/CalendarPicker';
 import CalendarPickerSkeleton, {
   calendarPickerSkeletonClasses,
@@ -69,4 +72,9 @@ import YearPicker, {
   YearPickerClassKey,
   YearPickerProps
 } from '@mui/lab/YearPicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import AdapterDayjs from '@mui/lab/AdapterDayjs';
+import AdapterLuxon from '@mui/lab/AdapterLuxon';
+import AdapterMoment from '@mui/lab/AdapterMoment';
+import AdapterMomentWithOtherName from '@mui/lab/AdapterMoment';
 import Timeline from '@mui/lab/Timeline';
