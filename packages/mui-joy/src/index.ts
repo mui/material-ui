@@ -42,3 +42,12 @@ export * from './Sheet';
 
 export { default as Checkbox } from './Checkbox';
 export * from './Checkbox';
+
+export { default as FormLabel } from './FormLabel';
+export * from './FormLabel';
+
+export { default as FormHelperText } from './FormHelperText';
+export * from './FormHelperText';
+
+export { default as TextField } from './TextField';
+export * from './TextField';
