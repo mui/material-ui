@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Hidden（隐藏）组件
 description: The Hidden component is deprecated, check out the migration guide for more details.
 components: Hidden

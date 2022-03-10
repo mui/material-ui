@@ -1,4 +1,4 @@
-import ClassNameGenerator from './ClassNameGenerator';
+import ClassNameGenerator from '../className/ClassNameGenerator';
 
 export type GlobalStateSlot =
   | 'active'

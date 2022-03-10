@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { useInView } from 'react-intersection-observer';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import * as React from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const GOLDs = [
   {
@@ -50,9 +50,9 @@ const GOLDs = [
   {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
     srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
-    name: 'TopAussieCasinos.com',
+    name: 'online-aussie-casino',
     description: 'Aussie Gambling Guide.',
-    href: 'https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
@@ -60,6 +60,13 @@ const GOLDs = [
     name: 'SunmatoSoft',
     description: 'We help companies to digitalize their businesses.',
     href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=40',
+    srcSet: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=80 2x',
+    name: 'MegaFamous',
+    description: 'The best place to buy Instagram followers & likes.',
+    href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 

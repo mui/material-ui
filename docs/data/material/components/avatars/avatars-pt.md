@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente para Avatares
 components: Avatar, AvatarGroup, Badge
 githubLabel: 'component: avatar'

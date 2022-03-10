@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Fab component
 components: Fab
 githubLabel: 'component: Fab'

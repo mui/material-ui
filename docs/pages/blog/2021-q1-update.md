@@ -4,7 +4,7 @@ description: An update on our mission for Q1 2021.
 date: 2021-04-12T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
-tags: ['Company update']
+tags: ['Company']
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the months ahead.

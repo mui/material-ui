@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Slider component
 components: Slider, SliderUnstyled
 githubLabel: 'component: slider'

@@ -1,4 +1,13 @@
 import { CSSObject } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
+
+export interface IconSize {
+  xs: string | number;
+  sm: string | number;
+  md: string | number;
+  lg: string | number;
+  xl: string | number;
+}
 
 export interface FontSize {
   xs: string;
@@ -40,14 +49,10 @@ export interface LetterSpacing {
   lg: string;
 }
 
-export interface TypographySystem {
-  h1: CSSObject;
-  h2: CSSObject;
-  h3: CSSObject;
-  h4: CSSObject;
-  h5: CSSObject;
-  h6: CSSObject;
-  body1: CSSObject;
-  body2: CSSObject;
-  body3: CSSObject;
-}
+export interface TypographySystemOverrides {}
+export type ExtendedTypographySystem = OverridableStringUnion<
+  'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3',
+  TypographySystemOverrides
+>;
+
+export interface TypographySystem extends Record<ExtendedTypographySystem, CSSObject> {}

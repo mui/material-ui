@@ -490,7 +490,7 @@ const emeriti = [
   {
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
-    twitter: 'dmtrKovalenko',
+    twitter: 'goose_plus_plus',
     title: 'MUI X, date pickers',
     location: 'Kharkiv, Ukraine',
     locationCountry: 'ua',

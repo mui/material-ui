@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Interruptor
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
 githubLabel: 'component: switch'

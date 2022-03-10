@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Linha do tempo
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 githubLabel: 'component: timeline'

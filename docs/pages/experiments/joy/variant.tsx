@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
-import { CssVarsProvider, ColorPaletteProp } from '@mui/joy/styles';
+import { CssVarsProvider, ColorPaletteProp, PaletteVariant } from '@mui/joy/styles';
 import Info from '@mui/icons-material/Info';
 import Code from '@mui/icons-material/Code';
 import PlayArrow from '@mui/icons-material/PlayArrow';
@@ -19,6 +19,20 @@ declare module '@mui/joy/styles' {
   }
 
   interface Palette {
+    secondary: {
+      700: string;
+      600: string;
+      500: string;
+      200: string;
+      100: string;
+    } & PaletteVariant;
+    alternate: {
+      700: string;
+      600: string;
+      500: string;
+      200: string;
+      100: string;
+    } & PaletteVariant;
     outlinedFocusBorder: string;
   }
 
@@ -67,29 +81,7 @@ export default function JoyVariant() {
       }}
     >
       <GlobalStyles styles={{ body: { margin: 0 } }} />
-      <CssVarsProvider
-        theme={{
-          components: {
-            MuiSvgIcon: {
-              defaultProps: {
-                fontSize: 'xl',
-              },
-              styleOverrides: {
-                root: ({ ownerState, theme }) => ({
-                  ...(ownerState.fontSize &&
-                    ownerState.fontSize !== 'inherit' && {
-                      fontSize: theme.vars.fontSize[ownerState.fontSize],
-                    }),
-                  ...(ownerState.color &&
-                    ownerState.color !== 'inherit' && {
-                      color: theme.vars.palette[ownerState.color].textColor,
-                    }),
-                }),
-              },
-            },
-          },
-        }}
-      >
+      <CssVarsProvider>
         <Box sx={{ p: 2 }}>
           <Typography component="h1" level="h3" gutterBottom>
             Variant demonstration

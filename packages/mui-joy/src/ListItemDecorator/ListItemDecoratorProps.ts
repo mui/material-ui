@@ -3,6 +3,8 @@ import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ListItemDecoratorClasses } from './listItemDecoratorClasses';
 
+export type ListItemDecoratorSlot = 'root';
+
 export interface ListItemDecoratorTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**

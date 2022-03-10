@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Date picker, Time picker React components
 components: DatePicker,DateTimePicker,TimePicker,TextField
 githubLabel: 'component: date picker'

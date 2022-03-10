@@ -609,7 +609,7 @@ It works exactly like styled components. You can [use the same guide](/guides/in
 
 ### Setup
 
-If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind) example project.
+If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind-css) example project.
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
@@ -761,7 +761,7 @@ if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`]
 TypeScript support than JSS.
 
 > If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout
-> [migration guide](https://mui.com/guides/migration-v4/#2-use-tss-react).
+> [migration guide](/guides/migration-v4/#2-use-tss-react).
 
 ```tsx
 import { render } from 'react-dom';
@@ -843,5 +843,5 @@ For info on how to setup SSR or anything else, please refer to [the TSS document
 > it's a peer dependency of `@mui/material`.
 
 > ⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
-> Material-ui and TSS runs emotion 11 so there is [some changes](https://github.com/garronej/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
+> Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
 > to be made to your `.storybook/main.js` to make it uses emotion 11.

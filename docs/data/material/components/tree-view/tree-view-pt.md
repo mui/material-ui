@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React de Visualização em Árvore
 components: TreeView, TreeItem
 githubLabel: 'component: tree view'
