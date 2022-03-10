@@ -61,6 +61,28 @@ describe('<FormControlLabel />', () => {
       expect(getByText(/Pizza/)).not.to.equal(null);
       expect(getByText(/Pizza/).tagName).to.equal('P');
     });
+
+    it('should render with nullish labels', () => {
+      const { getByTestId } = render(
+        <React.Fragment>
+          <FormControlLabel
+            data-testid="undefined-form-label"
+            control={<div data-testid="undefined-control" />}
+          />
+          <FormControlLabel
+            data-testid="null-form-label"
+            label={null}
+            control={<div data-testid="null-control" />}
+          />
+        </React.Fragment>,
+      );
+
+      expect(getByTestId('undefined-form-label')).not.to.equal(null);
+      expect(getByTestId('undefined-control')).not.to.equal(null);
+
+      expect(getByTestId('null-form-label')).not.to.equal(null);
+      expect(getByTestId('null-control')).not.to.equal(null);
+    });
   });
 
   describe('prop: disabled', () => {
