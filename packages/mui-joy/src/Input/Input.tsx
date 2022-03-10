@@ -200,7 +200,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     size = 'md',
     value,
     variant = 'outlined',
-    size = 'md',
     ...other
   } = props;
 
@@ -237,7 +236,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     type,
     size,
     variant,
-    size,
   };
 
   const rootStateClasses = {
@@ -453,7 +451,10 @@ Input.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * Leading adornment for this input.
    */
