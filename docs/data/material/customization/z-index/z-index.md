@@ -8,6 +8,7 @@ that has been designed to properly layer drawers, modals, snackbars, tooltips, a
 The `z-index` values start at an arbitrary number, high and specific enough to ideally avoid conflicts:
 
 - mobile stepper: 1000
+- fab: 1050
 - speed dial: 1050
 - app bar: 1100
 - drawer: 1200
