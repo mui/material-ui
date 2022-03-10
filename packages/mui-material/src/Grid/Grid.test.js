@@ -56,11 +56,23 @@ describe('<Grid />', () => {
           </Grid>
         </Grid>,
       );
+
       const container = getByTestId('nested-container-in-item');
+      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
+    });
 
-      // test whether the class of the child of the container is correct or not
-      expect(container.firstChild).to.have.class(classes.item);
+    it('should apply the correct number of columns for nested containers with columns=12 (default)', () => {
+      const { getByTestId } = render(
+        <Grid container columns={16}>
+          <Grid item xs={8}>
+            <Grid container columns={12} data-testid="nested-container-in-item">
+              <Grid item xs={12} />
+            </Grid>
+          </Grid>
+        </Grid>,
+      );
 
+      const container = getByTestId('nested-container-in-item');
       expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
     });
   });
