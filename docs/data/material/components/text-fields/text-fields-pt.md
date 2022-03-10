@@ -36,8 +36,7 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ## Multilinha
 
-A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>.
-Unless the`rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)).
+The `multiline` prop transforms the text field into a [TextareaAutosize](/components/textarea-autosize/) element. Unless the</code>rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)).
 You can use the <code>minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
