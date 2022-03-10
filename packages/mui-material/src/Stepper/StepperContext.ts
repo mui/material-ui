@@ -1,12 +1,11 @@
 import * as React from 'react';
 
-
 export interface StepperContextType {
-  activeStep: number
-  alternativeLabel: boolean
-  connector: React.ReactNode
-  nonLinear: boolean
-  orientation: 'horizontal' | 'vertical'
+  activeStep: number;
+  alternativeLabel: boolean;
+  connector: React.ReactNode;
+  nonLinear: boolean;
+  orientation: 'horizontal' | 'vertical';
 }
 
 /**
@@ -22,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
  * Returns the current StepperContext or an empty object if no StepperContext
  * has been defined in the component tree.
  */
- export function useStepContext(): StepperContextType | {} {
+export function useStepContext(): StepperContextType | {} {
   return React.useContext(StepperContext);
 }
 
