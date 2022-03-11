@@ -57,6 +57,7 @@ const InputRoot = styled('div', {
     '--Input-placeholderOpacity': 0.5,
     '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
+    '--Input-focusedShadowColor': theme.vars.palette[ownerState.color || 'primary']?.[500],
     boxSizing: 'border-box',
     height: `var(--Input-height)`,
     minWidth: 0, // forces the Input to stay inside a container by default
@@ -99,9 +100,7 @@ const InputRoot = styled('div', {
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
       '&:before': {
-        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) ${
-          theme.vars.palette[ownerState.color || 'primary']?.[500]
-        }`,
+        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedShadowColor)`,
       },
     },
   },
@@ -138,7 +137,7 @@ const InputInput = styled('input', {
 const InputStartAdornment = styled('span', {
   name: 'MuiInput',
   slot: 'StartAdornment',
-  overridesResolver: (props, styles) => styles.startIcon,
+  overridesResolver: (props, styles) => styles.startAdornment,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
@@ -153,7 +152,7 @@ const InputStartAdornment = styled('span', {
 const InputEndAdornment = styled('span', {
   name: 'MuiInput',
   slot: 'EndAdornment',
-  overridesResolver: (props, styles) => styles.endIcon,
+  overridesResolver: (props, styles) => styles.endAdornment,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',

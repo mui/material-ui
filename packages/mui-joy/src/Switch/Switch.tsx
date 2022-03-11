@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled, JoyTheme } from '../styles';
+import { styled, useThemeProps, JoyTheme } from '../styles';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
 
@@ -156,7 +156,10 @@ const SwitchThumb = styled('span', {
 }));
 
 const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(inProps, ref) {
-  const props = inProps;
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'MuiSwitch',
+  });
   const {
     checked: checkedProp,
     className,

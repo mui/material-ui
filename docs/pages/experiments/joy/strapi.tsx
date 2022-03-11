@@ -3,8 +3,11 @@ import { GlobalStyles, CSSObject } from '@mui/system';
 import { CssVarsProvider, createGetCssVar, useColorScheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Switch from '@mui/joy/Switch';
+import IconButton from '@mui/joy/IconButton';
+import Switch, { switchClasses } from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
+import Input from '@mui/joy/Input';
+import TextField from '@mui/joy/TextField';
 import Paper from '@mui/joy/Paper';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -34,8 +37,8 @@ import Search from '@mui/icons-material/Search';
 // experiment components
 import Badge from 'docs/src/_experiment/joy/Badge';
 import { ToggleButton, ToggleButtonGroup } from 'docs/src/_experiment/joy/Toggle';
-import Input from 'docs/src/_experiment/joy/Input';
-import TextField from 'docs/src/_experiment/joy/TextField';
+// import Input from 'docs/src/_experiment/joy/Input';
+// import TextField from 'docs/src/_experiment/joy/TextField';
 import SelectField from 'docs/src/_experiment/joy/SelectField';
 import Checkbox from 'docs/src/_experiment/joy/Checkbox';
 import { List, ListItemButton, ListSubheader } from 'docs/src/_experiment/joy/List';
@@ -214,7 +217,7 @@ export default function Strapi() {
                 outlinedActiveBg: getCssVar('palette-neutral-150'),
                 outlinedDisabledColor: getCssVar('palette-neutral-600'),
                 outlinedDisabledBorder: getCssVar('palette-neutral-300'),
-                outlinedDisabledBg: getCssVar('palette-neutral-200'),
+                outlinedDisabledBg: getCssVar('palette-neutral-150'),
               },
               background: {
                 level1: getCssVar('palette-neutral-100'),
@@ -373,12 +376,6 @@ export default function Strapi() {
                     borderColor: theme.vars.palette.outlinedFocusBorder,
                   }),
                 },
-                '&.Mui-disabled': {
-                  backgroundColor: theme.vars.palette.neutral[150],
-                  color: theme.vars.palette.neutral[600],
-                  border: '1px solid',
-                  borderColor: theme.vars.palette.neutral[200],
-                },
               }),
             },
           },
@@ -398,22 +395,72 @@ export default function Strapi() {
               },
             },
           },
-          MuiSwitch: {
+          MuiInput: {
+            styleOverrides: {
+              root: ({ ownerState, theme }) => ({
+                ...(ownerState.size === 'md' && {
+                  '--Input-gutter': '1rem',
+                }),
+                '--Input-focusedShadowColor':
+                  theme.vars.palette[ownerState.color || 'primary']?.[600],
+                borderRadius: getCssVar('radius-xs'),
+                color: theme.vars.palette.text.primary,
+                backgroundColor: theme.vars.palette.background.body,
+                ...(ownerState.color === 'danger' && {
+                  borderColor: theme.vars.palette.danger[600],
+                  ...(ownerState.variant === 'outlined' && {
+                    '&:hover': {
+                      borderColor: theme.vars.palette.danger[600],
+                      backgroundColor: theme.vars.palette.danger.textHoverBg,
+                    },
+                  }),
+                }),
+                '&.Mui-disabled': {
+                  '--Input-placeholderOpacity': 1,
+                },
+              }),
+              endAdornment: ({ ownerState }) => ({
+                ...(ownerState.size === 'md' && {
+                  marginRight: '-0.75rem',
+                }),
+              }),
+            },
+          },
+          MuiFormLabel: {
             styleOverrides: {
               root: {
+                gap: '0.25rem',
+                fontSize: getCssVar('fontSize-xs'),
+                fontWeight: 600,
+              },
+            },
+          },
+          MuiTextField: {
+            styleOverrides: {
+              root: ({ theme }) => ({
+                [`&.Mui-error`]: {
+                  '--FormHelperText-color': theme.vars.palette.danger[600],
+                },
+                '&.Mui-disabled': {
+                  '--FormLabel-color': theme.vars.palette.text.primary,
+                  '--FormHelperText-color': theme.vars.palette.text.secondary,
+                },
+              }),
+            },
+          },
+          MuiSwitch: {
+            defaultProps: {
+              color: 'danger',
+            },
+            styleOverrides: {
+              root: ({ theme }) => ({
                 '--Switch-track-width': '40px',
                 '--Switch-track-thumb': '16px',
-                color: getCssVar('palette-danger-500'),
-                '&:hover': {
-                  color: getCssVar('palette-danger-600'),
+                '--Switch-track-background': theme.vars.palette.danger[500],
+                [`&.${switchClasses.checked}`]: {
+                  '--Switch-track-background': theme.vars.palette.success[500],
                 },
-                '&.Mui-checked': {
-                  color: getCssVar('palette-success-500'),
-                  '&:hover': {
-                    color: getCssVar('palette-success-600'),
-                  },
-                },
-              },
+              }),
             },
           },
           MuiSvgIcon: {
@@ -569,15 +616,9 @@ export default function Strapi() {
         </Box>
         {(() => {
           const eye = (
-            <Button
-              square
-              variant="text"
-              color="neutral"
-              size="sm"
-              sx={{ pointerEvents: 'visible' }}
-            >
+            <IconButton variant="text" color="neutral" size="sm" sx={{ pointerEvents: 'visible' }}>
               <Visibility fontSize="lg" />
-            </Button>
+            </IconButton>
           ) as any;
           const label = (
             <React.Fragment>
