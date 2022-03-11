@@ -2145,11 +2145,7 @@ export const mkMK: Localization = {
       defaultProps: {
         getLabelText: (value) => {
           const lastDigit = value % 10;
-          const lastTwoDigits = value % 100;
-          if ([2, 3, 4].includes(lastDigit) && ![12, 13, 14].includes(lastTwoDigits)) {
-            return 'Ѕвезда';
-          }
-          return 'Ѕвезда';
+          return `${value} Ѕвезд${lastDigit === 1 ? 'а' : 'и'}`;
         },
         emptyLabelText: 'Празно',
       },
