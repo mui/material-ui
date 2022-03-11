@@ -8,7 +8,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 
 # Unstyled button
 
-<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+<p class="description">Buttons allow users to take actions and make choices with a single tap.</p>
 
 ## Basic usage
 
@@ -30,7 +30,7 @@ Compare the attributes on the `span` with the `button` from the previous demo.
 
 ## Complex customization
 
-In addition to HTML elements, you can also use SVGs with the 'ButtonUnstyled` component.
+In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` component.
 
 {{"demo": "UnstyledButtonCustom.js"}}
 
