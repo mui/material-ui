@@ -31,7 +31,7 @@ The utility can be used as a replacement for emotion's or styled-components' sty
    - `options.shouldForwardProp` (_`(prop: string) => bool`_ [optional]): Indicates whether the `prop` should be forwarded to the `Component`.
    - `options.label` (_string_ [optional]): css 样式后缀 Useful for debugging. Useful for debugging.
    - `options.name` (_string_ [optional]): 会根据此属性在`theme.components` 中找到相应的`styleOverrides` and `variants`并应用到组件上 同时也会用来生成 `label` Also used for generating the `label`.
-   - `options.slot` (_string_ [optional]):如果是`Root`, 才会自动装配主题上对应`name`下的的`styleOverrides` &
+   - `options.slot` (_string_ [optional]): If `Root`, it automatically applies the theme's `variants`.
    - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name].styleOverrides` object.
    - `options.skipVariantsResolver` (_bool_): 不再自动装配 `theme.components[name].variants`
    - `options.skipSx` (_bool_ [optional]): 该组件禁用`sx`属性
