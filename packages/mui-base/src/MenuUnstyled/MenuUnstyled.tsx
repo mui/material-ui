@@ -29,11 +29,11 @@ function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  *
  * Demos:
  *
- * - [Menus](https://mui.com/components/menus/)
+ * - [Menu](https://mui.com/base/react-menu/)
  *
  * API:
  *
- * - [MenuUnstyled API](https://mui.com/api/menu-unstyled/)
+ * - [MenuUnstyled API](https://mui.com/base/api/menu-unstyled/)
  */
 const MenuUnstyled = React.forwardRef(function MenuUnstyled(
   props: MenuUnstyledProps & React.HTMLAttributes<HTMLElement>,
