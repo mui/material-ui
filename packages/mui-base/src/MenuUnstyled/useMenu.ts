@@ -108,7 +108,7 @@ export default function useMenu(parameters: UseMenuParameters) {
   };
 
   const createHandleBlur = (otherHandlers?: EventHandlers) => (e: React.FocusEvent) => {
-    otherHandlers?.onBlur(e);
+    otherHandlers?.onBlur?.(e);
 
     if (!listboxRef.current?.contains(e.relatedTarget)) {
       onClose?.();

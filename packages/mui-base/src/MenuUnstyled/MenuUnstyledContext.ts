@@ -9,6 +9,15 @@ export interface MenuUnstyledContextType {
     id: string,
     otherHandlers?: Record<string, React.EventHandler<any>>,
   ) => Record<string, any>;
+  getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+    role: string;
+    id?: string;
+    ref: React.Ref<any>;
+    tabIndex: number;
+    'aria-activedescendant'?: string;
+    onBlur: React.FocusEventHandler;
+    onKeyDown: React.KeyboardEventHandler;
+  };
   open: boolean;
 }
 
