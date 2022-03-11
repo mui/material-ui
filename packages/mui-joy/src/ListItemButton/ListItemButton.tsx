@@ -117,6 +117,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     className,
     action,
     component = 'div',
+    role,
     selected = false,
     color = selected ? 'primary' : undefined,
     variant = 'text',
@@ -156,13 +157,17 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // @ts-expect-error
+  const rootProps = getRootProps(other);
+
   return (
     <ListItemButtonRoot
       as={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}
-      {...getRootProps()}
+      {...rootProps}
+      role={role || rootProps.role}
     >
       {children}
     </ListItemButtonRoot>

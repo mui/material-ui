@@ -51,3 +51,6 @@ export * from './FormHelperText';
 
 export { default as TextField } from './TextField';
 export * from './TextField';
+
+export { default as Menu } from './Menu';
+export * from './Menu';

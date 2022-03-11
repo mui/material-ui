@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
@@ -108,6 +109,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     props: inProps,
     name: 'MuiListItem',
   });
+  const menuContext = React.useContext(MenuUnstyledContext);
 
   const {
     component,
@@ -136,6 +138,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         as={component}
         className={clsx(classes.root, className)}
         ownerState={ownerState}
+        {...(menuContext && {
+          role: 'none',
+        })}
         {...other}
       >
         {startAction && (
