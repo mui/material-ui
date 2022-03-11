@@ -5,6 +5,7 @@ components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#button
+unstyled: /base/react-button/
 ---
 
 # Button
@@ -146,10 +147,6 @@ You can take advantage of this lower-level component to build custom interaction
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `ButtonBase` component provides the `component` prop to handle this use case.
 Here is a [more detailed guide](/guides/routing/#button).
-
-## Unstyled
-
-The Button also comes with an [unstyled version](/base/react-button/). It's ideal for doing heavy customizations and minimizing bundle size.
 
 ## Limitations
 
