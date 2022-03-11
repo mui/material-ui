@@ -147,6 +147,10 @@ One frequent use case is to perform navigation on the client only, without an HT
 The `ButtonBase` component provides the `component` prop to handle this use case.
 Here is a [more detailed guide](/guides/routing/#button).
 
+## Unstyled
+
+The Button also comes with an [unstyled version](/base/react-button/). It's ideal for doing heavy customizations and minimizing bundle size.
+
 ## Limitations
 
 ### Cursor not-allowed

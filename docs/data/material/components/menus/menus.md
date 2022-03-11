@@ -110,7 +110,7 @@ Here is an example of a context menu. (Right click to open.)
 The Menu also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.
 
-See its docs on the [MUI Base section](/base/react-menu).
+See its docs on the [MUI Base section](/base/react-menu/).
 
 ## Complementary projects
 
