@@ -18,6 +18,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
+import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -922,7 +923,7 @@ export default function JoyTypography() {
           {/* ex8 */}
           <List>
             <ListItem>
-              <ListItemButton component="a" href="#">
+              <ListItemButton component={Link} href="#">
                 <ListItemContent>External Link</ListItemContent>
               </ListItemButton>
             </ListItem>
