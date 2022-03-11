@@ -14,7 +14,7 @@ import defaultTheme, {
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Variants } from './types/variants';
 import { ColorSystem } from './types/colorSystem';
-import { TypographySystem } from './types/typography';
+import { TypographySystem, FontSize } from './types/typography';
 import { Components } from './components';
 import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
 
@@ -61,6 +61,33 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       light: lightColorSystem,
       dark: darkColorSystem,
     },
+    components: {
+      // TODO: find a way to abstract SvgIcon out of @mui/material
+      MuiSvgIcon: {
+        defaultProps: {
+          fontSize: 'xl',
+        },
+        styleOverrides: {
+          root: ({ ownerState, theme }) => {
+            const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
+            return {
+              ...(ownerState.fontSize &&
+                ownerState.fontSize !== 'inherit' && {
+                  fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
+                }),
+              ...(ownerState.color &&
+                ownerState.color !== 'inherit' && {
+                  color: theme.vars.palette[ownerState.color].textColor,
+                }),
+              ...(instanceFontSize &&
+                instanceFontSize !== 'inherit' && {
+                  '--Icon-fontSize': theme.vars.fontSize[instanceFontSize],
+                }),
+            };
+          },
+        },
+      },
+    } as Components<JoyTheme>,
   },
   defaultColorScheme: {
     light: 'light',

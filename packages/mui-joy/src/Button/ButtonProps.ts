@@ -8,7 +8,7 @@ import {
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export type ButtonSlot = 'root';
+export type ButtonSlot = 'root' | 'startIcon' | 'endIcon';
 
 export interface ButtonPropsVariantOverrides {}
 

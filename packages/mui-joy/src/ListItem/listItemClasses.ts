@@ -3,8 +3,12 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface ListItemClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
-  secondaryAction: string;
+  /** Styles applied to the component element if `startAction` element is provided. */
+  startAction: string;
+  /** Styles applied to the component element if `endAction` element is provided. */
+  endAction: string;
+  /** Styles applied to the root element, if nested={true}. */
+  nested: string;
   /** Styles applied to the root element, if sticky={true}. */
   sticky: string;
 }
@@ -17,7 +21,9 @@ export function getListItemUtilityClass(slot: string): string {
 
 const listItemClasses: ListItemClasses = generateUtilityClasses('MuiListItem', [
   'root',
-  'secondaryAction',
+  'startAction',
+  'endAction',
+  'nested',
   'sticky',
 ]);
 

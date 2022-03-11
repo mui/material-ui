@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Divisor
 components: Divider
 githubLabel: 'component: divider'

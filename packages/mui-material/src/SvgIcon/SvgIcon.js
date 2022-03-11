@@ -79,6 +79,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     color,
     component,
     fontSize,
+    instanceFontSize: inProps.fontSize,
     inheritViewBox,
     viewBox,
   };

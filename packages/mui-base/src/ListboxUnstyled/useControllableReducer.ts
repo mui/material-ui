@@ -5,9 +5,9 @@ import {
   ListboxAction,
   ListboxReducer,
   ListboxState,
-  UseListboxProps,
+  UseListboxParameters,
   UseListboxStrictProps,
-} from './types';
+} from './useListbox.types';
 import areArraysEqual from '../utils/areArraysEqual';
 
 /**
@@ -16,20 +16,24 @@ import areArraysEqual from '../utils/areArraysEqual';
 function useReducerReturnValueHandler<TOption>(
   state: ListboxState<TOption>,
   value: TOption | TOption[] | null,
-  options: UseListboxProps<TOption>['options'],
+  options: UseListboxParameters<TOption>['options'],
   optionComparer: React.RefObject<(option: TOption, value: TOption) => boolean>,
   setValueState: (newValue: TOption | TOption[] | null) => void,
-  onValueChange: UseListboxProps<TOption>['onChange'],
-  onHighlightChange: UseListboxProps<TOption>['onHighlightChange'],
+  onValueChange: UseListboxParameters<TOption>['onChange'],
+  onHighlightChange: UseListboxParameters<TOption>['onHighlightChange'],
 ) {
   const valueRef = React.useRef(value);
   valueRef.current = value;
 
   const onValueChangeRef = React.useRef(onValueChange);
-  onValueChangeRef.current = onValueChange;
+  React.useEffect(() => {
+    onValueChangeRef.current = onValueChange;
+  }, [onValueChange]);
 
   const onHighlightChangeRef = React.useRef(onHighlightChange);
-  onHighlightChangeRef.current = onHighlightChange;
+  React.useEffect(() => {
+    onHighlightChangeRef.current = onHighlightChange;
+  }, [onHighlightChange]);
 
   React.useEffect(() => {
     if (Array.isArray(state.selectedValue)) {
@@ -54,12 +58,8 @@ function useReducerReturnValueHandler<TOption>(
 
   React.useEffect(() => {
     // Fire the highlightChange event when reducer returns changed `highlightedIndex`.
-    if (state.highlightedIndex === -1) {
-      onHighlightChangeRef.current?.(null);
-    } else {
-      onHighlightChangeRef.current?.(options[state.highlightedIndex]);
-    }
-  }, [state.highlightedIndex, options]);
+    onHighlightChangeRef.current?.(state.highlightedValue);
+  }, [state.highlightedValue]);
 }
 
 export default function useControllableReducer<TOption>(
@@ -90,7 +90,7 @@ export default function useControllableReducer<TOption>(
   const [state, dispatch] = React.useReducer<ListboxReducer<TOption>>(
     externalReducer ?? internalReducer,
     {
-      highlightedIndex: -1,
+      highlightedValue: null,
       selectedValue: value,
     } as ListboxState<TOption>,
   );
@@ -129,9 +129,8 @@ export default function useControllableReducer<TOption>(
 
     previousValueRef.current = controlledValue;
     dispatch({
-      type: ActionTypes.setControlledValue,
+      type: ActionTypes.setValue,
       value: controlledValue,
-      props: propsRef.current,
     });
   }, [controlledValue]);
 

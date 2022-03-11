@@ -5,11 +5,13 @@ import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
 import { SelectClasses } from './selectClasses';
+import { OutlinedInputProps } from '../OutlinedInput';
 
 export { SelectChangeEvent };
 
 export interface SelectProps<T = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
+    Omit<OutlinedInputProps, 'value' | 'onChange'>,
     Pick<SelectInputProps<T>, 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the

@@ -81,29 +81,7 @@ export default function JoyVariant() {
       }}
     >
       <GlobalStyles styles={{ body: { margin: 0 } }} />
-      <CssVarsProvider
-        theme={{
-          components: {
-            MuiSvgIcon: {
-              defaultProps: {
-                fontSize: 'xl',
-              },
-              styleOverrides: {
-                root: ({ ownerState, theme }) => ({
-                  ...(ownerState.fontSize &&
-                    ownerState.fontSize !== 'inherit' && {
-                      fontSize: theme.vars.fontSize[ownerState.fontSize],
-                    }),
-                  ...(ownerState.color &&
-                    ownerState.color !== 'inherit' && {
-                      color: theme.vars.palette[ownerState.color].textColor,
-                    }),
-                }),
-              },
-            },
-          },
-        }}
-      >
+      <CssVarsProvider>
         <Box sx={{ p: 2 }}>
           <Typography component="h1" level="h3" gutterBottom>
             Variant demonstration

@@ -1,0 +1,11 @@
+{
+  "props": { "disabled": { "type": { "name": "bool" } } },
+  "name": "MenuItemUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-base/src/MenuItemUnstyled/MenuItemUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
+  "cssComponent": false
+}

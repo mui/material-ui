@@ -11,14 +11,12 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => ({
-  top: 60,
+  top: 'var(--MuiDocs-header-height)',
   order: 1,
-  // Fix IE11 position sticky issue.
-  marginTop: 60,
   width: 240,
   flexShrink: 0,
   position: 'sticky',
-  height: 'calc(100vh - 70px)',
+  height: 'calc(100vh - var(--MuiDocs-header-height))',
   overflowY: 'auto',
   padding: theme.spacing(2, 4, 2, 0),
   display: 'none',

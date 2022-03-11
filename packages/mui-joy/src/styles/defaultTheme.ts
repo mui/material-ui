@@ -17,6 +17,7 @@ import {
   FontFamily,
   FontSize,
   FontWeight,
+  IconSize,
   LineHeight,
   LetterSpacing,
   TypographySystem,
@@ -244,6 +245,13 @@ const baseDesignTokens = {
     lg: 700,
     xl: 800,
   },
+  iconSize: {
+    xs: '0.75rem',
+    sm: '1rem',
+    md: '1.25rem',
+    lg: '1.5rem',
+    xl: '1.75rem',
+  },
   lineHeight: {
     sm: 1.25,
     md: 1.5,
@@ -348,6 +356,7 @@ export interface ThemeScales {
   fontFamily: FontFamily;
   fontSize: FontSize;
   fontWeight: FontWeight;
+  iconSize: IconSize;
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
 }

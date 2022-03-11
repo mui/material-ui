@@ -25,8 +25,8 @@
   "devDependencies": {
     "@types/babel__core": "^7.1.18",
     "@types/doctrine": "^0.0.5",
-    "@types/lodash": "^4.14.178",
-    "@types/node": "^16.11.22",
+    "@types/lodash": "^4.14.179",
+    "@types/node": "^16.11.26",
     "@types/prettier": "^2.4.4",
     "@types/react": "^17.0.39",
     "@types/uuid": "^8.3.4",
@@ -35,13 +35,13 @@
     "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "@babel/core": "^7.17.0",
+    "@babel/core": "^7.17.5",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.16.7",
     "@babel/types": "^7.17.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^4.5.5",
+    "typescript": "^4.6.2",
     "uuid": "^8.3.2"
   }
 }

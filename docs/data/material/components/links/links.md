@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 components: Link
 githubLabel: 'component: link'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#link

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Botões de opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'

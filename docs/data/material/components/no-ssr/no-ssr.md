@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: No SSR React component
 components: NoSsr
 ---

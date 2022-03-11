@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Container component
 components: Container
 githubLabel: 'component: Container'
