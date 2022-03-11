@@ -1,12 +1,12 @@
 ---
 product: base
-title: React button unstyled
+title: Unstyled React button
 components: ButtonUnstyled
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 ---
 
-# Button unstyled
+# Unstyled button
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
@@ -20,18 +20,17 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 ## Customizing the root element
 
-By default, the `ButtonUnstyled` renders a native `button` element.
-You are free to override this by setting the `component` or `components.Root` prop.
-If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
+By default, the `ButtonUnstyled` component renders a native `button` HTML element.
+You can override this by setting the `component` or `components.Root` prop.
+If you provide a non-interactive element, such as a `span`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
-Compare the attributes on the span with the button from the previous demo.
+Compare the attributes on the `span` with the `button` from the previous demo.
 
 ## Complex customization
 
-You are not limited to using HTML elements for the button structure.
-SVG elements, even with complex structure, are equally acceptable.
+In addition to HTML elements, you can also use SVGs with the 'ButtonUnstyled` component.
 
 {{"demo": "UnstyledButtonCustom.js"}}
 
@@ -41,10 +40,10 @@ SVG elements, even with complex structure, are equally acceptable.
 import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
-If you need to use Button's functionality in another component, you can use the `useButton` hook.
-It returns props to be placed on a custom button element and fields representing the internal state of the button.
+The `useButton` hook lets you use the functionality of `ButtonUnstyled` in other components.
+It returns props to be placed on a custom button element, along with fields representing the internal state of the button.
 
-The `useButton` hook requires the ref of the element it'll be used on.
+The `useButton` hook requires the `ref` of the element it's used on.
 Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
 
 {{"demo": "UseButton.js"}}
