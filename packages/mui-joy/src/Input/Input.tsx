@@ -228,7 +228,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const ownerState = {
     ...props,
     fullWidth,
-    color: error ? 'danger' : color,
+    color: errorState ? 'danger' : color,
     disabled: disabledState,
     error: errorState,
     focused,
@@ -451,7 +451,10 @@ Input.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * Leading adornment for this input.
    */
