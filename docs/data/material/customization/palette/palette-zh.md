@@ -52,8 +52,8 @@ interface PaletteColor {
 自定义调色板的最简单方法是导入一个或多个提供的颜色：
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import { createTheme } from '@mui/core/styles';
+import blue from '@mui/core/colors/blue';
 
 const theme = createTheme({
   palette: {
@@ -67,7 +67,7 @@ const theme = createTheme({
 如果你想要提供更多的自定义颜色，你可以创建你自己的调色板，或者直接为一些或者所有的 `theme.palette` 键提供颜色：
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/core/styles';
 
 const theme = createTheme({
   palette: {
@@ -126,7 +126,7 @@ type PaletteTonalOffset =
 You can add new colors inside and outside the palette of the theme as follows:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/core/styles';
 
 const theme = createTheme({
   status: {
@@ -150,7 +150,7 @@ const theme = createTheme({
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles/createTheme' {
+declare module '@mui/core/styles/createTheme' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];
@@ -169,7 +169,7 @@ declare module '@material-ui/core/styles/createTheme' {
   }
 }
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/core/styles/createPalette' {
   interface Palette {
     neutral: Palette['primary'];
   }
