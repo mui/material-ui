@@ -98,7 +98,7 @@ You can use the `variants` key in the theme's `components` section to add new va
 在组件名称（如：MuiButton）下以数组形式定义组件变量。 数组中的每个变量都会对应一个 CSS 类添加到 HTML`<head>`中。 For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
 
 ```js
-declare module '@material-ui/core/Button/Button' {
+declare module '@mui/core/Button/Button' {
   interface ButtonPropsVariantOverrides {
     dashed: true;
   }
