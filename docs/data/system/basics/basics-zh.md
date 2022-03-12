@@ -18,10 +18,10 @@ _（调整窗口大小以查看响应的断点）_
 
 ```jsx
 // with npm
-npm install @material-ui/system@next @emotion/react @emotion/styled
+npm install @mui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/system@next @emotion/react @emotion/styled
+yarn add @mui/system@next @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
@@ -30,10 +30,10 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+npm install @mui/system@next @mui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
 ```
 
 请参阅[Styled Engine guide](/guides/styled-engine/)，了解更多关于如何配置`styled-components`作为样式引擎的信息。
@@ -304,8 +304,8 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 ```jsx
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@mui/core/Box';
+import { createTheme, ThemeProvider } from '@mui/core/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -339,7 +339,7 @@ export default function CustomBreakpoints() {
 如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/guides/typescript/#customization-of-theme) 来让主题接收上述值。
 
 ```ts
-declare module '@material-ui/core/styles/createBreakpoints' {
+declare module '@mui/core/styles/createBreakpoints' {
   interface BreakpointOverrides {
     xs: false; // 移除 `xs` 断点
     sm: false;
@@ -376,7 +376,7 @@ declare module '@material-ui/core/styles/createBreakpoints' {
 除了 MUI 组件外，您也可以将 `sx` prop 添加到您的自定义组件。 使用 `风格的` 实用程序来自 `@mui/material/styles`
 
 ```jsx
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/core/styles';
 
 const Div = styled('div')``;
 ```
