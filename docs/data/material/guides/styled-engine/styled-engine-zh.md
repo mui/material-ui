@@ -1,4 +1,4 @@
-# `@material-ui/styled-engine`
+# `@mui/styled-engine`
 
 <p class="description">配置您首选的样式库。</p>
 
@@ -28,7 +28,7 @@
   //...
   resolve: {
     alias: {
-      '@material-ui/styled-engine': '@material-ui/styled-engine-sc',
+      '@mui/styled-engine': '@mui/styled-engine-sc',
     },
   },
 };
@@ -72,7 +72,7 @@ module.exports = {
 **next.config.js**
 
 ```diff
-These two packages implement the same interface, which makes it makes possible to replace one with the other. By default, <code>@material-ui/core</code> has <code>@material-ui/styled-engine</code> as a dependency, but you can configure your bundler to replace it with <code>@material-ui/styled-engine-sc</code>. For example, if you are using webpack you can configure this by adding a resolver:
+These two packages implement the same interface, which makes it makes possible to replace one with the other. By default, <code>@mui/core</code> has <code>@mui/styled-engine</code> as a dependency, but you can configure your bundler to replace it with <code>@mui/styled-engine-sc</code>. For example, if you are using webpack you can configure this by adding a resolver:
 ```
 
 ### Ready-to-use examples
