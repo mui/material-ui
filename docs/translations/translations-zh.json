@@ -313,7 +313,7 @@
     "/guides/routing": "路由",
     "/guides/server-rendering": "服务端渲染",
     "/guides/responsive-ui": "响应式 UI",
-    "/guides/pickers-migration": "从 @material-ui/pickers 进行迁移",
+    "/guides/pickers-migration": "从 @mui/pickers 进行迁移",
     "/guides/migration-v4": "从 v4 迁移",
     "/guides/migration-v3": "从 v3 版本迁移",
     "/guides/migration-v0x": "从 v0.x 版本迁移",
