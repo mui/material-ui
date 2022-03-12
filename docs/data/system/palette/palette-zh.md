@@ -133,7 +133,7 @@
 ## API
 
 ```js
-import { palette } from '@material-ui/system';
+import { palette } from '@mui/system';
 ```
 
 | 导入名称      | 属性        | CSS 属性            | Theme key                                                        |
