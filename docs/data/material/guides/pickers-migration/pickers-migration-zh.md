@@ -1,6 +1,6 @@
-# 从 @material-ui-pickers 进行迁移
+# 从 @mui-pickers 进行迁移
 
-<p class="description">@material-ui/pickers 现在已经整合进了 @material-ui/lab。</p>
+<p class="description">@mui/pickers 现在已经整合进了 @mui/lab。</p>
 
 > **⚠️ 时间选择器组件已被重写**。 我们重写了大部分的逻辑，所以不可能维护整个更改列表。 这个部分概述了最重要的改变内容。 如果你要升级，最简单的方法可能是把你代码库中每个选择器的用法都浏览一遍，然后逐一重写。 别忘了每次都要运行你的测试代码！
 
@@ -8,15 +8,15 @@
 
 ## 安装
 
-You need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
+You need to install the `@mui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
 
 ## 导入
 
 选择器的 `keyboard` 版本不再发布。 不管是移动还是桌面端的选择器都实现了键盘输入以便于无障碍化的推广。
 
 ```diff
--import { KeyboardDatePicker } from '@material-ui/pickers';
-+import DatePicker from '@material-ui/lab/DatePicker';
+-import { KeyboardDatePicker } from '@mui/pickers';
++import DatePicker from '@mui/lab/DatePicker';
 
 -<KeyboardDatePicker />
 +<DatePicker />
@@ -30,8 +30,8 @@ You need to install the `@material-ui/lab` package if it's not already installed
 - `<StaticDatePicker />` – 选择器本身，不包含任何输入或者其他的包装器。
 
 ```diff
--import { DatePicker } from '@material-ui/pickers';
-+import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+-import { DatePicker } from '@mui/pickers';
++import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 -<DatePicker variant="inline" />
 +<DesktopDatePicker />
@@ -53,8 +53,8 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 ✅ 之后：
 
 ```jsx
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 
 function App() {
