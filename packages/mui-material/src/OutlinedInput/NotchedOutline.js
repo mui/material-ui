@@ -38,11 +38,13 @@ const NotchedOutlineLegend = styled('legend')(({ ownerState, theme }) => ({
     fontSize: '0.75em',
     visibility: 'hidden',
     maxWidth: 0.01,
-    transition: theme.transitions.create('max-width', {
+    // by transitioning opacity, Safari correctly rerenders outer fieldset border after notched state
+    transition: theme.transitions.create(['max-width', 'opacity'], {
       duration: 50,
       easing: theme.transitions.easing.easeOut,
     }),
     whiteSpace: 'nowrap',
+    opacity: 0,
     '& > span': {
       paddingLeft: 5,
       paddingRight: 5,
@@ -50,7 +52,9 @@ const NotchedOutlineLegend = styled('legend')(({ ownerState, theme }) => ({
     },
     ...(ownerState.notched && {
       maxWidth: '100%',
-      transition: theme.transitions.create('max-width', {
+      opacity: 1,
+      // by transitioning opacity, Safari correctly rerenders outer fieldset border after notched state
+      transition: theme.transitions.create(['max-width', 'opacity'], {
         duration: 100,
         easing: theme.transitions.easing.easeOut,
         delay: 50,
