@@ -56,7 +56,7 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 ## SVG 图标
 
-在 [icons 示例](/components/icons/)中， 您可以发现一些由我们提供的 SVG Material icons。 若  您想使用这个图标，您必须安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) 这个包：
+在 [icons 示例](/components/icons/)中， 您可以发现一些由我们提供的 SVG Material icons。 若  您想使用这个图标，您必须安装 [@mui/icons](https://www.npmjs.com/package/@mui/icons) 这个包：
 
 <!-- #default-branch-switch -->
 
