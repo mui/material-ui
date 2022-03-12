@@ -1,10 +1,11 @@
 ---
 product: material-ui
 title: React Menu（菜单）组件
-components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper, MenuUnstyled, MenuItemUnstyled
+components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://material.io/components/menus
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
+unstyled: /base/react-menu/
 ---
 
 # Menu 菜单
@@ -96,12 +97,6 @@ If used for item selection, when opened, simple menus places the initial focus o
 这是一个快捷菜单的示例。 （单击右键就可以打开。）
 
 {{"demo": "ContextMenu.js"}}
-
-## Unstyled
-
-The Menu also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
-
-See its docs on the [MUI Base section](/base/react-menu).
 
 ## Complementary projects
 
