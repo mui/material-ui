@@ -1,6 +1,6 @@
 # Advanced (LEGACY)
 
-<p class="description">本节包含了 @material-ui/core/styles 的一些更多的进阶用法。</p>
+<p class="description">本节包含了 @mui/core/styles 的一些更多的进阶用法。</p>
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
 
@@ -13,7 +13,7 @@
 > This example creates a theme object for custom-built components. If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/customization/theming/) to learn how to build your custom MUI theme.
 
 ```jsx
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/core/styles';
 import DeepChild from './my_components/DeepChild';
 
 const theme = {
@@ -40,7 +40,7 @@ function Theming() {
 在函数组件（function components）中的使用：
 
 ```jsx
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -55,7 +55,7 @@ function DeepChild() {
 在类（class）或函数（function）组件中的使用：
 
 ```jsx
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@mui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -181,7 +181,7 @@ Not all the plugins are available in MUI by default. 以下（一个 [jss-preset
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -227,7 +227,7 @@ const useStyles = makeStyles({
 `StylesProvider` 组件有一个 `injectFirst` 属性，用于将样式标签**首先**从页头（优先级较低）注入：
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 <StylesProvider injectFirst>
   {/* 你的组件树。
@@ -241,7 +241,7 @@ import { StylesProvider } from '@material-ui/styles';
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -294,7 +294,7 @@ export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
   import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -333,7 +333,7 @@ export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
   import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -361,7 +361,7 @@ export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
   import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -377,7 +377,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -403,7 +403,7 @@ function render() {
 
 ### Gatsby
 
-这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@material-ui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
+这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@mui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
 
 <!-- #default-branch-switch -->
 
@@ -423,7 +423,7 @@ Refer to [this example project](https://github.com/mui/material-ui/tree/master/e
 
 ### 默认值
 
-默认情况下，`@material-ui/core/styles` 生成的类名 **不是固定值**； 所以你不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
+默认情况下，`@mui/core/styles` 生成的类名 **不是固定值**； 所以你不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
 
 ```js
 const useStyles = makeStyles({
@@ -640,7 +640,7 @@ interface Props {
 However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
 
 ```ts
-这是对 <code>@material-ui/core/Button</code> 组件样式表的简化。
+这是对 <code>@mui/core/Button</code> 组件样式表的简化。
 ```
 
 ### 装饰组件
