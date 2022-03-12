@@ -99,9 +99,9 @@ declare module '@mui/material/styles' {
 > Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import { createTheme } from '@mui/core/styles';
+import purple from '@mui/core/colors/purple';
+import green from '@mui/core/colors/green';
 
 const theme = createTheme({
   palette: {
@@ -122,7 +122,7 @@ const theme = createTheme({
 #### Examples
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/core/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -133,7 +133,7 @@ theme = responsiveFontSizes(theme);
 通过接收的选项生成一个主题基础。
 
 ```js
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme } from '@mui/core/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 
