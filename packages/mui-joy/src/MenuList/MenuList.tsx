@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
+import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import List from '../List';
 import { MenuListProps, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
+import { useMenuPopup } from '../MenuPopup/MenuPopupContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -43,16 +44,41 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     props: inProps,
     name: 'MuiMenuList',
   });
-  const menuContext = React.useContext(MenuUnstyledContext);
+  const { open, onClose } = useMenuPopup();
 
-  const { component, className, children, size = 'md', onBlur, onKeyDown, ...other } = props;
+  const {
+    id,
+    actions,
+    children,
+    className,
+    component,
+    size = 'md',
+    onBlur,
+    onKeyDown,
+    ...other
+  } = props;
+
+  const { registerItem, unregisterItem, getListboxProps, getItemProps, getItemState } = useMenu({
+    open,
+    onClose,
+    listboxRef: ref,
+    listboxId: id,
+  });
+
+  const classes = useUtilityClasses();
+
+  const contextValue = {
+    registerItem,
+    unregisterItem,
+    getItemState,
+    getItemProps,
+    open,
+  } as MenuUnstyledContextType;
 
   const ownerState = {
     size,
     ...props,
   };
-
-  const classes = useUtilityClasses();
 
   const handlers: Record<string, React.EventHandler<any>> = {};
   if (onBlur) {
@@ -64,15 +90,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
 
   return (
     <MenuListRoot
-      ref={ref}
       component={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...handlers}
-      {...menuContext?.getListboxProps(handlers)}
+      {...getListboxProps(handlers)}
       {...other}
     >
-      {children}
+      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
     </MenuListRoot>
   );
 }) as OverridableComponent<MenuListTypeMap>;

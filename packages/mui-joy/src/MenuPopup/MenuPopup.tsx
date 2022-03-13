@@ -4,79 +4,35 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { MenuTypeMap } from './MenuProps';
-import { getMenuUtilityClass } from './menuClasses';
+import { MenuPopupTypeMap } from './MenuPopupProps';
+import { getMenuPopupUtilityClass } from './menuPopupClasses';
+import MenuPopupContext from './MenuPopupContext';
 
 const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getMenuUtilityClass, {});
+  return composeClasses(slots, getMenuPopupUtilityClass, {});
 };
 
-const MenuRoot = styled(PopperUnstyled)({
+const MenuPopupRoot = styled(PopperUnstyled)({
   zIndex: 1,
 });
 
-const Menu = React.forwardRef(function Menu(inProps, ref) {
+const MenuPopup = React.forwardRef(function MenuPopup(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiMenu',
+    name: 'MuiMenuPopup',
   });
 
-  const {
-    actions,
-    anchorEl,
-    children,
-    className,
-    component,
-    listboxRef,
-    listboxId,
-    onClose,
-    open = false,
-    ...other
-  } = props;
-
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
-    open,
-    onClose,
-    listboxRef,
-    listboxId,
-  });
-
-  React.useImperativeHandle(
-    actions,
-    () => ({
-      highlightFirstItem,
-      highlightLastItem,
-    }),
-    [highlightFirstItem, highlightLastItem],
-  );
+  const { anchorEl, children, className, component, onClose, open = false, ...other } = props;
 
   const classes = useUtilityClasses();
 
-  const contextValue = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    getListboxProps,
-    open,
-  } as MenuUnstyledContextType;
-
   return (
-    <MenuRoot
+    <MenuPopupRoot
       ref={ref}
       anchorEl={anchorEl}
       keepMounted
@@ -85,12 +41,12 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       className={clsx(classes.root, className)}
       {...other}
     >
-      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
-    </MenuRoot>
+      <MenuPopupContext.Provider value={{ open, onClose }}>{children}</MenuPopupContext.Provider>
+    </MenuPopupRoot>
   );
-}) as OverridableComponent<MenuTypeMap>;
+}) as OverridableComponent<MenuPopupTypeMap>;
 
-Menu.propTypes /* remove-proptypes */ = {
+MenuPopup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -110,4 +66,4 @@ Menu.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
 } as any;
 
-export default Menu;
+export default MenuPopup;

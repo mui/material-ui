@@ -1,13 +1,21 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import { SxProps } from '../styles/defaultTheme';
 
 export type MenuListSlot = 'root';
 
 export interface MenuListPropsSizeOverrides {}
 
+export interface MenuActions extends MenuUnstyledActions {}
+
 export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
+    /**
+     * A ref with imperative actions.
+     * It allows to select the first or last menu item.
+     */
+    actions?: React.Ref<MenuUnstyledActions>;
     /**
      * The content of the component.
      */

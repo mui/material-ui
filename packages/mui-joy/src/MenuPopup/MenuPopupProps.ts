@@ -1,20 +1,14 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
-import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import { SxProps } from '../styles/defaultTheme';
 
-export type MenuSlot = 'root';
+export type MenuPopupSlot = 'root';
 
 export type { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 
-export interface MenuTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface MenuPopupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
-    /**
-     * A ref with imperative actions.
-     * It allows to select the first or last menu item.
-     */
-    actions?: React.Ref<MenuUnstyledActions>;
     /**
      * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
      * or a function that returns either.
@@ -25,8 +19,6 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The content of the component.
      */
     children?: React.ReactNode;
-    listboxRef?: React.Ref<any>;
-    listboxId?: string;
     /**
      * Triggered when focus leaves the menu and the menu should close.
      */
@@ -44,7 +36,7 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'div'> {
   defaultComponent: D;
 }
 
-export type MenuProps<
-  D extends React.ElementType = MenuTypeMap['defaultComponent'],
+export type MenuPopupProps<
+  D extends React.ElementType = MenuPopupTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<MenuTypeMap<P, D>, D>;
+> = OverrideProps<MenuPopupTypeMap<P, D>, D>;
