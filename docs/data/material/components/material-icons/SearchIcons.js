@@ -189,7 +189,6 @@ const ImportLink = styled(Link)(({ theme }) => ({
 
 const Markdown = styled(MarkdownElement)(({ theme }) => ({
   cursor: 'pointer',
-  padding: theme.spacing(0, 2),
   transition: theme.transitions.create('background-color', {
     duration: theme.transitions.duration.shortest,
   }),
@@ -199,8 +198,7 @@ const Markdown = styled(MarkdownElement)(({ theme }) => ({
     },
   },
   '& pre': {
-    padding: theme.spacing(1, 2),
-    borderRadius: 10,
+    padding: theme.spacing(2.5),
     margin: 0,
   },
 }));

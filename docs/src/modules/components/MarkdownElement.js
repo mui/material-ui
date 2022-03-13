@@ -125,13 +125,9 @@ const Root = styled('div')(({ theme }) => ({
       marginLeft: 10,
       height: '26px',
       width: '26px',
-      background:
-        theme.palette.mode === 'dark'
-          ? blueDark[800]
-          : theme.palette.primary[50],
+      background: theme.palette.mode === 'dark' ? blueDark[800] : theme.palette.primary[50],
       border: '1px solid',
-      borderColor:
-        theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[200],
+      borderColor: theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[200],
       borderRadius: 8,
       color: theme.palette.text.secondary,
       '&:hover': {
