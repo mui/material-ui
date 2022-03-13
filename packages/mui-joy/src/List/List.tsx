@@ -11,9 +11,9 @@ import { useNestedList } from './NestedListContext';
 import RowListContext from './RowListContext';
 
 const useUtilityClasses = (ownerState: ListProps & { nested: boolean }) => {
-  const { size, nested } = ownerState;
+  const { size, nested, row } = ownerState;
   const slots = {
-    root: ['root', size && `size${capitalize(size)}`, nested && 'nested'],
+    root: ['root', size && `size${capitalize(size)}`, nested && 'nested', row && 'row'],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
