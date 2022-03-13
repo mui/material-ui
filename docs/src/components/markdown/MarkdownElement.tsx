@@ -5,12 +5,13 @@ import {
   // darken,
   styled,
 } from '@mui/material/styles';
+import { blueDark } from 'docs/src/modules/brandingTheme';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.caption,
   color: theme.palette.text.primary,
   '& pre': {
-    backgroundColor: theme.palette.primaryDark[800],
+    backgroundColor: blueDark[800],
     direction: 'ltr',
     overflow: 'auto',
     margin: 0,

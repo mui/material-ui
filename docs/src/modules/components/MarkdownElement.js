@@ -127,11 +127,11 @@ const Root = styled('div')(({ theme }) => ({
       width: '26px',
       background:
         theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primary[800], 0.3)
+          ? blueDark[800]
           : theme.palette.primary[50],
       border: '1px solid',
       borderColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
+        theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[200],
       borderRadius: 8,
       color: theme.palette.text.secondary,
       '&:hover': {
