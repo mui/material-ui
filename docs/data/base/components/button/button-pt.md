@@ -1,6 +1,6 @@
 ---
 product: base
-title: Unstyled React button
+title: Botão React sem estilo
 components: ButtonUnstyled
 githubLabel: 'component: button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
