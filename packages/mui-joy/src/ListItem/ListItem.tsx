@@ -115,6 +115,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     props: inProps,
     name: 'MuiListItem',
   });
+
   const row = React.useContext(RowListContext);
 
   const {

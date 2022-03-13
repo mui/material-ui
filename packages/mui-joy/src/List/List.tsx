@@ -159,6 +159,10 @@ List.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, display the list in horizontal direction.
+   */
+  row: PropTypes.bool,
+  /**
    * The size of the component (affect other nested list* components).
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

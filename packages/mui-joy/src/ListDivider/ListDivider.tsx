@@ -55,6 +55,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     props: inProps,
     name: 'MuiListDivider',
   });
+
   const row = React.useContext(RowListContext);
 
   const { component, className, children, inset, ...other } = props;
@@ -102,6 +103,7 @@ ListDivider.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The empty space on the side(s) of the divider.
+   * This prop has no effect on the divider if the nearest parent List has `row` prop set to `true`.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
