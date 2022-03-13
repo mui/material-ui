@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import {
@@ -19,8 +20,8 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
 import Link from '@mui/joy/Link';
-import Menu, { MenuUnstyledActions } from '@mui/joy/Menu';
-import MenuList from '@mui/joy/MenuList';
+import MenuPopup from '@mui/joy/MenuPopup';
+import MenuList, { MenuActions } from '@mui/joy/MenuList';
 import MenuItem from '@mui/joy/MenuItem';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
@@ -73,7 +74,7 @@ const useMenuButton = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const isOpen = Boolean(anchorEl);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const menuActions = React.useRef<MenuUnstyledActions>(null);
+  const menuActions = React.useRef<MenuActions>(null);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isOpen) {
@@ -119,31 +120,25 @@ const FirstMenu = () => {
         onClick={onClick}
         onKeyDown={onKeyDown}
         ref={menuButtonRef}
-        aria-controls={open ? 'simple-menu' : undefined}
+        aria-controls={open ? 'menu1' : undefined}
         aria-expanded={open || undefined}
         aria-haspopup="menu"
         variant="outlined"
       >
         Simple menu
       </Button>
-      <Menu
-        actions={menuActions}
-        open={open}
-        onClose={onClose}
-        anchorEl={anchorEl}
-        listboxId="simple-menu"
-      >
+      <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl}>
         <Sheet
           variant="outlined"
           sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
         >
-          <MenuList id="simple-menu">
+          <MenuList id="menu1" actions={menuActions}>
             <MenuItem onClick={onClose}>Menu item 1</MenuItem>
             <MenuItem onClick={onClose}>Menu item 2</MenuItem>
             <MenuItem onClick={onClose}>Menu item 3</MenuItem>
           </MenuList>
         </Sheet>
-      </Menu>
+      </MenuPopup>
     </div>
   );
 };
@@ -158,25 +153,19 @@ const SecondMenu = () => {
         onClick={onClick}
         onKeyDown={onKeyDown}
         ref={menuButtonRef}
-        aria-controls={open ? 'simple-menu' : undefined}
+        aria-controls={open ? 'menu2' : undefined}
         aria-expanded={open || undefined}
         aria-haspopup="menu"
         variant="outlined"
       >
         Group menus
       </Button>
-      <Menu
-        actions={menuActions}
-        open={open}
-        onClose={onClose}
-        anchorEl={anchorEl}
-        listboxId="simple-menu"
-      >
+      <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl}>
         <Sheet
           variant="outlined"
           sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
         >
-          <MenuList id="simple-menu" sx={{ '--List-nestedInsetStart': '0px' }}>
+          <MenuList id="menu2" actions={menuActions} sx={{ '--List-nestedInsetStart': '0px' }}>
             <ListItem nested>
               <ListItem component="div">
                 <Typography level="body3">NAVIGATION</Typography>
@@ -205,7 +194,7 @@ const SecondMenu = () => {
             </MenuItem>
           </MenuList>
         </Sheet>
-      </Menu>
+      </MenuPopup>
     </div>
   );
 };
@@ -220,27 +209,21 @@ const ThirdMenu = () => {
         onClick={onClick}
         onKeyDown={onKeyDown}
         ref={menuButtonRef}
-        aria-controls={open ? 'simple-menu' : undefined}
+        aria-controls={open ? 'menu3' : undefined}
         aria-expanded={open || undefined}
         aria-haspopup="menu"
         variant="outlined"
       >
         Link menu
       </Button>
-      <Menu
-        actions={menuActions}
-        open={open}
-        onClose={onClose}
-        anchorEl={anchorEl}
-        listboxId="simple-menu"
-      >
+      <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl}>
         <Sheet
           variant="outlined"
           sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
         >
-          <MenuList id="simple-menu">
+          <MenuList id="menu3" actions={menuActions}>
             <ListItem>
-              <MenuItem component={Link} href="#" onClick={onClose}>
+              <MenuItem component={Link} href="/" onClick={onClose}>
                 Menu item 1
               </MenuItem>
             </ListItem>
@@ -253,7 +236,7 @@ const ThirdMenu = () => {
             </ListItem>
           </MenuList>
         </Sheet>
-      </Menu>
+      </MenuPopup>
     </div>
   );
 };
@@ -288,6 +271,11 @@ export default function JoyTypography() {
             alignItems: 'flex-start',
           }}
         >
+          <MenuList>
+            <MenuItem onClick={() => alert('clicked')}>Menu 1</MenuItem>
+            <MenuItem onClick={() => alert('clicked')}>Menu 2</MenuItem>
+            <MenuItem onClick={() => alert('clicked')}>Menu 3</MenuItem>
+          </MenuList>
           <FirstMenu />
           <SecondMenu />
           <ThirdMenu />
