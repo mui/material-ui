@@ -713,7 +713,7 @@ const Gatsby = () => {
   );
 };
 
-export default function JoyTypography() {
+export default function JoyList() {
   return (
     <CssVarsProvider
       theme={{
@@ -1172,6 +1172,61 @@ export default function JoyTypography() {
           <Firebash />
 
           <Gatsby />
+        </Box>
+        <Box sx={{ height: 40 }} />
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
+          <List row>
+            <ListItem>Item 1</ListItem>
+            <ListItem>Item 2</ListItem>
+            <ListItem>Item 3</ListItem>
+          </List>
+          <List row>
+            <ListItem>Item 1</ListItem>
+            <ListDivider />
+            <ListItem>Item 2</ListItem>
+            <ListDivider />
+            <ListItem>Item 3</ListItem>
+          </List>
+          <List row component="nav">
+            <ListItemButton>Action 1</ListItemButton>
+            <ListItemButton>Action 2</ListItemButton>
+            <ListItemButton>Action 3</ListItemButton>
+          </List>
+          <List
+            row
+            sx={{
+              '--List-gap': '0px',
+              '--List-item-paddingLeft': '1rem',
+              '--List-item-paddingRight': '1rem',
+            }}
+          >
+            <ListItem>
+              <ListItemButton selected variant="light">
+                <ListItemDecorator>
+                  <InboxIcon />
+                </ListItemDecorator>{' '}
+                Inbox
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Label />
+                </ListItemDecorator>
+                Categories
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <People />
+                </ListItemDecorator>
+                Social
+              </ListItemButton>
+            </ListItem>
+          </List>
         </Box>
       </Box>
     </CssVarsProvider>
