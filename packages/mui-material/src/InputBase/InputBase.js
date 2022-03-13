@@ -211,6 +211,11 @@ export const InputBaseComponent = styled('input', {
       // Improve type search style.
       MozAppearance: 'textfield',
     }),
+    ...(ownerState.type === 'number' && {
+      // Overwrite Chrome default settings
+      '&::-webkit-inner-spin-button': { opacity: 1 },
+      '&::-webkit-outer-spin-button': { opacity: 1 },
+    }),
   };
 });
 
