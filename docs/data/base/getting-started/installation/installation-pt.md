@@ -1,4 +1,4 @@
-# Installation
+# Instalação
 
 <p class="description">Install MUI Base, the unstyled components & foundation hooks for building accessible UIs</p>
 
