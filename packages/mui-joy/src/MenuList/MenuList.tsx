@@ -93,6 +93,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
       component={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
+      size={size}
       {...getListboxProps(handlers)}
       {...other}
     >

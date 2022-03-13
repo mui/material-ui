@@ -28,7 +28,15 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     name: 'MuiMenuItem',
   });
 
-  const { children, className, component = 'li', disabled = false, ...other } = props;
+  const {
+    children,
+    className,
+    component = 'li',
+    disabled = false,
+    selected,
+    role,
+    ...other
+  } = props;
 
   const { getRootProps, itemState, focusVisible } = useMenuItem({ component, disabled, ref });
 
@@ -50,8 +58,14 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       disabled={disabled}
+      selected={selected}
       {...other}
       {...getRootProps(other)}
+      {...(role && { role })}
+      {...(role === 'menuitemradio' ||
+        (role === 'menuitemcheckbox' && {
+          'aria-checked': selected ? 'true' : 'false',
+        }))}
     >
       {children}
     </MenuItemRoot>

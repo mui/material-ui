@@ -42,6 +42,9 @@ import Label from '@mui/icons-material/Label';
 import People from '@mui/icons-material/People';
 import Info from '@mui/icons-material/Info';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDownRounded';
+import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
+import RadioButtonChecked from '@mui/icons-material/RadioButtonChecked';
+import Done from '@mui/icons-material/Done';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -216,7 +219,7 @@ const ThirdMenu = () => {
       >
         Link menu
       </Button>
-      <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl}>
+      <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl} placement="bottom-end">
         <Sheet
           variant="outlined"
           sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
@@ -275,6 +278,58 @@ export default function JoyTypography() {
             <MenuItem onClick={() => alert('clicked')}>Menu 1</MenuItem>
             <MenuItem onClick={() => alert('clicked')}>Menu 2</MenuItem>
             <MenuItem onClick={() => alert('clicked')}>Menu 3</MenuItem>
+          </MenuList>
+          <MenuList size="sm" sx={{ '--List-gap': '0.25rem' }}>
+            <MenuItem role="menuitemradio">
+              <ListItemDecorator>
+                <RadioButtonUnchecked />
+              </ListItemDecorator>
+              <ListItemContent>Startup</ListItemContent>
+            </MenuItem>
+            <MenuItem variant="contained" selected role="menuitemradio">
+              <ListItemDecorator>
+                <RadioButtonChecked />
+              </ListItemDecorator>
+              <ListItemContent>Business</ListItemContent>
+            </MenuItem>
+            <MenuItem role="menuitemradio">
+              <ListItemDecorator>
+                <RadioButtonUnchecked />
+              </ListItemDecorator>
+              <ListItemContent>Enterprise</ListItemContent>
+            </MenuItem>
+          </MenuList>
+          <MenuList
+            size="sm"
+            sx={{ '--List-item-paddingLeft': '0.5rem', '--List-nestedInsetStart': '0px' }}
+          >
+            <ListItem nested sx={{ py: 0 }}>
+              <List role="group">
+                <MenuItem role="menuitemradio">
+                  <ListItemDecorator />
+                  Single
+                </MenuItem>
+                <MenuItem role="menuitemradio">
+                  <ListItemDecorator />
+                  1.15
+                </MenuItem>
+                <MenuItem role="menuitemradio">
+                  <ListItemDecorator />
+                  Double
+                </MenuItem>
+                <MenuItem role="menuitemradio" selected>
+                  <ListItemDecorator>
+                    <Done />
+                  </ListItemDecorator>
+                  Custom 1.12
+                </MenuItem>
+              </List>
+            </ListItem>
+            <ListDivider />
+            <MenuItem>Add space before paragraph</MenuItem>
+            <MenuItem>Add space after paragraph</MenuItem>
+            <ListDivider />
+            <MenuItem>Custom spacing...</MenuItem>
           </MenuList>
           <FirstMenu />
           <SecondMenu />

@@ -35,6 +35,7 @@ const MenuPopup = React.forwardRef(function MenuPopup(inProps, ref) {
     <MenuPopupRoot
       ref={ref}
       anchorEl={anchorEl}
+      disablePortal
       keepMounted
       open={open}
       role={undefined}
