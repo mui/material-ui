@@ -6143,10 +6143,10 @@ cp-file@^9.1.0:
     nested-error-stacks "^2.0.0"
     p-event "^4.1.0"
 
-cpy-cli@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/cpy-cli/-/cpy-cli-4.0.0.tgz#e82c431ba73ecba2b68794971887b0524cb7edd1"
-  integrity sha512-jYrVFg9/ZAl3GRg8ambMoCgCZIGhNO2HNte5jdJXXMSEtM1ZFxw+qo8290LVtWWDrzu++eUyTXoqcqZZNuv8AQ==
+cpy-cli@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/cpy-cli/-/cpy-cli-4.1.0.tgz#64ce7e23e095a4961539f89da6413f5deb8a62f6"
+  integrity sha512-JA6bth6/mxPCa19SrWkIuPEBrea8vO9g1v0qhmCLnAKOfTcsNk5/X3W1o9aZuOHgugRcxdyR67rO4Gw/DA+4Qg==
   dependencies:
     cpy "^9.0.0"
     meow "^10.1.2"
