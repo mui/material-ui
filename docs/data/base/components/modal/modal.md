@@ -58,7 +58,7 @@ You can animate the open and close states of a modal with a transition component
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
-  These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+> The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
 
 Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
