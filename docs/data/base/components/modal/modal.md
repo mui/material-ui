@@ -64,7 +64,7 @@ You can animate the open and close states of a modal with a transition component
 
 {{"demo": "TransitionsModal.js", "defaultCodeOpen": false}}
 
-Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
+Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring):
 
 {{"demo": "SpringModal.js", "defaultCodeOpen": false}}
 
