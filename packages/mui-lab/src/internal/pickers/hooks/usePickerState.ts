@@ -71,6 +71,7 @@ export function usePickerState<TInput, TDateValue>(
   }
 
   const [initialDate, setInitialDate] = React.useState<TDateValue>(draftState.committed);
+  const [isWrapperVariant, setIsWrapperVariant] = React.useState<WrapperVariant>(null);
 
   // Mobile keyboard view is a special case.
   // When it's open picker should work like closed, cause we are just showing text field
@@ -96,7 +97,13 @@ export function usePickerState<TInput, TDateValue>(
       open: isOpen,
       onClear: () => acceptDate(valueManager.emptyValue, true),
       onAccept: () => acceptDate(draftState.draft, true),
-      onDismiss: () => acceptDate(initialDate, true),
+      onDismiss: () => {
+        if (isWrapperVariant === 'mobile') {
+          acceptDate(initialDate, true);
+        } else {
+          setIsOpen(false);
+        }
+      },
       onSetToday: () => {
         const now = utils.date() as TDateValue;
         dispatch({ type: 'update', payload: now });
@@ -109,8 +116,10 @@ export function usePickerState<TInput, TDateValue>(
       isOpen,
       utils,
       draftState.draft,
+      setIsOpen,
       valueManager.emptyValue,
       initialDate,
+      isWrapperVariant,
     ],
   );
 
@@ -124,6 +133,7 @@ export function usePickerState<TInput, TDateValue>(
         wrapperVariant: WrapperVariant,
         selectionState: PickerSelectionState = 'partial',
       ) => {
+        setIsWrapperVariant(wrapperVariant);
         dispatch({ type: 'update', payload: newDate });
         if (selectionState === 'partial') {
           acceptDate(newDate, false);
