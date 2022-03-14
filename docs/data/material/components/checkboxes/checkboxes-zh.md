@@ -39,13 +39,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 ## 图标
 
-{{"demo": "Iconcheckboxes.js"}}
+{{"demo": "IconCheckboxes.js"}}
 
 ## Controlled
 
 您可以使用 `checked` 和 `onChange` 属性控制复选框：
 
-{{"demo": "ControledCheckbox.js"}}
+{{"demo": "ControlledCheckbox.js"}}
 
 ## 不确定的状态
 
