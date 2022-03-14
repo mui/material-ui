@@ -18,6 +18,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     classes?: Partial<ListClasses>;
     /**
+     * If `true`, display the list in horizontal direction.
+     */
+    row?: boolean;
+    /**
      * The size of the component (affect other nested list* components).
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', ListPropsSizeOverrides>;

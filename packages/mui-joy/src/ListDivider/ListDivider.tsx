@@ -7,6 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListDividerProps, ListDividerTypeMap } from './ListDividerProps';
 import { getListDividerUtilityClass } from './listDividerClasses';
+import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListDividerProps) => {
   const slots = {
@@ -20,26 +21,33 @@ const ListDividerRoot = styled('li', {
   name: 'MuiListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListDividerProps }>(({ theme, ownerState }) => ({
-  '--List-divider-marginY': 'calc(var(--List-gap) + var(--List-divider-gap))',
+})<{ ownerState: ListDividerProps & { row: boolean } }>(({ theme, ownerState }) => ({
   border: 'none', // reset the border for `hr` tag
-  borderBottom: '1px solid',
+  ...(ownerState.row && {
+    '--List-divider-marginX': 'calc(var(--List-gap) + var(--List-divider-gap))',
+    borderRight: '1px solid',
+    margin: '0px var(--List-divider-marginX)',
+  }),
+  ...(!ownerState.row && {
+    '--List-divider-marginY': 'calc(var(--List-gap) + var(--List-divider-gap))',
+    // by default, the divider line is stretched from edge-to-edge of the List
+    // spacing between ListItem can be controlled by `--List-divider-gap` on the List
+    margin: 'var(--List-divider-marginY) calc(-1 * var(--List-padding))',
+    ...(ownerState.inset === 'gutter' && {
+      margin: 'var(--List-divider-marginY)',
+      marginRight: 'var(--List-item-paddingRight)',
+      marginLeft: 'var(--List-item-paddingLeft)',
+    }),
+    ...(ownerState.inset === 'startDecorator' && {
+      marginLeft: 'var(--List-item-paddingLeft)',
+    }),
+    ...(ownerState.inset === 'startContent' && {
+      marginLeft: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
+    }),
+    borderBottom: '1px solid',
+  }),
   borderColor: theme.vars.palette.divider,
-  // by default, the divider line is stretched from edge-to-edge of the List
-  // spacing between ListItem can be controlled by `--List-divider-gap` on the List
-  margin: 'var(--List-divider-marginY) calc(-1 * var(--List-padding))',
   listStyle: 'none',
-  ...(ownerState.inset === 'gutter' && {
-    margin: 'var(--List-divider-marginY)',
-    marginRight: 'var(--List-item-paddingRight)',
-    marginLeft: 'var(--List-item-paddingLeft)',
-  }),
-  ...(ownerState.inset === 'startDecorator' && {
-    marginLeft: 'var(--List-item-paddingLeft)',
-  }),
-  ...(ownerState.inset === 'startContent' && {
-    marginLeft: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
-  }),
 }));
 
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
@@ -48,10 +56,13 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     name: 'MuiListDivider',
   });
 
+  const row = React.useContext(RowListContext);
+
   const { component, className, children, inset, ...other } = props;
 
   const ownerState = {
     inset,
+    row,
     ...props,
   };
 
@@ -64,6 +75,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       role="separator"
+      aria-orientation={row ? 'horizontal' : 'vertical'}
       {...other}
     >
       {children}
@@ -91,6 +103,7 @@ ListDivider.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The empty space on the side(s) of the divider.
+   * This prop has no effect on the divider if the nearest parent List has `row` prop set to `true`.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
