@@ -13,12 +13,11 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 The `Modal` component renders its `children` node in front of a backdrop component. This lets you create a window that your users must interact with before continuing in the parent application.
 Features:
 
-- 💄 Manages modal stacking when one-at-a-time just isn't enough.
-- 🔐 Creates a backdrop, for disabling interaction below the modal.
-- 🔐 It disables scrolling of the page content while open.
-- ♿️ It properly manages focus; moving to the modal content,
-  and keeping it there until the modal is closed.
-- ♿️ Adds the appropriate ARIA roles automatically.
+- 💄 Manages modal stacking when more than one is needed
+- 🔐 Creates a backdrop to disable interaction with the rest of the app
+- 🔐 Disables page scrolling while open
+- ♿️ Manages focus correctly between the modal and its parent app
+- ♿️ Adds the appropriate ARIA roles automatically
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
