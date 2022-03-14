@@ -121,5 +121,5 @@ If the user needs to interact with another part of the page—for example, to in
   </Modal>
   ```
 
-- The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
+- Follow the [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal.
 > ⚠ **Note:** a modal window can sit on top of either the parent application, or another modal window. _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. This can lead to [conflicting behaviors](#focus-trap).
