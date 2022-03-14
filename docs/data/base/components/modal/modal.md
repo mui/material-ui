@@ -70,7 +70,8 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 ## Performance
 
-The content of modal is unmounted when closed.
+The `Modal` component's content is unmounted when it is not open, making it inaccessible.
+
 If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness
 it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
 
