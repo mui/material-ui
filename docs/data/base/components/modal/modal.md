@@ -8,7 +8,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 
 # Modal
 
-<p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
+<p class="description">The `Modal` component lets you create dialogs, popovers, lightboxes, and other windows that force the user to take action before continuing.</p>
 
 The component renders its `children` node in front of a backdrop component.
 The `Modal` offers important features:
