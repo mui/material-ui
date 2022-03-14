@@ -24,7 +24,6 @@ import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
@@ -184,10 +183,10 @@ Icons.propTypes = {
 
 const ImportLink = styled(Link)(({ theme }) => ({
   textAlign: 'right',
-  padding: theme.spacing(1, 2),
+  padding: theme.spacing(0.5, 1),
 }));
 
-const Markdown = styled(MarkdownElement)(({ theme }) => ({
+const Markdown = styled(HighlightedCode)(({ theme }) => ({
   cursor: 'pointer',
   transition: theme.transitions.create('background-color', {
     duration: theme.transitions.duration.shortest,
@@ -198,7 +197,7 @@ const Markdown = styled(MarkdownElement)(({ theme }) => ({
     },
   },
   '& pre': {
-    padding: theme.spacing(2.5),
+    borderRadius: 0,
     margin: 0,
   },
 }));
@@ -297,8 +296,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             title={copied2 ? t('copied') : t('clickToCopy')}
             TransitionProps={{ onExited: () => setCopied2(false) }}
           >
-            <HighlightedCode
-              component={Markdown}
+            <Markdown
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
