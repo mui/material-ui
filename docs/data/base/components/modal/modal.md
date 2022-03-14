@@ -89,7 +89,7 @@ Be sure to identify bottlenecks first, and then try out these optimization strat
 
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
 
-In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+In order to display a modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
 
