@@ -111,7 +111,7 @@ If the user needs to interact with another part of the page—for example, to in
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`.
+- All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the `Modal`:
 
   ```jsx
