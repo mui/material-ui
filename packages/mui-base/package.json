@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-alpha.71",
+  "version": "5.0.0-alpha.72",
   "private": false,
   "author": "MUI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
@@ -60,7 +60,7 @@
     "react-is": "^17.0.2"
   },
   "devDependencies": {
-    "@mui/types": "^7.1.2"
+    "@mui/types": "^7.1.3"
   },
   "sideEffects": false,
   "publishConfig": {

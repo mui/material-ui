@@ -1,5 +1,70 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.5.1
+
+<!-- generated comparing v5.5.0..master -->
+
+_Mar 14, 2022_
+
+A big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
+
+- 📊 2021 survey results post by @danilo-leal
+- ✨ Many additions to the Joy package by @siriwatknp
+- Several 🐛 bug fixes and 📚 documentation improvements
+
+### @mui/material@5.5.1
+
+- &#8203;<!-- 14 -->[Fab] Add z-index (#30842) @issamElmohadeb098
+- &#8203;<!-- 13 -->[Grid] Fix columns of nested container (#31340) @boutahlilsoufiane
+- &#8203;<!-- 12 -->[i10n] Update italian locale (#30974) @SalvatoreMazzullo
+- &#8203;<!-- 07 -->[Pagination] Fix type of UsePaginationItem["page"] (#31295) @aaronadamsCA
+- &#8203;<!-- 06 -->[Popper] Allow setting default props in a theme (#30118) @hafley66
+- &#8203;<!-- 04 -->[TextField] fix disappearing border in Safari (#31406) @krysia1
+
+### @mui/joy@5.0.0-alpha.19
+
+- &#8203;<!-- 11 -->[Joy] Add icon & label `Switch` examples (#31359) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Add `TextField` component (#31299) @siriwatknp
+- &#8203;<!-- 09 -->[Joy] Add `--Icon-fontSize` to components (#31360) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Add `Checkbox` component (#31273) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 39 -->[blog] 2021 survey results post (#30999) @danilo-leal
+- &#8203;<!-- 36 -->[docs] Add Macedonian translation (#31402) @theCuriousOne
+- &#8203;<!-- 35 -->[docs] Fix API page table styles in Safari (#31696) @aaarichter
+- &#8203;<!-- 34 -->[docs] Fix SEO issues (#31505) @oliviertassinari
+- &#8203;<!-- 33 -->[docs] Fix Link leak of Next.js props (#31418) @oliviertassinari
+- &#8203;<!-- 32 -->[docs] Add "Work in biotech" to showcase (#31711) @klyburke
+- &#8203;<!-- 31 -->[docs] Fix docs site crash on iOS Safari 12 (#31458) @badalsaibo
+- &#8203;<!-- 30 -->[docs] Fix search icons crash (#31651) @juanpc10
+- &#8203;<!-- 29 -->[docs] Remove unnecessary await in e2e-tests (#31767) @siriwatknp
+- &#8203;<!-- 28 -->[docs] Fix source code links on the Templates page (#31425) @danilo-leal
+- &#8203;<!-- 27 -->[docs] Adjust Stack's basic usage demo (#31423) @danilo-leal
+- &#8203;<!-- 26 -->[docs] Migrate button demos to base (#31395) @siriwatknp
+- &#8203;<!-- 25 -->[docs] Fix y-axis unit used in the responsive font sizes chart (#31424) @aaarichter
+- &#8203;<!-- 24 -->[docs] Remove joy mockup pages (#31412) @siriwatknp
+- &#8203;<!-- 23 -->[docs] Fix the statement that styleOverrides are added by default (#31257) @mnajdova
+- &#8203;<!-- 22 -->[docs] Refine the product identifier menu (#31262) @danilo-leal
+- &#8203;<!-- 21 -->[docs] Fix Search crash (#31386) @reckter
+- &#8203;<!-- 20 -->[docs] Update TextField multiline description (#31291) @jontewks
+- &#8203;<!-- 19 -->[docs] Add gap theme mapping in the System properties table (#31382) @danilo-leal
+- &#8203;<!-- 18 -->[docs] Test products search (#31351) @siriwatknp
+- &#8203;<!-- 17 -->[docs] Fix GitHub source links in the demo toolbar (#31339) @PunitSoniME
+- &#8203;<!-- 16 -->[docs] Add Algolia verification code to robot.txt (#31356) @siriwatknp
+- &#8203;<!-- 15 -->[examples] Ignore tsbuildinfo with Next.js (#31460) @B0und
+- &#8203;<!-- 02 -->[website] Add new gold sponsor (#31354) @hbjORbj
+- &#8203;<!-- 01 -->[website] Update Ukraine support link (#31378) @samuelsycamore
+
+### Core
+
+- &#8203;<!-- 38 -->[core] Simplify anchor link (#31419) @oliviertassinari
+- &#8203;<!-- 37 -->[core] Revert unrelated changes in #31354 @oliviertassinari
+- &#8203;<!-- 05 -->[test] Upgrade CircleCI convenience image (#31394) @m4theushw
+- &#8203;<!-- 03 -->[typescript] Simplify display of slot props types (#31240) @michaldudak
+
+All contributors of this release in alphabetical order: @aaarichter, @aaronadamsCA, @B0und, @badalsaibo, @boutahlilsoufiane, @danilo-leal, @hafley66, @hbjORbj, @issamElmohadeb098, @jontewks, @juanpc10, @klyburke, @krysia1, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @reckter, @SalvatoreMazzullo, @samuelsycamore, @siriwatknp, @theCuriousOne
+
 ## 5.5.0
 
 <!-- generated comparing v5.4.4..master -->
