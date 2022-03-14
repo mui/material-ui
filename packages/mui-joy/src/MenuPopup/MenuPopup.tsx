@@ -17,17 +17,21 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getMenuPopupUtilityClass, {});
 };
 
-const MenuPopupRoot = styled(PopperUnstyled)({
+const MenuPopupRoot = styled(PopperUnstyled, {
+  name: 'MuiMenuPopup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   zIndex: 1,
 });
 
 const MenuPopup = React.forwardRef(function MenuPopup(inProps, ref) {
-  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+  const props = useThemeProps<typeof inProps>({
     props: inProps,
     name: 'MuiMenuPopup',
   });
 
-  const { anchorEl, children, className, component, onClose, open = false, ...other } = props;
+  const { anchorEl, children, className, onClose, open = false, ...other } = props;
 
   const classes = useUtilityClasses();
 

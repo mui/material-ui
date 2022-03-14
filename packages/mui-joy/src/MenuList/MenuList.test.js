@@ -2,49 +2,50 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Menu, { menuListClasses as classes } from '@mui/joy/Menu';
-import MenuItem from '@mui/joy/MenuItem';
+import MenuList, { menuListClasses as classes } from '@mui/joy/MenuList';
+import ListItem from '@mui/joy/ListItem';
+import List, { listClasses } from '@mui/joy/List';
 
-describe('Joy <Menu />', () => {
+describe('Joy <MenuList />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Menu />, () => ({
+  describeConformance(<MenuList />, () => ({
     classes,
-    inheritComponent: 'ul',
+    inheritComponent: List,
     render,
     ThemeProvider,
-    muiName: 'MuiMenu',
+    muiName: 'MuiMenuList',
     refInstanceof: window.HTMLUMenuElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 
   it('should have root className', () => {
-    const { container } = render(<Menu />);
+    const { container } = render(<MenuList />);
     expect(container.firstChild).to.have.class(classes.root);
-    expect(container.firstChild).to.have.class(classes.sizeMd);
+    expect(container.firstChild).to.have.class(listClasses.sizeMd);
   });
 
   it('should accept className prop', () => {
-    const { container } = render(<Menu className="foo-bar" />);
+    const { container } = render(<MenuList className="foo-bar" />);
     expect(container.firstChild).to.have.class('foo-bar');
   });
 
   it('should have sm classes', () => {
-    const { container } = render(<Menu size="sm" />);
-    expect(container.firstChild).to.have.class(classes.sizeSm);
+    const { container } = render(<MenuList size="sm" />);
+    expect(container.firstChild).to.have.class(listClasses.sizeSm);
   });
 
   it('should have lg classes', () => {
-    const { container } = render(<Menu size="lg" />);
-    expect(container.firstChild).to.have.class(classes.sizeLg);
+    const { container } = render(<MenuList size="lg" />);
+    expect(container.firstChild).to.have.class(listClasses.sizeLg);
   });
 
   it('should have nested classes', () => {
     const { getByRole } = render(
-      <MenuItem nested>
-        <Menu />
-      </MenuItem>,
+      <ListItem nested>
+        <MenuList />
+      </ListItem>,
     );
-    expect(getByRole('menu')).to.have.class(classes.nested);
+    expect(getByRole('menu')).to.have.class(listClasses.nested);
   });
 });
