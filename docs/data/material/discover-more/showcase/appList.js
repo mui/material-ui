@@ -529,7 +529,7 @@ const appList = [
     similarWebVisits: 62,
     dateAdded: '2022-02-05',
   },
-    {
+  {
     title: 'Work in biotech',
     description: 'Job board for small biotech startup companies',
     image: 'workinbiotech.png',
