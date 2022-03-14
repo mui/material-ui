@@ -46,7 +46,7 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 
 ## Nested modal
 
-Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.
+> ⚠ **Note:** though it is possible to create nested modals—for example, a select modal within a dialog—stacking more than two at a time is discouraged.
 
 {{"demo": "NestedModal.js", "defaultCodeOpen": false}}
 
