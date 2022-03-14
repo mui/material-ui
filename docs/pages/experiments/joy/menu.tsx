@@ -270,6 +270,7 @@ export default function JoyTypography() {
           sx={{
             display: 'grid',
             gap: 2,
+            px: 2,
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             alignItems: 'flex-start',
           }}
