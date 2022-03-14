@@ -250,6 +250,8 @@ module.exports = {
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
         '@typescript-eslint/no-use-before-define': 'off',
         'react/prop-types': 'off',
+        'no-alert': 'off',
+        'no-console': 'off',
       },
     },
     {
