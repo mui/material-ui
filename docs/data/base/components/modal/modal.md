@@ -111,7 +111,7 @@ In the event the users need to interact with another part of the page, e.g. with
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`.
-  Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+  You can also use `aria-describedby="id..."` to provide a description of the `Modal`:
 
   ```jsx
   <Modal aria-labelledby="modal-title" aria-describedby="modal-description">
