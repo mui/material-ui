@@ -1,5 +1,5 @@
 <Button onClick={handleOpen}>Open modal</Button>
-<StyledModal
+<Modal
   open={open}
   onClose={handleClose}
   aria-labelledby="parent-modal-title"
@@ -13,4 +13,4 @@
     </p>
     <ChildModal />
   </div>
-</StyledModal>
+</Modal>

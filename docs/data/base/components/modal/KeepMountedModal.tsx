@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { styled, Box } from '@mui/system';
+import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
-const StyledModal = styled(ModalUnstyled)(`
+const Modal = styled(ModalUnstyled)(`
   position: fixed;
   z-index: 1300;
   right: 0;
@@ -17,7 +18,7 @@ const StyledModal = styled(ModalUnstyled)(`
   }
 `);
 
-const Backdrop = styled('div')`
+const Backdrop = styled(BackdropUnstyled)`
   z-index: -1;
   position: fixed;
   right: 0;
@@ -47,7 +48,7 @@ export default function ModalUnstyledDemo() {
       <button type="button" onClick={handleOpen}>
         Open modal
       </button>
-      <StyledModal
+      <Modal
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
         open={open}
@@ -59,7 +60,7 @@ export default function ModalUnstyledDemo() {
           <h2 id="keep-mounted-modal-title">Text in a modal</h2>
           <p id="keep-mounted-modal-description">Aliquid amet deserunt earum!</p>
         </Box>
-      </StyledModal>
+      </Modal>
     </div>
   );
 }

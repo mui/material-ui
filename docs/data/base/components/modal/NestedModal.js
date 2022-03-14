@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Modal from '@mui/base/ModalUnstyled';
+import ModalUnstyled from '@mui/base/ModalUnstyled';
+import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
 
-const StyledModal = styled(Modal)`
+const Modal = styled(ModalUnstyled)`
   position: fixed;
   z-index: 1300;
   right: 0;
@@ -15,7 +16,7 @@ const StyledModal = styled(Modal)`
   justify-content: center;
 `;
 
-const Backdrop = styled('div')`
+const Backdrop = styled(BackdropUnstyled)`
   z-index: -1;
   position: fixed;
   right: 0;
@@ -49,7 +50,7 @@ function ChildModal() {
   return (
     <React.Fragment>
       <Button onClick={handleOpen}>Open Child Modal</Button>
-      <StyledModal
+      <Modal
         hideBackdrop
         open={open}
         onClose={handleClose}
@@ -63,7 +64,7 @@ function ChildModal() {
           </p>
           <Button onClick={handleClose}>Close Child Modal</Button>
         </div>
-      </StyledModal>
+      </Modal>
     </React.Fragment>
   );
 }
@@ -80,7 +81,7 @@ export default function NestedModal() {
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
-      <StyledModal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
@@ -94,7 +95,7 @@ export default function NestedModal() {
           </p>
           <ChildModal />
         </div>
-      </StyledModal>
+      </Modal>
     </div>
   );
 }

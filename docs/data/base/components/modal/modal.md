@@ -40,13 +40,13 @@ Modal is a lower-level construct that is leveraged by the following components:
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 ```
 
-{{"demo": "ModalUnstyled.js"}}
+{{"demo": "ModalUnstyled.js", "defaultCodeOpen": false }}
 
 ## Nested modal
 
 Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.
 
-{{"demo": "NestedModal.js"}}
+{{"demo": "NestedModal.js", "defaultCodeOpen": false}}
 
 ## Transitions
 
@@ -61,11 +61,11 @@ This component should respect the following conditions:
 
 Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
-{{"demo": "TransitionsModal.js"}}
+{{"demo": "TransitionsModal.js", "defaultCodeOpen": false}}
 
 Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
-{{"demo": "SpringModal.js"}}
+{{"demo": "SpringModal.js", "defaultCodeOpen": false}}
 
 ## Performance
 
@@ -89,7 +89,7 @@ Be sure to identify bottlenecks first, and then try out these optimization strat
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
 In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
-{{"demo": "ServerModal.js"}}
+{{"demo": "ServerModal.js", "defaultCodeOpen": false}}
 
 ## Limitations
 
