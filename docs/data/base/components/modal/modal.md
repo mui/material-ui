@@ -29,7 +29,7 @@ Features:
 
 If you are creating a modal dialog, the [`Dialog`](/material-ui/dialog/) component is better suited for this specific use case.
 
-Modal is a lower-level construct that is leveraged by the following components:
+`Modal` is a lower-level construct that is leveraged by the following components:
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer](/material-ui/react-drawer/)
