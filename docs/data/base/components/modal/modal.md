@@ -21,9 +21,11 @@ Features:
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-> **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
-> A modal window describes parts of a UI.
-> An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+> **Note:** the term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
+> A dialog may be _modal_ or _nonmodal_.
+> 
+> A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action.
+> As such, it should be used sparingly—only when the app _requires_ user input before it can continue.
 
 If you are creating a modal dialog, you probably want to use a [Dialog](/material-ui/dialog/) component rather than directly using Modal.
 Modal is a lower-level construct that is leveraged by the following components:
