@@ -37,7 +37,6 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
-
     });
   });
 });
