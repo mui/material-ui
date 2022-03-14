@@ -80,7 +80,7 @@ If you need to make the content available to search engines, or render expensive
 
 {{"demo": "KeepMountedModal.js", "defaultCodeOpen": false}}
 
-> You can use the `MuiModal-hidden` class to hide the modal when it is not opened.
+> You can use the `MuiModal-hidden` class to hide the modal when it is not open.
 
 As with any performance optimization, this is not a silver bullet.
 Be sure to identify bottlenecks first, and then try out these optimization strategies.
