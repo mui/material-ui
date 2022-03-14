@@ -52,8 +52,7 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 
 ## Transitions
 
-The open/close state of the modal can be animated with a transition component.
-This component should respect the following conditions:
+You can animate the open and close states of a modal with a transition component, as long as that component fulfills the following requirements:
 
 - Be a direct child descendent of the modal.
 - Have an `in` prop. This corresponds to the open/close state.
