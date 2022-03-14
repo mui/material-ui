@@ -48,6 +48,25 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "NestedModal.js"}}
 
+## Transitions
+
+The open/close state of the modal can be animated with a transition component.
+This component should respect the following conditions:
+
+- Be a direct child descendent of the modal.
+- Have an `in` prop. This corresponds to the open/close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed.
+  These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+
+Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+
+{{"demo": "TransitionsModal.js"}}
+
+Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
+
+{{"demo": "SpringModal.js"}}
+
 ## Performance
 
 The content of modal is unmounted when closed.

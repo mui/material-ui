@@ -102,7 +102,12 @@ export type ComponentInfo = {
   skipApiGeneration?: boolean;
 };
 
-const migratedBaseComponents = ['ButtonUnstyled', 'MenuUnstyled', 'MenuItemUnstyled'];
+const migratedBaseComponents = [
+  'ButtonUnstyled',
+  'MenuUnstyled',
+  'MenuItemUnstyled',
+  'ModalUnstyled',
+];
 
 export const getGenericComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
