@@ -99,7 +99,8 @@ In order to display a modal rendered on the server, you need to disable the port
 
 The modal moves the focus back to the body of the component if the focus tries to escape it.
 
-This is done for accessibility purposes. However, it might create issues.
+This is done for accessibility purposes, but it can create issues for your users.
+
 In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
 
 ```jsx
