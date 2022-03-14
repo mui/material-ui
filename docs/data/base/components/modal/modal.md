@@ -101,7 +101,7 @@ The modal moves the focus back to the body of the component if the focus tries t
 
 This is done for accessibility purposes, but it can create issues for your users.
 
-In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+If the user needs to interact with another part of the page—for example, to interact with a chatbot window while a modal is open in the parent app—you can disable the default behavior:
 
 ```jsx
 <Modal disableEnforceFocus />
