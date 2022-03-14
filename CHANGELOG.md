@@ -22,6 +22,7 @@ A big thanks to the 23 contributors who made this release possible. Here are som
 
 ### @mui/joy@5.0.0-alpha.19
 
+- [Joy] Support horizontal List (#31620) @siriwatknp
 - [Joy] Add icon & label `Switch` examples (#31359) @siriwatknp
 - [Joy] Add `TextField` component (#31299) @siriwatknp
 - [Joy] Add `--Icon-fontSize` to components (#31360) @siriwatknp
