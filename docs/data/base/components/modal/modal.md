@@ -54,10 +54,10 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 
 You can animate the open and close states of a modal with a transition component, as long as that component fulfills the following requirements:
 
-- Be a direct child descendent of the modal.
-- Have an `in` prop. This corresponds to the open/close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed.
+- Is a direct child descendent of the modal
+- Has an `in` prop—this corresponds to the open/close state
+- Calls the `onEnter` callback prop when the enter transition starts
+- Calls the `onExited` callback prop when the exit transition is completed
   These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
 
 Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
