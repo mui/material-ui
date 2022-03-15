@@ -215,7 +215,7 @@ export const darkColorSystem = {
       lightDisabledBg: `var(--joy-palette-neutral-900)`,
 
       containedColor: `#fff`,
-      containedBg: `var(--joy-palette-neutral-700)`,
+      containedBg: `var(--joy-palette-neutral-600)`,
       containedHoverBg: `var(--joy-palette-neutral-700)`,
       containedActiveBg: `var(--joy-palette-neutral-800)`,
       containedDisabledColor: `var(--joy-palette-neutral-400)`,
