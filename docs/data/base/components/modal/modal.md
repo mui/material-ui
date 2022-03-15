@@ -1,7 +1,7 @@
 ---
-product: material-ui
+product: base
 title: React Modal component
-components: Modal, ModalUnstyled
+components: ModalUnstyled
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 ---
