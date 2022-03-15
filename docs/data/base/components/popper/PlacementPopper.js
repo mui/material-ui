@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 
 const Radio = ({ value, ...props }) => (
@@ -14,6 +15,14 @@ const Radio = ({ value, ...props }) => (
     <label htmlFor={`placement-${value}-radio`}>{value}</label>
   </span>
 );
+
+Radio.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+};
 
 const PlacementForm = ({ setPlacement }) => (
   <div
@@ -82,9 +91,14 @@ const PlacementForm = ({ setPlacement }) => (
   </div>
 );
 
+PlacementForm.propTypes = {
+  setPlacement: PropTypes.func.isRequired,
+};
+
 export default function PlacementPopper() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [placement, setPlacement] = React.useState(undefined);
+
   return (
     <div style={{ width: '100%' }}>
       <PlacementForm setPlacement={setPlacement} />
