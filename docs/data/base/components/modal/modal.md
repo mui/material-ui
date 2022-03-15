@@ -84,7 +84,7 @@ You can also use the keepMounted prop if you want to make the content of the mod
 
 > You can use the `MuiModal-hidden` class to hide the modal when it is not open.
 
-As with any performance optimization, this is not a silver bullet.
+As with any performance optimization, the `keepMounted` prop won't necessarily solve all of your problems.
 Be sure to identify bottlenecks first, and then try out these optimization strategies.
 
 ## Server-side modal
