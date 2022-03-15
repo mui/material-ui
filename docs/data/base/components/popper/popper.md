@@ -34,5 +34,3 @@ By default, the popper is mounted to the DOM when it receives `open` prop as `tr
 The default placement of the popper is `bottom`. You can simply change it with `placement` prop.
 
 {{"demo": "PlacementPopper.js"}}
-
-
