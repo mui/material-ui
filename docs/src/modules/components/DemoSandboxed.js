@@ -12,8 +12,6 @@ import { jssPreset, StylesProvider } from '@mui/styles';
 import {
   useTheme,
   styled,
-  createTheme,
-  ThemeProvider,
   useColorScheme,
   unstable_createTheme,
   CssVarsProvider,
@@ -192,11 +190,12 @@ const jss = create({
 });
 
 const ColorSchemeSetter = ({ mode: inputMode }) => {
-  const { mode, setMode } = useColorScheme();
+  const { setMode } = useColorScheme();
 
   React.useEffect(() => {
     setMode(inputMode);
-  }, [inputMode]);
+  }, [inputMode, setMode]);
+
   return null;
 };
 
