@@ -213,8 +213,7 @@ export const InputBaseComponent = styled('input', {
     }),
     ...(ownerState.type === 'number' && {
       // Overwrite Chrome default settings
-      '&::-webkit-inner-spin-button': { opacity: 1 },
-      '&::-webkit-outer-spin-button': { opacity: 1 },
+      '&::-webkit-inner-spin-button, &::-webkit-outer-spin-button': { opacity: 1 },
     }),
   };
 });
