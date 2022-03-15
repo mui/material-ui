@@ -12,6 +12,7 @@ import {
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import listItemClasses from '../ListItem/listItemClasses';
+import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
@@ -40,7 +41,7 @@ const ListItemButtonRoot = styled('div', {
   name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemButtonProps }>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
   {
     ...(ownerState.color &&
       ownerState.color !== 'context' && {
@@ -62,7 +63,7 @@ const ListItemButtonRoot = styled('div', {
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
-    flex: 1,
+    flex: ownerState.row ? 'none' : 1,
     minWidth: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
@@ -75,12 +76,16 @@ const ListItemButtonRoot = styled('div', {
     '&.Mui-focusVisible': theme.focus.default,
     // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
     // We want to be specific on what siblings the gap should be added.
-    [`& + .${listItemButtonClasses.root}`]: {
-      marginTop: 'var(--List-gap)',
-    },
-    [`& + .${listItemClasses.root}`]: {
-      marginTop: 'var(--List-gap)',
-    },
+    [`& + .${listItemButtonClasses.root}`]: ownerState.row
+      ? { marginLeft: 'var(--List-gap)' }
+      : {
+          marginTop: 'var(--List-gap)',
+        },
+    [`& + .${listItemClasses.root}`]: ownerState.row
+      ? { marginLeft: 'var(--List-gap)' }
+      : {
+          marginTop: 'var(--List-gap)',
+        },
     // default color & background styles when `color` prop is not specified or set as default
     ...(!ownerState.color &&
       !ownerState.selected && {
@@ -111,6 +116,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     props: inProps,
     name: 'MuiListItemButton',
   });
+
+  const row = React.useContext(RowListContext);
 
   const {
     children,
@@ -150,6 +157,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component,
     color,
     focusVisible,
+    row,
     selected,
     variant,
   };

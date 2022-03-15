@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GlobalStyles, CSSObject } from '@mui/system';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
@@ -11,6 +11,7 @@ import PlayArrow from '@mui/icons-material/PlayArrow';
 import HistoryEdu from '@mui/icons-material/HistoryEdu';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 declare module '@mui/joy/styles' {
   interface PaletteNeutral {
@@ -346,7 +347,7 @@ export default function JoyVariant() {
               design tokens in Figma
             </a>
           </Typography>
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`
@@ -426,7 +427,7 @@ declare module '@mui/joy/styles' {
             Here is how to customize the variant token for each palette. Note that disabled state is
             the same across colors, so it is best to configure under theme.components.MuiButton
           </Typography>
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`
@@ -628,7 +629,7 @@ declare module '@mui/joy/styles' {
             Strapi defines different focus style from Joy. This can be easily configure in
             theme.focus.default to apply to all focusable components.
           </Typography>
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`
@@ -710,7 +711,7 @@ declare module '@mui/joy/styles' {
             case, developers should extend only light & contained variants to support secondary &
             alternate colors. (Joy does not provide secondary & alternate colors by default)
           </Typography>
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
@@ -31,6 +31,7 @@ import Star from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -421,7 +422,7 @@ function Playground({ initialName }: { initialName?: string }) {
             bottom: '1rem',
           }}
         >
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}

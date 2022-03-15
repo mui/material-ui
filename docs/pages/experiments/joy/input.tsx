@@ -59,9 +59,9 @@ export default function JoyTypography() {
           }}
         >
           <Input placeholder="Placeholder" />
-          <Input placeholder="Placeholder" startAdornment={<Mail fontSize="lg" />} size="sm" />
+          <Input placeholder="Placeholder" startAdornment={<Mail />} size="sm" />
           <Input placeholder="Placeholder" startAdornment={<Mail />} />
-          <Input placeholder="Placeholder" startAdornment={<Mail fontSize="xl2" />} size="lg" />
+          <Input placeholder="Placeholder" startAdornment={<Mail />} size="lg" />
           <Input
             placeholder="Placeholder"
             color="primary"

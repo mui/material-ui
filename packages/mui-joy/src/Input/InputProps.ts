@@ -98,6 +98,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       startAdornment?: React.ReactNode;
       /**
        * The size of the component.
+       * @default 'md'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', InputPropsSizeOverrides>;
       /**

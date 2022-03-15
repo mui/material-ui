@@ -36,11 +36,16 @@ const switchColorVariables =
     const color = ownerState.color;
     return {
       '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
+      '--Switch-track-color':
+        ownerState.variant === 'contained' ? '#fff' : theme.vars.palette[color!]?.textColor,
       '--Switch-track-borderColor':
         variant === 'outlined'
           ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
           : 'currentColor',
-      '--Switch-thumb-color': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
+      '--Switch-thumb-background':
+        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
+      '--Switch-thumb-color':
+        ownerState.variant === 'contained' ? theme.vars.palette[color!]?.textColor : '#fff',
     };
   };
 
@@ -54,14 +59,16 @@ const SwitchRoot = styled('span', {
     {
       ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
       '--Switch-track-radius': theme.vars.radius.lg,
-      '--Switch-track-width': '48px',
-      '--Switch-track-height': '24px',
-      '--Switch-thumb-size': '16px',
       '--Switch-thumb-shadow': '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
       ...(ownerState.size === 'sm' && {
         '--Switch-track-width': '40px',
         '--Switch-track-height': '20px',
         '--Switch-thumb-size': '12px',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Switch-track-width': '48px',
+        '--Switch-track-height': '24px',
+        '--Switch-thumb-size': '16px',
       }),
       ...(ownerState.size === 'lg' && {
         '--Switch-track-width': '64px',
@@ -93,7 +100,7 @@ const SwitchRoot = styled('span', {
       padding:
         'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
       backgroundColor: 'initial',
-      color: 'var(--Switch-thumb-color)',
+      color: 'var(--Switch-thumb-background)',
       border: 'none',
       [`&.${switchClasses.focusVisible}`]: theme.focus.default,
     },
@@ -121,17 +128,29 @@ const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(() => ({
+})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(({ theme, ownerState }) => ({
   position: 'relative',
-  color: 'inherit',
+  color: 'var(--Switch-track-color)',
   height: 'var(--Switch-track-height)',
   width: 'var(--Switch-track-width)',
-  display: 'block',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   boxSizing: 'border-box',
   border: 'var(--variant-outlinedBorderWidth, 0px) solid',
   borderColor: 'var(--Switch-track-borderColor)',
   backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
+  fontFamily: theme.vars.fontFamily.body,
+  ...(ownerState.size === 'sm' && {
+    fontSize: theme.vars.fontSize.xs,
+  }),
+  ...(ownerState.size === 'md' && {
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'lg' && {
+    fontSize: theme.vars.fontSize.md,
+  }),
 }));
 
 const SwitchThumb = styled('span', {
@@ -139,7 +158,11 @@ const SwitchThumb = styled('span', {
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SwitchProps }>(() => ({
+  '--Icon-fontSize': 'calc(var(--Switch-thumb-size) * 0.75)',
   transition: 'left 0.2s',
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   position: 'absolute',
   top: '50%',
   left: 'calc(50% - var(--Switch-track-width) / 2 + var(--Switch-thumb-width) / 2 + var(--Switch-thumb-offset))',
@@ -148,8 +171,8 @@ const SwitchThumb = styled('span', {
   height: 'var(--Switch-thumb-size)',
   borderRadius: 'var(--Switch-thumb-radius)',
   boxShadow: 'var(--Switch-thumb-shadow)',
-  color: 'inherit',
-  backgroundColor: 'currentColor',
+  color: 'var(--Switch-thumb-color)',
+  backgroundColor: 'var(--Switch-thumb-background)',
   [`&.${switchClasses.checked}`]: {
     left: 'calc(50% + var(--Switch-track-width) / 2 - var(--Switch-thumb-width) / 2 - var(--Switch-thumb-offset))',
   },
@@ -172,7 +195,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     required,
     color,
     variant = 'contained',
-    size,
+    size = 'md',
     ...otherProps
   } = props;
 
