@@ -1,13 +1,13 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import createTheme from './createTheme';
-import { ThemeOptions } from './unstable_createTheme';
+import { ThemeOptions, SupportedColorScheme } from './unstable_createTheme';
 import { PaletteWithChannels } from './createPalette';
 import createTypography from './createTypography';
 
-export interface ThemeInput extends ThemeOptions {
+export interface ThemeInput extends Omit<ThemeOptions, 'colorSchemes'> {
   colorSchemes: Partial<
     Record<
-      'light' | 'dark',
+      SupportedColorScheme,
       {
         palette: PaletteWithChannels;
       }
@@ -16,6 +16,7 @@ export interface ThemeInput extends ThemeOptions {
 }
 
 const { palette: lightPalette, ...defaultTheme } = createTheme();
+// @ts-ignore conflicts with textFieldCustomProps.tsconfig.json
 const { palette: darkPalette } = createTheme({ palette: { mode: 'dark' } });
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { ThemeOptions as SystemThemeOptions, Theme as SystemTheme } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
@@ -8,11 +9,36 @@ import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
 
+/**
+ * default MD color-schemes
+ */
+export type DefaultColorScheme = 'light' | 'dark';
+
+/**
+ * The application can add more color-scheme by extending this interface via module augmentation
+ *
+ * Ex.
+ * declare module @mui/material/styles {
+ *   interface ColorSchemeOverrides {
+ *     foo: true;
+ *   }
+ * }
+ *
+ * // SupportedColorScheme = 'light' | 'dark' | 'foo';
+ */
+export interface ColorSchemeOverrides {}
+export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverrides>;
+
+/**
+ * All color-schemes that the application has
+ */
+export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
+
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
   components?: Components<BaseTheme>;
   // palette?: PaletteOptions;
-  colorSchemes?: Record<string, { palette: PaletteOptions }>;
+  colorSchemes?: Record<SupportedColorScheme, { palette: PaletteOptions }>;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
