@@ -358,7 +358,10 @@ Input.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

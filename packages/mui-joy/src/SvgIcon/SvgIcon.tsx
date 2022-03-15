@@ -121,7 +121,11 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
