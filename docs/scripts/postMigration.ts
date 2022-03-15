@@ -85,6 +85,21 @@ function run() {
 /zh/components/data-grid/* https://material-ui-x.netlify.app/zh/x/react-data-grid/:splat 200
 /pt/components/data-grid/* https://material-ui-x.netlify.app/pt/x/react-data-grid/:splat 200
 
+/components/pickers/ /x/react-date-pickers/getting-started/ 301
+/:lang/components/pickers/ /:lang/x/react-date-pickers/getting-started/ 301
+
+/components/date-picker/ /x/react-date-pickers/date-picker/ 301
+/:lang/components/date-picker/ /:lang/x/react-date-pickers/date-picker/ 301
+
+/components/date-range-picker/ /x/react-date-pickers/date-range-picker/ 301
+/:lang/components/date-range-picker/ /:lang/x/react-date-pickers/date-range-picker/ 301
+
+/components/date-time-picker/ /x/react-date-pickers/date-time-picker/ 301
+/:lang/components/date-time-picker/ /:lang/x/react-date-pickers/date-time-picker/ 301
+
+/components/time-picker/ /x/react-date-pickers/time-picker/ 301
+/:lang/components/time-picker/ /:lang/x/react-date-pickers/time-picker/ 301
+
 /api/data-grid/* https://material-ui-x.netlify.app/x/api/data-grid/:splat 200
 /zh/api/data-grid/* https://material-ui-x.netlify.app/zh/x/api/data-grid/:splat 200
 /pt/api/data-grid/* https://material-ui-x.netlify.app/pt/x/api/data-grid/:splat 200
