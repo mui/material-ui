@@ -14,7 +14,7 @@ The `Modal` component renders its `children` in front of a backdrop. This lets y
 
 Features:
 
-- 💄 Manages modal stacking when more than one is needed
+- 🥞 Manages modal stacking when more than one is needed
 - 🔐 Creates a backdrop to disable interaction with the rest of the app
 - 🔐 Disables page scrolling while open
 - ♿️ Manages focus correctly between the modal and its parent app
