@@ -190,7 +190,8 @@ async function run(argv: CommandOptions) {
         return directories.concat(findComponents(componentDirectory));
       }, [] as ReadonlyArray<{ filename: string }>)
       .filter((component) => {
-        if (component.filename.includes('ThemeProvider')) {
+        console.log(component.filename)
+        if (component.filename.includes('ThemeProvider') || (component.filename.includes('mui-material') && component.filename.includes('CssVarsProvider'))) {
           return false;
         }
         if (grep === null) {

@@ -17,6 +17,11 @@ type MDCreateCssVarsProviderResult = CreateCssVarsProviderResult<SupportedColorS
 
 type useColorScheme = MDCreateCssVarsProviderResult['useColorScheme'];
 type getInitColorSchemeScript = MDCreateCssVarsProviderResult['getInitColorSchemeScript'];
+
+/**
+ * This component is an experimental Theme Provider that generates CSS variabels out of the theme tokens.
+ * It should preferably be used at **the root of your component tree**.
+ */
 type CssVarsProvider = MDCreateCssVarsProviderResult['CssVarsProvider'];
 
-export { useColorScheme, getInitColorSchemeScript, CssVarsProvider };
+export { useColorScheme, getInitColorSchemeScript };
