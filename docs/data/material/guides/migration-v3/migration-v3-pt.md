@@ -4,7 +4,7 @@
 
 Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
+> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/guides/migration-v3/migration-v3.md).
 
 ## Introdução
 
