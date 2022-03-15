@@ -163,16 +163,19 @@ function DocSearcHit(props) {
       return null;
     }
     let text = '';
+    let color = 'default';
     if (pathname.startsWith('/material-ui/')) {
       text = 'Material UI';
     }
     if (pathname.startsWith('/joy-ui/')) {
       text = 'Joy UI';
+      color = 'secondary';
     }
     if (pathname.startsWith('/base/')) {
       text = 'MUI Base';
+      color = 'success';
     }
-    return <Chip label={text} size="small" sx={{ mr: 1 }} />;
+    return <Chip label={text} size="small" variant="light" color={color} sx={{ mr: 1 }} />;
   }
 
   if (hit.pathname) {
