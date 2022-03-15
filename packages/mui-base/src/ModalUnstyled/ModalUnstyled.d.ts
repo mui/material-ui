@@ -153,7 +153,6 @@ export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableCompo
  * Demos:
  *
  * - [Modal](https://mui.com/base/react-modal/)
- * - [Modal](https://mui.com/material/react-modal/)
  *
  * API:
  *
