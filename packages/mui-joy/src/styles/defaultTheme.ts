@@ -8,14 +8,7 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
 import colors from '../colors';
-import {
-  ColorSystem,
-  ColorPaletteProp,
-  Palette,
-  PaletteText,
-  PaletteRange,
-  PaletteBackground,
-} from './types/colorSystem';
+import { ColorSystem, ColorPaletteProp } from './types/colorSystem';
 import { Variants } from './types/variants';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Shadow } from './types/shadow';
@@ -24,6 +17,7 @@ import {
   FontFamily,
   FontSize,
   FontWeight,
+  IconSize,
   LineHeight,
   LetterSpacing,
   TypographySystem,
@@ -51,42 +45,6 @@ export interface Focus {
   default: CSSObject;
 }
 
-/**
- * ==============================================
- * Internal type for definfing default Joy theme.
- * ==============================================
- */
-type BasePaletteRange = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-type PartialRest<T, U extends keyof T> = Pick<T, U> & Partial<Exclude<T, U>>;
-type BaseDesignTokens = {
-  palette: {
-    // variant tokens are optional because the style will be generated after CSS variables has been prepared.
-    primary: PartialRest<PaletteRange, BasePaletteRange>;
-    neutral: PartialRest<PaletteRange, BasePaletteRange>;
-    danger: PartialRest<PaletteRange, BasePaletteRange>;
-    info: PartialRest<PaletteRange, BasePaletteRange>;
-    success: PartialRest<PaletteRange, BasePaletteRange>;
-    warning: PartialRest<PaletteRange, BasePaletteRange>;
-    text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
-    background: Pick<PaletteBackground, 'body' | 'level1' | 'level2' | 'level3'>;
-    focusVisible: Palette['focusVisible'];
-  };
-  radius: Pick<Radius, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  shadowRing: CSSProperties['boxShadow'];
-  shadowChannel: string;
-  shadow: Pick<Shadow, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  fontSize: Pick<
-    FontSize,
-    'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
-  >;
-  fontFamily: Pick<FontFamily, 'body' | 'display' | 'code' | 'fallback'>;
-  fontWeight: Pick<FontWeight, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  lineHeight: Pick<LineHeight, 'sm' | 'md' | 'lg'>;
-  letterSpacing: Pick<LetterSpacing, 'sm' | 'md' | 'lg'>;
-};
-
-type BaseColorSystem = Pick<BaseDesignTokens, 'palette' | 'shadowRing' | 'shadowChannel'>;
-
 const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   textColor: `var(--joy-palette-${color}-600)`,
   textHoverBg: `var(--joy-palette-${color}-100)`,
@@ -112,6 +70,7 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   containedBg: `var(--joy-palette-${color}-600)`,
   containedHoverBg: `var(--joy-palette-${color}-700)`,
   containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledColor: `#fff`,
   containedDisabledBg: `var(--joy-palette-${color}-200)`,
 
   overrideTextPrimary: `var(--joy-palette-${color}-700)`,
@@ -144,6 +103,7 @@ const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
   containedBg: `var(--joy-palette-${color}-600)`,
   containedHoverBg: `var(--joy-palette-${color}-700)`,
   containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledColor: `#fff`,
   containedDisabledBg: `var(--joy-palette-${color}-300)`,
 
   overrideTextPrimary: `var(--joy-palette-${color}-200)`,
@@ -151,7 +111,7 @@ const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
   overrideTextTertiary: `var(--joy-palette-${color}-500)`,
 });
 
-export const lightColorSystem: BaseColorSystem = {
+export const lightColorSystem = {
   palette: {
     primary: {
       ...colors.blue,
@@ -188,13 +148,14 @@ export const lightColorSystem: BaseColorSystem = {
       level2: 'var(--joy-palette-neutral-100)',
       level3: 'var(--joy-palette-neutral-200)',
     },
+    divider: 'rgba(0 0 0 / 0.12)',
     focusVisible: 'var(--joy-palette-primary-200)',
   },
   shadowRing: '0 0 #000',
   shadowChannel: '187 187 187',
 };
 
-export const darkColorSystem: BaseColorSystem = {
+export const darkColorSystem = {
   palette: {
     primary: {
       ...colors.blue,
@@ -231,6 +192,7 @@ export const darkColorSystem: BaseColorSystem = {
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
     },
+    divider: 'rgba(255 255 255 / 0.16)',
     focusVisible: 'var(--joy-palette-primary-500)',
   },
   shadowRing: '0 0 #000',
@@ -241,7 +203,7 @@ export const darkColorSystem: BaseColorSystem = {
  * Base Joy design tokens
  * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
  */
-const baseDesignTokens: BaseDesignTokens = {
+const baseDesignTokens = {
   ...lightColorSystem,
   radius: {
     xs: '4px',
@@ -279,9 +241,16 @@ const baseDesignTokens: BaseDesignTokens = {
   fontWeight: {
     xs: 200,
     sm: 300,
-    md: 400,
+    md: 500,
     lg: 700,
     xl: 800,
+  },
+  iconSize: {
+    xs: '0.75rem',
+    sm: '1rem',
+    md: '1.25rem',
+    lg: '1.5rem',
+    xl: '1.75rem',
   },
   lineHeight: {
     sm: 1.25,
@@ -297,20 +266,7 @@ const baseDesignTokens: BaseDesignTokens = {
 
 const defaultSystemTheme = systemCreateTheme();
 
-// Internal usage for providing type safe.
-// Module augmentation in this repo has no impact.
-const internalDefaultTheme: BaseDesignTokens & {
-  colorSchemes: Record<DefaultColorScheme, BaseColorSystem>;
-  focus: Pick<Focus, 'default'>;
-  typography: Pick<
-    TypographySystem,
-    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
-  >;
-  variants: {};
-  vars: BaseDesignTokens & BaseColorSystem;
-  spacing: Spacing;
-  breakpoints: Breakpoints;
-} = {
+const internalDefaultTheme = {
   ...baseDesignTokens,
   colorSchemes: {
     light: lightColorSystem,
@@ -369,21 +325,18 @@ const internalDefaultTheme: BaseDesignTokens & {
     },
     body1: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     body2: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-secondary)',
     },
     body3: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-tertiary)',
@@ -403,6 +356,7 @@ export interface ThemeScales {
   fontFamily: FontFamily;
   fontSize: FontSize;
   fontWeight: FontWeight;
+  iconSize: IconSize;
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
 }

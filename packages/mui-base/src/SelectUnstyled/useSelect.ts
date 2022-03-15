@@ -6,43 +6,27 @@ import {
 import { useButton } from '../ButtonUnstyled';
 import {
   SelectOption,
-  UseSelectMultiProps,
-  UseSelectProps,
-  UseSelectSingleProps,
-} from './useSelectProps';
+  UseSelectButtonSlotProps,
+  UseSelectListboxSlotProps,
+  UseSelectMultiParameters,
+  UseSelectMultiResult,
+  UseSelectOptionSlotProps,
+  UseSelectParameters,
+  UseSelectSingleParameters,
+  UseSelectSingleResult,
+} from './useSelect.types';
 import {
   ListboxReducer,
   useListbox,
   defaultListboxReducer,
   ActionTypes,
-  UseListboxProps,
-  OptionState,
+  UseListboxParameters,
 } from '../ListboxUnstyled';
+import { EventHandlers } from '../utils/types';
 
-interface UseSelectCommonResult<TValue> {
-  buttonActive: boolean;
-  buttonFocusVisible: boolean;
-  disabled: boolean;
-  getButtonProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
-  getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
-  getOptionProps: (
-    option: SelectOption<TValue>,
-    otherHandlers?: Record<string, React.EventHandler<any>>,
-  ) => Record<string, any>;
-  getOptionState: (option: SelectOption<TValue>) => OptionState;
-}
-
-interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TValue> {
-  value: TValue | null;
-}
-
-interface UseSelectMultiResult<TValue> extends UseSelectCommonResult<TValue> {
-  value: TValue[];
-}
-
-function useSelect<TValue>(props: UseSelectSingleProps<TValue>): UseSelectSingleResult<TValue>;
-function useSelect<TValue>(props: UseSelectMultiProps<TValue>): UseSelectMultiResult<TValue>;
-function useSelect<TValue>(props: UseSelectProps<TValue>) {
+function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
+function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
+function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const {
     buttonComponent,
     buttonRef: buttonRefProp,
@@ -53,7 +37,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     multiple = false,
     onChange,
     onOpenChange,
-    open,
+    open = false,
     options,
     value: valueProp,
   } = props;
@@ -100,7 +84,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
   }, [focusListboxIfRequested]);
 
   React.useEffect(() => {
-    requestListboxFocus(open ?? false);
+    requestListboxFocus(open);
   }, [open]);
 
   const createHandleMouseDown =
@@ -184,26 +168,20 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
       !open &&
       (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
     ) {
-      const optionToSelect = action.props.options[newState.highlightedIndex];
-
       return {
         ...newState,
-        selectedValue: optionToSelect,
+        selectedValue: newState.highlightedValue,
       };
     }
 
     if (
       action.type === ActionTypes.blur ||
-      action.type === ActionTypes.setControlledValue ||
+      action.type === ActionTypes.setValue ||
       action.type === ActionTypes.optionsChange
     ) {
-      const selectedOptionIndex = action.props.options.findIndex((o) =>
-        action.props.optionComparer(o, newState.selectedValue as SelectOption<TValue>),
-      );
-
       return {
         ...newState,
-        highlightedIndex: selectedOptionIndex,
+        highlightedValue: newState.selectedValue as SelectOption<TValue>,
       };
     }
 
@@ -211,7 +189,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
   };
 
   const {
-    getRootProps: getButtonProps,
+    getRootProps: getButtonRootProps,
     active: buttonActive,
     focusVisible: buttonFocusVisible,
   } = useButton({
@@ -228,7 +206,7 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
     [props.multiple, props.options, value],
   );
 
-  let useListboxParameters: UseListboxProps<SelectOption<TValue>>;
+  let useListboxParameters: UseListboxParameters<SelectOption<TValue>>;
 
   if (props.multiple) {
     useListboxParameters = {
@@ -262,45 +240,60 @@ function useSelect<TValue>(props: UseSelectProps<TValue>) {
   }
 
   const {
-    getRootProps: getListboxProps,
-    getOptionProps,
+    getRootProps: getListboxRootProps,
+    getOptionProps: getListboxOptionProps,
     getOptionState,
     highlightedOption,
+    selectedOption: listboxSelectedOption,
   } = useListbox(useListboxParameters);
 
-  React.useDebugValue({ value, open, highlightedOption });
+  const getButtonProps = <TOther extends EventHandlers>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSelectButtonSlotProps<TOther> => {
+    return {
+      ...getButtonRootProps({
+        ...otherHandlers,
+        onClick: createHandleButtonClick(otherHandlers),
+        onMouseDown: createHandleMouseDown(otherHandlers),
+        onKeyDown: createHandleButtonKeyDown(otherHandlers),
+      }),
+      'aria-expanded': open,
+      'aria-haspopup': 'listbox' as const,
+    };
+  };
+
+  const getListboxProps = <TOther extends EventHandlers>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSelectListboxSlotProps<TOther> =>
+    getListboxRootProps({
+      ...otherHandlers,
+      onBlur: createHandleListboxBlur(otherHandlers),
+      onKeyUp: createHandleListboxKeyUp(otherHandlers),
+    });
+
+  const getOptionProps = <TOther extends EventHandlers>(
+    option: SelectOption<TValue>,
+    otherHandlers: TOther = {} as TOther,
+  ): UseSelectOptionSlotProps<TOther> => {
+    return getListboxOptionProps(option, {
+      ...otherHandlers,
+      onClick: createHandleListboxItemClick(otherHandlers),
+    });
+  };
+
+  React.useDebugValue({
+    selectedOption: listboxSelectedOption as TValue | null,
+    open,
+    highlightedOption,
+  });
 
   return {
     buttonActive,
     buttonFocusVisible,
     disabled,
-    getButtonProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => {
-      return {
-        ...getButtonProps({
-          ...otherHandlers,
-          onClick: createHandleButtonClick(otherHandlers),
-          onMouseDown: createHandleMouseDown(otherHandlers),
-          onKeyDown: createHandleButtonKeyDown(otherHandlers),
-        }),
-        'aria-expanded': open,
-        'aria-haspopup': 'listbox' as const,
-      };
-    },
-    getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) =>
-      getListboxProps({
-        ...otherHandlers,
-        onBlur: createHandleListboxBlur(otherHandlers),
-        onKeyUp: createHandleListboxKeyUp(otherHandlers),
-      }),
-    getOptionProps: (
-      option: SelectOption<TValue>,
-      otherHandlers?: Record<string, React.EventHandler<any>>,
-    ) => {
-      return getOptionProps(option, {
-        ...otherHandlers,
-        onClick: createHandleListboxItemClick(otherHandlers),
-      });
-    },
+    getButtonProps,
+    getListboxProps,
+    getOptionProps,
     getOptionState,
     open,
     value,

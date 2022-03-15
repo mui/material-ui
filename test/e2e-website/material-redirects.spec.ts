@@ -13,7 +13,7 @@ test.describe.parallel('Redirects', () => {
     test(`[${component}] should redirect correctly`, async ({ page }) => {
       await page.goto(`/components/${component}es/`);
 
-      await expect(page).toHaveURL(`/material/react-${component}/`);
+      await expect(page).toHaveURL(`/material-ui/react-${component}/`);
 
       await expect(page.locator('h1')).toHaveText(new RegExp(component, 'i'));
     });
@@ -42,7 +42,7 @@ test.describe.parallel('Redirects', () => {
     test(`[${component}] should redirect correctly`, async ({ page }) => {
       await page.goto(`/components/${component}s/`);
 
-      await expect(page).toHaveURL(`/material/react-${component}/`);
+      await expect(page).toHaveURL(`/material-ui/react-${component}/`);
 
       if (component === 'radio-button') {
         await expect(page.locator('h1')).toHaveText(/^radio/i);
@@ -57,7 +57,7 @@ test.describe.parallel('Redirects', () => {
   test(`autocomplete should redirect correctly`, async ({ page }) => {
     await page.goto(`/components/autocomplete/`);
 
-    await expect(page).toHaveURL(`/material/react-autocomplete/`);
+    await expect(page).toHaveURL(`/material-ui/react-autocomplete/`);
 
     await expect(page.locator('h1')).toHaveText('Autocomplete');
   });
@@ -65,7 +65,7 @@ test.describe.parallel('Redirects', () => {
   test(`button api should redirect correctly`, async ({ page }) => {
     await page.goto(`/api/button/`);
 
-    await expect(page).toHaveURL(`/material/api/button/`);
+    await expect(page).toHaveURL(`/material-ui/api/button/`);
 
     await expect(page.locator('h1')).toHaveText('Button API');
   });

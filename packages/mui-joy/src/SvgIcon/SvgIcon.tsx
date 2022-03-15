@@ -27,9 +27,13 @@ const SvgIconRoot = styled('svg', {
   name: 'MuiSvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SvgIconProps }>(({ theme, ownerState }) => {
-  return [
-    {
+})<{ ownerState: SvgIconProps & { instanceFontSize: SvgIconProps['fontSize'] } }>(
+  ({ theme, ownerState }) => {
+    return {
+      ...(ownerState.instanceFontSize &&
+        ownerState.instanceFontSize !== 'inherit' && {
+          '--Icon-fontSize': theme.vars.fontSize[ownerState.instanceFontSize],
+        }),
       userSelect: 'none',
       width: '1em',
       height: '1em',
@@ -37,15 +41,17 @@ const SvgIconRoot = styled('svg', {
       fill: 'currentColor',
       flexShrink: 0,
       transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      fontSize:
-        ownerState.fontSize !== 'inherit' ? theme.vars.fontSize[ownerState.fontSize!] : 'inherit',
+      ...(ownerState.fontSize &&
+        ownerState.fontSize !== 'inherit' && {
+          fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
+        }),
       color:
         ownerState.color !== 'inherit' && theme.vars.palette[ownerState.color!]
           ? theme.vars.palette[ownerState.color!].textColor
           : 'inherit',
-    },
-  ];
-});
+    };
+  },
+);
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useThemeProps<typeof inProps & SvgIconProps>({
@@ -71,6 +77,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     color,
     component,
     fontSize,
+    instanceFontSize: inProps.fontSize,
     inheritViewBox,
     viewBox,
   };

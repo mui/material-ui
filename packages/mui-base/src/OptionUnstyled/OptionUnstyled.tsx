@@ -52,6 +52,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const optionState = selectContext.getOptionState(selectOption);
   const optionProps = selectContext.getOptionProps(selectOption);
+  const listboxRef = selectContext.listboxRef;
 
   const ownerState: OptionUnstyledOwnerState<TValue> = {
     ...props,
@@ -62,10 +63,21 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   const handleRef = useForkRef(ref, optionRef);
 
   React.useEffect(() => {
+    // Scroll to the currently highlighted option
     if (optionState.highlighted) {
-      optionRef.current?.scrollIntoView?.({ block: 'nearest' });
+      if (!listboxRef.current || !optionRef.current) {
+        return;
+      }
+      const listboxClientRect = listboxRef.current.getBoundingClientRect();
+      const optionClientRect = optionRef.current.getBoundingClientRect();
+
+      if (optionClientRect.top < listboxClientRect.top) {
+        listboxRef.current.scrollTop -= listboxClientRect.top - optionClientRect.top;
+      } else if (optionClientRect.bottom > listboxClientRect.bottom) {
+        listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
+      }
     }
-  }, [optionState.highlighted]);
+  }, [optionState.highlighted, listboxRef]);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -73,9 +85,9 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     Root,
     {
       ...other,
-      ref: handleRef,
       ...optionProps,
       ...componentsProps.root,
+      ref: handleRef,
       className: clsx(classes.root, className, componentsProps.root?.className),
     },
     ownerState,

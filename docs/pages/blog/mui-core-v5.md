@@ -479,7 +479,7 @@ Although each product has its unique vision and mission statements, they complem
 MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
-It's why we are using an [open core license model](https://medium.com/open-consensus/2-open-core-definition-examples-tradeoffs-e4d0c044da7c) for this new product.
+It's why we are using an [open core license model](https://en.m.wikipedia.org/wiki/Open-core_model) for this new product.
 The X components come in [three different plans](/pricing/):
 
 - **Community.** This plan contains the MIT components that are sustainable by the contributions of the open-source community. Free forever.
@@ -671,7 +671,7 @@ Figma is the first design kit that benefits from the v5 update, and we're more e
 
 Some major changes to the components:
 
-- We’ve added the new colors that v5 introduces (error, warning, info & success)
+- We've added the new colors that v5 introduces (error, warning, info & success)
 - All new components are covered
 - States such as hover have been added for all relevant components
 
@@ -705,7 +705,7 @@ You can use our public roadmap on GitHub to learn about what features we're work
 - [MUI Core](https://github.com/mui/material-ui/projects/25)
 - [MUI X](https://github.com/mui/mui-x/projects/1)
 
-We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we’re building.
+We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we're building.
 
 From a high-level perspective, we plan to focus in the upcoming period on the following topics:
 

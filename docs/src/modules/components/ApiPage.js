@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { exactProp } from '@mui/utils';
-import { styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
@@ -19,13 +19,20 @@ const Wrapper = styled('div')({
   overflow: 'hidden',
 });
 const Table = styled('table')(({ theme }) => {
-  const contentColor = theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff';
+  const contentColor =
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette.primaryDark[900], 1)
+      : 'rgba(255, 255, 255, 1)';
+  const contentColorTransparent =
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette.primaryDark[900], 0)
+      : 'rgba(255, 255, 255, 0)';
   const shadowColor = theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.2)';
   return {
     borderRadius: 10,
     background: `
-  linear-gradient(to right, ${contentColor} 5%, rgba(0, 0, 0, 0)),
-  linear-gradient(to right, rgba(0, 0, 0, 0), ${contentColor} 100%) 100%,
+  linear-gradient(to right, ${contentColor} 5%, ${contentColorTransparent}),
+  linear-gradient(to right, ${contentColorTransparent}, ${contentColor} 100%) 100%,
   linear-gradient(to right, ${shadowColor}, rgba(0, 0, 0, 0) 5%),
   linear-gradient(to left, ${shadowColor}, rgba(0, 0, 0, 0) 5%)`,
     backgroundAttachment: 'local, local, scroll, scroll',

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Icon Component
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
@@ -18,7 +18,7 @@ MUI provides icons support in three ways:
 
 ## Material icons
 
-Google has created over 1,900 official Material icons, each in five different "themes" (see below).
+Google has created over 2,000 official Material icons, each in five different "themes" (see below).
 For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
 You can [search the full list of these icons](/components/material-icons/).
 
@@ -36,15 +36,7 @@ yarn add @mui/icons-material
 
 These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 
-If you aren't already using MUI in your project, you can add it with:
-
-```sh
-// with npm
-npm install @mui/material
-
-// with yarn
-yarn add @mui/material
-```
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/getting-started/installation/).
 
 ### Usage
 

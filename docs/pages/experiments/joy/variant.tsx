@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { GlobalStyles, CSSObject } from '@mui/system';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
-import { CssVarsProvider, ColorPaletteProp } from '@mui/joy/styles';
+import { CssVarsProvider, ColorPaletteProp, PaletteVariant } from '@mui/joy/styles';
 import Info from '@mui/icons-material/Info';
 import Code from '@mui/icons-material/Code';
 import PlayArrow from '@mui/icons-material/PlayArrow';
 import HistoryEdu from '@mui/icons-material/HistoryEdu';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 declare module '@mui/joy/styles' {
   interface PaletteNeutral {
@@ -19,6 +20,20 @@ declare module '@mui/joy/styles' {
   }
 
   interface Palette {
+    secondary: {
+      700: string;
+      600: string;
+      500: string;
+      200: string;
+      100: string;
+    } & PaletteVariant;
+    alternate: {
+      700: string;
+      600: string;
+      500: string;
+      200: string;
+      100: string;
+    } & PaletteVariant;
     outlinedFocusBorder: string;
   }
 
@@ -67,29 +82,7 @@ export default function JoyVariant() {
       }}
     >
       <GlobalStyles styles={{ body: { margin: 0 } }} />
-      <CssVarsProvider
-        theme={{
-          components: {
-            MuiSvgIcon: {
-              defaultProps: {
-                fontSize: 'xl',
-              },
-              styleOverrides: {
-                root: ({ ownerState, theme }) => ({
-                  ...(ownerState.fontSize &&
-                    ownerState.fontSize !== 'inherit' && {
-                      fontSize: theme.vars.fontSize[ownerState.fontSize],
-                    }),
-                  ...(ownerState.color &&
-                    ownerState.color !== 'inherit' && {
-                      color: theme.vars.palette[ownerState.color].textColor,
-                    }),
-                }),
-              },
-            },
-          },
-        }}
-      >
+      <CssVarsProvider>
         <Box sx={{ p: 2 }}>
           <Typography component="h1" level="h3" gutterBottom>
             Variant demonstration
@@ -354,7 +347,7 @@ export default function JoyVariant() {
               design tokens in Figma
             </a>
           </Typography>
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`
@@ -434,7 +427,7 @@ declare module '@mui/joy/styles' {
             Here is how to customize the variant token for each palette. Note that disabled state is
             the same across colors, so it is best to configure under theme.components.MuiButton
           </Typography>
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`
@@ -636,7 +629,7 @@ declare module '@mui/joy/styles' {
             Strapi defines different focus style from Joy. This can be easily configure in
             theme.focus.default to apply to all focusable components.
           </Typography>
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`
@@ -718,7 +711,7 @@ declare module '@mui/joy/styles' {
             case, developers should extend only light & contained variants to support secondary &
             alternate colors. (Joy does not provide secondary & alternate colors by default)
           </Typography>
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`
