@@ -306,7 +306,7 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Select](https://mui.com/components/select/)
  *
  * API:
  *

@@ -20,7 +20,7 @@ function useUtilityClasses(disabled: boolean) {
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Select](https://mui.com/components/select/)
  *
  * API:
  *
