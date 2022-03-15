@@ -21,6 +21,11 @@ const pages = [
         subheader: 'navigation',
         children: [{ pathname: '/base/react-menu', title: 'Menu' }],
       },
+      {
+        pathname: '/base/components/utils',
+        subheader: 'utils',
+        children: [{ pathname: '/base/react-popper', title: 'Popper' }],
+      },
     ],
   },
   {
