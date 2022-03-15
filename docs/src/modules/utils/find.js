@@ -34,7 +34,7 @@ function findPagesMarkdown(
     if (FEATURE_TOGGLE.enable_product_scope) {
       pathname = itemPath
         .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
-        .replace(/^.*\/material[^-]/, '/')
+        .replace(/^.*\/(material[^-]|base\/)/, '/')
         .replace('.md', '');
     } else {
       pathname = itemPath

@@ -6,7 +6,6 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
@@ -119,8 +118,6 @@ export default function AppTableOfContents(props) {
   const t = useTranslate();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
-
-  const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -199,7 +196,7 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      href={`${activePage?.linkProps?.linkAs ?? activePage?.pathname}#${item.hash}`}
+      href={`#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Simplify } from '@mui/types';
 import {
   SelectOption,
   UseSelectButtonSlotProps,
@@ -87,17 +88,21 @@ export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledProps<TV
   open: boolean;
 }
 
-export type SelectUnstyledRootSlotProps<TValue> = UseSelectButtonSlotProps & {
-  className: string;
-  children?: React.ReactNode;
-  ownerState: SelectUnstyledOwnerState<TValue>;
-};
+export type SelectUnstyledRootSlotProps<TValue> = Simplify<
+  UseSelectButtonSlotProps & {
+    className: string;
+    children?: React.ReactNode;
+    ownerState: SelectUnstyledOwnerState<TValue>;
+  }
+>;
 
-export type SelectUnstyledListboxSlotProps<TValue> = UseSelectListboxSlotProps & {
-  className: string;
-  children?: React.ReactNode;
-  ownerState: SelectUnstyledOwnerState<TValue>;
-};
+export type SelectUnstyledListboxSlotProps<TValue> = Simplify<
+  UseSelectListboxSlotProps & {
+    className: string;
+    children?: React.ReactNode;
+    ownerState: SelectUnstyledOwnerState<TValue>;
+  }
+>;
 
 export type SelectUnstyledPopperSlotProps<TValue> = {
   anchorEl: PopperUnstyledProps['anchorEl'];

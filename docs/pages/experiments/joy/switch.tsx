@@ -42,29 +42,7 @@ const props = {
 
 export default function JoySwitch() {
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
@@ -98,6 +76,62 @@ export default function JoySwitch() {
               ))}
             </Box>
           ))}
+          <Box>
+            <Typography>Icon</Typography>
+            <Switch
+              defaultChecked
+              componentsProps={{
+                thumb: {
+                  children: <Moon />,
+                },
+              }}
+              sx={{
+                '--Switch-thumb-shadow': '0 3px 7px 0 rgba(0 0 0 / 0.12)',
+                '--Switch-thumb-size': '27px',
+                '--Switch-track-width': '51px',
+                '--Switch-track-height': '31px',
+                '--joy-palette-neutral-containedBg': '#E9E9EA',
+                '--joy-palette-neutral-containedHoverBg': '#E9E9EA',
+                '&.Mui-checked': {
+                  '--joy-palette-success-containedBg': '#65C466',
+                  '--joy-palette-success-containedHoverBg': '#65C466',
+                },
+              }}
+            />
+            <Switch
+              variant="outlined"
+              componentsProps={{
+                thumb: {
+                  children: <Sun />,
+                },
+              }}
+              sx={{
+                '--Switch-thumb-size': '28px',
+              }}
+            />
+            <Switch
+              componentsProps={{
+                track: {
+                  children: (
+                    <React.Fragment>
+                      <Typography component="span" level="inherit" sx={{ ml: '10px' }}>
+                        On
+                      </Typography>
+                      <Typography component="span" level="inherit" sx={{ mr: '8px' }}>
+                        Off
+                      </Typography>
+                    </React.Fragment>
+                  ),
+                },
+              }}
+              sx={{
+                '--Switch-thumb-shadow': '0 3px 7px 0 rgba(0 0 0 / 0.12)',
+                '--Switch-thumb-size': '27px',
+                '--Switch-track-width': '64px',
+                '--Switch-track-height': '31px',
+              }}
+            />
+          </Box>
           <Box>
             <Typography color="info.textColor">Fluent</Typography>
             {(

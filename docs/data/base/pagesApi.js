@@ -5,6 +5,8 @@ module.exports = [
   { pathname: '/base/api/click-away-listener' },
   { pathname: '/base/api/form-control-unstyled' },
   { pathname: '/base/api/input-unstyled' },
+  { pathname: '/base/api/menu-item-unstyled' },
+  { pathname: '/base/api/menu-unstyled' },
   { pathname: '/base/api/modal-unstyled' },
   { pathname: '/base/api/multi-select-unstyled' },
   { pathname: '/base/api/no-ssr' },

@@ -45,6 +45,36 @@ describe('<Grid />', () => {
       // otherwise, max-width would be 50% in this test
       expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
     });
+
+    it('should apply the correct number of columns for nested containers with undefined prop columns', () => {
+      const { getByTestId } = render(
+        <Grid container columns={16}>
+          <Grid item xs={8}>
+            <Grid container data-testid="nested-container-in-item">
+              <Grid item xs={12} />
+            </Grid>
+          </Grid>
+        </Grid>,
+      );
+
+      const container = getByTestId('nested-container-in-item');
+      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
+    });
+
+    it('should apply the correct number of columns for nested containers with columns=12 (default)', () => {
+      const { getByTestId } = render(
+        <Grid container columns={16}>
+          <Grid item xs={8}>
+            <Grid container columns={12} data-testid="nested-container-in-item">
+              <Grid item xs={12} />
+            </Grid>
+          </Grid>
+        </Grid>,
+      );
+
+      const container = getByTestId('nested-container-in-item');
+      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
+    });
   });
 
   describe('prop: item', () => {

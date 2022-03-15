@@ -713,7 +713,7 @@ const Gatsby = () => {
   );
 };
 
-export default function JoyTypography() {
+export default function JoyList() {
   return (
     <CssVarsProvider
       theme={{
@@ -723,25 +723,6 @@ export default function JoyTypography() {
               neutral: {
                 outlinedBorder: 'rgba(0, 0, 0, 0.12)',
               },
-            },
-          },
-        },
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
             },
           },
         },
@@ -781,7 +762,7 @@ export default function JoyTypography() {
           <List sx={{ '--List-insetStart': '20px' }}>
             <ListItem>
               <ListItemDecorator>
-                <InboxIcon fontSize="lg" />
+                <InboxIcon />
               </ListItemDecorator>
               Inbox
             </ListItem>
@@ -801,7 +782,7 @@ export default function JoyTypography() {
             <ListItem>
               <ListItemButton color="primary">
                 <ListItemDecorator>
-                  <InboxIcon fontSize="lg" />
+                  <InboxIcon />
                 </ListItemDecorator>
                 Inbox
               </ListItemButton>
@@ -809,7 +790,7 @@ export default function JoyTypography() {
             <ListItem>
               <ListItemButton color="success">
                 <ListItemDecorator>
-                  <DraftsIcon fontSize="lg" />
+                  <DraftsIcon />
                 </ListItemDecorator>
                 Drafts
               </ListItemButton>
@@ -1098,19 +1079,19 @@ export default function JoyTypography() {
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
@@ -1191,6 +1172,61 @@ export default function JoyTypography() {
           <Firebash />
 
           <Gatsby />
+        </Box>
+        <Box sx={{ height: 40 }} />
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
+          <List row>
+            <ListItem>Item 1</ListItem>
+            <ListItem>Item 2</ListItem>
+            <ListItem>Item 3</ListItem>
+          </List>
+          <List row>
+            <ListItem>Item 1</ListItem>
+            <ListDivider />
+            <ListItem>Item 2</ListItem>
+            <ListDivider />
+            <ListItem>Item 3</ListItem>
+          </List>
+          <List row component="nav">
+            <ListItemButton>Action 1</ListItemButton>
+            <ListItemButton>Action 2</ListItemButton>
+            <ListItemButton>Action 3</ListItemButton>
+          </List>
+          <List
+            row
+            sx={{
+              '--List-gap': '0px',
+              '--List-item-paddingLeft': '1rem',
+              '--List-item-paddingRight': '1rem',
+            }}
+          >
+            <ListItem>
+              <ListItemButton selected variant="light">
+                <ListItemDecorator>
+                  <InboxIcon />
+                </ListItemDecorator>{' '}
+                Inbox
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Label />
+                </ListItemDecorator>
+                Categories
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <People />
+                </ListItemDecorator>
+                Social
+              </ListItemButton>
+            </ListItem>
+          </List>
         </Box>
       </Box>
     </CssVarsProvider>
