@@ -23,7 +23,7 @@ Features:
 
 > **Note:** the term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
 > A dialog may be _modal_ or _nonmodal_.
-> 
+>
 > A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action.
 > As such, it should be used sparingly—only when the app _requires_ user input before it can continue.
 
@@ -58,7 +58,7 @@ You can animate the open and close states of a modal with a transition component
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
-> The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
+  > The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
 
 `Modal` has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group):
 
@@ -122,4 +122,4 @@ If the user needs to interact with another part of the page—for example, to in
   ```
 
 - Follow the [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal.
-> ⚠ **Note:** a modal window can sit on top of either the parent application, or another modal window. _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. This can lead to [conflicting behaviors](#focus-trap).
+  > ⚠ **Note:** a modal window can sit on top of either the parent application, or another modal window. _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. This can lead to [conflicting behaviors](#focus-trap).
