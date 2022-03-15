@@ -4,7 +4,7 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 const CodeVariantContext = React.createContext({
-  codeVariant: CODE_VARIANTS.JS,
+  codeVariant: CODE_VARIANTS.TS,
   setCodeVariant: () => {},
 });
 if (process.env.NODE_ENV !== 'production') {
