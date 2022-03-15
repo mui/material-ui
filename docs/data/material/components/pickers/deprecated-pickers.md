@@ -1,12 +1,11 @@
-# Date / Time pickers (deprecated)
+# Date / Time pickers
 
-<p class="description">This package has been moved to MUI X.</p>
+<p class="description">Now part of MUI X, a collection of advanced components.</p>
 
-> ⚠️ The pickers in the lab are deprecated and have been moved to MUI X.
 
-## What is the reason to move the pickers to MUI X?
+## What is the reason to move the Pickers to MUI X?
 
-It's become clear that the pickers are categorized as advanced components. By moving them to MUI X, we will be able to add/manage new features and include bug fixes more effectively. If you want to know more details about this afford, check out the [blog post](/blog/lab-pickers-to-mui-x/).
+MUI X components are those meant to support complex use cases. Pickers can seem trivial but they're considerably tricky to pull off correctly, so we've moved them over to the X collection to make sure we're investing proper time and effort. If you want to know more details, check out the [blog post](/blog/lab-pickers-to-mui-x/).
 
 ## How to migrate?
 
@@ -14,8 +13,8 @@ Follow the [migration page](/x/react-date-pickers/migration/) to migrate from la
 
 ## Where is the new documentation?
 
-The [new documentation space](/x/react-date-pickers/) for date/time pickers is in MUI X.
+You can find Date / Time pickers' documentation in the [MUI X docs](/x/react-date-pickers/).
 
-## Where to report issues/request a feature or submit a PR?
+## How to report issues, request a feature, or submit a PR?
 
-Since the pickers have been move to MUI X, please do it on the [MUI X repository](https://github.com/mui/mui-x).
+Given the Pickers have been moved to MUI X, you should go to the [MUI X repository](https://github.com/mui/mui-x). to do those things.
