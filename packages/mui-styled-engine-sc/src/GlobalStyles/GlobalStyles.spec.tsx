@@ -1,5 +1,8 @@
 import * as React from 'react';
-import SCGlobalStyles, { GlobalStylesProps as SCGlobalStylesProps } from './GlobalStyles';
+import {
+  GlobalStyles as SCGlobalStyles,
+  GlobalStylesProps as SCGlobalStylesProps,
+} from '@mui/styled-engine-sc';
 
 interface Theme {
   colors: {
@@ -31,7 +34,7 @@ function Test() {
     styles={(theme) => ({
       color: theme.colors.primary,
       // @ts-expect-error tertiery color doesn't exists
-      backgroundColor: theme.colors.tertiary
+      backgroundColor: theme.colors.tertiary,
     })}
   />;
 }
