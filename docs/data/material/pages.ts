@@ -23,7 +23,7 @@ const pages = [
       '/material-ui/material-icons',
       '/material-ui/about-the-lab',
       '/material-ui/transitions',
-      '/material-ui/pickers',
+      '/material-ui/deprecated-pickers',
     ],
     title: 'Components',
     icon: 'ToggleOnIcon',
@@ -141,6 +141,7 @@ const pages = [
         subheader: 'lab',
         children: [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
+          { pathname: '/material-ui/deprecated-pickers', title: 'Date/Time Pickers', legacy: true },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
           { pathname: '/material-ui/react-trap-focus' },
