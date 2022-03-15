@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { CreateCssVarsProviderResult } from '@mui/system';
 import { ThemeOptions, SupportedColorScheme } from './unstable_createTheme';
 import { PaletteWithChannels } from './createPalette';
@@ -24,4 +25,4 @@ type getInitColorSchemeScript = MDCreateCssVarsProviderResult['getInitColorSchem
  */
 type CssVarsProvider = MDCreateCssVarsProviderResult['CssVarsProvider'];
 
-export { useColorScheme, getInitColorSchemeScript };
+export { useColorScheme, getInitColorSchemeScript, CssVarsProvider };
