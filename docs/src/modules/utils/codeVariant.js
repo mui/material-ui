@@ -23,7 +23,7 @@ function useFirstRender() {
 export function CodeVariantProvider(props) {
   const { children } = props;
 
-  const [codeVariant, setCodeVariant] = React.useState('JS');
+  const [codeVariant, setCodeVariant] = React.useState(CODE_VARIANTS.TS);
 
   const navigatedCodeVariant = React.useMemo(() => {
     const navigatedCodeVariantMatch =
