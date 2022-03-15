@@ -129,12 +129,11 @@ const pages = [
         ],
       },
       {
-        pathname: '/x/react-data-grid',
-        subheader: 'data-grid',
+        pathname: '/mui-x', // the pathname does not matter here because the links to MUI X are outbound.
+        subheader: 'MUI X',
         children: [
-          { pathname: '/x/react-data-grid/', title: 'Overview' },
-          { pathname: '/x/react-data-grid/demo/', title: 'Demo' },
-          { pathname: '/x/react-data-grid/getting-started/', title: 'Getting Started' },
+          { pathname: '/x/react-data-grid', title: 'Data Grid' },
+          { pathname: '/x/react-date-picker', title: 'Date/Time Picker' },
         ],
       },
       {
