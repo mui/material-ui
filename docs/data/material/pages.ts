@@ -141,21 +141,6 @@ const pages = [
         subheader: 'lab',
         children: [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
-          {
-            pathname: '/material-ui/pickers',
-            subheader: 'pickers',
-            title: 'Date / Time',
-            children: [
-              { pathname: '/material-ui/pickers', title: 'Introduction' },
-              { pathname: '/material-ui/react-date-picker' },
-              {
-                pathname: '/material-ui/react-date-range-picker',
-                title: 'Date Range Picker ⚡️',
-              },
-              { pathname: '/material-ui/react-date-time-picker' },
-              { pathname: '/material-ui/react-time-picker' },
-            ],
-          },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
           { pathname: '/material-ui/react-trap-focus' },
