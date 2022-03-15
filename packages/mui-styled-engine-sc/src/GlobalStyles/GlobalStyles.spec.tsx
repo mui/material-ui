@@ -1,0 +1,37 @@
+import * as React from 'react';
+import SCGlobalStyles, { GlobalStylesProps as SCGlobalStylesProps } from './GlobalStyles';
+
+interface Theme {
+  colors: {
+    primary: string;
+    secondary: string;
+  };
+}
+
+const defaultTheme: Theme = {
+  colors: {
+    primary: '#f00',
+    secondary: '#ff00',
+  },
+};
+
+export interface GlobalStylesProps {
+  /**
+   * The styles you want to apply globally.
+   */
+  styles: SCGlobalStylesProps<Theme>['styles'];
+}
+
+function GlobalStyles(props: GlobalStylesProps): React.ReactElement {
+  return <SCGlobalStyles {...props} defaultTheme={defaultTheme} />;
+}
+
+function Test() {
+  <GlobalStyles
+    styles={(theme) => ({
+      color: theme.colors.primary,
+      // @ts-expect-error tertiery color doesn't exists
+      backgroundColor: theme.colors.tertiary
+    })}
+  />;
+}
