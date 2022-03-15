@@ -133,7 +133,7 @@ const pages = [
         subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
-          { pathname: '/x/react-date-picker', title: 'Date/Time Picker' },
+          { pathname: '/x/react-date-pickers', title: 'Date/Time Pickers' },
         ],
       },
       {
