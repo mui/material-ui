@@ -1,6 +1,6 @@
 # 安装
 
-<p class="description">通过安装 MUI 基础套件来使用无样式组件和基础 hooks 来构建可访问的 UI。</p>
+<p class="description">Install MUI Base, the unstyled components & foundation hooks for building accessible UIs.</p>
 
 ## npm
 
