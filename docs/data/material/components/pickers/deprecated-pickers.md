@@ -17,4 +17,4 @@ You can find Date / Time pickers' documentation in the [MUI X docs](/x/react-dat
 
 ## How to report issues, request a feature, or submit a PR?
 
-Given the Pickers have been moved to MUI X, you should go to the [MUI X repository](https://github.com/mui/mui-x). to do those things.
+You should go to the [MUI X repository](https://github.com/mui/mui-x) to do those things now that the Pickers have been moved there.
