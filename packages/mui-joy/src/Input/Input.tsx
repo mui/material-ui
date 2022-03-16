@@ -9,6 +9,7 @@ import { useInput, InputOwnerState } from '@mui/base/InputUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: InputProps) => {
   const { classes, disabled, fullWidth, variant, color, size } = ownerState;
@@ -58,7 +59,11 @@ const InputRoot = styled('div', {
     '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
-      theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      theme.palette[
+        ownerState.color === 'neutral' || ownerState.color === 'context'
+          ? 'primary'
+          : ownerState.color!
+      ]?.[500],
     boxSizing: 'border-box',
     height: `var(--Input-height)`,
     minWidth: 0, // forces the Input to stay inside a container by default
@@ -126,7 +131,10 @@ const InputInput = styled('input', {
   fontSize: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
+    WebkitTextFillColor:
+      ownerState.color === 'context'
+        ? 'inherit'
+        : theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
   },
   '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
   '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
@@ -145,7 +153,10 @@ const InputStartAdornment = styled('span', {
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    color:
+      ownerState.color === 'context'
+        ? 'inherit'
+        : theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
   }),
 }));
 
@@ -157,7 +168,10 @@ const InputEndAdornment = styled('span', {
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
   marginRight: 'calc(var(--Input-adornment-offset) * -1)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  color:
+    ownerState.color === 'context'
+      ? 'inherit'
+      : theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
@@ -173,7 +187,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     autoComplete,
     autoFocus,
     className,
-    color = 'neutral',
+    color: colorProp,
     component,
     components = {},
     componentsProps = {},
@@ -201,6 +215,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     variant = 'outlined',
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp, 'neutral');
 
   const {
     getRootProps,
@@ -345,7 +361,7 @@ Input.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
