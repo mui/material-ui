@@ -13,6 +13,7 @@ import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkTypeMap } from './LinkProps';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: LinkProps) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -79,7 +80,10 @@ const LinkRoot = styled(Typography, {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
       [`&.${linkClasses.focusVisible}`]: theme.focus.default,
-      color: theme.vars.palette[ownerState.color!]?.textColor,
+      ...(ownerState.variant &&
+        ownerState.color !== 'context' && {
+          color: theme.vars.palette[ownerState.color!]?.textColor,
+        }),
       cursor: 'pointer',
     },
     ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
@@ -97,7 +101,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const {
     className,
-    color = 'primary',
+    color: colorProp,
     component = 'a',
     disabled = false,
     onBlur,
@@ -107,6 +111,8 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     variant,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp, 'primary');
 
   const {
     isFocusVisibleRef,
