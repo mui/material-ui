@@ -5,6 +5,7 @@ import {
   Spacing,
   CSSObject,
   SxProps as SystemSxProps,
+  SystemProps as SystemSystemProps,
   unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
 import colors from '../colors';
@@ -440,6 +441,8 @@ export interface JoyTheme extends ThemeScales, ColorSystem {
 }
 
 export type SxProps = SystemSxProps<JoyTheme>;
+
+export type SystemProps = SystemSystemProps<JoyTheme>;
 
 const defaultTheme = internalDefaultTheme as unknown as JoyTheme;
 
