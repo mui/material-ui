@@ -77,10 +77,6 @@ const getCssValue = (keys: string[], value: string | number) => {
       // CSS property that are unitless
       return value;
     }
-    if (keys[keys.length - 1].indexOf('Channel') !== -1) {
-      // the channels are unitless too
-      return value;
-    }
     return `${value}px`;
   }
   return value;
