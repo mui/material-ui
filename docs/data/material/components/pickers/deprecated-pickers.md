@@ -4,7 +4,7 @@
 
 ## Why have the picker components been moved to MUI X?
 
-MUI X components are those meant to support complex use cases. Pickers can seem trivial but they're considerably tricky to pull off correctly, so we've moved them over to the X collection to make sure we're investing proper time and effort. If you want to know more details, check out the [blog post](/blog/lab-pickers-to-mui-x/).
+MUI X components are built for complex use cases. Date and time pickers are difficult to pull off correctly, so they deserve the special attention that they will receive as part of MUI X. To learn more, check out the [blog post about the move](/blog/lab-pickers-to-mui-x/).
 
 ## How to migrate?
 
