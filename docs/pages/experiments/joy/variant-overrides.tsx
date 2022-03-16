@@ -20,10 +20,6 @@ import Explore from '@mui/icons-material/Explore';
 import DocumentScanner from '@mui/icons-material/DocumentScanner';
 import Settings from '@mui/icons-material/Settings';
 
-/**
- * <Sheet variant="contained" color="primary" enableVariantOverrides>
- */
-
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
