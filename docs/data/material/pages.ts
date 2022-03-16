@@ -141,7 +141,7 @@ const pages = [
         subheader: 'lab',
         children: [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
-          { pathname: '/material-ui/deprecated-pickers', title: 'Date/Time Pickers'},
+          { pathname: '/material-ui/deprecated-pickers', title: 'Date/Time Pickers' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
           { pathname: '/material-ui/react-trap-focus' },

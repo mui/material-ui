@@ -2,7 +2,6 @@
 
 <p class="description">Now part of MUI X, a collection of advanced components.</p>
 
-
 ## What is the reason to move the Pickers to MUI X?
 
 MUI X components are those meant to support complex use cases. Pickers can seem trivial but they're considerably tricky to pull off correctly, so we've moved them over to the X collection to make sure we're investing proper time and effort. If you want to know more details, check out the [blog post](/blog/lab-pickers-to-mui-x/).
