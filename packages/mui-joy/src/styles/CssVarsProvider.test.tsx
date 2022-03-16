@@ -70,6 +70,7 @@ describe('[Joy] CssVarsProvider', () => {
           700: 'var(--joy-palette-primary-700)',
           800: 'var(--joy-palette-primary-800)',
           900: 'var(--joy-palette-primary-900)',
+          mainChannel: 'var(--joy-palette-primary-mainChannel)',
           textColor: 'var(--joy-palette-primary-textColor)',
           textHoverBg: 'var(--joy-palette-primary-textHoverBg)',
           textActiveBg: 'var(--joy-palette-primary-textActiveBg)',
@@ -93,9 +94,6 @@ describe('[Joy] CssVarsProvider', () => {
           containedActiveBg: 'var(--joy-palette-primary-containedActiveBg)',
           containedDisabledColor: 'var(--joy-palette-primary-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-primary-containedDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-primary-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-primary-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-primary-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-neutral').textContent).to.equal(
@@ -110,6 +108,7 @@ describe('[Joy] CssVarsProvider', () => {
           700: 'var(--joy-palette-neutral-700)',
           800: 'var(--joy-palette-neutral-800)',
           900: 'var(--joy-palette-neutral-900)',
+          mainChannel: 'var(--joy-palette-neutral-mainChannel)',
           textColor: 'var(--joy-palette-neutral-textColor)',
           textHoverColor: 'var(--joy-palette-neutral-textHoverColor)',
           textHoverBg: 'var(--joy-palette-neutral-textHoverBg)',
@@ -136,9 +135,6 @@ describe('[Joy] CssVarsProvider', () => {
           containedActiveBg: 'var(--joy-palette-neutral-containedActiveBg)',
           containedDisabledColor: 'var(--joy-palette-neutral-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-neutral-containedDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-neutral-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-neutral-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-neutral-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-danger').textContent).to.equal(
@@ -153,6 +149,7 @@ describe('[Joy] CssVarsProvider', () => {
           700: 'var(--joy-palette-danger-700)',
           800: 'var(--joy-palette-danger-800)',
           900: 'var(--joy-palette-danger-900)',
+          mainChannel: 'var(--joy-palette-danger-mainChannel)',
           textColor: 'var(--joy-palette-danger-textColor)',
           textHoverBg: 'var(--joy-palette-danger-textHoverBg)',
           textActiveBg: 'var(--joy-palette-danger-textActiveBg)',
@@ -176,9 +173,6 @@ describe('[Joy] CssVarsProvider', () => {
           containedActiveBg: 'var(--joy-palette-danger-containedActiveBg)',
           containedDisabledColor: 'var(--joy-palette-danger-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-danger-containedDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-danger-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-danger-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-danger-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-info').textContent).to.equal(
@@ -193,6 +187,7 @@ describe('[Joy] CssVarsProvider', () => {
           700: 'var(--joy-palette-info-700)',
           800: 'var(--joy-palette-info-800)',
           900: 'var(--joy-palette-info-900)',
+          mainChannel: 'var(--joy-palette-info-mainChannel)',
           textColor: 'var(--joy-palette-info-textColor)',
           textHoverBg: 'var(--joy-palette-info-textHoverBg)',
           textActiveBg: 'var(--joy-palette-info-textActiveBg)',
@@ -216,9 +211,6 @@ describe('[Joy] CssVarsProvider', () => {
           containedActiveBg: 'var(--joy-palette-info-containedActiveBg)',
           containedDisabledColor: 'var(--joy-palette-info-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-info-containedDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-info-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-info-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-info-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-success').textContent).to.equal(
@@ -233,6 +225,7 @@ describe('[Joy] CssVarsProvider', () => {
           700: 'var(--joy-palette-success-700)',
           800: 'var(--joy-palette-success-800)',
           900: 'var(--joy-palette-success-900)',
+          mainChannel: 'var(--joy-palette-success-mainChannel)',
           textColor: 'var(--joy-palette-success-textColor)',
           textHoverBg: 'var(--joy-palette-success-textHoverBg)',
           textActiveBg: 'var(--joy-palette-success-textActiveBg)',
@@ -256,9 +249,6 @@ describe('[Joy] CssVarsProvider', () => {
           containedActiveBg: 'var(--joy-palette-success-containedActiveBg)',
           containedDisabledColor: 'var(--joy-palette-success-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-success-containedDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-success-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-success-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-success-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-warning').textContent).to.equal(
@@ -273,6 +263,7 @@ describe('[Joy] CssVarsProvider', () => {
           700: 'var(--joy-palette-warning-700)',
           800: 'var(--joy-palette-warning-800)',
           900: 'var(--joy-palette-warning-900)',
+          mainChannel: 'var(--joy-palette-warning-mainChannel)',
           textColor: 'var(--joy-palette-warning-textColor)',
           textHoverBg: 'var(--joy-palette-warning-textHoverBg)',
           textActiveBg: 'var(--joy-palette-warning-textActiveBg)',
@@ -296,9 +287,6 @@ describe('[Joy] CssVarsProvider', () => {
           containedActiveBg: 'var(--joy-palette-warning-containedActiveBg)',
           containedDisabledColor: 'var(--joy-palette-warning-containedDisabledColor)',
           containedDisabledBg: 'var(--joy-palette-warning-containedDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-warning-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-warning-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-warning-overrideTextTertiary)',
         }),
       );
       expect(screen.getByTestId('palette-text').textContent).to.equal(
@@ -502,10 +490,10 @@ describe('[Joy] CssVarsProvider', () => {
           'containedHover',
           'containedActive',
           'containedDisabled',
-          'textOverrides',
-          'outlinedOverrides',
-          'lightOverrides',
-          'containedOverrides',
+          'textOverride',
+          'outlinedOverride',
+          'lightOverride',
+          'containedOverride',
         ].join(','),
       );
     });

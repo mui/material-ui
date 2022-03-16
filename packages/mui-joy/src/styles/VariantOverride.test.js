@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import { createRenderer } from 'test/utils';
 import useThemeProps from './useThemeProps';
 import ThemeProvider from './ThemeProvider';
-import { useVariantOverride, VariantOverrideProvider } from './VariantOverride';
+import {
+  useVariantOverride,
+  VariantOverrideProvider,
+  createContainedOverrides,
+} from './VariantOverride';
 
 const Parent = ({ children, variant, enableVariantOverride }) => (
   <VariantOverrideProvider variant={enableVariantOverride ? variant : undefined}>
@@ -21,6 +26,38 @@ const Child = (inProps) => {
 
 describe('VariantOverride', () => {
   const { render } = createRenderer();
+
+  it('createContainedOverrides automatically create contained overrides if the variable is in the correct format', () => {
+    const result = createContainedOverrides({
+      prefix: 'foo',
+      palette: {
+        primary: {
+          textColor: '',
+        },
+        secondary: {
+          lightBg: '',
+        },
+        alternate: {
+          containedBg: '',
+        },
+      },
+    });
+    // partially check the result
+    sinon.assert.match(result, {
+      primary: {
+        '--foo-palette-text-primary': '#fff',
+        '--variant-textColor': 'var(--foo-palette-primary-100)',
+      },
+      secondary: {
+        '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
+        '--variant-lightBg': 'var(--foo-palette-secondary-700)',
+      },
+      alternate: {
+        '--foo-palette-text-tertiary': 'var(--foo-palette-alternate-200)',
+        '--variant-containedBg': 'var(--foo-palette-alternate-50, rgba(0 0 0 / 0.16))',
+      },
+    });
+  });
 
   it('use the default color if no provider', () => {
     const { container } = render(<Child variant="text" />);

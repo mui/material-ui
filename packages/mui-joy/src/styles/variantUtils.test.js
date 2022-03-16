@@ -1,11 +1,5 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
-import {
-  isVariantPalette,
-  createVariantStyle,
-  createVariant,
-  createContainedOverrides,
-} from './variantUtils';
+import { createVariantStyle, createVariant, isVariantPalette } from './variantUtils';
 
 describe('variant utils', () => {
   it('isVariantPalette', () => {
@@ -376,47 +370,15 @@ describe('variant utils', () => {
         '--variant-outlinedBorderWidth': '1px',
         border: 'var(--variant-outlinedBorderWidth) solid',
         borderColor: 'var(--variant-outlinedBorder)',
+        backgroundColor: 'var(--variant-outlinedBg)',
       });
       expect(createVariant('light').context).to.deep.equal({
         color: 'var(--variant-lightColor)',
         backgroundColor: 'var(--variant-lightBg)',
       });
       expect(createVariant('contained').context).to.deep.equal({
+        color: 'var(--variant-containedColor)',
         backgroundColor: 'var(--variant-containedBg)',
-      });
-    });
-  });
-
-  describe('createContainedOverrides', () => {
-    it('automatically create contained overrides if the variable is in the correct format', () => {
-      const result = createContainedOverrides({
-        prefix: 'foo',
-        palette: {
-          primary: {
-            textColor: '',
-          },
-          secondary: {
-            lightBg: '',
-          },
-          alternate: {
-            containedBg: '',
-          },
-        },
-      });
-      // partially check the result
-      sinon.assert.match(result, {
-        primary: {
-          '--foo-palette-text-primary': '#fff',
-          '--variant-textColor': 'var(--foo-palette-primary-100)',
-        },
-        secondary: {
-          '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
-          '--variant-lightBg': 'rgba(255 255 255 / 0.12)',
-        },
-        alternate: {
-          '--foo-palette-text-tertiary': 'var(--foo-palette-alternate-200)',
-          '--variant-containedBg': 'var(--foo-palette-alternate-700, rgba(0 0 0 / 0.16))',
-        },
       });
     });
   });

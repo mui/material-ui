@@ -69,11 +69,6 @@ export interface PaletteVariant {
   containedDisabledColor: string;
   containedDisabledBg: string;
   containedDisabledBorder: string;
-
-  // override palette.text
-  overrideTextPrimary: string;
-  overrideTextSecondary: string;
-  overrideTextTertiary: string;
 }
 
 export interface PaletteRangeOverrides {}
@@ -94,9 +89,6 @@ export interface PaletteBackground {
   level1: string;
   level2: string;
   level3: string;
-  hover: string;
-  active: string;
-  disabled: string;
 }
 
 export interface ColorPalettePropOverrides {}
