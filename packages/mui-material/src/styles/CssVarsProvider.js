@@ -1,4 +1,5 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import { defaultOpacity } from './unstable_createTheme';
 import createTheme from './createTheme';
 import createTypography from './createTypography';
 
@@ -12,6 +13,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       light: { palette: lightPalette },
       dark: { palette: darkPalette },
     },
+    opacity: defaultOpacity,
   },
   defaultColorScheme: {
     light: 'light',

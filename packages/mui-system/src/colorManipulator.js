@@ -108,7 +108,7 @@ export const colorChannel = (color) => {
   const decomposedColor = decomposeColor(color);
   return decomposedColor.values
     .slice(0, 3)
-    .map((val, idx) => (decomposedColor.type === 'hsl' && idx !== 0 ? `${val}%` : val))
+    .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
     .join(' ');
 };
 

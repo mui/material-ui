@@ -3,6 +3,14 @@ import { colorChannel } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import createPalette from './createPalette';
 
+export const defaultOpacity = {
+  active: 0.54,
+  hover: 0.04,
+  selected: 0.08,
+  disabled: 0.26,
+  focus: 0.12,
+};
+
 function createTheme(options = {}, ...args) {
   const { colorSchemes: colorSchemesInput = {}, opacity: opacityInput = {}, ...input } = options;
 
@@ -50,11 +58,7 @@ function createTheme(options = {}, ...args) {
   });
 
   const opacity = {
-    active: 0.54,
-    hover: 0.04,
-    selected: 0.08,
-    disabled: 0.26,
-    focus: 0.12,
+    ...defaultOpacity,
     ...opacityInput,
   };
 
