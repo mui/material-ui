@@ -26,10 +26,10 @@ describe('<Avatar />', () => {
   }));
 
   describe('prop: variant', () => {
-    it('contained by default', () => {
+    it('light by default', () => {
       const { getByTestId } = render(<Avatar data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantContained);
+      expect(getByTestId('root')).to.have.class(classes.variantLight);
     });
 
     ['outlined', 'light', 'contained'].forEach((variant) => {
