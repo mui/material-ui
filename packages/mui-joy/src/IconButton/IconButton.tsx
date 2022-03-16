@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
+import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
 const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean }) => {
@@ -67,8 +67,8 @@ const IconButtonRoot = styled('button', {
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
       'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    [`&.${iconButtonClasses.focusVisible}`]: theme.focus.default,
   },
+  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
