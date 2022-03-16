@@ -23,7 +23,7 @@ import SelectUnstyled from '@mui/base/SelectUnstyled';
 
 ### Basic usage
 
-{{"demo": "UnstyledSelectSimple.js"}}
+{{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
 
 The `SelectUnstyled` component accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
@@ -36,27 +36,27 @@ For the sake of brevity, the rest of the demos that follow will not use `forward
 
 The SelectUnstyled can be used as either uncontrolled (as shown in the demo above) or controlled component.
 
-{{"demo": "UnstyledSelectControlled.js"}}
+{{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
 
 ### Object values
 
 The unstyled select may be used with non-string values.
 
-{{"demo": "UnstyledSelectObjectValues.js"}}
+{{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
 
 ### Selected value appearance
 
 You can customize the selected value display by providing a function to the `renderValue` prop.
 The element returned by this function will be rendered inside the select's button.
 
-{{"demo": "UnstyledSelectCustomRenderValue.js"}}
+{{"demo": "UnstyledSelectCustomRenderValue.js", "defaultCodeOpen": false}}
 
 ### Option appearance
 
 Options don't have to be plain strings.
 You can include custom elements to be rendered inside the listbox.
 
-{{"demo": "UnstyledSelectRichOptions.js"}}
+{{"demo": "UnstyledSelectRichOptions.js", "defaultCodeOpen": false}}
 
 ### Grouping options
 
@@ -65,7 +65,7 @@ Unlike the native `select`, however, groups can be nested.
 
 Place the `Option` components inside `OptionGroup` to achieve this.
 
-{{"demo": "UnstyledSelectGrouping.js"}}
+{{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
 
 ## MultiSelectUnstyled
 
@@ -75,7 +75,7 @@ The `MultiSelectUnstyled` component lets your users select multiple options.
 import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
 ```
 
-{{"demo": "UnstyledSelectMultiple.js"}}
+{{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
 
 ## The useSelect hook
 
@@ -90,4 +90,4 @@ Using the hook allows you to take full control over the rendered components, the
 The following example shows a select that opens when hovered over or focused.
 It can be controlled by a mouse/touch or a keyboard.
 
-{{"demo": "UseSelect.js"}}
+{{"demo": "UseSelect.js", "defaultCodeOpen": false}}
