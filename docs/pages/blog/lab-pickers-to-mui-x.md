@@ -11,8 +11,8 @@ We're excited to announce that, after more than 18 month in the lab, the date pi
 ## What is MUI X ?
 
 Since its creation, MUI have always kept at heart to provide great components for free.
-However, some projects require several full-time developers and can not be sustainable relying only on open-source income.
-To be able to keep improving our products, including the open source one, we decided in 2020 to launch the _Advanced components_, a new set of components available under two licenses:
+However, some _Advanced components_ such as date pickers require several full-time developers and can not be sustainable relying only on open-source income.
+To be able to keep improving the library and add _Advanced components_ without compromise on code quality, we decided in 2020 to launch MUI X, a new set of components available under two licenses:
 
 - MUI X: the MIT licensed, free to use version
 - MUI X Pro: the commercially licensed version with the most advanced features
@@ -20,7 +20,7 @@ To be able to keep improving our products, including the open source one, we dec
 The Advanced component launched by our team have been the Data Grid, with the `@mui/x-data-grid` and `@mui/x-data-grid-pro` packages.
 More than one year later, this new source of income has allowed our company to hire several new developers and to increase the amount of work achieved, even on the open-source team.
 
-## Why move the date pickers to MUI
+## Why move the date pickers to MUI X
 
 When the date pickers components have moved to the lab, it was already clear that some of their features would eventually be part of the commercially licensed packages.
 
