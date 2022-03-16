@@ -161,7 +161,7 @@ export default function JoyVariant() {
           }}
         >
           <ListItem>
-            <ListItemButton selected>Policies</ListItemButton>
+            <ListItemButton>Policies</ListItemButton>
           </ListItem>
           <ListItem nested>
             <ListItemButton>
@@ -185,9 +185,7 @@ export default function JoyVariant() {
               }}
             >
               <ListItem>
-                <ListItemButton variant="light" selected>
-                  Resources
-                </ListItemButton>
+                <ListItemButton variant="light">Resources</ListItemButton>
               </ListItem>
               <ListItem>
                 <ListItemButton variant="contained" selected>
@@ -195,9 +193,7 @@ export default function JoyVariant() {
                 </ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton variant="outlined" selected>
-                  Users
-                </ListItemButton>
+                <ListItemButton variant="outlined">Users</ListItemButton>
               </ListItem>
             </List>
           </ListItem>
@@ -234,11 +230,21 @@ export default function JoyVariant() {
           gap: 2,
         }}
       >
-        <Typography>
-          <b>Without</b> variant overrides
+        <Typography
+          level="h5"
+          justifyContent="center"
+          sx={{ bgcolor: 'background.body', position: 'sticky', top: 0, py: '0.25rem', zIndex: 1 }}
+        >
+          <b style={{ color: 'var(--joy-palette-danger-textColor)' }}>Without</b>&nbsp;variant
+          overrides
         </Typography>
-        <Typography>
-          Variant overrides <b>enabled</b>
+        <Typography
+          level="h5"
+          justifyContent="center"
+          sx={{ bgcolor: 'background.body', position: 'sticky', top: 0, py: '0.25rem', zIndex: 1 }}
+        >
+          Variant overrides&nbsp;
+          <b style={{ color: 'var(--joy-palette-success-textColor)' }}>enabled</b>
         </Typography>
         {renderBanner(false)}
         {renderBanner(true)}
