@@ -41,7 +41,7 @@ const SheetRoot = styled('div', {
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     ownerState.enableVariantOverride &&
       ownerState.color !== 'context' &&
-      theme.variants[`${ownerState.variant!}Overrides`]?.[ownerState.color!],
+      theme.variants[`${ownerState.variant!}Override`]?.[ownerState.color!],
   ];
 });
 

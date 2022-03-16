@@ -120,10 +120,10 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
         containedDisabled: createVariant('containedDisabled', mergedTheme),
 
         // variant overrides
-        textOverrides: createTextOverrides(mergedTheme),
-        outlinedOverrides: createTextOverrides(mergedTheme),
-        lightOverrides: createLightOverrides(mergedTheme),
-        containedOverrides: createContainedOverrides(mergedTheme),
+        textOverride: createTextOverrides(mergedTheme),
+        outlinedOverride: createTextOverrides(mergedTheme),
+        lightOverride: createLightOverrides(mergedTheme),
+        containedOverride: createContainedOverrides(mergedTheme),
       } as typeof mergedTheme.variants,
       mergedTheme.variants,
       { clone: false },

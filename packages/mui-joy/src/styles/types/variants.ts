@@ -10,12 +10,7 @@ export type DefaultVariantProp = 'text' | 'outlined' | 'light' | 'contained';
 
 export type VariantProp = OverridableStringUnion<DefaultVariantProp, VariantPropOverrides>;
 
-export type DefaultContextualOverrides = `${DefaultVariantProp}Overrides`;
-
-export type ContextualOverrideKeys = OverridableStringUnion<
-  DefaultContextualOverrides,
-  ContextualOverrides
->;
+type DefaultContextualOverride = `${DefaultVariantProp}Override`;
 
 type State = 'Hover' | 'Active' | 'Disabled';
 
@@ -26,7 +21,7 @@ export type DefaultVariantKey =
   | `${Exclude<DefaultVariantProp, 'contained'>}${State}`;
 
 type BaseContextOverrides = Record<
-  DefaultContextualOverrides,
+  DefaultContextualOverride,
   Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>
 >;
 

@@ -27,6 +27,7 @@ export const TypographyRoot = styled('span', {
   '--Icon-fontSize': '1.25em',
   margin: 0,
   display: 'flex',
+  flexWrap: 'wrap',
   alignItems: 'center',
   fontFamily: theme.vars.fontFamily.body,
   ...(ownerState.component === 'span' && {
