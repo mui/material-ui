@@ -5,7 +5,7 @@ components: DatePicker,DateTimePicker,TimePicker,TextField
 githubLabel: 'component: date picker'
 materialDesign: https://material.io/components/date-pickers
 waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
-packageName: '>>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and React components)'
+packageName: '@mui/lab'
 ---
 
 # Date/Time pickers 日期/时间选择器
@@ -30,9 +30,9 @@ packageName: '>>>>>>> 0f996c1ce5 ([docs] Clear the difference between UI and Rea
 - [date-fns](https://date-fns.org/)
 - [Day.js](https://day.js.org/)
 - [Luxon](https://moment.github.io/luxon/#/)
-- [时间选择器](https://momentjs.com/)
+- [Moment.js](https://momentjs.com/)
 
-{{"demo": "DatePickers.js"}}
+First you have to install the adapter package for the date-library you want to use:
 
 ```sh
 // date-fns
@@ -70,4 +70,4 @@ function App({ children }) {
 
 这个例子通过 `type="time"` 实现了原生的时间选择器。
 
-{{"demo": "TimePickers.js"}}
+{{"demo": "NativePickers.js"}}
