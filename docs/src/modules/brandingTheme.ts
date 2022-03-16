@@ -535,11 +535,14 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             // @ts-ignore internal repo module augmentation issue
             ...(variant === 'light' && {
               ...(color === 'default' && {
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[800],
+                color:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.grey[200]
+                    : theme.palette.primaryDark[800],
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[500]
-                    : theme.palette.primary[100],
+                    ? alpha(theme.palette.primaryDark[700], 0.5)
+                    : alpha(theme.palette.primary[100], 0.3),
               }),
               ...(color === 'warning' && {
                 color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.warning[900],
