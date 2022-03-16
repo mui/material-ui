@@ -55,6 +55,7 @@ const AvatarRoot = styled('div', {
       borderRadius: '50%',
       overflow: 'hidden',
       userSelect: 'none',
+      fontFamily: theme.fontFamily.body,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
