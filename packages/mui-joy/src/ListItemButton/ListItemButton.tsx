@@ -86,19 +86,6 @@ const ListItemButtonRoot = styled('div', {
       : {
           marginTop: 'var(--List-gap)',
         },
-    // default color & background styles when `color` prop is not specified or set as default
-    ...(!ownerState.color &&
-      !ownerState.selected && {
-        color: theme.vars.palette.text.secondary,
-        cursor: 'pointer',
-        '&:hover': {
-          color: theme.vars.palette.text.primary,
-          backgroundColor: theme.vars.palette.background.hover,
-        },
-        '&:active': {
-          backgroundColor: theme.vars.palette.background.active,
-        },
-      }),
   },
   {
     ...(ownerState.variant === 'outlined' && {
@@ -134,7 +121,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, props.color, selected ? 'primary' : undefined);
+  const color = getColor(inProps.color, props.color, selected ? 'primary' : 'neutral');
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -209,6 +196,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),

@@ -365,7 +365,7 @@ function MuiNav() {
                 })
               }
             >
-              <ListItemDecorator>
+              <ListItemDecorator sx={{ color: 'primary.textColor' }}>
                 <IconComponent fontSize="md" />
               </ListItemDecorator>
               <ListItemContent sx={{ color: 'text.primary' }}>
@@ -593,7 +593,7 @@ const Gatsby = () => {
           '--joy-palette-neutral-textActiveBg': 'transparent',
           '--joy-palette-primary-textHoverBg': 'transparent',
           '--joy-palette-primary-textActiveBg': 'transparent',
-          '[data-mui-color-scheme="light"] &': {
+          '[data-mui-color-scheme="dark"] &': {
             '--joy-palette-text-secondary': '#635e69',
             '--joy-palette-primary-textColor': '#d48cff',
           },
