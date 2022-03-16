@@ -38,6 +38,7 @@ export const TypographyRoot = styled('span', {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    flexWrap: 'nowrap',
   }),
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
