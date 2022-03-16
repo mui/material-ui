@@ -1,12 +1,7 @@
 import { deepmerge } from '@mui/utils';
-import { decomposeColor } from '@mui/system';
+import { colorChannel } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import createPalette from './createPalette';
-
-export const createChannel = (color) => {
-  const decomposedColor = decomposeColor(color);
-  return decomposedColor.values.slice(0, 3).map((val, idx) => decomposedColor.type === 'hsl' && idx !== 0 ? `${val}%` : val).join(' ');
-}
 
 function createTheme(options = {}, ...args) {
   const { colorSchemes: colorSchemesInput = {}, opacity: opacityInput = {}, ...input } = options;
@@ -32,22 +27,22 @@ function createTheme(options = {}, ...args) {
       const colors = palette[color];
 
       if (colors.main) {
-        palette[color].mainChannel = createChannel(colors.main);
+        palette[color].mainChannel = colorChannel(colors.main);
       }
       if (colors.light) {
-        palette[color].lightChannel = createChannel(colors.light);
+        palette[color].lightChannel = colorChannel(colors.light);
       }
       if (colors.dark) {
-        palette[color].darkChannel = createChannel(colors.dark);
+        palette[color].darkChannel = colorChannel(colors.dark);
       }
       if (colors.primary) {
-        palette[color].primaryChannel = createChannel(colors.primary);
+        palette[color].primaryChannel = colorChannel(colors.primary);
       }
       if (colors.secondary) {
-        palette[color].secondaryChannel = createChannel(colors.secondary);
+        palette[color].secondaryChannel = colorChannel(colors.secondary);
       }
       if (colors.disabled) {
-        palette[color].disabledChannel = createChannel(colors.disabled);
+        palette[color].disabledChannel = colorChannel(colors.disabled);
       }
     });
 
