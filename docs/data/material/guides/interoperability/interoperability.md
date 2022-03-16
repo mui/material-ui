@@ -588,6 +588,11 @@ export default function CssModulesSliderDeep2() {
 ![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/@emotion/react.svg)
 
+> ⚠️ Even if it is used internally by MUI, `@emotion/react` is not
+> fully supported as a solution for writing custom style.  
+> It is not possible to use the `classes` property of MUI components,
+> the internal styles will always take precedence over yours. [See sandbox](https://stackblitz.com/edit/tss-react-t9hqtn?file=index.tsx).
+
 ### The `css` prop
 
 Emotion's **css()** method works seamlessly with MUI.
