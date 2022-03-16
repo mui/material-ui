@@ -33,7 +33,7 @@ function Test() {
   <GlobalStyles
     styles={(theme) => ({
       color: theme.colors.primary,
-      // @ts-expect-error tertiery color doesn't exists
+      // @ts-expect-error tertiary color doesn't exist
       backgroundColor: theme.colors.tertiary,
     })}
   />;
