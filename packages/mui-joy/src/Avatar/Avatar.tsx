@@ -9,6 +9,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarTypeMap } from './AvatarProps';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: AvatarProps) => {
   const { size, variant, color, src, srcSet } = ownerState;
@@ -140,7 +141,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const {
     alt,
     className,
-    color = 'neutral',
     component = 'div',
     size = 'md',
     variant = 'light',
@@ -150,6 +150,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children: childrenProp,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, props.color, 'neutral');
 
   let children = null;
 
@@ -217,7 +219,7 @@ Avatar.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
