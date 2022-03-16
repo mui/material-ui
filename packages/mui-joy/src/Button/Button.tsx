@@ -104,11 +104,11 @@ const ButtonRoot = styled('button', {
         lineHeight: '1.25rem',
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
-      [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
       width: '100%',
     },
+    theme.focus.default,
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],

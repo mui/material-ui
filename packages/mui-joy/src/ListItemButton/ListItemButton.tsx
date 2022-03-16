@@ -73,7 +73,6 @@ const ListItemButtonRoot = styled('div', {
     ...(ownerState.selected && {
       fontWeight: theme.vars.fontWeight.md,
     }),
-    '&.Mui-focusVisible': theme.focus.default,
     // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
     // We want to be specific on what siblings the gap should be added.
     [`& + .${listItemButtonClasses.root}`]: ownerState.row
@@ -97,6 +96,7 @@ const ListItemButtonRoot = styled('div', {
         'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     }),
   },
+  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],

@@ -339,8 +339,10 @@ const internalDefaultTheme = {
   },
   focus: {
     default: {
-      outline: '4px solid',
-      outlineColor: 'var(--joy-palette-focusVisible)',
+      '&.Mui-focusVisible': {
+        outline: '4px solid',
+        outlineColor: 'var(--joy-palette-focusVisible)',
+      },
     },
   },
   typography: {
