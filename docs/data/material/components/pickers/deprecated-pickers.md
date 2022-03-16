@@ -12,7 +12,7 @@ Follow the [migration page](/x/react-date-pickers/migration/) to migrate from la
 
 ## Where is the new documentation?
 
-You can find Date / Time pickers' documentation in the [MUI X docs](/x/react-date-pickers/).
+You can find documentation on the date and time picker components in the [MUI X docs](/x/react-date-pickers/).
 
 ## How to report issues, request a feature, or submit a PR?
 
