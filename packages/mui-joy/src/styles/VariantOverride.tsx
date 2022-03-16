@@ -58,8 +58,8 @@ export const createLightOverrides = (theme: JoyTheme) => {
             [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
             [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-500`),
             [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-400`),
-            '--variant-textColor': getCssVar(`palette-${color}-800`),
-            '--variant-textHoverColor': getCssVar(`palette-${color}-900`),
+            '--variant-textColor': `rgba(0 0 0 / 0.6)`,
+            '--variant-textHoverColor': getCssVar(`palette-${color}-800`),
             '--variant-textHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
             '--variant-textActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
             '--variant-textDisabledColor': `rgba(${getCssVar(
