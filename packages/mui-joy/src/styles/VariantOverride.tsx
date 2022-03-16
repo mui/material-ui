@@ -212,7 +212,13 @@ export const VariantOverrideProvider = ({
   variant,
 }: React.PropsWithChildren<{ variant: VariantProp | undefined }>) => {
   const upperVariant = React.useContext(VariantOverride);
-  return (
-    <VariantOverride.Provider value={variant || upperVariant}>{children}</VariantOverride.Provider>
-  );
+  const rootVariant = variant || upperVariant;
+  if (process.env.NODE_ENV !== 'production') {
+    if (rootVariant && !rootVariant.match(/(contained|light)/)) {
+      console.error(
+        `MUI: Variant override feature does not support "${rootVariant}" variant. Please use either "contained", or "light" instead.`,
+      );
+    }
+  }
+  return <VariantOverride.Provider value={rootVariant}>{children}</VariantOverride.Provider>;
 };
