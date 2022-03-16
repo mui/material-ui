@@ -13,7 +13,7 @@ export interface LinearProgressProps
    */
   classes?: Partial<LinearProgressClasses>;
   /**
-   * The color of the component. It supports both default and custom theme colors. These can be added as shown in the [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
+   * The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
