@@ -14,7 +14,10 @@ const pages = [
       {
         pathname: '/base/components/inputs',
         subheader: 'inputs',
-        children: [{ pathname: '/base/react-button', title: 'Button' }],
+        children: [
+          { pathname: '/base/react-button', title: 'Button' },
+          { pathname: '/base/react-slider', title: 'Slider' },
+        ],
       },
       {
         pathname: '/base/components/navigation',
