@@ -59,11 +59,9 @@ const InputRoot = styled('div', {
     '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
-      theme.palette[
-        ownerState.color === 'neutral' || ownerState.color === 'context'
-          ? 'primary'
-          : ownerState.color!
-      ]?.[500],
+      ownerState.color === 'context'
+        ? 'var(--variant-outlinedBorder)'
+        : theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     boxSizing: 'border-box',
     height: `var(--Input-height)`,
     minWidth: 0, // forces the Input to stay inside a container by default
@@ -119,7 +117,7 @@ const InputInput = styled('input', {
   name: 'MuiInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & InputOwnerState }>({
   border: 'none', // remove the native input width
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
@@ -131,16 +129,12 @@ const InputInput = styled('input', {
   fontSize: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor:
-      ownerState.color === 'context'
-        ? 'inherit'
-        : theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
   },
   '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
   '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
   '&:-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // IE11
   '&::-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Edge
-}));
+});
 
 const InputStartAdornment = styled('span', {
   name: 'MuiInput',
