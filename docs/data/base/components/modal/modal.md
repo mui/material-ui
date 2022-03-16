@@ -72,7 +72,7 @@ You can also use [react-spring](https://github.com/pmndrs/react-spring) with the
 ## Performance
 
 The Modal component's content is unmounted when it is not opened.
-This means that it will need to be re-mounted each time it is _opened_. If you are rendering expensive component trees inside your modal, and you want to optimize for interaction responsiveness, you can change this default behavior by enabling the keepMounted prop.
+This means that it will need to be re-mounted each time it is opened. If you are rendering expensive component trees inside your modal, and you want to optimize for interaction responsiveness, you can change this default behavior by enabling the keepMounted prop.
 
 You can also use the keepMounted prop if you want to make the content of the modal available to search engines (even when the modal is closed).
 
