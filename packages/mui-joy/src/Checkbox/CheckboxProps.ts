@@ -33,10 +33,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
-      color?: OverridableStringUnion<
-        Exclude<ColorPaletteProp, 'context'>,
-        CheckboxPropsColorOverrides
-      >;
+      color?: OverridableStringUnion<ColorPaletteProp, CheckboxPropsColorOverrides>;
       /**
        * If `true`, the component appears indeterminate.
        * This does not set the native input element to indeterminate due

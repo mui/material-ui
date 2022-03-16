@@ -10,6 +10,7 @@ import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxProps, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }) => {
   const { checked, disabled, focusVisible, color, variant, size } = ownerState;
@@ -103,8 +104,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     onFocus,
     onFocusVisible,
     required,
-    color,
-    variant,
+    color: colorProp,
+    variant: variantProp,
     size = 'md',
     ...otherProps
   } = props;
@@ -122,18 +123,23 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useCheckboxProps);
 
   const isCheckboxActive = checked || indeterminate;
-  const activeColor = color || 'primary';
-  const inactiveColor = color || 'neutral';
-  const activeVariant = variant || 'contained';
-  const inactiveVariant = variant || 'outlined';
+  const activeColor = colorProp || 'primary';
+  const inactiveColor = colorProp || 'neutral';
+  const finalColor = isCheckboxActive ? activeColor : inactiveColor;
+  const activeVariant = variantProp || 'contained';
+  const inactiveVariant = variantProp || 'outlined';
+  const variant = isCheckboxActive ? activeVariant : inactiveVariant;
+
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp, finalColor);
 
   const ownerState = {
     ...props,
     checked,
     disabled,
     focusVisible,
-    color: isCheckboxActive ? activeColor : inactiveColor,
-    variant: isCheckboxActive ? activeVariant : inactiveVariant,
+    color,
+    variant,
     size,
   };
 
@@ -181,7 +187,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['context', 'danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
