@@ -57,7 +57,7 @@ const InputRoot = styled('div', {
     '--Input-placeholderOpacity': 0.5,
     '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
-    '--Input-focusedColor':
+    '--Input-focusedHighlight':
       theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     boxSizing: 'border-box',
     height: `var(--Input-height)`,
@@ -100,7 +100,7 @@ const InputRoot = styled('div', {
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
       '&:before': {
-        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedColor)`,
+        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
       },
     },
   },
