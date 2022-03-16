@@ -16,12 +16,12 @@ import { Variants } from './types/variants';
 import { ColorSystem } from './types/colorSystem';
 import { TypographySystem, FontSize } from './types/typography';
 import { Components } from './components';
+import { createVariant } from './variantUtils';
 import {
-  createVariant,
   createTextOverrides,
   createLightOverrides,
   createContainedOverrides,
-} from './variantUtils';
+} from './VariantOverride';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
