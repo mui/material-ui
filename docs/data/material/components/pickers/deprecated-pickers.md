@@ -16,4 +16,4 @@ You can find documentation on the date and time picker components in the [MUI X 
 
 ## Where should I report issues, request features, or submit PRs?
 
-You should go to the [MUI X repository](https://github.com/mui/mui-x) to do those things now that the Pickers have been moved there.
+Please share all feedback, issues, and requests in the [MUI X repository](https://github.com/mui/mui-x).
