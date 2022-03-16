@@ -1,9 +1,14 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Checkbox from '@mui/joy/Checkbox';
 import IconButton from '@mui/joy/IconButton';
+import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -253,6 +258,88 @@ export default function JoyVariant() {
         {renderNav(false, 'contained')}
         {renderNav(true, 'contained')}
       </Box>
+      {(['contained', 'light'] as const).map((v) => (
+        <Sheet
+          key={v}
+          variant={v}
+          color="primary"
+          enableVariantOverride
+          sx={{
+            maxWidth: { md: 1152, xl: 1536 },
+            mx: 'auto',
+            mt: 4,
+            py: 3,
+            px: 2,
+            display: 'flex',
+            gap: 3,
+            flexWrap: 'wrap',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar variant="contained">SK</Avatar>
+          <Avatar variant="light">SK</Avatar>
+          <Avatar variant="outlined">SK</Avatar>
+          <Button variant="contained">Contained</Button>
+          <Button variant="light">Light</Button>
+          <Button variant="outlined">Outlined</Button>
+          <Button variant="text">Text</Button>
+          <IconButton variant="contained">
+            <Explore />
+          </IconButton>
+          <IconButton variant="light">
+            <Explore />
+          </IconButton>
+          <IconButton variant="outlined">
+            <Explore />
+          </IconButton>
+          <IconButton variant="text">
+            <Explore />
+          </IconButton>
+          <Checkbox variant="outlined" checked={false} />
+          <Checkbox variant="light" checked={false} />
+          <Checkbox variant="contained" checked={false} />
+          <Checkbox variant="outlined" checked />
+          <Checkbox variant="light" checked />
+          <Checkbox variant="contained" checked />
+          <TextField
+            placeholder="Placeholder"
+            variant="contained"
+            label="Label"
+            helperText="Helper text"
+          />
+          <TextField
+            placeholder="Placeholder"
+            variant="light"
+            label="Label"
+            helperText="Helper text"
+          />
+          <TextField
+            placeholder="Placeholder"
+            variant="outlined"
+            label="Label"
+            helperText="Helper text"
+          />
+          <TextField
+            placeholder="Placeholder"
+            variant="text"
+            label="Label"
+            helperText="Helper text"
+          />
+          <Link component="button">Link (default)</Link>
+          <Link component="button" variant="contained">
+            Link (contained)
+          </Link>
+          <Link component="button" variant="light">
+            Link (light)
+          </Link>
+          <Link component="button" variant="outlined">
+            Link (outlined)
+          </Link>
+          <Link component="button" variant="text">
+            Link (text)
+          </Link>
+        </Sheet>
+      ))}
       <Box
         sx={{
           maxWidth: { md: 1152, xl: 1536 },
