@@ -10,6 +10,7 @@ import JoyInput from '../Input';
 import { styled, useThemeProps } from '../styles';
 import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: TextFieldProps) => {
   const { error, disabled, variant, size, color, fullWidth } = ownerState;
@@ -36,7 +37,8 @@ const TextFieldRoot = styled('div', {
   '--FormLabel-margin': '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.25rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
-  '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
+  '--FormHelperText-color':
+    ownerState.color === 'context' ? 'inherit' : theme.vars.palette[ownerState.color!]?.[500],
   ...(ownerState.size === 'sm' && {
     '--FormHelperText-fontSize': theme.vars.fontSize.xs,
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
@@ -45,8 +47,14 @@ const TextFieldRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${textFieldClasses.disabled}`]: {
-    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
-    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
+    '--FormLabel-color':
+      ownerState.color === 'context'
+        ? 'inherit'
+        : theme.vars.palette[ownerState.color!]?.textDisabledColor,
+    '--FormHelperText-color':
+      ownerState.color === 'context'
+        ? 'inherit'
+        : theme.vars.palette[ownerState.color!]?.textDisabledColor,
   },
   display: 'flex',
   flexDirection: 'column',
@@ -80,7 +88,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     onChange,
     onFocus,
     inputRef,
-    color,
+    color: colorProp,
     disabled = false,
     error = false,
     required = false,
@@ -91,6 +99,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     endAdornment,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp, 'neutral');
 
   const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
