@@ -151,10 +151,3 @@ For a [native select](#native-select), you should mention a label by giving the 
   <option value="20">Twenty</option>
 </NativeSelect>
 ```
-
-## Unstyled
-
-The Select also comes with an unstyled version.
-It's ideal for doing heavy customizations and minimizing bundle size.
-
-See its docs on the [MUI Base section](/base/react-select).
