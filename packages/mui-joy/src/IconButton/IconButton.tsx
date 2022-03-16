@@ -86,12 +86,13 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     className,
     action,
     component = 'button',
+    color: colorProp,
     variant = 'light',
     size = 'md',
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, props.color, 'primary');
+  const color = getColor(inProps.color, colorProp, 'primary');
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

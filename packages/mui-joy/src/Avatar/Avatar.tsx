@@ -142,6 +142,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     alt,
     className,
     component = 'div',
+    color: colorProp,
     size = 'md',
     variant = 'light',
     imgProps,
@@ -151,7 +152,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, props.color, 'neutral');
+  const color = getColor(inProps.color, colorProp, 'neutral');
 
   let children = null;
 

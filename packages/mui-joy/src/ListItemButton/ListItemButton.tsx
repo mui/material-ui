@@ -116,12 +116,13 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     className,
     action,
     component = 'div',
+    color: colorProp,
     selected = false,
     variant = 'text',
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, selected ? 'primary' : props.color, 'neutral');
+  const color = getColor(inProps.color, selected ? 'primary' : colorProp, 'neutral');
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
