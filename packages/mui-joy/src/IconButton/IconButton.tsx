@@ -37,18 +37,23 @@ const IconButtonRoot = styled('button', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: IconButtonProps }>(({ theme, ownerState }) => [
   {
-    '--IconButton-size': '2.5rem', // for defining width x height
-    '--IconButton-padding': '0.25rem',
     ...(ownerState.size === 'sm' && {
       '--IconButton-size': '2rem',
+      '--Icon-fontSize': '1.25rem',
+    }),
+    ...(ownerState.size === 'md' && {
+      '--IconButton-size': '2.5rem', // for defining width x height
+      '--IconButton-padding': '0.25rem',
+      '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
     }),
     ...(ownerState.size === 'lg' && {
       '--IconButton-size': '3rem',
       '--IconButton-padding': '0.5rem',
+      '--Icon-fontSize': '1.75rem',
     }),
     padding: 'var(--IconButton-padding)',
     ...(ownerState.variant === 'outlined' && {
-      padding: 'calc(var(--IconButton-padding) - var(--variant-outlined-borderWidth))', // account for the border width
+      padding: 'calc(var(--IconButton-padding) - var(--variant-outlinedBorderWidth))', // account for the border width
     }),
     minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content
     minHeight: 'var(--IconButton-size)', // use min-height instead of height to make the button resilient to its content

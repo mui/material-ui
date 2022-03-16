@@ -278,7 +278,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
     <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
       {selectedIcon ? (
         <React.Fragment>
-          <DialogTitle disableTypography>
+          <DialogTitle>
             <Tooltip
               placement="right"
               title={copied1 ? t('copied') : t('clickToCopy')}
@@ -286,7 +286,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 onExited: () => setCopied1(false),
               }}
             >
-              <Title component="h2" variant="h6" onClick={handleClick(1)}>
+              <Title component="span" variant="inherit" onClick={handleClick(1)}>
                 {selectedIcon.importName}
               </Title>
             </Tooltip>
@@ -452,10 +452,12 @@ const allIcons = Object.keys(mui)
  */
 function useLatest(value) {
   const latest = React.useRef(value);
-  if (value !== undefined && value !== null) {
-    latest.current = value;
-  }
-  return latest.current;
+  React.useEffect(() => {
+    if (value !== undefined && value !== null) {
+      latest.current = value;
+    }
+  }, [value]);
+  return value ?? latest.current;
 }
 
 export default function SearchIcons() {

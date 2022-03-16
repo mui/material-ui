@@ -1,6 +1,7 @@
 {
-  "name": "vite-mui",
-  "version": "0.0.0",
+  "name": "vite",
+  "version": "5.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",

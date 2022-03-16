@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Caixa de seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'

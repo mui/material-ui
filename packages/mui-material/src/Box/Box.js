@@ -1,5 +1,5 @@
 import { createBox } from '@mui/system';
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '../utils';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
 import { createTheme } from '../styles';
 
 const defaultTheme = createTheme();

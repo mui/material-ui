@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Ícones
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
@@ -18,7 +18,7 @@ Material-UI fornece suporte de ícones de três maneiras:
 
 ## Ícones Material
 
-Google has created over 1,900 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/components/material-icons/).
+Google has created over 2,000 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/components/material-icons/).
 
 ### Instalação
 

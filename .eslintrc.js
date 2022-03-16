@@ -250,6 +250,8 @@ module.exports = {
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
         '@typescript-eslint/no-use-before-define': 'off',
         'react/prop-types': 'off',
+        'no-alert': 'off',
+        'no-console': 'off',
       },
     },
     {
@@ -341,13 +343,6 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/state-in-constructor': 'off',
         'react/static-property-placement': 'off',
-      },
-    },
-    {
-      files: ['framer/Material-UI.framerfx/code/**/*.tsx'],
-      rules: {
-        // framer requires named exports
-        'import/prefer-default-export': 'off',
       },
     },
     {

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Fab（浮动操作按钮）组件
 components: Fab
 githubLabel: 'component: Fab'

@@ -14,7 +14,7 @@
 
 ---
 
-product: material
+product: material-ui
 
 ## MUI packages
 
