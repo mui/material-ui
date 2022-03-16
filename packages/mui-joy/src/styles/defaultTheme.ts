@@ -149,6 +149,10 @@ export const lightColorSystem = {
       containedActiveBg: `var(--joy-palette-neutral-700)`,
       containedDisabledColor: `var(--joy-palette-neutral-50)`,
       containedDisabledBg: `var(--joy-palette-neutral-300)`,
+
+      overrideTextPrimary: `var(--joy-palette-neutral-700)`,
+      overrideTextSecondary: `var(--joy-palette-neutral-500)`,
+      overrideTextTertiary: `var(--joy-palette-neutral-400)`,
     },
     danger: {
       ...colors.red,
