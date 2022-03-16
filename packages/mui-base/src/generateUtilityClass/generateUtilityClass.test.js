@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import generateUtilityClass from './generateUtilityClass';
-import ClassNameGenerator from './ClassNameGenerator';
+import ClassNameGenerator from '../className/ClassNameGenerator';
 
 describe('generateUtilityClass', () => {
   it('should generate the class correctly', () => {

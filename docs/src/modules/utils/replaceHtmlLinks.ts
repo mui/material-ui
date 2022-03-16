@@ -74,6 +74,7 @@ export default function replaceHtmlLinks(html: string, asPath: string) {
   asPath = asPath.replace(/^\/[a-z]{2}\//, '/');
   if (
     asPath.startsWith('/material-ui/') ||
+    asPath.startsWith('/joy-ui/') ||
     asPath.startsWith('/x/') ||
     asPath.startsWith('/base/') ||
     (FEATURE_TOGGLE.enable_system_scope && asPath.startsWith('/system'))
