@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { HTMLElementType, refType } from '@mui/utils';
 import { Direction, useThemeWithoutDefault as useTheme, SxProps } from '@mui/system';
+import { Theme, styled } from '@mui/material/styles';
 import useThemeProps from '../styles/useThemeProps';
-import { Theme, styled } from '../styles';
 
 export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
   /**
