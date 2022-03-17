@@ -75,7 +75,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
           root: {
             ...componentsProps.root,
             ...((!components.Root || !isHostComponent(components.Root)) && {
-              ownerState: { ...componentsProps.root?.ownerState },
+              ownerState: { ...ownerState, ...componentsProps.root?.ownerState },
             }),
           },
         }}
