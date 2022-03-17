@@ -24,7 +24,7 @@ Features:
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > **Note:** the term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
-> A dialog may be _modal_ or _nonmodal_.
+> A dialog may be _modal_ or _nonmodal (modeless)_.
 >
 > A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action.
 > As such, it should be used sparingly—only when the app _requires_ user input before it can continue.
