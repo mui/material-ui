@@ -32,7 +32,7 @@ export interface BackdropUnstyledTypeMap<P = {}, D extends React.ElementType = '
  * Utility to create component types that inherit props from BackdropUnstyled.
  */
 export interface ExtendBackdropUnstyledTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & BackdropUnstyledTypeMap['props'];
+  props: M['props'] & BackdropUnstyledTypeMap['props'] & { component?: React.ElementType };
   defaultComponent: M['defaultComponent'];
 }
 
