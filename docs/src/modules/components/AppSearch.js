@@ -165,7 +165,6 @@ function DocSearcHit(props) {
       return null;
     }
     let text = '';
-    let color = 'default';
     if (pathname.startsWith('/material-ui/')) {
       text = 'Material UI';
     }
