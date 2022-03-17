@@ -34,13 +34,13 @@ For the sake of brevity, the rest of the demos that follow will not use `forward
 
 ### Controlled select
 
-The SelectUnstyled can be used as either uncontrolled (as shown in the demo above) or controlled component.
+`SelectUnstyled` can be used as an uncontrolled (as shown in the demo above) or controlled component.
 
 {{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
 
 ### Object values
 
-The unstyled select may be used with non-string values.
+The `UnstyledSelect` component can be used with non-string values.
 
 {{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
 
