@@ -1,5 +1,5 @@
 import { CreateCssVarsProviderResult } from '@mui/system';
-import { ThemeOptions, SupportedColorScheme } from './unstable_createTheme';
+import { ThemeOptions, SupportedColorScheme } from './experimental_extendTheme';
 import { PaletteWithChannels } from './createPalette';
 
 export interface ThemeInput extends Omit<ThemeOptions, 'colorSchemes'> {
@@ -22,6 +22,6 @@ declare const getInitColorSchemeScript: MDCreateCssVarsProviderResult['getInitCo
  * This component is an experimental Theme Provider that generates CSS variabels out of the theme tokens.
  * It should preferably be used at **the root of your component tree**.
  */
-declare const CssVarsProvider: MDCreateCssVarsProviderResult['CssVarsProvider'];
+declare const Experimental_CssVarsProvider: MDCreateCssVarsProviderResult['CssVarsProvider'];
 
-export { useColorScheme, getInitColorSchemeScript, CssVarsProvider };
+export { useColorScheme, getInitColorSchemeScript, Experimental_CssVarsProvider };

@@ -13,7 +13,7 @@ import {
   useTheme,
   styled,
   useColorScheme,
-  unstable_createTheme,
+  experimental_extendTheme,
   CssVarsProvider,
 } from '@mui/material/styles';
 import rtl from 'jss-rtl';
@@ -148,7 +148,7 @@ const getTheme = (outerTheme) => {
   //   outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
   // );
 
-  const resultTheme = unstable_createTheme(
+  const resultTheme = experimental_extendTheme(
     {
       ...(isCustomized && {
         colorSchemes: {

@@ -179,13 +179,11 @@ const ButtonRoot = styled(ButtonBase, {
     ...(ownerState.variant === 'outlined' &&
       ownerState.color !== 'inherit' && {
         color: (theme.vars || theme).palette[ownerState.color].main,
-        // border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
         border: theme.vars
           ? `1px solid rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
           : `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
       }),
     ...(ownerState.variant === 'contained' && {
-      // color: theme.palette.getContrastText?.(theme.palette.grey[300]),
       color: theme.vars
         ? // this is safe because grey does not change between default light/dark mode
           theme.vars.palette.text.primary

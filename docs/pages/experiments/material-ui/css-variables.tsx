@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme, unstable_createTheme } from '@mui/material/styles';
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  useColorScheme,
+} from '@mui/material/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Button from '@mui/material/Button';
@@ -31,11 +34,9 @@ const ColorSchemePicker = () => {
   );
 };
 
-const theme = unstable_createTheme();
-
 export default function Page() {
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ pb: 4 }}>
           <ColorSchemePicker />

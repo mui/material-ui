@@ -2,10 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import Button from '@mui/material/Button';
-import { CssVarsProvider, unstable_createTheme as createTheme } from '@mui/material/styles';
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  experimental_extendTheme as createTheme,
+} from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
-describe('unstable_createTheme', () => {
+describe('experimental_extendTheme', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
   const storage = {};

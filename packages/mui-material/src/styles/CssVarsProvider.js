@@ -1,10 +1,14 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import unstable_createTheme from './unstable_createTheme';
+import experimental_extendTheme from './experimental_extendTheme';
 import createTypography from './createTypography';
 
-const defaultTheme = unstable_createTheme();
+const defaultTheme = experimental_extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider({
+const {
+  CssVarsProvider: Experimental_CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript,
+} = createCssVarsProvider({
   theme: defaultTheme,
   defaultColorScheme: {
     light: 'light',
@@ -23,4 +27,4 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/),
 });
 
-export { useColorScheme, getInitColorSchemeScript, CssVarsProvider };
+export { useColorScheme, getInitColorSchemeScript, Experimental_CssVarsProvider };

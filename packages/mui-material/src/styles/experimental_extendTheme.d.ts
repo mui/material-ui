@@ -87,4 +87,4 @@ export interface Theme extends BaseTheme {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready-to-use theme object.
  */
-export default function unstable_createTheme(options?: ThemeOptions, ...args: object[]): Theme;
+export default function experimental_extendTheme(options?: ThemeOptions, ...args: object[]): Theme;
