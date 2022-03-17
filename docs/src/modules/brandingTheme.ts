@@ -46,7 +46,7 @@ declare module '@mui/material/styles/createTypography' {
 
 const defaultTheme = createTheme();
 
-const blue = {
+export const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
   200: '#99CCF3',

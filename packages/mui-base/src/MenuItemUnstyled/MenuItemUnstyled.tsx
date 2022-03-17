@@ -21,11 +21,11 @@ function getUtilityClasses(ownerState: MenuItemOwnerState) {
  *
  * Demos:
  *
- * - [Menus](https://mui.com/components/menus/)
+ * - [Menu](https://mui.com/base/react-menu/)
  *
  * API:
  *
- * - [MenuItemUnstyled API](https://mui.com/api/menu-item-unstyled/)
+ * - [MenuItemUnstyled API](https://mui.com/base/api/menu-item-unstyled/)
  */
 const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
   props: MenuItemUnstyledProps & React.ComponentPropsWithoutRef<'li'>,

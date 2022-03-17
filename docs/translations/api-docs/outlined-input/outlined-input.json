@@ -19,7 +19,7 @@
     "margin": "If <code>dense</code>, will adjust vertical spacing. This is normally obtained via context from FormControl. The prop defaults to the value (<code>&#39;none&#39;</code>) inherited from the parent FormControl component.",
     "maxRows": "Maximum number of rows to display when multiline option is set to true.",
     "minRows": "Minimum number of rows to display when multiline option is set to true.",
-    "multiline": "If <code>true</code>, a <code>textarea</code> element is rendered.",
+    "multiline": "If <code>true</code>, a <a href=\"/components/textarea-autosize/\">TextareaAutosize</a> element is rendered.",
     "name": "Name attribute of the <code>input</code> element.",
     "notched": "If <code>true</code>, the outline is notched to accommodate the label.",
     "onChange": "Callback fired when the value is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.ChangeEvent&lt;HTMLTextAreaElement | HTMLInputElement&gt;) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string).",

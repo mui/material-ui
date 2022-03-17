@@ -6,6 +6,7 @@ import { LinkProps, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListSlot } from '../List/ListProps';
 import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
 import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
+import { AvatarProps, AvatarSlot } from '../Avatar/AvatarProps';
 import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListItemButtonProps';
 import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
 import {
@@ -17,6 +18,9 @@ import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
+import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
+import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
+import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -38,6 +42,10 @@ export type OverridesStyleRules<
 >;
 
 export interface Components<Theme = unknown> {
+  MuiAvatar?: {
+    defaultProps?: Partial<AvatarProps>;
+    styleOverrides?: OverridesStyleRules<AvatarSlot, AvatarProps, Theme>;
+  };
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonProps, Theme>;
@@ -93,5 +101,17 @@ export interface Components<Theme = unknown> {
   MuiCheckbox?: {
     defaultProps?: Partial<CheckboxProps>;
     styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
+  };
+  MuiFormLabel?: {
+    defaultProps?: Partial<FormLabelProps>;
+    styleOverrides?: OverridesStyleRules<FormLabelSlot, FormLabelProps, Theme>;
+  };
+  MuiFormHelperText?: {
+    defaultProps?: Partial<FormHelperTextProps>;
+    styleOverrides?: OverridesStyleRules<FormHelperTextSlot, FormHelperTextProps, Theme>;
+  };
+  MuiTextField?: {
+    defaultProps?: Partial<TextFieldProps>;
+    styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldProps, Theme>;
   };
 }

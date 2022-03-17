@@ -8,6 +8,7 @@ import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import NestedListContext from '../List/NestedListContext';
+import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
   const { sticky, nested } = ownerState;
@@ -24,7 +25,7 @@ const ListItemRoot = styled('li', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemProps }>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemProps & { row: boolean } }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
     '--List-itemButton-margin': `calc(-1 * var(--List-item-paddingY))
@@ -70,12 +71,18 @@ calc(-1 * var(--List-item-paddingLeft))`,
       background: 'var(--List-background)',
     }),
     // Using :last-child or :first-child selector would complicate ListDivider margin
-    [`& + .${listItemClasses.root}`]: {
-      marginTop: 'var(--List-gap)',
-    },
-    [`& + .${listItemButtonClasses.root}`]: {
-      marginTop: 'var(--List-gap)',
-    },
+    [`& + .${listItemClasses.root}`]: ownerState.row
+      ? {
+          marginLeft: 'var(--List-gap)',
+        }
+      : {
+          marginTop: 'var(--List-gap)',
+        },
+    [`& + .${listItemButtonClasses.root}`]: ownerState.row
+      ? { marginLeft: 'var(--List-gap)' }
+      : {
+          marginTop: 'var(--List-gap)',
+        },
   },
 ]);
 
@@ -109,6 +116,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'MuiListItem',
   });
 
+  const row = React.useContext(RowListContext);
+
   const {
     component,
     className,
@@ -124,6 +133,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     sticky,
     startAction,
     endAction,
+    row,
     ...props,
   };
 

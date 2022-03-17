@@ -1,6 +1,9 @@
 export { default as colors } from './colors';
 export * from './styles';
 
+export { default as Avatar } from './Avatar';
+export * from './Avatar';
+
 export { default as Button } from './Button';
 export * from './Button';
 
@@ -42,3 +45,12 @@ export * from './Sheet';
 
 export { default as Checkbox } from './Checkbox';
 export * from './Checkbox';
+
+export { default as FormLabel } from './FormLabel';
+export * from './FormLabel';
+
+export { default as FormHelperText } from './FormHelperText';
+export * from './FormHelperText';
+
+export { default as TextField } from './TextField';
+export * from './TextField';

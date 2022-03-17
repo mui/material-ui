@@ -190,12 +190,7 @@ function DocSearcHit(props) {
 
   // DocSearch stores the old results in its cache
   // hit.pathname won't be defined for them.
-  return (
-    <Link href={hit.url}>
-      {children}
-      {displayTag(hit.pathname)}
-    </Link>
-  );
+  return <Link href={hit.url}>{children}</Link>;
 }
 
 DocSearcHit.propTypes = {
