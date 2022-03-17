@@ -157,6 +157,7 @@ const strapiTheme: JoyThemeInput = {
         text: {
           primary: getCssVar('palette-neutral-800'),
         },
+        divider: getCssVar('palette-neutral-100'),
         outlinedFocusBorder: getCssVar('palette-neutral-0'),
       },
     },

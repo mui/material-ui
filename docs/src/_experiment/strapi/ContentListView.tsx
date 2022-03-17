@@ -68,47 +68,45 @@ export default function ContentListView() {
           </Button>
         </Box>
         <Sheet sx={{ mx: '3.5rem', mt: 2, borderRadius: 'xs', boxShadow: 'sm' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', p: 1.5 }}>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: 'auto 12% 16% 20% 1fr auto',
+              alignItems: 'center',
+              p: 1.5,
+            }}
+          >
             <Box sx={{ px: 2 }}>
               <Checkbox />
             </Box>
-            <Link
-              underline="none"
-              component="button"
-              sx={{ typography: 'tableLabel', flexBasis: '12%' }}
-            >
+            <Link underline="none" component="button" sx={{ typography: 'tableLabel' }}>
               ID
               <ArrowDropDown />
             </Link>
-            <Link
-              underline="none"
-              component="button"
-              sx={{ typography: 'tableLabel', flexBasis: '16%' }}
-            >
+            <Link underline="none" component="button" sx={{ typography: 'tableLabel' }}>
               Cover
               <ArrowDropDown />
             </Link>
-            <Link
-              underline="none"
-              component="button"
-              sx={{ typography: 'tableLabel', flexBasis: '20%' }}
-            >
+            <Link underline="none" component="button" sx={{ typography: 'tableLabel' }}>
               Name
               <ArrowDropDown />
             </Link>
-            <Link
-              underline="none"
-              component="button"
-              sx={{ typography: 'tableLabel', flexGrow: 1 }}
-            >
+            <Link underline="none" component="button" sx={{ typography: 'tableLabel' }}>
               Description
               <ArrowDropDown />
             </Link>
             <Button size="sm" color="neutral" variant="outlined">
               <Settings fontSize="md" />
             </Button>
+            <Box
+              sx={{
+                borderTop: '1px solid',
+                borderColor: 'divider',
+                gridColumn: '1 / -1',
+                my: 1.5,
+              }}
+            />
           </Box>
-          <Box sx={{ borderTop: '1px solid', borderColor: 'neutral.outlinedBorder', mx: 1.5 }} />
           <Box sx={{ py: 5, textAlign: 'center' }}>
             <Typography level="subtitle" fontWeight="md" justifyContent="center">
               You don’t have the permission to access that content
