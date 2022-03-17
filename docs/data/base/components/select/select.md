@@ -28,7 +28,19 @@ import SelectUnstyled from '@mui/base/SelectUnstyled';
 The `SelectUnstyled` component accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
 In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
-To avoid this, you can manually cast the resulting component to the correct type, as shown in the demo above.
+To avoid this, you can manually cast the resulting component to the correct type (also shown in the demo above):
+
+```tsx
+const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
+  props: SelectUnstyledProps<TValue>,
+  ref: React.ForwardedRef<HTMLUListElement>,
+) {
+  // ...your code here...
+  return <SelectUnstyled {...props} ref={ref} />;
+}) as <TValue>(
+  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLUListElement>,
+) => JSX.Element;
+```
 
 For the sake of brevity, the rest of the demos that follow will not use `forwardRef`.
 
