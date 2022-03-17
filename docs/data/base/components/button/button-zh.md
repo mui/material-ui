@@ -1,14 +1,14 @@
 ---
 product: base
-title: Unstyled React button
+title: 未风格React按钮
 components: ButtonUnstyled
-githubLabel: 'component: button'
+githubLabel: '组件：按钮'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 ---
 
-# Unstyled button
+# 未风格按钮
 
-<p class="description">Buttons allow users to take actions and make choices with a single tap.</p>
+<p class="description">按钮允许用户在单次点击时采取行动和作出选择。</p>
 
 ## Basic usage
 
