@@ -43,11 +43,9 @@ const ListItemButtonRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
   {
-    ...(ownerState.color &&
-      ownerState.color !== 'context' && {
-        '--List-decorator-color':
-          theme.vars.palette[ownerState.color]?.[`${ownerState.variant!}Color`],
-      }),
+    ...(ownerState.selected && {
+      '--List-decorator-color': 'initial',
+    }),
     boxSizing: 'border-box',
     display: 'flex',
     alignItems: 'center',
