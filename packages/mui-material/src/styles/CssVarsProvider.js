@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import experimental_extendTheme from './experimental_extendTheme';
 import createTypography from './createTypography';

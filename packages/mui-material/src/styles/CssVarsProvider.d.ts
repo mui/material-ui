@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { CreateCssVarsProviderResult } from '@mui/system';
 import { ThemeOptions, SupportedColorScheme } from './experimental_extendTheme';
 import { PaletteWithChannels } from './createPalette';
