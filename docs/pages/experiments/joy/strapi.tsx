@@ -42,6 +42,8 @@ import { ToggleButton, ToggleButtonGroup } from 'docs/src/_experiment/joy/Toggle
 import SelectField from 'docs/src/_experiment/joy/SelectField';
 import strapiTheme from 'docs/src/_experiment/strapi/theme';
 import { List, ListItemButton, ListSubheader } from 'docs/src/_experiment/joy/List';
+import LoginPage from 'docs/src/_experiment/strapi/LoginPage';
+import RegisterPage from 'docs/src/_experiment/strapi/RegisterPage';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -321,163 +323,9 @@ export default function Strapi() {
         </Box>
       </Box>
 
-      {/* Log in */}
-      <Box
-        sx={{
-          minHeight: '100vh',
-          bgcolor: 'var(--joy-palette-background-level1)',
-          pt: '100px',
-          my: '5rem',
-        }}
-      >
-        <Box
-          sx={{
-            width: 552,
-            mx: 'auto',
-            borderRadius: '4px',
-            boxShadow: 'var(--joy-shadow-sm)',
-            bgcolor: 'var(--joy-palette-background-body)',
-            textAlign: 'center',
-            px: '3.5rem',
-            py: '3rem',
-          }}
-        >
-          <Box
-            component="img"
-            src="https://res.cloudinary.com/practicaldev/image/fetch/s--XsZRGi5O--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/763/988af53b-5d7e-435a-98eb-dd4aff5299d2.png"
-            sx={{
-              borderRadius: '1rem',
-              width: 72,
-              height: 72,
-              mx: 'auto',
-              display: 'block',
-            }}
-          />
-          <Typography level="h3" sx={{ mt: '1.5rem', mb: '0.375rem', fontWeight: 'bold' }}>
-            Welcome back!
-          </Typography>
-          <Typography sx={{ color: 'var(--joy-palette-text-tertiary)', mb: '2rem' }}>
-            Log in to your Strapi account
-          </Typography>
-          <TextField label="Email" id="email" placeholder="kaidoe@gmail.com" fullWidth />
-          <Box sx={{ height: '1.5rem' }} />
-          <TextField
-            label="Password"
-            id="password"
-            fullWidth
-            endAdornment={
-              <Button
-                square
-                variant="text"
-                color="neutral"
-                size="sm"
-                sx={{ pointerEvents: 'visible' }}
-              >
-                <Visibility fontSize="lg" />
-              </Button>
-            }
-          />
-          <Box sx={{ height: '1.5rem' }} />
-          <Checkbox label="Remember me" />
-          <Box sx={{ height: '1.5rem' }} />
-          <Button fullWidth size="lg">
-            Login
-          </Button>
-        </Box>
-        <Box sx={{ textAlign: 'center', py: 1 }}>
-          <Button variant="text" sx={{ fontWeight: 'normal' }}>
-            Forgot password?
-          </Button>
-        </Box>
-      </Box>
+      <LoginPage />
 
-      {/* Sign up */}
-      <Box
-        sx={{
-          minHeight: '100vh',
-          bgcolor: 'var(--joy-palette-background-level1)',
-          pt: '100px',
-          my: '5rem',
-        }}
-      >
-        <Box
-          sx={{
-            width: 552,
-            mx: 'auto',
-            borderRadius: '4px',
-            boxShadow: 'var(--joy-shadow-sm)',
-            bgcolor: 'var(--joy-palette-background-body)',
-            textAlign: 'center',
-            px: '3.5rem',
-            py: '3rem',
-          }}
-        >
-          <Box
-            component="img"
-            src="https://res.cloudinary.com/practicaldev/image/fetch/s--XsZRGi5O--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/763/988af53b-5d7e-435a-98eb-dd4aff5299d2.png"
-            sx={{
-              borderRadius: '1rem',
-              width: 72,
-              height: 72,
-              mx: 'auto',
-              display: 'block',
-            }}
-          />
-          <Typography level="h3" sx={{ mt: '1.5rem', mb: '0.375rem', fontWeight: 'bold' }}>
-            Welcome back!
-          </Typography>
-          <Typography sx={{ color: 'var(--joy-palette-text-tertiary)', mb: '2rem' }}>
-            Your credentials are only used to authenticate yourself on the admin panel. All saved
-            data will be stored in your own database.
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2, '& > *': { flexGrow: 1 } }}>
-            <TextField label="First name" id="first-name" placeholder="Kai" fullWidth />
-            <TextField label="Last name" id="last-name" placeholder="Doe" fullWidth />
-          </Box>
-          <Box sx={{ height: '1.5rem' }} />
-          <TextField label="Email" id="email" placeholder="kaidoe@gmail.com" fullWidth />
-          <Box sx={{ height: '1.5rem' }} />
-          <TextField
-            label="Password"
-            id="password"
-            fullWidth
-            endAdornment={
-              <Button
-                square
-                variant="text"
-                color="neutral"
-                size="sm"
-                sx={{ pointerEvents: 'visible' }}
-              >
-                <Visibility fontSize="lg" />
-              </Button>
-            }
-          />
-          <Box sx={{ height: '1.5rem' }} />
-          <TextField
-            label="Password"
-            id="password"
-            fullWidth
-            endAdornment={
-              <Button
-                square
-                variant="text"
-                color="neutral"
-                size="sm"
-                sx={{ pointerEvents: 'visible' }}
-              >
-                <Visibility fontSize="lg" />
-              </Button>
-            }
-          />
-          <Box sx={{ height: '1.5rem' }} />
-          <Checkbox label="Keep me updated about the new features and upcoming improvements (by doing this you accept the terms and the privacy policy)." />
-          <Box sx={{ height: '1.5rem' }} />
-          <Button fullWidth size="lg">
-            Let&apos;s start
-          </Button>
-        </Box>
-      </Box>
+      <RegisterPage />
 
       {/* Home */}
       <Box

@@ -143,6 +143,7 @@ const strapiTheme: JoyThemeInput = {
           0: '#FFFFFF',
           outlinedColor: getCssVar('palette-neutral-800'),
           outlinedBorder: getCssVar('palette-neutral-200'),
+          outlinedHoverBorder: undefined,
           outlinedHoverBg: getCssVar('palette-neutral-100'),
           outlinedActiveBg: getCssVar('palette-neutral-150'),
           outlinedDisabledColor: getCssVar('palette-neutral-600'),
@@ -298,13 +299,22 @@ const strapiTheme: JoyThemeInput = {
     MuiCheckbox: {
       styleOverrides: {
         root: {
+          borderColor: getCssVar('palette-neutral-300'),
+          '&.Mui-checked': {
+            '&:hover': {
+              backgroundColor: getCssVar('palette-primary-containedBg'),
+            },
+          },
           '&.Mui-disabled': {
             borderColor: getCssVar('palette-neutral-300'),
             backgroundColor: getCssVar('palette-neutral-200'),
           },
-          '[data-mui-color-scheme="dark"] &.Mui-disabled': {
+          '[data-mui-color-scheme="dark"]': {
             borderColor: getCssVar('palette-neutral-500'),
-            backgroundColor: getCssVar('palette-neutral-700'),
+            '&.Mui-disabled': {
+              borderColor: getCssVar('palette-neutral-500'),
+              backgroundColor: getCssVar('palette-neutral-700'),
+            },
           },
         },
       },
@@ -395,6 +405,13 @@ const strapiTheme: JoyThemeInput = {
           gap: '0.25rem',
           fontSize: getCssVar('fontSize-xs'),
           fontWeight: 600,
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          borderRadius: getCssVar('radius-xs'),
         },
       },
     },

@@ -87,6 +87,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     size = 'md',
     variant = 'outlined',
     fullWidth = false,
+    type = 'text',
     startAdornment,
     endAdornment,
     ...other
@@ -107,6 +108,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     size,
     variant,
     fullWidth,
+    type,
     ...props,
   };
 
@@ -156,6 +158,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
+        type={type}
         startAdornment={startAdornment}
         endAdornment={endAdornment}
       />
