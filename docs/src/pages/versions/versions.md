@@ -74,7 +74,7 @@ The current status of each MUI version is as follows:
 
 For teams and organizations that require additional support for older versions, MUI has [options available](/getting-started/support/#professional-support-premium).
 
-### Long-term support
+### Long-term support (LTS)
 
 MUI will continue to give security updates and regressions support (for example, if there's any regression caused by Chrome, React, etc) to the version prior to the current major until the next one is released.
 

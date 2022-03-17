@@ -39,6 +39,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       classes?: Partial<InputClasses>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'neutral'
        */
       color?: OverridableStringUnion<
         Exclude<ColorPaletteProp, 'context'>,
@@ -98,6 +99,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       startAdornment?: React.ReactNode;
       /**
        * The size of the component.
+       * @default 'md'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', InputPropsSizeOverrides>;
       /**

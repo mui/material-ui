@@ -43,29 +43,7 @@ const ColorSchemePicker = () => {
 
 export default function JoyTypography() {
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 2 }}>
@@ -81,9 +59,9 @@ export default function JoyTypography() {
           }}
         >
           <Input placeholder="Placeholder" />
-          <Input placeholder="Placeholder" startAdornment={<Mail fontSize="lg" />} size="sm" />
+          <Input placeholder="Placeholder" startAdornment={<Mail />} size="sm" />
           <Input placeholder="Placeholder" startAdornment={<Mail />} />
-          <Input placeholder="Placeholder" startAdornment={<Mail fontSize="xl2" />} size="lg" />
+          <Input placeholder="Placeholder" startAdornment={<Mail />} size="lg" />
           <Input
             placeholder="Placeholder"
             color="primary"

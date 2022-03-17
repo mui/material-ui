@@ -1,6 +1,6 @@
 import { createBox } from '@mui/system';
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/base/generateUtilityClass';
 import { OverridableComponent } from '@mui/types';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
 import { BoxTypeMap } from './BoxProps';
 import defaultTheme from '../styles/defaultTheme';
 import styleFunctionSx from '../styles/styleFunctionSx';

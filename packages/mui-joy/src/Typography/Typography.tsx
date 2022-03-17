@@ -24,7 +24,14 @@ export const TypographyRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TypographyProps }>(({ theme, ownerState }) => ({
+  '--Icon-fontSize': '1.25em',
   margin: 0,
+  display: 'flex',
+  alignItems: 'center',
+  fontFamily: theme.vars.fontFamily.body,
+  ...(ownerState.component === 'span' && {
+    display: 'inline-flex',
+  }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
   ...(ownerState.noWrap && {
     overflow: 'hidden',
@@ -60,6 +67,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   const {
     className,
     component,
+    color, // declare to prevent type error spread to TypographyRoot
     gutterBottom = false,
     noWrap = false,
     level = 'body1',
@@ -104,6 +112,10 @@ Typography.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

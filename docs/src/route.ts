@@ -12,6 +12,7 @@ const ROUTES = {
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
   baseDocs: '/base/getting-started/installation/',
   materialDocs: '/material-ui/getting-started/installation/',
+  joyDocs: '/joy-ui/react-button/',
   systemDocs: '/system/basics/',
   materialIcons: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/material-icons/'
@@ -52,6 +53,7 @@ const ROUTES = {
     ? '/material-ui/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',
   store: 'https://mui.com/store/',
+  dataGridSpace: '/x/react-data-grid/getting-started/',
   dataGridDocs: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/'
     : '/components/data-grid/getting-started/',

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@mui/material/styles';
-import { blueDark } from 'docs/src/modules/brandingTheme';
+import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
@@ -120,14 +120,22 @@ const Root = styled('div')(({ theme }) => ({
     },
     '&:hover .anchor-link-style': {
       display: 'inline-block',
-      padding: '0 8px',
+      textAlign: 'center',
+      lineHeight: '21.5px',
+      marginLeft: 10,
+      height: '26px',
+      width: '26px',
+      background: theme.palette.mode === 'dark' ? alpha(blue[800], 0.3) : theme.palette.primary[50],
+      border: '1px solid',
+      borderColor: theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[200],
+      borderRadius: 8,
       color: theme.palette.text.secondary,
       '&:hover': {
         color: theme.palette.text.primary,
       },
       '& svg': {
-        width: '0.7em',
-        height: '0.7em',
+        width: '0.875rem',
+        height: '0.875rem',
         fill: 'currentColor',
       },
     },
