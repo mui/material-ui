@@ -6,37 +6,57 @@ authors: ['flaviendelangle']
 tags: ['MUI X', 'News']
 ---
 
-We're excited to announce that, after more than 18 month in the lab, the date picker components are now part of the X packages.
+After more than 18 months in our experimental lab, the date picker components have found a new home as part of MUI X.
 
-## What is MUI X ?
+This means we'll be dedicating even more time and effort to these complex components, to better meet the needs of both you and your users.
 
-Since its creation, MUI have always kept at heart to provide great components for free.
-However, some _Advanced components_ such as date pickers require several full-time developers and can not be sustainable relying only on open-source income.
-To be able to keep improving the library and add _Advanced components_ without compromise on code quality, we decided in 2020 to launch MUI X, a new set of components available under two licenses:
+## What is a date picker?
 
-- MUI X: the MIT licensed, free to use version
-- MUI X Pro: the commercially licensed version with the most advanced features
+A date picker is an interface control that enables the user to select a date from a menu.
 
-The Advanced component launched by our team have been the Data Grid, with the `@mui/x-data-grid` and `@mui/x-data-grid-pro` packages.
-More than one year later, this new source of income has allowed our company to hire several new developers and to increase the amount of work achieved, even on the open-source team.
+Common design patterns include text inputs, dropdown lists, calendars, timelines, and scrolling pickers on mobile devices.
 
-## Why move the date pickers to MUI X
+The user may need to select an individual date, or a range of dates.
 
-When the date pickers components have moved to the lab, it was already clear that some of their features would eventually be part of the commercially licensed packages.
+## What is MUI X?
 
-We just released two new packages:
+MUI X is a collection of advanced components built for complex use cases.
+
+As opposed to our Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
+
+MUI X components are available under two licenses:
+
+- MUI X—MIT license; free to use
+- MUI X Pro—commercial license; includes the most advanced features
+
+## Why have the date pickers been moved to MUI X?
+
+Date picker UI elements appear simple enough on the surface, but they are surprisingly complicated to engineer.
+
+When our date picker components were ready to leave our experimental lab, we had a choice to make: would they live in the MUI Core library, or should they become a part of MUI X?
+
+Given the complex nature of these components, we decided that they would benefit most from the dedicated attention that they would receive from the X team.
+
+And by offering an even more advanced component package through our commercial license, we can continue to grow our team to better serve your needs.
+
+Our date picker components are now available in two packages:
 
 - `@mui/x-date-pickers` which contains all the MIT licensed components
 - `@mui/x-date-pickers-pro` which contains all the MIT and commercially licensed components
 
-> ⚠️The only components that we are moving to a commercial license are the date range components.
-> Those had a clear warning on the doc stating that they were intended for MUI X Pro.
-> All the rest of the components are available in `@mui/x-date-pickers` and will stay MIT and free forever.
+## Which components are only available in the Pro package?
 
-## How do I migrate ?
+The date range components can only be used with a commercial license.
 
-We tried to keep this migration as easy as possible.
-The only changes are the name of the package and a migration from default export to named export.
+All other date picker components are available in `mui/x-date-pickers` and will remain MIT licensed and free forever.
+
+## How do I purchase a commercial license?
+
+Visit [the MUI Store](https://mui.com/store/items/material-ui-pro/) to purchase a commercial license.
+
+## How do I migrate?
+
+To migrate, update the package name and change from a default export to a named export:
 
 ```ts
 // before
@@ -57,7 +77,11 @@ We have prepared a codemod to help you migrate your codebase from `@mui/lab` to 
 npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
 ```
 
-## What's next for the date pickers ?
+## Where is the date picker documentation?
+
+You can find documentation on the date picker components in the [MUI X docs](https://mui.com/x/react-date-pickers/).
+
+## What's next for the date pickers?
 
 For now, `@mui/x-pickers` and `@mui/x-pickers-pro` are in alpha.
-Our next goal is to work on the stability and api consistency of those components, in order to prepare a stable release.
+Our next goal is to work on the stability and API consistency of these components to prepare a stable release.
