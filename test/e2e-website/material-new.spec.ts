@@ -15,7 +15,7 @@ test.describe('Material docs', () => {
 
     const anchors = page.locator('[aria-label="Page table of contents"] ul a');
 
-    const firstAnchor = await anchors.first();
+    const firstAnchor = anchors.first();
     const textContent = await firstAnchor.textContent();
 
     await expect(firstAnchor).toHaveAttribute(
@@ -33,7 +33,7 @@ test.describe('Material docs', () => {
 
     const anchors = page.locator('main nav ul a');
 
-    const firstAnchor = await anchors.first();
+    const firstAnchor = anchors.first();
     const textContent = await firstAnchor.textContent();
 
     await expect(firstAnchor).toHaveAttribute(
@@ -46,9 +46,9 @@ test.describe('Material docs', () => {
     test('should have correct link for API section', async ({ page }) => {
       await page.goto(`/material-ui/react-card/`);
 
-      const anchors = await page.locator('div > h2#heading-api ~ ul a');
+      const anchors = page.locator('div > h2#heading-api ~ ul a');
 
-      const firstAnchor = await anchors.first();
+      const firstAnchor = anchors.first();
       const textContent = await firstAnchor.textContent();
 
       await expect(firstAnchor).toHaveAttribute(
@@ -77,7 +77,7 @@ test.describe('Material docs', () => {
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto(`/material-ui/react-card/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+      const anchor = page.locator('nav[aria-label="documentation"] .app-drawer-active');
 
       await expect(anchor).toHaveAttribute('href', `/material-ui/react-card/`);
       await expect(anchor).toHaveText('Card');
@@ -86,7 +86,7 @@ test.describe('Material docs', () => {
     test('should have plural url for Tabs', async ({ page }) => {
       await page.goto(`/material-ui/react-tabs/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+      const anchor = page.locator('nav[aria-label="documentation"] .app-drawer-active');
 
       await expect(anchor).toHaveAttribute('href', `/material-ui/react-tabs/`);
       await expect(anchor).toHaveText('Tabs');
@@ -95,7 +95,7 @@ test.describe('Material docs', () => {
     test('should have plural url for Breadcrumbs', async ({ page }) => {
       await page.goto(`/material-ui/react-breadcrumbs/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+      const anchor = page.locator('nav[aria-label="documentation"] .app-drawer-active');
 
       await expect(anchor).toHaveAttribute('href', `/material-ui/react-breadcrumbs/`);
       await expect(anchor).toHaveText('Breadcrumbs');
@@ -104,7 +104,7 @@ test.describe('Material docs', () => {
     test('should not have react- prefix for icons', async ({ page }) => {
       await page.goto(`/material-ui/icons/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+      const anchor = page.locator('nav[aria-label="documentation"] .app-drawer-active');
 
       await expect(anchor).toHaveAttribute('href', `/material-ui/icons/`);
       await expect(anchor).toHaveText('Icons');
@@ -113,7 +113,7 @@ test.describe('Material docs', () => {
     test('should not have react- prefix for material-icons', async ({ page }) => {
       await page.goto(`/material-ui/material-icons/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] .app-drawer-active');
+      const anchor = page.locator('nav[aria-label="documentation"] .app-drawer-active');
 
       await expect(anchor).toHaveAttribute('href', `/material-ui/material-icons/`);
       await expect(anchor).toHaveText('Material Icons');
@@ -124,7 +124,7 @@ test.describe('Material docs', () => {
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto(`/material-ui/api/card/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
+      const anchor = page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
 
       await expect(anchor).toHaveAttribute('app-drawer-active', '');
       await expect(anchor).toHaveAttribute('href', `/material-ui/api/card/`);
@@ -133,7 +133,7 @@ test.describe('Material docs', () => {
     test('all the links in the main content should have correct prefix', async ({ page }) => {
       await page.goto(`/material-ui/api/card/`);
 
-      const anchors = await page.locator('div#main-content a');
+      const anchors = page.locator('div#main-content a');
 
       const handles = await anchors.elementHandles();
 
@@ -180,7 +180,7 @@ test.describe('Material docs', () => {
 
       await page.type('input#docsearch-input', 'card', { delay: 50 });
 
-      const anchor = await page.locator('.DocSearch-Hits a:has-text("Card")');
+      const anchor = page.locator('.DocSearch-Hits a:has-text("Card")');
 
       await expect(anchor.first()).toHaveAttribute('href', `/material-ui/react-card/#main-content`);
     });
@@ -194,7 +194,7 @@ test.describe('Material docs', () => {
 
       await page.type('input#docsearch-input', 'card api', { delay: 50 });
 
-      const anchor = await page.locator('.DocSearch-Hits a:has-text("Card API")');
+      const anchor = page.locator('.DocSearch-Hits a:has-text("Card API")');
 
       await expect(anchor.first()).toHaveAttribute('href', `/material-ui/api/card/#main-content`);
     });

@@ -1,10 +1,11 @@
 ---
 product: material-ui
 title: React Menu component
-components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper, MenuUnstyled, MenuItemUnstyled
+components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://material.io/components/menus
 waiAria: https://www.w3.org/TR/wai-aria-practices/#menubutton
+unstyled: /base/react-menu/
 ---
 
 # Menu
@@ -104,13 +105,6 @@ Use a different transition.
 Here is an example of a context menu. (Right click to open.)
 
 {{"demo": "ContextMenu.js"}}
-
-## Unstyled
-
-The Menu also comes with an unstyled version.
-It's ideal for doing heavy customizations and minimizing bundle size.
-
-See its docs on the [MUI Base section](/base/react-menu).
 
 ## Complementary projects
 

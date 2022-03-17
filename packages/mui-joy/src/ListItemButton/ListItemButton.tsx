@@ -12,6 +12,7 @@ import {
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import listItemClasses from '../ListItem/listItemClasses';
+import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
@@ -40,7 +41,7 @@ const ListItemButtonRoot = styled('div', {
   name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemButtonProps }>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
   {
     ...(ownerState.color &&
       ownerState.color !== 'context' && {
@@ -62,7 +63,7 @@ const ListItemButtonRoot = styled('div', {
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
-    flex: 1,
+    flex: ownerState.row ? 'none' : 1,
     minWidth: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
@@ -72,23 +73,18 @@ const ListItemButtonRoot = styled('div', {
     ...(ownerState.selected && {
       fontWeight: theme.vars.fontWeight.md,
     }),
-    '&.Mui-focusVisible': theme.focus.default,
     // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
     // We want to be specific on what siblings the gap should be added.
-    [`& + .${listItemButtonClasses.root}`]: {
-      marginTop: 'var(--List-gap)',
-    },
-    [`& + .${listItemClasses.root}`]: {
-      marginTop: 'var(--List-gap)',
-    },
-    // default color & background styles when `color` prop is not specified or set as default
-    ...(!ownerState.color &&
-      !ownerState.selected && {
-        color: theme.vars.palette.text.secondary,
-        '&:hover': {
-          color: theme.vars.palette.text.primary,
+    [`& + .${listItemButtonClasses.root}`]: ownerState.row
+      ? { marginLeft: 'var(--List-gap)' }
+      : {
+          marginTop: 'var(--List-gap)',
         },
-      }),
+    [`& + .${listItemClasses.root}`]: ownerState.row
+      ? { marginLeft: 'var(--List-gap)' }
+      : {
+          marginTop: 'var(--List-gap)',
+        },
   },
   {
     ...(ownerState.variant === 'outlined' && {
@@ -100,10 +96,11 @@ const ListItemButtonRoot = styled('div', {
         'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     }),
   },
+  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
 ]);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
@@ -112,13 +109,15 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     name: 'MuiListItemButton',
   });
 
+  const row = React.useContext(RowListContext);
+
   const {
     children,
     className,
     action,
     component = 'div',
     selected = false,
-    color = selected ? 'primary' : undefined,
+    color = selected ? 'primary' : 'neutral',
     variant = 'text',
     ...other
   } = props;
@@ -150,6 +149,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component,
     color,
     focusVisible,
+    row,
     selected,
     variant,
   };
@@ -195,6 +195,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),

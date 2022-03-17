@@ -47,4 +47,9 @@ describe('Joy <List />', () => {
     );
     expect(getByRole('list')).to.have.class(classes.nested);
   });
+
+  it('should have row classes', () => {
+    const { getByRole } = render(<List row />);
+    expect(getByRole('list')).to.have.class(classes.row);
+  });
 });

@@ -291,6 +291,14 @@ function prepareMarkdown(config) {
       const description = headers.description || getDescription(markdown);
       const contents = getContents(markdown);
 
+      if (headers.unstyled) {
+        contents.push(`
+## Unstyled
+
+The component also comes with an [unstyled version](${headers.unstyled}). It's ideal for doing heavy customizations and minimizing bundle size.
+        `);
+      }
+
       if (headers.components.length > 0) {
         contents.push(`
 ## API

@@ -1,5 +1,70 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.5.1
+
+<!-- generated comparing v5.5.0..master -->
+
+_Mar 14, 2022_
+
+A big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
+
+- 📊 2021 survey results post by @danilo-leal (#30999)
+- Several 🐛 bug fixes and 📚 documentation improvements
+
+### @mui/material@5.5.1
+
+- [Fab] Add z-index (#30842) @issamElmohadeb098
+- [Grid] Fix columns of nested container (#31340) @boutahlilsoufiane
+- [i10n] Update italian locale (#30974) @SalvatoreMazzullo
+- [Pagination] Fix type of UsePaginationItem["page"] (#31295) @aaronadamsCA
+- [Popper] Allow setting default props in a theme (#30118) @hafley66
+- [TextField] fix disappearing border in Safari (#31406) @krysia1
+
+### @mui/joy@5.0.0-alpha.19
+
+- [Joy] Support horizontal List (#31620) @siriwatknp
+- [Joy] Add icon & label `Switch` examples (#31359) @siriwatknp
+- [Joy] Add `TextField` component (#31299) @siriwatknp
+- [Joy] Add `--Icon-fontSize` to components (#31360) @siriwatknp
+- [Joy] Add `Checkbox` component (#31273) @siriwatknp
+
+### Docs
+
+- [blog] 2021 survey results post (#30999) @danilo-leal
+- [docs] Add Macedonian translation (#31402) @theCuriousOne
+- [docs] Fix API page table styles in Safari (#31696) @aaarichter
+- [docs] Fix SEO issues (#31505) @oliviertassinari
+- [docs] Fix Link leak of Next.js props (#31418) @oliviertassinari
+- [docs] Add "Work in biotech" to showcase (#31711) @klyburke
+- [docs] Fix docs site crash on iOS Safari 12 (#31458) @badalsaibo
+- [docs] Fix search icons crash (#31651) @juanpc10
+- [docs] Remove unnecessary await in e2e-tests (#31767) @siriwatknp
+- [docs] Fix source code links on the Templates page (#31425) @danilo-leal
+- [docs] Adjust Stack's basic usage demo (#31423) @danilo-leal
+- [docs] Migrate button demos to base (#31395) @siriwatknp
+- [docs] Fix y-axis unit used in the responsive font sizes chart (#31424) @aaarichter
+- [docs] Remove joy mockup pages (#31412) @siriwatknp
+- [docs] Fix the statement that styleOverrides are added by default (#31257) @mnajdova
+- [docs] Refine the product identifier menu (#31262) @danilo-leal
+- [docs] Fix Search crash (#31386) @reckter
+- [docs] Update TextField multiline description (#31291) @jontewks
+- [docs] Add gap theme mapping in the System properties table (#31382) @danilo-leal
+- [docs] Test products search (#31351) @siriwatknp
+- [docs] Fix GitHub source links in the demo toolbar (#31339) @PunitSoniME
+- [docs] Add Algolia verification code to robot.txt (#31356) @siriwatknp
+- [examples] Ignore tsbuildinfo with Next.js (#31460) @B0und
+- [website] Add new gold sponsor (#31354) @hbjORbj
+- [website] Update Ukraine support link (#31378) @samuelsycamore
+
+### Core
+
+- [core] Simplify anchor link (#31419) @oliviertassinari
+- [core] Revert unrelated changes in #31354 @oliviertassinari
+- [test] Upgrade CircleCI convenience image (#31394) @m4theushw
+- [typescript] Simplify display of slot props types (#31240) @michaldudak
+
+All contributors of this release in alphabetical order: @aaarichter, @aaronadamsCA, @B0und, @badalsaibo, @boutahlilsoufiane, @danilo-leal, @hafley66, @hbjORbj, @issamElmohadeb098, @jontewks, @juanpc10, @klyburke, @krysia1, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @reckter, @SalvatoreMazzullo, @samuelsycamore, @siriwatknp, @theCuriousOne
+
 ## 5.5.0
 
 <!-- generated comparing v5.4.4..master -->

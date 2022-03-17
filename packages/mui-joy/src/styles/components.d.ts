@@ -6,6 +6,7 @@ import { LinkProps, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListSlot } from '../List/ListProps';
 import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
 import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
+import { AvatarProps, AvatarSlot } from '../Avatar/AvatarProps';
 import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListItemButtonProps';
 import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
 import {
@@ -41,6 +42,10 @@ export type OverridesStyleRules<
 >;
 
 export interface Components<Theme = unknown> {
+  MuiAvatar?: {
+    defaultProps?: Partial<AvatarProps>;
+    styleOverrides?: OverridesStyleRules<AvatarSlot, AvatarProps, Theme>;
+  };
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonProps, Theme>;

@@ -6,7 +6,7 @@ import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
-import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
@@ -104,11 +104,11 @@ const ButtonRoot = styled('button', {
         lineHeight: '1.25rem',
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
-      [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
       width: '100%',
     },
+    theme.focus.default,
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],

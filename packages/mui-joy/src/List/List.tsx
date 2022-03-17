@@ -8,11 +8,12 @@ import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import { useNestedList } from './NestedListContext';
+import RowListContext from './RowListContext';
 
 const useUtilityClasses = (ownerState: ListProps & { nested: boolean }) => {
-  const { size, nested } = ownerState;
+  const { size, nested, row } = ownerState;
   const slots = {
-    root: ['root', size && `size${capitalize(size)}`, nested && 'nested'],
+    root: ['root', size && `size${capitalize(size)}`, nested && 'nested', row && 'row'],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
@@ -33,7 +34,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingLeft': '0.25rem',
           '--List-item-paddingRight': '0.25rem',
           '--List-item-fontSize': theme.vars.fontSize.sm,
-          '--List-decorator-width': '2rem',
+          '--List-decorator-width': ownerState.row ? '1.5rem' : '2rem',
           '--Icon-fontSize': '1.125rem',
         };
       }
@@ -45,7 +46,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingLeft': '0.75rem',
           '--List-item-paddingRight': '0.75rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-width': '2.5rem',
+          '--List-decorator-width': ownerState.row ? '2rem' : '2.5rem',
           '--Icon-fontSize': '1.25rem',
         };
       }
@@ -57,7 +58,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingLeft': '0.5rem',
           '--List-item-paddingRight': '0.5rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-width': '3rem',
+          '--List-decorator-width': ownerState.row ? '2.5rem' : '3rem',
           '--Icon-fontSize': '1.5rem',
         };
       }
@@ -97,7 +98,7 @@ const ListRoot = styled('ul', {
       {
         listStyle: 'none',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: ownerState.row ? 'row' : 'column',
         flexGrow: 1,
         position: 'relative', // for sticky ListItem
       },
@@ -112,27 +113,30 @@ const List = React.forwardRef(function List(inProps, ref) {
     name: 'MuiList',
   });
 
-  const { component, className, children, size = 'md', ...other } = props;
+  const { component, className, children, size = 'md', row = false, ...other } = props;
 
   const ownerState = {
     instanceSize: inProps.size,
     size,
     nested,
+    row,
     ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <ListRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </ListRoot>
+    <RowListContext.Provider value={row}>
+      <ListRoot
+        ref={ref}
+        as={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        {...other}
+      >
+        {children}
+      </ListRoot>
+    </RowListContext.Provider>
   );
 }) as OverridableComponent<ListTypeMap>;
 
@@ -154,6 +158,10 @@ List.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, display the list in horizontal direction.
+   */
+  row: PropTypes.bool,
   /**
    * The size of the component (affect other nested list* components).
    */
