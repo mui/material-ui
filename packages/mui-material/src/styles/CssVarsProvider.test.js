@@ -64,6 +64,9 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--md-palette-primary-light)',
           dark: 'var(--md-palette-primary-dark)',
           contrastText: 'var(--md-palette-primary-contrastText)',
+          mainChannel: 'var(--md-palette-primary-mainChannel)',
+          lightChannel: 'var(--md-palette-primary-lightChannel)',
+          darkChannel: 'var(--md-palette-primary-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-secondary').textContent).to.equal(
@@ -72,6 +75,9 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--md-palette-secondary-light)',
           dark: 'var(--md-palette-secondary-dark)',
           contrastText: 'var(--md-palette-secondary-contrastText)',
+          mainChannel: 'var(--md-palette-secondary-mainChannel)',
+          lightChannel: 'var(--md-palette-secondary-lightChannel)',
+          darkChannel: 'var(--md-palette-secondary-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-error').textContent).to.equal(
@@ -80,6 +86,9 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--md-palette-error-light)',
           dark: 'var(--md-palette-error-dark)',
           contrastText: 'var(--md-palette-error-contrastText)',
+          mainChannel: 'var(--md-palette-error-mainChannel)',
+          lightChannel: 'var(--md-palette-error-lightChannel)',
+          darkChannel: 'var(--md-palette-error-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-warning').textContent).to.equal(
@@ -88,6 +97,9 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--md-palette-warning-light)',
           dark: 'var(--md-palette-warning-dark)',
           contrastText: 'var(--md-palette-warning-contrastText)',
+          mainChannel: 'var(--md-palette-warning-mainChannel)',
+          lightChannel: 'var(--md-palette-warning-lightChannel)',
+          darkChannel: 'var(--md-palette-warning-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-info').textContent).to.equal(
@@ -96,6 +108,9 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--md-palette-info-light)',
           dark: 'var(--md-palette-info-dark)',
           contrastText: 'var(--md-palette-info-contrastText)',
+          mainChannel: 'var(--md-palette-info-mainChannel)',
+          lightChannel: 'var(--md-palette-info-lightChannel)',
+          darkChannel: 'var(--md-palette-info-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-success').textContent).to.equal(
@@ -104,6 +119,9 @@ describe('[Material UI] CssVarsProvider', () => {
           light: 'var(--md-palette-success-light)',
           dark: 'var(--md-palette-success-dark)',
           contrastText: 'var(--md-palette-success-contrastText)',
+          mainChannel: 'var(--md-palette-success-mainChannel)',
+          lightChannel: 'var(--md-palette-success-lightChannel)',
+          darkChannel: 'var(--md-palette-success-darkChannel)',
         }),
       );
 
@@ -112,6 +130,9 @@ describe('[Material UI] CssVarsProvider', () => {
           primary: 'var(--md-palette-text-primary)',
           secondary: 'var(--md-palette-text-secondary)',
           disabled: 'var(--md-palette-text-disabled)',
+          primaryChannel: 'var(--md-palette-text-primaryChannel)',
+          secondaryChannel: 'var(--md-palette-text-secondaryChannel)',
+          disabledChannel: 'var(--md-palette-text-disabledChannel)',
           icon: 'var(--md-palette-text-icon)',
         }),
       );
@@ -137,6 +158,7 @@ describe('[Material UI] CssVarsProvider', () => {
           focus: 'var(--md-palette-action-focus)',
           focusOpacity: 'var(--md-palette-action-focusOpacity)',
           activatedOpacity: 'var(--md-palette-action-activatedOpacity)',
+          disabledChannel: 'var(--md-palette-action-disabledChannel)',
         }),
       );
     });

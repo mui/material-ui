@@ -17,7 +17,7 @@ function createTheme(options = {}, ...args) {
   // eslint-disable-next-line prefer-const
   let { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
     ...input,
-    ...(colorSchemesInput.light && { palette: colorSchemesInput.light.palette }),
+    ...(colorSchemesInput.light && { palette: colorSchemesInput.light?.palette }),
   });
   const { palette: darkPalette } = createThemeWithoutVars({
     palette: { mode: 'dark', ...colorSchemesInput.dark?.palette },
