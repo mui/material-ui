@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
@@ -204,7 +205,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
  * Utility to create component types that inherit props from SliderUnstyled.
  */
 export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & SliderUnstyledTypeMap['props'];
+  props: M['props'] & SliderUnstyledTypeMap['props'] & { component?: React.ElementType };
   defaultComponent: M['defaultComponent'];
 }
 
