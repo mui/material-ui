@@ -66,7 +66,7 @@ export default function HomePage() {
         <Box
           sx={{
             borderBottom: '1px solid',
-            borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+            borderColor: 'neutral.outlinedBorder',
           }}
         />
         <Box component="nav" aria-label="Navigation" sx={{ flexGrow: 1, minHeight: 0 }}>
@@ -80,9 +80,6 @@ export default function HomePage() {
               '--List-gap': '16px',
               '[data-mui-color-scheme="light"] &': {
                 '--joy-palette-neutral-textColor': 'var(--joy-palette-neutral-600)',
-                '& .MuiListItemButton-root': {
-                  '--List-decorator-color': 'var(--joy-palette-neutral-500)',
-                },
               },
             }}
           >
