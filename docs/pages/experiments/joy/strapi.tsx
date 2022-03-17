@@ -39,8 +39,6 @@ import Search from '@mui/icons-material/Search';
 import Badge from 'docs/src/_experiment/joy/Badge';
 import { IconFrame } from 'docs/src/_experiment/joy/Sheet';
 import { ToggleButton, ToggleButtonGroup } from 'docs/src/_experiment/joy/Toggle';
-// import Input from 'docs/src/_experiment/joy/Input';
-// import TextField from 'docs/src/_experiment/joy/TextField';
 import SelectField from 'docs/src/_experiment/joy/SelectField';
 import strapiTheme from 'docs/src/_experiment/strapi/theme';
 import { List, ListItemButton, ListSubheader } from 'docs/src/_experiment/joy/List';
