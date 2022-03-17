@@ -50,7 +50,7 @@ A prominent app bar.
 
 {{"demo": "ProminentAppBar.js", "bg": true}}
 
-## Bottom App Bar
+## Barra de ação inferior
 
 {{"demo": "BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
