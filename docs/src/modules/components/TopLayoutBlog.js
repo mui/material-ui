@@ -79,6 +79,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/71297412',
     github: 'samuelsycamore',
   },
+  adrianmanea: {
+    name: 'Adrian Stefan',
+    avatar: 'https://avatars.githubusercontent.com/u/5917515',
+    github: 'adrianmanea',
+  },
 };
 
 const styles = (theme) => ({
