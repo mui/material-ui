@@ -1,7 +1,6 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
@@ -10,15 +9,10 @@
     "componentsProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
       "default": "{}"
-    },
-    "invisible": { "type": { "name": "bool" } }
+    }
   },
   "name": "BackdropUnstyled",
-  "styles": {
-    "classes": ["root", "invisible"],
-    "globalClasses": { "root": "MuiBackdrop-root", "invisible": "MuiBackdrop-invisible" },
-    "name": null
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/BackdropUnstyled/BackdropUnstyled.js",

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { ExtendBackdropUnstyledTypeMap, BackdropUnstyledTypeMap } from '@mui/base/BackdropUnstyled';
+import { ExtendBackdropUnstyledTypeMap } from '@mui/base/BackdropUnstyled';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { BackdropClasses } from './backdropClasses';
 
 export type BackdropTypeMap<
   D extends React.ElementType = 'span',
@@ -15,7 +16,13 @@ export type BackdropTypeMap<
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: BackdropUnstyledTypeMap['props']['classes'];
+      classes?: Partial<BackdropClasses>;
+      /**
+       * If `true`, the backdrop is invisible.
+       * It can be used when rendering a popover or a custom select component.
+       * @default false
+       */
+      invisible?: boolean;
       /**
        * If `true`, the component is shown.
        */
@@ -37,8 +44,6 @@ type BackdropRootProps = NonNullable<BackdropTypeMap['props']['componentsProps']
 
 export const BackdropRoot: React.FC<BackdropRootProps>;
 
-export type BackdropClassKey = keyof NonNullable<BackdropTypeMap['props']['classes']>;
-
 /**
  *
  * Demos:
@@ -52,10 +57,6 @@ export type BackdropClassKey = keyof NonNullable<BackdropTypeMap['props']['class
  */
 
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
-
-export type BackdropClasses = Record<BackdropClassKey, string>;
-
-export const backdropClasses: BackdropClasses;
 
 export type BackdropProps<
   D extends React.ElementType = BackdropTypeMap['defaultComponent'],

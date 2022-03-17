@@ -2,57 +2,38 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '../composeClasses';
-import isHostComponent from '../utils/isHostComponent';
-import { getBackdropUtilityClass } from './backdropUnstyledClasses';
+import appendOwnerState from '../utils/appendOwnerState';
+import { getBackdropUnstyledUtilityClass } from './backdropUnstyledClasses';
 
-const useUtilityClasses = (ownerState) => {
-  const { classes, invisible } = ownerState;
-
+const useUtilityClasses = () => {
   const slots = {
-    root: ['root', invisible && 'invisible'],
+    root: ['root'],
   };
 
-  return composeClasses(slots, getBackdropUtilityClass, classes);
+  return composeClasses(slots, getBackdropUnstyledUtilityClass, {});
 };
 
 const BackdropUnstyled = React.forwardRef(function BackdropUnstyled(props, ref) {
-  const {
-    classes: classesProp,
-    className,
-    invisible = false,
-    component = 'div',
-    components = {},
-    componentsProps = {},
-    /* eslint-disable react/prop-types */
-    theme,
-    ...other
-  } = props;
+  const { className, component, components = {}, componentsProps = {}, ...other } = props;
 
-  const ownerState = {
-    ...props,
-    classes: classesProp,
-    invisible,
-  };
+  const ownerState = props;
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = components.Root || component;
-  const rootProps = componentsProps.root || {};
-
-  return (
-    <Root
-      aria-hidden
-      {...rootProps}
-      {...(!isHostComponent(Root) && {
-        as: component,
-        ownerState: { ...ownerState, ...rootProps.ownerState },
-        theme,
-      })}
-      ref={ref}
-      {...other}
-      className={clsx(classes.root, rootProps.className, className)}
-    />
+  const Root = component ?? components.Root ?? 'div';
+  const rootProps = appendOwnerState(
+    Root,
+    {
+      'aria-hidden': true,
+      ...other,
+      ...componentsProps.root,
+      ref,
+      className: clsx(className, componentsProps.root?.className, classes.root),
+    },
+    ownerState,
   );
+
+  return <Root {...rootProps} />;
 });
 
 BackdropUnstyled.propTypes /* remove-proptypes */ = {
@@ -64,10 +45,6 @@ BackdropUnstyled.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -92,12 +69,6 @@ BackdropUnstyled.propTypes /* remove-proptypes */ = {
   componentsProps: PropTypes.shape({
     root: PropTypes.object,
   }),
-  /**
-   * If `true`, the backdrop is invisible.
-   * It can be used when rendering a popover or a custom select component.
-   * @default false
-   */
-  invisible: PropTypes.bool,
 };
 
 export default BackdropUnstyled;

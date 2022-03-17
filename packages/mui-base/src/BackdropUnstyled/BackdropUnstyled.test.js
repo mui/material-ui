@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import BackdropUnstyled, { backdropUnstyledClasses as classes } from '@mui/base/BackdropUnstyled';
 
 describe('<BackdropUnstyled />', () => {
+  const mount = createMount();
   const { render } = createRenderer();
 
-  describeConformance(
+  describeConformanceUnstyled(
     <BackdropUnstyled>
       <div />
     </BackdropUnstyled>,
@@ -14,13 +15,14 @@ describe('<BackdropUnstyled />', () => {
       classes,
       inheritComponent: 'div',
       render,
+      mount,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
-      skip: [
-        'themeDefaultProps', // unstyled
-        'themeStyleOverrides', // unstyled
-        'themeVariants', // unstyled
-      ],
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+      },
     }),
   );
 

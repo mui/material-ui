@@ -1,16 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { isHostComponent } from '@mui/base';
-import BackdropUnstyled, { backdropUnstyledClasses } from '@mui/base/BackdropUnstyled';
+import clsx from 'clsx';
+import { isHostComponent, unstable_composeClasses as composeClasses } from '@mui/base';
+import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
+import { getBackdropUtilityClass } from './backdropClasses';
 
-export const backdropClasses = backdropUnstyledClasses;
+const useUtilityClasses = (ownerState) => {
+  const { classes, invisible } = ownerState;
+  const slots = {
+    root: ['root', invisible && 'invisible'],
+  };
 
-const extendUtilityClasses = (ownerState) => {
-  const { classes } = ownerState;
-  return classes;
+  return composeClasses(slots, getBackdropUtilityClass, classes);
 };
 
 const BackdropRoot = styled('div', {
@@ -57,13 +61,12 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     invisible,
   };
 
-  const classes = extendUtilityClasses(ownerState);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
       <BackdropUnstyled
-        className={className}
-        invisible={invisible}
+        className={clsx(className, classes.root)}
         components={{
           Root: BackdropRoot,
           ...components,
