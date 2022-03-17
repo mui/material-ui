@@ -45,6 +45,7 @@ import LoginPage from 'docs/src/_experiment/strapi/LoginPage';
 import RegisterPage from 'docs/src/_experiment/strapi/RegisterPage';
 import HomePage from 'docs/src/_experiment/strapi/HomePage';
 import WebhookPage from 'docs/src/_experiment/strapi/WebhookPage';
+import ContentListView from 'docs/src/_experiment/strapi/ContentListView';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -331,6 +332,8 @@ export default function Strapi() {
       <HomePage />
 
       <WebhookPage />
+
+      <ContentListView />
     </CssVarsProvider>
   );
 }

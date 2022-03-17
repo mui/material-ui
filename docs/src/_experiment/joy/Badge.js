@@ -10,7 +10,7 @@ const BadgeRoot = styled('span')(({ theme, ownerState }) => [
   },
   theme.variants[ownerState.variant]?.[ownerState.color],
   {
-    '[data-mui-color-scheme="light"]': {
+    '[data-mui-color-scheme="light"] &': {
       ...(ownerState.variant === 'light' &&
         ownerState.color === 'neutral' && {
           backgroundColor: theme.vars.palette.neutral[150],

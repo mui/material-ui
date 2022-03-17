@@ -347,6 +347,21 @@ const strapiTheme: JoyThemeInput = {
             ...theme.variants.outlined.neutral,
             ...theme.variants.outlinedDisabled.neutral,
           }),
+          ...(ownerState.variant === 'outlined' &&
+            ownerState.color === 'neutral' && {
+              backgroundColor: getCssVar('palette-background-body'),
+            }),
+        }),
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          borderRadius: theme.vars.radius.xs,
+          ...(ownerState.variant === 'outlined' &&
+            ownerState.color === 'neutral' && {
+              backgroundColor: getCssVar('palette-background-body'),
+            }),
         }),
       },
     },
