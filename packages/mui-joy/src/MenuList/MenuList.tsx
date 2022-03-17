@@ -8,7 +8,7 @@ import { styled, useThemeProps } from '../styles';
 import List from '../List';
 import { MenuListProps, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
-import { useMenuPopup } from '../MenuPopup/MenuPopupContext';
+import { useMenuPopup } from '../Menu/MenuPopupContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -44,11 +44,10 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     props: inProps,
     name: 'MuiMenuList',
   });
-  const { open, onClose } = useMenuPopup();
+  const { id, actions, open, onClose } = useMenuPopup();
 
   const {
-    id,
-    actions,
+    id: idProp,
     children,
     className,
     component,
@@ -58,12 +57,29 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     ...other
   } = props;
 
-  const { registerItem, unregisterItem, getListboxProps, getItemProps, getItemState } = useMenu({
+  const {
+    registerItem,
+    unregisterItem,
+    getListboxProps,
+    getItemProps,
+    getItemState,
+    highlightFirstItem,
+    highlightLastItem,
+  } = useMenu({
     open,
     onClose,
     listboxRef: ref,
-    listboxId: id,
+    listboxId: idProp || id,
   });
+
+  React.useImperativeHandle(
+    actions,
+    () => ({
+      highlightFirstItem,
+      highlightLastItem,
+    }),
+    [highlightFirstItem, highlightLastItem],
+  );
 
   const classes = useUtilityClasses();
 

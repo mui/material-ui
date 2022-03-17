@@ -21,6 +21,7 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
 import Link from '@mui/joy/Link';
 import MenuPopup from '@mui/joy/MenuPopup';
+import Menu from '@mui/joy/Menu';
 import MenuList, { MenuActions } from '@mui/joy/MenuList';
 import MenuItem from '@mui/joy/MenuItem';
 import Sheet from '@mui/joy/Sheet';
@@ -244,7 +245,7 @@ const ThirdMenu = () => {
   );
 };
 
-export default function JoyTypography() {
+export default function JoyMenu() {
   return (
     <CssVarsProvider
       theme={{
@@ -332,7 +333,21 @@ export default function JoyTypography() {
             <ListDivider />
             <MenuItem>Custom spacing...</MenuItem>
           </MenuList>
-          <FirstMenu />
+          {/* <FirstMenu /> */}
+          <div>
+            <Menu id="first-menu" button={<Button variant="outlined">Simple menu</Button>}>
+              <Sheet
+                variant="outlined"
+                sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
+              >
+                <MenuList>
+                  <MenuItem>Menu item 1</MenuItem>
+                  <MenuItem>Menu item 2</MenuItem>
+                  <MenuItem>Menu item 3</MenuItem>
+                </MenuList>
+              </Sheet>
+            </Menu>
+          </div>
           <SecondMenu />
           <ThirdMenu />
         </Box>
