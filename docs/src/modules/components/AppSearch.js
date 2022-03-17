@@ -171,13 +171,11 @@ function DocSearcHit(props) {
     }
     if (pathname.startsWith('/joy-ui/')) {
       text = 'Joy UI';
-      color = 'secondary';
     }
     if (pathname.startsWith('/base/')) {
       text = 'MUI Base';
-      color = 'success';
     }
-    return <Chip label={text} size="small" variant="light" color={color} sx={{ mr: 1 }} />;
+    return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
   }
 
   if (hit.pathname) {

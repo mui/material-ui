@@ -509,12 +509,13 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             fontWeight: 500,
             ...(variant === 'outlined' &&
               color === 'default' && {
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.grey[900],
+                color:
+                  theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
                 backgroundColor: 'transparent',
                 borderColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[300],
+                    ? alpha(theme.palette.grey[100], 0.1)
+                    : theme.palette.grey[200],
               }),
             ...(variant === 'filled' &&
               color === 'default' && {
@@ -537,8 +538,8 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
               ...(color === 'default' && {
                 color:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.grey[200]
-                    : theme.palette.primaryDark[800],
+                    ? theme.palette.primary[200]
+                    : theme.palette.primary[700],
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.primaryDark[700], 0.5)
