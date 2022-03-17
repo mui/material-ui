@@ -17,6 +17,11 @@ const pages = [
         children: [{ pathname: '/base/react-button', title: 'Button' }],
       },
       {
+        pathname: '/base/components/feedback',
+        subheader: 'feedback',
+        children: [{ pathname: '/base/react-backdrop', title: 'Backdrop' }],
+      },
+      {
         pathname: '/base/components/navigation',
         subheader: 'navigation',
         children: [{ pathname: '/base/react-menu', title: 'Menu' }],

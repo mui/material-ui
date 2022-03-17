@@ -1,0 +1,4 @@
+<button type="button" onClick={handleOpen}>
+  Show backdrop
+</button>
+{open && <Backdrop onClick={handleClose} />}

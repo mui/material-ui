@@ -55,11 +55,12 @@ export type ExtendBackdropUnstyled<M extends OverridableTypeMap> = OverridableCo
  *
  * Demos:
  *
- * - [Backdrop](https://mui.com/components/backdrop/)
+ * - [Backdrop](https://mui.com/base/react-backdrop/)
+ * - [Backdrop](https://mui.com/material/react-backdrop/)
  *
  * API:
  *
- * - [BackdropUnstyled API](https://mui.com/api/backdrop-unstyled/)
+ * - [BackdropUnstyled API](https://mui.com/base/api/backdrop-unstyled/)
  */
 declare const BackdropUnstyled: OverridableComponent<BackdropUnstyledTypeMap>;
 
