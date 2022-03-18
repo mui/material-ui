@@ -66,7 +66,7 @@ The current status of each MUI version is as follows:
 
 Para equipes e organizações que exigem suporte adicional para versões mais antigas, o Material-UI possui [opções disponíveis](/getting-started/support/#professional-support-premium).
 
-### Suporte a longo prazo
+### Long-term support (LTS)
 
 A MUI continuará fornecendo atualizações de segurança e suporte de regressões (por exemplo, se houver alguma regressão causada pelo Chrome, React, etc) para a versão anterior ao principal atual até a próxima ser lançada.
 
