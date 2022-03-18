@@ -86,6 +86,12 @@ export default function JoyButton() {
               <Groups fontSize="xl2" sx={{ mr: '0.25em' }} /> 5 - 10 people
             </Link>
           </Box>
+          <Box>
+            <Typography display="block">
+              Keep me updated about the new features and upcoming improvements (by doing this you
+              accept the <Link>terms</Link> and the <Link>privacy policy</Link>).
+            </Typography>
+          </Box>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(buttonProps).map(([propName, propValue]) => (

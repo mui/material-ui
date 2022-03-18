@@ -10,8 +10,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import Typography from '../Typography';
-import linkClasses, { getLinkUtilityClass } from './linkClasses';
+import { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkTypeMap } from './LinkProps';
 
 const useUtilityClasses = (ownerState: LinkProps) => {
@@ -32,7 +31,7 @@ const useUtilityClasses = (ownerState: LinkProps) => {
   return composeClasses(slots, getLinkUtilityClass, {});
 };
 
-const LinkRoot = styled(Typography, {
+const LinkRoot = styled('a', {
   name: 'MuiLink',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -67,21 +66,23 @@ const LinkRoot = styled(Typography, {
       margin: 0, // Remove the margin in Safari
       borderRadius: 0,
       padding: 0, // Remove the padding in Firefox
-      ...(!!ownerState.variant && {
-        paddingInline: '0.25em', // better than left, right because it also works with writing mode.
-        marginInline: '-0.25em',
-      }),
+      ...(ownerState.variant
+        ? {
+            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+            marginInline: '-0.25em',
+          }
+        : {
+            color: theme.vars.palette[ownerState.color!]?.textColor,
+          }),
       userSelect: 'none',
-      verticalAlign: 'middle',
       MozAppearance: 'none', // Reset
       WebkitAppearance: 'none', // Reset
       '&::-moz-focus-inner': {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
-      [`&.${linkClasses.focusVisible}`]: theme.focus.default,
-      color: theme.vars.palette[ownerState.color!]?.textColor,
       cursor: 'pointer',
     },
+    theme.focus.default,
     ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
     ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
     ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
@@ -115,7 +116,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ref: focusVisibleRef,
   } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState<boolean>(false);
-  const handlerRef = useForkRef(ref, focusVisibleRef) as React.RefObject<HTMLSpanElement>;
+  const handlerRef = useForkRef(ref, focusVisibleRef) as React.RefObject<HTMLAnchorElement>;
   const handleBlur = (event: React.FocusEvent<HTMLAnchorElement>) => {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
