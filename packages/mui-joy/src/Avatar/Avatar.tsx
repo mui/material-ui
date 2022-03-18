@@ -88,8 +88,8 @@ const AvatarFallback = styled(Person, {
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
 })({
-  width: '75%',
-  height: '75%',
+  width: '64%',
+  height: '64%',
 });
 
 type UseLoadedProps = { src?: string; srcSet?: string; crossOrigin?: any; referrerPolicy?: any };
