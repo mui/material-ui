@@ -37,7 +37,7 @@ const useUtilityClasses = (ownerState: LinkProps) => {
 const StartIcon = styled('span', {
   name: 'MuiLink',
   slot: 'StartIcon',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: LinkProps }>({
   display: 'inline-flex',
   marginInlineEnd: 'min(var(--Link-gap, 0.25em), 0.5rem)',
@@ -46,7 +46,7 @@ const StartIcon = styled('span', {
 const EndIcon = styled('span', {
   name: 'MuiLink',
   slot: 'endIcon',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: LinkProps }>({
   display: 'inline-flex',
   marginInlineStart: 'min(var(--Link-gap, 0.25em), 0.5rem)',

@@ -26,7 +26,7 @@ const useUtilityClasses = (ownerState: TypographyProps) => {
 const StartIcon = styled('span', {
   name: 'MuiTypography',
   slot: 'StartIcon',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: TypographyProps & { nested: boolean } }>({
   display: 'inline-flex',
   marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
@@ -36,7 +36,7 @@ const StartIcon = styled('span', {
 const EndIcon = styled('span', {
   name: 'MuiTypography',
   slot: 'endIcon',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: TypographyProps & { nested: boolean } }>({
   display: 'inline-flex',
   marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
