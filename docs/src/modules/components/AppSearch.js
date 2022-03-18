@@ -159,7 +159,9 @@ function DocSearcHit(props) {
   const { children, hit } = props;
 
   function displayTag(pathname) {
-    if (!pathname.match(/^\/(material-ui|joy-ui|base|x\/(react-data-grid|api))\//)) {
+    // does not need to show product label for MUI X because they are grouped by the product name in the search
+    // ie. Data Grid, Date Picker
+    if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
       return null;
     }
     let text = '';
@@ -172,7 +174,7 @@ function DocSearcHit(props) {
     if (pathname.startsWith('/base/')) {
       text = 'MUI Base';
     }
-    return <Chip label={text} size="small" sx={{ mr: 1 }} />;
+    return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
   }
 
   if (hit.pathname) {
