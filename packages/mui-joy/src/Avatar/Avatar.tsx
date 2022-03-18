@@ -36,13 +36,17 @@ const AvatarRoot = styled('div', {
     {
       ...(ownerState.size === 'sm' && {
         '--Avatar-size': '2rem',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Avatar-size': '2.5rem',
+        fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Avatar-size': '3rem',
+        fontSize: theme.vars.fontSize.lg,
       }),
+      fontFamily: theme.vars.fontFamily.body,
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
