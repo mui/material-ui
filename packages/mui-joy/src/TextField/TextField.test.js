@@ -71,6 +71,18 @@ describe('Joy <TextField />', () => {
     );
   });
 
+  it('should pass `type` to Input', () => {
+    const { getByLabelText } = render(<TextField label="password" type="password" />);
+
+    expect(getByLabelText(/password/)).to.have.attribute('type', 'password');
+  });
+
+  it('should pass `name` to Input', () => {
+    const { getByRole } = render(<TextField name="username" />);
+
+    expect(getByRole('textbox')).to.have.attribute('name', 'username');
+  });
+
   it('should be error', () => {
     const { container } = render(<TextField error />);
 
