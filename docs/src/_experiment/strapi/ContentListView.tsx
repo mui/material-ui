@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
@@ -12,8 +13,20 @@ import Add from '@mui/icons-material/Add';
 import Search from '@mui/icons-material/Search';
 import FilterList from '@mui/icons-material/FilterList';
 import Settings from '@mui/icons-material/Settings';
+import Edit from '@mui/icons-material/Edit';
+import Delete from '@mui/icons-material/Delete';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import MainNav from './components/MainNav';
 import ContentNav from './components/ContentNav';
+
+const items = [
+  { name: 'Chez Léon', description: 'Chez Léon is a human sized Parisian...' },
+  { name: 'L’Aristote', description: 'The ideal place to enjoy the french...' },
+  { name: 'La part des anges', description: 'Famous wine restaurant in the heart...' },
+  { name: 'Saint Michel', description: 'Simply the best fish&chips in town...' },
+  { name: 'La maison blanche', description: 'Typical wood fire pizzeria, in the...' },
+];
 
 export default function ContentListView() {
   return (
@@ -95,27 +108,88 @@ export default function ContentListView() {
               Description
               <ArrowDropDown />
             </Link>
-            <Button size="sm" color="neutral" variant="outlined">
-              <Settings fontSize="md" />
-            </Button>
-            <Box
-              sx={{
-                borderTop: '1px solid',
-                borderColor: 'divider',
-                gridColumn: '1 / -1',
-                my: 1.5,
-              }}
-            />
-          </Box>
-          <Box sx={{ py: 5, textAlign: 'center' }}>
-            <Typography level="subtitle" fontWeight="md" justifyContent="center">
-              You don’t have the permission to access that content
-            </Typography>
-            <Button color="primary" variant="outlined" startIcon={<Add />} sx={{ mt: 1.5 }}>
-              Add asset
-            </Button>
+            <Box sx={{ textAlign: 'right' }}>
+              <Button size="sm" color="neutral" variant="outlined">
+                <Settings fontSize="md" />
+              </Button>
+            </Box>
+            {items.map(({ name, description }, index) => (
+              <React.Fragment key={name}>
+                <Box
+                  sx={{
+                    borderTop: '1px solid',
+                    borderColor: 'divider',
+                    gridColumn: '1 / -1',
+                    my: 1.5,
+                  }}
+                />
+                <Box sx={{ px: 2 }}>
+                  <Checkbox />
+                </Box>
+                <Typography>{index + 1}</Typography>
+                <div>
+                  <Avatar>{name.substring(0, 1)}</Avatar>
+                </div>
+                <Typography>{name}</Typography>
+                <Typography>{description}</Typography>
+                <Box>
+                  <IconButton variant="text" color="neutral" size="sm">
+                    <Edit />
+                  </IconButton>
+                  <IconButton variant="text" color="neutral" size="sm" sx={{ ml: 1 }}>
+                    <Delete />
+                  </IconButton>
+                </Box>
+              </React.Fragment>
+            ))}
           </Box>
         </Sheet>
+        <Box sx={{ display: 'flex', mx: '3.5rem', mt: 1.5 }}>
+          <Button
+            variant="outlined"
+            color="neutral"
+            endIcon={<ArrowDropDown fontSize="md" />}
+            sx={{
+              '--Button-gap': '4px',
+              '--Button-iconColor': (theme) => theme.vars.palette.text.tertiary,
+              '&:hover': {
+                '--Button-iconColor': 'initial',
+              },
+            }}
+          >
+            10
+          </Button>
+          <Typography level="smallText" sx={{ ml: 1 }}>
+            Entries per page
+          </Typography>
+          <Box sx={{ mx: 'auto' }} />
+          <IconButton size="sm" variant="text" color="neutral" sx={{ color: 'text.tertiary' }}>
+            <KeyboardArrowLeft />
+          </IconButton>
+          <IconButton
+            size="sm"
+            variant="text"
+            color="primary"
+            sx={{ bgcolor: 'background.body', boxShadow: 'sm' }}
+          >
+            1
+          </IconButton>
+          <IconButton size="sm" variant="text" color="neutral">
+            2
+          </IconButton>
+          <IconButton size="sm" variant="text" color="neutral">
+            3
+          </IconButton>
+          <IconButton size="sm" variant="text" color="neutral">
+            ...
+          </IconButton>
+          <IconButton size="sm" variant="text" color="neutral">
+            10
+          </IconButton>
+          <IconButton size="sm" variant="text" color="neutral" sx={{ color: 'text.tertiary' }}>
+            <KeyboardArrowRight />
+          </IconButton>
+        </Box>
       </Box>
     </Box>
   );

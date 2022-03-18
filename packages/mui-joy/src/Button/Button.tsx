@@ -43,6 +43,7 @@ const ButtonStartIcon = styled('span', {
   display: 'inherit',
   marginLeft: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
   marginRight: 'var(--Button-gap)',
+  color: 'var(--Button-iconColor)',
 });
 
 const ButtonEndIcon = styled('span', {
@@ -53,6 +54,7 @@ const ButtonEndIcon = styled('span', {
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
   marginRight: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
+  color: 'var(--Button-iconColor)',
 });
 
 const ButtonRoot = styled('button', {

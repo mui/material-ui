@@ -9,7 +9,6 @@ import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import Input from '@mui/joy/Input';
 import TextField from '@mui/joy/TextField';
-import Sheet from '@mui/joy/Sheet';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Public from '@mui/icons-material/Public';
@@ -19,22 +18,6 @@ import Info from '@mui/icons-material/InfoOutlined';
 import Code from '@mui/icons-material/Code';
 import PlayArrow from '@mui/icons-material/PlayArrowRounded';
 import HistoryEdu from '@mui/icons-material/HistoryEdu';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import OpenInNew from '@mui/icons-material/OpenInNew';
-import ArrowForward from '@mui/icons-material/ArrowForward';
-import Edit from '@mui/icons-material/Edit';
-import Delete from '@mui/icons-material/Delete';
-import ViewCompact from '@mui/icons-material/ViewCompact';
-import PermMedia from '@mui/icons-material/PermMedia';
-import Extension from '@mui/icons-material/Extension';
-import ShoppingCart from '@mui/icons-material/ShoppingCart';
-import Settings from '@mui/icons-material/Settings';
-import Apps from '@mui/icons-material/Apps';
-import VpnKey from '@mui/icons-material/VpnKey';
-import Webhook from '@mui/icons-material/Webhook';
-import Add from '@mui/icons-material/Add';
-import Search from '@mui/icons-material/Search';
 // experiment components
 import Badge from 'docs/src/_experiment/joy/Badge';
 import { IconFrame } from 'docs/src/_experiment/joy/Sheet';
@@ -45,7 +28,9 @@ import LoginPage from 'docs/src/_experiment/strapi/LoginPage';
 import RegisterPage from 'docs/src/_experiment/strapi/RegisterPage';
 import HomePage from 'docs/src/_experiment/strapi/HomePage';
 import WebhookPage from 'docs/src/_experiment/strapi/WebhookPage';
+import ContentEmpty from 'docs/src/_experiment/strapi/ContentEmpty';
 import ContentListView from 'docs/src/_experiment/strapi/ContentListView';
+import ContentEditView from 'docs/src/_experiment/strapi/ContentEditView';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -333,7 +318,11 @@ export default function Strapi() {
 
       <WebhookPage />
 
+      <ContentEmpty />
+
       <ContentListView />
+
+      <ContentEditView />
     </CssVarsProvider>
   );
 }

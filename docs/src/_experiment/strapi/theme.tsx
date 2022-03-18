@@ -224,6 +224,12 @@ const strapiTheme: JoyThemeInput = {
       },
     },
   },
+  fontSize: {
+    xs: '0.7rem',
+    sm: '0.75rem',
+    md: '0.875rem',
+    lg: '1rem',
+  },
   // 💡 custom typography
   typography: {
     header1: {
