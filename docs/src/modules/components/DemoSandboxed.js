@@ -14,7 +14,7 @@ import {
   styled,
   useColorScheme,
   experimental_extendTheme,
-  CssVarsProvider,
+  Experimental_CssVarsProvider as CssVarsProvider,
 } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
