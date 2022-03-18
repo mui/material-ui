@@ -1,10 +1,9 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
 import { HTMLElementType, refType } from '@mui/utils';
-import { Direction, useThemeWithoutDefault as useTheme, SxProps } from '@mui/system';
-import { Theme, styled } from '@mui/material/styles';
-import useThemeProps from '../styles/useThemeProps';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import { styled, Theme, useThemeProps } from '../styles';
 
 export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
   /**
