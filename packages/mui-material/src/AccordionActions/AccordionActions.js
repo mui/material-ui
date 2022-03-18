@@ -30,9 +30,7 @@ const AccordionActionsRoot = styled('div', {
   padding: 8,
   justifyContent: 'flex-end',
   ...(!ownerState.disableSpacing && {
-    '& > :not(:first-of-type)': {
-      marginLeft: 8,
-    },
+    gap: 8,
   }),
 }));
 
