@@ -854,13 +854,9 @@ export default function JoyList() {
               </ListItemDecorator>
               <div>
                 <Typography>Brunch this weekend?</Typography>
-                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                <Typography level="body2" color="text.primary">
                   Ali Connors{' '}
-                  <Typography
-                    component="span"
-                    level="inherit"
-                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
-                  >
+                  <Typography color="text.secondary">
                     {' '}
                     — I&apos;ll be in your neighborhood doing errands this…
                   </Typography>
@@ -882,13 +878,9 @@ export default function JoyList() {
               </ListItemDecorator>
               <div>
                 <Typography>Summer BBQ</Typography>
-                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                <Typography level="body2" color="text.primary">
                   to Scott, Alex, Jennifer{' '}
-                  <Typography
-                    component="span"
-                    level="inherit"
-                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
-                  >
+                  <Typography color="text.secondary">
                     {' '}
                     — Wish I could come, but I&apos;m out of town this…
                   </Typography>

@@ -12,6 +12,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkTypeMap } from './LinkProps';
+import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: LinkProps) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -26,10 +27,30 @@ const useUtilityClasses = (ownerState: LinkProps) => {
       underline && `underline${capitalize(underline)}`,
       variant && `variant${capitalize(variant)}`,
     ],
+    startIcon: ['startIcon'],
+    endIcon: ['endIcon'],
   };
 
   return composeClasses(slots, getLinkUtilityClass, {});
 };
+
+const StartIcon = styled('span', {
+  name: 'MuiLink',
+  slot: 'StartIcon',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: LinkProps }>({
+  display: 'inline-flex',
+  marginInlineEnd: 'min(var(--Link-gap, 0.25em), 0.5rem)',
+});
+
+const EndIcon = styled('span', {
+  name: 'MuiLink',
+  slot: 'endIcon',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: LinkProps }>({
+  display: 'inline-flex',
+  marginInlineStart: 'min(var(--Link-gap, 0.25em), 0.5rem)',
+});
 
 const LinkRoot = styled('a', {
   name: 'MuiLink',
@@ -54,6 +75,9 @@ const LinkRoot = styled('a', {
         '&:hover': {
           textDecorationColor: 'inherit',
         },
+      }),
+      ...(ownerState.startIcon && {
+        verticalAlign: 'bottom', // to make the link align with the parent's content
       }),
       display: 'inline-flex',
       alignItems: 'center',
@@ -95,19 +119,25 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     props: inProps,
     name: 'MuiLink',
   });
+  const nested = React.useContext(TypographyContext);
 
   const {
     className,
     color = 'primary',
     component = 'a',
+    children,
     disabled = false,
     onBlur,
     onFocus,
-    level = 'body1',
+    level: levelProp = 'body1',
     underline = 'hover',
     variant,
+    endIcon,
+    startIcon,
     ...other
   } = props;
+
+  const level = nested ? inProps.level || 'inherit' : levelProp;
 
   const {
     isFocusVisibleRef,
@@ -145,6 +175,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     underline,
     variant,
     level,
+    nested,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -158,7 +189,19 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       ref={handlerRef}
       ownerState={ownerState}
       {...other}
-    />
+    >
+      {startIcon && (
+        <StartIcon ownerState={ownerState} className={classes.startIcon}>
+          {startIcon}
+        </StartIcon>
+      )}
+      {children}
+      {endIcon && (
+        <EndIcon ownerState={ownerState} className={classes.endIcon}>
+          {endIcon}
+        </EndIcon>
+      )}
+    </LinkRoot>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
