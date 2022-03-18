@@ -204,6 +204,23 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
    * The default checked state. Use when the component is not controlled.
    */
   defaultChecked: PropTypes.bool,
@@ -211,6 +228,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
   /**
    * If `true`, the component appears indeterminate.
    * This does not set the native input element to indeterminate due
@@ -224,6 +245,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon: PropTypes.node,
+  /**
+   * The `name` attribute of the input.
+   */
+  name: PropTypes.string,
   /**
    * @ignore
    */

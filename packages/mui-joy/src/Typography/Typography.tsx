@@ -94,6 +94,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     props: inProps,
     name: 'MuiTypography',
   });
+
   const nested = React.useContext(TypographyContext);
 
   const props = extendSxProp(themeProps);
@@ -142,6 +143,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
           {startIcon}
         </StartIcon>
       )}
+
       <TypographyContext.Provider value>{children}</TypographyContext.Provider>
       {endIcon && (
         <EndIcon ownerState={ownerState} className={classes.endIcon}>
@@ -174,6 +176,10 @@ Typography.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * Element placed after the children.
+   */
+  endIcon: PropTypes.node,
   /**
    * If `true`, the text will have a bottom margin.
    * @default false
@@ -214,6 +220,10 @@ Typography.propTypes /* remove-proptypes */ = {
    * @default false
    */
   noWrap: PropTypes.bool,
+  /**
+   * Element placed before the children.
+   */
+  startIcon: PropTypes.node,
 } as any;
 
 export default Typography;
