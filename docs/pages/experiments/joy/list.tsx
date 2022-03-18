@@ -141,6 +141,7 @@ function CheckboxList() {
             }
           >
             <ListItemButton
+              selected={selected}
               color={selected ? 'success' : undefined}
               role={undefined}
               onClick={handleToggle(value)}
