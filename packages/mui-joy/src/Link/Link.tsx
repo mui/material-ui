@@ -244,17 +244,9 @@ Link.propTypes /* remove-proptypes */ = {
    * Applies the theme typography styles.
    * @default 'body1'
    */
-  level: PropTypes.oneOf([
-    'body1',
-    'body2',
-    'body3',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'inherit',
+  level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),
+    PropTypes.string,
   ]),
   /**
    * @ignore
