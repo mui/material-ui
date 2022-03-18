@@ -63,17 +63,14 @@ const ButtonRoot = styled('button', {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
         '--Button-gutter': '1.5rem', // gutter is the padding-x
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
       }),
       ...(ownerState.size === 'lg' && {
-        '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
         '--Icon-fontSize': '1.75rem',
       }),
@@ -86,7 +83,15 @@ const ButtonRoot = styled('button', {
         padding:
           'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-gutter) - var(--variant-outlinedBorderWidth))', // account for the border width
       }),
-      minHeight: 'var(--Button-minHeight)',
+      ...(ownerState.size === 'sm' && {
+        minHeight: '2rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        minHeight: '2.5rem', // use min-height instead of height to make the button resilient to its content
+      }),
+      ...(ownerState.size === 'lg' && {
+        minHeight: '3rem',
+      }),
       borderRadius: theme.vars.radius.sm,
       border: 'none',
       backgroundColor: 'transparent',
