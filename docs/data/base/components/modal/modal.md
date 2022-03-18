@@ -28,8 +28,8 @@ Features:
 >
 > A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action.
 > As such, it should be used sparingly—only when the app _requires_ user input before it can continue.
-
-If you are creating a modal dialog, the [`Dialog`](/material-ui/dialog/) component is better suited for this specific use case.
+<!-- Uncomment the next line, once an unstyled dialog component is added in @mui/base -->
+<!-- If you are creating a modal dialog, the [`Dialog`](/material-ui/dialog/) component is better suited for this specific use case. -->
 
 `Modal` is a lower-level construct that is used in the following components:
 
