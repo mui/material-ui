@@ -97,6 +97,7 @@ const LinkRoot = styled('a', {
           }
         : {
             color: theme.vars.palette[ownerState.color!]?.textColor,
+            cursor: 'pointer',
             '&.Mui-disabled': {
               pointerEvents: 'none',
               color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
@@ -108,7 +109,6 @@ const LinkRoot = styled('a', {
       '&::-moz-focus-inner': {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
-      cursor: 'pointer',
     },
     theme.focus.default,
     ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
