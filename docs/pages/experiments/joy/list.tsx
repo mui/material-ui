@@ -18,6 +18,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
+import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -1049,29 +1050,31 @@ export default function JoyList() {
             </ListItem>
           </List>
 
-          <List
-            sx={{
-              maxWidth: 360,
-              maxHeight: 300,
-              overflow: 'auto',
-              '& ul': { p: 0 },
-              '--List-padding': 0,
-              '--List-item-paddingX': '1rem',
-            }}
-          >
-            {[0, 1, 2, 3, 4].map((sectionId) => (
-              <li key={`section-${sectionId}`}>
-                <ul>
-                  <ListItem sticky sx={{ pt: '1.5rem' }}>
-                    <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
-                  </ListItem>
-                  {[0, 1, 2].map((item) => (
-                    <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </List>
+          <Sheet>
+            <List
+              sx={{
+                maxWidth: 360,
+                maxHeight: 300,
+                overflow: 'auto',
+                '& ul': { p: 0 },
+                '--List-padding': 0,
+                '--List-item-paddingX': '1rem',
+              }}
+            >
+              {[0, 1, 2, 3, 4].map((sectionId) => (
+                <li key={`section-${sectionId}`}>
+                  <ul>
+                    <ListItem sticky sx={{ pt: '1.5rem' }}>
+                      <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
+                    </ListItem>
+                    {[0, 1, 2].map((item) => (
+                      <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </List>
+          </Sheet>
 
           <Box>
             <List size="sm">
