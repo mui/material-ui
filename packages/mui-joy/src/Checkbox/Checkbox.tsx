@@ -56,6 +56,7 @@ const CheckboxRoot = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       verticalAlign: 'middle',
+      flexShrink: 0,
     },
     theme.focus.default,
     theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -94,10 +95,14 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     checkedIcon = defaultCheckedIcon,
     className,
     component,
+    components = {},
+    componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
+    id,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
+    name,
     onBlur,
     onChange,
     onFocus,
@@ -139,18 +144,27 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const Root = components.Root ?? CheckboxRoot;
+  const Input = components.Input ?? CheckboxInput;
+
   return (
-    <CheckboxRoot
+    <Root
       ref={ref}
       {...otherProps}
       as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
     >
-      <CheckboxInput ownerState={ownerState} {...getInputProps()} className={clsx(classes.input)} />
+      <Input
+        ownerState={ownerState}
+        {...getInputProps(componentsProps.input)}
+        id={id}
+        name={name}
+        className={clsx(classes.input, componentsProps.input?.className)}
+      />
       {indeterminate && !checked && indeterminateIcon}
       {checked && checkedIcon}
-    </CheckboxRoot>
+    </Root>
   );
 }) as OverridableComponent<CheckboxTypeMap>;
 

@@ -9,28 +9,61 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getTypographyUtilityClass } from './typographyClasses';
 
+export const TypographyContext = React.createContext(false);
+
 const useUtilityClasses = (ownerState: TypographyProps) => {
   const { gutterBottom, noWrap, level } = ownerState;
 
   const slots = {
     root: ['root', level, gutterBottom && 'gutterBottom', noWrap && 'noWrap'],
+    startIcon: ['startIcon'],
+    endIcon: ['endIcon'],
   };
 
   return composeClasses(slots, getTypographyUtilityClass, {});
 };
 
-export const TypographyRoot = styled('span', {
+const StartIcon = styled('span', {
+  name: 'MuiTypography',
+  slot: 'StartIcon',
+  overridesResolver: (props, styles) => styles.startIcon,
+})<{ ownerState: TypographyProps & { nested: boolean } }>({
+  display: 'inline-flex',
+  marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  verticalAlign: 'sub',
+});
+
+const EndIcon = styled('span', {
+  name: 'MuiTypography',
+  slot: 'endIcon',
+  overridesResolver: (props, styles) => styles.endIcon,
+})<{ ownerState: TypographyProps & { nested: boolean } }>({
+  display: 'inline-flex',
+  marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  verticalAlign: 'sub',
+});
+
+const TypographyRoot = styled('span', {
   name: 'MuiTypography',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TypographyProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: TypographyProps & { nested: boolean } }>(({ theme, ownerState }) => ({
   '--Icon-fontSize': '1.25em',
   margin: 0,
-  display: 'flex',
-  alignItems: 'center',
   fontFamily: theme.vars.fontFamily.body,
-  ...(ownerState.component === 'span' && {
-    display: 'inline-flex',
+  display: 'block',
+  ...(ownerState.nested && {
+    display: 'inline',
+  }),
+  ...((ownerState.startIcon || ownerState.endIcon) && {
+    display: 'flex',
+    alignItems: 'center',
+    ...(ownerState.nested && {
+      display: 'inline-flex',
+      ...(ownerState.startIcon && {
+        verticalAlign: 'bottom', // to make the text align with the parent's content
+      }),
+    }),
   }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
   ...(ownerState.noWrap && {
@@ -61,6 +94,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     props: inProps,
     name: 'MuiTypography',
   });
+  const nested = React.useContext(TypographyContext);
 
   const props = extendSxProp(themeProps);
 
@@ -70,10 +104,15 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     color, // declare to prevent type error spread to TypographyRoot
     gutterBottom = false,
     noWrap = false,
-    level = 'body1',
+    level: levelProp = 'body1',
     levelMapping = {},
+    children,
+    endIcon,
+    startIcon,
     ...other
   } = props;
+
+  const level = nested ? inProps.level || 'inherit' : levelProp;
 
   const ownerState = {
     ...props,
@@ -82,9 +121,11 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     component,
     gutterBottom,
     noWrap,
+    nested,
   };
 
-  const Component = component || levelMapping[level] || defaultVariantMapping[level] || 'span';
+  const Component =
+    component || (nested ? 'span' : levelMapping[level] || defaultVariantMapping[level] || 'span');
 
   const classes = useUtilityClasses(ownerState);
 
@@ -95,7 +136,19 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
       ownerState={ownerState}
       className={clsx(classes.root, className)}
       {...other}
-    />
+    >
+      {startIcon && (
+        <StartIcon ownerState={ownerState} className={classes.startIcon}>
+          {startIcon}
+        </StartIcon>
+      )}
+      <TypographyContext.Provider value>{children}</TypographyContext.Provider>
+      {endIcon && (
+        <EndIcon ownerState={ownerState} className={classes.endIcon}>
+          {endIcon}
+        </EndIcon>
+      )}
+    </TypographyRoot>
   );
 }) as OverridableComponent<TypographyTypeMap>;
 

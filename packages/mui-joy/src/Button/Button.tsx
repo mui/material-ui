@@ -41,6 +41,7 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: ButtonProps }>({
   display: 'inherit',
+  color: 'var(--Button-iconColor)',
   marginLeft: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
   marginRight: 'var(--Button-gap)',
   color: 'var(--Button-iconColor)',
@@ -52,6 +53,7 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: ButtonProps }>({
   display: 'inherit',
+  color: 'var(--Button-iconColor)',
   marginLeft: 'var(--Button-gap)',
   marginRight: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
   color: 'var(--Button-iconColor)',
@@ -65,17 +67,14 @@ const ButtonRoot = styled('button', {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
         '--Button-gutter': '1.5rem', // gutter is the padding-x
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
       }),
       ...(ownerState.size === 'lg' && {
-        '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
         '--Icon-fontSize': '1.75rem',
       }),
@@ -88,7 +87,15 @@ const ButtonRoot = styled('button', {
         padding:
           'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-gutter) - var(--variant-outlinedBorderWidth))', // account for the border width
       }),
-      minHeight: 'var(--Button-minHeight)',
+      ...(ownerState.size === 'sm' && {
+        minHeight: '2rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        minHeight: '2.5rem', // use min-height instead of height to make the button resilient to its content
+      }),
+      ...(ownerState.size === 'lg' && {
+        minHeight: '3rem',
+      }),
       borderRadius: theme.vars.radius.sm,
       border: 'none',
       backgroundColor: 'transparent',
@@ -100,10 +107,11 @@ const ButtonRoot = styled('button', {
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      ...theme.typography.body1,
+      fontFamily: theme.vars.fontFamily.body,
+      fontSize: theme.vars.fontSize.md,
+      lineHeight: 1,
       ...(ownerState.size === 'sm' && {
-        ...theme.typography.body2,
-        lineHeight: '1.25rem',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
     },

@@ -7,6 +7,8 @@ import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import LocationOn from '@mui/icons-material/LocationOn';
 import Groups from '@mui/icons-material/Groups';
+import Outbound from '@mui/icons-material/Outbound';
+import Info from '@mui/icons-material/Info';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -56,29 +58,62 @@ export default function JoyTypography() {
           }}
         >
           <Box>
-            <Typography level="body2">
-              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
+            <Typography level="body2" startIcon={<LocationOn />}>
+              Miami, Florida
             </Typography>
-            <Typography level="body2">
-              <Groups fontSize="lg" sx={{ mr: '0.25em' }} /> 5 - 10 people
-            </Typography>
-          </Box>
-          <Box>
-            <Typography>
-              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
-            </Typography>
-            <Typography>
-              <Groups fontSize="xl" sx={{ mr: '0.25em' }} /> 5 - 10 people
+            <Typography level="body2" startIcon={<Groups fontSize="lg" />}>
+              5 - 10 people
             </Typography>
           </Box>
           <Box>
-            <Typography level="h5">
-              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
+            <Typography startIcon={<LocationOn />}>Miami, Florida</Typography>
+            <Typography startIcon={<Groups fontSize="xl" />}>5 - 10 people</Typography>
+          </Box>
+          <Box>
+            <Typography level="h5" startIcon={<LocationOn />}>
+              Miami, Florida
             </Typography>
-            <Typography level="h5">
-              <Groups fontSize="xl2" sx={{ mr: '0.25em' }} /> 5 - 10 people
+            <Typography level="h5" startIcon={<Groups fontSize="xl2" />}>
+              5 - 10 people
             </Typography>
           </Box>
+        </Box>
+        <Box sx={{ my: 2, maxWidth: 360 }}>
+          <Typography sx={{ '--Typography-gap': '2px' }}>
+            Keep me updated about the new features and upcoming improvements (by doing this you
+            accept the{' '}
+            <Typography color="primary.textColor" startIcon={<Info />}>
+              Terms
+            </Typography>{' '}
+            and the{' '}
+            <Typography color="primary.textColor" endIcon={<Outbound />}>
+              privacy policy
+            </Typography>
+            ).
+          </Typography>
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography
+            endIcon={
+              <Typography color="text.secondary" fontSize="sm">
+                20
+              </Typography>
+            }
+          >
+            Home
+          </Typography>
+          <Typography
+            endIcon={
+              <Typography color="text.secondary" fontSize="sm">
+                7
+              </Typography>
+            }
+          >
+            Checklist
+          </Typography>
+          <Typography endIcon={<Info fontSize="md" sx={{ color: 'warning.textColor' }} />}>
+            Warning
+          </Typography>
         </Box>
       </Box>
     </CssVarsProvider>

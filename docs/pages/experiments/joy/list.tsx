@@ -18,6 +18,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
+import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -141,6 +142,7 @@ function CheckboxList() {
             }
           >
             <ListItemButton
+              selected={selected}
               color={selected ? 'success' : undefined}
               role={undefined}
               onClick={handleToggle(value)}
@@ -300,6 +302,7 @@ function MuiNav() {
   }
   return (
     <List
+      size="sm"
       sx={(theme) => ({
         // Actually, this part should be inside the theme but put it here for specific instance.
         ...createCssVars(grey, 'palette-neutral'),
@@ -343,7 +346,6 @@ function MuiNav() {
         '--List-item-paddingLeft': '2px',
         '--List-item-paddingRight': '2px',
         '--List-item-paddingY': '0px',
-        '--List-item-fontSize': theme.vars.fontSize.sm,
         '--List-nestedInsetStart': '28px',
         '--List-decorator-color': theme.vars.palette.primary.textColor,
       })}
@@ -365,7 +367,7 @@ function MuiNav() {
                 })
               }
             >
-              <ListItemDecorator sx={{ color: 'primary.textColor' }}>
+              <ListItemDecorator>
                 <IconComponent fontSize="md" />
               </ListItemDecorator>
               <ListItemContent sx={{ color: 'text.primary' }}>
@@ -453,7 +455,6 @@ const Firebash = () => {
           '--List-item-paddingRight': '24px',
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
-          '--List-nestedInsetStart': '0px',
           '--List-divider-gap': '0px',
           '--List-background': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
@@ -598,7 +599,6 @@ const Gatsby = () => {
             '--joy-palette-primary-textColor': '#d48cff',
           },
 
-          '--List-nestedInsetStart': '0px',
           '--List-radius': '0px',
           '--List-padding': '0px',
           '--List-insetStart': '32px',
@@ -854,13 +854,9 @@ export default function JoyList() {
               </ListItemDecorator>
               <div>
                 <Typography>Brunch this weekend?</Typography>
-                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                <Typography level="body2" color="text.primary">
                   Ali Connors{' '}
-                  <Typography
-                    component="span"
-                    level="inherit"
-                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
-                  >
+                  <Typography color="text.secondary">
                     {' '}
                     — I&apos;ll be in your neighborhood doing errands this…
                   </Typography>
@@ -882,13 +878,9 @@ export default function JoyList() {
               </ListItemDecorator>
               <div>
                 <Typography>Summer BBQ</Typography>
-                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                <Typography level="body2" color="text.primary">
                   to Scott, Alex, Jennifer{' '}
-                  <Typography
-                    component="span"
-                    level="inherit"
-                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
-                  >
+                  <Typography color="text.secondary">
                     {' '}
                     — Wish I could come, but I&apos;m out of town this…
                   </Typography>
@@ -1048,29 +1040,31 @@ export default function JoyList() {
             </ListItem>
           </List>
 
-          <List
-            sx={{
-              maxWidth: 360,
-              maxHeight: 300,
-              overflow: 'auto',
-              '& ul': { p: 0 },
-              '--List-padding': 0,
-              '--List-item-paddingX': '1rem',
-            }}
-          >
-            {[0, 1, 2, 3, 4].map((sectionId) => (
-              <li key={`section-${sectionId}`}>
-                <ul>
-                  <ListItem sticky sx={{ pt: '1.5rem' }}>
-                    <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
-                  </ListItem>
-                  {[0, 1, 2].map((item) => (
-                    <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </List>
+          <Sheet>
+            <List
+              sx={{
+                maxWidth: 360,
+                maxHeight: 300,
+                overflow: 'auto',
+                '& ul': { p: 0 },
+                '--List-padding': 0,
+                '--List-item-paddingX': '1rem',
+              }}
+            >
+              {[0, 1, 2, 3, 4].map((sectionId) => (
+                <li key={`section-${sectionId}`}>
+                  <ul>
+                    <ListItem sticky sx={{ pt: '1.5rem' }}>
+                      <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
+                    </ListItem>
+                    {[0, 1, 2].map((item) => (
+                      <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </List>
+          </Sheet>
 
           <Box>
             <List size="sm">

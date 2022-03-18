@@ -1,9 +1,9 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, TypographySystem, VariantProp } from '../styles/types';
 
-export type LinkSlot = 'root';
+export type LinkSlot = 'root' | 'startIcon' | 'endIcon';
 
 export interface LinkPropsVariantOverrides {}
 
@@ -26,10 +26,18 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
      */
     disabled?: boolean;
     /**
+     * Element placed after the children.
+     */
+    endIcon?: React.ReactNode;
+    /**
      * Applies the theme typography styles.
      * @default 'body1'
      */
     level?: keyof TypographySystem | 'inherit';
+    /**
+     * Element placed before the children.
+     */
+    startIcon?: React.ReactNode;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

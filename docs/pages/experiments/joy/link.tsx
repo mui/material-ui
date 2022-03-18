@@ -3,12 +3,16 @@ import * as React from 'react';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 import LocationOn from '@mui/icons-material/LocationOn';
 import Groups from '@mui/icons-material/Groups';
+import OpenInNew from '@mui/icons-material/OpenInNew';
+import Person from '@mui/icons-material/Person';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -21,7 +25,7 @@ const ColorSchemePicker = () => {
   }
 
   return (
-    <Button
+    <IconButton
       variant="outlined"
       onClick={() => {
         if (mode === 'light') {
@@ -30,10 +34,9 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
-    </Button>
+    </IconButton>
   );
 };
 
@@ -63,29 +66,64 @@ export default function JoyButton() {
           }}
         >
           <Box>
-            <Link component="button" level="body2">
-              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
+            <Link component="button" level="body2" startIcon={<LocationOn />}>
+              Miami, Florida
             </Link>
-            <Link component="button" level="body2">
-              <Groups fontSize="lg" sx={{ mr: '0.25em' }} /> 5 - 10 people
-            </Link>
-          </Box>
-          <Box>
-            <Link component="button">
-              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
-            </Link>
-            <Link component="button">
-              <Groups fontSize="xl" sx={{ mr: '0.25em' }} /> 5 - 10 people
+            <Link component="button" level="body2" startIcon={<Groups fontSize="lg" />}>
+              5 - 10 people
             </Link>
           </Box>
           <Box>
-            <Link component="button" level="h5">
-              <LocationOn sx={{ mr: '0.25em' }} /> Miami, Florida
+            <Link component="button" startIcon={<LocationOn />}>
+              Miami, Florida
             </Link>
-            <Link component="button" level="h5">
-              <Groups fontSize="xl2" sx={{ mr: '0.25em' }} /> 5 - 10 people
+            <Link component="button" startIcon={<Groups fontSize="xl" />}>
+              5 - 10 people
             </Link>
           </Box>
+          <Box>
+            <Link component="button" level="h5" startIcon={<LocationOn />}>
+              Miami, Florida
+            </Link>
+            <Link component="button" level="h5" startIcon={<Groups fontSize="xl2" />}>
+              5 - 10 people
+            </Link>
+          </Box>
+          <Box>
+            <Typography level="body2">
+              Keep me updated about the new features and upcoming improvements (by doing this you
+              accept the <Link endIcon={<OpenInNew />}>terms</Link> and the{' '}
+              <Link disabled startIcon={<OpenInNew />}>
+                privacy policy
+              </Link>
+              ).
+            </Typography>
+          </Box>
+          <Box>
+            <span>
+              Keep me updated about the new features and upcoming improvements (by doing this you
+              accept the{' '}
+              <Link level="inherit" endIcon={<OpenInNew />}>
+                terms
+              </Link>{' '}
+              and the{' '}
+              <Link level="inherit" startIcon={<OpenInNew />}>
+                privacy policy
+              </Link>
+              ).
+            </span>
+          </Box>
+          <ul>
+            <li>
+              <Link startIcon={<Person />}>Profile</Link>
+            </li>
+            <li>
+              <Link startIcon={<Settings />}>Settings</Link>
+            </li>
+            <li>
+              <Link startIcon={<Logout />}>Logout</Link>
+            </li>
+          </ul>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(buttonProps).map(([propName, propValue]) => (

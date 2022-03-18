@@ -141,6 +141,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       <Input
         {...componentsProps.input}
         id={id}
+        name={name}
+        type={type}
         inputRef={inputRef}
         aria-describedby={helperTextId}
         autoComplete={autoComplete}

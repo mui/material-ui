@@ -71,6 +71,7 @@ const InputRoot = styled('div', {
     alignItems: 'center',
     padding: `0.25rem var(--Input-gutter)`,
     borderRadius: 'var(--Input-radius)',
+    fontFamily: theme.vars.fontFamily.body,
     fontSize: theme.vars.fontSize.md,
     ...(ownerState.size === 'sm' && {
       fontSize: theme.vars.fontSize.sm,
