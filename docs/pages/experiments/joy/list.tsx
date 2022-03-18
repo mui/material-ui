@@ -302,6 +302,7 @@ function MuiNav() {
   }
   return (
     <List
+      size="sm"
       sx={(theme) => ({
         // Actually, this part should be inside the theme but put it here for specific instance.
         ...createCssVars(grey, 'palette-neutral'),
@@ -345,7 +346,6 @@ function MuiNav() {
         '--List-item-paddingLeft': '2px',
         '--List-item-paddingRight': '2px',
         '--List-item-paddingY': '0px',
-        '--List-item-fontSize': theme.vars.fontSize.sm,
         '--List-nestedInsetStart': '28px',
         '--List-decorator-color': theme.vars.palette.primary.textColor,
       })}
@@ -367,7 +367,7 @@ function MuiNav() {
                 })
               }
             >
-              <ListItemDecorator sx={{ color: 'primary.textColor' }}>
+              <ListItemDecorator>
                 <IconComponent fontSize="md" />
               </ListItemDecorator>
               <ListItemContent sx={{ color: 'text.primary' }}>
@@ -455,7 +455,6 @@ const Firebash = () => {
           '--List-item-paddingRight': '24px',
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
-          '--List-nestedInsetStart': '0px',
           '--List-divider-gap': '0px',
           '--List-background': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
@@ -600,7 +599,6 @@ const Gatsby = () => {
             '--joy-palette-primary-textColor': '#d48cff',
           },
 
-          '--List-nestedInsetStart': '0px',
           '--List-radius': '0px',
           '--List-padding': '0px',
           '--List-insetStart': '32px',
