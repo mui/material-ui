@@ -56,6 +56,7 @@ const CheckboxRoot = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       verticalAlign: 'middle',
+      flexShrink: 0,
     },
     theme.focus.default,
     theme.variants[ownerState.variant!]?.[ownerState.color!],
