@@ -88,7 +88,7 @@ const LinkRoot = styled('a', {
       outline: 0,
       border: 0,
       margin: 0, // Remove the margin in Safari
-      borderRadius: 0,
+      borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
       ...(ownerState.variant
         ? {
