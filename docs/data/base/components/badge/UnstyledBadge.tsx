@@ -26,7 +26,7 @@ const StyledBadge = styled(BadgeUnstyled)`
     line-height: 20px;
     white-space: nowrap;
     text-align: center;
-    background: #0077ff;
+    background: #07f;
     border-radius: 10px;
     box-shadow: 0 0 0 1px #fff;
   }
@@ -37,7 +37,7 @@ const StyledBadge = styled(BadgeUnstyled)`
     min-width: 6px;
     width: 6px;
     height: 6px;
-    background: #0077ff;
+    background: #07f;
     border-radius: 100%;
     box-shadow: 0 0 0 1px #fff;
   }
