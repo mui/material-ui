@@ -73,6 +73,12 @@ The switch is the secondary action and a separate target.
 
 {{"demo": "SwitchListSecondary.js", "bg": true}}
 
+### Actions
+
+A list item can contain a single icon button or a list of icon buttons.
+
+{{"demo": "ActionsList.js", "bg": true}}
+
 ## Sticky subheader
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.

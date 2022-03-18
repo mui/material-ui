@@ -40,7 +40,12 @@
     "disableGutters": { "type": { "name": "bool" } },
     "disablePadding": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
-    "secondaryAction": { "type": { "name": "node" } },
+    "secondaryAction": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;node&gt;<br>&#124;&nbsp;element<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;{ __@iterator@415: func }<br>&#124;&nbsp;string<br>&#124;&nbsp;bool"
+      }
+    },
     "selected": {
       "type": { "name": "bool" },
       "deprecated": true,

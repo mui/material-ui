@@ -63,6 +63,15 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getListItemUtilityClass, classes);
 };
 
+function getListItemPaddingRight(secondaryAction) {
+  if (!secondaryAction) {
+    return 0;
+  }
+
+  const actions = Array.isArray(secondaryAction) ? secondaryAction.length : 1;
+  return actions * 48;
+}
+
 export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
@@ -90,12 +99,12 @@ export const ListItemRoot = styled('div', {
     ...(!!ownerState.secondaryAction && {
       // Add some space to avoid collision as `ListItemSecondaryAction`
       // is absolutely positioned.
-      paddingRight: 48,
+      paddingRight: getListItemPaddingRight(ownerState.secondaryAction),
     }),
   }),
   ...(!!ownerState.secondaryAction && {
     [`& > .${listItemButtonClasses.root}`]: {
-      paddingRight: 48,
+      paddingRight: getListItemPaddingRight(ownerState.secondaryAction),
     },
   }),
   [`&.${listItemClasses.focusVisible}`]: {
@@ -434,7 +443,17 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The element to display at the end of ListItem.
    */
-  secondaryAction: PropTypes.node,
+  secondaryAction: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.element,
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.shape({
+      '__@iterator@415': PropTypes.func.isRequired,
+    }),
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   /**
    * Use to apply selected styling.
    * @default false

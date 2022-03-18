@@ -71,7 +71,7 @@ export interface ListItemBaseProps {
   /**
    * The element to display at the end of ListItem.
    */
-  secondaryAction?: React.ReactNode;
+  secondaryAction?: React.ReactNode | React.ReactNode[];
   /**
    * Use to apply selected styling.
    * @default false
