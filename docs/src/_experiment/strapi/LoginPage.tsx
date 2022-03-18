@@ -32,7 +32,7 @@ export default function LoginPage() {
           py: '3rem',
         }}
       >
-        <Box>
+        <Box sx={{ textAlign: 'center' }}>
           <Box
             component="img"
             src="https://res.cloudinary.com/practicaldev/image/fetch/s--XsZRGi5O--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/763/988af53b-5d7e-435a-98eb-dd4aff5299d2.png"
@@ -44,15 +44,10 @@ export default function LoginPage() {
               display: 'block',
             }}
           />
-          <Typography
-            level="h3"
-            sx={{ mt: '1.5rem', mb: '0.375rem', fontWeight: 'bold', justifyContent: 'center' }}
-          >
+          <Typography level="h3" fontWeight="bold" sx={{ mt: '1.5rem', mb: '0.375rem' }}>
             Welcome back!
           </Typography>
-          <Typography sx={{ color: 'text.tertiary', justifyContent: 'center' }}>
-            Log in to your Strapi account
-          </Typography>
+          <Typography color="text.tertiary">Log in to your Strapi account</Typography>
         </Box>
         <TextField label="Email" id="email" placeholder="kaidoe@gmail.com" fullWidth />
         <TextField

@@ -193,8 +193,12 @@ export default function HomePage() {
             We hope you are making good progress on your project! Feel free to read the latest news
             about Strapi. We are giving our best to improve the product based on your feedback.
           </Typography>
-          <Link href="#blog" sx={{ mt: 2, typography: 'tableLabel', color: 'primary.textColor' }}>
-            SEE MORE ON THE BLOG <OpenInNew sx={{ ml: 0.5 }} />
+          <Link
+            href="#blog"
+            endIcon={<OpenInNew />}
+            sx={{ mt: 2, typography: 'tableLabel', color: 'primary.textColor' }}
+          >
+            SEE MORE ON THE BLOG
           </Link>
         </Box>
         <Box

@@ -62,9 +62,10 @@ export default function ContentEditView() {
           <div>
             <Link
               component="button"
+              startIcon={<ArrowBack />}
               sx={{ typography: 'tableLabel', color: 'primary.textColor', mb: 1 }}
             >
-              <ArrowBack sx={{ mr: 0.5 }} /> BACK
+              BACK
             </Link>
             <Typography level="header1">Create an Entry</Typography>
             <Typography color="text.tertiary">API ID: Restaurants</Typography>
@@ -176,8 +177,8 @@ export default function ContentEditView() {
                 defaultValue="French (FR)"
                 endAdornment={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
               />
-              <Link sx={{ fontSize: '0.75rem' }}>
-                <FileCopy sx={{ mr: 0.5 }} /> Fill in from another locale
+              <Link startIcon={<FileCopy />} sx={{ fontSize: '0.75rem' }}>
+                Fill in from another locale
               </Link>
             </Sheet>
             <Sheet

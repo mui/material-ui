@@ -159,7 +159,7 @@ export default function ContentListView() {
           >
             10
           </Button>
-          <Typography level="smallText" sx={{ ml: 1 }}>
+          <Typography level="smallText" sx={{ ml: 1, alignSelf: 'center' }}>
             Entries per page
           </Typography>
           <Box sx={{ mx: 'auto' }} />
