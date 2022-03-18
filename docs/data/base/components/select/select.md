@@ -95,7 +95,7 @@ import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
 import { useSelect } from '@mui/base/SelectUnstyled';
 ```
 
-You can use the `useSelect` hook to apply the functionality of `SelectUnstyled` to a different component.
+You can use the `useSelect` hook to apply the functionality of the unstyled select components to a different component.
 This hook gives you the most customization options, but requires more work to implement.
 Using the hook allows you to take full control over the rendered components, their props and CSS classes.
 
