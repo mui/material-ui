@@ -306,7 +306,6 @@ const pages: readonly MuiPage[] = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
-      { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
@@ -325,6 +324,15 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/guides/flow' },
+    ],
+  },
+  {
+    pathname: '/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      { pathname: '/experimental-api/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/experimental-api/css-variables', title: 'CSS Variables' },
     ],
   },
   {
