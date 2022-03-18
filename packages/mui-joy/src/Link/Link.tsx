@@ -97,6 +97,10 @@ const LinkRoot = styled('a', {
           }
         : {
             color: theme.vars.palette[ownerState.color!]?.textColor,
+            '&.Mui-disabled': {
+              pointerEvents: 'none',
+              color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+            },
           }),
       userSelect: 'none',
       MozAppearance: 'none', // Reset
@@ -110,7 +114,7 @@ const LinkRoot = styled('a', {
     ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
     ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
     ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant || 'text'}Disabled`]?.[ownerState.color!],
+    ownerState.variant && theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
   ];
 });
 

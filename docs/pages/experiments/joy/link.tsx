@@ -94,7 +94,10 @@ export default function JoyButton() {
             <Typography level="body2">
               Keep me updated about the new features and upcoming improvements (by doing this you
               accept the <Link endIcon={<OpenInNew />}>terms</Link> and the{' '}
-              <Link startIcon={<OpenInNew />}>privacy policy</Link>).
+              <Link disabled startIcon={<OpenInNew />}>
+                privacy policy
+              </Link>
+              ).
             </Typography>
           </Box>
           <Box>
