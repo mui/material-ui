@@ -28,6 +28,7 @@ import LoginPage from 'docs/src/_experiment/strapi/LoginPage';
 import RegisterPage from 'docs/src/_experiment/strapi/RegisterPage';
 import HomePage from 'docs/src/_experiment/strapi/HomePage';
 import WebhookPage from 'docs/src/_experiment/strapi/WebhookPage';
+import WebhookCreationPage from 'docs/src/_experiment/strapi/WebhookCreationPage';
 import ContentEmpty from 'docs/src/_experiment/strapi/ContentEmpty';
 import ContentListView from 'docs/src/_experiment/strapi/ContentListView';
 import ContentEditView from 'docs/src/_experiment/strapi/ContentEditView';
@@ -317,8 +318,6 @@ export default function Strapi() {
 
       <HomePage />
 
-      <WebhookPage />
-
       <ContentEmpty />
 
       <ContentListView />
@@ -326,6 +325,10 @@ export default function Strapi() {
       <ContentEditView />
 
       <MediaEditAsset />
+
+      <WebhookPage />
+
+      <WebhookCreationPage />
     </CssVarsProvider>
   );
 }

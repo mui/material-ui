@@ -339,6 +339,7 @@ const strapiTheme: JoyThemeInput = {
             ...theme.typography.smallButtonText,
           }),
           ...(ownerState.size === 'md' && {
+            '--Icon-fontSize': '1.25rem',
             minHeight: 36,
           }),
           ...(ownerState.size === 'lg' && {
