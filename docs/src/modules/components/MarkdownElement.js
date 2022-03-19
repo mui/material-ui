@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@mui/material/styles';
-import { blueDark } from 'docs/src/modules/brandingTheme';
+import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
@@ -67,25 +67,25 @@ const Root = styled('div')(({ theme }) => ({
     fontFamily: theme.typography.fontFamilySystem,
     fontWeight: 700,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
-    margin: '40px 0 8px',
+    margin: '40px 0 4px',
   },
   '& h3': {
     ...theme.typography.h6,
     fontFamily: theme.typography.fontFamilySystem,
-    fontWeight: 700,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
-    margin: '28px 0 8px',
+    margin: '24px 0 8px',
   },
   '& h4': {
     ...theme.typography.subtitle1,
     fontFamily: theme.typography.fontFamilySystem,
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     margin: '24px 0 8px',
   },
   '& h5': {
     ...theme.typography.subtitle2,
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     margin: '20px 0 8px',
   },
@@ -120,25 +120,33 @@ const Root = styled('div')(({ theme }) => ({
     },
     '&:hover .anchor-link-style': {
       display: 'inline-block',
-      padding: '0 8px',
+      textAlign: 'center',
+      lineHeight: '21.5px',
+      marginLeft: 10,
+      height: '26px',
+      width: '26px',
+      background: theme.palette.mode === 'dark' ? alpha(blue[800], 0.3) : theme.palette.primary[50],
+      border: '1px solid',
+      borderColor: theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[200],
+      borderRadius: 8,
       color: theme.palette.text.secondary,
       '&:hover': {
         color: theme.palette.text.primary,
       },
       '& svg': {
-        width: '0.7em',
-        height: '0.7em',
+        width: '0.875rem',
+        height: '0.875rem',
         fill: 'currentColor',
       },
     },
   },
   '& h1 code': {
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
   },
   '& h2 code': {
     fontSize: theme.typography.pxToRem(24),
-    fontWeight: 600,
+    fontWeight: 'semiBold',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
   },
   '& h3 code': {
@@ -149,7 +157,6 @@ const Root = styled('div')(({ theme }) => ({
     // Trade display table for scroll overflow
     display: 'block',
     wordBreak: 'normal',
-    width: '100%',
     overflowX: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     borderCollapse: 'collapse',
@@ -202,12 +209,12 @@ const Root = styled('div')(({ theme }) => ({
     borderLeft: '8px solid',
     borderColor:
       theme.palette.mode === 'dark'
-        ? // Support Material design theme
+        ? // Support Material Design theme
           theme.palette.warning[500] ?? theme.palette.warning.dark
         : theme.palette.warning[300] ?? theme.palette.warning.light,
     backgroundColor:
       theme.palette.mode === 'dark'
-        ? // Support Material design theme
+        ? // Support Material Design theme
           alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',

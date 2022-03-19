@@ -24,7 +24,14 @@ export const TypographyRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TypographyProps }>(({ theme, ownerState }) => ({
+  '--Icon-fontSize': '1.25em',
   margin: 0,
+  display: 'flex',
+  alignItems: 'center',
+  fontFamily: theme.vars.fontFamily.body,
+  ...(ownerState.component === 'span' && {
+    display: 'inline-flex',
+  }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
   ...(ownerState.noWrap && {
     overflow: 'hidden',
@@ -36,7 +43,7 @@ export const TypographyRoot = styled('span', {
   }),
 }));
 
-const defaultVariantMapping = {
+const defaultVariantMapping: Record<string, string> = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
@@ -60,6 +67,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   const {
     className,
     component,
+    color, // declare to prevent type error spread to TypographyRoot
     gutterBottom = false,
     noWrap = false,
     level = 'body1',
@@ -105,6 +113,10 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * @ignore
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -118,17 +130,9 @@ Typography.propTypes /* remove-proptypes */ = {
    * Applies the theme typography styles.
    * @default 'body1'
    */
-  level: PropTypes.oneOf([
-    'body1',
-    'body2',
-    'body3',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'inherit',
+  level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),
+    PropTypes.string,
   ]),
   /**
    * The component maps the variant prop to a range of different HTML element types.
@@ -148,18 +152,7 @@ Typography.propTypes /* remove-proptypes */ = {
    *   inherit: 'p',
    * }
    */
-  levelMapping: PropTypes.shape({
-    body1: PropTypes.string,
-    body2: PropTypes.string,
-    body3: PropTypes.string,
-    h1: PropTypes.string,
-    h2: PropTypes.string,
-    h3: PropTypes.string,
-    h4: PropTypes.string,
-    h5: PropTypes.string,
-    h6: PropTypes.string,
-    inherit: PropTypes.string,
-  }),
+  levelMapping: PropTypes /* @typescript-to-proptypes-ignore */.object,
   /**
    * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
    *

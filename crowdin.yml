@@ -8,6 +8,7 @@ files:
       - /docs/src/pages/discover-more/backers/*
       - /docs/src/pages/discover-more/roadmap/*
       - /docs/src/pages/company/**/*
+      - /docs/src/pages/careers/**/*
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%
   - source: /docs/data/**/*.md
     ignore:
@@ -16,7 +17,6 @@ files:
       - /docs/data/material/discover-more/backers/*
       - /docs/data/material/discover-more/roadmap/*
       - /docs/data/material/premium-themes/*/**/*
-      - /docs/data/company/**/*
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%
   - source: /docs/translations/**/*.json
     ignore:

@@ -24,7 +24,7 @@ import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Link from 'docs/src/modules/components/Link';
 
-export const getStaticProps = async () => {
+export const getStaticProps = () => {
   const data = getAllBlogPosts();
   return {
     props: data,
@@ -34,32 +34,30 @@ export const getStaticProps = async () => {
 const PostPreview = (props: BlogPost) => {
   return (
     <React.Fragment>
-      {props.tags && (
-        <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
-          {props.tags.map((tag) => (
-            <Chip
-              key={tag}
-              label={tag}
-              size="small"
-              sx={{
-                fontWeight: 500,
-                color: (theme) =>
-                  theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.grey[700],
+      <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
+        {props.tags.map((tag) => (
+          <Chip
+            key={tag}
+            label={tag}
+            size="small"
+            sx={{
+              fontWeight: 500,
+              color: (theme) =>
+                theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.grey[700],
+              background: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.grey[700], 0.5)
+                  : theme.palette.grey[100],
+              '&:hover': {
                 background: (theme) =>
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.grey[700], 0.5)
                     : theme.palette.grey[100],
-                '&:hover': {
-                  background: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.grey[700], 0.5)
-                      : theme.palette.grey[100],
-                },
-              }}
-            />
-          ))}
-        </Box>
-      )}
+              },
+            }}
+          />
+        ))}
+      </Box>
       <Typography
         component="h2"
         fontWeight="bold"
@@ -157,13 +155,14 @@ const PostPreview = (props: BlogPost) => {
           size="small"
           endIcon={<KeyboardArrowRightRoundedIcon />}
           sx={(theme) => ({
-            mt: { xs: 0.5, sm: 0 },
+            mt: { xs: 1, md: 0 },
+            mb: { xs: -1, md: 0 },
             color:
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[300]
                 : theme.palette.primary[600],
-            '& svg': {
-              ml: -0.5,
+            '& .MuiButton-endIcon': {
+              ml: 0,
             },
           })}
         >
@@ -174,8 +173,9 @@ const PostPreview = (props: BlogPost) => {
   );
 };
 
+const PAGE_SIZE = 5;
+
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
-  const PAGE_SIZE = 5;
   const router = useRouter();
   const postListRef = React.useRef<HTMLDivElement | null>(null);
   const [page, setPage] = React.useState(0);
@@ -184,24 +184,26 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
   const [firstPost, secondPost, ...otherPosts] = allBlogPosts;
   const tagInfo = { ...rawTagInfo };
   [firstPost, secondPost].forEach((post) => {
-    if (post.tags) {
-      post.tags.forEach((tag) => {
-        if (tagInfo[tag]) {
-          tagInfo[tag]! -= 1;
-        }
-      });
-    }
+    post.tags.forEach((tag) => {
+      if (tagInfo[tag]) {
+        tagInfo[tag]! -= 1;
+      }
+    });
   });
   Object.entries(tagInfo).forEach(([tagName, tagCount]) => {
-    if (!tagCount) {
+    if (tagCount === 0) {
       delete tagInfo[tagName];
     }
   });
-  const filteredPosts = otherPosts.filter(
-    (post) =>
-      !Object.keys(selectedTags).length ||
-      (post.tags || []).some((tag) => Object.keys(selectedTags).includes(tag)),
-  );
+  const filteredPosts = otherPosts.filter((post) => {
+    if (Object.keys(selectedTags).length === 0) {
+      return true;
+    }
+
+    return post.tags.some((tag) => {
+      return Object.keys(selectedTags).includes(tag);
+    });
+  });
   const pageStart = page * PAGE_SIZE;
   const totalPage = Math.ceil(filteredPosts.length / PAGE_SIZE);
   const displayedPosts = filteredPosts.slice(pageStart, pageStart + PAGE_SIZE);
@@ -238,11 +240,15 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
     <BrandingProvider>
       <Head
         title="Blog - MUI"
-        description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="Follow the MUI blog to learn about new product features, latest advancements in UI development, and business initiatives."
+        disableAlternateLocale
       />
       <AppHeader />
       <main>
-        <Section bg="gradient">
+        <Section
+          bg="gradient"
+          sx={{ backgroundSize: 'auto 300px ', backgroundRepeat: 'no-repeat' }}
+        >
           <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
             Blog
           </Typography>
@@ -306,7 +312,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         <Container
           ref={postListRef}
           sx={{
-            mt: { xs: -8, sm: -7 },
+            mt: -6,
             display: 'grid',
             gridTemplateColumns: { md: '1fr 380px' },
             columnGap: 8,
@@ -337,8 +343,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 position: 'sticky',
                 top: 100,
                 alignSelf: 'start',
-                mb: { xs: 2, sm: 8 },
-                mt: { xs: 2, sm: 8 }, // margin-top makes the title appear when scroll into view
+                mb: 2,
+                mt: { xs: 3, sm: 2, md: 9 }, // margin-top makes the title appear when scroll into view
                 p: 2,
                 borderRadius: 1,
                 border: '1px solid',
@@ -403,7 +409,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   component="li"
                   key={post.slug}
                   sx={() => ({
-                    py: 2,
+                    py: 2.5,
                     display: 'flex',
                     flexDirection: 'column',
                     position: 'relative',

@@ -4,7 +4,7 @@ description: We are excited to share that Matheus Wichman has joined MUI.
 date: 2021-04-05T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
-tags: ['Team']
+tags: ['Company']
 ---
 
 We are excited to share that [Matheus Wichman](https://github.com/m4theushw) has joined MUI.
@@ -15,7 +15,7 @@ He has spent the last three years focusing on React and the frontend world - his
 Matheus is passionate about software development, so much so that he started his career very early on, coding in PHP and JavaScript, at age 14.
 
 We were impressed by his capability to quickly jump into an unknown codebase and solve problems at their root.
-In a couple of days, he has managed to report and fix bugs, both in the core components (_mui-org/material-ui_) and in the advanced components repository (_mui-org/material-ui-x_).
+In a couple of days, he has managed to report and fix bugs, both in the core components (_mui/material-ui_) and in the advanced components repository (_mui/mui-x_).
 
 While we can't predict the future, Matheus will initially help us deliver the planned breaking changes of MUI v5, increase the pace of development of the date range picker, and push the data grid forward.
 

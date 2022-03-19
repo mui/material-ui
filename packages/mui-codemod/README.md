@@ -959,6 +959,24 @@ npx @mui/codemod v5.0.0/theme-typography-round <path>
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
 
+#### `top-level-imports`
+
+Converts all `@mui/material` submodule imports to the root module:
+
+```diff
+-import List from '@mui/material/List';
+-import Grid from '@mui/material/Grid';
++import { List, Grid } from '@mui/material';
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @mui/codemod v5.0.0/top-level-imports <path>
+```
+
+Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+
 #### `transitions`
 
 Renames import `transitions` to `createTransitions`
@@ -1073,7 +1091,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `mui-replace`
 
-Replace every occurrence of `material-ui` related package with the new package names (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`). [More details about why package names are changed](https://github.com/mui-org/material-ui/issues/27666)
+Replace every occurrence of `material-ui` related package with the new package names (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`). [More details about why package names are changed](https://github.com/mui/material-ui/issues/27666)
 
 **Material Design components**
 

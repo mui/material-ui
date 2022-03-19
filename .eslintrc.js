@@ -2,7 +2,7 @@ const path = require('path');
 
 const forbidTopLevelMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode',
-  'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
+  'See https://github.com/mui/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
 // This only applies to packages published from this monorepo.
 // If you build a library around `@mui/material` you can safely use `createStyles` without running into the same issue as we are.
@@ -250,6 +250,8 @@ module.exports = {
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
         '@typescript-eslint/no-use-before-define': 'off',
         'react/prop-types': 'off',
+        'no-alert': 'off',
+        'no-console': 'off',
       },
     },
     {
@@ -341,13 +343,6 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/state-in-constructor': 'off',
         'react/static-property-placement': 'off',
-      },
-    },
-    {
-      files: ['framer/Material-UI.framerfx/code/**/*.tsx'],
-      rules: {
-        // framer requires named exports
-        'import/prefer-default-export': 'off',
       },
     },
     {

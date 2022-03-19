@@ -93,7 +93,7 @@ export default function Notifications() {
 
     // Soften the pressure on the main thread.
     const timeout = setTimeout(() => {
-      fetch('https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json')
+      fetch('https://raw.githubusercontent.com/mui/material-ui/master/docs/notifications.json')
         .then((response) => {
           return response.json();
         })
@@ -197,7 +197,7 @@ export default function Notifications() {
                               dangerouslySetInnerHTML={{ __html: message.title }}
                             />
                           </Typography>
-                          <Typography gutterBottom variant="body2">
+                          <Typography gutterBottom variant="body2" color="text.secondary">
                             <span
                               id="notification-message"
                               // eslint-disable-next-line react/no-danger

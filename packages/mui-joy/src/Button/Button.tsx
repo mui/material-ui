@@ -6,7 +6,7 @@ import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
-import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
@@ -62,23 +62,29 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
-      '--Button-gutter': '1.5rem', // gutter is the padding-x
-      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
-      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
       ...(ownerState.size === 'sm' && {
         '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
+        '--Icon-fontSize': '1.25rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
+        '--Button-gutter': '1.5rem', // gutter is the padding-x
+        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
       }),
       ...(ownerState.size === 'lg' && {
         '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
+        '--Icon-fontSize': '1.75rem',
       }),
+      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
+      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
     },
     {
       padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
       ...(ownerState.variant === 'outlined' && {
-        padding: 'calc(0.25rem - 1px) calc(var(--Button-gutter) - 1px)', // account for the border width
+        padding:
+          'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-gutter) - var(--variant-outlinedBorderWidth))', // account for the border width
       }),
       minHeight: 'var(--Button-minHeight)',
       borderRadius: theme.vars.radius.sm,
@@ -98,11 +104,11 @@ const ButtonRoot = styled('button', {
         lineHeight: '1.25rem',
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
-      [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
       width: '100%',
     },
+    theme.focus.default,
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],

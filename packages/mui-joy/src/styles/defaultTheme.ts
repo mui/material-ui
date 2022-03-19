@@ -5,23 +5,12 @@ import {
   Spacing,
   CSSObject,
   SxProps as SystemSxProps,
+  SystemProps as SystemSystemProps,
   unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
 import colors from '../colors';
-import {
-  ColorPaletteProp,
-  ColorSystem,
-  Palette,
-  PaletteText,
-  PaletteRange,
-  PaletteBackground,
-} from './types/colorSystem';
-import { Variants, DefaultVariantKey, DefaultContextualOverrides } from './types/variants';
-import {
-  createLightModeVariantVariables,
-  createDarkModeVariantVariables,
-  createVariant,
-} from './variantUtils';
+import { ColorSystem, ColorPaletteProp } from './types/colorSystem';
+import { Variants } from './types/variants';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Shadow } from './types/shadow';
 import { Radius } from './types/radius';
@@ -29,6 +18,7 @@ import {
   FontFamily,
   FontSize,
   FontWeight,
+  IconSize,
   LineHeight,
   LetterSpacing,
   TypographySystem,
@@ -36,7 +26,9 @@ import {
 
 type CSSProperties = CSS.Properties<number | string>;
 
-type Split<T, K extends keyof T = keyof T> = K extends string | number ? { [k in K]: T[K] } : never;
+type Split<T, K extends keyof T = keyof T> = K extends string | number
+  ? { [k in K]: Exclude<T[K], undefined> }
+  : never;
 
 type ConcatDeep<T> = T extends Record<string | number, infer V>
   ? keyof T extends string | number
@@ -54,73 +46,73 @@ export interface Focus {
   default: CSSObject;
 }
 
-/**
- * ==============================================
- * Internal type for definfing default Joy theme.
- * ==============================================
- */
-type BasePaletteRange =
-  | 50
-  | 100
-  | 200
-  | 300
-  | 400
-  | 500
-  | 600
-  | 700
-  | 800
-  | 900
-  | 'textColor'
-  | 'textHoverBg'
-  | 'textActiveBg'
-  | 'textDisabledColor'
-  | 'outlinedColor'
-  | 'outlinedBorder'
-  | 'outlinedHoverBg'
-  | 'outlinedHoverBorder'
-  | 'outlinedActiveBg'
-  | 'outlinedDisabledColor'
-  | 'outlinedDisabledBorder'
-  | 'lightColor'
-  | 'lightBg'
-  | 'lightHoverBg'
-  | 'lightActiveBg'
-  | 'lightDisabledColor'
-  | 'lightDisabledBg'
-  | 'containedColor'
-  | 'containedBg'
-  | 'containedHoverBg'
-  | 'containedActiveBg'
-  | 'containedDisabledBg';
-type BaseDesignTokens = {
-  palette: {
-    primary: Pick<PaletteRange, BasePaletteRange>;
-    neutral: Pick<PaletteRange, BasePaletteRange>;
-    danger: Pick<PaletteRange, BasePaletteRange>;
-    info: Pick<PaletteRange, BasePaletteRange>;
-    success: Pick<PaletteRange, BasePaletteRange>;
-    warning: Pick<PaletteRange, BasePaletteRange>;
-    text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
-    background: Pick<PaletteBackground, 'body' | 'level1' | 'level2' | 'level3'>;
-    focusVisible: Palette['focusVisible'];
-  };
-  radius: Pick<Radius, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  shadowRing: CSSProperties['boxShadow'];
-  shadowChannel: string;
-  shadow: Pick<Shadow, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  fontSize: Pick<
-    FontSize,
-    'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
-  >;
-  fontFamily: Pick<FontFamily, 'body' | 'display' | 'code' | 'fallback'>;
-  fontWeight: Pick<FontWeight, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  lineHeight: Pick<LineHeight, 'sm' | 'md' | 'lg'>;
-  letterSpacing: Pick<LetterSpacing, 'sm' | 'md' | 'lg'>;
-};
+const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
+  textColor: `var(--joy-palette-${color}-600)`,
+  textHoverBg: `var(--joy-palette-${color}-100)`,
+  textActiveBg: `var(--joy-palette-${color}-200)`,
+  textDisabledColor: `var(--joy-palette-${color}-200)`,
 
-type BaseColorSystem = Pick<BaseDesignTokens, 'palette' | 'shadowRing' | 'shadowChannel'>;
+  outlinedColor: `var(--joy-palette-${color}-600)`,
+  outlinedBorder: `var(--joy-palette-${color}-200)`,
+  outlinedHoverBg: `var(--joy-palette-${color}-100)`,
+  outlinedHoverBorder: `var(--joy-palette-${color}-300)`,
+  outlinedActiveBg: `var(--joy-palette-${color}-200)`,
+  outlinedDisabledColor: `var(--joy-palette-${color}-200)`,
+  outlinedDisabledBorder: `var(--joy-palette-${color}-100)`,
 
-export const lightColorSystem: BaseColorSystem = {
+  lightColor: `var(--joy-palette-${color}-700)`,
+  lightBg: `var(--joy-palette-${color}-100)`,
+  lightHoverBg: `var(--joy-palette-${color}-200)`,
+  lightActiveBg: `var(--joy-palette-${color}-300)`,
+  lightDisabledColor: `var(--joy-palette-${color}-300)`,
+  lightDisabledBg: `var(--joy-palette-${color}-50)`,
+
+  containedColor: '#fff',
+  containedBg: `var(--joy-palette-${color}-600)`,
+  containedHoverBg: `var(--joy-palette-${color}-700)`,
+  containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledColor: `#fff`,
+  containedDisabledBg: `var(--joy-palette-${color}-200)`,
+
+  overrideTextPrimary: `var(--joy-palette-${color}-700)`,
+  overrideTextSecondary: `var(--joy-palette-${color}-500)`,
+  overrideTextTertiary: `var(--joy-palette-${color}-400)`,
+});
+
+const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
+  textColor: `var(--joy-palette-${color}-300)`,
+  textHoverBg: `var(--joy-palette-${color}-800)`,
+  textActiveBg: `var(--joy-palette-${color}-700)`,
+  textDisabledColor: `var(--joy-palette-${color}-800)`,
+
+  outlinedColor: `var(--joy-palette-${color}-200)`,
+  outlinedBorder: `var(--joy-palette-${color}-700)`,
+  outlinedHoverBg: `var(--joy-palette-${color}-900)`,
+  outlinedHoverBorder: `var(--joy-palette-${color}-600)`,
+  outlinedActiveBg: `var(--joy-palette-${color}-900)`,
+  outlinedDisabledColor: `var(--joy-palette-${color}-800)`,
+  outlinedDisabledBorder: `var(--joy-palette-${color}-800)`,
+
+  lightColor: `var(--joy-palette-${color}-200)`,
+  lightBg: `var(--joy-palette-${color}-900)`,
+  lightHoverBg: `var(--joy-palette-${color}-800)`,
+  lightActiveBg: `var(--joy-palette-${color}-700)`,
+  lightDisabledColor: `var(--joy-palette-${color}-800)`,
+  lightDisabledBg: `var(--joy-palette-${color}-900)`,
+
+  containedColor: `#fff`,
+  containedBg: `var(--joy-palette-${color}-600)`,
+  containedHoverBg: `var(--joy-palette-${color}-700)`,
+  containedActiveBg: `var(--joy-palette-${color}-800)`,
+  containedDisabledColor: `#fff`,
+  containedDisabledBg: `var(--joy-palette-${color}-300)`,
+
+  overrideTextPrimary: `var(--joy-palette-${color}-200)`,
+  overrideTextSecondary: `var(--joy-palette-${color}-400)`,
+  overrideTextTertiary: `var(--joy-palette-${color}-500)`,
+});
+
+export const lightColorSystem = {
   palette: {
     primary: {
       ...colors.blue,
@@ -128,7 +120,39 @@ export const lightColorSystem: BaseColorSystem = {
     },
     neutral: {
       ...colors.grey,
-      ...createLightModeVariantVariables('neutral'),
+      textColor: `var(--joy-palette-neutral-700)`,
+      textHoverColor: `var(--joy-palette-neutral-900)`,
+      textHoverBg: `var(--joy-palette-neutral-100)`,
+      textActiveBg: `var(--joy-palette-neutral-200)`,
+      textDisabledColor: `var(--joy-palette-neutral-400)`,
+
+      outlinedColor: `var(--joy-palette-neutral-700)`,
+      outlinedBorder: `var(--joy-palette-neutral-200)`,
+      outlinedHoverColor: `var(--joy-palette-neutral-900)`,
+      outlinedHoverBg: `var(--joy-palette-neutral-100)`,
+      outlinedHoverBorder: `var(--joy-palette-neutral-300)`,
+      outlinedActiveBg: `var(--joy-palette-neutral-200)`,
+      outlinedDisabledColor: `var(--joy-palette-neutral-400)`,
+      outlinedDisabledBorder: `var(--joy-palette-neutral-100)`,
+
+      lightColor: `var(--joy-palette-neutral-700)`,
+      lightBg: `var(--joy-palette-neutral-100)`,
+      lightHoverColor: `var(--joy-palette-neutral-900)`,
+      lightHoverBg: `var(--joy-palette-neutral-200)`,
+      lightActiveBg: `var(--joy-palette-neutral-300)`,
+      lightDisabledColor: `var(--joy-palette-neutral-500)`,
+      lightDisabledBg: `var(--joy-palette-neutral-50)`,
+
+      containedColor: '#fff',
+      containedBg: `var(--joy-palette-neutral-700)`,
+      containedHoverBg: `var(--joy-palette-neutral-800)`,
+      containedActiveBg: `var(--joy-palette-neutral-700)`,
+      containedDisabledColor: `var(--joy-palette-neutral-50)`,
+      containedDisabledBg: `var(--joy-palette-neutral-300)`,
+
+      overrideTextPrimary: `var(--joy-palette-neutral-700)`,
+      overrideTextSecondary: `var(--joy-palette-neutral-500)`,
+      overrideTextTertiary: `var(--joy-palette-neutral-400)`,
     },
     danger: {
       ...colors.red,
@@ -157,13 +181,14 @@ export const lightColorSystem: BaseColorSystem = {
       level2: 'var(--joy-palette-neutral-100)',
       level3: 'var(--joy-palette-neutral-200)',
     },
+    divider: 'rgba(0 0 0 / 0.12)',
     focusVisible: 'var(--joy-palette-primary-200)',
   },
   shadowRing: '0 0 #000',
   shadowChannel: '187 187 187',
 };
 
-export const darkColorSystem: BaseColorSystem = {
+export const darkColorSystem = {
   palette: {
     primary: {
       ...colors.blue,
@@ -171,7 +196,39 @@ export const darkColorSystem: BaseColorSystem = {
     },
     neutral: {
       ...colors.grey,
-      ...createDarkModeVariantVariables('neutral'),
+      textColor: `var(--joy-palette-neutral-200)`,
+      textHoverColor: `var(--joy-palette-neutral-50)`,
+      textHoverBg: `var(--joy-palette-neutral-800)`,
+      textActiveBg: `var(--joy-palette-neutral-700)`,
+      textDisabledColor: `var(--joy-palette-neutral-600)`,
+
+      outlinedColor: `var(--joy-palette-neutral-200)`,
+      outlinedBorder: `var(--joy-palette-neutral-700)`,
+      outlinedHoverColor: `var(--joy-palette-neutral-50)`,
+      outlinedHoverBg: `var(--joy-palette-neutral-900)`,
+      outlinedHoverBorder: `var(--joy-palette-neutral-600)`,
+      outlinedActiveBg: `var(--joy-palette-neutral-900)`,
+      outlinedDisabledColor: `var(--joy-palette-neutral-600)`,
+      outlinedDisabledBorder: `var(--joy-palette-neutral-800)`,
+
+      lightColor: `var(--joy-palette-neutral-200)`,
+      lightBg: `var(--joy-palette-neutral-900)`,
+      lightHoverColor: `var(--joy-palette-neutral-50)`,
+      lightHoverBg: `var(--joy-palette-neutral-800)`,
+      lightActiveBg: `var(--joy-palette-neutral-700)`,
+      lightDisabledColor: `var(--joy-palette-neutral-600)`,
+      lightDisabledBg: `var(--joy-palette-neutral-900)`,
+
+      containedColor: `#fff`,
+      containedBg: `var(--joy-palette-neutral-600)`,
+      containedHoverBg: `var(--joy-palette-neutral-700)`,
+      containedActiveBg: `var(--joy-palette-neutral-800)`,
+      containedDisabledColor: `var(--joy-palette-neutral-400)`,
+      containedDisabledBg: `var(--joy-palette-neutral-800)`,
+
+      overrideTextPrimary: `var(--joy-palette-neutral-200)`,
+      overrideTextSecondary: `var(--joy-palette-neutral-400)`,
+      overrideTextTertiary: `var(--joy-palette-neutral-500)`,
     },
     danger: {
       ...colors.red,
@@ -200,6 +257,7 @@ export const darkColorSystem: BaseColorSystem = {
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
     },
+    divider: 'rgba(255 255 255 / 0.16)',
     focusVisible: 'var(--joy-palette-primary-500)',
   },
   shadowRing: '0 0 #000',
@@ -210,7 +268,7 @@ export const darkColorSystem: BaseColorSystem = {
  * Base Joy design tokens
  * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
  */
-const baseDesignTokens: BaseDesignTokens = {
+const baseDesignTokens = {
   ...lightColorSystem,
   radius: {
     xs: '4px',
@@ -248,9 +306,16 @@ const baseDesignTokens: BaseDesignTokens = {
   fontWeight: {
     xs: 200,
     sm: 300,
-    md: 400,
+    md: 500,
     lg: 700,
     xl: 800,
+  },
+  iconSize: {
+    xs: '0.75rem',
+    sm: '1rem',
+    md: '1.25rem',
+    lg: '1.5rem',
+    xl: '1.75rem',
   },
   lineHeight: {
     sm: 1.25,
@@ -266,21 +331,7 @@ const baseDesignTokens: BaseDesignTokens = {
 
 const defaultSystemTheme = systemCreateTheme();
 
-// Internal usage for providing type safe.
-// Module augmentation in this repo has no impact.
-const internalDefaultTheme: BaseDesignTokens & {
-  colorSchemes: Record<DefaultColorScheme, BaseColorSystem>;
-  focus: Pick<Focus, 'default'>;
-  typography: Pick<
-    TypographySystem,
-    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
-  >;
-  variants: Pick<Variants, DefaultVariantKey> &
-    Record<DefaultContextualOverrides, Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>>;
-  vars: BaseDesignTokens & BaseColorSystem;
-  spacing: Spacing;
-  breakpoints: Breakpoints;
-} = {
+const internalDefaultTheme = {
   ...baseDesignTokens,
   colorSchemes: {
     light: lightColorSystem,
@@ -288,8 +339,10 @@ const internalDefaultTheme: BaseDesignTokens & {
   },
   focus: {
     default: {
-      outline: '4px solid',
-      outlineColor: 'var(--joy-palette-focusVisible)',
+      '&.Mui-focusVisible': {
+        outline: '4px solid',
+        outlineColor: 'var(--joy-palette-focusVisible)',
+      },
     },
   },
   typography: {
@@ -339,45 +392,24 @@ const internalDefaultTheme: BaseDesignTokens & {
     },
     body1: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     body2: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-secondary)',
     },
     body3: {
       fontFamily: 'var(--joy-fontFamily-body)',
-      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-tertiary)',
     },
   },
-  variants: {
-    text: createVariant('text'),
-    textHover: createVariant('textHover'),
-    textActive: createVariant('textActive'),
-    textDisabled: createVariant('textDisabled'),
-    outlined: createVariant('outlined'),
-    outlinedHover: createVariant('outlinedHover'),
-    outlinedActive: createVariant('outlinedActive'),
-    outlinedDisabled: createVariant('outlinedDisabled'),
-    light: createVariant('light'),
-    lightHover: createVariant('lightHover'),
-    lightActive: createVariant('lightActive'),
-    lightDisabled: createVariant('lightDisabled'),
-    contained: createVariant('contained'),
-    containedHover: createVariant('containedHover'),
-    containedActive: createVariant('containedActive'),
-    containedDisabled: createVariant('containedDisabled'),
-    containedOverrides: createVariant('containedOverrides'),
-  },
+  variants: {},
   vars: baseDesignTokens,
   breakpoints: defaultSystemTheme.breakpoints,
   spacing: defaultSystemTheme.spacing,
@@ -391,6 +423,7 @@ export interface ThemeScales {
   fontFamily: FontFamily;
   fontSize: FontSize;
   fontWeight: FontWeight;
+  iconSize: IconSize;
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
 }
@@ -401,20 +434,21 @@ export type ThemeVar = NormalizeVars<Vars>;
 
 export const createGetCssVar = (prefix = 'joy') => systemCreateGetCssVar<ThemeVar>(prefix);
 
-export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorScheme>
-  extends ThemeScales,
-    ColorSystem {
-  colorSchemes: Record<DefaultColorScheme | ApplicationColorScheme, ColorSystem>;
+export interface JoyTheme extends ThemeScales, ColorSystem {
+  colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
   spacing: Spacing;
   breakpoints: Breakpoints;
+  prefix: string;
   vars: Vars;
   getCssVar: ReturnType<typeof createGetCssVar>;
 }
 
 export type SxProps = SystemSxProps<JoyTheme>;
+
+export type SystemProps = SystemSystemProps<JoyTheme>;
 
 const defaultTheme = internalDefaultTheme as unknown as JoyTheme;
 

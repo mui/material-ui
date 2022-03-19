@@ -74,7 +74,7 @@ export default function AppHeader() {
             <IconButton
               component="a"
               color="primary"
-              href="https://github.com/mui-org/"
+              href="https://github.com/mui"
               data-ga-event-category="header"
               data-ga-event-action="github"
             >

@@ -9,31 +9,28 @@ test.beforeEach(async () => {
 });
 
 test('able to navigate between products', async ({ page }) => {
-  await page.goto('/material/getting-started/installation/');
+  await page.goto('/material-ui/getting-started/installation/');
 
   await page.click('#mui-product-selector');
 
   await expect(page.locator('#mui-product-menu')).toBeVisible();
 
-  await expect(page.locator('#mui-product-menu a:has-text("Material Design")')).toHaveAttribute(
-    'href',
-    '/material/getting-started/installation/',
-  );
+  await expect(
+    page.locator('#mui-product-menu a[href="/material-ui/getting-started/installation/"]'),
+  ).toBeVisible();
 
-  await expect(page.locator('#mui-product-menu a:has-text("System")')).toHaveAttribute(
+  await expect(page.locator('#mui-product-menu a[href="/system/basics/"]')).toHaveAttribute(
     'href',
     '/system/basics/',
   );
 
-  await expect(page.locator('#mui-product-menu a:has-text("Data Grid")')).toHaveAttribute(
-    'href',
-    '/x/data-grid/getting-started/',
-  );
+  await expect(
+    page.locator('#mui-product-menu a[href="/x/react-data-grid/getting-started/"]'),
+  ).toBeVisible();
 
   if (FEATURE_TOGGLE.enable_mui_base_scope) {
-    await expect(page.locator('#mui-product-menu a:has-text("Base")')).toHaveAttribute(
-      'href',
-      '/base/getting-started/installation',
-    );
+    await expect(
+      page.locator('#mui-product-menu a[href="/base/getting-started/installation/"]'),
+    ).toBeVisible();
   }
 });

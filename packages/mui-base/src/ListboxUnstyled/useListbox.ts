@@ -1,24 +1,36 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { UseListboxProps, UseListboxStrictProps, ActionTypes, OptionState } from './types';
+import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
+import {
+  UseListboxParameters,
+  UseListboxStrictProps,
+  ActionTypes,
+  OptionState,
+  UseListboxOptionSlotProps,
+  UseListboxRootSlotProps,
+} from './useListbox.types';
 import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
+import { EventHandlers } from '../utils/types';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
+const defaultIsOptionDisabled = () => false;
 
-export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
+export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
-    disableListWrap = false,
     disabledItemsFocusable = false,
-    id,
-    options,
-    multiple = false,
-    isOptionDisabled = () => false,
-    optionComparer = defaultOptionComparer,
-    stateReducer: externalReducer,
+    disableListWrap = false,
+    focusManagement = 'activeDescendant',
+    id: idProp,
+    isOptionDisabled = defaultIsOptionDisabled,
     listboxRef: externalListboxRef,
+    multiple = false,
+    optionComparer = defaultOptionComparer,
+    options,
+    stateReducer: externalReducer,
   } = props;
+
+  const id = useId(idProp);
 
   function defaultIdGenerator(_: TOption, index: number) {
     return `${id}-option-${index}`;
@@ -28,8 +40,9 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
 
   const propsWithDefaults: UseListboxStrictProps<TOption> = {
     ...props,
-    disableListWrap,
     disabledItemsFocusable,
+    disableListWrap,
+    focusManagement,
     isOptionDisabled,
     multiple,
     optionComparer,
@@ -38,11 +51,17 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
 
-  const [{ highlightedIndex, selectedValue }, dispatch] = useControllableReducer(
+  const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
     propsWithDefaults,
   );
+
+  const highlightedIndex = React.useMemo(() => {
+    return highlightedValue == null
+      ? -1
+      : options.findIndex((option) => optionComparer(option, highlightedValue));
+  }, [highlightedValue, options, optionComparer]);
 
   const previousOptions = React.useRef<TOption[]>([]);
 
@@ -64,6 +83,26 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, optionComparer, dispatch]);
 
+  const setSelectedValue = React.useCallback(
+    (option: TOption | TOption[] | null) => {
+      dispatch({
+        type: ActionTypes.setValue,
+        value: option,
+      });
+    },
+    [dispatch],
+  );
+
+  const setHighlightedValue = React.useCallback(
+    (option: TOption | null) => {
+      dispatch({
+        type: ActionTypes.setHighlight,
+        highlight: option,
+      });
+    },
+    [dispatch],
+  );
+
   const createHandleOptionClick =
     (option: TOption, other: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent) => {
@@ -76,6 +115,22 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
 
       dispatch({
         type: ActionTypes.optionClick,
+        option,
+        event,
+        props: propsWithDefaults,
+      });
+    };
+
+  const createHandleOptionMouseOver =
+    (option: TOption, other: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent) => {
+      other.onMouseOver?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      dispatch({
+        type: ActionTypes.optionHover,
         option,
         event,
         props: propsWithDefaults,
@@ -133,23 +188,25 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
       });
     };
 
-  const getRootProps = (other: Record<string, React.EventHandler<any>> = {}) => {
+  const getRootProps = <TOther extends EventHandlers = {}>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseListboxRootSlotProps<TOther> => {
     return {
-      ...other,
+      ...otherHandlers,
       'aria-activedescendant':
-        highlightedIndex >= 0
-          ? optionIdGenerator(options[highlightedIndex], highlightedIndex)
+        focusManagement === 'activeDescendant' && highlightedValue != null
+          ? optionIdGenerator(highlightedValue, highlightedIndex)
           : undefined,
       id,
-      onBlur: createHandleBlur(other),
-      onKeyDown: createHandleKeyDown(other),
+      onBlur: createHandleBlur(otherHandlers),
+      onKeyDown: createHandleKeyDown(otherHandlers),
       role: 'listbox',
-      tabIndex: 0,
+      tabIndex: focusManagement === 'DOM' ? -1 : 0,
       ref: handleRef,
     };
   };
 
-  const getOptionState = (option: TOption) => {
+  const getOptionState = (option: TOption): OptionState => {
     let selected: boolean;
     const index = options.findIndex((opt) => optionComparer(opt, option));
     if (multiple) {
@@ -163,32 +220,59 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     const disabled = isOptionDisabled(option, index);
 
     return {
-      index,
-      option,
       selected,
       disabled,
       highlighted: highlightedIndex === index,
-    } as OptionState;
+    };
   };
 
-  const getOptionProps = (option: TOption, other: Record<string, React.EventHandler<any>> = {}) => {
-    const { selected, disabled } = getOptionState(option);
+  const getOptionTabIndex = (optionState: OptionState) => {
+    if (focusManagement === 'activeDescendant') {
+      return undefined;
+    }
+
+    if (!optionState.highlighted) {
+      return -1;
+    }
+
+    if (optionState.disabled && !disabledItemsFocusable) {
+      return -1;
+    }
+
+    return 0;
+  };
+
+  const getOptionProps = <TOther extends EventHandlers = {}>(
+    option: TOption,
+    otherHandlers: TOther = {} as TOther,
+  ): UseListboxOptionSlotProps<TOther> => {
+    const optionState = getOptionState(option);
     const index = options.findIndex((opt) => optionComparer(opt, option));
 
     return {
-      'aria-disabled': disabled || undefined,
-      'aria-selected': selected,
+      ...otherHandlers,
+      'aria-disabled': optionState.disabled || undefined,
+      'aria-selected': optionState.selected,
+      tabIndex: getOptionTabIndex(optionState),
       id: optionIdGenerator(option, index),
-      onClick: createHandleOptionClick(option, other),
+      onClick: createHandleOptionClick(option, otherHandlers),
+      onMouseOver: createHandleOptionMouseOver(option, otherHandlers),
       role: 'option',
     };
   };
+
+  React.useDebugValue({
+    highlightedOption: options[highlightedIndex],
+    selectedOption: selectedValue,
+  });
 
   return {
     getRootProps,
     getOptionProps,
     getOptionState,
-    selectedOption: selectedValue,
     highlightedOption: options[highlightedIndex] ?? null,
+    selectedOption: selectedValue,
+    setSelectedValue,
+    setHighlightedValue,
   };
 }
