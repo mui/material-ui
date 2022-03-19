@@ -29,8 +29,8 @@ const StartIcon = styled('span', {
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: TypographyProps & { nested: boolean } }>({
   display: 'inline-flex',
+  marginTop: '2px', // this makes the alignment perfect in most cases
   marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
-  verticalAlign: 'sub',
 });
 
 const EndIcon = styled('span', {
@@ -39,8 +39,8 @@ const EndIcon = styled('span', {
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: TypographyProps & { nested: boolean } }>({
   display: 'inline-flex',
+  marginTop: '2px', // this makes the alignment perfect in most cases
   marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
-  verticalAlign: 'sub',
 });
 
 const TypographyRoot = styled('span', {

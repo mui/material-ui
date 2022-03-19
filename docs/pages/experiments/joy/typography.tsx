@@ -8,7 +8,7 @@ import Sun from '@mui/icons-material/LightMode';
 import LocationOn from '@mui/icons-material/LocationOn';
 import Groups from '@mui/icons-material/Groups';
 import Outbound from '@mui/icons-material/Outbound';
-import Info from '@mui/icons-material/Info';
+import Info from '@mui/icons-material/InfoOutlined';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -45,7 +45,7 @@ export default function JoyTypography() {
           <ColorSchemePicker />
         </Box>
         {(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'] as const).map((level) => (
-          <Typography gutterBottom level={level} key={level}>
+          <Typography gutterBottom level={level} key={level} startIcon={<Info />}>
             {`${level} - typography`}
           </Typography>
         ))}
@@ -113,6 +113,16 @@ export default function JoyTypography() {
           </Typography>
           <Typography endIcon={<Info fontSize="md" sx={{ color: 'warning.textColor' }} />}>
             Warning
+          </Typography>
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography startIcon={<Info />} sx={{ alignItems: 'flex-start' }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
           </Typography>
         </Box>
       </Box>
