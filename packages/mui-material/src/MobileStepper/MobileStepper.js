@@ -101,12 +101,15 @@ const MobileStepperProgress = styled(LinearProgress, {
   }),
 }));
 
+const defaultPaginationLabel = ({ activeStep, steps }) => `${activeStep + 1} / ${steps}`;
+
 const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMobileStepper' });
   const {
     activeStep = 0,
     backButton,
     className,
+    getPaginationLabel = defaultPaginationLabel,
     LinearProgressProps,
     nextButton,
     position = 'bottom',
@@ -124,6 +127,8 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const paginationLabel = getPaginationLabel({ activeStep, steps });
+
   return (
     <MobileStepperRoot
       square
@@ -134,11 +139,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
       {...other}
     >
       {backButton}
-      {variant === 'text' && (
-        <React.Fragment>
-          {activeStep + 1} / {steps}
-        </React.Fragment>
-      )}
+      {variant === 'text' && <React.Fragment>{paginationLabel}</React.Fragment>}
 
       {variant === 'dots' && (
         <MobileStepperDots ownerState={ownerState} className={classes.dots}>
@@ -191,6 +192,10 @@ MobileStepper.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Customize the pagination label for the `text` variant.
+   */
+  getPaginationLabel: PropTypes.func,
   /**
    * Props applied to the `LinearProgress` element.
    */

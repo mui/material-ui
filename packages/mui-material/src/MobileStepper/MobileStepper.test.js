@@ -78,6 +78,50 @@ describe('<MobileStepper />', () => {
     expect(container.firstChild.textContent).to.equal('Back2 / 3Next');
   });
 
+  describe('paginationLabel', () => {
+    describe('when not supplied', () => {
+      it('should render the default string', () => {
+        const { container } = render(
+          <MobileStepper {...defaultProps} variant="text" activeStep={1} steps={3} />,
+        );
+        expect(container.firstChild.textContent).to.equal('Back2 / 3Next');
+      });
+    });
+    describe('when it returns a string', () => {
+      it('should render the label string', () => {
+        const { container } = render(
+          <MobileStepper
+            {...defaultProps}
+            variant="text"
+            activeStep={1}
+            steps={3}
+            getPaginationLabel={({ activeStep, steps }) => `Step ${activeStep + 1} of ${steps}`}
+          />,
+        );
+        expect(container.firstChild.textContent).to.equal('BackStep 2 of 3Next');
+      });
+    });
+    describe('when it returns a component', () => {
+      it('should render the component', () => {
+        const { container } = render(
+          <MobileStepper
+            {...defaultProps}
+            variant="text"
+            activeStep={1}
+            steps={3}
+            getPaginationLabel={({ activeStep, steps }) => (
+              <h3 data-testid="my-label-test">
+                It is currently step {activeStep + 1} of {steps}
+              </h3>
+            )}
+          />,
+        );
+        const label = container.querySelector('[data-testid="my-label-test"]');
+        expect(label.textContent).to.equal('It is currently step 2 of 3');
+      });
+    });
+  });
+
   it('should render dots when supplied with variant dots', () => {
     const { container } = render(<MobileStepper {...defaultProps} variant="dots" />);
     expect(container.querySelectorAll(`.${classes.dots}`)).to.have.lengthOf(1);
