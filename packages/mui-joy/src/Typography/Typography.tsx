@@ -131,26 +131,27 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <TypographyRoot
-      as={Component as React.ElementType}
-      ref={ref}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      {...other}
-    >
-      {startIcon && (
-        <StartIcon ownerState={ownerState} className={classes.startIcon}>
-          {startIcon}
-        </StartIcon>
-      )}
-
-      <TypographyContext.Provider value>{children}</TypographyContext.Provider>
-      {endIcon && (
-        <EndIcon ownerState={ownerState} className={classes.endIcon}>
-          {endIcon}
-        </EndIcon>
-      )}
-    </TypographyRoot>
+    <TypographyContext.Provider value>
+      <TypographyRoot
+        as={Component as React.ElementType}
+        ref={ref}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        {...other}
+      >
+        {startIcon && (
+          <StartIcon ownerState={ownerState} className={classes.startIcon}>
+            {startIcon}
+          </StartIcon>
+        )}
+        {children}
+        {endIcon && (
+          <EndIcon ownerState={ownerState} className={classes.endIcon}>
+            {endIcon}
+          </EndIcon>
+        )}
+      </TypographyRoot>
+    </TypographyContext.Provider>
   );
 }) as OverridableComponent<TypographyTypeMap>;
 
