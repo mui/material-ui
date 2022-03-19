@@ -27,21 +27,25 @@ const StartIcon = styled('span', {
   name: 'MuiTypography',
   slot: 'StartIcon',
   overridesResolver: (props, styles) => styles.startIcon,
-})<{ ownerState: TypographyProps & { nested: boolean } }>({
+})<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginTop: '2px', // this makes the alignment perfect in most cases
   marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
-});
+  ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
+    marginTop: '2px', // this makes the alignment perfect in most cases
+  }),
+}));
 
 const EndIcon = styled('span', {
   name: 'MuiTypography',
   slot: 'endIcon',
   overridesResolver: (props, styles) => styles.endIcon,
-})<{ ownerState: TypographyProps & { nested: boolean } }>({
+})<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginTop: '2px', // this makes the alignment perfect in most cases
   marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
-});
+  ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
+    marginTop: '2px', // this makes the alignment perfect in most cases
+  }),
+}));
 
 const TypographyRoot = styled('span', {
   name: 'MuiTypography',

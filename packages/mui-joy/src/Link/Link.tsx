@@ -40,7 +40,6 @@ const StartIcon = styled('span', {
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: LinkProps }>({
   display: 'inline-flex',
-  marginTop: '2px', // this makes the alignment perfect in most cases
   marginInlineEnd: 'min(var(--Link-gap, 0.25em), 0.5rem)',
 });
 
@@ -50,7 +49,6 @@ const EndIcon = styled('span', {
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: LinkProps }>({
   display: 'inline-flex',
-  marginTop: '2px', // this makes the alignment perfect in most cases
   marginInlineStart: 'min(var(--Link-gap, 0.25em), 0.5rem)',
 });
 
