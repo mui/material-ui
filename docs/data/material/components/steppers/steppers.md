@@ -99,6 +99,12 @@ This demo uses
 
 {{"demo": "SwipeableTextMobileStepper.js", "bg": true}}
 
+### Text with custom pagination label
+
+This demo customizes the label of the current step and total number of steps
+
+{{"demo": "CustomPaginationLabelTextMobileStepper.js", "bg": true}}
+
 ### Dots
 
 Use dots when the number of steps is small.
