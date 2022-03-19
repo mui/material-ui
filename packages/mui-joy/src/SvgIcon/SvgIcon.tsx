@@ -134,9 +134,18 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * The fontSize applied to the icon. Defaults to 1rem, but can be configure to inherit font size.
    * @default 'xl'
    */
-  fontSize: PropTypes.oneOfType([
-    PropTypes.oneOf(['inherit', 'lg', 'md', 'sm', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6', 'xs']),
-    PropTypes.string,
+  fontSize: PropTypes.oneOf([
+    'inherit',
+    'lg',
+    'md',
+    'sm',
+    'xl',
+    'xl2',
+    'xl3',
+    'xl4',
+    'xl5',
+    'xl6',
+    'xs',
   ]),
   /**
    * Applies a color attribute to the SVG element.

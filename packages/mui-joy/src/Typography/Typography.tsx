@@ -148,6 +148,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
             {startIcon}
           </StartIcon>
         )}
+
         {children}
         {endIcon && (
           <EndIcon ownerState={ownerState} className={classes.endIcon}>
