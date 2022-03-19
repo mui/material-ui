@@ -41,7 +41,6 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: ButtonProps }>({
   display: 'inherit',
-  color: 'var(--Button-iconColor)',
   marginLeft: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
   marginRight: 'var(--Button-gap)',
   color: 'var(--Button-iconColor)',
@@ -53,7 +52,6 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: ButtonProps }>({
   display: 'inherit',
-  color: 'var(--Button-iconColor)',
   marginLeft: 'var(--Button-gap)',
   marginRight: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
   color: 'var(--Button-iconColor)',

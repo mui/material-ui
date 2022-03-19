@@ -123,6 +123,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     props: inProps,
     name: 'MuiLink',
   });
+
   const nested = React.useContext(TypographyContext);
 
   const {
@@ -199,6 +200,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
           {startIcon}
         </StartIcon>
       )}
+
       {children}
       {endIcon && (
         <EndIcon ownerState={ownerState} className={classes.endIcon}>
@@ -241,6 +243,10 @@ Link.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * Element placed after the children.
+   */
+  endIcon: PropTypes.node,
+  /**
    * Applies the theme typography styles.
    * @default 'body1'
    */
@@ -256,6 +262,10 @@ Link.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * Element placed before the children.
+   */
+  startIcon: PropTypes.node,
   /**
    * Controls when the link should have an underline.
    * @default 'hover'

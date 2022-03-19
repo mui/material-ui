@@ -316,6 +316,11 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   startAdornment: PropTypes.node,
   /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * @default 'text'
+   */
+  type: PropTypes.string,
+  /**
    * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.any,
