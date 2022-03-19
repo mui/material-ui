@@ -101,7 +101,8 @@ const MobileStepperProgress = styled(LinearProgress, {
   }),
 }));
 
-const defaultPaginationLabel = ({ activeStep, steps }) => `${activeStep + 1} / ${steps}`;
+const defaultPaginationLabel = ({ activeStepIndex, totalSteps }) =>
+  `${activeStepIndex + 1} / ${totalSteps}`;
 
 const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMobileStepper' });
@@ -127,7 +128,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const paginationLabel = getPaginationLabel({ activeStep, steps });
+  const paginationLabel = getPaginationLabel({ activeStepIndex: activeStep, totalSteps: steps });
 
   return (
     <MobileStepperRoot
@@ -194,6 +195,8 @@ MobileStepper.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Customize the pagination label for the `text` variant.
+   * `activeStepIndex` is zero-based.
+   * @default (activeStepIndex, totalSteps) => `${activeStepIndex + 1} of ${totalSteps}`
    */
   getPaginationLabel: PropTypes.func,
   /**

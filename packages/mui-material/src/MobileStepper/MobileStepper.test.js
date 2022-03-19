@@ -95,7 +95,9 @@ describe('<MobileStepper />', () => {
             variant="text"
             activeStep={1}
             steps={3}
-            getPaginationLabel={({ activeStep, steps }) => `Step ${activeStep + 1} of ${steps}`}
+            getPaginationLabel={({ activeStepIndex, totalSteps }) =>
+              `Step ${activeStepIndex + 1} of ${totalSteps}`
+            }
           />,
         );
         expect(container.firstChild.textContent).to.equal('BackStep 2 of 3Next');
@@ -109,9 +111,9 @@ describe('<MobileStepper />', () => {
             variant="text"
             activeStep={1}
             steps={3}
-            getPaginationLabel={({ activeStep, steps }) => (
+            getPaginationLabel={({ activeStepIndex, totalSteps }) => (
               <h3 data-testid="my-label-test">
-                It is currently step {activeStep + 1} of {steps}
+                It is currently step {activeStepIndex + 1} of {totalSteps}
               </h3>
             )}
           />,
