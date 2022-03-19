@@ -52,8 +52,7 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(screen.getAllByMuiTest('calendar-year-text')[0]).to.have.text('2018');
-    expect(screen.getByMuiTest('calendar-month-text')).to.have.text('January');
+    expect(screen.getAllByMuiTest('calendar-month-and-year-text')[0]).to.have.text('January 2018');
 
     // onChange must be dispatched with newly selected date
     expect(onChangeMock.callCount).to.equal(
@@ -77,7 +76,7 @@ describe('<MobileDatePicker />', () => {
     fireEvent.click(screen.getByLabelText(/switch to year view/i));
     fireEvent.click(screen.getByText('2010', { selector: 'button' }));
 
-    expect(screen.getAllByMuiTest('calendar-year-text')[0]).to.have.text('2010');
+    expect(screen.getAllByMuiTest('calendar-month-and-year-text')[0]).to.have.text('January 2010');
     expect(onChangeMock.callCount).to.equal(1);
   });
 
@@ -265,7 +264,7 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(screen.getByText('July')).toBeVisible();
+    expect(screen.getByText('July 2018')).toBeVisible();
   });
 
   it('prop `showTodayButton` – accept current date when "today" button is clicked', () => {

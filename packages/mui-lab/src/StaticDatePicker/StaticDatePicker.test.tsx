@@ -17,8 +17,7 @@ describe('<StaticDatePicker />', () => {
       />,
     );
 
-    expect(screen.getByText('January')).toBeVisible();
-    expect(screen.getByText('2019')).toBeVisible();
+    expect(screen.getByText('January 2019')).toBeVisible();
     expect(screen.getAllByMuiTest('day')).to.have.length(31);
   });
 
@@ -32,7 +31,7 @@ describe('<StaticDatePicker />', () => {
       />,
     );
 
-    expect(screen.getByMuiTest('calendar-month-text')).to.have.text('January');
+    expect(screen.getByMuiTest('calendar-month-and-year-text')).to.have.text('January 2019');
 
     const nextMonth = screen.getByLabelText('Next month');
     const previousMonth = screen.getByLabelText('Previous month');
@@ -43,7 +42,7 @@ describe('<StaticDatePicker />', () => {
     fireEvent.click(previousMonth);
     fireEvent.click(previousMonth);
 
-    expect(screen.getByMuiTest('calendar-month-text')).to.have.text('December');
+    expect(screen.getByMuiTest('calendar-month-and-year-text')).to.have.text('December 2018');
   });
 
   it('prop `shouldDisableYear` – disables years dynamically', () => {
