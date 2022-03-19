@@ -1,7 +1,12 @@
 import * as React from 'react';
-import { GlobalStyles, experimental_sx as sx } from '@mui/system';
-import { CssVarsProvider, createGetCssVar, styled } from '@mui/joy/styles';
+import { GlobalStyles } from '@mui/system';
+import { CssVarsProvider, createGetCssVar } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
+import List from '@mui/joy/List';
+import ListDivider from '@mui/joy/ListDivider';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import ListItemButton from '@mui/joy/ListItemButton';
+import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
@@ -48,108 +53,79 @@ const Dialog = () => {
   );
 };
 
-const MenuItem = styled('button')(({ theme }) => [
-  sx({ py: 0.5, px: 0.75 }),
-  {
-    borderRadius: theme.vars.radius.sm,
-    cursor: 'pointer',
-    textAlign: 'initial',
-    backgroundColor: 'initial',
-    width: '100%',
-    display: 'flex',
-    gap: '0.375rem',
-    alignItems: 'center',
-    border: '1px solid transparent',
-    '&:hover': {
-      border: '1px solid',
-      '--joy-Icon-color': theme.vars.palette.text.secondary,
-    },
-    '&:focus-visible': theme.focus.default,
-    '--joy-Icon-color': theme.vars.palette.text.tertiary,
-    '--joy-Icon-fontSize': theme.vars.fontSize.md,
-  },
-  theme.variants.text.neutral,
-  theme.variants.outlinedHover.neutral,
-  theme.variants.outlinedActive.neutral,
-]);
-
 const Menu = () => (
-  <Box
-    component="ul"
-    sx={{
-      width: 256,
-      p: 1,
-      listStyle: 'none',
-      boxShadow: (theme) => theme.shadow.lg,
-      borderRadius: (theme) => theme.vars.radius.sm,
-      backgroundColor: (theme) => theme.vars.palette.background.level1,
-    }}
-  >
-    <li>
-      <MenuItem>
-        <ArrowForwardRounded />
+  <Sheet sx={{ boxShadow: 'md', borderRadius: 'sm', width: 256 }}>
+    <List
+      role="menu"
+      sx={(theme) => ({
+        '--List-radius': '8px',
+        '--List-item-radius': '8px',
+        '--List-item-minHeight': '32px',
+        '--List-padding': '8px',
+        '--List-gap': '0px',
+        '--List-divider-gap': '8px',
+        '--List-item-paddingLeft': '6px',
+        '--List-item-paddingRight': '6px',
+        '--List-item-paddingY': '4px',
+        '--List-decorator-width': '1.75rem',
+        '--Icon-fontSize': '1.125rem',
+        '& > .MuiListItemButton-root': {
+          border: '1px solid transparent',
+          ...theme.variants.outlinedHover.neutral,
+          ...theme.variants.outlinedActive.neutral,
+        },
+      })}
+    >
+      <ListItemButton role="menuitem">
+        <ListItemDecorator>
+          <ArrowForwardRounded />
+        </ListItemDecorator>
         <Typography>Back</Typography>
-        <KeyboardCommandKey sx={{ ml: 'auto' }} />
-        <ArrowForwardRounded />
-      </MenuItem>
-    </li>
-    <li>
-      <MenuItem>
-        <ArrowBackRounded />
+        <KeyboardCommandKey sx={{ ml: 'auto', color: 'text.tertiary' }} />
+        <ArrowForwardRounded sx={{ color: 'text.tertiary' }} />
+      </ListItemButton>
+      <ListItemButton role="menuitem">
+        <ListItemDecorator>
+          <ArrowBackRounded />
+        </ListItemDecorator>
         <Typography>Forward</Typography>
-        <KeyboardCommandKey sx={{ ml: 'auto' }} />
-        <ArrowBackRounded />
-      </MenuItem>
-    </li>
-    <Box
-      role="none"
-      sx={{
-        borderBottom: '1px solid',
-        borderColor: (theme) => theme.vars.palette.neutral.outlinedBorder,
-        borderRadius: 1,
-        my: 1,
-      }}
-    />
-    <li>
-      <MenuItem>
-        <PersonRounded />
+        <KeyboardCommandKey sx={{ ml: 'auto', color: 'text.tertiary' }} />
+        <ArrowBackRounded sx={{ color: 'text.tertiary' }} />
+      </ListItemButton>
+      <ListDivider inset="gutter" />
+      <ListItemButton role="menuitem">
+        <ListItemDecorator>
+          <PersonRounded />
+        </ListItemDecorator>
         <Typography>Assign</Typography>
-      </MenuItem>
-    </li>
-    <li>
-      <MenuItem>
-        <BarChartRounded />
+      </ListItemButton>
+      <ListItemButton role="menuitem">
+        <ListItemDecorator>
+          <BarChartRounded />
+        </ListItemDecorator>
         <Typography>Priority</Typography>
-      </MenuItem>
-    </li>
-    <li>
-      <MenuItem>
-        <ArrowForwardRounded />
+      </ListItemButton>
+      <ListItemButton role="menuitem">
+        <ListItemDecorator>
+          <ArrowForwardRounded />
+        </ListItemDecorator>
         <Typography>Move to Project</Typography>
-      </MenuItem>
-    </li>
-    <li>
-      <MenuItem>
-        <ContentCopyRounded />
+      </ListItemButton>
+      <ListItemButton role="menuitem">
+        <ListItemDecorator>
+          <ContentCopyRounded />
+        </ListItemDecorator>
         <Typography>Duplicate</Typography>
-      </MenuItem>
-    </li>
-    <Box
-      role="none"
-      sx={{
-        borderBottom: '1px solid',
-        borderColor: (theme) => theme.vars.palette.neutral.outlinedBorder,
-        borderRadius: 1,
-        my: 1,
-      }}
-    />
-    <li>
-      <MenuItem>
-        <DeleteForeverRounded />
+      </ListItemButton>
+      <ListDivider inset="gutter" />
+      <ListItemButton role="menuitem">
+        <ListItemDecorator>
+          <DeleteForeverRounded />
+        </ListItemDecorator>
         <Typography>Delete</Typography>
-      </MenuItem>
-    </li>
-  </Box>
+      </ListItemButton>
+    </List>
+  </Sheet>
 );
 
 const Progress = () => (
@@ -290,24 +266,6 @@ export default function RadixTailwind() {
                   '--joy-palette-neutral-outlinedHoverBg': getCssVar('palette-neutral-700'),
                   '--joy-palette-neutral-outlinedActiveBg': getCssVar('palette-neutral-800'),
                 },
-              }),
-            },
-          },
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-              color: 'neutral',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.getCssVar('Icon-fontSize', `fontSize-${ownerState.fontSize}`),
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.getCssVar('Icon-color', `palette-${ownerState.color}-textColor`),
-                  }),
               }),
             },
           },
