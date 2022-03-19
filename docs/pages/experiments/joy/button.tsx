@@ -143,7 +143,7 @@ export default function JoyButton() {
               variant="outlined"
               color="neutral"
               endIcon={<ArrowDropDown />}
-              sx={{ '--Button-iconColor': (theme) => theme.vars.palette.neutral[500] }}
+              sx={{ '--Icon-color': (theme) => theme.vars.palette.primary[500] }}
             >
               10
             </Button>

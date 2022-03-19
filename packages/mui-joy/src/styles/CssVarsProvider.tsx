@@ -71,6 +71,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
           root: ({ ownerState, theme }) => {
             const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
             return {
+              color: 'var(--Icon-color)',
               ...(ownerState.fontSize &&
                 ownerState.fontSize !== 'inherit' && {
                   fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
