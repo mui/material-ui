@@ -184,26 +184,14 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
       >
         <FadeTransitionGroup
           reduceAnimations={reduceAnimations}
-          transKey={utils.format(month, 'month')}
+          transKey={utils.format(month, 'monthAndYear')}
         >
           <PickersCalendarHeaderLabelItem
             aria-live="polite"
-            data-mui-test="calendar-month-text"
+            data-mui-test="calendar-month-and-year-text"
             ownerState={ownerState}
           >
-            {utils.format(month, 'month')}
-          </PickersCalendarHeaderLabelItem>
-        </FadeTransitionGroup>
-        <FadeTransitionGroup
-          reduceAnimations={reduceAnimations}
-          transKey={utils.format(month, 'year')}
-        >
-          <PickersCalendarHeaderLabelItem
-            aria-live="polite"
-            data-mui-test="calendar-year-text"
-            ownerState={ownerState}
-          >
-            {utils.format(month, 'year')}
+            {utils.format(month, 'monthAndYear')}
           </PickersCalendarHeaderLabelItem>
         </FadeTransitionGroup>
         {views.length > 1 && !disabled && (
