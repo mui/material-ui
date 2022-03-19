@@ -31,6 +31,7 @@ import WebhookPage from 'docs/src/_experiment/strapi/WebhookPage';
 import ContentEmpty from 'docs/src/_experiment/strapi/ContentEmpty';
 import ContentListView from 'docs/src/_experiment/strapi/ContentListView';
 import ContentEditView from 'docs/src/_experiment/strapi/ContentEditView';
+import MediaEditAsset from 'docs/src/_experiment/strapi/MediaEditAsset';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -323,6 +324,8 @@ export default function Strapi() {
       <ContentListView />
 
       <ContentEditView />
+
+      <MediaEditAsset />
     </CssVarsProvider>
   );
 }
