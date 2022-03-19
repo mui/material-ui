@@ -1,6 +1,6 @@
 {
   "name": "nextjs",
-  "version": "5.0.0",
+  "version": "12.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,7 +19,8 @@
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
     "eslint": "latest",
