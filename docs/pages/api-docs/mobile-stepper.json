@@ -4,6 +4,10 @@
     "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
     "backButton": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "getPaginationLabel": {
+      "type": { "name": "func" },
+      "default": "(activeStepIndex, totalSteps) => `${activeStepIndex + 1} / ${totalSteps}`"
+    },
     "LinearProgressProps": { "type": { "name": "object" } },
     "nextButton": { "type": { "name": "node" } },
     "position": {

@@ -95,7 +95,7 @@ describe('<MobileStepper />', () => {
             variant="text"
             activeStep={1}
             steps={3}
-            getPaginationLabel={({ activeStepIndex, totalSteps }) =>
+            getPaginationLabel={(activeStepIndex, totalSteps) =>
               `Step ${activeStepIndex + 1} of ${totalSteps}`
             }
           />,
@@ -111,7 +111,7 @@ describe('<MobileStepper />', () => {
             variant="text"
             activeStep={1}
             steps={3}
-            getPaginationLabel={({ activeStepIndex, totalSteps }) => (
+            getPaginationLabel={(activeStepIndex, totalSteps) => (
               <h3 data-testid="my-label-test">
                 It is currently step {activeStepIndex + 1} of {totalSteps}
               </h3>

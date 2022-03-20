@@ -67,7 +67,7 @@ export default function CustomPaginationLabelTextMobileStepper() {
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
-        getPaginationLabel={({ activeStepIndex, totalSteps }) =>
+        getPaginationLabel={(activeStepIndex, totalSteps) =>
           `On step ${activeStepIndex + 1} of ${totalSteps}`
         }
         nextButton={

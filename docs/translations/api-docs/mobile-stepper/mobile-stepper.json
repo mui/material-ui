@@ -4,6 +4,7 @@
     "activeStep": "Set the active step (zero based index). Defines which dot is highlighted when the variant is &#39;dots&#39;.",
     "backButton": "A back button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "getPaginationLabel": "Customize the pagination label for the <code>text</code> variant.<br><br><strong>Signature:</strong><br><code>function(activeStepIndex: number, totalSteps: number) =&gt; string | ReactNode</code><br><em>activeStepIndex:</em> The current active step, zero-indexed.<br><em>totalSteps:</em> The total number of steps.",
     "LinearProgressProps": "Props applied to the <code>LinearProgress</code> element.",
     "nextButton": "A next button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
     "position": "Set the positioning type.",

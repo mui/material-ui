@@ -5,11 +5,6 @@ import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
 import { MobileStepperClasses } from './mobileStepperClasses';
 
-type PaginationLabelProps = {
-  activeStepIndex: number;
-  totalSteps: number;
-}
-
 export interface MobileStepperProps extends StandardProps<PaperProps, 'children' | 'variant'> {
   /**
    * Set the active step (zero based index).
@@ -27,10 +22,12 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
   classes?: Partial<MobileStepperClasses>;
   /**
    * Customize the pagination label for the `text` variant.
-   * `activeStepIndex` is zero-based.
-   * @default (activeStepIndex, totalSteps) => `${activeStepIndex + 1} of ${totalSteps}`
+   * @param {number} activeStepIndex The current active step, zero-indexed.
+   * @param {number} totalSteps The total number of steps.
+   * @returns {(string|ReactNode)}
+   * @default (activeStepIndex, totalSteps) => `${activeStepIndex + 1} / ${totalSteps}`
    */
-  getPaginationLabel?: ((props: PaginationLabelProps) => string | React.ReactNode);
+  getPaginationLabel?: (activeStepIndex: number, totalSteps: number) => string | React.ReactNode;
   /**
    * Props applied to the `LinearProgress` element.
    */
