@@ -81,7 +81,6 @@ const ProductLabel = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(0.3),
   fontSize: theme.typography.pxToRem(12),
   fontWeight: theme.typography.fontWeightBold,
-  textTransform: 'uppercase',
   letterSpacing: '.05rem',
   color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
 }));
