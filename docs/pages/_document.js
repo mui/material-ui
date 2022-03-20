@@ -63,6 +63,10 @@ export default class MyDocument extends Document {
             rel="canonical"
             href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAs}`}
           />
+          {/* TODO remove post migration */}
+          {canonicalAs.startsWith('/material-ui/') ? (
+            <meta name="robots" content="noindex,nofollow" />
+          ) : null}
           <link rel="alternate" href={`https://mui.com${canonicalAs}`} hrefLang="x-default" />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
