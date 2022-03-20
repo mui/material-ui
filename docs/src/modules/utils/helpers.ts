@@ -38,7 +38,13 @@ export function pageToTitle(page: Page): string | null {
   const path = page.subheader || page.pathname;
   const name = path.replace(/.*\//, '').replace('react-', '').replace(/\..*/, '');
 
-  if (path.indexOf('/api') === 0) {
+  // TODO remove post migration
+  if (path.indexOf('/api-docs/') !== -1) {
+    return upperFirst(camelCase(name));
+  }
+
+  // TODO only support React component API
+  if (path.indexOf('/api/') !== -1) {
     return upperFirst(camelCase(name));
   }
 
