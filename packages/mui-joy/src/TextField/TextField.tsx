@@ -160,7 +160,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        type={type}
         startAdornment={startAdornment}
         endAdornment={endAdornment}
       />
