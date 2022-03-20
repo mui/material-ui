@@ -147,7 +147,7 @@ export function getDependencies(
     muiCommitRef?: string;
   } = {},
 ) {
-  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef } = options;
+  const { codeLanguage, muiCommitRef } = options;
 
   let deps: Record<string, string> = {};
   let versions: Record<string, string> = {
