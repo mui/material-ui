@@ -13,6 +13,10 @@ const dateAdapterPackageMapping: Record<string, string> = {
   AdapterMoment: 'moment',
 };
 
+function pascalCase(str: string) {
+  return upperFirst(camelCase(str));
+}
+
 function titleize(hyphenedString: string): string {
   return hyphenedString
     .split('-')
@@ -40,12 +44,12 @@ export function pageToTitle(page: Page): string | null {
 
   // TODO remove post migration
   if (path.indexOf('/api-docs/') !== -1) {
-    return upperFirst(camelCase(name));
+    return pascalCase(name);
   }
 
-  // TODO only support React component API
+  // TODO support more than React component API (PascalCase)
   if (path.indexOf('/api/') !== -1) {
-    return upperFirst(camelCase(name));
+    return pascalCase(name);
   }
 
   return titleize(name);
