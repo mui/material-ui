@@ -10,8 +10,8 @@ import { expectType } from '@mui/types';
   label="Label"
   helperText="Helper text"
   defaultValue=""
-  startAdornment={<div />}
-  endAdornment={<div />}
+  startDecorator={<div />}
+  endDecorator={<div />}
 />;
 <TextField
   value="test"
