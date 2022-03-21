@@ -70,6 +70,7 @@ export function usePickerState<TInput, TDateValue>(
     dispatch({ type: 'reset', payload: parsedDateValue });
   }
 
+  // TODO need to reconsider whether initialDate variable is necessary.
   const [initialDate, setInitialDate] = React.useState<TDateValue>(draftState.committed);
 
   // Mobile keyboard view is a special case.
@@ -96,7 +97,7 @@ export function usePickerState<TInput, TDateValue>(
       open: isOpen,
       onClear: () => acceptDate(valueManager.emptyValue, true),
       onAccept: () => acceptDate(draftState.draft, true),
-      onDismiss: () => acceptDate(initialDate, true),
+      onDismiss: () => acceptDate(draftState.committed, true),
       onSetToday: () => {
         const now = utils.date() as TDateValue;
         dispatch({ type: 'update', payload: now });
