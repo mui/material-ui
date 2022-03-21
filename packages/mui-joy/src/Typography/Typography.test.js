@@ -99,8 +99,8 @@ describe('<Typography />', () => {
     it('Typography inside start/end icon should be span', () => {
       const { getByText } = render(
         <Typography
-          startIcon={<Typography>Foo</Typography>}
-          endIcon={<Typography>Bar</Typography>}
+          startDecorator={<Typography>Foo</Typography>}
+          endDecorator={<Typography>Bar</Typography>}
         />,
       );
       expect(getByText('Foo').tagName).to.equal('SPAN');

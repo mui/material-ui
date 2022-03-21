@@ -4,7 +4,7 @@ import { TypographyClasses } from './typographyClasses';
 import { SxProps, SystemProps } from '../styles/defaultTheme';
 import { TypographySystem } from '../styles/types';
 
-export type TypographySlot = 'root' | 'startIcon' | 'endIcon';
+export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
@@ -20,7 +20,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       /**
        * Element placed after the children.
        */
-      endIcon?: React.ReactNode;
+      endDecorator?: React.ReactNode;
       /**
        * If `true`, the text will have a bottom margin.
        * @default false
@@ -61,7 +61,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       /**
        * Element placed before the children.
        */
-      startIcon?: React.ReactNode;
+      startDecorator?: React.ReactNode;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
