@@ -156,6 +156,9 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
         minRows: hasHostTexarea ? undefined : rows,
         maxRows: hasHostTexarea ? undefined : rows,
         ...inputProps,
+        ...(hasHostTexarea && {
+          ownerState: undefined,
+        }),
       };
     } else {
       inputProps = {
@@ -163,6 +166,9 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
         maxRows: hasHostTexarea ? undefined : maxRows,
         minRows: hasHostTexarea ? undefined : minRows,
         ...inputProps,
+        ...(hasHostTexarea && {
+          ownerState: undefined,
+        }),
       };
     }
 

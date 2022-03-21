@@ -31,12 +31,14 @@ const grey = {
 
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
-  flex-grow: 1;
+  font-family: IBM Plex Sans, sans-serif;
   display: flex;
+  font-weight: 500;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 8px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
   align-items: center;
+  justify-content: center;
 
   &.${inputUnstyledClasses.focused} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
@@ -52,9 +54,10 @@ const StyledInputRoot = styled('div')(
 const StyledInputElement = styled('input')(
   ({ theme }) => `
   font-size: 0.875rem;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: inherit;
   font-weight: 400;
   line-height: 1.5;
+  flex-grow: 1;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: inherit;
   border: none;
@@ -65,9 +68,19 @@ const StyledInputElement = styled('input')(
 );
 
 const IconButton = styled(ButtonUnstyled)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background: inherit;
   cursor: pointer;
+`;
+
+const InputAdornment = styled('div')`
+  margin: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const CustomInput = React.forwardRef(function CustomInput(
@@ -122,10 +135,10 @@ export default function InputAdornments() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', '& > *': { m: 1 } }}>
+    <Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }}>
       <CustomInput
         id="outlined-start-adornment"
-        startAdornment={<Box m={1}>kg</Box>}
+        startAdornment={<InputAdornment>kg</InputAdornment>}
       />
       <CustomInput
         id="outlined-adornment-password"
@@ -133,7 +146,7 @@ export default function InputAdornments() {
         value={values.password}
         onChange={handleChange('password')}
         endAdornment={
-          <Box m={1}>
+          <InputAdornment>
             <IconButton
               aria-label="toggle password visibility"
               onClick={handleClickShowPassword}
@@ -142,14 +155,8 @@ export default function InputAdornments() {
             >
               {values.showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
-          </Box>
+          </InputAdornment>
         }
-      />
-      <CustomInput
-        id="outlined-adornment-amount"
-        value={values.amount}
-        onChange={handleChange('amount')}
-        startAdornment={<Box m={1}>$</Box>}
       />
     </Box>
   );
