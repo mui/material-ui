@@ -66,34 +66,34 @@ export default function JoyButton() {
           }}
         >
           <Box>
-            <Link component="button" level="body2" startIcon={<LocationOn />}>
+            <Link component="button" level="body2" startDecorator={<LocationOn />}>
               Miami, Florida
             </Link>
-            <Link component="button" level="body2" startIcon={<Groups fontSize="lg" />}>
+            <Link component="button" level="body2" startDecorator={<Groups fontSize="lg" />}>
               5 - 10 people
             </Link>
           </Box>
           <Box>
-            <Link component="button" startIcon={<LocationOn />}>
+            <Link component="button" startDecorator={<LocationOn />}>
               Miami, Florida
             </Link>
-            <Link component="button" startIcon={<Groups fontSize="xl" />}>
+            <Link component="button" startDecorator={<Groups fontSize="xl" />}>
               5 - 10 people
             </Link>
           </Box>
           <Box>
-            <Link component="button" level="h5" startIcon={<LocationOn />}>
+            <Link component="button" level="h5" startDecorator={<LocationOn />}>
               Miami, Florida
             </Link>
-            <Link component="button" level="h5" startIcon={<Groups fontSize="xl2" />}>
+            <Link component="button" level="h5" startDecorator={<Groups fontSize="xl2" />}>
               5 - 10 people
             </Link>
           </Box>
           <Box>
             <Typography level="body2">
               Keep me updated about the new features and upcoming improvements (by doing this you
-              accept the <Link endIcon={<OpenInNew />}>terms</Link> and the{' '}
-              <Link disabled startIcon={<OpenInNew />}>
+              accept the <Link endDecorator={<OpenInNew />}>terms</Link> and the{' '}
+              <Link disabled startDecorator={<OpenInNew />}>
                 privacy policy
               </Link>
               ).
@@ -103,11 +103,11 @@ export default function JoyButton() {
             <span>
               Keep me updated about the new features and upcoming improvements (by doing this you
               accept the{' '}
-              <Link level="inherit" endIcon={<OpenInNew />}>
+              <Link level="inherit" endDecorator={<OpenInNew />}>
                 terms
               </Link>{' '}
               and the{' '}
-              <Link level="inherit" startIcon={<OpenInNew />}>
+              <Link level="inherit" startDecorator={<OpenInNew />}>
                 privacy policy
               </Link>
               ).
@@ -115,13 +115,13 @@ export default function JoyButton() {
           </Box>
           <ul>
             <li>
-              <Link startIcon={<Person />}>Profile</Link>
+              <Link startDecorator={<Person />}>Profile</Link>
             </li>
             <li>
-              <Link startIcon={<Settings />}>Settings</Link>
+              <Link startDecorator={<Settings />}>Settings</Link>
             </li>
             <li>
-              <Link startIcon={<Logout />}>Logout</Link>
+              <Link startDecorator={<Logout />}>Logout</Link>
             </li>
           </ul>
         </Box>

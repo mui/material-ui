@@ -55,7 +55,7 @@ const InputRoot = styled('div', {
     '--Input-radius': theme.vars.radius.sm, // radius is used by
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
-    '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
+    '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
       theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
@@ -142,7 +142,7 @@ const InputStartDecorator = styled('span', {
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
-  marginLeft: 'calc(var(--Input-adornment-offset) * -1)',
+  marginLeft: 'calc(var(--Input-decorator-offset) * -1)',
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
@@ -157,7 +157,7 @@ const InputEndDecorator = styled('span', {
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
-  marginRight: 'calc(var(--Input-adornment-offset) * -1)',
+  marginRight: 'calc(var(--Input-decorator-offset) * -1)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 

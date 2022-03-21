@@ -327,7 +327,7 @@ const components: {
         },
       },
       { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
-      { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
+      { id: '--Input-decorator-offset', type: 'number', unit: 'px' },
     ],
   },
   {
