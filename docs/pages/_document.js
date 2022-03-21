@@ -7,6 +7,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -64,7 +65,7 @@ export default class MyDocument extends Document {
             href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAs}`}
           />
           {/* TODO remove post migration */}
-          {canonicalAs.startsWith('/material-ui/') ? (
+          {!FEATURE_TOGGLE.enable_redirects && canonicalAs.startsWith('/material-ui/') ? (
             <meta name="robots" content="noindex,nofollow" />
           ) : null}
           <link rel="alternate" href={`https://mui.com${canonicalAs}`} hrefLang="x-default" />
