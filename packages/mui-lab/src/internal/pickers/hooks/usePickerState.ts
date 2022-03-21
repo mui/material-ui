@@ -110,6 +110,7 @@ export function usePickerState<TInput, TDateValue>(
       isOpen,
       utils,
       draftState.draft,
+      draftState.committed,
       valueManager.emptyValue,
       initialDate,
     ],
