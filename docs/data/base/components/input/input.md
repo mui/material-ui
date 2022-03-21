@@ -6,7 +6,7 @@ githubLabel: 'component: input'
 packageName: '@mui/base'
 ---
 
-# Input
+# Unstyled input
 
 <p class="description">The `Input` component allows users to enter and edit text.</p>
 
