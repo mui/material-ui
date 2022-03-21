@@ -8,7 +8,7 @@ packageName: '@mui/base'
 
 # Input
 
-<p class="description">Inputs let users enter and edit text.</p>
+<p class="description">The `Input` component allows users to enter and edit text.</p>
 
 ## Basic usage
 
