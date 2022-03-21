@@ -26,9 +26,9 @@ import InputUnstyled from '@mui/base/InputUnstyled';
 
 ## Adornments
 
-Sometimes it is useful to add some kind of prefix, a suffix, or an action to an input.
-You can achieve this by using the `startAdornment` or `endAdornment` prop.
+You can use the `startAdornment` and `endAdornment` props to add a prefix, suffix, or an action to an input.
 Common use cases of adornments include:
+
 - when an input receives a specific unit of measure (like kilograms or currency)
 - when an icon button toggles hiding/showing a password
 
