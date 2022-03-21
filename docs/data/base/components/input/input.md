@@ -22,7 +22,7 @@ import InputUnstyled from '@mui/base/InputUnstyled';
 
 Sometimes it is useful to add some kind of prefix, a suffix, or an action to an input.
 You can achieve this by using the adornment props.
-For instance, you can use an icon button to hide or reveal the password.
+For example, two very common use cases of adornments are when the input receives a specific unit of measure (like kilograms or currency) and when you want an icon button to hide or show a password.
 
 {{"demo": "InputAdornments.js", "defaultCodeOpen": false}}
 
