@@ -113,6 +113,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     children,
     className,
     action,
+    role,
     component = 'div',
     selected = false,
     color = selected ? 'primary' : 'neutral',
@@ -154,13 +155,16 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = getRootProps();
+
   return (
     <ListItemButtonRoot
       as={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}
-      {...getRootProps()}
+      {...rootProps}
+      role={role ?? rootProps.role}
     >
       {children}
     </ListItemButtonRoot>
@@ -204,6 +208,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * Use to apply selected styling.
    * @default false
