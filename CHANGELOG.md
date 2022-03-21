@@ -26,7 +26,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 - &#8203;<!-- 03 -->[SliderUnstyled] Fix dragging on disabled sliders (#31882) @mnajdova
 
-### `@mui/styled-engine-sc@5.5.2`
+### `@mui/styled-engine-sc@5.4.3`
 
 - &#8203;<!-- 02 -->[styled-engine-sc] GlobalStylesProps inconsistent between the different packages (#31814) @mnajdova
 
