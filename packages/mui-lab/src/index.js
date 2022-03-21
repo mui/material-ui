@@ -1,4 +1,6 @@
 /* eslint-disable import/export */
+export { default as AdapterDateFns } from './AdapterDateFns';
+
 export { default as Alert } from './Alert';
 export * from './Alert';
 
