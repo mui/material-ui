@@ -9,10 +9,10 @@ packageName: '@mui/base'
 
 # Slider
 
-<p class="description">Sliders allow users to make selections from a range of values.</p>
+<p class="description">The 'SliderUnstyled' component lets users make selections from a range of values along a horizontal or vertical bar.</p>
 
-Sliders show a range of values along a bar, from which users may select a single value.
-They are ideal for adjusting settings such as volume, brightness, or applying image filters.
+Users may need to select a single value or a range of values on a slider.
+They are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -24,26 +24,29 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 
 ## Discrete sliders
 
-Discrete sliders snap to the nearest step.
-You can generate a mark for each step with `marks={true}`.
+The most basic slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.
+This is suitable for situations in which an approximate value is good enough for the user, such as brightness or volume.
+
+But if your users need more precise options, you can create a discrete slider that snaps to pre-defined stops along the bar.
+To generate a mark for each stop, use `marks={true}`:
 
 {{"demo": "DiscreteSlider.js"}}
 
 ### Custom marks
 
-You can have custom marks by providing a rich array to the `marks` prop.
+You can create custom marks by providing a rich array to the `marks` prop:
 
 {{"demo": "DiscreteSliderMarks.js"}}
 
 ### Restricted values
 
-You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
+If the user should only be able to select from the values provided with the `marks` prop, add `step={null}` to disable all other options:
 
 {{"demo": "DiscreteSliderValues.js"}}
 
 ## Range slider
 
-The slider can be used to set the start and end of a range by supplying an array of values to the `value` or `defaultValue` prop.
+To let users set the start and end of a range on a slider, provide an array of values to the `value` or `defaultValue` prop:
 
 {{"demo": "RangeSlider.js"}}
 
