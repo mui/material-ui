@@ -24,7 +24,7 @@ import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import Search from '@mui/icons-material/Search';
 import Settings from '@mui/icons-material/Settings';
-import Github from '@mui/icons-material/Github';
+import GitHub from '@mui/icons-material/GitHub';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import ContentCopy from '@mui/icons-material/ContentCopy';
@@ -827,7 +827,7 @@ export default function MUI() {
             </Box>
           </Button>
           <IconButton variant="outlined" color="neutral" size="sm">
-            <Github />
+            <GitHub />
           </IconButton>
           <ColorSchemePicker />
         </Box>
