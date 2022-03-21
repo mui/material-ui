@@ -66,7 +66,9 @@ export interface BaseTextFieldProps
   /**
    * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
-  FormHelperTextProps?: Partial<FormHelperTextProps>;
+  FormHelperTextProps?: Partial<
+    FormHelperTextProps<React.ElementType, { component?: React.ElementType }>
+  >;
   /**
    * If `true`, the input will take up the full width of its container.
    * @default false

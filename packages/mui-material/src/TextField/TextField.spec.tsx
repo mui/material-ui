@@ -69,3 +69,20 @@ function FocusHandlerTest() {
 
   return null;
 }
+
+function FormHelperTextPropsTest() {
+  const validTagName = <TextField FormHelperTextProps={{ component: 'div' }} />;
+
+  const validReactComponent = (
+    <TextField FormHelperTextProps={{ component: ({ children }) => <div>${children}</div> }} />
+  );
+
+  // @ts-expect-error
+  const invalidTagName = <TextField FormHelperTextProps={{ component: 'invalid' }} />;
+
+  // @ts-expect-error
+  const invalidJSXTag = <TextField FormHelperTextProps={{ component: <div /> }} />;
+
+  // @ts-expect-error
+  const invalidNumericParam = <TextField FormHelperTextProps={{ component: 12345 }} />;
+}

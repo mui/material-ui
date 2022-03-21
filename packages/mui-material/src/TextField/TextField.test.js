@@ -85,6 +85,18 @@ describe('<TextField />', () => {
       expect(getDescriptionOf(getByRole('textbox'))).to.have.class('foo');
     });
 
+    it('should honor FormHelperTextProps component', () => {
+      const { getByTestId } = render(
+        <TextField
+          helperText="Foo bar"
+          FormHelperTextProps={{ component: 'div', 'data-testid': 'helper-text' }}
+          variant="standard"
+        />,
+      );
+
+      expect(getByTestId('helper-text')).to.have.tagName('div');
+    });
+
     it('has an accessible description', () => {
       const { getByRole } = render(
         <TextField
