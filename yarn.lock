@@ -5539,10 +5539,10 @@ claudia-api-builder@^4.1.2:
   resolved "https://registry.yarnpkg.com/claudia-api-builder/-/claudia-api-builder-4.1.2.tgz#a44479ee44d41936c0bf68c2fe9c8d30f3f31daf"
   integrity sha512-xXS9ew32KRJSMQGHMTEsvSkd1FTs9GK3JjiBIuxk9EJz2hubryrWiTzsJQvcVcfBYE0fb7bO+ZhH2/fqqG7Acg==
 
-claudia@^5.14.0:
-  version "5.14.0"
-  resolved "https://registry.yarnpkg.com/claudia/-/claudia-5.14.0.tgz#39f3494dc63ad755b2f7efc555700ca66d99ed75"
-  integrity sha512-9mNO/HB/XBLCinv3ofWJPs+EUlv6tFgyxEZ7NYdaY3zfO3eySrwILHF0BW4tu8KHqqeBrGXqQL+PvpEidrDUpA==
+claudia@^5.14.1:
+  version "5.14.1"
+  resolved "https://registry.yarnpkg.com/claudia/-/claudia-5.14.1.tgz#305220f577589bf49982c2fd4872cbf1a49eee5b"
+  integrity sha512-5rdOQlDmDyM1UzgfV4hag/9lNmEA2xL0OXoEkX3ePaHAMxWsCOU8d1YepdH8tJhetRfXk8J2Q8ie+2EUQFGlgg==
   dependencies:
     archiver "^3.0.0"
     aws-sdk "^2.1009.0"
