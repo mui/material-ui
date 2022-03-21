@@ -71,7 +71,7 @@ export function usePickerState<TInput, TDateValue>(
   }
 
   // TODO need to reconsider whether initialDate variable is necessary.
-  const [initialDate, setInitialDate] = React.useState<TDateValue>(draftState.committed);
+  // const [initialDate, setInitialDate] = React.useState<TDateValue>(draftState.committed);
 
   // Mobile keyboard view is a special case.
   // When it's open picker should work like closed, cause we are just showing text field
@@ -83,7 +83,7 @@ export function usePickerState<TInput, TDateValue>(
 
       if (needClosePicker) {
         setIsOpen(false);
-        setInitialDate(acceptedDate);
+        // setInitialDate(acceptedDate);
         if (onAccept) {
           onAccept(acceptedDate);
         }
@@ -112,7 +112,7 @@ export function usePickerState<TInput, TDateValue>(
       draftState.draft,
       draftState.committed,
       valueManager.emptyValue,
-      initialDate,
+      // initialDate,
     ],
   );
 
