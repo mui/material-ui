@@ -51,9 +51,6 @@ import { useInput } from '@mui/base/InputUnstyled';
 ```
 
 The `useInput` hook lets you use the functionality of `InputUnstyled` in other components.
-It returns props to be placed on a custom input element, along with fields representing the internal state of the button.
-
-The `useButton` hook requires the `ref` of the element it's used on.
-Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
+It returns props to be placed on a custom input and root elements, along with fields representing the internal state of the input.
 
 {{"demo": "UseInput.js", "defaultCodeOpen": false}}
