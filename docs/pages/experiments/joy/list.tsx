@@ -327,7 +327,7 @@ function MuiNav() {
           '--joy-palette-primary-lightBg': '#132f4c',
           '--joy-palette-primary-lightHoverBg': 'rgba(51, 153, 255, 0.24)',
           '--joy-palette-primary-lightActiveBg': 'rgba(51, 153, 255, 0.24)',
-          '--List-background': 'rgb(10, 25, 41)',
+          '--List-item-stickyBackground': 'rgb(10, 25, 41)',
         },
         '& *': {
           fontFamily: '"IBM Plex Sans"',
@@ -456,7 +456,7 @@ const Firebash = () => {
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
           '--List-divider-gap': '0px',
-          '--List-background': 'rgb(5, 30, 52)',
+          '--List-item-stickyBackground': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
           '--List-decorator-color': 'rgba(255, 255, 255, 0.8)',
           '& .MuiListItemButton-root, & .MuiListItemContent-root': {

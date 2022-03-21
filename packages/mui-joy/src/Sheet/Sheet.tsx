@@ -37,7 +37,7 @@ const SheetRoot = styled('div', {
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       boxShadow: theme.vars.shadow[ownerState.elevation!],
       backgroundColor: theme.vars.palette.background.body,
-      '--List-background':
+      '--List-item-stickyBackground':
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
         theme.vars.palette.background.body, // for sticky List
