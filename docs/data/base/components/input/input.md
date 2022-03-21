@@ -10,7 +10,7 @@ packageName: '@mui/base'
 
 <p class="description">The `Input` component allows users to enter and edit text.</p>
 
-## Basic usage
+## Basic input
 
 ```js
 import InputUnstyled from '@mui/base/InputUnstyled';
