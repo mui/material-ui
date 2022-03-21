@@ -9,7 +9,7 @@ packageName: '@mui/base'
 
 # Unstyled select
 
-<p class="description">The SelectUnstyled and MultiSelectUnstyled components let you create menus of options for users to choose from.</p>
+<p class="description">The select components let you create lists of options for users to choose from.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
