@@ -293,7 +293,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`BackdropUnstyled`](/api/backdrop-unstyled/) element.
+   * Props applied to the backdrop element.
    */
   BackdropProps: PropTypes.object,
   /**
