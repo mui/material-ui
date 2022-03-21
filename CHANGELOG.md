@@ -6,19 +6,14 @@
 
 _Mar 21, 2022_
 
-A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
-
-- 🛠 Dragging on disabled sliders is fixed by @mnajdova (#31882)
-- Several 🐛 bug fixes and 📚 documentation improvements
+A big thanks to the 7 contributors who made this release possible. This is a small release focused on some 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.5.2`
 
-- &#8203;<!-- 15 -->[data-grid] Fix print export feature (#31807) @oliviertassinari
 - &#8203;<!-- 04 -->[Popper] Expose the `sx` prop (#31833) @ivan-ngchakming
 
 ### `@mui/joy@5.0.0-alpha.20`
 
-- &#8203;<!-- 07 -->[Joy] Add tests for Avatar component (#31829) @hbjORbj
 - &#8203;<!-- 06 -->[Joy] Add default color to `Input` and `ListItemButton` (#31826) @siriwatknp
 - &#8203;<!-- 05 -->[Joy] Add Avatar component (#31303) @hbjORbj
 
@@ -32,6 +27,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 ### Docs
 
+- &#8203;<!-- 15 -->[data-grid] Fix print export feature (#31807) @oliviertassinari
 - &#8203;<!-- 14 -->[docs] Move BadgeUnstyled docs to Base space (#31872) @michaldudak
 - &#8203;<!-- 13 -->[docs] Solve duplication of content (#31917) @oliviertassinari
 - &#8203;<!-- 12 -->[docs] Fix side nav capitalization of API (#31916) @oliviertassinari
@@ -39,7 +35,11 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 - &#8203;<!-- 10 -->[docs] New search experience for multiple products (#31811) @siriwatknp
 - &#8203;<!-- 09 -->[docs] Make LTS searchable (#31804) @oliviertassinari
 - &#8203;<!-- 08 -->[docs] Fix demo filename on zh markdown (#31790) @nnmax
-- &#8203;<!-- 01 -->[website] highlight the date picker (#31889) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Highlight the date picker (#31889) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 07 -->[core] Add tests for Avatar component (#31829) @hbjORbj
 
 All contributors of this release in alphabetical order: @hbjORbj, @ivan-ngchakming, @michaldudak, @mnajdova, @nnmax, @oliviertassinari, @siriwatknp
 
