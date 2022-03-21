@@ -54,11 +54,14 @@ const TypographyRoot = styled('span', {
 })<{ ownerState: TypographyProps & { nested: boolean } }>(({ theme, ownerState }) => ({
   '--Icon-fontSize': '1.25em',
   margin: 0,
-  fontFamily: theme.vars.fontFamily.body,
-  display: 'block',
-  ...(ownerState.nested && {
-    display: 'inline',
-  }),
+  ...(ownerState.nested
+    ? {
+        display: 'inline',
+      }
+    : {
+        fontFamily: theme.vars.fontFamily.body, // for nested typography, the font family will be inherited.
+        display: 'block',
+      }),
   ...((ownerState.startIcon || ownerState.endIcon) && {
     display: 'flex',
     alignItems: 'center',
