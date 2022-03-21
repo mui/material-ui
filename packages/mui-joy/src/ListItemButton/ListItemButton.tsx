@@ -209,6 +209,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
    * Use to apply selected styling.
    * @default false
    */
