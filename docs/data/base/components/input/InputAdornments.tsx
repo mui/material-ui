@@ -64,13 +64,11 @@ const StyledInputElement = styled('input')(
 `,
 );
 
-const IconButton = styled(ButtonUnstyled)(
-  ({ theme }) => `
-    border: none;
-    background: inherit;
-    cursor: pointer;
-  `,
-);
+const IconButton = styled(ButtonUnstyled)`
+  border: none;
+  background: inherit;
+  cursor: pointer;
+`;
 
 const CustomInput = React.forwardRef(function CustomInput(
   props: InputUnstyledProps,
