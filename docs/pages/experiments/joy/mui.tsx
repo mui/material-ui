@@ -490,7 +490,7 @@ export default function MUI() {
               zIndex: 1,
             }}
           >
-            <List sx={{ borderRadius: 'sm', py: 1, '--List-gap': '0px' }}>
+            <List sx={{ py: 1, '--List-gap': '0px' }}>
               <ListItem sx={{ fontSize: 'sm' }}>Theme config</ListItem>
               <ListItem>
                 <ListItemButton
