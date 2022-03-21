@@ -9,7 +9,7 @@ packageName: '@mui/base'
 
 # Slider
 
-<p class="description">The 'SliderUnstyled' component lets users make selections from a range of values along a horizontal or vertical bar.</p>
+<p class="description">The SliderUnstyled component lets users make selections from a range of values along a horizontal or vertical bar.</p>
 
 Users may need to select a single value or a range of values on a slider.
 They are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters.

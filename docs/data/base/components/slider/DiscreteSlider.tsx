@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
 const StyledSlider = styled(SliderUnstyled)(
   ({ theme }) => `
@@ -19,7 +19,13 @@ const StyledSlider = styled(SliderUnstyled)(
     opacity: 1;
   }
 
-  & .MuiSlider-rail {
+  &.${sliderUnstyledClasses.disabled} { 
+    pointer-events: none;
+    cursor: default;
+    color: ${theme.palette.grey[400]}; 
+  }
+
+  & .${sliderUnstyledClasses.rail} {
     display: block;
     position: absolute;
     width: 100%;
@@ -29,7 +35,7 @@ const StyledSlider = styled(SliderUnstyled)(
     opacity: 0.38;
   }
 
-  & .MuiSlider-track {
+  & .${sliderUnstyledClasses.track} {
     display: block;
     position: absolute;
     height: 4px;
@@ -37,7 +43,7 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: currentColor;
   }
 
-  & .MuiSlider-thumb {
+  & .${sliderUnstyledClasses.thumb} {
     position: absolute;
     width: 14px;
     height: 14px;
@@ -48,9 +54,24 @@ const StyledSlider = styled(SliderUnstyled)(
     outline: 0;
     border: 2px solid currentColor;
     background-color: #fff;
+
+    :hover,
+    &.${sliderUnstyledClasses.focusVisible} {
+      box-shadow: 0 0 0 0.25rem ${alpha(
+        theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
+        0.15,
+      )};
+    }
+
+    &.${sliderUnstyledClasses.active} {
+      box-shadow: 0 0 0 0.25rem ${alpha(
+        theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
+        0.3,
+      )};
+    }
   }
 
-  & .MuiSlider-mark {
+  & .${sliderUnstyledClasses.mark} {
     position: absolute;
     width: 4px;
     height: 4px;
@@ -61,11 +82,11 @@ const StyledSlider = styled(SliderUnstyled)(
     transform: translateX(-50%);
   }
 
-  & .MuiSlider-markActive {
+  & .${sliderUnstyledClasses.markActive} {
     background-color: #fff;
   }
 
-  & .MuiSlider-valueLabel {
+  & .${sliderUnstyledClasses.valueLabel} {
     font-family: IBM Plex Sans;
     font-size: 14px;
     display: block;
@@ -73,24 +94,8 @@ const StyledSlider = styled(SliderUnstyled)(
     top: -1.6em;
     text-align: center;
     transform: translateX(-50%);
-
   }
-
-  :hover,
-  &.Mui-focusVisible {
-    box-shadow: 0 0 0 0.25rem ${alpha(
-      theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
-      0.15,
-    )};
-  }
-
-  &.Mui-active {
-    box-shadow: 0 0 0 0.25rem ${alpha(
-      theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
-      0.3,
-    )};
-  }
-`,
+  `,
 );
 
 function valuetext(value: number) {
