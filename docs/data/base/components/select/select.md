@@ -7,7 +7,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#combobox
 packageName: '@mui/base'
 ---
 
-# Select
+# Unstyled select
 
 <p class="description">The SelectUnstyled and MultiSelectUnstyled components let you create menus of options for users to choose from.</p>
 
@@ -21,14 +21,14 @@ MUI Base offers two components to replace the native HTML `<select>` tag: `Selec
 import SelectUnstyled from '@mui/base/SelectUnstyled';
 ```
 
-### Basic usage
+### Basic select
 
 {{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
 
 The `SelectUnstyled` component accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
 In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
-To avoid this, you can manually cast the resulting component to the correct type (also shown in the demo above):
+To avoid this, you can manually cast the resulting component to the correct type:
 
 ```tsx
 const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
@@ -52,7 +52,7 @@ For the sake of brevity, the rest of the demos that follow will not use `forward
 
 ### Object values
 
-The `UnstyledSelect` component can be used with non-string values.
+The `SelectUnstyled` component can be used with non-string values.
 
 {{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
 
