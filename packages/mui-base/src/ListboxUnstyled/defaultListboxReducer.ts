@@ -261,23 +261,27 @@ function handleTextNavigation<TOption>(
 
   // use `for` instead of `while` prevent infinite loop
   for (let index = 0; index < options.length; index += 1) {
-    if (!nextOption) {
-      return { ...state };
+    // Return un-mutated state if looped back to the currently highlighted value
+    if (!nextOption || (!startWithCurrentOption && state.highlightedValue === nextOption)) {
+      return state;
     }
 
-    if (!isMatch(nextOption) || isOptionDisabled(nextOption, options.indexOf(nextOption))) {
-      // Move to the next element.
-      nextOption = moveHighlight(1, 'next', nextOption, !(disableListWrap ?? false));
-    } else {
-      // The nextOption element is the element to be highlighted
-      break;
+    if (
+      isMatch(nextOption) &&
+      (!isOptionDisabled(nextOption, options.indexOf(nextOption)) || disabledItemsFocusable)
+    ) {
+      // The nextOption is the element to be highlighted
+      return {
+        ...state,
+        highlightedValue: nextOption,
+      };
     }
+    // Move to the next element.
+    nextOption = moveHighlight(1, 'next', nextOption, !(disableListWrap ?? false));
   }
 
-  return {
-    ...state,
-    highlightedValue: nextOption,
-  };
+  // No option match text search criteria
+  return state;
 }
 
 function handleOptionsChange<TOption>(
