@@ -4,7 +4,7 @@
 
 Are you working with MUI's component libraries? [Show us what you're building](https://github.com/mui/material-ui/issues/22426)! We'd love to see it.
 
-To be featured on this page, your app should meet the following requirements:
+To be featured on this page, your app should meet at least one of the following requirements:
 
 - Open source
 - High traffic
