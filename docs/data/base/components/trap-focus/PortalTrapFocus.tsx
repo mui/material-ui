@@ -1,9 +1,11 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import TrapFocus from '@mui/material/Unstable_TrapFocus';
+import { Box } from '@mui/system';
+import Portal from '@mui/base/Portal';
+import TrapFocus from '@mui/base/TrapFocus';
 
-export default function BasicTrapFocus() {
+export default function PortalTrapFocus() {
   const [open, setOpen] = React.useState(false);
+  const [container, setContainer] = React.useState<HTMLElement | null>(null);
 
   return (
     <Box
@@ -23,12 +25,19 @@ export default function BasicTrapFocus() {
               First name: <input type="text" />
             </label>
             <br />
+            <Portal container={container}>
+              <label>
+                Last name: <input type="text" />
+              </label>
+              <br />
+            </Portal>
             <button type="button" onClick={() => setOpen(false)}>
               Close
             </button>
           </Box>
         </TrapFocus>
       )}
+      <div ref={setContainer} />
     </Box>
   );
 }

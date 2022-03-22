@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { act, createRenderer, screen } from 'test/utils';
-import TrapFocus from '@mui/base/Unstable_TrapFocus';
+import TrapFocus from '@mui/base/TrapFocus';
 import Portal from '@mui/base/Portal';
 
 describe('<TrapFocus />', () => {

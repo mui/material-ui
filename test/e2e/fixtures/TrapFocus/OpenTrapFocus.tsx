@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TrapFocus from '@mui/material/Unstable_TrapFocus';
+import TrapFocus from '@mui/base/TrapFocus';
 
 export default function BaseTrapFocus() {
   return (
