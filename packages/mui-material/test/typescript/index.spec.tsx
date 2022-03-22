@@ -13,7 +13,7 @@ export default function TestStandardPropsUsage() {
   }, []);
 
   return (
-    <Dialog open={true}>
+    <Dialog open>
       <DialogTitle>Dialog Demo</DialogTitle>
       <DialogContent ref={setContentRef}>
         <DialogContentText>Dialog content</DialogContentText>
