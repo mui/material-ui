@@ -81,17 +81,92 @@ function run() {
     `# 2022`,
     `# 2022
 ## MUI X
-/components/data-grid/* https://material-ui-x.netlify.app/x/react-data-grid/:splat 200
-/zh/components/data-grid/* https://material-ui-x.netlify.app/zh/x/react-data-grid/:splat 200
-/pt/components/data-grid/* https://material-ui-x.netlify.app/pt/x/react-data-grid/:splat 200
+/components/data-grid/* /x/react-data-grid/:splat/ 301
+/:lang/components/data-grid/* /:lang/x/react-data-grid/:splat/ 301
 
-/api/data-grid/* https://material-ui-x.netlify.app/x/api/data-grid/:splat 200
-/zh/api/data-grid/* https://material-ui-x.netlify.app/zh/x/api/data-grid/:splat 200
-/pt/api/data-grid/* https://material-ui-x.netlify.app/pt/x/api/data-grid/:splat 200
+/api/data-grid/* /x/api/data-grid/:splat 301
+/:lang/api/data-grid/* /:lang/x/api/data-grid/:splat 301
 
-/x/* https://material-ui-x.netlify.app/x/:splat 200
-/zh/x/* https://material-ui-x.netlify.app/zh/x/:splat 200
-/pt/x/* https://material-ui-x.netlify.app/pt/x/:splat 200
+/components/date-pickers/ /x/react-date-pickers/date-picker/ 301
+/:lang/components/date-pickers/ /:lang/x/react-date-pickers/date-picker/ 301
+
+/components/date-range-pickers/ /x/react-date-pickers/date-range-picker/ 301
+/:lang/components/date-range-pickers/ /:lang/x/react-date-pickers/date-range-picker/ 301
+
+/components/date-time-pickers/ /x/react-date-pickers/date-time-picker/ 301
+/:lang/components/date-time-pickers/ /:lang/x/react-date-pickers/date-time-picker/ 301
+
+/components/time-pickers/ /x/react-date-pickers/time-picker/ 301
+/:lang/components/time-pickers/ /:lang/x/react-date-pickers/time-picker/ 301
+
+/api/date-picker/ /x/api/date-pickers/date-picker/ 301
+/:lang/api/date-picker/ /:lang/x/api/date-pickers/date-picker/ 301
+
+/api/date-range-picker/ /x/api/date-pickers/date-range-picker/ 301
+/:lang/api/date-range-picker/ /:lang/x/api/date-pickers/date-range-picker/ 301
+
+/api/date-range-picker-day/ /x/api/date-pickers/date-range-picker-day/ 301
+/:lang/api/date-range-picker-day/ /:lang/x/api/date-pickers/date-range-picker-day/ 301
+
+/api/date-time-picker/ /x/api/date-pickers/date-time-picker/ 301
+/:lang/api/date-time-picker/ /:lang/x/api/date-pickers/date-time-picker/ 301
+
+/api/desktop-date-picker/ /x/api/date-pickers/desktop-date-picker/ 301
+/:lang/api/desktop-date-picker/ /:lang/x/api/date-pickers/desktop-date-picker/ 301
+
+/api/desktop-date-range-picker/ /x/api/date-pickers/desktop-date-range-picker/ 301
+/:lang/api/desktop-date-range-picker/ /:lang/x/api/date-pickers/desktop-date-range-picker/ 301
+
+/api/desktop-date-time-picker/ /x/api/date-pickers/desktop-date-time-picker/ 301
+/:lang/api/desktop-date-time-picker/ /:lang/x/api/date-pickers/desktop-date-time-picker/ 301
+
+/api/desktop-time-picker/ /x/api/date-pickers/desktop-time-picker/ 301
+/:lang/api/desktop-time-picker/ /:lang/x/api/date-pickers/desktop-time-picker/ 301
+
+/api/calendar-picker/ /x/api/date-pickers/calendar-picker/ 301
+/:lang/api/calendar-picker/ /:lang/x/api/date-pickers/calendar-picker/ 301
+
+/api/calendar-picker-skeleton/ /x/api/date-pickers/calendar-picker-skeleton/ 301
+/:lang/api/calendar-picker-skeleton/ /:lang/x/api/date-pickers/calendar-picker-skeleton/ 301
+
+/api/mobile-date-picker/ /x/api/date-pickers/mobile-date-picker/ 301
+/:lang/api/mobile-date-picker/ /:lang/x/api/date-pickers/mobile-date-picker/ 301
+
+/api/month-picker/ /x/api/date-pickers/month-picker/ 301
+/:lang/api/month-picker/ /:lang/x/api/date-pickers/month-picker/ 301
+
+/api/pickers-day/ /x/api/date-pickers/pickers-day/ 301
+/:lang/api/pickers-day/ /:lang/x/api/date-pickers/pickers-day/ 301
+
+/api/static-date-picker/ /x/api/date-pickers/static-date-picker/ 301
+/:lang/api/static-date-picker/ /:lang/x/api/date-pickers/static-date-picker/ 301
+
+/api/year-picker/ /x/api/date-pickers/year-picker/ 301
+/:lang/api/year-picker/ /:lang/x/api/date-pickers/year-picker/ 301
+
+/api/mobile-date-range-picker/ /x/api/date-pickers/mobile-date-range-picker/ 301
+/:lang/api/mobile-date-range-picker/ /:lang/x/api/date-pickers/mobile-date-range-picker/ 301
+
+/api/static-date-range-picker/ /x/api/date-pickers/static-date-range-picker/ 301
+/:lang/api/static-date-range-picker/ /:lang/x/api/date-pickers/static-date-range-picker/ 301
+
+/api/mobile-date-time-picker/ /x/api/date-pickers/mobile-date-time-picker/ 301
+/:lang/api/mobile-date-time-picker/ /:lang/x/api/date-pickers/mobile-date-time-picker/ 301
+
+/api/static-date-time-picker/ /x/api/date-pickers/static-date-time-picker/ 301
+/:lang/api/static-date-time-picker/ /:lang/x/api/date-pickers/static-date-time-picker/ 301
+
+/api/clock-picker/ /x/api/date-pickers/clock-picker/ 301
+/:lang/api/clock-picker/ /:lang/x/api/date-pickers/clock-picker/ 301
+
+/api/mobile-time-picker/ /x/api/date-pickers/mobile-time-picker/ 301
+/:lang/api/mobile-time-picker/ /:lang/x/api/date-pickers/mobile-time-picker/ 301
+
+/api/static-time-picker/ /x/api/date-pickers/static-time-picker/ 301
+/:lang/api/static-time-picker/ /:lang/x/api/date-pickers/static-time-picker/ 301
+
+/api/time-picker/ /x/api/date-pickers/time-picker/ 301
+/:lang/api/time-picker/ /:lang/x/api/date-pickers/time-picker/ 301
 
 ## MUI Core
 /styles/* /system/styles/:splat 301
@@ -228,7 +303,12 @@ function run() {
   // remove X redirects because of the above redirects
   redirects
     .replace('/api/*/ https://docs-v5--material-ui-x.netlify.app/api/:splat/ 200', '')
-    .replace('/components/* https://docs-v5--material-ui-x.netlify.app/components/:splat 200', '');
+    .replace('/:lang/api/*/ https://docs-v5--material-ui-x.netlify.app/:lang/api/:splat/ 200', '')
+    .replace('/components/* https://docs-v5--material-ui-x.netlify.app/components/:splat 200', '')
+    .replace(
+      '/:lang/components/* https://docs-v5--material-ui-x.netlify.app/:lang/components/:splat 200',
+      '',
+    );
 
   fs.writeFileSync(redirectsPath, redirects);
 }
