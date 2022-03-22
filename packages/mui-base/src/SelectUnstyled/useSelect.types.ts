@@ -36,7 +36,7 @@ interface UseSelectCommonProps<TValue> {
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
   options: SelectOption<TValue>[];
-  optionStringifier?: (option: SelectOption<TValue>) => string
+  optionStringifier?: (option: SelectOption<TValue>) => string;
 }
 
 export interface UseSelectSingleParameters<TValue> extends UseSelectCommonProps<TValue> {

@@ -30,11 +30,11 @@ const defaultOptionStringifier = <TValue>(option: SelectOption<TValue>) => {
     return label;
   }
   if (typeof value === 'string') {
-    return value
+    return value;
   }
   // Fall back string representation
   return String(option);
-}
+};
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;

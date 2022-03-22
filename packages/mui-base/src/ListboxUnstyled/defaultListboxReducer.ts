@@ -229,7 +229,7 @@ function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption
 }
 
 function handleTextNavigation<TOption>(
-  state: ListboxState<TOption>, 
+  state: ListboxState<TOption>,
   props: UseListboxStrictProps<TOption>,
   isMatch: (val: TOption) => boolean,
   startWithCurrentOption: boolean,
@@ -255,9 +255,9 @@ function handleTextNavigation<TOption>(
     );
   };
 
-  let nextOption = startWithCurrentOption ? 
-    state.highlightedValue : 
-    moveHighlight(1, 'next', state.highlightedValue, !(disableListWrap ?? false));
+  let nextOption = startWithCurrentOption
+    ? state.highlightedValue
+    : moveHighlight(1, 'next', state.highlightedValue, !(disableListWrap ?? false));
 
   // use `for` instead of `while` prevent infinite loop
   for (let index = 0; index < options.length; index += 1) {
@@ -267,13 +267,13 @@ function handleTextNavigation<TOption>(
 
     if (!isMatch(nextOption) || isOptionDisabled(nextOption, options.indexOf(nextOption))) {
       // Move to the next element.
-      nextOption = moveHighlight(1, 'next', nextOption, !(disableListWrap ?? false))
+      nextOption = moveHighlight(1, 'next', nextOption, !(disableListWrap ?? false));
     } else {
       // The nextOption element is the element to be highlighted
-      break
+      break;
     }
   }
-  
+
   return {
     ...state,
     highlightedValue: nextOption,
@@ -339,7 +339,12 @@ export default function defaultListboxReducer<TOption>(
         highlightedValue: action.highlight,
       };
     case ActionTypes.textNavigation:
-      return handleTextNavigation(state, action.props, action.isMatch, action.startWithCurrentOption)
+      return handleTextNavigation(
+        state,
+        action.props,
+        action.isMatch,
+        action.startWithCurrentOption,
+      );
     case ActionTypes.optionsChange:
       return handleOptionsChange(action.options, action.previousOptions, state, action.props);
     default:

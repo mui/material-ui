@@ -17,7 +17,11 @@ import { EventHandlers } from '../utils/types';
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
 
-const textCriteriaMatches = <TOption>(nextFocus: TOption, textCriteria: TextCriteria, stringifyOption: (option: TOption) => string) => {
+const textCriteriaMatches = <TOption>(
+  nextFocus: TOption,
+  textCriteria: TextCriteria,
+  stringifyOption: (option: TOption) => string,
+) => {
   const text = stringifyOption(nextFocus).trim().toLowerCase();
 
   if (text.length === 0) {
@@ -219,7 +223,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
               props: propsWithDefaults,
               isMatch: (value) => textCriteriaMatches(value, textCriteria, optionStringifier),
               startWithCurrentOption: !textCriteria.repeating,
-            })
+            });
           }
         } else {
           textCriteria.previousKeyMatched = false;
