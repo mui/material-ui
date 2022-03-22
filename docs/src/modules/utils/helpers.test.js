@@ -44,7 +44,7 @@ const styles = theme => ({
 `;
 
   it('should handle @ dependencies', () => {
-    expect(getDependencies(s1)).to.deep.equal({
+    expect(getDependencies(s1, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
@@ -71,7 +71,7 @@ import { withStyles } from '@mui/material/styles';
 const suggestions = [
 `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
@@ -94,7 +94,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@mui/lab';
 `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       'prop-types': 'latest',
@@ -135,7 +135,7 @@ import {
 } from '@mui/lab';
     `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
@@ -151,7 +151,7 @@ import {
 import lab from '@mui/lab';
     `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
@@ -173,7 +173,10 @@ import * as Utils from '@mui/utils';
     `;
 
     expect(
-      getDependencies(source, { muiCommitRef: '2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f' }),
+      getDependencies(source, {
+        codeLanguage: 'JS',
+        muiCommitRef: '2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
+      }),
     ).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
@@ -199,7 +202,7 @@ import AdapterLuxon from '@mui/lab/AdapterLuxon';
 import AdapterMoment from '@mui/lab/AdapterMoment';
     `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
