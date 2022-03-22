@@ -17,27 +17,18 @@ As components can be used in different contexts, there are several approaches to
 
 ## 1. One-off customization
 
-You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
+If you want to change the styles of a component in a specific place and don't want it to be perpetuated to other instances of it, you have the following solutions available:
 
 ### Use the `sx` prop
 
-The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop) available on all MUI components.
+The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop), which is available on all MUI components.
 Here is an example:
 
 {{"demo": "SxProp.js"}}
 
-Next you'll see how you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
-
 ### Overriding nested component styles
 
-You can use the browser dev tools to identify the slot for the component you want to override. It can save you a lot of time.
-The styles injected into the DOM by MUI rely on class names that [follow a simple pattern](/styles/advanced/#class-names):
-`[hash]-Mui[Component name]-[name of the slot]`.
-
-⚠️ These class names can't be used as CSS selectors because they are unstable,
-however, MUI applies global class names using a consistent convention: `Mui[Component name]-[name of the slot]`.
-
-Let's go back to the above demo. How can you override the slider's thumb?
+Let's use the above demo as an example. Say you want to change the Slider's thumb from a circle to a square. You can use the browser dev tools to identify the component slot you want to override.
 
 <img src="/static/images/customization/dev-tools.png" alt="dev-tools" width="406" />
 
@@ -47,11 +38,17 @@ You now know that you need to target the `.MuiSlider-thumb` class name for overr
 
 {{"demo": "DevTools.js"}}
 
+Doing this whenever trying to customize a component saves you a lot of time! The styles injected into the DOM by MUI rely on class names that [follow a simple pattern](/styles/advanced/#class-names):
+`[hash]-Mui[Component name]-[name of the slot]`.
+
+> ⚠️ These class names can't be used as CSS selectors because they are unstable,
+> however, MUI applies global class names using a consistent convention: `Mui[Component name]-[name of the slot]`.
+
 ### Overriding styles with class names
 
-If you would like to override the styles of the components using classes, you can use the `className` prop available on each component. For overriding the styles of the different parts inside the component, you can use the global classes available for each slot, as described in the previous section.
+If you want to override the styles of the components using classes, you can use the `className` prop available on each component. To override the styles of different parts inside the component, you can use the global classes available for each slot, as described in the previous section.
 
-You can find examples of this using different styles libraries in the [Styles library interoperability](/guides/interoperability/) guide.
+You can find examples of this using different styles libraries in the [styles library interoperability](/guides/interoperability/) guide.
 
 ### State classes
 
@@ -119,10 +116,10 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 | required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 
-> ⚠️ Never style these state classes' names directly:
+> ⚠️ Never style these state classes' names directly. If you do that, it will impact all the components with unclear side-effects.
 
 ```css
-/* ❌ NOT OK, impact all the components with unclear side-effects */
+/* ❌ NOT OK */
 .Mui-error {
   color: red;
 }
