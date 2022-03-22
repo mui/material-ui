@@ -123,6 +123,62 @@ describe('SelectUnstyled', () => {
       );
     });
 
+    describe('text navigation', () => {
+      it('navigate to matched key', () => {
+        const { getByRole, getByText } = render(
+          <SelectUnstyled>
+            <OptionUnstyled value={1}>Apple</OptionUnstyled>
+            <OptionUnstyled value={2}>Banana</OptionUnstyled>
+            <OptionUnstyled value={3}>Cherry</OptionUnstyled>
+            <OptionUnstyled value={4}>Calamondin</OptionUnstyled>
+            <OptionUnstyled value={5}>Dragon Fruit</OptionUnstyled>
+            <OptionUnstyled value={6}>Grapes</OptionUnstyled>
+          </SelectUnstyled>,
+        );
+
+        const button = getByRole('button');
+        act(() => {
+          button.click();
+        });
+
+        const listbox = getByRole('listbox');
+
+        userEvent.keyPress(listbox, { key: 'd' });
+        expect(getByText('Dragon Fruit')).to.have.class('MuiOptionUnstyled-highlighted');
+        userEvent.keyPress(listbox, { key: 'r' });
+        expect(getByText('Dragon Fruit')).to.have.class('MuiOptionUnstyled-highlighted');
+        userEvent.keyPress(listbox, { key: 'z' });
+        expect(getByText('Dragon Fruit')).to.have.class('MuiOptionUnstyled-highlighted');
+      });
+
+      it('navigate to next element with same starting character on repeated keys', () => {
+        const { getByRole, getByText } = render(
+          <SelectUnstyled>
+            <OptionUnstyled value={1}>Apple</OptionUnstyled>
+            <OptionUnstyled value={2}>Banana</OptionUnstyled>
+            <OptionUnstyled value={3}>Cherry</OptionUnstyled>
+            <OptionUnstyled value={4}>Calamondin</OptionUnstyled>
+            <OptionUnstyled value={5}>Dragon Fruit</OptionUnstyled>
+            <OptionUnstyled value={6}>Grapes</OptionUnstyled>
+          </SelectUnstyled>,
+        );
+
+        const button = getByRole('button');
+        act(() => {
+          button.click();
+        });
+
+        const listbox = getByRole('listbox');
+
+        userEvent.keyPress(listbox, { key: 'c' });
+        expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+        userEvent.keyPress(listbox, { key: 'c' });
+        expect(getByText('Calamondin')).to.have.class('MuiOptionUnstyled-highlighted');
+        userEvent.keyPress(listbox, { key: 'c' });
+        expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+      });
+    });
+
     it('closes the listbox without selecting an option when "Escape" is pressed', () => {
       const { getByRole } = render(
         <SelectUnstyled defaultValue={1}>
