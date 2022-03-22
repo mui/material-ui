@@ -23,7 +23,7 @@ const pages = [
       '/material-ui/material-icons',
       '/material-ui/about-the-lab',
       '/material-ui/transitions',
-      '/material-ui/deprecated-pickers',
+      '/material-ui/lab-date-and-time-pickers',
     ],
     title: 'Components',
     icon: 'ToggleOnIcon',
@@ -133,7 +133,7 @@ const pages = [
         subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
-          { pathname: '/x/react-date-pickers', title: 'Date/Time Pickers' },
+          { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },
         ],
       },
       {
@@ -141,7 +141,7 @@ const pages = [
         subheader: 'lab',
         children: [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
-          { pathname: '/material-ui/deprecated-pickers', title: 'Date/Time Pickers' },
+          { pathname: '/material-ui/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
           { pathname: '/material-ui/react-trap-focus' },

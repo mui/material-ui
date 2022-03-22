@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/material/components/pickers/deprecated-pickers.md?@mui/markdown';
+} from 'docs/data/material/components/pickers/lab-date-and-time-pickers.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

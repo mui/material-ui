@@ -1,6 +1,6 @@
-# Date / Time pickers
+# Date & Time pickers
 
-<p class="description">The `<DatePicker>`, `<TimePicker>`, and related components have been moved to MUI X—our collection of advanced components.</p>
+<p class="description">The <code>DatePicker</code>, <code>TimePicker</code>, and related components have been moved to MUI X — our collection of advanced components.</p>
 
 ## Why have the picker components been moved to MUI X?
 
