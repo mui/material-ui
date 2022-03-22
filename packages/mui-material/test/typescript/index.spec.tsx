@@ -21,3 +21,27 @@ export default function TestStandardPropsUsage() {
     </Dialog>
   );
 }
+
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Container from '@mui/material/Container';
+
+export interface HeaderProps
+  extends Omit<PaperProps, 'elevation' | 'square' | 'component' | 'variant'> {
+  elevation?: number;
+}
+
+// Test polymorphism
+export const Header = forwardRef<HTMLDivElement, HeaderProps>(
+  ({ children, elevation = 2, sx, ...props }, ref) => (
+    <Paper
+      ref={ref}
+      component="header"
+      square
+      elevation={elevation}
+      sx={{ padding: 2, ...sx }}
+      {...props}
+    >
+      <Container>{children}</Container>
+    </Paper>
+  ),
+);
