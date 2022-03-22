@@ -296,6 +296,37 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
   });
 
+  const startMaybeSwiping = (force = false) => {
+    if (!maybeSwiping) {
+      // on Safari Mobile, if you want to be able to have the 'click' event fired on child elements, nothing in the DOM can be changed.
+      // this is because Safari Mobile will not fire any mouse events (still fires touch though) if the DOM changes during mousemove.
+      // so do this change on first touchmove instead of touchstart
+      if (force || !(disableDiscovery && AllowSwipeInChildren)) {
+        setMaybeSwiping(true);
+      }
+
+      const horizontalSwipe = isHorizontal(anchor);
+
+      if (!open && paperRef.current) {
+        // The ref may be null when a parent component updates while swiping.
+        setPosition(
+          getMaxTranslate(horizontalSwipe, paperRef.current) +
+            (disableDiscovery ? 15 : -DRAG_STARTED_SIGNAL),
+          {
+            changeTransition: false,
+          },
+        );
+      }
+
+      swipeInstance.current.velocity = 0;
+      swipeInstance.current.lastTime = null;
+      swipeInstance.current.lastTranslate = null;
+      swipeInstance.current.paperHit = false;
+
+      touchDetected.current = true;
+    }
+  };
+
   const handleBodyTouchMove = useEventCallback((nativeEvent) => {
     // the ref may be null when a parent component updates while swiping
     if (!paperRef.current || !touchDetected.current) {
@@ -306,6 +337,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     if (claimedSwipeInstance !== null && claimedSwipeInstance !== swipeInstance.current) {
       return;
     }
+
+    startMaybeSwiping();
 
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
@@ -502,24 +535,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     swipeInstance.current.startX = currentX;
     swipeInstance.current.startY = currentY;
 
-    setMaybeSwiping(true);
-    if (!open && paperRef.current) {
-      // The ref may be null when a parent component updates while swiping.
-      setPosition(
-        getMaxTranslate(horizontalSwipe, paperRef.current) +
-          (disableDiscovery ? 15 : -DRAG_STARTED_SIGNAL),
-        {
-          changeTransition: false,
-        },
-      );
-    }
-
-    swipeInstance.current.velocity = 0;
-    swipeInstance.current.lastTime = null;
-    swipeInstance.current.lastTranslate = null;
-    swipeInstance.current.paperHit = false;
-
-    touchDetected.current = true;
+    startMaybeSwiping();
   });
 
   React.useEffect(() => {
