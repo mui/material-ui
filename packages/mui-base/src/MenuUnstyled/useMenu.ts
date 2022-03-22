@@ -146,7 +146,8 @@ export default function useMenu(parameters: UseMenuParameters) {
     menuItems,
     getListboxProps,
     getItemState,
-    getItemProps: getOptionProps,
+    getItemProps: (id: string, otherHandlers?: Record<string, React.EventHandler<any>>) =>
+      getOptionProps(menuItems[id], otherHandlers),
     highlightedOption,
     highlightFirstItem,
     highlightLastItem,
