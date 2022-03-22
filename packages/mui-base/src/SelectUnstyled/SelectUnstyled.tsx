@@ -251,7 +251,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
+    listbox: PropTypes.any,
     popper: PropTypes.object,
     root: PropTypes.object,
   }),

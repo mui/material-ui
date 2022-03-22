@@ -169,7 +169,7 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
+    listbox: PropTypes.any,
     root: PropTypes.object,
   }),
   /**

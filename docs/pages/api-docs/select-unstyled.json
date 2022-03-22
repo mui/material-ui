@@ -11,7 +11,7 @@
     "componentsProps": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: object, popper?: object, root?: object }"
+        "description": "{ listbox?: any, popper?: object, root?: object }"
       },
       "default": "{}"
     },
