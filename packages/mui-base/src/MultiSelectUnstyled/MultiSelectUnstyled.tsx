@@ -103,7 +103,10 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   };
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
-  const handleListboxRef = useForkRef(listboxRef, componentsProps.listbox?.ref);
+  const handleListboxRef = useForkRef(
+    listboxRef,
+    componentsProps.listbox?.ref,
+  ) as React.Ref<HTMLElement>;
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -157,7 +160,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     if (value == null) {
       return [];
     }
-    return options.filter((o) => (value as TValue[]).includes(o.value));
+    return options.filter((o) => (value as unknown as TValue[]).includes(o.value));
   }, [options, value]);
 
   const buttonProps: WithOptionalOwnerState<MultiSelectUnstyledRootSlotProps<TValue>> =

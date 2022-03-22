@@ -49,7 +49,7 @@ export interface MultiSelectUnstyledProps<TValue extends {}> extends SelectUnsty
    * The selected values.
    * Set to an empty array to deselect all options.
    */
-  value?: TValue[];
+  value?: TValue[] | null;
 }
 
 export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyledProps<TValue> {

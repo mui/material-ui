@@ -48,7 +48,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const intermediaryListboxRef = useForkRef(listboxRefProp, listboxRef);
 
-  const [value, setValue] = useControlled({
+  const [value, setValue] = useControlled<TValue | TValue[] | null>({
     controlled: valueProp,
     default: defaultValue,
     name: 'SelectUnstyled',

@@ -85,7 +85,7 @@ const styles = `
 
 const Menu = React.forwardRef(function Menu(
   props: React.ComponentPropsWithoutRef<'ul'>,
-  ref: React.Ref<HTMLUListElement>,
+  ref: React.Ref<HTMLElement>,
 ) {
   const { children, ...other } = props;
 

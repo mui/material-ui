@@ -57,7 +57,7 @@ export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCo
    */
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'button'> & SelectUnstyledComponentsPropsOverrides;
-    listbox?: React.ComponentPropsWithRef<'ul'> & SelectUnstyledComponentsPropsOverrides;
+    listbox?: React.ComponentPropsWithRef<any> & SelectUnstyledComponentsPropsOverrides;
     // PopperUnstyled has a required prop: open, but it is not necessary to provide it in componentsProps.
     popper?: Partial<React.ComponentPropsWithRef<typeof PopperUnstyled>> &
       SelectUnstyledComponentsPropsOverrides;

@@ -31,7 +31,7 @@ export interface MenuUnstyledProps {
   componentsProps?: {
     root?: Partial<React.ComponentPropsWithRef<typeof PopperUnstyled>> &
       MenuUnstyledComponentsPropsOverrides;
-    listbox?: React.ComponentPropsWithRef<'ul'> & MenuUnstyledComponentsPropsOverrides;
+    listbox?: React.ComponentPropsWithRef<any> & MenuUnstyledComponentsPropsOverrides;
   };
   /**
    * Triggered when focus leaves the menu and the menu should close.

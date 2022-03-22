@@ -89,7 +89,9 @@ const LinkRoot = styled(Typography, {
   ];
 });
 
-const Link = React.forwardRef(function Link(inProps, ref) {
+const Link = React.forwardRef(function Link<
+  D extends React.ElementType = LinkTypeMap['defaultComponent'],
+>(inProps: LinkProps<D>, ref: React.ForwardedRef<any>) {
   const props = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
     name: 'MuiLink',
@@ -115,7 +117,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ref: focusVisibleRef,
   } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState<boolean>(false);
-  const handleRef = useForkRef(ref, focusVisibleRef) as React.Ref<HTMLSpanElement>;
+  const handleRef = useForkRef(ref, focusVisibleRef);
   const handleBlur = (event: React.FocusEvent<HTMLAnchorElement>) => {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {

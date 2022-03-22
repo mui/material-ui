@@ -29,10 +29,10 @@ export function isOptionGroup<TValue>(
 
 interface UseSelectCommonProps<TValue> {
   buttonComponent?: React.ElementType;
-  buttonRef?: React.Ref<Element>;
+  buttonRef?: React.Ref<HTMLElement>;
   disabled?: boolean;
   listboxId?: string;
-  listboxRef?: React.Ref<Element>;
+  listboxRef?: React.Ref<HTMLElement>;
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
   options: SelectOption<TValue>[];
@@ -49,7 +49,7 @@ export interface UseSelectMultiParameters<TValue> extends UseSelectCommonProps<T
   defaultValue?: TValue[];
   multiple: true;
   onChange?: (value: TValue[]) => void;
-  value?: TValue[];
+  value?: TValue[] | null;
 }
 
 export type UseSelectParameters<TValue> =

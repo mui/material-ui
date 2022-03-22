@@ -126,7 +126,7 @@ const StyledPopper = styled(PopperUnstyled)`
 
 const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
   props: SelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<HTMLUListElement>,
+  ref: React.ForwardedRef<HTMLElement>,
 ) {
   const components: SelectUnstyledProps<TValue>['components'] = {
     Root: StyledButton,
