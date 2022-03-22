@@ -24,6 +24,7 @@ enum ActionTypes {
   optionsChange = 'optionsChange',
   setValue = 'setValue',
   setHighlight = 'setHighlight',
+  textNavigation = 'textNagivation',
 }
 
 // split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
@@ -71,6 +72,13 @@ interface SetHighlightAction<TOption> {
   highlight: TOption | null;
 }
 
+interface TextNavigationAction<TOption> {
+  type: ActionTypes.textNavigation;
+  props: UseListboxStrictProps<TOption>;
+  isMatch: (val: TOption) => boolean;
+  startWithCurrentOption: boolean;
+}
+
 interface OptionsChangeAction<TOption> {
   type: ActionTypes.optionsChange;
   options: TOption[];
@@ -85,6 +93,7 @@ export type ListboxAction<TOption> =
   | BlurAction<TOption>
   | KeyDownAction<TOption>
   | SetHighlightAction<TOption>
+  | TextNavigationAction<TOption>
   | SetValueAction<TOption>
   | OptionsChangeAction<TOption>;
 
@@ -136,6 +145,10 @@ interface UseListboxCommonProps<TOption> {
    * A function that generates the id attribute of individual options.
    */
   optionIdGenerator?: (option: TOption, index: number) => string;
+  /**
+   * A function that converts an object to its string representation
+   */
+  optionStringifier: (option: TOption) => string;
   /**
    * Array of options to be rendered in the list.
    */
@@ -223,3 +236,10 @@ export type UseListboxOptionSlotProps<TOther = {}> = Omit<
   keyof UseListboxOptionSlotOwnProps
 > &
   UseListboxOptionSlotOwnProps;
+
+export type TextCriteria = {
+  keys: string[];
+  repeating: boolean;
+  previousKeyMatched: boolean;
+  lastTime: number | null;
+};

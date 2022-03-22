@@ -228,6 +228,58 @@ function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption
   };
 }
 
+function handleTextNavigation<TOption>(
+  state: ListboxState<TOption>, 
+  props: UseListboxStrictProps<TOption>,
+  isMatch: (val: TOption) => boolean,
+  startWithCurrentOption: boolean,
+): ListboxState<TOption> {
+  const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable, optionComparer } =
+    props;
+
+  const moveHighlight = (
+    diff: number | 'reset' | 'start' | 'end',
+    direction: 'next' | 'previous',
+    previouslyHighlightedOption: TOption | null,
+    wrapAround: boolean,
+  ) => {
+    return getNewHighlightedOption(
+      options,
+      previouslyHighlightedOption,
+      diff,
+      direction,
+      disabledItemsFocusable ?? false,
+      isOptionDisabled ?? (() => false),
+      wrapAround,
+      optionComparer,
+    );
+  };
+
+  let nextOption = startWithCurrentOption ? 
+    state.highlightedValue : 
+    moveHighlight(1, 'next', state.highlightedValue, !(disableListWrap ?? false));
+
+  // use `for` instead of `while` prevent infinite loop
+  for (let index = 0; index < options.length; index += 1) {
+    if (!nextOption) {
+      return { ...state };
+    }
+
+    if (!isMatch(nextOption) || isOptionDisabled(nextOption, options.indexOf(nextOption))) {
+      // Move to the next element.
+      nextOption = moveHighlight(1, 'next', nextOption, !(disableListWrap ?? false))
+    } else {
+      // The nextOption element is the element to be highlighted
+      break
+    }
+  }
+  
+  return {
+    ...state,
+    highlightedValue: nextOption,
+  };
+}
+
 function handleOptionsChange<TOption>(
   options: TOption[],
   previousOptions: TOption[],
@@ -286,6 +338,8 @@ export default function defaultListboxReducer<TOption>(
         ...state,
         highlightedValue: action.highlight,
       };
+    case ActionTypes.textNavigation:
+      return handleTextNavigation(state, action.props, action.isMatch, action.startWithCurrentOption)
     case ActionTypes.optionsChange:
       return handleOptionsChange(action.options, action.previousOptions, state, action.props);
     default:

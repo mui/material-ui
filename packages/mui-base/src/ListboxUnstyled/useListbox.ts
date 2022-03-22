@@ -7,6 +7,7 @@ import {
   OptionState,
   UseListboxOptionSlotProps,
   UseListboxRootSlotProps,
+  TextCriteria,
 } from './useListbox.types';
 import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
@@ -15,6 +16,18 @@ import { EventHandlers } from '../utils/types';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
+
+const textCriteriaMatches = <TOption>(nextFocus: TOption, textCriteria: TextCriteria, stringifyOption: (option: TOption) => string) => {
+  const text = stringifyOption(nextFocus).trim().toLowerCase();
+
+  if (text.length === 0) {
+    return false;
+  }
+  if (textCriteria.repeating) {
+    return text[0] === textCriteria.keys[0];
+  }
+  return text.indexOf(textCriteria.keys.join('')) === 0;
+};
 
 export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
@@ -26,6 +39,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     listboxRef: externalListboxRef,
     multiple = false,
     optionComparer = defaultOptionComparer,
+    optionStringifier,
     options,
     stateReducer: externalReducer,
   } = props;
@@ -50,6 +64,13 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
+
+  const textCriteriaRef = React.useRef<TextCriteria>({
+    keys: [],
+    repeating: true,
+    previousKeyMatched: true,
+    lastTime: null,
+  });
 
   const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
@@ -166,6 +187,44 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         event,
         props: propsWithDefaults,
       });
+
+      // Handle text navigation
+      if (event.key.length === 1) {
+        const textCriteria = textCriteriaRef.current;
+        const lowerKey = event.key.toLowerCase();
+        const currentTime = performance.now();
+        if (textCriteria.keys.length > 0) {
+          // Reset text criteria ref
+          if (textCriteria.lastTime && currentTime - textCriteria.lastTime > 500) {
+            textCriteria.keys = [];
+            textCriteria.repeating = true;
+            textCriteria.previousKeyMatched = true;
+          } else if (textCriteria.repeating && lowerKey !== textCriteria.keys[0]) {
+            textCriteria.repeating = false;
+          }
+        }
+
+        textCriteria.lastTime = currentTime;
+        textCriteria.keys.push(lowerKey);
+
+        const keepFocusOnCurrent =
+          highlightedValue &&
+          !textCriteria.repeating &&
+          textCriteriaMatches(highlightedValue, textCriteria, optionStringifier);
+
+        if (textCriteria.previousKeyMatched) {
+          if (!keepFocusOnCurrent) {
+            dispatch({
+              type: ActionTypes.textNavigation,
+              props: propsWithDefaults,
+              isMatch: (value) => textCriteriaMatches(value, textCriteria, optionStringifier),
+              startWithCurrentOption: !textCriteria.repeating,
+            })
+          }
+        } else {
+          textCriteria.previousKeyMatched = false;
+        }
+      }
     };
 
   const createHandleBlur =

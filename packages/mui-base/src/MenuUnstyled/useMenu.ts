@@ -70,6 +70,7 @@ export default function useMenu(parameters: UseMenuParameters) {
     setHighlightedValue: setListboxHighlight,
   } = useListbox({
     options: Object.keys(menuItems),
+    optionStringifier: (option: string) => option,
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
     listboxRef: handleRef,
     focusManagement: 'DOM',
