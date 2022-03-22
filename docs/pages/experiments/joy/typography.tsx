@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { keyframes } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -9,6 +10,44 @@ import LocationOn from '@mui/icons-material/LocationOn';
 import Groups from '@mui/icons-material/Groups';
 import Outbound from '@mui/icons-material/Outbound';
 import Info from '@mui/icons-material/InfoOutlined';
+
+const circulate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }`;
+
+const Loader = () => (
+  <Box
+    sx={{
+      borderRadius: '50%',
+      border: 4,
+      borderColor: 'primary.lightBg',
+      width: '1.25em',
+      height: '1.25em',
+      boxSizing: 'border-box',
+      position: 'relative',
+    }}
+  >
+    <Box
+      sx={{
+        position: 'absolute',
+        top: -4,
+        left: -4,
+        width: '1.25em',
+        height: '1.25em',
+        borderRadius: '50%',
+        border: '4px solid',
+        borderColor: (theme) => `${theme.vars.palette.primary.lightColor} transparent transparent`,
+        animation: `${circulate} 1s ease infinite`,
+        boxSizing: 'inherit',
+      }}
+    />
+  </Box>
+);
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -113,6 +152,54 @@ export default function JoyTypography() {
           </Typography>
           <Typography endDecorator={<Info fontSize="md" sx={{ color: 'warning.textColor' }} />}>
             Warning
+          </Typography>
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography startDecorator={<Loader />}>Processing...</Typography>
+          <Typography
+            startDecorator={
+              <Box
+                sx={{
+                  bgcolor: 'success.500',
+                  width: '0.5em',
+                  height: '0.5em',
+                  borderRadius: '50%',
+                }}
+              />
+            }
+          >
+            Active
+          </Typography>
+          <Typography
+            fontSize="xl4"
+            lineHeight={1}
+            startDecorator={
+              <Typography fontSize="lg" color="text.secondary">
+                $
+              </Typography>
+            }
+            sx={{ alignItems: 'flex-start', my: 1 }}
+          >
+            25
+          </Typography>
+          <Typography
+            endDecorator={
+              <Box
+                sx={{
+                  px: 0.5,
+                  py: 0.25,
+                  fontSize: 'xs',
+                  fontWeight: 'md',
+                  bgcolor: 'danger.500',
+                  color: '#fff',
+                  borderRadius: 'xs',
+                }}
+              >
+                HIRING!
+              </Box>
+            }
+          >
+            Careers
           </Typography>
         </Box>
         <Box sx={{ my: 2 }}>

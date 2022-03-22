@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
+import { keyframes } from '@mui/system';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Box from '@mui/joy/Box';
@@ -13,6 +14,44 @@ import OpenInNew from '@mui/icons-material/OpenInNew';
 import Person from '@mui/icons-material/Person';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+
+const circulate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }`;
+
+const Loader = () => (
+  <Box
+    sx={{
+      borderRadius: '50%',
+      border: 4,
+      borderColor: 'primary.lightBg',
+      width: '1.25em',
+      height: '1.25em',
+      boxSizing: 'border-box',
+      position: 'relative',
+    }}
+  >
+    <Box
+      sx={{
+        position: 'absolute',
+        top: -4,
+        left: -4,
+        width: '1.25em',
+        height: '1.25em',
+        borderRadius: '50%',
+        border: '4px solid',
+        borderColor: (theme) => `${theme.vars.palette.primary.lightColor} transparent transparent`,
+        animation: `${circulate} 1s ease infinite`,
+        boxSizing: 'inherit',
+      }}
+    />
+  </Box>
+);
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -124,6 +163,31 @@ export default function JoyButton() {
               <Link startDecorator={<Logout />}>Logout</Link>
             </li>
           </ul>
+          <Box sx={{ my: 2 }}>
+            <Link startDecorator={<Loader />} disabled sx={{ my: 2 }}>
+              Processing...
+            </Link>
+            <Link
+              color="neutral"
+              endDecorator={
+                <Box
+                  sx={{
+                    px: 0.5,
+                    py: 0.25,
+                    fontSize: 'xs',
+                    fontWeight: 'md',
+                    bgcolor: 'danger.500',
+                    color: '#fff',
+                    borderRadius: 'xs',
+                  }}
+                >
+                  HIRING!
+                </Box>
+              }
+            >
+              Careers
+            </Link>
+          </Box>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(buttonProps).map(([propName, propValue]) => (
