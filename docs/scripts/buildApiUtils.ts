@@ -103,13 +103,14 @@ export type ComponentInfo = {
 };
 
 const migratedBaseComponents = [
+  'BadgeUnstyled',
   'ButtonUnstyled',
   'MenuUnstyled',
   'MenuItemUnstyled',
-  'SelectUnstyled',
   'MultiSelectUnstyled',
-  'OptionUnstyled',
   'OptionGroupUnstyled',
+  'OptionUnstyled',
+  'SelectUnstyled',
 ];
 
 export const getGenericComponentInfo = (filename: string): ComponentInfo => {
