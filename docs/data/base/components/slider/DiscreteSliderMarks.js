@@ -95,6 +95,14 @@ const StyledSlider = styled(SliderUnstyled)(
     text-align: center;
     transform: translateX(-50%);
   }
+
+  & .${sliderUnstyledClasses.markLabel} {
+    font-family: IBM Plex Sans;
+    font-size: 12px;
+    position: absolute;
+    top: 20px;
+    transform: translateX(-50%);
+  }
 `,
 );
 
