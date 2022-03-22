@@ -305,4 +305,126 @@ describe('useListbox defaultReducer', () => {
       });
     });
   });
+
+  describe('action: textNavigation', () => {
+    it('should navigate to next match', () => {
+      const state: ListboxState<string> = {
+        highlightedValue: 'two',
+        selectedValue: null,
+      };
+
+      const action: ListboxAction<string> = {
+        type: ActionTypes.textNavigation,
+        isMatch: (option) => option === 'three',
+        startWithCurrentOption: false,
+        props: {
+          options: ['one', 'two', 'three', 'four', 'five'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          isOptionDisabled: () => false,
+          optionComparer: (o, v) => o === v,
+          multiple: false,
+        },
+      };
+
+      const result = defaultReducer(state, action);
+      expect(result.highlightedValue).to.equal('three');
+    });
+
+    it('should not move highlight when no matched options', () => {
+      const state: ListboxState<string> = {
+        highlightedValue: 'one',
+        selectedValue: null,
+      };
+
+      const action: ListboxAction<string> = {
+        type: ActionTypes.textNavigation,
+        isMatch: () => false,
+        startWithCurrentOption: false,
+        props: {
+          options: ['one', 'two', 'three', 'four', 'five'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          isOptionDisabled: () => false,
+          optionComparer: (o, v) => o === v,
+          multiple: false,
+        },
+      };
+
+      const result = defaultReducer(state, action);
+      expect(result.highlightedValue).to.equal('one');
+    });
+
+    it('should highlight first match that is not disabled', () => {
+      const state: ListboxState<string> = {
+        highlightedValue: 'one',
+        selectedValue: null,
+      };
+
+      const action: ListboxAction<string> = {
+        type: ActionTypes.textNavigation,
+        isMatch: (o) => o === 'two' || o === 'three',
+        startWithCurrentOption: false,
+        props: {
+          options: ['one', 'two', 'three', 'four', 'five'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          isOptionDisabled: (_, i) => i === 1,
+          optionComparer: (o, v) => o === v,
+          multiple: false,
+        },
+      };
+
+      const result = defaultReducer(state, action);
+      expect(result.highlightedValue).to.equal('three');
+    });
+
+    it('should move highlight to disabled items if disabledItemsFocusable=true', () => {
+      const state: ListboxState<string> = {
+        highlightedValue: 'one',
+        selectedValue: null,
+      };
+
+      const action: ListboxAction<string> = {
+        type: ActionTypes.textNavigation,
+        isMatch: (o) => o === 'two' || o === 'three',
+        startWithCurrentOption: false,
+        props: {
+          options: ['one', 'two', 'three', 'four', 'five'],
+          disableListWrap: false,
+          disabledItemsFocusable: true,
+          isOptionDisabled: (_, i) => i === 1,
+          optionComparer: (o, v) => o === v,
+          multiple: false,
+        },
+      };
+
+      const result = defaultReducer(state, action);
+      expect(result.highlightedValue).to.equal('two');
+    });
+
+    it('should not move highlight when disabled wrap and match is before highlighted option', () => {
+      const state: ListboxState<string> = {
+        highlightedValue: 'three',
+        selectedValue: null,
+      };
+
+      const action: ListboxAction<string> = {
+        type: ActionTypes.textNavigation,
+        isMatch: (o) => o === 'two',
+        startWithCurrentOption: false,
+        props: {
+          options: ['one', 'two', 'three', 'four', 'five'],
+          disableListWrap: true,
+          disabledItemsFocusable: false,
+          isOptionDisabled: (_, i) => i === 1,
+          optionComparer: (o, v) => o === v,
+          multiple: false,
+        },
+      };
+
+      const result = defaultReducer(state, action);
+      expect(result.highlightedValue).to.equal('three');
+    });
+  });
 });
