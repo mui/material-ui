@@ -3,8 +3,6 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import Paper, { PaperProps } from '@mui/material/Paper';
-import Container from '@mui/material/Container';
 
 export default function TestStandardPropsUsage() {
   const contentRef = React.useRef<HTMLDivElement | null>(null);
@@ -23,15 +21,3 @@ export default function TestStandardPropsUsage() {
     </Dialog>
   );
 }
-
-export interface HeaderProps
-  extends Omit<PaperProps, 'elevation' | 'square' | 'component' | 'variant'> {}
-
-// Test that polymoprism works
-export const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
-  ({ children, ...other }, ref) => (
-    <Paper ref={ref} component="header" {...other}>
-      <Container>{children}</Container>
-    </Paper>
-  ),
-);
