@@ -10,10 +10,10 @@ import {
 import { MenuItemMetadata, MenuItemState, UseMenuParameters } from './useMenu.types';
 import { EventHandlers } from '../utils';
 
-function stateReducer(
-  state: ListboxState<string>,
-  action: ListboxAction<string>,
-): ListboxState<string> {
+function stateReducer<TOption>(
+  state: ListboxState<TOption>,
+  action: ListboxAction<TOption>,
+): ListboxState<TOption> {
   if (
     action.type === ActionTypes.blur ||
     action.type === ActionTypes.optionHover ||
@@ -68,9 +68,10 @@ export default function useMenu(parameters: UseMenuParameters) {
     getRootProps,
     highlightedOption,
     setHighlightedValue: setListboxHighlight,
-  } = useListbox({
-    options: Object.keys(menuItems),
-    isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
+  } = useListbox<MenuItemMetadata>({
+    options: Object.values(menuItems),
+    optionStringifier: (option: MenuItemMetadata) => option.ref.current?.innerText ?? '',
+    isOptionDisabled: (menuItem) => menuItem?.disabled || false,
     listboxRef: handleRef,
     focusManagement: 'DOM',
     id: listboxId,
@@ -80,13 +81,13 @@ export default function useMenu(parameters: UseMenuParameters) {
 
   const highlightFirstItem = React.useCallback(() => {
     if (Object.keys(menuItems).length > 0) {
-      setListboxHighlight(menuItems[Object.keys(menuItems)[0]].id);
+      setListboxHighlight(menuItems[Object.keys(menuItems)[0]]);
     }
   }, [menuItems, setListboxHighlight]);
 
   const highlightLastItem = React.useCallback(() => {
     if (Object.keys(menuItems).length > 0) {
-      setListboxHighlight(menuItems[Object.keys(menuItems)[Object.keys(menuItems).length - 1]].id);
+      setListboxHighlight(menuItems[Object.keys(menuItems)[Object.keys(menuItems).length - 1]]);
     }
   }, [menuItems, setListboxHighlight]);
 
@@ -118,7 +119,7 @@ export default function useMenu(parameters: UseMenuParameters) {
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)
     if (listboxRef.current?.contains(document.activeElement) && highlightedOption !== null) {
-      menuItems?.[highlightedOption]?.ref.current?.focus();
+      highlightedOption.ref.current?.focus();
     }
   }, [highlightedOption, menuItems]);
 
@@ -133,7 +134,7 @@ export default function useMenu(parameters: UseMenuParameters) {
   });
 
   const getItemState = (id: string): MenuItemState => {
-    const { disabled, highlighted } = getOptionState(id);
+    const { disabled, highlighted } = getOptionState(menuItems[id]);
     return { disabled, highlighted };
   };
 
