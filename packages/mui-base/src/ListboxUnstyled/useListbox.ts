@@ -16,6 +16,8 @@ import { EventHandlers } from '../utils/types';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
+const defaultOptionStringifier = <TOption>(option: TOption) =>
+  typeof option === 'string' ? option : String(option);
 
 const textCriteriaMatches = <TOption>(
   nextFocus: TOption,
@@ -43,7 +45,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     listboxRef: externalListboxRef,
     multiple = false,
     optionComparer = defaultOptionComparer,
-    optionStringifier,
+    optionStringifier = defaultOptionStringifier,
     options,
     stateReducer: externalReducer,
   } = props;

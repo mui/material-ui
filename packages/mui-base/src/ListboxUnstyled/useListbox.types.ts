@@ -147,8 +147,9 @@ interface UseListboxCommonProps<TOption> {
   optionIdGenerator?: (option: TOption, index: number) => string;
   /**
    * A function that converts an object to its string representation
+   * @default (o) => o
    */
-  optionStringifier: (option: TOption) => string;
+  optionStringifier?: (option: TOption) => string;
   /**
    * Array of options to be rendered in the list.
    */
