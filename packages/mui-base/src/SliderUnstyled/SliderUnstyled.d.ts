@@ -5,11 +5,12 @@ import { SliderUnstyledTypeMap } from './SliderUnstyledProps';
  *
  * Demos:
  *
- * - [Slider](https://mui.com/components/slider/)
+ * - [Slider](https://mui.com/base/react-slider/)
+ * - [Slider](https://mui.com/material/react-slider/)
  *
  * API:
  *
- * - [SliderUnstyled API](https://mui.com/api/slider-unstyled/)
+ * - [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
  */
 declare const SliderUnstyled: OverridableComponent<SliderUnstyledTypeMap>;
 
