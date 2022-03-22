@@ -57,6 +57,8 @@ const InputRoot = styled('div', {
     '--Input-placeholderOpacity': 0.5,
     '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
+    '--Input-focusedHighlight':
+      theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     boxSizing: 'border-box',
     height: `var(--Input-height)`,
     minWidth: 0, // forces the Input to stay inside a container by default
@@ -91,17 +93,14 @@ const InputRoot = styled('div', {
       margin: 'calc(var(--variant-outlinedBorderWidth) * -1)', // for outlined variant
     },
   },
-  theme.variants[`${ownerState.variant!}`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   ownerState.variant !== 'contained' && {
-    color: theme.vars.palette[ownerState.color || 'neutral']?.overrideTextPrimary,
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
       '&:before': {
-        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) ${
-          theme.vars.palette[ownerState.color || 'primary']?.[500]
-        }`,
+        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
       },
     },
   },
@@ -127,7 +126,7 @@ const InputInput = styled('input', {
   fontSize: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color || 'neutral']?.overrideTextPrimary,
+    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
   },
   '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
   '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
@@ -146,7 +145,7 @@ const InputStartAdornment = styled('span', {
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
-    color: theme.vars.palette[ownerState.color || 'neutral']?.[`${ownerState.variant!}Color`],
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
   }),
 }));
 
@@ -158,7 +157,7 @@ const InputEndAdornment = styled('span', {
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
   marginRight: 'calc(var(--Input-adornment-offset) * -1)',
-  color: theme.vars.palette[ownerState.color || 'neutral']?.[`${ownerState.variant!}Color`],
+  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
@@ -174,7 +173,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     autoComplete,
     autoFocus,
     className,
-    color,
+    color = 'neutral',
     component,
     components = {},
     componentsProps = {},
@@ -343,6 +342,7 @@ Input.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),

@@ -73,7 +73,6 @@ const ListItemButtonRoot = styled('div', {
     ...(ownerState.selected && {
       fontWeight: theme.vars.fontWeight.md,
     }),
-    '&.Mui-focusVisible': theme.focus.default,
     // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
     // We want to be specific on what siblings the gap should be added.
     [`& + .${listItemButtonClasses.root}`]: ownerState.row
@@ -86,14 +85,6 @@ const ListItemButtonRoot = styled('div', {
       : {
           marginTop: 'var(--List-gap)',
         },
-    // default color & background styles when `color` prop is not specified or set as default
-    ...(!ownerState.color &&
-      !ownerState.selected && {
-        color: theme.vars.palette.text.secondary,
-        '&:hover': {
-          color: theme.vars.palette.text.primary,
-        },
-      }),
   },
   {
     ...(ownerState.variant === 'outlined' && {
@@ -105,10 +96,11 @@ const ListItemButtonRoot = styled('div', {
         'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     }),
   },
+  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
 ]);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
@@ -125,7 +117,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     action,
     component = 'div',
     selected = false,
-    color = selected ? 'primary' : undefined,
+    color = selected ? 'primary' : 'neutral',
     variant = 'text',
     ...other
   } = props;
@@ -203,6 +195,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
