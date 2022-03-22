@@ -85,7 +85,9 @@ function run() {
 /:lang/components/data-grid/* /:lang/x/react-data-grid/:splat/ 301
 
 /api/data-grid/* /x/api/data-grid/:splat 301
-/:lang/api/data-grid/* /:lang/x/api/data-grid/:splat 301
+### specific to current supported language, otherwise this case does not work /x/api/data-grid/* => /x/x/api/data-grid/*
+/zh/api/data-grid/* /zh/x/api/data-grid/:splat 301
+/pt/api/data-grid/* /pt/x/api/data-grid/:splat 301
 
 /components/date-pickers/ /x/react-date-pickers/date-picker/ 301
 /:lang/components/date-pickers/ /:lang/x/react-date-pickers/date-picker/ 301
