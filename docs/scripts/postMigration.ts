@@ -270,12 +270,12 @@ function run() {
   );
 
   // remove X redirects because of the above redirects
-  redirects
-    .replace('/api/*/ https://docs-v5--material-ui-x.netlify.app/api/:splat/ 200', '')
-    .replace('/:lang/api/*/ https://docs-v5--material-ui-x.netlify.app/:lang/api/:splat/ 200', '')
-    .replace('/components/* https://docs-v5--material-ui-x.netlify.app/components/:splat 200', '')
+  redirects = redirects
+    .replace('/api/*/ https://docs-v5--material-ui-x.netlify.app/api/:splat/ 200\n', '')
+    .replace('/:lang/api/*/ https://docs-v5--material-ui-x.netlify.app/:lang/api/:splat/ 200\n', '')
+    .replace('/components/* https://docs-v5--material-ui-x.netlify.app/components/:splat 200\n', '')
     .replace(
-      '/:lang/components/* https://docs-v5--material-ui-x.netlify.app/:lang/components/:splat 200',
+      '/:lang/components/* https://docs-v5--material-ui-x.netlify.app/:lang/components/:splat 200\n',
       '',
     );
 
