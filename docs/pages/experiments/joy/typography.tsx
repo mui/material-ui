@@ -11,14 +11,14 @@ import Groups from '@mui/icons-material/Groups';
 import Outbound from '@mui/icons-material/Outbound';
 import Info from '@mui/icons-material/InfoOutlined';
 
-const circulate = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  
-  100% {
-    transform: rotate(360deg);
-  }`;
+const circulate = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+});
 
 const Loader = () => (
   <Box
