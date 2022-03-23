@@ -151,9 +151,9 @@ export default function ContentListView() {
             endIcon={<ArrowDropDown fontSize="md" />}
             sx={{
               '--Button-gap': '4px',
-              '--Button-iconColor': (theme) => theme.vars.palette.text.tertiary,
+              '--Icon-color': (theme) => theme.vars.palette.text.tertiary,
               '&:hover': {
-                '--Button-iconColor': 'initial',
+                '--Icon-color': 'initial',
               },
             }}
           >
