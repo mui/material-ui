@@ -108,7 +108,7 @@ export function usePickerState<TInput, TDateValue>(
       disableCloseOnSelect,
       isOpen,
       utils,
-      draftState.draft,
+      draftState.committed,
       valueManager.emptyValue,
       initialDate,
     ],
