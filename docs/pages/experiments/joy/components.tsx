@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Checkbox from '@mui/joy/Checkbox';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -13,11 +14,16 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListDivider from '@mui/joy/ListDivider';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
-import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
+import Input from '@mui/joy/Input';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Add from '@mui/icons-material/Add';
 import DeleteForever from '@mui/icons-material/DeleteForever';
+import Key from '@mui/icons-material/Key';
+import Visibility from '@mui/icons-material/Visibility';
+import Info from '@mui/icons-material/Info';
+import TaskAlt from '@mui/icons-material/TaskAltRounded';
 import Inbox from '@mui/icons-material/Inbox';
 import Drafts from '@mui/icons-material/Drafts';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
@@ -25,6 +31,7 @@ import Star from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -37,7 +44,7 @@ const ColorSchemePicker = () => {
   }
 
   return (
-    <Button
+    <IconButton
       variant="outlined"
       onClick={() => {
         if (mode === 'light') {
@@ -46,37 +53,23 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{
-        p: '0.25rem',
-        width: 'var(--Button-minHeight)',
-      }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
-    </Button>
+    </IconButton>
   );
 };
-
-const Input = styled('input')<{ ownerState: any }>(({ theme, ownerState }) => ({
-  boxSizing: 'border-box',
-  maxWidth: 80,
-  padding: '0.25rem 0.5rem',
-  border: 'none',
-  borderRadius: '4px',
-  minWidth: 0,
-  ...theme.typography.body2,
-  ...theme.variants.light.neutral,
-  cursor: 'pointer',
-  '&:focus-visible': theme.focus.default,
-  flexGrow: 1,
-  ...(ownerState.unit && {
-    paddingRight: '1.5rem',
-  }),
-}));
 
 const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
   return (
     <Box
-      sx={{ display: 'flex', alignItems: 'center', my: 1, gap: 1, justifyContent: 'space-between' }}
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 80px',
+        alignItems: 'center',
+        my: 1,
+        gap: 1,
+        justifyContent: 'space-between',
+      }}
     >
       <Typography
         htmlFor={id}
@@ -85,22 +78,34 @@ const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
       >
         {label}
       </Typography>
-      <Box sx={{ position: 'relative' }}>
-        <Input id={id} ownerState={{ unit, ...props }} {...props} />
-        {unit && (
-          <Typography
-            level="body3"
-            sx={{ position: 'absolute', right: '6px', top: '4px', pointerEvents: 'none' }}
-          >
-            {unit}
-          </Typography>
-        )}
-      </Box>
+      <Input
+        id={id}
+        size="sm"
+        variant="light"
+        {...props}
+        endAdornment={
+          unit ? (
+            <Typography level="body3" sx={{ pointerEvents: 'none' }}>
+              {unit}
+            </Typography>
+          ) : null
+        }
+      />
     </Box>
   );
 };
 
-const components = [
+const components: {
+  name: string;
+  render: (props: any) => React.ReactElement;
+  cssVars: {
+    id: string;
+    type?: 'number';
+    unit?: 'px';
+    defaultValue?: number;
+    inputProps?: React.AllHTMLAttributes<HTMLInputElement>;
+  }[];
+}[] = [
   {
     name: 'Button',
     render: (props: any) => (
@@ -115,7 +120,6 @@ const components = [
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Button-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
       { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
       { id: '--Button-gap', type: 'number', unit: 'px' },
@@ -145,6 +149,10 @@ const components = [
     name: 'Switch',
     render: (props: any) => (
       <React.Fragment>
+        <Switch variant="outlined" {...props} />
+        <Switch variant="outlined" defaultChecked {...props} />
+        <Switch variant="light" {...props} />
+        <Switch variant="light" defaultChecked {...props} />
         <Switch {...props} />
         <Switch defaultChecked {...props} />
       </React.Fragment>
@@ -175,18 +183,10 @@ const components = [
         }}
       >
         <List {...props}>
+          <ListDivider inset="startContent" />
           <ListItem>
             <ListItemDecorator>
-              <Box
-                sx={(theme) => ({
-                  display: 'inline-flex',
-                  borderRadius: '40px',
-                  p: '0.5rem',
-                  ...theme.variants.light.neutral,
-                })}
-              >
-                <Inbox />
-              </Box>
+              <Inbox />
             </ListItemDecorator>
             <ListItemContent>
               Inbox
@@ -194,47 +194,44 @@ const components = [
             </ListItemContent>
           </ListItem>
           <ListDivider inset="startContent" />
-          <ListItem>
-            <ListItemDecorator>
-              <Box
-                sx={(theme) => ({
-                  display: 'inline-flex',
-                  borderRadius: '40px',
-                  p: '0.5rem',
-                  ...theme.variants.light.neutral,
-                })}
-              >
-                <Drafts fontSize="md" />
-              </Box>
-            </ListItemDecorator>
-            <ListItemContent>
-              Drafts
-              <Typography level="body2">Jan 7, 2014</Typography>
-            </ListItemContent>
-          </ListItem>
         </List>
         <List component="nav" {...props}>
-          <ListItemButton selected color="primary">
-            <ListItemDecorator>
-              <Inbox />
-            </ListItemDecorator>
-            <ListItemContent>Inbox</ListItemContent>
-            <KeyboardArrowUp />
-          </ListItemButton>
-          <ListItem
-            component="div"
-            secondaryAction={
-              <IconButton variant="text" color="danger">
-                <DeleteForever />
-              </IconButton>
-            }
-          >
-            <ListItemButton>
+          <ListItem nested>
+            <ListItemButton selected color="primary">
               <ListItemDecorator>
-                <Star />
+                <Inbox />
               </ListItemDecorator>
-              <ListItemContent>Starred</ListItemContent>
+              <ListItemContent>Inbox</ListItemContent>
+              <KeyboardArrowUp />
             </ListItemButton>
+            <List>
+              <ListItem
+                nested
+                component="div"
+                endAction={
+                  <IconButton variant="text" color="danger">
+                    <DeleteForever />
+                  </IconButton>
+                }
+              >
+                <ListItemButton>
+                  <ListItemDecorator>
+                    <Star />
+                  </ListItemDecorator>
+                  <ListItemContent>Starred</ListItemContent>
+                </ListItemButton>
+                <List>
+                  <ListItem>
+                    <ListItemButton>
+                      <ListItemDecorator>
+                        <Drafts />
+                      </ListItemDecorator>
+                      Draft
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </ListItem>
+            </List>
           </ListItem>
           <ListDivider component="hr" />
           <ListItemButton>
@@ -244,7 +241,7 @@ const components = [
             <ListItemContent>Favorite</ListItemContent>
           </ListItemButton>
         </List>
-        <List component="nav" {...props}>
+        <List component="nav" size="sm" {...props}>
           <ListItemButton>
             <ListItemContent>New file</ListItemContent>
             <Typography level="body2">⌘ N</Typography>
@@ -262,16 +259,87 @@ const components = [
       </Box>
     ),
     cssVars: [
-      { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-gap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-item-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
-      { id: '--List-item-paddingX', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 48 },
-      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-insetStart', type: 'number', unit: 'px' },
+      { id: '--List-item-paddingY', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-paddingLeft', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-paddingRight', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-fontSize', type: 'number', unit: 'px', defaultValue: 16 },
+      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 0 },
+      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],
+  },
+  {
+    name: 'Input',
+    render: (props: any) => (
+      <React.Fragment>
+        <Input
+          placeholder="Placeholder"
+          startAdornment={<Key />}
+          endAdornment={
+            <IconButton size="sm" color="neutral">
+              <Visibility />
+            </IconButton>
+          }
+          {...props}
+        />
+        <Input
+          color="primary"
+          placeholder="Placeholder"
+          startAdornment={<Typography color="inherit">$</Typography>}
+          endAdornment={<Typography color="text.tertiary">USD</Typography>}
+          {...props}
+        />
+        <Input placeholder="Placeholder" color="danger" endAdornment={<Info />} {...props} />
+        <Input
+          placeholder="Placeholder"
+          variant="light"
+          color="success"
+          endAdornment={<TaskAlt />}
+          {...props}
+        />
+        <Input
+          placeholder="Placeholder"
+          variant="contained"
+          color="info"
+          endAdornment={<TaskAlt />}
+          {...props}
+        />
+      </React.Fragment>
+    ),
+    cssVars: [
+      { id: '--Input-height', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
+      {
+        id: '--Input-placeholderOpacity',
+        type: 'number',
+        defaultValue: 0.5,
+        inputProps: {
+          step: '0.1',
+          max: '1',
+          min: '0',
+        },
+      },
+      { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
+      { id: '--Input-decorator-offset', type: 'number', unit: 'px' },
+    ],
+  },
+  {
+    name: 'Checkbox',
+    render: (props: any) => (
+      <React.Fragment>
+        <Checkbox {...props} />
+        <Checkbox checked {...props} />
+        <Checkbox indeterminate {...props} />
+      </React.Fragment>
+    ),
+    cssVars: [{ id: '--Checkbox-size', type: 'number', unit: 'px', defaultValue: 20 }],
   },
 ];
 
@@ -349,7 +417,7 @@ function Playground({ initialName }: { initialName?: string }) {
             bottom: '1rem',
           }}
         >
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}
@@ -378,9 +446,12 @@ function Playground({ initialName }: { initialName?: string }) {
               type="number"
               label={cssVar.id}
               unit={cssVar.unit}
+              componentsProps={{
+                input: cssVar.inputProps,
+              }}
               value={
                 componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
-                cssVar.defaultValue ||
+                cssVar.defaultValue?.toString() ||
                 ''
               }
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -414,29 +485,7 @@ export default function JoyComponents() {
   }, []);
 
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       {mounted && <Playground initialName={router.query.name as string} />}
     </CssVarsProvider>

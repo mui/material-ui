@@ -188,7 +188,7 @@ function AppWrapper(props) {
   if (asPathWithoutLang.startsWith('/base')) {
     productPages = basePages;
   }
-  if (asPathWithoutLang.startsWith('/material')) {
+  if (asPathWithoutLang.startsWith('/material-ui')) {
     productPages = materialPages;
   }
   if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {

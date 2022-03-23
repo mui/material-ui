@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Portal component
 components: Portal
 githubLabel: 'component: Portal'

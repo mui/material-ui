@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 components: GlobalStyles
 ---
 

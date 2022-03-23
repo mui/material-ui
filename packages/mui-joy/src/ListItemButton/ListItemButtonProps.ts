@@ -9,6 +9,8 @@ import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
+export type ListItemButtonSlot = 'root';
+
 export interface ListItemButtonPropsVariantOverrides {}
 
 export interface ListItemButtonPropsColorOverrides {}
@@ -29,6 +31,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
     autoFocus?: boolean;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListItemButtonPropsColorOverrides>;
     /**
@@ -64,12 +67,9 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
     selected?: boolean;
     /**
      * The variant to use.
-     * @default 'light'
+     * @default 'text'
      */
-    selectedVariant?: OverridableStringUnion<
-      Exclude<VariantProp, 'text'>,
-      ListItemButtonPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<VariantProp, ListItemButtonPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

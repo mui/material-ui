@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Popover（弹出框）组件
 components: Grow, Popover
 githubLabel: 'component: Popover'

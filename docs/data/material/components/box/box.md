@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Box component
 githubLabel: 'component: Box'
 ---

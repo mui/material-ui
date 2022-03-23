@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Botão de ação flutuante
 components: Fab
 githubLabel: 'component: Fab'

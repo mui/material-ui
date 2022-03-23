@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Transition（过渡动画）组件
 components: Collapse, Fade, Grow, Slide, Zoom
 githubLabel: 'component: Transition'

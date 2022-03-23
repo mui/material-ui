@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Snackbar component
 components: Snackbar, SnackbarContent
 githubLabel: 'component: snackbar'
