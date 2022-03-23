@@ -151,7 +151,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ref: focusVisibleRef,
   } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState<boolean>(false);
-  const handlerRef = useForkRef(ref, focusVisibleRef) as React.Ref<HTMLAnchorElement>;
+  const handleRef = useForkRef(ref, focusVisibleRef) as React.Ref<HTMLAnchorElement>;
   const handleBlur = (event: React.FocusEvent<HTMLAnchorElement>) => {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
