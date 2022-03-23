@@ -9,28 +9,68 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getTypographyUtilityClass } from './typographyClasses';
 
+export const TypographyContext = React.createContext(false);
+
 const useUtilityClasses = (ownerState: TypographyProps) => {
   const { gutterBottom, noWrap, level } = ownerState;
 
   const slots = {
     root: ['root', level, gutterBottom && 'gutterBottom', noWrap && 'noWrap'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   return composeClasses(slots, getTypographyUtilityClass, {});
 };
 
-export const TypographyRoot = styled('span', {
+const StartDecorator = styled('span', {
+  name: 'MuiTypography',
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
+})<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
+  display: 'inline-flex',
+  marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
+    marginTop: '2px', // this makes the alignment perfect in most cases
+  }),
+}));
+
+const EndDecorator = styled('span', {
+  name: 'MuiTypography',
+  slot: 'endDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
+})<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
+  display: 'inline-flex',
+  marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
+    marginTop: '2px', // this makes the alignment perfect in most cases
+  }),
+}));
+
+const TypographyRoot = styled('span', {
   name: 'MuiTypography',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TypographyProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: TypographyProps & { nested: boolean } }>(({ theme, ownerState }) => ({
   '--Icon-fontSize': '1.25em',
   margin: 0,
-  display: 'flex',
-  alignItems: 'center',
-  fontFamily: theme.vars.fontFamily.body,
-  ...(ownerState.component === 'span' && {
-    display: 'inline-flex',
+  ...(ownerState.nested
+    ? {
+        display: 'inline',
+      }
+    : {
+        fontFamily: theme.vars.fontFamily.body, // for nested typography, the font family will be inherited.
+        display: 'block',
+      }),
+  ...((ownerState.startDecorator || ownerState.endDecorator) && {
+    display: 'flex',
+    alignItems: 'center',
+    ...(ownerState.nested && {
+      display: 'inline-flex',
+      ...(ownerState.startDecorator && {
+        verticalAlign: 'bottom', // to make the text align with the parent's content
+      }),
+    }),
   }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
   ...(ownerState.noWrap && {
@@ -62,6 +102,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     name: 'MuiTypography',
   });
 
+  const nested = React.useContext(TypographyContext);
+
   const props = extendSxProp(themeProps);
 
   const {
@@ -70,10 +112,15 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     color, // declare to prevent type error spread to TypographyRoot
     gutterBottom = false,
     noWrap = false,
-    level = 'body1',
+    level: levelProp = 'body1',
     levelMapping = {},
+    children,
+    endDecorator,
+    startDecorator,
     ...other
   } = props;
+
+  const level = nested ? inProps.level || 'inherit' : levelProp;
 
   const ownerState = {
     ...props,
@@ -82,20 +129,37 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     component,
     gutterBottom,
     noWrap,
+    nested,
   };
 
-  const Component = component || levelMapping[level] || defaultVariantMapping[level] || 'span';
+  const Component =
+    component || (nested ? 'span' : levelMapping[level] || defaultVariantMapping[level] || 'span');
 
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <TypographyRoot
-      as={Component as React.ElementType}
-      ref={ref}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      {...other}
-    />
+    <TypographyContext.Provider value>
+      <TypographyRoot
+        as={Component as React.ElementType}
+        ref={ref}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        {...other}
+      >
+        {startDecorator && (
+          <StartDecorator ownerState={ownerState} className={classes.startDecorator}>
+            {startDecorator}
+          </StartDecorator>
+        )}
+
+        {children}
+        {endDecorator && (
+          <EndDecorator ownerState={ownerState} className={classes.endDecorator}>
+            {endDecorator}
+          </EndDecorator>
+        )}
+      </TypographyRoot>
+    </TypographyContext.Provider>
   );
 }) as OverridableComponent<TypographyTypeMap>;
 
@@ -121,6 +185,10 @@ Typography.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * Element placed after the children.
+   */
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the text will have a bottom margin.
    * @default false
@@ -161,6 +229,10 @@ Typography.propTypes /* remove-proptypes */ = {
    * @default false
    */
   noWrap: PropTypes.bool,
+  /**
+   * Element placed before the children.
+   */
+  startDecorator: PropTypes.node,
 } as any;
 
 export default Typography;

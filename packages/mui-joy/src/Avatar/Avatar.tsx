@@ -36,13 +36,17 @@ const AvatarRoot = styled('div', {
     {
       ...(ownerState.size === 'sm' && {
         '--Avatar-size': '2rem',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Avatar-size': '2.5rem',
+        fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Avatar-size': '3rem',
+        fontSize: theme.vars.fontSize.lg,
       }),
+      fontFamily: theme.vars.fontFamily.body,
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
@@ -84,8 +88,8 @@ const AvatarFallback = styled(Person, {
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
 })({
-  width: '75%',
-  height: '75%',
+  width: '64%',
+  height: '64%',
 });
 
 type UseLoadedProps = { src?: string; srcSet?: string; crossOrigin?: any; referrerPolicy?: any };
