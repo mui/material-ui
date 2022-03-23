@@ -7,7 +7,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 packageName: '@mui/base'
 ---
 
-# Modal
+# Unstyled modal
 
 <p class="description">The `Modal` component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
 
