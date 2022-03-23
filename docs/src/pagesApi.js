@@ -106,7 +106,6 @@ module.exports = [
   { pathname: '/api-docs/popover' },
   { pathname: '/api-docs/popper' },
   { pathname: '/api-docs/popper-unstyled' },
-  { pathname: '/api-docs/portal' },
   { pathname: '/api-docs/radio' },
   { pathname: '/api-docs/radio-group' },
   { pathname: '/api-docs/rating' },
