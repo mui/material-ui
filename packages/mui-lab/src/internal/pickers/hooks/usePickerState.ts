@@ -146,6 +146,7 @@ export function usePickerState<TInput, TDateValue>(
       open: isOpen,
       rawValue: value,
       openPicker: () => setIsOpen(true),
+      closePicker: () => setIsOpen(false),
     }),
     [onChange, isOpen, value, setIsOpen],
   );

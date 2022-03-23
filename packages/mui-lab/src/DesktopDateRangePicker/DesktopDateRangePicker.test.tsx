@@ -317,14 +317,15 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    fireEvent.focus(screen.getAllByRole('textbox')[0]);
+    fireEvent.click(screen.getAllByRole('textbox')[0]);
+    // console.log("🚀 ~ file: DesktopDateRangePicker.test.tsx ~ line 321 ~ it ~ screen", screen.getAllByRole('textbox')[0].getByText())
     expect(screen.getByText('May 2019')).toBeVisible();
 
-    fireEvent.focus(screen.getAllByRole('textbox')[1]);
+    fireEvent.click(screen.getAllByRole('textbox')[1]);
     expect(screen.getByText('October 2019')).toBeVisible();
 
     // scroll back
-    fireEvent.focus(screen.getAllByRole('textbox')[0]);
+    fireEvent.click(screen.getAllByRole('textbox')[0]);
     expect(screen.getByText('May 2019')).toBeVisible();
   });
 
@@ -339,7 +340,7 @@ describe('<DesktopDateRangePicker />', () => {
       />,
     );
 
-    fireEvent.focus(screen.getAllByRole('textbox')[0]);
+    fireEvent.click(screen.getAllByRole('textbox')[0]);
     expect(screen.getByRole('tooltip')).toBeVisible();
   });
 
