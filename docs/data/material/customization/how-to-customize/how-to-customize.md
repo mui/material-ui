@@ -5,9 +5,9 @@ components: GlobalStyles
 
 # How to customize
 
-<p class="description">You can easily customize the appearance of a MUI component.</p>
+<p class="description">Learn the many options you have for customizing the Material UI components.</p>
 
-As components can be used in different contexts, there are several approaches to customizing them. Going from the narrowest use-case to the broadest, these are:
+There are several approaches you could take in order to customize a component's styles, depending on the specific context. Let's go through them from the narrowest use case to the broadest:
 
 1. [One-off customization](#1-one-off-customization)
 1. [Reusable style overrides](#2-reusable-style-overrides)
@@ -24,21 +24,21 @@ If you want to change the styles of a component in a specific place and don't wa
 The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop), which is available on all MUI components.
 Here is an example:
 
-{{"demo": "SxProp.js"}}
+{{"demo": "SxProp.js" }}
 
-### Overriding nested component styles
+#### Overriding nested component styles
 
-Let's use the above demo as an example. Say you want to change the Slider's thumb from a circle to a square. You can use the browser dev tools to identify the component slot you want to override.
+While using the `sx` prop, you can use classes provided by Material UI to customize specific slots of a component. As an example, let's say you want to change the Slider's thumb from a circle to a square.
+
+You can use the browser dev tools to identify the component slot you want to override:
 
 <img src="/static/images/customization/dev-tools.png" alt="dev-tools" width="406" />
 
-In this example, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` so the name of the component is `Slider` and the name of the slot is `thumb`.
-
-You now know that you need to target the `.MuiSlider-thumb` class name for overriding the look of the thumb:
+Note that the styles are applied with `.css-ae2u5c-MuiSlider-thumb` so the name of the component is `Slider` and the name of the slot is `thumb`. Thefore, you need to target the `.MuiSlider-thumb` class name to override the thumb's styles, like so:
 
 {{"demo": "DevTools.js"}}
 
-Doing this whenever trying to customize a component saves you a lot of time! The styles injected into the DOM by MUI rely on class names that [follow a simple pattern](/styles/advanced/#class-names):
+The styles injected into the DOM by Material UI rely on class names that [follow a simple pattern](/styles/advanced/#class-names):
 `[hash]-Mui[Component name]-[name of the slot]`.
 
 > ⚠️ These class names can't be used as CSS selectors because they are unstable,
