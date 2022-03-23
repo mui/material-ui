@@ -46,7 +46,6 @@ const ColorSchemePicker = () => {
   return (
     <IconButton
       variant="outlined"
-      square
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');

@@ -188,41 +188,6 @@ export default function JoyButton() {
               Careers
             </Link>
           </Box>
-          <Box>
-            <Typography level="body2">
-              Keep me updated about the new features and upcoming improvements (by doing this you
-              accept the <Link endIcon={<OpenInNew />}>terms</Link> and the{' '}
-              <Link disabled startIcon={<OpenInNew />}>
-                privacy policy
-              </Link>
-              ).
-            </Typography>
-          </Box>
-          <Box>
-            <span>
-              Keep me updated about the new features and upcoming improvements (by doing this you
-              accept the{' '}
-              <Link level="inherit" endIcon={<OpenInNew />}>
-                terms
-              </Link>{' '}
-              and the{' '}
-              <Link level="inherit" startIcon={<OpenInNew />}>
-                privacy policy
-              </Link>
-              ).
-            </span>
-          </Box>
-          <ul>
-            <li>
-              <Link startIcon={<Person />}>Profile</Link>
-            </li>
-            <li>
-              <Link startIcon={<Settings />}>Settings</Link>
-            </li>
-            <li>
-              <Link startIcon={<Logout />}>Logout</Link>
-            </li>
-          </ul>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(buttonProps).map(([propName, propValue]) => (

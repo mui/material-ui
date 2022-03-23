@@ -329,9 +329,6 @@ const strapiTheme: JoyThemeInput = {
     MuiButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
-          ...(!ownerState.square && {
-            '--Button-gutter': '1rem',
-          }),
           borderRadius: '4px',
           ...theme.typography.buttonText,
           ...(ownerState.size === 'sm' && {
