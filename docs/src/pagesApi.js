@@ -12,7 +12,6 @@ module.exports = [
   { pathname: '/api-docs/backdrop' },
   { pathname: '/api-docs/backdrop-unstyled' },
   { pathname: '/api-docs/badge' },
-  { pathname: '/api-docs/badge-unstyled' },
   { pathname: '/api-docs/bottom-navigation' },
   { pathname: '/api-docs/bottom-navigation-action' },
   { pathname: '/api-docs/breadcrumbs' },

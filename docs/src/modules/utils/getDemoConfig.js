@@ -4,6 +4,7 @@ import { getDependencies } from 'docs/src/modules/utils/helpers';
 function jsDemo(demoData, options) {
   return {
     dependencies: getDependencies(demoData.raw, {
+      codeLanguage: CODE_VARIANTS.JS,
       muiCommitRef:
         process.env.PULL_REQUEST && options.previewPackage ? process.env.COMMIT_REF : undefined,
     }),

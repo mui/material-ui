@@ -67,6 +67,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   const {
     className,
     component,
+    color, // declare to prevent type error spread to TypographyRoot
     gutterBottom = false,
     noWrap = false,
     level = 'body1',
@@ -111,6 +112,10 @@ Typography.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

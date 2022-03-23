@@ -54,7 +54,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'light'
      */
     variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, AvatarPropsVariantOverrides>;
   };
