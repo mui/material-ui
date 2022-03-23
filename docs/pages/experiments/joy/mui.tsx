@@ -10,6 +10,7 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
+import Input from '@mui/joy/Input';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
@@ -24,7 +25,6 @@ import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import Search from '@mui/icons-material/Search';
 import Settings from '@mui/icons-material/Settings';
-import GitHub from '@mui/icons-material/GitHub';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import ContentCopy from '@mui/icons-material/ContentCopy';
@@ -40,6 +40,12 @@ import ViewModuleRounded from '@mui/icons-material/ViewModuleRounded';
 import ViewAgendaRounded from '@mui/icons-material/ViewAgendaRounded';
 import ViewWeekRounded from '@mui/icons-material/ViewWeekRounded';
 import ViewSidebarRounded from '@mui/icons-material/ViewSidebarRounded';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
+import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const TaskCard = () => (
   <Sheet
@@ -62,7 +68,7 @@ const TaskCard = () => (
       color="text.secondary"
       level="body3"
       fontWeight="md"
-      startIcon={<ScheduleRounded sx={{ color: '#fff' }} />}
+      startDecorator={<ScheduleRounded sx={{ color: '#fff' }} />}
     >
       March 25th
     </Typography>
@@ -234,7 +240,7 @@ const DatePicker = () => (
     }}
   >
     <Box sx={{ gridColumn: '1 / 6', pl: 1 }}>
-      <Link component="button" underline="none" variant="text" endIcon={<ArrowDropDown />}>
+      <Link component="button" underline="none" variant="text" endDecorator={<ArrowDropDown />}>
         March 2022
       </Link>
     </Box>
@@ -244,8 +250,8 @@ const DatePicker = () => (
     <IconButton size="sm" variant="text" color="primary">
       <KeyboardArrowRight />
     </IconButton>
-    {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d) => (
-      <Typography level="body3" key={d} sx={{ justifySelf: 'center' }}>
+    {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, index) => (
+      <Typography level="body3" key={index} sx={{ justifySelf: 'center' }}>
         {d}
       </Typography>
     ))}
@@ -254,7 +260,7 @@ const DatePicker = () => (
     {[...Array(30)].map((d, index) => {
       if (index === 20) {
         return (
-          <Box sx={{ justifySelf: 'center' }}>
+          <Box key={index} sx={{ justifySelf: 'center' }}>
             <IconButton
               variant="contained"
               color="primary"
@@ -266,7 +272,7 @@ const DatePicker = () => (
         );
       }
       return (
-        <Typography level="body3" color="text.secondary" key={d} sx={{ justifySelf: 'center' }}>
+        <Typography level="body3" color="text.secondary" key={index} sx={{ justifySelf: 'center' }}>
           {index + 1}
         </Typography>
       );
@@ -274,6 +280,59 @@ const DatePicker = () => (
     <Box sx={{ gridColumn: '1 / 7' }}>&nbsp;</Box>
   </Sheet>
 );
+
+function GetStartedButtons() {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        '&& > *': { minWidth: 'clamp(0px, (492px - 100%) * 999 ,100%)' },
+      }}
+    >
+      <Button
+        endIcon={<KeyboardArrowRight />}
+        sx={{ flexShrink: 0, fontWeight: 'md', minHeight: 50 }}
+      >
+        Get started
+      </Button>
+      <Box sx={{ p: 1 }} />
+      <Button
+        variant="outlined"
+        color="neutral"
+        endIcon={<ContentCopy />}
+        sx={{
+          maxWidth: 300,
+          pl: 2,
+          fontFamily: 'code',
+          fontSize: 'xs',
+          minHeight: 50,
+          '[data-mui-color-scheme="dark"] &': {
+            bgcolor: '#132f4c',
+            borderColor: '#1e4976',
+            '&:hover': {
+              borderColor: '#39f',
+              bgcolor: '#173a5e',
+              '--Icon-color': '#39f',
+            },
+          },
+        }}
+      >
+        <Box
+          component="span"
+          sx={{
+            minWidth: 0,
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+          }}
+        >
+          npm install @mui/material @emotion/react @emotion/styledx
+        </Box>
+      </Button>
+    </Box>
+  );
+}
 
 const Tabs = () => (
   <Sheet
@@ -317,6 +376,7 @@ const ThemeSlider = () => (
     >
       {[0, 0.25, 0.5, 0.75, 1].map((num) => (
         <Box
+          key={num}
           sx={{
             width: 2,
             height: 2,
@@ -410,6 +470,7 @@ const ViewToggleButton = () => (
       const selected = index === 0;
       return (
         <IconButton
+          key={index}
           variant="outlined"
           color={selected ? 'primary' : 'neutral'}
           sx={{ zIndex: selected ? 1 : 'auto' }}
@@ -449,14 +510,227 @@ const ColorSchemePicker = () => {
   );
 };
 
+const themeFont: JoyThemeInput = {
+  fontFamily: {
+    body: '"IBM Plex Sans"',
+    display: '"PlusJakartaSans-ExtraBold"',
+    code: ['Consolas', 'Menlo', 'Monaco', 'Andale Mono', 'Ubuntu Mono', 'monospace'].join(','),
+  },
+  typography: {
+    h1: {
+      fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
+      fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4rem)',
+      fontWeight: 800,
+      lineHeight: 78 / 70,
+    },
+    h2: {
+      fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
+      fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
+      fontWeight: 800,
+      lineHeight: 44 / 36,
+      // color: mode === 'dark' ? grey[100] : blueDark[700],
+    },
+    h3: {
+      fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
+      fontSize: `${36 / 16}rem`,
+      lineHeight: 44 / 36,
+      letterSpacing: 0.2,
+    },
+    h4: {
+      fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
+      fontSize: `${28 / 16}rem`,
+      lineHeight: 42 / 28,
+      letterSpacing: 0.2,
+    },
+    h5: {
+      fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
+      fontSize: `${24 / 16}rem`,
+      lineHeight: 36 / 24,
+      letterSpacing: 0.1,
+      // color: mode === 'dark' ? blue[300] : blue.main,
+    },
+    h6: {
+      fontSize: `${20 / 16}rem`,
+      lineHeight: 30 / 20,
+    },
+    body1: {
+      fontSize: '1rem', // 16px
+      lineHeight: 24 / 16,
+      letterSpacing: 0,
+    },
+    body2: {
+      fontSize: `${14 / 16}rem`, // 14px
+      lineHeight: 21 / 14,
+      letterSpacing: 0,
+    },
+  },
+};
+
+const themePalette: JoyThemeInput = {
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          50: '#F0F7FF',
+          100: '#C2E0FF',
+          200: '#99CCF3',
+          300: '#66B2FF',
+          400: '#3399FF',
+          500: '#007FFF',
+          600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
+          700: '#0059B2',
+          800: '#004C99',
+          900: '#003A75',
+          textColor: 'var(--joy-palette-primary-500)',
+          outlinedColor: 'var(--joy-palette-primary-500)',
+          containedBg: 'var(--joy-palette-primary-500)',
+        },
+        neutral: {
+          50: '#F3F6F9',
+          100: '#E7EBF0',
+          200: '#E0E3E7',
+          300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+          400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+          500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+          600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+          700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+          800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
+          900: '#1A2027',
+          outlinedHoverBg: 'var(--joy-palette-neutral-50)',
+          outlinedHoverBorder: 'var(--joy-palette-neutral-300)',
+        },
+        danger: {
+          50: '#FFF0F1',
+          100: '#FFDBDE',
+          200: '#FFBDC2',
+          300: '#FF99A2',
+          400: '#FF7A86',
+          500: '#FF505F',
+          600: '#EB0014',
+          700: '#C70011',
+          800: '#94000D',
+          900: '#570007',
+        },
+        divider: 'var(--joy-palette-neutral-100)',
+        // @ts-ignore
+        gradient: `linear-gradient(180deg, var(--joy-palette-neutral-50) 0%, #FFFFFF 100%)`,
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          50: '#F0F7FF',
+          100: '#C2E0FF',
+          200: '#99CCF3',
+          300: '#66B2FF',
+          400: '#3399FF',
+          500: '#007FFF',
+          600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
+          700: '#0059B2',
+          800: '#004C99',
+          900: '#003A75',
+        },
+        neutral: {
+          50: '#F3F6F9',
+          100: '#E7EBF0',
+          200: '#E0E3E7',
+          300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+          400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+          500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+          600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+          700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+          800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
+          900: '#1A2027',
+          outlinedBorder: '#132F4C',
+          outlinedHoverBorder: '#173A5E',
+        },
+        danger: {
+          50: '#FFF0F1',
+          100: '#FFDBDE',
+          200: '#FFBDC2',
+          300: '#FF99A2',
+          400: '#FF7A86',
+          500: '#FF505F',
+          600: '#EB0014',
+          700: '#C70011',
+          800: '#94000D',
+          900: '#570007',
+        },
+        background: {
+          body: '#001E3C',
+          level1: '#0A1929',
+        },
+        divider: 'rgba(194, 224, 255, 0.08)',
+        // @ts-ignore
+        gradient: `linear-gradient(180deg, #0A1929 0%, #001E3C 100%)`,
+      },
+    },
+  },
+};
+
+const themeComponents: JoyThemeInput = {
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.variant === 'outlined' &&
+            ownerState.color === 'neutral' && {
+              '[data-mui-color-scheme="light"] &': {
+                backgroundColor: theme.vars.palette.neutral[50],
+                '&:hover': {
+                  borderColor: theme.vars.palette.neutral[300],
+                },
+              },
+            }),
+        }),
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.variant === 'outlined' &&
+            ownerState.color === 'neutral' && {
+              color: theme.vars.palette.primary.textColor,
+              '&:hover': {
+                color: theme.vars.palette.primary.textColor,
+              },
+            }),
+        }),
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...((ownerState.level === 'h1' || ownerState.level === 'h2') && {
+            '& .MuiTypography-inherit': {
+              background: `linear-gradient(to right, ${theme.vars.palette.primary[500]}, ${theme.vars.palette.primary[700]})`,
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            },
+            [`[data-mui-color-scheme="dark"] & .MuiTypography-inherit`]: {
+              background: theme.vars.palette.primary[400],
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            },
+          }),
+        }),
+      },
+    },
+  },
+};
+
 export default function MUI() {
   const [open, setOpen] = React.useState(false);
-  const [font, setFont] = React.useState<undefined | JoyThemeInput>(undefined);
-  const [spacer, setSpacer] = React.useState<undefined | number>(undefined);
-  const [palette, setPalette] = React.useState<undefined | JoyThemeInput>(undefined);
-  const [components, setComponents] = React.useState<undefined | JoyThemeInput['components']>(
-    undefined,
-  );
+  const [font, setFont] = React.useState<undefined | JoyThemeInput>(themeFont);
+  const [spacer, setSpacer] = React.useState<undefined | number>(10);
+  const [palette, setPalette] = React.useState<undefined | JoyThemeInput>(themePalette);
+  const [components, setComponents] = React.useState<undefined | JoyThemeInput>(themeComponents);
+  React.useEffect(() => {
+    setFont(themeFont);
+    setSpacer(10);
+    setPalette(themePalette);
+    setComponents(themeComponents);
+  }, []);
   return (
     <CssVarsProvider
       disableTransitionOnChange
@@ -464,7 +738,7 @@ export default function MUI() {
         ...(font && { ...font }),
         ...(palette && { ...palette }),
         ...(spacer && { spacing: spacer }),
-        ...(components && { components }),
+        ...(components && { ...components }),
       }}
     >
       <IconButton
@@ -472,7 +746,7 @@ export default function MUI() {
         color="neutral"
         size="lg"
         onClick={() => setOpen(!open)}
-        sx={{ position: 'fixed', bottom: '1rem', left: '1rem' }}
+        sx={{ position: 'fixed', bottom: '1rem', left: '1rem', zIndex: 1000 }}
       >
         <Settings />
       </IconButton>
@@ -496,74 +770,7 @@ export default function MUI() {
                 <ListItemButton
                   selected={!!font}
                   variant={font ? 'light' : 'text'}
-                  onClick={() =>
-                    setFont(
-                      font
-                        ? undefined
-                        : {
-                            fontFamily: {
-                              body: '"IBM Plex Sans"',
-                              display: '"PlusJakartaSans-ExtraBold"',
-                              code: [
-                                'Consolas',
-                                'Menlo',
-                                'Monaco',
-                                'Andale Mono',
-                                'Ubuntu Mono',
-                                'monospace',
-                              ].join(','),
-                            },
-                            typography: {
-                              h1: {
-                                fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
-                                fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4rem)',
-                                fontWeight: 800,
-                                lineHeight: 78 / 70,
-                              },
-                              h2: {
-                                fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
-                                fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
-                                fontWeight: 800,
-                                lineHeight: 44 / 36,
-                                // color: mode === 'dark' ? grey[100] : blueDark[700],
-                              },
-                              h3: {
-                                fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
-                                fontSize: `${36 / 16}rem`,
-                                lineHeight: 44 / 36,
-                                letterSpacing: 0.2,
-                              },
-                              h4: {
-                                fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
-                                fontSize: `${28 / 16}rem`,
-                                lineHeight: 42 / 28,
-                                letterSpacing: 0.2,
-                              },
-                              h5: {
-                                fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
-                                fontSize: `${24 / 16}rem`,
-                                lineHeight: 36 / 24,
-                                letterSpacing: 0.1,
-                                // color: mode === 'dark' ? blue[300] : blue.main,
-                              },
-                              h6: {
-                                fontSize: `${20 / 16}rem`,
-                                lineHeight: 30 / 20,
-                              },
-                              body1: {
-                                fontSize: '1rem', // 16px
-                                lineHeight: 24 / 16,
-                                letterSpacing: 0,
-                              },
-                              body2: {
-                                fontSize: `${14 / 16}rem`, // 14px
-                                lineHeight: 21 / 14,
-                                letterSpacing: 0,
-                              },
-                            },
-                          },
-                    )
-                  }
+                  onClick={() => setFont(font ? undefined : themeFont)}
                 >
                   <ListItemDecorator>
                     {font ? <CheckBox /> : <CheckBoxOutlineBlank />}
@@ -587,83 +794,7 @@ export default function MUI() {
                 <ListItemButton
                   selected={!!palette}
                   variant={palette ? 'light' : 'text'}
-                  onClick={() =>
-                    setPalette(
-                      palette
-                        ? undefined
-                        : {
-                            colorSchemes: {
-                              light: {
-                                palette: {
-                                  primary: {
-                                    50: '#F0F7FF',
-                                    100: '#C2E0FF',
-                                    200: '#99CCF3',
-                                    300: '#66B2FF',
-                                    400: '#3399FF',
-                                    500: '#007FFF',
-                                    600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
-                                    700: '#0059B2',
-                                    800: '#004C99',
-                                    900: '#003A75',
-                                    textColor: 'var(--joy-palette-primary-500)',
-                                    outlinedColor: 'var(--joy-palette-primary-500)',
-                                    containedBg: 'var(--joy-palette-primary-500)',
-                                  },
-                                  neutral: {
-                                    50: '#F3F6F9',
-                                    100: '#E7EBF0',
-                                    200: '#E0E3E7',
-                                    300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
-                                    400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
-                                    500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
-                                    600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
-                                    700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
-                                    800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
-                                    900: '#1A2027',
-                                    outlinedHoverBg: 'var(--joy-palette-neutral-50)',
-                                    outlinedHoverBorder: 'var(--joy-palette-neutral-300)',
-                                  },
-                                },
-                              },
-                              dark: {
-                                palette: {
-                                  primary: {
-                                    50: '#F0F7FF',
-                                    100: '#C2E0FF',
-                                    200: '#99CCF3',
-                                    300: '#66B2FF',
-                                    400: '#3399FF',
-                                    500: '#007FFF',
-                                    600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
-                                    700: '#0059B2',
-                                    800: '#004C99',
-                                    900: '#003A75',
-                                  },
-                                  neutral: {
-                                    50: '#F3F6F9',
-                                    100: '#E7EBF0',
-                                    200: '#E0E3E7',
-                                    300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
-                                    400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
-                                    500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
-                                    600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
-                                    700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
-                                    800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
-                                    900: '#1A2027',
-                                    outlinedBorder: '#132F4C',
-                                    outlinedHoverBorder: '#173A5E',
-                                  },
-                                  background: {
-                                    body: '#001E3C',
-                                    level1: '#0A1929',
-                                  },
-                                },
-                              },
-                            },
-                          },
-                    )
-                  }
+                  onClick={() => setPalette(palette ? undefined : themePalette)}
                 >
                   <ListItemDecorator>
                     {palette ? <CheckBox /> : <CheckBoxOutlineBlank />}
@@ -675,42 +806,7 @@ export default function MUI() {
                 <ListItemButton
                   selected={!!components}
                   variant={components ? 'light' : 'text'}
-                  onClick={() =>
-                    setComponents(
-                      components
-                        ? undefined
-                        : {
-                            MuiButton: {
-                              styleOverrides: {
-                                root: ({ ownerState, theme }) => ({
-                                  ...(ownerState.variant === 'outlined' &&
-                                    ownerState.color === 'neutral' && {
-                                      '[data-mui-color-scheme="light"] &': {
-                                        backgroundColor: theme.vars.palette.neutral[50],
-                                        '&:hover': {
-                                          borderColor: theme.vars.palette.neutral[300],
-                                        },
-                                      },
-                                    }),
-                                }),
-                              },
-                            },
-                            MuiIconButton: {
-                              styleOverrides: {
-                                root: ({ ownerState, theme }) => ({
-                                  ...(ownerState.variant === 'outlined' &&
-                                    ownerState.color === 'neutral' && {
-                                      color: theme.vars.palette.primary.textColor,
-                                      '&:hover': {
-                                        color: theme.vars.palette.primary.textColor,
-                                      },
-                                    }),
-                                }),
-                              },
-                            },
-                          },
-                    )
-                  }
+                  onClick={() => setComponents(components ? undefined : themeComponents)}
                 >
                   <ListItemDecorator>
                     {components ? <CheckBox /> : <CheckBoxOutlineBlank />}
@@ -736,6 +832,8 @@ export default function MUI() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          p: '12px',
+          textAlign: 'center',
           ...theme.variants.containedOverrides.primary,
         })}
       >
@@ -743,7 +841,7 @@ export default function MUI() {
           🚀 We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and more!
           &nbsp;
           <Link
-            endIcon={<ArrowForward />}
+            endDecorator={<ArrowForward />}
             // @ts-expect-error need to add `context` to color prop
             color="context"
             underline="always"
@@ -775,7 +873,11 @@ export default function MUI() {
           <Box aria-label="Go to homepage" sx={{ lineHeight: 0, mr: 2 }}>
             <SvgMuiLogo width={30} />
           </Box>
-          <nav aria-label="Header menu">
+          <Box
+            component="nav"
+            aria-label="Header menu"
+            sx={{ display: { xs: 'none', md: 'initial' } }}
+          >
             <List
               role="menubar"
               row
@@ -805,12 +907,12 @@ export default function MUI() {
                 Blog
               </ListItemButton>
             </List>
-          </nav>
+          </Box>
           <Button
             variant="outlined"
             color="neutral"
             size="sm"
-            startIcon={<Search sx={{ color: 'primary.textColor' }} />}
+            startIcon={<Search />}
             endIcon={
               <Sheet
                 variant="outlined"
@@ -820,14 +922,19 @@ export default function MUI() {
                 ⌘ K
               </Sheet>
             }
-            sx={{ ml: 'auto', justifyContent: 'flex-start', minWidth: 200 }}
+            sx={{
+              ml: 'auto',
+              justifyContent: 'flex-start',
+              minWidth: 200,
+              '--Icon-color': 'primary.textColor',
+            }}
           >
             <Box component="span" sx={{ mr: 'auto' }}>
               Search...
             </Box>
           </Button>
           <IconButton variant="outlined" color="neutral" size="sm">
-            <GitHub />
+            <GitHubIcon />
           </IconButton>
           <ColorSchemePicker />
         </Box>
@@ -849,15 +956,23 @@ export default function MUI() {
               height: '100%',
               mx: 'auto',
               display: 'grid',
-              gridTemplateColumns: '50% 50%',
+              gridTemplateColumns: { xs: 'auto', md: '50% 50%' },
               gap: 2,
               alignItems: 'center',
             }}
           >
-            <Box sx={{ maxWidth: 500 }}>
+            <Box
+              sx={{
+                maxWidth: 500,
+                mx: { xs: 'auto', md: 'initial' },
+                textAlign: { xs: 'center', md: 'initial' },
+              }}
+            >
               <Typography level="h1" sx={{ my: 2 }}>
-                The React <br />
-                <Typography sx={{ color: 'primary.textColor', fontFamily: 'display' }}>
+                The React{' '}
+                <Typography
+                  sx={{ color: 'primary.textColor', fontFamily: 'display', whiteSpace: 'nowrap' }}
+                >
                   UI library
                 </Typography>{' '}
                 you always wanted
@@ -867,32 +982,7 @@ export default function MUI() {
                 advanced components, enabling you to build your design system and develop React
                 applications faster.
               </Typography>
-              <Box sx={{ display: 'flex', gap: 2, maxWidth: 500 }}>
-                <Button
-                  endIcon={<KeyboardArrowRight />}
-                  sx={{ flexShrink: 0, fontWeight: 'md', minHeight: 50 }}
-                >
-                  Get started
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="neutral"
-                  endIcon={<ContentCopy fontSize="xl" />}
-                  sx={{ maxWidth: 300, pl: 2, fontFamily: 'code', fontSize: 'xs', minHeight: 50 }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      minWidth: 0,
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    npm install @mui/material @emotion/react @emotion/styledx
-                  </Box>
-                </Button>
-              </Box>
+              <GetStartedButtons />
             </Box>
             <Box
               sx={{
@@ -906,7 +996,7 @@ export default function MUI() {
                 position: 'relative',
                 overflow: 'scroll',
                 p: 3,
-                display: 'flex',
+                display: { xs: 'none', md: 'flex' },
               }}
             >
               <Box sx={{ display: 'inline-flex', flexDirection: 'column', gap: 4, width: 360 }}>
@@ -1009,6 +1099,282 @@ export default function MUI() {
                   </Box>
                 </Box>
               </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+      <Box sx={{ background: 'var(--joy-palette-gradient)' }}>
+        <Box
+          sx={{
+            maxWidth: 1200,
+            mx: 'auto',
+            py: { xs: 4, sm: 6, md: 8 },
+            px: 2,
+            display: 'grid',
+            gridTemplateColumns: { sm: '1fr 1fr' },
+            gap: 4,
+          }}
+        >
+          <Box>
+            <Typography level="body2" sx={{ color: 'primary.textColor', fontWeight: 'md', mb: 1 }}>
+              Go live!
+            </Typography>
+            <Typography level="h2" sx={{ maxWidth: 460 }}>
+              Start building with <Typography>MUI</Typography> today!
+            </Typography>
+            <Typography sx={{ color: 'text.tertiary', mt: 1, mb: 2 }}>
+              Try it for yourself, and share with us what you&apos;ve built
+            </Typography>
+            <GetStartedButtons />
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', lg: 'row' },
+              gap: 2,
+              alignSelf: 'center',
+              '[data-mui-color-scheme="dark"] &': {
+                '& > div': {
+                  bgcolor: '#132f4c',
+                  borderColor: '#1e4976',
+                },
+              },
+            }}
+          >
+            <Sheet
+              variant="outlined"
+              sx={{ borderRadius: 'md', p: 2, '&:hover': { boxShadow: 'md' } }}
+            >
+              <Typography fontSize="sm" fontWeight="md">
+                Showcase
+              </Typography>
+              <Typography level="body2" sx={{ my: 0.5 }}>
+                See more projects and companies that rely on MUI.
+              </Typography>
+              <Link endDecorator={<KeyboardArrowRight />} sx={{ fontWeight: 'md', fontSize: 'sm' }}>
+                Learn more
+              </Link>
+            </Sheet>
+            <Sheet
+              variant="outlined"
+              sx={{ borderRadius: 'md', p: 2, '&:hover': { boxShadow: 'md' } }}
+            >
+              <Typography fontSize="sm" fontWeight="md">
+                Blog
+              </Typography>
+              <Typography level="body2" sx={{ my: 0.5 }}>
+                Check behind the scenes and news from the company.
+              </Typography>
+              <Link endDecorator={<KeyboardArrowRight />} sx={{ fontWeight: 'md', fontSize: 'sm' }}>
+                Learn more
+              </Link>
+            </Sheet>
+          </Box>
+        </Box>
+      </Box>
+      <Box sx={{ height: '1px', bgcolor: 'divider', width: '100%' }} />
+      <Box component="footer" sx={{ maxWidth: 1200, px: 2, mx: 'auto' }}>
+        <Box
+          sx={{
+            pt: 4,
+            pb: 8,
+            display: 'grid',
+            gridAutoColumns: '1fr',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 4,
+            gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
+            gridTemplateRows: 'auto',
+            '& a:not(.MuiIconButton-root)': {
+              mt: 1,
+              color: 'text.secondary',
+              typography: 'body2',
+              '&:hover': {
+                color: 'primary.main',
+                textDecoration: 'underline',
+              },
+            },
+          }}
+        >
+          <div>
+            <SvgMuiLogo width={32} />
+            <Typography level="body2" fontWeight="bold" color="text.primary" sx={{ pt: 2 }}>
+              Join our newsletter!
+            </Typography>
+            <Typography level="body2" sx={{ mb: 2 }}>
+              No spam, guaranteed.
+            </Typography>
+            <Box sx={{ maxWidth: 360 }}>
+              <Typography
+                component="label"
+                level="body3"
+                fontWeight="md"
+                htmlFor="email-subscribe"
+                sx={{ mb: 1 }}
+              >
+                Enter your email:
+              </Typography>
+              <Box sx={{ display: 'flex', minHeight: 44 }}>
+                <Input
+                  id="email-subscribe"
+                  variant="light"
+                  placeholder="example@email.com"
+                  sx={{
+                    minHeight: 44,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                    '[data-mui-color-scheme="dark"] &': {
+                      bgcolor: '#0a1929',
+                    },
+                  }}
+                />
+                <Button
+                  variant="light"
+                  sx={{
+                    '[data-mui-color-scheme="dark"] &': { bgcolor: '#173a5e', color: '#fff' },
+                    fontWeight: 'md',
+                    borderTopLeftRadius: 0,
+                    borderBottomLeftRadius: 0,
+                  }}
+                >
+                  Subscribe
+                </Button>
+              </Box>
+            </Box>
+          </div>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr 1fr', md: '1fr 1fr 1fr 1fr' },
+              gridAutoColumns: '1fr',
+              gap: 2,
+            }}
+          >
+            {FEATURE_TOGGLE.nav_products ? (
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Typography fontWeight="bold" level="body2" color="text.primary">
+                  Products
+                </Typography>
+                <Link>MUI Core</Link>
+                <Link>MUI X</Link>
+                <Link>Templates</Link>
+                <Link>Design kits</Link>
+              </Box>
+            ) : (
+              <Box sx={{ display: { xs: 'none', md: 'block' } }} />
+            )}
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography fontWeight="bold" level="body2" color="text.primary">
+                Resources
+              </Typography>
+              <Link>Material Icons</Link>
+              <Link>Free templates</Link>
+              <Link>Components</Link>
+              <Link>Customization</Link>
+              <Link>Theming</Link>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography fontWeight="bold" level="body2" color="text.primary">
+                Explore
+              </Typography>
+              <Link>Documentation</Link>
+              <Link>Blog</Link>
+              <Link>Showcase</Link>
+              <Link>Roadmap</Link>
+              <Link>Languages</Link>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography fontWeight="bold" level="body2" color="text.primary">
+                Company
+              </Typography>
+              <Link>About</Link>
+              <Link>Vision</Link>
+              <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                <Link
+                  endDecorator={
+                    <Box
+                      sx={(theme) => ({
+                        px: 0.5,
+                        py: '2px',
+                        borderRadius: 'xs',
+                        fontSize: 'xs',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        ...theme.variants.contained.danger,
+                      })}
+                    >
+                      Hiring
+                    </Box>
+                  }
+                >
+                  Careers{' '}
+                </Link>
+              </Box>
+              <Link>Support</Link>
+              <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
+                Contact us
+              </Link>
+            </Box>
+          </Box>
+        </Box>
+        <Box sx={{ height: '1px', bgcolor: 'divider', width: '100%' }} />
+        <Box
+          sx={{
+            py: 4,
+            display: { xs: 'block', sm: 'flex' },
+            alignItems: { sm: 'center' },
+            justifyContent: { sm: 'space-between' },
+          }}
+        >
+          <Typography color="text.secondary" level="body2">
+            Copyright © {new Date().getFullYear()} Material-UI SAS.
+          </Typography>
+          <Box sx={{ py: { xs: 2, sm: 0 } }}>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <IconButton
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/mui"
+                aria-label="github"
+                title="GitHub"
+                size="sm"
+                variant="text"
+              >
+                <GitHubIcon />
+              </IconButton>
+              <IconButton
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://stackoverflow.com/questions/tagged/mui"
+                aria-label="Stack Overflow"
+                title="Stack Overflow"
+                size="sm"
+                variant="text"
+              >
+                <SvgStackOverflow />
+              </IconButton>
+              <IconButton
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://twitter.com/MUI_hq"
+                aria-label="twitter"
+                title="Twitter"
+                size="sm"
+                variant="text"
+              >
+                <TwitterIcon />
+              </IconButton>
+              <IconButton
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.linkedin.com/company/mui/"
+                aria-label="linkedin"
+                title="LinkedIn"
+                size="sm"
+                variant="text"
+              >
+                <LinkedInIcon />
+              </IconButton>
             </Box>
           </Box>
         </Box>
