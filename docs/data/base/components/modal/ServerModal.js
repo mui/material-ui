@@ -12,7 +12,19 @@ const StyledModal = styled(Modal)`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: inherit;
 `;
+
+const style = {
+  position: 'relative',
+  width: 400,
+  border: '2px solid currentColor',
+  padding: '16px 32px 24px 32px',
+};
 
 export default function ServerModal() {
   const rootRef = React.useRef(null);
@@ -39,25 +51,11 @@ export default function ServerModal() {
         open
         aria-labelledby="server-modal-title"
         aria-describedby="server-modal-description"
-        sx={{
-          display: 'flex',
-          p: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
         container={() => rootRef.current}
       >
-        <Box
-          sx={{
-            position: 'relative',
-            width: 400,
-            bgcolor: 'white',
-            border: '2px solid #000',
-            p: 4,
-          }}
-        >
+        <Box sx={style}>
           <h2 id="server-modal-title">Server-side modal</h2>
-          <span id="server-modal-description" style={{ marginTop: '16px' }}>
+          <span id="server-modal-description">
             If you disable JavaScript, you will still see me.
           </span>
         </Box>

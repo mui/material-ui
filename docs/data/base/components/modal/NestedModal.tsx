@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/system';
+import { styled, Box, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
@@ -27,16 +27,16 @@ const Backdrop = styled(BackdropUnstyled)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const style = {
+const style = (theme: Theme) => ({
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  backgroundColor: 'white',
-  border: '2px solid #000',
+  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
+  border: '2px solid currentColor',
   padding: '16px 32px 24px 32px',
-};
+});
 
 function ChildModal() {
   const [open, setOpen] = React.useState(false);
@@ -57,13 +57,13 @@ function ChildModal() {
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <div style={{ ...style, width: '200px' }}>
+        <Box sx={[style, { width: '200px' }]}>
           <h2 id="child-modal-title">Text in a child modal</h2>
           <p id="child-modal-description">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
           <Button onClick={handleClose}>Close Child Modal</Button>
-        </div>
+        </Box>
       </Modal>
     </React.Fragment>
   );
@@ -88,13 +88,13 @@ export default function NestedModal() {
         aria-describedby="parent-modal-description"
         BackdropComponent={Backdrop}
       >
-        <div style={{ ...style, width: '400px' }}>
+        <Box sx={style}>
           <h2 id="parent-modal-title">Text in a modal</h2>
           <p id="parent-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
           <ChildModal />
-        </div>
+        </Box>
       </Modal>
     </div>
   );

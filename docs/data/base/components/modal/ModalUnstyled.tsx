@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, Box } from '@mui/system';
+import { styled, Box, Theme } from '@mui/system';
 import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
@@ -26,14 +26,12 @@ const Backdrop = styled(BackdropUnstyled)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const style = {
+const style = (theme: Theme) => ({
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  p: 2,
-  px: 4,
-  pb: 3,
-};
+  bgcolor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
+  border: '2px solid currentColor',
+  padding: '16px 32px 24px 32px',
+});
 
 export default function ModalUnstyledDemo() {
   const [open, setOpen] = React.useState(false);

@@ -28,17 +28,17 @@ const Backdrop = styled(BackdropUnstyled)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const style = {
+const style = (theme) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
+  border: '2px solid currentColor',
   boxShadow: 24,
-  p: 4,
-};
+  padding: '16px 32px 24px 32px',
+});
 
 export default function TransitionsModal() {
   const [open, setOpen] = React.useState(false);
