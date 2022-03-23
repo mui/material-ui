@@ -1,11 +1,22 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
 import { HTMLElementType, refType } from '@mui/utils';
-import { Direction, useThemeWithoutDefault as useTheme } from '@mui/system';
-import useThemeProps from '../styles/useThemeProps';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import { styled, Theme, useThemeProps } from '../styles';
 
-export type PopperProps = Omit<PopperUnstyledProps, 'direction'>;
+export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+};
+
+const PopperRoot = styled(PopperUnstyled, {
+  name: 'MuiPopper',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 /**
  *
@@ -25,7 +36,7 @@ const Popper = React.forwardRef(function Popper(
 ) {
   const theme = useTheme<{ direction?: Direction }>();
   const props = useThemeProps({ props: inProps, name: 'MuiPopper' });
-  return <PopperUnstyled direction={theme?.direction} {...props} ref={ref} />;
+  return <PopperRoot direction={theme?.direction} {...props} ref={ref} />;
 });
 
 Popper.propTypes /* remove-proptypes */ = {
@@ -161,6 +172,14 @@ Popper.propTypes /* remove-proptypes */ = {
    * A ref that points to the used popper instance.
    */
   popperRef: refType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
