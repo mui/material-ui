@@ -99,11 +99,11 @@ export default function ContentEditView() {
             <TextField label="Phone" />
             <TextField
               label="Price"
-              endAdornment={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
+              endDecorator={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
             />
             <TextField
               label="District"
-              endAdornment={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
+              endDecorator={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
             />
             <div>
               <Typography
@@ -158,7 +158,7 @@ export default function ContentEditView() {
               <TextField
                 label="Locales"
                 defaultValue="French (FR)"
-                endAdornment={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
+                endDecorator={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
               />
               <Link startDecorator={<FileCopy />} sx={{ fontSize: '0.75rem' }}>
                 Fill in from another locale
@@ -183,12 +183,12 @@ export default function ContentEditView() {
               <TextField
                 label="Reviews (0)"
                 placeholder="Add an entry"
-                endAdornment={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
+                endDecorator={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
               />
               <TextField
                 label="Category"
                 placeholder="Add an entry"
-                endAdornment={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
+                endDecorator={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
               />
             </Sheet>
             <Button variant="outlined" startIcon={<Edit />}>

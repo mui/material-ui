@@ -80,7 +80,7 @@ export default function WebhookCreationPage() {
                 <TextField
                   label="Key"
                   placeholder="Select or enter a value"
-                  endAdornment={<ArrowDropDown />}
+                  endDecorator={<ArrowDropDown />}
                 />
                 <TextField label="Value" placeholder="Text" />
                 <IconButton

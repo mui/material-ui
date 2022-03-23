@@ -62,7 +62,7 @@ export default function RegisterPage() {
           label="Password"
           id="password"
           fullWidth
-          endAdornment={
+          endDecorator={
             <IconButton variant="text" size="sm" color="neutral">
               <Visibility fontSize="lg" />
             </IconButton>
@@ -72,7 +72,7 @@ export default function RegisterPage() {
           label="Password"
           id="password"
           fullWidth
-          endAdornment={
+          endDecorator={
             <IconButton variant="text" size="sm" color="neutral">
               <Visibility fontSize="lg" />
             </IconButton>

@@ -412,7 +412,7 @@ const strapiTheme: JoyThemeInput = {
             '--Input-placeholderOpacity': 1,
           },
         }),
-        endAdornment: ({ ownerState }) => ({
+        endDecorator: ({ ownerState }) => ({
           ...(ownerState.size === 'md' && {
             marginRight: '-0.75rem',
           }),

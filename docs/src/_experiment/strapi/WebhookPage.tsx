@@ -51,7 +51,7 @@ export default function WebhookPage() {
           <Sheet>
             <Input
               placeholder="Search for an entry"
-              startAdornment={<Search fontSize="md" sx={{ color: 'text.primary' }} />}
+              startDecorator={<Search fontSize="md" sx={{ color: 'text.primary' }} />}
               sx={{ '--Input-minHeight': '2rem' }}
             />
           </Sheet>
