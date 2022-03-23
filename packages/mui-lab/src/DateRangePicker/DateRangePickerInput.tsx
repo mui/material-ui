@@ -123,34 +123,33 @@ const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
     }
   };
 
-  const openRangeStartSelectiononFocus=()=>{
+  const openRangeStartSelectiononFocus = () => {
     if (setCurrentlySelectingRangeEnd) {
       setCurrentlySelectingRangeEnd('start');
     }
     if (!readOnly && !disableOpenPicker && !end) {
       openPicker();
     }
-  }
+  };
 
-  const openRangeEndSelectionOnClick=()=>{
+  const openRangeEndSelectionOnClick = () => {
     if (setCurrentlySelectingRangeEnd) {
       setCurrentlySelectingRangeEnd('end');
     }
     if (!readOnly && !disableOpenPicker) {
       openPicker();
     }
-  }
+  };
 
   const openRangeEndSelectionOnFocus = () => {
     if (setCurrentlySelectingRangeEnd) {
       setCurrentlySelectingRangeEnd('end');
-
     }
     if (!readOnly && !disableOpenPicker && !start) {
       openPicker();
     }
-  }
-  
+  };
+
   const openOnFocus = wrapperVariant === 'desktop';
   const startInputProps = useMaskedInput({
     ...other,
@@ -165,7 +164,7 @@ const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
       focused: open && currentlySelectingRangeEnd === 'start',
     },
     inputProps: {
-      onClick: openRangeStartSelectionOnClick ,
+      onClick: openRangeStartSelectionOnClick,
       onFocus: openOnFocus ? openRangeStartSelectiononFocus : undefined,
     },
   });
@@ -183,8 +182,8 @@ const DateRangePickerInput = React.forwardRef(function DateRangePickerInput(
       focused: open && currentlySelectingRangeEnd === 'end',
     },
     inputProps: {
-      onChange: start && end ? closePicker: undefined,
-      onClick:  openRangeEndSelectionOnClick ,
+      onChange: start && end ? closePicker : undefined,
+      onClick: openRangeEndSelectionOnClick,
       onFocus: openOnFocus ? openRangeEndSelectionOnFocus : undefined,
     },
   });
