@@ -19,7 +19,11 @@ const StyledModal = styled(ModalUnstyled)`
 const BackdropUnstyled = React.forwardRef((props, ref) => {
   const { open, className, ...other } = props;
   return (
-    <div className={clsx({ 'MuiBackdrop-open': open }, className)} ref={ref} {...other} />
+    <div
+      className={clsx({ 'MuiBackdrop-open': open }, className)}
+      ref={ref}
+      {...other}
+    />
   );
 });
 
