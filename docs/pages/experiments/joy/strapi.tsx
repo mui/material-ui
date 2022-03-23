@@ -226,13 +226,13 @@ export default function Strapi() {
           );
           return (
             <Box>
-              <Input placeholder="Placeholder" endAdornment={eye} />
+              <Input placeholder="Placeholder" endDecorator={eye} />
               <TextField
                 id="text-field1"
                 label={label}
                 placeholder="Placeholder"
                 helperText="Description line"
-                endAdornment={eye}
+                endDecorator={eye}
               />
               <TextField
                 id="text-field2"
@@ -240,7 +240,7 @@ export default function Strapi() {
                 error
                 placeholder="Placeholder"
                 helperText="Description line"
-                endAdornment={eye}
+                endDecorator={eye}
               />
               <TextField
                 id="text-field3"
@@ -248,7 +248,7 @@ export default function Strapi() {
                 disabled
                 placeholder="Disabled"
                 helperText="Description line"
-                endAdornment={eye}
+                endDecorator={eye}
               />
               <TextField
                 id="text-field4"
@@ -256,7 +256,7 @@ export default function Strapi() {
                 disabled
                 placeholder="Disabled"
                 helperText="Description line"
-                startAdornment={<VisibilityOff fontSize="lg" />}
+                startDecorator={<VisibilityOff fontSize="lg" />}
               />
             </Box>
           );

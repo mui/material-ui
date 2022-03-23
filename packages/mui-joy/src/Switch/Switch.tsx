@@ -183,6 +183,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     props: inProps,
     name: 'MuiSwitch',
   });
+
   const {
     checked: checkedProp,
     className,

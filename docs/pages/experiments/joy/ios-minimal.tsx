@@ -149,6 +149,7 @@ const Header = ({ children }: { children: React.ReactNode }) => (
     sx={{
       bgcolor: (theme) => theme.vars.palette.background.level3,
       borderBottom: '1px solid',
+      // @ts-ignore
       borderColor: (theme) => theme.vars.palette.separator.opaque,
       backdropFilter: 'blur(30px)',
     }}
@@ -159,6 +160,7 @@ const Header = ({ children }: { children: React.ReactNode }) => (
 
 const ListSubheader = styled('div')(({ theme }) => ({
   padding: '20px 20px 8px',
+  // @ts-ignore
   ...theme.typography.rubric2,
   backgroundColor: theme.vars.palette.background.level2,
 }));
@@ -170,6 +172,7 @@ const ItemLine = styled('div')(({ theme }) => ({
   paddingRight: '20px',
   minHeight: 44,
   borderBottom: '1px solid',
+  // @ts-ignore
   borderColor: theme.vars.palette.separator.opaque,
   '& > svg:first-child': {
     color: theme.vars.palette.text.secondary,
@@ -214,6 +217,7 @@ const Tab = styled('button')<{ selected?: boolean }>(({ theme, selected }) => ({
   cursor: 'pointer',
   minWidth: 96,
   backgroundColor: 'initial',
+  // @ts-ignore
   ...theme.typography.footnote,
   color: theme.vars.palette.text.primary,
   ...(selected && {
@@ -311,6 +315,7 @@ export default function IosMinimalPage() {
                 tertiary: 'hsla(240, 6%, 25%, 0.33)',
                 quarternary: 'hsla(240, 6%, 25%, 0.18)',
               },
+              // @ts-ignore
               separator: {
                 opaque: 'hsla(240, 2%, 88%, 1)',
                 nonOpaque: 'hsla(240, 6%, 25%, 0.33)',
@@ -404,6 +409,7 @@ export default function IosMinimalPage() {
                 tertiary: 'hsla(240, 33%, 94%, 0.3)',
                 quarternary: 'hsla(240, 33%, 94%, 0.18)',
               },
+              // @ts-ignore
               separator: {
                 opaque: 'hsla(210, 3%, 15%, 1)',
                 nonOpaque: 'hsla(240, 2%, 34%, 0.7)',
@@ -464,12 +470,14 @@ export default function IosMinimalPage() {
             lineHeight: '20px',
             color: 'var(--joy-palette-text-secondary)',
           },
+          // @ts-ignore
           footnote: {
             fontSize: 13,
             lineHeight: '16px',
             fontFamily: 'var(--joy-fontFamily-body)',
             color: 'var(--joy-palette-text-secondary)',
           },
+          // @ts-ignore
           caption1: {
             fontSize: 12,
             lineHeight: '16px',
@@ -850,7 +858,11 @@ export default function IosMinimalPage() {
                 <Typography level="body1" sx={{ fontWeight: 400 }}>
                   Bitcoin Local Offers
                 </Typography>
-                <Typography level="footnote" sx={{ mt: '2px' }}>
+                <Typography
+                  // @ts-ignore
+                  level="footnote"
+                  sx={{ mt: '2px' }}
+                >
                   Join now and let the digital economics grow
                 </Typography>
               </ListItemContent>
@@ -867,7 +879,10 @@ export default function IosMinimalPage() {
           <Box
             sx={{ px: '20px', py: '4px', bgcolor: (theme) => theme.vars.palette.background.level2 }}
           >
-            <Typography level="footnote">
+            <Typography
+              // @ts-ignore
+              level="footnote"
+            >
               Receive announcements, recommendations and updates about products, services and
               software.
             </Typography>
@@ -885,7 +900,11 @@ export default function IosMinimalPage() {
                 <Typography level="body1" sx={{ fontWeight: 400 }}>
                   Receive Updates
                 </Typography>
-                <Typography level="footnote" sx={{ mt: '2px' }}>
+                <Typography
+                  // @ts-ignore
+                  level="footnote"
+                  sx={{ mt: '2px' }}
+                >
                   New components, templates, kits and 3 more...
                 </Typography>
               </ListItemContent>
@@ -903,7 +922,11 @@ export default function IosMinimalPage() {
                 <Typography level="body1" sx={{ fontWeight: 400 }}>
                   Discounts & Deals
                 </Typography>
-                <Typography level="footnote" sx={{ mt: '2px' }}>
+                <Typography
+                  // @ts-ignore
+                  level="footnote"
+                  sx={{ mt: '2px' }}
+                >
                   Sometimes we cut the price
                 </Typography>
               </ListItemContent>
@@ -921,7 +944,11 @@ export default function IosMinimalPage() {
                 <Typography level="body1" sx={{ fontWeight: 400 }}>
                   Use Auto-layout
                 </Typography>
-                <Typography level="footnote" sx={{ mt: '2px' }}>
+                <Typography
+                  // @ts-ignore
+                  level="footnote"
+                  sx={{ mt: '2px' }}
+                >
                   Most iOS kit based on Figma power
                 </Typography>
               </ListItemContent>
@@ -1211,7 +1238,12 @@ export default function IosMinimalPage() {
               mb: '22px',
             }}
           >
-            <Typography level="rubric2">Welcome back!</Typography>
+            <Typography
+              // @ts-ignore
+              level="rubric2"
+            >
+              Welcome back!
+            </Typography>
             <Typography level="h2" component="h1">
               Have an Account?
             </Typography>
