@@ -95,7 +95,7 @@ export function usePickerState<TInput, TDateValue>(
     () => ({
       open: isOpen,
       onClear: () => acceptDate(valueManager.emptyValue, true),
-      onAccept: () => acceptDate(draftState.committed, true),
+      onAccept: () => acceptDate(draftState.draft, true),
       onDismiss: () => acceptDate(initialDate, true),
       onSetToday: () => {
         const now = utils.date() as TDateValue;
@@ -108,7 +108,7 @@ export function usePickerState<TInput, TDateValue>(
       disableCloseOnSelect,
       isOpen,
       utils,
-      draftState.committed,
+      draftState.draft,
       valueManager.emptyValue,
       initialDate,
     ],
