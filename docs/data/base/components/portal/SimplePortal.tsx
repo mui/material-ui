@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Portal from '@mui/base/Portal';
-import Box from '@mui/system/Box';
+import { Box } from '@mui/system';
 
 export default function SimplePortal() {
   const [show, setShow] = React.useState(false);
