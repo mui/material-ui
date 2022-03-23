@@ -85,7 +85,7 @@ function run() {
 /:lang/components/data-grid/* /:lang/x/react-data-grid/:splat/ 301
 
 /api/data-grid/* /x/api/data-grid/:splat 301
-### specific to current supported language, otherwise this case does not work /x/api/data-grid/* => /x/x/api/data-grid/*
+### specific to current supported languages, to prevent this redirect: /x/api/data-grid/* => /x/x/api/data-grid/*
 /zh/api/data-grid/* /zh/x/api/data-grid/:splat 301
 /pt/api/data-grid/* /pt/x/api/data-grid/:splat 301
 
@@ -102,73 +102,96 @@ function run() {
 /:lang/components/time-pickers/ /:lang/x/react-date-pickers/time-picker/ 301
 
 /api/date-picker/ /x/api/date-pickers/date-picker/ 301
-/:lang/api/date-picker/ /:lang/x/api/date-pickers/date-picker/ 301
+/zh/api/date-picker/ /zh/x/api/date-pickers/date-picker/ 301
+/pt/api/date-picker/ /pt/x/api/date-pickers/date-picker/ 301
 
 /api/date-range-picker/ /x/api/date-pickers/date-range-picker/ 301
-/:lang/api/date-range-picker/ /:lang/x/api/date-pickers/date-range-picker/ 301
+/zh/api/date-range-picker/ /zh/x/api/date-pickers/date-range-picker/ 301
+/pt/api/date-range-picker/ /pt/x/api/date-pickers/date-range-picker/ 301
 
 /api/date-range-picker-day/ /x/api/date-pickers/date-range-picker-day/ 301
-/:lang/api/date-range-picker-day/ /:lang/x/api/date-pickers/date-range-picker-day/ 301
+/zh/api/date-range-picker-day/ /zh/x/api/date-pickers/date-range-picker-day/ 301
+/pt/api/date-range-picker-day/ /pt/x/api/date-pickers/date-range-picker-day/ 301
 
 /api/date-time-picker/ /x/api/date-pickers/date-time-picker/ 301
-/:lang/api/date-time-picker/ /:lang/x/api/date-pickers/date-time-picker/ 301
+/zh/api/date-time-picker/ /zh/x/api/date-pickers/date-time-picker/ 301
+/pt/api/date-time-picker/ /pt/x/api/date-pickers/date-time-picker/ 301
 
 /api/desktop-date-picker/ /x/api/date-pickers/desktop-date-picker/ 301
-/:lang/api/desktop-date-picker/ /:lang/x/api/date-pickers/desktop-date-picker/ 301
+/zh/api/desktop-date-picker/ /zh/x/api/date-pickers/desktop-date-picker/ 301
+/pt/api/desktop-date-picker/ /pt/x/api/date-pickers/desktop-date-picker/ 301
 
 /api/desktop-date-range-picker/ /x/api/date-pickers/desktop-date-range-picker/ 301
-/:lang/api/desktop-date-range-picker/ /:lang/x/api/date-pickers/desktop-date-range-picker/ 301
+/zh/api/desktop-date-range-picker/ /zh/x/api/date-pickers/desktop-date-range-picker/ 301
+/pt/api/desktop-date-range-picker/ /pt/x/api/date-pickers/desktop-date-range-picker/ 301
 
 /api/desktop-date-time-picker/ /x/api/date-pickers/desktop-date-time-picker/ 301
-/:lang/api/desktop-date-time-picker/ /:lang/x/api/date-pickers/desktop-date-time-picker/ 301
+/zh/api/desktop-date-time-picker/ /zh/x/api/date-pickers/desktop-date-time-picker/ 301
+/pt/api/desktop-date-time-picker/ /pt/x/api/date-pickers/desktop-date-time-picker/ 301
 
 /api/desktop-time-picker/ /x/api/date-pickers/desktop-time-picker/ 301
-/:lang/api/desktop-time-picker/ /:lang/x/api/date-pickers/desktop-time-picker/ 301
+/zh/api/desktop-time-picker/ /zh/x/api/date-pickers/desktop-time-picker/ 301
+/pt/api/desktop-time-picker/ /pt/x/api/date-pickers/desktop-time-picker/ 301
 
 /api/calendar-picker/ /x/api/date-pickers/calendar-picker/ 301
-/:lang/api/calendar-picker/ /:lang/x/api/date-pickers/calendar-picker/ 301
+/zh/api/calendar-picker/ /zh/x/api/date-pickers/calendar-picker/ 301
+/pt/api/calendar-picker/ /pt/x/api/date-pickers/calendar-picker/ 301
 
 /api/calendar-picker-skeleton/ /x/api/date-pickers/calendar-picker-skeleton/ 301
-/:lang/api/calendar-picker-skeleton/ /:lang/x/api/date-pickers/calendar-picker-skeleton/ 301
+/zh/api/calendar-picker-skeleton/ /zh/x/api/date-pickers/calendar-picker-skeleton/ 301
+/pt/api/calendar-picker-skeleton/ /pt/x/api/date-pickers/calendar-picker-skeleton/ 301
 
 /api/mobile-date-picker/ /x/api/date-pickers/mobile-date-picker/ 301
-/:lang/api/mobile-date-picker/ /:lang/x/api/date-pickers/mobile-date-picker/ 301
+/zh/api/mobile-date-picker/ /zh/x/api/date-pickers/mobile-date-picker/ 301
+/pt/api/mobile-date-picker/ /pt/x/api/date-pickers/mobile-date-picker/ 301
 
 /api/month-picker/ /x/api/date-pickers/month-picker/ 301
-/:lang/api/month-picker/ /:lang/x/api/date-pickers/month-picker/ 301
+/zh/api/month-picker/ /zh/x/api/date-pickers/month-picker/ 301
+/pt/api/month-picker/ /pt/x/api/date-pickers/month-picker/ 301
 
 /api/pickers-day/ /x/api/date-pickers/pickers-day/ 301
-/:lang/api/pickers-day/ /:lang/x/api/date-pickers/pickers-day/ 301
+/zh/api/pickers-day/ /zh/x/api/date-pickers/pickers-day/ 301
+/pt/api/pickers-day/ /pt/x/api/date-pickers/pickers-day/ 301
 
 /api/static-date-picker/ /x/api/date-pickers/static-date-picker/ 301
-/:lang/api/static-date-picker/ /:lang/x/api/date-pickers/static-date-picker/ 301
+/zh/api/static-date-picker/ /zh/x/api/date-pickers/static-date-picker/ 301
+/pt/api/static-date-picker/ /pt/x/api/date-pickers/static-date-picker/ 301
 
 /api/year-picker/ /x/api/date-pickers/year-picker/ 301
-/:lang/api/year-picker/ /:lang/x/api/date-pickers/year-picker/ 301
+/zh/api/year-picker/ /zh/x/api/date-pickers/year-picker/ 301
+/pt/api/year-picker/ /pt/x/api/date-pickers/year-picker/ 301
 
 /api/mobile-date-range-picker/ /x/api/date-pickers/mobile-date-range-picker/ 301
-/:lang/api/mobile-date-range-picker/ /:lang/x/api/date-pickers/mobile-date-range-picker/ 301
+/zh/api/mobile-date-range-picker/ /zh/x/api/date-pickers/mobile-date-range-picker/ 301
+/pt/api/mobile-date-range-picker/ /pt/x/api/date-pickers/mobile-date-range-picker/ 301
 
 /api/static-date-range-picker/ /x/api/date-pickers/static-date-range-picker/ 301
-/:lang/api/static-date-range-picker/ /:lang/x/api/date-pickers/static-date-range-picker/ 301
+/zh/api/static-date-range-picker/ /zh/x/api/date-pickers/static-date-range-picker/ 301
+/pt/api/static-date-range-picker/ /pt/x/api/date-pickers/static-date-range-picker/ 301
 
 /api/mobile-date-time-picker/ /x/api/date-pickers/mobile-date-time-picker/ 301
-/:lang/api/mobile-date-time-picker/ /:lang/x/api/date-pickers/mobile-date-time-picker/ 301
+/zh/api/mobile-date-time-picker/ /zh/x/api/date-pickers/mobile-date-time-picker/ 301
+/pt/api/mobile-date-time-picker/ /pt/x/api/date-pickers/mobile-date-time-picker/ 301
 
 /api/static-date-time-picker/ /x/api/date-pickers/static-date-time-picker/ 301
-/:lang/api/static-date-time-picker/ /:lang/x/api/date-pickers/static-date-time-picker/ 301
+/zh/api/static-date-time-picker/ /zh/x/api/date-pickers/static-date-time-picker/ 301
+/pt/api/static-date-time-picker/ /pt/x/api/date-pickers/static-date-time-picker/ 301
 
 /api/clock-picker/ /x/api/date-pickers/clock-picker/ 301
-/:lang/api/clock-picker/ /:lang/x/api/date-pickers/clock-picker/ 301
+/zh/api/clock-picker/ /zh/x/api/date-pickers/clock-picker/ 301
+/pt/api/clock-picker/ /pt/x/api/date-pickers/clock-picker/ 301
 
 /api/mobile-time-picker/ /x/api/date-pickers/mobile-time-picker/ 301
-/:lang/api/mobile-time-picker/ /:lang/x/api/date-pickers/mobile-time-picker/ 301
+/zh/api/mobile-time-picker/ /zh/x/api/date-pickers/mobile-time-picker/ 301
+/pt/api/mobile-time-picker/ /pt/x/api/date-pickers/mobile-time-picker/ 301
 
 /api/static-time-picker/ /x/api/date-pickers/static-time-picker/ 301
-/:lang/api/static-time-picker/ /:lang/x/api/date-pickers/static-time-picker/ 301
+/zh/api/static-time-picker/ /zh/x/api/date-pickers/static-time-picker/ 301
+/pt/api/static-time-picker/ /pt/x/api/date-pickers/static-time-picker/ 301
 
 /api/time-picker/ /x/api/date-pickers/time-picker/ 301
-/:lang/api/time-picker/ /:lang/x/api/date-pickers/time-picker/ 301
+/zh/api/time-picker/ /zh/x/api/date-pickers/time-picker/ 301
+/pt/api/time-picker/ /pt/x/api/date-pickers/time-picker/ 301
 
 ## MUI Core
 /styles/* /system/styles/:splat 301
