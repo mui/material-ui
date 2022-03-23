@@ -1,4 +1,4 @@
-# Date & Time pickers
+# Date and time pickers
 
 <p class="description">The <code>DatePicker</code>, <code>TimePicker</code>, and related components have been moved to MUI X — our collection of advanced components.</p>
 
