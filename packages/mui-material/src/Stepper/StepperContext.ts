@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
  * Returns the current StepperContext or an empty object if no StepperContext
  * has been defined in the component tree.
  */
-export function useStepContext(): StepperContextType | {} {
+export function useStepperContext(): StepperContextType | {} {
   return React.useContext(StepperContext);
 }
 
