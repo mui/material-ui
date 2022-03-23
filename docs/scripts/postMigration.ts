@@ -290,7 +290,8 @@ function run() {
 /:lang/components/* /:lang/material-ui/react-:splat 301
 
 /api/* /material-ui/api/:splat 301
-/:lang/api/* /:lang/material-ui/api/:splat 301
+/zh/api/* /zh/material-ui/api/:splat 301
+/pt/api/* /pt/material-ui/api/:splat 301
 `,
   );
 
