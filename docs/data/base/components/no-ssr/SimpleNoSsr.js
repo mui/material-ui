@@ -1,6 +1,6 @@
 import * as React from 'react';
-import NoSsr from '@mui/material/NoSsr';
-import Box from '@mui/material/Box';
+import NoSsr from '@mui/base/NoSsr';
+import Box from '@mui/system/Box';
 
 export default function SimpleNoSsr() {
   return (
