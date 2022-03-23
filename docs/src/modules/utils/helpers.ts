@@ -13,6 +13,10 @@ const dateAdapterPackageMapping: Record<string, string> = {
   AdapterMoment: 'moment',
 };
 
+function pascalCase(str: string) {
+  return upperFirst(camelCase(str));
+}
+
 function titleize(hyphenedString: string): string {
   return hyphenedString
     .split('-')
@@ -36,10 +40,16 @@ export function pageToTitle(page: Page): string | null {
   }
 
   const path = page.subheader || page.pathname;
-  const name = path.replace(/.*\//, '');
+  const name = path.replace(/.*\//, '').replace('react-', '').replace(/\..*/, '');
 
-  if (path.indexOf('/api') === 0) {
-    return upperFirst(camelCase(name));
+  // TODO remove post migration
+  if (path.indexOf('/api-docs/') !== -1) {
+    return pascalCase(name);
+  }
+
+  // TODO support more than React component API (PascalCase)
+  if (path.indexOf('/api/') !== -1) {
+    return pascalCase(name);
   }
 
   return titleize(name);
@@ -123,13 +133,13 @@ function includePeerDependencies(
 function getMuiPackageVersion(packageName: string, commitRef?: string): string {
   if (
     commitRef === undefined ||
-    process.env.SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui'
+    process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
   ) {
     // #default-branch-switch
     return 'latest';
   }
   const shortSha = commitRef.slice(0, 8);
-  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@mui/${packageName}`;
+  return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
 }
 
 /**
@@ -147,7 +157,7 @@ export function getDependencies(
     muiCommitRef?: string;
   } = {},
 ) {
-  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef } = options;
+  const { codeLanguage, muiCommitRef } = options;
 
   let deps: Record<string, string> = {};
   let versions: Record<string, string> = {

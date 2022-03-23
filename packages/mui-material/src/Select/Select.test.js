@@ -292,6 +292,13 @@ describe('<Select />', () => {
     });
   });
 
+  describe('prop: defaultOpen', () => {
+    it('should be open on mount', () => {
+      const { getByRole } = render(<Select defaultOpen value="" />);
+      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+    });
+  });
+
   describe('prop: value', () => {
     it('should select the option based on the number value', () => {
       render(
@@ -736,7 +743,7 @@ describe('<Select />', () => {
     });
 
     it('open only with the left mouse button click', () => {
-      // Test for https://github.com/mui-org/material-ui/issues/19250#issuecomment-578620934
+      // Test for https://github.com/mui/material-ui/issues/19250#issuecomment-578620934
       // Right/middle mouse click shouldn't open the Select
       const { getByRole, queryByRole } = render(
         <Select value="">
@@ -819,18 +826,16 @@ describe('<Select />', () => {
       expect(getByRole('button')).to.have.text('Ten, Twenty, Thirty');
     });
 
-    it('should not throw an error for an empty multiple list', () => {
-      const { getByRole } = render(
-        <Select multiple value={[]}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>
-            <strong>Twenty</strong>
-          </MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>,
-      );
-      // A zero-width string is added for empty values
-      expect(getByRole('button')).to.have.text('\u200B');
+    it('should not throw an error if `value` is an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={[]} />);
+      }).not.to.throw();
+    });
+
+    it('should not throw an error if `value` is not an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={['foo']} />);
+      }).not.to.throw();
     });
 
     it('selects value based on their stringified equality when theyre not objects', () => {
@@ -1220,6 +1225,10 @@ describe('<Select />', () => {
       this.skip();
     }
 
+    const rootStyle = {
+      marginTop: '15px',
+    };
+
     const iconStyle = {
       marginTop: '13px',
     };
@@ -1241,6 +1250,7 @@ describe('<Select />', () => {
       components: {
         MuiSelect: {
           styleOverrides: {
+            root: rootStyle,
             select: selectStyle,
             icon: iconStyle,
             nativeInput: nativeInputStyle,
@@ -1250,20 +1260,55 @@ describe('<Select />', () => {
       },
     });
 
-    const { container } = render(
+    const { container, getByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Select open value="first">
+        <Select open value="first" data-testid="select">
           <MenuItem value="first" />
           <MenuItem value="second" />
         </Select>
       </ThemeProvider>,
     );
 
+    expect(getByTestId('select')).toHaveComputedStyle(rootStyle);
     expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
     expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
       nativeInputStyle,
     );
     expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
+  });
+
+  ['standard', 'outlined', 'filled'].forEach((variant) => {
+    it(`variant overrides should work for "${variant}" variant`, function test() {
+      const theme = createTheme({
+        components: {
+          MuiSelect: {
+            variants: [
+              {
+                props: {
+                  variant,
+                },
+                style: {
+                  fontWeight: '200',
+                },
+              },
+            ],
+          },
+        },
+      });
+
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <Select variant={variant} value="first" data-testid="input">
+            <MenuItem value="first" />
+            <MenuItem value="second" />
+          </Select>
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('input')).to.toHaveComputedStyle({
+        fontWeight: '200',
+      });
+    });
   });
 
   describe('prop: input', () => {
@@ -1298,5 +1343,18 @@ describe('<Select />', () => {
       expect(getByTestId('root')).to.have.class('foo');
       expect(getByTestId('root')).to.have.class('bar');
     });
+  });
+
+  it('should not focus select when clicking an arbitrary element with id="undefined"', () => {
+    const { getByRole, getByTestId } = render(
+      <React.Fragment>
+        <div id="undefined" data-testid="test-element" />
+        <Select value="" />
+      </React.Fragment>,
+    );
+
+    fireEvent.click(getByTestId('test-element'));
+
+    expect(getByRole('button')).not.toHaveFocus();
   });
 });

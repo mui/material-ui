@@ -1,16 +1,12 @@
 const fse = require('fs-extra');
 const lodash = require('lodash');
 const path = require('path');
-const { promisify } = require('util');
-const webpackCallbackBased = require('webpack');
 const yargs = require('yargs');
-const createWebpackConfig = require('./webpack.config');
+const Piscina = require('piscina');
+const os = require('os');
+const { getWebpackEntries } = require('./webpack.config');
 
-const webpack = promisify(webpackCallbackBased);
-// Creating the size snapshot requires collecting webpack stats for each entrypoint,
-// This requires a lot of memory.
-// Concurrency is therefore bound by the amount of available memory.
-const webpackCompilationConcurrency = 10;
+const MAX_CONCURRENCY = Math.min(8, os.cpus().length);
 
 const workspaceRoot = path.join(__dirname, '../../');
 const snapshotDestPath = path.join(workspaceRoot, 'size-snapshot.json');
@@ -40,69 +36,21 @@ async function getRollupSize(snapshotPath) {
  * creates size snapshot for every bundle that built with webpack
  */
 async function getWebpackSizes(webpackEnvironment) {
+  const worker = new Piscina({
+    filename: require.resolve('./worker'),
+    maxThreads: MAX_CONCURRENCY,
+  });
   await fse.mkdirp(path.join(__dirname, 'build'));
 
-  const configurations = await createWebpackConfig(webpack, webpackEnvironment);
-  const sizes = [];
-  for (let index = 0; index < configurations.length; index += webpackCompilationConcurrency) {
-    const configurationsChunk = configurations.slice(index, index + webpackCompilationConcurrency);
-    // eslint-disable-next-line no-console -- process monitoring
-    console.log(
-      `Compiling ${index}-${index + configurationsChunk.length}: ${configurationsChunk
-        .map((configuration) => {
-          return `"${Object.keys(configuration.entry)}"`;
-        })
-        .join(', ')}`,
-    );
-    // eslint-disable-next-line no-await-in-loop -- Can't run all entrypoints concurrently with limited memory.
-    const webpackMultiStats = await webpack(configurationsChunk);
+  const entries = await getWebpackEntries();
 
-    webpackMultiStats.stats.forEach((webpackStats) => {
-      if (webpackStats.hasErrors()) {
-        const { entrypoints, errors } = webpackStats.toJson({
-          all: false,
-          entrypoints: true,
-          errors: true,
-        });
-        throw new Error(
-          `The following errors occured during bundling of ${Object.keys(
-            entrypoints,
-          )} with webpack: \n${errors
-            .map((error) => {
-              return `${JSON.stringify(error, null, 2)}`;
-            })
-            .join('\n')}`,
-        );
-      }
+  const sizeArrays = await Promise.all(
+    entries.map((entry, index) =>
+      worker.run({ entry, webpackEnvironment, index, total: entries.length }),
+    ),
+  );
 
-      const stats = webpackStats.toJson({
-        all: false,
-        assets: true,
-        entrypoints: true,
-        relatedAssets: true,
-      });
-      const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
-
-      Object.values(stats.entrypoints).forEach((entrypoint) => {
-        let parsedSize = 0;
-        let gzipSize = 0;
-
-        entrypoint.assets.forEach(({ name, size }) => {
-          const asset = assets.get(name);
-          const gzippedAsset = asset.related.find((relatedAsset) => {
-            return relatedAsset.type === 'gzipped';
-          });
-
-          parsedSize += size;
-          gzipSize += gzippedAsset.size;
-        });
-
-        sizes.push([entrypoint.name, { parsed: parsedSize, gzip: gzipSize }]);
-      });
-    });
-  }
-
-  return sizes;
+  return sizeArrays.flat();
 }
 
 async function run(argv) {

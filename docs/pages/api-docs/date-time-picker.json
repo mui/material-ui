@@ -20,7 +20,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object, switchViewButton?: object }"
+      },
+      "default": "{}"
+    },
     "dateRangeIcon": { "type": { "name": "node" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "desktopModeMediaQuery": {

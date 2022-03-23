@@ -12,6 +12,29 @@ describe('createBreakpoints', () => {
     },
   });
 
+  it('should sort the values', () => {
+    const orderedValues = createBreakpoints({
+      values: {
+        mobile: 0,
+        tablet: 640,
+        laptop: 1024,
+        desktop: 1280,
+      },
+    });
+
+    const unorderedValues = createBreakpoints({
+      values: {
+        tablet: 640,
+        mobile: 0,
+        laptop: 1024,
+        desktop: 1280,
+      },
+    });
+
+    expect(unorderedValues.keys).to.deep.equal(orderedValues.keys);
+    expect(unorderedValues.values).to.deep.equal(orderedValues.values);
+  });
+
   describe('up', () => {
     it('should work for xs', () => {
       expect(breakpoints.up('xs')).to.equal('@media (min-width:0px)');
@@ -94,6 +117,28 @@ describe('createBreakpoints', () => {
     it('should work for custom breakpoints', () => {
       expect(customBreakpoints.only('tablet')).to.equal(
         '@media (min-width:640px) and (max-width:1023.95px)',
+      );
+    });
+  });
+
+  describe('not', () => {
+    it('should work', () => {
+      expect(breakpoints.not('md')).to.equal(
+        '@media not all and (min-width:900px) and (max-width:1199.95px)',
+      );
+    });
+
+    it('should invert up for xl', () => {
+      expect(breakpoints.not('xl')).to.equal('@media (max-width:1535.95px)');
+    });
+
+    it('should invert down for xs', () => {
+      expect(breakpoints.not('xs')).to.equal('@media (min-width:600px)');
+    });
+
+    it('should work for custom breakpoints', () => {
+      expect(customBreakpoints.not('tablet')).to.equal(
+        '@media not all and (min-width:640px) and (max-width:1023.95px)',
       );
     });
   });

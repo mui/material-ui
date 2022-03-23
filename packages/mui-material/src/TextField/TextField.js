@@ -135,15 +135,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
       InputMore.notched = InputLabelProps.shrink;
     }
-    if (label) {
-      const displayRequired = InputLabelProps?.required ?? required;
-      InputMore.label = (
-        <React.Fragment>
-          {label}
-          {displayRequired && '\u00a0*'}
-        </React.Fragment>
-      );
-    }
+    InputMore.label = label;
   }
   if (select) {
     // unset defaults from textbox inputs
@@ -196,7 +188,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {label && (
+      {label != null && label !== '' && (
         <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
           {label}
         </InputLabel>
@@ -296,6 +288,7 @@ TextField.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * Props applied to the [`InputLabel`](/api/input-label/) element.
+   * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
    */
   InputLabelProps: PropTypes.object,
   /**

@@ -29,7 +29,13 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ leftArrowButton?: object, rightArrowButton?: object, switchViewButton?: object }"
+      },
+      "default": "{}"
+    },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "DialogProps": { "type": { "name": "object" } },
     "disableAutoMonthSwitching": { "type": { "name": "bool" } },

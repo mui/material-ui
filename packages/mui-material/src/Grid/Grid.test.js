@@ -4,7 +4,7 @@ import { describeConformance, createRenderer, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
-import { generateRowGap, generateColumnGap, generateDirection } from './Grid';
+import { generateGrid, generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
 describe('<Grid />', () => {
   const { render } = createRenderer();
@@ -43,6 +43,36 @@ describe('<Grid />', () => {
 
       // `columns` of nested container should have a higher priority than that of root container
       // otherwise, max-width would be 50% in this test
+      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
+    });
+
+    it('should apply the correct number of columns for nested containers with undefined prop columns', () => {
+      const { getByTestId } = render(
+        <Grid container columns={16}>
+          <Grid item xs={8}>
+            <Grid container data-testid="nested-container-in-item">
+              <Grid item xs={12} />
+            </Grid>
+          </Grid>
+        </Grid>,
+      );
+
+      const container = getByTestId('nested-container-in-item');
+      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
+    });
+
+    it('should apply the correct number of columns for nested containers with columns=12 (default)', () => {
+      const { getByTestId } = render(
+        <Grid container columns={16}>
+          <Grid item xs={8}>
+            <Grid container columns={12} data-testid="nested-container-in-item">
+              <Grid item xs={12} />
+            </Grid>
+          </Grid>
+        </Grid>,
+      );
+
+      const container = getByTestId('nested-container-in-item');
       expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
     });
   });
@@ -307,6 +337,61 @@ describe('<Grid />', () => {
     });
   });
 
+  describe('prop: columns', () => {
+    it('should generate responsive grid when grid item misses breakpoints of its container', () => {
+      const theme = createTheme();
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { xs: 4, sm: 8, md: 12 },
+            xs: 2,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        flexBasis: '50%',
+        flexGrow: 0,
+        maxWidth: '50%',
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexBasis: '25%',
+          flexGrow: 0,
+          maxWidth: '25%',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          flexBasis: '16.666667%',
+          flexGrow: 0,
+          maxWidth: '16.666667%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item misses breakpoints of its container and breakpoint starts from the middle', () => {
+      const theme = createTheme();
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { sm: 8, md: 12 },
+            sm: 4,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          flexBasis: '33.333333%',
+          flexGrow: 0,
+          maxWidth: '33.333333%',
+        },
+      });
+    });
+  });
+
   describe('spacing', () => {
     it('should generate the right values', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -370,6 +455,31 @@ describe('<Grid />', () => {
       marginTop: '16px',
       marginRight: '40px',
       marginBottom: '16px',
+    });
+  });
+
+  describe('prop: wrap', () => {
+    it('should wrap by default', () => {
+      render(<Grid container data-testid="wrap" />);
+      expect(screen.getByTestId('wrap')).toHaveComputedStyle({
+        flexWrap: 'wrap',
+      });
+    });
+
+    it('should apply nowrap class and style', () => {
+      const { container } = render(<Grid container wrap="nowrap" data-testid="wrap" />);
+      expect(container.firstChild).to.have.class('MuiGrid-wrap-xs-nowrap');
+      expect(screen.getByTestId('wrap')).toHaveComputedStyle({
+        flexWrap: 'nowrap',
+      });
+    });
+
+    it('should apply wrap-reverse class and style', () => {
+      const { container } = render(<Grid container wrap="wrap-reverse" data-testid="wrap" />);
+      expect(container.firstChild).to.have.class('MuiGrid-wrap-xs-wrap-reverse');
+      expect(screen.getByTestId('wrap')).toHaveComputedStyle({
+        flexWrap: 'wrap-reverse',
+      });
     });
   });
 });

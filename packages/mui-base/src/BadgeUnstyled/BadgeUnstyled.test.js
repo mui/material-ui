@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, createMount, describeConformanceUnstyled } from 'test/utils';
+
 import BadgeUnstyled, { badgeUnstyledClasses as classes } from '@mui/base/BadgeUnstyled';
 
 describe('<BadgeUnstyled />', () => {
   const { render } = createRenderer();
+  const mount = createMount();
 
-  describeConformance(
+  describeConformanceUnstyled(
     <BadgeUnstyled>
       <div />
     </BadgeUnstyled>,
@@ -14,13 +16,18 @@ describe('<BadgeUnstyled />', () => {
       classes,
       inheritComponent: 'span',
       render,
+      mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
-      skip: [
-        'themeDefaultProps', // unstyled
-        'themeStyleOverrides', // unstyled
-        'themeVariants', // unstyled
-      ],
+      muiName: 'MuiBadge',
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+        badge: {
+          expectedClassName: classes.badge,
+        },
+      },
     }),
   );
 

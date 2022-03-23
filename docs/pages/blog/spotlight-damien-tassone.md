@@ -2,8 +2,9 @@
 title: A spotlight on Damien Tassone joining the team
 description: Damien Tassone has joined MUI. He's the first full-time member to focus on enterprise components.
 date: 2020-09-15T00:00:00.000Z
-authors: ['oliviertassinari"]
+authors: ['oliviertassinari']
 card: true
+tags: ['Company']
 ---
 
 A few months ago, right in the middle of the COVID-19 outbreak, [Damien Tassone](https://twitter.com/madKakoO) joined MUI. He's the first full-time member to focus on enterprise components. Back then, we only made a quick mention of it. It's never too late to introduce him properly.
@@ -14,6 +15,6 @@ Right from the start, Damien has made fast and significant progress. He has been
 
 <img src="/static/blog/spotlight-damien-tassone/data-grid.png" style="margin-bottom: 3rem;" alt="Data Grid" />
 
-The enterprise team will continue developing the data grid component, and progressively extend to new advanced components as we grow the team. Here's a quick view of [the enterprise roadmap](https://github.com/mui-org/material-ui-x/projects/1).
+The enterprise team will continue developing the data grid component, and progressively extend to new advanced components as we grow the team. Here's a quick view of [the enterprise roadmap](https://github.com/mui/mui-x/projects/1).
 
 You can follow Damien on [Twitter](https://twitter.com/madKakoO).

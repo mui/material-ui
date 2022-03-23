@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
 import BadgeUnstyled, { badgeUnstyledClasses, getBadgeUtilityClass } from '@mui/base/BadgeUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 
 export const badgeClasses = {
@@ -17,6 +18,17 @@ export const badgeClasses = {
     'colorSecondary',
     'colorSuccess',
     'colorWarning',
+    'overlapRectangular',
+    'overlapCircular',
+    // TODO: v6 remove the overlap value from these class keys
+    'anchorOriginTopLeftCircular',
+    'anchorOriginTopLeftRectangular',
+    'anchorOriginTopRightCircular',
+    'anchorOriginTopRightRectangular',
+    'anchorOriginBottomLeftCircular',
+    'anchorOriginBottomLeftRectangular',
+    'anchorOriginBottomRightCircular',
+    'anchorOriginBottomRightRectangular',
   ]),
 };
 
@@ -24,14 +36,23 @@ const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
 const extendUtilityClasses = (ownerState) => {
-  const { color, classes = {} } = ownerState;
+  const { color, anchorOrigin, overlap, classes = {} } = ownerState;
 
   return {
     ...classes,
-    badge: clsx(classes.badge, {
-      [getBadgeUtilityClass(`color${capitalize(color)}`)]: color !== 'default',
-      [classes[`color${capitalize(color)}`]]: color !== 'default',
-    }),
+    badge: clsx(
+      classes.badge,
+      getBadgeUtilityClass(
+        `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
+          anchorOrigin.horizontal,
+        )}${capitalize(overlap)}`,
+      ),
+      getBadgeUtilityClass(`overlap${capitalize(overlap)}`),
+      {
+        [getBadgeUtilityClass(`color${capitalize(color)}`)]: color !== 'default',
+        [classes[`color${capitalize(color)}`]]: color !== 'default',
+      },
+    ),
   };
 };
 
@@ -196,10 +217,16 @@ const BadgeBadge = styled('span', {
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
   const {
+    anchorOrigin: anchorOriginProp = {
+      vertical: 'top',
+      horizontal: 'right',
+    },
+    component = 'span',
     components = {},
     componentsProps = {},
+    overlap: overlapProp = 'rectangular',
     color: colorProp = 'default',
-    invisible: invisibleProp,
+    invisible: invisibleProp = false,
     badgeContent: badgeContentProp,
     showZero = false,
     variant: variantProp = 'standard',
@@ -207,25 +234,32 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   } = props;
 
   const prevProps = usePreviousProps({
+    anchorOrigin: anchorOriginProp,
     color: colorProp,
+    overlap: overlapProp,
   });
 
   let invisible = invisibleProp;
 
   if (
-    invisibleProp == null &&
+    invisibleProp === false &&
     ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
   ) {
     invisible = true;
   }
 
-  const { color = colorProp } = invisible ? prevProps : props;
+  const {
+    color = colorProp,
+    overlap = overlapProp,
+    anchorOrigin = anchorOriginProp,
+  } = invisible ? prevProps : props;
 
-  const ownerState = { ...props, invisible, color };
+  const ownerState = { ...props, anchorOrigin, invisible, color, overlap };
   const classes = extendUtilityClasses(ownerState);
 
   return (
     <BadgeUnstyled
+      anchorOrigin={anchorOrigin}
       invisible={invisibleProp}
       badgeContent={badgeContentProp}
       showZero={showZero}
@@ -239,14 +273,15 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
       componentsProps={{
         root: {
           ...componentsProps.root,
-          ...((!components.Root || !isHostComponent(components.Root)) && {
-            ownerState: { ...componentsProps.root?.ownerState, color },
+          ...(shouldSpreadAdditionalProps(components.Root) && {
+            as: component,
+            ownerState: { ...componentsProps.root?.ownerState, color, overlap },
           }),
         },
         badge: {
           ...componentsProps.badge,
-          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {
-            ownerState: { ...componentsProps.badge?.ownerState, color },
+          ...(shouldSpreadAdditionalProps(components.Badge) && {
+            ownerState: { ...componentsProps.badge?.ownerState, color, overlap },
           }),
         },
       }}
@@ -293,6 +328,11 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -305,9 +345,13 @@ Badge.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Badge.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    badge: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * If `true`, the badge is invisible.
+   * @default false
    */
   invisible: PropTypes.bool,
   /**

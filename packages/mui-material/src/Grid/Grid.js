@@ -29,71 +29,80 @@ function getOffset(val) {
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
-function generateGrid(globalStyles, theme, breakpoint, ownerState) {
-  const size = ownerState[breakpoint];
+export function generateGrid({ theme, ownerState }) {
+  let size;
 
-  if (!size) {
-    return;
-  }
-
-  let styles = {};
-
-  if (size === true) {
-    // For the auto layouting
-    styles = {
-      flexBasis: 0,
-      flexGrow: 1,
-      maxWidth: '100%',
-    };
-  } else if (size === 'auto') {
-    styles = {
-      flexBasis: 'auto',
-      flexGrow: 0,
-      flexShrink: 0,
-      maxWidth: 'none',
-      width: 'auto',
-    };
-  } else {
-    const columnsBreakpointValues = resolveBreakpointValues({
-      values: ownerState.columns,
-      breakpoints: theme.breakpoints.values,
-    });
-
-    const columnValue =
-      typeof columnsBreakpointValues === 'object'
-        ? columnsBreakpointValues[breakpoint]
-        : columnsBreakpointValues;
-    // Keep 7 significant numbers.
-    const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
-    let more = {};
-
-    if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
-      const themeSpacing = theme.spacing(ownerState.columnSpacing);
-      if (themeSpacing !== '0px') {
-        const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
-        more = {
-          flexBasis: fullWidth,
-          maxWidth: fullWidth,
-        };
-      }
+  return theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
+    // Use side effect over immutability for better performance.
+    let styles = {};
+    if (ownerState[breakpoint]) {
+      size = ownerState[breakpoint];
+    }
+    if (!size) {
+      return globalStyles;
     }
 
-    // Close to the bootstrap implementation:
-    // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
-    styles = {
-      flexBasis: width,
-      flexGrow: 0,
-      maxWidth: width,
-      ...more,
-    };
-  }
+    if (size === true) {
+      // For the auto layouting
+      styles = {
+        flexBasis: 0,
+        flexGrow: 1,
+        maxWidth: '100%',
+      };
+    } else if (size === 'auto') {
+      styles = {
+        flexBasis: 'auto',
+        flexGrow: 0,
+        flexShrink: 0,
+        maxWidth: 'none',
+        width: 'auto',
+      };
+    } else {
+      const columnsBreakpointValues = resolveBreakpointValues({
+        values: ownerState.columns,
+        breakpoints: theme.breakpoints.values,
+      });
 
-  // No need for a media query for the first size.
-  if (theme.breakpoints.values[breakpoint] === 0) {
-    Object.assign(globalStyles, styles);
-  } else {
-    globalStyles[theme.breakpoints.up(breakpoint)] = styles;
-  }
+      const columnValue =
+        typeof columnsBreakpointValues === 'object'
+          ? columnsBreakpointValues[breakpoint]
+          : columnsBreakpointValues;
+      if (columnValue === undefined || columnValue === null) {
+        return globalStyles;
+      }
+      // Keep 7 significant numbers.
+      const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
+      let more = {};
+
+      if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
+        const themeSpacing = theme.spacing(ownerState.columnSpacing);
+        if (themeSpacing !== '0px') {
+          const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
+          more = {
+            flexBasis: fullWidth,
+            maxWidth: fullWidth,
+          };
+        }
+      }
+
+      // Close to the bootstrap implementation:
+      // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
+      styles = {
+        flexBasis: width,
+        flexGrow: 0,
+        maxWidth: width,
+        ...more,
+      };
+    }
+
+    // No need for a media query for the first size.
+    if (theme.breakpoints.values[breakpoint] === 0) {
+      Object.assign(globalStyles, styles);
+    } else {
+      globalStyles[theme.breakpoints.up(breakpoint)] = styles;
+    }
+    return globalStyles;
+  }, {});
 }
 
 export function generateDirection({ theme, ownerState }) {
@@ -241,22 +250,14 @@ const GridRoot = styled('div', {
     ...(ownerState.zeroMinWidth && {
       minWidth: 0,
     }),
-    ...(ownerState.wrap === 'nowrap' && {
-      flexWrap: 'nowrap',
-    }),
-    ...(ownerState.wrap === 'reverse' && {
-      flexWrap: 'wrap-reverse',
+    ...(ownerState.wrap !== 'wrap' && {
+      flexWrap: ownerState.wrap,
     }),
   }),
   generateDirection,
   generateRowGap,
   generateColumnGap,
-  ({ theme, ownerState }) =>
-    theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
-      // Use side effect over immutability for better performance.
-      generateGrid(globalStyles, theme, breakpoint, ownerState);
-      return globalStyles;
-    }, {}),
+  generateGrid,
 );
 
 const useUtilityClasses = (ownerState) => {
@@ -311,9 +312,8 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const columnsContext = React.useContext(GridContext);
 
-  // setting prop before context to accomodate nesting
-  // colums set with default breakpoint unit of 12
-  const columns = columnsProp || columnsContext || 12;
+  // columns set with default breakpoint unit of 12
+  const columns = container ? columnsProp || 12 : columnsContext;
 
   const ownerState = {
     ...props,
@@ -334,21 +334,16 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const wrapChild = (element) =>
-    columns !== 12 ? (
-      <GridContext.Provider value={columns}>{element}</GridContext.Provider>
-    ) : (
-      element
-    );
-
-  return wrapChild(
-    <GridRoot
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      as={component}
-      ref={ref}
-      {...other}
-    />,
+  return (
+    <GridContext.Provider value={columns}>
+      <GridRoot
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        as={component}
+        ref={ref}
+        {...other}
+      />
+    </GridContext.Provider>
   );
 });
 

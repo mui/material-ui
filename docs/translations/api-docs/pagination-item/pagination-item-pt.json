@@ -9,8 +9,8 @@
     "page": "The current page number.",
     "selected": "If <code>true</code> the pagination item is selected.",
     "shape": "The shape of the pagination item.",
-    "size": "The size of the component.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "size": "The size of the autocomplete.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "type": "The type of pagination item.",
     "variant": "A variante a usar."
   },
@@ -80,17 +80,17 @@
       "description": "Styles applyed to the root element if `type=\"previous\"` or type=\"next\"."
     },
     "focusVisible": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "teclado focado"
     },
     "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>disabled={true}</code>"
     },
     "selected": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>selected={true}</code>"
     },

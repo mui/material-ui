@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { GlobalStyles } from '@mui/styled-engine';
-import { deepmerge } from '@mui/utils';
+import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import createSpacing from '../createTheme/createSpacing';
 import createBreakpoints from '../createTheme/createBreakpoints';
 import cssVarsParser from './cssVarsParser';
@@ -12,6 +12,7 @@ import getInitColorSchemeScript, {
   DEFAULT_MODE_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
+import createGetCssVar from './createGetCssVar';
 
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
@@ -21,10 +22,11 @@ export default function createCssVarsProvider(options) {
     theme: baseTheme = {},
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
-    disableTransitionOnChange = false,
-    enableColorScheme = true,
+    disableTransitionOnChange: designSystemTransitionOnChange = false,
+    enableColorScheme: designSystemEnableColorScheme = true,
     prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar,
+    resolveTheme,
   } = options;
 
   const systemSpacing = createSpacing(baseTheme.spacing);
@@ -59,14 +61,12 @@ export default function createCssVarsProvider(options) {
     attribute = DEFAULT_ATTRIBUTE,
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
+    disableTransitionOnChange = designSystemTransitionOnChange,
+    enableColorScheme = designSystemEnableColorScheme,
   }) {
-    // make sure that baseTheme is always independent of each <CssVarsProvider /> call.
-    // JSON.parse(JSON.stringify(...)) is okay to be used as long as the baseTheme is a plain object.
-    const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
-
-    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
+    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
-    const hasMounted = React.useRef(null);
+    const hasMounted = React.useRef(false);
 
     // eslint-disable-next-line prefer-const
     let { components = {}, ...mergedTheme } = deepmerge(restBaseTheme, restThemeProp);
@@ -105,33 +105,48 @@ export default function createCssVarsProvider(options) {
       return colorScheme;
     })();
 
-    const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, {
+    const {
+      css: rootCss,
+      vars: rootVars,
+      parsedTheme,
+    } = cssVarsParser(mergedTheme, {
       prefix,
       basePrefix: designSystemPrefix,
       shouldSkipGeneratingVar,
     });
 
     mergedTheme = {
-      ...mergedTheme,
-      ...colorSchemes[resolvedColorScheme],
+      ...parsedTheme,
       components,
       colorSchemes,
+      prefix,
       vars: rootVars,
       spacing: themeProp.spacing ? createSpacing(themeProp.spacing) : systemSpacing,
       breakpoints: themeProp.breakpoints
         ? createBreakpoints(themeProp.breakpoints)
         : systemBreakpoints,
+      getCssVar: createGetCssVar(prefix),
     };
 
     const styleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = cssVarsParser(scheme, {
+      const {
+        css,
+        vars,
+        parsedTheme: parsedScheme,
+      } = cssVarsParser(scheme, {
         prefix,
         basePrefix: designSystemPrefix,
         shouldSkipGeneratingVar,
       });
       mergedTheme.vars = deepmerge(mergedTheme.vars, vars);
+      if (key === resolvedColorScheme) {
+        mergedTheme = {
+          ...mergedTheme,
+          ...parsedScheme,
+        };
+      }
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
           return defaultColorScheme;
@@ -155,7 +170,7 @@ export default function createCssVarsProvider(options) {
       }
     }, [colorScheme, attribute]);
 
-    React.useEffect(() => {
+    useEnhancedEffect(() => {
       if (!mode || !enableColorScheme) {
         return undefined;
       }
@@ -170,7 +185,7 @@ export default function createCssVarsProvider(options) {
       return () => {
         document.documentElement.style.setProperty('color-scheme', priorColorScheme);
       };
-    }, [mode, systemMode]);
+    }, [mode, systemMode, enableColorScheme]);
 
     React.useEffect(() => {
       let timer;
@@ -190,10 +205,13 @@ export default function createCssVarsProvider(options) {
       return () => {
         clearTimeout(timer);
       };
-    }, [colorScheme]);
+    }, [colorScheme, disableTransitionOnChange]);
 
     React.useEffect(() => {
       hasMounted.current = true;
+      return () => {
+        hasMounted.current = false;
+      };
     }, []);
 
     return (
@@ -210,7 +228,9 @@ export default function createCssVarsProvider(options) {
       >
         <GlobalStyles styles={{ ':root': rootCss }} />
         <GlobalStyles styles={styleSheet} />
-        <ThemeProvider theme={mergedTheme}>{children}</ThemeProvider>
+        <ThemeProvider theme={resolveTheme ? resolveTheme(mergedTheme) : mergedTheme}>
+          {children}
+        </ThemeProvider>
       </ColorSchemeContext.Provider>
     );
   }
@@ -232,6 +252,14 @@ export default function createCssVarsProvider(options) {
      * The initial mode used.
      */
     defaultMode: PropTypes.string,
+    /**
+     * Disable CSS transitions when switching between modes or color schemes
+     */
+    disableTransitionOnChange: PropTypes.bool,
+    /**
+     * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
+     */
+    enableColorScheme: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */

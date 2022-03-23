@@ -14,7 +14,7 @@ You should use these numbers exclusively for comparing performance between diffe
 
 For compareable results ask a maintainer to approve the CircleCI job `benchmark`.
 
-```
+```sh
 noop (baseline):
   06.29 ±00.44ms
 Table:

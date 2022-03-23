@@ -26,6 +26,10 @@
       "matchPackagePatterns": "@emotion/*"
     },
     {
+      "groupName": "Font awesome SVG icons",
+      "matchPackagePatterns": "@fortawesome/*"
+    },
+    {
       "groupName": "core-js",
       "matchPackageNames": ["core-js"],
       "allowedVersions": "< 2.0.0"
@@ -80,6 +84,11 @@
       "groupName": "bundling fixtures",
       "matchPaths": ["test/bundling/fixtures/**/package.json"],
       "schedule": "every 6 months on the first day of the month"
+    },
+    {
+      "groupName": "node",
+      "matchPackageNames": ["node"],
+      "enabled": false
     },
     {
       "groupName": "examples",

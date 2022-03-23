@@ -129,7 +129,9 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   );
 
   let Input = components.Input ?? 'input';
-  let inputProps = appendOwnerState(
+
+  // TODO: type this properly
+  let inputProps: Record<string, any> = appendOwnerState(
     Input,
     {
       ...getInputProps({ ...componentsProps.input, ...propsToForward }),
@@ -145,7 +147,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
           console.warn(
-            'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+            'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
           );
         }
       }
@@ -230,7 +232,10 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */
