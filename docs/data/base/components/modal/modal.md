@@ -31,7 +31,7 @@ Features:
 <!-- Uncomment the next line, once an unstyled dialog component is added in @mui/base -->
 <!-- If you are creating a modal dialog, the [`Dialog`](/material-ui/dialog/) component is better suited for this specific use case. -->
 
-`Modal` is a lower-level construct that is used in the following components:
+`Modal` is a lower-level construct that is used in the following Material UI components:
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer](/material-ui/react-drawer/)
