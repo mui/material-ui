@@ -338,9 +338,11 @@ describe('replaceMarkdownLinks', () => {
         [System](/system/basics)
     `);
     if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(`[Styles](/styles/api/)`).to.equal(`[Styles](/system/styles/api/)`);
+      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(
+        `[Styles](/system/styles/api/)`,
+      );
     } else {
-      expect(`[Styles](/styles/api/)`).to.equal(`[Styles](/styles/api/)`);
+      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(`[Styles](/styles/api/)`);
     }
   });
 
@@ -364,5 +366,11 @@ describe('replaceMarkdownLinks', () => {
         [text](/material-ui/react-select/#main-content)
         [text](/material-ui/react-switch/#main-content)
     `);
+  });
+
+  it('does not trasform material-ui', () => {
+    expect(
+      replaceMarkdownLinks(`[Trap Focus](https://mui.com/material-ui/react-trap-focus/)`),
+    ).to.equal(`[Trap Focus](https://mui.com/material-ui/react-trap-focus/)`);
   });
 });
