@@ -88,8 +88,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     variant = 'outlined',
     fullWidth = false,
     type = 'text',
-    startAdornment,
-    endAdornment,
+    startDecorator,
+    endDecorator,
     ...other
   } = props;
 
@@ -100,8 +100,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   const ownerState = {
     label,
     helperText,
-    startAdornment,
-    endAdornment,
+    startDecorator,
+    endDecorator,
     disabled,
     error,
     required,
@@ -160,8 +160,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        startAdornment={startAdornment}
-        endAdornment={endAdornment}
+        startDecorator={startDecorator}
+        endDecorator={endDecorator}
       />
       {helperText && (
         <FormHelperText
@@ -244,7 +244,7 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Trailing adornment for this input.
    */
-  endAdornment: PropTypes.node,
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -313,7 +313,12 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Leading adornment for this input.
    */
-  startAdornment: PropTypes.node,
+  startDecorator: PropTypes.node,
+  /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * @default 'text'
+   */
+  type: PropTypes.string,
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'

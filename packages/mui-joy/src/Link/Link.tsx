@@ -27,26 +27,26 @@ const useUtilityClasses = (ownerState: LinkProps) => {
       underline && `underline${capitalize(underline)}`,
       variant && `variant${capitalize(variant)}`,
     ],
-    startIcon: ['startIcon'],
-    endIcon: ['endIcon'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   return composeClasses(slots, getLinkUtilityClass, {});
 };
 
-const StartIcon = styled('span', {
+const StartDecorator = styled('span', {
   name: 'MuiLink',
-  slot: 'StartIcon',
-  overridesResolver: (props, styles) => styles.startIcon,
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: LinkProps }>({
   display: 'inline-flex',
   marginInlineEnd: 'min(var(--Link-gap, 0.25em), 0.5rem)',
 });
 
-const EndIcon = styled('span', {
+const EndDecorator = styled('span', {
   name: 'MuiLink',
-  slot: 'endIcon',
-  overridesResolver: (props, styles) => styles.endIcon,
+  slot: 'endDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: LinkProps }>({
   display: 'inline-flex',
   marginInlineStart: 'min(var(--Link-gap, 0.25em), 0.5rem)',
@@ -76,7 +76,7 @@ const LinkRoot = styled('a', {
           textDecorationColor: 'inherit',
         },
       }),
-      ...(ownerState.startIcon && {
+      ...(ownerState.startDecorator && {
         verticalAlign: 'bottom', // to make the link align with the parent's content
       }),
       display: 'inline-flex',
@@ -137,8 +137,8 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     level: levelProp = 'body1',
     underline = 'hover',
     variant,
-    endIcon,
-    startIcon,
+    endDecorator,
+    startDecorator,
     ...other
   } = props;
 
@@ -151,7 +151,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ref: focusVisibleRef,
   } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState<boolean>(false);
-  const handlerRef = useForkRef(ref, focusVisibleRef) as React.RefObject<HTMLAnchorElement>;
+  const handleRef = useForkRef(ref, focusVisibleRef) as React.Ref<HTMLAnchorElement>;
   const handleBlur = (event: React.FocusEvent<HTMLAnchorElement>) => {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
@@ -191,21 +191,21 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       as={component}
       onBlur={handleBlur}
       onFocus={handleFocus}
-      ref={handlerRef}
+      ref={handleRef}
       ownerState={ownerState}
       {...other}
     >
-      {startIcon && (
-        <StartIcon ownerState={ownerState} className={classes.startIcon}>
-          {startIcon}
-        </StartIcon>
+      {startDecorator && (
+        <StartDecorator ownerState={ownerState} className={classes.startDecorator}>
+          {startDecorator}
+        </StartDecorator>
       )}
 
       {children}
-      {endIcon && (
-        <EndIcon ownerState={ownerState} className={classes.endIcon}>
-          {endIcon}
-        </EndIcon>
+      {endDecorator && (
+        <EndDecorator ownerState={ownerState} className={classes.endDecorator}>
+          {endDecorator}
+        </EndDecorator>
       )}
     </LinkRoot>
   );
@@ -245,7 +245,7 @@ Link.propTypes /* remove-proptypes */ = {
   /**
    * Element placed after the children.
    */
-  endIcon: PropTypes.node,
+  endDecorator: PropTypes.node,
   /**
    * Applies the theme typography styles.
    * @default 'body1'
@@ -265,7 +265,7 @@ Link.propTypes /* remove-proptypes */ = {
   /**
    * Element placed before the children.
    */
-  startIcon: PropTypes.node,
+  startDecorator: PropTypes.node,
   /**
    * Controls when the link should have an underline.
    * @default 'hover'

@@ -16,17 +16,17 @@ const useUtilityClasses = (ownerState: TypographyProps) => {
 
   const slots = {
     root: ['root', level, gutterBottom && 'gutterBottom', noWrap && 'noWrap'],
-    startIcon: ['startIcon'],
-    endIcon: ['endIcon'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   return composeClasses(slots, getTypographyUtilityClass, {});
 };
 
-const StartIcon = styled('span', {
+const StartDecorator = styled('span', {
   name: 'MuiTypography',
-  slot: 'StartIcon',
-  overridesResolver: (props, styles) => styles.startIcon,
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
@@ -35,10 +35,10 @@ const StartIcon = styled('span', {
   }),
 }));
 
-const EndIcon = styled('span', {
+const EndDecorator = styled('span', {
   name: 'MuiTypography',
-  slot: 'endIcon',
-  overridesResolver: (props, styles) => styles.endIcon,
+  slot: 'endDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
@@ -62,12 +62,12 @@ const TypographyRoot = styled('span', {
         fontFamily: theme.vars.fontFamily.body, // for nested typography, the font family will be inherited.
         display: 'block',
       }),
-  ...((ownerState.startIcon || ownerState.endIcon) && {
+  ...((ownerState.startDecorator || ownerState.endDecorator) && {
     display: 'flex',
     alignItems: 'center',
     ...(ownerState.nested && {
       display: 'inline-flex',
-      ...(ownerState.startIcon && {
+      ...(ownerState.startDecorator && {
         verticalAlign: 'bottom', // to make the text align with the parent's content
       }),
     }),
@@ -115,8 +115,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     level: levelProp = 'body1',
     levelMapping = {},
     children,
-    endIcon,
-    startIcon,
+    endDecorator,
+    startDecorator,
     ...other
   } = props;
 
@@ -146,17 +146,17 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         className={clsx(classes.root, className)}
         {...other}
       >
-        {startIcon && (
-          <StartIcon ownerState={ownerState} className={classes.startIcon}>
-            {startIcon}
-          </StartIcon>
+        {startDecorator && (
+          <StartDecorator ownerState={ownerState} className={classes.startDecorator}>
+            {startDecorator}
+          </StartDecorator>
         )}
 
         {children}
-        {endIcon && (
-          <EndIcon ownerState={ownerState} className={classes.endIcon}>
-            {endIcon}
-          </EndIcon>
+        {endDecorator && (
+          <EndDecorator ownerState={ownerState} className={classes.endDecorator}>
+            {endDecorator}
+          </EndDecorator>
         )}
       </TypographyRoot>
     </TypographyContext.Provider>
@@ -188,7 +188,7 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * Element placed after the children.
    */
-  endIcon: PropTypes.node,
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the text will have a bottom margin.
    * @default false
@@ -232,7 +232,7 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * Element placed before the children.
    */
-  startIcon: PropTypes.node,
+  startDecorator: PropTypes.node,
 } as any;
 
 export default Typography;
