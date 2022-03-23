@@ -177,7 +177,6 @@ export default function WrappedMenuItems() {
 
   const createHandleMenuClick = (menuItem) => {
     return () => {
-      // eslint-disable-next-line no-console
       console.log(`Clicked on ${menuItem}`);
       close();
     };

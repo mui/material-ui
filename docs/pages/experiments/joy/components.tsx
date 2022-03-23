@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
@@ -31,6 +31,7 @@ import Star from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -43,7 +44,7 @@ const ColorSchemePicker = () => {
   }
 
   return (
-    <Button
+    <IconButton
       variant="outlined"
       onClick={() => {
         if (mode === 'light') {
@@ -52,13 +53,9 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{
-        p: '0.25rem',
-        width: 'var(--Button-minHeight)',
-      }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
-    </Button>
+    </IconButton>
   );
 };
 
@@ -123,7 +120,6 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Button-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
       { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
       { id: '--Button-gap', type: 'number', unit: 'px' },
@@ -273,7 +269,7 @@ const components: {
       { id: '--List-item-fontSize', type: 'number', unit: 'px', defaultValue: 16 },
       { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 0 },
-      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],
   },
@@ -331,7 +327,7 @@ const components: {
         },
       },
       { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
-      { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
+      { id: '--Input-decorator-offset', type: 'number', unit: 'px' },
     ],
   },
   {
@@ -421,7 +417,7 @@ function Playground({ initialName }: { initialName?: string }) {
             bottom: '1rem',
           }}
         >
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}

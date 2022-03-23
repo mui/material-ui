@@ -5,6 +5,7 @@ import {
   Spacing,
   CSSObject,
   SxProps as SystemSxProps,
+  SystemProps as SystemSystemProps,
   unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
 import colors from '../colors';
@@ -119,7 +120,39 @@ export const lightColorSystem = {
     },
     neutral: {
       ...colors.grey,
-      ...createLightModeVariantVariables('neutral'),
+      textColor: `var(--joy-palette-neutral-700)`,
+      textHoverColor: `var(--joy-palette-neutral-900)`,
+      textHoverBg: `var(--joy-palette-neutral-100)`,
+      textActiveBg: `var(--joy-palette-neutral-200)`,
+      textDisabledColor: `var(--joy-palette-neutral-400)`,
+
+      outlinedColor: `var(--joy-palette-neutral-700)`,
+      outlinedBorder: `var(--joy-palette-neutral-200)`,
+      outlinedHoverColor: `var(--joy-palette-neutral-900)`,
+      outlinedHoverBg: `var(--joy-palette-neutral-100)`,
+      outlinedHoverBorder: `var(--joy-palette-neutral-300)`,
+      outlinedActiveBg: `var(--joy-palette-neutral-200)`,
+      outlinedDisabledColor: `var(--joy-palette-neutral-400)`,
+      outlinedDisabledBorder: `var(--joy-palette-neutral-100)`,
+
+      lightColor: `var(--joy-palette-neutral-700)`,
+      lightBg: `var(--joy-palette-neutral-100)`,
+      lightHoverColor: `var(--joy-palette-neutral-900)`,
+      lightHoverBg: `var(--joy-palette-neutral-200)`,
+      lightActiveBg: `var(--joy-palette-neutral-300)`,
+      lightDisabledColor: `var(--joy-palette-neutral-500)`,
+      lightDisabledBg: `var(--joy-palette-neutral-50)`,
+
+      containedColor: '#fff',
+      containedBg: `var(--joy-palette-neutral-700)`,
+      containedHoverBg: `var(--joy-palette-neutral-800)`,
+      containedActiveBg: `var(--joy-palette-neutral-700)`,
+      containedDisabledColor: `var(--joy-palette-neutral-50)`,
+      containedDisabledBg: `var(--joy-palette-neutral-300)`,
+
+      overrideTextPrimary: `var(--joy-palette-neutral-700)`,
+      overrideTextSecondary: `var(--joy-palette-neutral-500)`,
+      overrideTextTertiary: `var(--joy-palette-neutral-400)`,
     },
     danger: {
       ...colors.red,
@@ -163,7 +196,39 @@ export const darkColorSystem = {
     },
     neutral: {
       ...colors.grey,
-      ...createDarkModeVariantVariables('neutral'),
+      textColor: `var(--joy-palette-neutral-200)`,
+      textHoverColor: `var(--joy-palette-neutral-50)`,
+      textHoverBg: `var(--joy-palette-neutral-800)`,
+      textActiveBg: `var(--joy-palette-neutral-700)`,
+      textDisabledColor: `var(--joy-palette-neutral-600)`,
+
+      outlinedColor: `var(--joy-palette-neutral-200)`,
+      outlinedBorder: `var(--joy-palette-neutral-700)`,
+      outlinedHoverColor: `var(--joy-palette-neutral-50)`,
+      outlinedHoverBg: `var(--joy-palette-neutral-900)`,
+      outlinedHoverBorder: `var(--joy-palette-neutral-600)`,
+      outlinedActiveBg: `var(--joy-palette-neutral-900)`,
+      outlinedDisabledColor: `var(--joy-palette-neutral-600)`,
+      outlinedDisabledBorder: `var(--joy-palette-neutral-800)`,
+
+      lightColor: `var(--joy-palette-neutral-200)`,
+      lightBg: `var(--joy-palette-neutral-900)`,
+      lightHoverColor: `var(--joy-palette-neutral-50)`,
+      lightHoverBg: `var(--joy-palette-neutral-800)`,
+      lightActiveBg: `var(--joy-palette-neutral-700)`,
+      lightDisabledColor: `var(--joy-palette-neutral-600)`,
+      lightDisabledBg: `var(--joy-palette-neutral-900)`,
+
+      containedColor: `#fff`,
+      containedBg: `var(--joy-palette-neutral-600)`,
+      containedHoverBg: `var(--joy-palette-neutral-700)`,
+      containedActiveBg: `var(--joy-palette-neutral-800)`,
+      containedDisabledColor: `var(--joy-palette-neutral-400)`,
+      containedDisabledBg: `var(--joy-palette-neutral-800)`,
+
+      overrideTextPrimary: `var(--joy-palette-neutral-200)`,
+      overrideTextSecondary: `var(--joy-palette-neutral-400)`,
+      overrideTextTertiary: `var(--joy-palette-neutral-500)`,
     },
     danger: {
       ...colors.red,
@@ -274,8 +339,10 @@ const internalDefaultTheme = {
   },
   focus: {
     default: {
-      outline: '4px solid',
-      outlineColor: 'var(--joy-palette-focusVisible)',
+      '&.Mui-focusVisible': {
+        outline: '4px solid',
+        outlineColor: 'var(--joy-palette-focusVisible)',
+      },
     },
   },
   typography: {
@@ -380,6 +447,8 @@ export interface JoyTheme extends ThemeScales, ColorSystem {
 }
 
 export type SxProps = SystemSxProps<JoyTheme>;
+
+export type SystemProps = SystemSystemProps<JoyTheme>;
 
 const defaultTheme = internalDefaultTheme as unknown as JoyTheme;
 
