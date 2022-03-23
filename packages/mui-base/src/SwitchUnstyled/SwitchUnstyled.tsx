@@ -47,11 +47,12 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
  *
  * Demos:
  *
- * - [Switches](https://mui.com/components/switches/)
+ * - [Switch](https://mui.com/base/react-switch/)
+ * - [Switches](https://mui.com/material-ui/react-switch/)
  *
  * API:
  *
- * - [SwitchUnstyled API](https://mui.com/api/switch-unstyled/)
+ * - [SwitchUnstyled API](https://mui.com/base/api/switch-unstyled/)
  */
 const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   props: SwitchUnstyledProps,
