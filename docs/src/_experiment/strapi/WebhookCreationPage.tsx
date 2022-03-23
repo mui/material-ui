@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import Box from '@mui/joy/Box';
