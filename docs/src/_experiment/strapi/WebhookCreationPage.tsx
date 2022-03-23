@@ -40,7 +40,7 @@ export default function WebhookCreationPage() {
           }}
         >
           <div>
-            <Link level="tableLabel" startIcon={<ArrowBack />} sx={{ mb: '10px' }}>
+            <Link level="tableLabel" startDecorator={<ArrowBack />} sx={{ mb: '10px' }}>
               Back
             </Link>
             <Typography level="header1">Create an Entry</Typography>
@@ -92,7 +92,11 @@ export default function WebhookCreationPage() {
                   <Remove />
                 </IconButton>
               </Box>
-              <Link component="button" startIcon={<Add />} sx={{ gridColumn: '1 / -1', mt: 1 }}>
+              <Link
+                component="button"
+                startDecorator={<Add />}
+                sx={{ gridColumn: '1 / -1', mt: 1 }}
+              >
                 Add a new header
               </Link>
             </Sheet>

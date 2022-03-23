@@ -195,7 +195,7 @@ export default function HomePage() {
           </Typography>
           <Link
             href="#blog"
-            endIcon={<OpenInNew />}
+            endDecorator={<OpenInNew />}
             sx={{ mt: 2, typography: 'tableLabel', color: 'primary.textColor' }}
           >
             SEE MORE ON THE BLOG

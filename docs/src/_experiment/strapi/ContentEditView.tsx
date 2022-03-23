@@ -1,10 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Checkbox from '@mui/joy/Checkbox';
-import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import ListDivider from '@mui/joy/ListDivider';
 import TextField from '@mui/joy/TextField';
@@ -12,13 +9,7 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import Add from '@mui/icons-material/Add';
-import Search from '@mui/icons-material/Search';
-import FilterList from '@mui/icons-material/FilterList';
-import Settings from '@mui/icons-material/Settings';
 import Edit from '@mui/icons-material/Edit';
-import Delete from '@mui/icons-material/Delete';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import Check from '@mui/icons-material/Check';
@@ -28,14 +19,6 @@ import Segment from '@mui/icons-material/Segment';
 import { ToggleButton, ToggleButtonGroup } from 'docs/src/_experiment/joy/Toggle';
 import MainNav from './components/MainNav';
 import ContentNav from './components/ContentNav';
-
-const items = [
-  { name: 'Chez Léon', description: 'Chez Léon is a human sized Parisian...' },
-  { name: 'L’Aristote', description: 'The ideal place to enjoy the french...' },
-  { name: 'La part des anges', description: 'Famous wine restaurant in the heart...' },
-  { name: 'Saint Michel', description: 'Simply the best fish&chips in town...' },
-  { name: 'La maison blanche', description: 'Typical wood fire pizzeria, in the...' },
-];
 
 export default function ContentEditView() {
   return (
@@ -62,7 +45,7 @@ export default function ContentEditView() {
           <div>
             <Link
               component="button"
-              startIcon={<ArrowBack />}
+              startDecorator={<ArrowBack />}
               sx={{ typography: 'tableLabel', color: 'primary.textColor', mb: 1 }}
             >
               BACK
@@ -177,7 +160,7 @@ export default function ContentEditView() {
                 defaultValue="French (FR)"
                 endAdornment={<ArrowDropDown sx={{ color: 'neutral.500' }} />}
               />
-              <Link startIcon={<FileCopy />} sx={{ fontSize: '0.75rem' }}>
+              <Link startDecorator={<FileCopy />} sx={{ fontSize: '0.75rem' }}>
                 Fill in from another locale
               </Link>
             </Sheet>
