@@ -4,12 +4,12 @@ import NoSsr from '@mui/material/NoSsr';
 import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
-import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
-import ProductSuite from 'docs/src/components/home/ProductSuite';
-import ValueProposition from 'docs/src/components/home/ValueProposition';
-import DesignSystemComponents from 'docs/src/components/home/DesignSystemComponents';
-import Testimonials from 'docs/src/components/home/Testimonials';
-import Sponsors from 'docs/src/components/home/Sponsors';
+// import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
+// import ProductSuite from 'docs/src/components/home/ProductSuite';
+// import ValueProposition from 'docs/src/components/home/ValueProposition';
+// import DesignSystemComponents from 'docs/src/components/home/DesignSystemComponents';
+// import Testimonials from 'docs/src/components/home/Testimonials';
+// import Sponsors from 'docs/src/components/home/Sponsors';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingProvider from 'docs/src/BrandingProvider';
@@ -30,12 +30,12 @@ export default function Home() {
       <AppHeader />
       <main>
         <Hero />
-        <References companies={CORE_CUSTOMERS} />
+        {/* <References companies={CORE_CUSTOMERS} />
         <ProductSuite />
         <ValueProposition />
         <DesignSystemComponents />
         <Testimonials />
-        <Sponsors />
+        <Sponsors /> */}
         <HeroEnd />
         <Divider />
       </main>
