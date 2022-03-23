@@ -611,6 +611,10 @@ const themePalette: JoyThemeInput = {
           800: '#94000D',
           900: '#570007',
         },
+        text: {
+          primary: 'var(--joy-palette-neutral-900)',
+          secondary: 'var(--joy-palette-neutral-700)',
+        },
         divider: 'var(--joy-palette-neutral-100)',
         // @ts-ignore
         gradient: `linear-gradient(180deg, var(--joy-palette-neutral-50) 0%, #FFFFFF 100%)`,
@@ -659,6 +663,10 @@ const themePalette: JoyThemeInput = {
         background: {
           body: '#001E3C',
           level1: '#0A1929',
+        },
+        text: {
+          primary: '#fff',
+          secondary: 'var(--joy-palette-neutral-400)',
         },
         divider: 'rgba(194, 224, 255, 0.08)',
         // @ts-ignore
@@ -1122,7 +1130,7 @@ export default function MUI() {
             <Typography level="h2" sx={{ maxWidth: 460 }}>
               Start building with <Typography>MUI</Typography> today!
             </Typography>
-            <Typography sx={{ color: 'text.tertiary', mt: 1, mb: 2 }}>
+            <Typography sx={{ color: 'text.secondary', mt: 1, mb: 2 }}>
               Try it for yourself, and share with us what you&apos;ve built
             </Typography>
             <GetStartedButtons />
@@ -1190,7 +1198,7 @@ export default function MUI() {
               color: 'text.secondary',
               typography: 'body2',
               '&:hover': {
-                color: 'primary.main',
+                color: 'primary.textColor',
                 textDecoration: 'underline',
               },
             },
@@ -1210,7 +1218,7 @@ export default function MUI() {
                 level="body3"
                 fontWeight="md"
                 htmlFor="email-subscribe"
-                sx={{ mb: 1 }}
+                sx={{ mb: 1, color: 'text.secondary' }}
               >
                 Enter your email:
               </Typography>
@@ -1230,11 +1238,13 @@ export default function MUI() {
                 />
                 <Button
                   variant="light"
+                  color="neutral"
                   sx={{
-                    '[data-mui-color-scheme="dark"] &': { bgcolor: '#173a5e', color: '#fff' },
+                    bgcolor: 'neutral.300',
                     fontWeight: 'md',
                     borderTopLeftRadius: 0,
                     borderBottomLeftRadius: 0,
+                    '[data-mui-color-scheme="dark"] &': { bgcolor: '#173a5e', color: '#fff' },
                   }}
                 >
                   Subscribe
