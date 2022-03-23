@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NoSsr from '@mui/base/NoSsr';
-import Box from '@mui/system/Box';
+import { Box } from '@mui/system';
 
 function LargeTree() {
   return Array.from(new Array(5000)).map((_, index) => <span key={index}>.</span>);
