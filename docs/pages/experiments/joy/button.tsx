@@ -11,6 +11,7 @@ import DeleteForever from '@mui/icons-material/DeleteForeverOutlined';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import ThumbUp from '@mui/icons-material/ThumbUp';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -136,6 +137,15 @@ export default function JoyButton() {
             </Button>
             <Button variant="outlined" endIcon={<KeyboardArrowRight />} color="success">
               Checkout
+            </Button>
+            <Button
+              size="sm"
+              variant="outlined"
+              color="neutral"
+              endIcon={<ArrowDropDown />}
+              sx={{ '--Icon-color': (theme) => theme.vars.palette.primary[500] }}
+            >
+              10
             </Button>
           </Box>
         </Box>
