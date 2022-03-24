@@ -338,7 +338,7 @@ const internalDefaultTheme = {
   },
   focus: {
     default: {
-      '&.Mui-focusVisible': {
+      '&.Mui-focusVisible, &:focus-visible': {
         outline: '4px solid',
         outlineColor: 'var(--joy-palette-focusVisible)',
       },
