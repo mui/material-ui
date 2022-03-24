@@ -1,4 +1,4 @@
-# Learn MUI
+# Learning Resources
 
 <p class="description">New to MUI? It's easy to learn if you know where to start! This guide will help you to get started quickly.</p>
 
