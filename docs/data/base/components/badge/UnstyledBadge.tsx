@@ -29,20 +29,6 @@ const StyledBadge = styled(BadgeUnstyled)`
     background: #07f;
     border-radius: 10px;
     box-shadow: 0 0 0 1px #fff;
-  }
-
-  & .MuiBadge-dot {
-    padding: 0;
-    z-index: auto;
-    min-width: 6px;
-    width: 6px;
-    height: 6px;
-    background: #07f;
-    border-radius: 100%;
-    box-shadow: 0 0 0 1px #fff;
-  }
-
-  & .MuiBadge-anchorOriginTopRight {
     position: absolute;
     top: 0;
     right: 0;
@@ -69,13 +55,8 @@ function BadgeContent() {
 
 export default function UnstyledBadge() {
   return (
-    <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
-      <StyledBadge badgeContent={5}>
-        <BadgeContent />
-      </StyledBadge>
-      <StyledBadge badgeContent={5} variant="dot">
-        <BadgeContent />
-      </StyledBadge>
-    </Box>
+    <StyledBadge badgeContent={5}>
+      <BadgeContent />
+    </StyledBadge>
   );
 }

@@ -73,17 +73,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The anchor of the badge.
-   * @default {
-   *   vertical: 'top',
-   *   horizontal: 'right',
-   * }
-   */
-  anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['left', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
-  }),
-  /**
    * The content rendered within the badge.
    */
   badgeContent: PropTypes.node,
@@ -91,10 +80,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
    * The badge will be added relative to this node.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -136,11 +121,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   showZero: PropTypes.bool,
-  /**
-   * The variant to use.
-   * @default 'standard'
-   */
-  variant: PropTypes.string,
 };
 
 export default BadgeUnstyled;

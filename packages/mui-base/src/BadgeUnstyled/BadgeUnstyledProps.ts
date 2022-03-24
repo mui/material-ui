@@ -1,11 +1,5 @@
 import * as React from 'react';
 import { OverrideProps, OverridableTypeMap } from '@mui/types';
-import { BadgeUnstyledClasses } from './badgeUnstyledClasses';
-
-export interface BadgeOrigin {
-  vertical: 'top' | 'bottom';
-  horizontal: 'left' | 'right';
-}
 
 export interface BadgeUnstyledComponentsPropsOverrides {}
 
