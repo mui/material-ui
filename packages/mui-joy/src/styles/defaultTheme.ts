@@ -18,7 +18,6 @@ import {
   FontFamily,
   FontSize,
   FontWeight,
-  IconSize,
   LineHeight,
   LetterSpacing,
   TypographySystem,
@@ -423,7 +422,6 @@ export interface ThemeScales {
   fontFamily: FontFamily;
   fontSize: FontSize;
   fontWeight: FontWeight;
-  iconSize: IconSize;
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
 }
