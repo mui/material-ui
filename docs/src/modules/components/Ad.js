@@ -34,7 +34,8 @@ function PleaseDisableAdblock(props) {
   );
 }
 
-const disable = process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD !== 'true';
+const disableAd =
+  process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD_IN_DEV_MODE !== 'true';
 const inHouseAds = [
   {
     name: 'scaffoldhub',
@@ -122,7 +123,7 @@ function Ad() {
   let children;
   let label;
   // Hide the content to google bot to avoid its indexation.
-  if (/Googlebot/.test(navigator.userAgent) || disable) {
+  if (/Googlebot/.test(navigator.userAgent) || disableAd) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {
@@ -179,7 +180,7 @@ function Ad() {
   );
 
   React.useEffect(() => {
-    if (disable) {
+    if (disableAd) {
       return undefined;
     }
     checkAdblock();
