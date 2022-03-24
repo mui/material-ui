@@ -1,7 +1,21 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
-import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
+
+const BackdropUnstyled = React.forwardRef<
+  HTMLDivElement,
+  { open?: boolean; className: string }
+>((props, ref) => {
+  const { open, className, ...other } = props;
+  return (
+    <div
+      className={clsx({ 'MuiBackdrop-open': open }, className)}
+      ref={ref}
+      {...other}
+    />
+  );
+});
 
 const Modal = styled(ModalUnstyled)(`
   position: fixed;

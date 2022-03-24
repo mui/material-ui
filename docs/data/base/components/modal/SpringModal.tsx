@@ -1,10 +1,24 @@
 import * as React from 'react';
-import BackdropUnstyled from '@mui/base/BackdropUnstyled';
+import clsx from 'clsx';
 import { Box, styled, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';
+
+const BackdropUnstyled = React.forwardRef<
+  HTMLDivElement,
+  { open?: boolean; className: string }
+>((props, ref) => {
+  const { open, className, ...other } = props;
+  return (
+    <div
+      className={clsx({ 'MuiBackdrop-open': open }, className)}
+      ref={ref}
+      {...other}
+    />
+  );
+});
 
 const Modal = styled(ModalUnstyled)`
   position: fixed;
