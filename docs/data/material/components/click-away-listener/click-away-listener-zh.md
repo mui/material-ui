@@ -9,8 +9,8 @@ githubLabel: 'component: ClickAwayListener'
 
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
-- 📦 [1.5kB 已压缩的包](/size-snapshot)。
-- ⚛️ 支持传送门组件
+- 📦 [992 B gzipped](/size-snapshot).
+- ⚛️ Supports portals
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -54,7 +54,7 @@ githubLabel: 'component: ClickAwayListener'
 
 ## 素颜模式
 
-- 📦 [784B 已压缩的包](https://bundlephobia.com/package/@mui/base@latest)
+- 📦 [981 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 由于组件没有任何样式，它也有一个基本包。
 
