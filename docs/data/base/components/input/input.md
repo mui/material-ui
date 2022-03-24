@@ -8,7 +8,7 @@ packageName: '@mui/base'
 
 # Unstyled input
 
-<p class="description">The `Input` component provides users with a field to enter and edit text.</p>
+<p class="description">The <code>Input</code> component provides users with a field to enter and edit text.</p>
 
 Features:
 
