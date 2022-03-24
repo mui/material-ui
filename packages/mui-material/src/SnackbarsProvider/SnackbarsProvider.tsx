@@ -15,7 +15,7 @@ const SnackbarsProvider = ({
   limit = 5,
   children,
   ...others
-}: SnackbarsProviderProps & { children?: React.ReactElement<any, any> }) => {
+}: SnackbarsProviderProps & { children?: React.ReactNode }) => {
   const [snackbars, setSnackbars] = React.useState<SnackbarProps[]>([]);
 
   const defaultSnackbarId = useId();

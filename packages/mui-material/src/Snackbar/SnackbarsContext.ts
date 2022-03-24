@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { SnackbarProps } from './Snackbar';
 
-interface SnackbarsContextProps {
+export interface SnackbarsContextProps {
   showSnackbar(props: SnackbarProps): string;
 }
 

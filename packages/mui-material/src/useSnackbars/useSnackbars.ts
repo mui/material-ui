@@ -1,11 +1,11 @@
 import * as React from 'react';
-import SnackbarsContext from '../Snackbar/SnackbarsContext';
+import SnackbarsContext, { SnackbarsContextProps } from '../Snackbar/SnackbarsContext';
 
-export default function useSnackbars() {
+export default function useSnackbars(): SnackbarsContextProps {
   const context = React.useContext(SnackbarsContext);
 
   if (context === undefined) {
-    return new Error('MUI: useSnackbars must be within a SnackbarsProvider');
+    throw new Error('MUI: useSnackbars must be within a SnackbarsProvider');
   }
 
   return context;
