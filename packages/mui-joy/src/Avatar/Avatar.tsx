@@ -67,7 +67,7 @@ const AvatarImg = styled('img', {
   name: 'MuiAvatar',
   slot: 'Img',
   overridesResolver: (props, styles) => styles.img,
-})(() => {
+})<{ ownerState: AvatarProps }>(() => {
   return [
     {
       width: '100%',
@@ -87,7 +87,7 @@ const AvatarFallback = styled(Person, {
   name: 'MuiAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
-})({
+})<{ ownerState: AvatarProps }>({
   width: '64%',
   height: '64%',
 });
@@ -174,14 +174,21 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   if (hasImgNotFailing) {
     children = (
-      <AvatarImg alt={alt} src={src} srcSet={srcSet} className={classes.img} {...imgProps} />
+      <AvatarImg
+        alt={alt}
+        src={src}
+        srcSet={srcSet}
+        className={classes.img}
+        ownerState={ownerState}
+        {...imgProps}
+      />
     );
   } else if (childrenProp != null) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback className={classes.fallback} />;
+    children = <AvatarFallback className={classes.fallback} ownerState={ownerState} />;
   }
 
   return (
