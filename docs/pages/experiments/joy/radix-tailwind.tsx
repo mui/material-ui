@@ -146,7 +146,6 @@ const Progress = () => (
         bottom: 0,
         left: 0,
         borderRadius: '12px',
-        // @ts-ignore
         backgroundColor: theme.vars.palette.bar,
       })}
     />
@@ -195,7 +194,6 @@ export default function RadixTailwind() {
                 secondary: getCssVar('palette-neutral-500'),
                 tertiary: getCssVar('palette-neutral-400'),
               },
-              // @ts-ignore
               bar: getCssVar('palette-primary-500'),
             },
           },
@@ -231,7 +229,6 @@ export default function RadixTailwind() {
                 secondary: getCssVar('palette-neutral-400'),
                 tertiary: getCssVar('palette-neutral-500'),
               },
-              // @ts-ignore
               bar: '#fff',
             },
           },

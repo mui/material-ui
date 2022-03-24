@@ -35,13 +35,6 @@ declare module '@mui/joy/styles' {
   }
 }
 
-// declare module '@mui/joy/Sheet' {
-//   interface SheetPropsColorOverrides {
-//     secondary: true;
-//     alternate: true;
-//   }
-// }
-
 const getCssVar = createGetCssVar();
 
 const strapiTheme: JoyThemeInput = {
@@ -106,7 +99,6 @@ const strapiTheme: JoyThemeInput = {
           100: '#FDF4DC',
         },
         // 💡 custom palette, it is not required to add all tokens
-        // @ts-ignore
         secondary: {
           700: '#006096',
           600: '#0C75AF',
@@ -119,7 +111,6 @@ const strapiTheme: JoyThemeInput = {
           containedColor: '#fff',
         },
         // 💡 custom palette, it is not required to add all tokens
-        // @ts-ignore
         alternate: {
           700: '#8312D1',
           600: '#9736E8',
@@ -346,7 +337,6 @@ const strapiTheme: JoyThemeInput = {
           }),
           '&.Mui-focusVisible': {
             ...(ownerState.variant === 'outlined' && {
-              // @ts-ignore This type error only occur in our repository due to multiple module augmentation
               borderColor: theme.vars.palette.outlinedFocusBorder,
             }),
           },

@@ -122,7 +122,6 @@ export interface PaletteSuccess extends PaletteRange {}
 export interface PaletteWarning extends PaletteRange {}
 
 export interface Palette {
-  separator: any;
   primary: PalettePrimary;
   neutral: PaletteNeutral;
   danger: PaletteDanger;

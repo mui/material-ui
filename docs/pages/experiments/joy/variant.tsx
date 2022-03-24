@@ -218,7 +218,6 @@ export default function JoyVariant() {
                   200: '#FAE7B9',
                   100: '#FDF4DC',
                 },
-                // @ts-ignore
                 secondary: {
                   700: '#006096',
                   600: '#0C75AF',

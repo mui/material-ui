@@ -143,11 +143,7 @@ const TypographyScale = () => {
 
       {(Object.keys(typography) as Array<keyof TypographySystem>).map((level) => {
         return (
-          <Typography
-            key={level}
-            // @ts-ignore
-            level={level}
-          >
+          <Typography key={level} level={level}>
             {level}
           </Typography>
         );
