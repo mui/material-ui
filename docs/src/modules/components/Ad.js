@@ -65,12 +65,6 @@ const inHouseAds = [
       '<b>MUI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
   },
   {
-    name: 'sketch',
-    link: 'https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
-    img: '/static/ads-in-house/sketch.png',
-    description: '<b>For Sketch</b>. A large UI kit with over 600 handcrafted MUI symbols 💎.',
-  },
-  {
     name: 'figma',
     link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
