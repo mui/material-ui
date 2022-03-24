@@ -1,23 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 import useBadge from './useBadge';
 import { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { variant, anchorOrigin, invisible, classes } = ownerState;
+  const { invisible, classes } = ownerState;
 
   const slots = {
     root: ['root'],
-    badge: [
-      'badge',
-      variant,
-      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
-      invisible && 'invisible',
-    ],
+    badge: ['badge', invisible && 'invisible'],
   };
 
   return composeClasses(slots, getBadgeUtilityClass, classes);
@@ -25,11 +19,6 @@ const useUtilityClasses = (ownerState) => {
 
 const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
-    classes: classesProp,
     badgeContent: badgeContentProp,
     component,
     children,
@@ -39,25 +28,19 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     invisible: invisibleProp,
     max: maxProp = 99,
     showZero = false,
-    variant: variantProp = 'standard',
     ...other
   } = props;
 
-  const { anchorOrigin, badgeContent, max, variant, displayValue, invisible } = useBadge({
+  const { badgeContent, max, displayValue, invisible } = useBadge({
     ...props,
-    anchorOrigin: anchorOriginProp,
     max: maxProp,
-    variant: variantProp,
   });
 
   const ownerState = {
     ...props,
-    anchorOrigin,
     badgeContent,
-    classes: classesProp,
     invisible,
     max,
-    variant,
     showZero,
   };
 
