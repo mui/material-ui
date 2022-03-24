@@ -24,7 +24,10 @@ const pages = [
       {
         pathname: '/base/components/utils',
         subheader: 'utils',
-        children: [{ pathname: '/base/react-popper', title: 'Popper' }],
+        children: [
+          { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
+          { pathname: '/base/react-popper', title: 'Popper' },
+        ],
       },
     ],
   },

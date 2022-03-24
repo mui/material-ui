@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
-import { BackdropUnstyledProps } from '../BackdropUnstyled';
 import { PortalProps } from '../Portal';
 import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
@@ -13,9 +12,9 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      */
     BackdropComponent?: React.ElementType;
     /**
-     * Props applied to the [`BackdropUnstyled`](/api/backdrop-unstyled/) element.
+     * Props applied to the backdrop element.
      */
-    BackdropProps?: Partial<BackdropUnstyledProps>;
+    BackdropProps?: React.ComponentPropsWithRef<'div'>;
     /**
      * A single child content element.
      */

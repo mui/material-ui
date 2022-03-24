@@ -71,6 +71,18 @@ describe('Joy <TextField />', () => {
     );
   });
 
+  it('should pass `type` to Input', () => {
+    const { getByLabelText } = render(<TextField label="password" type="password" />);
+
+    expect(getByLabelText(/password/)).to.have.attribute('type', 'password');
+  });
+
+  it('should pass `name` to Input', () => {
+    const { getByRole } = render(<TextField name="username" />);
+
+    expect(getByRole('textbox')).to.have.attribute('name', 'username');
+  });
+
   it('should be error', () => {
     const { container } = render(<TextField error />);
 
@@ -150,13 +162,13 @@ describe('Joy <TextField />', () => {
     expect(handleBlur.callCount).to.equal(1);
   });
 
-  it('should accept startAdornment', () => {
-    const { getByText } = render(<TextField startAdornment="foo" />);
+  it('should accept startDecorator', () => {
+    const { getByText } = render(<TextField startDecorator="foo" />);
     expect(getByText('foo')).toBeVisible();
   });
 
-  it('should accept endAdornment', () => {
-    const { getByText } = render(<TextField endAdornment="bar" />);
+  it('should accept endDecorator', () => {
+    const { getByText } = render(<TextField endDecorator="bar" />);
     expect(getByText('bar')).toBeVisible();
   });
 });
