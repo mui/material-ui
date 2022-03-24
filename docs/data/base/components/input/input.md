@@ -36,7 +36,7 @@ Common use cases of adornments include:
 
 ## Multiline
 
-The `multiline` prop transforms the `input` field into a `textarea` element.
+The `multiline` prop transforms the `<input>` field into a `<textarea>` element.
 
 {{"demo": "InputMultiline.js"}}
 
