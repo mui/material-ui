@@ -13,9 +13,6 @@ const StyledModal = styled(Modal)`
   align-items: center;
   justify-content: center;
   padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: inherit;
 `;
 
