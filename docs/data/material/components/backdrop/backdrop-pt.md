@@ -1,7 +1,7 @@
 ---
 product: material-ui
 title: Componente React para Pano de Fundo
-components: Backdrop, BackdropUnstyled
+components: Backdrop
 githubLabel: 'component: backdrop'
 ---
 
@@ -16,11 +16,3 @@ O backdrop sinaliza para o usuário uma mudança de estado dentro do aplicativo 
 ## Exemplo
 
 {{"demo": "SimpleBackdrop.js"}}
-
-## Unstyled
-
-The backdrop also comes with the Base package. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
-
-```js
-import BackdropUnstyled from '@mui/base/BackdropUnstyled';
-```
