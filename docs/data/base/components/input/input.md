@@ -12,9 +12,9 @@ packageName: '@mui/base'
 
 Features:
 
-- ✨ Supports start and end adornments.
-- 🚀 Can be transformed to textarea using the `multiline` prop.
-- ♿️ Adds the appropriate ARIA roles automatically.
+- ✨ Supports start and end adornments
+- 🚀 Can be transformed to `<textarea>` using the `multiline` prop
+- ♿️ Adds the appropriate ARIA roles automatically
 
 ## Basic input
 
