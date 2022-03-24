@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Snackbar, { SnackbarProps } from '../Snackbar';
 import SnackbarsContext from '../Snackbar/SnackbarsContext';
-import useId from '../utils/useId';
 
 interface SnackbarsProviderProps
   extends Omit<SnackbarProps, 'children' | 'classes' | 'key' | 'message' | 'onClose' | 'open'> {
@@ -18,19 +17,15 @@ const SnackbarsProvider = ({
 }: SnackbarsProviderProps & { children?: React.ReactNode }) => {
   const [snackbars, setSnackbars] = React.useState<SnackbarProps[]>([]);
 
-  const defaultSnackbarId = useId();
-
   const showSnackbar = (snackbar: SnackbarProps) => {
-    const id = snackbar.id || defaultSnackbarId;
     setSnackbars((prevState) => {
-      const updatedSnackbars = [...prevState, { ...snackbar, id }];
+      const updatedSnackbars = [...prevState, { ...snackbar, open: true }];
       return updatedSnackbars.slice(0, limit);
     });
-    return id!;
   };
 
-  const items = snackbars.map((snackbar) => (
-    <Snackbar {...others} {...snackbar} key={snackbar.id} />
+  const items = snackbars.map((snackbar, index) => (
+    <Snackbar {...others} {...snackbar} key={index} />
   ));
 
   return (
