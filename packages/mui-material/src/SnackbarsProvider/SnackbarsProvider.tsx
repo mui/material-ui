@@ -2,6 +2,8 @@ import * as React from 'react';
 import Snackbar, { SnackbarProps } from '../Snackbar';
 import SnackbarsContext from '../Snackbar/SnackbarsContext';
 
+const randomId = () => `mui-${Math.round(Math.random() * 1e5)}`;
+
 interface SnackbarsProviderProps
   extends Omit<SnackbarProps, 'children' | 'classes' | 'key' | 'message' | 'onClose' | 'open'> {
   /** The maximum number of snackbars to display at a time.
@@ -19,13 +21,13 @@ const SnackbarsProvider = ({
 
   const showSnackbar = (snackbar: SnackbarProps) => {
     setSnackbars((prevState) => {
-      const updatedSnackbars = [...prevState, { ...snackbar, open: true }];
+      const updatedSnackbars = [...prevState, { ...snackbar, open: true, id: randomId() }];
       return updatedSnackbars.slice(0, limit);
     });
   };
 
-  const items = snackbars.map((snackbar, index) => (
-    <Snackbar {...others} {...snackbar} key={index} />
+  const items = snackbars.map((snackbar) => (
+    <Snackbar {...others} {...snackbar} key={snackbar.id} />
   ));
 
   return (
