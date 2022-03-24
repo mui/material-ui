@@ -3,7 +3,7 @@ import * as React from 'react';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export type AvatarSlot = 'root';
+export type AvatarSlot = 'root' | 'img' | 'fallback';
 
 export interface AvatarPropsColorOverrides {}
 export interface AvatarPropsVariantOverrides {}
