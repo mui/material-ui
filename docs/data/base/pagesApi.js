@@ -1,5 +1,4 @@
 module.exports = [
-  { pathname: '/base/api/backdrop-unstyled' },
   { pathname: '/base/api/badge-unstyled' },
   { pathname: '/base/api/button-unstyled' },
   { pathname: '/base/api/click-away-listener' },

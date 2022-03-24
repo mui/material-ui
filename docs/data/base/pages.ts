@@ -22,9 +22,12 @@ const pages = [
         children: [{ pathname: '/base/react-menu', title: 'Menu' }],
       },
       {
-        pathname: '/base/components-utils',
+        pathname: '/base/components/utils',
         subheader: 'utils',
-        children: [{ pathname: '/base/react-modal', title: 'Modal' }],
+        children: [
+          { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
+          { pathname: '/base/react-modal', title: 'Modal' },
+        ],
       },
     ],
   },

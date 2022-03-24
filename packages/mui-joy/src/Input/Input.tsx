@@ -23,8 +23,8 @@ const useUtilityClasses = (ownerState: InputProps) => {
       size && `size${capitalize(size)}`,
     ],
     input: ['input'],
-    startAdornment: ['startAdornment'],
-    endAdornment: ['endAdornment'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   return composeClasses(slots, getInputUtilityClass, classes);
@@ -55,8 +55,10 @@ const InputRoot = styled('div', {
     '--Input-radius': theme.vars.radius.sm, // radius is used by
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
-    '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
+    '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
+    '--Input-focusedHighlight':
+      theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     boxSizing: 'border-box',
     height: `var(--Input-height)`,
     minWidth: 0, // forces the Input to stay inside a container by default
@@ -69,6 +71,7 @@ const InputRoot = styled('div', {
     alignItems: 'center',
     padding: `0.25rem var(--Input-gutter)`,
     borderRadius: 'var(--Input-radius)',
+    fontFamily: theme.vars.fontFamily.body,
     fontSize: theme.vars.fontSize.md,
     ...(ownerState.size === 'sm' && {
       fontSize: theme.vars.fontSize.sm,
@@ -91,17 +94,14 @@ const InputRoot = styled('div', {
       margin: 'calc(var(--variant-outlinedBorderWidth) * -1)', // for outlined variant
     },
   },
-  theme.variants[`${ownerState.variant!}`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color || 'neutral'],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color || 'neutral'],
+  theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   ownerState.variant !== 'contained' && {
-    color: theme.vars.palette[ownerState.color || 'neutral']?.overrideTextPrimary,
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
       '&:before': {
-        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) ${
-          theme.vars.palette[ownerState.color || 'primary']?.[500]
-        }`,
+        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
       },
     },
   },
@@ -127,7 +127,7 @@ const InputInput = styled('input', {
   fontSize: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color || 'neutral']?.overrideTextPrimary,
+    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
   },
   '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
   '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
@@ -135,30 +135,30 @@ const InputInput = styled('input', {
   '&::-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Edge
 }));
 
-const InputStartAdornment = styled('span', {
+const InputStartDecorator = styled('span', {
   name: 'MuiInput',
-  slot: 'StartAdornment',
-  overridesResolver: (props, styles) => styles.startIcon,
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
-  marginLeft: 'calc(var(--Input-adornment-offset) * -1)',
+  marginLeft: 'calc(var(--Input-decorator-offset) * -1)',
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
-    color: theme.vars.palette[ownerState.color || 'neutral']?.[`${ownerState.variant!}Color`],
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
   }),
 }));
 
-const InputEndAdornment = styled('span', {
+const InputEndDecorator = styled('span', {
   name: 'MuiInput',
-  slot: 'EndAdornment',
-  overridesResolver: (props, styles) => styles.endIcon,
+  slot: 'EndDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
-  marginRight: 'calc(var(--Input-adornment-offset) * -1)',
-  color: theme.vars.palette[ownerState.color || 'neutral']?.[`${ownerState.variant!}Color`],
+  marginRight: 'calc(var(--Input-decorator-offset) * -1)',
+  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
@@ -174,13 +174,13 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     autoComplete,
     autoFocus,
     className,
-    color,
+    color = 'neutral',
     component,
     components = {},
     componentsProps = {},
     defaultValue,
     disabled,
-    endAdornment,
+    endDecorator,
     fullWidth = false,
     error,
     id,
@@ -196,7 +196,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     readOnly,
     required,
     type = 'text',
-    startAdornment,
+    startDecorator,
     size = 'md',
     value,
     variant = 'outlined',
@@ -243,8 +243,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     [inputClasses.error]: errorState,
     [inputClasses.focused]: focused,
     [inputClasses.formControl]: Boolean(formControlContext),
-    [inputClasses.adornedStart]: Boolean(startAdornment),
-    [inputClasses.adornedEnd]: Boolean(endAdornment),
   };
 
   const inputStateClasses = {
@@ -290,17 +288,17 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   return (
     <Root ref={ref} {...rootProps}>
-      {startAdornment && (
-        <InputStartAdornment className={classes.startAdornment} ownerState={ownerState}>
-          {startAdornment}
-        </InputStartAdornment>
+      {startDecorator && (
+        <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
+          {startDecorator}
+        </InputStartDecorator>
       )}
 
       <InputComponent {...inputProps} />
-      {endAdornment && (
-        <InputEndAdornment className={classes.endAdornment} ownerState={ownerState}>
-          {endAdornment}
-        </InputEndAdornment>
+      {endDecorator && (
+        <InputEndDecorator className={classes.endDecorator} ownerState={ownerState}>
+          {endDecorator}
+        </InputEndDecorator>
       )}
     </Root>
   );
@@ -343,6 +341,7 @@ Input.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -381,7 +380,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * Trailing adornment for this input.
    */
-  endAdornment: PropTypes.node,
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -458,7 +457,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * Leading adornment for this input.
    */
-  startAdornment: PropTypes.node,
+  startDecorator: PropTypes.node,
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
