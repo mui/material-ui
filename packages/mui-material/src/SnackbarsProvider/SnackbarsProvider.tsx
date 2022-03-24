@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Snackbar, { SnackbarProps } from './Snackbar';
-import SnackbarsContext from './SnackbarsContext';
+import Snackbar, { SnackbarProps } from '../Snackbar';
+import SnackbarsContext from '../Snackbar/SnackbarsContext';
 import useId from '../utils/useId';
 
 interface SnackbarsProviderProps
