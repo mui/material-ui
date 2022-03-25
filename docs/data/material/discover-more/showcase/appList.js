@@ -436,13 +436,6 @@ const appList = [
     dateAdded: '2022-02-05',
   },
   {
-    title: 'Work in biotech',
-    description: 'Job board for small biotech startup companies',
-    image: 'workinbiotech.png',
-    link: 'https://workinbiotech.com/',
-    dateAdded: '2022-03-13',
-  },
-  {
     title: 'MQTT Explorer',
     description:
       'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
