@@ -9,8 +9,8 @@ githubLabel: 'component: ClickAwayListener'
 
 <p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
 
-- 📦 [1.5 kB gzipped](/size-snapshot).
-- ⚛️ Support portals
+- 📦 [992 B gzipped](/size-snapshot).
+- ⚛️ Supports portals
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -58,7 +58,7 @@ This is also required to fix a quirk in NVDA when using Firefox that prevents an
 
 ## Unstyled
 
-- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
+- 📦 [981 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 As the component does not have any styles, it also comes with the Base package.
 

@@ -20,7 +20,7 @@
     "disabledItemsFocusable": "If <code>true</code>, will allow focus on disabled items.",
     "disableListWrap": "If <code>true</code>, the list box in the popup will not wrap focus.",
     "disablePortal": "If <code>true</code>, the <code>Popper</code> content will be under the DOM hierarchy of the parent component.",
-    "filterOptions": "A filter function that determines the options that are eligible.<br><br><strong>Signature:</strong><br><code>function(options: Array&lt;T&gt;, state: object) =&gt; Array&lt;T&gt;</code><br><em>options:</em> The options to render.<br><em>state:</em> The state of the component.",
+    "filterOptions": "A function that determines the filtered options to be rendered on search.<br><br><strong>Signature:</strong><br><code>function(options: Array&lt;T&gt;, state: object) =&gt; Array&lt;T&gt;</code><br><em>options:</em> The options to render.<br><em>state:</em> The state of the component.",
     "filterSelectedOptions": "If <code>true</code>, hide the selected options from the list box.",
     "forcePopupIcon": "Force the visibility display of the popup icon.",
     "freeSolo": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options.",

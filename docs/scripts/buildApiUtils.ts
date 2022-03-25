@@ -105,8 +105,12 @@ export type ComponentInfo = {
 const migratedBaseComponents = [
   'BadgeUnstyled',
   'ButtonUnstyled',
-  'MenuUnstyled',
+  'ClickAwayListener',
+  'InputUnstyled',
   'MenuItemUnstyled',
+  'MenuUnstyled',
+  'ModalUnstyled',
+  'Portal',
   'SliderUnstyled',
 ];
 

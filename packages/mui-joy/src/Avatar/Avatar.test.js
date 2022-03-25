@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { createRenderer, describeConformance, fireEvent } from 'test/utils';
+import { ThemeProvider } from '@mui/joy/styles';
 import Avatar, { avatarClasses as classes } from '@mui/joy/Avatar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { spy } from 'sinon';
 import PersonIcon from '../internal/svg-icons/Person';
 
 describe('<Avatar />', () => {
@@ -13,16 +14,13 @@ describe('<Avatar />', () => {
     classes,
     inheritComponent: 'div',
     render,
+    ThemeProvider,
     muiName: 'MuiAvatar',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: [
-      'themeVariants',
-      'classesRoot',
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-    ],
+    testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
+    testVariantProps: { variant: 'contained' },
+    skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {

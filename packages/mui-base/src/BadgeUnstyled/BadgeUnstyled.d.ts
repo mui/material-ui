@@ -10,7 +10,6 @@ export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableCompo
  * Demos:
  *
  * - [Badge](https://mui.com/base/react-badge/)
- * - [Badges](https://mui.com/material-ui/react-badge/)
  *
  * API:
  *
