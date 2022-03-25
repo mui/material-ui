@@ -22,20 +22,11 @@ export * from './ClockPicker';
 export { default as DatePicker } from './DatePicker';
 export * from './DatePicker';
 
-export { default as DateRangePicker } from './DateRangePicker';
-export * from './DateRangePicker';
-
-export { default as DateRangePickerDay } from './DateRangePickerDay';
-export * from './DateRangePickerDay';
-
 export { default as DateTimePicker } from './DateTimePicker';
 export * from './DateTimePicker';
 
 export { default as DesktopDatePicker } from './DesktopDatePicker';
 export * from './DesktopDatePicker';
-
-export { default as DesktopDateRangePicker } from './DesktopDateRangePicker';
-export * from './DesktopDateRangePicker';
 
 export { default as DesktopDateTimePicker } from './DesktopDateTimePicker';
 export * from './DesktopDateTimePicker';
@@ -51,9 +42,6 @@ export * from './LocalizationProvider';
 
 export { default as MobileDatePicker } from './MobileDatePicker';
 export * from './MobileDatePicker';
-
-export { default as MobileDateRangePicker } from './MobileDateRangePicker';
-export * from './MobileDateRangePicker';
 
 export { default as MobileDateTimePicker } from './MobileDateTimePicker';
 export * from './MobileDateTimePicker';
@@ -90,9 +78,6 @@ export * from './SpeedDialIcon';
 
 export { default as StaticDatePicker } from './StaticDatePicker';
 export * from './StaticDatePicker';
-
-export { default as StaticDateRangePicker } from './StaticDateRangePicker';
-export * from './StaticDateRangePicker';
 
 export { default as StaticDateTimePicker } from './StaticDateTimePicker';
 export * from './StaticDateTimePicker';
