@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { expectType } from '@mui/types';
 
 interface MyOverrideProps {
@@ -148,3 +148,23 @@ declare const Foo: OverridableComponent<{
   // @ts-expect-error
   onClick={(event: React.MouseEvent<HTMLButtonElement>) => event.currentTarget.checkValidity()}
 />;
+
+// Typical polymorphic component from @mui/material
+interface BarTypeMap<P = {}, D extends React.ElementType = 'span'> {
+  props: P & {
+    numberProp: number;
+    callbackProp?(b: boolean): void;
+  };
+  defaultComponent: D;
+}
+
+declare const Bar: OverridableComponent<BarTypeMap>;
+
+type BarProps<D extends React.ElementType = BarTypeMap['defaultComponent'], P = {}> = OverrideProps<
+  BarTypeMap<P, D>,
+  D
+>;
+
+const Header = React.forwardRef<HTMLElement, BarProps>((props, ref) => (
+  <Bar ref={ref} component="header" {...props} />
+));

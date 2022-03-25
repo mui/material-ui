@@ -1,6 +1,7 @@
 import { GlobalStateSlot } from '@mui/base';
 import { CSSInterpolation } from '@mui/system';
 import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
+import { IconButtonProps, IconButtonSlot } from '../IconButton/IconButtonProps';
 import { InputProps, InputSlot } from '../Input/InputProps';
 import { LinkProps, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListSlot } from '../List/ListProps';
@@ -49,6 +50,10 @@ export interface Components<Theme = unknown> {
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonProps, Theme>;
+  };
+  MuiIconButton?: {
+    defaultProps?: Partial<IconButtonProps>;
+    styleOverrides?: OverridesStyleRules<IconButtonSlot, IconButtonProps, Theme>;
   };
   MuiSwitch?: {
     defaultProps?: Partial<SwitchProps>;

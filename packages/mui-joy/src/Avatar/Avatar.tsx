@@ -1,12 +1,12 @@
+import * as React from 'react';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
-import Person from '../internal/svg-icons/Person';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarTypeMap } from './AvatarProps';
 
@@ -36,13 +36,17 @@ const AvatarRoot = styled('div', {
     {
       ...(ownerState.size === 'sm' && {
         '--Avatar-size': '2rem',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Avatar-size': '2.5rem',
+        fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Avatar-size': '3rem',
+        fontSize: theme.vars.fontSize.lg,
       }),
+      fontFamily: theme.vars.fontFamily.body,
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
@@ -63,29 +67,25 @@ const AvatarImg = styled('img', {
   name: 'MuiAvatar',
   slot: 'Img',
   overridesResolver: (props, styles) => styles.img,
-})(() => {
-  return [
-    {
-      width: '100%',
-      height: '100%',
-      textAlign: 'center',
-      // Handle non-square image. The property isn't supported by IE11.
-      objectFit: 'cover',
-      // Hide alt text.
-      color: 'transparent',
-      // Hide the image broken icon, only works on Chrome.
-      textIndent: 10000,
-    },
-  ];
+})<{ ownerState: AvatarProps }>({
+  width: '100%',
+  height: '100%',
+  textAlign: 'center',
+  // Handle non-square image. The property isn't supported by IE11.
+  objectFit: 'cover',
+  // Hide alt text.
+  color: 'transparent',
+  // Hide the image broken icon, only works on Chrome.
+  textIndent: 10000,
 });
 
 const AvatarFallback = styled(Person, {
   name: 'MuiAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
-})({
-  width: '75%',
-  height: '75%',
+})<{ ownerState: AvatarProps }>({
+  width: '64%',
+  height: '64%',
 });
 
 type UseLoadedProps = { src?: string; srcSet?: string; crossOrigin?: any; referrerPolicy?: any };
@@ -170,14 +170,21 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   if (hasImgNotFailing) {
     children = (
-      <AvatarImg alt={alt} src={src} srcSet={srcSet} className={classes.img} {...imgProps} />
+      <AvatarImg
+        alt={alt}
+        src={src}
+        srcSet={srcSet}
+        className={classes.img}
+        ownerState={ownerState}
+        {...imgProps}
+      />
     );
   } else if (childrenProp != null) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback className={classes.fallback} />;
+    children = <AvatarFallback className={classes.fallback} ownerState={ownerState} />;
   }
 
   return (

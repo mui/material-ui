@@ -2,9 +2,6 @@ export * from './utils';
 
 export * from './AutocompleteUnstyled';
 
-export { default as BackdropUnstyled } from './BackdropUnstyled';
-export * from './BackdropUnstyled';
-
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 

@@ -30,6 +30,23 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       component?: React.ElementType;
       /**
+       * The components used for each slot inside the InputBase.
+       * Either a string to use a HTML element or a component.
+       * @default {}
+       */
+      components?: {
+        Root?: React.ElementType;
+        Input?: React.ElementType;
+      };
+      /**
+       * The props used for each slot inside the Input.
+       * @default {}
+       */
+      componentsProps?: {
+        root?: React.ComponentPropsWithRef<'span'>;
+        input?: React.ComponentPropsWithRef<'input'>;
+      };
+      /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
@@ -50,6 +67,10 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * @default <IndeterminateCheckBoxIcon />
        */
       indeterminateIcon?: React.ReactNode;
+      /**
+       * The `name` attribute of the input.
+       */
+      name?: string;
       /**
        * The size of the component.
        * @default 'md'
