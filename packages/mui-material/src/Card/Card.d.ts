@@ -6,6 +6,7 @@ import { Theme } from '..';
 import { PaperProps } from '../Paper';
 import { CardClasses } from './cardClasses';
 
+// TODO: v6 remove this interface, it is not used
 export interface CardPropsColorOverrides {}
 
 export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
