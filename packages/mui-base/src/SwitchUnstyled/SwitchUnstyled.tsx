@@ -48,7 +48,6 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
  * Demos:
  *
  * - [Switch](https://mui.com/base/react-switch/)
- * - [Switches](https://mui.com/material-ui/react-switch/)
  *
  * API:
  *
