@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { describeConformance } from 'test/utils';
-import TimePicker from './TimePicker';
+import TimePicker from '@mui/lab/TimePicker';
 import { wrapPickerMount } from '../internal/pickers/test-utils';
 
 describe('<TimePicker />', () => {

@@ -4,13 +4,10 @@ import { spy } from 'sinon';
 import { isWeekend } from 'date-fns';
 import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
-import DesktopDatePicker, { DesktopDatePickerProps } from '@mui/lab/DesktopDatePicker';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
-import { MakeOptional } from '../internal/pickers/typings/helpers';
 
-function TestKeyboardDatePicker(
-  PickerProps: MakeOptional<DesktopDatePickerProps, 'value' | 'onChange' | 'renderInput'>,
-) {
+function TestKeyboardDatePicker(PickerProps: any) {
   const [value, setValue] = React.useState<unknown>(
     PickerProps.value ?? adapterToUse.date('2019-01-01T00:00:00.000'),
   );
@@ -86,7 +83,7 @@ describe('<DesktopDatePicker /> keyboard interactions', () => {
         <TestKeyboardDatePicker
           mask="____"
           inputFormat="yyyy"
-          renderInput={(params) => (
+          renderInput={(params: any) => (
             <TextField {...params} id="test" helperText={params?.inputProps?.placeholder} />
           )}
         />,
