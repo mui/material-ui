@@ -73,8 +73,7 @@ export default function useMenu(parameters: UseMenuParameters) {
     optionStringifier: (id: string) =>
       menuItems[id].label ||
       menuItems[id].ref.current?.innerText ||
-      menuItems[id].ref.current?.innerHTML ||
-      id,
+      menuItems[id].ref.current?.innerHTML,
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
     listboxRef: handleRef,
     focusManagement: 'DOM',

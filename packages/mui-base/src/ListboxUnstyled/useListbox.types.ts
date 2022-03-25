@@ -149,7 +149,7 @@ interface UseListboxCommonProps<TOption> {
    * A function that converts an object to its string representation
    * @default (o) => o
    */
-  optionStringifier?: (option: TOption) => string;
+  optionStringifier?: (option: TOption) => string | undefined;
   /**
    * Array of options to be rendered in the list.
    */

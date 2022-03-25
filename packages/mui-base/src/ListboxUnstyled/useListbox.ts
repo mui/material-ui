@@ -24,11 +24,12 @@ const defaultOptionStringifier = <TOption>(option: TOption) =>
 const textCriteriaMatches = <TOption>(
   nextFocus: TOption,
   textCriteria: TextCriteria,
-  stringifyOption: (option: TOption) => string,
+  stringifyOption: (option: TOption) => string | undefined,
 ) => {
-  const text = stringifyOption(nextFocus).trim().toLowerCase();
+  const text = stringifyOption(nextFocus)?.trim().toLowerCase();
 
-  if (text.length === 0) {
+  if (!text || text.length === 0) {
+    // Make option not navigable if stringification fails or results in empty string.
     return false;
   }
   if (textCriteria.repeating) {
