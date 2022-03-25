@@ -216,6 +216,36 @@ describe('SelectUnstyled', () => {
         userEvent.keyPress(listbox, { key: 'z' });
         expect(getByTestId('5')).to.have.class('MuiOptionUnstyled-highlighted');
       });
+
+      it('skips the non-stringifiable options', () => {
+        const { getByRole, getByText } = render(
+          <SelectUnstyled>
+            <OptionUnstyled value={{ key: 'Apple' }}>Apple</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'Banana' }}>Banana</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'Cherry' }}>Cherry</OptionUnstyled>
+            <OptionUnstyled value={<div />} />
+            <OptionUnstyled value={{ key: 'Cherry' }}>
+              <div>Nested Content</div>
+            </OptionUnstyled>{' '}
+            <OptionUnstyled value={{}}>{null}</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'Calamondin' }}>Calamondin</OptionUnstyled>
+          </SelectUnstyled>,
+        );
+
+        const button = getByRole('button');
+        act(() => {
+          button.click();
+        });
+
+        const listbox = getByRole('listbox');
+
+        userEvent.keyPress(listbox, { key: 'c' });
+        expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+        userEvent.keyPress(listbox, { key: 'c' });
+        expect(getByText('Calamondin')).to.have.class('MuiOptionUnstyled-highlighted');
+        userEvent.keyPress(listbox, { key: 'c' });
+        expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+      });
     });
 
     it('closes the listbox without selecting an option when "Escape" is pressed', () => {

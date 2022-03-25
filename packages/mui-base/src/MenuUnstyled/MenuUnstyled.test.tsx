@@ -196,6 +196,40 @@ describe('MenuUnstyled', () => {
         expect(document.activeElement).to.equal(items[1]);
         expect(items[1]).to.have.attribute('tabindex', '0');
       });
+
+      it('skips the non-stringifiable items', () => {
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>Ba</MenuItemUnstyled>
+            <MenuItemUnstyled />
+            <MenuItemUnstyled>
+              <div>Nested Content</div>
+            </MenuItemUnstyled>
+            <MenuItemUnstyled>{undefined}</MenuItemUnstyled>
+            <MenuItemUnstyled>{null}</MenuItemUnstyled>
+            <MenuItemUnstyled>Bc</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Bc'));
+        expect(getByText('Bc')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[6], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+      });
     });
   });
 });
