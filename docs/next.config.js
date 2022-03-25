@@ -68,6 +68,8 @@ module.exports = {
             'notistack',
             '@mui/x-data-grid',
             '@mui/x-data-grid-pro',
+            '@mui/x-date-pickers',
+            '@mui/x-date-pickers-pro',
             '@mui/x-data-grid-generator',
             '@mui/x-license-pro',
           ].includes(request);
@@ -111,7 +113,7 @@ module.exports = {
           {
             test: /\.(js|mjs|jsx)$/,
             include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator)/,
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
             use: {
               loader: 'babel-loader',
               options: {
