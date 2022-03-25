@@ -3,7 +3,7 @@ import * as React from 'react';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export type ChipSlot = 'root' | 'label' | 'startDecorator' | 'endDecorator'; 
+export type ChipSlot = 'root' | 'label' | 'startDecorator' | 'endDecorator';
 
 export interface ChipPropsColorOverrides {}
 export interface ChipPropsSizeOverrides {}

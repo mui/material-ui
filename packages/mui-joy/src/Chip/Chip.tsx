@@ -174,7 +174,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const ownerState = {
     ...props,
     component,
-    disabled,
+    disabled: clickable && disabled ? true : undefined,
     size,
     color,
     clickable,
@@ -199,7 +199,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     <ChipRoot
       as={component}
       className={clsx(classes.root, className)}
-      disabled={clickable && disabled ? true : undefined}
       onClick={onClick}
       ref={handleRef}
       ownerState={ownerState}
