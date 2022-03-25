@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import * as React from 'react';
 
 export interface TrapFocusProps {
@@ -57,10 +56,10 @@ export interface TrapFocusProps {
  *
  * Demos:
  *
- * - [Trap Focus](https://mui.com/components/trap-focus/)
+ * - [Trap Focus](https://mui.com/base/components/trap-focus/)
  *
  * API:
  *
- * - [Unstable_TrapFocus API](https://mui.com/api/unstable-trap-focus/)
+ * - [TrapFocus API](https://mui.com/base/api/trap-focus/)
  */
-export default function Unstable_TrapFocus(props: TrapFocusProps): JSX.Element;
+export default function TrapFocus(props: TrapFocusProps): JSX.Element;

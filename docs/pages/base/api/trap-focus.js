@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './unstable-trap-focus.json';
+import jsonPageContent from './trap-focus.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
@@ -9,11 +9,7 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context(
-    'docs/translations/api-docs/unstable-trap-focus',
-    false,
-    /unstable-trap-focus.*.json$/,
-  );
+  const req = require.context('docs/translations/api-docs/trap-focus', false, /trap-focus.*.json$/);
   const descriptions = mapApiPageTranslations(req);
 
   return {

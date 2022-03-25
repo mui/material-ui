@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention, consistent-return, jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -115,7 +115,7 @@ function defaultIsEnabled() {
 /**
  * Utility component that locks focus inside the component.
  */
-function Unstable_TrapFocus(props) {
+function TrapFocus(props) {
   const {
     children,
     disableAutoFocus = false,
@@ -336,7 +336,7 @@ function Unstable_TrapFocus(props) {
   );
 }
 
-Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
+TrapFocus.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -393,7 +393,7 @@ Unstable_TrapFocus.propTypes /* remove-proptypes */ = {
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  Unstable_TrapFocus['propTypes' + ''] = exactProp(Unstable_TrapFocus.propTypes);
+  TrapFocus['propTypes' + ''] = exactProp(TrapFocus.propTypes);
 }
 
-export default Unstable_TrapFocus;
+export default TrapFocus;
