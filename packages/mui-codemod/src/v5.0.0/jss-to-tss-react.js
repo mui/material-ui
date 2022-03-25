@@ -21,7 +21,11 @@ export default function transformer(file, api, options) {
    */
   root.find(j.ImportDeclaration).forEach((path) => {
     const importSource = path.node.source.value;
-    if (importSource === '@material-ui/core/styles') {
+    if (
+      importSource === '@material-ui/core/styles' ||
+      importSource === '@material-ui/core' ||
+      importSource === '@mui/styles'
+    ) {
       const specifiersToMove = [];
       const specifiersToStay = [];
       path.node.specifiers.forEach((specifier) => {
@@ -38,7 +42,7 @@ export default function transformer(file, api, options) {
         path.replace(
           j.importDeclaration(specifiersToMove, j.stringLiteral('tss-react/mui')),
           specifiersToStay.length > 0
-            ? j.importDeclaration(specifiersToStay, j.stringLiteral('@material-ui/core/styles'))
+            ? j.importDeclaration(specifiersToStay, j.stringLiteral(importSource))
             : undefined,
         );
         importsChanged = true;

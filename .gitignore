@@ -2,6 +2,8 @@
 # However, in order to prevent issues, they are ignored here.
 .DS_STORE
 .idea
+# IntelliJ IDEA module file
+*.iml
 .vscode/*
 !.vscode/launch.json
 *.log

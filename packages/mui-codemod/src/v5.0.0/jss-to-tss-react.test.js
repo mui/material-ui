@@ -11,30 +11,58 @@ function read(fileName) {
 describe('@mui/codemod', () => {
   describe('v5.0.0', () => {
     describe('jss-to-tss-react', () => {
-      it('transforms makeStyles to use tss-react', () => {
+      it('transforms @material-ui/core/styles makeStyles to use tss-react', () => {
         const actual = transform(
           {
-            source: read('./jss-to-tss-react.test/actual.js'),
-            path: require.resolve('./jss-to-tss-react.test/actual.js'),
+            source: read('./jss-to-tss-react.test/actual-from-material-ui-core-styles.js'),
+            path: require.resolve('./jss-to-tss-react.test/actual-from-material-ui-core-styles.js'),
           },
           { jscodeshift },
           {},
         );
 
-        const expected = read('./jss-to-tss-react.test/expected.js');
+        const expected = read('./jss-to-tss-react.test/expected-from-material-ui-core-styles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
       it('should be idempotent', () => {
         const actual = transform(
           {
-            source: read('./jss-to-tss-react.test/expected.js'),
-            path: require.resolve('./jss-to-tss-react.test/expected.js'),
+            source: read('./jss-to-tss-react.test/expected-from-material-ui-core-styles.js'),
+            path: require.resolve(
+              './jss-to-tss-react.test/expected-from-material-ui-core-styles.js',
+            ),
           },
           { jscodeshift },
           {},
         );
 
-        const expected = read('./jss-to-tss-react.test/expected.js');
+        const expected = read('./jss-to-tss-react.test/expected-from-material-ui-core-styles.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+      it('transforms @material-ui/core makeStyles to use tss-react', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-tss-react.test/actual-from-material-ui-core.js'),
+            path: require.resolve('./jss-to-tss-react.test/actual-from-material-ui-core.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-tss-react.test/expected-from-material-ui-core.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+      it('transforms @mui/styles makeStyles to use tss-react', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-tss-react.test/actual-from-mui-styles.js'),
+            path: require.resolve('./jss-to-tss-react.test/actual-from-mui-styles.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-tss-react.test/expected-from-mui-styles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
