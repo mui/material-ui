@@ -14,6 +14,8 @@ import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 
+const TEXT_NAVIGATION_RESET_TIMEOUT = 500;  // milliseconds
+
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
 const defaultOptionStringifier = <TOption>(option: TOption) =>
@@ -201,7 +203,10 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         const currentTime = performance.now();
         if (textCriteria.keys.length > 0) {
           // Reset text criteria ref
-          if (textCriteria.lastTime && currentTime - textCriteria.lastTime > 500) {
+          if (
+            textCriteria.lastTime &&
+            currentTime - textCriteria.lastTime > TEXT_NAVIGATION_RESET_TIMEOUT
+          ) {
             textCriteria.keys = [];
             textCriteria.repeating = true;
             textCriteria.previousKeyMatched = true;
