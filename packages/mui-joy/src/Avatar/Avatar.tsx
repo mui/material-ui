@@ -46,7 +46,7 @@ const AvatarRoot = styled('div', {
       '--Avatar-size': '3rem',
       fontSize: theme.vars.fontSize.lg,
     }),
-    marginInlineStart: 'calc(-1 * var(--Avatar-offset))',
+    marginInlineStart: 'var(--Avatar-marginInlineStart)',
     boxShadow: `var(--Avatar-ring)${
       // @ts-ignore internal logic
       ownerState.sx?.boxShadow ? `, ${ownerState.sx?.boxShadow}` : ''

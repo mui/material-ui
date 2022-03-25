@@ -93,7 +93,7 @@ export default function JoySvgIcon() {
             <Avatar src="/static/images/avatar/2.jpg" />
             <Avatar src="/static/images/avatar/3.jpg" />
           </AvatarGroup>
-          <AvatarGroup size="lg" sx={{ '--Avatar-offset': '-0.5rem' }}>
+          <AvatarGroup size="lg" sx={{ '--AvatarGroup-gap': '-0.5rem' }}>
             <Avatar src="/static/images/avatar/1.jpg" />
             <Avatar src="/static/images/avatar/2.jpg" />
             <Avatar src="/static/images/avatar/3.jpg" />
@@ -136,7 +136,7 @@ export default function JoySvgIcon() {
               onClick={() => alert('clicked')}
               sx={{
                 borderRadius: '50%',
-                marginInlineStart: 'calc(-1 * var(--Avatar-offset))',
+                marginInlineStart: 'var(--Avatar-marginInlineStart)',
                 boxShadow: 'var(--Avatar-ring)',
               }}
             >
@@ -190,7 +190,7 @@ export default function JoySvgIcon() {
                 onClick={() => alert('clicked')}
                 sx={{
                   borderRadius: '50%',
-                  marginInlineStart: 'calc(-1 * var(--Avatar-offset))',
+                  marginInlineStart: 'var(--Avatar-marginInlineStart)',
                   boxShadow: 'var(--Avatar-ring)',
                 }}
               >
