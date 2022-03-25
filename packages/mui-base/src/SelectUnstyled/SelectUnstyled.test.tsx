@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import OptionUnstyled from '@mui/base/OptionUnstyled';
+import OptionUnstyled, { OptionUnstyledProps } from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
   createMount,
@@ -176,6 +176,45 @@ describe('SelectUnstyled', () => {
         expect(getByText('Calamondin')).to.have.class('MuiOptionUnstyled-highlighted');
         userEvent.keyPress(listbox, { key: 'c' });
         expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+      });
+
+      it('navigate using the label prop', () => {
+        const RichOption = (props: OptionUnstyledProps<number>) => (
+          <OptionUnstyled {...props}>
+            <div>
+              Option Title
+              <div>
+                Nested information
+                <p>{props.label || props.value}</p>
+              </div>
+            </div>
+          </OptionUnstyled>
+        );
+
+        const { getByRole, getByTestId } = render(
+          <SelectUnstyled>
+            <RichOption data-testid="1" value={1} label="Apple" />
+            <RichOption data-testid="2" value={2} label="Banana" />
+            <RichOption data-testid="3" value={3} label="Cherry" />
+            <RichOption data-testid="4" value={4} label="Calamondin" />
+            <RichOption data-testid="5" value={5} label="Dragon Fruit" />
+            <RichOption data-testid="6" value={6} label="Grapes" />
+          </SelectUnstyled>,
+        );
+
+        const button = getByRole('button');
+        act(() => {
+          button.click();
+        });
+
+        const listbox = getByRole('listbox');
+
+        userEvent.keyPress(listbox, { key: 'd' });
+        expect(getByTestId('5')).to.have.class('MuiOptionUnstyled-highlighted');
+        userEvent.keyPress(listbox, { key: 'r' });
+        expect(getByTestId('5')).to.have.class('MuiOptionUnstyled-highlighted');
+        userEvent.keyPress(listbox, { key: 'z' });
+        expect(getByTestId('5')).to.have.class('MuiOptionUnstyled-highlighted');
       });
     });
 

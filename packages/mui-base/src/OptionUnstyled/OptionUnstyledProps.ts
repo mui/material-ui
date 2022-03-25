@@ -37,6 +37,11 @@ export default interface OptionUnstyledProps<TValue> {
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'li'> & OptionUnstyledComponentsPropsOverrides;
   };
+  /**
+   * A text representation of the option's content.
+   * Used for keyboard text navigation matching.
+   */
+  label?: string;
 }
 
 export type OptionUnstyledOwnerState<TValue> = OptionUnstyledProps<TValue> & OptionState;
