@@ -32,37 +32,39 @@ const AvatarRoot = styled('div', {
   name: 'MuiAvatar',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AvatarProps }>(({ theme, ownerState }) => [
-  {
-    ...(ownerState.size === 'sm' && {
-      '--Avatar-size': '2rem',
-      fontSize: theme.vars.fontSize.sm,
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Avatar-size': '2.5rem',
-      fontSize: theme.vars.fontSize.md,
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Avatar-size': '3rem',
-      fontSize: theme.vars.fontSize.lg,
-    }),
-    marginInlineStart: 'var(--Avatar-marginInlineStart)',
-    boxShadow: `var(--Avatar-ring)`,
-    fontFamily: theme.vars.fontFamily.body,
-    fontWeight: theme.vars.fontWeight.md,
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-    width: 'var(--Avatar-size)',
-    height: 'var(--Avatar-size)',
-    lineHeight: 1,
-    borderRadius: '50%',
-    userSelect: 'none',
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-]);
+})<{ ownerState: AvatarProps }>(({ theme, ownerState }) => {
+  return [
+    {
+      ...(ownerState.size === 'sm' && {
+        '--Avatar-size': '2rem',
+        fontSize: theme.vars.fontSize.sm,
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Avatar-size': '2.5rem',
+        fontSize: theme.vars.fontSize.md,
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Avatar-size': '3rem',
+        fontSize: theme.vars.fontSize.lg,
+      }),
+      marginInlineStart: 'var(--Avatar-marginInlineStart)',
+      boxShadow: `var(--Avatar-ring)`,
+      fontFamily: theme.vars.fontFamily.body,
+      fontWeight: theme.vars.fontWeight.md,
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+      width: 'var(--Avatar-size)',
+      height: 'var(--Avatar-size)',
+      lineHeight: 1,
+      borderRadius: '50%',
+      userSelect: 'none',
+    },
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ];
+});
 
 const AvatarImg = styled('img', {
   name: 'MuiAvatar',
