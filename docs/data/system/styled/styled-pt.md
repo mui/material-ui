@@ -118,7 +118,7 @@ const MyStyledButton = (props) => (
   }}>
      {props.children}
   </button>
-})
+)
 ```
 
 ### The style definition varies slightly

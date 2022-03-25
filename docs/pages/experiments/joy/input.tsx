@@ -92,7 +92,7 @@ export default function JoyTypography() {
               </Button>
             }
           />
-          <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: 'flex', height: 56 }}>
             <Input
               placeholder="Placeholder"
               color="success"
