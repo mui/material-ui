@@ -38,17 +38,17 @@ const InputRoot = styled('div', {
   {
     ...(ownerState.size === 'sm' && {
       '--Input-gutter': '0.5rem',
-      '--Input-height': '32px',
+      '--Input-minHeight': '32px',
       '--Icon-fontSize': '1.25rem',
     }),
     ...(ownerState.size === 'md' && {
       '--Input-gutter': '0.75rem', // gutter is the padding-x
-      '--Input-height': '40px',
+      '--Input-minHeight': '40px',
       '--Icon-fontSize': '1.5rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--Input-gutter': '1rem',
-      '--Input-height': '48px',
+      '--Input-minHeight': '48px',
       '--Input-gap': '0.75rem',
       '--Icon-fontSize': '1.75rem',
     }),
@@ -60,7 +60,7 @@ const InputRoot = styled('div', {
     '--Input-focusedHighlight':
       theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     boxSizing: 'border-box',
-    height: `var(--Input-height)`,
+    minHeight: `var(--Input-minHeight)`,
     minWidth: 0, // forces the Input to stay inside a container by default
     ...(ownerState.fullWidth && {
       width: '100%',

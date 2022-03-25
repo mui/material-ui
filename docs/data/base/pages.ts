@@ -14,7 +14,11 @@ const pages = [
       {
         pathname: '/base/components/inputs',
         subheader: 'inputs',
-        children: [{ pathname: '/base/react-button', title: 'Button' }],
+        children: [
+          { pathname: '/base/react-button', title: 'Button' },
+          { pathname: '/base/react-input', title: 'Input' },
+          { pathname: '/base/react-switch', title: 'Switch' },
+        ],
       },
       {
         pathname: '/base/components/navigation',
@@ -24,7 +28,11 @@ const pages = [
       {
         pathname: '/base/components/utils',
         subheader: 'utils',
-        children: [{ pathname: '/base/react-click-away-listener', title: 'Click-away listener' }],
+        children: [
+          { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
+          { pathname: '/base/react-modal', title: 'Modal' },
+          { pathname: '/base/react-portal', title: 'Portal' },
+        ],
       },
     ],
   },

@@ -38,6 +38,7 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
 })(({ theme }) => ({
   ...theme.typography.body2,
   display: 'flex',
+  alignItems: 'center',
   borderRadius: 5,
   outline: 0,
   width: '100%',
@@ -93,6 +94,9 @@ const ItemLink = styled(Item, {
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
       },
+    },
+    '& .MuiChip-root': {
+      marginTop: '2px',
     },
     paddingLeft: 31 + (depth > 2 ? (depth - 2) * 10 : 0),
     ...(hasIcon && {

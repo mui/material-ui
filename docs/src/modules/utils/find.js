@@ -77,7 +77,8 @@ function findPagesMarkdownNew(
       return;
     }
 
-    if (!markdownRegex.test(item)) {
+    if (!/\.md$/.test(item) || /-(zh|pt)\.md/.test(item)) {
+      // neglect translation markdown
       return;
     }
 
