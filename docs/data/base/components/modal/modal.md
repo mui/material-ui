@@ -49,7 +49,7 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 
 ## Nested modal
 
-> ⚠ **Note:** though it is possible to create nested modals—for example, a select modal within a dialog—stacking more than two at a time is discouraged.
+> ⚠ **Note:** though it is possible to create nested modals—for example, a select modal within a dialog—stacking more than two at a time is discouraged. This is because each successive modal blocks interaction with all elements behind it, making prior states inaccessible and overly complicated for the user to navigate through.
 
 {{"demo": "NestedModal.js", "defaultCodeOpen": false}}
 
