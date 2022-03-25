@@ -27,6 +27,7 @@ const pages = [
         children: [
           { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
           { pathname: '/base/react-popper', title: 'Popper' },
+          { pathname: '/base/react-portal', title: 'Portal' },
         ],
       },
     ],
