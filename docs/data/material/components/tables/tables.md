@@ -123,13 +123,8 @@ Virtualization helps with performance issues.
 
 ## Unstyled
 
-If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
-
-{{"demo": "TableUnstyled.js"}}
-
-### Customized look and feel
-
-{{"demo": "TableCustomized.js"}}
+If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component.
+See the demos in the [unstyled table pagination docs](/base/react-table-pagination)
 
 ## Accessibility
 

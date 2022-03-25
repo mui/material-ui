@@ -22,7 +22,10 @@ const pages = [
       {
         pathname: '/base/components/navigation',
         subheader: 'navigation',
-        children: [{ pathname: '/base/react-menu', title: 'Menu' }],
+        children: [
+          { pathname: '/base/react-menu', title: 'Menu' },
+          { pathname: '/base/react-table-pagination', title: 'Table pagination' },
+        ],
       },
       {
         pathname: '/base/components/utils',

@@ -111,6 +111,7 @@ const migratedBaseComponents = [
   'MenuUnstyled',
   'ModalUnstyled',
   'Portal',
+  'TablePaginationUnstyled',
   'TrapFocus',
 ];
 
