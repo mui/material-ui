@@ -69,7 +69,6 @@ module.exports = [
   { pathname: '/api-docs/input-adornment' },
   { pathname: '/api-docs/input-base' },
   { pathname: '/api-docs/input-label' },
-  { pathname: '/api-docs/input-unstyled' },
   { pathname: '/api-docs/linear-progress' },
   { pathname: '/api-docs/link' },
   { pathname: '/api-docs/list' },

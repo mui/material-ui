@@ -106,6 +106,7 @@ const migratedBaseComponents = [
   'BadgeUnstyled',
   'ButtonUnstyled',
   'ClickAwayListener',
+  'InputUnstyled',
   'MenuUnstyled',
   'MenuItemUnstyled',
   'Portal',
