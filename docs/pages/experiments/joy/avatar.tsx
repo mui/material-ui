@@ -99,6 +99,18 @@ export default function JoySvgIcon() {
             <Avatar src="/static/images/avatar/3.jpg" />
             <Avatar>+3</Avatar>
           </AvatarGroup>
+          <AvatarGroup sx={{ writingMode: 'vertical-rl' }}>
+            <Avatar src="/static/images/avatar/1.jpg" />
+            <Avatar src="/static/images/avatar/2.jpg" />
+            <Avatar src="/static/images/avatar/3.jpg" />
+            <Avatar sx={{ transform: 'rotate(-90deg)' }}>+3</Avatar>
+          </AvatarGroup>
+          <AvatarGroup sx={{ flexDirection: 'row-reverse', writingMode: 'vertical-rl' }}>
+            <Avatar sx={{ transform: 'rotate(-90deg)' }}>+3</Avatar>
+            <Avatar src="/static/images/avatar/1.jpg" />
+            <Avatar src="/static/images/avatar/2.jpg" />
+            <Avatar src="/static/images/avatar/3.jpg" />
+          </AvatarGroup>
         </Box>
         <Box sx={{ my: 2, display: 'flex', gap: 3 }}>
           <AvatarGroup variant="outlined">
