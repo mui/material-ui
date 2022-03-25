@@ -486,7 +486,7 @@ export default function CssModulesPriority() {
 
 ### 更深层的元素
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。 It's important to keep in mind that CSS Modules adds an unique id to each class, and that id won't be present on the MUI provided children class. To escape from that, CSS Modules provides a functionality, the `:global` selector.
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
@@ -503,7 +503,7 @@ export default function CssModulesPriority() {
   color: #2e8b57;
 }
 
-.slider .MuiSlider-thumb {
+.slider :global .MuiSlider-thumb {
   border-radius: 1px;
 }
 ```
