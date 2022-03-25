@@ -75,7 +75,6 @@ module.exports = [
   { pathname: '/api-docs/menu-list' },
   { pathname: '/api-docs/mobile-stepper' },
   { pathname: '/api-docs/modal' },
-  { pathname: '/api-docs/modal-unstyled' },
   { pathname: '/api-docs/multi-select-unstyled' },
   { pathname: '/api-docs/native-select' },
   { pathname: '/api-docs/no-ssr' },
