@@ -47,10 +47,7 @@ const AvatarRoot = styled('div', {
       fontSize: theme.vars.fontSize.lg,
     }),
     marginInlineStart: 'var(--Avatar-marginInlineStart)',
-    boxShadow: `var(--Avatar-ring)${
-      // @ts-ignore internal logic
-      ownerState.sx?.boxShadow ? `, ${ownerState.sx?.boxShadow}` : ''
-    }`,
+    boxShadow: `var(--Avatar-ring)`,
     fontFamily: theme.vars.fontFamily.body,
     fontWeight: theme.vars.fontWeight.md,
     position: 'relative',

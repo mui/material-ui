@@ -81,7 +81,17 @@ export default function JoySvgIcon() {
           <ColorSchemePicker />
         </Box>
         <Box sx={{ my: 2, display: 'flex', gap: 3 }}>
-          <AvatarGroup size="sm">
+          <AvatarGroup
+            size="sm"
+            sx={{
+              '& .MuiAvatar-root': {
+                '&:hover': {
+                  boxShadow: 'var(--Avatar-ring), var(--joy-shadow-md)',
+                  transform: 'translateY(-2px)',
+                },
+              },
+            }}
+          >
             <Avatar src="/static/images/avatar/1.jpg" />
             <Avatar src="/static/images/avatar/2.jpg" />
             <Avatar src="/static/images/avatar/3.jpg" />
