@@ -20,7 +20,7 @@
     "disabledItemsFocusable": "Se <code>true</code>, permitirá foco em itens desabilitados.",
     "disableListWrap": "Se <code>true</code>, a caixa de lista em um pop-up não irá envolver o foco.",
     "disablePortal": "Se <code>true</code>, o conteúdo de <code>Popper</code> estará abaixo da hierarquia DOM do componente pai.",
-    "filterOptions": "A filter function that determines the options that are eligible.<br><br><strong>Signature:</strong><br><code>function(options: T[], state: object) =&gt; T[]</code><br><em>options:</em> The options to render.<br><em>state:</em> The state of the component.",
+    "filterOptions": "A function that determines the filtered options to be rendered on search.<br><br><strong>Signature:</strong><br><code>function(options: Array&lt;T&gt;, state: object) =&gt; Array&lt;T&gt;</code><br><em>options:</em> The options to render.<br><em>state:</em> The state of the component.",
     "filterSelectedOptions": "Se <code>true</code>, oculta as opções selecionadas da caixa de lista.",
     "forcePopupIcon": "Force the visibility display of the popup icon.",
     "freeSolo": "Se <code>true</code>, o Autocomplete é um solo livre, o que significa que a entrada do usuário não está vinculada às opções fornecidas.",
