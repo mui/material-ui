@@ -23,4 +23,8 @@ export interface MenuItemUnstyledProps {
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'li'> & MenuItemUnstyledComponentsPropsOverrides;
   };
+  /**
+   * Used for keyboard text navigation matching.
+   */
+  label?: string;
 }

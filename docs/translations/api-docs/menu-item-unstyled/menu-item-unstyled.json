@@ -1,5 +1,8 @@
 {
   "componentDescription": "",
-  "propDescriptions": { "disabled": "If <code>true</code>, the menu item will be disabled." },
+  "propDescriptions": {
+    "disabled": "If <code>true</code>, the menu item will be disabled.",
+    "label": "Used for keyboard text navigation matching."
+  },
   "classDescriptions": {}
 }

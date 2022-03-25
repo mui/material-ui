@@ -111,60 +111,91 @@ describe('MenuUnstyled', () => {
       expect(item2).to.have.attribute('aria-disabled', 'true');
     });
 
-    it('changes the highlighted item using the text navigation', () => {
-      const { getByText, getAllByRole } = render(
-        <MenuUnstyled {...defaultProps}>
-          <MenuItemUnstyled data-testid="item-aa">Aa</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-ba">Ba</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-bb">Bb</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-ca">Ca</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-ca">Cb</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-ca">Cd</MenuItemUnstyled>
-        </MenuUnstyled>,
-      );
+    describe('text navigation', () => {
+      it('changes the highlighted item', () => {
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>Ba</MenuItemUnstyled>
+            <MenuItemUnstyled>Bb</MenuItemUnstyled>
+            <MenuItemUnstyled>Ca</MenuItemUnstyled>
+            <MenuItemUnstyled>Cb</MenuItemUnstyled>
+            <MenuItemUnstyled>Cd</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
 
-      const items = getAllByRole('menuitem');
+        const items = getAllByRole('menuitem');
 
-      act(() => {
-        items[0].focus();
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'c' });
+        expect(document.activeElement).to.equal(getByText('Ca'));
+        expect(getByText('Ca')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[3], { key: 'd' });
+        expect(document.activeElement).to.equal(getByText('Cd'));
+        expect(getByText('Cd')).to.have.attribute('tabindex', '0');
       });
 
-      fireEvent.keyDown(items[0], { key: 'c' });
-      expect(document.activeElement).to.equal(getByText('Ca'));
-      expect(getByText('Ca')).to.have.attribute('tabindex', '0');
+      it('repeated keys circulate all items starting with that letter', () => {
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>Ba</MenuItemUnstyled>
+            <MenuItemUnstyled>Bb</MenuItemUnstyled>
+            <MenuItemUnstyled>Ca</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
 
-      fireEvent.keyDown(items[3], { key: 'd' });
-      expect(document.activeElement).to.equal(getByText('Cd'));
-      expect(getByText('Cd')).to.have.attribute('tabindex', '0');
-    });
+        const items = getAllByRole('menuitem');
 
-    it('changes the highlighted item using the repeated text navigation keys', () => {
-      const { getByText, getAllByRole } = render(
-        <MenuUnstyled {...defaultProps}>
-          <MenuItemUnstyled data-testid="item-aa">Aa</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-ba">Ba</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-bb">Bb</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-ca">Ca</MenuItemUnstyled>
-        </MenuUnstyled>,
-      );
+        act(() => {
+          items[0].focus();
+        });
 
-      const items = getAllByRole('menuitem');
+        fireEvent.keyDown(items[0], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
 
-      act(() => {
-        items[0].focus();
+        fireEvent.keyDown(items[1], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Bb'));
+        expect(getByText('Bb')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[2], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
       });
 
-      fireEvent.keyDown(items[0], { key: 'b' });
-      expect(document.activeElement).to.equal(getByText('Ba'));
-      expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+      it('changes the highlighted item using text navigation on label prop', () => {
+        const { getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled label="Aa">1</MenuItemUnstyled>
+            <MenuItemUnstyled label="Ba">2</MenuItemUnstyled>
+            <MenuItemUnstyled label="Bb">3</MenuItemUnstyled>
+            <MenuItemUnstyled label="Ca">4</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
 
-      fireEvent.keyDown(items[1], { key: 'b' });
-      expect(document.activeElement).to.equal(getByText('Bb'));
-      expect(getByText('Bb')).to.have.attribute('tabindex', '0');
+        const items = getAllByRole('menuitem');
 
-      fireEvent.keyDown(items[2], { key: 'b' });
-      expect(document.activeElement).to.equal(getByText('Ba'));
-      expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'b' });
+        expect(document.activeElement).to.equal(items[1]);
+        expect(items[1]).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'b' });
+        expect(document.activeElement).to.equal(items[2]);
+        expect(items[2]).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[2], { key: 'b' });
+        expect(document.activeElement).to.equal(items[1]);
+        expect(items[1]).to.have.attribute('tabindex', '0');
+      });
     });
   });
 });

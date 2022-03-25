@@ -71,7 +71,10 @@ export default function useMenu(parameters: UseMenuParameters) {
   } = useListbox({
     options: Object.keys(menuItems),
     optionStringifier: (id: string) =>
-      menuItems[id].ref.current?.innerText || menuItems[id].ref.current?.innerHTML || id,
+      menuItems[id].label ||
+      menuItems[id].ref.current?.innerText ||
+      menuItems[id].ref.current?.innerHTML ||
+      id,
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
     listboxRef: handleRef,
     focusManagement: 'DOM',

@@ -14,7 +14,7 @@ import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 
-const TEXT_NAVIGATION_RESET_TIMEOUT = 500;  // milliseconds
+const TEXT_NAVIGATION_RESET_TIMEOUT = 500; // milliseconds
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
