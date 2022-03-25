@@ -24,6 +24,7 @@ import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { ChipProps, ChipSlot } from '../Chip/ChipProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -116,6 +117,10 @@ export interface Components<Theme = unknown> {
   MuiCheckbox?: {
     defaultProps?: Partial<CheckboxProps>;
     styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
+  };
+  MuiChip?: {
+    defaultProps?: Partial<ChipProps>;
+    styleOverrides?: OverridesStyleRules<ChipSlot, ChipProps, Theme>;
   };
   MuiFormLabel?: {
     defaultProps?: Partial<FormLabelProps>;
