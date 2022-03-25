@@ -24,19 +24,19 @@ const AvatarGroupGroupRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AvatarGroupProps }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
-    '--AvatarGroup-gap': '0.375rem',
+    '--AvatarGroup-gap': '-0.375rem',
     '--Avatar-ringSize': '2px',
   }),
   ...(ownerState.size === 'md' && {
-    '--AvatarGroup-gap': '0.5rem',
+    '--AvatarGroup-gap': '-0.5rem',
     '--Avatar-ringSize': '2px',
   }),
   ...(ownerState.size === 'lg' && {
-    '--AvatarGroup-gap': '0.625rem',
+    '--AvatarGroup-gap': '-0.625rem',
     '--Avatar-ringSize': '4px',
   }),
   '--Avatar-ring': `0 0 0 var(--Avatar-ringSize) var(--Avatar-ringColor, ${theme.vars.palette.background.body})`,
-  '--Avatar-marginInlineStart': 'calc(-1 * var(--AvatarGroup-gap))',
+  '--Avatar-marginInlineStart': 'var(--AvatarGroup-gap)',
   display: 'flex',
   marginInlineStart: 'var(--AvatarGroup-gap)',
 }));

@@ -119,7 +119,7 @@ const components: {
       </AvatarGroup>
     ),
     cssVars: [
-      { id: '--AvatarGroup-gap', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--AvatarGroup-gap', type: 'number', unit: 'px', defaultValue: -8 },
       { id: '--Avatar-ringSize', type: 'number', unit: 'px', defaultValue: 2 },
     ],
   },
