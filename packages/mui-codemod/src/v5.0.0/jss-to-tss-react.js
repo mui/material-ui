@@ -16,6 +16,7 @@ export default function transformer(file, api, options) {
     return file.source;
   }
   let importsChanged = false;
+  let foundCreateStyles = false;
   /**
    * transform imports
    */
@@ -32,6 +33,8 @@ export default function transformer(file, api, options) {
         if (specifier.type === 'ImportSpecifier') {
           if (moveToTssReact.includes(specifier.imported.name)) {
             specifiersToMove.push(specifier);
+          } else if (specifier.imported.name === 'createStyles') {
+            foundCreateStyles = true;
           } else {
             specifiersToStay.push(specifier);
           }

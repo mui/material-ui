@@ -71,7 +71,7 @@ describe('@mui/codemod', () => {
             source: read('./jss-to-tss-react.test/actual-typescript.tsx'),
             path: require.resolve('./jss-to-tss-react.test/actual-typescript.tsx'),
           },
-          { jscodeshift: jscodeshift.withParser("tsx") },
+          { jscodeshift: jscodeshift.withParser('tsx') },
           {},
         );
 
