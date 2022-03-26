@@ -55,6 +55,15 @@ export default function transformer(file, api, options) {
   if (!importsChanged) {
     return file.source;
   }
+  /**
+   * Remove usages of createStyles
+   */
+  root.find(j.CallExpression, { callee: { name: 'createStyles' } }).replaceWith((path) => {
+    return path.node.arguments[0];
+  });
+  /**
+   * Convert makeStyles syntax
+   */
   const styleHooks = [];
   root
     .find(j.CallExpression, { callee: { name: 'makeStyles' } })
@@ -65,6 +74,9 @@ export default function transformer(file, api, options) {
     .forEach((path) => {
       styleHooks.push(path.node.id.name);
     });
+  /**
+   * Convert classes assignment syntax in calls to the hook (e.g. useStyles)
+   */
   styleHooks.forEach((hookName) => {
     root
       .find(j.CallExpression, { callee: { name: hookName } })
