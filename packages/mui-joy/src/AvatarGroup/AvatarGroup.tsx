@@ -38,7 +38,7 @@ const AvatarGroupGroupRoot = styled('div', {
   '--Avatar-ring': `0 0 0 var(--Avatar-ringSize) var(--Avatar-ringColor, ${theme.vars.palette.background.body})`,
   '--Avatar-marginInlineStart': 'var(--AvatarGroup-gap)',
   display: 'flex',
-  marginInlineStart: 'var(--AvatarGroup-gap)',
+  marginInlineStart: 'calc(-1 * var(--AvatarGroup-gap))',
 }));
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
