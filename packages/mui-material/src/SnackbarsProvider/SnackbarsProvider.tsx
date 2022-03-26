@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { TransitionGroup } from 'react-transition-group';
 import Snackbar, { SnackbarProps } from '../Snackbar';
 import SnackbarsContext from '../Snackbar/SnackbarsContext';
+import Grow from '../Grow';
 
 const randomId = () => `mui-${Math.round(Math.random() * 1e5)}`;
 
@@ -14,6 +16,7 @@ interface SnackbarsProviderProps
 
 const SnackbarsProvider = ({
   limit = 5,
+  TransitionComponent = Grow,
   children,
   ...others
 }: SnackbarsProviderProps & { children?: React.ReactNode }) => {
@@ -27,12 +30,14 @@ const SnackbarsProvider = ({
   };
 
   const items = snackbars.map((snackbar) => (
-    <Snackbar {...others} {...snackbar} key={snackbar.id} />
+    <TransitionComponent key={snackbar.id}>
+      <Snackbar {...others} {...snackbar} />
+    </TransitionComponent>
   ));
 
   return (
     <SnackbarsContext.Provider value={{ showSnackbar }}>
-      {items}
+      <TransitionGroup>{items}</TransitionGroup>
       {children}
     </SnackbarsContext.Provider>
   );
