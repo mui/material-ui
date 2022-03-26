@@ -25,22 +25,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSnackbarUtilityClass, classes);
 };
 
-const SnackbarRoot = styled('div', {
-  name: 'MuiSnackbar',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      styles[
-        `anchorOrigin${capitalize(ownerState.anchorOrigin.vertical)}${capitalize(
-          ownerState.anchorOrigin.horizontal,
-        )}`
-      ],
-    ];
-  },
-})(({ theme, ownerState }) => {
+export const snackbarStyles = ({ theme, ownerState }) => {
   const center = {
     ...(!ownerState.isRtl && {
       left: '50%',
@@ -90,6 +75,25 @@ const SnackbarRoot = styled('div', {
       }),
     },
   };
+};
+
+const SnackbarRoot = styled('div', {
+  name: 'MuiSnackbar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[
+        `anchorOrigin${capitalize(ownerState.anchorOrigin.vertical)}${capitalize(
+          ownerState.anchorOrigin.horizontal,
+        )}`
+      ],
+    ];
+  },
+})(({ theme, ownerState }) => {
+  return snackbarStyles({ theme, ownerState });
 });
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
