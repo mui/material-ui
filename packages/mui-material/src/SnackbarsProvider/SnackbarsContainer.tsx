@@ -2,7 +2,7 @@ import { SnackbarProps } from '../Snackbar';
 import { snackbarStyles } from '../Snackbar/Snackbar';
 import styled from '../styles/styled';
 
-const SnackbarContainer = styled('div')<{ ownerState: SnackbarProps }>(({ theme, ownerState }) => {
+const SnackbarsContainer = styled('div')<{ ownerState: SnackbarProps }>(({ theme, ownerState }) => {
   return {
     display: 'flex',
     ...snackbarStyles({ theme, ownerState }),
@@ -11,4 +11,4 @@ const SnackbarContainer = styled('div')<{ ownerState: SnackbarProps }>(({ theme,
   };
 });
 
-export default SnackbarContainer;
+export default SnackbarsContainer;

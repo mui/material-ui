@@ -2,7 +2,7 @@ import * as React from 'react';
 import Snackbar, { SnackbarProps } from '../Snackbar';
 import SnackbarsContext from '../Snackbar/SnackbarsContext';
 import Grow from '../Grow';
-import SnackbarContainer from './SnackbarContainer';
+import SnackbarsContainer from './SnackbarsContainer';
 import styled from '../styles/styled';
 
 const randomId = () => `mui-${Math.round(Math.random() * 1e5)}`;
@@ -67,7 +67,7 @@ const SnackbarsProvider = ({
 
   return (
     <SnackbarsContext.Provider value={{ showSnackbar }}>
-      <SnackbarContainer ownerState={ownerState}>{items}</SnackbarContainer>
+      <SnackbarsContainer ownerState={ownerState}>{items}</SnackbarsContainer>
       {children}
     </SnackbarsContext.Provider>
   );
