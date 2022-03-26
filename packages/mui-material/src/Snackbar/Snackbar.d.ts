@@ -14,11 +14,7 @@ export interface SnackbarOrigin {
 
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
-interface SnackbarStylesParams {
-  theme: Theme;
-  ownerState: SnackbarProps;
-}
-export const snackbarStyles: (params: SnackbarStylesParams) => Object;
+export function snackbarStyles(params: { theme: Theme; ownerState: SnackbarProps }): object;
 
 export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
