@@ -504,6 +504,7 @@ export default function CssModulesPriority() {
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
 In MUI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
+It's important to keep in mind that CSS Modules adds an unique id to each class, and that id won't be present on the MUI provided children class. To escape from that, CSS Modules provides a functionality, the `:global` selector.
 
 The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
@@ -520,7 +521,7 @@ The following examples override the slider's `thumb` style in addition to the cu
   color: #2e8b57;
 }
 
-.slider .MuiSlider-thumb {
+.slider :global .MuiSlider-thumb {
   border-radius: 1px;
 }
 ```

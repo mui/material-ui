@@ -219,8 +219,8 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Buttons',
-            demoPathname: '/material-ui/react-button/',
+            name: 'Button',
+            demoPathname: '/base/react-button/',
           },
         ]);
       }

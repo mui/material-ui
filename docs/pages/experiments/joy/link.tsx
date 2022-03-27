@@ -1,11 +1,57 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import * as React from 'react';
+import { keyframes } from '@mui/system';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
-import * as React from 'react';
+import LocationOn from '@mui/icons-material/LocationOn';
+import Groups from '@mui/icons-material/Groups';
+import OpenInNew from '@mui/icons-material/OpenInNew';
+import Person from '@mui/icons-material/Person';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+
+const circulate = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+});
+
+const Loader = () => (
+  <Box
+    sx={{
+      borderRadius: '50%',
+      border: 4,
+      borderColor: 'primary.lightBg',
+      width: '1.25em',
+      height: '1.25em',
+      boxSizing: 'border-box',
+      position: 'relative',
+    }}
+  >
+    <Box
+      sx={{
+        position: 'absolute',
+        top: -4,
+        left: -4,
+        width: '1.25em',
+        height: '1.25em',
+        borderRadius: '50%',
+        border: '4px solid',
+        borderColor: (theme) => `${theme.vars.palette.primary.lightColor} transparent transparent`,
+        animation: `${circulate} 1s ease infinite`,
+        boxSizing: 'inherit',
+      }}
+    />
+  </Box>
+);
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -18,7 +64,7 @@ const ColorSchemePicker = () => {
   }
 
   return (
-    <Button
+    <IconButton
       variant="outlined"
       onClick={() => {
         if (mode === 'light') {
@@ -27,10 +73,9 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
-    </Button>
+    </IconButton>
   );
 };
 
@@ -42,32 +87,107 @@ export default function JoyButton() {
     underline: ['hover', 'always', 'none'],
   } as const;
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3, pb: 4 }}>
           <ColorSchemePicker />
+        </Box>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(300px, 1fr))',
+            gap: 2,
+            mt: 4,
+            '& > div': {
+              display: 'flex',
+              flexDirection: 'column',
+            },
+          }}
+        >
+          <Box>
+            <Link component="button" level="body2" startDecorator={<LocationOn />}>
+              Miami, Florida
+            </Link>
+            <Link component="button" level="body2" startDecorator={<Groups fontSize="lg" />}>
+              5 - 10 people
+            </Link>
+          </Box>
+          <Box>
+            <Link component="button" startDecorator={<LocationOn />}>
+              Miami, Florida
+            </Link>
+            <Link component="button" startDecorator={<Groups fontSize="xl" />}>
+              5 - 10 people
+            </Link>
+          </Box>
+          <Box>
+            <Link component="button" level="h5" startDecorator={<LocationOn />}>
+              Miami, Florida
+            </Link>
+            <Link component="button" level="h5" startDecorator={<Groups fontSize="xl2" />}>
+              5 - 10 people
+            </Link>
+          </Box>
+          <Box>
+            <Typography level="body2">
+              Keep me updated about the new features and upcoming improvements (by doing this you
+              accept the <Link endDecorator={<OpenInNew />}>terms</Link> and the{' '}
+              <Link disabled startDecorator={<OpenInNew />}>
+                privacy policy
+              </Link>
+              ).
+            </Typography>
+          </Box>
+          <Box>
+            <span>
+              Keep me updated about the new features and upcoming improvements (by doing this you
+              accept the{' '}
+              <Link level="inherit" endDecorator={<OpenInNew />}>
+                terms
+              </Link>{' '}
+              and the{' '}
+              <Link level="inherit" startDecorator={<OpenInNew />}>
+                privacy policy
+              </Link>
+              ).
+            </span>
+          </Box>
+          <ul>
+            <li>
+              <Link startDecorator={<Person />}>Profile</Link>
+            </li>
+            <li>
+              <Link startDecorator={<Settings />}>Settings</Link>
+            </li>
+            <li>
+              <Link startDecorator={<Logout />}>Logout</Link>
+            </li>
+          </ul>
+          <Box sx={{ my: 2 }}>
+            <Link startDecorator={<Loader />} disabled sx={{ my: 2 }}>
+              Processing...
+            </Link>
+            <Link
+              color="neutral"
+              endDecorator={
+                <Box
+                  sx={{
+                    px: 0.5,
+                    py: 0.25,
+                    fontSize: 'xs',
+                    fontWeight: 'md',
+                    bgcolor: 'danger.500',
+                    color: '#fff',
+                    borderRadius: 'xs',
+                  }}
+                >
+                  HIRING!
+                </Box>
+              }
+            >
+              Careers
+            </Link>
+          </Box>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(buttonProps).map(([propName, propValue]) => (

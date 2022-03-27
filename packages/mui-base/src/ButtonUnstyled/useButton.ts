@@ -72,6 +72,12 @@ export default function useButton(parameters: UseButtonParameters) {
     );
   };
 
+  const createHandleClick = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
+    if (!disabled) {
+      otherHandlers.onClick?.(event);
+    }
+  };
+
   const createHandleMouseDown = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
     if (event.target === event.currentTarget && !disabled) {
       setActive(true);
@@ -129,6 +135,7 @@ export default function useButton(parameters: UseButtonParameters) {
     if (
       event.target === event.currentTarget &&
       isNonNativeButton() &&
+      !disabled &&
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
@@ -186,6 +193,7 @@ export default function useButton(parameters: UseButtonParameters) {
       ...externalEventHandlers,
       ...buttonProps,
       onBlur: createHandleBlur(externalEventHandlers),
+      onClick: createHandleClick(externalEventHandlers),
       onFocus: createHandleFocus(externalEventHandlers),
       onKeyDown: createHandleKeyDown(externalEventHandlers),
       onKeyUp: createHandleKeyUp(externalEventHandlers),

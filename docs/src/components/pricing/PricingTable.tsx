@@ -327,14 +327,22 @@ const RowHead = ({
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  '@mui/base': <ColumnHead label="@mui/base" tooltip="The unstyled components and react hooks." />,
-  '@mui/material': (
-    <ColumnHead label="@mui/material" tooltip="Core components following Material Design" />
-  ),
-  '@mui/system': (
+  'MUI Base': (
     <ColumnHead
-      label="@mui/system"
-      tooltip="CSS utilities for rapidly laying out custom designs."
+      label="MUI Base"
+      tooltip="The unstyled components and react hooks available at @mui/base."
+    />
+  ),
+  'MUI System': (
+    <ColumnHead
+      label="MUI System"
+      tooltip="CSS utilities for rapidly laying out custom designs available at @mui/system."
+    />
+  ),
+  'Material UI': (
+    <ColumnHead
+      label="Material UI"
+      tooltip="Core components following Material Design available at @mui/material."
     />
   ),
   // Advanced
@@ -495,8 +503,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" nested href="/components/data-grid/localization/" />
   ),
-  'data-grid-pro': <ColumnHead label="Data Grid Pro Updates" />,
-  'date-range-picker': <ColumnHead label="Date Range Picker" />,
+  'date-picker/simple': <ColumnHead label="Date picker" />,
+  'date-picker/range': <ColumnHead label="Date range picker" />,
+  'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
   community: <ColumnHead {...{ label: 'Community' }} />,
   'bugs/features': (
@@ -552,9 +561,9 @@ const no = <IconImage name="no" title="Not included" />;
 
 const communityData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/base': yes,
-  '@mui/material': yes,
-  '@mui/system': yes,
+  'MUI Base': yes,
+  'MUI System': yes,
+  'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': pending,
@@ -591,8 +600,9 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
-  'data-grid-pro': no,
-  'date-range-picker': no,
+  'date-picker/simple': yes,
+  'date-picker/range': no,
+  'mui-x-updates': yes,
   // Support
   community: yes,
   'bugs/features': yes,
@@ -605,9 +615,9 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/base': yes,
-  '@mui/material': yes,
-  '@mui/system': yes,
+  'MUI Base': yes,
+  'MUI System': yes,
+  'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': pending,
@@ -644,8 +654,9 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
-  'data-grid-pro': <Info value="1 year" />,
-  'date-range-picker': pending,
+  'date-picker/simple': yes,
+  'date-picker/range': pending,
+  'mui-x-updates': <Info value="1 year" />,
   // Support
   community: yes,
   'bugs/features': <Info value={yes} metadata="Priority over Community" />,
@@ -658,9 +669,9 @@ const proData: Record<string, React.ReactNode> = {
 
 const premiumData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/base': yes,
-  '@mui/material': yes,
-  '@mui/system': yes,
+  'MUI Base': yes,
+  'MUI System': yes,
+  'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': pending,
@@ -697,8 +708,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
-  'data-grid-pro': <Info value="1 year" />,
-  'date-range-picker': pending,
+  'date-picker/simple': yes,
+  'date-picker/range': pending,
+  'mui-x-updates': <Info value="1 year" />,
   // Support
   community: yes,
   'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
@@ -805,6 +817,9 @@ const StickyHead = ({
   );
 };
 
+const divider = <Divider />;
+const nestedDivider = <Divider sx={{ ml: 1 }} />;
+
 export default function PricingTable({
   columnHeaderHidden,
   plans = ['community', 'pro', 'premium'],
@@ -848,8 +863,6 @@ export default function PricingTable({
       </Box>
     );
   }
-  const divider = <Divider />;
-  const nestedDivider = <Divider sx={{ ml: 1 }} />;
   return (
     <Box
       ref={tableRef}
@@ -920,12 +933,11 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
         MUI Core (open-source)
       </RowHead>
-      {renderRow('@mui/base')}
+      {renderRow('MUI Base')}
       {divider}
-      {renderRow('@mui/material')}
+      {renderRow('MUI System')}
       {divider}
-      {renderRow('@mui/system')}
-
+      {renderRow('Material UI')}
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         MUI X (open-core)
       </RowHead>
@@ -983,7 +995,7 @@ export default function PricingTable({
             },
           }}
         >
-          Data Grid
+          Data grid
         </Button>
       </Box>
       <Collapse in={dataGridCollapsed} timeout={700} sx={{ position: 'relative' }}>
@@ -1079,10 +1091,11 @@ export default function PricingTable({
         {renderRow('data-grid/localization')}
       </Collapse>
       {divider}
-      {renderRow('data-grid-pro')}
+      {renderRow('date-picker/simple')}
       {divider}
-      {renderRow('date-range-picker')}
-
+      {renderRow('date-picker/range')}
+      {divider}
+      {renderRow('mui-x-updates')}
       <RowHead>Support</RowHead>
       {renderRow('community')}
       {divider}

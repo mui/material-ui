@@ -5,6 +5,8 @@ export interface ListClasses {
   root: string;
   /** Styles applied to the root element if wrapped with nested context. */
   nested: string;
+  /** Styles applied to the root element if `row` is true. */
+  row: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -22,6 +24,7 @@ export function getListUtilityClass(slot: string): string {
 const listClasses: ListClasses = generateUtilityClasses('MuiList', [
   'root',
   'nested',
+  'row',
   'sizeSm',
   'sizeMd',
   'sizeLg',

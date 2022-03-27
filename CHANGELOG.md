@@ -1,5 +1,195 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.5.2
+
+<!-- generated comparing v5.5.1..master -->
+
+_Mar 21, 2022_
+
+A big thanks to the 7 contributors who made this release possible. This is a small release focused on some 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.5.2`
+
+- &#8203;<!-- 04 -->[Popper] Expose the `sx` prop (#31833) @ivan-ngchakming
+
+### `@mui/joy@5.0.0-alpha.20`
+
+- &#8203;<!-- 06 -->[Joy] Add default color to `Input` and `ListItemButton` (#31826) @siriwatknp
+- &#8203;<!-- 05 -->[Joy] Add Avatar component (#31303) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.73`
+
+- &#8203;<!-- 03 -->[SliderUnstyled] Fix dragging on disabled sliders (#31882) @mnajdova
+
+### `@mui/styled-engine-sc@5.5.2`
+
+- &#8203;<!-- 02 -->[styled-engine-sc] GlobalStylesProps inconsistent between the different packages (#31814) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 15 -->[data-grid] Fix print export feature (#31807) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Move BadgeUnstyled docs to Base space (#31872) @michaldudak
+- &#8203;<!-- 13 -->[docs] Solve duplication of content (#31917) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Fix side nav capitalization of API (#31916) @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Use TypeScript demos by default (#31808) @oliviertassinari
+- &#8203;<!-- 10 -->[docs] New search experience for multiple products (#31811) @siriwatknp
+- &#8203;<!-- 09 -->[docs] Make LTS searchable (#31804) @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Fix demo filename on zh markdown (#31790) @nnmax
+- &#8203;<!-- 01 -->[website] Highlight the date picker (#31889) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 07 -->[core] Add tests for Avatar component (#31829) @hbjORbj
+
+All contributors of this release in alphabetical order: @hbjORbj, @ivan-ngchakming, @michaldudak, @mnajdova, @nnmax, @oliviertassinari, @siriwatknp
+
+## 5.5.1
+
+<!-- generated comparing v5.5.0..master -->
+
+_Mar 14, 2022_
+
+A big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
+
+- 📊 2021 survey results post by @danilo-leal (#30999)
+- Several 🐛 bug fixes and 📚 documentation improvements
+
+### @mui/material@5.5.1
+
+- [Fab] Add z-index (#30842) @issamElmohadeb098
+- [Grid] Fix columns of nested container (#31340) @boutahlilsoufiane
+- [i10n] Update italian locale (#30974) @SalvatoreMazzullo
+- [Pagination] Fix type of UsePaginationItem["page"] (#31295) @aaronadamsCA
+- [Popper] Allow setting default props in a theme (#30118) @hafley66
+- [TextField] fix disappearing border in Safari (#31406) @krysia1
+
+### @mui/joy@5.0.0-alpha.19
+
+- [Joy] Support horizontal List (#31620) @siriwatknp
+- [Joy] Add icon & label `Switch` examples (#31359) @siriwatknp
+- [Joy] Add `TextField` component (#31299) @siriwatknp
+- [Joy] Add `--Icon-fontSize` to components (#31360) @siriwatknp
+- [Joy] Add `Checkbox` component (#31273) @siriwatknp
+
+### Docs
+
+- [blog] 2021 survey results post (#30999) @danilo-leal
+- [docs] Add Macedonian translation (#31402) @theCuriousOne
+- [docs] Fix API page table styles in Safari (#31696) @aaarichter
+- [docs] Fix SEO issues (#31505) @oliviertassinari
+- [docs] Fix Link leak of Next.js props (#31418) @oliviertassinari
+- [docs] Add "Work in biotech" to showcase (#31711) @klyburke
+- [docs] Fix docs site crash on iOS Safari 12 (#31458) @badalsaibo
+- [docs] Fix search icons crash (#31651) @juanpc10
+- [docs] Remove unnecessary await in e2e-tests (#31767) @siriwatknp
+- [docs] Fix source code links on the Templates page (#31425) @danilo-leal
+- [docs] Adjust Stack's basic usage demo (#31423) @danilo-leal
+- [docs] Migrate button demos to base (#31395) @siriwatknp
+- [docs] Fix y-axis unit used in the responsive font sizes chart (#31424) @aaarichter
+- [docs] Remove joy mockup pages (#31412) @siriwatknp
+- [docs] Fix the statement that styleOverrides are added by default (#31257) @mnajdova
+- [docs] Refine the product identifier menu (#31262) @danilo-leal
+- [docs] Fix Search crash (#31386) @reckter
+- [docs] Update TextField multiline description (#31291) @jontewks
+- [docs] Add gap theme mapping in the System properties table (#31382) @danilo-leal
+- [docs] Test products search (#31351) @siriwatknp
+- [docs] Fix GitHub source links in the demo toolbar (#31339) @PunitSoniME
+- [docs] Add Algolia verification code to robot.txt (#31356) @siriwatknp
+- [examples] Ignore tsbuildinfo with Next.js (#31460) @B0und
+- [website] Add new gold sponsor (#31354) @hbjORbj
+- [website] Update Ukraine support link (#31378) @samuelsycamore
+
+### Core
+
+- [core] Simplify anchor link (#31419) @oliviertassinari
+- [core] Revert unrelated changes in #31354 @oliviertassinari
+- [test] Upgrade CircleCI convenience image (#31394) @m4theushw
+- [typescript] Simplify display of slot props types (#31240) @michaldudak
+
+All contributors of this release in alphabetical order: @aaarichter, @aaronadamsCA, @B0und, @badalsaibo, @boutahlilsoufiane, @danilo-leal, @hafley66, @hbjORbj, @issamElmohadeb098, @jontewks, @juanpc10, @klyburke, @krysia1, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @reckter, @SalvatoreMazzullo, @samuelsycamore, @siriwatknp, @theCuriousOne
+
+## 5.5.0
+
+<!-- generated comparing v5.4.4..master -->
+
+_Mar 7, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- ♿️ made the `Autocomplete` conform to [ARIA 1.2 combobox](https://www.w3.org/TR/wai-aria-1.2/#combobox) (#30601) @EdmundMai
+- Several 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.5.0`
+
+#### Breaking change
+
+- &#8203;<!-- 24 -->[ClassNameGenerator] Prevent all `base` imports (#31297) @siriwatknp
+
+  `unstable_ClassNameGenerator` has been moved from `utils` to `className` folder to prevent all MUI Base module imports. If you use the module, please update the import as suggested in the diff below:
+
+  ```diff
+  - import { unstable_ClassNameGenerator } from '@mui/material/utils';
+  + import { unstable_ClassNameGenerator } from '@mui/material/className';
+  ```
+
+#### Changes
+
+- &#8203;<!-- 28 -->[Autocomplete] Fix failing unit tests (#31302) @michaldudak
+- &#8203;<!-- 27 -->[Autocomplete] Have the screen reader announce when autocomplete is open and closed (#30601) @EdmundMai
+- &#8203;<!-- 26 -->[AvatarGroup] Fix misalignment with non-default spacing (#31165) @sjdemartini
+- &#8203;<!-- 15 -->[Drawer] Adjustments to the mini variant to improve UI/UX (#31267) @siriwatknp
+- &#8203;<!-- 04 -->[Select] Add extending `OutlinedInputProps` by SelectProps (#31209) @jrozbicki
+
+### `@mui/icons-material@5.5.0`
+
+- &#8203;<!-- 13 -->[icons] Sync new Google Material Icons (#30766) @simonecervini
+
+### `@mui/codemod@5.5.0`
+
+- &#8203;<!-- 23 -->[codemod] Fix top level imports codemod (#31308) @mnajdova
+
+### `@mui/lab@5.0.0-alpha.72`
+
+- &#8203;<!-- 07 -->[LoadingButton] Fix padding of loading icon in small button (#31113) @PunitSoniME
+
+### `@mui/base@5.0.0-alpha.71`
+
+- &#8203;<!-- 05 -->[MenuUnstyled] Create MenuUnstyled and useMenu (#30961) @michaldudak
+- &#8203;<!-- 03 -->[SelectUnstyled] Prevent window scrolling after opening (#31237) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.18`
+
+- &#8203;<!-- 12 -->[Joy] Make Icon `fontSize` adaptable to its parent (#31268) @siriwatknp
+- &#8203;<!-- 11 -->[Joy] Add `Link` component (#31175) @hbjORbj
+- &#8203;<!-- 10 -->[Joy] Improve `Sheet` tests (#31241) @hbjORbj
+- &#8203;<!-- 09 -->[Joy] Improve SvgIcon tests (#31242) @hbjORbj
+
+### `@mui/material-next@6.0.0-alpha.26`
+
+- &#8203;<!-- 06 -->[material-next] Mark @mui/material as a dependency (#31270) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 21 -->[docs] Remove career pages from translation (#31346) @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Fix JS files overloading (#31341) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Add banner in solidarity of Ukraine (#31275) @danilo-leal
+- &#8203;<!-- 18 -->[docs] Fix maxWidth of scrollable Tabs demos (#31285) @danilo-leal
+- &#8203;<!-- 17 -->[docs] Fix icon linking implementation concurrent safe (#30428) @Janpot
+- &#8203;<!-- 16 -->[docs] Follow up new doc space issues (#31251) @siriwatknp
+- &#8203;<!-- 29 -->[examples] Add `@types/node` to nextjs typescript starter (#30918) @Daggy1234
+- &#8203;<!-- 14 -->[examples] Fix import ThemeProvider from correct package in remix-wit… (#30981) @nnecec
+- &#8203;<!-- 25 -->[blog] Simplify the labels (#30921) @oliviertassinari
+- &#8203;<!-- 08 -->[l10n] Add Croatian (hr-HR) and Serbian (sr-RS) translation (#30906) @m14d3n
+
+### Core
+
+- &#8203;<!-- 23 -->[core] Fix running markdownlint on Windows (#31352) @michaldudak
+- &#8203;<!-- 22 -->[core] Fix the stylelint script on Windows (#31281) @mnajdova
+- &#8203;<!-- 02 -->[test] Fix buildApiUtils tests on Windows (#31304) @michaldudak
+- &#8203;<!-- 01 -->[test] Remove legacyRoot option from test renderer (#31284) @eps1lon
+
+All contributors of this release in alphabetical order: @Daggy1234, @danilo-leal, @EdmundMai, @eps1lon, @hbjORbj, @Janpot, @jrozbicki, @m14d3n, @michaldudak, @mnajdova, @nnecec, @oliviertassinari, @PunitSoniME, @simonecervini, @siriwatknp, @sjdemartini
+
 ## 5.4.4
 
 <!-- generated comparing v5.4.3..master -->
@@ -232,7 +422,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - &#8203;<!-- 20 -->[docs] Clarify what the name of @mui/material is (#30866) @oliviertassinari
 - &#8203;<!-- 19 -->[docs] Remove migration from the releases page (#30863) @mnajdova
 - &#8203;<!-- 18 -->[docs] Update Instructions for Google Maps Autocomplete (#30849) @kjschabra
-- &#8203;<!-- 17 -->[docs] Hotfix notification <b> (#30862) @siriwatknp
+- &#8203;<!-- 17 -->[docs] Hotfix notification (#30862) @siriwatknp
 - &#8203;<!-- 04 -->[website] Sample GA to avoid hit limit (#30919) @oliviertassinari
 - &#8203;<!-- 03 -->[website] Hide scrollbars of hero containers (#29474) @theiliad
 - &#8203;<!-- 02 -->[website] Polishing spacing and other small things (#30828) @danilo-leal
@@ -3641,7 +3831,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 53 -->[DateTimePicker] `date` is nullable in `onChange` (#25981) @eps1lon
 - &#8203;<!-- 39 -->[internal][pickers] Remove unused TView type argument (#25936) @eps1lon
 - &#8203;<!-- 48 -->[internal][pickers] Inline some BasePickerProps usages (#25971) @eps1lon
-- &#8203;<!-- 44 -->[internal][pickers] Entangle what *Props vs All*Props means (#25938) @eps1lon
+- &#8203;<!-- 44 -->[internal][pickers] Entangle what Props vs AllProps means (#25938) @eps1lon
 - &#8203;<!-- 19 -->[lab] Update slot components to use overridesResolver (#25906) @mnajdova
 - &#8203;<!-- 40 -->[Timeline] Remove use of nth-child in favor of nth-of-type (#25915) @wellwellmissesanderson
 - &#8203;<!-- 06 -->[Timeline] Migrate Timeline to emotion (#25838) @siriwatknp
