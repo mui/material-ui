@@ -154,13 +154,6 @@ module.exports = function getBabelConfig(api) {
             {
               root: ['./'],
               alias: defaultAlias,
-              resolvePath: (sourcePath, currentFile, opts) => {
-                if (currentFile.includes('date-pickers')) {
-                  console.log('HELLO', sourcePath);
-                }
-
-                return bpmr.resolvePath(sourcePath, currentFile, opts);
-              },
             },
           ],
         ],
