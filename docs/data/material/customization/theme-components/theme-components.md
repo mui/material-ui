@@ -129,11 +129,12 @@ Note that some components expose a `color` prop, which has a lower specificty th
 
 ```js
 MuiLink: {
-    styleOverrides: {
-      root: {
-       color: '#0000FF', // blue
+  styleOverrides: {
+    root: {
+      color: '#0000FF', // blue
     },
   },
+},
 ```
 
 If you then try to customize the `Link`'s color using the `color` prop, nothing will happen since the theme's styles take precedence.
