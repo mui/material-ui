@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.28",
+  "version": "6.0.0-alpha.29",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design components built using @mui/base.",
@@ -59,11 +59,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/base": "5.0.0-alpha.73",
-    "@mui/material": "^5.5.2",
-    "@mui/system": "^5.5.2",
+    "@mui/base": "5.0.0-alpha.74",
+    "@mui/material": "^5.5.3",
+    "@mui/system": "^5.5.3",
     "@mui/types": "^7.1.3",
-    "@mui/utils": "^5.4.4",
+    "@mui/utils": "^5.5.3",
     "@popperjs/core": "^2.11.4",
     "@types/react-transition-group": "^4.4.4",
     "clsx": "^1.1.1",
