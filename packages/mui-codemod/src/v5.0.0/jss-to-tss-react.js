@@ -5,15 +5,19 @@ function transformNestedKeys(j, propValueNode, ruleNames, nestedKeys) {
     if (prop.value.type === 'ObjectExpression') {
       ruleNames.forEach((ruleName) => {
         if (typeof prop.key.value === 'string') {
-          const ruleRegEx = new RegExp('\\$' + ruleName + '$');
+          const ruleRegEx = new RegExp('(\\$' + ruleName + '$|\\$' + ruleName + '[^a-zA-Z0-9_]+)');
           const ruleIndex = prop.key.value.search(ruleRegEx);
           if (ruleIndex >= 0) {
             if (!nestedKeys.includes(ruleName)) {
               nestedKeys.push(ruleName);
             }
             const before = prop.key.value.substring(0, ruleIndex);
+            const after = prop.key.value.substring(ruleIndex + ruleName.length + 1);
             prop.key = j.templateLiteral(
-              [j.templateElement({ raw: before + '.', cooked: before + '.' }, false)],
+              [
+                j.templateElement({ raw: before + '.', cooked: before + '.' }, false),
+                j.templateElement({ raw: after, cooked: after }, true),
+              ],
               [j.identifier(`classes.${ruleName}`)],
             );
             prop.computed = true;
@@ -83,9 +87,11 @@ export default function transformer(file, api, options) {
   /**
    * Remove usages of createStyles
    */
-  root.find(j.CallExpression, { callee: { name: 'createStyles' } }).replaceWith((path) => {
-    return path.node.arguments[0];
-  });
+  if (foundCreateStyles) {
+    root.find(j.CallExpression, { callee: { name: 'createStyles' } }).replaceWith((path) => {
+      return path.node.arguments[0];
+    });
+  }
   /**
    * Convert makeStyles syntax
    */
@@ -93,11 +99,10 @@ export default function transformer(file, api, options) {
   root
     .find(j.CallExpression, { callee: { name: 'makeStyles' } })
     .forEach((path) => {
-      // TODO Find the return object and check for nested selectors
       const makeStylesArg = path.node.arguments[0];
       const ruleNames = [];
       const nestedKeys = [];
-      let objectExpression = undefined;
+      let objectExpression;
       if (makeStylesArg.type === 'ObjectExpression') {
         objectExpression = makeStylesArg;
       } else if (makeStylesArg.type === 'ArrowFunctionExpression') {
@@ -116,8 +121,15 @@ export default function transformer(file, api, options) {
           transformNestedKeys(j, prop.value, ruleNames, nestedKeys);
         });
         if (nestedKeys.length > 0 && makeStylesArg.type === 'ArrowFunctionExpression') {
+          if (makeStylesArg.params.length === 0) {
+            makeStylesArg.params.push(j.identifier('_theme'));
+          }
           makeStylesArg.params.push(j.identifier('_params'));
           makeStylesArg.params.push(j.identifier('classes'));
+          if (makeStylesArg.body.type === 'ObjectExpression') {
+            // In some cases, some needed parentheses were being lost without this.
+            makeStylesArg.body = j.parenthesizedExpression(objectExpression);
+          }
         }
       }
       if (isTypeScript && nestedKeys.length > 0) {

@@ -17,7 +17,6 @@ const useStyles = makeStyles<void, "test2">()((theme: Theme, _params, classes) =
       color: "blue"
     }
   },
-
   test2: {
     backgroundColor: "blue",
     color: "lime"
