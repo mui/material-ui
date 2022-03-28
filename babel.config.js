@@ -1,10 +1,12 @@
 const path = require('path');
+const bpmr = require('babel-plugin-module-resolver');
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
 function resolveAliasPath(relativeToBabelConf) {
   const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
+
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
@@ -152,6 +154,13 @@ module.exports = function getBabelConfig(api) {
             {
               root: ['./'],
               alias: defaultAlias,
+              resolvePath: (sourcePath, currentFile, opts) => {
+                if (currentFile.includes('date-pickers')) {
+                  console.log('HELLO', sourcePath);
+                }
+
+                return bpmr.resolvePath(sourcePath, currentFile, opts);
+              },
             },
           ],
         ],
