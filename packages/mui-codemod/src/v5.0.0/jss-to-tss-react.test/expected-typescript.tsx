@@ -8,22 +8,21 @@ JSS - https://codesandbox.io/s/typescript-case-bt065c?file=/demo.tsx
 TSS - https://codesandbox.io/s/typescript-case-7jwpms?file=/demo.tsx
  */
 
-const useStyles = makeStyles<void, "test2">()((theme: Theme, _params, classes) =>
-  ({
-    test: {
-      backgroundColor: "purple",
-      color: "white",
-      [`& .${classes.test2}`]: {
-        backgroundColor: "lime",
-        color: "blue"
-      }
-    },
-
-    test2: {
-      backgroundColor: "blue",
-      color: "lime"
+const useStyles = makeStyles<void, "test2">()((theme: Theme, _params, classes) => ({
+  test: {
+    backgroundColor: "purple",
+    color: "white",
+    [`& .${classes.test2}`]: {
+      backgroundColor: "lime",
+      color: "blue"
     }
-  })
+  },
+
+  test2: {
+    backgroundColor: "blue",
+    color: "lime"
+  }
+})
 );
 
 function InnerComponent({ classes }) {

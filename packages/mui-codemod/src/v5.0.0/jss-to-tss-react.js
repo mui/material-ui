@@ -1,5 +1,29 @@
 const moveToTssReact = ['makeStyles', 'withStyles'];
 
+function transformNestedKeys(j, propValueNode, ruleNames, nestedKeys) {
+  propValueNode.properties.forEach((prop) => {
+    if (prop.value.type === 'ObjectExpression') {
+      ruleNames.forEach((ruleName) => {
+        if (typeof prop.key.value === 'string') {
+          const ruleRegEx = new RegExp('\\$' + ruleName + '$');
+          const ruleIndex = prop.key.value.search(ruleRegEx);
+          if (ruleIndex >= 0) {
+            if (!nestedKeys.includes(ruleName)) {
+              nestedKeys.push(ruleName);
+            }
+            const before = prop.key.value.substring(0, ruleIndex);
+            prop.key = j.templateLiteral(
+              [j.templateElement({ raw: before + '.', cooked: before + '.' }, false)],
+              [j.identifier(`classes.${ruleName}`)],
+            );
+            prop.computed = true;
+          }
+        }
+      });
+      transformNestedKeys(j, prop.value, ruleNames, nestedKeys);
+    }
+  });
+}
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -55,6 +79,7 @@ export default function transformer(file, api, options) {
   if (!importsChanged) {
     return file.source;
   }
+  const isTypeScript = file.path.endsWith('.tsx') || file.path.endsWith('.ts');
   /**
    * Remove usages of createStyles
    */
@@ -68,7 +93,39 @@ export default function transformer(file, api, options) {
   root
     .find(j.CallExpression, { callee: { name: 'makeStyles' } })
     .forEach((path) => {
-      path.node.callee.name = 'makeStyles()';
+      // TODO Find the return object and check for nested selectors
+      const makeStylesArg = path.node.arguments[0];
+      const ruleNames = [];
+      const nestedKeys = [];
+      let objectExpression = undefined;
+      if (makeStylesArg.type === 'ObjectExpression') {
+        objectExpression = makeStylesArg;
+      } else if (makeStylesArg.type === 'ArrowFunctionExpression') {
+        if (makeStylesArg.body.type === 'BlockStatement') {
+          const returnStatement = makeStylesArg.body.body.find((b) => b.type === 'ReturnStatement');
+          objectExpression = returnStatement.argument;
+        } else if (makeStylesArg.body.type === 'ObjectExpression') {
+          objectExpression = makeStylesArg.body;
+        }
+      }
+      if (objectExpression !== undefined) {
+        objectExpression.properties.forEach((prop) => {
+          ruleNames.push(prop.key.name);
+        });
+        objectExpression.properties.forEach((prop) => {
+          transformNestedKeys(j, prop.value, ruleNames, nestedKeys);
+        });
+        if (nestedKeys.length > 0 && makeStylesArg.type === 'ArrowFunctionExpression') {
+          makeStylesArg.params.push(j.identifier('_params'));
+          makeStylesArg.params.push(j.identifier('classes'));
+        }
+      }
+      if (isTypeScript && nestedKeys.length > 0) {
+        const nestedKeysUnion = nestedKeys.join('" | "');
+        path.node.callee.name = `makeStyles<void, "${nestedKeysUnion}">()`;
+      } else {
+        path.node.callee.name = 'makeStyles()';
+      }
     })
     .closest(j.VariableDeclarator)
     .forEach((path) => {
