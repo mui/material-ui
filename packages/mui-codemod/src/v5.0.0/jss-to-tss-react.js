@@ -120,15 +120,22 @@ export default function transformer(file, api, options) {
         objectExpression.properties.forEach((prop) => {
           transformNestedKeys(j, prop.value, ruleNames, nestedKeys);
         });
-        if (nestedKeys.length > 0 && makeStylesArg.type === 'ArrowFunctionExpression') {
-          if (makeStylesArg.params.length === 0) {
-            makeStylesArg.params.push(j.identifier('_theme'));
+        if (nestedKeys.length > 0) {
+          let arrowFunction;
+          if (makeStylesArg.type === 'ArrowFunctionExpression') {
+            arrowFunction = makeStylesArg;
+          } else {
+            arrowFunction = j.arrowFunctionExpression([], objectExpression);
+            path.node.arguments[0] = arrowFunction;
           }
-          makeStylesArg.params.push(j.identifier('_params'));
-          makeStylesArg.params.push(j.identifier('classes'));
-          if (makeStylesArg.body.type === 'ObjectExpression') {
+          if (arrowFunction.params.length === 0) {
+            arrowFunction.params.push(j.identifier('_theme'));
+          }
+          arrowFunction.params.push(j.identifier('_params'));
+          arrowFunction.params.push(j.identifier('classes'));
+          if (arrowFunction.body.type === 'ObjectExpression') {
             // In some cases, some needed parentheses were being lost without this.
-            makeStylesArg.body = j.parenthesizedExpression(objectExpression);
+            arrowFunction.body = j.parenthesizedExpression(objectExpression);
           }
         }
       }

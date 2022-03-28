@@ -9,6 +9,14 @@ const useStyles = makeStyles({
 });
 
 const useStyles2 = makeStyles({
+  test: {
+    backgroundColor: "purple",
+    color: "white",
+    "& $test2": {
+      backgroundColor: "lime",
+      color: "blue"
+    }
+  },
   test2: {
     backgroundColor: "blue",
     color: "lime"

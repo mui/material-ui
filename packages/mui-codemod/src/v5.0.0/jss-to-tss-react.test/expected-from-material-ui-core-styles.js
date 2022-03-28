@@ -14,12 +14,12 @@ const useStyles = makeStyles()({
   }
 });
 
-const useStyles2 = makeStyles()({
+const useStyles2 = makeStyles()(() => ({
   test2: {
     backgroundColor: "blue",
     color: "lime"
   }
-});
+}));
 
 function InnerComponent() {
   const { classes } = useStyles2();
