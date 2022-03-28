@@ -24,6 +24,7 @@ const CardContentRoot = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
+  zIndex: 1,
 });
 
 const CardContent = React.forwardRef(function CardContent(inProps, ref) {
