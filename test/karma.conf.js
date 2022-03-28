@@ -139,8 +139,8 @@ module.exports = function setKarmaConfig(config) {
             use: {
               loader: 'babel-loader',
               options: {
-                // on the server we use the transpiled commonJS build, on client ES6 modules
-                // babel needs to figure out in what context to parse the file
+                // We have to apply `babel-plugin-module-resolve` to the files in `@mui/x-date-pickers`.
+                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `yarn test:karma`.
                 sourceType: 'unambiguous',
                 plugins: [
                   [
