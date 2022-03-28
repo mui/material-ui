@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 
 export interface SlideProps extends TransitionProps {
@@ -45,6 +47,10 @@ export interface SlideProps extends TransitionProps {
    * }
    */
   timeout?: TransitionProps['timeout'];
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 /**
