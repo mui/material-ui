@@ -50,6 +50,8 @@ const CardRoot = styled('div', {
         '--Card-radius': theme.vars.radius.lg,
         '--Card-padding': '1.5rem',
       }),
+      '--AspectRatio-radius':
+        'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
       padding: 'var(--Card-padding)',
       borderRadius: 'var(--Card-radius)',
       boxShadow: theme.vars.shadow.sm,
