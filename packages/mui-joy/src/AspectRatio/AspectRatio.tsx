@@ -20,20 +20,24 @@ const AspectRatioRoot = styled('div', {
   name: 'MuiAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ ownerState }) => ({
-  position: 'relative',
-  height: 0,
-  paddingBottom: `calc(100% / (${ownerState.ratio}))`,
-  overflow: 'hidden',
-  borderRadius: 'var(--AspectRatio-radius)',
-  '& > *:first-child': {
-    position: 'absolute',
-    zIndex: -1,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-}));
+})<{ ownerState: AspectRatioProps }>(({ ownerState }) => {
+  const min = typeof ownerState.min === 'number' ? `${ownerState.min}px` : ownerState.min;
+  const max = typeof ownerState.max === 'number' ? `${ownerState.max}px` : ownerState.max;
+  return {
+    position: 'relative',
+    height: 0,
+    paddingBottom: `clamp(${min || '0px'}, calc(100% / (${ownerState.ratio})), ${max || '9999px'})`,
+    overflow: 'hidden',
+    borderRadius: 'var(--AspectRatio-radius)',
+    '& > *:first-child': {
+      position: 'absolute',
+      zIndex: -1,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    },
+  };
+});
 
 const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   const props = useThemeProps<typeof inProps & AspectRatioProps>({
@@ -41,11 +45,13 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     name: 'MuiAspectRatio',
   });
 
-  const { className, component = 'div', children, ratio = '16 / 9', ...other } = props;
+  const { className, component = 'div', children, ratio = '16 / 9', min, max, ...other } = props;
 
   const ownerState = {
     ...props,
     component,
+    min,
+    max,
     ratio,
   };
 
