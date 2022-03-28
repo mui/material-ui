@@ -1,7 +1,8 @@
 ---
-product: material-ui
+product: base
 title: No SSR React component
 components: NoSsr
+packageName: '@mui/base'
 ---
 
 # No SSR
@@ -32,13 +33,3 @@ You can **wait a screen frame** with the `defer` property to render the children
 React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
 
 {{"demo": "FrameDeferring.js"}}
-
-## Unstyled
-
-- 📦 [362 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
-
-```js
-import NoSsr from '@mui/base/NoSsr';
-```
