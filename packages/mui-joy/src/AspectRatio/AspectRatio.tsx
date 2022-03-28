@@ -27,9 +27,8 @@ const AspectRatioRoot = styled('div', {
     position: 'relative',
     height: 0,
     paddingBottom: `clamp(${min || '0px'}, calc(100% / (${ownerState.ratio})), ${max || '9999px'})`,
-    overflow: 'hidden',
-    borderRadius: 'var(--AspectRatio-radius)',
     '& > *:first-child': {
+      borderRadius: 'var(--AspectRatio-radius)',
       position: 'absolute',
       width: '100%',
       height: '100%',
