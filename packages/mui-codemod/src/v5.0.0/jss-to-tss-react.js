@@ -5,7 +5,7 @@ function transformNestedKeys(j, propValueNode, ruleNames, nestedKeys) {
     if (prop.value.type === 'ObjectExpression') {
       ruleNames.forEach((ruleName) => {
         if (typeof prop.key.value === 'string') {
-          const ruleRegEx = new RegExp('(\\$' + ruleName + '$|\\$' + ruleName + '[^a-zA-Z0-9_]+)');
+          const ruleRegEx = new RegExp(`(\\$${ruleName}$|\\$${ruleName}[^a-zA-Z0-9_]+)`);
           const ruleIndex = prop.key.value.search(ruleRegEx);
           if (ruleIndex >= 0) {
             if (!nestedKeys.includes(ruleName)) {
@@ -15,7 +15,7 @@ function transformNestedKeys(j, propValueNode, ruleNames, nestedKeys) {
             const after = prop.key.value.substring(ruleIndex + ruleName.length + 1);
             prop.key = j.templateLiteral(
               [
-                j.templateElement({ raw: before + '.', cooked: before + '.' }, false),
+                j.templateElement({ raw: `${before}.`, cooked: `${before}.` }, false),
                 j.templateElement({ raw: after, cooked: after }, true),
               ],
               [j.identifier(`classes.${ruleName}`)],
