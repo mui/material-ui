@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.5.3
+
 <!-- generated comparing v5.5.2..master -->
+
 _Mar 28, 2022_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
@@ -32,19 +34,12 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   The `BackdropUnstyled` component was removed from the `@mui/base` package, as it did not have any specific logic, except adding an `aria-hidden` attribute on the div it rendered. This is not enough to justify it's existence in the base package. Here is an example alternative component you can use:
 
   ```tsx
-  const BackdropUnstyled = React.forwardRef<
-    HTMLDivElement,
-    { open?: boolean; className: string }
-  >((props, ref) => {
-    const { open, className, ...other } = props;
-    return (
-      <div
-        className={clsx({ 'MuiBackdrop-open': open }, className)}
-        ref={ref}
-        {...other}
-      />
-    );
-  });
+  const BackdropUnstyled = React.forwardRef<HTMLDivElement, { open?: boolean; className: string }>(
+    (props, ref) => {
+      const { open, className, ...other } = props;
+      return <div className={clsx({ 'MuiBackdrop-open': open }, className)} ref={ref} {...other} />;
+    },
+  );
   ```
 
 - &#8203;<!-- 03 -->[TrapFocus] Move docs to Base and drop the Unstyled prefix (#31954) @michaldudak
