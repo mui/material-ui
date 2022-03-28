@@ -131,6 +131,43 @@ module.exports = function setKarmaConfig(config) {
               envName: 'stable',
             },
           },
+          // transpile 3rd party packages with dependencies in this repository
+          {
+            test: /\.(js|mjs|jsx)$/,
+            include:
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                // on the server we use the transpiled commonJS build, on client ES6 modules
+                // babel needs to figure out in what context to parse the file
+                sourceType: 'unambiguous',
+                plugins: [
+                  [
+                    'babel-plugin-module-resolver',
+                    {
+                      alias: {
+                        // all packages in this monorepo
+                        '@mui/material': './packages/mui-material/src',
+                        '@mui/docs': './packages/mui-docs/src',
+                        '@mui/icons-material': './packages/mui-icons-material/lib',
+                        '@mui/lab': './packages/mui-lab/src',
+                        '@mui/styled-engine': './packages/mui-styled-engine/src',
+                        '@mui/styles': './packages/mui-styles/src',
+                        '@mui/system': './packages/mui-system/src',
+                        '@mui/private-theming': './packages/mui-private-theming/src',
+                        '@mui/utils': './packages/mui-utils/src',
+                        '@mui/base': './packages/mui-base/src',
+                        '@mui/material-next': './packages/mui-material-next/src',
+                        '@mui/joy': './packages/mui-joy/src',
+                      },
+                      transformFunctions: ['require'],
+                    },
+                  ],
+                ],
+              },
+            },
+          },
           {
             test: /\.(js|ts|tsx)$/,
             use: {
