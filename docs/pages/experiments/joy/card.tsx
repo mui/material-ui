@@ -3,18 +3,32 @@ import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
+import AvatarGroup from '@mui/joy/AvatarGroup';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
+import CardOverflow from '@mui/joy/CardOverflow';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 import Link from '@mui/joy/Link';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
+import Add from '@mui/icons-material/AddOutlined';
 import StarBorder from '@mui/icons-material/StarBorder';
+import MoreHoriz from '@mui/icons-material/MoreHoriz';
+import LinkIcon from '@mui/icons-material/Link';
+import Comment from '@mui/icons-material/Comment';
+import PlayArrow from '@mui/icons-material/PlayArrow';
+import Download from '@mui/icons-material/Download';
+import Favorite from '@mui/icons-material/Favorite';
+import Share from '@mui/icons-material/Share';
+import Apps from '@mui/icons-material/Apps';
+import DateRange from '@mui/icons-material/DateRange';
 import LocationOn from '@mui/icons-material/LocationOnOutlined';
 
 const ColorSchemePicker = () => {
@@ -149,7 +163,7 @@ export default function JoySvgIcon() {
       <GlobalStyles
         styles={{
           body: {
-            backgroundColor: 'var(--joy-palette-background-level1)',
+            backgroundColor: 'var(--joy-palette-background-level2)',
           },
         }}
       />
@@ -264,6 +278,249 @@ export default function JoySvgIcon() {
                 Renders VIDEO
               </Typography>
             </CardContent>
+          </Card>
+          <Card component="li" size="lg">
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+              <Sheet
+                variant="contained"
+                color="primary"
+                sx={{ borderRadius: '20px', px: '0.5rem', py: '4px', fontSize: 'xs' }}
+              >
+                Research
+              </Sheet>
+              <IconButton size="sm" variant="text" color="neutral">
+                <Add />
+              </IconButton>
+              <IconButton size="sm" variant="text" color="neutral" sx={{ ml: 'auto' }}>
+                <MoreHoriz />
+              </IconButton>
+            </Box>
+            <AspectRatio objectFit="contain" sx={{ my: 2 }}>
+              <img
+                src="https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                alt=""
+              />
+            </AspectRatio>
+            <Typography level="h2" sx={{ fontSize: 'lg', fontWeight: 'md', mb: 2 }}>
+              Quality Assurance
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1, mt: 'auto' }}>
+              <AvatarGroup size="sm">
+                <Avatar src="/static/images/avatar/1.jpg" />
+                <Avatar src="/static/images/avatar/2.jpg" />
+              </AvatarGroup>
+              <Typography startDecorator={<Comment />} level="body3" sx={{ ml: 'auto' }}>
+                4 Comments
+              </Typography>
+              <Typography startDecorator={<LinkIcon />} level="body3">
+                1 Files
+              </Typography>
+            </Box>
+          </Card>
+          <Card component="li" sx={{ '&:focus-within': { boxShadow: 'lg' } }}>
+            <CardOverflow>
+              <AspectRatio ratio="1">
+                <img
+                  src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt=""
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '1rem',
+                    right: '1rem',
+                    borderRadius: '20px',
+                    p: '0.5rem',
+                    fontSize: 'xs',
+                    color: '#fff',
+                    bgcolor: 'rgba(0,0,0,0.5)',
+                  }}
+                >
+                  04:26
+                </Box>
+                <IconButton
+                  size="lg"
+                  variant="contained"
+                  sx={{
+                    position: 'absolute',
+                    zIndex: 2,
+                    borderRadius: '50%',
+                    right: '1rem',
+                    bottom: 'calc(-1/2 * var(--IconButton-size))',
+                  }}
+                >
+                  <PlayArrow />
+                </IconButton>
+              </AspectRatio>
+            </CardOverflow>
+            <Typography level="h2" sx={{ fontSize: 'lg' }}>
+              <Link href="#minimal-photo" overlay>
+                Minimal photography
+              </Link>
+            </Typography>
+            <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
+              By <Link href="#sukjit">Sujith</Link>
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+                6.3k views
+              </Typography>
+              <Box sx={{ width: 2, bgcolor: 'divider' }} />
+              <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+                1 hour ago
+              </Typography>
+            </Box>
+          </Card>
+          <Card size="sm">
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, minmax(100px, 160px))',
+                gap: 0.5,
+                overflow: 'hidden',
+                mx: 'calc(-1 * var(--Card-padding))',
+                px: 1,
+              }}
+            >
+              <AspectRatio ratio="1">
+                <img
+                  src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                  alt=""
+                />
+              </AspectRatio>
+              <AspectRatio ratio="1">
+                <img
+                  src="https://images.unsplash.com/photo-1597589022928-bb4002c099ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                  alt=""
+                />
+              </AspectRatio>
+              <AspectRatio ratio="1">
+                <img
+                  src="https://images.unsplash.com/photo-1516073924210-ab16d9c03b13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1706&q=80"
+                  alt=""
+                />
+              </AspectRatio>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 1 }}>
+              <IconButton variant="text" color="neutral" size="sm">
+                <StarBorder />
+              </IconButton>
+              <Avatar
+                src="/static/images/avatar/2.jpg"
+                size="lg"
+                sx={{ '--Avatar-ring': '0 0 0 3px var(--joy-palette-background-body)', mt: -2 }}
+              />
+              <IconButton variant="text" color="neutral" size="sm">
+                <MoreHoriz />
+              </IconButton>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                textAlign: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <Typography sx={{ fontWeight: 'md' }}>robert_ford</Typography>
+                <Typography level="body2">Robert F. Ford</Typography>
+              </div>
+              <Typography level="body2">
+                Lifestyle coach and photographer delivering best images onli...
+              </Typography>
+              <Box sx={{ height: 2, bgcolor: 'divider', width: 40 }} />
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+                <div>
+                  <Typography sx={{ fontWeight: 'md' }}>1.2K</Typography>
+                  <Typography level="body2">Media</Typography>
+                </div>
+                <div>
+                  <Typography sx={{ fontWeight: 'md' }}>489.2K</Typography>
+                  <Typography level="body2">Followers</Typography>
+                </div>
+                <div>
+                  <Typography sx={{ fontWeight: 'md' }}>987K</Typography>
+                  <Typography level="body2">Following</Typography>
+                </div>
+              </Box>
+            </Box>
+          </Card>
+          <Card component="li" size="lg">
+            <Typography component="div" level="h2" sx={{ color: 'text.secondary' }}>
+              01
+            </Typography>
+            <Box sx={{ width: 24, height: 3, bgcolor: 'danger.500', mt: 1, mb: 3 }} />
+            <Typography level="h2" sx={{ fontSize: 'lg' }}>
+              <Link href="#buble-pop" overlay underline="none" sx={{ color: 'text.primary' }}>
+                Bubble pop
+              </Link>
+            </Typography>
+            <Typography level="body2">Kim Huyn A</Typography>
+            <AspectRatio ratio="1" sx={{ my: 2 }}>
+              <img
+                src="https://i.pinimg.com/564x/13/af/69/13af694326b7b9f4ad59de639bd3488f--kim-hyuna-pop.jpg"
+                alt="Kim hyunna"
+              />
+            </AspectRatio>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <IconButton size="sm" variant="text" color="neutral">
+                <Download />
+              </IconButton>
+              <IconButton size="sm" variant="text" color="neutral">
+                <Favorite />
+              </IconButton>
+              <IconButton size="sm" variant="text" color="neutral">
+                <Share />
+              </IconButton>
+              <IconButton size="sm" variant="text" color="neutral">
+                <MoreHoriz />
+              </IconButton>
+            </Box>
+          </Card>
+          <Card
+            component="li"
+            size="lg"
+            sx={{ gridColumn: 'span 2', maxWidth: 360, '--Typography-gap': '0.5rem' }}
+          >
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mt: -1, mr: -1 }}>
+              <IconButton size="sm" variant="text" color="neutral">
+                <StarBorder />
+              </IconButton>
+              <IconButton size="sm" variant="text" color="neutral">
+                <MoreHoriz />
+              </IconButton>
+            </Box>
+            <Avatar sx={{ mt: -2 }}>👩‍✈️</Avatar>
+            <Typography level="h2" sx={{ fontSize: 'lg', fontWeight: 'md', mt: 2, mb: 1 }}>
+              Friendly painters
+            </Typography>
+            <Typography level="body2" sx={{ mb: 2.5 }}>
+              Within the exercises, we design a room in a Scandinavian style
+            </Typography>
+            <Typography level="body2" startDecorator={<Apps sx={{ color: 'text.primary' }} />}>
+              Task: Practice
+            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography
+                level="body2"
+                startDecorator={<DateRange sx={{ color: 'text.primary' }} />}
+              >
+                Date: 01.07.2020
+              </Typography>
+              <AvatarGroup size="sm" sx={{ '--AvatarGroup-gap': '-0.5rem' }}>
+                <Avatar>A</Avatar>
+                <Avatar>B</Avatar>
+                <Avatar>C</Avatar>
+                <Avatar>D</Avatar>
+              </AvatarGroup>
+            </Box>
           </Card>
         </Box>
       </Box>
