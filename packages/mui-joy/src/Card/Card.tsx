@@ -8,6 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
+import { resolveSxValue } from '../styles/styleUtils';
 
 const useUtilityClasses = (ownerState: CardProps) => {
   const { size, variant, color } = ownerState;
@@ -31,20 +32,32 @@ const CardRoot = styled('div', {
 })<{ ownerState: CardProps }>(({ theme, ownerState }) => {
   return [
     {
+      '--Link-overlayRadius': resolveSxValue(
+        { theme, ownerState },
+        'borderRadius',
+        'var(--Card-radius)',
+      ),
       ...(ownerState.size === 'sm' && {
-        padding: '0.5rem',
+        '--Card-radius': theme.vars.radius.sm,
+        '--Card-padding': '0.5rem',
       }),
       ...(ownerState.size === 'md' && {
-        padding: '1rem',
+        '--Card-radius': theme.vars.radius.md,
+        '--Card-padding': '1rem',
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        padding: '1.5rem',
-        fontSize: theme.vars.fontSize.lg,
+        '--Card-radius': theme.vars.radius.lg,
+        '--Card-padding': '1.5rem',
       }),
-      fontFamily: theme.vars.fontFamily.body,
-      borderRadius: theme.vars.radius.md,
+      padding: 'var(--Card-padding)',
+      borderRadius: 'var(--Card-radius)',
       boxShadow: theme.vars.shadow.sm,
+      backgroundColor: theme.vars.palette.background.body,
+      fontFamily: theme.vars.fontFamily.body,
+      // TODO: discuss the theme transition.
+      // This value is copied from mui-material Sheet.
+      transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       position: 'relative',
       display: 'flex',
       flexDirection: 'column',
