@@ -109,8 +109,28 @@ const LinkRoot = styled('a', {
       '&::-moz-focus-inner': {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
+      ...(ownerState.overlay && {
+        position: 'initial',
+        '&::after': {
+          content: '""',
+          display: 'block',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          borderRadius: `calc(var(--Link-overlayRadius) - var(--variant-outlinedBorderWidth, 0px))`,
+        },
+      }),
     },
-    theme.focus.default,
+    !ownerState.overlay && theme.focus.default,
+    ownerState.overlay && {
+      '&.Mui-focusVisible::after': {
+        outline: '4px solid',
+        outlineOffset: 'var(--variant-outlinedBorderWidth, 0px)',
+        outlineColor: theme.vars.palette.focusVisible,
+      },
+    },
     ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
     ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
     ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
@@ -135,6 +155,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     onBlur,
     onFocus,
     level: levelProp = 'body1',
+    overlay = false,
     underline = 'hover',
     variant,
     endDecorator,
@@ -180,6 +201,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     underline,
     variant,
     level,
+    overlay,
     nested,
   };
 
