@@ -40,7 +40,7 @@ Beyond our official documentation, there are countless members of our community 
 
 The following is a curated list of some of the best third-party resources we've found—both free and paid—for learning how to build beautiful apps with our components.
 
-> **Note:** as of Spring 2022, the paid resources available all refer to outdated versions of Material UI (before v5) so unless you're using an older version, you will be more successful with the free resources.
+> **Note:** as of the second quarter of 2022, the paid resources available all refer to outdated versions of Material UI (before v5) so unless you're using an older version, you will be more successful with the free resources.
 
 ### Free
 
