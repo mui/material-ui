@@ -495,6 +495,27 @@ describe('<Autocomplete />', () => {
       expect(handleClose.callCount).to.equal(0);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
+    it('should close listbox on pressing left or right keys when inputValue is empty', () => {
+      const handleClose = spy();
+      const options = ['one', 'two', 'three'];
+      const { getByRole } = render(
+        <Autocomplete
+          options={options}
+          onClose={handleClose}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+          inputValue=""
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+    });
 
     it('should not crash if a tag is missing', () => {
       const handleChange = spy();
