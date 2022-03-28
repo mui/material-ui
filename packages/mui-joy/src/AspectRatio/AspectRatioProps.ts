@@ -1,5 +1,5 @@
-import { OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 
 export type AspectRatioSlot = 'root';
@@ -19,6 +19,10 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The maximum calculated height of the element (not the CSS height).
      */
     max?: number | string;
+    /**
+     * The CSS object-fit value of the first-child.
+     */
+    objectFit?: React.CSSProperties['objectFit'];
     /**
      * The aspect-ratio of the element. The current implementation uses padding instead of the CSS aspect-ratio due to browser support.
      * https://caniuse.com/?search=aspect-ratio

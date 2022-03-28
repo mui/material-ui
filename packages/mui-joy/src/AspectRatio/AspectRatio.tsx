@@ -31,10 +31,9 @@ const AspectRatioRoot = styled('div', {
     borderRadius: 'var(--AspectRatio-radius)',
     '& > *:first-child': {
       position: 'absolute',
-      zIndex: -1,
       width: '100%',
       height: '100%',
-      objectFit: 'cover',
+      objectFit: ownerState.objectFit,
     },
   };
 });
@@ -45,13 +44,23 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     name: 'MuiAspectRatio',
   });
 
-  const { className, component = 'div', children, ratio = '16 / 9', min, max, ...other } = props;
+  const {
+    className,
+    component = 'div',
+    children,
+    ratio = '16 / 9',
+    min,
+    max,
+    objectFit = 'cover',
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
     component,
     min,
     max,
+    objectFit,
     ratio,
   };
 
