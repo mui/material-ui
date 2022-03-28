@@ -66,7 +66,7 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 Rename the imports of date and time pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
 
-```
+```sh
 npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
 ```
 
