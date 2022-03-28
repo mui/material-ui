@@ -28,7 +28,9 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    */
   closeText?: string;
   /**
-   * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
+   * The color of the component. Unless provided, the value is taken from the `severity` prop.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
    */
   color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
   /**

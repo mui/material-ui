@@ -15,7 +15,7 @@ If you're adding a new test prefer a new component instead of editing existing f
 
 We're using [`playwright`](https://playwright.dev) to replay user actions.
 Each test tests only a single fixture.
-A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('Unstable_TrapFocus/OpenTrapFocus')`.
+A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('TrapFocus/OpenTrapFocus')`.
 
 ## Commands
 
