@@ -77,13 +77,13 @@ export default function UnstyledTabsCustomized() {
   return (
     <TabsUnstyled defaultValue={0}>
       <TabsList>
-        <Tab value={2}>One</Tab>
+        <Tab>One</Tab>
         <Tab>Two</Tab>
         <Tab>Three</Tab>
       </TabsList>
-      <TabPanel value={2}>First content</TabPanel>
-      <TabPanel value={1}>Second content</TabPanel>
-      <TabPanel value={2}>Third content</TabPanel>
+      <TabPanel value={0}>First page</TabPanel>
+      <TabPanel value={1}>Second page</TabPanel>
+      <TabPanel value={2}>Third page</TabPanel>
     </TabsUnstyled>
   );
 }

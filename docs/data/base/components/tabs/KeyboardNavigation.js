@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
-
-import { TabsListUnstyled } from '@mui/base';
+import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 
 const blue = {
   50: '#F0F7FF',
@@ -70,7 +69,7 @@ const TabsList = styled(TabsListUnstyled)`
 export default function AccessibleTabs1() {
   return (
     <div>
-      <p>Selection follows focus:</p>
+      <p>Selection following focus:</p>
       <TabsUnstyled
         defaultValue={0}
         aria-label="Tabs where selection follows focus"
@@ -83,7 +82,7 @@ export default function AccessibleTabs1() {
         </TabsList>
       </TabsUnstyled>
 
-      <p>Default behavior:</p>
+      <p>Selection independent of focus (default behavior):</p>
       <TabsUnstyled
         defaultValue={0}
         aria-label="Tabs where selection does not follow focus"
