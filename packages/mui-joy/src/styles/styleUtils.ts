@@ -7,10 +7,9 @@ import { JoyTheme, SxProps } from './defaultTheme';
 export const resolveSxValue = (
   { theme, ownerState }: { theme: JoyTheme; ownerState: { sx?: SxProps } },
   key: string,
+  defaultValue?: string | number,
 ) => {
-  if (!ownerState.sx) {
-    return undefined;
-  }
+  let parsedValue;
   let sxObject: Record<string, any> = {};
   function resolveSx(sxProp: SxProps) {
     if (typeof sxProp === 'function') {
@@ -26,18 +25,17 @@ export const resolveSxValue = (
       sxObject = { ...sxObject, ...sxProp };
     }
   }
-  resolveSx(ownerState.sx);
-  const value = sxObject[key];
-  if (typeof value !== 'string' && typeof value !== 'number') {
-    // does not support responsive value
-    return undefined;
-  }
-  if (key === 'borderRadius') {
-    if (typeof value === 'number') {
-      return `${value}px`;
+  if (ownerState.sx) {
+    resolveSx(ownerState.sx);
+    const value = sxObject[key];
+    if (typeof value === 'string' || typeof value === 'number') {
+      if (key === 'borderRadius') {
+        if (typeof value === 'number') {
+          return `${value}px`;
+        }
+        parsedValue = theme.vars.radius[value as keyof typeof theme.vars.radius] || value;
+      }
     }
-    const parsedValue = theme.vars.radius[value as keyof typeof theme.vars.radius];
-    return parsedValue || value;
   }
-  return undefined;
+  return parsedValue || defaultValue;
 };
