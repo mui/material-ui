@@ -5,6 +5,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnsty
 githubLabel: 'component: tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: https://www.w3.org/TR/wai-aria-practices/#tabpanel
+unstyled: /base/react-tabs
 ---
 
 # Tabs
