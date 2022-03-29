@@ -145,19 +145,6 @@ const Covers = () => {
 };
 
 export default function JoySvgIcon() {
-  const gradient = (
-    <Box
-      sx={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background:
-          'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 30%), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 50%)',
-      }}
-    />
-  );
   return (
     <CssVarsProvider>
       <GlobalStyles
@@ -239,11 +226,16 @@ export default function JoySvgIcon() {
                 src="https://images.unsplash.com/photo-1525630558331-067c957817a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80"
                 alt=""
               />
-              {gradient}
             </CardCover>
+            <CardCover
+              sx={{
+                background:
+                  'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 30%), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 50%)',
+              }}
+            />
             <CardContent sx={{ justifyContent: 'flex-end' }}>
-              <Typography level="h2" sx={{ mb: 1, fontSize: 'lg', color: 'neutral.50' }}>
-                <Link href="#the-beach" underline="none" overlay sx={{ color: 'inherit' }}>
+              <Typography level="h2" sx={{ mb: 1, fontSize: 'lg' }}>
+                <Link href="#the-beach" underline="none" overlay sx={{ color: 'neutral.50' }}>
                   The Beach
                 </Link>
               </Typography>
@@ -267,7 +259,12 @@ export default function JoySvgIcon() {
             <CardCover sx={{ display: { md: 'none' } }}>
               <img src="https://assets.codepen.io/6093409/river.jpg" alt="" />
             </CardCover>
-            <CardCover>{gradient}</CardCover>
+            <CardCover
+              sx={{
+                background:
+                  'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 30%), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 50%)',
+              }}
+            />
             <CardContent sx={{ justifyContent: 'flex-end' }}>
               <Typography sx={{ fontWeight: 'lg', display: { md: 'none' }, color: '#fff' }}>
                 Renders IMAGE

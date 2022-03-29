@@ -120,7 +120,7 @@ const LinkRoot = styled('a', {
           bottom: 0,
           right: 0,
           borderRadius: `var(--Link-overlayRadius)`,
-          margin: `calc(-1 * var(--variant-outlinedBorderWidth))`,
+          margin: `var(--Link-overlayMargin)`,
         },
       }),
     },
@@ -128,7 +128,6 @@ const LinkRoot = styled('a', {
     ownerState.overlay && {
       '&.Mui-focusVisible::after': {
         outline: '4px solid',
-        outlineOffset: 'var(--variant-outlinedBorderWidth, 0px)',
         outlineColor: theme.vars.palette.focusVisible,
       },
     },

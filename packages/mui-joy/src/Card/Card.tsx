@@ -29,48 +29,50 @@ const CardRoot = styled('div', {
   name: 'MuiCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardProps }>(({ theme, ownerState }) => {
-  const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius', 'var(--Card-radius)');
-  return [
-    {
-      '--Link-overlayRadius':
-        ownerState.variant === 'outlined'
-          ? `calc(${childRadius} - var(--variant-outlinedBorderWidth))`
-          : childRadius,
-      '--CardOverflow-offset':
-        ownerState.variant === 'outlined'
-          ? `calc(-1 * var(--Card-padding) - var(--variant-outlinedBorderWidth))`
-          : `calc(-1 * var(Card-padding))`,
-      '--AspectRatio-radius':
-        'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
-      ...(ownerState.size === 'sm' && {
-        '--Card-radius': theme.vars.radius.sm,
-        '--Card-padding': '0.5rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Card-radius': theme.vars.radius.md,
-        '--Card-padding': '1rem',
-        fontSize: theme.vars.fontSize.md,
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Card-radius': theme.vars.radius.lg,
-        '--Card-padding': '1.5rem',
-      }),
-      padding: 'var(--Card-padding)',
-      borderRadius: 'var(--Card-radius)',
-      boxShadow: theme.vars.shadow.sm,
-      backgroundColor: theme.vars.palette.background.body,
-      fontFamily: theme.vars.fontFamily.body,
-      // TODO: discuss the theme transition.
-      // This value is copied from mui-material Sheet.
-      transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ];
-});
+})<{ ownerState: CardProps }>(({ theme, ownerState }) => [
+  {
+    '--Link-overlayMargin':
+      ownerState.variant === 'outlined'
+        ? 'calc(-1 * var(--variant-outlinedBorderWidth))'
+        : undefined,
+    '--Link-overlayRadius': resolveSxValue(
+      { theme, ownerState },
+      'borderRadius',
+      'var(--Card-radius)',
+    ),
+    '--CardOverflow-offset':
+      ownerState.variant === 'outlined'
+        ? `calc(-1 * var(--Card-padding) - var(--variant-outlinedBorderWidth))`
+        : `calc(-1 * var(Card-padding))`,
+    '--AspectRatio-radius':
+      'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
+    ...(ownerState.size === 'sm' && {
+      '--Card-radius': theme.vars.radius.sm,
+      '--Card-padding': '0.5rem',
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Card-radius': theme.vars.radius.md,
+      '--Card-padding': '1rem',
+      fontSize: theme.vars.fontSize.md,
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Card-radius': theme.vars.radius.lg,
+      '--Card-padding': '1.5rem',
+    }),
+    padding: 'var(--Card-padding)',
+    borderRadius: 'var(--Card-radius)',
+    boxShadow: theme.vars.shadow.sm,
+    backgroundColor: theme.vars.palette.background.body,
+    fontFamily: theme.vars.fontFamily.body,
+    // TODO: discuss the theme transition.
+    // This value is copied from mui-material Sheet.
+    transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  theme.variants[ownerState.variant!]?.[ownerState.color!],
+]);
 
 const Card = React.forwardRef(function Card(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardProps>({
