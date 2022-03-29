@@ -207,7 +207,9 @@ Alert.propTypes /* remove-proptypes */ = {
    */
   closeText: PropTypes.string,
   /**
-   * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
+   * The color of the component. Unless provided, the value is taken from the `severity` prop.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'success', 'warning']),

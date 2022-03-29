@@ -190,7 +190,9 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of a button when it is selected.
+   * The color of the button when it is selected.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
