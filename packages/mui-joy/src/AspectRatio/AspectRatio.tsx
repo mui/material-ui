@@ -26,6 +26,7 @@ const AspectRatioRoot = styled('div', {
   return [
     {
       position: 'relative',
+      borderRadius: 'var(--AspectRatio-radius)',
       height: 0,
       paddingBottom: `clamp(${min || '0px'}, calc(100% / (${ownerState.ratio})), ${
         max || '9999px'
