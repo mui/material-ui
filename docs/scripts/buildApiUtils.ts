@@ -110,8 +110,10 @@ const migratedBaseComponents = [
   'MenuItemUnstyled',
   'MenuUnstyled',
   'ModalUnstyled',
+  'NoSsr',
   'Portal',
   'SliderUnstyled',
+  'TrapFocus',
 ];
 
 export const getGenericComponentInfo = (filename: string): ComponentInfo => {
