@@ -112,6 +112,10 @@ const migratedBaseComponents = [
   'ModalUnstyled',
   'NoSsr',
   'Portal',
+  'TabPanelUnstyled',
+  'TabsListUnstyled',
+  'TabsUnstyled',
+  'TabUnstyled',
   'TrapFocus',
 ];
 

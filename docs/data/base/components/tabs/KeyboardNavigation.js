@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 
 const blue = {
   50: '#F0F7FF',
@@ -56,12 +55,6 @@ const Tab = styled(TabUnstyled)`
   }
 `;
 
-const TabPanel = styled(TabPanelUnstyled)`
-  width: 100%;
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-`;
-
 const TabsList = styled(TabsListUnstyled)`
   min-width: 320px;
   background-color: ${blue[500]};
@@ -73,17 +66,33 @@ const TabsList = styled(TabsListUnstyled)`
   align-content: space-between;
 `;
 
-export default function UnstyledTabsCustomized() {
+export default function AccessibleTabs1() {
   return (
-    <TabsUnstyled defaultValue={0}>
-      <TabsList>
-        <Tab>One</Tab>
-        <Tab>Two</Tab>
-        <Tab>Three</Tab>
-      </TabsList>
-      <TabPanel value={0}>First content</TabPanel>
-      <TabPanel value={1}>Second content</TabPanel>
-      <TabPanel value={2}>Third content</TabPanel>
-    </TabsUnstyled>
+    <div>
+      <p>Selection following focus:</p>
+      <TabsUnstyled
+        defaultValue={0}
+        aria-label="Tabs where selection follows focus"
+        selectionFollowsFocus
+      >
+        <TabsList>
+          <Tab>One</Tab>
+          <Tab>Two</Tab>
+          <Tab>Three</Tab>
+        </TabsList>
+      </TabsUnstyled>
+
+      <p>Selection independent of focus (default behavior):</p>
+      <TabsUnstyled
+        defaultValue={0}
+        aria-label="Tabs where selection does not follow focus"
+      >
+        <TabsList>
+          <Tab>One</Tab>
+          <Tab>Two</Tab>
+          <Tab>Three</Tab>
+        </TabsList>
+      </TabsUnstyled>
+    </div>
   );
 }
