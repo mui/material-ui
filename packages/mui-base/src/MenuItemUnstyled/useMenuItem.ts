@@ -47,7 +47,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
 
   React.useEffect(() => {
     focusIfRequested();
-  });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useDebugValue({ id, disabled });
 
