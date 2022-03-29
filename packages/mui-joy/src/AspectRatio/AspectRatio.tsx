@@ -103,10 +103,49 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The maximum calculated height of the element (not the CSS height).
+   */
+  max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The minimum calculated height of the element (not the CSS height).
+   */
+  min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The CSS object-fit value of the first-child.
+   */
+  objectFit: PropTypes.oneOf([
+    '-moz-initial',
+    'contain',
+    'cover',
+    'fill',
+    'inherit',
+    'initial',
+    'none',
+    'revert',
+    'scale-down',
+    'unset',
+  ]),
+  /**
+   * The aspect-ratio of the element. The current implementation uses padding instead of the CSS aspect-ratio due to browser support.
+   * https://caniuse.com/?search=aspect-ratio
+   * @default '16 / 9'
+   */
+  ratio: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The variant to use.
+   * @default 'light'
+   */
+  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;
 
 export default AspectRatio;

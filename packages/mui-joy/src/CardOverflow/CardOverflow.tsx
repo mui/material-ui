@@ -99,10 +99,20 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;
 
 export default CardOverflow;
