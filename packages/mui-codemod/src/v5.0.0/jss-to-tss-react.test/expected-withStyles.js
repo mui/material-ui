@@ -45,4 +45,21 @@ function Comp2({ classes }) {
 
 const StyledComp2 = withStyles(Comp2, styles2);
 
-export default StyledComp2;
+function Comp3({ classes }) {
+  return <div className={classes.test}>Inline Styles
+    <div className={classes.test2}>Nested Inline Styles</div>
+  </div>;
+}
+const StyledComp3a = withStyles(Comp3, {test: {backgroundColor: "yellow"}});
+const StyledComp3b = withStyles(
+  Comp3,
+  (_theme, _params, classes) => ({test: {backgroundColor: "yellow", color: "lime", [`& .${classes.test2}`]: {backgroundColor: "orange"}}, test2: {}})
+);
+
+export default function App() {
+  return <>
+    <StyledComp2/>
+    <StyledComp3a/>
+    <StyledComp3b/>
+  </>;
+}

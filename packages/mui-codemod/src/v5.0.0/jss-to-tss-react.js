@@ -179,6 +179,11 @@ export default function transformer(file, api, options) {
         const styles = path.node.callee.arguments[0];
         if (styles.type === 'Identifier') {
           styleVariables.push(styles.name);
+        } else {
+          const nestedKeys = [];
+          transformStylesExpression(j, styles, nestedKeys, (newStylesExpression) => {
+            path.node.callee.arguments[0] = newStylesExpression;
+          });
         }
         const component = path.node.arguments[0];
         withStylesCall.arguments.unshift(component);
