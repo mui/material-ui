@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+import TablePaginationUnstyled, {
+  tablePaginationUnstyledClasses as classes,
+} from '@mui/base/TablePaginationUnstyled';
 
-function createData(name, calories, fat) {
+function createData(name: string, calories: number, fat: number) {
   return { name, calories, fat };
 }
 
@@ -64,10 +66,11 @@ const Root = styled('div')(
 
 const CustomTablePagination = styled(TablePaginationUnstyled)(
   ({ theme }) => `
-  & .MuiTablePaginationUnstyled-spacer {
+  & .${classes.spacer} {
     display: none;
   }
-  & .MuiTablePaginationUnstyled-toolbar {
+
+  & .${classes.toolbar}  {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -78,42 +81,51 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
       align-items: center;
     }
   }
-  & .MuiTablePaginationUnstyled-selectLabel {
+
+  & .${classes.selectLabel} {
     margin: 0;
   }
-  & .MuiTablePaginationUnstyled-select {
+
+  & .${classes.select}{
     padding: 2px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
     background-color: transparent;
+
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     }
+
     &:focus {
       outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
     }
   }
-  & .MuiTablePaginationUnstyled-displayedRows {
+
+  & .${classes.displayedRows} {
     margin: 0;
 
     @media (min-width: 768px) {
       margin-left: auto;
     }
   }
-  & .MuiTablePaginationUnstyled-actions {
+
+  & .${classes.actions} {
     padding: 2px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
     text-align: center;
   }
-  & .MuiTablePaginationUnstyled-actions > button {
+
+  & .${classes.actions} > button {
     margin: 0 8px;
     border: transparent;
     border-radius: 2px;
     background-color: transparent;
+
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     }
+
     &:focus {
       outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
     }
@@ -129,11 +141,16 @@ export default function UnstyledTable() {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -165,7 +182,7 @@ export default function UnstyledTable() {
           ))}
 
           {emptyRows > 0 && (
-            <tr style={{ height: 41 * emptyRows }}>
+            <tr style={{ height: 34 * emptyRows }}>
               <td colSpan={3} />
             </tr>
           )}
@@ -185,7 +202,7 @@ export default function UnstyledTable() {
                 actions: {
                   showFirstButton: true,
                   showLastButton: true,
-                },
+                } as any,
               }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}

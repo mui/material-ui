@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+import TablePaginationUnstyled, {
+  tablePaginationUnstyledClasses as classes,
+} from '@mui/base/TablePaginationUnstyled';
 
 function createData(name, calories, fat) {
   return { name, calories, fat };
@@ -42,7 +44,7 @@ const Root = styled('div')`
 `;
 
 const CustomTablePagination = styled(TablePaginationUnstyled)`
-  & .MuiTablePaginationUnstyled-toolbar {
+  & .${classes.toolbar} {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -54,11 +56,11 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
     }
   }
 
-  & .MuiTablePaginationUnstyled-selectLabel {
+  & .${classes.selectLabel} {
     margin: 0;
   }
 
-  & .MuiTablePaginationUnstyled-displayedRows {
+  & .${classes.displayedRows} {
     margin: 0;
 
     @media (min-width: 768px) {
@@ -66,11 +68,11 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
     }
   }
 
-  & .MuiTablePaginationUnstyled-spacer {
+  & .${classes.spacer} {
     display: none;
   }
 
-  & .MuiTablePaginationUnstyled-actions {
+  & .${classes.actions} {
     display: flex;
     gap: 0.25rem;
   }
