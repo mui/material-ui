@@ -112,7 +112,13 @@ describe('MenuUnstyled', () => {
     });
 
     describe('text navigation', () => {
-      it('changes the highlighted item', () => {
+      it('changes the highlighted item', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
         const { getByText, getAllByRole } = render(
           <MenuUnstyled {...defaultProps}>
             <MenuItemUnstyled>Aa</MenuItemUnstyled>
@@ -139,7 +145,13 @@ describe('MenuUnstyled', () => {
         expect(getByText('Cd')).to.have.attribute('tabindex', '0');
       });
 
-      it('repeated keys circulate all items starting with that letter', () => {
+      it('repeated keys circulate all items starting with that letter', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
         const { getByText, getAllByRole } = render(
           <MenuUnstyled {...defaultProps}>
             <MenuItemUnstyled>Aa</MenuItemUnstyled>
@@ -197,7 +209,13 @@ describe('MenuUnstyled', () => {
         expect(items[1]).to.have.attribute('tabindex', '0');
       });
 
-      it('skips the non-stringifiable items', () => {
+      it('skips the non-stringifiable items', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
         const { getByText, getAllByRole } = render(
           <MenuUnstyled {...defaultProps}>
             <MenuItemUnstyled>Aa</MenuItemUnstyled>
