@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
 import { ThemeProvider } from '@mui/material/styles';
+import Avatar from '@mui/joy/Avatar';
+import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
@@ -106,6 +108,21 @@ const components: {
     inputProps?: React.AllHTMLAttributes<HTMLInputElement>;
   }[];
 }[] = [
+  {
+    name: 'AvatarGroup',
+    render: (props: any) => (
+      <AvatarGroup {...props}>
+        <Avatar src="/static/images/avatar/1.jpg" />
+        <Avatar src="/static/images/avatar/2.jpg" />
+        <Avatar src="/static/images/avatar/3.jpg" />
+        <Avatar>+3</Avatar>
+      </AvatarGroup>
+    ),
+    cssVars: [
+      { id: '--AvatarGroup-gap', type: 'number', unit: 'px', defaultValue: -8 },
+      { id: '--Avatar-ringSize', type: 'number', unit: 'px', defaultValue: 2 },
+    ],
+  },
   {
     name: 'Button',
     render: (props: any) => (

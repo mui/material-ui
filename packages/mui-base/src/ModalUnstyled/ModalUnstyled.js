@@ -13,7 +13,7 @@ import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
-import TrapFocus from '../Unstable_TrapFocus';
+import TrapFocus from '../TrapFocus';
 import { getModalUtilityClass } from './modalUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
