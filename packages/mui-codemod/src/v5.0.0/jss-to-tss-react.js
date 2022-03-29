@@ -35,12 +35,6 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions || { quote: 'single' };
 
-  const withStylesCall = root.find(j.CallExpression, { callee: { name: 'withStyles' } }).nodes()[0];
-  const makeStylesCall = root.find(j.CallExpression, { callee: { name: 'makeStyles' } }).nodes()[0];
-
-  if (!withStylesCall && !makeStylesCall) {
-    return file.source;
-  }
   let importsChanged = false;
   let foundCreateStyles = false;
   let foundMakeStyles = false;
