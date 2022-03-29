@@ -91,7 +91,7 @@ Here are the most significant improvements since early July 2021.
   - [TrapFocus](/components/trap-focus/#unstyled)
 
   ```jsx
-  import TrapFocus from '@mui/base/Unstable_TrapFocus';
+  import TrapFocus from '@mui/base/TrapFocus';
   ```
 
 ### MUI X

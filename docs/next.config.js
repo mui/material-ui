@@ -157,7 +157,7 @@ module.exports = {
   },
   env: {
     COMMIT_REF: process.env.COMMIT_REF,
-    ENABLE_AD: process.env.ENABLE_AD,
+    ENABLE_AD_IN_DEV_MODE: process.env.ENABLE_AD_IN_DEV_MODE,
     GITHUB_AUTH: process.env.GITHUB_AUTH,
     GIT_REVIEW_ID: process.env.REVIEW_ID,
     LIB_VERSION: pkg.version,

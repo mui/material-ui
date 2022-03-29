@@ -117,12 +117,14 @@ With `sx`:
 
 ```js
 const MyStyledButton = (props) => (
-  <button sx={{
-    mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
-  }}>
-     {props.children}
+  <button
+    sx={{
+      mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
+    }}
+  >
+    {props.children}
   </button>
-})
+);
 ```
 
 ### The style definition varies slightly
