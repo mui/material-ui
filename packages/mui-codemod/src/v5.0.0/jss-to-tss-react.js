@@ -26,6 +26,46 @@ function transformNestedKeys(j, propValueNode, ruleNames, nestedKeys) {
     }
   });
 }
+function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExpression) {
+  const ruleNames = [];
+  let objectExpression;
+  if (stylesExpression.type === 'ObjectExpression') {
+    objectExpression = stylesExpression;
+  } else if (stylesExpression.type === 'ArrowFunctionExpression') {
+    if (stylesExpression.body.type === 'BlockStatement') {
+      const returnStatement = stylesExpression.body.body.find((b) => b.type === 'ReturnStatement');
+      objectExpression = returnStatement.argument;
+    } else if (stylesExpression.body.type === 'ObjectExpression') {
+      objectExpression = stylesExpression.body;
+    }
+  }
+  if (objectExpression !== undefined) {
+    objectExpression.properties.forEach((prop) => {
+      ruleNames.push(prop.key.name);
+    });
+    objectExpression.properties.forEach((prop) => {
+      transformNestedKeys(j, prop.value, ruleNames, nestedKeys);
+    });
+    if (nestedKeys.length > 0) {
+      let arrowFunction;
+      if (stylesExpression.type === 'ArrowFunctionExpression') {
+        arrowFunction = stylesExpression;
+      } else {
+        arrowFunction = j.arrowFunctionExpression([], objectExpression);
+        setStylesExpression(arrowFunction);
+      }
+      if (arrowFunction.params.length === 0) {
+        arrowFunction.params.push(j.identifier('_theme'));
+      }
+      arrowFunction.params.push(j.identifier('_params'));
+      arrowFunction.params.push(j.identifier('classes'));
+      if (arrowFunction.body.type === 'ObjectExpression') {
+        // In some cases, some needed parentheses were being lost without this.
+        arrowFunction.body = j.parenthesizedExpression(objectExpression);
+      }
+    }
+  }
+}
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -98,48 +138,10 @@ export default function transformer(file, api, options) {
     root
       .find(j.CallExpression, { callee: { name: 'makeStyles' } })
       .forEach((path) => {
-        const makeStylesArg = path.node.arguments[0];
-        const ruleNames = [];
         const nestedKeys = [];
-        let objectExpression;
-        if (makeStylesArg.type === 'ObjectExpression') {
-          objectExpression = makeStylesArg;
-        } else if (makeStylesArg.type === 'ArrowFunctionExpression') {
-          if (makeStylesArg.body.type === 'BlockStatement') {
-            const returnStatement = makeStylesArg.body.body.find(
-              (b) => b.type === 'ReturnStatement',
-            );
-            objectExpression = returnStatement.argument;
-          } else if (makeStylesArg.body.type === 'ObjectExpression') {
-            objectExpression = makeStylesArg.body;
-          }
-        }
-        if (objectExpression !== undefined) {
-          objectExpression.properties.forEach((prop) => {
-            ruleNames.push(prop.key.name);
-          });
-          objectExpression.properties.forEach((prop) => {
-            transformNestedKeys(j, prop.value, ruleNames, nestedKeys);
-          });
-          if (nestedKeys.length > 0) {
-            let arrowFunction;
-            if (makeStylesArg.type === 'ArrowFunctionExpression') {
-              arrowFunction = makeStylesArg;
-            } else {
-              arrowFunction = j.arrowFunctionExpression([], objectExpression);
-              path.node.arguments[0] = arrowFunction;
-            }
-            if (arrowFunction.params.length === 0) {
-              arrowFunction.params.push(j.identifier('_theme'));
-            }
-            arrowFunction.params.push(j.identifier('_params'));
-            arrowFunction.params.push(j.identifier('classes'));
-            if (arrowFunction.body.type === 'ObjectExpression') {
-              // In some cases, some needed parentheses were being lost without this.
-              arrowFunction.body = j.parenthesizedExpression(objectExpression);
-            }
-          }
-        }
+        transformStylesExpression(j, path.node.arguments[0], nestedKeys, (newStylesExpression) => {
+          path.node.arguments[0] = newStylesExpression;
+        });
         if (isTypeScript && nestedKeys.length > 0) {
           const nestedKeysUnion = nestedKeys.join('" | "');
           path.node.callee.name = `makeStyles<void, "${nestedKeysUnion}">()`;
@@ -182,6 +184,14 @@ export default function transformer(file, api, options) {
         withStylesCall.arguments.unshift(component);
         return withStylesCall;
       });
+    styleVariables.forEach((styleVar) => {
+      root.find(j.VariableDeclarator, { id: { name: styleVar } }).forEach((path) => {
+        const nestedKeys = [];
+        transformStylesExpression(j, path.node.init, nestedKeys, (newStylesExpression) => {
+          path.node.init = newStylesExpression;
+        });
+      });
+    });
   }
   return root.toSource(printOptions);
 }
