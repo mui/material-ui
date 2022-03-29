@@ -27,11 +27,11 @@ The `TextareaAutosize` component automatically adjust the textarea height on key
 
 {{"demo": "MaxHeightTextarea.js"}}
 
-## Unstyled
+## Base
 
-- 📦 [1.5 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
+The [TextareaAutosize](/base/react-textarea-autosize) component is defined in the @mui/base package.
+It is reexported from @mui/material for convenience.
+In your application you may import it from either package.
 
 ```js
 import TextareaAutosize from '@mui/base/TextareaAutosize';
