@@ -295,7 +295,11 @@ export default function JoySvgIcon() {
                 <MoreHoriz />
               </IconButton>
             </Box>
-            <AspectRatio objectFit="contain" sx={{ my: 2 }}>
+            <AspectRatio
+              variant="outlined"
+              objectFit="contain"
+              sx={{ my: 2, borderColor: 'rgba(0,0,0,0.12)' }}
+            >
               <img
                 src="https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
                 alt=""
@@ -317,8 +321,8 @@ export default function JoySvgIcon() {
               </Typography>
             </Box>
           </Card>
-          <Card component="li" sx={{ '&:focus-within': { boxShadow: 'lg' } }}>
-            <CardOverflow>
+          <Card component="li" variant="outlined" sx={{ '&:focus-within': { boxShadow: 'lg' } }}>
+            <CardOverflow variant="outlined">
               <AspectRatio ratio="1">
                 <img
                   src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -353,7 +357,7 @@ export default function JoySvgIcon() {
                 </IconButton>
               </AspectRatio>
             </CardOverflow>
-            <Typography level="h2" sx={{ fontSize: 'lg' }}>
+            <Typography level="h2" sx={{ fontSize: 'lg', mt: 3 }}>
               <Link href="#minimal-photo" overlay>
                 Minimal photography
               </Link>
@@ -361,7 +365,17 @@ export default function JoySvgIcon() {
             <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
               By <Link href="#sukjit">Sujith</Link>
             </Typography>
-            <Box sx={{ display: 'flex', gap: 1 }}>
+            <CardOverflow
+              variant="outlined"
+              sx={{
+                display: 'flex',
+                gap: 1,
+                p: 1.5,
+                mt: 'auto',
+                borderTopColor: 'background.level2',
+                bgcolor: 'background.level1',
+              }}
+            >
               <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
                 6.3k views
               </Typography>
@@ -369,7 +383,7 @@ export default function JoySvgIcon() {
               <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
                 1 hour ago
               </Typography>
-            </Box>
+            </CardOverflow>
           </Card>
           <Card size="sm">
             <Box
@@ -515,10 +529,10 @@ export default function JoySvgIcon() {
                 Date: 01.07.2020
               </Typography>
               <AvatarGroup size="sm" sx={{ '--AvatarGroup-gap': '-0.5rem' }}>
-                <Avatar>A</Avatar>
-                <Avatar>B</Avatar>
-                <Avatar>C</Avatar>
-                <Avatar>D</Avatar>
+                <Avatar src="/static/images/avatar/1.jpg" />
+                <Avatar src="/static/images/avatar/2.jpg" />
+                <Avatar src="/static/images/avatar/3.jpg" />
+                <Avatar src="/static/images/avatar/4.jpg" />
               </AvatarGroup>
             </Box>
           </Card>
