@@ -33,7 +33,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
   }),
-  padding: '0px 12px 0px',
+  padding: '0px 12px',
   minWidth: 80,
   maxWidth: 168,
   color: theme.palette.text.secondary,
