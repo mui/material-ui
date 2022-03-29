@@ -30,6 +30,6 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/MultiSelectUnstyled/MultiSelectUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-select/\">Selects</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-select/\">Select</a></li></ul>",
   "cssComponent": false
 }
