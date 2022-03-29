@@ -17,6 +17,7 @@ const pages = [
         children: [
           { pathname: '/base/react-button', title: 'Button' },
           { pathname: '/base/react-input', title: 'Input' },
+          { pathname: '/base/react-select', title: 'Select' },
         ],
       },
       {
