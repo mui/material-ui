@@ -25,6 +25,7 @@ const pages = [
         children: [
           { pathname: '/base/react-menu', title: 'Menu' },
           { pathname: '/base/react-table-pagination', title: 'Table pagination' },
+          { pathname: '/base/react-tabs', title: 'Tabs' },
         ],
       },
       {
@@ -33,6 +34,7 @@ const pages = [
         children: [
           { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
           { pathname: '/base/react-modal', title: 'Modal' },
+          { pathname: '/base/react-no-ssr', title: 'No SSR' },
           { pathname: '/base/react-portal', title: 'Portal' },
           { pathname: '/base/react-trap-focus', title: 'Trap focus' },
         ],
