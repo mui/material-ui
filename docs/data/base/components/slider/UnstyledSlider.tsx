@@ -22,7 +22,7 @@ const StyledSlider = styled(SliderUnstyled)(
   &.${sliderUnstyledClasses.disabled} { 
     pointer-events: none;
     cursor: default;
-    color: ${theme.palette.grey[400]}; 
+    color: #bdbdbd; 
   }
 
   & .${sliderUnstyledClasses.rail} {
