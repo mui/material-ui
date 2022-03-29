@@ -37,7 +37,7 @@ type Partial3Level<T> = {
 };
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-interface JoyThemeInput extends Partial2Level<ThemeScales> {
+export interface JoyThemeInput extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystem>;
   variants?: Partial2Level<Variants>;
@@ -71,6 +71,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
           root: ({ ownerState, theme }) => {
             const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
             return {
+              color: 'var(--Icon-color)',
               ...(ownerState.fontSize &&
                 ownerState.fontSize !== 'inherit' && {
                   fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,

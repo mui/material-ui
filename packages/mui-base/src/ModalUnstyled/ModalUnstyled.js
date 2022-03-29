@@ -13,7 +13,7 @@ import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
-import TrapFocus from '../Unstable_TrapFocus';
+import TrapFocus from '../TrapFocus';
 import { getModalUtilityClass } from './modalUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -267,7 +267,12 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
         className={clsx(classes.root, rootProps.className, className)}
       >
         {!hideBackdrop && BackdropComponent ? (
-          <BackdropComponent open={open} onClick={handleBackdropClick} {...BackdropProps} />
+          <BackdropComponent
+            aria-hidden
+            open={open}
+            onClick={handleBackdropClick}
+            {...BackdropProps}
+          />
         ) : null}
         <TrapFocus
           disableEnforceFocus={disableEnforceFocus}
@@ -293,7 +298,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`BackdropUnstyled`](/api/backdrop-unstyled/) element.
+   * Props applied to the backdrop element.
    */
   BackdropProps: PropTypes.object,
   /**

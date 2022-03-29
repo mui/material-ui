@@ -23,7 +23,7 @@ const pages = [
       '/material-ui/material-icons',
       '/material-ui/about-the-lab',
       '/material-ui/transitions',
-      '/material-ui/pickers',
+      '/material-ui/lab-date-and-time-pickers',
     ],
     title: 'Components',
     icon: 'ToggleOnIcon',
@@ -129,12 +129,11 @@ const pages = [
         ],
       },
       {
-        pathname: '/x/react-data-grid',
-        subheader: 'data-grid',
+        pathname: '/mui-x', // the pathname does not matter here because the links to MUI X are outbound.
+        subheader: 'MUI X',
         children: [
-          { pathname: '/x/react-data-grid/', title: 'Overview' },
-          { pathname: '/x/react-data-grid/demo/', title: 'Demo' },
-          { pathname: '/x/react-data-grid/getting-started/', title: 'Getting Started' },
+          { pathname: '/x/react-data-grid', title: 'Data Grid' },
+          { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },
         ],
       },
       {
@@ -142,21 +141,7 @@ const pages = [
         subheader: 'lab',
         children: [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
-          {
-            pathname: '/material-ui/pickers',
-            subheader: 'pickers',
-            title: 'Date / Time',
-            children: [
-              { pathname: '/material-ui/pickers', title: 'Introduction' },
-              { pathname: '/material-ui/react-date-picker' },
-              {
-                pathname: '/material-ui/react-date-range-picker',
-                title: 'Date Range Picker ⚡️',
-              },
-              { pathname: '/material-ui/react-date-time-picker' },
-              { pathname: '/material-ui/react-time-picker' },
-            ],
-          },
+          { pathname: '/material-ui/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
           { pathname: '/material-ui/react-trap-focus' },

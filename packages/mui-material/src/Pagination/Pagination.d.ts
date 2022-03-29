@@ -28,6 +28,8 @@ export interface PaginationProps
   classes?: Partial<PaginationClasses>;
   /**
    * The active color.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
    * @default 'standard'
    */
   color?: OverridableStringUnion<

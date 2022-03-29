@@ -1,9 +1,10 @@
 ---
 product: material-ui
 title: React Modal component
-components: Modal, ModalUnstyled
+components: Modal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
+unstyled: /base/react-modal/
 ---
 
 # Modal
@@ -39,19 +40,6 @@ Modal is a lower-level construct that is leveraged by the following components:
 {{"demo": "BasicModal.js"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
-
-## Unstyled
-
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-The modal also comes with an unstyled version.
-It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import ModalUnstyled from '@mui/base/ModalUnstyled';
-```
-
-{{"demo": "ModalUnstyled.js"}}
 
 ## Nested modal
 

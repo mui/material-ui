@@ -85,7 +85,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     }
   }, [listboxFocusRequested]);
 
-  const updateListboxRef = (listboxElement: HTMLUListElement) => {
+  const updateListboxRef = (listboxElement: HTMLUListElement | null) => {
     listboxRef.current = listboxElement;
     focusListboxIfRequested();
   };
