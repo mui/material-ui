@@ -11,8 +11,8 @@ packageName: '@mui/base'
 
 <p class="description">The Switch component lets you toggle the state of a single setting on or off.</p>
 
-Switches can be used on either desktop or mobile but it has been the preferred way for toggling settings in the latter. 
-The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
+Switches can be used on either desktop or mobile but it has been the preferred way for toggling settings in the latter.
+To make the switch accessible, you should ensure the corresponding label reflects the current state of the switch.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
