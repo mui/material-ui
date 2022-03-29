@@ -108,7 +108,6 @@ module.exports = [
   { pathname: '/api-docs/skeleton' },
   { pathname: '/api-docs/slide' },
   { pathname: '/api-docs/slider' },
-  { pathname: '/api-docs/slider-unstyled' },
   { pathname: '/api-docs/snackbar' },
   { pathname: '/api-docs/snackbar-content' },
   { pathname: '/api-docs/speed-dial' },

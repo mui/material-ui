@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
 const StyledSlider = styled(SliderUnstyled)(
   ({ theme }) => `
@@ -14,11 +14,18 @@ const StyledSlider = styled(SliderUnstyled)(
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
   opacity: 0.75;
+
   &:hover {
     opacity: 1;
   }
 
-  & .MuiSlider-rail {
+  &.${sliderUnstyledClasses.disabled} { 
+    pointer-events: none;
+    cursor: default;
+    color: #bdbdbd; 
+  }
+
+  & .${sliderUnstyledClasses.rail} {
     display: block;
     position: absolute;
     width: 100%;
@@ -28,7 +35,7 @@ const StyledSlider = styled(SliderUnstyled)(
     opacity: 0.38;
   }
 
-  & .MuiSlider-track {
+  & .${sliderUnstyledClasses.track} {
     display: block;
     position: absolute;
     height: 4px;
@@ -36,7 +43,7 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: currentColor;
   }
 
-  & .MuiSlider-thumb {
+  & .${sliderUnstyledClasses.thumb} {
     position: absolute;
     width: 14px;
     height: 14px;
@@ -49,14 +56,14 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: #fff;
 
     :hover,
-    &.Mui-focusVisible {
+    &.${sliderUnstyledClasses.focusVisible} {
       box-shadow: 0 0 0 0.25rem ${alpha(
         theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
         0.15,
       )};
     }
 
-    &.Mui-active {
+    &.${sliderUnstyledClasses.active} {
       box-shadow: 0 0 0 0.25rem ${alpha(
         theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
         0.3,
@@ -70,6 +77,7 @@ export default function UnstyledSlider() {
   return (
     <Box sx={{ width: 300 }}>
       <StyledSlider defaultValue={10} />
+      <StyledSlider defaultValue={10} disabled />
     </Box>
   );
 }

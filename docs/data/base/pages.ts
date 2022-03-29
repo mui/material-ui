@@ -18,6 +18,7 @@ const pages = [
           { pathname: '/base/react-button', title: 'Button' },
           { pathname: '/base/react-input', title: 'Input' },
           { pathname: '/base/react-select', title: 'Select' },
+          { pathname: '/base/react-slider', title: 'Slider' },
         ],
       },
       {
