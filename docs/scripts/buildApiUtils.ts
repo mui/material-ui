@@ -116,6 +116,7 @@ const migratedBaseComponents = [
   'OptionUnstyled',
   'Portal',
   'SelectUnstyled',
+  'TablePaginationUnstyled',
   'TabPanelUnstyled',
   'TabsListUnstyled',
   'TabsUnstyled',
