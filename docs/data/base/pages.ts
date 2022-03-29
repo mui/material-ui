@@ -17,13 +17,17 @@ const pages = [
         children: [
           { pathname: '/base/react-button', title: 'Button' },
           { pathname: '/base/react-input', title: 'Input' },
+          { pathname: '/base/react-select', title: 'Select' },
           { pathname: '/base/react-slider', title: 'Slider' },
         ],
       },
       {
         pathname: '/base/components/navigation',
         subheader: 'navigation',
-        children: [{ pathname: '/base/react-menu', title: 'Menu' }],
+        children: [
+          { pathname: '/base/react-menu', title: 'Menu' },
+          { pathname: '/base/react-tabs', title: 'Tabs' },
+        ],
       },
       {
         pathname: '/base/components/utils',
