@@ -4,7 +4,7 @@
 
 ## Your first component
 
-The following code snippet contains everything you need to start building an app with Material UI, beginning with the `<Button>` component:
+The following code snippet demonstrates a basic Material UI app that features a `<Button>` component:
 
 ```jsx
 import * as React from 'react';
