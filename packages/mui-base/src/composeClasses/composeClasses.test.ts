@@ -37,11 +37,47 @@ describe('composeClasses', () => {
     });
   });
 
-  it('should ignore false values', () => {
+  it('should ignore falsy values', () => {
     expect(
       composeClasses(
         {
           root: ['root', false, 'standard'],
+          slot: ['slot'],
+        },
+        (slot) => `MuiTest-${slot}`,
+        {
+          standard: 'standardOverride',
+          slot: 'slotOverride',
+        },
+      ),
+    ).to.deep.equal({
+      root: 'MuiTest-root standardOverride MuiTest-standard',
+      slot: 'slotOverride MuiTest-slot',
+    });
+  });
+  
+  expect(
+      composeClasses(
+        {
+          root: ['root', 0, 'standard'],
+          slot: ['slot'],
+        },
+        (slot) => `MuiTest-${slot}`,
+        {
+          standard: 'standardOverride',
+          slot: 'slotOverride',
+        },
+      ),
+    ).to.deep.equal({
+      root: 'MuiTest-root standardOverride MuiTest-standard',
+      slot: 'slotOverride MuiTest-slot',
+    });
+  });
+
+  expect(
+      composeClasses(
+        {
+          root: ['root', 0x0, 'standard'],
           slot: ['slot'],
         },
         (slot) => `MuiTest-${slot}`,
