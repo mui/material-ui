@@ -1,8 +1,9 @@
 ---
-product: material-ui
+product: base
 title: Textarea Autosize React component
 components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'
+packageName: '@mui/base'
 ---
 
 # Textarea Autosize
@@ -26,13 +27,3 @@ The `TextareaAutosize` component automatically adjust the textarea height on key
 ## Maximum height
 
 {{"demo": "MaxHeightTextarea.js"}}
-
-## Unstyled
-
-- 📦 [1.5 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
-
-```js
-import TextareaAutosize from '@mui/base/TextareaAutosize';
-```
