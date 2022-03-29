@@ -27,7 +27,7 @@ As opposed to the Core library, which leans on the open-source community for sup
 MUI X components are available under two licenses:
 
 - MUI X is MIT licensed, so free to use.
-- MUI X Pro—commercial license; includes the most advanced features.
+- MUI X Pro includes the most advanced features, and is commercially licensed.
 
 ## Why have the date and time pickers been moved to MUI X?
 
