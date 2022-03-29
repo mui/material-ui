@@ -7,14 +7,14 @@ import useBadge from './useBadge';
 import { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { invisible, classes } = ownerState;
+  const { invisible } = ownerState;
 
   const slots = {
     root: ['root'],
     badge: ['badge', invisible && 'invisible'],
   };
 
-  return composeClasses(slots, getBadgeUtilityClass, classes);
+  return composeClasses(slots, getBadgeUtilityClass, undefined);
 };
 
 const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
