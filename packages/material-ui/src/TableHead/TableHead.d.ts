@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
 
-export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'> {
+export interface TableHeadTypeMap<P extends {} = {}, D extends React.ElementType = 'thead'>
+  extends OverridableTypeMap {
   props: P;
   defaultComponent: D;
   classKey: TableHeadClassKey;

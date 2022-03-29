@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
 
-export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface TableContainerTypeMap<P extends {} = {}, D extends React.ElementType = 'div'>
+  extends OverridableTypeMap {
   props: P;
   defaultComponent: D;
   classKey: TableContainerClassKey;
@@ -22,7 +23,7 @@ export type TableContainerClassKey = 'root';
 
 export type TableContainerProps<
   D extends React.ElementType = TableContainerTypeMap['defaultComponent'],
-  P = {}
+  P extends {} = {}
 > = OverrideProps<TableContainerTypeMap<P, D>, D>;
 
 export default TableContainer;

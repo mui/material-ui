@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
 
-export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot'> {
+export interface TableFooterTypeMap<P extends {} = {}, D extends React.ElementType = 'tfoot'>
+  extends OverridableTypeMap {
   props: P;
   defaultComponent: D;
   classKey: TableFooterClassKey;
@@ -22,7 +23,7 @@ export type TableFooterClassKey = 'root';
 
 export type TableFooterProps<
   D extends React.ElementType = TableFooterTypeMap['defaultComponent'],
-  P = {}
+  P extends {} = {}
 > = OverrideProps<TableFooterTypeMap<P, D>, D>;
 
 export default TableFooter;
