@@ -20,22 +20,31 @@ const CardOverflowRoot = styled('div', {
   name: 'MuiCardOverflow',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardOverflowProps }>(() => {
-  const overflow = 'calc(-1 * var(--Card-padding))';
-  return {
-    marginLeft: overflow,
-    marginRight: overflow,
-    '&:first-child': {
-      '--AspectRatio-radius': 'var(--Card-radius) var(--Card-radius) 0 0',
-      marginTop: overflow,
-      marginBottom: 'var(--Card-padding)',
+})<{ ownerState: CardOverflowProps }>(({ theme, ownerState }) => {
+  const childRadius =
+    ownerState.variant === 'outlined'
+      ? `calc(var(--Card-radius) - var(--variant-outlinedBorderWidth))`
+      : 'var(--Card-radius)';
+  return [
+    {
+      marginLeft: 'var(--CardOverflow-offset)',
+      marginRight: 'var(--CardOverflow-offset)',
+      borderRadius: 'var(--Card-radius)',
+      '&:first-child': {
+        '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        marginTop: 'var(--CardOverflow-offset)',
+      },
+      '&:last-child': {
+        '--AspectRatio-radius': `0 0 ${childRadius} ${childRadius}`,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        marginBottom: 'var(--CardOverflow-offset)',
+      },
     },
-    '&:last-child': {
-      '--AspectRatio-radius': '0 0 var(--Card-radius) var(--Card-radius)',
-      marginBottom: overflow,
-      marginTop: 'var(--Card-padding)',
-    },
-  };
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ];
 });
 
 const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
@@ -44,11 +53,20 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     name: 'MuiCardOverflow',
   });
 
-  const { className, component = 'div', children, ...other } = props;
+  const {
+    className,
+    component = 'div',
+    children,
+    color = 'neutral',
+    variant = 'text',
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
     component,
+    color,
+    variant,
   };
 
   const classes = useUtilityClasses();

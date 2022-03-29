@@ -1,5 +1,5 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 

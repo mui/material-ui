@@ -30,13 +30,19 @@ const CardRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardProps }>(({ theme, ownerState }) => {
+  const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius', 'var(--Card-radius)');
   return [
     {
-      '--Link-overlayRadius': resolveSxValue(
-        { theme, ownerState },
-        'borderRadius',
-        'var(--Card-radius)',
-      ),
+      '--Link-overlayRadius':
+        ownerState.variant === 'outlined'
+          ? `calc(${childRadius} - var(--variant-outlinedBorderWidth))`
+          : childRadius,
+      '--CardOverflow-offset':
+        ownerState.variant === 'outlined'
+          ? `calc(-1 * var(--Card-padding) - var(--variant-outlinedBorderWidth))`
+          : `calc(-1 * var(Card-padding))`,
+      '--AspectRatio-radius':
+        'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
       ...(ownerState.size === 'sm' && {
         '--Card-radius': theme.vars.radius.sm,
         '--Card-padding': '0.5rem',
@@ -50,8 +56,6 @@ const CardRoot = styled('div', {
         '--Card-radius': theme.vars.radius.lg,
         '--Card-padding': '1.5rem',
       }),
-      '--AspectRatio-radius':
-        'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
       padding: 'var(--Card-padding)',
       borderRadius: 'var(--Card-radius)',
       boxShadow: theme.vars.shadow.sm,
