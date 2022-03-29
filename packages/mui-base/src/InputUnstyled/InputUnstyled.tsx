@@ -11,11 +11,11 @@ import useInput from './useInput';
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Input](https://mui.com/base/react-input/)
  *
  * API:
  *
- * - [InputUnstyled API](https://mui.com/api/input-unstyled/)
+ * - [InputUnstyled API](https://mui.com/base/api/input-unstyled/)
  */
 const InputUnstyled = React.forwardRef(function InputUnstyled(
   props: InputUnstyledProps,
@@ -156,6 +156,9 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
         minRows: hasHostTexarea ? undefined : rows,
         maxRows: hasHostTexarea ? undefined : rows,
         ...inputProps,
+        ...(hasHostTexarea && {
+          ownerState: undefined,
+        }),
       };
     } else {
       inputProps = {
@@ -163,6 +166,9 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
         maxRows: hasHostTexarea ? undefined : maxRows,
         minRows: hasHostTexarea ? undefined : minRows,
         ...inputProps,
+        ...(hasHostTexarea && {
+          ownerState: undefined,
+        }),
       };
     }
 

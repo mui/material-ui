@@ -24,8 +24,8 @@ type InputRootKeys =
   | 'variant'
   | 'color'
   | 'size'
-  | 'startAdornment'
-  | 'endAdornment';
+  | 'startDecorator'
+  | 'endDecorator';
 
 export interface TextFieldTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &

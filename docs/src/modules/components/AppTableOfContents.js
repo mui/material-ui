@@ -10,14 +10,14 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => ({
-  top: 'var(--MuiDocs-header-height)',
+  top: 0,
   order: 1,
   width: 240,
   flexShrink: 0,
   position: 'sticky',
-  height: 'calc(100vh - var(--MuiDocs-header-height))',
+  height: '100vh',
   overflowY: 'auto',
-  padding: theme.spacing(2, 4, 2, 0),
+  padding: theme.spacing('calc(var(--MuiDocs-header-height) + 1rem)', 4, 2, 0),
   display: 'none',
   [theme.breakpoints.up('sm')]: {
     display: 'block',
