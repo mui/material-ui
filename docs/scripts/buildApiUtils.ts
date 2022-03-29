@@ -110,6 +110,7 @@ const migratedBaseComponents = [
   'MenuItemUnstyled',
   'MenuUnstyled',
   'ModalUnstyled',
+  'NoSsr',
   'Portal',
   'TrapFocus',
 ];
