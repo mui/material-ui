@@ -20,21 +20,26 @@ const AspectRatioRoot = styled('div', {
   name: 'MuiAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ ownerState }) => {
+})<{ ownerState: AspectRatioProps }>(({ theme, ownerState }) => {
   const min = typeof ownerState.min === 'number' ? `${ownerState.min}px` : ownerState.min;
   const max = typeof ownerState.max === 'number' ? `${ownerState.max}px` : ownerState.max;
-  return {
-    position: 'relative',
-    height: 0,
-    paddingBottom: `clamp(${min || '0px'}, calc(100% / (${ownerState.ratio})), ${max || '9999px'})`,
-    '& > *:first-child': {
-      borderRadius: 'var(--AspectRatio-radius)',
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      objectFit: ownerState.objectFit,
+  return [
+    {
+      position: 'relative',
+      height: 0,
+      paddingBottom: `clamp(${min || '0px'}, calc(100% / (${ownerState.ratio})), ${
+        max || '9999px'
+      })`,
+      '& > *:first-child': {
+        borderRadius: 'var(--AspectRatio-radius)',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        objectFit: ownerState.objectFit,
+      },
     },
-  };
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ];
 });
 
 const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
@@ -51,6 +56,8 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     min,
     max,
     objectFit = 'cover',
+    color = 'neutral',
+    variant = 'light',
     ...other
   } = props;
 
@@ -61,6 +68,8 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     max,
     objectFit,
     ratio,
+    color,
+    variant,
   };
 
   const classes = useUtilityClasses();

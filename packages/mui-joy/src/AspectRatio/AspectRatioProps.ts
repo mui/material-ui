@@ -1,11 +1,23 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
+import { ColorPaletteProp, VariantProp } from '../styles/types';
 
 export type AspectRatioSlot = 'root';
 
+export interface AspectRatioPropsColorOverrides {}
+export interface AspectRatioPropsVariantOverrides {}
+
 export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<
+      Exclude<ColorPaletteProp, 'context'>,
+      AspectRatioPropsColorOverrides
+    >;
     /**
      * Used to render icon or text elements inside the AspectRatio if `src` is not set.
      * This can be an element, or just a string.
@@ -33,6 +45,11 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
+    /**
+     * The variant to use.
+     * @default 'light'
+     */
+    variant?: OverridableStringUnion<VariantProp, AspectRatioPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
