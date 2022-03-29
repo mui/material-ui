@@ -17,12 +17,18 @@ const pages = [
         children: [
           { pathname: '/base/react-button', title: 'Button' },
           { pathname: '/base/react-input', title: 'Input' },
+          { pathname: '/base/react-select', title: 'Select' },
+          { pathname: '/base/react-slider', title: 'Slider' },
         ],
       },
       {
         pathname: '/base/components/navigation',
         subheader: 'navigation',
-        children: [{ pathname: '/base/react-menu', title: 'Menu' }],
+        children: [
+          { pathname: '/base/react-menu', title: 'Menu' },
+          { pathname: '/base/react-table-pagination', title: 'Table pagination' },
+          { pathname: '/base/react-tabs', title: 'Tabs' },
+        ],
       },
       {
         pathname: '/base/components/utils',
@@ -30,7 +36,9 @@ const pages = [
         children: [
           { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
           { pathname: '/base/react-modal', title: 'Modal' },
+          { pathname: '/base/react-no-ssr', title: 'No SSR' },
           { pathname: '/base/react-portal', title: 'Portal' },
+          { pathname: '/base/react-trap-focus', title: 'Trap focus' },
         ],
       },
     ],
