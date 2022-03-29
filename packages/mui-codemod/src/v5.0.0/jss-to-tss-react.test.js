@@ -1,12 +1,13 @@
 import path from 'path';
 import { expect } from 'chai';
-import jscodeshift from 'jscodeshift';
+import jscodeshiftWithDefaultParser from 'jscodeshift';
 import transform from './jss-to-tss-react';
 import readFile from '../util/readFile';
 
 function read(fileName) {
   return readFile(path.join(__dirname, fileName));
 }
+const jscodeshift = jscodeshiftWithDefaultParser.withParser('tsx');
 
 describe('@mui/codemod', () => {
   describe('v5.0.0', () => {
@@ -71,11 +72,24 @@ describe('@mui/codemod', () => {
             source: read('./jss-to-tss-react.test/actual-typescript.tsx'),
             path: require.resolve('./jss-to-tss-react.test/actual-typescript.tsx'),
           },
-          { jscodeshift: jscodeshift.withParser('tsx') },
+          { jscodeshift },
           {},
         );
 
         const expected = read('./jss-to-tss-react.test/expected-typescript.tsx');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+      it('transforms withStyles to use tss-react', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-tss-react.test/actual-withStyles.js'),
+            path: require.resolve('./jss-to-tss-react.test/actual-withStyles.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-tss-react.test/expected-withStyles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
