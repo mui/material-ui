@@ -6,35 +6,46 @@ The CSS variables support is the most upvoted issue related to the `@mui/system`
 Some time ago, we have added an experimental API in this package that will allow us using CSS variables in the styles of the components.
 Now, we want to try and utilize this new feature in one of the Material UI components.
 
-## Motivation
+> If you are curious to learn the benefits you would get by using CSS variables, check out the [RFC](https://github.com/mui/material-ui/issues/27651) for CSS variables support.
 
-There are three main problem that would be solved by using CSS variables:
-
-1. Dark theme flash on SSR - the light theme is being loaded fist by default, and only after that the dark mode is appearing, causing a flash when opening the page.
-2. Bad debugging experience - if you open the dev tools and try to inpect the styles of some element, all you see is the calculated value it receives, without any information of where that value came from.
-3. Performance - at this moment, the dark and light themes are considered as different input in the `ThemeProvider`, causing the whole tree to re-render when the theme is changed.
-
-## Solution
+## Usage
 
 At this moment, the API does not require any breaking changes for the Material UI components, however it depends on using a new experimental provider for the theme, called `Experimental_CssVarsProvider`.
 Except for providing the theme in the inner React context, this new provider has as a responsibility to generate CSS variables out of all tokens in the theme that are not functions, and make them available in the context.
 All these variables, are available under a key in the theme, named `vars`.
-The structure of this object is identical to the theme structure, the only difference is that the values represent some css varaibles.
+The structure of this object is identical to the theme structure, the only difference is that the values represent some CSS varaibles.
 
-The best way to see this is by example:
+The best way to see this is by example.
+Let's say we have this element that uses some theme token:
 
-{{"demo": "CssVarsProviderBasic.js", "iframe": true }}
-
-If you try to inspec the two `<code>` elements you will see that the style applied on them are different. The one using directly a theme token, looks something like this:
-
+```jsx
+const Example() {
+  const theme = useTheme();
+  return <div style={{ color: theme.palette.success.main }}>Success div</div>
+}
 ```
-<code style="color: rgb(25, 118, 210);">...</code>
+
+{{"demo": "SuccessDivThemeToken.js", "hideToolbar": true }}
+
+If you try to inspect this element, you will see that the color style have directly a hex value, that comes some theme token:
+
+```html
+<div style="color: #2e7d32;">...</div>
 ```
 
-The one using the CSS variables however, allows developers to track the path of where the token is defined in theme:
+On the other hand, if the div uses some CSS variable as in this example:The one using the CSS variables however, allows developers to track the path of where the token is defined in theme:
 
+```jsx
+const Example() {
+  const theme = useTheme();
+  return <div style={{ color: theme.vars.palette.success.main }}>Success div</div>
+}
 ```
-<code style="color: var(--md-palette-primary-main);">...</code>
+
+{{"demo": "SuccessDivCSSVariable.js", "hideToolbar": true }}
+
+```html
+<div style="color: var(--md-palette-success-main);">...</div>
 ```
 
 More over, if you inspect the styles, you can click on the CSS variable and see the actual color value.
@@ -54,7 +65,8 @@ This will cause the browser to re-write the CSS varibles to point to the new val
 ### Customization
 
 At this moment, the `Button` component is the only component supporting CSS variables (the support is not requiring any breaking changes).
-If you would like to try these new changes, you can wrap your application with a `Experimental_CssVarisProvider`, and try to customize the `Button` component using some CSS variables.
+We would appreciate any feedback you can give us, by trying to use this new API.
+If order to do that, you should wrap your application with a `Experimental_CssVarisProvider`, and try to customize the `Button` component using some CSS variables.
 
 {{"demo": "CssVariablesCustomization.js", "iframe": true }}
 
@@ -72,6 +84,8 @@ declare module '@mui/material/styles' {
   }
 }
 ```
+
+> If you want to help us bring this new API to more components sooner, feel free to contribute by adding the CSS variables support in some of the components. Make sure to check the [issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress first, in case someone is already working on that component.
 
 ## API
 
