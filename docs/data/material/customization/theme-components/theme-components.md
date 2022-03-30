@@ -1,11 +1,11 @@
 # Components
 
-<p class="description">Customizing the components using its keys inside the theme enables you to achieve styling consistency across your application.</p>
+<p class="description">You can customize a component's styles, default props, and more by using its keys inside the theme. This helps to achieve styling consistency across your application.</p>
 
 ## Default props
 
-Every Material UI component comes, out-of-the-box, with default values set for each of its props.
-If you want to change how your component looks by default, use the `defaultProps` key exposed in the theme's `components` key. Like so:
+Every Material UI component has preset values for each of its props by default.
+To change these default values, use the `defaultProps` key exposed in the theme's `components` key:
 
 ```js
 const theme = createTheme({
@@ -27,7 +27,8 @@ To override lab component styles with TypeScript, check [this page](/components/
 
 ## Global style overrides
 
-If you want to print an entirely different design direction to the components, potentially changing every single style injected by Material UI into the DOM, use the theme's `styleOverrides` key.
+The theme's `styleOverrides` key makes it possible to potentially change every single style injected by Material UI into the DOM.
+This is useful if you want to apply a fully custom design system to Material UI's components.
 
 ```js
 const theme = createTheme({
@@ -48,7 +49,9 @@ const theme = createTheme({
 
 {{"demo": "GlobalThemeOverride.js"}}
 
-Note that each component is composed of several different parts. If you want to know how to target a specific part of a given component, check the **CSS** section of its API page to see every class it has available. You should then use it inside the `stylesOverrides` key.
+Each component is composed of several different parts.
+These parts correspond to classes that are available to the component—see the **CSS** section of the component's API page for a detailed list.
+You can use these classes inside the `styleOverrides` key to modify the corresponding parts of the component.
 
 ```js
 const theme = createTheme({
@@ -92,9 +95,9 @@ const finalTheme = createTheme({
 
 ### Using the `sx` experimental syntax
 
-If you are not familiar with the `sx` prop, make sure you first check out [the concept around it](/system/the-sx-prop/) and [the difference with the `styled` utility](/system/styled/#difference-with-the-sx-prop).
+If you are not familiar with the `sx` prop, it consists of a shortcut for defining custom styles that access the theme object. The property is a superset of the CSS that packages all the style functions. To learn more about [the concept behind it](/system/the-sx-prop/) and [how it differs from the `styled` utility](/system/styled/#difference-with-the-sx-prop).
 
-To have a similar shorthand CSS notation to the `sx` prop but within the theme, you can use `sx` inside the `stylesOverrides`.
+You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation.
 
 {{"demo": "GlobalThemeOverrideSx.js", "defaultCodeOpen": false}}
 
