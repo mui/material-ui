@@ -309,6 +309,11 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   showZero: PropTypes.bool,
   /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
    * The variant to use.
    * @default 'light'
    */
