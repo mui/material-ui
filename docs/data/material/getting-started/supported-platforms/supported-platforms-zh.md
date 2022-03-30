@@ -8,10 +8,9 @@ Material-UI 支持所有主流浏览器和平台的最新稳定版本。 您不�
 
 <!-- #stable-snapshot -->
 
-| Edge | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE |
-|:---- | ------- | ------ | -------------- | ------------ | -- |
-|      |         |        |                |              |    |
- product: material-- |:------- |:------ |:-------------- |:------------ |:-------------------- | | >= 85 | >= 78 | >= 84 | >= 13 | >= 12.1 | 11 (partial support) |
+| Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE                   |
+|:----- |:------- |:------ |:-------------- |:------------ |:-------------------- |
+| >= 91 | >= 78   | >= 90  | >= 14          | >= 12.5      | 11 (partial support) |
 
 <!-- #default-branch-switch -->
 
@@ -25,7 +24,7 @@ Material-UI provides **partial** supports for IE 11. Be aware of the following: 
 
 - Some of the components have no support. Some of the components have no support. For instance, the new components, the data grid, the date picker. For instance, the new components, the data grid, the date picker.
 - Some of the components have degraded support. Some of the components have degraded support. Some of the components have degraded support. For instance, the outlined input border radius is missing, the combobox doesn't remove diacritics, the circular progress animation is wobbling.
-- The documentaton itself might crash.
+- The documentation itself might crash.
 - You need install the [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
 - You might need to install polyfills. You might need to install polyfills. You might need to install polyfills. For instance for the [popper.js transitive dependency](https://popper.js.org/docs/v2/browser-support/#ie11).
 
