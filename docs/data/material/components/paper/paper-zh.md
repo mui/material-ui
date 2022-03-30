@@ -25,7 +25,7 @@ githubLabel: 'component: Paper'
 
 ## 高度
 
-高度可以用于在其他内容之间建立层次结构。 实际上，高度控制着表面的阴影大小。 在黑暗模式下，提高高度也使表面变得更亮。
+The elevation can be used to establish a hierarchy between other content. 实际上，高度控制着表面的阴影大小。 在黑暗模式下，提高高度也使表面变得更亮。
 
 {{"demo": "Elevation.js", "bg": "inline"}}
 
