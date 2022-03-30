@@ -116,6 +116,18 @@ export default function transformer(file, api, options) {
         );
         importsChanged = true;
       }
+    } else if (importSource === '@material-ui/styles/makeStyles') {
+      foundMakeStyles = true;
+      path.replace(
+        j.importDeclaration([j.importSpecifier(j.identifier('makeStyles'))], j.stringLiteral('tss-react/mui'))
+      );
+      importsChanged = true;
+    } else if (importSource === '@material-ui/styles/withStyles') {
+      foundWithStyles = true;
+      path.replace(
+        j.importDeclaration([j.importSpecifier(j.identifier('withStyles'))], j.stringLiteral('tss-react/mui'))
+      );
+      importsChanged = true;
     }
   });
   if (!importsChanged) {
