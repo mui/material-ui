@@ -1,6 +1,6 @@
 {
   "name": "framer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Builds Material-UI for Framer X",
   "main": "index.js",
   "repository": "https://github.com/mui-org/material-ui",
@@ -10,7 +10,7 @@
   "dependencies": {
     "case": "1.6.3",
     "deepmerge": "^4.0.0",
-    "docs": "^4.0.0",
+    "docs": "^4.0.1",
     "mustache": "^4.0.0",
     "react-docgen": "^5.0.0-beta.1"
   },
