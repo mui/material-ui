@@ -27,7 +27,7 @@ Here is an example:
 
 #### Overriding nested component styles
 
-If you want to customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop.
+To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop.
 
 As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
 
