@@ -126,8 +126,7 @@ Note that "contrastThreshold" follows a non-linear curve.
 
 ### Example
 
-<!-- Revert this. It depends on ThemeProvider -->
-<!-- {{"demo": "Palette.js", "defaultCodeOpen": true}} -->
+{{"demo": "Palette.js", "defaultCodeOpen": true}}
 
 ### Adding new colors
 
@@ -186,8 +185,7 @@ declare module '@mui/material/styles' {
 }
 ```
 
-<!-- Revert this. It depends on ThemeProvider -->
-<!-- {{"demo": "CustomColor.js"}} -->
+{{"demo": "CustomColor.js"}}
 
 ## Picking colors
 
