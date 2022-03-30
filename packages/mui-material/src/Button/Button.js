@@ -172,10 +172,7 @@ const ButtonRoot = styled(ButtonBase, {
       }),
     ...(ownerState.variant === 'outlined' && {
       padding: '5px 15px',
-      border: `1px solid ${
-        // TODO v6: Revisit this value, doesn't depend on the theme
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
+      border: '1px solid currentColor',
     }),
     ...(ownerState.variant === 'outlined' &&
       ownerState.color !== 'inherit' && {
