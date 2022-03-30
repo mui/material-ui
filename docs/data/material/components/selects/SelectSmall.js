@@ -13,7 +13,7 @@ export default function SelectSmall() {
 
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-      <InputLabel id="demo-simple-select-disabled-label">Age</InputLabel>
+      <InputLabel id="demo-select-small">Age</InputLabel>
       <Select
         labelId="demo-select-small"
         id="demo-select-small"
