@@ -27,12 +27,13 @@ const CardCoverRoot = styled('div', {
   left: 0,
   width: '100%',
   height: '100%',
-  overflow: 'hidden',
   borderRadius: 'var(--Card-radius)',
   '& > *:first-child': {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+    boxSizing: 'border-box',
+    borderRadius: 'var(--Card-radius)',
   },
 });
 

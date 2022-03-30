@@ -33,10 +33,20 @@ const AspectRatioRoot = styled('div', {
       })`,
       '& > *:first-child': {
         borderRadius: 'var(--AspectRatio-radius)',
+        boxSizing: 'border-box',
         position: 'absolute',
         width: '100%',
         height: '100%',
         objectFit: ownerState.objectFit,
+        overflow: 'hidden',
+        margin: 0,
+        padding: 0,
+        '& > img': {
+          // support art-direction that uses <picture><img /></picture>
+          width: '100%',
+          height: '100%',
+          objectFit: ownerState.objectFit,
+        },
       },
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
