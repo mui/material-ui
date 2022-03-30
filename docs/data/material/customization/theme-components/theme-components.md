@@ -128,24 +128,6 @@ const finalTheme = createTheme({
 
 If you use the theming approach to customize the components, you'll still be able to override them using the `sx` prop as it has a higher CSS specificity.
 
-Note that some components expose a `color` prop, which has a lower specificty than the theme's styles overrides. For example, say you have customized `Link`'s color.
-
-```js
-MuiLink: {
-  styleOverrides: {
-    root: {
-      color: '#0000FF', // blue
-    },
-  },
-},
-```
-
-If you then try to customize the `Link`'s color using the `color` prop, nothing will happen since the theme's styles take precedence.
-
-```js
-<Link color="#A52A2A">Brown</Link> // the blue set in the theme's style overrides above will persist
-```
-
 ## Creating new component variants
 
 You can use the `variants` key in the theme's `components` section to create new variants to Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
