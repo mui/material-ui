@@ -15,6 +15,13 @@ export type UseListboxStrictProps<TOption> = Omit<
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
 
+export type TextCriteria = {
+  keys: string[];
+  repeating: boolean;
+  previousKeyMatched: boolean;
+  lastTime: number | null;
+};
+
 enum ActionTypes {
   blur = 'blur',
   focus = 'focus',
@@ -74,9 +81,9 @@ interface SetHighlightAction<TOption> {
 
 interface TextNavigationAction<TOption> {
   type: ActionTypes.textNavigation;
+  textCriteria: TextCriteria;
+  optionStringifier: (option: TOption) => string | undefined;
   props: UseListboxStrictProps<TOption>;
-  isMatch: (val: TOption) => boolean;
-  startWithCurrentOption: boolean;
 }
 
 interface OptionsChangeAction<TOption> {
@@ -237,10 +244,3 @@ export type UseListboxOptionSlotProps<TOther = {}> = Omit<
   keyof UseListboxOptionSlotOwnProps
 > &
   UseListboxOptionSlotOwnProps;
-
-export type TextCriteria = {
-  keys: string[];
-  repeating: boolean;
-  previousKeyMatched: boolean;
-  lastTime: number | null;
-};

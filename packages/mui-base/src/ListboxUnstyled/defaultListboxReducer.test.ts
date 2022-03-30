@@ -315,8 +315,13 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        isMatch: (option) => option === 'three',
-        startWithCurrentOption: false,
+        textCriteria: {
+          keys: ['t', 'h'],
+          repeating: false,
+          previousKeyMatched: true,
+          lastTime: null,
+        },
+        optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -339,8 +344,13 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        isMatch: () => false,
-        startWithCurrentOption: false,
+        textCriteria: {
+          keys: ['z'],
+          repeating: false,
+          previousKeyMatched: true,
+          lastTime: null,
+        },
+        optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -363,8 +373,13 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        isMatch: (o) => o === 'two' || o === 'three',
-        startWithCurrentOption: false,
+        textCriteria: {
+          keys: ['t'],
+          repeating: false,
+          previousKeyMatched: true,
+          lastTime: null,
+        },
+        optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -387,8 +402,13 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        isMatch: (o) => o === 'two' || o === 'three',
-        startWithCurrentOption: false,
+        textCriteria: {
+          keys: ['t'],
+          repeating: false,
+          previousKeyMatched: true,
+          lastTime: null,
+        },
+        optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -411,8 +431,13 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        isMatch: (o) => o === 'two',
-        startWithCurrentOption: false,
+        textCriteria: {
+          keys: ['o', 'n', 'e'],
+          repeating: false,
+          previousKeyMatched: true,
+          lastTime: null,
+        },
+        optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: true,

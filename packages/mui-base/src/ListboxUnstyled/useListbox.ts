@@ -9,7 +9,7 @@ import {
   UseListboxRootSlotProps,
   TextCriteria,
 } from './useListbox.types';
-import defaultReducer from './defaultListboxReducer';
+import defaultReducer, { textCriteriaMatches } from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
@@ -20,23 +20,6 @@ const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => o
 const defaultIsOptionDisabled = () => false;
 const defaultOptionStringifier = <TOption>(option: TOption) =>
   typeof option === 'string' ? option : String(option);
-
-const textCriteriaMatches = <TOption>(
-  nextFocus: TOption,
-  textCriteria: TextCriteria,
-  stringifyOption: (option: TOption) => string | undefined,
-) => {
-  const text = stringifyOption(nextFocus)?.trim().toLowerCase();
-
-  if (!text || text.length === 0) {
-    // Make option not navigable if stringification fails or results in empty string.
-    return false;
-  }
-  if (textCriteria.repeating) {
-    return text[0] === textCriteria.keys[0];
-  }
-  return text.indexOf(textCriteria.keys.join('')) === 0;
-};
 
 export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
@@ -227,10 +210,10 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         if (textCriteria.previousKeyMatched) {
           if (!keepFocusOnCurrent) {
             dispatch({
+              textCriteria,
+              optionStringifier,
               type: ActionTypes.textNavigation,
               props: propsWithDefaults,
-              isMatch: (value) => textCriteriaMatches(value, textCriteria, optionStringifier),
-              startWithCurrentOption: !textCriteria.repeating,
             });
           }
         } else {
