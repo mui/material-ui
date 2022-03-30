@@ -63,7 +63,7 @@ This will cause the browser to re-write the CSS varibles to point to the new val
 
 {{"demo": "CssVarsCustomTheme.js", "iframe": true }}
 
-### Customization
+### Customizing components
 
 At this moment, the `Button` component is the only component supporting CSS variables (the support is not requiring any breaking changes).
 We would appreciate any feedback you can give us, by trying to use this new API.
