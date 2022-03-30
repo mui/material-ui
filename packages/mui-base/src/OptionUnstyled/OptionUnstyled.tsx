@@ -147,11 +147,11 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Select](https://mui.com/base/react-select/)
  *
  * API:
  *
- * - [OptionUnstyled API](https://mui.com/api/option-unstyled/)
+ * - [OptionUnstyled API](https://mui.com/base/api/option-unstyled/)
  */
 export default React.memo(OptionUnstyled) as <TValue>(
   props: OptionUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
