@@ -65,9 +65,10 @@ This will cause the browser to re-write the CSS varibles to point to the new val
 
 ### Customizing components
 
-At this moment, the `Button` component is the only component supporting CSS variables (the support is not requiring any breaking changes).
-We would appreciate any feedback you can give us, by trying to use this new API.
-If order to do that, you should wrap your application with a `Experimental_CssVarisProvider`, and try to customize the `Button` component using some CSS variables.
+As of now, the `Button` component is the only one supporting CSS variables (note that it doesn't cause any breaking change). 
+To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarisProvider`. 
+Play around with the demo below!
+We'd appreciate any feedback about this API, as it is still in development. 
 
 {{"demo": "CssVariablesCustomization.js", "iframe": true }}
 
