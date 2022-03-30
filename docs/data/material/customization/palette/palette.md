@@ -185,8 +185,7 @@ declare module '@mui/material/styles' {
 }
 ```
 
-<!-- Revert this. It depends on ThemeProvider -->
-<!-- {{"demo": "CustomColor.js"}} -->
+{{"demo": "CustomColor.js"}}
 
 ## Picking colors
 
