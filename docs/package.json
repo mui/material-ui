@@ -50,7 +50,7 @@
     "@types/css-mediaquery": "^0.1.1",
     "@types/json2mq": "^0.2.0",
     "@types/markdown-to-jsx": "^7.0.1",
-    "@types/react-dom": "^17.0.13",
+    "@types/react-dom": "^17.0.14",
     "@types/react-swipeable-views": "^0.13.1",
     "@types/react-swipeable-views-utils": "^0.13.3",
     "@types/react-virtualized": "^9.21.20",
