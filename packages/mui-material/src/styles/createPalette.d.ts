@@ -98,6 +98,32 @@ export interface Palette {
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
 }
 
+export interface Channels {
+  mainChannel: string;
+  lightChannel: string;
+  darkChannel: string;
+}
+
+export interface PaletteWithChannels {
+  common: CommonColors;
+  mode: PaletteMode;
+  contrastThreshold: number;
+  tonalOffset: PaletteTonalOffset;
+  primary: PaletteColor & Channels;
+  secondary: PaletteColor & Channels;
+  error: PaletteColor & Channels;
+  warning: PaletteColor & Channels;
+  info: PaletteColor & Channels;
+  success: PaletteColor & Channels;
+  grey: Color;
+  text: TypeText & { primaryChannel: string; secondaryChannel: string; disabledChannel: string };
+  divider: TypeDivider;
+  action: TypeAction & { disabledChannel: string };
+  background: TypeBackground;
+  getContrastText: (background: string) => string;
+  augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
+}
+
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
 
 export interface PaletteOptions {
