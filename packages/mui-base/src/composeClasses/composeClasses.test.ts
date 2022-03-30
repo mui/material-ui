@@ -86,9 +86,7 @@ describe('composeClasses', () => {
           slot: 'slotOverride',
         },
       ),
-    )
-  }).to.deep.equal({
+    ).to.deep.equal({
     root: 'MuiTest-root standardOverride MuiTest-standard',
     slot: 'slotOverride MuiTest-slot',
-  })
-});
+  });
