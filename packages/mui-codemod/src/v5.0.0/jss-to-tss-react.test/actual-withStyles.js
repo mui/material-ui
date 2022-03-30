@@ -53,10 +53,30 @@ function Comp3({ classes }) {
 const StyledComp3a = withStyles({test: {backgroundColor: "yellow"}})(Comp3);
 const StyledComp3b = withStyles({test: {backgroundColor: "yellow", color: "lime", "& $test2": {backgroundColor: "orange"}}, test2: {}})(Comp3);
 
+const styles3c = (theme) => {
+  const bgColor1 = theme.palette.primary.main;
+  const color1 = theme.palette.primary.contrastText;
+  const bgColor2 = theme.palette.secondary.main;
+  const color2 = theme.palette.secondary.contrastText;
+  return {
+    test: {
+      backgroundColor: bgColor1,
+      color: color1,
+      "& $test2": {
+        backgroundColor: bgColor2,
+        color: color2
+      }
+    },
+    test2: {}
+  };
+};
+const StyledComp3c = withStyles(styles3c)(Comp3);
+
 export default function App() {
   return <>
     <StyledComp2/>
     <StyledComp3a/>
     <StyledComp3b/>
+    <StyledComp3c/>
   </>;
 }

@@ -56,10 +56,30 @@ const StyledComp3b = withStyles(
   (_theme, _params, classes) => ({test: {backgroundColor: "yellow", color: "lime", [`& .${classes.test2}`]: {backgroundColor: "orange"}}, test2: {}})
 );
 
+const styles3c = (theme, _params, classes) => {
+  const bgColor1 = theme.palette.primary.main;
+  const color1 = theme.palette.primary.contrastText;
+  const bgColor2 = theme.palette.secondary.main;
+  const color2 = theme.palette.secondary.contrastText;
+  return {
+    test: {
+      backgroundColor: bgColor1,
+      color: color1,
+      [`& .${classes.test2}`]: {
+        backgroundColor: bgColor2,
+        color: color2
+      }
+    },
+    test2: {}
+  };
+};
+const StyledComp3c = withStyles(Comp3, styles3c);
+
 export default function App() {
   return <>
     <StyledComp2/>
     <StyledComp3a/>
     <StyledComp3b/>
+    <StyledComp3c/>
   </>;
 }
