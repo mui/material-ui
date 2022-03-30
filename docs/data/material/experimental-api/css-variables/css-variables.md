@@ -1,6 +1,6 @@
 # CSS variables
 
-<p class="description">This is a guide for the experimental API for using CSS variables with the Material-UI components.</p>
+<p class="description">Learn about the experimental API for using CSS variables on Material UI components.</p>
 
 CSS variables is the most upvoted `@mui/system` related issue.
 It allows several improvements in developer experience, like fixing dark mode flickering in SSR, allowing multiple themes other than light and dark, better debugging experience overall, and many others.
