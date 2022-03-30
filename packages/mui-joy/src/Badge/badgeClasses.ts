@@ -1,34 +1,43 @@
 import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
-import { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 
 export interface BadgeClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the badge `span` element. */
+  /** Class name applied to the badge `span` element. */
   badge: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
+  anchorOriginTopRight: string;
+  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
+  anchorOriginBottomRight: string;
+  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`. */
+  anchorOriginTopLeft: string;
+  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
+  anchorOriginBottomLeft: string;
+  /** Styles applied to the badge `span` element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Styles applied to the badge `span` element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Styles applied to the badge `span` element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Styles applied to the badge `span` element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Styles applied to the badge `span` element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Styles applied to the badge `span` element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** State class applied to the badge `span` element if `invisible={true}`. */
+  invisible: string;
+  /** Styles applied to the badge `span` element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Styles applied to the badge `span` element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Styles applied to the badge `span` element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Styles applied to the badge `span` element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
+  /** Styles applied to the badge `span` element if `variant="light"`. */
   variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
+  /** Styles applied to the badge `span` element if `variant="contained"`. */
   variantContained: string;
 }
 
@@ -38,22 +47,26 @@ export function getBadgeUtilityClass(slot: string): string {
   return generateUtilityClass('MuiBadge', slot);
 }
 
-const badgeClasses: BadgeClasses = {
-  ...badgeUnstyledClasses,
-  ...generateUtilityClasses('MuiBadge', [
-    'colorPrimary',
-    'colorDanger',
-    'colorInfo',
-    'colorNeutral',
-    'colorSuccess',
-    'colorWarning',
-    'sizeSm',
-    'sizeMd',
-    'sizeLg',
-    'variantOutlined',
-    'variantLight',
-    'variantContained',
-  ]),
-};
+const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
+  'root',
+  'badge',
+  'anchorOriginTopRight',
+  'anchorOriginBottomRight',
+  'anchorOriginTopLeft',
+  'anchorOriginBottomLeft',
+  'colorPrimary',
+  'colorDanger',
+  'colorInfo',
+  'colorNeutral',
+  'colorSuccess',
+  'colorWarning',
+  'invisible',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
+  'variantOutlined',
+  'variantLight',
+  'variantContained',
+]);
 
 export default badgeClasses;

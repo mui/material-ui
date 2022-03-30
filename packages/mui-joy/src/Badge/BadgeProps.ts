@@ -12,21 +12,29 @@ export interface BadgePropsColorOverrides {}
 
 export interface BadgePropsSizeOverrides {}
 
+export interface BadgeOrigin {
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'right';
+}
+
 export type BadgeTypeMap<
   D extends React.ElementType = 'span',
   P = {},
 > = ExtendBadgeUnstyledTypeMap<{
   props: P & {
     /**
+     * The anchor of the badge.
+     * @default {
+     *   vertical: 'top',
+     *   horizontal: 'right',
+     * }
+     */
+    anchorOrigin?: BadgeOrigin;
+    /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'primary'
+     * @default 'neutral'
      */
     color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, BadgePropsColorOverrides>;
-    /**
-     * Wrapped shape the badge should overlap.
-     * @default 'rectangular'
-     */
-    overlap?: 'rectangular' | 'circular';
     /**
      * The size of the component.
      * @default 'md'
@@ -38,7 +46,7 @@ export type BadgeTypeMap<
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'light'
      */
     variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, BadgePropsVariantOverrides>;
   };
