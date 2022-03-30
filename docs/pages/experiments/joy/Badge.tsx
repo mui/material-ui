@@ -60,7 +60,7 @@ export default function JoyBadge() {
                   key={`${index}-${value}`}
                   sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                 >
-                  <Badge {...{ [propName]: value }}>
+                  <Badge badgeContent={1} {...{ [propName]: value }}>
                     <MailIcon />
                   </Badge>
                   {value && (

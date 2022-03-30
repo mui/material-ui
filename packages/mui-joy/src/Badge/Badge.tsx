@@ -50,21 +50,21 @@ const BadgeBadge = styled('span', {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Badge-minWidth': '1.5rem',
-        '--Badge-height': '1.5rem',
-        '--Badge-borderRadius': '0.75rem',
+        '--Badge-minWidth': '1rem',
+        '--Badge-height': '1rem',
+        '--Badge-borderRadius': '0.5rem',
         '--Badge-fontSize': theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
-        '--Badge-minWidth': '2rem',
-        '--Badge-height': '2rem',
-        '--Badge-borderRadius': '1rem',
+        '--Badge-minWidth': '1.25rem',
+        '--Badge-height': '1.25rem',
+        '--Badge-borderRadius': '0.625rem',
         '--Badge-fontSize': theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Badge-minWidth': '2.5rem',
-        '--Badge-height': '2.5rem',
-        '--Badge-borderRadius': '1.25rem',
+        '--Badge-minWidth': '1.5rem',
+        '--Badge-height': '1.5rem',
+        '--Badge-borderRadius': '0.75rem',
         '--Badge-fontSize': theme.vars.fontSize.lg,
       }),
       display: 'flex',
@@ -76,7 +76,7 @@ const BadgeBadge = styled('span', {
       position: 'absolute',
       boxSizing: 'border-box',
       fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
+      fontWeight: theme.vars.fontWeight.sm,
       lineHeight: 1,
       padding: '0 6px',
       fontSize: 'var(--Badge-fontSize)',
@@ -147,6 +147,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     component = 'span',
     components = {},
     componentsProps = {},
+    size: sizeProp = 'sm',
     color: colorProp = 'neutral',
     invisible: invisibleProp = false,
     max,
@@ -158,6 +159,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const prevProps = usePreviousProps({
     anchorOrigin: anchorOriginProp,
+    size: sizeProp,
     color: colorProp,
     variant: variantProp,
   });
@@ -173,15 +175,17 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const {
     color = colorProp,
+    size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
   }: {
+    size?: BadgeTypeMap['props']['size'];
     color?: BadgeTypeMap['props']['color'];
     anchorOrigin?: BadgeTypeMap['props']['anchorOrigin'];
     variant?: BadgeTypeMap['props']['variant'];
   } = invisible ? prevProps : props;
 
-  const ownerState = { ...props, anchorOrigin, invisible, color };
+  const ownerState = { ...props, anchorOrigin, invisible, color, size };
   const classes = useUtilityClasses(ownerState);
   const displayValue =
     max !== undefined && badgeContentProp && Number(badgeContentProp) > max
@@ -190,6 +194,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   return (
     <BadgeUnstyled
+      ref={ref}
       invisible={invisibleProp}
       badgeContent={displayValue}
       showZero={showZero}
@@ -211,6 +216,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
               anchorOrigin,
               color,
               variant,
+              size,
             },
           }),
         },
@@ -223,11 +229,11 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
               anchorOrigin,
               color,
               variant,
+              size,
             },
           }),
         },
       }}
-      ref={ref}
     />
   );
 }) as OverridableComponent<BadgeTypeMap>;
