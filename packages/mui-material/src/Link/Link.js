@@ -112,6 +112,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     TypographyClasses,
     underline = 'always',
     variant = 'inherit',
+    sx,
     ...other
   } = props;
 
@@ -144,7 +145,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
+    color: sx?.color || color,
     component,
     focusVisible,
     underline,
@@ -164,6 +165,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       ref={handlerRef}
       ownerState={ownerState}
       variant={variant}
+      sx={{ color: colorTransformations[color] || color, ...sx }}
       {...other}
     />
   );
