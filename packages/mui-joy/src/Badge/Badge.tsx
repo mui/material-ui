@@ -78,7 +78,6 @@ const BadgeBadge = styled('span', {
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.sm,
       lineHeight: 1,
-      padding: '0 6px',
       fontSize: 'var(--Badge-fontSize)',
       minWidth: 'var(--Badge-minWidth)',
       height: 'var(--Badge-height)',

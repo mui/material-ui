@@ -39,6 +39,7 @@ const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
   variant: ['contained', 'outlined', 'light'],
+  invisible: [true, false],
 } as const;
 
 export default function JoyBadge() {
@@ -63,15 +64,46 @@ export default function JoyBadge() {
                   <Badge badgeContent={1} {...{ [propName]: value }}>
                     <MailIcon />
                   </Badge>
-                  {value && (
+                  {value !== undefined && (
                     <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
-                      {value}
+                      {`${value}`}
                     </Typography>
                   )}
                 </Box>
               ))}
             </Box>
           ))}
+          <Box
+            key={'anchorOrigin'}
+            sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
+          >
+            <Typography sx={{ textDecoration: 'underline' }}>{'anchorOrigin'}</Typography>
+            {(
+              [
+                { vertical: 'top', horizontal: 'right' },
+                { vertical: 'top', horizontal: 'left' },
+                { vertical: 'bottom', horizontal: 'right' },
+                { vertical: 'bottom', horizontal: 'left' },
+              ] as const
+            ).map((value, index) => (
+              <Box
+                key={index}
+                sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+              >
+                <Badge
+                  badgeContent={1}
+                  anchorOrigin={{ vertical: value.vertical, horizontal: value.horizontal }}
+                >
+                  <MailIcon />
+                </Badge>
+                {value !== undefined && (
+                  <Typography level="body3" sx={{ textAlign: 'center', mt: '10px' }}>
+                    {`vertical: ${value.vertical}, horizontal: ${value.horizontal}`}
+                  </Typography>
+                )}
+              </Box>
+            ))}
+          </Box>
         </Box>
       </Box>
     </CssVarsProvider>
