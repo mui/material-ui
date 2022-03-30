@@ -1,10 +1,11 @@
 ---
 product: material-ui
 title: React Slider（滑块）组件
-components: Slider, SliderUnstyled
+components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
+unstyled: /base/react-slider/
 ---
 
 # Slider 滑块控件
@@ -123,30 +124,16 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "NonLinearSlider.js"}}
 
-## Unstyled
-
-<!-- #default-branch-switch -->
-
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-The slider also comes with an unstyled version. The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size. It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import SliderUnstyled from '@mui/base/SliderUnstyled';
-```
-
-{{"demo": "UnstyledSlider.js"}}
-
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-该组件处理了大部分必要的工作，使之应用无障碍访问。 但是，你需要确保：
+The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 
-- 每个滑块都带有一个方便用户的标签（`aria-label`、`aria-labelledby` 或 `getAriaLabel` 属性）。
-- 每一个滑块的当前值都有一个方便用户阅读的文字。 如果值与标签的语义相匹配的话，则不需要此操作。 你可以通过`getAriaValueText` 或者 `aria-valuetext` 属性来更改名字。
+- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
+- Each thumb has a user-friendly text for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
 
-## 设计局限
+## Limitations
 
 ### IE 11
 
