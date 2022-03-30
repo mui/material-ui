@@ -1,5 +1,6 @@
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import MailIcon from '@mui/icons-material/Mail';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -40,31 +41,9 @@ const props = {
   variant: ['contained', 'outlined', 'light'],
 } as const;
 
-export default function JoySvgIcon() {
+export default function JoyBadge() {
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
@@ -76,12 +55,14 @@ export default function JoySvgIcon() {
               sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
             >
               <Typography sx={{ textDecoration: 'underline' }}>{propName}</Typography>
-              {propValue.map((value) => (
+              {propValue.map((value, index) => (
                 <Box
-                  key={value}
+                  key={`${index}-${value}`}
                   sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                 >
-                  <Badge {...{ [propName]: value }} />
+                  <Badge {...{ [propName]: value }}>
+                    <MailIcon />
+                  </Badge>
                   {value && (
                     <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                       {value}
