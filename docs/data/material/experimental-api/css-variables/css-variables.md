@@ -52,7 +52,7 @@ const Example() {
 Additionally, by clicking on the CSS variable in the browser's dev tools, you'll be taken to the theme object where you'll see its direct hex value again. 
 We believe this to be a significant improvement in developer experience when debugging styles for any component.
 
-### Custom theme
+### Creating a custom theme
 
 The example above uses the default theme. In the next example you will learn how to create your custom theme, using the `experimental_extendTheme` utility.
 
