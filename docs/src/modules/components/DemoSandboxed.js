@@ -9,13 +9,7 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { jssPreset, StylesProvider } from '@mui/styles';
-import {
-  useTheme,
-  styled,
-  useColorScheme,
-  experimental_extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
-} from '@mui/material/styles';
+import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -132,47 +126,21 @@ const getTheme = (outerTheme) => {
   const isCustomized =
     outerTheme.palette.primary?.main &&
     outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main;
-  // const resultTheme = createTheme(
-  //   {
-  //     palette: {
-  //       mode: outerTheme.palette.mode || 'light',
-  //       ...(isCustomized && {
-  //         // Apply color from the color playground
-  //         primary: { main: outerTheme.palette.primary.main },
-  //         secondary: { main: outerTheme.palette.secondary.main },
-  //       }),
-  //     },
-  //   },
-  //   // To make DensityTool playground works
-  //   // check from MuiFormControl because brandingTheme does not customize this component
-  //   outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
-  // );
-
-  const resultTheme = experimental_extendTheme(
+  const resultTheme = createTheme(
     {
-      ...(isCustomized && {
-        colorSchemes: {
-          light: {
-            palette: {
-              primary: { main: outerTheme.palette.primary.main },
-              secondary: { main: outerTheme.palette.secondary.main },
-            },
-          },
-          dark: {
-            palette: {
-              // Apply color from the color playground
-              primary: { main: outerTheme.palette.primary.main },
-              secondary: { main: outerTheme.palette.secondary.main },
-            },
-          },
-        },
-      }),
+      palette: {
+        mode: outerTheme.palette.mode || 'light',
+        ...(isCustomized && {
+          // Apply color from the color playground
+          primary: { main: outerTheme.palette.primary.main },
+          secondary: { main: outerTheme.palette.secondary.main },
+        }),
+      },
     },
     // To make DensityTool playground works
     // check from MuiFormControl because brandingTheme does not customize this component
     outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
   );
-
   if (outerTheme.direction) {
     resultTheme.direction = outerTheme.direction;
   }
@@ -189,16 +157,6 @@ const jss = create({
     typeof window !== 'undefined' ? document.querySelector('#insertion-point-jss') : null,
 });
 
-const ColorSchemeSetter = ({ mode: inputMode }) => {
-  const { setMode } = useColorScheme();
-
-  React.useEffect(() => {
-    setMode(inputMode);
-  }, [inputMode, setMode]);
-
-  return null;
-};
-
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
@@ -210,21 +168,15 @@ function DemoSandboxed(props) {
 
   const t = useTranslate();
 
-  const outerTheme = useTheme();
-  const outerThemeMode = outerTheme.palette.mode === 'dark' ? 'dark' : 'light';
-
-  const theme = getTheme(outerTheme);
-
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       <StylesProvider jss={jss}>
-        <CssVarsProvider theme={theme}>
-          <ColorSchemeSetter mode={outerThemeMode} />
+        <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
           <Sandbox {...sandboxProps}>
             {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
             <Component />
           </Sandbox>
-        </CssVarsProvider>
+        </ThemeProvider>
       </StylesProvider>
     </DemoErrorBoundary>
   );
