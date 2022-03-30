@@ -133,7 +133,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 }
 ```
 
-## 2. Reusable style overrides
+## 2. Reusable component
 
 To reuse the same overrides in different locations across your application, create a reusable component using the [`styled()`](/system/styled/) utility:
 
