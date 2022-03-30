@@ -2,11 +2,12 @@
 
 <p class="description">This is a guide for the experimental API for using CSS variables with the Material-UI components.</p>
 
-The CSS variables support is the most upvoted issue related to the `@mui/system` package.
-Some time ago, we have added an experimental API in this package that will allow us using CSS variables in the styles of the components.
-Now, we want to try and utilize this new feature in one of the Material UI components.
+CSS variables is the most upvoted `@mui/system` related issue.
+It allows several improvements in developer experience, like fixing dark mode flickering in SSR, allowing multiple themes other than light and dark, better debugging experience overall, and many others.
+To learn more, check [the RFC](https://github.com/mui/material-ui/issues/27651) we did about it.
 
-> If you are curious to learn the benefits you would get by using CSS variables, check out the [RFC](https://github.com/mui/material-ui/issues/27651) for CSS variables support.
+A while ago, we added an experimental API to the System package meant to allow styling the components with CSS variables.
+We want now to take it one step further and utilize it in one of the Material UI components.
 
 ## Usage
 
