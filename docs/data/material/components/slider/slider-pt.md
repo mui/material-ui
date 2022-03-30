@@ -1,10 +1,11 @@
 ---
 product: material-ui
 title: Componente React Slider
-components: Slider, SliderUnstyled
+components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
+unstyled: /base/react-slider/
 ---
 
 # Slider
@@ -123,37 +124,23 @@ Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em
 
 {{"demo": "NonLinearSlider.js"}}
 
-## Unstyled
-
-<!-- #default-branch-switch -->
-
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import SliderUnstyled from '@mui/base/SliderUnstyled';
-```
-
-{{"demo": "UnstyledSlider.js"}}
-
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
+The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 
-- Cada marcador possua propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
-- Cada marcador tenha um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.
+- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
+- Each thumb has a user-friendly text for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
 
-## Limitações
+## Limitations
 
 ### IE 11
 
 The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
-. MuiSlider-valueLabel {
+.MuiSlider-valueLabel {
   left: calc(-50% - 4px);
 }
 ```
