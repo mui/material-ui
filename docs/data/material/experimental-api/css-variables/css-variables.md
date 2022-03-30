@@ -49,8 +49,8 @@ const Example() {
 <div style="color: var(--md-palette-success-main);">...</div>
 ```
 
-More over, if you inspect the styles, you can click on the CSS variable and see the actual color value.
-We believe this will significantly increase the DX when debugging the styles for the component.
+Additionally, by clicking on the CSS variable in the browser's dev tools, you'll be taken to the theme object where you'll see its direct hex value again. 
+We believe this to be a significant improvement in developer experience when debugging styles for any component.
 
 ### Custom theme
 
