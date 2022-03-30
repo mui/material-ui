@@ -9,17 +9,19 @@ const randomId = () => `mui-${Math.round(Math.random() * 1e5)}`;
 
 const StyledSnackbar = styled(Snackbar)<{ ownerState: SnackbarProps }>(({ theme, ownerState }) => {
   return {
-    position: 'relative',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    ...(ownerState.anchorOrigin?.vertical === 'bottom' &&
-      ownerState.anchorOrigin?.horizontal === 'left' && {
-        '&:not(:last-of-type)': {
-          marginTop: theme.spacing(),
-        },
-      }),
+    [theme.breakpoints.up('sm')]: {
+      position: 'relative',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      ...(ownerState.anchorOrigin?.vertical === 'bottom' &&
+        ownerState.anchorOrigin?.horizontal === 'left' && {
+          '&:not(:last-of-type)': {
+            marginTop: theme.spacing(),
+          },
+        }),
+    },
   };
 });
 
