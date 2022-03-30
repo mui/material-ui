@@ -34,7 +34,7 @@ If you try to inspect it, you will see that the color style has a direct hex val
 <div style="color: #2e7d32;">...</div>
 ```
 
-On the other hand, if the div uses some CSS variable as in this example:The one using the CSS variables however, allows developers to track the path of where the token is defined in theme:
+Now, if the same div used CSS variables, as in the example below, you'll be able to track where that color token as been defined in the theme.
 
 ```jsx
 const Example() {
