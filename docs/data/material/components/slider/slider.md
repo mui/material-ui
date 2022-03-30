@@ -1,10 +1,11 @@
 ---
 product: material-ui
 title: React Slider component
-components: Slider, SliderUnstyled
+components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://material.io/components/sliders
 waiAria: https://www.w3.org/TR/wai-aria-practices/#slider
+unstyled: /base/react-slider/
 ---
 
 # Slider
@@ -131,21 +132,6 @@ In the following demo, the value _x_ represents the value _2^x_.
 Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "NonLinearSlider.js"}}
-
-## Unstyled
-
-<!-- #default-branch-switch -->
-
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-The slider also comes with an unstyled version.
-It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import SliderUnstyled from '@mui/base/SliderUnstyled';
-```
-
-{{"demo": "UnstyledSlider.js"}}
 
 ## Accessibility
 
