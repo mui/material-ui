@@ -1313,28 +1313,28 @@
   dependencies:
     "@date-io/core" "^2.13.1"
 
-"@date-io/date-fns@^2.11.0", "@date-io/date-fns@^2.13.1":
+"@date-io/date-fns@^2.11.0":
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-2.13.1.tgz#19d8a245dab61c03c95ba492d679d98d2b0b4af5"
   integrity sha512-8fmfwjiLMpFLD+t4NBwDx0eblWnNcgt4NgfT/uiiQTGI81fnPu9tpBMYdAcuWxaV7LLpXgzLBx1SYWAMDVUDQQ==
   dependencies:
     "@date-io/core" "^2.13.1"
 
-"@date-io/dayjs@^2.11.0", "@date-io/dayjs@^2.13.1":
+"@date-io/dayjs@^2.11.0":
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/@date-io/dayjs/-/dayjs-2.13.1.tgz#98461d22ee98179b9f2dca3b36f1b618704ae593"
   integrity sha512-5bL4WWWmlI4uGZVScANhHJV7Mjp93ec2gNeUHDqqLaMZhp51S0NgD25oqj/k0LqBn1cdU2MvzNpk/ObMmVv5cQ==
   dependencies:
     "@date-io/core" "^2.13.1"
 
-"@date-io/luxon@^2.11.1", "@date-io/luxon@^2.13.1":
+"@date-io/luxon@^2.11.1":
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/@date-io/luxon/-/luxon-2.13.1.tgz#3701b3cabfffda5102af302979aa6e58acfda91a"
   integrity sha512-yG+uM7lXfwLyKKEwjvP8oZ7qblpmfl9gxQYae55ifbwiTs0CoCTkYkxEaQHGkYtTqGTzLqcb0O9Pzx6vgWg+yg==
   dependencies:
     "@date-io/core" "^2.13.1"
 
-"@date-io/moment@^2.11.0", "@date-io/moment@^2.13.1":
+"@date-io/moment@^2.11.0":
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-2.13.1.tgz#122a51e4bdedf71ff3babb264427737dc022c1e6"
   integrity sha512-XX1X/Tlvl3TdqQy2j0ZUtEJV6Rl8tOyc5WOS3ki52He28Uzme4Ro/JuPWTMBDH63weSWIZDlbR7zBgp3ZA2y1A==
