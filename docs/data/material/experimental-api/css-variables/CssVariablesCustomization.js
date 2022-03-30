@@ -4,7 +4,6 @@ import { colorChannel } from '@mui/system';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   styled,
-  Theme as MuiTheme,
 } from '@mui/material/styles';
 
 // Custom button using custom styles with CSS variables
@@ -17,11 +16,11 @@ const CustomButton = styled(Button)(({ theme }) => ({
 }));
 
 // Custom button using CSS variables
-const CssVarsCustomButton = styled(Button)(({ theme }) => ({
+const CssVarsCustomButton = styled(Button)({
   '--md-palette-primary-main': '#FF0000',
   '--md-palette-primary-dark': '#8B0000',
   '--md-palette-primary-mainChannel': colorChannel('#FF0000'), // necessary for calculating the alpha values
-}));
+});
 
 export default function App() {
   return (

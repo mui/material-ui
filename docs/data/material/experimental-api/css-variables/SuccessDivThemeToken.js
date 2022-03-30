@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   useTheme,
