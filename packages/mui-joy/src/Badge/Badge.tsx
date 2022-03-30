@@ -212,7 +212,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
           ...(shouldSpreadAdditionalProps(components.Root) && {
             as: component,
             ownerState: {
-              ...componentsProps.root?.ownerState,
               anchorOrigin,
               color,
               variant,
@@ -225,7 +224,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
           className: clsx(classes.badge, componentsProps.badge?.className),
           ...(shouldSpreadAdditionalProps(components.Badge) && {
             ownerState: {
-              ...componentsProps.badge?.ownerState,
               anchorOrigin,
               color,
               variant,
