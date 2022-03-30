@@ -597,6 +597,51 @@ You can find more details about this breaking change in [the migration guide](ht
 > **Note:** This approach converts the first element in the return statement into styled component but also increases CSS specificity to override nested children.
 > This codemod should be adopted after handling all breaking changes, [check out the migration documentation](https://mui.com/guides/migration-v4/)
 
+#### `jss-to-tss-react`
+
+Migrate JSS styling with `makeStyles` or `withStyles` to the corresponding `tss-react` API.
+
+```diff
+import * as React from 'react';
+-import makeStyles from '@material-ui/styles/makeStyles';
++import { makeStyles } from 'tss-react/mui';
+
+-const useStyles = makeStyles((theme) => ({
++const useStyles = makeStyles<void, "child">()((theme, _params, classes) => ({
+  parent: {
+    padding: 30,
+-    '&:hover $child': {
++    [`&:hover .${classes.child}`]: {
+      backgroundColor: 'red',
+    },
+  },
+  child: {
+    backgroundColor: 'blue',
+  },
+}));
+
+function App() {
+-  const classes = useStyles();
++  const { classes } = useStyles();
+
+  return (
+    <div className={classes.parent}>
+      <div className={classes.children}>
+        Background turns red when the mouse hovers over the parent
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
+```sh
+npx @mui/codemod v5.0.0/jss-to-tss-react <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#2-use-tss-react).
+
 #### `link-underline-hover`
 
 Apply `underline="hover"` to `<Link />` that does not define `underline` prop (to get the same behavior as in v4).

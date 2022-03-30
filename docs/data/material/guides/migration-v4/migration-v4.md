@@ -2727,7 +2727,7 @@ In some cases, you might want to create multiple styled components in a file ins
 > Note: This API will not work if you are [using `styled-components` as underlying styling engine in place of `@emotion`](/guides/interoperability/#styled-components).
 
 The API is similar to JSS `makeStyles` but, under the hood, it uses `@emotion/react`.
-It is also features a much better TypeScript support than v4's `makeStyles`.
+It is also features much better TypeScript support than v4's `makeStyles`.
 
 In order to use it, you'll need to add it to your project's dependencies:
 
@@ -2761,7 +2761,15 @@ yarn add tss-react
  );
 ```
 
-Then here is one example:
+#### Codemod
+
+We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react) to help migrate JSS styles to the `tss-react` API.
+
+```sh
+npx @mui/codemod v5.0.0/jss-to-tss-react <path>
+```
+
+**Example transformation**:
 
 ```diff
  import React from 'react';
@@ -2801,44 +2809,43 @@ Then here is one example:
 If you were using the `$` syntax, the transformation would look like this:
 
 ```diff
- import * as React from 'react';
+import * as React from 'react';
 -import makeStyles from '@material-ui/styles/makeStyles';
 +import { makeStyles } from 'tss-react/mui';
 
--const useStyles = makeStyles((theme) => {
-+const useStyles = makeStyles<void, 'child'>()((_theme, _params, classes) => ({
-   parent: {
-     padding: 30,
+-const useStyles = makeStyles((theme) => ({
++const useStyles = makeStyles<void, "child">()((theme, _params, classes) => ({
+  parent: {
+    padding: 30,
 -    '&:hover $child': {
 +    [`&:hover .${classes.child}`]: {
-       backgroundColor: 'red',
-     },
-   },
-   child: {
-     backgroundColor: 'blue',
-   },
- });
+      backgroundColor: 'red',
+    },
+  },
+  child: {
+    backgroundColor: 'blue',
+  },
+}));
 
- function App() {
+function App() {
 -  const classes = useStyles();
 +  const { classes } = useStyles();
 
-   return (
-     <div className={classes.parent}>
-       <div className={classes.children}>
-         Background turns red when the mouse is hover the parent
-       </div>
-     </div>
-   );
- }
+  return (
+    <div className={classes.parent}>
+      <div className={classes.children}>
+        Background turns red when the mouse hovers over the parent
+      </div>
+    </div>
+  );
+}
 
- export default App;
+export default App;
 ```
-
-> **Note:** In plain JS projects (not using TypeScript), remove `<void, 'child'>`.
 
 Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters
 and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
+The additional features in this example (`useStyles()` parameters and stylesheet name) are not currently supported by the codemod.
 
 ```diff
 -import clsx from 'clsx';
