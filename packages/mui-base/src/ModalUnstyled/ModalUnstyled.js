@@ -129,7 +129,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     if (open && isTopModal()) {
       handleMounted();
     } else {
-      ariaHidden(modalRef.current, props.ariaHidden ?? true);
+      ariaHidden(modalRef.current, props['aria-hidden'] ?? true);
     }
   });
 
