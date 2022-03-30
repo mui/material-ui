@@ -14,8 +14,6 @@ export interface SnackbarOrigin {
 
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
-export function snackbarStyles(params: { theme: Theme; ownerState: SnackbarProps }): object;
-
 export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
