@@ -10,8 +10,8 @@ const SnackbarsContainer = styled('div', {
   /* @ts-expect-error */
 }>(({ theme, ownerState }) => {
   return {
-    ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
-      ownerState.anchorOrigin!.horizontal === 'left' && { flexDirection: 'column-reverse' }),
+    ...(ownerState.anchorOrigin!.vertical === 'bottom' && { flexDirection: 'column-reverse' }),
+    ...(ownerState.anchorOrigin!.vertical === 'top' && { flexDirection: 'column' }),
     ...snackbarStyles({ theme, ownerState }),
   };
 });

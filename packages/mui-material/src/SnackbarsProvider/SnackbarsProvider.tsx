@@ -16,12 +16,16 @@ const StyledSnackbar = styled(Snackbar)<{ ownerState: SnackbarProps }>(({ theme,
       left: 0,
       bottom: 0,
       right: 0,
-      ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
-        ownerState.anchorOrigin!.horizontal === 'left' && {
-          '&:not(:last-of-type)': {
-            marginTop: theme.spacing(),
-          },
-        }),
+      ...(ownerState.anchorOrigin!.vertical === 'bottom' && {
+        '&:not(:last-of-type)': {
+          marginTop: theme.spacing(),
+        },
+      }),
+      ...(ownerState.anchorOrigin!.vertical === 'top' && {
+        '&:not(:last-of-type)': {
+          marginBottom: theme.spacing(),
+        },
+      }),
     },
   };
 });
@@ -49,11 +53,11 @@ const SnackbarsProvider = ({
       const updatedSnackbars = [
         ...prevState,
         {
-          ...snackbar,
           anchorOrigin: { vertical, horizontal },
           TransitionComponent,
           open: true,
           id: randomId(),
+          ...snackbar,
         },
       ];
       return updatedSnackbars.slice(0, limit);
@@ -67,7 +71,7 @@ const SnackbarsProvider = ({
   };
 
   const items = snackbars.map((snackbar) => (
-    <StyledSnackbar key={snackbar.id} {...others} {...snackbar} ownerState={ownerState} />
+    <StyledSnackbar ownerState={ownerState} key={snackbar.id} {...others} {...snackbar} />
   ));
 
   return (
