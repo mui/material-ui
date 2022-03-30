@@ -116,9 +116,9 @@ export interface PaletteWithChannels {
   info: PaletteColor & Channels;
   success: PaletteColor & Channels;
   grey: Color;
-  text: TypeText;
+  text: TypeText & { primaryChannel: string; secondaryChannel: string; disabledChannel: string };
   divider: TypeDivider;
-  action: TypeAction;
+  action: TypeAction & { disabledChannel: string };
   background: TypeBackground;
   getContrastText: (background: string) => string;
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;

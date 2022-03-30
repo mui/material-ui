@@ -240,6 +240,21 @@ describe('cssVarsParser', () => {
       });
     });
 
+    it('does not attach px to opacity values', () => {
+      const { css } = cssVarsParser({
+        primary: {
+          hoverOpacity: 0.02,
+          disabledOpacity: 0.5,
+          opacity: 1,
+        },
+      });
+      expect(css).to.deep.equal({
+        '--primary-hoverOpacity': 0.02,
+        '--primary-disabledOpacity': 0.5,
+        '--primary-opacity': 1,
+      });
+    });
+
     it('does not add px to unitless properties', () => {
       const { css } = cssVarsParser({
         lineHeight: {
