@@ -89,8 +89,8 @@ function run() {
 /zh/api/data-grid/* /zh/x/api/data-grid/:splat 301
 /pt/api/data-grid/* /pt/x/api/data-grid/:splat 301
 
-/components/date-pickers/ /x/react-date-pickers/date-picker/ 301
-/:lang/components/date-pickers/ /:lang/x/react-date-pickers/date-picker/ 301
+/components/date-pickers/ /x/react-date-pickers/getting-started/ 301
+/:lang/components/date-pickers/ /:lang/x/react-date-pickers/getting-started/ 301
 
 /components/date-range-pickers/ /x/react-date-pickers/date-range-picker/ 301
 /:lang/components/date-range-pickers/ /:lang/x/react-date-pickers/date-range-picker/ 301
