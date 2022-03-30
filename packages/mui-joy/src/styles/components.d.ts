@@ -1,12 +1,14 @@
 import { GlobalStateSlot } from '@mui/base';
 import { CSSInterpolation } from '@mui/system';
 import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
+import { IconButtonProps, IconButtonSlot } from '../IconButton/IconButtonProps';
 import { InputProps, InputSlot } from '../Input/InputProps';
 import { LinkProps, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListSlot } from '../List/ListProps';
 import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
 import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
 import { AvatarProps, AvatarSlot } from '../Avatar/AvatarProps';
+import { AvatarGroupProps, AvatarGroupSlot } from '../AvatarGroup/AvatarGroupProps';
 import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListItemButtonProps';
 import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
 import {
@@ -46,9 +48,17 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<AvatarProps>;
     styleOverrides?: OverridesStyleRules<AvatarSlot, AvatarProps, Theme>;
   };
+  MuiAvatarGroup?: {
+    defaultProps?: Partial<AvatarGroupProps>;
+    styleOverrides?: OverridesStyleRules<AvatarGroupSlot, AvatarGroupProps, Theme>;
+  };
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonProps, Theme>;
+  };
+  MuiIconButton?: {
+    defaultProps?: Partial<IconButtonProps>;
+    styleOverrides?: OverridesStyleRules<IconButtonSlot, IconButtonProps, Theme>;
   };
   MuiSwitch?: {
     defaultProps?: Partial<SwitchProps>;

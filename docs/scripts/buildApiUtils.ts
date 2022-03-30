@@ -102,7 +102,28 @@ export type ComponentInfo = {
   skipApiGeneration?: boolean;
 };
 
-const migratedBaseComponents = ['ButtonUnstyled', 'MenuUnstyled', 'MenuItemUnstyled'];
+const migratedBaseComponents = [
+  'BadgeUnstyled',
+  'ButtonUnstyled',
+  'ClickAwayListener',
+  'InputUnstyled',
+  'MenuItemUnstyled',
+  'MenuUnstyled',
+  'ModalUnstyled',
+  'MultiSelectUnstyled',
+  'NoSsr',
+  'OptionGroupUnstyled',
+  'OptionUnstyled',
+  'Portal',
+  'SelectUnstyled',
+  'SliderUnstyled',
+  'TablePaginationUnstyled',
+  'TabPanelUnstyled',
+  'TabsListUnstyled',
+  'TabsUnstyled',
+  'TabUnstyled',
+  'TrapFocus',
+];
 
 export const getGenericComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);

@@ -29,6 +29,7 @@ const SheetRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return [
     {
       // TODO: discuss the theme transition.
@@ -36,8 +37,12 @@ const SheetRoot = styled('div', {
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       boxShadow: theme.vars.shadow[ownerState.elevation!],
       backgroundColor: theme.vars.palette.background.body,
+      '--List-item-stickyBackground':
+        variantStyle?.backgroundColor ||
+        variantStyle?.background ||
+        theme.vars.palette.background.body, // for sticky List
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    variantStyle,
   ];
 });
 

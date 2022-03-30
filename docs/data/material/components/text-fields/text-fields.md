@@ -1,9 +1,10 @@
 ---
 product: material-ui
 title: Text Field React component
-components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
+unstyled: /base/react-input/
 ---
 
 # Text Field
@@ -306,23 +307,3 @@ For more advanced use cases, you might be able to take advantage of:
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
-
-## Unstyled
-
-For advanced customization scenarios, you can use the unstyled primitives.
-
-The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
-
-### Unstyled component
-
-The `InputUnstyled` component wraps the native `input` or `textarea` element.
-You can, optionally, provide a custom component to be rendered instead.
-
-{{"demo": "UnstyledInput.js"}}
-
-### Hook
-
-The `useInput` hook is the headless version of the `InputUnstyled` component.
-Use it for even greater control over the rendered output.
-
-{{"demo": "UseInput.js"}}
