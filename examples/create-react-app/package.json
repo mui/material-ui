@@ -1,5 +1,5 @@
 {
-  "name": "create-react-app",
+  "name": "example-react-app",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -15,5 +15,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
