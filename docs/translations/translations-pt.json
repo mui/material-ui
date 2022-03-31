@@ -265,6 +265,7 @@
     "/components/time-picker": "Seletor de hora",
     "/components/masonry": "Masonry",
     "/components/timeline": "Linha do tempo",
+    "/components/trap-focus": "Capturar foco",
     "/components/tree-view": "Visualização em árvore",
     "/api-docs": "API de Componentes",
     "/system": "Sistema",

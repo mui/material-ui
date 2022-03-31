@@ -265,6 +265,7 @@
     "/components/time-picker": "Time Picker 时间选择器",
     "/components/masonry": "Masonry 瀑布流",
     "/components/timeline": "Timeline 时间轴",
+    "/components/trap-focus": "Trap Focus 容器焦点",
     "/components/tree-view": "Tree View 树视图",
     "/api-docs": "组件API",
     "/system": "System 系统",

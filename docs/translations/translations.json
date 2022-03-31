@@ -265,6 +265,7 @@
     "/components/time-picker": "Time Picker",
     "/components/masonry": "Masonry",
     "/components/timeline": "Timeline",
+    "/components/trap-focus": "Trap Focus",
     "/components/tree-view": "Tree View",
     "/api-docs": "Component API",
     "/system": "System",
