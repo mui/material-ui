@@ -16,9 +16,9 @@ packageName: '@mui/base'
 
 ## FormControlUnstyled
 
-FormControlUnstyled wraps an input and other components and enables reflecting the input's state in these other components.
+FormControlUnstyled wraps an input and other components, enabling to reflect the input's state in these other components.
 
-For instance, you may show additional element asking the user to enter a value if the input is empty or display a warning icon when the entered value is incorrect.
+For instance, you may want to show an additional element asking the user to enter a value if the input is empty, or display a warning icon if the entered value is incorrect.
 
 The FormControlUnstyled provides a context that can be read by the useFormControl hook.
 
