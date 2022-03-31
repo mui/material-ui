@@ -72,7 +72,7 @@ module.exports = {
             '@mui/x-date-pickers-pro',
             '@mui/x-data-grid-generator',
             '@mui/x-license-pro',
-          ].includes(request);
+          ].some((dep) => request.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -139,7 +139,7 @@ module.exports = {
                         '@mui/material-next': '../packages/mui-material-next/src',
                         '@mui/joy': '../packages/mui-joy/src',
                       },
-                      transformFunctions: ['require'],
+                      // transformFunctions: ['require'],
                     },
                   ],
                 ],

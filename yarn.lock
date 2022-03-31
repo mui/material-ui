@@ -2382,16 +2382,33 @@
     prop-types "^15.8.1"
     reselect "^4.1.5"
 
-"@mui/x-date-pickers-pro@https://pkg.csb.dev/mui/mui-x/commit/af717e5a/@mui/x-date-pickers-pro":
+"@mui/x-date-pickers-pro@https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-date-pickers-pro", "@mui/x-license-pro@https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-date-pickers-pro":
   version "5.0.0-alpha.0"
-  resolved "https://pkg.csb.dev/mui/mui-x/commit/af717e5a/@mui/x-date-pickers-pro#2604831f4585e0120d9579fc2ca5b28d5408a6ed"
+  uid "5ddd5b6c4a5fef618ec49a40d3dfe5ae2c7f606f"
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-date-pickers-pro#5ddd5b6c4a5fef618ec49a40d3dfe5ae2c7f606f"
   dependencies:
     "@date-io/date-fns" "^2.11.0"
     "@date-io/dayjs" "^2.11.0"
     "@date-io/luxon" "^2.11.1"
     "@date-io/moment" "^2.11.0"
     "@mui/utils" "^5.2.3"
-    "@mui/x-date-pickers" "https://pkg.csb.dev/mui/mui-x/commit/af717e5a/@mui/x-date-pickers"
+    "@mui/x-date-pickers" "https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-date-pickers"
+    "@mui/x-license-pro" "https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-license-pro"
+    clsx "^1.1.1"
+    prop-types "^15.7.2"
+    react-transition-group "^4.4.2"
+    rifm "^0.12.1"
+
+"@mui/x-date-pickers@https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-date-pickers":
+  version "5.0.0-alpha.0"
+  uid f50306b41ee880bbe5bcf732f86735cbc93639c6
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-date-pickers#f50306b41ee880bbe5bcf732f86735cbc93639c6"
+  dependencies:
+    "@date-io/date-fns" "^2.11.0"
+    "@date-io/dayjs" "^2.11.0"
+    "@date-io/luxon" "^2.11.1"
+    "@date-io/moment" "^2.11.0"
+    "@mui/utils" "^5.2.3"
     clsx "^1.1.1"
     prop-types "^15.7.2"
     react-transition-group "^4.4.2"
@@ -2419,6 +2436,15 @@
     "@mui/utils" "^5.4.1"
     esm "^3.2.25"
     yargs "^17.3.1"
+
+"@mui/x-license-pro@https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-license-pro":
+  version "5.7.0"
+  uid "5b112f18990d3c1ff8a508aca6826e9bbee788a3"
+  resolved "https://pkg.csb.dev/mui/mui-x/commit/5e745688/@mui/x-license-pro#5b112f18990d3c1ff8a508aca6826e9bbee788a3"
+  dependencies:
+    "@mui/utils" "^5.4.4"
+    esm "^3.2.25"
+    yargs "^17.4.0"
 
 "@napi-rs/triples@1.0.3":
   version "1.0.3"
