@@ -52,6 +52,8 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
   const {
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     children,
+    ClickAwayListenerProps,
+    ContentProps,
     limit = 5,
     TransitionComponent = Grow,
     transitionDuration = defaultTransitionDuration,
@@ -65,6 +67,8 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
         ...prevState,
         {
           anchorOrigin: { vertical, horizontal },
+          ClickAwayListenerProps,
+          ContentProps,
           id: randomId(),
           open: true,
           TransitionComponent,
