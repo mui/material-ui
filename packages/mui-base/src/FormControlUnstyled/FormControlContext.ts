@@ -1,16 +1,17 @@
 import * as React from 'react';
-import FormControlUnstyledProps from './FormControlUnstyledProps';
+import { Simplify } from '@mui/types';
+import { FormControlUnstyledProps } from './FormControlUnstyled.types';
 
 type ContextFromPropsKey = 'disabled' | 'error' | 'onChange' | 'required' | 'value';
 
-export interface FormControlUnstyledState
-  extends Pick<FormControlUnstyledProps, ContextFromPropsKey> {
-  filled: boolean;
-  focused: boolean;
-  onBlur: () => void;
-  onFocus: () => void;
-  registerEffect: () => void;
-}
+export type FormControlUnstyledState = Simplify<
+  Pick<FormControlUnstyledProps, ContextFromPropsKey> & {
+    filled: boolean;
+    focused: boolean;
+    onBlur: () => void;
+    onFocus: () => void;
+  }
+>;
 
 /**
  * @ignore - internal component.
