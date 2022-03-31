@@ -54,6 +54,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     TransitionComponent = Grow,
     transitionDuration = defaultTransitionDuration,
+    TransitionProps,
     children,
     ...others
   } = props;
@@ -66,6 +67,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
           anchorOrigin: { vertical, horizontal },
           TransitionComponent,
           transitionDuration,
+          TransitionProps,
           open: true,
           id: randomId(),
           ...snackbar,
