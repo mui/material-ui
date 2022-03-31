@@ -26,7 +26,6 @@ describe('material-ui', () => {
       'NoSsr',
       'Portal',
       'TextareaAutosize',
-      'unstable_ClassNameGenerator',
       'unstable_composeClasses',
     ];
 

@@ -984,8 +984,8 @@ export const etEE: Localization = {
           return 'Vali eelmine lehekülg';
         },
         labelRowsPerPage: 'Ridu leheküljel:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} / ${count !== -1 ? count : `rohkem kui ${to}`}`,
       },
     },
     MuiRating: {
@@ -2107,6 +2107,81 @@ export const kzKZ: Localization = {
           }
           // if (type === 'previous') {
           return 'Алдыңғы бетке өту';
+        },
+      },
+    },
+  },
+};
+
+// Macedonian - Македонски
+export const mkMK: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Прикажи патека',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Оди на прва страница';
+          }
+          if (type === 'last') {
+            return 'Оди на последна страница';
+          }
+          if (type === 'next') {
+            return 'Оди на следна страница';
+          }
+          // if (type === 'previous') {
+          return 'Оди на предходна страница';
+        },
+        labelRowsPerPage: 'Редови по страница:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} од ${count !== -1 ? count : `повеќе од ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          return `${value} Ѕвезд${lastDigit === 1 ? 'а' : 'и'}`;
+        },
+        emptyLabelText: 'Празно',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Избриши',
+        closeText: 'Затвори',
+        loadingText: 'Се презема',
+        noOptionsText: 'Нема опција',
+        openText: 'Отвори',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Затвори',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Навигација низ страници',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Оди на '}страница ${page}`;
+          }
+          if (type === 'first') {
+            return 'Оди на прва страница';
+          }
+          if (type === 'last') {
+            return 'Оди на последна страница';
+          }
+          if (type === 'next') {
+            return 'Оди на следна страница';
+          }
+          // if (type === 'previous') {
+          return 'Оди на предходна страница';
         },
       },
     },

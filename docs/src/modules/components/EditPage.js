@@ -21,7 +21,10 @@ export default function EditPage(props) {
       href={
         userLanguage === 'en'
           ? `${process.env.SOURCE_CODE_ROOT_URL}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/master${crowdInPath}`
+          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env.SOURCE_CODE_ROOT_URL.replace(
+              'https://github.com/mui/',
+              '',
+            ).replace('/blob/', '%20%2F%20')}${crowdInPath}`
       }
       target="_blank"
       rel="noopener nofollow"

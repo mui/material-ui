@@ -7,10 +7,6 @@ export interface InputClasses {
   input: string;
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
-  /** Styles applied to the root element if `startAdornment` is provided. */
-  adornedStart: string;
-  /** Styles applied to the root element if `endAdornment` is provided. */
-  adornedEnd: string;
   /** Styles applied to the root element if the component is focused. */
   focused: string;
   /** Styles applied to the root element if `disabled={true}`. */
@@ -29,6 +25,12 @@ export interface InputClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
   /** Styles applied to the root element if `variant="text"`. */
   variantText: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -37,6 +39,10 @@ export interface InputClasses {
   variantLight: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
+  /** Styles applied to the startDecorator element */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element */
+  endDecorator: string;
 }
 
 export type InputClassKey = keyof InputClasses;
@@ -60,10 +66,15 @@ const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
   'variantText',
   'variantOutlined',
   'variantLight',
   'fullWidth',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default inputClasses;

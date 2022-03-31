@@ -1,5 +1,5 @@
-import { OverrideProps } from '@mui/types';
 import React from 'react';
+import { OverrideProps, Simplify } from '@mui/types';
 import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
 
 export interface ButtonUnstyledActions {
@@ -54,8 +54,10 @@ export type ButtonUnstyledOwnerState = ButtonUnstyledOwnProps & {
   focusVisible: boolean;
 };
 
-export type ButtonUnstyledRootSlotProps = UseButtonRootSlotProps & {
-  ownerState: ButtonUnstyledOwnerState;
-  className: string;
-  children?: React.ReactNode;
-};
+export type ButtonUnstyledRootSlotProps = Simplify<
+  UseButtonRootSlotProps & {
+    ownerState: ButtonUnstyledOwnerState;
+    className: string;
+    children?: React.ReactNode;
+  }
+>;

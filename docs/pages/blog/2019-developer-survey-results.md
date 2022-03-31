@@ -1,6 +1,6 @@
 ---
-title: 2019 MUI Developer Survey results
-description: Results for the first yearly developer survey, 2019 edition.
+title: 'The 2019 MUI developer survey: here's what we discovered'
+description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
 date: 2019-03-16T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Developer survey']

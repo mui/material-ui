@@ -36,6 +36,12 @@
       "default": "{}"
     },
     "popperRef": { "type": { "name": "custom", "description": "ref" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "transition": { "type": { "name": "bool" } }
   },
   "name": "Popper",
