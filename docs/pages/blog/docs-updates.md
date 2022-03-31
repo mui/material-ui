@@ -32,7 +32,7 @@ As for the URLs, this is how they look now:
 - MUI Base: https://mui.com/base/_
 - MUI System: https://mui.com/system/_
 - MUI X - Data grid: https://mui.com/x/react-data-grid/_
-- MUI X - Date and time pickers: https://mui.com/x/react-date-pickers/*
+- MUI X - Date and time pickers: https://mui.com/x/react-date-pickers/_
 
 ## What do I gain?
 
