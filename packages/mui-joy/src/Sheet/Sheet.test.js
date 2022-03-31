@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
+import { ThemeProvider } from '@mui/joy/styles';
 import Sheet, { sheetClasses as classes } from '@mui/joy/Sheet';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
@@ -11,17 +12,12 @@ describe('<Sheet />', () => {
     classes,
     inheritComponent: 'div',
     render,
+    ThemeProvider,
     muiName: 'MuiSheet',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'text' },
-    skip: [
-      'themeVariants',
-      'classesRoot',
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-    ],
+    skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
