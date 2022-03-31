@@ -44,10 +44,16 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
   const [snackbars, setSnackbars] = React.useState<SnackbarProps[]>([]);
   const theme = useTheme();
 
+  const defaultTransitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     limit = 5,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     TransitionComponent = Grow,
+    transitionDuration = defaultTransitionDuration,
     children,
     ...others
   } = props;
@@ -59,6 +65,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
         {
           anchorOrigin: { vertical, horizontal },
           TransitionComponent,
+          transitionDuration,
           open: true,
           id: randomId(),
           ...snackbar,
