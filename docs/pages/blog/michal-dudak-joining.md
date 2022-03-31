@@ -8,15 +8,15 @@ tags: ['Company']
 ---
 
 We are excited to share that [Michał Dudak](https://twitter.com/michaldudak) has joined MUI!
-He started a couple of days ago full-time and is part of the core components team.
+They started a couple of days ago full-time and is part of the core components team.
 
 Before joining MUI, Michał worked as a full-stack engineer and software architect at Future Processing, a high-end development agency in Poland.
-He has been a professional practitioner in the field for over a decade.
-He admires great designs and clever solutions.
-Creating with TypeScript and CSS is a pleasure for him.
+They has been a professional practitioner in the field for over a decade.
+They admires great designs and clever solutions.
+Creating with TypeScript and CSS is a pleasure for them.
 
-We were impressed by his technical challenge.
-He leveraged most of the best practices we enforce when writing components, without prior experience contributing to our codebase.
+We were impressed by their technical challenge.
+They leveraged most of the best practices we enforce when writing components, without prior experience contributing to our codebase.
 
 While we can't predict the future, Michał is currently responsible for the development of a new vertical for MUI: the unstyled & headless React components.
 Marija initiated this effort with a couple of new modules under the [@mui/base](https://unpkg.com/browse/@mui/base@latest/) package.

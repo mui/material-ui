@@ -57,7 +57,7 @@ const theme = createTheme(
 | French                  | fr-FR               | `frFR`      |
 | German                  | de-DE               | `deDE`      |
 | Greek                   | el-GR               | `elGR`      |
-| Hebrew                  | he-IL               | `heIL`      |
+| Hebrew                  | they-IL               | `heIL`      |
 | Hindi                   | hi-IN               | `hiIN`      |
 | Hungarian               | hu-HU               | `huHU`      |
 | Icelandic               | is-IS               | `isIS`      |

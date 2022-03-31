@@ -1283,7 +1283,7 @@ Here are some highlights ✨:
 
 - [ButtonBase] Fix when changing enableRipple prop from false to true (#19667) @dmtrKovalenko
 - [l10n] Add Armenian (hy-AM) locale (#19844) @vgevorgyan
-- [l10n] Add Hebrew (he-IL) locale (#19850) @boazberman
+- [l10n] Add Hebrew (they-IL) locale (#19850) @boazberman
 - [Popper] Fix deep merge of PopperProps (#19851) @valgrindMaster
 - [RadioGroup] Random default name (#19890) @dfernandez-asapp
 - [Slider] Add explicit types for slider callbacks (#19867) @deymundson
@@ -9577,7 +9577,7 @@ A big thanks to the 26 contributors who made this release possible.
 Here are some highlights ✨:
 
 - Wait, what? A new component is coming, again 🎉.
-  @andrzejbk has been implementing the `ExpansionPanel` component with the help of the community. Big thanks to him!
+  @andrzejbk has been implementing the `ExpansionPanel` component with the help of the community. Big thanks to them!
 - Support TypeScript@2.6 (#9124) @pelotom
 - Support Flow@0.57.x (#8983) @rsolomon, @rosskevin
 - A new organization: `mui-org` @hai-cea
@@ -10383,7 +10383,7 @@ A big thanks to the 12 contributors who made this release possible.
 ### Docs
 
 - [Tooltip] Add a warning when using the title native feature at the same time (#8234) @oliviertassinari
-- [Popover] Remove unsupported modal property from the Popover component that doesn't match his purpose. (#8234) @oliviertassinari
+- [Popover] Remove unsupported modal property from the Popover component that doesn't match their purpose. (#8234) @oliviertassinari
 - [Form] Extend the description of the component (#8234) @oliviertassinari
 - [docs] Some fixes (#8210) @oliviertassinari
 - [docs] Fix typo in markdown generation (#8222) @albinekb
