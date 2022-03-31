@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
+import { useCx } from '@mui/styled-engine';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
@@ -338,10 +338,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const { cx } = useCx();
+
   return (
     <ButtonBaseRoot
       as={ComponentProp}
-      className={clsx(classes.root, className)}
+      className={cx(classes.root, className)}
       ownerState={ownerState}
       onBlur={handleBlur}
       onClick={onClick}

@@ -10,6 +10,7 @@ export { default as StyledEngineProvider } from './StyledEngineProvider';
 
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
+export * from './cx';
 
 export interface SerializedStyles {
   name: string;

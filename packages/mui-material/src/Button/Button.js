@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { internal_resolveProps as resolveProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
+import { useCx } from '@mui/styled-engine';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
@@ -322,7 +322,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const { root: classes_root, ...classes } = useUtilityClasses(ownerState);
 
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
@@ -336,14 +336,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
+  const { cx } = useCx();
+
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(className, contextProps.className)}
+      className={cx(contextProps.className, classes_root, className)}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      focusVisibleClassName={cx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
       {...other}
