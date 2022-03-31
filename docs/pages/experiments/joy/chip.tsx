@@ -64,10 +64,10 @@ export default function JoyChip() {
                   key={`${value}-without-decorator`}
                   sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                 >
-                  <Chip label={`${propName}: ${value}`} {...{ [propName]: value }} />
-                  {value && (
+                  <Chip {...{ [propName]: value }}>{`${propName}: ${value}`}</Chip>
+                  {value !== undefined && (
                     <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
-                      {value}
+                      {`${value}`}
                     </Typography>
                   )}
                 </Box>
@@ -89,12 +89,11 @@ export default function JoyChip() {
                   <Chip
                     startDecorator={<ThumbUp />}
                     endDecorator={<ArrowDropDown />}
-                    label={`${propName}: ${value}`}
                     {...{ [propName]: value }}
-                  />
-                  {value && (
+                  >{`${propName}: ${value}`}</Chip>
+                  {value !== undefined && (
                     <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
-                      {value}
+                      {`${value}`}
                     </Typography>
                   )}
                 </Box>
