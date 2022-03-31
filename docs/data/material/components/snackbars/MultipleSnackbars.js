@@ -11,8 +11,7 @@ function MultipleSnackbars() {
       <Button
         onClick={() =>
           snackbars.showSnackbar({
-            message: 'Testing',
-            autoHideDuration: 2000,
+            message: 'Note archived',
           })
         }
       >
@@ -21,8 +20,7 @@ function MultipleSnackbars() {
       <Button
         onClick={() =>
           snackbars.showSnackbar({
-            message: 'Testing',
-            autoHideDuration: 2000,
+            message: 'Note archived',
             anchorOrigin: { vertical: 'top', horizontal: 'right' },
           })
         }

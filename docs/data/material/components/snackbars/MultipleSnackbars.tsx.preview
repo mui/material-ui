@@ -1,0 +1,5 @@
+<React.Fragment>
+  <SnackbarsProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+    <MultipleSnackbars />
+  </SnackbarsProvider>
+</React.Fragment>
