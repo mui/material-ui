@@ -70,7 +70,6 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
 
   const ownerState = {
     anchorOrigin: { vertical, horizontal },
-    TransitionComponent,
     isRtl: theme.direction === 'rtl',
   };
 
