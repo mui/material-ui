@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import snakeCase from 'lodash/snakeCase';
 import { getHeaders } from '@mui/markdown';
 import { findPagesMarkdown, findPagesMarkdownNew } from 'docs/src/modules/utils/find';
 import { getLineFeed } from 'docs/scripts/helpers';
@@ -235,11 +234,9 @@ function findBaseDemos(
   return Array.from(new Set(filteredMarkdowns)) // get unique filenames
     .map((pathname) => ({
       name: pageToTitle({ pathname }) || '',
-      demoPathname: migratedBaseComponents.some((c) =>
-        pathname.endsWith(snakeCase(c.replace('Unstyled', ''))),
-      )
-        ? `${pathname.replace('/components/', '/react-')}/`
-        : replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`),
+      demoPathname: pathname.match(/material\//)
+        ? replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`)
+        : `${pathname.replace('/components/', '/react-')}/`,
     }));
 }
 
@@ -272,11 +269,18 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew().map((markdown) => ({
-        ...markdown,
-        components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
-          .components as string[],
-      }));
+      const allMarkdowns = findPagesMarkdownNew()
+        .filter((markdown) => {
+          if (migratedBaseComponents.some((component) => filename.includes(component))) {
+            return markdown.filename.match(/\/data\/base\//);
+          }
+          return true;
+        })
+        .map((markdown) => ({
+          ...markdown,
+          components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+            .components as string[],
+        }));
       return findBaseDemos(name, allMarkdowns);
     },
   };
