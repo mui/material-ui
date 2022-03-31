@@ -105,9 +105,9 @@ const theme = createTheme({
 
 除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 更多信息请参见 [添加 & 禁用变体](/customization/typography/#adding-amp-disabling-variants) 示例。
 
-## System props
+## 系统属性
 
-As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+作为一个 CSS 实用组件, `Typography ` 支持所有 [`system `](/system/properties/) 属性。 您可以直接在组件上使用它们作为属性。 例如，顶边距：
 
 ```jsx
 <Typography mt={2}>
