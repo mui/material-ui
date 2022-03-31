@@ -12,10 +12,9 @@ export interface ChipPropsVariantOverrides {}
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * This prop isn't supported.
-     * Use the `component` prop if you need to change the children structure.
+     * The content of the component.
      */
-    children?: null;
+    children?: React.ReactNode;
     /**
      * If `true`, the chip will appear clickable, and will raise when pressed,
      * even if the onClick prop is not defined.
@@ -39,10 +38,6 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Element placed after the children.
      */
     endDecorator?: React.ReactNode;
-    /**
-     * The content of the component.
-     */
-    label?: React.ReactNode;
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.

@@ -1,11 +1,7 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import ButtonBase from '@mui/material/ButtonBase';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_unsupportedProp as unsupportedProp,
-  unstable_useForkRef as useForkRef,
-} from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -152,12 +148,12 @@ const ChipLabel = styled('span', {
 const Chip = React.forwardRef(function Chip(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipProps>({ props: inProps, name: 'MuiChip' });
   const {
+    children,
     className,
     clickable: clickableProp,
     color = 'neutral',
     component: ComponentProp,
     disabled = false,
-    label,
     onClick,
     size = 'md',
     variant = 'light',
@@ -206,7 +202,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     >
       {startDecorator}
       <ChipLabel className={clsx(classes.label)} ownerState={ownerState}>
-        {label}
+        {children}
       </ChipLabel>
       {endDecorator}
     </ChipRoot>
@@ -219,10 +215,9 @@ Chip.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * This prop isn't supported.
-   * Use the `component` prop if you need to change the children structure.
+   * The content of the component.
    */
-  children: unsupportedProp,
+  children: PropTypes.node,
   /**
    * @ignore
    */
@@ -258,10 +253,6 @@ Chip.propTypes /* remove-proptypes */ = {
    * Element placed after the children.
    */
   endDecorator: PropTypes.node,
-  /**
-   * The content of the component.
-   */
-  label: PropTypes.node,
   /**
    * @ignore
    */
