@@ -56,7 +56,7 @@ const InputRoot = styled('div', {
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
     '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
-    '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
+    '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px))',
     '--Input-focusedHighlight':
       theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     boxSizing: 'border-box',
