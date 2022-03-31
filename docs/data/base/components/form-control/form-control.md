@@ -20,6 +20,8 @@ FormControlUnstyled wraps an input and other components, enabling to reflect the
 
 For instance, you may want to show an additional element asking the user to enter a value if the input is empty, or display a warning icon if the entered value is incorrect.
 
+{{"demo": "BasicFormControl.js"}}
+
 The FormControlUnstyled provides a context that can be read by the useFormControl hook.
 
 ## useFormControl hook
@@ -53,6 +55,6 @@ They are meant to be used when creating custom inputs.
 
 | Name       | Type                      | Description                                                   |
 | ---------- | ------------------------- | ------------------------------------------------------------- |
-| `onChange` | React.ChangeEvent => void | Change handler. Should be forwarded to the inner input.       |
+| `onChange` | React.ChangeEvent => void | Value change handler. Should be forwarded to the inner input. |
 | `onBlur`   | () => void                | Focus change handler. Should be forwarded to the inner input. |
 | `onFocus`  | () => void                | Focus change handler. Should be forwarded to the inner input. |
