@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 <p class="description">按钮允许用户在单次点击时采取行动和作出选择。</p>
 
-## Basic usage
+## 基本用法
 
 ```js
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
@@ -18,9 +18,9 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 {{"demo": "UnstyledButtonsSimple.js"}}
 
-## Customizing the root element
+## 自定义根元素
 
-By default, the `ButtonUnstyled` component renders a native `button` HTML element. You can override this by setting the `component` or `components.Root` prop. If you provide a non-interactive element, such as a `span`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
+默认情况下， `ButtonUnstyled` 组件会渲染原生的 `button ` HTML 元素。 您可以通过设置`component` 或`components.Root` 属性来覆盖这个组件. 如果您提供了一个非交互元素，如 `span`，则 ` ButtonUnstyled ` 组件将自动添加必要的辅助属性。
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
@@ -38,7 +38,7 @@ In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` co
 import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
-The `useButton` hook lets you use the functionality of `ButtonUnstyled` in other components. It returns props to be placed on a custom button element, along with fields representing the internal state of the button.
+`useButton` hook函数允许您在其他组件中使用 `ButtonUnstyled` 的功能。 It returns props to be placed on a custom button element, along with fields representing the internal state of the button.
 
 The `useButton` hook requires the `ref` of the element it's used on. Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
 
