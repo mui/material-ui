@@ -1,5 +1,103 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.5.3
+
+<!-- generated comparing v5.5.2..master -->
+
+_Mar 28, 2022_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- ♿️ improved the a11y on some docs demos
+- Several 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.5.3`
+
+- &#8203;<!-- 32 -->[ButtonBase] Start ripple only after mount (#31950) @m4theushw
+- &#8203;<!-- 11 -->[FormControlLabel] Fix label prop type to be in-line with other label prop types (#31139) @jannes-io
+- &#8203;<!-- 10 -->[Grow] Add a workaround for Safari 15.4 CSS transition bug (#31975) @igordanchenko
+
+### `@mui/codemod@5.5.3`
+
+- &#8203;<!-- 31 -->[codemod] Fix variant prop placement (#31990) @ryancogswell
+
+### `@mui/utils@5.5.3`
+
+- &#8203;<!-- 02 -->[utils] Improve type inference of useForkRef (#31845) @eps1lon
+
+### `@mui/base@5.0.0-alpha.74`
+
+#### Breaking changes
+
+- &#8203;<!-- 34 -->[base] Remove `BackdropUnstyled` component (#31923) @mnajdova
+
+  The `BackdropUnstyled` component was removed from the `@mui/base` package, as it did not have any specific logic, except adding an `aria-hidden` attribute on the div it rendered. This is not enough to justify it's existence in the base package. Here is an example alternative component you can use:
+
+  ```tsx
+  const BackdropUnstyled = React.forwardRef<HTMLDivElement, { open?: boolean; className: string }>(
+    (props, ref) => {
+      const { open, className, ...other } = props;
+      return <div className={clsx({ 'MuiBackdrop-open': open }, className)} ref={ref} {...other} />;
+    },
+  );
+  ```
+
+- &#8203;<!-- 03 -->[TrapFocus] Move docs to Base and drop the Unstyled prefix (#31954) @michaldudak
+
+  Removed the `Unstyled_` prefix from the Base export (it remains in the Material UI export, though).
+
+  ```diff
+  -import { Unstyled_TrapFocus } from '@mui/base';
+  +import { TrapFocus } from '@mui/base';
+
+  // or
+
+  -import TrapFocus from '@mui/base/Unstyled_TrapFocus';
+  +import TrapFocus from '@mui/base/TrapFocus';
+  ```
+
+#### Changes
+
+- &#8203;<!-- 33 -->[base] Add @mui/types to dependencies (#31951) @bicstone
+
+### `@mui/joy@5.0.0-alpha.21`
+
+- &#8203;<!-- 09 -->[Joy] Add `AvatarGroup` component (#31980) @siriwatknp
+- &#8203;<!-- 07 -->[Joy] Miscellaneous fixes (#31873) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Miscellaneous fixes 2 (#31971) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 27 -->[docs] Improve the a11y on the hover rating demo (#31970) @mnajdova
+- &#8203;<!-- 26 -->[docs] Improve a11y on the `SplitButton` demo (#31969) @mnajdova
+- &#8203;<!-- 25 -->[docs] Improve the color description in the API pages (#30976) @mnajdova
+- &#8203;<!-- 24 -->[docs] Add docs page for unstyled Modal (#31417) @mnajdova
+- &#8203;<!-- 23 -->[docs] Add InputUnstyled docs (#31881) @mnajdova
+- &#8203;<!-- 22 -->[docs] Remove "Work in biotech" from the showcase (#31942) @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Fix in-house ad for the design kits (#31965) @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Fix the documentation for filterOptions in Autocomplete API page (#31416) @santhoshbala0178
+- &#8203;<!-- 19 -->[docs] Update href for 'TypeScript guide on theme customization' (#31880) @NickFoden
+- &#8203;<!-- 18 -->[docs] Fix the CSS modules example in the Interoperability page (#31935) @WilsonNet
+- &#8203;<!-- 17 -->[docs] Fix small typo in the `styled()` utility page (#31967) @jason1985
+- &#8203;<!-- 16 -->[docs] Update mui-x on material-ui navigation (#31810) @siriwatknp
+- &#8203;<!-- 15 -->[docs] Copy ClickAwayListener docs to Base (#31878) @michaldudak
+- &#8203;<!-- 14 -->[docs] Refine the redirects (#31939) @siriwatknp
+- &#8203;<!-- 13 -->[docs] Fix TOC layout for large screen (#31953) @siriwatknp
+- &#8203;<!-- 12 -->[examples] Update remix example to not use NODE_ENV guard for `LiveReload` (#31269) @eswarclynn
+- &#8203;<!-- 06 -->[NoSsr] Copy docs to the Base space (#31956) @michaldudak
+- &#8203;<!-- 05 -->[Portal] Copy Portal docs to the Base space (#31959) @michaldudak
+- &#8203;<!-- 01 -->[website] Remove X-Frame-Options @oliviertassinari
+- &#8203;<!-- 35 -->Revert "[website] Remove X-Frame-Options" @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 30 -->[core] Fixes error in changelog generator for item sorting/padding (#30088) @dimitropoulos
+- &#8203;<!-- 29 -->[core] Fix typo in issue template @oliviertassinari
+- &#8203;<!-- 28 -->[core] Replace deprecated String.prototype.substr() (#31806) @CommanderRoot
+- &#8203;<!-- 04 -->[test] Add tests for component using `StandardProps` and polymorphic components (#31945) @mnajdova
+
+All contributors of this release in alphabetical order: @bicstone, @CommanderRoot, @dimitropoulos, @eps1lon, @eswarclynn, @igordanchenko, @jannes-io, @jason1985, @m4theushw, @michaldudak, @mnajdova, @NickFoden, @oliviertassinari, @ryancogswell, @santhoshbala0178, @siriwatknp, @WilsonNet
+
 ## 5.5.2
 
 <!-- generated comparing v5.5.1..master -->
