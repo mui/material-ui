@@ -397,13 +397,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     const isFirstSelectableElement = () => {
+      if (value) {
+        return selected;
+      }
       const firstSelectableElement = arr.find(
         (item) => item.props.value !== undefined && item.props.disabled !== true,
       );
       if (child === firstSelectableElement) {
-        if (value) {
-          return selected;
-        }
         return true;
       }
       return selected;
