@@ -509,6 +509,33 @@ describe('<Select />', () => {
 
         expect(options[4]).to.have.attribute('aria-selected', 'true');
       });
+
+      describe('when also the second child is a ListSubheader', () => {
+        it('first selectable option is focused to use the arrow', () => {
+          const { getAllByRole } = render(
+            <Select defaultValue="" open>
+              <ListSubheader>Empty category</ListSubheader>
+              <ListSubheader>Category 1</ListSubheader>
+              <MenuItem value={1}>Option 1</MenuItem>
+              <MenuItem value={2}>Option 2</MenuItem>
+              <ListSubheader>Category 2</ListSubheader>
+              <MenuItem value={3}>Option 3</MenuItem>
+              <MenuItem value={4}>Option 4</MenuItem>
+            </Select>,
+          );
+
+          const options = getAllByRole('option');
+          expect(options[2]).to.have.attribute('tabindex', '0');
+
+          act(() => {
+            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[3], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[5], { key: 'Enter' });
+          });
+
+          expect(options[5]).to.have.attribute('aria-selected', 'true');
+        });
+      });
     });
 
     describe('when the first child is a MenuItem disabled', () => {
