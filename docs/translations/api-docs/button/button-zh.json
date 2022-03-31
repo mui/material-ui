@@ -1,89 +1,89 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/customization/palette/#adding-new-colors\">palette customization guide</a>.",
+    "children": "组件的内容",
+    "classes": "覆盖或扩展应用于组件的样式。请参阅下文<a href=\"#css\">CSS API</a> 了解更多详情。",
+    "color": "组件的颜色。 它支持默认和自定义主题颜色，这些颜色可以在 <a href=\"https://mui.com/customization/palette/#adding-new-colors\">调色板自定义指南</a> 中添加。",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
-    "disableElevation": "If <code>true</code>, no elevation is used.",
+    "disableElevation": "如果 <code>true</code>, 则不使用提升效果。",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
-    "endIcon": "Element placed after the children.",
+    "endIcon": "放置在孩子之后的元素。",
     "fullWidth": "If <code>true</code>, the button will take up the full width of its container.",
-    "href": "The URL to link to when the button is clicked. If defined, an <code>a</code> element will be used as the root node.",
+    "href": "点击按钮时链接到的URL。 如果被定义, <code>a</code> 元素将被用作根节点.",
     "size": "The size of the button. <code>small</code> is equivalent to the dense button styling.",
-    "startIcon": "Element placed before the children.",
+    "startIcon": "放置在孩子之前的元素。",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "variant": "使用的变体。"
   },
   "classDescriptions": {
     "root": {
-      "description": "Styles applied to the root element."
+      "description": "应用于根元素的样式。"
     },
     "text": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "description": "如果为 {{conditions}} ，应用于 {{nodeName}}的样式。",
+      "nodeName": "根元素",
       "conditions": "<code>variant=\"text\"</code>"
     },
     "textInherit": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"inherit\"</code>"
+      "description": "如果为 {{conditions}} ，应用于 {{nodeName}}的样式。",
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"text\"</code> 和<code>color=\"inherit\"</code>"
     },
     "textPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"text\"</code> 和<code>color=\"primary\"</code>"
     },
     "textSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"text\"</code> 和 <code>color=\"secondary\"</code>"
     },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "outlinedInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"inherit\"</code>"
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"outlined\"</code> 和<code>color=\"inherit\"</code>"
     },
     "outlinedPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"outlined\"</code> 和<code>color=\"primary\"</code>"
     },
     "outlinedSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"outlined\"</code> 和<code>color=\"secondary\"</code>"
     },
     "contained": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>variant=\"contained\"</code>"
     },
     "containedInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"inherit\"</code>"
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"contained\"</code> 和<code>color=\"inherit\"</code>"
     },
     "containedPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"primary\"</code>"
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"contained\"</code> 和<code>color=\"primary\"</code>"
     },
     "containedSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
+      "nodeName": "根元素",
+      "conditions": "<code>variant=\"contained\"</code> 和 <code>color=\"secondary\"</code>"
     },
     "disableElevation": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>disableElevation={true}</code>"
     },
     "focusVisible": {
@@ -139,7 +139,7 @@
     "containedSizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
+      "conditions": "<code>size=\"medium\"</code> 和<code>variant=\"contained\"</code>"
     },
     "containedSizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -148,22 +148,22 @@
     },
     "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>size=\"small\"</code>"
     },
     "sizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>size=\"medium\"</code>"
     },
     "sizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>size=\"large\"</code>"
     },
     "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>fullWidth={true}</code>"
     },
     "startIcon": {
