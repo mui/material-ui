@@ -58,6 +58,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   alignItems: 'center',
   position: 'relative',
   textDecoration: 'none',
+  width: "100%",
   boxSizing: 'border-box',
   textAlign: 'left',
   paddingTop: 8,
