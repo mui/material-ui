@@ -3,7 +3,7 @@
 <p class="description">Learn about the experimental API for using CSS variables on Material UI components.</p>
 
 CSS variables is the most upvoted `@mui/system` related issue.
-It allows several improvements in developer experience, like fixing dark mode flickering in SSR, allowing multiple themes other than light and dark, better debugging experience overall, and many others.
+It allows several improvements in developer experience, like fixing dark mode SSR flickering, allowing multiple themes other than only light and dark, better debugging experience overall, and many others.
 To learn more, check [the RFC](https://github.com/mui/material-ui/issues/27651) we did about it.
 
 A while ago, we added an experimental API to the System package meant to allow styling the components with CSS variables.
@@ -13,6 +13,7 @@ We want now to take it one step further and utilize it in one of the Material UI
 
 At this moment, the API does not require any breaking changes for the Material UI components, however it depends on using a new experimental provider for the theme, called `Experimental_CssVarsProvider`.
 Except for providing the theme in the inner React context, this new provider has as a responsibility to generate CSS variables out of all tokens in the theme that are not functions, and make them available in the context.
+
 All these variables, are available under a key in the theme, named `vars`.
 The structure of this object is identical to the theme structure, the only difference is that the values represent some CSS varaibles.
 
@@ -34,7 +35,7 @@ If you try to inspect it, you will see that the color style has a direct hex val
 <div style="color: #2e7d32;">...</div>
 ```
 
-Now, if the same div used CSS variables, as in the example below, you'll be able to track where that color token as been defined in the theme.
+Now, if the same div used CSS variables, as in the example below, you'll be able to track where that color token is defined in the theme:
 
 ```jsx
 const Example() {
@@ -49,26 +50,50 @@ const Example() {
 <div style="color: var(--md-palette-success-main);">...</div>
 ```
 
-Additionally, by clicking on the CSS variable in the browser's dev tools, you'll be taken to the theme object where you'll see its direct hex value again. 
+Additionally, by clicking on the CSS variable in the browser's dev tools, you'll be taken to the theme object where you'll see its direct hex value again.
 We believe this to be a significant improvement in developer experience when debugging styles for any component.
 
 ### Creating a custom theme
 
-The example above uses the default theme. In the next example you will learn how to create your custom theme, using the `experimental_extendTheme` utility.
+The example above is using the default Material UI theme.
+But, what if you wanted to create your own custom theme?
+Let's see how to do that using the `experimental_extendTheme` utility.
 
-Before starting with the example, it's important to distingwish some differences in the theme structure.
-The new theme structure, lets you define all different themes you have in one theme, by defining different color schemes.
-Then, when you want to change the app to use different theme, you can use the `useColorScheme` to set the color scheme you want to use.
-This will cause the browser to re-write the CSS varibles to point to the new values, while the components won't change at all, as they should still link to the same variables).
+To start, it is important to understand this new theme structure.
+A theme is a collection of color schemes, each one defined within a single theme object.
+You'll be able to create more than light and dark color schemes if you want but, for the sake of simplicity, let's use only these two as an example. Here's how you'd customize it:
+
+```jsx
+const theme = experimental_extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: teal,
+        secondary: deepOrange,
+      },
+    },
+    dark: {
+      palette: {
+        primary: cyan,
+        secondary: orange,
+      },
+    },
+  },
+});
+```
 
 {{"demo": "CssVarsCustomTheme.js", "iframe": true }}
 
+To toggle between color schemes, you can use the `useColorScheme` hook.
+This will make the browser re-write the CSS variables, pointing them to the new values you've created.
+The components' classes won't change at all, though—they should still refer to the same variables as before.
+
 ### Customizing components
 
-As of now, the `Button` component is the only one supporting CSS variables (note that it doesn't cause any breaking change). 
-To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarisProvider`. 
+As of now, the `Button` component is the only one supporting CSS variables (note that it doesn't cause any breaking change).
+To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarisProvider`.
 Play around with the demo below!
-We'd appreciate any feedback about this API, as it is still in development. 
+We'd appreciate any feedback about this API, as it is still in development.
 
 {{"demo": "CssVariablesCustomization.js", "iframe": true }}
 
@@ -87,7 +112,7 @@ declare module '@mui/material/styles' {
 }
 ```
 
-> To help us bring this new API to more components faster, feel free to contribute by adding CSS variables support in more components. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress first, in case someone is already working on that component.
+> To help us bring this new API to more components faster, feel free to contribute by adding CSS variables support in more components. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress first, in case someone took the lead already on the component you were thinking of.
 
 ## API
 
