@@ -248,6 +248,80 @@ describe('MenuUnstyled', () => {
         expect(document.activeElement).to.equal(getByText('Ba'));
         expect(getByText('Ba')).to.have.attribute('tabindex', '0');
       });
+
+      it('navigate to options with diacritic characters', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>Ba</MenuItemUnstyled>
+            <MenuItemUnstyled>Bb</MenuItemUnstyled>
+            <MenuItemUnstyled>Bą</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'Control' });
+        fireEvent.keyDown(items[1], { key: 'Alt' });
+        fireEvent.keyDown(items[1], { key: 'ą' });
+        expect(document.activeElement).to.equal(getByText('Bą'));
+        expect(getByText('Bą')).to.have.attribute('tabindex', '0');
+      });
+
+      it('navigate to next options with beginning diacritic characters', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>ąa</MenuItemUnstyled>
+            <MenuItemUnstyled>ąb</MenuItemUnstyled>
+            <MenuItemUnstyled>ąc</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'Control' });
+        fireEvent.keyDown(items[0], { key: 'Alt' });
+        fireEvent.keyDown(items[0], { key: 'ą' });
+        expect(document.activeElement).to.equal(getByText('ąa'));
+        expect(getByText('ąa')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'Alt' });
+        fireEvent.keyDown(items[1], { key: 'Control' });
+        fireEvent.keyDown(items[1], { key: 'ą' });
+        expect(document.activeElement).to.equal(getByText('ąb'));
+        expect(getByText('ąb')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[2], { key: 'Control' });
+        fireEvent.keyDown(items[2], { key: 'AltGraph' });
+        fireEvent.keyDown(items[2], { key: 'ą' });
+        expect(document.activeElement).to.equal(getByText('ąc'));
+        expect(getByText('ąc')).to.have.attribute('tabindex', '0');
+      });
     });
   });
 });

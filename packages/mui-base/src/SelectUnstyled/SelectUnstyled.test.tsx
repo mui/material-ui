@@ -246,6 +246,66 @@ describe('SelectUnstyled', () => {
         userEvent.keyPress(listbox, { key: 'c' });
         expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
       });
+
+      it('navigate to options with diacritic characters', () => {
+        const { getByRole, getByText } = render(
+          <SelectUnstyled>
+            <OptionUnstyled value={{ key: 'Aa' }}>Aa</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'Ba' }}>Ba</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'Bb' }}>Bb</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'Bc' }}>Bc</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'Bą' }}>Bą</OptionUnstyled>
+          </SelectUnstyled>,
+        );
+
+        const button = getByRole('button');
+        act(() => {
+          button.click();
+        });
+
+        const listbox = getByRole('listbox');
+
+        userEvent.keyPress(listbox, { key: 'b' });
+        expect(getByText('Ba')).to.have.class('MuiOptionUnstyled-highlighted');
+
+        userEvent.keyPress(listbox, { key: 'Control' });
+        userEvent.keyPress(listbox, { key: 'Alt' });
+        userEvent.keyPress(listbox, { key: 'ą' });
+        expect(getByText('Bą')).to.have.class('MuiOptionUnstyled-highlighted');
+      });
+
+      it('navigate to next options with beginning diacritic characters', () => {
+        const { getByRole, getByText } = render(
+          <SelectUnstyled>
+            <OptionUnstyled value={{ key: 'Aa' }}>Aa</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'ąa' }}>ąa</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'ąb' }}>ąb</OptionUnstyled>
+            <OptionUnstyled value={{ key: 'ąc' }}>ąc</OptionUnstyled>
+          </SelectUnstyled>,
+        );
+
+        const button = getByRole('button');
+        act(() => {
+          button.click();
+        });
+
+        const listbox = getByRole('listbox');
+
+        userEvent.keyPress(listbox, { key: 'Control' });
+        userEvent.keyPress(listbox, { key: 'Alt' });
+        userEvent.keyPress(listbox, { key: 'ą' });
+        expect(getByText('ąa')).to.have.class('MuiOptionUnstyled-highlighted');
+
+        userEvent.keyPress(listbox, { key: 'Alt' });
+        userEvent.keyPress(listbox, { key: 'Control' });
+        userEvent.keyPress(listbox, { key: 'ą' });
+        expect(getByText('ąb')).to.have.class('MuiOptionUnstyled-highlighted');
+
+        userEvent.keyPress(listbox, { key: 'Control' });
+        userEvent.keyPress(listbox, { key: 'AltGraph' });
+        userEvent.keyPress(listbox, { key: 'ą' });
+        expect(getByText('ąc')).to.have.class('MuiOptionUnstyled-highlighted');
+      });
     });
 
     it('closes the listbox without selecting an option when "Escape" is pressed', () => {
