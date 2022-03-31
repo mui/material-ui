@@ -71,11 +71,11 @@ unstyled: /base/react-button/
 
 {{"demo": "ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+除了使用默认按钮颜色外，您可以添加自定义颜色，或者禁用任何您不需要的颜色。 In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
 ## 尺寸
 
-For larger or smaller buttons, use the `size` prop.
+如果需要更大或者更小的按钮，请使用`size`属性。
 
 {{"demo": "ButtonSizes.js"}}
 
@@ -115,11 +115,11 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/button/)。
 
 ## 载入按钮（Loading buttons）
 
-The loading buttons can show loading state and disable interactions.
+加载按钮可以显示加载状态并禁用交互。
 
 {{"demo": "LoadingButtons.js"}}
 
@@ -135,7 +135,7 @@ The loading buttons can show loading state and disable interactions.
 
 ## Third-party routing library（第三方路由库）
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `ButtonBase` 组件提供了 `component` 属性来处理此用例。 `ButtonBase` 组件提供了 `component` 属性来处理此用例。 Here is a [more detailed guide](/guides/routing/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `ButtonBase` 组件提供了 `component` 属性来处理此用例。 `ButtonBase` 组件提供了 `component` 属性来处理此用例。 这里是 [更详细的指南](/guides/routing/#button)。
 
 ## 设计局限
 
