@@ -38,15 +38,19 @@ export interface SnackbarsProviderProps
   limit?: number;
 }
 
-const SnackbarsProvider = ({
-  limit = 5,
-  anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
-  TransitionComponent = Grow,
-  children,
-  ...others
-}: SnackbarsProviderProps & { children?: React.ReactNode }) => {
+type SnackbarsByAnchorOrigin = { [key: string]: SnackbarProps[] };
+
+const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.ReactNode }) => {
   const [snackbars, setSnackbars] = React.useState<SnackbarProps[]>([]);
   const theme = useTheme();
+
+  const {
+    limit = 5,
+    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
+    TransitionComponent = Grow,
+    children,
+    ...others
+  } = props;
 
   const showSnackbar = (snackbar: SnackbarProps) => {
     setSnackbars((prevState) => {
@@ -70,14 +74,35 @@ const SnackbarsProvider = ({
     isRtl: theme.direction === 'rtl',
   };
 
-  const items = snackbars.map((snackbar) => (
-    <StyledSnackbar ownerState={ownerState} key={snackbar.id} {...others} {...snackbar} />
-  ));
+  const groupSnackbarsByAnchorOrigin = snackbars.reduce<SnackbarsByAnchorOrigin>((acc, current) => {
+    const anchor = current.anchorOrigin;
+    const category = `${anchor!.vertical}${anchor!.horizontal}`;
+    const existingCategory = acc[category] || [];
+    return {
+      ...acc,
+      [category]: [...existingCategory, current],
+    };
+  }, {});
+
+  const snackbarsContainer = Object.keys(groupSnackbarsByAnchorOrigin).map((origin) => {
+    const snackbarsByCategory = groupSnackbarsByAnchorOrigin[origin];
+    const newOwnerState = { ...ownerState, anchorOrigin: snackbarsByCategory[0].anchorOrigin };
+    return (
+      <SnackbarsContainer
+        key={origin}
+        /* @ts-expect-error */
+        ownerState={newOwnerState}
+      >
+        {snackbarsByCategory.map((snackbar) => (
+          <StyledSnackbar key={snackbar.id} ownerState={newOwnerState} {...others} {...snackbar} />
+        ))}
+      </SnackbarsContainer>
+    );
+  });
 
   return (
     <SnackbarsContext.Provider value={{ showSnackbar }}>
-      {/* @ts-expect-error */}
-      <SnackbarsContainer ownerState={ownerState}>{items}</SnackbarsContainer>
+      {snackbarsContainer}
       {children}
     </SnackbarsContext.Provider>
   );
