@@ -81,7 +81,7 @@ interface SetHighlightAction<TOption> {
 
 interface TextNavigationAction<TOption> {
   type: ActionTypes.textNavigation;
-  textCriteria: TextCriteria;
+  textCriteriaStr: string;
   optionStringifier: (option: TOption) => string | undefined;
   props: UseListboxStrictProps<TOption>;
 }

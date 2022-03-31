@@ -4,7 +4,6 @@ import {
   UseListboxStrictProps,
   ListboxAction,
   ActionTypes,
-  TextCriteria,
 } from './useListbox.types';
 
 type OptionPredicate<TOption> = (option: TOption, index: number) => boolean;
@@ -231,7 +230,7 @@ function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption
 
 export const textCriteriaMatches = <TOption>(
   nextFocus: TOption,
-  textCriteria: TextCriteria,
+  textCriteriaStr: string,
   stringifyOption: (option: TOption) => string | undefined,
 ) => {
   const text = stringifyOption(nextFocus)?.trim().toLowerCase();
@@ -240,15 +239,13 @@ export const textCriteriaMatches = <TOption>(
     // Make option not navigable if stringification fails or results in empty string.
     return false;
   }
-  if (textCriteria.repeating) {
-    return text[0] === textCriteria.keys[0];
-  }
-  return text.indexOf(textCriteria.keys.join('')) === 0;
+
+  return text.indexOf(textCriteriaStr) === 0;
 };
 
 function handleTextNavigation<TOption>(
   state: ListboxState<TOption>,
-  textCriteria: TextCriteria,
+  textCriteriaStr: string,
   optionStringifier: (option: TOption) => string | undefined,
   props: UseListboxStrictProps<TOption>,
 ): ListboxState<TOption> {
@@ -268,7 +265,7 @@ function handleTextNavigation<TOption>(
     );
   };
 
-  const startWithCurrentOption = !textCriteria.repeating;
+  const startWithCurrentOption = textCriteriaStr.length > 1;
 
   let nextOption = startWithCurrentOption
     ? state.highlightedValue
@@ -282,7 +279,7 @@ function handleTextNavigation<TOption>(
     }
 
     if (
-      textCriteriaMatches(nextOption, textCriteria, optionStringifier) &&
+      textCriteriaMatches(nextOption, textCriteriaStr, optionStringifier) &&
       (!isOptionDisabled(nextOption, options.indexOf(nextOption)) || disabledItemsFocusable)
     ) {
       // The nextOption is the element to be highlighted
@@ -360,7 +357,7 @@ export default function defaultListboxReducer<TOption>(
     case ActionTypes.textNavigation:
       return handleTextNavigation(
         state,
-        action.textCriteria,
+        action.textCriteriaStr,
         action.optionStringifier,
         action.props,
       );

@@ -315,12 +315,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteria: {
-          keys: ['t', 'h'],
-          repeating: false,
-          previousKeyMatched: true,
-          lastTime: null,
-        },
+        textCriteriaStr: 'th',
         optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
@@ -344,12 +339,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteria: {
-          keys: ['z'],
-          repeating: false,
-          previousKeyMatched: true,
-          lastTime: null,
-        },
+        textCriteriaStr: 'z',
         optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
@@ -373,12 +363,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteria: {
-          keys: ['t'],
-          repeating: false,
-          previousKeyMatched: true,
-          lastTime: null,
-        },
+        textCriteriaStr: 't',
         optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
@@ -402,12 +387,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteria: {
-          keys: ['t'],
-          repeating: false,
-          previousKeyMatched: true,
-          lastTime: null,
-        },
+        textCriteriaStr: 't',
         optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
@@ -431,12 +411,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteria: {
-          keys: ['o', 'n', 'e'],
-          repeating: false,
-          previousKeyMatched: true,
-          lastTime: null,
-        },
+        textCriteriaStr: 'one',
         optionStringifier: (option) => option,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],

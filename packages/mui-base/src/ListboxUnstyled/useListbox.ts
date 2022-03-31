@@ -202,15 +202,18 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         textCriteria.lastTime = currentTime;
         textCriteria.keys.push(lowerKey);
 
+        const textCriteriaStr = textCriteria.repeating
+          ? textCriteria.keys[0]
+          : textCriteria.keys.join('');
         const keepFocusOnCurrent =
           highlightedValue &&
           !textCriteria.repeating &&
-          textCriteriaMatches(highlightedValue, textCriteria, optionStringifier);
+          textCriteriaMatches(highlightedValue, textCriteriaStr, optionStringifier);
 
         if (textCriteria.previousKeyMatched) {
           if (!keepFocusOnCurrent) {
             dispatch({
-              textCriteria,
+              textCriteriaStr,
               optionStringifier,
               type: ActionTypes.textNavigation,
               props: propsWithDefaults,
