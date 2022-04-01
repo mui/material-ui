@@ -65,10 +65,10 @@ import DateRangePicker from '@mui/lab/DateRangePicker';
 import { DatePicker, DateRangePicker } from '@mui/lab';
 
 // after
-import DatePicker from '@mui/x-pickers/DatePicker';
-import DateRangePicker from '@mui/x-pickers-pro/DateRangePicker';
-import { DatePicker } from '@mui/x-pickers'; // DatePicker is also available in `@mui/x-pickers-pro`
-import { DateRangePicker } from '@mui/x-pickers-pro';
+import DatePicker from '@mui/x-date-pickers/DatePicker';
+import DateRangePicker from '@mui/x-date-pickers-pro/DateRangePicker';
+import { DatePicker } from '@mui/x-date-pickers'; // DatePicker is also available in `@mui/x-date-pickers-pro`
+import { DateRangePicker } from '@mui/x-date-pickers-pro';
 ```
 
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-date-pickers` or `@mui/x-date-pickers-pro`:
@@ -83,5 +83,5 @@ You can find the documentation for the picker components in the [MUI X docs](htt
 
 ## What's next for the date and time pickers?
 
-For now, `@mui/x-pickers` and `@mui/x-pickers-pro` are in alpha.
+For now, `@mui/x-date-pickers` and `@mui/x-date-pickers-pro` are in alpha.
 Our next goal is to work on the stability and API consistency of these components to prepare a stable release.
