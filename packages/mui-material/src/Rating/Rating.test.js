@@ -34,22 +34,61 @@ describe('<Rating />', () => {
     );
   });
 
-  it('should only render a single RatingDecimal child', () => {
-    const { container } = render(<Rating name="rating-test" value={2.5} precision={0.1} />);
+  it('should only render a single child for full RatingItems when readOnly', () => {
+    const { container } = render(<Rating readOnly name="rating-test" value={2.5} precision={0.1} />);
 
-    expect(container.querySelectorAll('.MuiRating-decimal')).to.have.length(1);
+    expect(container.querySelectorAll('.MuiRating-decimal')[0].children).to.have.length(1);
   });
 
-  it('should only render two children under RatingDecimal', () => {
+  it('should only render a two children for partially full RatingItems when readOnly', () => {
+    const { container } = render(<Rating readOnly name="rating-test" value={2.5} precision={0.1} />);
+
+    expect(container.querySelectorAll('.MuiRating-decimal')[2].children).to.have.length(2);
+  });
+
+  it('should only render two children under RatingDecimal when not readOnly and not hovered and not focused', () => {
     const { container } = render(<Rating name="rating-test" value={2.5} precision={0.1} />);
 
-    expect(container.querySelector('.MuiRating-decimal').querySelectorAll('label')).to.have.length(2);
+    expect(container.querySelectorAll('.MuiRating-decimal')[0].children).to.have.length(2);
+  });
+
+  it('should only render complete set of decimal inputs not readOnly and focused', () => {
+    const { container } = render(<Rating name="rating-test" value={2.5} precision={0.1} />);
+
+    act(() => {
+      const noValueRadio = screen.getAllByRole('radio').find((radio) => {
+        return radio.checked;
+      });
+
+      noValueRadio.focus();
+    });
+
+    expect(container.querySelectorAll('.MuiRating-decimal')[0].querySelectorAll('label')).to.have.length(10);
+  });
+
+  it('should only render complete set of decimal inputs not readOnly and hovered', () => {
+    const { container } = render(<Rating name="rating-test" value={2.5} precision={0.1} />);
+
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      left: 0,
+      right: 100,
+    }));
+
+    stub(container.firstChild.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 20,
+    }));
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+
+    expect(container.querySelectorAll('.MuiRating-decimal')[0].querySelectorAll('label')).to.have.length(10);
   });
 
   it('should render partially filled RatingItem under RatingDecimal', () => {
     const { container } = render(<Rating name="rating-test" value={2.54} precision={0.1} />);
 
-    expect(container.querySelector('.MuiRating-decimal').querySelectorAll('label')[0].style).to.have.property('width', '50%');
+    expect(container.querySelectorAll('.MuiRating-decimal')[2].querySelectorAll('label')[0].style).to.have.property('width', '50%');
   });
 
   it('should handle mouse hover correctly', () => {
