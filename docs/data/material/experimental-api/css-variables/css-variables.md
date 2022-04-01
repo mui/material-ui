@@ -118,7 +118,7 @@ declare module '@mui/material/styles' {
 `<CssVarsProvider>` props:
 
 - `defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme }` - Design system default color scheme; provides a string if the design system has one default color scheme (either light or dark) or an object if the design system has default light & dark color schemes
-- `defaultMode?: Mode` - Design system default mode.
+- `defaultMode?: Mode` - Design system default mode
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes or color schemes
 - `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
 - `prefix: string` - CSS variable prefix
