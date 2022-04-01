@@ -111,7 +111,7 @@ declare module '@mui/material/styles' {
 }
 ```
 
-> To help us bring this new API to more components faster, feel free to contribute by adding CSS variables support in more components. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress first, in case someone took the lead already on the component you were thinking of.
+> If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
 
 ## API
 
