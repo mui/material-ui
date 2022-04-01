@@ -51,7 +51,7 @@ const Example() {
 <div style="color: var(--md-palette-success-main);">...</div>
 ```
 
-Additionally, by clicking on the CSS variable in the browser's dev tools, you'll be taken to the theme object where you'll see its direct hex value again.
+Clicking on the CSS variable in the browser's dev tools takes you to the theme object where you'll see its direct hex value again.
 We believe this to be a significant improvement in developer experience when debugging styles for any component.
 
 ### Creating a custom theme
