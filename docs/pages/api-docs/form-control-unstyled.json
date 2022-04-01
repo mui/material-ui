@@ -18,6 +18,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/FormControlUnstyled/FormControlUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/components/form-control/\">Form Control</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
   "cssComponent": false
 }
