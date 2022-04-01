@@ -19,6 +19,7 @@ const pages = [
           { pathname: '/base/react-input', title: 'Input' },
           { pathname: '/base/react-select', title: 'Select' },
           { pathname: '/base/react-slider', title: 'Slider' },
+          { pathname: '/base/react-switch', title: 'Switch' },
         ],
       },
       {
@@ -37,7 +38,9 @@ const pages = [
           { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
           { pathname: '/base/react-modal', title: 'Modal' },
           { pathname: '/base/react-no-ssr', title: 'No SSR' },
+          { pathname: '/base/react-popper', title: 'Popper' },
           { pathname: '/base/react-portal', title: 'Portal' },
+          { pathname: '/base/react-textarea-autosize', title: 'Textarea autosize' },
           { pathname: '/base/react-trap-focus', title: 'Trap focus' },
         ],
       },
