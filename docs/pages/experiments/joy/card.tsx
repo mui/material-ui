@@ -369,7 +369,8 @@ export default function JoySvgIcon() {
               sx={{
                 display: 'flex',
                 gap: 1,
-                p: 1.5,
+                py: 1.5,
+                px: 'var(--Card-padding)',
                 mt: 'auto',
                 borderTopColor: 'background.level2',
                 bgcolor: 'background.level1',
@@ -661,7 +662,7 @@ export default function JoySvgIcon() {
               flexDirection: 'row',
               flexWrap: 'wrap',
               resize: 'horizontal',
-              overflow: 'auto',
+              overflow: 'hidden',
               gap: 'clamp(0px, (100% - 360px) * 999, 16px)',
               transition: 'transform 0.3s, border 0.3s',
               '&:hover': {

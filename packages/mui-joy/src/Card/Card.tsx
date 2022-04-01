@@ -43,7 +43,7 @@ const CardRoot = styled('div', {
     '--CardOverflow-offset':
       ownerState.variant === 'outlined'
         ? `calc(-1 * var(--Card-padding) - var(--variant-outlinedBorderWidth))`
-        : `calc(-1 * var(Card-padding))`,
+        : `calc(-1 * var(--Card-padding))`,
     '--AspectRatio-radius':
       'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
     ...(ownerState.size === 'sm' && {
