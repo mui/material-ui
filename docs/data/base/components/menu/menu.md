@@ -8,7 +8,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#menu
 
 # Unstyled menu
 
-<p class="description">The `MenuUnstyled` component provides your users with a list of choices on temporary surfaces.</p>
+<p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
 
 ## MenuUnstyled and MenuItemUnstyled components
 
