@@ -34,6 +34,8 @@ If you inspect it, you will see that the color style has a direct hex value that
 <div style="color: #2e7d32;">...</div>
 ```
 
+This makes the code difficult to debug, because the app could have multiple theme tokens, but this doesn't give you any information about which theme is responsible for this style.
+
 If that same `<div>` used CSS variables instead—as in the example below—you could track _where_ that color token is defined in the theme:
 
 ```jsx
