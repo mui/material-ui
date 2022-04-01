@@ -545,7 +545,11 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                   precision,
                 );
 
-                if ((readOnly || (hover === -1 && focus === -1)) && (indexDecimal !== items.length -1 && itemDecimalValue !== value)) {
+                if (
+                  (readOnly || (hover === -1 && focus === -1)) &&
+                  indexDecimal !== items.length - 1 &&
+                  itemDecimalValue !== value
+                ) {
                   return null;
                 }
 
