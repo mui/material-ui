@@ -530,7 +530,8 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         };
 
         const isActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
-        if (precision < 1 && (itemValue - 1 === Math.floor(value)) && itemValue === Math.ceil(value)) {
+        if (precision < 1) {
+          const items = Array.from(new Array(1 / precision));
           return (
             <RatingDecimal
               key={itemValue}
@@ -538,27 +539,39 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
               ownerState={ownerState}
               iconActive={isActive}
             >
-              <>
-                <RatingItem
-                  key={value}
-                  {...ratingItemProps}
-                  isActive={false}
-                  itemValue={value}
-                  labelProps={{
-                    style: {
-                      width: `${roundValueToPrecision(value - (itemValue - 1), precision) * 100}%`,
-                      overflow: 'hidden',
-                      position: 'absolute',
-                    }
-                  }}
-                />
-                <RatingItem
-                  key={itemValue}
-                  {...ratingItemProps}
-                  isActive={false}
-                  itemValue={itemValue}
-                />
-              </>
+              {items.map(($, indexDecimal) => {
+                const itemDecimalValue = roundValueToPrecision(
+                  itemValue - 1 + (indexDecimal + 1) * precision,
+                  precision,
+                );
+
+                if ((readOnly || (hover === -1 && focus === -1)) && (indexDecimal !== items.length -1 && itemDecimalValue !== value)) {
+                  return null;
+                }
+
+                return (
+                  <RatingItem
+                    key={itemDecimalValue}
+                    {...ratingItemProps}
+                    // The icon is already displayed as active
+                    isActive={false}
+                    itemValue={itemDecimalValue}
+                    labelProps={{
+                      style:
+                        items.length - 1 === indexDecimal
+                          ? {}
+                          : {
+                              width:
+                                itemDecimalValue === value
+                                  ? `${(indexDecimal + 1) * precision * 100}%`
+                                  : '0%',
+                              overflow: 'hidden',
+                              position: 'absolute',
+                            },
+                    }}
+                  />
+                );
+              })}
             </RatingDecimal>
           );
         }
