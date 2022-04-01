@@ -1,6 +1,6 @@
 ---
 product: base
-title: Unstyled React Input component and useInput hook
+title: Unstyled React Input component and hook
 components: InputUnstyled
 githubLabel: 'component: input'
 packageName: '@mui/base'
