@@ -9,6 +9,8 @@ This solves the problem of dark-mode SSR flickering; lets you provide your users
 Previously, these CSS variables were only available as an experimental API in the MUI System package.
 Now they are ready for experimental use with Material UI components.
 
+> If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
+
 ## Usage
 
 The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
@@ -110,8 +112,6 @@ declare module '@mui/material/styles' {
   }
 }
 ```
-
-> If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
 
 ## API
 
