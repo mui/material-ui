@@ -40,7 +40,7 @@ By default, badges automatically hide when `badgeContent={0}`. You can override 
 ### The max prop
 
 You can use the `max` prop to set a maximum value for `badgeContent`.
-The default is "99".
+The default is 99.
 
 {{"demo": "BadgeMax.js"}}
 
