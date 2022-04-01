@@ -28,7 +28,7 @@ const Example() {
 
 {{"demo": "SuccessDivThemeToken.js", "hideToolbar": true }}
 
-If you try to inspect it, you will see that the color style has a direct hex value, that comes from some theme token:
+If you inspect it, you will see that the color style has a direct hex value that comes from the theme token:
 
 ```html
 <div style="color: #2e7d32;">...</div>
