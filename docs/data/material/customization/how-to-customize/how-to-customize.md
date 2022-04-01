@@ -20,8 +20,8 @@ To change the styles of _one single instance_ of a component, you can use one of
 
 ### The `sx` prop
 
-The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop), which is available on all Material UI components.
-Here is an example:
+The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases.
+It can be used with all Material UI components.
 
 {{"demo": "SxProp.js" }}
 
@@ -39,7 +39,7 @@ Then, copy the target class of `MuiSlider-thumb`, place it inside the styles wit
 
 {{"demo": "DevTools.js"}}
 
-The styles injected into the DOM by Material UI rely on class names that [follow a simple pattern](/styles/advanced/#class-names):
+The styles injected into the DOM by Material UI rely on class names that all [follow a standard pattern](/styles/advanced/#class-names):
 `[hash]-Mui[Component name]-[name of the slot]`.
 
 In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you only really need to target the `.MuiSlider-thumb`, where `Slider` is the component and `thumb` is the slot.

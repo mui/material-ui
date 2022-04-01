@@ -94,9 +94,11 @@ const finalTheme = createTheme({
 
 {{"demo": "GlobalThemeOverrideCallback.js"}}
 
-### Using the `sx` experimental syntax
+### The `sx` syntax (experimental)
 
-If you are not familiar with the `sx` prop, it consists of a shortcut for defining custom styles that access the theme object. The property is a superset of the CSS that packages all the style functions. To learn more about [the concept behind it](/system/the-sx-prop/) and [how it differs from the `styled` utility](/system/styled/#difference-with-the-sx-prop).
+The `sx` prop acts as a shortcut for defining custom styles that access the theme object.
+This prop lets you write inline styles using a superset of CSS.
+Learn more about [the concept behind the `sx` prop](/system/the-sx-prop/) and [how `sx` differs from the `styled` utility](/system/styled/#difference-with-the-sx-prop).
 
 You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation.
 
