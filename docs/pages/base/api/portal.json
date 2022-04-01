@@ -9,6 +9,6 @@
   "spread": false,
   "filename": "/packages/mui-base/src/Portal/Portal.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-portal/\">Portal</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-portal/\">Portal</a></li></ul>",
   "cssComponent": false
 }

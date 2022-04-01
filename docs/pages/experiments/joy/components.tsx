@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
 import { ThemeProvider } from '@mui/material/styles';
+import Avatar from '@mui/joy/Avatar';
+import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
@@ -44,7 +46,7 @@ const ColorSchemePicker = () => {
   }
 
   return (
-    <Button
+    <IconButton
       variant="outlined"
       onClick={() => {
         if (mode === 'light') {
@@ -53,13 +55,9 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{
-        p: '0.25rem',
-        width: 'var(--Button-minHeight)',
-      }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
-    </Button>
+    </IconButton>
   );
 };
 
@@ -111,6 +109,21 @@ const components: {
   }[];
 }[] = [
   {
+    name: 'AvatarGroup',
+    render: (props: any) => (
+      <AvatarGroup {...props}>
+        <Avatar src="/static/images/avatar/1.jpg" />
+        <Avatar src="/static/images/avatar/2.jpg" />
+        <Avatar src="/static/images/avatar/3.jpg" />
+        <Avatar>+3</Avatar>
+      </AvatarGroup>
+    ),
+    cssVars: [
+      { id: '--AvatarGroup-gap', type: 'number', unit: 'px', defaultValue: -8 },
+      { id: '--Avatar-ringSize', type: 'number', unit: 'px', defaultValue: 2 },
+    ],
+  },
+  {
     name: 'Button',
     render: (props: any) => (
       <React.Fragment>
@@ -124,7 +137,6 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Button-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
       { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
       { id: '--Button-gap', type: 'number', unit: 'px' },
@@ -274,7 +286,7 @@ const components: {
       { id: '--List-item-fontSize', type: 'number', unit: 'px', defaultValue: 16 },
       { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 0 },
-      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],
   },
@@ -317,7 +329,7 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Input-height', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--Input-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
       { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
@@ -332,7 +344,7 @@ const components: {
         },
       },
       { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
-      { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
+      { id: '--Input-decorator-offset', type: 'number', unit: 'px' },
     ],
   },
   {
