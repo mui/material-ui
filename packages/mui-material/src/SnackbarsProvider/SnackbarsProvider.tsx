@@ -51,6 +51,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
 
   const {
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
+    autoHideDuration,
     children,
     ClickAwayListenerProps,
     ContentProps,
@@ -67,9 +68,10 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
         ...prevState,
         {
           anchorOrigin: { vertical, horizontal },
+          autoHideDuration,
           ClickAwayListenerProps,
           ContentProps,
-          id: randomId(),
+          key: randomId(),
           open: true,
           TransitionComponent,
           transitionDuration,
@@ -79,6 +81,16 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
       ];
       return updatedSnackbars.slice(0, limit);
     });
+  };
+
+  const handleClose = (key: string) => () => {
+    const newSnackbars = snackbars.map((snackbar) => {
+      if (snackbar.key === key) {
+        snackbar.open = false;
+      }
+      return snackbar;
+    });
+    setSnackbars([...newSnackbars]);
   };
 
   const ownerState = {
@@ -106,7 +118,17 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
         ownerState={newOwnerState}
       >
         {snackbarsByCategory.map((snackbar) => (
-          <StyledSnackbar key={snackbar.id} ownerState={newOwnerState} {...others} {...snackbar} />
+          <StyledSnackbar
+            key={snackbar.key}
+            ownerState={newOwnerState}
+            {...others}
+            {...snackbar}
+            onClose={handleClose(snackbar.key)}
+            ClickAwayListenerProps={{
+              onClickAway: () => null,
+              ...snackbar.ClickAwayListenerProps,
+            }}
+          />
         ))}
       </SnackbarsContainer>
     );
