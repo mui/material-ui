@@ -54,6 +54,7 @@
 /utils/* /components/:splat 301
 /api/mui-theme-provider/ /styles/api/ 301
 /components/expansion-panels/ /components/accordion/ 301
+/components/trap-focus/ /base/react-trap/focus/ 301
 /api/expansion-panel/ /api/accordion/ 301
 /api/expansion-panel-actions/ /api/accordion-actions/ 301
 /api/expansion-panel-details/ /api/accordion-details/ 301
