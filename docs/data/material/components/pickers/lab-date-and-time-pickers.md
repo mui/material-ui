@@ -4,7 +4,7 @@
 
 ## Why have the picker components been moved to MUI X?
 
-MUI X components are built for complex use cases. Date and time pickers are difficult to pull off correctly, so they deserve the special attention that they will receive as part of MUI X. To learn more, check out the [blog post about the move](/blog/lab-pickers-to-mui-x/).
+MUI X components are built for complex use cases. Date and time pickers are difficult to pull off correctly, so they deserve the special attention that they will receive as part of MUI X. To learn more, check out the [blog post about the move](/blog/lab-date-pickers-to-mui-x/).
 
 ## How do I migrate?
 

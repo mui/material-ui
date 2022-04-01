@@ -19,6 +19,7 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
 import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
 import ScienceIcon from '@mui/icons-material/Science';
+import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 
 const iconsMap = {
   DescriptionIcon: ArticleRoundedIcon,
@@ -33,6 +34,7 @@ const iconsMap = {
   ReaderIcon: ChromeReaderModeRoundedIcon,
   TableViewIcon: TableViewRoundedIcon,
   ExperimentIcon: ScienceIcon,
+  DatePickerIcon: DateRangeRounded,
 };
 
 const Item = styled(function Item({ component: Component = 'div', ...props }) {
