@@ -11,7 +11,7 @@ packageName: '@mui/base'
 
 <p class="description">The <code>Modal</code> component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
 
-The `Modal` component renders its `children` in front of a backdrop. This lets you create an element that your users must interact with before continuing in the parent application.
+The `Modal` component renders its children in front of a backdrop. This lets you create an element that your users must interact with before continuing in the parent application.
 
 Features:
 
