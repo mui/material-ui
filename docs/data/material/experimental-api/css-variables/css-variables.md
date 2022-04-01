@@ -52,7 +52,7 @@ const Example() {
 ```
 
 Clicking on the CSS variable in the browser's dev tools takes you to the theme object where you'll see its direct hex value again.
-We believe this to be a significant improvement in developer experience when debugging styles for any component.
+This offers a huge improvement to the overall experience of debugging component styles.
 
 ### Creating a custom theme
 
