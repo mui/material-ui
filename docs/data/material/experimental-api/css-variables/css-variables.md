@@ -86,7 +86,7 @@ const theme = experimental_extendTheme({
 
 {{"demo": "CssVarsCustomTheme.js", "iframe": true }}
 
-To toggle between color schemes, you can use the `useColorScheme` hook.
+To toggle between color schemes, you can use the [`useColorScheme`](#usecolorscheme-colorschemecontextvalue) hook.
 This will make the browser re-write the CSS variables, pointing them to the new values you created—but the components' classes will still refer to the same variables as before.
 
 ### Customizing components
@@ -115,7 +115,7 @@ declare module '@mui/material/styles' {
 
 ## API
 
-`<CssVarsProvider>` props:
+### ` <CssVarsProvider>` props:
 
 - `defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme }` - Design system default color scheme; provides a string if the design system has one default color scheme (either light or dark) or an object if the design system has default light & dark color schemes
 - `defaultMode?: Mode` - Design system default mode
@@ -125,3 +125,13 @@ declare module '@mui/material/styles' {
 - `theme: ThemeInput`
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
+
+### `useColorScheme: () => ColorSchemeContextValue`
+
+- `allColorSchemes: string[]` - All color schemes available in the theme
+- `colorScheme: string`: - The current application color scheme
+- `darkColorScheme: string`- The color scheme for the dark mode
+- `lightColorScheme: string` - The color scheme for the light mode
+- `mode: string` - The user selected mode
+- `setColorScheme: : value => {…}` - Function for setting the `colorScheme`. The `colorScheme` is saved to internal state and local storage; if `colorScheme` is null, it will be reset to the default color scheme (light | dark)
+- `setMode: mode => {…}` - Function for setting the `mode`. The `mode` is saved to internal state and local storage; if `mode` is null, it will be reset to the default mode
