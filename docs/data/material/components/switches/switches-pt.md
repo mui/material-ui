@@ -1,9 +1,10 @@
 ---
 product: material-ui
 title: Componente React Interruptor
-components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
+components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel: 'component: switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
+unstyled: /base/react-switch
 ---
 
 # Interruptor
@@ -54,45 +55,13 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch/).
 
-## Posicionamento do rótulo
+## Label placement
 
-The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
-
-### Unstyled component
-
-```jsx
-import SwitchUnstyled from '@mui/base/SwitchUnstyled';
-```
-
-The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own. You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc. It is also possible to replace these default components by other HTML elements or custom components. It is also possible to replace these default components by other HTML elements or custom components.
-
-There are three components you can override by the `components` prop: `Root`, `Thumb` and `Input`. Each one's props can be set using the `componentsProps` object.
-
-{{"demo": "UnstyledSwitches.js"}}
-
-### useSwitch hook
-
-For the ultimate customizability, a `useSwitch` hook is available. It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
-
-```jsx
-import { useSwitch } from '@mui/base/SwitchUnstyled';
-```
-
-#### Basic example
-
-{{"demo": "UseSwitchesBasic.js"}}
-
-#### Customized look and feel
-
-{{"demo": "UseSwitchesCustom.js"}}
-
-## Quando usar
-
-Você pode alterar o posicionamento do rótulo:
+You can change the placement of the label:
 
 {{"demo": "FormControlLabelPosition.js"}}
 
-## Acessibilidade
+## When to use
 
 - [Caixas de seleção vs. interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
@@ -103,7 +72,5 @@ Você pode alterar o posicionamento do rótulo:
 - Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
-<code>
-  <Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
-</code>
+<Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
 ```
