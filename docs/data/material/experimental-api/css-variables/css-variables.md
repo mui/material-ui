@@ -90,7 +90,7 @@ This will make the browser re-write the CSS variables, pointing them to the new 
 ### Customizing components
 
 Because the CSS variables API is an experimental feature, it is currently only supported by the `Button` component.
-To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarisProvider`.
+To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarsProvider`.
 Play around with the demo below!
 We'd appreciate any feedback about this API, as it is still in development.
 
