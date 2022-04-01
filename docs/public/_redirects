@@ -54,7 +54,6 @@
 /utils/* /components/:splat 301
 /api/mui-theme-provider/ /styles/api/ 301
 /components/expansion-panels/ /components/accordion/ 301
-/components/trap-focus/ /base/react-trap-focus/ 301
 /api/expansion-panel/ /api/accordion/ 301
 /api/expansion-panel-actions/ /api/accordion-actions/ 301
 /api/expansion-panel-details/ /api/accordion-details/ 301
@@ -86,6 +85,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 # 2022
 /company/about/ /about/ 301
 /company/jobs/ /careers/ 301
+/components/trap-focus/ /base/react-trap-focus/ 301
+/api/unstable-trap-focus/ /base/api/trap-focus/ 301
 
 ## Localization
 /fr/* /:splat 301
