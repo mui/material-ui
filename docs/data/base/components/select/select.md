@@ -58,7 +58,7 @@ The `SelectUnstyled` component can be used with non-string values.
 
 ### Selected value appearance
 
-You can customize the apperance of the selected value display by providing a function to the `renderValue` prop.
+You can customize the appearance of the selected value display by providing a function to the `renderValue` prop.
 The element returned by this function will be rendered inside the select's button.
 
 {{"demo": "UnstyledSelectCustomRenderValue.js", "defaultCodeOpen": false}}
