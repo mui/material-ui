@@ -17,7 +17,7 @@ In addition to providing the theme in the inner React context, this new provider
 All of these variables are accessible in an object in the theme called `vars`.
 The structure of this object is identical to the theme structure—the only difference is that the values represent CSS variables.
 
-Let's say we have this element that uses some theme token:
+Consider an element that uses a theme token:
 
 ```jsx
 const Example() {
