@@ -85,8 +85,7 @@ const theme = experimental_extendTheme({
 {{"demo": "CssVarsCustomTheme.js", "iframe": true }}
 
 To toggle between color schemes, you can use the `useColorScheme` hook.
-This will make the browser re-write the CSS variables, pointing them to the new values you've created.
-The components' classes won't change at all, though—they should still refer to the same variables as before.
+This will make the browser re-write the CSS variables, pointing them to the new values you created—but the components' classes will still refer to the same variables as before.
 
 ### Customizing components
 
