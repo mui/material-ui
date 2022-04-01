@@ -12,7 +12,7 @@ We want now to take it one step further and utilize it in one of the Material UI
 ## Usage
 
 The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
-Except for providing the theme in the inner React context, this new provider has as a responsibility to generate CSS variables out of all tokens in the theme that are not functions, and make them available in the context.
+In addition to providing the theme in the inner React context, this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
 
 All these variables, are available under a key in the theme, named `vars`.
 The structure of this object is identical to the theme structure, the only difference is that the values represent some CSS varaibles.
