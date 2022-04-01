@@ -16,7 +16,7 @@ describe('<Sheet />', () => {
     muiName: 'MuiSheet',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
-    testVariantProps: { variant: 'text' },
+    testVariantProps: { variant: 'contained' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
