@@ -1,4 +1,3 @@
-/* eslint-disable react/style-prop-object */
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
