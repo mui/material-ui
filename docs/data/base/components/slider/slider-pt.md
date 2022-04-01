@@ -9,9 +9,9 @@ packageName: '@mui/base'
 
 # Slider
 
-<p class="description">The SliderUnstyled component lets users make selections from a range of values along a horizontal or vertical bar.</p>
+<p class="description">O componente SliderUnstyled permite que os usuários façam seleções a partir de um intervalo de valores ao longo de uma barra horizontal ou vertical.</p>
 
-Users may need to select a single value or a range of values on a slider. They are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters.
+Os usuários podem selecionar um único valor ou um intervalo de valores em um controle deslizante. Eles são ideais para controles de interface que se beneficiam de uma representação visual de conteúdo ajustável, assim como volume, configurações de brilho, ou aplicar filtros em imagem.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -23,15 +23,15 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 
 ## Discrete sliders
 
-The most basic slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from. This is suitable for situations in which an approximate value is good enough for the user, such as brightness or volume.
+O controle deslizante mais básico é _contínuo_, o que significa que não tem valores pré-definidos  para o usuário selecionar. Isso é adequado para situações em que um valor aproximado é bom o suficiente para o usuário, como brilho ou volume.
 
-But if your users need more precise options, you can create a discrete slider that snaps to pre-defined stops along the bar. To generate a mark for each stop, use `marks={true}`:
+Mas se seus usuários precisarem de opções mais precisas, você pode criar um controle deslizante discreto que faça paradas pré-definidas ao longo da barra. Você pode gerar uma marca para cada etapa com `marks={true}`:
 
 {{"demo": "DiscreteSlider.js"}}
 
 ### Custom marks
 
-You can create custom marks by providing a rich array to the `marks` prop:
+Você pode ter marcas customizadas, fornecendo um array para a propriedade `marks`:
 
 {{"demo": "DiscreteSliderMarks.js"}}
 
@@ -43,7 +43,7 @@ If the user should only be able to select from the values provided with the `mar
 
 ## Range slider
 
-To let users set the start and end of a range on a slider, provide an array of values to the `value` or `defaultValue` prop:
+Para permitir que os usuários definam o início e o fim de um intervalo em um controle deslizante, fornecer um array de valores para a propriedade ou `defaultValue`:
 
 {{"demo": "RangeSlider.js"}}
 
@@ -51,7 +51,7 @@ To let users set the start and end of a range on a slider, provide an array of v
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
 
-- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
-- Each thumb has a user-friendly text for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
+- Cada marcador possua propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
+- Cada marcador tenha um texto amigável para o seu valor atual. This is not required if the value matches the semantics of the label. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.
