@@ -6,6 +6,7 @@
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
       }
     },
+    "allowFocusWhenDisabled": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" }, "default": "'button'" },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
