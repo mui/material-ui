@@ -2,9 +2,9 @@
 
 <p class="description">Learn about the experimental API for using CSS variables on Material UI components.</p>
 
-CSS variables is the most upvoted `@mui/system` related issue.
-It allows several improvements in developer experience, like fixing dark mode SSR flickering, allowing multiple themes other than only light and dark, better debugging experience overall, and many others.
-To learn more, check [the RFC](https://github.com/mui/material-ui/issues/27651) we did about it.
+CSS variables provide significant improvements in developer experience related to theming and customization.
+With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
+This solves the problem of dark-mode SSR flickering; lets you provide your users with multiple themes beyond light and dark; and offers a better debugging experience overall, among other benefits.
 
 A while ago, we added an experimental API to the System package meant to allow styling the components with CSS variables.
 We want now to take it one step further and utilize it in one of the Material UI components.
