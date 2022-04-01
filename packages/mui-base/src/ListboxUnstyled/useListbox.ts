@@ -7,9 +7,8 @@ import {
   OptionState,
   UseListboxOptionSlotProps,
   UseListboxRootSlotProps,
-  TextCriteria,
 } from './useListbox.types';
-import defaultReducer, { textCriteriaMatches } from './defaultListboxReducer';
+import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
@@ -52,15 +51,17 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     isOptionDisabled,
     multiple,
     optionComparer,
+    optionStringifier,
   };
 
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
 
-  const textCriteriaRef = React.useRef<TextCriteria>({
-    keys: [],
-    repeating: true,
-    previousKeyMatched: true,
+  const textCriteriaRef = React.useRef<{
+    searchString: string;
+    lastTime: number | null;
+  }>({
+    searchString: '',
     lastTime: null,
   });
 
@@ -185,43 +186,27 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         const textCriteria = textCriteriaRef.current;
         const lowerKey = event.key.toLowerCase();
         const currentTime = performance.now();
-        if (textCriteria.keys.length > 0) {
-          // Reset text criteria ref
-          if (
-            textCriteria.lastTime &&
-            currentTime - textCriteria.lastTime > TEXT_NAVIGATION_RESET_TIMEOUT
-          ) {
-            textCriteria.keys = [];
-            textCriteria.repeating = true;
-            textCriteria.previousKeyMatched = true;
-          } else if (textCriteria.repeating && lowerKey !== textCriteria.keys[0]) {
-            textCriteria.repeating = false;
-          }
+        if (
+          textCriteria.searchString.length > 0 &&
+          textCriteria.lastTime &&
+          currentTime - textCriteria.lastTime > TEXT_NAVIGATION_RESET_TIMEOUT
+        ) {
+          textCriteria.searchString = lowerKey;
+        } else if (
+          textCriteria.searchString.length !== 1 ||
+          lowerKey !== textCriteria.searchString
+        ) {
+          // If there is just one character in the buffer and the key is the same, do not append
+          textCriteria.searchString += lowerKey;
         }
 
         textCriteria.lastTime = currentTime;
-        textCriteria.keys.push(lowerKey);
 
-        const textCriteriaStr = textCriteria.repeating
-          ? textCriteria.keys[0]
-          : textCriteria.keys.join('');
-        const keepFocusOnCurrent =
-          highlightedValue &&
-          !textCriteria.repeating &&
-          textCriteriaMatches(highlightedValue, textCriteriaStr, optionStringifier);
-
-        if (textCriteria.previousKeyMatched) {
-          if (!keepFocusOnCurrent) {
-            dispatch({
-              textCriteriaStr,
-              optionStringifier,
-              type: ActionTypes.textNavigation,
-              props: propsWithDefaults,
-            });
-          }
-        } else {
-          textCriteria.previousKeyMatched = false;
-        }
+        dispatch({
+          type: ActionTypes.textNavigation,
+          searchString: textCriteria.searchString,
+          props: propsWithDefaults,
+        });
       }
     };
 

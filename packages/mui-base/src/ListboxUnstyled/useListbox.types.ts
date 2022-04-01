@@ -5,6 +5,7 @@ type UseListboxStrictPropsRequiredKeys =
   | 'disableListWrap'
   | 'disabledItemsFocusable'
   | 'optionComparer'
+  | 'optionStringifier'
   | 'multiple';
 
 export type UseListboxStrictProps<TOption> = Omit<
@@ -14,13 +15,6 @@ export type UseListboxStrictProps<TOption> = Omit<
   Required<Pick<UseListboxParameters<TOption>, UseListboxStrictPropsRequiredKeys>>;
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
-
-export type TextCriteria = {
-  keys: string[];
-  repeating: boolean;
-  previousKeyMatched: boolean;
-  lastTime: number | null;
-};
 
 enum ActionTypes {
   blur = 'blur',
@@ -81,8 +75,7 @@ interface SetHighlightAction<TOption> {
 
 interface TextNavigationAction<TOption> {
   type: ActionTypes.textNavigation;
-  textCriteriaStr: string;
-  optionStringifier: (option: TOption) => string | undefined;
+  searchString: string;
   props: UseListboxStrictProps<TOption>;
 }
 

@@ -228,9 +228,9 @@ function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption
   };
 }
 
-export const textCriteriaMatches = <TOption>(
+const textCriteriaMatches = <TOption>(
   nextFocus: TOption,
-  textCriteriaStr: string,
+  searchString: string,
   stringifyOption: (option: TOption) => string | undefined,
 ) => {
   const text = stringifyOption(nextFocus)?.trim().toLowerCase();
@@ -240,17 +240,22 @@ export const textCriteriaMatches = <TOption>(
     return false;
   }
 
-  return text.indexOf(textCriteriaStr) === 0;
+  return text.indexOf(searchString) === 0;
 };
 
 function handleTextNavigation<TOption>(
   state: ListboxState<TOption>,
-  textCriteriaStr: string,
-  optionStringifier: (option: TOption) => string | undefined,
+  searchString: string,
   props: UseListboxStrictProps<TOption>,
 ): ListboxState<TOption> {
-  const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable, optionComparer } =
-    props;
+  const {
+    options,
+    isOptionDisabled,
+    disableListWrap,
+    disabledItemsFocusable,
+    optionComparer,
+    optionStringifier,
+  } = props;
 
   const moveHighlight = (previouslyHighlightedOption: TOption | null) => {
     return getNewHighlightedOption(
@@ -265,7 +270,7 @@ function handleTextNavigation<TOption>(
     );
   };
 
-  const startWithCurrentOption = textCriteriaStr.length > 1;
+  const startWithCurrentOption = searchString.length > 1;
 
   let nextOption = startWithCurrentOption
     ? state.highlightedValue
@@ -279,7 +284,7 @@ function handleTextNavigation<TOption>(
     }
 
     if (
-      textCriteriaMatches(nextOption, textCriteriaStr, optionStringifier) &&
+      textCriteriaMatches(nextOption, searchString, optionStringifier) &&
       (!isOptionDisabled(nextOption, options.indexOf(nextOption)) || disabledItemsFocusable)
     ) {
       // The nextOption is the element to be highlighted
@@ -355,12 +360,7 @@ export default function defaultListboxReducer<TOption>(
         highlightedValue: action.highlight,
       };
     case ActionTypes.textNavigation:
-      return handleTextNavigation(
-        state,
-        action.textCriteriaStr,
-        action.optionStringifier,
-        action.props,
-      );
+      return handleTextNavigation(state, action.searchString, action.props);
     case ActionTypes.optionsChange:
       return handleOptionsChange(action.options, action.previousOptions, state, action.props);
     default:

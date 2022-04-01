@@ -35,6 +35,7 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
+          optionStringifier: (option) => option,
           multiple: false,
         },
       };
@@ -60,6 +61,7 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
+          optionStringifier: (option) => option,
           multiple: false,
         },
         option: 'two',
@@ -84,6 +86,7 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
+          optionStringifier: (option) => option,
           multiple: true,
         },
         option: 'two',
@@ -108,6 +111,7 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
+          optionStringifier: (option) => option,
           multiple: true,
         },
         option: 'two',
@@ -137,6 +141,7 @@ describe('useListbox defaultReducer', () => {
             disabledItemsFocusable: false,
             isOptionDisabled: (_, index) => index === 0,
             optionComparer: (o, v) => o === v,
+            optionStringifier: (option) => option,
             multiple: false,
           },
         };
@@ -164,6 +169,7 @@ describe('useListbox defaultReducer', () => {
             disabledItemsFocusable: false,
             isOptionDisabled: (_, index) => index === 4,
             optionComparer: (o, v) => o === v,
+            optionStringifier: (option) => option,
             multiple: false,
           },
         };
@@ -191,6 +197,7 @@ describe('useListbox defaultReducer', () => {
             disabledItemsFocusable: false,
             isOptionDisabled: (_, index) => index === 0 || index === 4,
             optionComparer: (o, v) => o === v,
+            optionStringifier: (option) => option,
             multiple: false,
           },
         };
@@ -218,6 +225,7 @@ describe('useListbox defaultReducer', () => {
             disabledItemsFocusable: false,
             isOptionDisabled: (_, index) => index === 0 || index === 4,
             optionComparer: (o, v) => o === v,
+            optionStringifier: (option) => option,
             multiple: false,
           },
         };
@@ -243,6 +251,7 @@ describe('useListbox defaultReducer', () => {
             disabledItemsFocusable: false,
             isOptionDisabled: () => true,
             optionComparer: (o, v) => o === v,
+            optionStringifier: (option) => option,
             multiple: false,
           },
         };
@@ -270,6 +279,7 @@ describe('useListbox defaultReducer', () => {
             disabledItemsFocusable: false,
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
+            optionStringifier: (option) => option,
             multiple: false,
           },
         };
@@ -295,6 +305,7 @@ describe('useListbox defaultReducer', () => {
             disabledItemsFocusable: false,
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
+            optionStringifier: (option) => option,
             multiple: true,
           },
           option: 'two',
@@ -315,8 +326,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteriaStr: 'th',
-        optionStringifier: (option) => option,
+        searchString: 'th',
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -324,6 +334,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           multiple: false,
+          optionStringifier: (option) => option,
         },
       };
 
@@ -339,8 +350,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteriaStr: 'z',
-        optionStringifier: (option) => option,
+        searchString: 'z',
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -348,6 +358,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           multiple: false,
+          optionStringifier: (option) => option,
         },
       };
 
@@ -363,8 +374,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteriaStr: 't',
-        optionStringifier: (option) => option,
+        searchString: 't',
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -372,6 +382,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
           multiple: false,
+          optionStringifier: (option) => option,
         },
       };
 
@@ -387,8 +398,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteriaStr: 't',
-        optionStringifier: (option) => option,
+        searchString: 't',
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -396,6 +406,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
           multiple: false,
+          optionStringifier: (option) => option,
         },
       };
 
@@ -411,8 +422,7 @@ describe('useListbox defaultReducer', () => {
 
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
-        textCriteriaStr: 'one',
-        optionStringifier: (option) => option,
+        searchString: 'one',
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: true,
@@ -420,6 +430,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
           multiple: false,
+          optionStringifier: (option) => option,
         },
       };
 
