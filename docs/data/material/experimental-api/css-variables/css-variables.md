@@ -56,9 +56,7 @@ This offers a huge improvement to the overall experience of debugging component 
 
 ### Creating a custom theme
 
-The example above is using the default Material UI theme.
-But, what if you wanted to create your own custom theme?
-Let's see how to do that using the `experimental_extendTheme` utility.
+If you want to override Material UI's default theme, you can create your own custom theme with CSS variables using the `experimental_extendTheme` utility.
 
 To start, it is important to understand this new theme structure.
 A theme is a collection of color schemes, each one defined within a single theme object.
