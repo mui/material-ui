@@ -30,6 +30,7 @@ import Apps from '@mui/icons-material/Apps';
 import DateRange from '@mui/icons-material/DateRange';
 import LocationOn from '@mui/icons-material/LocationOnOutlined';
 import Visibility from '@mui/icons-material/Visibility';
+import CallMade from '@mui/icons-material/CallMade';
 import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
 
 const ColorSchemePicker = () => {
@@ -650,6 +651,79 @@ export default function JoySvgIcon() {
               >
                 10.4k
               </Link>
+            </Box>
+          </Card>
+          <Card
+            component="li"
+            variant="outlined"
+            sx={(theme) => ({
+              gridColumn: 'span 2',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              resize: 'horizontal',
+              overflow: 'auto',
+              gap: 'clamp(0px, (100% - 360px) * 999, 16px)',
+              transition: 'transform 0.3s, border 0.3s',
+              '&:hover': {
+                borderColor: theme.vars.palette.text.primary,
+                transform: 'translateY(-2px)',
+              },
+              '& > *': { minWidth: 'clamp(0px, (360px - 100%) * 999,100%)' },
+            })}
+          >
+            <AspectRatio
+              variant="light"
+              sx={{
+                flexGrow: 1,
+                pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
+              }}
+            >
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+              />
+            </AspectRatio>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: '199px' }}>
+              <Box sx={{ display: 'flex' }}>
+                <div>
+                  <Typography level="h2" sx={{ fontSize: 'lg' }}>
+                    <Link
+                      href="#showcase"
+                      overlay
+                      underline="none"
+                      sx={{ color: 'text.primary', '&:after': { outlineOffset: '-4px' } }}
+                    >
+                      Showcase
+                    </Link>
+                  </Typography>
+                  <Typography level="body3">A description of this widget.</Typography>
+                </div>
+                <IconButton
+                  size="sm"
+                  variant="text"
+                  color="neutral"
+                  sx={{ ml: 'auto', alignSelf: 'flex-start' }}
+                >
+                  <CallMade />
+                </IconButton>
+              </Box>
+              <AspectRatio variant="light" sx={{ pb: 'clamp(0px, (100% - 200px) * 999, 200px)' }}>
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                />
+              </AspectRatio>
+              <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
+                <Avatar variant="contained" color="neutral">
+                  S
+                </Avatar>
+                <div>
+                  <Typography level="body3" sx={{ letterSpacing: '1px' }}>
+                    CREATOR
+                  </Typography>
+                  <Typography>siriwatknp</Typography>
+                </div>
+              </Box>
             </Box>
           </Card>
         </Box>
