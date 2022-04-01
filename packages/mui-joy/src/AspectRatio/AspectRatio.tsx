@@ -3,14 +3,20 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
 import { AspectRatioProps, AspectRatioTypeMap } from './AspectRatioProps';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: AspectRatioProps) => {
+  const { variant, color } = ownerState;
   const slots = {
-    root: ['root'],
+    root: [
+      'root',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+    ],
   };
 
   return composeClasses(slots, getAspectRatioUtilityClass, {});
@@ -31,7 +37,8 @@ const AspectRatioRoot = styled('div', {
       paddingBottom: `clamp(${min || '0px'}, calc(100% / (${ownerState.ratio})), ${
         max || '9999px'
       })`,
-      '& > *:first-child': {
+      // use data-attribute instead of :first-child to support zero config SSR (emotion)
+      '& > [data-first-child]': {
         borderRadius: 'var(--AspectRatio-radius)',
         boxSizing: 'border-box',
         position: 'absolute',
@@ -83,7 +90,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AspectRatioRoot
@@ -93,7 +100,11 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
       ref={ref}
       {...other}
     >
-      {children}
+      {React.Children.map(children, (child, index) =>
+        index === 0 && React.isValidElement(child)
+          ? React.cloneElement(child, { 'data-first-child': '' })
+          : child,
+      )}
     </AspectRatioRoot>
   );
 }) as OverridableComponent<AspectRatioTypeMap>;

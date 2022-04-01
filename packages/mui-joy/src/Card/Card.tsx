@@ -108,7 +108,18 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       ref={ref}
       {...other}
     >
-      {children}
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) {
+          return child;
+        }
+        if (index === 0) {
+          return React.cloneElement(child, { 'data-first-child': '' });
+        }
+        if (index === React.Children.count(children) - 1) {
+          return React.cloneElement(child, { 'data-last-child': '' });
+        }
+        return child;
+      })}
     </CardRoot>
   );
 }) as OverridableComponent<CardTypeMap>;

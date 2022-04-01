@@ -3,14 +3,20 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: CardOverflowProps) => {
+  const { variant, color } = ownerState;
   const slots = {
-    root: ['root'],
+    root: [
+      'root',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+    ],
   };
 
   return composeClasses(slots, getCardOverflowUtilityClass, {});
@@ -30,13 +36,14 @@ const CardOverflowRoot = styled('div', {
       marginLeft: 'var(--CardOverflow-offset)',
       marginRight: 'var(--CardOverflow-offset)',
       borderRadius: 'var(--Card-radius)',
-      '&:first-child': {
+      // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
+      '&[data-first-child]': {
         '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         marginTop: 'var(--CardOverflow-offset)',
       },
-      '&:last-child': {
+      '&[data-last-child]': {
         '--AspectRatio-radius': `0 0 ${childRadius} ${childRadius}`,
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
@@ -69,7 +76,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardOverflowRoot

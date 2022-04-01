@@ -1,28 +1,28 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import { ThemeProvider } from '@mui/joy/styles';
-import Card, { cardClasses as classes } from '@mui/joy/Card';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { ThemeProvider } from '@mui/joy/styles';
+import CardOverflow, { cardOverflowClasses as classes } from '@mui/joy/CardOverflow';
 
-describe('<Card />', () => {
+describe('<CardOverflow />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Card />, () => ({
+  describeConformance(<CardOverflow />, () => ({
     classes,
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiCard',
+    muiName: 'MuiCardOverflow',
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'li',
+    testComponentPropWith: 'span',
     testVariantProps: { variant: 'contained' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
     it('text by default', () => {
-      const { getByTestId } = render(<Card data-testid="root">Hello World</Card>);
+      const { getByTestId } = render(<CardOverflow data-testid="root">Hello World</CardOverflow>);
 
       expect(getByTestId('root')).to.have.class(classes.variantText);
     });
@@ -30,9 +30,9 @@ describe('<Card />', () => {
     ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
-          <Card data-testid="root" variant={variant}>
+          <CardOverflow data-testid="root" variant={variant}>
             Hello World
-          </Card>,
+          </CardOverflow>,
         );
 
         expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
@@ -42,7 +42,7 @@ describe('<Card />', () => {
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByTestId } = render(<Card data-testid="root">Hello World</Card>);
+      const { getByTestId } = render(<CardOverflow data-testid="root">Hello World</CardOverflow>);
 
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
@@ -50,35 +50,13 @@ describe('<Card />', () => {
     ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
-          <Card data-testid="root" color={color}>
+          <CardOverflow data-testid="root" color={color}>
             Hello World
-          </Card>,
+          </CardOverflow>,
         );
 
         expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
       });
     });
-  });
-
-  it('can change size', () => {
-    const { container, rerender } = render(<Card />);
-
-    expect(container.firstChild).to.have.class(classes.sizeMd);
-
-    rerender(<Card size="lg" />);
-
-    expect(container.firstChild).to.have.class(classes.sizeLg);
-  });
-
-  it('add data-attribute to the first and last child', () => {
-    const { container } = render(
-      <Card>
-        <div>First</div>
-        <div>Second</div>
-        <div>Third</div>
-      </Card>,
-    );
-    expect(container.querySelector('[data-first-child]')).to.have.text('First');
-    expect(container.querySelector('[data-last-child]')).to.have.text('Third');
   });
 });

@@ -28,7 +28,8 @@ const CardCoverRoot = styled('div', {
   width: '100%',
   height: '100%',
   borderRadius: 'var(--Card-radius)',
-  '& > *:first-child': {
+  // use data-attribute instead of :first-child to support zero config SSR (emotion)
+  '& > [data-first-child]': {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
@@ -60,7 +61,11 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
       ref={ref}
       {...other}
     >
-      {children}
+      {React.Children.map(children, (child, index) =>
+        index === 0 && React.isValidElement(child)
+          ? React.cloneElement(child, { 'data-first-child': '' })
+          : child,
+      )}
     </CardCoverRoot>
   );
 }) as OverridableComponent<CardCoverTypeMap>;

@@ -1,38 +1,38 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import { ThemeProvider } from '@mui/joy/styles';
-import Card, { cardClasses as classes } from '@mui/joy/Card';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { ThemeProvider } from '@mui/joy/styles';
+import AspectRatio, { aspectRatioClasses as classes } from '@mui/joy/AspectRatio';
 
-describe('<Card />', () => {
+describe('<AspectRatio />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Card />, () => ({
+  describeConformance(<AspectRatio />, () => ({
     classes,
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiCard',
+    muiName: 'MuiAspectRatio',
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'li',
+    testComponentPropWith: 'span',
     testVariantProps: { variant: 'contained' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
     it('text by default', () => {
-      const { getByTestId } = render(<Card data-testid="root">Hello World</Card>);
+      const { getByTestId } = render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantText);
+      expect(getByTestId('root')).to.have.class(classes.variantLight);
     });
 
     ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
-          <Card data-testid="root" variant={variant}>
+          <AspectRatio data-testid="root" variant={variant}>
             Hello World
-          </Card>,
+          </AspectRatio>,
         );
 
         expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
@@ -42,7 +42,7 @@ describe('<Card />', () => {
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByTestId } = render(<Card data-testid="root">Hello World</Card>);
+      const { getByTestId } = render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
 
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
@@ -50,9 +50,9 @@ describe('<Card />', () => {
     ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
-          <Card data-testid="root" color={color}>
+          <AspectRatio data-testid="root" color={color}>
             Hello World
-          </Card>,
+          </AspectRatio>,
         );
 
         expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
@@ -60,25 +60,14 @@ describe('<Card />', () => {
     });
   });
 
-  it('can change size', () => {
-    const { container, rerender } = render(<Card />);
-
-    expect(container.firstChild).to.have.class(classes.sizeMd);
-
-    rerender(<Card size="lg" />);
-
-    expect(container.firstChild).to.have.class(classes.sizeLg);
-  });
-
-  it('add data-attribute to the first and last child', () => {
+  it('add data-attribute to the first child', () => {
     const { container } = render(
-      <Card>
+      <AspectRatio>
         <div>First</div>
         <div>Second</div>
         <div>Third</div>
-      </Card>,
+      </AspectRatio>,
     );
     expect(container.querySelector('[data-first-child]')).to.have.text('First');
-    expect(container.querySelector('[data-last-child]')).to.have.text('Third');
   });
 });
