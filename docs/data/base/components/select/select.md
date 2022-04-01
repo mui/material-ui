@@ -1,6 +1,6 @@
 ---
 product: base
-title: Unstyled React Select components and useSelect hook
+title: Unstyled React Select components and hook
 components: SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#combobox
