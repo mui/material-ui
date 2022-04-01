@@ -96,7 +96,7 @@ We'd appreciate any feedback about this API, as it is still in development.
 
 {{"demo": "CssVariablesCustomization.js", "iframe": true }}
 
-If you are using `TypeScript` you should use module augmentaiton to update the `Theme` structure:
+If you are using TypeScript you should use module augmentation to update the `Theme` structure:
 
 ```tsx
 import { Theme as MuiTheme } from '@mui/material/styles';
