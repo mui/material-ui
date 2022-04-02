@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { useRunner } from 'react-runner';
 import PropTypes from 'prop-types';
+import { useRunner } from 'react-runner';
+import { useEditable } from 'use-editable';
 import { alpha, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
+import Typography from '@mui/material/Typography';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
@@ -12,7 +14,6 @@ import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import scope from 'docs/src/modules/scope';
-import { CodeEditor } from 'docs/src/modules/components/CodeEditor';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
@@ -161,7 +162,6 @@ export default function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -206,11 +206,15 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
 
   const [code, setCode] = React.useState(demoData.raw);
-  React.useEffect(() => {
-    setCode(demoData.raw);
-  }, [demoData.raw]);
-
   const { element, error } = useRunner({ code, scope });
+
+  const editorRef = React.useRef(null);
+  const onEditableChange = React.useCallback((newCode) => {
+    setCode(newCode.slice(0, -1));
+  }, []);
+  useEditable(editorRef, onEditableChange, {
+    disabled: !codeOpen,
+  });
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -225,12 +229,17 @@ export default function Demo(props) {
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
-          component={error || element}
+          component={element}
           iframe={demoOptions.iframe}
           name={demoName}
           onResetDemoClick={resetDemo}
         />
       </DemoRoot>
+      {error && (
+        <Typography color="error" component="pre">
+          {error}
+        </Typography>
+      )}
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
       {demoOptions.hideToolbar ? null : (
@@ -260,11 +269,12 @@ export default function Demo(props) {
       )}
       <Collapse in={openDemoSource} unmountOnExit>
         <div>
-          {showPreview && !codeOpen ? (
-            <Code id={demoSourceId} code={demo.jsxPreview} language={demoData.sourceLanguage} />
-          ) : (
-            <CodeEditor value={code} onValueChange={setCode} />
-          )}
+          <Code
+            ref={editorRef}
+            id={demoSourceId}
+            code={showPreview && !codeOpen ? demo.jsxPreview : code}
+            language={demoData.sourceLanguage}
+          />
         </div>
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
