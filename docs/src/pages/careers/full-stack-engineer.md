@@ -55,7 +55,7 @@ Depending on the day, you'll:
 
 - **Help guide architectural decisions**. You'll join us in defining and refining the initial product and also help bring the conversation public as the MVP grows. You'll also interface with other teams at MUI as you'll be building on top of their work.
 - **Contribute to implementing new features**. MUI is a complex codebase. It's built on top of cutting edge web technologies to build the low-code tool for the future.
-- **Reduce friction**. A large amount of the work on MUI Toolpad is reducing friction and making it easier to use. As our MVP grows, our focus will shift from “making it work” towards “making it easy to work with”.
+- **Reduce friction**. A large amount of the work on MUI Toolpad is reducing friction and making it easier to use. As our MVP grows, our focus will shift from "making it work" towards "making it easy to work with".
 - **Collaborate with the community**. MUI Toolpad will be open-sourced. As the community grows you'll act as a steward to steer it towards success. This includes reviewing issues, pull requests and questions, and guiding aspiring contributors to make meaningful contributions.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
 - **Take ownership of features from idea/mockup to live deployment**. You'll shape and guide the direction of crucial new features.
