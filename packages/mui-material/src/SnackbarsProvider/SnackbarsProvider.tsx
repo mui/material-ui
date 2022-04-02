@@ -85,10 +85,10 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
 
   const handleClose = (key: string) => () => {
     const newSnackbars = snackbars.map((snackbar) => {
-      if (snackbar.key === key) {
-        snackbar.open = false;
+      if (snackbar.key !== key) {
+        return snackbar;
       }
-      return snackbar;
+      return { ...snackbar, open: false };
     });
     setSnackbars([...newSnackbars]);
   };
