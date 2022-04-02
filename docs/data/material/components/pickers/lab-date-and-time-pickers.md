@@ -10,11 +10,11 @@ To learn more, check out the [blog post about the move](/blog/lab-date-pickers-t
 
 ## How do I migrate?
 
-Follow the [migration page](/x/react-date-pickers/migration/) to migrate from lab to MUI X.
+Follow the [migration page](/x/react-date-pickers/migration-lab/) to migrate from lab to MUI X.
 
 ## Where is the new documentation?
 
-You can find documentation on the date and time picker components in the [MUI X docs](/x/react-date-pickers/).
+You can find documentation on the date and time picker components in the [MUI X docs](/x/react-date-pickers/getting-started/).
 
 ## Where should I report issues, request features, or submit PRs?
 
