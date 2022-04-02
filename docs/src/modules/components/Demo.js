@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRunner } from 'react-runner';
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -10,6 +11,8 @@ import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import scope from 'docs/src/modules/scope';
+import { CodeEditor } from 'docs/src/modules/components/CodeEditor';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
@@ -202,6 +205,12 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
 
+  const [code, setCode] = React.useState(demoData.raw);
+  React.useEffect(() => {
+    setCode(demoData.raw);
+  }, [demoData.raw]);
+
+  const { element, error } = useRunner({ code, scope });
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -216,7 +225,7 @@ export default function Demo(props) {
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
-          component={DemoComponent}
+          component={error || element}
           iframe={demoOptions.iframe}
           name={demoName}
           onResetDemoClick={resetDemo}
@@ -250,16 +259,13 @@ export default function Demo(props) {
         </NoSsr>
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <Code
-          id={demoSourceId}
-          code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
-          language={demoData.sourceLanguage}
-          copyButtonProps={{
-            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-            'data-ga-event-label': demoOptions.demo,
-            'data-ga-event-action': 'copy-click',
-          }}
-        />
+        <div>
+          {showPreview && !codeOpen ? (
+            <Code id={demoSourceId} code={demo.jsxPreview} language={demoData.sourceLanguage} />
+          ) : (
+            <CodeEditor value={code} onValueChange={setCode} />
+          )}
+        </div>
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
     </Root>

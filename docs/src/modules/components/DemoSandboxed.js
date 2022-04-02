@@ -174,7 +174,7 @@ function DemoSandboxed(props) {
         <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
           <Sandbox {...sandboxProps}>
             {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-            <Component />
+            {Component}
           </Sandbox>
         </ThemeProvider>
       </StylesProvider>
@@ -183,7 +183,7 @@ function DemoSandboxed(props) {
 }
 
 DemoSandboxed.propTypes = {
-  component: PropTypes.elementType.isRequired,
+  component: PropTypes.node,
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
