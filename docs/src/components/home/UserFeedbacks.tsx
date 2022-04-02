@@ -93,7 +93,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      '“After much research on React component libraries, we decided to ditch our in-house library for MUI, using its powerful customization system to implement our Design System. This simple move did a rare thing in engineering: it lowered our maintenance costs while enhancing both developer and customer experience. All of this was done without sacrificing the organization’s branding and visual identity.”',
+      '“After much research on React component libraries, we decided to ditch our in-house library for MUI, using its powerful customization system to implement our Design System. This simple move did a rare thing in engineering: it lowered our maintenance costs while enhancing both developer and customer experience. All of this was done without sacrificing the organization&apos;s branding and visual identity.”',
     profile: {
       avatarSrc: 'https://avatars.githubusercontent.com/u/732422?s=58',
       avatarSrcSet: 'https://avatars.githubusercontent.com/u/732422?s=116 2x',

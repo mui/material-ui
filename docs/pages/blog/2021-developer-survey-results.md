@@ -490,7 +490,7 @@ A large chunk of you didn't know what MUI X is prior to the survey, which makes 
 <p class="blog-description">1584 out of 1589 answered.</p>
 
 The results are not very different from last year, aside from a slight increase of respondents saying yes.
-The majority of respondents don’t use any paid libraries, but those who do are mostly using MUI X. This demonstrates that some of our assumptions and execution might be correct! Developers' needs appears to not be completely fulfilled by the OSS ecosystem.
+The majority of respondents don't use any paid libraries, but those who do are mostly using MUI X. This demonstrates that some of our assumptions and execution might be correct! Developers' needs appears to not be completely fulfilled by the OSS ecosystem.
 
 ### How can we improve the Data Grid for you?
 
