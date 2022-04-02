@@ -93,6 +93,10 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
     setSnackbars([...newSnackbars]);
   };
 
+  const handleExited = (key: string) => () => {
+    setSnackbars([...snackbars.filter((snackbar) => snackbar.key !== key)]);
+  };
+
   const ownerState = {
     anchorOrigin: { vertical, horizontal },
     isRtl: theme.direction === 'rtl',
@@ -126,7 +130,13 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
             onClose={handleClose(snackbar.key)}
             ClickAwayListenerProps={{
               onClickAway: () => null,
+              ...ClickAwayListenerProps,
               ...snackbar.ClickAwayListenerProps,
+            }}
+            TransitionProps={{
+              onExited: handleExited(snackbar.key),
+              ...TransitionProps,
+              ...snackbar.TransitionProps,
             }}
           />
         ))}
