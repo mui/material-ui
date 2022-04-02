@@ -225,6 +225,9 @@ function run() {
 /components/about-the-lab/ /material-ui/about-the-lab/ 301
 /:lang/components/about-the-lab/ /:lang/material-ui/about-the-lab/ 301
 
+/components/trap-focus/ /base/react-trap-focus/ 301
+/:lang/components/trap-focus/ /:lang/base/react-trap-focus/ 301
+
 ### React plural
 /components/tabs/ /material-ui/react-tabs/ 301
 /:lang/components/tabs/ /:lang/material-ui/react-tabs/ 301
@@ -294,6 +297,10 @@ function run() {
 
 /components/* /material-ui/react-:splat 301
 /:lang/components/* /:lang/material-ui/react-:splat 301
+
+/api/unstable-trap-focus/ /base/api/trap-focus/ 301
+/zh/api/unstable-trap-focus/ /zh/base/api/trap-focus/ 301
+/pt/api/unstable-trap-focus/ /pt/base/api/trap-focus/ 301
 
 /api/* /material-ui/api/:splat 301
 /zh/api/* /zh/material-ui/api/:splat 301
