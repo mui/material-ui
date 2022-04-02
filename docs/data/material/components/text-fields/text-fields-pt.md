@@ -1,7 +1,7 @@
 ---
 product: material-ui
 title: Componente React para Campo de Texto
-components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
 unstyled: /base/react-input/
@@ -264,7 +264,7 @@ Para que o campo de texto seja acessível, **o campo deve estar vinculado ao ró
 - If you are composing the component:
 
 ```jsx
-<div class="form-control" mark="crwd-mark">
+<div class="form-control">
   <label for="my-input">Endereço de e-mail</label>
   <input id="my-input" aria-describedby="my-helper-text" />
   <span id="my-helper-text">Nós nunca compartilharemos seu e-mail.</span>
