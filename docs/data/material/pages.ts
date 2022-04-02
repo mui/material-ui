@@ -144,7 +144,6 @@ const pages = [
           { pathname: '/material-ui/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
-          { pathname: '/material-ui/react-trap-focus' },
           { pathname: '/material-ui/react-tree-view' },
         ],
       },
