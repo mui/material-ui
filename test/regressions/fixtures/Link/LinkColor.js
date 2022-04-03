@@ -25,7 +25,7 @@ export default function DeterminateLinearProgress() {
         #ff5252
       </Link>
       <Link href="#unknown" sx={(theme) => ({ color: theme.palette.secondary.main })}>
-        #ff5252
+        secondary
       </Link>
     </ThemeProvider>
   );
