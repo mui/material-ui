@@ -56,7 +56,9 @@ export default function Page() {
             <Button>Text</Button>
           </Box>
         ))}
+      </Box>
 
+      <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box
           component="form"
           sx={{
