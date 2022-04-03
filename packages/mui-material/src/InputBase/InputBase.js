@@ -103,7 +103,7 @@ export const InputBaseRoot = styled('div', {
   overridesResolver: rootOverridesResolver,
 })(({ theme, ownerState }) => ({
   ...theme.typography.body1,
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   lineHeight: '1.4375em', // 23px
   boxSizing: 'border-box', // Prevent padding issue with fullWidth.
   position: 'relative',
@@ -111,7 +111,7 @@ export const InputBaseRoot = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   [`&.${inputBaseClasses.disabled}`]: {
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
     cursor: 'default',
   },
   ...(ownerState.multiline && {
@@ -130,7 +130,7 @@ export const InputBaseComponent = styled('input', {
   slot: 'Input',
   overridesResolver: inputOverridesResolver,
 })(({ theme, ownerState }) => {
-  const light = theme.palette.mode === 'light';
+  const light = (theme.vars || theme).palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
     opacity: light ? 0.42 : 0.5,
@@ -192,7 +192,7 @@ export const InputBaseComponent = styled('input', {
     },
     [`&.${inputBaseClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
-      WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
+      WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
     },
     '&:-webkit-autofill': {
       animationDuration: '5000s',
