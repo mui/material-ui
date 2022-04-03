@@ -71,7 +71,7 @@ export default function Page() {
           <Box sx={{ pb: 4 }}>
             <ColorSchemePicker />
           </Box>
-          {COLORS.map((color) => (
+          {COLORS.map((color: any) => (
             <Box key={`button-${color}`} sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
               <Button color={color} variant="contained">
                 Text
@@ -95,7 +95,7 @@ export default function Page() {
         </Box>
 
         <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
-          {COLORS.map((color) => (
+          {COLORS.map((color: any) => (
             <Box key={`chip-${color}`} sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
               <Chip color={color} variant="filled" label="Text" />
               <Chip color={color} variant="outlined" label="Text" />
