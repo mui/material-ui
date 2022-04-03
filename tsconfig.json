@@ -26,6 +26,7 @@
       "@mui/styles": ["./packages/mui-styles/src"],
       "@mui/styles/*": ["./packages/mui-styles/src/*"],
       "@mui/system": ["./packages/mui-system/src"],
+      "@mui/system/*": ["./packages/mui-system/src/*"],
       "@mui/private-theming": ["./packages/mui-private-theming/src"],
       "@mui/private-theming/*": ["./packages/mui-private-theming/src/*"],
       "@mui/types": ["./packages/mui-types"],
