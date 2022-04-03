@@ -1,5 +1,47 @@
 ### [Versions](https://mui.com/versions/)
 
+## 4.12.4
+
+<!-- generated comparing v4.12.3..v4.x -->
+
+_Mar 30, 2022_
+
+Big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
+
+This release was motivated by fixing compatibility issues with TypeScript 4.7 (#32041).
+
+### `@material-ui/core@4.12.4`
+
+- <!-- 23 --> [core] Fix TS 4.7 compat issues (#32041, #32126) @eps1lon
+- <!-- 02 --> [TextField] Use deprecatedPropType on the deprecated props (#27503) @mnajdova
+
+### Docs
+
+- <!-- 17 --> update all the links to the new domain @oliviertassinari
+- <!-- 16 --> Update canonicals to point to the new domain @oliviertassinari
+- <!-- 04 --> [Badge] Warn on default `overlap` value as well (#27573) @eps1lon
+- <!-- 20 --> [docs] Fix seo issues on v4 (#28999) @mnajdova
+- <!-- 19 --> [docs] Use branch deploy for v4 docs (#28896) @oliviertassinari
+- <!-- 15 --> [docs] Improve the banner that points to v5 @oliviertassinari
+- <!-- 14 --> [docs] Fix various broken master links (#28358) @eps1lon
+- <!-- 13 --> [docs] Remove job ad on the website (#28343) @eps1lon
+- <!-- 11 --> [docs] Prepare for v4.material-ui.com deploy (#28227) @mnajdova
+- <!-- 10 --> [docs] Cancelled subscription @oliviertassinari
+- <!-- 09 --> [docs] v5 is no longer a beta @oliviertassinari
+- <!-- 08 --> [docs] Sync redirections from X into Core @oliviertassinari
+- <!-- 07 --> [docs] Add GridExportCSVOptions page to documentation pages (#27414) @flaviendelangle
+- <!-- 05 --> [docs] Add job ad (#27784) @oliviertassinari
+- <!-- 01 --> [docs] Fix api generation for `deprecatedPropType` (#27576) @mnajdova
+- <!-- 18 --> [v4] Batch fixes (#28684) @mnajdova
+- <!-- 06 --> [website] Experiment without compensation @oliviertassinari
+- <!-- 03 --> [website] Add spicefactory as gold sponsor @oliviertassinari
+
+### Core
+
+- <!-- 12 --> [core] Consider v4.x as the base (#28344) @eps1lon
+
+All contributors of this release in alphabetical order: @eps1lon, @flaviendelangle, @mbrookes, @mnajdova, @oliviertassinari, @spiftire
+
 ## 4.12.3
 
 <!-- generated comparing v4.12.2..master -->
