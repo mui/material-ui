@@ -12,7 +12,7 @@ This release was motivated by fixing compatibility issues with TypeScript 4.7 (#
 
 ### `@material-ui/core@4.12.4`
 
-- <!-- 23 --> [core] Fix TS 4.7 compat issues (#32041) @eps1lon
+- <!-- 23 --> [core] Fix TS 4.7 compat issues (#32041, #32126) @eps1lon
 - <!-- 02 --> [TextField] Use deprecatedPropType on the deprecated props (#27503) @mnajdova
 
 ### Docs
