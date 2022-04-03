@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 
-const COLORS = ['inherit', 'primary', 'secondary', 'error', 'info', 'warning', 'success'];
+const COLORS = ['primary', 'secondary', 'error', 'info', 'warning', 'success'];
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
