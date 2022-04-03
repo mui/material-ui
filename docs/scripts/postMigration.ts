@@ -216,8 +216,17 @@ function run() {
 /components/material-icons/ /material-ui/material-icons/ 301
 /:lang/components/material-icons/ /:lang/material-ui/material-icons/ 301
 
-/components/pickers/ /material-ui/pickers/ 301
+/components/transitions/ /material-ui/transitions/ 301
+/:lang/components/transitions/ /:lang/material-ui/transitions/ 301
+
+/components/pickers/ /material-ui/lab-date-and-time-pickers/ 301
+/:lang/components/pickers/ /:lang/material-ui/lab-date-and-time-pickers/ 301
+
+/components/about-the-lab/ /material-ui/about-the-lab/ 301
 /:lang/components/about-the-lab/ /:lang/material-ui/about-the-lab/ 301
+
+/components/trap-focus/ /base/react-trap-focus/ 301
+/:lang/components/trap-focus/ /:lang/base/react-trap-focus/ 301
 
 ### React plural
 /components/tabs/ /material-ui/react-tabs/ 301
@@ -288,6 +297,10 @@ function run() {
 
 /components/* /material-ui/react-:splat 301
 /:lang/components/* /:lang/material-ui/react-:splat 301
+
+/api/unstable-trap-focus/ /base/api/trap-focus/ 301
+/zh/api/unstable-trap-focus/ /zh/base/api/trap-focus/ 301
+/pt/api/unstable-trap-focus/ /pt/base/api/trap-focus/ 301
 
 /api/* /material-ui/api/:splat 301
 /zh/api/* /zh/material-ui/api/:splat 301

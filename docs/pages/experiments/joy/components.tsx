@@ -2,12 +2,18 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
 import { ThemeProvider } from '@mui/material/styles';
+import AspectRatio from '@mui/joy/AspectRatio';
 import Avatar from '@mui/joy/Avatar';
 import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Card from '@mui/joy/Card';
+import CardCover from '@mui/joy/CardCover';
+import CardContent from '@mui/joy/CardContent';
+import CardOverflow from '@mui/joy/CardOverflow';
 import Checkbox from '@mui/joy/Checkbox';
 import IconButton from '@mui/joy/IconButton';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
@@ -29,9 +35,11 @@ import TaskAlt from '@mui/icons-material/TaskAltRounded';
 import Inbox from '@mui/icons-material/Inbox';
 import Drafts from '@mui/icons-material/Drafts';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
-import Star from '@mui/icons-material/StarBorder';
+import StarBorder from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import PlayArrow from '@mui/icons-material/PlayArrow';
+import LocationOn from '@mui/icons-material/LocationOnOutlined';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
@@ -233,7 +241,7 @@ const components: {
               >
                 <ListItemButton>
                   <ListItemDecorator>
-                    <Star />
+                    <StarBorder />
                   </ListItemDecorator>
                   <ListItemContent>Starred</ListItemContent>
                 </ListItemButton>
@@ -358,6 +366,119 @@ const components: {
     ),
     cssVars: [{ id: '--Checkbox-size', type: 'number', unit: 'px', defaultValue: 20 }],
   },
+  {
+    name: 'Card',
+    render: (props: any) => (
+      <Box component="ul" sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+        <Card
+          component="li"
+          variant="outlined"
+          sx={{ ...props?.sx, '&:focus-within': { boxShadow: 'lg' } }}
+        >
+          <CardOverflow variant="outlined">
+            <AspectRatio ratio="1">
+              <img
+                src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                alt=""
+              />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  borderRadius: '20px',
+                  p: '0.5rem',
+                  fontSize: 'xs',
+                  color: '#fff',
+                  bgcolor: 'rgba(0,0,0,0.5)',
+                }}
+              >
+                04:26
+              </Box>
+              <IconButton
+                size="lg"
+                variant="contained"
+                sx={{
+                  position: 'absolute',
+                  zIndex: 2,
+                  borderRadius: '50%',
+                  right: '1rem',
+                  bottom: 'calc(-1/2 * var(--IconButton-size))',
+                }}
+              >
+                <PlayArrow />
+              </IconButton>
+            </AspectRatio>
+          </CardOverflow>
+          <Typography level="h2" sx={{ fontSize: 'lg', mt: 3 }}>
+            <Link href="#minimal-photo" overlay>
+              Minimal photography
+            </Link>
+          </Typography>
+          <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
+            By <Link href="#sukjit">Sujith</Link>
+          </Typography>
+          <CardOverflow
+            variant="outlined"
+            sx={{
+              display: 'flex',
+              gap: 1,
+              py: 1.5,
+              px: 'var(--Card-padding)',
+              mt: 'auto',
+              borderTopColor: 'background.level2',
+              bgcolor: 'background.level1',
+            }}
+          >
+            <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+              6.3k views
+            </Typography>
+            <Box sx={{ width: 2, bgcolor: 'divider' }} />
+            <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+              1 hour ago
+            </Typography>
+          </CardOverflow>
+        </Card>
+        <Card
+          component="li"
+          size="lg"
+          sx={{ ...props?.sx, minHeight: '360px', '&:hover': { boxShadow: 'xl' } }}
+        >
+          <CardCover>
+            <img
+              src="https://images.unsplash.com/photo-1525630558331-067c957817a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80"
+              alt=""
+            />
+          </CardCover>
+          <CardCover
+            sx={{
+              background:
+                'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 30%), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 50%)',
+            }}
+          />
+          <CardContent sx={{ justifyContent: 'flex-end' }}>
+            <Typography level="h2" sx={{ mb: 1, fontSize: 'lg' }}>
+              <Link href="#the-beach" underline="none" overlay sx={{ color: 'neutral.50' }}>
+                The Beach
+              </Link>
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <Typography startDecorator={<LocationOn />} sx={{ color: 'neutral.300' }}>
+                Tarifa, Spain
+              </Typography>
+              <Typography startDecorator={<StarBorder />} sx={{ color: 'neutral.300' }}>
+                4.8
+              </Typography>
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    ),
+    cssVars: [
+      { id: '--Card-padding', type: 'number', unit: 'px', defaultValue: 16 },
+      { id: '--Card-radius', type: 'number', unit: 'px', defaultValue: 8 },
+    ],
+  },
 ];
 
 function Playground({ initialName }: { initialName?: string }) {
@@ -392,19 +513,20 @@ function Playground({ initialName }: { initialName?: string }) {
         <Box sx={{ pl: 5, pt: 2 }}>
           <ColorSchemePicker />
         </Box>
-        <List
-          sx={{
-            mt: 2,
-            '--List-insetStart': '1.25rem',
-            '--List-radius': '1rem',
-          }}
-        >
+        <List sx={{ mt: 2 }}>
           {components.map((config) => (
             <ListItem key={config.name} sx={{ mb: 1 }}>
               <ListItemButton
                 color={config.name === current ? 'primary' : 'neutral'}
+                variant={config.name === current ? 'light' : 'text'}
                 selected={config.name === current}
                 onClick={() => setCurrent(config.name)}
+                sx={{
+                  '&.Mui-selected': {
+                    borderRight: '2px solid',
+                    borderColor: 'primary.containedBg',
+                  },
+                }}
               >
                 {config.name}
               </ListItemButton>
