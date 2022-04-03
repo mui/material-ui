@@ -23,7 +23,7 @@ export type TableHeadClassKey = 'root';
 
 export type TableHeadProps<
   D extends React.ElementType = TableHeadTypeMap['defaultComponent'],
-  P = {}
+  P extends {} = {}
 > = OverrideProps<TableHeadTypeMap<P, D>, D>;
 
 export default TableHead;
