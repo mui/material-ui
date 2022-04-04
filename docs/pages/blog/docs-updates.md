@@ -28,12 +28,12 @@ We added an identifier and menu at the top left of the docs to ease navigation:
 As for the URLs, this is how they look now:
 
 - MUI Core:
-  - Material UI: https://mui.com/material-ui/_
-  - MUI Base: https://mui.com/base/_
-  - MUI System: https://mui.com/system/_
+  - Material UI: [https://mui.com/material-ui/\_](https://mui.com/material-ui/getting-started/installation/)
+  - MUI Base: [https://mui.com/base/\_](https://mui.com/base/getting-started/installation/)
+  - MUI System: [https://mui.com/system/\_](https://mui.com/system/basics/)
 - MUI X:
-  - Data grid: https://mui.com/x/react-data-grid/_
-  - Date and time pickers: https://mui.com/x/react-date-pickers/_
+  - Data grid: [https://mui.com/x/react-data-grid/\_](https://mui.com/x/react-data-grid/)
+  - Date and time pickers: [https://mui.com/x/react-date-pickers/\_](https://mui.com/x/react-date-pickers/getting-started/)
 
 ## What do I gain?
 
@@ -47,7 +47,7 @@ This separation will become increasingly beneficial as each product grows, such 
 With it, comes more content to share and an even greater need for better space to accommodate it.
 
 It will also help with the slight confusion we caused by introducing a different design to our marketing website, especially considering that our only design system package so far is Material UI.
-However, as we move forward working on [the second design system package](https://deploy-preview-31620--material-ui.netlify.app/experiments/), the separation will allow each to use their default styles, which will certainly help to avoid confusion about what the component looks like by installing the library, as it was when v4's docs used Material Design without any modification.
+However, as we move forward working on [the second design system package](https://deploy-preview-30686--material-ui.netlify.app/experiments/), the separation will allow each to use their default styles, which will certainly help to avoid confusion about what the component looks like by installing the library, as it was when v4's docs used Material Design without any modification.
 
 If you have any feedback or suggestions, we definitely want to hear them.
 Go over to Material UI's GitHub repository and open an issue starting with [docs].
