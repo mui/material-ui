@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Snackbar, { SnackbarProps } from '../Snackbar';
 import SnackbarsContext from '../Snackbar/SnackbarsContext';
 import Grow from '../Grow';
@@ -79,6 +80,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
           ...snackbar,
         },
       ];
+
       return updatedSnackbars.slice(0, limit);
     });
   };
@@ -151,5 +153,75 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
     </SnackbarsContext.Provider>
   );
 };
+
+SnackbarsProvider.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The anchor of the `Snackbar`.
+   * On smaller screens, the component grows to occupy all the available width,
+   * the horizontal alignment is ignored.
+   * @default { vertical: 'bottom', horizontal: 'left' }
+   */
+  anchorOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,
+    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
+  }),
+  /**
+   * The number of milliseconds to wait before automatically calling the
+   * `onClose` function. `onClose` should then set the state of the `open`
+   * prop to hide the Snackbar. This behavior is disabled by default with
+   * the `null` value.
+   * @default null
+   */
+  autoHideDuration: PropTypes.number,
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * Props applied to the `ClickAwayListener` element.
+   */
+  ClickAwayListenerProps: PropTypes.object,
+  /**
+   * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
+   */
+  ContentProps: PropTypes.object,
+  /**
+   * The maximum number of snackbars to display at a time.
+   * @default 5
+   */
+  limit: PropTypes.number,
+  /**
+   * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Grow
+   */
+  TransitionComponent: PropTypes.elementType,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   * @default {
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
+   * }
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
+  ]),
+  /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * @default {}
+   */
+  TransitionProps: PropTypes.object,
+} as any;
 
 export default SnackbarsProvider;
