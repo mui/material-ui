@@ -21,7 +21,7 @@ The structure of this object is nearly identical to the theme structure, the onl
 
 ## Usage
 
-`Experimental_CssVarsProvider` is a new experimental provider that attach all generated CSS variables to the theme and put it in react context.
+`Experimental_CssVarsProvider` is a new experimental provider that attach all generated CSS variables to the theme and put it in react context. The children under this provider will be able to read the CSS variables from the theme.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
