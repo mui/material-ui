@@ -11,59 +11,119 @@ Now they are ready for experimental use with Material UI components.
 
 > If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
 
-## Usage
+## Introduction
 
 The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
 In addition to providing the theme in the inner React context, this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
 
 All of these variables are accessible in an object in the theme called `vars`.
-The structure of this object is identical to the theme structure—the only difference is that the values represent CSS variables.
+The structure of this object is nearly identical to the theme structure, the only difference is that the values represent CSS variables.
 
-Consider an element that uses a theme token:
+## Usage
 
-```jsx
-const Example() {
-  const theme = useTheme();
-  return <div style={{ color: theme.palette.success.main }}>Success div</div>
+`Experimental_CssVarsProvider` is a new experimental provider that attach all generated CSS variables to the theme and put it in react context.
+
+```js
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+
+function App() {
+  return <CssVarsProvider>...</CssVarsProvider>;
 }
 ```
 
-{{"demo": "SuccessDivThemeToken.js", "hideToolbar": true }}
+### Toggle between light and dark mode
 
-If you inspect it, you will see that the color style has a direct hex value that comes from the theme token:
-
-```html
-<div style="color: #2e7d32;">...</div>
-```
-
-This makes the code difficult to debug, because the app could have multiple theme tokens, but this doesn't give you any information about which theme is responsible for this style.
-
-If that same `<div>` used CSS variables instead—as in the example below—you could track _where_ that color token is defined in the theme:
+`Experimental_CssVarsProvider` provides light and dark mode by default. The provider stores the user selected mode and sync with the browser local storage internally. Developers can read/update the mode via the `useColorScheme` API.
 
 ```jsx
-const Example() {
-  const theme = useTheme();
-  return <div style={{ color: theme.vars.palette.success.main }}>Success div</div>
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  useColorScheme,
+} from '@mui/material/styles';
+
+const ModeSwitcher = () => {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // for server-side rendering
+    // Read more on https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
+    return null;
+  }
+
+  return (
+    <Button
+      variant="outlined"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+    >
+      {mode === 'light' ? 'Dark' : 'Light'}
+    </Button>
+  );
+};
+
+function App() {
+  return (
+    <CssVarsProvider>
+      <ModeSwitcher />
+    </CssVarsProvider>
+  );
 }
 ```
 
-{{"demo": "SuccessDivCSSVariable.js", "hideToolbar": true }}
+### Server-side rendering
 
-```html
-<div style="color: var(--md-palette-success-main);">...</div>
+To prevent the dark-mode SSR flickering at hydration phase, place `getInitColorSchemeScript()` before the `<Main />` tag.
+
+### Next JS
+
+Add the following code to `pages/_document.js`.
+
+```jsx
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { getInitColorSchemeScript } from '@mui/material/styles';
+
+export default class MyDocument extends Document {
+  render() {
+    return (
+      <Html>
+        <Head>...</Head>
+        <body>
+          {getInitColorSchemeScript()}
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
 ```
 
-Clicking on the CSS variable in the browser's dev tools takes you to the theme object where you'll see its direct hex value again.
-This offers a huge improvement to the overall experience of debugging component styles.
+### Gatsby
 
-### Creating a custom theme
+Add the following code to `gatsby-ssr.js`
 
-If you want to override Material UI's default theme, you can create your own custom theme with CSS variables using the `experimental_extendTheme` utility.
+```jsx
+import React from 'react';
+import { getInitColorSchemeScript } from '@mui/material/styles';
 
-A theme is an object that contains a collection of color schemes.
-Your custom theme can contain as many color schemes as you like, including light, dark and more.
+export function onRenderBody({ setPreBodyComponents }) {
+  setPreBodyComponents([getInitColorSchemeScript()]);
+}
+```
 
-Here's how to create light and dark schemes in a custom theme using CSS variables:
+### Customizing the theme
+
+If you want to override Material UI's default color schemes, you can use the `experimental_extendTheme` utility.
 
 ```jsx
 const theme = experimental_extendTheme({
@@ -86,8 +146,23 @@ const theme = experimental_extendTheme({
 
 {{"demo": "CssVarsCustomTheme.js", "iframe": true }}
 
-To toggle between color schemes, you can use the [`useColorScheme`](#usecolorscheme-colorschemecontextvalue) hook.
-This will make the browser re-write the CSS variables, pointing them to the new values you created—but the components' classes will still refer to the same variables as before.
+If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
+
+```diff
+- import { ThemeProvider, createTheme } from '@mui/material/styles';
++ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+
+function App() {
+  return (
+-    <ThemeProvider theme={createTheme()}>
+-      ...
+-    </ThemeProvider>
++    <CssVarsProvider>
++      ...
++    </CssVarsProvider>
+  )
+}
+```
 
 ### Customizing components
 
