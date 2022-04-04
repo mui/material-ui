@@ -43,6 +43,11 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     !ownerState.selected && {
       paddingTop: 14,
     }),
+  ...(!ownerState.showLabel &&
+    !ownerState.selected &&
+    !ownerState.label && {
+      paddingTop: 0,
+    }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
     color: theme.palette.primary.main,
   },
