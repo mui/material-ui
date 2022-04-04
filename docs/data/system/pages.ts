@@ -1,5 +1,11 @@
 const pages = [
   {
+    pathname: '/system/react-',
+    title: 'Components',
+    icon: 'ToggleOnIcon',
+    children: [{ pathname: '/system/react-grid', title: 'Grid' }],
+  },
+  {
     pathname: '/system',
     icon: 'BuildIcon',
     children: [
