@@ -51,7 +51,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
 
   const {
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
-    autoHideDuration,
+    autoHideDuration = null,
     children,
     ClickAwayListenerProps,
     ContentProps,
