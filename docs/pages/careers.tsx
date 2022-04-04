@@ -159,9 +159,9 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Full-stack Engineer - Studio',
+        title: 'Full-stack Engineer - Toolpad',
         description:
-          'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
+          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
       {

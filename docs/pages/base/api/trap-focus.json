@@ -16,6 +16,6 @@
   "spread": false,
   "filename": "/packages/mui-base/src/TrapFocus/TrapFocus.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/components/trap-focus/\">Trap Focus</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-trap-focus/\">Trap Focus</a></li></ul>",
   "cssComponent": false
 }

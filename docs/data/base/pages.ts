@@ -19,6 +19,7 @@ const pages = [
           { pathname: '/base/react-input', title: 'Input' },
           { pathname: '/base/react-select', title: 'Select' },
           { pathname: '/base/react-slider', title: 'Slider' },
+          { pathname: '/base/react-switch', title: 'Switch' },
         ],
       },
       {
@@ -35,6 +36,7 @@ const pages = [
         subheader: 'utils',
         children: [
           { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
+          { pathname: '/base/react-form-control', title: 'Form control' },
           { pathname: '/base/react-modal', title: 'Modal' },
           { pathname: '/base/react-no-ssr', title: 'No SSR' },
           { pathname: '/base/react-popper', title: 'Popper' },
