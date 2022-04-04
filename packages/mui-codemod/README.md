@@ -62,6 +62,14 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `date-pickers-moved-to-x`
+
+Rename the imports of date and time pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+
+```sh
+npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
+```
+
 #### 🚀 `preset-safe`
 
 A combination of all important transformers for migrating v4 to v5. ⚠️ This codemod should be run only once.
