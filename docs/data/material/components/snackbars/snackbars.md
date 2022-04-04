@@ -99,7 +99,7 @@ Wrap your application with `SnackbarsProvider` to use the `useSnackbars` hook wi
 </ThemeProvider>
 ```
 
-The snackbars options in methods (`showSnackbar` etc) of `useSnackbars` hook take more priority over props passed in `SnackbarsProvider`.
+The snackbar options in method `showSnackbar` of `useSnackbars` hook take more priority over props passed in `SnackbarsProvider`.
 
 {{"demo": "MultipleSnackbars.js"}}
 

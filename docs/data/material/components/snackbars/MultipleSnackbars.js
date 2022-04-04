@@ -12,6 +12,7 @@ function MultipleSnackbars() {
         onClick={() =>
           snackbars.showSnackbar({
             message: 'Note archived',
+            autoHideDuration: 3000,
           })
         }
       >
@@ -27,6 +28,16 @@ function MultipleSnackbars() {
       >
         Open top right snackbar
       </Button>
+      <Button
+        onClick={() =>
+          snackbars.showSnackbar({
+            message: 'Note archived',
+            anchorOrigin: { vertical: 'top', horizontal: 'center' },
+          })
+        }
+      >
+        Fade Transition
+      </Button>
     </div>
   );
 }
@@ -34,7 +45,7 @@ function MultipleSnackbars() {
 export default function MyApp() {
   return (
     <React.Fragment>
-      <SnackbarsProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+      <SnackbarsProvider limit={10} autoHideDuration={5000}>
         <MultipleSnackbars />
       </SnackbarsProvider>
     </React.Fragment>
