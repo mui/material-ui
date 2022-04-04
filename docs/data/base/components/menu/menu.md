@@ -21,7 +21,7 @@ import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
 You can use the `MenuUnstyled` component to create custom menus.
 It renders a list of items in a popup that users can navigate through with a mouse or keyboard.
 
-When not customized, the `MenuItemUnstyled` component renders a plain `<ul>` element.
+When not customized, the `MenuUnstyled` component renders a plain `<ul>` element.
 
 ### Basic usage
 
