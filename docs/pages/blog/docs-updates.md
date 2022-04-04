@@ -15,12 +15,12 @@ That's why we're excited to announce that we are shipping a major upgrade to our
 We currently offer two main product lines:
 
 - **MUI Core—**a collection of foundational component libraries, including:
-  - _Material UI_—components that implement Google's Material Design
-  - _MUI Base_—unstyled components for implementing your own design system
-  - _MUI System_—CSS utilities for quickly laying out design systems
+  - _Material UI_ —components that implement Google's Material Design
+  - _MUI Base_ —unstyled components for implementing your own design system
+  - _MUI System_ —CSS utilities for quickly laying out design systems
 - **MUI X**—a collection of advanced components for complex use cases, including:
-  - _Data Grid_—fast, feature-rich, extendable React data table
-  - _Date and Time Pickers_—interface control components for selecting dates and times
+  - _Data Grid_ —fast, feature-rich, extendable React data table
+  - _Date and Time Pickers_ —interface control components for selecting dates and times
 
 ## What has changed?
 
@@ -32,16 +32,14 @@ We added an identifier and menu to the upper-left corner of the docs for improve
 As for the URLs, this is how they look now:
 
 - MUI Core:
-  - Material UI: [https://mui.com/material-ui/\_](https://mui.com/material-ui/getting-started/installation/)
-  - MUI Base: [https://mui.com/base/\_](https://mui.com/base/getting-started/installation/)
-  - MUI System: [https://mui.com/system/\_](https://mui.com/system/basics/)
+  - Material UI: [https://mui.com/material-ui/](https://mui.com/material-ui/getting-started/installation/)
+  - MUI Base: [https://mui.com/base/](https://mui.com/base/getting-started/installation/)
+  - MUI System: [https://mui.com/system/](https://mui.com/system/basics/)
 - MUI X:
-  - Data grid: [https://mui.com/x/react-data-grid/\_](https://mui.com/x/react-data-grid/)
-  - Date and time pickers: [https://mui.com/x/react-date-pickers/\_](https://mui.com/x/react-date-pickers/getting-started/)
+  - Data Grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
+  - Date and Time Pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
 
-## What do I gain?
-
-## Improved search experience
+### Improved search experience
 
 Along with the documentation restructuring, the search experience has also been completely revamped.
 This is a huge improvement especially for users of MUI Base and MUI X, who can now find exactly what they need much faster than before.
