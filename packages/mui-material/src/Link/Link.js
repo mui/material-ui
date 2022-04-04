@@ -6,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha, getPath } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
@@ -98,6 +99,7 @@ const LinkRoot = styled(Typography, {
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
+  const theme = useTheme();
   const props = useThemeProps({
     props: inProps,
     name: 'MuiLink',
@@ -145,7 +147,9 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color: sx?.color || color,
+    // It is too complex to support any types of `sx`.
+    // Need to find a better way to get rid of the color manipulation for `textDecorationColor`.
+    color: (typeof sx === 'function' ? sx(theme).color : sx?.color) || color,
     component,
     focusVisible,
     underline,
@@ -164,7 +168,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       ref={handlerRef}
       ownerState={ownerState}
       variant={variant}
-      sx={{ color: colorTransformations[color] || color, ...sx }}
+      sx={[{ color: colorTransformations[color] || color }, ...(Array.isArray(sx) ? sx : [sx])]}
       {...other}
     />
   );
