@@ -72,7 +72,7 @@
     "@mui/base": "5.0.0-alpha.74",
     "@mui/system": "^5.5.3",
     "@mui/utils": "^5.5.3",
-    "@mui/x-date-pickers": "https://pkg.csb.dev/mui/mui-x/commit/af717e5a/@mui/x-date-pickers",
+    "@mui/x-date-pickers": "^5.0.0-alpha.0",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
