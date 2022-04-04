@@ -115,7 +115,7 @@ declare module '@mui/material/styles' {
 
 ## API
 
-### ` <CssVarsProvider>` props:
+### `<CssVarsProvider>` props
 
 - `defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme }` - Design system default color scheme; provides a string if the design system has one default color scheme (either light or dark) or an object if the design system has default light & dark color schemes
 - `defaultMode?: Mode` - Design system default mode
