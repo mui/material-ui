@@ -1,19 +1,18 @@
 ---
 title: 'New documentation structure: better navigate MUI's products'
 description: From now on, each MUI product will live in its own documentation. Find out how that is better for you.
-date: 2022-04-04T00:00:00.000Z
+date: 2022-04-06T00:00:00.000Z
 authors: ['danilo-leal']
 tags: ['News']
 ---
 
-Last year, we rebranded the company as the first step into consolidating a new phase.
+Last year, we [rebranded the company](/blog/material-ui-is-now-mui/) as the first step into consolidating a new phase.
 However, we didn't make any major structural changes to the documentation other than the design.
 As we plan to release new products that are outside of the scope of Material UI, it'd be confusing to keep everything under the same roof.
 That's why, from now on, each product will have its own documentation, to clarify the boundaries between them and to facilitate navigation if your interest lies in one specific product.
 
 ## Wait... what MUI products are you talking about?
 
-Implementing Material Design has become only a portion of what we offer today.
 Currently, our main two products are:
 
 - **MUI Core:** a collection of libraries that offers you foundational components, which includes Material UI, MUI Base (unstyled components), MUI System, and more. It really is a product line.
@@ -24,15 +23,17 @@ Currently, our main two products are:
 All MUI products are still under the [mui.com](http://mui.com) domain but each of them now has an isolated URL and, therefore, documentation.
 We added an identifier and menu at the top left of the docs to ease navigation:
 
-[product identifier]
+<img src="/static/blog/docs-updates/docs-separation.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screen shot of the product identifier menu" />
 
 As for the URLs, this is how they look now:
 
-- Material UI: https://mui.com/material-ui/_
-- MUI Base: https://mui.com/base/_
-- MUI System: https://mui.com/system/_
-- MUI X - Data grid: https://mui.com/x/react-data-grid/_
-- MUI X - Date and time pickers: https://mui.com/x/react-date-pickers/_
+- MUI Core:
+  - Material UI: https://mui.com/material-ui/_
+  - MUI Base: https://mui.com/base/_
+  - MUI System: https://mui.com/system/_
+- MUI X:
+  - Data grid: https://mui.com/x/react-data-grid/_
+  - Date and time pickers: https://mui.com/x/react-date-pickers/_
 
 ## What do I gain?
 
@@ -50,4 +51,5 @@ However, as we move forward working on [the second design system package](https:
 
 If you have any feedback or suggestions, we definitely want to hear them.
 Go over to Material UI's GitHub repository and open an issue starting with [docs].
-Happy developing!
+
+Happy developing! 👩‍💻
