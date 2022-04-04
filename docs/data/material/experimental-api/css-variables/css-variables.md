@@ -21,7 +21,7 @@ The structure of this object is nearly identical to the theme structure, the onl
 
 ## Usage
 
-`Experimental_CssVarsProvider` is a new experimental provider that attach all generated CSS variables to the theme and put it in react context. The children under this provider will be able to read the CSS variables from the theme.
+`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and put it in React context. Children elements under this provider will also be able to read the CSS variables from the theme.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -33,7 +33,7 @@ function App() {
 
 ### Toggle between light and dark mode
 
-`Experimental_CssVarsProvider` provides light and dark mode by default. The provider stores the user selected mode and sync with the browser local storage internally. Developers can read/update the mode via the `useColorScheme` API.
+`Experimental_CssVarsProvider` provides light and dark mode by default. It stores the selected user mode and syncs it with the browser's local storage internally. You can read or update the mode using the `useColorScheme` API.
 
 ```jsx
 import {
@@ -210,3 +210,14 @@ declare module '@mui/material/styles' {
 - `mode: string` - The user selected mode
 - `setColorScheme: : value => {…}` - Function for setting the `colorScheme`. The `colorScheme` is saved to internal state and local storage; if `colorScheme` is null, it will be reset to the default color scheme (light | dark)
 - `setMode: mode => {…}` - Function for setting the `mode`. The `mode` is saved to internal state and local storage; if `mode` is null, it will be reset to the default mode
+
+### `getInitColorSchemeScript: (options) => React.ReactElement`
+
+**options**
+
+- `enableSystem?: boolean`: - If `true` and the selected mode is not `light` or `dark`, the system mode is used
+- `defaultLightColorScheme?: string`: - The default color scheme for the light mode
+- `defaultDarkColorScheme?: string`: - The default color scheme for the dark mode
+- `modeStorageKey?: string`: - localStorage key used to store application `mode`
+- `colorSchemeStorageKey?: string`: - localStorage key used to store application `colorScheme`
+- `attribute?: string` - DOM attribute for applying color scheme
