@@ -6,22 +6,26 @@ authors: ['danilo-leal']
 tags: ['News']
 ---
 
-Last year, we [rebranded the company](/blog/material-ui-is-now-mui/) as the first step into consolidating a new phase.
-However, we didn't make any major structural changes to the documentation other than the design.
-As we plan to release new products that are outside of the scope of Material UI, it'd be confusing to keep everything under the same roof.
-That's why, from now on, each product will have its own documentation, to clarify the boundaries between them and to facilitate navigation if your interest lies in one specific product.
+As MUI continues to grow beyond our flagship product, Material UI (we [rebranded the company](/blog/material-ui-is-now-mui/) last year as a first step), it has become clear that the documentation for our products can no longer all live under one roof.
+
+That's why we're excited to announce that we are shipping a major upgrade to our documentation, to make it easier than ever to find exactly what you need—no matter which MUI products you're working with.
 
 ## Wait... what MUI products are you talking about?
 
-Currently, our main two products are:
+We currently offer two main product lines:
 
-- **MUI Core:** a collection of libraries that offers you foundational components, which includes Material UI, MUI Base (unstyled components), MUI System, and more. It really is a product line.
-- **MUI X:** a collection of advanced components, meant primarily to support data-heavy applications. Differently from Core, each component lives under its own package.
+- **MUI Core—**a collection of foundational component libraries, including:
+  - _Material UI_—components that implement Google's Material Design
+  - _MUI Base_—unstyled components for implementing your own design system
+  - _MUI System_—CSS utilities for quickly laying out design systems
+- **MUI X**—a collection of advanced components for complex use cases, including:
+  - _Data Grid_—fast, feature-rich, extendable React data table
+  - _Date and Time Pickers_—interface control components for selecting dates and times
 
 ## What has changed?
 
-All MUI products are still under the [mui.com](http://mui.com) domain but each of them now has an isolated URL and, therefore, documentation.
-We added an identifier and menu at the top left of the docs to ease navigation:
+All MUI products still live under the [mui.com](http://mui.com) domain, but each of them now has its own respective URL and documentation.
+We added an identifier and menu to the upper-left corner of the docs for improved navigation:
 
 <img src="/static/blog/docs-updates/docs-separation.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screen shot of the product identifier menu" />
 
@@ -37,19 +41,18 @@ As for the URLs, this is how they look now:
 
 ## What do I gain?
 
-We believe separating the documentation will significantly improve your navigation experience.
-This rings especially true for MUI Base and MUI X contributors and customers, considering that we have reworked how search works.
-Now searching for any Data Grid specific article, for example, is much faster.
+## Improved search experience
+
+Along with the documentation restructuring, the search experience has also been completely revamped.
+This is a huge improvement especially for users of MUI Base and MUI X, who can now find exactly what they need much faster than before.
 
 ## Moving forward
 
 This separation will become increasingly beneficial as each product grows, such as additional components in MUI X and MUI Base.
-With it, comes more content to share and an even greater need for better space to accommodate it.
 
-It will also help with the slight confusion we caused by introducing a different design to our marketing website, especially considering that our only design system package so far is Material UI.
-However, as we move forward working on [the second design system package](https://deploy-preview-30686--material-ui.netlify.app/experiments/), the separation will allow each to use their default styles, which will certainly help to avoid confusion about what the component looks like by installing the library, as it was when v4's docs used Material Design without any modification.
+As we move forward working on [our second design system package](https://deploy-preview-30686--material-ui.netlify.app/experiments/), the separation will make it possible for us to build the documentation for each system using its default styles—so the docs themselves will serve as examples of their corresponding component libraries.
 
-If you have any feedback or suggestions, we definitely want to hear them.
-Go over to Material UI's GitHub repository and open an issue starting with [docs].
+If you have any feedback or suggestions, we definitely want to hear from you.
+Please open an issue in the [mui/material-ui repository on GitHub](https://github.com/mui/material-ui/issues), and be sure to start the **Title** with [docs].
 
 Happy developing! 👩‍💻
