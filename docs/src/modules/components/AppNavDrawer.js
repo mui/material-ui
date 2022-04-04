@@ -157,6 +157,9 @@ function ProductDrawerButton(props) {
             width: 18,
             height: 18,
           },
+          '& > span': {
+            ml: '4px',
+          },
         })}
       >
         {props.productName}
@@ -556,8 +559,8 @@ function AppNavDrawer(props) {
                 component="a"
                 aria-label={t('goToHome')}
                 sx={{
-                  pr: 2,
-                  mr: 1,
+                  pr: '12px',
+                  mr: '4px',
                   borderRight: isProductScoped ? '1px solid' : '0px',
                   borderColor: (theme) =>
                     theme.palette.mode === 'dark'
@@ -614,9 +617,20 @@ function AppNavDrawer(props) {
                 name="Data Grid"
                 metadata="MUI X"
                 versionSelector={renderVersionSelector([
-                  // LIB_VERSION is set from the X repo
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
+                  // DATA_GRID_VERSION is set from the X repo
+                  { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
                   { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
+                ])}
+              />
+            )}
+            {(router.asPath.startsWith('/x/react-date-pickers') ||
+              router.asPath.startsWith('/x/api/date-pickers')) && (
+              <ProductIdentifier
+                name="Date pickers"
+                metadata="MUI X"
+                versionSelector={renderVersionSelector([
+                  // DATE_PICKERS_VERSION is set from the X repo
+                  { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
                 ])}
               />
             )}
