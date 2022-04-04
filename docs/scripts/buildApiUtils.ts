@@ -272,7 +272,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       const allMarkdowns = findPagesMarkdownNew()
         .filter((markdown) => {
           if (migratedBaseComponents.some((component) => filename.includes(component))) {
-            return markdown.filename.match(/\/data\/base\//);
+            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
           }
           return true;
         })

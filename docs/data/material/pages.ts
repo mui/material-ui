@@ -133,7 +133,7 @@ const pages = [
         subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
-          { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-date-pickers/getting-started', title: 'Date & Time Pickers' },
         ],
       },
       {
@@ -144,7 +144,6 @@ const pages = [
           { pathname: '/material-ui/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
-          { pathname: '/material-ui/react-trap-focus' },
           { pathname: '/material-ui/react-tree-view' },
         ],
       },
