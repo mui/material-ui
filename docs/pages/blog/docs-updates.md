@@ -28,11 +28,11 @@ We added an identifier and menu at the top left of the docs to ease navigation:
 
 As for the URLs, this is how they look now:
 
-- Material UI: https://mui.com/material-ui/_
-- MUI Base: https://mui.com/base/_
-- MUI System: https://mui.com/system/_
-- MUI X - Data grid: https://mui.com/x/react-data-grid/_
-- MUI X - Date and time pickers: https://mui.com/x/react-date-pickers/_
+- Material UI: [https://mui.com/material-ui/_](https://mui.com/material-ui/getting-started/installation/)
+- MUI Base: [https://mui.com/base/_](https://mui.com/base/getting-started/installation/)
+- MUI System: [https://mui.com/system/_](https://mui.com/system/basics/)
+- MUI X - Data grid: [https://mui.com/x/react-data-grid/_](https://mui.com/x/react-data-grid/)
+- MUI X - Date and time pickers: [https://mui.com/x/react-date-pickers/_](https://mui.com/x/react-date-pickers/getting-started/)
 
 ## What do I gain?
 
