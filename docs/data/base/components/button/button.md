@@ -37,9 +37,14 @@ In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` co
 ## Focus of disabled buttons
 
 Similarly to the native `<button>`, the `ButtonUnstyled` component can't receive focus when it's disabled.
+It may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
 The `allowFocusWhenDisabled` prop lets you change this behavior.  
 When this prop is set, the underlying button does not set the `disabled` prop.
-Instead, `aria-disabled` is used, what makes the button focusable.
+Instead, `aria-disabled` is used, which makes the button focusable.
+
+It should be used whenever the disabled buttons need to be read by screen readers.  
+MUI Base uses this prop internally in [menu items](/base/react-menu).
+It makes the keyboard navigation to disabled items possible (in compliance with [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
 
 {{"demo": "UnstyledButtonsDisabledFocus.js"}}
 
