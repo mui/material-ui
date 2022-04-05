@@ -59,7 +59,7 @@ const ProductSuite = () => {
                     Every component you need is <GradientText>ready for production</GradientText> today
                   </Typography>
                 }
-                description="Empower your team to build at an accelerated pace without sacrificing flexibility or control."
+                description="Build at an accelerated pace without sacrificing flexibility or control."
               />
             </Box>
             <Box sx={{ mt: 4 }} />
