@@ -194,9 +194,8 @@ export function onRenderBody({ setPreBodyComponents }) {
 
 ### `<CssVarsProvider>` props
 
-- `defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme }` - Design system default color scheme; provides a string if the design system has one default color scheme (either light or dark) or an object if the design system has default light & dark color schemes
-- `defaultMode?: Mode` - Design system default mode
-- `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes or color schemes
+- `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
+- `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
 - `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
 - `prefix: string` - CSS variable prefix
 - `theme: ThemeInput` - the theme provided to the React's context
@@ -205,12 +204,7 @@ export function onRenderBody({ setPreBodyComponents }) {
 
 ### `useColorScheme: () => ColorSchemeContextValue`
 
-- `allColorSchemes: string[]` - All color schemes available in the theme
-- `colorScheme: string`: - The current application color scheme
-- `darkColorScheme: string`- The color scheme for dark mode
-- `lightColorScheme: string` - The color scheme for light mode
 - `mode: string` - The user's selected mode
-- `setColorScheme: : value => {…}` - Function for setting the `colorScheme`. The `colorScheme` is saved to internal state and local storage; if `colorScheme` is null, it will be reset to the default color scheme (light | dark)
 - `setMode: mode => {…}` - Function for setting the `mode`. The `mode` is saved to internal state and local storage; if `mode` is null, it will be reset to the default mode
 
 ### `getInitColorSchemeScript: (options) => React.ReactElement`
@@ -218,8 +212,5 @@ export function onRenderBody({ setPreBodyComponents }) {
 **options**
 
 - `enableSystem?: boolean`: - If `true` and the selected mode is not `light` or `dark`, the system mode is used
-- `defaultLightColorScheme?: string`: - The default color scheme for the light mode
-- `defaultDarkColorScheme?: string`: - The default color scheme for the dark mode
 - `modeStorageKey?: string`: - localStorage key used to store application `mode`
-- `colorSchemeStorageKey?: string`: - localStorage key used to store application `colorScheme`
 - `attribute?: string` - DOM attribute for applying color scheme
