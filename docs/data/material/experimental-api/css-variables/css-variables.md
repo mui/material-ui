@@ -59,7 +59,7 @@ declare module '@mui/material/styles' {
 
 ### Customizing the theme
 
-If you want to override Material UI's default color schemes, you can use the `experimental_extendTheme` utility.
+If you want, for example, to override Material UI's default color schemes, you can use the `experimental_extendTheme` utility.
 
 ```jsx
 const theme = experimental_extendTheme({
