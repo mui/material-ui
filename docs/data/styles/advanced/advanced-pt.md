@@ -325,12 +325,6 @@ import { StylesProvider, jssPreset } from '@mui/styles';
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  insertionPoint: 'jss-insertion-point',
-});
-
-export default function App() {
-  return <StylesProvider jss={jss}>...</StylesProvider>;
-}
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
