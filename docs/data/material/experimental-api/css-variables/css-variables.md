@@ -179,7 +179,7 @@ export default class MyDocument extends Document {
 }
 ```
 
-### Gatsby
+#### Gatsby
 
 To use the API with a Gatsby project, add the following code to the `gatsby-ssr.js file`
 
