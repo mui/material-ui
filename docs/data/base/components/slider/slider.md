@@ -7,7 +7,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#slider
 packageName: '@mui/base'
 ---
 
-# Slider
+# Unstyled slider
 
 <p class="description">The <code>SliderUnstyled</code> component lets users make selections from a range of values along a horizontal or vertical bar.</p>
 
