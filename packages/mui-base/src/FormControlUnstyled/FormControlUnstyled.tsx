@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useControlled as useControlled } from '@mui/utils';
-import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlContext';
+import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlUnstyledContext';
 import appendOwnerState from '../utils/appendOwnerState';
 import classes from './formControlUnstyledClasses';
 import {
