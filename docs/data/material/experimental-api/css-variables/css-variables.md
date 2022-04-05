@@ -11,6 +11,8 @@ Previously, these CSS variables were only available as an experimental API in th
 Now they are ready for experimental use with Material UI components.
 
 > If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
+>
+> We'd appreciate any feedback about this API, as it is still in development.
 
 ## Introduction
 
@@ -38,7 +40,6 @@ Because the CSS variables API is an experimental feature, it is currently only s
 To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarsProvider`.
 
 Play around with the demo below!
-We'd appreciate any feedback about this API, as it is still in development.
 
 {{"demo": "CssVariablesCustomization.js", "iframe": true }}
 
