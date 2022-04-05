@@ -21,7 +21,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - &#8203;<!-- 04 -->[ListItemButton] Specified width so that text would ellide (#32083) @MatthijsMud
 - &#8203;<!-- 03 -->[MuiTablePagination] Fixed the etEE locale (#32052) @raigoinabox
 
-### `@mui/codemod@5.5.3`
+### `@mui/codemod@5.6.0`
 
 - &#8203;<!-- 29 -->[codemod] Add v5.0.0/date-pickers-moved-to-x codemod (#31373) @flaviendelangle
 
@@ -29,7 +29,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 24 -->[DatePicker] Remove date and time pickers from the lab (#31984) @flaviendelangle
 
-### `@mui/joy@5.0.0-alpha.21`
+### `@mui/joy@5.0.0-alpha.22`
 
 - &#8203;<!-- 07 -->[Joy] Add `Card` components (#32027) @siriwatknp
 
