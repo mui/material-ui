@@ -86,23 +86,6 @@ Other examples:
 
 {{"demo": "DirectionSnackbar.js"}}
 
-## Multiple Snackbars
-
-You can also place multiple snackbars on the page by using `SnackbarsProvider` and `useSnackbars` hook.
-Wrap your application with `SnackbarsProvider` to use the `useSnackbars` hook within your components. If using `ThemeProvider` wrap `SnackbarsProvider` below it like:
-
-```jsx
-<ThemeProvider>
-  <SnackbarsProvider>
-    <YourApp />
-  </SnackbarsProvider>
-</ThemeProvider>
-```
-
-The snackbar options in method `showSnackbar` of `useSnackbars` hook take more priority over props passed in `SnackbarsProvider`.
-
-{{"demo": "MultipleSnackbars.js"}}
-
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:

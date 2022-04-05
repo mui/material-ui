@@ -143,6 +143,7 @@ const pages = [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
           { pathname: '/material-ui/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/material-ui/react-masonry' },
+          { pathname: '/material-ui/react-multiple-snackbars' },
           { pathname: '/material-ui/react-timeline' },
           { pathname: '/material-ui/react-tree-view' },
         ],

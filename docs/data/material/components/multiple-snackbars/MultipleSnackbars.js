@@ -1,6 +1,6 @@
 import * as React from 'react';
-import SnackbarsProvider from '@mui/material/SnackbarsProvider';
-import useSnackbars from '@mui/material/useSnackbars';
+import SnackbarsProvider from '@mui/lab/SnackbarsProvider';
+import useSnackbars from '@mui/lab/useSnackbars';
 import Button from '@mui/material/Button';
 
 function MultipleSnackbars() {
