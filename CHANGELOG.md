@@ -9,8 +9,8 @@ _Apr 5, 2022_
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - 🧰 Update peer deps to support React 18 (#32063) @eps1lon
-- 🚀 Added the experimental `CssVarsProvider` for generating theme CSS variables (#31138) @mnajdova.
-- 📣 Moved date and time pickers from the lab to MUI X (#31984) @flaviendelangle.
+- 🚀 Added the experimental `CssVarsProvider` in `@mui/material` for generating theme CSS variables (#31138) @mnajdova
+- 📣 Moved date and time pickers from the lab to MUI X (#31984) @flaviendelangle
 - Several 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.6.0`
