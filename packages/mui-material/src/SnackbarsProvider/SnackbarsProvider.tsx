@@ -130,11 +130,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
     const snackbarsByCategory = groupSnackbarsByAnchorOrigin[origin];
     const newOwnerState = { ...ownerState, anchorOrigin: snackbarsByCategory[0].anchorOrigin };
     return (
-      <SnackbarsContainer
-        key={origin}
-        /* @ts-expect-error */
-        ownerState={newOwnerState}
-      >
+      <SnackbarsContainer key={origin} ownerState={newOwnerState}>
         {snackbarsByCategory.map((snackbar) => {
           let snackbarAction = snackbar.action || action;
           if (typeof snackbarAction === 'function') {
