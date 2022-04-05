@@ -32,6 +32,74 @@ function App() {
 }
 ```
 
+### Customizing components
+
+Because the CSS variables API is an experimental feature, it is currently only supported by the `Button` component.
+To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarsProvider`.
+
+Play around with the demo below!
+We'd appreciate any feedback about this API, as it is still in development.
+
+{{"demo": "CssVariablesCustomization.js", "iframe": true }}
+
+If you are using TypeScript you should use module augmentation to update the `Theme` structure:
+
+```tsx
+import { Theme as MuiTheme } from '@mui/material/styles';
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    vars: Omit<
+      MuiTheme,
+      'typography' | 'mixins' | 'breakpoints' | 'direction' | 'transitions'
+    >;
+  }
+}
+```
+
+### Customizing the theme
+
+If you want to override Material UI's default color schemes, you can use the `experimental_extendTheme` utility.
+
+```jsx
+const theme = experimental_extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: teal,
+        secondary: deepOrange,
+      },
+    },
+    dark: {
+      palette: {
+        primary: cyan,
+        secondary: orange,
+      },
+    },
+  },
+});
+```
+
+{{"demo": "CssVarsCustomTheme.js", "iframe": true }}
+
+If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
+
+```diff
+- import { ThemeProvider, createTheme } from '@mui/material/styles';
++ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+
+function App() {
+  return (
+-    <ThemeProvider theme={createTheme()}>
+-      ...
+-    </ThemeProvider>
++    <CssVarsProvider>
++      ...
++    </CssVarsProvider>
+  )
+}
+```
+
 ### Toggle between light and dark mode
 
 `Experimental_CssVarsProvider` provides light and dark mode by default. It stores the selected user mode and syncs it with the browser's local storage internally. You can read or update the mode using the `useColorScheme` API.
@@ -119,74 +187,6 @@ import { getInitColorSchemeScript } from '@mui/material/styles';
 
 export function onRenderBody({ setPreBodyComponents }) {
   setPreBodyComponents([getInitColorSchemeScript()]);
-}
-```
-
-### Customizing the theme
-
-If you want to override Material UI's default color schemes, you can use the `experimental_extendTheme` utility.
-
-```jsx
-const theme = experimental_extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: teal,
-        secondary: deepOrange,
-      },
-    },
-    dark: {
-      palette: {
-        primary: cyan,
-        secondary: orange,
-      },
-    },
-  },
-});
-```
-
-{{"demo": "CssVarsCustomTheme.js", "iframe": true }}
-
-If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
-
-```diff
-- import { ThemeProvider, createTheme } from '@mui/material/styles';
-+ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-
-function App() {
-  return (
--    <ThemeProvider theme={createTheme()}>
--      ...
--    </ThemeProvider>
-+    <CssVarsProvider>
-+      ...
-+    </CssVarsProvider>
-  )
-}
-```
-
-### Customizing components
-
-Because the CSS variables API is an experimental feature, it is currently only supported by the `Button` component.
-To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarsProvider`.
-
-Play around with the demo below!
-We'd appreciate any feedback about this API, as it is still in development.
-
-{{"demo": "CssVariablesCustomization.js", "iframe": true }}
-
-If you are using TypeScript you should use module augmentation to update the `Theme` structure:
-
-```tsx
-import { Theme as MuiTheme } from '@mui/material/styles';
-
-declare module '@mui/material/styles' {
-  interface Theme {
-    vars: Omit<
-      MuiTheme,
-      'typography' | 'mixins' | 'breakpoints' | 'direction' | 'transitions'
-    >;
-  }
 }
 ```
 
