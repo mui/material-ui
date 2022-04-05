@@ -1,35 +1,38 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar, { SnackbarProps } from '../Snackbar';
-import SnackbarsContext from '../Snackbar/SnackbarsContext';
+import SnackbarsContext, { ShowSnackbarProps } from '../Snackbar/SnackbarsContext';
 import Grow from '../Grow';
 import SnackbarsContainer from './SnackbarsContainer';
+import SnackbarContent from '../SnackbarContent';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 
 const randomId = () => `mui-${Math.round(Math.random() * 1e5)}`;
 
-const StyledSnackbar = styled(Snackbar)<{ ownerState: SnackbarProps }>(({ theme, ownerState }) => {
-  return {
-    [theme.breakpoints.up('sm')]: {
-      position: 'relative',
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-      ...(ownerState.anchorOrigin!.vertical === 'bottom' && {
-        '&:not(:last-of-type)': {
-          marginTop: theme.spacing(),
-        },
-      }),
-      ...(ownerState.anchorOrigin!.vertical === 'top' && {
-        '&:not(:last-of-type)': {
-          marginBottom: theme.spacing(),
-        },
-      }),
-    },
-  };
-});
+const StyledSnackbar = styled(Snackbar)<{ ownerState: ShowSnackbarProps }>(
+  ({ theme, ownerState }) => {
+    return {
+      [theme.breakpoints.up('sm')]: {
+        position: 'relative',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        ...(ownerState.anchorOrigin!.vertical === 'bottom' && {
+          '&:not(:last-of-type)': {
+            marginTop: theme.spacing(),
+          },
+        }),
+        ...(ownerState.anchorOrigin!.vertical === 'top' && {
+          '&:not(:last-of-type)': {
+            marginBottom: theme.spacing(),
+          },
+        }),
+      },
+    };
+  },
+);
 
 export interface SnackbarsProviderProps
   extends Omit<SnackbarProps, 'children' | 'classes' | 'key' | 'message' | 'onClose' | 'open'> {
@@ -37,12 +40,16 @@ export interface SnackbarsProviderProps
    * @default 5
    */
   limit?: number;
+  /**
+   * Replace the `SnackbarContent` component.
+   */
+  content?: React.ReactElement<any, any> | ((key: string) => React.ReactElement<any, any>);
 }
 
-type SnackbarsByAnchorOrigin = { [key: string]: SnackbarProps[] };
+type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };
 
 const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.ReactNode }) => {
-  const [snackbars, setSnackbars] = React.useState<SnackbarProps[]>([]);
+  const [snackbars, setSnackbars] = React.useState<ShowSnackbarProps[]>([]);
   const theme = useTheme();
 
   const defaultTransitionDuration = {
@@ -55,6 +62,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
     autoHideDuration = null,
     children,
     ClickAwayListenerProps,
+    content,
     ContentProps,
     limit = 5,
     TransitionComponent = Grow,
@@ -63,7 +71,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
     ...others
   } = props;
 
-  const showSnackbar = (snackbar: SnackbarProps) => {
+  const showSnackbar = (snackbar: ShowSnackbarProps) => {
     setSnackbars((prevState) => {
       const updatedSnackbars = [
         ...prevState,
@@ -123,31 +131,43 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
         /* @ts-expect-error */
         ownerState={newOwnerState}
       >
-        {snackbarsByCategory.map((snackbar) => (
-          <StyledSnackbar
-            key={snackbar.key}
-            ownerState={newOwnerState}
-            {...others}
-            {...snackbar}
-            onClose={handleClose(snackbar.key)}
-            ClickAwayListenerProps={{
-              onClickAway: () => null,
-              ...ClickAwayListenerProps,
-              ...snackbar.ClickAwayListenerProps,
-            }}
-            TransitionProps={{
-              onExited: handleExited(snackbar.key),
-              ...TransitionProps,
-              ...snackbar.TransitionProps,
-            }}
-          />
-        ))}
+        {snackbarsByCategory.map((snackbar) => {
+          let snackbarContent = snackbar.content || content;
+          if (typeof snackbarContent === 'function') {
+            snackbarContent = snackbarContent(snackbar.key);
+          }
+          return (
+            <StyledSnackbar
+              key={snackbar.key}
+              ownerState={newOwnerState}
+              {...others}
+              {...snackbar}
+              onClose={handleClose(snackbar.key)}
+              ClickAwayListenerProps={{
+                onClickAway: () => null,
+                ...snackbar.ClickAwayListenerProps,
+              }}
+              TransitionProps={{
+                onExited: handleExited(snackbar.key),
+                ...snackbar.TransitionProps,
+              }}
+            >
+              {snackbarContent || (
+                <SnackbarContent
+                  message={snackbar.message}
+                  action={snackbar.action}
+                  {...snackbar.ContentProps}
+                />
+              )}
+            </StyledSnackbar>
+          );
+        })}
       </SnackbarsContainer>
     );
   });
 
   return (
-    <SnackbarsContext.Provider value={{ showSnackbar }}>
+    <SnackbarsContext.Provider value={{ showSnackbar, closeSnackbar: handleClose }}>
       {snackbarsContainer}
       {children}
     </SnackbarsContext.Provider>
