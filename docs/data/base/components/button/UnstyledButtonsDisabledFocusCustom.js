@@ -44,10 +44,10 @@ export default function UnstyledButtonsDisabledFocusCustom() {
   return (
     <Stack spacing={2} direction="row">
       <CustomButton component="span" disabled>
-        allowFocusWhenDisabled = false
+        focusableWhenDisabled = false
       </CustomButton>
-      <CustomButton component="span" disabled allowFocusWhenDisabled>
-        allowFocusWhenDisabled = true
+      <CustomButton component="span" disabled focusableWhenDisabled>
+        focusableWhenDisabled = true
       </CustomButton>
     </Stack>
   );

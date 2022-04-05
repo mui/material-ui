@@ -43,9 +43,9 @@ const CustomButton = styled(ButtonUnstyled)`
 export default function UnstyledButtonsDisabledFocus() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton disabled>allowFocusWhenDisabled = false</CustomButton>
-      <CustomButton disabled allowFocusWhenDisabled>
-        allowFocusWhenDisabled = true
+      <CustomButton disabled>focusableWhenDisabled = false</CustomButton>
+      <CustomButton disabled focusableWhenDisabled>
+        focusableWhenDisabled = true
       </CustomButton>
     </Stack>
   );

@@ -59,18 +59,18 @@ describe('<ButtonUnstyled />', () => {
     });
   });
 
-  describe('prop: allowFocusWhenDisabled', () => {
+  describe('prop: focusableWhenDisabled', () => {
     describe('as native button', () => {
       it('has the aria-disabled instead of disabled attribute when disabled', () => {
-        const { getByRole } = render(<ButtonUnstyled allowFocusWhenDisabled disabled />);
+        const { getByRole } = render(<ButtonUnstyled focusableWhenDisabled disabled />);
 
         const button = getByRole('button');
         expect(button).to.have.attribute('aria-disabled');
         expect(button).not.to.have.attribute('disabled');
       });
 
-      it('can receive focus when allowFocusWhenDisabled is set', () => {
-        const { getByRole } = render(<ButtonUnstyled allowFocusWhenDisabled disabled />);
+      it('can receive focus when focusableWhenDisabled is set', () => {
+        const { getByRole } = render(<ButtonUnstyled focusableWhenDisabled disabled />);
 
         const button = getByRole('button');
         act(() => {
@@ -83,7 +83,7 @@ describe('<ButtonUnstyled />', () => {
       it('does not respond to user actions when disabled and focused', () => {
         const handleClick = spy();
         const { getByRole } = render(
-          <ButtonUnstyled allowFocusWhenDisabled disabled onClick={handleClick} />,
+          <ButtonUnstyled focusableWhenDisabled disabled onClick={handleClick} />,
         );
 
         const button = getByRole('button');
@@ -102,9 +102,9 @@ describe('<ButtonUnstyled />', () => {
     });
 
     describe('as non-button element', () => {
-      it('can receive focus when allowFocusWhenDisabled is set', () => {
+      it('can receive focus when focusableWhenDisabled is set', () => {
         const { getByRole } = render(
-          <ButtonUnstyled component="span" allowFocusWhenDisabled disabled />,
+          <ButtonUnstyled component="span" focusableWhenDisabled disabled />,
         );
 
         const button = getByRole('button');
@@ -117,7 +117,7 @@ describe('<ButtonUnstyled />', () => {
 
       it('has aria-disabled and tabIndex attributes set', () => {
         const { getByRole } = render(
-          <ButtonUnstyled component="span" allowFocusWhenDisabled disabled />,
+          <ButtonUnstyled component="span" focusableWhenDisabled disabled />,
         );
 
         const button = getByRole('button');
@@ -129,7 +129,7 @@ describe('<ButtonUnstyled />', () => {
       it('does not respond to user actions when disabled and focused', () => {
         const handleClick = spy();
         const { getByRole } = render(
-          <ButtonUnstyled component="span" allowFocusWhenDisabled disabled onClick={handleClick} />,
+          <ButtonUnstyled component="span" focusableWhenDisabled disabled onClick={handleClick} />,
         );
 
         const button = getByRole('button');

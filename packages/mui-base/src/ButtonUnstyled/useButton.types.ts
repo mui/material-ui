@@ -21,11 +21,6 @@ export type UseButtonRootSlotProps<TOther = {}> = Omit<TOther, keyof UseButtonRo
 
 export interface UseButtonParameters {
   /**
-   * If `true`, allows a disabled button to receive focus.
-   * @default false
-   */
-  allowFocusWhenDisabled?: boolean;
-  /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
    * @default 'button'
@@ -36,6 +31,11 @@ export interface UseButtonParameters {
    * @default false
    */
   disabled?: boolean;
+  /**
+   * If `true`, allows a disabled button to receive focus.
+   * @default false
+   */
+  focusableWhenDisabled?: boolean;
   href?: string;
   onFocusVisible?: React.FocusEventHandler;
   ref?: React.Ref<any>;
