@@ -182,6 +182,10 @@ SnackbarsProvider.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * The action to display. It renders after the message, at the end of the snackbar.
+   */
+  action: PropTypes.node,
+  /**
    * The anchor of the `Snackbar`.
    * On smaller screens, the component grows to occupy all the available width,
    * the horizontal alignment is ignored.
@@ -207,6 +211,10 @@ SnackbarsProvider.propTypes /* remove-proptypes */ = {
    * Props applied to the `ClickAwayListener` element.
    */
   ClickAwayListenerProps: PropTypes.object,
+  /**
+   * Replace the `SnackbarContent` component.
+   */
+  content: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
    */
