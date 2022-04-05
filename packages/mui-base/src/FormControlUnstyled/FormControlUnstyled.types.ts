@@ -9,7 +9,7 @@ export interface FormControlUnstyledOwnProps {
   /**
    * The content of the component.
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode | ((state: FormControlUnstyledState) => React.ReactNode);
   /**
    * Class name applied to the root element.
    */
@@ -69,4 +69,15 @@ export type FormControlUnstyledOwnerState = Simplify<
     Required<Pick<FormControlUnstyledProps, NonOptionalOwnerState>> & {
       filled: boolean;
     }
+>;
+
+type ContextFromPropsKey = 'disabled' | 'error' | 'onChange' | 'required' | 'value';
+
+export type FormControlUnstyledState = Simplify<
+  Pick<FormControlUnstyledProps, ContextFromPropsKey> & {
+    filled: boolean;
+    focused: boolean;
+    onBlur: () => void;
+    onFocus: () => void;
+  }
 >;

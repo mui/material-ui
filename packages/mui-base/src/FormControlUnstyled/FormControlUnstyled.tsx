@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useControlled as useControlled } from '@mui/utils';
-import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlUnstyledContext';
+import FormControlUnstyledContext from './FormControlUnstyledContext';
 import appendOwnerState from '../utils/appendOwnerState';
 import classes from './formControlUnstyledClasses';
 import {
@@ -11,6 +11,7 @@ import {
   NativeFormControlElement,
   FormControlUnstyledTypeMap,
   FormControlUnstyledOwnerState,
+  FormControlUnstyledState,
 } from './FormControlUnstyled.types';
 
 function hasValue(value: unknown) {
@@ -114,6 +115,14 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   const Root = component ?? components.Root ?? 'div';
   const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
 
+  const renderChildren = () => {
+    if (typeof children === 'function') {
+      return children(childContext);
+    }
+
+    return children;
+  };
+
   return (
     <FormControlUnstyledContext.Provider value={childContext}>
       <Root
@@ -130,7 +139,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
           required && classes.required,
         )}
       >
-        {children}
+        {renderChildren()}
       </Root>
     </FormControlUnstyledContext.Provider>
   );
