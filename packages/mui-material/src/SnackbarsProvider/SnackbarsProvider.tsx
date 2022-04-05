@@ -61,6 +61,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
   };
 
   const {
+    action,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     autoHideDuration = null,
     children,
@@ -135,10 +136,16 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
         ownerState={newOwnerState}
       >
         {snackbarsByCategory.map((snackbar) => {
+          let snackbarAction = snackbar.action || action;
+          if (typeof snackbarAction === 'function') {
+            snackbarAction = snackbarAction(snackbar.key);
+          }
+
           let snackbarContent = snackbar.content || content;
           if (typeof snackbarContent === 'function') {
             snackbarContent = snackbarContent(snackbar.key);
           }
+
           return (
             <StyledSnackbar
               key={snackbar.key}
@@ -158,7 +165,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
               {snackbarContent || (
                 <SnackbarContent
                   message={snackbar.message}
-                  action={snackbar.action}
+                  action={snackbarAction}
                   {...snackbar.ContentProps}
                 />
               )}
