@@ -118,7 +118,7 @@ const ProductsSwitcher = ({
       aria-label="Go to templates page"
       icon={<IconImage name="product-templates" />}
       name="Templates"
-      description="Battle-tested user interfaces, ready for production."
+      description="Professionally designed UI layouts to jumpstart your next project."
       href={ROUTES.productTemplates}
     />,
     <ProductItem
