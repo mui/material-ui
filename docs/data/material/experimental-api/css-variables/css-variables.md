@@ -22,7 +22,7 @@ The structure of this object is nearly identical to the theme structure, the onl
 
 ## Usage
 
-`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and put it in React context. Children elements under this provider will also be able to read the CSS variables from the theme.
+`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React's context. Children elements under this provider will also be able to read the CSS variables from the theme.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -102,7 +102,9 @@ function App() {
 
 ### Toggle between light and dark mode
 
-`Experimental_CssVarsProvider` provides light and dark mode by default. It stores the selected user mode and syncs it with the browser's local storage internally. You can read or update the mode using the `useColorScheme` API.
+`Experimental_CssVarsProvider` provides light and dark mode by default.
+It stores the selected user mode and syncs it with the browser's local storage internally.
+Developers can read/update the mode via the `useColorScheme` API.
 
 ```jsx
 import {
