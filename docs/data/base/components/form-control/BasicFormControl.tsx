@@ -1,6 +1,6 @@
 import * as React from 'react';
 import FormControlUnstyled, {
-  useFormControlUnstyled,
+  useFormControlUnstyledContext,
 } from '@mui/base/FormControlUnstyled';
 import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
@@ -61,7 +61,7 @@ const Input = React.forwardRef(function CustomInput(
 
 const Label = styled(
   ({ children, className }: { children?: React.ReactNode; className?: string }) => {
-    const formControlContext = useFormControlUnstyled();
+    const formControlContext = useFormControlUnstyledContext();
     const [dirty, setDirty] = React.useState(false);
 
     React.useEffect(() => {
@@ -95,7 +95,7 @@ const Label = styled(
 `;
 
 const HelperText = styled((props: {}) => {
-  const formControlContext = useFormControlUnstyled();
+  const formControlContext = useFormControlUnstyledContext();
   const [dirty, setDirty] = React.useState(false);
 
   React.useEffect(() => {
