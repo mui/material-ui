@@ -1,0 +1,5 @@
+<React.Fragment>
+  <SnackbarsProvider limit={10} autoHideDuration={5000}>
+    <MultipleSnackbars />
+  </SnackbarsProvider>
+</React.Fragment>
