@@ -73,4 +73,4 @@ Using the hooks allows you to take full control over the rendered components, th
 
 {{"demo": "UseMenu.js"}}
 
-Unstyled components and their corresponding hooks work interchangeably with one another—for example, you can create a `MenuItemUnstyled` component that contains menu items built with the `useMenuItem` hook.
+Unstyled components and their corresponding hooks work interchangeably with one another—for example, you can create a `MenuUnstyled` component that contains menu items built with the `useMenuItem` hook.
