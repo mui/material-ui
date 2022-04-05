@@ -1,9 +1,10 @@
 # CSS variables
 
-<p class="description">Learn about the experimental API for using CSS variables on Material UI components.</p>
+<p class="description">Learn about the experimental API for using CSS variables with Material UI components.</p>
 
 CSS variables provide significant improvements in developer experience related to theming and customization.
 With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
+
 This solves the problem of dark-mode SSR flickering; lets you provide your users with multiple themes beyond light and dark; and offers a better debugging experience overall, among other benefits.
 
 Previously, these CSS variables were only available as an experimental API in the MUI System package.
@@ -82,7 +83,7 @@ function App() {
 
 ### Server-side rendering
 
-To prevent the dark-mode SSR flickering at hydration phase, place `getInitColorSchemeScript()` before the `<Main />` tag.
+To prevent the dark-mode SSR flickering during the hydration phase, place `getInitColorSchemeScript()` before the `<Main />` tag.
 
 ### Next JS
 
@@ -168,6 +169,7 @@ function App() {
 
 Because the CSS variables API is an experimental feature, it is currently only supported by the `Button` component.
 To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarsProvider`.
+
 Play around with the demo below!
 We'd appreciate any feedback about this API, as it is still in development.
 
@@ -197,7 +199,7 @@ declare module '@mui/material/styles' {
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes or color schemes
 - `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
 - `prefix: string` - CSS variable prefix
-- `theme: ThemeInput`
+- `theme: ThemeInput` - the theme provided to the React's context
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
 
@@ -205,9 +207,9 @@ declare module '@mui/material/styles' {
 
 - `allColorSchemes: string[]` - All color schemes available in the theme
 - `colorScheme: string`: - The current application color scheme
-- `darkColorScheme: string`- The color scheme for the dark mode
-- `lightColorScheme: string` - The color scheme for the light mode
-- `mode: string` - The user selected mode
+- `darkColorScheme: string`- The color scheme for dark mode
+- `lightColorScheme: string` - The color scheme for light mode
+- `mode: string` - The user's selected mode
 - `setColorScheme: : value => {…}` - Function for setting the `colorScheme`. The `colorScheme` is saved to internal state and local storage; if `colorScheme` is null, it will be reset to the default color scheme (light | dark)
 - `setMode: mode => {…}` - Function for setting the `mode`. The `mode` is saved to internal state and local storage; if `mode` is null, it will be reset to the default mode
 
