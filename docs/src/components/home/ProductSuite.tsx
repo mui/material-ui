@@ -56,7 +56,7 @@ const ProductSuite = () => {
                 overline="Products"
                 title={
                   <Typography variant="h2" sx={{ my: 1 }}>
-                    Every component you need is <GradientText>ready for production</GradientText> today
+                    Every component you need is <GradientText>ready for production</GradientText>
                   </Typography>
                 }
                 description="Build at an accelerated pace without sacrificing flexibility or control."
