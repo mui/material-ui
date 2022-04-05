@@ -3,7 +3,7 @@ import * as React from 'react';
 interface UseButtonRootSlotOwnProps {
   'aria-disabled'?: React.AriaAttributes['aria-disabled'];
   disabled?: boolean;
-  tabIndex: number;
+  tabIndex?: number;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   role?: React.AriaRole;
   onBlur: React.FocusEventHandler;
@@ -22,6 +22,7 @@ export type UseButtonRootSlotProps<TOther = {}> = Omit<TOther, keyof UseButtonRo
 export interface UseButtonParameters {
   /**
    * If `true`, allows a disabled button to receive focus.
+   * @default false
    */
   allowFocusWhenDisabled?: boolean;
   /**

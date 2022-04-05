@@ -15,7 +15,7 @@ export default function useButton(parameters: UseButtonParameters) {
     disabled = false,
     href,
     ref,
-    tabIndex = 0,
+    tabIndex,
     to,
     type,
   } = parameters;
@@ -167,6 +167,7 @@ export default function useButton(parameters: UseButtonParameters) {
     disabled?: boolean;
     role?: React.AriaRole;
     'aria-disabled'?: React.AriaAttributes['aria-disabled'];
+    tabIndex?: number;
   }
 
   const buttonProps: AdditionalButtonProps = {};
@@ -181,9 +182,11 @@ export default function useButton(parameters: UseButtonParameters) {
   } else if (hostElementName !== '') {
     if (!href && !to) {
       buttonProps.role = 'button';
+      buttonProps.tabIndex = tabIndex ?? 0;
     }
     if (disabled) {
       buttonProps['aria-disabled'] = disabled as boolean;
+      buttonProps.tabIndex = allowFocusWhenDisabled ? tabIndex ?? 0 : -1;
     }
   }
 
@@ -201,7 +204,6 @@ export default function useButton(parameters: UseButtonParameters) {
     delete externalEventHandlers.onFocusVisible;
 
     return {
-      tabIndex: disabled ? -1 : tabIndex,
       type,
       ...externalEventHandlers,
       ...buttonProps,
