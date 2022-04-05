@@ -8,18 +8,22 @@ _Apr 5, 2022_
 
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
+- 🧰 Update peer deps to support React 18 (#32063) @eps1lon
 - 🚀 Added the experimental `CssVarsProvider` for generating theme CSS variables (#31138) @mnajdova.
 - 📣 Moved date and time pickers from the lab to MUI X (#31984) @flaviendelangle.
 - Several 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.6.0`
 
-- &#8203;<!-- 31 -->[Badge] Simplify unstyled API (#31974) @michaldudak
-- &#8203;<!-- 25 -->[CssVarsProvider] Add CssVarsProvider in @mui/material (#31138) @mnajdova
+- &#8203;<!-- 25 -->[CssVarsProvider] Add experimental CssVarsProvider in @mui/material (#31138) @mnajdova
 - &#8203;<!-- 06 -->[Link] Fix `sx` color to support callback (#32123) @siriwatknp
 - &#8203;<!-- 05 -->[Link] Fix color transformation (#32045) @siriwatknp
 - &#8203;<!-- 04 -->[ListItemButton] Specified width so that text would ellide (#32083) @MatthijsMud
-- &#8203;<!-- 03 -->[MuiTablePagination] Fixed the etEE locale (#32052) @raigoinabox
+- &#8203;<!-- 03 -->[TablePagination] Fixed the etEE locale (#32052) @raigoinabox
+
+### `@mui/base@5.0.0-alpha.75`
+
+- &#8203;<!-- 31 -->[Badge] Simplify unstyled API (#31974) @michaldudak
 
 ### `@mui/codemod@5.6.0`
 
