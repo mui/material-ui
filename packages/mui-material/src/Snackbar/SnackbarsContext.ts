@@ -1,11 +1,15 @@
 import * as React from 'react';
 import type { SnackbarProps } from './Snackbar';
 
+export type SnackbarContentType =
+  | React.ReactElement<any, any>
+  | ((key: string) => React.ReactElement<any, any>);
+
 export interface ShowSnackbarProps extends Omit<SnackbarProps, 'open' | 'children'> {
   /**
    * Replace the `SnackbarContent` component.
    */
-  content?: React.ReactElement<any, any> | ((key: string) => React.ReactElement<any, any>);
+  content?: SnackbarContentType;
 }
 
 export interface SnackbarsContextProps {

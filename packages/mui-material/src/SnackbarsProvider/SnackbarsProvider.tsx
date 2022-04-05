@@ -1,7 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar, { SnackbarProps } from '../Snackbar';
-import SnackbarsContext, { ShowSnackbarProps } from '../Snackbar/SnackbarsContext';
+import SnackbarsContext, {
+  ShowSnackbarProps,
+  SnackbarContentType,
+} from '../Snackbar/SnackbarsContext';
 import Grow from '../Grow';
 import SnackbarsContainer from './SnackbarsContainer';
 import SnackbarContent from '../SnackbarContent';
@@ -43,7 +46,7 @@ export interface SnackbarsProviderProps
   /**
    * Replace the `SnackbarContent` component.
    */
-  content?: React.ReactElement<any, any> | ((key: string) => React.ReactElement<any, any>);
+  content?: SnackbarContentType;
 }
 
 type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };
