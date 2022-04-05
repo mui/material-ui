@@ -1,0 +1,4 @@
+<CustomButton disabled>allowFocusWhenDisabled = false</CustomButton>
+<CustomButton disabled allowFocusWhenDisabled>
+  allowFocusWhenDisabled = true
+</CustomButton>
