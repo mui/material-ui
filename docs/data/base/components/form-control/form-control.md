@@ -2,6 +2,7 @@
 product: base
 title: React form control
 components: FormControlUnstyled
+githubLabel: 'component: FormControl'
 packageName: '@mui/base'
 ---
 
