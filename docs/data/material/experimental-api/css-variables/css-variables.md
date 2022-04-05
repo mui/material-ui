@@ -104,7 +104,7 @@ function App() {
 
 `Experimental_CssVarsProvider` provides light and dark mode by default.
 It stores the selected user mode and syncs it with the browser's local storage internally.
-Developers can read/update the mode via the `useColorScheme` API.
+You can read and update the mode via the `useColorScheme` API.
 
 ```jsx
 import {
