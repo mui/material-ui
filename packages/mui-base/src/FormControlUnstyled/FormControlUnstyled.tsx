@@ -153,7 +153,10 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The content of the component.
    */
-  children: PropTypes.node,
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
   /**
    * Class name applied to the root element.
    */
