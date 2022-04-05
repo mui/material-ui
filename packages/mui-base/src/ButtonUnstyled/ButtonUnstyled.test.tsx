@@ -115,6 +115,17 @@ describe('<ButtonUnstyled />', () => {
         expect(document.activeElement).to.equal(button);
       });
 
+      it('has aria-disabled and tabIndex attributes set', () => {
+        const { getByRole } = render(
+          <ButtonUnstyled component="span" allowFocusWhenDisabled disabled />,
+        );
+
+        const button = getByRole('button');
+
+        expect(button).to.have.attribute('aria-disabled', 'true');
+        expect(button).to.have.attribute('tabindex', '0');
+      });
+
       it('does not respond to user actions when disabled and focused', () => {
         const handleClick = spy();
         const { getByRole } = render(
