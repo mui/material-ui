@@ -1,38 +1,37 @@
 {
-    "props": {
-      "children": { "type": { "name": "node" }, "required": true },
-      "classes": { "type": { "name": "object" } },
-      "columns": {
-        "type": {
-          "name": "union",
-          "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
-        },
-        "default": "4"
+  "props": {
+    "children": { "type": { "name": "node" }, "required": true },
+    "classes": { "type": { "name": "object" } },
+    "columns": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
       },
-      "component": { "type": { "name": "elementType" } },
-      "defaultColumns": { "type": { "name": "number" } },
-      "defaultHeight": { "type": { "name": "number" } },
-      "defaultSpacing": { "type": { "name": "number" } },
-      "spacing": {
-        "type": {
-          "name": "union",
-          "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
-        },
-        "default": "1"
-      },
-      "sx": {
-        "type": {
-          "name": "union",
-          "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-        }
-      }
+      "default": "4"
     },
-    "name": "Multiple Snackbars",
-    "spread": true,
-    "forwardsRefTo": "HTMLDivElement",
-    "filename": "/packages/mui-lab/src/SnackbarsProvider/SnackbarsProvider.js",
-    "inheritance": null,
-    "demos": "<ul><li><a href=\"/components/multiple-snackbars/\">Multiple Snackbars</a></li></ul>",
-    "cssComponent": false
-  }
-  
+    "component": { "type": { "name": "elementType" } },
+    "defaultColumns": { "type": { "name": "number" } },
+    "defaultHeight": { "type": { "name": "number" } },
+    "defaultSpacing": { "type": { "name": "number" } },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      },
+      "default": "1"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "Multiple Snackbars",
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-lab/src/SnackbarsProvider/SnackbarsProvider.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/multiple-snackbars/\">Multiple Snackbars</a></li></ul>",
+  "cssComponent": false
+}
