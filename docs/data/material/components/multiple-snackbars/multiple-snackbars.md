@@ -9,7 +9,9 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 # Multiple Snackbars
 
-You can also place multiple snackbars on the page by using `SnackbarsProvider` and `useSnackbars` hook.
+<p class="description">Multiple snackbars can be used to show ore than one snackbars at a time</p>
+
+Multiple snackbars on the page can be placed by using `SnackbarsProvider` and `useSnackbars` hook.
 Wrap your application with `SnackbarsProvider` to use the `useSnackbars` hook within your components. If using `ThemeProvider` wrap `SnackbarsProvider` below it like:
 
 ```jsx

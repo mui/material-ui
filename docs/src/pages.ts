@@ -190,6 +190,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
           { pathname: '/components/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/components/masonry' },
+          { pathname: '/components/multiple-snackbars' },
           { pathname: '/components/timeline' },
           { pathname: '/components/tree-view' },
         ],

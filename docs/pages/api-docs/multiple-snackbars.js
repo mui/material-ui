@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './snackbars-provider.json';
+import jsonPageContent from './multiple-snackbars.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
@@ -9,11 +9,7 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context(
-    'docs/translations/api-docs/snackbars-provider',
-    false,
-    /snackbars-provider.*.json$/,
-  );
+  const req = require.context('docs/translations/api-docs/multiple-snackbars', false, /multiple-snackbars.*.json$/);
   const descriptions = mapApiPageTranslations(req);
 
   return {
