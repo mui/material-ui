@@ -181,7 +181,7 @@ export default class MyDocument extends Document {
 
 ### Gatsby
 
-Add the following code to `gatsby-ssr.js`
+To use the API with a Gatsby project, add the following code to the `gatsby-ssr.js file`
 
 ```jsx
 import React from 'react';
