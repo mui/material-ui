@@ -157,7 +157,7 @@ To prevent the dark-mode SSR flickering during the hydration phase, place `getIn
 
 ### Next JS
 
-Add the following code to `pages/_document.js`.
+To use the API with a Next.js project, add the following code to the `pages/_document.js` file.
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
