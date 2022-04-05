@@ -57,7 +57,7 @@ Just like `MenuUnstyled`, it can be customized by setting the `component` or `co
 `MenuItemUnstyled` can set the following classes:
 
 - `Mui-disabled` - set when the MenuItem has the `disabled` prop
-- `Mui-focusVisible` - set when the MenuItem is highligthed via keyboard navigation
+- `Mui-focusVisible` - set when the MenuItem is highligthed via keyboard navigation.
   This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in Safari.
 
 ## The useMenu and useMenuItem hooks
