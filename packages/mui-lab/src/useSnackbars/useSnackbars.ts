@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SnackbarsContext, { SnackbarsContextProps } from '../Snackbar/SnackbarsContext';
+import SnackbarsContext, { SnackbarsContextProps } from '../SnackbarsProvider/SnackbarsContext';
 
 export default function useSnackbars(): SnackbarsContextProps {
   const context = React.useContext(SnackbarsContext);

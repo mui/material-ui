@@ -1,15 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Snackbar, { SnackbarProps } from '../Snackbar';
-import SnackbarsContext, {
-  ShowSnackbarProps,
-  SnackbarContentType,
-} from '../Snackbar/SnackbarsContext';
-import Grow from '../Grow';
+import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
+import Grow from '@mui/material/Grow';
+import SnackbarContent from '@mui/material/SnackbarContent';
+import { styled, useTheme } from '@mui/material/styles';
+import SnackbarsContext, { ShowSnackbarProps, SnackbarContentType } from './SnackbarsContext';
 import SnackbarsContainer from './SnackbarsContainer';
-import SnackbarContent from '../SnackbarContent';
-import styled from '../styles/styled';
-import useTheme from '../styles/useTheme';
 
 const randomId = () => `mui-${Math.round(Math.random() * 1e5)}`;
 

@@ -1,5 +1,5 @@
+import { styled } from '@mui/material/styles';
 import type { SnackbarsProviderProps } from './SnackbarsProvider';
-import { styled } from '../styles';
 
 const SnackbarsContainer = styled('div', {
   name: 'MuiSnackbarsContainer',

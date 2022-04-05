@@ -79,6 +79,8 @@ export * from './Rating';
 export { default as Skeleton } from './Skeleton';
 export * from './Skeleton';
 
+export { default as SnackbarsProvider } from './SnackbarsProvider';
+
 export { default as SpeedDial } from './SpeedDial';
 export * from './SpeedDial';
 
@@ -150,6 +152,8 @@ export * from './YearPicker';
 
 export { default as useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';
+
+export { default as useSnackbars } from './useSnackbars';
 
 export { default as Masonry } from './Masonry';
 export * from './Masonry';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { SnackbarProps } from './Snackbar';
+import type { SnackbarProps } from '@mui/material/Snackbar';
 
 export type SnackbarContentType =
   | React.ReactElement<any, any>

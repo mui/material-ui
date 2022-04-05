@@ -288,8 +288,6 @@ export * from './Snackbar';
 export { default as SnackbarContent } from './SnackbarContent';
 export * from './SnackbarContent';
 
-export { default as SnackbarsProvider } from './SnackbarsProvider';
-
 export { default as SpeedDial } from './SpeedDial';
 export * from './SpeedDial';
 
@@ -397,8 +395,6 @@ export * from './usePagination';
 
 export { default as useScrollTrigger } from './useScrollTrigger';
 export * from './useScrollTrigger';
-
-export { default as useSnackbars } from './useSnackbars';
 
 export { default as Zoom } from './Zoom';
 export * from './Zoom';
