@@ -91,6 +91,7 @@ module.exports = [
   { pathname: '/material-ui/api/slider' },
   { pathname: '/material-ui/api/snackbar' },
   { pathname: '/material-ui/api/snackbar-content' },
+  { pathname: '/material-ui/api/snackbars-provider' },
   { pathname: '/material-ui/api/speed-dial' },
   { pathname: '/material-ui/api/speed-dial-action' },
   { pathname: '/material-ui/api/speed-dial-icon' },

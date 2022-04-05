@@ -92,6 +92,7 @@ module.exports = [
   { pathname: '/api-docs/slider' },
   { pathname: '/api-docs/snackbar' },
   { pathname: '/api-docs/snackbar-content' },
+  { pathname: '/api-docs/snackbars-provider' },
   { pathname: '/api-docs/speed-dial' },
   { pathname: '/api-docs/speed-dial-action' },
   { pathname: '/api-docs/speed-dial-icon' },

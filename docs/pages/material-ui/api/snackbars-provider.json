@@ -1,0 +1,33 @@
+{
+  "props": {
+    "action": { "type": { "name": "node" } },
+    "anchorOrigin": {
+      "type": {
+        "name": "shape",
+        "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
+      },
+      "default": "{ vertical: 'bottom', horizontal: 'left' }"
+    },
+    "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
+    "ClickAwayListenerProps": { "type": { "name": "object" } },
+    "content": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "ContentProps": { "type": { "name": "object" } },
+    "limit": { "type": { "name": "number" }, "default": "5" },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+    },
+    "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
+  },
+  "name": "SnackbarsProvider",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/mui-lab/src/SnackbarsProvider/SnackbarsProvider.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-multiple-snackbar/\">Multiple Snackbars</a></li></ul>",
+  "cssComponent": false
+}

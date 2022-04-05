@@ -46,7 +46,16 @@ export interface SnackbarsProviderProps
 }
 
 type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };
-
+/**
+ *
+ * Demos:
+ *
+ * - [Multiple Snackbars](https://mui.com/components/multiple-snackbars/)
+ *
+ * API:
+ *
+ * - [SnackbarsProvider API](https://mui.com/api/snackbars-provider/)
+ */
 const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.ReactNode }) => {
   const [snackbars, setSnackbars] = React.useState<ShowSnackbarProps[]>([]);
   const theme = useTheme();
