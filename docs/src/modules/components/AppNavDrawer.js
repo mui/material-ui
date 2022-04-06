@@ -227,7 +227,7 @@ function ProductDrawerButton(props) {
         </li>
         <li role="none">
           <Link
-            href={ROUTES.dataGridSpace}
+            href={ROUTES.advancedComponents}
             sx={{
               p: 2,
               width: '100%',
@@ -610,6 +610,9 @@ function AppNavDrawer(props) {
                   { text: `v${basePkgJson.version}`, current: true },
                 ])}
               />
+            )}
+            {router.asPath.startsWith('/x/advanced-components') && (
+              <ProductIdentifier name="Advanced components" metadata="MUI X" />
             )}
             {(router.asPath.startsWith('/x/react-data-grid') ||
               router.asPath.startsWith('/x/api/data-grid')) && (
