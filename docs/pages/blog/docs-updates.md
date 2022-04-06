@@ -39,9 +39,11 @@ As for the URLs, this is how they look now:
   - Data Grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
   - Date and Time Pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
 
+> 📖 The MUI X date and time pickers has been moved from the lab (`@mui/lab`). If you are curious about it, check out the [dedicated blog post](/blog/lab-date-pickers-to-mui-x/).
+
 ### Improved search experience
 
-The documentation restructuring ranks the search result based on the product that you are looking at. If you are looking at Material UI documentation (/material-ui/*), when you hit ⌘ + K and type a keyword, you will find that most of the results are related to Material UI.
+The documentation restructuring ranks the search result based on the product that you are looking at. For example, if you are looking at Material UI documentation (/material-ui/\*), when you hit ⌘ + K and type a keyword, you will find that most of the results are related to Material UI.
 
 We have also added product label for Material UI and MUI Base in case the search result shows the same text.
 
