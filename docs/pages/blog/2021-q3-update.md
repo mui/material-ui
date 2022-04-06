@@ -88,7 +88,7 @@ Here are the most significant improvements since early July 2021.
   import Portal from '@mui/base/Portal';
   ```
 
-  - [TrapFocus](/material-ui/react-trap-focus/#unstyled)
+  - [TrapFocus](/base/react-trap-focus/)
 
   ```jsx
   import TrapFocus from '@mui/base/TrapFocus';
