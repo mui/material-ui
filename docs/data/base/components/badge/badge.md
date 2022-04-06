@@ -8,7 +8,7 @@ packageName: '@mui/base'
 
 # Unstyled badge
 
-<p class="description">The `BadgeUnstyled` component generates a small label attached to its children elements.</p>
+<p class="description">The `BadgeUnstyled` component generates a small label that is attached to its children elements.</p>
 
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
@@ -46,7 +46,7 @@ The default is 99.
 
 ## Accessibility
 
-You can't rely on the content of the badge to be announced correctly.
-The `Badge` component requires a full description with `aria-label`:
+Screen readers may not provide the user with enough information about a badge's contents.
+To make your `BadgeUnstyled` accessible, you must provide a full description with `aria-label`:
 
 {{"demo": "AccessibleBadges.js", "defaultCodeOpen": false}}
