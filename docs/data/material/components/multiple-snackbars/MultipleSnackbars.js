@@ -4,9 +4,9 @@ import useSnackbars from '@mui/lab/useSnackbars';
 import Button from '@mui/material/Button';
 import Collapse from '@mui/material/Collapse';
 import Slide from '@mui/material/Slide';
-import MuiAlert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import MuiAlert from '@mui/material/Alert';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
