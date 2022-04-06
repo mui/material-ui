@@ -138,12 +138,14 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
     return (
       <SnackbarsContainer key={origin} ownerState={newOwnerState}>
         {snackbarsByCategory.map((snackbar) => {
+          const { content: contentSnackbarProp, ...snackbarOtherProps } = snackbar;
+
           let snackbarAction = snackbar.action || action;
           if (typeof snackbarAction === 'function') {
             snackbarAction = snackbarAction(snackbar.key);
           }
 
-          let snackbarContent = snackbar.content || content;
+          let snackbarContent = contentSnackbarProp || content;
           if (typeof snackbarContent === 'function') {
             snackbarContent = snackbarContent(snackbar.key);
           }
@@ -153,7 +155,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
               key={snackbar.key}
               ownerState={newOwnerState}
               {...others}
-              {...snackbar}
+              {...snackbarOtherProps}
               onClose={handleClose(snackbar.key)}
               ClickAwayListenerProps={{
                 onClickAway: () => null,
