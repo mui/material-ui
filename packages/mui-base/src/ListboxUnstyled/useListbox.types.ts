@@ -5,6 +5,7 @@ type UseListboxStrictPropsRequiredKeys =
   | 'disableListWrap'
   | 'disabledItemsFocusable'
   | 'optionComparer'
+  | 'optionStringifier'
   | 'multiple';
 
 export type UseListboxStrictProps<TOption> = Omit<
@@ -24,6 +25,7 @@ enum ActionTypes {
   optionsChange = 'optionsChange',
   setValue = 'setValue',
   setHighlight = 'setHighlight',
+  textNavigation = 'textNagivation',
 }
 
 // split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
@@ -71,6 +73,12 @@ interface SetHighlightAction<TOption> {
   highlight: TOption | null;
 }
 
+interface TextNavigationAction<TOption> {
+  type: ActionTypes.textNavigation;
+  searchString: string;
+  props: UseListboxStrictProps<TOption>;
+}
+
 interface OptionsChangeAction<TOption> {
   type: ActionTypes.optionsChange;
   options: TOption[];
@@ -85,6 +93,7 @@ export type ListboxAction<TOption> =
   | BlurAction<TOption>
   | KeyDownAction<TOption>
   | SetHighlightAction<TOption>
+  | TextNavigationAction<TOption>
   | SetValueAction<TOption>
   | OptionsChangeAction<TOption>;
 
@@ -136,6 +145,11 @@ interface UseListboxCommonProps<TOption> {
    * A function that generates the id attribute of individual options.
    */
   optionIdGenerator?: (option: TOption, index: number) => string;
+  /**
+   * A function that converts an object to its string representation
+   * @default (o) => o
+   */
+  optionStringifier?: (option: TOption) => string | undefined;
   /**
    * Array of options to be rendered in the list.
    */
