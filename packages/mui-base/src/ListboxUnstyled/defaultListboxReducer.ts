@@ -228,6 +228,79 @@ function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption
   };
 }
 
+const textCriteriaMatches = <TOption>(
+  nextFocus: TOption,
+  searchString: string,
+  stringifyOption: (option: TOption) => string | undefined,
+) => {
+  const text = stringifyOption(nextFocus)?.trim().toLowerCase();
+
+  if (!text || text.length === 0) {
+    // Make option not navigable if stringification fails or results in empty string.
+    return false;
+  }
+
+  return text.indexOf(searchString) === 0;
+};
+
+function handleTextNavigation<TOption>(
+  state: ListboxState<TOption>,
+  searchString: string,
+  props: UseListboxStrictProps<TOption>,
+): ListboxState<TOption> {
+  const {
+    options,
+    isOptionDisabled,
+    disableListWrap,
+    disabledItemsFocusable,
+    optionComparer,
+    optionStringifier,
+  } = props;
+
+  const moveHighlight = (previouslyHighlightedOption: TOption | null) => {
+    return getNewHighlightedOption(
+      options,
+      previouslyHighlightedOption,
+      1,
+      'next',
+      disabledItemsFocusable ?? false,
+      isOptionDisabled ?? (() => false),
+      !(disableListWrap ?? false),
+      optionComparer,
+    );
+  };
+
+  const startWithCurrentOption = searchString.length > 1;
+
+  let nextOption = startWithCurrentOption
+    ? state.highlightedValue
+    : moveHighlight(state.highlightedValue);
+
+  // use `for` instead of `while` prevent infinite loop
+  for (let index = 0; index < options.length; index += 1) {
+    // Return un-mutated state if looped back to the currently highlighted value
+    if (!nextOption || (!startWithCurrentOption && state.highlightedValue === nextOption)) {
+      return state;
+    }
+
+    if (
+      textCriteriaMatches(nextOption, searchString, optionStringifier) &&
+      (!isOptionDisabled(nextOption, options.indexOf(nextOption)) || disabledItemsFocusable)
+    ) {
+      // The nextOption is the element to be highlighted
+      return {
+        ...state,
+        highlightedValue: nextOption,
+      };
+    }
+    // Move to the next element.
+    nextOption = moveHighlight(nextOption);
+  }
+
+  // No option match text search criteria
+  return state;
+}
+
 function handleOptionsChange<TOption>(
   options: TOption[],
   previousOptions: TOption[],
@@ -286,6 +359,8 @@ export default function defaultListboxReducer<TOption>(
         ...state,
         highlightedValue: action.highlight,
       };
+    case ActionTypes.textNavigation:
+      return handleTextNavigation(state, action.searchString, action.props);
     case ActionTypes.optionsChange:
       return handleOptionsChange(action.options, action.previousOptions, state, action.props);
     default:

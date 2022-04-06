@@ -159,7 +159,7 @@ export default function UnstyledSelectRichOptions() {
   return (
     <CustomSelect>
       {countries.map((c) => (
-        <StyledOption key={c.code} value={c.code}>
+        <StyledOption key={c.code} value={c.code} label={c.label}>
           <img
             loading="lazy"
             width="20"

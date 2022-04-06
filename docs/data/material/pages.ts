@@ -212,6 +212,18 @@ const pages = [
     ],
   },
   {
+    pathname: '/material-ui/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      {
+        pathname: '/material-ui/experimental-api/classname-generator',
+        title: 'ClassName Generator',
+      },
+      { pathname: '/material-ui/experimental-api/css-variables', title: 'CSS Variables' },
+    ],
+  },
+  {
     pathname: '/material-ui/discover-more',
     icon: 'AddIcon',
     children: [
