@@ -7,16 +7,16 @@ Like any unfamiliar technology, MUI does have a learning curve. With practice an
 
 ## First example
 
-The [usage page](/getting-started/usage/#quick-start) contains a small MUI example with a live editor.
+The [usage page](/material-ui/getting-started/usage/#quick-start) contains a small MUI example with a live editor.
 Even if you don't know anything about MUI yet, try changing the code and see how it affects the result.
 
 ## Example projects
 
-There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
+There are [some example projects](/material-ui/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
 
 ## Templates
 
-This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
+This [selection of basic templates](/material-ui/getting-started/templates/) will help you get started building your app.
 
 ## Recommended resources
 

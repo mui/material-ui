@@ -65,7 +65,7 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 
 ## Customized radios 自定义单选框
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedRadios.js"}}
 
@@ -99,7 +99,7 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
 
-- 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/api/form-control-label/)）实现的。
+- 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/material-ui/api/form-control-label/)）实现的。
 - 如果无法使用标签，您则必须在输入组件中直接添加属性。 在这种情况下，您可以经由 `inputProps` 属性，来附着一些额外的属性（例如 `arial-label`，`aria-labelledby`，`title`）。
 
 ```jsx

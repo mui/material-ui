@@ -12,12 +12,12 @@ A resposta é não. I'm glad you asked! The core concepts haven't changed. Você
 
 Material-UI foi iniciado [4 anos atrás](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) iniciou uma tarefa ambiciosa, reconstruindo o Material-UI do **zero**, aproveitando esse conhecimento para resolver problemas de longa data. Para citar algumas das principais mudanças:
 
-- Nova solução de estilo usando CSS-in-JS (melhor poder de [customização](/customization/how-to-customize/), melhor desempenho)
+- Nova solução de estilo usando CSS-in-JS (melhor poder de [customização](/material-ui/customization/how-to-customize/), melhor desempenho)
 - Novo tratamento de tema (aninhamento, auto-suporte, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
-- Melhor [cobertura de teste](/guides/testing/) (99%+, executado em todos os principais navegadores, [testes de regressão visual](https://www.argos-ci.com/mui/material-ui))
-- Suporte completo [a renderização do lado do servidor](/guides/server-rendering/)
-- Vasta gama de [navegadores suportados](/getting-started/supported-platforms/)
+- Melhor [cobertura de teste](/material-ui/guides/testing/) (99%+, executado em todos os principais navegadores, [testes de regressão visual](https://www.argos-ci.com/mui/material-ui))
+- Suporte completo [a renderização do lado do servidor](/material-ui/guides/server-rendering/)
+- Vasta gama de [navegadores suportados](/material-ui/getting-started/supported-platforms/)
 
 ### Onde devo começar a migração?
 
@@ -77,7 +77,7 @@ export default App;
 
 ### Autocompletar
 
-Material-UI, não fornece uma API de alto nível para resolver este problema. Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
+Material-UI, não fornece uma API de alto nível para resolver este problema. Recomendamos que você explore [as soluções que a comunidade construiu](/material-ui/react-autocomplete/).
 
 Execute [o auxiliar de migração](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
 

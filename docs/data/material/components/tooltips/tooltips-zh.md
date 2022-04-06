@@ -27,7 +27,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## 自定义文字提示
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedTooltips.js"}}
 
@@ -54,7 +54,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-您可以在[包装的组件](/guides/composition/#wrapping-components)指南中找到类似的概念。
+您可以在[包装的组件](/material-ui/guides/composition/#wrapping-components)指南中找到类似的概念。
 
 ## 触发器
 

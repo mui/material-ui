@@ -30,7 +30,7 @@ Extend the default behavior to create an accordion with the `Accordion` componen
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedAccordions.js"}}
 

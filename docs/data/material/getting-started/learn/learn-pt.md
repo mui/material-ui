@@ -6,15 +6,15 @@ Desenvolvedores chegam em MUI de diferentes culturas e com diferentes estilos de
 
 ## Primeiro exemplo
 
-A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemplo de MUI com um editor interativo. Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
+A [página de uso](/material-ui/getting-started/usage/#quick-start) contém um pequeno exemplo de MUI com um editor interativo. Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
 
 ## Projetos de exemplo
 
-Há [alguns projetos de exemplo](/getting-started/example-projects/) disponíveis, fornecendo a infraestrutura necessária para desenvolver e implantar sites em React.
+Há [alguns projetos de exemplo](/material-ui/getting-started/example-projects/) disponíveis, fornecendo a infraestrutura necessária para desenvolver e implantar sites em React.
 
 ## Modelos
 
-Esta [seleção de modelos básicos](/getting-started/templates/) pode ajudar você a começar a criar o seu aplicativo.
+Esta [seleção de modelos básicos](/material-ui/getting-started/templates/) pode ajudar você a começar a criar o seu aplicativo.
 
 ## Recursos recomendados
 

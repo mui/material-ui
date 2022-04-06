@@ -21,11 +21,11 @@ githubLabel: 'component: select'
 
 Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相替代。
 
-若您需要一个更优雅的功能，譬如 combobox，multiselect，autocomplete，async 或者 creatable support，请查看 [`Autocomplete` 组件](/components/autocomplete/)。 此组件旨在改进 “react-select” 和 “downshift” 这两个包。
+若您需要一个更优雅的功能，譬如 combobox，multiselect，autocomplete，async 或者 creatable support，请查看 [`Autocomplete` 组件](/material-ui/react-autocomplete/)。 此组件旨在改进 “react-select” 和 “downshift” 这两个包。
 
 ## 属性
 
-选择器组件是通过自定义 [InputBase](/api/input-base/) 的 `<input>` 元素来实现的。 It extends the [text field components](/components/text-fields/) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. 它有着相同的样式和许多相同的属性。 It shares the same styles and many of the same props. 详情请参阅相应组件的 API 文档。
+选择器组件是通过自定义 [InputBase](/material-ui/api/input-base/) 的 `<input>` 元素来实现的。 It extends the [text field components](/material-ui/react-text-field/) sub-components, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected. 它有着相同的样式和许多相同的属性。 It shares the same styles and many of the same props. 详情请参阅相应组件的 API 文档。
 
 ### Filled and standard variants
 
@@ -53,11 +53,11 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## TextField
 
-`TextField` wrapper 组件是一个完整的表单控件，它包括了标签，输入和帮助文本。 您可以在 [在此章节中](/components/text-fields/#select) 查看使用 select 模式的示例。
+`TextField` wrapper 组件是一个完整的表单控件，它包括了标签，输入和帮助文本。 您可以在 [在此章节中](/material-ui/react-text-field/#select) 查看使用 select 模式的示例。
 
 ## 自定义选择器
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 首先，需要设置 `InputBase` 组件的样式。 一旦设置好了样式，您就可以直接使用文本框组件，也可以将其作为一个 `select` 的字段提供给 select 组件的 `input` 属性。 Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 

@@ -180,8 +180,8 @@ on MDN.
 import { flexbox } from '@material-ui/system';
 ```
 
-| 导入名称             | 属性               | CSS 属性            | Theme key |
-|:---------------- |:---------------- |:----------------- |:--------- |
+| 导入名称         | 属性             | CSS 属性          | Theme key |
+| :--------------- | :--------------- | :---------------- | :-------- |
 | `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
 | `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |
 | `justifyContent` | `justifyContent` | `justify-content` | none      |

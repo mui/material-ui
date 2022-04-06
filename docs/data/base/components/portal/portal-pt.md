@@ -9,7 +9,7 @@ githubLabel: 'component: Portal'
 
 <p class="description">O componente portal renderiza seus elementos filho em uma nova "subárvore" fora da hierarquia do DOM atual.</p>
 
-O filho do componente portal será adicionado ao `container` especificado. O componente é usado internamente pelos componentes [`Modal`](/components/modal/) e [`Popper`](/components/popper/).
+O filho do componente portal será adicionado ao `container` especificado. O componente é usado internamente pelos componentes [`Modal`](/material-ui/react-modal/) e [`Popper`](/material-ui/react-popper/).
 
 [A paleta](/system/palette/) com funções de estilo.
 

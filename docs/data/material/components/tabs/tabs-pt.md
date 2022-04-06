@@ -91,7 +91,7 @@ Botões de rolagem da esquerda e direita nunca serão apresentados com `scrollBu
 
 ## Abas customizadas
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTabs.js"}}
 
@@ -127,7 +127,7 @@ By default, the icon is positioned at the `top` of a tab. Other supported positi
 
 ## Acessibilidade
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Aba` fornece o `componente` prop para lidar com este caso de uso. Aqui está um [guia mais detalhado](/guides/routing/#tabs).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Aba` fornece o `componente` prop para lidar com este caso de uso. Aqui está um [guia mais detalhado](/material-ui/guides/routing/#tabs).
 
 ## Accessibility
 
@@ -179,8 +179,7 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 
 #### Customizing the root element
 
-The `TabPanelUnstyled` on the other hand renders a native `div` element by default. You are free to override this as well by setting the `component` or `components.
-Root` prop on the `TabPanelUnstyled`.
+The `TabPanelUnstyled` on the other hand renders a native `div` element by default. You are free to override this as well by setting the `component` or `components. Root` prop on the `TabPanelUnstyled`.
 
 By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components. Root` prop.
 

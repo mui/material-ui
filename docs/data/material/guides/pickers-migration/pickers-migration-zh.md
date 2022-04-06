@@ -120,9 +120,10 @@ function App() {
 
 ## 更多内容
 
-- ````diff <DatePicker
+- `````diff <DatePicker
   -  format="DD-MMM-YYYY"
   +  inputFormat="DD-MMM-YYYY" ``` ````
+  `````
 
 除此之外还有很多改动，需要当心，确保你的测试和构建通过。 如果你对日期选择器有进阶使用方法，可能会更简单地重写它。
 

@@ -4,11 +4,11 @@
 
 ## Navigation components
 
-There are two main components available to perform navigations. The most common one is the [`Link`](/components/links/) as its name might suggest. It renders a native `<a>` element and applies the `href` as an attribute.
+There are two main components available to perform navigations. The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest. It renders a native `<a>` element and applies the `href` as an attribute.
 
 {{"demo": "LinkDemo.js"}}
 
-You can also make a button perform navigation actions. You can also make a button perform navigation actions. You can also make a button perform navigation actions. If your component is extending [`ButtonBase`](/api/button-base/), providing a `href` prop enables the link mode. For instance, with a `Button` component: For instance, with a `Button` component: For instance, with a `Button` component:
+You can also make a button perform navigation actions. You can also make a button perform navigation actions. You can also make a button perform navigation actions. If your component is extending [`ButtonBase`](/material-ui/api/button-base/), providing a `href` prop enables the link mode. For instance, with a `Button` component: For instance, with a `Button` component: For instance, with a `Button` component:
 
 {{"demo": "ButtonDemo.js"}}
 
@@ -48,7 +48,7 @@ const theme = createTheme({
 
 ## `component` 属性
 
-You can achieve the integration with third-party routing libraries with the `component` prop. You can learn more about this prop in the [composition guide](/guides/composition/#component-prop). You can learn more about this prop in the [**composition guide**](/guides/composition/#component-prop). You can learn more about this prop in the [**composition guide**](/guides/composition/#component-prop).
+You can achieve the integration with third-party routing libraries with the `component` prop. You can learn more about this prop in the [composition guide](/material-ui/guides/composition/#component-prop). You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop). You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop).
 
 ### Link
 

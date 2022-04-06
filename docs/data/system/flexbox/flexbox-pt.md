@@ -222,7 +222,7 @@ import { flexbox } from '@material-ui/system';
 ```
 
 | Nome da importação | Propriedade      | Propriedade CSS   | Chave do tema |
-|:------------------ |:---------------- |:----------------- |:------------- |
+| :----------------- | :--------------- | :---------------- | :------------ |
 | `flexDirection`    | `flexDirection`  | `flex-direction`  | none          |
 | `flexWrap`         | `flexWrap`       | `flex-wrap`       | none          |
 | `justifyContent`   | `justifyContent` | `justify-content` | none          |

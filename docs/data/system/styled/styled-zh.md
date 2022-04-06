@@ -4,7 +4,7 @@
 
 ## Introduction
 
-All the MUI components are styled with this `styled()` utility. All the MUI components are styled with this `styled()` utility. This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/guides/styled-engine/) and provides additional features.
+All the MUI components are styled with this `styled()` utility. All the MUI components are styled with this `styled()` utility. This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/material-ui/guides/styled-engine/) and provides additional features.
 
 ### 引用路径
 
@@ -15,7 +15,7 @@ You can use the utility coming from the `@mui/system` package, or if you are usi
 The utility can be used as a replacement for emotion's or styled-components' styled() utility. It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses MUI's default `theme` if no theme is available in React context.
-2. 支持根据`name`属性设置主题中的[`styleOverrides`](/customization/theme-components/#global-style-overrides) 和 [`variants`](/customization/theme-components/#adding-new-component-variants)（可忽略）。
+2. 支持根据`name`属性设置主题中的[`styleOverrides`](/material-ui/customization/theme-components/#global-style-overrides) 和 [`variants`](/material-ui/customization/theme-components/#adding-new-component-variants)（可忽略）。
 3. 新增对`sx`属性的支持(可忽略）
 4. It adds by default the `shouldForwardProp` option (that can be overridden), taking into account all props used internally in the MUI components: `ownerState`, `theme`, `sx`, and `as`.
 
@@ -114,12 +114,14 @@ With `sx`:
 
 ```js
 const MyStyledButton = (props) => (
-  <button sx={{
-    mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
-  }}>
-     {props.children}
+  <button
+    sx={{
+      mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
+    }}
+  >
+    {props.children}
   </button>
-)
+);
 ```
 
 ### The style definition varies slightly

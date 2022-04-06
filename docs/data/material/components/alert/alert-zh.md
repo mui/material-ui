@@ -36,7 +36,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 ### 过渡效果
 
-您也可以使用 [过渡组件](/components/transitions/) ，如使用 `Collapse（展开）` 来实现提醒出现时的过渡效果。
+您也可以使用 [过渡组件](/material-ui/transitions/) ，如使用 `Collapse（展开）` 来实现提醒出现时的过渡效果。
 
 {{"demo": "TransitionAlerts.js"}}
 
@@ -44,7 +44,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 使用 `icon` 属性，您可以在警告提示组件开头添加一个图标。 以此来改变不同程度的默认图标。
 
-通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/customization/theme-components/#default-props)，您可以进行全局的设置。
+通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/material-ui/customization/theme-components/#default-props)，您可以进行全局的设置。
 
 把图标属性设置为 `false` 将会移除所有图标。
 
@@ -64,7 +64,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 ## Toast（提示）
 
-你可以使用消息条（Snackbar）来显示一个带警告提示组件的 [toast](/components/snackbars/#customized-snackbars) 。
+你可以使用消息条（Snackbar）来显示一个带警告提示组件的 [toast](/material-ui/react-snackbar/#customized-snackbars) 。
 
 ## Color 颜色
 

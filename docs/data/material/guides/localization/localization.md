@@ -30,7 +30,7 @@ const theme = createTheme(
 
 {{"demo": "Locales.js"}}
 
-> ⚠️ For [`DataGrid` and `DataGridPro`](/components/data-grid/) components, they have their own [localization](/components/data-grid/localization/).
+> ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
 
 ### Supported locales
 
@@ -97,4 +97,4 @@ However, MUI aims to support the [100 most common](https://en.wikipedia.org/wiki
 ## RTL Support
 
 Right-to-left languages such as Arabic, Persian, or Hebrew are supported.
-Follow [this guide](/guides/right-to-left/) to use them.
+Follow [this guide](/material-ui/guides/right-to-left/) to use them.

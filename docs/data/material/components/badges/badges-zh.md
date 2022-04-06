@@ -25,7 +25,7 @@ Use `color` prop to apply theme palette to component.
 
 ## 徽章组件的可见性
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedBadges.js"}}
 

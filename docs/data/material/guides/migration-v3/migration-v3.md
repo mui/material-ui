@@ -196,7 +196,7 @@ function MySelect({ children }) {
 }
 ```
 
-This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+This change is explained in more detail in the [TypeScript guide](/material-ui/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -227,7 +227,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   ```
 
 - [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref.
-  The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
+  The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
 
   This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
 
@@ -246,7 +246,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 - [DialogActions] Rename the `disableActionSpacing` prop to `disableSpacing`.
 - [DialogActions] Rename the `action` CSS class to `spacing`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
-- [Dialog] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs)
+- [Dialog] The child needs to be able to hold a ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs)
   explains the migration strategy.
 
 ### Divider
@@ -282,7 +282,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### Modal
 
-- [Modal] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+- [Modal] The child needs to be able to hold a ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 
   This also applies to `Dialog` and `Popover`.
@@ -308,12 +308,12 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### Portal
 
-- [Portal] The child needs to be able to hold a ref when `disablePortal` is used. The [composition guide](/guides/composition/#caveat-with-refs) explains
+- [Portal] The child needs to be able to hold a ref when `disablePortal` is used. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 
 ### Slide
 
-- [Slide] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+- [Slide] The child needs to be able to hold a ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 
 ### Slider
@@ -416,7 +416,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### Tooltip
 
-- [Tooltip] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+- [Tooltip] The child needs to be able to hold a ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 - [Tooltip] Appears only after focus-visible focus instead of any focus.
 

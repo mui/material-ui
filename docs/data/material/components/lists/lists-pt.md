@@ -26,7 +26,7 @@ O último item da demonstração anterior mostra como você pode renderizar um l
 </ListItemButton>
 ```
 
-Você pode encontrar uma [demonstração com React Router seguindo esta seção](/guides/routing/#list) da documentação.
+Você pode encontrar uma [demonstração com React Router seguindo esta seção](/material-ui/guides/routing/#list) da documentação.
 
 ## Lista Aninhada
 
@@ -100,7 +100,7 @@ O uso da biblioteca [react-window](https://github.com/bvaughn/react-window), qua
 
 ## Customized List
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedList.js"}}
 

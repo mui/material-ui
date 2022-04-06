@@ -127,7 +127,7 @@ The component providing the `component` prop (e.g. ListItem) might not forward a
 
 Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation.
 For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component.
-For a code example concerning Button and react-router-dom checkout [these demos](/guides/routing/#component-prop).
+For a code example concerning Button and react-router-dom checkout [these demos](/material-ui/guides/routing/#component-prop).
 
 To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
 

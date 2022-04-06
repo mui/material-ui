@@ -40,7 +40,7 @@ For crowdsourced answers from expert MUI developers in our community. For crowds
 
 New to MUI? It's easy to learn if you know where to start! It's easy to learn if you know where to start!
 
-[Learn MUI](/getting-started/learn/)
+[Learn MUI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
@@ -52,7 +52,7 @@ Receive the latest news on MUI.
 
 MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-我们考虑到时间和资源限制的现实，以及需要不断创新的愿望，所以随着时间的推移，我们有必要将开发的重点转移到框架的最新版本（[我们的版本发布时间表](https://material-ui.com/versions/#release-frequency)），同时让用户尽可能平稳地过渡到新的版本，所以我们做了包括迁移指南在内的多个工作，例如 [这个 v4 版本](/guides/migration-v3/) 的迁移指南。 作为一个开源社区，我们始终欢迎您来提交新的功能和帮助我们修复错误。
+我们考虑到时间和资源限制的现实，以及需要不断创新的愿望，所以随着时间的推移，我们有必要将开发的重点转移到框架的最新版本（[我们的版本发布时间表](https://material-ui.com/versions/#release-frequency)），同时让用户尽可能平稳地过渡到新的版本，所以我们做了包括迁移指南在内的多个工作，例如 [这个 v4 版本](/material-ui/guides/migration-v3/) 的迁移指南。 作为一个开源社区，我们始终欢迎您来提交新的功能和帮助我们修复错误。
 
 The current status of each MUI version is as follows:
 

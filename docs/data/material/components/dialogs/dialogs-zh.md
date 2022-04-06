@@ -11,7 +11,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 <p class="description">对话框将一个任务告知给用户，它承载了一些需要用户进行确认的关键信息或者多个任务。</p>
 
-对话框是 [modal](/components/modal/) 窗体的一种类型，它通常在应用程序内容之前呈现，来提供一些关键信息，或者要求用户做出决策。 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框会从屏幕中消失。
+对话框是 [modal](/material-ui/react-modal/) 窗体的一种类型，它通常在应用程序内容之前呈现，来提供一些关键信息，或者要求用户做出决策。 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框会从屏幕中消失。
 
 对话框会带有目的性地打断工作流程，所以请您谨慎使用。
 
@@ -60,7 +60,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## 自定义对话框
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 该对话框加上了一个关闭按钮来辅助可用性。
 
@@ -78,7 +78,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## 响应式全屏
 
-您可以使用[`useMediaQuery`](/components/use-media-query/#usemediaquery)来实现一个全屏显示的对话框。
+您可以使用[`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery)来实现一个全屏显示的对话框。
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -120,12 +120,12 @@ You can create a draggable dialog by using [react-draggable](https://github.com/
 
 ## 性能
 
-参考[对话框性能部分](/components/modal/#performance)。
+参考[对话框性能部分](/material-ui/react-modal/#performance)。
 
 ## 设计局限
 
-参考[对话框性能部分](/components/modal/#limitations)。
+参考[对话框性能部分](/material-ui/react-modal/#limitations)。
 
 ## 无障碍设计
 
-参考[模态框无障碍设计部分](/components/modal/#accessibility)。
+参考[模态框无障碍设计部分](/material-ui/react-modal/#accessibility)。
