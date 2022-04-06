@@ -368,7 +368,7 @@ function MuiNav() {
               }
             >
               <ListItemDecorator>
-                <IconComponent fontSize="md" />
+                {IconComponent && <IconComponent fontSize="md" />}
               </ListItemDecorator>
               <ListItemContent sx={{ color: 'text.primary' }}>
                 {pageToTitleI18n(aPage, t) || ''}

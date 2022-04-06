@@ -110,5 +110,218 @@ describe('MenuUnstyled', () => {
 
       expect(item2).to.have.attribute('aria-disabled', 'true');
     });
+
+    describe('text navigation', () => {
+      it('changes the highlighted item', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>Ba</MenuItemUnstyled>
+            <MenuItemUnstyled>Bb</MenuItemUnstyled>
+            <MenuItemUnstyled>Ca</MenuItemUnstyled>
+            <MenuItemUnstyled>Cb</MenuItemUnstyled>
+            <MenuItemUnstyled>Cd</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'c' });
+        expect(document.activeElement).to.equal(getByText('Ca'));
+        expect(getByText('Ca')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[3], { key: 'd' });
+        expect(document.activeElement).to.equal(getByText('Cd'));
+        expect(getByText('Cd')).to.have.attribute('tabindex', '0');
+      });
+
+      it('repeated keys circulate all items starting with that letter', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>Ba</MenuItemUnstyled>
+            <MenuItemUnstyled>Bb</MenuItemUnstyled>
+            <MenuItemUnstyled>Ca</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Bb'));
+        expect(getByText('Bb')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[2], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+      });
+
+      it('changes the highlighted item using text navigation on label prop', () => {
+        const { getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled label="Aa">1</MenuItemUnstyled>
+            <MenuItemUnstyled label="Ba">2</MenuItemUnstyled>
+            <MenuItemUnstyled label="Bb">3</MenuItemUnstyled>
+            <MenuItemUnstyled label="Ca">4</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'b' });
+        expect(document.activeElement).to.equal(items[1]);
+        expect(items[1]).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'b' });
+        expect(document.activeElement).to.equal(items[2]);
+        expect(items[2]).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[2], { key: 'b' });
+        expect(document.activeElement).to.equal(items[1]);
+        expect(items[1]).to.have.attribute('tabindex', '0');
+      });
+
+      it('skips the non-stringifiable items', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>Ba</MenuItemUnstyled>
+            <MenuItemUnstyled />
+            <MenuItemUnstyled>
+              <div>Nested Content</div>
+            </MenuItemUnstyled>
+            <MenuItemUnstyled>{undefined}</MenuItemUnstyled>
+            <MenuItemUnstyled>{null}</MenuItemUnstyled>
+            <MenuItemUnstyled>Bc</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Bc'));
+        expect(getByText('Bc')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[6], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+      });
+
+      it('navigate to options with diacritic characters', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>Ba</MenuItemUnstyled>
+            <MenuItemUnstyled>Bb</MenuItemUnstyled>
+            <MenuItemUnstyled>Bą</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'b' });
+        expect(document.activeElement).to.equal(getByText('Ba'));
+        expect(getByText('Ba')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'Control' });
+        fireEvent.keyDown(items[1], { key: 'Alt' });
+        fireEvent.keyDown(items[1], { key: 'ą' });
+        expect(document.activeElement).to.equal(getByText('Bą'));
+        expect(getByText('Bą')).to.have.attribute('tabindex', '0');
+      });
+
+      it('navigate to next options with beginning diacritic characters', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // useMenu Text navigation match menu items using HTMLElement.innerText
+          // innerText is not supported by JsDom
+          this.skip();
+        }
+
+        const { getByText, getAllByRole } = render(
+          <MenuUnstyled {...defaultProps}>
+            <MenuItemUnstyled>Aa</MenuItemUnstyled>
+            <MenuItemUnstyled>ąa</MenuItemUnstyled>
+            <MenuItemUnstyled>ąb</MenuItemUnstyled>
+            <MenuItemUnstyled>ąc</MenuItemUnstyled>
+          </MenuUnstyled>,
+        );
+
+        const items = getAllByRole('menuitem');
+
+        act(() => {
+          items[0].focus();
+        });
+
+        fireEvent.keyDown(items[0], { key: 'Control' });
+        fireEvent.keyDown(items[0], { key: 'Alt' });
+        fireEvent.keyDown(items[0], { key: 'ą' });
+        expect(document.activeElement).to.equal(getByText('ąa'));
+        expect(getByText('ąa')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[1], { key: 'Alt' });
+        fireEvent.keyDown(items[1], { key: 'Control' });
+        fireEvent.keyDown(items[1], { key: 'ą' });
+        expect(document.activeElement).to.equal(getByText('ąb'));
+        expect(getByText('ąb')).to.have.attribute('tabindex', '0');
+
+        fireEvent.keyDown(items[2], { key: 'Control' });
+        fireEvent.keyDown(items[2], { key: 'AltGraph' });
+        fireEvent.keyDown(items[2], { key: 'ą' });
+        expect(document.activeElement).to.equal(getByText('ąc'));
+        expect(getByText('ąc')).to.have.attribute('tabindex', '0');
+      });
+    });
   });
 });

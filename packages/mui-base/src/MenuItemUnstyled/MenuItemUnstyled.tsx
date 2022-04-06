@@ -38,6 +38,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
     component,
     components = {},
     componentsProps = {},
+    label,
     ...other
   } = props;
 
@@ -47,6 +48,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
     component: Root,
     disabled,
     ref,
+    label,
   });
 
   if (itemState == null) {
@@ -105,6 +107,11 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * A text representation of the menu item's content.
+   * Used for keyboard text navigation matching.
+   */
+  label: PropTypes.string,
 } as any;
 
 export default MenuItemUnstyled;

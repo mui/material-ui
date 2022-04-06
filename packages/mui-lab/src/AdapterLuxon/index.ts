@@ -1,1 +1,1 @@
-export { default } from '@date-io/luxon';
+export { AdapterLuxon as default } from '@mui/x-date-pickers/AdapterLuxon';
