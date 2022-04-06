@@ -7,8 +7,8 @@ const test = base.extend<TestFixture>({});
 test('should see the selected icon popup that match the query', async ({ page }) => {
   await page.goto(
     FEATURE_TOGGLE.enable_redirects
-      ? '/components/material-icons/?selected=AcUnit'
-      : '/material-ui/material-icons/?selected=AcUnit',
+      ? '/material-ui/material-icons/?selected=AcUnit'
+      : '/components/material-icons/?selected=AcUnit',
     { waitUntil: 'networkidle' },
   );
 
