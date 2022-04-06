@@ -8,7 +8,7 @@ packageName: '@mui/base'
 
 # Unstyled badge
 
-<p class="description">The `BadgeUnstyled` component generates a small label in the upper-right corner of its children elements.</p>
+<p class="description">The `BadgeUnstyled` component generates a small label attached to its children elements.</p>
 
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
