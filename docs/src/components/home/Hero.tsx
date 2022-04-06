@@ -114,8 +114,8 @@ export default function Hero() {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             MUI offers a comprehensive suite of UI tools to help you ship new features faster. Start
-            with Material UI, our fully-loaded component library, or bring your own
-            design system to our production-ready components.
+            with Material UI, our fully-loaded component library, or bring your own design system to
+            our production-ready components.
           </Typography>
           <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
         </Box>
