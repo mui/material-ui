@@ -202,7 +202,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * Override the default label for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,

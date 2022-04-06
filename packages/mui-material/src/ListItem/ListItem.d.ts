@@ -17,7 +17,7 @@ export interface ListItemBaseProps {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
-   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
    */
   autoFocus?: boolean;
   /**
@@ -50,7 +50,7 @@ export interface ListItemBaseProps {
   /**
    * If `true`, the component is disabled.
    * @default false
-   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
    */
   disabled?: boolean;
   /**
@@ -75,7 +75,7 @@ export interface ListItemBaseProps {
   /**
    * Use to apply selected styling.
    * @default false
-   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
    */
   selected?: boolean;
   /**
@@ -125,7 +125,7 @@ declare const ListItem: ExtendButtonBase<
        * If `true`, the list item is a button (using `ButtonBase`). Props intended
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
-       * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+       * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
        *
        */
       button: true;
@@ -140,7 +140,7 @@ declare const ListItem: ExtendButtonBase<
          * If `true`, the list item is a button (using `ButtonBase`). Props intended
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
-         * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+         * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
          */
         button?: false;
       },

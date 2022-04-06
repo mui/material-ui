@@ -103,7 +103,7 @@ const IconButtonRoot = styled(ButtonBase, {
 );
 
 /**
- * Refer to the [Icons](/components/icons/) section of the documentation
+ * Refer to the [Icons](/material-ui/icons/) section of the documentation
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {

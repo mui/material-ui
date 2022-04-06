@@ -27,7 +27,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       sx?: SxProps<Theme>;
       /**
-       * `classes` prop applied to the [`Typography`](/api/typography/) element.
+       * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
        */
       TypographyClasses?: TypographyProps['classes'];
       /**

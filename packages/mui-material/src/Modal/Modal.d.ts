@@ -21,7 +21,7 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
      */
     BackdropComponent?: React.ElementType<BackdropProps>;
     /**
-     * Props applied to the [`Backdrop`](/api/backdrop/) element.
+     * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
      */
     BackdropProps?: Partial<BackdropProps>;
     /**

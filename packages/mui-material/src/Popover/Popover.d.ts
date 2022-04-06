@@ -87,7 +87,7 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
    */
   open: boolean;
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps?: Partial<PaperProps>;
@@ -110,7 +110,7 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
   transformOrigin?: PopoverOrigin;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<

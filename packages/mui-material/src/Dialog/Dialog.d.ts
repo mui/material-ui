@@ -68,7 +68,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    */
   PaperComponent?: React.JSXElementConstructor<PaperProps>;
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps?: Partial<PaperProps>;
@@ -83,7 +83,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
   TransitionComponent?: React.JSXElementConstructor<

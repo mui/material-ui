@@ -331,7 +331,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a [TextareaAutosize](/components/textarea-autosize/) element is rendered.
+   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,

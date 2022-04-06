@@ -118,7 +118,7 @@ export interface InputBaseProps
    */
   margin?: 'dense' | 'none';
   /**
-   * If `true`, a [TextareaAutosize](/components/textarea-autosize/) element is rendered.
+   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
    * @default false
    */
   multiline?: boolean;

@@ -27,7 +27,7 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    */
   elevation?: number;
   /**
-   * Props applied to the [`Modal`](/api/modal/) element.
+   * Props applied to the [`Modal`](/material-ui/api/modal/) element.
    * @default {}
    */
   ModalProps?: Partial<ModalProps>;
@@ -43,12 +43,12 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
    */
   open?: boolean;
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps?: Partial<PaperProps>;
   /**
-   * Props applied to the [`Slide`](/api/slide/) element.
+   * Props applied to the [`Slide`](/material-ui/api/slide/) element.
    */
   SlideProps?: Partial<SlideProps>;
   /**

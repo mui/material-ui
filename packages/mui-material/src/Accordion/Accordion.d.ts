@@ -47,7 +47,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   TransitionComponent?: React.JSXElementConstructor<

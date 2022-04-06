@@ -66,7 +66,7 @@ export interface BaseTextFieldProps
    */
   error?: boolean;
   /**
-   * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
+   * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
    */
   FormHelperTextProps?: Partial<FormHelperTextProps>;
   /**
@@ -84,7 +84,7 @@ export interface BaseTextFieldProps
    */
   id?: string;
   /**
-   * Props applied to the [`InputLabel`](/api/input-label/) element.
+   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
    */
   InputLabelProps?: Partial<InputLabelProps>;
@@ -133,13 +133,13 @@ export interface BaseTextFieldProps
    */
   minRows?: string | number;
   /**
-   * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
+   * Render a [`Select`](/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    * @default false
    */
   select?: boolean;
   /**
-   * Props applied to the [`Select`](/api/select/) element.
+   * Props applied to the [`Select`](/material-ui/api/select/) element.
    */
   SelectProps?: Partial<SelectProps>;
   /**
@@ -175,8 +175,8 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
   variant?: 'standard';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<StandardInputProps>;
@@ -197,8 +197,8 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
   variant: 'filled';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<FilledInputProps>;
@@ -219,8 +219,8 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   variant: 'outlined';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<OutlinedInputProps>;

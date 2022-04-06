@@ -17,7 +17,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
     /**
      * Override the default label for the expand button.
      *
-     * For localization purposes, you can use the provided [translations](/guides/localization/).
+     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
      * @default 'Show path'
      */
     expandText?: string;

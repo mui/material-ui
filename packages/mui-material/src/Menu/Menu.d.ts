@@ -38,7 +38,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    */
   disableAutoFocusItem?: boolean;
   /**
-   * Props applied to the [`MenuList`](/api/menu-list/) element.
+   * Props applied to the [`MenuList`](/material-ui/api/menu-list/) element.
    * @default {}
    */
   MenuListProps?: Partial<MenuListProps>;
@@ -54,7 +54,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    */
   open: boolean;
   /**
-   * `classes` prop applied to the [`Popover`](/api/popover/) element.
+   * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
    */
   PopoverClasses?: PopoverProps['classes'];
   /**

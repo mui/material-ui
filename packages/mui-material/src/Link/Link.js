@@ -218,7 +218,7 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Typography`](/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
   /**

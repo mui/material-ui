@@ -63,7 +63,7 @@ const FormControlRoot = styled('div', {
  *  - Input
  *  - InputLabel
  *
- * You can find one composition example below and more going to [the demos](/components/text-fields/#components).
+ * You can find one composition example below and more going to [the demos](/material-ui/react-text-field/#components).
  *
  * ```jsx
  * <FormControl>
