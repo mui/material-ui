@@ -1,6 +1,6 @@
 ---
 product: base
-title: React Input unstyled component and hook
+title: Unstyled React Input component and hook
 components: InputUnstyled
 githubLabel: 'component: input'
 packageName: '@mui/base'
@@ -43,7 +43,7 @@ If you want the `<textarea>` to grow with the content, you can use the [`Textare
 
 {{"demo": "InputMultilineAutosize.js"}}
 
-## useInput hook
+## The useInput hook
 
 ```js
 import { useInput } from '@mui/base/InputUnstyled';
