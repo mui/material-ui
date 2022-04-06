@@ -46,7 +46,7 @@ The default is 99.
 
 ## Accessibility
 
-Screen readers may not provide the user with enough information about a badge's contents.
+Screen readers may not provide users with enough information about a badge's contents.
 To make your `BadgeUnstyled` accessible, you must provide a full description with `aria-label`:
 
 {{"demo": "AccessibleBadges.js", "defaultCodeOpen": false}}
