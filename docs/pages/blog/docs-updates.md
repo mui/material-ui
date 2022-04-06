@@ -27,7 +27,7 @@ We currently offer two main product lines:
 All MUI products still live under the [mui.com](http://mui.com) domain, but each of them now has its own respective URL and documentation.
 We added an identifier and menu to the upper-left corner of the docs for improved navigation:
 
-<img src="/static/blog/docs-updates/docs-separation.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screen shot of the product identifier menu" />
+<img src="/static/blog/docs-updates/docs-separation.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of the product identifier menu" />
 
 As for the URLs, this is how they look now:
 
@@ -48,11 +48,13 @@ For example, if you are looking at Material UI documentation, when you press <kb
 
 We have also added product labels for Material UI and MUI Base in case it's unclear which library the search results refer to.
 
-// add search result image
+<img src="/static/blog/docs-updates/docs-product-label.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of the search results displaying product labels per result" />
 
 As a side benefit of the documentation restructuring, we have seen a huge improvement in the quality of search results related to MUI X. Data Grid users can now see comprehensive results when searching for methods. Here is a comparison of before and after when searching for "filter":
 
-// add comparison images
+<img src="/static/blog/docs-updates/docs-search-comparison.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshots of the docs before and after comparing Data Grid search results" />
+
+<p class="blog-description">Data Grid search results before and after the documentation restructuring</p>
 
 ## Moving forward
 
