@@ -6,7 +6,7 @@
 
 _Apr 5, 2022_
 
-A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - 🧰 Update peer deps to support React 18 (#32063) @eps1lon
 - 🚀 Added the experimental `CssVarsProvider` for generating theme CSS variables (#31138) @mnajdova.
@@ -40,6 +40,13 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 30 -->[blog] New article for the date pickers migration to X (#31831) @flaviendelangle
+- &#8203;<!-- 33 -->[docs] Base Menu style revisions and final review (#32097) @samuelsycamore
+- &#8203;<!-- 32 -->[docs] Base Select style revisions and final review (#32095) @samuelsycamore
+- &#8203;<!-- 31 -->[docs] Base Input style revisions and final review (#32096) @samuelsycamore
+- &#8203;<!-- 30 -->[docs] Base Slider style revisions and final review (#32140) @samuelsycamore
+- &#8203;<!-- 29 -->[docs] Base Modal style revisions and final review (#32093) @samuelsycamore
+- &#8203;<!-- 28 -->[docs] Add page for CSS variables support in @mui/material (#32050) @mnajdova
+- &#8203;<!-- 27 -->[docs] Add TSS support for theme style overrides (#31918) @garronej
 - &#8203;<!-- 23 -->[docs] Simplify customization examples in ButtonUnstyled demos (#32092) @michaldudak
 - &#8203;<!-- 22 -->[docs] Fix linking issues for the redirects (#32101) @siriwatknp
 - &#8203;<!-- 21 -->[docs] Create the FormControl page (#32073) @michaldudak
@@ -65,7 +72,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - &#8203;<!-- 27 -->[core] Fix running docs:api on Windows (#32091) @michaldudak
 - &#8203;<!-- 26 -->[core] Fix api build script for MUI Base (#32081) @siriwatknp
 
-All contributors of this release in alphabetical order: @apeltop, @eps1lon, @flaviendelangle, @ivan-ngchakming, @MatthijsMud, @michaldudak, @mnajdova, @oliviertassinari, @psjishnu, @raigoinabox, @siriwatknp, @TkaczykAdam
+All contributors of this release in alphabetical order: @apeltop, @eps1lon, @flaviendelangle, @garronej, @ivan-ngchakming, @m4theushw, @MatthijsMud, @michaldudak, @mnajdova, @oliviertassinari, @psjishnu, @raigoinabox, @samuelsycamore, @siriwatknp, @TkaczykAdam
 
 ## 5.5.3
 
