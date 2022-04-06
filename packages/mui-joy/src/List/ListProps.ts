@@ -3,6 +3,8 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ListClasses } from './listClasses';
 
+export type ListSlot = 'root';
+
 export interface ListPropsSizeOverrides {}
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
@@ -15,6 +17,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<ListClasses>;
+    /**
+     * If `true`, display the list in horizontal direction.
+     */
+    row?: boolean;
     /**
      * The size of the component (affect other nested list* components).
      */

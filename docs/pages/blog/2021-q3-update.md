@@ -4,7 +4,7 @@ description: An update on our mission for Q3 2021.
 date: 2021-10-26T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
-tags: ['Company update']
+tags: ['Company']
 ---
 
 This update covers our progress over the last three months.
@@ -91,7 +91,7 @@ Here are the most significant improvements since early July 2021.
   - [TrapFocus](/components/trap-focus/#unstyled)
 
   ```jsx
-  import TrapFocus from '@mui/base/Unstable_TrapFocus';
+  import TrapFocus from '@mui/base/TrapFocus';
   ```
 
 ### MUI X

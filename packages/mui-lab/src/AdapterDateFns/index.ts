@@ -1,1 +1,1 @@
-export { default } from '@date-io/date-fns';
+export { AdapterDateFns as default } from '@mui/x-date-pickers/AdapterDateFns';

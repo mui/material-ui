@@ -314,7 +314,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
-    title: 'MUI Studio engineer',
+    title: 'MUI Toolpad engineer',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
@@ -324,7 +324,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
-    title: 'MUI Studio engineer',
+    title: 'MUI Toolpad engineer',
     location: 'Brussels, Belgium',
     locationCountry: 'be',
     about: 'Always curious, I enjoy cinema and hiking',
@@ -333,7 +333,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/prakhar.png',
     name: 'Prakhar Gupta',
-    title: 'MUI Studio PM',
+    title: 'MUI Toolpad PM',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Into sports and hiking!',
@@ -490,7 +490,7 @@ const emeriti = [
   {
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
-    twitter: 'dmtrKovalenko',
+    twitter: 'goose_plus_plus',
     title: 'MUI X, date pickers',
     location: 'Kharkiv, Ukraine',
     locationCountry: 'ua',

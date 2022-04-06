@@ -777,7 +777,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   disablePortal: PropTypes.bool,
   /**
-   * A filter function that determines the options that are eligible.
+   * A function that determines the filtered options to be rendered on search.
    *
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.

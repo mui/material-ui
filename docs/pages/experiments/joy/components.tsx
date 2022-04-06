@@ -1,10 +1,19 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import AspectRatio from '@mui/joy/AspectRatio';
+import Avatar from '@mui/joy/Avatar';
+import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Card from '@mui/joy/Card';
+import CardCover from '@mui/joy/CardCover';
+import CardContent from '@mui/joy/CardContent';
+import CardOverflow from '@mui/joy/CardOverflow';
+import Checkbox from '@mui/joy/Checkbox';
 import IconButton from '@mui/joy/IconButton';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
@@ -26,10 +35,13 @@ import TaskAlt from '@mui/icons-material/TaskAltRounded';
 import Inbox from '@mui/icons-material/Inbox';
 import Drafts from '@mui/icons-material/Drafts';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
-import Star from '@mui/icons-material/StarBorder';
+import StarBorder from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import PlayArrow from '@mui/icons-material/PlayArrow';
+import LocationOn from '@mui/icons-material/LocationOnOutlined';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -42,7 +54,7 @@ const ColorSchemePicker = () => {
   }
 
   return (
-    <Button
+    <IconButton
       variant="outlined"
       onClick={() => {
         if (mode === 'light') {
@@ -51,13 +63,9 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{
-        p: '0.25rem',
-        width: 'var(--Button-minHeight)',
-      }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
-    </Button>
+    </IconButton>
   );
 };
 
@@ -109,6 +117,21 @@ const components: {
   }[];
 }[] = [
   {
+    name: 'AvatarGroup',
+    render: (props: any) => (
+      <AvatarGroup {...props}>
+        <Avatar src="/static/images/avatar/1.jpg" />
+        <Avatar src="/static/images/avatar/2.jpg" />
+        <Avatar src="/static/images/avatar/3.jpg" />
+        <Avatar>+3</Avatar>
+      </AvatarGroup>
+    ),
+    cssVars: [
+      { id: '--AvatarGroup-gap', type: 'number', unit: 'px', defaultValue: -8 },
+      { id: '--Avatar-ringSize', type: 'number', unit: 'px', defaultValue: 2 },
+    ],
+  },
+  {
     name: 'Button',
     render: (props: any) => (
       <React.Fragment>
@@ -122,7 +145,6 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Button-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
       { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
       { id: '--Button-gap', type: 'number', unit: 'px' },
@@ -152,6 +174,10 @@ const components: {
     name: 'Switch',
     render: (props: any) => (
       <React.Fragment>
+        <Switch variant="outlined" {...props} />
+        <Switch variant="outlined" defaultChecked {...props} />
+        <Switch variant="light" {...props} />
+        <Switch variant="light" defaultChecked {...props} />
         <Switch {...props} />
         <Switch defaultChecked {...props} />
       </React.Fragment>
@@ -182,18 +208,10 @@ const components: {
         }}
       >
         <List {...props}>
+          <ListDivider inset="startContent" />
           <ListItem>
             <ListItemDecorator>
-              <Box
-                sx={(theme) => ({
-                  display: 'inline-flex',
-                  borderRadius: '40px',
-                  p: '0.5rem',
-                  ...theme.variants.light.neutral,
-                })}
-              >
-                <Inbox />
-              </Box>
+              <Inbox />
             </ListItemDecorator>
             <ListItemContent>
               Inbox
@@ -201,47 +219,44 @@ const components: {
             </ListItemContent>
           </ListItem>
           <ListDivider inset="startContent" />
-          <ListItem>
-            <ListItemDecorator>
-              <Box
-                sx={(theme) => ({
-                  display: 'inline-flex',
-                  borderRadius: '40px',
-                  p: '0.5rem',
-                  ...theme.variants.light.neutral,
-                })}
-              >
-                <Drafts fontSize="md" />
-              </Box>
-            </ListItemDecorator>
-            <ListItemContent>
-              Drafts
-              <Typography level="body2">Jan 7, 2014</Typography>
-            </ListItemContent>
-          </ListItem>
         </List>
         <List component="nav" {...props}>
-          <ListItemButton selected color="primary">
-            <ListItemDecorator>
-              <Inbox />
-            </ListItemDecorator>
-            <ListItemContent>Inbox</ListItemContent>
-            <KeyboardArrowUp />
-          </ListItemButton>
-          <ListItem
-            component="div"
-            secondaryAction={
-              <IconButton variant="text" color="danger">
-                <DeleteForever />
-              </IconButton>
-            }
-          >
-            <ListItemButton>
+          <ListItem nested>
+            <ListItemButton selected color="primary">
               <ListItemDecorator>
-                <Star />
+                <Inbox />
               </ListItemDecorator>
-              <ListItemContent>Starred</ListItemContent>
+              <ListItemContent>Inbox</ListItemContent>
+              <KeyboardArrowUp />
             </ListItemButton>
+            <List>
+              <ListItem
+                nested
+                component="div"
+                endAction={
+                  <IconButton variant="text" color="danger">
+                    <DeleteForever />
+                  </IconButton>
+                }
+              >
+                <ListItemButton>
+                  <ListItemDecorator>
+                    <StarBorder />
+                  </ListItemDecorator>
+                  <ListItemContent>Starred</ListItemContent>
+                </ListItemButton>
+                <List>
+                  <ListItem>
+                    <ListItemButton>
+                      <ListItemDecorator>
+                        <Drafts />
+                      </ListItemDecorator>
+                      Draft
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </ListItem>
+            </List>
           </ListItem>
           <ListDivider component="hr" />
           <ListItemButton>
@@ -251,7 +266,7 @@ const components: {
             <ListItemContent>Favorite</ListItemContent>
           </ListItemButton>
         </List>
-        <List component="nav" {...props}>
+        <List component="nav" size="sm" {...props}>
           <ListItemButton>
             <ListItemContent>New file</ListItemContent>
             <Typography level="body2">⌘ N</Typography>
@@ -269,14 +284,17 @@ const components: {
       </Box>
     ),
     cssVars: [
-      { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 8 },
+      { id: '--List-padding', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-gap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-radius', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-item-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
-      { id: '--List-item-paddingX', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 48 },
-      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 6 },
-      { id: '--List-insetStart', type: 'number', unit: 'px' },
+      { id: '--List-item-paddingY', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-paddingLeft', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-paddingRight', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--List-item-fontSize', type: 'number', unit: 'px', defaultValue: 16 },
+      { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 0 },
+      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],
   },
@@ -319,7 +337,7 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Input-height', type: 'number', unit: 'px', defaultValue: 40 },
+      { id: '--Input-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
       { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
@@ -334,7 +352,131 @@ const components: {
         },
       },
       { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
-      { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
+      { id: '--Input-decorator-offset', type: 'number', unit: 'px' },
+    ],
+  },
+  {
+    name: 'Checkbox',
+    render: (props: any) => (
+      <React.Fragment>
+        <Checkbox {...props} />
+        <Checkbox checked {...props} />
+        <Checkbox indeterminate {...props} />
+      </React.Fragment>
+    ),
+    cssVars: [{ id: '--Checkbox-size', type: 'number', unit: 'px', defaultValue: 20 }],
+  },
+  {
+    name: 'Card',
+    render: (props: any) => (
+      <Box component="ul" sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+        <Card
+          component="li"
+          variant="outlined"
+          sx={{ ...props?.sx, '&:focus-within': { boxShadow: 'lg' } }}
+        >
+          <CardOverflow variant="outlined">
+            <AspectRatio ratio="1">
+              <img
+                src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                alt=""
+              />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  borderRadius: '20px',
+                  p: '0.5rem',
+                  fontSize: 'xs',
+                  color: '#fff',
+                  bgcolor: 'rgba(0,0,0,0.5)',
+                }}
+              >
+                04:26
+              </Box>
+              <IconButton
+                size="lg"
+                variant="contained"
+                sx={{
+                  position: 'absolute',
+                  zIndex: 2,
+                  borderRadius: '50%',
+                  right: '1rem',
+                  bottom: 'calc(-1/2 * var(--IconButton-size))',
+                }}
+              >
+                <PlayArrow />
+              </IconButton>
+            </AspectRatio>
+          </CardOverflow>
+          <Typography level="h2" sx={{ fontSize: 'lg', mt: 3 }}>
+            <Link href="#minimal-photo" overlay>
+              Minimal photography
+            </Link>
+          </Typography>
+          <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
+            By <Link href="#sukjit">Sujith</Link>
+          </Typography>
+          <CardOverflow
+            variant="outlined"
+            sx={{
+              display: 'flex',
+              gap: 1,
+              py: 1.5,
+              px: 'var(--Card-padding)',
+              mt: 'auto',
+              borderTopColor: 'background.level2',
+              bgcolor: 'background.level1',
+            }}
+          >
+            <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+              6.3k views
+            </Typography>
+            <Box sx={{ width: 2, bgcolor: 'divider' }} />
+            <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+              1 hour ago
+            </Typography>
+          </CardOverflow>
+        </Card>
+        <Card
+          component="li"
+          size="lg"
+          sx={{ ...props?.sx, minHeight: '360px', '&:hover': { boxShadow: 'xl' } }}
+        >
+          <CardCover>
+            <img
+              src="https://images.unsplash.com/photo-1525630558331-067c957817a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80"
+              alt=""
+            />
+          </CardCover>
+          <CardCover
+            sx={{
+              background:
+                'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 30%), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 50%)',
+            }}
+          />
+          <CardContent sx={{ justifyContent: 'flex-end' }}>
+            <Typography level="h2" sx={{ mb: 1, fontSize: 'lg' }}>
+              <Link href="#the-beach" underline="none" overlay sx={{ color: 'neutral.50' }}>
+                The Beach
+              </Link>
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <Typography startDecorator={<LocationOn />} sx={{ color: 'neutral.300' }}>
+                Tarifa, Spain
+              </Typography>
+              <Typography startDecorator={<StarBorder />} sx={{ color: 'neutral.300' }}>
+                4.8
+              </Typography>
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    ),
+    cssVars: [
+      { id: '--Card-padding', type: 'number', unit: 'px', defaultValue: 16 },
+      { id: '--Card-radius', type: 'number', unit: 'px', defaultValue: 8 },
     ],
   },
 ];
@@ -371,19 +513,20 @@ function Playground({ initialName }: { initialName?: string }) {
         <Box sx={{ pl: 5, pt: 2 }}>
           <ColorSchemePicker />
         </Box>
-        <List
-          sx={{
-            mt: 2,
-            '--List-insetStart': '1.25rem',
-            '--List-radius': '1rem',
-          }}
-        >
+        <List sx={{ mt: 2 }}>
           {components.map((config) => (
             <ListItem key={config.name} sx={{ mb: 1 }}>
               <ListItemButton
                 color={config.name === current ? 'primary' : 'neutral'}
+                variant={config.name === current ? 'light' : 'text'}
                 selected={config.name === current}
                 onClick={() => setCurrent(config.name)}
+                sx={{
+                  '&.Mui-selected': {
+                    borderRight: '2px solid',
+                    borderColor: 'primary.containedBg',
+                  },
+                }}
               >
                 {config.name}
               </ListItemButton>
@@ -413,7 +556,7 @@ function Playground({ initialName }: { initialName?: string }) {
             bottom: '1rem',
           }}
         >
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}
@@ -447,7 +590,7 @@ function Playground({ initialName }: { initialName?: string }) {
               }}
               value={
                 componentVars[data?.name!]?.[cssVar.id]?.replace(cssVar.unit, '') ||
-                cssVar.defaultValue ||
+                cssVar.defaultValue?.toString() ||
                 ''
               }
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -481,29 +624,7 @@ export default function JoyComponents() {
   }, []);
 
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       {mounted && <Playground initialName={router.query.name as string} />}
     </CssVarsProvider>

@@ -159,9 +159,9 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Full-stack Engineer - Studio',
+        title: 'Full-stack Engineer - Toolpad',
         description:
-          'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
+          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
       {
@@ -169,17 +169,6 @@ const openRolesData = [
         description:
           "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
         url: '/careers/react-support-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Experience Engineer',
-        description:
-          'You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.',
-        url: '/careers/developer-experience-engineer/',
       },
     ],
   },

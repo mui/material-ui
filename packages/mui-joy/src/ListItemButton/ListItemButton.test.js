@@ -21,12 +21,11 @@ describe('Joy <ListItemButton />', () => {
   it('should render with the selected class', () => {
     const { getByRole } = render(<ListItemButton selected />);
     expect(getByRole('button')).to.have.class(classes.selected);
-    expect(getByRole('button')).to.have.class(classes.selectedVariantLight); // default selected variant
   });
 
-  it('should render with the selectedVariant class', () => {
-    const { getByRole } = render(<ListItemButton selected selectedVariant="outlined" />);
-    expect(getByRole('button')).to.have.class(classes.selected);
+  it('should render with the variant class', () => {
+    const { getByRole } = render(<ListItemButton variant="outlined" />);
+    expect(getByRole('button')).to.have.class(classes.variantOutlined);
   });
 
   it('should render with primary color class', () => {
@@ -42,6 +41,11 @@ describe('Joy <ListItemButton />', () => {
   it('should be disabled', () => {
     const { container } = render(<ListItemButton disabled />);
     expect(container.firstChild).to.have.class(classes.disabled);
+  });
+
+  it('should accept custom role', () => {
+    const { getByRole } = render(<ListItemButton role="menuitem" />);
+    expect(getByRole('menuitem')).toBeVisible();
   });
 
   describe('prop: focusVisibleClassName', () => {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, createTheme } from '@mui/material/styles';
+import { styled, createTheme, alpha } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
 import Head from 'docs/src/modules/components/Head';
 import BrandingProvider from 'docs/src/BrandingProvider';
@@ -74,6 +74,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/45398769',
     github: 'alexfauquette',
   },
+  samuelsycamore: {
+    name: 'Sam Sycamore',
+    avatar: 'https://avatars.githubusercontent.com/u/71297412',
+    github: 'samuelsycamore',
+  },
 };
 
 const styles = (theme) => ({
@@ -83,6 +88,8 @@ const styles = (theme) => ({
       theme.palette.mode === 'dark'
         ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
         : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
+    backgroundSize: 'auto 250px ',
+    backgroundRepeat: 'no-repeat',
   },
   back: {
     display: 'flex',
@@ -98,22 +105,59 @@ const styles = (theme) => ({
       marginBottom: theme.spacing(3),
     },
     '& .markdown-body': {
-      fontSize: theme.typography.pxToRem(17),
+      fontSize: theme.typography.pxToRem(16),
       lineHeight: 1.7,
     },
     '& img, & video': {
       display: 'block',
       margin: 'auto',
     },
+    '& strong': {
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
+    },
     '& pre': {
       fontSize: theme.typography.pxToRem(16),
     },
-    '& .blog-description': {
+    '& summary': {
+      padding: 8,
       fontSize: theme.typography.pxToRem(14),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
+      fontWeight: theme.typography.fontWeightMedium,
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    },
+    '& details': {
+      paddingLeft: 16,
+      paddingRight: 16,
+      background:
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.primary[900], 0.3)
+          : alpha(theme.palette.grey[50], 0.5),
+      border: '1px solid',
+      borderRadius: 10,
+      borderColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200],
+      transitionProperty: 'all',
+      transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      transitionDuration: '200ms',
+      '&:hover, &:focus-visible': {
+        background:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primary[900], 0.4)
+            : theme.palette.grey[50],
+        borderColor:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[300],
+      },
+    },
+    '& th': {
+      textAlign: 'left',
+      borderBottom: `3px solid rgba(62, 80, 96, 0.2) !important`,
+    },
+    '& .blog-description': {
+      fontSize: theme.typography.pxToRem(13),
+      textAlign: 'left',
+      color: theme.palette.grey[600],
       '& a': {
-        color: theme.palette.text.secondary,
+        color:
+          theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
         textDecoration: 'underline',
       },
     },
@@ -128,7 +172,7 @@ const styles = (theme) => ({
 const AuthorsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(4),
+  marginBottom: theme.spacing(2),
   '& .author': {
     display: 'flex',
     alignItems: 'center',

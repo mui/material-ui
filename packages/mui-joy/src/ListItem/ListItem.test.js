@@ -32,9 +32,15 @@ describe('Joy <ListItem />', () => {
     expect(container.firstChild).to.have.class(classes.sticky);
   });
 
-  it('should show action if provided', () => {
-    const { getByText } = render(<ListItem secondaryAction="foo" />);
+  it('should show startAction if provided', () => {
+    const { getByText } = render(<ListItem startAction="foo" />);
     expect(getByText('foo')).toBeVisible();
-    expect(getByText('foo')).to.have.class(classes.secondaryAction);
+    expect(getByText('foo')).to.have.class(classes.startAction);
+  });
+
+  it('should show endAction if provided', () => {
+    const { getByText } = render(<ListItem endAction="foo" />);
+    expect(getByText('foo')).toBeVisible();
+    expect(getByText('foo')).to.have.class(classes.endAction);
   });
 });

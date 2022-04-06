@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Skeleton（骨架屏）组件
 components: Skeleton
 githubLabel: 'component: skeleton'

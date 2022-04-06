@@ -25,6 +25,10 @@ export interface TypographyClasses {
   noWrap: string;
   /** Styles applied to the root element if `gutterBottom={true}`. */
   gutterBottom: string;
+  /** Styles applied to the startDecorator element */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element */
+  endDecorator: string;
 }
 
 export type TypographyClassKey = keyof TypographyClasses;
@@ -46,6 +50,8 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypograp
   'body3',
   'noWrap',
   'gutterBottom',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default typographyClasses;

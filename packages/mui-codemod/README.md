@@ -62,6 +62,14 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `date-pickers-moved-to-x`
+
+Rename the imports of date and time pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+
+```sh
+npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
+```
+
 #### 🚀 `preset-safe`
 
 A combination of all important transformers for migrating v4 to v5. ⚠️ This codemod should be run only once.
@@ -958,6 +966,24 @@ npx @mui/codemod v5.0.0/theme-typography-round <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
+
+#### `top-level-imports`
+
+Converts all `@mui/material` submodule imports to the root module:
+
+```diff
+-import List from '@mui/material/List';
+-import Grid from '@mui/material/Grid';
++import { List, Grid } from '@mui/material';
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @mui/codemod v5.0.0/top-level-imports <path>
+```
+
+Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
 
 #### `transitions`
 

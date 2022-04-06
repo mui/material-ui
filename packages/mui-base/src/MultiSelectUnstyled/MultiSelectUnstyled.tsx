@@ -88,6 +88,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const [buttonDefined, setButtonDefined] = React.useState(false);
   const buttonRef = React.useRef<HTMLElement | null>(null);
+  const listboxRef = React.useRef<HTMLElement>(null);
 
   const Button = component ?? components.Root ?? 'button';
   const ListboxRoot = components.Listbox ?? 'ul';
@@ -102,6 +103,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   };
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleListboxRef = useForkRef(listboxRef, componentsProps.listbox?.ref);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -129,7 +131,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     defaultValue,
     disabled: disabledProp,
     listboxId: componentsProps.listbox?.id,
-    listboxRef: componentsProps.listbox?.ref,
+    listboxRef: handleListboxRef,
     multiple: true,
     onChange,
     onOpenChange: handleOpenChange,
@@ -199,6 +201,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const context: SelectUnstyledContextType = {
     getOptionProps,
     getOptionState,
+    listboxRef,
   };
 
   return (
@@ -303,11 +306,11 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Select](https://mui.com/base/react-select/)
  *
  * API:
  *
- * - [MultiSelectUnstyled API](https://mui.com/api/multi-select-unstyled/)
+ * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
  */
 export default MultiSelectUnstyled as <TValue extends {}>(
   props: MultiSelectUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
