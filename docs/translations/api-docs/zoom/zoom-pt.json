@@ -1,5 +1,5 @@
 {
-  "componentDescription": "A transição de Zoom pode ser usada para a variante flutuante do\ncomponente [Button](/components/buttons/#floating-action-buttons).\nEla usa [react-transition-group](https://github.com/reactjs/react-transition-group) internamente.",
+  "componentDescription": "A transição de Zoom pode ser usada para a variante flutuante do\ncomponente [Button](/material-ui/react-button/#floating-action-buttons).\nEla usa [react-transition-group](https://github.com/reactjs/react-transition-group) internamente.",
   "propDescriptions": {
     "addEndListener": "Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided.",
     "appear": "Perform the enter transition when it first mounts if <code>in</code> is also <code>true</code>. Set this to <code>false</code> to disable this behavior.",

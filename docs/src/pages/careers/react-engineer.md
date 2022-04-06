@@ -32,7 +32,7 @@ Both our open-source community and our premium products are growing fast (x2-3 Y
 We need talented people to keep that going!
 
 The advanced components team (MUI X) needs help.
-We have started with the [data grid](/components/data-grid/#commercial-version) component.
+We have started with the [data grid](/x/react-data-grid/#commercial-version) component.
 We need to build new features on it and introduce new components.
 The enterprise version is built on the open-source version of the components.
 

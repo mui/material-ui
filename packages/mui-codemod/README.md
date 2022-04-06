@@ -1035,7 +1035,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 npx @mui/codemod v5.0.0/use-transitionprops <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](/guides/migration-v4/#dialog).
+You can find more details about this breaking change in [the migration guide](/material-ui/guides/migration-v4/#dialog).
 
 #### `variant-prop`
 

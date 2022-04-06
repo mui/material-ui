@@ -1,5 +1,5 @@
 {
-  "componentDescription": "有关可用[图标Icon](/components/icons/)选项，请参阅文档的图标Icon部分。",
+  "componentDescription": "有关可用[图标Icon](/material-ui/icons/)选项，请参阅文档的图标Icon部分。",
   "propDescriptions": {
     "children": "The icon element.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",

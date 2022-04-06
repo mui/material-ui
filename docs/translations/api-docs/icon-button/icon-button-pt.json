@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Refer to the [Icons](/components/icons/) section of the documentation\nregarding the available icon options.",
+  "componentDescription": "Refer to the [Icons](/material-ui/icons/) section of the documentation\nregarding the available icon options.",
   "propDescriptions": {
     "children": "The icon element.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",

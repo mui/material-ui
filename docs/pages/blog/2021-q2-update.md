@@ -116,7 +116,7 @@ The date picker is at the border between the core component and advanced compone
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
   We want our users to be able to adopt new features as fast as we build them.
-- 🔘 We have added support for a built-in [single select](/components/data-grid/columns/#column-types) column type:
+- 🔘 We have added support for a built-in [single select](/x/react-data-grid/columns/#column-types) column type:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
@@ -130,9 +130,9 @@ The date picker is at the border between the core component and advanced compone
   We have added memo logic on the render cell's parent, and worked on its effectiveness to reduce the re-rendering of custom cells.
   We have identified more opportunities to improve the performance that we will prioritize later.
 - 📚 We have worked on providing more reference documentation. We are semi-automatically generating it from the TypeScript source definitions, with the descriptions.
-  For instance, you can now find all the [properties available](/api/data-grid/grid-col-def/) of the `GridColDef`.
+  For instance, you can now find all the [properties available](/x/api/data-grid/grid-col-def/) of the `GridColDef`.
 - ⚡️ We have fixed support for components that use portals, like Select and Autocomplete, in the cell editing mode.
-- 🌏 We have accepted many new built-in locales (+15) from the community, after the introduction of [the feature](/components/data-grid/localization/#supported-locales) in Q1.
+- 🌏 We have accepted many new built-in locales (+15) from the community, after the introduction of [the feature](/x/react-data-grid/localization/#supported-locales) in Q1.
 
 ### Design kits
 
