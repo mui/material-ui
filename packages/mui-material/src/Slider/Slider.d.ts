@@ -77,12 +77,12 @@ export const SliderInput: React.FC<SliderInputProps>;
  *
  * Demos:
  *
- * - [Slider](https://mui.com/components/slider/)
+ * - [Slider](https://mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://mui.com/api/slider/)
- * - inherits [SliderUnstyled API](https://mui.com/api/slider-unstyled/)
+ * - [Slider API](https://mui.com/material-ui/api/slider/)
+ * - inherits [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
  */
 declare const Slider: ExtendSliderUnstyled<SliderTypeMap>;
 

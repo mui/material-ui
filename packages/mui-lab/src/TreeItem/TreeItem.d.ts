@@ -78,10 +78,10 @@ export interface TreeItemProps
  *
  * Demos:
  *
- * - [Tree View](https://mui.com/components/tree-view/)
+ * - [Tree View](https://mui.com/material-ui/react-tree-view/)
  *
  * API:
  *
- * - [TreeItem API](https://mui.com/api/tree-item/)
+ * - [TreeItem API](https://mui.com/material-ui/api/tree-item/)
  */
 export default function TreeItem(props: TreeItemProps): JSX.Element;

@@ -237,12 +237,12 @@ export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | Out
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * *   [FormControl](https://mui.com/api/form-control/)
- * *   [InputLabel](https://mui.com/api/input-label/)
- * *   [FilledInput](https://mui.com/api/filled-input/)
- * *   [OutlinedInput](https://mui.com/api/outlined-input/)
- * *   [Input](https://mui.com/api/input/)
- * *   [FormHelperText](https://mui.com/api/form-helper-text/)
+ * *   [FormControl](https://mui.com/material-ui/api/form-control/)
+ * *   [InputLabel](https://mui.com/material-ui/api/input-label/)
+ * *   [FilledInput](https://mui.com/material-ui/api/filled-input/)
+ * *   [OutlinedInput](https://mui.com/material-ui/api/outlined-input/)
+ * *   [Input](https://mui.com/material-ui/api/input/)
+ * *   [FormHelperText](https://mui.com/material-ui/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -262,12 +262,12 @@ export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | Out
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/components/autocomplete/)
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Text Fields](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [TextField API](https://mui.com/api/text-field/)
- * - inherits [FormControl API](https://mui.com/api/form-control/)
+ * - [TextField API](https://mui.com/material-ui/api/text-field/)
+ * - inherits [FormControl API](https://mui.com/material-ui/api/form-control/)
  */
 export default function TextField(props: TextFieldProps): JSX.Element;

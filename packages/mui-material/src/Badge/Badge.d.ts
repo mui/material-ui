@@ -107,13 +107,13 @@ export const BadgeMark: React.FC<BadgeBadgeProps>;
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/components/avatars/)
- * - [Badges](https://mui.com/components/badges/)
+ * - [Avatars](https://mui.com/material-ui/react-avatar/)
+ * - [Badges](https://mui.com/material-ui/react-badge/)
  *
  * API:
  *
- * - [Badge API](https://mui.com/api/badge/)
- * - inherits [BadgeUnstyled API](https://mui.com/api/badge-unstyled/)
+ * - [Badge API](https://mui.com/material-ui/api/badge/)
+ * - inherits [BadgeUnstyled API](https://mui.com/base/api/badge-unstyled/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 

@@ -83,12 +83,12 @@ export interface MenuProps extends StandardProps<PopoverProps> {
  *
  * Demos:
  *
- * - [App Bar](https://mui.com/components/app-bar/)
- * - [Menus](https://mui.com/components/menus/)
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
+ * - [Menus](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [Menu API](https://mui.com/api/menu/)
- * - inherits [Popover API](https://mui.com/api/popover/)
+ * - [Menu API](https://mui.com/material-ui/api/menu/)
+ * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
  */
 export default function Menu(props: MenuProps): JSX.Element;

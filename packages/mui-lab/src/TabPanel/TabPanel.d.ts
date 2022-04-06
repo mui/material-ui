@@ -28,10 +28,10 @@ export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDi
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [TabPanel API](https://mui.com/api/tab-panel/)
+ * - [TabPanel API](https://mui.com/material-ui/api/tab-panel/)
  */
 export default function TabPanel(props: TabPanelProps): JSX.Element;

@@ -85,11 +85,11 @@ export interface HiddenProps {
  *
  * Demos:
  *
- * - [Hidden](https://mui.com/components/hidden/)
+ * - [Hidden](https://mui.com/material-ui/react-hidden/)
  *
  * API:
  *
- * - [Hidden API](https://mui.com/api/hidden/)
+ * - [Hidden API](https://mui.com/material-ui/api/hidden/)
  */
 declare const Hidden: React.JSXElementConstructor<HiddenProps>;
 

@@ -73,10 +73,10 @@ export type SortDirection = 'asc' | 'desc' | false;
  *
  * Demos:
  *
- * - [Tables](https://mui.com/components/tables/)
+ * - [Tables](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableCell API](https://mui.com/api/table-cell/)
+ * - [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 export default function TableCell(props: TableCellProps): JSX.Element;
