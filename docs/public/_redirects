@@ -206,6 +206,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /customization/* /material-ui/customization/:splat 301
 /:lang/customization/* /:lang/material-ui/customization/:splat 301
 
+/guides/classname-generator/ /material-ui/experimental-api/classname-generator/ 301
+/:lang/guides/classname-generator/ /:lang/material-ui/experimental-api/classname-generator/ 301
+
 /guides/* /material-ui/guides/:splat 301
 /:lang/guides/* /:lang/material-ui/guides/:splat 301
 
