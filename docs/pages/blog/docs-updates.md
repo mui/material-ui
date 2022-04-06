@@ -50,11 +50,9 @@ We have also added product labels for Material UI and MUI Base in case it's uncl
 
 <img src="/static/blog/docs-updates/docs-product-label.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of the search results displaying product labels per result" />
 
-As a side benefit of the documentation restructuring, we have seen a huge improvement in the quality of search results related to MUI X. Data Grid users can now see comprehensive results when searching for methods. Here is a comparison of before and after when searching for "filter":
+As a side benefit of the documentation restructuring, we have seen a huge improvement in the quality of search results related to MUI X. Data Grid users can now see comprehensive results when searching for features. Here is a comparison of before and after when searching for the "pagination" feature:
 
 <img src="/static/blog/docs-updates/docs-search-comparison.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshots of the docs before and after comparing Data Grid search results" />
-
-<p class="blog-description">Data Grid search results before and after the documentation restructuring</p>
 
 ## Moving forward
 
