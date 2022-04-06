@@ -37,7 +37,7 @@ In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` co
 ## Focus of disabled buttons
 
 Similarly to the native `<button>`, the `ButtonUnstyled` component can't receive focus when it's disabled.
-It may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
+This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
 The `focusableWhenDisabled` prop lets you change this behavior.  
 When this prop is set, the underlying button does not set the `disabled` prop.
 Instead, `aria-disabled` is used, which makes the button focusable.
