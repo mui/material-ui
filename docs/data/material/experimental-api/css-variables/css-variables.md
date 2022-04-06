@@ -104,7 +104,7 @@ function App() {
 ### Toggle between light and dark mode
 
 `Experimental_CssVarsProvider` provides light and dark mode by default.
-It stores the selected user mode and syncs it with the browser's local storage internally.
+It stores the user's selected mode and syncs it with the browser's local storage internally.
 You can read and update the mode via the `useColorScheme` API.
 
 ```jsx
@@ -158,7 +158,7 @@ To prevent the dark-mode SSR flickering during the hydration phase, place `getIn
 
 #### Next.js
 
-To use the API with a Next.js project, add the following code to the `pages/_document.js` file.
+To use the API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document) file:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -182,7 +182,7 @@ export default class MyDocument extends Document {
 
 #### Gatsby
 
-To use the API with a Gatsby project, add the following code to the `gatsby-ssr.js file`
+To use the API with a Gatsby project, add the following code to the custom [`gatsby-ssr.js](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file`:
 
 ```jsx
 import React from 'react';
@@ -201,7 +201,7 @@ export function onRenderBody({ setPreBodyComponents }) {
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
 - `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
 - `prefix: string` - CSS variable prefix
-- `theme: ThemeInput` - the theme provided to the React's context
+- `theme: ThemeInput` - the theme provided to React's context
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
 
