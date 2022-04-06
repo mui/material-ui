@@ -228,6 +228,9 @@ function run() {
 /components/trap-focus/ /base/react-trap-focus/ 301
 /:lang/components/trap-focus/ /:lang/base/react-trap-focus/ 301
 
+/guides/classname-generator/ /experimental-api/classname-generator/ 301
+/:lang/guides/classname-generator/ /:lang/experimental-api/classname-generator/ 301
+
 ### React plural
 /components/tabs/ /material-ui/react-tabs/ 301
 /:lang/components/tabs/ /:lang/material-ui/react-tabs/ 301
