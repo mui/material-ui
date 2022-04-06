@@ -1,6 +1,6 @@
 ---
-title: 'New documentation structure: better navigate MUI's products'
-description: From now on, each MUI product will live in its own documentation. Find out how that is better for you.
+title: 'Our docs just got a major upgrade—here's what that means for you'
+description: Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need.
 date: 2022-04-06T00:00:00.000Z
 authors: ['danilo-leal']
 tags: ['News']
@@ -43,13 +43,14 @@ As for the URLs, this is how they look now:
 
 ### Improved search experience
 
-The documentation restructuring ranks the search result based on the product that you are looking at. For example, if you are looking at Material UI documentation (/material-ui/\*), when you hit ⌘ + K and type a keyword, you will find that most of the results are related to Material UI.
+The documentation restructuring ranks search results based on the product that you are currently looking at.
+For example, if you are looking at Material UI documentation, when you press <kbd>⌘ + K</kbd> and type a keyword, you will find that most of the results are related to Material UI.
 
-We have also added product label for Material UI and MUI Base in case the search result shows the same text.
+We have also added product labels for Material UI and MUI Base in case it's unclear which library the search results refer to.
 
 // add search result image
 
-As a side benefit of the documentation restructuring, we have seen a huge improvement on the search result for MUI X. The data grid users can now see the comprehensive result when searching for methods. Here is a comparison of before and after when searching for "filter"
+As a side benefit of the documentation restructuring, we have seen a huge improvement in the quality of search results related to MUI X. Data Grid users can now see comprehensive results when searching for methods. Here is a comparison of before and after when searching for "filter":
 
 // add comparison images
 
