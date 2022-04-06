@@ -125,7 +125,7 @@ After [exploring](https://github.com/mui/material-ui/issues/22342) many differen
    - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
 
    This allows developers to swap between different style engines. For example, styled-components users no longer need to bundle emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
-   How does the [swap work](https://mui.com/guides/styled-engine/#how-to-switch-to-styled-components)? The same way it does from React to Preact.
+   How does the [swap work](https://mui.com/material-ui/guides/styled-engine/#how-to-switch-to-styled-components)? The same way it does from React to Preact.
 
 3. For the last couple of months, we have been [sponsoring](https://opencollective.com/emotion) emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, leading the state of the art in a competitive space.
 
@@ -134,7 +134,7 @@ The first immediate benefit of the move to emotion was **performance**. The `<Bo
 We would like to thank all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui/material-ui/issues/24405) and [#16947](https://github.com/mui/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@queengooborg](https://github.com/queengooborg), and more.
 It was a major undertaking!
 
-Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](https://mui.com/guides/migration-v4/#migrate-from-jss).
+Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](https://mui.com/material-ui/guides/migration-v4/#migrate-from-jss).
 We recommend the latter to match the core components.
 
 ### The `sx` prop
@@ -389,7 +389,7 @@ Instead, we have reversed the priority, putting the developers using them [first
 In practice, this means breaking down complex demos into smaller ones.
 We aim to have as many "inline previews" as possible. It saves one click to expand the demo, and the mental overhead of figuring out what part of the code maps with what of interest you saw on the screen.
 
-<a href="/components/buttons/#basic-button"><img loading="lazy" src="/static/blog/mui-core-v5/inline-preview.png" alt="Screenshot of the new code inline preview in our docs" style="width: 649px; margin-bottom: 16px;" /></a>
+<a href="/material-ui/react-button/#basic-button"><img loading="lazy" src="/static/blog/mui-core-v5/inline-preview.png" alt="Screenshot of the new code inline preview in our docs" style="width: 649px; margin-bottom: 16px;" /></a>
 
 ### Props descriptions in IntelliSense
 
@@ -496,9 +496,9 @@ To achieve this we have a twin licensing model.
 The `DataGrid` component is available under an MIT license for the features that can be relatively easily implemented, and that can be sustained with an open-source model.
 The `DataGridPro` on the other hand is available under a paid commercial license for the more advanced features.
 
-<a href="/components/data-grid/demo/"><img loading="lazy" src="/static/blog/mui-core-v5/data-grid.gif" alt="Screen recording of the Data Grid component demo" style="width: 700px; margin-bottom: 16px;" /></a>
+<a href="/x/react-data-grid/demo/"><img loading="lazy" src="/static/blog/mui-core-v5/data-grid.gif" alt="Screen recording of the Data Grid component demo" style="width: 700px; margin-bottom: 16px;" /></a>
 
-<a href="/components/data-grid/demo/"><p class="blog-description">Check the Data Grid demo here.</p></a>
+<a href="/x/react-data-grid/demo/"><p class="blog-description">Check the Data Grid demo here.</p></a>
 
 ### Date Picker
 
@@ -567,7 +567,7 @@ We have made them [available](/material-ui/material-icons/) in the `@mui/icons-m
 We have introduced a new `<Stack>` component
 to handle one-dimensional layouts. It's's similar to how Figma handles auto-layout.
 
-<a href="/components/stack/"><img loading="lazy" src="/static/blog/mui-core-v5/stack.png" alt="Screenshot of the Stack component and its code preview" style="width: 700px; margin-bottom: 16px;" /></a>
+<a href="/material-ui/react-stack/"><img loading="lazy" src="/static/blog/mui-core-v5/stack.png" alt="Screenshot of the Stack component and its code preview" style="width: 700px; margin-bottom: 16px;" /></a>
 
 > Note that you might already be using `<Box display="flex" gap={1}>` to solve the same problem,
 > however, [browser support](https://caniuse.com/flexbox-gap) for the flexbox `gap` CSS property is lacking in Safari.
@@ -597,7 +597,7 @@ The following components are now available in the lab:
 - [TrapFocus](/material-ui/react-trap-focus/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
 - [Masonry](/material-ui/react-masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
-  <a href="/components/masonry/"><img loading="lazy" src="/static/blog/mui-core-v5/masonry.png" alt="Screenshot of the Masonry component and its code preview" style="width: 700px; margin-bottom: 16px;" /></a>
+  <a href="/material-ui/react-masonry/"><img loading="lazy" src="/static/blog/mui-core-v5/masonry.png" alt="Screenshot of the Masonry component and its code preview" style="width: 700px; margin-bottom: 16px;" /></a>
 
 ## v4 migration
 
@@ -616,16 +616,16 @@ If you are starting your upgrade, these are the three things you should look int
 
 - ⚓ We have introduced actionable deprecations in v4.
   You can upgrade to v4.12.0 and start preparing your codebase to be compatible with v5.
-- ⚒️ We have prepared a [codemod](https://mui.com/guides/migration-v4/#preset-safe) that does most of the transformations you will need for the migration.
+- ⚒️ We have prepared a [codemod](https://mui.com/material-ui/guides/migration-v4/#preset-safe) that does most of the transformations you will need for the migration.
   If you are not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g&ab_channel=Pusher).
-- 📄 Lastly, we have prepared a step-by-step [migration guide](https://mui.com/guides/migration-v4/).
+- 📄 Lastly, we have prepared a step-by-step [migration guide](https://mui.com/material-ui/guides/migration-v4/).
   This guide is the one place where you can find all information required for upgrading to v5.
 
 ### Change of the package names
 
 To support our [new brand](https://mui.com/blog/material-ui-is-now-mui/), we changed some of the terminology used in the project.
 The npm packages have been renamed.
-For more details on this, check [the migration guide](https://mui.com/guides/migration-v4/#update-mui-version).
+For more details on this, check [the migration guide](https://mui.com/material-ui/guides/migration-v4/#update-mui-version).
 
 ### Change of the styling solution
 
@@ -637,7 +637,7 @@ If you are not ready to migrate away from the `makeStyles` API now, you can:
 - add `@mui/styles` as a dependency and change the imports of the `makeStyles`/`withStyles` utilities
 - use [`tss-react`](https://github.com/garronej/tss-react) - its API is similar to JSS `makeStyles` but is powered by emotion, which minimizes the bundle duplication with the core components.
 
-You can find more information for this on the [Migrate from JSS](https://mui.com/guides/migration-v4/#migrate-from-jss) section of the migration guide.
+You can find more information for this on the [Migrate from JSS](https://mui.com/material-ui/guides/migration-v4/#migrate-from-jss) section of the migration guide.
 
 ### Changes to the supported platforms
 

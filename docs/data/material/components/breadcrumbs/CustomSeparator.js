@@ -19,7 +19,7 @@ export default function CustomSeparator() {
       underline="hover"
       key="2"
       color="inherit"
-      href="/getting-started/installation/"
+      href="/material-ui/getting-started/installation/"
       onClick={handleClick}
     >
       Core

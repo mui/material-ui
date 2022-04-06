@@ -1972,7 +1972,7 @@ As the core components use emotion as their style engine, the props used by emot
 - Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive.
   [See documentation](/material-ui/react-slider/).
 
-  <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+  <a href="/material-ui/react-slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
   You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/material-ui/react-slider/#sizes).
 
@@ -2971,7 +2971,7 @@ function Parent() {
 [Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) is supported out of the box by TSS.
 You just need to follow [the related section of the migration guide](https://github.com/mui/material-ui/blob/bbdf5080fc9bd9d979d657a3cb237d88b27035d9/docs/data/material/guides/migration-v4/migration-v4.md?plain=1#L481-L500) and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
-In MUI v5 however, [style overrides also accept callbacks](https://mui.com/customization/theme-components/).
+In MUI v5 however, [style overrides also accept callbacks](https://mui.com/materia-ui/customization/theme-components/).
 By default TSS is only able to provide
 the theme. If you want to provide the props and the `ownerState` [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
 
