@@ -1,5 +1,79 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.6.0
+
+<!-- generated comparing v5.5.3..master -->
+
+_Apr 5, 2022_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🧰 Update peer dependencies to support React 18 (#32063) @eps1lon
+- 🚀 Added the experimental `CssVarsProvider` in `@mui/material` for generating theme CSS variables (#31138) @mnajdova
+- 📣 Moved date and time pickers from the lab to MUI X (#31984) @flaviendelangle
+- Several 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.6.0`
+
+- &#8203;<!-- 25 -->[CssVarsProvider] Add experimental CssVarsProvider in @mui/material (#31138) @mnajdova
+- &#8203;<!-- 06 -->[Link] Fix `sx` color to support callback (#32123) @siriwatknp
+- &#8203;<!-- 05 -->[Link] Fix color transformation (#32045) @siriwatknp
+- &#8203;<!-- 04 -->[ListItemButton] Specified width so that text would ellide (#32083) @MatthijsMud
+- &#8203;<!-- 03 -->[TablePagination] Fixed the etEE locale (#32052) @raigoinabox
+
+### `@mui/base@5.0.0-alpha.75`
+
+- &#8203;<!-- 31 -->[Badge] Simplify unstyled API (#31974) @michaldudak
+
+### `@mui/codemod@5.6.0`
+
+- &#8203;<!-- 29 -->[codemod] Add v5.0.0/date-pickers-moved-to-x codemod (#31373) @flaviendelangle
+
+### `@mui/lab@5.0.0-alpha.76`
+
+- &#8203;<!-- 24 -->[DatePicker] Remove date and time pickers from the lab (#31984) @flaviendelangle
+
+### `@mui/joy@5.0.0-alpha.22`
+
+- &#8203;<!-- 07 -->[Joy] Add `Card` components (#32027) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 30 -->[blog] New article for the date pickers migration to X (#31831) @flaviendelangle
+- &#8203;<!-- 33 -->[docs] Base Menu style revisions and final review (#32097) @samuelsycamore
+- &#8203;<!-- 32 -->[docs] Base Select style revisions and final review (#32095) @samuelsycamore
+- &#8203;<!-- 31 -->[docs] Base Input style revisions and final review (#32096) @samuelsycamore
+- &#8203;<!-- 30 -->[docs] Base Slider style revisions and final review (#32140) @samuelsycamore
+- &#8203;<!-- 29 -->[docs] Base Modal style revisions and final review (#32093) @samuelsycamore
+- &#8203;<!-- 28 -->[docs] Add page for CSS variables support in @mui/material (#32050) @mnajdova
+- &#8203;<!-- 27 -->[docs] Add TSS support for theme style overrides (#31918) @garronej
+- &#8203;<!-- 23 -->[docs] Simplify customization examples in ButtonUnstyled demos (#32092) @michaldudak
+- &#8203;<!-- 22 -->[docs] Fix linking issues for the redirects (#32101) @siriwatknp
+- &#8203;<!-- 21 -->[docs] Create the FormControl page (#32073) @michaldudak
+- &#8203;<!-- 20 -->[docs] Remove trap-focus from the navigation (#32079) @psjishnu
+- &#8203;<!-- 19 -->[docs] Add date-pickers product identifier (#32076) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Move SwitchUnstyled docs to the Base space (#31964) @michaldudak
+- &#8203;<!-- 17 -->[docs] Add docs page for unstyled popper (#31813) @siriwatknp
+- &#8203;<!-- 16 -->[docs] Copy TextareaAutosize docs to Base (#32034) @michaldudak
+- &#8203;<!-- 15 -->[docs] Add react-hook-form-mui to Complementary projects #32015 @TkaczykAdam
+- &#8203;<!-- 14 -->[docs] Improve the translation experience (#32021) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Add small size Select demo (#32060) @ivan-ngchakming
+- &#8203;<!-- 12 -->[docs] Correct typos (#32029) @apeltop
+- &#8203;<!-- 11 -->[docs] Create SliderUnstyled docs (#31850) @michaldudak
+- &#8203;<!-- 10 -->[docs] Create TablePaginationUnstyled docs (#32018) @michaldudak
+- &#8203;<!-- 09 -->[docs] Move SelectUnstyled docs to the Base space (#31816) @michaldudak
+- &#8203;<!-- 08 -->[docs] Create the TabsUnstyled docs (#32023) @michaldudak
+- &#8203;<!-- 02 -->[website] The studio finally has a name, use it (#32105) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Disable job ad @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 28 -->[core] Update peer deps to support React 18 (#32063) @eps1lon
+- &#8203;<!-- 27 -->[core] Fix running docs:api on Windows (#32091) @michaldudak
+- &#8203;<!-- 26 -->[core] Fix api build script for MUI Base (#32081) @siriwatknp
+
+All contributors of this release in alphabetical order: @apeltop, @eps1lon, @flaviendelangle, @garronej, @ivan-ngchakming, @m4theushw, @MatthijsMud, @michaldudak, @mnajdova, @oliviertassinari, @psjishnu, @raigoinabox, @samuelsycamore, @siriwatknp, @TkaczykAdam
+
 ## 5.5.3
 
 <!-- generated comparing v5.5.2..master -->
