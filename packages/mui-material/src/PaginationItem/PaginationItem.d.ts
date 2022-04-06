@@ -21,7 +21,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The active color.
      * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/materia-ui/customization/palette/#adding-new-colors).
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'standard'
      */
     color?: OverridableStringUnion<

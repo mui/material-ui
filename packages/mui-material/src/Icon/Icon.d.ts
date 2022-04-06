@@ -28,7 +28,7 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * The color of the component.
      * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/materia-ui/customization/palette/#adding-new-colors).
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'inherit'
      */
     color?: OverridableStringUnion<

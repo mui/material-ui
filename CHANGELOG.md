@@ -2570,7 +2570,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   You can follow our progress at https://github.com/mui/material-ui/issues/27170.
 
 - 💄 We have updated the default `info` `success` `warning` color to be more accessible (#26817) @siriwatknp.
-  You can find the new [default values](https://mui.com/materia-ui/customization/palette/#default-values) in the documentation.
+  You can find the new [default values](https://mui.com/material-ui/customization/palette/#default-values) in the documentation.
 
   <a href="https://mui.com/customization/palette/#default-values"><img width="780" alt="colors" src="https://user-images.githubusercontent.com/3165635/125192657-4864fd00-e249-11eb-9dc1-44857b25b3b8.png"></a>
 
@@ -7245,7 +7245,7 @@ Here are some highlights ✨:
   <Button variant="dashed" />;
   ```
 
-  More details in [the documentation](https://mui.com/materia-ui/customization/components/#adding-new-component-variants) and [RFC](#21749).
+  More details in [the documentation](https://mui.com/material-ui/customization/components/#adding-new-component-variants) and [RFC](#21749).
 
 - 👮 Add documentation for the [TrapFocus](https://mui.com/components/trap-focus/) component (#22062) @oliviertassinari.
 - ⚛️ Prepare support for React v17 (#22093, #22105, #22143, #22111) @eps1lon.

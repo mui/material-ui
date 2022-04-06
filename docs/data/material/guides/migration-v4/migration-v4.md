@@ -2971,7 +2971,7 @@ function Parent() {
 [Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) is supported out of the box by TSS.
 You just need to follow [the related section of the migration guide](https://github.com/mui/material-ui/blob/bbdf5080fc9bd9d979d657a3cb237d88b27035d9/docs/data/material/guides/migration-v4/migration-v4.md?plain=1#L481-L500) and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
-In MUI v5 however, [style overrides also accept callbacks](https://mui.com/materia-ui/customization/theme-components/).
+In MUI v5 however, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 By default TSS is only able to provide
 the theme. If you want to provide the props and the `ownerState` [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
 
