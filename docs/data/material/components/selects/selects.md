@@ -45,6 +45,10 @@ It shares the same styles and many of the same props. Refer to the respective co
 
 {{"demo": "SelectAutoWidth.js"}}
 
+### Small Size
+
+{{"demo": "SelectSmall.js"}}
+
 ### Other props
 
 {{"demo": "SelectOtherProps.js"}}

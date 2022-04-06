@@ -1,6 +1,6 @@
 ---
 product: base
-title: React Input unstyled component and hook
+title: Unstyled React Input component and hook
 components: InputUnstyled
 githubLabel: 'component: input'
 packageName: '@mui/base'
@@ -40,13 +40,13 @@ The `multiline` prop transforms the `<input>` field into a `<textarea>` element.
 
 {{"demo": "InputMultiline.js"}}
 
-If you want the `<textarea>` to grow with the content, you can use the [`TextareaAutosize`](/components/textarea-autosize/) component.
+If you want the `<textarea>` to grow with the content, you can use the [`TextareaAutosize`](/base/react-textarea-autosize/) component.
 When using `TextareaAutoresize`, the height of the `<textarea>` element dynamically matches its content, unless the `row` prop is set.
 To set minimum and maximum sizes, add the 'minRows`and`maxRows` props.
 
 {{"demo": "InputMultilineAutosize.js"}}
 
-## useInput hook
+## The useInput hook
 
 ```js
 import { useInput } from '@mui/base/InputUnstyled';

@@ -2896,7 +2896,7 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 > **WARNING**: You should drop [`clsx`](https://www.npmjs.com/package/clsx) in favor of [`cx`](https://emotion.sh/docs/@emotion/css#cx).
 > The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order.
 > **Note**: To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`).
-> [See doc](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
+> [See doc](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
 #### `withStyles()`
 
@@ -2934,12 +2934,11 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 
 #### Overriding styles - `classes` prop
 
-[Documentation of the feature in v4](https://v4.mui.com/styles/advanced/#makestyles) - [Equivalent in `tss-react`](https://v4.mui.com/styles/advanced/#makestyles)
+[Documentation of the feature in v4](https://v4.mui.com/styles/advanced/#makestyles) - [Equivalent in `tss-react`](https://docs.tss-react.dev/your-own-classes-prop)
 
 ```diff
 -import { makeStyles } from '@material-ui/core/styles';
 +import { makeStyles } from 'tss-react/mui';
-+import { useMergedClasses } from 'tss-react';
 
 -const useStyles = makeStyles({
 +const useStyles = makeStyles()({
@@ -2949,8 +2948,9 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 
 function Nested(props) {
 - const classes = useStyles(props);
-+ let { classes } = useStyles();
-+ classes = useMergedClasses(classes, props.classes);
++ const { classes } = useStyles(undefined, { props });
+//NOTE: Only the classes will be read from props, you could write { props: { classes: props.classes } }
+//Example with types: https://docs.tss-react.dev/your-own-classes-prop
 
   return (
     <button className={classes.root}>
@@ -2966,8 +2966,14 @@ function Parent() {
 }
 ```
 
-You may end up with eslint warnings [like this one](https://user-images.githubusercontent.com/6702424/148657837-eae48942-fb86-4516-abe4-5dc10f44f0be.png) if you deconstruct more that one item.  
-Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com/thieryw/gitlanding/blob/b2b0c71d95cfd353979c86dfcfa1646ef1665043/.eslintrc.js#L17) in a regular project, or [like this](https://github.com/InseeFrLab/onyxia-web/blob/a264ec6a6a7110cb1a17b2e22cc0605901db6793/package.json#L133) in a CRA.
+#### Theme style overrides
+
+[Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) is supported out of the box by TSS.
+You just need to follow [the related section of the migration guide](https://github.com/mui/material-ui/blob/bbdf5080fc9bd9d979d657a3cb237d88b27035d9/docs/data/material/guides/migration-v4/migration-v4.md?plain=1#L481-L500) and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
+
+In MUI v5 however, [style overrides also accept callbacks](https://mui.com/customization/theme-components/).
+By default TSS is only able to provide
+the theme. If you want to provide the props and the `ownerState` [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
 
 **Note:** `tss-react` is **not maintained** by MUI.
 If you have any question about how to setup SSR (Next.js) or if you are wondering

@@ -133,7 +133,7 @@ const pages = [
         subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
-          { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-date-pickers/getting-started', title: 'Date & Time Pickers' },
         ],
       },
       {
@@ -144,7 +144,6 @@ const pages = [
           { pathname: '/material-ui/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
-          { pathname: '/material-ui/react-trap-focus' },
           { pathname: '/material-ui/react-tree-view' },
         ],
       },
@@ -210,6 +209,18 @@ const pages = [
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/material-ui/guides/flow' },
+    ],
+  },
+  {
+    pathname: '/material-ui/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      {
+        pathname: '/material-ui/experimental-api/classname-generator',
+        title: 'ClassName Generator',
+      },
+      { pathname: '/material-ui/experimental-api/css-variables', title: 'CSS Variables' },
     ],
   },
   {

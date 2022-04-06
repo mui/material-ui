@@ -188,21 +188,9 @@ const pages: readonly MuiPage[] = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
-          {
-            pathname: '/components',
-            subheader: '/components/lab-pickers',
-            title: 'Date / Time',
-            children: [
-              { pathname: '/components/pickers', title: 'Introduction' },
-              { pathname: '/components/date-picker' },
-              { pathname: '/components/date-range-picker', title: 'Date Range Picker ⚡️' },
-              { pathname: '/components/date-time-picker' },
-              { pathname: '/components/time-picker' },
-            ],
-          },
+          { pathname: '/components/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/components/masonry' },
           { pathname: '/components/timeline' },
-          { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
         ],
       },
@@ -306,7 +294,6 @@ const pages: readonly MuiPage[] = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
-      { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
@@ -325,6 +312,15 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/guides/flow' },
+    ],
+  },
+  {
+    pathname: '/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      { pathname: '/experimental-api/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/experimental-api/css-variables', title: 'CSS Variables' },
     ],
   },
   {
