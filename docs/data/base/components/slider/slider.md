@@ -1,15 +1,15 @@
 ---
 product: base
-title: React Slider unstyled component and hook
+title: Unstyled React Slider component and hook
 components: SliderUnstyled
 githubLabel: 'component: slider'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#slider
 packageName: '@mui/base'
 ---
 
-# Slider
+# Unstyled slider
 
-<p class="description">The SliderUnstyled component lets users make selections from a range of values along a horizontal or vertical bar.</p>
+<p class="description">The <code>SliderUnstyled</code> component lets users make selections from a range of values along a horizontal or vertical bar.</p>
 
 Users may need to select a single value or a range of values on a slider.
 They are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters.
@@ -27,7 +27,8 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 The most basic slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.
 This is suitable for situations in which an approximate value is good enough for the user, such as brightness or volume.
 
-But if your users need more precise options, you can create a discrete slider that snaps to pre-defined stops along the bar.
+But if your users need more precise options, you can create a discrete slider that snaps the thumb to pre-defined stops along the bar.
+
 To generate a mark for each stop, use `marks={true}`:
 
 {{"demo": "DiscreteSlider.js"}}
