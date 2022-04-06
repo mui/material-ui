@@ -9,7 +9,7 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
-  action?: React.ReactNode;
+  action?: React.ReactNode | ((key: string) => React.ReactNode);
   /**
    * Override or extend the styles applied to the component.
    */

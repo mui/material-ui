@@ -103,13 +103,14 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
   };
 
   const handleClose = (key: string) => () => {
-    const newSnackbars = snackbars.map((snackbar) => {
-      if (snackbar.key !== key) {
-        return snackbar;
-      }
-      return { ...snackbar, open: false };
-    });
-    setSnackbars([...newSnackbars]);
+    setSnackbars((prevState) =>
+      [...prevState].map((snackbar) => {
+        if (snackbar.key !== key) {
+          return snackbar;
+        }
+        return { ...snackbar, open: false };
+      }),
+    );
   };
 
   const handleExited = (key: string) => () => {
@@ -193,7 +194,14 @@ SnackbarsProvider.propTypes /* remove-proptypes */ = {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
-  action: PropTypes.node,
+  action: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   /**
    * The anchor of the `Snackbar`.
    * On smaller screens, the component grows to occupy all the available width,
