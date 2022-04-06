@@ -41,8 +41,15 @@ As for the URLs, this is how they look now:
 
 ### Improved search experience
 
-Along with the documentation restructuring, the search experience has also been completely revamped.
-This is a huge improvement especially for users of MUI Base and MUI X, who can now find exactly what they need much faster than before.
+The documentation restructuring ranks the search result based on the product that you are looking at. If you are looking at Material UI documentation (/material-ui/*), when you hit ⌘ + K and type a keyword, you will find that most of the results are related to Material UI.
+
+We have also added product label for Material UI and MUI Base in case the search result shows the same text.
+
+// add search result image
+
+As a side benefit of the documentation restructuring, we have seen a huge improvement on the search result for MUI X. The data grid users can now see the comprehensive result when searching for methods. Here is a comparison of before and after when searching for "filter"
+
+// add comparison images
 
 ## Moving forward
 
