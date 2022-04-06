@@ -94,9 +94,9 @@ const NewStartScreen = () => {
         icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Installation', href: '/getting-started/installation/' },
-        { name: 'Usage', href: '/getting-started/usage/' },
-        { name: 'Learn', href: '/getting-started/learn/' },
+        { name: 'Installation', href: '/material-ui/getting-started/installation/' },
+        { name: 'Usage', href: '/material-ui/getting-started/usage/' },
+        { name: 'Learn', href: '/material-ui/getting-started/learn/' },
       ],
     },
     {
@@ -105,9 +105,9 @@ const NewStartScreen = () => {
         icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Material Icons', href: '/components/material-icons/' },
-        { name: 'Text Fields', href: '/components/text-fields/' },
-        { name: 'Button', href: '/components/buttons/' },
+        { name: 'Material Icons', href: '/material-ui/material-icons/' },
+        { name: 'Text Fields', href: '/material-ui/react-text-field/' },
+        { name: 'Button', href: '/material-ui/react-button/' },
       ],
     },
     {
@@ -116,9 +116,9 @@ const NewStartScreen = () => {
         icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'How To Customize', href: '/customization/how-to-customize/' },
-        { name: 'Theming', href: '/customization/theming/' },
-        { name: 'Default Theme', href: '/customization/default-theme/' },
+        { name: 'How To Customize', href: '/material-ui/customization/how-to-customize/' },
+        { name: 'Theming', href: '/material-ui/customization/theming/' },
+        { name: 'Default Theme', href: '/material-ui/customization/default-theme/' },
       ],
     },
     {
