@@ -1,6 +1,14 @@
 import { CSSObject } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 
+export interface IconSize {
+  xs: string | number;
+  sm: string | number;
+  md: string | number;
+  lg: string | number;
+  xl: string | number;
+}
+
 export interface FontSize {
   xs: string;
   sm: string;

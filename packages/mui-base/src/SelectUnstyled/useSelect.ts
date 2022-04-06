@@ -24,6 +24,18 @@ import {
 } from '../ListboxUnstyled';
 import { EventHandlers } from '../utils/types';
 
+const defaultOptionStringifier = <TValue>(option: SelectOption<TValue>) => {
+  const { label, value } = option;
+  if (typeof label === 'string') {
+    return label;
+  }
+  if (typeof value === 'string') {
+    return value;
+  }
+  // Fall back string representation
+  return String(option);
+};
+
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
 function useSelect<TValue>(props: UseSelectParameters<TValue>) {
@@ -39,6 +51,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     onOpenChange,
     open = false,
     options,
+    optionStringifier = defaultOptionStringifier,
     value: valueProp,
   } = props;
 
@@ -72,7 +85,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     }
   }, [listboxFocusRequested]);
 
-  const updateListboxRef = (listboxElement: HTMLUListElement) => {
+  const updateListboxRef = (listboxElement: HTMLUListElement | null) => {
     listboxRef.current = listboxElement;
     focusListboxIfRequested();
   };
@@ -168,26 +181,20 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       !open &&
       (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
     ) {
-      const optionToSelect = action.props.options[newState.highlightedIndex];
-
       return {
         ...newState,
-        selectedValue: optionToSelect,
+        selectedValue: newState.highlightedValue,
       };
     }
 
     if (
       action.type === ActionTypes.blur ||
-      action.type === ActionTypes.setControlledValue ||
+      action.type === ActionTypes.setValue ||
       action.type === ActionTypes.optionsChange
     ) {
-      const selectedOptionIndex = action.props.options.findIndex((o) =>
-        action.props.optionComparer(o, newState.selectedValue as SelectOption<TValue>),
-      );
-
       return {
         ...newState,
-        highlightedIndex: selectedOptionIndex,
+        highlightedValue: newState.selectedValue as SelectOption<TValue>,
       };
     }
 
@@ -226,6 +233,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         (onChange as (value: TValue[]) => void)?.(newOptions.map((o) => o.value));
       },
       options,
+      optionStringifier,
       value: selectedOption as SelectOption<TValue>[],
     };
   } else {
@@ -240,6 +248,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         (onChange as (value: TValue | null) => void)?.(option?.value ?? null);
       },
       options,
+      optionStringifier,
       stateReducer: listboxReducer,
       value: selectedOption as SelectOption<TValue> | null,
     };
@@ -250,6 +259,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionProps: getListboxOptionProps,
     getOptionState,
     highlightedOption,
+    selectedOption: listboxSelectedOption,
   } = useListbox(useListboxParameters);
 
   const getButtonProps = <TOther extends EventHandlers>(
@@ -286,7 +296,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     });
   };
 
-  React.useDebugValue({ value, open, highlightedOption });
+  React.useDebugValue({
+    selectedOption: listboxSelectedOption as TValue | null,
+    open,
+    highlightedOption,
+  });
 
   return {
     buttonActive,

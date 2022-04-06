@@ -6,7 +6,7 @@ import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
-import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
@@ -62,18 +62,20 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
-      '--Button-gutter': '1.5rem', // gutter is the padding-x
-      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
-      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
       ...(ownerState.size === 'sm' && {
-        '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
+        '--Icon-fontSize': '1.25rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Button-gutter': '1.5rem', // gutter is the padding-x
+        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
       }),
       ...(ownerState.size === 'lg' && {
-        '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
+        '--Icon-fontSize': '1.75rem',
       }),
+      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
+      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
     },
     {
       padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
@@ -81,7 +83,15 @@ const ButtonRoot = styled('button', {
         padding:
           'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-gutter) - var(--variant-outlinedBorderWidth))', // account for the border width
       }),
-      minHeight: 'var(--Button-minHeight)',
+      ...(ownerState.size === 'sm' && {
+        minHeight: '2rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        minHeight: '2.5rem', // use min-height instead of height to make the button resilient to its content
+      }),
+      ...(ownerState.size === 'lg' && {
+        minHeight: '3rem',
+      }),
       borderRadius: theme.vars.radius.sm,
       border: 'none',
       backgroundColor: 'transparent',
@@ -93,17 +103,18 @@ const ButtonRoot = styled('button', {
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      ...theme.typography.body1,
+      fontFamily: theme.vars.fontFamily.body,
+      fontSize: theme.vars.fontSize.md,
+      lineHeight: 1,
       ...(ownerState.size === 'sm' && {
-        ...theme.typography.body2,
-        lineHeight: '1.25rem',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
-      [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
       width: '100%',
     },
+    theme.focus.default,
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],

@@ -18,6 +18,7 @@ import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
 import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
+import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 
 const iconsMap = {
   DescriptionIcon: ArticleRoundedIcon,
@@ -31,6 +32,7 @@ const iconsMap = {
   BookIcon: BookRoundedIcon,
   ReaderIcon: ChromeReaderModeRoundedIcon,
   TableViewIcon: TableViewRoundedIcon,
+  DatePickerIcon: DateRangeRounded,
 };
 
 const Item = styled(function Item({ component: Component = 'div', ...props }) {
@@ -38,13 +40,14 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
 })(({ theme }) => ({
   ...theme.typography.body2,
   display: 'flex',
+  alignItems: 'center',
   borderRadius: 5,
   outline: 0,
   width: '100%',
   paddingTop: 5,
   paddingBottom: 5,
   justifyContent: 'flex-start',
-  fontWeight: 500,
+  fontWeight: theme.typography.fontWeightMedium,
   transition: theme.transitions.create(['color', 'background-color'], {
     duration: theme.transitions.duration.shortest,
   }),
@@ -70,13 +73,13 @@ const ItemLink = styled(Item, {
   return {
     fontSize: theme.typography.pxToRem(14),
     color: theme.palette.text.secondary,
+    textDecoration: 'none',
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
       color:
         theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
-      fontWeight: 500,
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
@@ -93,6 +96,9 @@ const ItemLink = styled(Item, {
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
       },
+    },
+    '& .MuiChip-root': {
+      marginTop: '2px',
     },
     paddingLeft: 31 + (depth > 2 ? (depth - 2) * 10 : 0),
     ...(hasIcon && {
@@ -137,7 +143,7 @@ const ItemButton = styled(Item, {
     fontSize: theme.typography.pxToRem(depth === 0 ? 14 : 11),
     textTransform: depth === 0 ? 'none' : 'uppercase',
     letterSpacing: depth === 0 ? null : '.08rem',
-    fontWeight: depth === 0 ? 500 : 700,
+    fontWeight: depth === 0 ? theme.typography.fontWeightMedium : theme.typography.fontWeightBold,
     marginBottom: depth === 0 ? '5px' : null,
     marginTop,
     '&:hover': {
@@ -247,14 +253,17 @@ export default function AppNavDrawerItem(props) {
     return (
       <React.Fragment>
         <StyledLi {...other} depth={depth}>
+          {/* Fix overloading with prefetch={false}, only prefetch on hover */}
           <ItemLink
             component={Link}
             activeClassName="app-drawer-active"
             href={href}
             underline="none"
+            noLinkStyle
             onClick={onClick}
             depth={depth}
             hasIcon={hasIcon}
+            prefetch={false}
             {...linkProps}
           >
             {iconElement}

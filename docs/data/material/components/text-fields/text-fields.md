@@ -1,9 +1,10 @@
 ---
 product: material-ui
 title: Text Field React component
-components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
+unstyled: /base/react-input/
 ---
 
 # Text Field
@@ -40,7 +41,7 @@ The `helperText` prop can then be used to provide feedback to the user about the
 
 ## Multiline
 
-The `multiline` prop transforms the text field into a [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) element.
+The `multiline` prop transforms the text field into a [TextareaAutosize](/components/textarea-autosize/) element.
 Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)).
 You can use the `minRows` and `maxRows` props to bound it.
 
@@ -303,26 +304,7 @@ In order for the text field to be accessible, **the input should be linked to th
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): MUI and react-hook-form combined.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
-
-## Unstyled
-
-For advanced customization scenarios, you can use the unstyled primitives.
-
-The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
-
-### Unstyled component
-
-The `InputUnstyled` component wraps the native `input` or `textarea` element.
-You can, optionally, provide a custom component to be rendered instead.
-
-{{"demo": "UnstyledInput.js"}}
-
-### Hook
-
-The `useInput` hook is the headless version of the `InputUnstyled` component.
-Use it for even greater control over the rendered output.
-
-{{"demo": "UseInput.js"}}

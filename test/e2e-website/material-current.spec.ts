@@ -15,7 +15,7 @@ test.describe('Material docs', () => {
 
     const anchors = page.locator('[aria-label="Page table of contents"] ul a');
 
-    const firstAnchor = await anchors.first();
+    const firstAnchor = anchors.first();
     const textContent = await firstAnchor.textContent();
 
     await expect(firstAnchor).toHaveAttribute(
@@ -28,9 +28,9 @@ test.describe('Material docs', () => {
     test('should have correct link for API section', async ({ page }) => {
       await page.goto(`/components/cards/`);
 
-      const anchors = await page.locator('div > h2#heading-api ~ ul a');
+      const anchors = page.locator('div > h2#heading-api ~ ul a');
 
-      const firstAnchor = await anchors.first();
+      const firstAnchor = anchors.first();
       const textContent = await firstAnchor.textContent();
 
       await expect(firstAnchor).toHaveAttribute('href', `/api/${kebabCase(textContent || '')}/`);
@@ -39,7 +39,7 @@ test.describe('Material docs', () => {
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto(`/components/cards/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
+      const anchor = page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
 
       await expect(anchor).toHaveAttribute('href', `/components/cards/`);
     });
@@ -49,7 +49,7 @@ test.describe('Material docs', () => {
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto(`/api/card/`);
 
-      const anchor = await page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
+      const anchor = page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
 
       await expect(anchor).toHaveAttribute('app-drawer-active', '');
       await expect(anchor).toHaveAttribute('href', `/api/card/`);
@@ -58,7 +58,7 @@ test.describe('Material docs', () => {
     test('all the links in the main content should have correct prefix', async ({ page }) => {
       await page.goto(`/api/card/`);
 
-      const anchors = await page.locator('div#main-content a');
+      const anchors = page.locator('div#main-content a');
 
       const handles = await anchors.elementHandles();
 
@@ -89,7 +89,7 @@ test.describe('Material docs', () => {
 
       await page.type('input#docsearch-input', 'card', { delay: 50 });
 
-      const anchor = await page.locator('.DocSearch-Hits a:has-text("Card")');
+      const anchor = page.locator('.DocSearch-Hits a:has-text("Card")');
 
       await expect(anchor.first()).toHaveAttribute('href', `/components/cards/#main-content`);
     });
@@ -101,7 +101,7 @@ test.describe('Material docs', () => {
 
       await page.type('input#docsearch-input', 'card api', { delay: 50 });
 
-      const anchor = await page.locator('.DocSearch-Hits a:has-text("Card API")');
+      const anchor = page.locator('.DocSearch-Hits a:has-text("Card API")');
 
       await expect(anchor.first()).toHaveAttribute('href', `/api/card/#main-content`);
     });
@@ -115,7 +115,7 @@ test.describe('Material docs', () => {
 
       await page.type('input#docsearch-input', 'loading api', { delay: 50 });
 
-      const anchor = await page.locator('.DocSearch-Hits a:has-text("LoadingButton API")');
+      const anchor = page.locator('.DocSearch-Hits a:has-text("LoadingButton API")');
 
       await expect(anchor.first()).toHaveAttribute('href', `/api/loading-button/#main-content`);
     });

@@ -47,6 +47,8 @@ const NotchedOutlineLegend = styled('legend')(({ ownerState, theme }) => ({
       paddingLeft: 5,
       paddingRight: 5,
       display: 'inline-block',
+      opacity: 0,
+      visibility: 'visible',
     },
     ...(ownerState.notched && {
       maxWidth: '100%',

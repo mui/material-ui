@@ -27,9 +27,13 @@ const SvgIconRoot = styled('svg', {
   name: 'MuiSvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SvgIconProps }>(({ theme, ownerState }) => {
-  return [
-    {
+})<{ ownerState: SvgIconProps & { instanceFontSize: SvgIconProps['fontSize'] } }>(
+  ({ theme, ownerState }) => {
+    return {
+      ...(ownerState.instanceFontSize &&
+        ownerState.instanceFontSize !== 'inherit' && {
+          '--Icon-fontSize': theme.vars.fontSize[ownerState.instanceFontSize],
+        }),
       userSelect: 'none',
       width: '1em',
       height: '1em',
@@ -37,15 +41,17 @@ const SvgIconRoot = styled('svg', {
       fill: 'currentColor',
       flexShrink: 0,
       transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      fontSize:
-        ownerState.fontSize !== 'inherit' ? theme.vars.fontSize[ownerState.fontSize!] : 'inherit',
+      ...(ownerState.fontSize &&
+        ownerState.fontSize !== 'inherit' && {
+          fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
+        }),
       color:
         ownerState.color !== 'inherit' && theme.vars.palette[ownerState.color!]
           ? theme.vars.palette[ownerState.color!].textColor
-          : 'inherit',
-    },
-  ];
-});
+          : 'var(--Icon-color)',
+    };
+  },
+);
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useThemeProps<typeof inProps & SvgIconProps>({
@@ -71,6 +77,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     color,
     component,
     fontSize,
+    instanceFontSize: inProps.fontSize,
     inheritViewBox,
     viewBox,
   };
@@ -114,7 +121,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -122,7 +132,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 1rem, but can be configure to inherit font size.
-   * @default 'md'
+   * @default 'xl'
    */
   fontSize: PropTypes.oneOf([
     'inherit',

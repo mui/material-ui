@@ -181,7 +181,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 });
 
 function AppFrame(props) {
-  const { children, disableDrawer = false } = props;
+  const { children, disableDrawer = false, className } = props;
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -192,7 +192,7 @@ function AppFrame(props) {
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
   return (
-    <RootDiv>
+    <RootDiv className={className}>
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink color="secondary" href="#main-content">
@@ -258,6 +258,7 @@ function AppFrame(props) {
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   disableDrawer: PropTypes.bool,
 };
 

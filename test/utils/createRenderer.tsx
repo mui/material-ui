@@ -244,10 +244,6 @@ interface RenderConfiguration {
    */
   disableUnmount?: boolean;
   /**
-   * Set to true if the test fails in React 18.
-   */
-  legacyRoot?: boolean;
-  /**
    * wrap in React.StrictMode?
    */
   strict?: boolean;
@@ -287,14 +283,12 @@ function render(
   element: React.ReactElement,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
-  const { container, hydrate, legacyRoot, wrapper } = configuration;
+  const { container, hydrate, wrapper } = configuration;
 
   const testingLibraryRenderResult = traceSync('render', () =>
     testingLibraryRender(element, {
       container,
       hydrate,
-      // @ts-ignore Available in the `@testing-library/react` fork used when running with React 18
-      legacyRoot,
       queries: { ...queries, ...customQueries },
       wrapper,
     }),
@@ -441,8 +435,7 @@ interface Renderer {
   renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
 }
 
-export interface CreateRendererOptions
-  extends Pick<RenderOptions, 'legacyRoot' | 'strict' | 'strictEffects'> {
+export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 'strictEffects'> {
   /**
    * @default 'real'
    */
@@ -454,7 +447,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   const {
     clock: clockMode = 'real',
     clockConfig,
-    legacyRoot: globalLegacyRoot,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
   } = globalOptions;
@@ -587,11 +579,9 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         );
       }
 
-      const { legacyRoot = globalLegacyRoot, ...localOptions } = options;
       return render(element, {
-        ...localOptions,
+        ...options,
         hydrate: false,
-        legacyRoot,
         wrapper: createWrapper(options),
       });
     },
@@ -604,15 +594,10 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         );
       }
 
-      const {
-        container = serverContainer,
-        legacyRoot = globalLegacyRoot,
-        ...localOptions
-      } = options;
+      const { container = serverContainer, ...localOptions } = options;
       return renderToString(element, {
         ...localOptions,
         container,
-        legacyRoot,
         wrapper: createWrapper(options),
       });
     },

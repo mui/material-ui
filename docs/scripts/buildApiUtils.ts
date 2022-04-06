@@ -98,7 +98,33 @@ export type ComponentInfo = {
   };
   getDemos: () => Array<{ name: string; demoPathname: string }>;
   apiPagesDirectory: string;
+  skipApiGeneration?: boolean;
 };
+
+const migratedBaseComponents = [
+  'BadgeUnstyled',
+  'ButtonUnstyled',
+  'ClickAwayListener',
+  'InputUnstyled',
+  'MenuItemUnstyled',
+  'MenuUnstyled',
+  'ModalUnstyled',
+  'MultiSelectUnstyled',
+  'NoSsr',
+  'OptionGroupUnstyled',
+  'OptionUnstyled',
+  'PopperUnstyled',
+  'Portal',
+  'SelectUnstyled',
+  'SliderUnstyled',
+  'SwitchUnstyled',
+  'TablePaginationUnstyled',
+  'TabPanelUnstyled',
+  'TabsListUnstyled',
+  'TabsUnstyled',
+  'TabUnstyled',
+  'TrapFocus',
+];
 
 export const getGenericComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
@@ -112,6 +138,7 @@ export const getGenericComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), 'docs/pages/api-docs'),
+    skipApiGeneration: migratedBaseComponents.includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -131,14 +158,15 @@ export const getGenericComponentInfo = (filename: string): ComponentInfo => {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdown().map((markdown) => ({
         ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
+        components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+          .components as string[],
       }));
       return findComponentDemos(name, allMarkdowns);
     },
   };
 };
 
-function findNewComponentDemos(
+function findMaterialUIDemos(
   componentName: string,
   pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
 ) {
@@ -185,15 +213,32 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdownNew().map((markdown) => ({
         ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
+        components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+          .components as string[],
       }));
-      return findNewComponentDemos(name, allMarkdowns).map((info) => ({
+      return findMaterialUIDemos(name, allMarkdowns).map((info) => ({
         ...info,
         demoPathname: info.demoPathname,
       }));
     },
   };
 };
+
+function findBaseDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
+) {
+  const filteredMarkdowns = pagesMarkdown
+    .filter((page) => page.components.includes(componentName))
+    .map((page) => page.pathname);
+  return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .map((pathname) => ({
+      name: pageToTitle({ pathname }) || '',
+      demoPathname: pathname.match(/material\//)
+        ? replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`)
+        : `${pathname.replace('/components/', '/react-')}/`,
+    }));
+}
 
 export const getBaseComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
@@ -224,11 +269,19 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew().map((markdown) => ({
-        ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
-      }));
-      return findNewComponentDemos(name, allMarkdowns);
+      const allMarkdowns = findPagesMarkdownNew()
+        .filter((markdown) => {
+          if (migratedBaseComponents.some((component) => filename.includes(component))) {
+            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+          }
+          return true;
+        })
+        .map((markdown) => ({
+          ...markdown,
+          components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+            .components as string[],
+        }));
+      return findBaseDemos(name, allMarkdowns);
     },
   };
 };

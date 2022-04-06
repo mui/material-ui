@@ -18,6 +18,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
+import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -141,6 +142,7 @@ function CheckboxList() {
             }
           >
             <ListItemButton
+              selected={selected}
               color={selected ? 'success' : undefined}
               role={undefined}
               onClick={handleToggle(value)}
@@ -300,6 +302,7 @@ function MuiNav() {
   }
   return (
     <List
+      size="sm"
       sx={(theme) => ({
         // Actually, this part should be inside the theme but put it here for specific instance.
         ...createCssVars(grey, 'palette-neutral'),
@@ -324,7 +327,7 @@ function MuiNav() {
           '--joy-palette-primary-lightBg': '#132f4c',
           '--joy-palette-primary-lightHoverBg': 'rgba(51, 153, 255, 0.24)',
           '--joy-palette-primary-lightActiveBg': 'rgba(51, 153, 255, 0.24)',
-          '--List-background': 'rgb(10, 25, 41)',
+          '--List-item-stickyBackground': 'rgb(10, 25, 41)',
         },
         '& *': {
           fontFamily: '"IBM Plex Sans"',
@@ -343,7 +346,6 @@ function MuiNav() {
         '--List-item-paddingLeft': '2px',
         '--List-item-paddingRight': '2px',
         '--List-item-paddingY': '0px',
-        '--List-item-fontSize': theme.vars.fontSize.sm,
         '--List-nestedInsetStart': '28px',
         '--List-decorator-color': theme.vars.palette.primary.textColor,
       })}
@@ -453,9 +455,8 @@ const Firebash = () => {
           '--List-item-paddingRight': '24px',
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
-          '--List-nestedInsetStart': '0px',
           '--List-divider-gap': '0px',
-          '--List-background': 'rgb(5, 30, 52)',
+          '--List-item-stickyBackground': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
           '--List-decorator-color': 'rgba(255, 255, 255, 0.8)',
           '& .MuiListItemButton-root, & .MuiListItemContent-root': {
@@ -593,12 +594,11 @@ const Gatsby = () => {
           '--joy-palette-neutral-textActiveBg': 'transparent',
           '--joy-palette-primary-textHoverBg': 'transparent',
           '--joy-palette-primary-textActiveBg': 'transparent',
-          '[data-mui-color-scheme="light"] &': {
+          '[data-mui-color-scheme="dark"] &': {
             '--joy-palette-text-secondary': '#635e69',
             '--joy-palette-primary-textColor': '#d48cff',
           },
 
-          '--List-nestedInsetStart': '0px',
           '--List-radius': '0px',
           '--List-padding': '0px',
           '--List-insetStart': '32px',
@@ -713,7 +713,7 @@ const Gatsby = () => {
   );
 };
 
-export default function JoyTypography() {
+export default function JoyList() {
   return (
     <CssVarsProvider
       theme={{
@@ -723,25 +723,6 @@ export default function JoyTypography() {
               neutral: {
                 outlinedBorder: 'rgba(0, 0, 0, 0.12)',
               },
-            },
-          },
-        },
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
             },
           },
         },
@@ -781,7 +762,7 @@ export default function JoyTypography() {
           <List sx={{ '--List-insetStart': '20px' }}>
             <ListItem>
               <ListItemDecorator>
-                <InboxIcon fontSize="lg" />
+                <InboxIcon />
               </ListItemDecorator>
               Inbox
             </ListItem>
@@ -801,7 +782,7 @@ export default function JoyTypography() {
             <ListItem>
               <ListItemButton color="primary">
                 <ListItemDecorator>
-                  <InboxIcon fontSize="lg" />
+                  <InboxIcon />
                 </ListItemDecorator>
                 Inbox
               </ListItemButton>
@@ -809,7 +790,7 @@ export default function JoyTypography() {
             <ListItem>
               <ListItemButton color="success">
                 <ListItemDecorator>
-                  <DraftsIcon fontSize="lg" />
+                  <DraftsIcon />
                 </ListItemDecorator>
                 Drafts
               </ListItemButton>
@@ -873,13 +854,9 @@ export default function JoyTypography() {
               </ListItemDecorator>
               <div>
                 <Typography>Brunch this weekend?</Typography>
-                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                <Typography level="body2" color="text.primary">
                   Ali Connors{' '}
-                  <Typography
-                    component="span"
-                    level="inherit"
-                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
-                  >
+                  <Typography color="text.secondary">
                     {' '}
                     — I&apos;ll be in your neighborhood doing errands this…
                   </Typography>
@@ -901,13 +878,9 @@ export default function JoyTypography() {
               </ListItemDecorator>
               <div>
                 <Typography>Summer BBQ</Typography>
-                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                <Typography level="body2" color="text.primary">
                   to Scott, Alex, Jennifer{' '}
-                  <Typography
-                    component="span"
-                    level="inherit"
-                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
-                  >
+                  <Typography color="text.secondary">
                     {' '}
                     — Wish I could come, but I&apos;m out of town this…
                   </Typography>
@@ -1067,29 +1040,31 @@ export default function JoyTypography() {
             </ListItem>
           </List>
 
-          <List
-            sx={{
-              maxWidth: 360,
-              maxHeight: 300,
-              overflow: 'auto',
-              '& ul': { p: 0 },
-              '--List-padding': 0,
-              '--List-item-paddingX': '1rem',
-            }}
-          >
-            {[0, 1, 2, 3, 4].map((sectionId) => (
-              <li key={`section-${sectionId}`}>
-                <ul>
-                  <ListItem sticky sx={{ pt: '1.5rem' }}>
-                    <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
-                  </ListItem>
-                  {[0, 1, 2].map((item) => (
-                    <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </List>
+          <Sheet>
+            <List
+              sx={{
+                maxWidth: 360,
+                maxHeight: 300,
+                overflow: 'auto',
+                '& ul': { p: 0 },
+                '--List-padding': 0,
+                '--List-item-paddingX': '1rem',
+              }}
+            >
+              {[0, 1, 2, 3, 4].map((sectionId) => (
+                <li key={`section-${sectionId}`}>
+                  <ul>
+                    <ListItem sticky sx={{ pt: '1.5rem' }}>
+                      <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
+                    </ListItem>
+                    {[0, 1, 2].map((item) => (
+                      <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </List>
+          </Sheet>
 
           <Box>
             <List size="sm">
@@ -1098,19 +1073,19 @@ export default function JoyTypography() {
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
-                  <Star fontSize="lg" />
+                  <Star />
                 </ListItemDecorator>
                 <ListItemButton>This is a small list</ListItemButton>
               </ListItem>
@@ -1191,6 +1166,61 @@ export default function JoyTypography() {
           <Firebash />
 
           <Gatsby />
+        </Box>
+        <Box sx={{ height: 40 }} />
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
+          <List row>
+            <ListItem>Item 1</ListItem>
+            <ListItem>Item 2</ListItem>
+            <ListItem>Item 3</ListItem>
+          </List>
+          <List row>
+            <ListItem>Item 1</ListItem>
+            <ListDivider />
+            <ListItem>Item 2</ListItem>
+            <ListDivider />
+            <ListItem>Item 3</ListItem>
+          </List>
+          <List row component="nav">
+            <ListItemButton>Action 1</ListItemButton>
+            <ListItemButton>Action 2</ListItemButton>
+            <ListItemButton>Action 3</ListItemButton>
+          </List>
+          <List
+            row
+            sx={{
+              '--List-gap': '0px',
+              '--List-item-paddingLeft': '1rem',
+              '--List-item-paddingRight': '1rem',
+            }}
+          >
+            <ListItem>
+              <ListItemButton selected variant="light">
+                <ListItemDecorator>
+                  <InboxIcon />
+                </ListItemDecorator>{' '}
+                Inbox
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Label />
+                </ListItemDecorator>
+                Categories
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <People />
+                </ListItemDecorator>
+                Social
+              </ListItemButton>
+            </ListItem>
+          </List>
         </Box>
       </Box>
     </CssVarsProvider>
