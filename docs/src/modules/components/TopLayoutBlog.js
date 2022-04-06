@@ -125,12 +125,11 @@ const styles = (theme) => ({
       color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     },
     '& kbd': {
-      // Style taken from GitHub
-      padding: '4px 5px',
+      padding: '5px',
       display: 'inline-block',
       whiteSpace: 'nowrap',
       margin: '0 1px',
-      font: '11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
+      font: '13px Consolas,Liberation Mono,Menlo,monospace',
       lineHeight: '10px',
       color: theme.palette.text.primary,
       verticalAlign: 'middle',
