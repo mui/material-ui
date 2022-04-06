@@ -129,7 +129,7 @@ const finalTheme = createTheme({
 
 ### Specificity
 
-If you use the theming approach to customize the components, you'll still be able to override them using the `sx` prop as it has a higher CSS specificity.
+If you use the theming approach to customize the components, you'll still be able to override them using the `sx` prop as it has a higher CSS specificity, even if you're using the experimental `sx` syntax within the theme.
 
 ## Creating new component variants
 
