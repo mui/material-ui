@@ -2,6 +2,19 @@ import * as React from 'react';
 import SnackbarsProvider from '@mui/lab/SnackbarsProvider';
 import useSnackbars from '@mui/lab/useSnackbars';
 import Button from '@mui/material/Button';
+import Collapse from '@mui/material/Collapse';
+import Slide from '@mui/material/Slide';
+import MuiAlert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+function TransitionRight(props) {
+  return <Slide {...props} direction="right" />;
+}
 
 function MultipleSnackbars() {
   const snackbars = useSnackbars();
@@ -12,7 +25,26 @@ function MultipleSnackbars() {
         onClick={() =>
           snackbars.showSnackbar({
             message: 'Note archived',
-            autoHideDuration: 3000,
+            autoHideDuration: 10000,
+            action: (key) => (
+              <React.Fragment>
+                <Button
+                  color="secondary"
+                  size="small"
+                  onClick={snackbars.closeSnackbar(key)}
+                >
+                  UNDO
+                </Button>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={snackbars.closeSnackbar(key)}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            ),
           })
         }
       >
@@ -33,10 +65,36 @@ function MultipleSnackbars() {
           snackbars.showSnackbar({
             message: 'Note archived',
             anchorOrigin: { vertical: 'top', horizontal: 'center' },
+            TransitionComponent: Collapse,
           })
         }
       >
-        Fade Transition
+        Collapse Transition
+      </Button>
+      <Button
+        onClick={() =>
+          snackbars.showSnackbar({
+            message: 'Note archived',
+            anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
+            TransitionComponent: TransitionRight,
+          })
+        }
+      >
+        Transition Right
+      </Button>
+      <Button
+        onClick={() =>
+          snackbars.showSnackbar({
+            anchorOrigin: { vertical: 'top', horizontal: 'left' },
+            content: (key) => (
+              <Alert onClose={snackbars.closeSnackbar(key)} severity="success">
+                This is a success message!
+              </Alert>
+            ),
+          })
+        }
+      >
+        Customized Snackbar
       </Button>
     </div>
   );

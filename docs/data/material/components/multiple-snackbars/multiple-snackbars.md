@@ -2,17 +2,17 @@
 product: material-ui
 title: React Multiple Snackbars component
 components: SnackbarsProvider
-githubLabel: 'component: multiple snackbars'
+githubLabel: 'component: snackbar'
 materialDesign: https://material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 ---
 
 # Multiple Snackbars
 
-<p class="description">Multiple snackbars can be used to show ore than one snackbars at a time</p>
+<p class="description">Place multiple snack bars on the page.</p>
 
-Multiple snackbars on the page can be placed by using `SnackbarsProvider` and `useSnackbars` hook.
-Wrap your application with `SnackbarsProvider` to use the `useSnackbars` hook within your components. If using `ThemeProvider` wrap `SnackbarsProvider` below it like:
+Multiple snackbars can be placed on the page by using `SnackbarsProvider` and `useSnackbars` hook.
+Wrap your application with `SnackbarsProvider` to use the `useSnackbars` hook within your components. If using `ThemeProvider`, wrap `SnackbarsProvider` below it like:
 
 ```jsx
 <ThemeProvider>
@@ -22,6 +22,7 @@ Wrap your application with `SnackbarsProvider` to use the `useSnackbars` hook wi
 </ThemeProvider>
 ```
 
-The snackbar options in method `showSnackbar` of `useSnackbars` hook take more priority over props passed in `SnackbarsProvider`.
+The `message` option in `showSnackbar` method is used to show the message. The `limit` prop can be passed to `SnackbarsProvider` to display the maximum number of snackbars at a time.
+The snackbar option values in method `showSnackbar` of `useSnackbars` hook take more priority over props passed in `SnackbarsProvider`.
 
 {{"demo": "MultipleSnackbars.js"}}
