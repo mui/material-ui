@@ -124,25 +124,6 @@ const styles = (theme) => ({
       fontWeight: theme.typography.fontWeightMedium,
       color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     },
-    '& kbd': {
-      padding: '5px',
-      display: 'inline-block',
-      whiteSpace: 'nowrap',
-      margin: '0 1px',
-      font: '13px Consolas,Liberation Mono,Menlo,monospace',
-      lineHeight: '10px',
-      color: theme.palette.text.primary,
-      verticalAlign: 'middle',
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : theme.palette.grey[50],
-      border: `1px solid ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300]
-      }`,
-      borderRadius: 5,
-      boxShadow: `inset 0 -1px 0 ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[300]
-      }`,
-    },
     '& details': {
       paddingLeft: 16,
       paddingRight: 16,
