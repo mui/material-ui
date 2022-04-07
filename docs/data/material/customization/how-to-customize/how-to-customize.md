@@ -27,22 +27,18 @@ It can be used with all Material UI components.
 
 #### Overriding nested component styles
 
-To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop.
+To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop. As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
 
-As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
-
-First, use your browser's dev tools to identify the class for the component slot you want to override:
-
-<img src="/static/images/customization/dev-tools.png" alt="dev-tools" width="796" style="margin-bottom: 16px;" />
-
-Then, use this class name (`MuiSlider-thumb`) to write a CSS selector within the `sx` prop (`& .MuiSlider-thumb`), and add your overrides.
-
-{{"demo": "DevTools.js"}}
+First, use your browser's dev tools to identify the class for the component slot you want to override.
 
 The styles injected into the DOM by Material UI rely on class names that all [follow a standard pattern](/styles/advanced/#class-names):
 `[hash]-Mui[Component name]-[name of the slot]`.
 
-In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you only really need to target the `.MuiSlider-thumb`, where `Slider` is the component and `thumb` is the slot.
+In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you only really need to target the `.MuiSlider-thumb`, where `Slider` is the component and `thumb` is the slot. Use this class name to write a CSS selector within the `sx` prop (`& .MuiSlider-thumb`), and add your overrides.
+
+<img src="/static/images/customization/dev-tools.png" alt="dev-tools" width="796" style="margin-bottom: 16px;" />
+
+{{"demo": "DevTools.js"}}
 
 > ⚠️ Note that these class names can't be used as CSS selectors because they are unstable.
 
