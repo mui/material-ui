@@ -68,7 +68,9 @@ const InputRoot = styled(InputBaseRoot, {
         pointerEvents: 'none', // Transparent to the hover style.
       },
       [`&.${inputClasses.focused}:after`]: {
-        transform: 'scaleX(1)',
+        // translateX(0) is a workaround for Safari transform scale bug
+        // See https://github.com/mui/material-ui/issues/31766
+        transform: 'scaleX(1) translateX(0)',
       },
       [`&.${inputClasses.error}:after`]: {
         borderBottomColor: theme.palette.error.main,
