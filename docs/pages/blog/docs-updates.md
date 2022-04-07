@@ -3,7 +3,7 @@ title: 'Our docs just got a major upgrade—here's what that means for you'
 description: Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need.
 date: 2022-04-06T00:00:00.000Z
 authors: ['danilo-leal']
-tags: ['News']
+tags: ['News', 'Product']
 ---
 
 As MUI continues to grow beyond our flagship product, Material UI (we [rebranded the company](/blog/material-ui-is-now-mui/) last year as a first step), it has become clear that the documentation for our products can no longer all live under one roof.
