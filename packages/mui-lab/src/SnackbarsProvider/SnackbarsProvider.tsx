@@ -196,7 +196,7 @@ SnackbarsProvider.propTypes /* remove-proptypes */ = {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
-  action: PropTypes.oneOfType([
+  action: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.element,
     PropTypes.func,
     PropTypes.number,
