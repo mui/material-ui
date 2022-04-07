@@ -337,8 +337,7 @@ export default function AppSearch() {
                 }
 
                 const { canonicalAs, canonicalPathname } = pathnameToLanguage(
-                  // TODO: Remove the replace() after algolia crawler has indexed the production site
-                  `${parseUrl.pathname.replace('/material/', '/material-ui/')}${hash}`,
+                  `${parseUrl.pathname}${hash}`,
                 );
 
                 return {
