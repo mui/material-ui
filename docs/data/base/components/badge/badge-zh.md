@@ -1,14 +1,14 @@
 ---
 product: base
-title: Unstyled React badge
+title: 无样式的 React 徽章
 components: BadgeUnstyled
 githubLabel: 'component: badge'
 packageName: '@mui/base'
 ---
 
-# Unstyled badge
+# 无样式的徽章
 
-<p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
+<p class="description">徽章组件会在其子项（们）的右上角生成一个小徽章。</p>
 
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
@@ -16,13 +16,13 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic usage
+## 基本用法
 
 {{"demo": "UnstyledBadge.js", "defaultCodeOpen": false}}
 
-## Badge visibility
+## 徽章的可见性
 
-The visibility of badges can be controlled using the `invisible` prop. If a badge is invisible, it has the `MuiBadge-invisible` class. It is up to the developer to provide styles that actually hide the badge.
+徽章组件的隐显可以通过 `invisible` 属性来设置。 如果徽章不可见，那么它会被应用 `MuiBadge-invisible` 类。 It is up to the developer to provide styles that actually hide the badge.
 
 {{"demo": "BadgeVisibility.js"}}
 
@@ -30,16 +30,16 @@ The badge hides automatically when `badgeContent` is zero. You can override this
 
 {{"demo": "ShowZeroBadge.js"}}
 
-## Maximum value
+## 最大值
 
-You can use the `max` prop to cap the value of the badge content. It is set to 99 by default.
+您可以使用 `max` 属性来限制徽章内容的最大值。 默认被设置为 99。
 
-Note that `badgeContent` should be a number (or convertible to a number) for this to work.
+请注意， `badgeContent` 应该是一个数字（或是一个可被转换为数字的值）才能工作。
 
 {{"demo": "BadgeMax.js"}}
 
-## Accessibility
+## 无障碍设计
 
-You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+如果徽章的内容无法被正确的读取。 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
 
 {{"demo": "AccessibleBadges.js", "defaultCodeOpen": false}}
