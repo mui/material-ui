@@ -21,10 +21,8 @@ const styles = {
   },
 };
 
-/**
- * Conditionally apply a workaround for the CSS transition bug in Safari 15.4.
- * Remove this workaround once the Safari bug is fixed.
- */
+// TODO v6: remove
+// Conditionally apply a workaround for the CSS transition bug in Safari 15.4.
 const isSafari154 =
   typeof navigator !== 'undefined' &&
   /^((?!chrome|android).)*safari/i.test(navigator.userAgent) &&
