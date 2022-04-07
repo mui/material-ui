@@ -39,7 +39,7 @@ As for the URLs, this is how they look now:
   - Data Grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
   - Date and Time Pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
 
-> 📖 The MUI X date and time pickers has been moved from the lab (`@mui/lab`). If you are curious about it, check out the [dedicated blog post](/blog/lab-date-pickers-to-mui-x/).
+> 📖 The MUI X date and time pickers has been promoted from the lab (`@mui/lab`) to MUI X, available in the MIT license. If you are curious about it, check out the [dedicated blog post](/blog/lab-date-pickers-to-mui-x/).
 
 ### Improved search experience
 
