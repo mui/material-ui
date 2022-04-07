@@ -49,4 +49,21 @@ Moved to [/customization/theming/#custom-variables](/customization/theming/#cust
 
 ## Usage of `component` prop
 
-Moved to [/guides/composition/#with-typescript](/guides/composition/#with-typescript).
+The usage of the `component` prop can be problematic if you are creating your custom component based on the Mateiral UI's components.
+You are likely going to use one of these two options:
+
+1. Wrap the Material UI component in order to enhance it
+2. Use the `styled()` utility in order to customize the styles of the component
+
+If you are using the first option, take a look at the [composition guide][/guides/composition/#with-typescript](/guides/composition/#with-typescript) for more details on this.
+
+If you are using the `styled()` utility (regardless of whether it comes from `@mui/material`, or `@emotion/styled`), you will need to cast the result component as shown below:
+
+```tsx
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+
+const CustomButton = styled(Button)({
+  // your custom styles go here
+}) as typeof Button;
+```
