@@ -102,12 +102,8 @@ SnackbarContent.propTypes /* remove-proptypes */ = {
    * The action to display. It renders after the message, at the end of the snackbar.
    */
   action: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.element,
     PropTypes.func,
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.bool,
+    PropTypes.node
   ]),
   /**
    * Override or extend the styles applied to the component.
