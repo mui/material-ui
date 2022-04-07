@@ -2,7 +2,7 @@
 
 <p class="description">A carefully curated list of libraries that are worth having a look at.</p>
 
-Because the scope of problems MUI solves is bound, we try to play nicely with
+Because the scope of problems Material UI solves is bound, we try to play nicely with
 other libraries.
 Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
 
@@ -12,7 +12,7 @@ Feel free to submit a pull request to add another project; it will be accepted i
 <a href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
 <a href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
 
-A set of reusable components for design tools is available, designed to match the React components, and to help you craft great products:
+The Material UI components are also available for you to use on your favorite design tool. Carefully tailored by MUI, they're designed to match the React components, and to help you craft great products:
 
 - [Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma): A large UI kit with over 600 handcrafted MUI components.
 - [Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
@@ -31,13 +31,15 @@ A set of reusable components for design tools is available, designed to match th
 
 ## IDE tools
 
-- [MUI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets): VSCode extension providing snippets.
-- [MUI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs): VSCode extension providing codemods.
+- [Material UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets): VSCode extension providing snippets.
+- [Material UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs): VSCode extension providing codemods.
 - [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
 
 ## Components
 
-This is a collection of third-party projects that extend MUI.
+This is a collection of third-party projects that extend Material UI.
+
+> Note that some of these projects didn't update to support Material UI's latest version. Make sure you check that if any error comes up when trying to use them.
 
 ### Layout
 
@@ -96,4 +98,4 @@ This is a collection of third-party projects that extend MUI.
 ## Theming
 
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your MUI applications by just selecting the colors and having a live preview.
-- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
+- [Material palette generator](https://material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you input.
