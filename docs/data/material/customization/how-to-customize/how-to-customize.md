@@ -35,7 +35,7 @@ First, use your browser's dev tools to identify the class for the component slot
 
 <img src="/static/images/customization/dev-tools.png" alt="dev-tools" width="796" style="margin-bottom: 16px;" />
 
-Then, copy the target class of `MuiSlider-thumb`, place it inside the styles witihn the `sx` prop, and add your overrides.
+Then, use this class name (`MuiSlider-thumb`) to write a CSS selector within the `sx` prop (`& .MuiSlider-thumb`), and add your overrides.
 
 {{"demo": "DevTools.js"}}
 
