@@ -140,7 +140,7 @@ export interface UseAutocompleteProps<
    * @returns {string}
    * @default (option) => option.label ?? option
    */
-  getOptionLabel?: (option: T) => string;
+  getOptionLabel?: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   /**
    * Used to determine if the option represents the given value.
    * Uses strict equality by default.
