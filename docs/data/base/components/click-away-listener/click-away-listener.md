@@ -15,13 +15,13 @@ packageName: '@mui/base'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Example
+## Basic usage
 
 The following demo shows how to hide a menu dropdown when users click anywhere else on the page:
 
 {{"demo": "ClickAway.js"}}
 
-Notice that the component only accepts one child element.
+> **Note:** the `ClickAwayListener` component only accepts _one_ child element.
 
 You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
 
