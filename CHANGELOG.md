@@ -6510,7 +6510,7 @@ Here are some highlights ✨:
   You can find a [new version](https://mui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
   The unstyled component weighs 6.5 kB gzipped, compared with 26 kB for the styled version when used standalone. The component is best suited for use when you want to fully customize the look of the component without reimplementing the JavaScript and accessibility logic.
 
-- ⚡️ A first alpha of the [DataGrid](https://mui.com/components/data-grid/) component.
+- ⚡️ A first alpha of the [DataGrid](https://mui.com/x/react-data-grid/) component.
 
   It has taken 6 months of development since the initial commit (March 15th, 2020) to make the first alpha release of the grid. The component comes in two versions:
   @material-ui/data-grid is licensed under MIT, while @material-ui/x-grid is licensed under a commercial license.

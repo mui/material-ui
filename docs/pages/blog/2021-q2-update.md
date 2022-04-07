@@ -109,7 +109,7 @@ The date picker is at the border between the core component and advanced compone
 
 - 🚨 We have continued to work on breaking changes to reach a stable version.
   We think that the component is good enough for use in production (and many developers already are using it), but we want to get the public API right before committing to a stable release.
-- ✍️ We have added support for the [cell edit mode](https://mui.com/components/data-grid/editing/).
+- ✍️ We have added support for the [cell edit mode](https://mui.com/x/react-data-grid/editing/).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
 
