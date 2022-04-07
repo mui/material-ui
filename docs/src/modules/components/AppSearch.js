@@ -4,6 +4,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
@@ -18,8 +19,6 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import { useRouter } from 'next/router';
-import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
 
 const SearchButton = styled('button')(({ theme }) => {
@@ -218,7 +217,6 @@ export default function AppSearch() {
     setIsOpen(true);
   }, [setIsOpen]);
   const router = useRouter();
-  const isNewDocStructure = isNewLocation(router.asPath);
   const productSpace = getUrlProduct(router.asPath);
 
   const keyboardNavigator = {
@@ -314,16 +312,12 @@ export default function AppSearch() {
         createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
-            appId={isNewDocStructure ? 'TZGZ85B9TB' : 'BH4D9OD16A'}
-            apiKey={
-              isNewDocStructure
-                ? '8177dfb3e2be72b241ffb8c5abafa899'
-                : '1d8534f83b9b0cfea8f16498d19fbcab'
-            }
+            appId={'TZGZ85B9TB'}
+            apiKey={'8177dfb3e2be72b241ffb8c5abafa899'}
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters: isNewDocStructure ? [`product:${productSpace}`] : [],
+              optionalFilters: [`product:${productSpace}`],
               hitsPerPage: 40,
             }}
             placeholder={search}
