@@ -100,7 +100,9 @@ The `sx` prop acts as a shortcut for defining custom styles that access the them
 This prop lets you write inline styles using a superset of CSS.
 Learn more about [the concept behind the `sx` prop](/system/the-sx-prop/) and [how `sx` differs from the `styled` utility](/system/styled/#difference-with-the-sx-prop).
 
-You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation. This is especially handy if you're already used to using the `sx` prop syntax. It makes transferring one-off customizations using `sx` to the theme very fast.
+You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation.
+This is especially handy if you're already used to using the `sx` prop syntax.
+It makes transferring one-off customizations using `sx` to the theme very fast.
 
 {{"demo": "GlobalThemeOverrideSx.js", "defaultCodeOpen": false}}
 
