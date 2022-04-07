@@ -8,7 +8,7 @@ packageName: '@mui/base'
 
 # Click-away listener
 
-<p class="description">The <code>ClickAwayListener</code> component detects when a click event happens outside of an element.</p>
+<p class="description">The <code>ClickAwayListener</code> component detects when a click event happens outside of its children elements.</p>
 
 - 📦 [981 B gzipped](/size-snapshot)
 - ⚛️ Supports portals
