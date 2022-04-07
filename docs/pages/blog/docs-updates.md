@@ -14,7 +14,7 @@ That's why we're excited to announce that we are shipping a major upgrade to our
 
 We currently offer two main product lines:
 
-- **MUI Core—**a collection of foundational component libraries, including:
+- **MUI Core**—a collection of foundational component libraries, including:
   - _Material UI_ —components that implement Google's Material Design
   - _MUI Base_ —unstyled components for implementing your own design system
   - _MUI System_ —CSS utilities for quickly laying out design systems
@@ -44,7 +44,7 @@ As for the URLs, this is how they look now:
 ### Improved search experience
 
 The documentation restructuring ranks search results based on the product that you are currently looking at.
-For example, if you are looking at Material UI documentation, when you press <kbd>⌘ K</kbd> and type a keyword, you will find that most of the results are related to Material UI.
+For example, if you are looking at Material UI documentation, when you press <kbd>⌘ K</kbd> (<kbd>Ctrl + K</kbd> on Windows) and type a keyword, you will find that most of the results are related to Material UI.
 
 We have also added product labels for Material UI and MUI Base in case it's unclear which library the search results refer to.
 
