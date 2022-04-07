@@ -8,18 +8,16 @@ packageName: '@mui/base'
 
 # Portal
 
-<p class="description">The portal component renders its children into a new "subtree" outside of the current DOM hierarchy.</p>
+<p class="description">The <code>Portal</code> component renders its children into a new subtree outside of the current DOM hierarchy.</p>
 
-The children of the portal component will be appended to the `container` specified.
-The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+The children of the `Portal` component will be appended to the specified container.
+
+This component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Example
+## Basic usage
 
 {{"demo": "SimplePortal.js"}}
 
-## Server-side
-
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
-You have to wait for the client-side hydration to see the children.
+> ⚠️ **Note:** React [does not support](https://github.com/facebook/react/issues/13097) the [`createPortal()` API on the server](https://reactjs.org/docs/portals.html)—client-side hydration is necessary to render the children elements.
