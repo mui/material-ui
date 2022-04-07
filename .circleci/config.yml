@@ -140,6 +140,15 @@ jobs:
             - run:
                 name: Check for duplicated packages
                 command: yarn deduplicate
+  test_docs:
+    <<: *defaults
+    resource_class: 'xlarge'
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Build docs
+          command: yarn docs:build && yarn docs:export
   test_unit:
     <<: *defaults
     steps:
@@ -755,28 +764,7 @@ workflows:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
       - checkout
-      - test_unit:
-          requires:
-            - checkout
-      - test_lint:
-          requires:
-            - checkout
-      - test_static:
-          requires:
-            - checkout
-      - test_types:
-          requires:
-            - checkout
-      - test_browser:
-          requires:
-            - checkout
-      - test_regressions:
-          requires:
-            - checkout
-      - test_e2e:
-          requires:
-            - checkout
-      - test_bundle_size_monitor:
+      - test_docs:
           requires:
             - checkout
   e2e-website:
