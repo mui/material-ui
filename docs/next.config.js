@@ -336,4 +336,7 @@ module.exports = {
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,
+  experimental: {
+    cpus: 8,
+  },
 };
