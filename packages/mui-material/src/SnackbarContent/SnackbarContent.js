@@ -103,7 +103,7 @@ SnackbarContent.propTypes /* remove-proptypes */ = {
    */
   action: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,
-    PropTypes.node
+    PropTypes.node,
   ]),
   /**
    * Override or extend the styles applied to the component.

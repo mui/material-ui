@@ -308,7 +308,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   action: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,
-    PropTypes.node
+    PropTypes.node,
   ]),
   /**
    * The anchor of the `Snackbar`.
