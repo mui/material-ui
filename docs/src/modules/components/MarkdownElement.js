@@ -258,7 +258,7 @@ const Root = styled('div')(({ theme }) => ({
     display: 'inline-block',
     whiteSpace: 'nowrap',
     margin: '0 1px',
-    font: '13px Consolas,Liberation Mono,Menlo,monospace',
+    font: '11px Consolas,Liberation Mono,Menlo,monospace',
     lineHeight: '10px',
     color: theme.palette.text.primary,
     verticalAlign: 'middle',
