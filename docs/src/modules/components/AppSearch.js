@@ -324,6 +324,7 @@ export default function AppSearch() {
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
               optionalFilters: isNewDocStructure ? [`product:${productSpace}`] : [],
+              hitsPerPage: 40,
             }}
             placeholder={search}
             transformItems={(items) => {
