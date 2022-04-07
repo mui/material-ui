@@ -253,7 +253,7 @@ const Root = styled('div')(({ theme }) => ({
     flexShrink: 0,
     backgroundColor: theme.palette.divider,
   },
-  '& kbd': {
+  '& kbd.key': {
     padding: '5px',
     display: 'inline-block',
     whiteSpace: 'nowrap',
