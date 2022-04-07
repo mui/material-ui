@@ -14,10 +14,9 @@ const StyledSnackbar = styled(Snackbar)<{ ownerState: ShowSnackbarProps }>(
     return {
       [theme.breakpoints.up('sm')]: {
         position: 'relative',
+        ...(ownerState.anchorOrigin!.horizontal !== 'center' && { left: 0, right: 0 }),
         top: 0,
-        left: 0,
         bottom: 0,
-        right: 0,
         ...(ownerState.anchorOrigin!.vertical === 'bottom' && {
           '&:not(:last-of-type)': {
             marginTop: theme.spacing(),
