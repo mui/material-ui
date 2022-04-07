@@ -231,10 +231,8 @@ export default function AppSearch() {
     if (modal) {
       // fade out transition
       modal.style.opacity = 0;
-      setTimeout(() => {
-        setIsOpen(false);
-      }, FADE_DURATION);
     }
+    setIsOpen(false); // DO NOT call setIsOpen inside a timeout (it causes scroll issue).
   }, [setIsOpen]);
 
   const onInput = React.useCallback(
