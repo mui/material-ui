@@ -1,12 +1,12 @@
 ---
 product: base
-title: 未风格React按钮
+title: 无样式的 React 按钮
 components: ButtonUnstyled
-githubLabel: '组件：按钮'
+githubLabel: 'component: button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 ---
 
-# 未风格按钮
+# 无样式的按钮
 
 <p class="description">按钮允许用户在单次点击时采取行动和作出选择。</p>
 
@@ -26,7 +26,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 Compare the attributes on the `span` with the `button` from the previous demo.
 
-## Complex customization
+## 复杂的定制
 
 In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` component.
 
@@ -38,7 +38,7 @@ In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` co
 import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
-`useButton` hook函数允许您在其他组件中使用 `ButtonUnstyled` 的功能。 It returns props to be placed on a custom button element, along with fields representing the internal state of the button.
+`useButton` hook 允许您在其他组件中使用 `ButtonUnstyled` 的功能。 It returns props to be placed on a custom button element, along with fields representing the internal state of the button.
 
 The `useButton` hook requires the `ref` of the element it's used on. Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
 
