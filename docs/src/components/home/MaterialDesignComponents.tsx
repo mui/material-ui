@@ -617,14 +617,14 @@ export default function MaterialDesignComponents() {
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-            Need more components?
+            Want to see more?
           </Typography>
           <Typography
             variant="body2"
             color="text.secondary"
             sx={{ mb: 0.5, maxWidth: 250, mx: 'auto' }}
           >
-            Check the documentation to see the details of every component!
+            Check out the docs for details of the complete library.
           </Typography>
           <Button
             component={Link}
@@ -632,7 +632,7 @@ export default function MaterialDesignComponents() {
             href={ROUTES.documentation}
             endIcon={<KeyboardArrowRightRounded />}
           >
-            Get started
+            Learn more
           </Button>
         </Box>
       </Grid>
