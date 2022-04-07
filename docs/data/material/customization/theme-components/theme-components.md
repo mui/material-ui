@@ -101,8 +101,7 @@ This prop lets you write inline styles using a superset of CSS.
 Learn more about [the concept behind the `sx` prop](/system/the-sx-prop/) and [how `sx` differs from the `styled` utility](/system/styled/#difference-with-the-sx-prop).
 
 You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation.
-This is especially handy if you're already used to using the `sx` prop syntax.
-It makes transferring one-off customizations using `sx` to the theme very fast.
+This is especially handy if you're already using the `sx` prop with your components, because you can use the same syntax in your theme and quickly transfer styles between the two.
 
 > **Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_, since we released after the v5 stable launch, when used directly inside the theme object.
 
