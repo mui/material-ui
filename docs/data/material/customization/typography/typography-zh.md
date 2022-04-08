@@ -37,7 +37,7 @@ const theme = createTheme({
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
 ```
 
-接下来，您需要做的是修改主题，来使用这一个新的字体。 In order to globally define Raleway as a font face, the [`CssBaseline`](/material-ui/react-css-baseline/) component can be used (or any other CSS solution of your choice).
+接下来，您需要做的是修改主题，来使用这一个新的字体。 如果想在全局定义 Raleway 作为一个字体，您可以使用 [`CssBaseline`](/material-ui/react-css-baseline/) 组件（或者你也可以选择你想要的任意其他 CSS 方案)。
 
 ```jsx
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -63,6 +63,18 @@ const theme = createTheme({
 });
 
 // ...
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Box
+      sx={{
+        fontFamily: 'Raleway',
+      }}
+    >
+      Raleway
+    </Box>
+  </ThemeProvider>
+);
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
@@ -132,7 +144,7 @@ const theme = createTheme({
 
 ### 响应的字体大小
 
-`theme.typography.*` [variant](#variants) 属性会直接映射到生成的 CSS。 You can use [media queries](/material-ui/customization/breakpoints/#api) inside them:
+`theme.typography.*` [variant](#variants) 属性会直接映射到生成的 CSS。 您可以在当中使用 [媒体查询（media queries）](/material-ui/customization/breakpoints/#api)：
 
 ```js
 const theme = createTheme();
@@ -150,14 +162,14 @@ theme.typography.h3 = {
 
 {{"demo": "CustomResponsiveFontSizes.js"}}
 
-To automate this setup, you can use the [`responsiveFontSizes()`](/material-ui/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+若你想实现此设置的自动化，则可以使用 [`responsiveFontSizes()`](/material-ui/customization/theming/#responsivefontsizes-theme-options-theme) 的帮助程序将 Typography 的字体大小在主题设置为响应性。
 
 {{"demo": "ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-您可以在下面的示例中看到这个操作。 Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/material-ui/customization/breakpoints/):
+您可以在下面的示例中看到这个操作。 请尝试调整浏览器的窗口大小，您可以注意到当切换到不同的 [breakpoints](/material-ui/customization/breakpoints/) 设置的宽度，字体的大小也随之改变。
 
 ```js
-import { createTheme, responsiveFontSizes } from '@mui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -173,14 +185,17 @@ theme = responsiveFontSizes(theme);
 
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
     // Tell Material-UI what's the font-size on the html element is.
+    htmlFontSize: 10,
+  },
+});
     htmlFontSize: 10,
   },
 });
@@ -204,7 +219,7 @@ _您需要在此页面的 html 元素上应用上述的 CSS 才能看到以下�
 
 ## 变体
 
-The typography object comes with [13 variants](/material-ui/react-typography/#component) by default:
+默认情况下，typography object 为带有 [13 种变体](/material-ui/react-typography/#component) ：
 
 - h1
 - h2
@@ -244,7 +259,7 @@ const theme = createTheme({
 
 除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 Here is what you need to do:
 
-**Step 1. Step 1. Step 1. Step 1. Step 1. Update the theme's typography object**
+**Step 1. Step 1. Step 1. Step 1. Step 1. Step 1. Update the theme's typography object**
 
 ```js
 const theme = createTheme({
@@ -258,7 +273,7 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Step 2. Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. Step 2. Step 2. Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
 
 > If you aren't using TypeScript you should skip this step.
 
@@ -267,7 +282,7 @@ You need to make sure that the typings for the theme's `typography` variants and
 <!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
-declare module '@mui/core/styles' {
+declare module '@material-ui/core/styles' {
   interface TypographyVariants {
     poster: React.CSSProperties;
   }
@@ -279,7 +294,7 @@ declare module '@mui/core/styles' {
 }
 
 // Update the Typography's variant prop options
-declare module '@mui/core/Typography' {
+declare module '@material-ui/core/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;
@@ -287,7 +302,7 @@ declare module '@mui/core/Typography' {
 }
 ```
 
-**Step 3. You can now use the new variant**
+**Step 3. Step 3. You can now use the new variant**
 
 {{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 
@@ -300,4 +315,4 @@ declare module '@mui/core/Typography' {
 
 ## 默认值
 
-You can explore the default values of the typography using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+您可以使用 [主题探索功能](/material-ui/customization/default-theme/?expand-path=$.typography) ，或者在此页面上打开 dev 工具控制（`window.theme.typogry`）来查看 typography 的默认值。
