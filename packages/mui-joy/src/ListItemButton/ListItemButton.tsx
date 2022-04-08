@@ -124,11 +124,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
-  const ComponentProp = component;
-
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ComponentProp,
     ref: handleRef,
   });
 
