@@ -230,7 +230,7 @@ SnackbarsProvider.propTypes /* remove-proptypes */ = {
    */
   content: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
-   * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**
@@ -240,7 +240,7 @@ SnackbarsProvider.propTypes /* remove-proptypes */ = {
   limit: PropTypes.number,
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
