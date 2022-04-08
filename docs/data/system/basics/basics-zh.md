@@ -36,7 +36,7 @@ npm install @mui/system@next @mui/styled-engine-sc@next styled-components
 yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
 ```
 
-请参阅[Styled Engine guide](/guides/styled-engine/)，了解更多关于如何配置`styled-components`作为样式引擎的信息。
+Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## 为什么要使用系统？
 
@@ -336,7 +336,7 @@ export default function CustomBreakpoints() {
 }
 ```
 
-如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/guides/typescript/#customization-of-theme) 来让主题接收上述值。
+If you are using TypeScript, you will also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
 declare module '@mui/core/styles/createBreakpoints' {
@@ -369,7 +369,7 @@ declare module '@mui/core/styles/createBreakpoints' {
 
 ### 2. 2. Box
 
-[`Box`](/components/box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
+[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components. 默认情况下将渲染一个 `<div>` 元素。
 
 ### 3. 3. 2. 自定义组件
 
