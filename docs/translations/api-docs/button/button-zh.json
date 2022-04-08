@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": "组件的内容",
     "classes": "覆盖或扩展应用于组件的样式。请参阅下文<a href=\"#css\">CSS API</a> 了解更多详情。",
-    "color": "组件的颜色。 它支持默认和自定义主题颜色，这些颜色可以在 <a href=\"https://mui.com/customization/palette/#adding-new-colors\">调色板自定义指南</a> 中添加。",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
     "disableElevation": "如果 <code>true</code>, 则不使用提升效果。",
