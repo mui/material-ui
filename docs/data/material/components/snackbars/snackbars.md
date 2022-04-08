@@ -18,7 +18,7 @@ They may contain a text action, but no icons. You can use them to display notifi
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-**Frequency**: Only one snackbar may be displayed at a time. To display more than one snackbar, go to the [Multiple Snackbars](/material-ui/react-multiple-snackbar/) page.
+**Frequency**: Only one snackbar may be displayed at a time. To display more than one snackbar, go to the [Multiple Snackbars](/material-ui/react-multiple-snackbars/) page.
 
 ## Simple snackbars
 
