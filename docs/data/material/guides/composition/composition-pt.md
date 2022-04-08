@@ -114,7 +114,7 @@ import { Link } from 'react-router-dom';
 
 ### Usando TypeScript
 
-Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Por exemplo, o nó raiz de um Button pode ser substituído por um Link do React Router, e quaisquer propriedades adicionais que são passados para o Button, como `to`, serão propagadas para o componente Link. For a code example concerning Button and react-router-dom checkout [these demos](/material-ui/guides/routing/#component-prop).
+Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Por exemplo, o nó raiz de um Button pode ser substituído por um Link do React Router, e quaisquer propriedades adicionais que são passados para o Button, como `to`, serão propagadas para o componente Link. Para um exemplo de código relativo ao Button e o react-router-dom veja [estas demonstrações](/material-ui/guides/routing/#component-prop).
 
 To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
 
@@ -164,10 +164,11 @@ Esta seção aborda advertências ao usar um componente customizado como `childr
 Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função está obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
 
 - Qualquer componente do Material-UI
-- Componentes de classe, ou seja, `React. Component` ou `React.</li>
+- Componentes React.forwardRef
+- Component</code> ou `React.&lt;/li&gt;
 <li>Componentes DOM (ou hospedeiro), por exemplo, <code>div` ou `button`
-- [Componentes React.forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactlazy)
+- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactforwardref)
+- [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactlazy)
 - [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
