@@ -22,17 +22,17 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-在下面的交互式演示中，尝试更改代码并查看它如何影响输出。 (注：将 `varian` 更改为 `"outlined"` 并且 `color` 更改为 `"secondary"`。 了解更多选项，请参阅 [`Button` 组件页面](components/buttons/).)
+在下面的交互式演示中，尝试更改代码并查看它如何影响输出。 (注：将 `varian` 更改为 `"outlined"` 并且 `color` 更改为 `"secondary"`。 For more options, see the [`Button` component page](/material-ui/react-button/).)
 
 {{"demo": "../usage/Usage.js", "hideToolbar": true, "bg": true}}
 
 ## 示例项目
 
-访问 [示例项目](/getting-started/example-projects/) 页面，以了解我们如何推荐如何实现各种React库和框架，例如Next. s, Gatsby, Create React App, 等等。
+Visit the [example projects](/material-ui/getting-started/example-projects/) page to see how we recommend implementing Material UI with various React libraries and frameworks like Next.js, Gatsby, Create React App, and more.
 
 ## 模板
 
-看一下 [基本模板](/getting-started/templates/) 更快地开始构建下一个应用程序。
+Check out our [selection of basic templates](/material-ui/getting-started/templates/) to get started building your next app more quickly.
 
 ## 推荐资源
 
