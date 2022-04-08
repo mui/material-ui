@@ -1422,7 +1422,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<FormControl value="Standard" variant="standard" />
   +<FormControl value="Outlined" />
   ```
-  Do note that The global style overrides for the class .MuiInput-formControl don't work anymore as the class name has been apparently changed to .MuiInputBase-formControl.
+  > Note that the `FormControl` component has been moved from Material UI to MUI Base, the package of unstyled components. Therefore, to target it using the [global style overrides strategy](/customization/theme-components/#global-style-overrides), you'll need to use `& .MuiInputBase-formControl` instead of `& .MuiInput-formControl`
 
 
 ### FormControlLabel
