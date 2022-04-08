@@ -13,11 +13,11 @@ O tema expõe as seguintes cores da paleta (acessível sob `theme.palette`.):
 - _info_ - used to present information to the user that is neutral and not necessarily important.
 - _success_ - used to indicate the successful completion of an action that user triggered.
 
-Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores](/customization/color/).
+If you want to learn more about color, you can check out [the color section](/material-ui/customization/color/).
 
 ## Valores padrão
 
-Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expand-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).
+You can explore the default values of the palette using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).
 
 {{"demo": "Intentions.js", "bg": "inline", "hideToolbar": true}}
 
@@ -27,16 +27,16 @@ A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenç
 
 Você pode sobrescrever os valores padrão da paleta incluindo um objeto de paleta como parte do seu tema. Se algum dos seguintes:
 
-- [`.palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
-- [`.palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
-- [`.palette.error`](/customization/default-theme/?expand-path=$.palette.error)
-- [`.palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
-- [`.palette.info`](/customization/default-theme/?expand-path=$.palette.info)
-- [`.palette.success`](/customization/default-theme/?expand-path=$.palette.success)
+- [`.palette.primary`](/material-ui/customization/default-theme/?expand-path=$.palette.primary)
+- [`.palette.secondary`](/material-ui/customization/default-theme/?expand-path=$.palette.secondary)
+- [`.palette.error`](/material-ui/customization/default-theme/?expand-path=$.palette.error)
+- [`.palette.warning`](/material-ui/customization/default-theme/?expand-path=$.palette.warning)
+- [`.palette.info`](/material-ui/customization/default-theme/?expand-path=$.palette.info)
+- [`.palette.success`](/material-ui/customization/default-theme/?expand-path=$.palette.success)
 
 objetos de cores da paleta são fornecidos, eles substituirão os padrões.
 
-O valor da paleta de cor pode ser um objeto [cor](/customization/color/#2014-material-design-color-palettes), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
+The palette color value can either be a [color](/material-ui/customization/color/#2014-material-design-color-palettes) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
 ```ts
 interface PaletteColor {
@@ -142,7 +142,7 @@ const theme = createTheme({
 });
 ```
 
-Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+If you are using TypeScript, you would also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
@@ -174,8 +174,8 @@ declare module '@material-ui/core/styles/createPalette' {
 
 ## Escolhendo cores
 
-Precisa de inspiração? A equipe do Material Design construiu uma [ferramenta de configuração de paleta](/customization/color/#picking-colors) para te ajudar.
+Precisa de inspiração? The Material Design team has built an [palette configuration tool](/material-ui/customization/color/#picking-colors) to help you.
 
 ## Modo escuro
 
-Você pode deixar o tema escuro definindo `mode: 'dark'`.
+For details of how you can set up a dark mode for your theme, head to the [dark mode guide](/material-ui/customization/dark-mode/).
