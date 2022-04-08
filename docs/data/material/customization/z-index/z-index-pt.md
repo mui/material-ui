@@ -15,4 +15,4 @@ Os valores de `z-index` começam em um número arbitrário, alto e especifico o 
 - snackbar: 1400
 - tooltip: 1500
 
-Esses valores sempre podem ser customizados. Você os encontrará no tema sob a chave [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) do objeto de tema. Customização de valores individuais não é recomendada; se você deve mudar um, você provavelmente precisará mudar todos eles.
+Esses valores sempre podem ser customizados. You will find them in the theme under the [`zIndex`](/material-ui/customization/default-theme/?expand-path=$.zIndex) key of the theme. Customização de valores individuais não é recomendada; se você deve mudar um, você provavelmente precisará mudar todos eles.
