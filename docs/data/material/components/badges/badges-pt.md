@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React para emblemas
 components: Badge
 githubLabel: 'component: badge'
-unstyled: /base/react-badge
+unstyled: /base/react-badge/
 ---
 
 # Emblema
@@ -26,7 +26,7 @@ Você pode usar a propriedade `overlap` para colocar o emblema em relação ao c
 
 ## Visibilidade do emblema
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBadges.js"}}
 
