@@ -3,6 +3,8 @@ product: material-ui
 title: React Popper（弹出提示）组件
 components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'
+unstyled: /base/react-popper/
+packageName: '@mui/base'
 ---
 
 # Popper 弹出提示
@@ -66,11 +68,3 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 在大多数情况下，这个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以处理弹出提示组件 的 state。
 
 {{"demo": "PopperPopupState.js"}}
-
-## Unstyled
-
-The @mui/base package contain an unstyled version of Popper - PopperUnstyled. It does not have a dependency on @mui/material. The only difference between Popper and PopperUnstyled is the support for theming. Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead. It does not have a dependency on @mui/material. The only difference between Popper and PopperUnstyled is the support for theming. Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
-
-```js
-import Popper from '@mui/base/PopperUnstyled';
-```
