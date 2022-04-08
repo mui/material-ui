@@ -7,9 +7,11 @@
 - Use `@mui/material` if you want to use the components following the Material Design guidelines.
 
   > 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
+
 - Use `@mui/base` if you want to style the components from scratch using your preferred styling method.
 
   > 💡 This package can be imported alongside `@mui/material` without an installation.
+
 - Use `@mui/system` if you want APIs that enable building your own design system from scratch.
 
 ---
@@ -40,7 +42,7 @@ The packages can be categorized into 3 layers, as shown in the picture below:
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
 > 📖 Glossary
-> 
+>
 > - **install** refers to running `yarn add $module` or `npm install $module`.
 > - **import** refers to making a module API available in your code by adding `import ... from '$module'`.
 
@@ -65,7 +67,7 @@ There is only one package in this layer - `@mui/system`.
 
 It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
 
-If you want to switch the styled-engine to use styled-components, [follow this guide](/guides/styled-engine/#how-to-switch-to-styled-components).
+If you want to switch the styled-engine to use styled-components, [follow this guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
 
 <img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; margin: 40px auto;" />
 
@@ -85,7 +87,7 @@ It provides only React component functionality and accessibility features withou
 
 Since it doesn't rely on any specific styling solution, you can pick a method that best fits your needs, from pure CSS to CSS-in-JS.
 
-For more details, check out the [unstyled components page](/customization/unstyled-components/)
+For more details, check out the [unstyled components page](/material-ui/customization/unstyled-components/)
 
 ## Design system
 

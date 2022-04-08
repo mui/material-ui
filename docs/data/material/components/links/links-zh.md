@@ -13,7 +13,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## 简单的链接
 
-链接（Links）组件是基于 [文字铸排（Typography）](/api/typography/) 组件构建的，这意味着你也可以使用文字铸排组件的属性。
+链接（Links）组件是基于 [文字铸排（Typography）](/material-ui/api/typography/) 组件构建的，这意味着你也可以使用文字铸排组件的属性。
 
 {{"demo": "Links.js"}}
 
@@ -37,7 +37,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## Third-party routing library（第三方路由库）
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 Here is a [more detailed guide](/guides/routing/#link).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 Here is a [more detailed guide](/material-ui/guides/routing/#link).
 
 ## 无障碍设计
 

@@ -3853,7 +3853,7 @@ We will focus or effort on the stability of the library for the next two weeks.
 We don't plan more breaking changes, at the exception of changes that are required to fix bugs or that have minor impacts.
 We hope we can release v4 on May 15th, one year after v1.
 
-Please try the beta out! You can find an [upgrade guide](https://mui.com/guides/migration-v3/) to ease the transition.
+Please try the beta out! You can find an [upgrade guide](https://mui.com/material-ui/guides/migration-v3/) to ease the transition.
 You will learn more about v4 in the final release blog post and our plans for the future.
 
 ### `@material-ui/core@v4.0.0-beta.0`
@@ -3988,7 +3988,7 @@ Here are the last breaking changes we want to introduce:
 
 We have done a lot of changes in the alpha phase.
 The beta phase will be used to stabilize the library, we might have introduced bugs.
-We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://mui.com/guides/migration-v3/).
+We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://mui.com/material-ui/guides/migration-v3/).
 
 We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
@@ -5504,7 +5504,7 @@ Here are some highlights ✨:
 #### Deprecations
 
 We are allowing more align variants (left, center, right, inherit, justify).
-Following our [API guideline](https://mui.com/guides/api/), we are using an enum over a boolean.
+Following our [API guideline](https://mui.com/material-ui/guides/api/), we are using an enum over a boolean.
 Keep in mind that monetary or generally number fields **should be right aligned** as that allows
 you to add them up quickly in your head without having to worry about decimals.
 
@@ -7410,7 +7410,7 @@ _May 17, 2018_
 Our first stable v1 release! 🎉
 
 It has taken us two years to do it, but Material-UI v1 has finally arrived!
-We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](https://mui.com/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
+We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](https://mui.com/material-ui/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
 
 Some statistics with v1 while it was in alpha and beta:
 

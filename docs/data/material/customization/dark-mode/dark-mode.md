@@ -114,7 +114,8 @@ If you want to provide your users a way to toggle between modes, you can use Rea
 
 The method by which users express their mode preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent (user specifying a preference for a light or dark theme).
 
-You can leverage this preference dynamically with the [useMediaQuery](/components/use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
+You can leverage this preference dynamically with the [useMediaQuery](/material-ui/react-use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
+
 For instance, you can enable the dark mode automatically:
 
 ```jsx

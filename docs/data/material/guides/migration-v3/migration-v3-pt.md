@@ -179,7 +179,7 @@ function MySelect({ children }) {
 }
 ```
 
-Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/typescript/#handling-value-and-event-handlers)
+Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -209,7 +209,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   +<Fab variant="extended" />
   ```
 
-- [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
   Isso também se aplica a `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` bem como `ListItem` se a propriedade `button` for `true`.
 
@@ -228,7 +228,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 - [DialogActions] Renomeie a propriedade `disableActionSpacing` para `disableSpacing`.
 - [DialogActions] Renomeie a classe CSS `action` para `spacing`.
 - [DialogContentText] Use a variante de tipografia `body1` em vez de `subtitle1`.
-- [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
 ### Divisor
 
@@ -262,7 +262,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Modal
 
-- [Modal] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Modal] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
   Isso também se aplica aos componentes `Dialog` e `Popover`.
 
@@ -282,11 +282,11 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Portal
 
-- [Portal] O elemento filho precisa ser capaz de lidar com ref, quando a propriedade `disablePortal` é usada. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Portal] O elemento filho precisa ser capaz de lidar com ref, quando a propriedade `disablePortal` é usada. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
 ### Slide
 
-- [Slide] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Slide] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
 ### Slider
 
@@ -381,7 +381,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Dica
 
-- [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.
 
 ### Tipografia

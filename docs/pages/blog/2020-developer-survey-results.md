@@ -260,7 +260,7 @@ Similar to last year, it seems that most respondents were previously using Boots
 
 <img src="/static/blog/2020-survey/15.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bar chart: 23.43% Enterprise application, 20.31% Dashboard admin app, 7.40% A design system, 7.40% A set of UI components, 7.37% playing with tech, 7.34% A prototype, 6.40% Landing page, 5.41% e-commerce site, 4.80% CMS, 3.59% Portfolio or resume, 1.88% Blog, 4.69% Other" />
 
-Enterprises and dashboards are at the top of the heap, and yes, we know that for many of you, the systems you are building are internal, but if you have something that you would like to share as part of [the showcase](/discover-more/showcase/), let us know by opening a PR. Also for those of you building UI components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
+Enterprises and dashboards are at the top of the heap, and yes, we know that for many of you, the systems you are building are internal, but if you have something that you would like to share as part of [the showcase](/material-ui/discover-more/showcase/), let us know by opening a PR. Also for those of you building UI components, we'd be happy to give you a shout out in the [related projects](/material-ui/discover-more/related-projects/)
 section.
 
 ### 16. What "delivery mechanism" are you using?
@@ -305,7 +305,7 @@ We want to work on the problems that resonate the most with our users.
 1. Provide a second theme, update the current components to better match Material Design, provide more simple components and features (e.g. dropzone, carousel) as well as provide a better DX (there are good ideas from other UI libraries to apply to MUI v5).
 1. Improve upon the paid advanced versions of the components (e.g. complex data grid, date range picker, tree view drag & drop, virtualization, etc).
 
-**We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
+**We will update [our ROADMAP](/material-ui/discover-more/roadmap/) in the coming days**.
 We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.

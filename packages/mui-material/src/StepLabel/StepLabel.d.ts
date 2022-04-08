@@ -39,11 +39,11 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
    */
   optional?: React.ReactNode;
   /**
-   * The component to render in place of the [`StepIcon`](/api/step-icon/).
+   * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
    */
   StepIconComponent?: React.ElementType;
   /**
-   * Props applied to the [`StepIcon`](/api/step-icon/) element.
+   * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
    */
   StepIconProps?: Partial<StepIconProps>;
   /**
@@ -58,11 +58,11 @@ export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/components/steppers/)
+ * - [Steppers](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepLabel API](https://mui.com/api/step-label/)
+ * - [StepLabel API](https://mui.com/material-ui/api/step-label/)
  */
 declare const StepLabel: ((props: StepLabelProps) => JSX.Element) & { muiName: string };
 

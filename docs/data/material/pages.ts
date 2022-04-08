@@ -187,7 +187,6 @@ const pages = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/material-ui/guides/api', title: 'API Design Approach' },
-      { pathname: '/material-ui/guides/classname-generator', title: 'ClassName Generator' },
       { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
       { pathname: '/material-ui/guides/interoperability', title: 'Style Library Interoperability' },

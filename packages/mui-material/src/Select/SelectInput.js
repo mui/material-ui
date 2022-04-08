@@ -619,7 +619,7 @@ SelectInput.propTypes = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
