@@ -1,6 +1,6 @@
 # Abordagem do Design da API
 
-<p class="description">Nós aprendemos bastante como o Material-UI é usado e a refatoração da v1 permitiu-nos repensar completamente a API dos componentes.</p>
+<p class="description">Nós aprendemos bastante como o Material UI é usado e a refatoração da v1 permitiu-nos repensar completamente a API dos componentes.</p>
 
 > O design da API é difícil porque você pode fazer com que pareça simples, mas na verdade é extremamente complexo ou simples, mas parece complexo.
 
@@ -115,7 +115,7 @@ Existem duas opções para projetar a API para as variações de um componente: 
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
-Os componentes do Material-UI usam uma combinação das duas abordagens de acordo com as seguintes regras:
+Os componentes do Material UI usam uma combinação das duas abordagens de acordo com as seguintes regras:
 
 - Um _booleano_ é usado quando **2** valores possíveis são necessários.
 - **elemento hospedeiro**: um nó DOM no contexto de `react-dom`, por exemplo, uma instância de `window.HTMLDivElement`.

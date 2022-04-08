@@ -25,9 +25,9 @@ githubLabel: 'hook: useMediaQuery'
 
 ⚠️ 由于每个浏览器的限制，你不能使用 `'print'`，例如 [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398) 上的这个问题。
 
-## 使用 Material-UI 的断点辅助功能
+## 使用 Material UI 的断点辅助功能
 
-按照如下所示的例子，你可以这样使用 Material-UI 的 [断点辅助功能](/material-ui/customization/breakpoints/) ：
+按照如下所示的例子，你可以这样使用 Material UI 的 [断点辅助功能](/material-ui/customization/breakpoints/) ：
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';

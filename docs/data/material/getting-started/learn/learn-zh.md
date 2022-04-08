@@ -1,6 +1,6 @@
-# 学习使用 Material-UI
+# 学习使用 Material UI
 
-<p class="description"> Material-UI 新手? 我们为你精心准备的学习资源，可以帮助你快速入门。</p>
+<p class="description"> Material UI 新手? 我们为你精心准备的学习资源，可以帮助你快速入门。</p>
 
 ## First example
 
@@ -30,12 +30,12 @@ Check out our [selection of basic templates](/material-ui/getting-started/templa
 
 ### 免费的资源
 
-- **Introduction to Material-UI**：一系列涵盖所有重要的 Material-UI 组件的视频。
+- **Introduction to Material UI**：一系列涵盖所有重要的 Material UI 组件的视频。
 
-- **Learn React & Material-UI**：一系列涵盖所有重要的 Material-UI 组件的视频。
+- **Learn React & Material UI**：一系列涵盖所有重要的 Material UI 组件的视频。
 
 - [**Next.js 11 Setup with Material UI v5**](https://www.youtube.com/watch?v=IFaFFmPYyMI) by Leo Roese: 学习如何使用 Emode 作为样式引擎，将Material UI 整合到您的Next.js 应用。
 
-- **Cookbook**：通过使用 Material-UI 在 React 中实现 Material Design 原则来构建现代应用程序。
+- **Cookbook**：通过使用 Material UI 在 React 中实现 Material Design 原则来构建现代应用程序。
 
 - 📹 [视频](https://www.youtube.com/watch?v=bDkB3LoQKxs)

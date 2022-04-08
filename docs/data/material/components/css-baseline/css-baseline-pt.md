@@ -6,7 +6,7 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline
 
-<p class="description">Material-UI oferece um componente CSS Base a fim de inciar uma elegante, consistente e simples base para construção de aplicativos.</p>
+<p class="description">Material UI oferece um componente CSS Base a fim de inciar uma elegante, consistente e simples base para construção de aplicativos.</p>
 
 [A paleta](/system/palette/) com funções de estilo.
 
@@ -30,7 +30,7 @@ export default function MyApp() {
 
 ## Escopando componentes filhos
 
-No entanto, você pode estar migrando progressivamente um site para Material-UI, usar um reset global pode não ser uma opção. É possível aplicar a baseline apenas aos filhos usando o componente `ScopedCssBaseline`.
+No entanto, você pode estar migrando progressivamente um site para Material UI, usar um reset global pode não ser uma opção. É possível aplicar a baseline apenas aos filhos usando o componente `ScopedCssBaseline`.
 
 ```jsx
 import * as React from 'react';

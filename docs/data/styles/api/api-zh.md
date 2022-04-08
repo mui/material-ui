@@ -216,7 +216,7 @@ It should preferably be used at **the root of your component tree**.
 | children&nbsp;\* | node   |       | 您的组件树。                                                                                                                              |
 | disableGeneration  | bool   | false | 使用此选项，你可以禁用样式表的生成。 当在服务端的 HTML 之外渲染步骤中遍历 React 树的时候，这个属性卓有成效。 举个例子，若你正在使用 react-apillo 来提取服务端接口发出的所有查询（queries）。 使用这个属性可以大大加快遍历的速度。 |
 | generateClassName  | func   |       | JSS 的类名生成器。                                                                                                                         |
-| injectFirst        | bool   | false | 默认情况下，在页面中注入的 style 会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material-UI 的样式，请设置此属性。                            |
+| injectFirst        | bool   | false | 默认情况下，在页面中注入的 style 会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material UI 的样式，请设置此属性。                            |
 | jss                | object |       | JSS 的实例。                                                                                                                            |
 
 ### 例子

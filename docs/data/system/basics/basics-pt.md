@@ -1,8 +1,8 @@
-# Sistema Material-UI
+# Sistema Material UI
 
 <p class="description">CSS utilities for rapidly laying out custom designs.</p>
 
-Material-UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
+Material UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
 
 O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
@@ -290,7 +290,7 @@ A segunda opção é definir seus pontos de quebra como um array, do menor ao ma
 
 {{"demo": "BreakpointsAsArray.js"}}
 
-> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material-UI tem 5.
+> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material UI tem 5.
 
 Você pode ignorar pontos de quebra usando o valor como `null`:
 
@@ -365,7 +365,7 @@ A propriedade `sx` pode ser usada em quatro locais diferentes:
 
 ### 1. Componentes do core
 
-Todos os componentes Material-UI do core suportarão a propriedade `sx`.
+Todos os componentes Material UI do core suportarão a propriedade `sx`.
 
 ### 2. Box
 
@@ -373,7 +373,7 @@ Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 3. Componentes customizados
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
+In addition to Material UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
 
 ```jsx
 import { styled } from '@material-ui/core/styles';

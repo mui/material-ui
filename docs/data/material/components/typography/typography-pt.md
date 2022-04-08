@@ -16,7 +16,7 @@ O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer lei
 
 ## Geral
 
-A fonte _Roboto_ **não** será carregada automaticamente pelo Material-UI. Você é responsável por carregar quaisquer fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/material-ui/customization/typography/).
+A fonte _Roboto_ **não** será carregada automaticamente pelo Material UI. Você é responsável por carregar quaisquer fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/material-ui/customization/typography/).
 
 ## Fonte Roboto via CDN
 
@@ -46,7 +46,7 @@ import '@fontsource/roboto/700.css';
 
 Para maiores informações, confira em [Fontsource](https://github.com/fontsource/fontsource).
 
-Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
+Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. A configuração de tipografia padrão do Material UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
 
 ## Componente
 

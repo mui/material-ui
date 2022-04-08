@@ -1,6 +1,6 @@
 # 封装
 
-<p class="description">Material-UI 试着让封装尽可能的简单。</p>
+<p class="description">Material UI 试着让封装尽可能的简单。</p>
 
 ## 封装组件
 
@@ -21,7 +21,7 @@ WrappedIcon.muiName = Icon.muiName;
 
 ## 组件属性
 
-在 Material-UI 中，通过一个叫 `component` 的属性，您可以更改将被渲染的根元素。
+在 Material UI 中，通过一个叫 `component` 的属性，您可以更改将被渲染的根元素。
 
 ### 它是如何工作的呢？
 
@@ -167,7 +167,7 @@ If the `GenericCustomComponent` will be used with a `component` prop provided, i
 
 某些组件需要访问 DOM 节点。 之前提到，通过使用`ReactDOM.findDOMNode` 就能实现。 该方法已被废弃，代替的是使用`ref`和 ref 转递。 然而，只有下列组件类型才可获得 `ref`：
 
-- 任何 Material-UI 组件
+- 任何 Material UI 组件
 - 类组件，如 `React.Component` 或 `React.PureComponent` 等
 - DOM（或 host）组件，例如 `div` 或 `button`
 - [React.forwardRef 组件](https://reactjs.org/docs/react-api.html#reactforwardref)
@@ -196,7 +196,7 @@ Function components cannot be given refs. Attempts to access this ref will fail.
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-要确定您使用的 Material-UI 组件是否具有此需求，请查阅该组件的 props API 文档。 如果您需要转递 refs，描述将链接到此部分。
+要确定您使用的 Material UI 组件是否具有此需求，请查阅该组件的 props API 文档。 如果您需要转递 refs，描述将链接到此部分。
 
 ### 使用 StrictMode 的注意事项
 

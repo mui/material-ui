@@ -6,7 +6,7 @@ If you're looking for the v4 docs, you can [find them here](https://material-ui.
 
 ## Introdução
 
-Esta é uma referência para atualizar seu site de Material-UI v4 para v5. Embora haja muita coisa coberta aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e o mais sequenciais possível, para que você possa começar a usar a v5 rapidamente!
+Esta é uma referência para atualizar seu site de Material UI v4 para v5. Embora haja muita coisa coberta aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e o mais sequenciais possível, para que você possa começar a usar a v5 rapidamente!
 
 ## Por que você deve migrar
 
@@ -34,7 +34,7 @@ To get the benefits of bug fixes and a lot of improvements such as the new styli
 - The minimum supported version of **React** was increased from v16.8.0 to v17.0.0.
 - The minimum supported version of TypeScript was increased from v3.2 to v3.5.
 
-  > We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace). We will not change the minimum supported version in a major version of Material-UI. However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
+  > We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace). We will not change the minimum supported version in a major version of Material UI. However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
 
 A primeira coisa que você precisa fazer é atualizar suas dependências.
 
@@ -46,7 +46,7 @@ A primeira coisa que você precisa fazer é atualizar suas dependências.
 
 ## The props: `alignItems`
 
-If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material UI components.
 
 ```js
 import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
@@ -82,7 +82,7 @@ yarn add @material-ui/core@next @emotion/react @emotion/styled
 **Optional**: if you have one these packages, install the new package separately
 
 - Você pode usar o [codemod `moved-lab-modules`](https://github.com/mui/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
-- For non-Material-UI components, use the `component` prop.
+- For non-Material UI components, use the `component` prop.
 
 <details>
 <summary>See all packages change</summary>
@@ -318,7 +318,7 @@ export default function CssModulesPriority() {
  }
 ```
 
-> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
+> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
 > 
 > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 

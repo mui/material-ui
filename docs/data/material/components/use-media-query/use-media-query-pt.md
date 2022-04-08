@@ -25,9 +25,9 @@ Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A stri
 
 ⚠️ Você não pode usar `'print'` devido a limitação de navegadores, por exemplo, este bug presente no [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Usando auxiliares de ponto de quebra do Material-UI
+## Usando auxiliares de ponto de quebra do Material UI
 
-Você pode usar os [auxiliares de ponto de quebra](/material-ui/customization/breakpoints/) do Material-UI da seguinte maneira:
+Você pode usar os [auxiliares de ponto de quebra](/material-ui/customization/breakpoints/) do Material UI da seguinte maneira:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';

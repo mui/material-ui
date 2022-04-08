@@ -14,7 +14,7 @@ You can also make a button perform navigation actions. You can also make a butto
 
 ## Global theme Link
 
-In real-life applications, using a native `<a>` element is rarely enough. element is rarely enough. You can improve the user experience by using an enhanced Link component systematically. The theme of Material-UI allows configuring this component once. For instance, with react-router: The theme of MUI allows configuring this component once. For instance, with react-router:
+In real-life applications, using a native `<a>` element is rarely enough. element is rarely enough. You can improve the user experience by using an enhanced Link component systematically. The theme of Material UI allows configuring this component once. For instance, with react-router: The theme of MUI allows configuring this component once. For instance, with react-router:
 
 ```jsx
 const LinkBehavior = React.forwardRef<
@@ -22,7 +22,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (Material-UI) -> to (react-router)
+  // Map href (Material UI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -63,7 +63,7 @@ Here are a few demos with [react-router](https://github.com/remix-run/react-rout
 **Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element. This can create issues when rendering a link. If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute. The above demo achieves this by setting `role={undefined}` **after** the spread props. This can create issues when rendering a link. If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute. The above demo achieves this by setting `role={undefined}` **after** the spread props. This can create issues when rendering a link. If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute. The above demo achieves this by setting `role={undefined}` **after** the spread props.
 
 ```jsx
-In real-life applications, using a native <code><a></code> element is rarely enough. You can improve the user experience by using an enhanced Link component systematically. The theme of Material-UI allows configuring this component once. For instance, with react-router:
+In real-life applications, using a native <code><a></code> element is rarely enough. You can improve the user experience by using an enhanced Link component systematically. The theme of Material UI allows configuring this component once. For instance, with react-router:
 ```
 
 ### Tabs 选项卡
@@ -78,7 +78,7 @@ In real-life applications, using a native <code><a></code> element is rarely eno
 
 ### Next.js
 
-Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI. The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI. The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
+Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material UI. The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI. The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
 
 - The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
@@ -101,7 +101,7 @@ Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next
   }
   ```
 
-- The second version of the adapter is the `Link` component. This component is styled. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](/material-ui/react-link/) with `NextLinkComposed`.
+- The second version of the adapter is the `Link` component. This component is styled. It leverages the [link component of Material UI](https://material-ui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`. This component is styled. It leverages the [link component of MUI](/material-ui/react-link/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

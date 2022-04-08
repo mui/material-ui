@@ -1,5 +1,5 @@
 ---
-title: Material-UI is now MUI!
+title: Material UI is now MUI!
 description: Starting today, we are evolving our brand identity. We are clarifying the difference between our company and our products.
 date: 2021-09-16T00:00:00.000Z
 authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
@@ -11,10 +11,10 @@ card: true
 
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
-- Material-UI: the organization is now called [**MUI**](https://github.com/mui/).
-- Material-UI: the set of foundational MIT React components is now called [**MUI Core**](https://github.com/mui/material-ui).
+- Material UI: the organization is now called [**MUI**](https://github.com/mui/).
+- Material UI: the set of foundational MIT React components is now called [**MUI Core**](https://github.com/mui/material-ui).
 - Material UI: the Material Design components developed by MUI. Also, we ditched the hyphen!
-- Material-UI X: the set of advanced React components is now called [**MUI X**](https://github.com/mui/mui-x).
+- Material UI X: the set of advanced React components is now called [**MUI X**](https://github.com/mui/mui-x).
 
 Our previous name was no longer serving our areas of focus.
 We have grown our product offering.
@@ -22,7 +22,7 @@ We needed a new identity to match our increased scope.
 
 ## The origin
 
-Material-UI [started](https://www.text-em-all.com/blog/material-ui-the-internet-found-our-ui-project) as a React implementation of the Material Design guidelines in 2014.
+Material UI [started](https://www.text-em-all.com/blog/material-ui-the-internet-found-our-ui-project) as a React implementation of the Material Design guidelines in 2014.
 The goal was simple, to empower React developers to use Material Design.
 The community [loved it](https://news.ycombinator.com/item?id=8582439) and was craving for more, so we kept building.
 
@@ -50,12 +50,12 @@ Our ultimate goal is to become the most effective and efficient tool to build UI
 ### A new name
 
 We are breaking the strong association with Material Design
-as we have seen too many people confusing Material-UI with Google, or as a synonym of Material Design.
+as we have seen too many people confusing Material UI with Google, or as a synonym of Material Design.
 
 We are now called **MUI**. It stands for **M**aterial to build **UI**s
 and is pronounced [/ɛm juː aɪ/](http://ipa-reader.xyz/?text=%C9%9Bmju%CB%90a%C9%AA).
 
-It's shorter, it distinguishes us, and it's familiar – many people already used it for abbreviating Material-UI.
+It's shorter, it distinguishes us, and it's familiar – many people already used it for abbreviating Material UI.
 More importantly, it allows for the release of products not directly coupled to Material Design, such as an unstyled/headless version of the components, a brand new second design system as an alternative to MD, and more ambitious initiatives.
 
 ### A new domain name

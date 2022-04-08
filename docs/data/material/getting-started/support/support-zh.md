@@ -60,7 +60,7 @@ MUI comes in [three plans](/pricing/). The support available on the Community pl
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
 
-各个 Material-UI 版本的当前状态如下所示：
+各个 Material UI 版本的当前状态如下所示：
 
 ### Tidelift subscription
 
@@ -94,12 +94,12 @@ The Pro plan allows developers to license extra features that are challenging to
 
 ### 定制的工作 🛠
 
-调整 Material-UI 以满足您的特定要求。 请给我们一个需求摘要；如果可以的话，我们会帮助您。 我们可能：
+调整 Material UI 以满足您的特定要求。 请给我们一个需求摘要；如果可以的话，我们会帮助您。 我们可能：
 
 - 获取不断地分类所需的工具，并了解您的应用程序所依赖的开源软件。
 - Suggest alternatives that might not require MUI
 - 使用一些可扫描新的软件安全、证书和维护问题的工具，您可以主动解决问题，并且也可以向参与的开源维护者发出警告，以便他们能够帮助您解决这些问题。
 
-请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 我们的合同价格是 200 美元/小时 或 1500 美元/天。
+请注意，工作必须与 Material UI 相关。 我们不接受一般的 React 开发工作。 我们的合同价格是 200 美元/小时 或 1500 美元/天。
 
 [给我们发送一封电子邮件](mailto:custom-work@mui.com)

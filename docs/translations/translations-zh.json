@@ -151,7 +151,7 @@
   "v5startAdoption": "起步",
   "usage": "使用",
   "usageButton": "探索文档",
-  "usageDescr": "Material-UI 组件无需任何额外的设置即可使用，并且不会影响全局变量。",
+  "usageDescr": "Material UI 组件无需任何额外的设置即可使用，并且不会影响全局变量。",
   "useDarkTheme": "使用暗色主题",
   "useHighDensity": "通过 props 来实现更高的密度值",
   "usingMui": "您正在使用MUI吗？",

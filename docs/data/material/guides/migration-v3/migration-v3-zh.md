@@ -18,9 +18,9 @@ This is a reference for upgrading your site from MUI v3 to v4. 您可能不会�
 
 您需要做的第一件事，就是更新您的依赖包。
 
-### 升级 Material-UI 的版本
+### 升级 Material UI 的版本
 
-若想要使用最新版本的 Material-UI，您必须更新 `package.json`。
+若想要使用最新版本的 Material UI，您必须更新 `package.json`。
 
 ```json
 "dependencies": {
@@ -42,9 +42,9 @@ yarn add @material-ui/core
 
 对于 React 版本的最低要求是从 `react@^16.3.0` 升级到 `react@^16.8.0`。 这样一来我们能够依赖 [Hooks](https://reactjs.org/docs/hooks-intro.html) 的功能（我们已经不再使用 class API）。
 
-### 更新 Material-UI Styles 的版本
+### 更新 Material UI Styles 的版本
 
-若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
+若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material UI Styles。
 
 ```json
 "dependencies": {
@@ -414,7 +414,7 @@ function MySelect({ children }) {
 
 ### UMD
 
-- 此更改简化了 Material-UI 与 CDN 的使用：
+- 此更改简化了 Material UI 与 CDN 的使用：
 
   ```diff
   const {

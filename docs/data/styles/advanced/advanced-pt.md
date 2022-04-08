@@ -10,7 +10,7 @@
 
 Adicione um `ThemeProvider` para o nível superior de sua aplicação para passar um tema pela árvore de componentes do React. Dessa maneira, você poderá acessar o objeto de tema em funções de estilo.
 
-> Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/material-ui/customization/theming/) para aprender como construir seu tema customizado do Material-UI.
+> Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/material-ui/customization/theming/) para aprender como construir seu tema customizado do Material UI.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -168,7 +168,7 @@ function Parent() {
 
 JSS usa plugins para estender sua essência, permitindo que você escolha os recursos que você precisa, e somente pague pela sobrecarga de desempenho para o que você está usando.
 
-Nem todos os plugins estão disponíveis por padrão no Material-UI. Os seguintes (que são um subconjunto de [jss-preset-default](https://cssinjs.org/jss-preset-default/)) estão incluídos:
+Nem todos os plugins estão disponíveis por padrão no Material UI. Os seguintes (que são um subconjunto de [jss-preset-default](https://cssinjs.org/jss-preset-default/)) estão incluídos:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -232,7 +232,7 @@ import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
   {/* Sua árvore de componentes.
-      Componentes com estilo podem sobrescrever os estilos de Material-UI. */}
+      Componentes com estilo podem sobrescrever os estilos de Material UI. */}
 </StylesProvider>;
 ```
 
@@ -452,7 +452,7 @@ const className = `${productionPrefix}-${identifier}`;
 Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
 
 - Apenas um provedor de tema é usado (**Sem aninhamento de tema **)
-- A folha de estilo tem um nome que começa com `Mui` (todos os componentes do Material-UI).
+- A folha de estilo tem um nome que começa com `Mui` (todos os componentes do Material UI).
 - A opção `disableGlobal` do [gerador de nome de classe](/system/styles/api/#creategenerateclassname-options-class-name-generator) é `false` (o padrão).
 
 ## CSS global

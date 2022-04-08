@@ -30,12 +30,12 @@ The following is a curated list of some of the best third-party resources we've 
 
 ### Grátis
 
-- **Learn React & Material-UI**: uma série de vídeos cobrindo todos os componentes importantes do Material-UI.
+- **Learn React & Material UI**: uma série de vídeos cobrindo todos os componentes importantes do Material UI.
 
-- **Introduction to Material-UI**: uma série de vídeos cobrindo todos os componentes importantes do Material-UI.
+- **Introduction to Material UI**: uma série de vídeos cobrindo todos os componentes importantes do Material UI.
 
 - [**Next.js 11 Setup with Material UI v5**](https://www.youtube.com/watch?v=IFaFFmPYyMI) by Leo Roese: learn how to integrate Material UI into your Next.js app, using Emotion as the style engine.
 
-- **Cookbook**: Crie aplicativos modernos, implementando os princípios de Material Design no React, usando Material-UI.
+- **Cookbook**: Crie aplicativos modernos, implementando os princípios de Material Design no React, usando Material UI.
 
 - 📹 [Os vídeos](https://www.youtube.com/watch?v=bDkB3LoQKxs)

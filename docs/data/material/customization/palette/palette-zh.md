@@ -187,4 +187,4 @@ declare module '@material-ui/core/styles/createPalette' {
 
 ## 暗色模式
 
-Material-UI comes with two palette modes: light (the default) and dark. 你可以通过设置 `mode: 'dark'` 来启用夜间模式。
+Material UI comes with two palette modes: light (the default) and dark. 你可以通过设置 `mode: 'dark'` 来启用夜间模式。

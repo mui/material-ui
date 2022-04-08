@@ -17,7 +17,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Nota:** Os assistentes não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas o Material-UI continuará a suportá-los.
+> **Nota:** Os assistentes não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas o Material UI continuará a suportá-los.
 
 ## Assistente horizontal
 

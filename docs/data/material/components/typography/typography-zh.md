@@ -16,7 +16,7 @@ materialDesign: https://material.io/design/typography/the-type-system.html
 
 ## 概述
 
-Material-UI **不会**自动加载 _Roboto_ 字体。 你负责加载你的应用程序中使用的任何字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/material-ui/customization/typography/)。
+Material UI **不会**自动加载 _Roboto_ 字体。 你负责加载你的应用程序中使用的任何字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/material-ui/customization/typography/)。
 
 ## Roboto 字体 CDN
 
@@ -46,7 +46,7 @@ import '@fontsource/roboto/700.css';
 
 有关更多信息请查看 [Fontsource](https://github.com/fontsource/fontsource)。
 
-您可以将 Fontsource 配置为加载特定的子集（subsets）、字体粗细（weights）和样式（styles）。 Material-UI 默认的排版配置仅依赖于 300，400，500 和 700 的字体权重。
+您可以将 Fontsource 配置为加载特定的子集（subsets）、字体粗细（weights）和样式（styles）。 Material UI 默认的排版配置仅依赖于 300，400，500 和 700 的字体权重。
 
 ## 组件
 
