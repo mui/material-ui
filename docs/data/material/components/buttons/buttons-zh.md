@@ -65,13 +65,13 @@ unstyled: /base/react-button/
 </Button>
 ```
 
-请注意，文档里组件的 API 部分 [避免](/guides/api/#native-properties) 提到原生的属性（还是有很多）。
+Note that the documentation [avoids](/material-ui/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
 
 ## Color 颜色
 
 {{"demo": "ColorButtons.js"}}
 
-除了使用默认按钮颜色外，您可以添加自定义颜色，或者禁用任何您不需要的颜色。 In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+除了使用默认按钮颜色外，您可以添加自定义颜色，或者禁用任何您不需要的颜色。 See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
 
 ## 尺寸
 
@@ -111,7 +111,7 @@ unstyled: /base/react-button/
 
 ## Customized Buttons（自定义按钮）
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -135,7 +135,7 @@ unstyled: /base/react-button/
 
 ## Third-party routing library（第三方路由库）
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `ButtonBase` 组件提供了 `component` 属性来处理此用例。 `ButtonBase` 组件提供了 `component` 属性来处理此用例。 这里是 [更详细的指南](/guides/routing/#button)。
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `ButtonBase` 组件提供了 `component` 属性来处理此用例。 `ButtonBase` 组件提供了 `component` 属性来处理此用例。 Here is a [more detailed guide](/material-ui/guides/routing/#button).
 
 ## 设计局限
 
@@ -156,7 +156,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 然而：
 
-- 如您要 [在 disabled 不可用元素上显示提示文本](/components/tooltips/#disabled-elements)，则需添加 `pointer-events: none;`
+- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/material-ui/react-tooltip/#disabled-elements).
 - 若您加载除了一个 button 元素之外的元素， 例如，一个链接 `<a>` 元素，指针是不会改变的。
 
 2. **改变 DOM**。 您可以这样封装按钮：
