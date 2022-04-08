@@ -4,7 +4,7 @@
 
 ## Dark mode by default
 
-You can make your application use the dark theme by default setting the `mode: 'dark'`.
+You can make your application use the dark theme by default setting the `mode: 'dark'`, regardless of the user's preference.
 
 ```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -116,7 +116,7 @@ The method by which users express their mode preference can vary. It might be a 
 
 You can leverage this preference dynamically with the [useMediaQuery](/material-ui/react-use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
 
-For instance, you can enable the dark mode automatically:
+For instance, you can enable dark mode automatically by checking if the user prefers it whether through the OS or browser settings:
 
 ```jsx
 import * as React from 'react';
