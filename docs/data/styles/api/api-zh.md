@@ -1,8 +1,8 @@
 ---
-title: '@mui/core/styles 的 API 参考文档。'
+title: '@material-ui/core/styles 的 API 参考文档。'
 ---
 
-# API (LEGACY)
+# API
 
 <p class="description">一个返回 <a href="https://cssinjs.org/jss-api/#generate-your-class-names"> 类名称生成器函数 </a> 的函数。</p>
 
@@ -30,7 +30,7 @@ title: '@mui/core/styles 的 API 参考文档。'
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider, createGenerateClassName } from '@mui/styles';
+import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -56,8 +56,8 @@ export default function App() {
 ### 例子
 
 ```jsx
-import { createStyles, makeStyles } from '@mui/styles';
-import { createTheme, ThemeProvider } from '@mui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -83,8 +83,8 @@ export default function MyComponent {
 2. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（_object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
+- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
@@ -95,7 +95,7 @@ export default function MyComponent {
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -112,11 +112,11 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-这是一个处理服务器端渲染的类助手（class helper）。 [You can follow this guide for a practical approach](/material-ui/guides/server-rendering/).
+这是一个处理服务器端渲染的类助手（class helper）。 [您可以遵循本指南以了解实际的操作](/material-ui/guides/server-rendering/)。
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@mui/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -167,7 +167,7 @@ const response = `
 
 - `options.defaultTheme`（_object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.withTheme` (_bool_ [optional])：默认值是 `false`。 Provide the `theme` object to the component as a prop.
-- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。 When set to `null`, it follows `theme.direction`.
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
@@ -179,8 +179,8 @@ const response = `
 
 ```jsx
 import * as React from 'react';
-import { styled, ThemeProvider } from '@mui/styles';
-import { createTheme } from '@mui/core/styles';
+import { styled, ThemeProvider } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -224,7 +224,7 @@ It should preferably be used at **the root of your component tree**.
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@mui/styles';
+import { StylesProvider } from '@material-ui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
@@ -249,7 +249,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@mui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 const theme = {};
 
@@ -272,7 +272,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ```jsx
 import * as React from 'react';
-import { useTheme } from '@mui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -299,7 +299,7 @@ export default function MyComponent() {
 - `options.defaultTheme`（_object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
 - `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。 When set to `null`, it follows `theme.direction`.
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
@@ -310,7 +310,7 @@ export default function MyComponent() {
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -329,7 +329,7 @@ export default withStyles(styles)(MyComponent);
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -363,7 +363,7 @@ export default MyComponent;
 
 ```jsx
 import * as React from 'react';
-import { withTheme } from '@mui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;
