@@ -18,10 +18,10 @@ _（调整窗口大小以查看响应的断点）_
 
 ```jsx
 // with npm
-npm install @mui/system@next @emotion/react @emotion/styled
+npm install @material-ui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @mui/system@next @emotion/react @emotion/styled
+yarn add @material-ui/system@next @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
@@ -30,13 +30,13 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @mui/system@next @mui/styled-engine-sc@next styled-components
+npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
+yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+请参阅[Styled Engine guide](/material-ui/guides/styled-engine/)，了解更多关于如何配置`styled-components`作为样式引擎的信息。
 
 ## 为什么要使用系统？
 
@@ -148,7 +148,7 @@ return (
 
 这套系统重点是解决如下三个主要问题：
 
-**1. Switching context wastes time.**
+**1. 1. Switching context wastes time.**
 
 用户没有必要在样式组件的用法和定义的地方不断跳转。 有了这个系统，直接就可以在你需要的组件上面进行样式定制。
 
@@ -156,7 +156,7 @@ return (
 
 你是否曾发现自己在为一个有样式的组件寻找一个好名字而苦恼？ 该系统可以直接将样式映射到元素。 所以你要做的就是只关心实际的样式属性。
 
-**3. Enforcing consistency in UIs is hard.**
+**3. 3. Enforcing consistency in UIs is hard.**
 
 当不止一个人在构建应用程序时尤其如此，因为团队成员之间必须就设计标记的选择和使用方式进行一些协调，主题结构的哪些部分应该使用哪些 CSS 属性等等。
 
@@ -180,18 +180,18 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 优点：
 
 - 📚 它允许 API 具有很大的灵活性。 `sx` 属性支持 CSS 的超集。 所以**不需要重学 CSS**。 只要你学会了标准化的 CSS 语法，就可以了，很安全，十年来都没有变化。 当然如果你想要节省时间的话，也可以**选择**学习速记语法。
-- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 你只需承担 [@emotion/react](https://bundlephobia.com/package/@emotion/react) 以及 [@mui/system](https://bundlephobia.com/package/@mui/system)的空间大小. 在 gzip 的环境下，它们大概占用约 15kb 的空间。 It cost around ~15 kB gzipped. 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
+- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 你只需承担 [@emotion/react](https://bundlephobia.com/package/@emotion/react) 以及 [@mui/system](https://bundlephobia.com/package/@mui/system)的空间大小. 在 gzip 的环境下，它们大概占用约 15kb 的空间。 It cost around ~15 kB gzipped. 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。 It cost around ~15 kB gzipped. 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
 
 缺点：
 
 - 运行时会造成性能影响：
 
-  | 基准测试                          | 代码片段                        | 花费时间  |
-  |:----------------------------- |:--------------------------- | ----- |
-  | a. Render 1,000 primitives    | `<div className="…">` | 100ms |
-  | b. b. b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
-  | c. c. c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. Render 1,000 Box           | `<Box sx={…}>`        | 370ms |
+  | 基准测试                             | 代码片段                        | 花费时间  |
+  |:-------------------------------- |:--------------------------- | ----- |
+  | a. a. Render 1,000 primitives    | `<div className="…">` | 100ms |
+  | b. b. b. b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
+  | c. c. c. c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
+  | d. d. Render 1,000 Box           | `<Box sx={…}>`        | 370ms |
 
 <!-- #default-branch-switch -->
 
@@ -278,13 +278,13 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 如果你想要你的 CSS 属性是响应式的，那么可以使用断点速记语法。 确定断点有两种方法：
 
-#### 1. 1. 1. 1. 1. 将断点作为对象
+#### 1. 1. 1. 1. 1. 1. 将断点作为对象
 
 定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 请注意，每个断点属性都与断点和每个大断点相匹配。 Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. 这里又是前面的例子，使用的是对象语法。 这里又是前面的例子，使用的是对象语法。
 
 {{"demo": "BreakpointsAsObject.js"}}
 
-#### 2. Breakpoints as an array
+#### 2. 2. Breakpoints as an array
 
 第二种选择是将你的断点沿着最小到最大来进行定义。
 
@@ -304,8 +304,8 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 ```jsx
 import * as React from 'react';
-import Box from '@mui/core/Box';
-import { createTheme, ThemeProvider } from '@mui/core/styles';
+import Box from '@material-ui/core/Box';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -336,10 +336,10 @@ export default function CustomBreakpoints() {
 }
 ```
 
-If you are using TypeScript, you will also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/material-ui/guides/typescript/#customization-of-theme) 来让主题接收上述值。
 
 ```ts
-declare module '@mui/core/styles/createBreakpoints' {
+declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides {
     xs: false; // 移除 `xs` 断点
     sm: false;
@@ -367,20 +367,20 @@ declare module '@mui/core/styles/createBreakpoints' {
 
 所有核心 MUI 组件将支持 `sx` prop。
 
-### 2. 2. Box
+### 2. 2. Box 2. Box
 
-[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components. 默认情况下将渲染一个 `<div>` 元素。
+[`Box`](/material-ui/react-box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
 
-### 3. 3. 2. 自定义组件
+### 3. 3. 3. 2. 自定义组件
 
 除了 MUI 组件外，您也可以将 `sx` prop 添加到您的自定义组件。 使用 `风格的` 实用程序来自 `@mui/material/styles`
 
 ```jsx
-import { styled } from '@mui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```
 
-### 4. 4. 4、 4、 4、 使用 babel 插件的任何元素
+### 4. 4. 4. 4、 4、 4、 使用 babel 插件的任何元素
 
 等待开发 [#23220](https://github.com/mui/material-ui/issues/23220)。
