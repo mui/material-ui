@@ -13,15 +13,5 @@
     "id": 58,
     "title": "🚀 <b>The 2021 MUI developer survey results are out</b> — here's what we discovered",
     "text": "Your feedback helps us to build better products. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"2021-developer-survey-results/\" href=\"/blog/2021-developer-survey-results/\">Go to the post to</a> find out what we learned about your needs in our annual survey."
-  },
-  {
-    "id": 60,
-    "title": "📣 <b>Date and time pickers have been moved to MUI X</b>",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/lab-date-pickers-to-mui-x/\">Go to the post to</a> find out about the reasons behind this effort and how to migrate from lab to MUI X."
-  },
-  {
-    "id": 61,
-    "title": "📣 <b>Documentation per product is live!</b>",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"docs-restructure-2022/\" href=\"/blog/docs-restructure-2022/\">Check out</a> all the changes and improvements."
   }
 ]
