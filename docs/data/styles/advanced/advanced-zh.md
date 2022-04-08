@@ -1,6 +1,6 @@
-# Advanced (LEGACY)
+# Advanced 进阶
 
-<p class="description">本节包含了 @mui/core/styles 的一些更多的进阶用法。</p>
+<p class="description">本节包含了 @material-ui/core/styles 的一些更多的进阶用法。</p>
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
 
@@ -10,10 +10,10 @@
 
 若您想将主题传递到 React 组件树，请将添加 `ThemeProvider` 包装到应用程序的顶层。 然后，您可以在样式函数中访问主题对象。
 
-> This example creates a theme object for custom-built components. If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom MUI theme.
+> 此示例为自定义组件创建了一个主题对象（theme object）。 If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. 请前往 [theming 部分](/material-ui/customization/theming/) 学习如何构建自己的 Material-UI 主题。 Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom MUI theme.
 
 ```jsx
-import { ThemeProvider } from '@mui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import DeepChild from './my_components/DeepChild';
 
 const theme = {
@@ -40,7 +40,7 @@ function Theming() {
 在函数组件（function components）中的使用：
 
 ```jsx
-import { useTheme } from '@mui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -55,7 +55,7 @@ function DeepChild() {
 在类（class）或函数（function）组件中的使用：
 
 ```jsx
-import { withTheme } from '@mui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -84,7 +84,7 @@ const DeepChild = withTheme(DeepChildRaw);
 内部主题将 **覆盖** 外部主题。 你可以提供一个函数来扩展外层主题：
 
 ```jsx
-<ThemeProvider theme={…} <ThemeProvider theme={…} >
+<ThemeProvider theme={…} <ThemeProvider theme={…} <ThemeProvider theme={…} >
   <Child1 />
   <ThemeProvider theme={outerTheme => ({ darkMode: true, ...outerTheme })}>
     <Child2 />
@@ -167,7 +167,7 @@ function Parent() {
 
 JSS 使用插件来扩展其核心，您可以挑选所需的功能，并且只需承担您正在使用的内容性能的开销。
 
-Not all the plugins are available in MUI by default. 以下（一个 [jss-preset-default 的子集](https://cssinjs.org/jss-preset-default/)） 被包含在内： The following (which is a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
+Not all the plugins are available in MUI by default. 以下（一个 [jss-preset-default 的子集](https://cssinjs.org/jss-preset-default/)） 被包含在内： The following (which is a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included: The following (which is a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -181,7 +181,7 @@ Not all the plugins are available in MUI by default. 以下（一个 [jss-preset
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -218,7 +218,7 @@ const useStyles = makeStyles({
 
 ## CSS 注入顺序
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> 了解浏览器如何计算 CSS 优先级是**非常重要的**，因为它是您在覆盖样式时需要了解的重点之一。 我们推荐您阅读 MDN 上的这段内容：如何计算优先级？
 
 默认情况下，注入的 style 标签会被插入到页面`<head>`元素的最后。 它们的优先级高于您页面上的任何其他样式标签，如 CSS 模块、styled components。
 
@@ -227,15 +227,15 @@ const useStyles = makeStyles({
 `StylesProvider` 组件有一个 `injectFirst` 属性，用于将样式标签**首先**从页头（优先级较低）注入：
 
 ```jsx
-import { StylesProvider } from '@mui/styles';
+import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>
-  {/* 你的组件树。
+ <StylesProvider injectFirst>
+>   {/* 你的组件树。
       Styled components can override MUI's styles. */}
 </StylesProvider>;
 ```
 
-### `makeStyles` / `withStyles` / `styled`
+### 使用 `createStyles` 来杜绝类型扩展
 
 使用 `makeStyles` / `withStyles` / `styled` 的注入顺序于调用顺序**相同**。 例如，在这种情况下，字体最终是红色：
 
@@ -268,15 +268,44 @@ export default function MyComponent() {
 }
 ```
 
-Hook 调用顺序和类名顺序**不影响**注入属性权重 。
+当满足以下条件时，类名是 **确定的**：
 
 ### insertionPoint
-
+### insertionPoint
 JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) 来控制这种情况。 By adding an `insertionPoint` within the HTML you can [control the order](https://cssinjs.org/jss-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
-
 #### HTML 注释
-
 最简单的方法是在 `<head>` 中添加一个 HTML 注释，来决定 JSS 注入样式的位置：
+
+```html
+  />
+</head>
+```
+
+```jsx
+insertionPoint: 'jss-insertion-point',
+});
+
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
+  import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+
+const jss = create({
+  ...jssPreset(),
+  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。</p>
+
+<h4 spaces-before="0">HTML 注释</h4>
+
+<p spaces-before="0">在 TypeScript 中使用 <code>withStyles</code> 可能有点棘手，但有一些实用程序可以帮助提高使用感受。</p>
+
+<pre><code class="html"><head>
+  <!-- jss-insertion-point -->
+  <link href="..." />
+</head> />
+</head>
+```
+ 可能有点棘手，但有一些实用程序可以帮助提高使用感受。</p>
 
 ```html
 <head>
@@ -309,7 +338,8 @@ export default function App() {
 
 #### 其他 HTML 元素
 
-在构建生产环境时，[Create React App](https://github.com/facebook/create-react-app) 会移除 HTML 注释。 为了解决这个问题，您可以提供一个 DOM 元素（而不是一条注释）作为 JSS 插入点 ，譬如一个 `<noscript>` 元素。
+在构建生产环境时，[Create React App](https://github.com/facebook/create-react-app) 会移除 HTML 注释。
+为了解决这个问题，您可以提供一个 DOM 元素（而不是一条注释）作为 JSS 插入点 ，譬如一个 <noscript> 元素。
 
 ```jsx
 <head>
@@ -326,26 +356,26 @@ import { StylesProvider, jssPreset } from '@mui/styles';
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  insertionPoint: document.getElementById('jss-insertion-point'),
+  insertionPoint: 'jss-insertion-point',
 });
 
 export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-  import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
-
-const jss = create({
-  ...jssPreset(),
-  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。
 ```
+#### 其他 HTML 元素
+在构建生产环境时，[Create React App](https://github.com/facebook/create-react-app) 会移除 HTML 注释。
+</code></pre>
 
 #### JS createComment
 
-codesandbox.io 阻止访问 `<head>` 元素。 要解决这个问题，您可以使用 JavaScript 中的 `document.createComment()` API。
+codesandbox.io 阻止访问 <head> 元素。
+要解决这个问题，您可以使用 JavaScript 中的 document.createComment() API。
 
 ```jsx
-import { create } from 'jss';
+</p>
+
+<pre><code class="jsx">import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@mui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
@@ -354,6 +384,21 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: 'jss-insertion-point',
+});
+
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
+  import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
+
+const jss = create({
+  ...jssPreset(),
+  // 我们定义了一个自定义插入点，JSS在DOM中注入样式时会查找该插入点。
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -376,34 +421,34 @@ const jss = create({
 This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@mui/styles';
+const DecoratedSFC = withStyles(styles)(
+  ({ text, type, color, classes }: Props) => (
+     <Typography variant={type} color={color} classes={classes}>
+>       {text}
+>     </Typography>
+  ),
+);
 
-function render() {
-  const sheets = new ServerStyleSheets();
-
-  const html = ReactDOMServer.renderToString(sheets.collect(<App />));
-  const css = sheets.toString();
-
-  return `
-<!DOCTYPE html>
-<html>
-  <head>
-    <style id="jss-server-side">${css}</style>
-  </head>
-  <body>
-    <div id="root">${html}</div>
-  </body>
-</html>
-  `;
-}
+const DecoratedClass = withStyles(styles)(
+  class extends React.Component<Props> {
+    render() {
+      const { text, type, color, classes } = this.props;
+      return (
+         <Typography variant={type} color={color} classes={classes}>
+>           {text}
+>         </Typography>
+      );
+    }
+  },
+);
 ```
 
-You can [follow the server side guide](/material-ui/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/system/styles/api/#serverstylesheets).
+You can [follow the server side guide](/material-ui/guides/server-rendering/) for a more detailed example, or read the [ServerStyleSheets API documentation](/system/styles/api/#serverstylesheets).
 
 ### Gatsby
 
-这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@mui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
+这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 @material-ui/style 的服务器端渲染。
+请参考插件页面的设置和使用说明。
 
 <!-- #default-branch-switch -->
 
@@ -411,19 +456,20 @@ Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/m
 
 ### Next.js
 
-您需要有一个自定义的 `pages/_document.js`，然后复制 [此逻辑](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) 以注入服务器侧渲染的样式到 `<head>` 元素中。
+您可以[根据这篇服务端渲染指南](/material-ui/guides/server-rendering/)来获取更多详细的例子，或者您也可以阅读 [ServerStyleSheets 的 API 文档](/system/styles/api/#serverstylesheets)。
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
+<!-- #default-branch-switch -->&#062;
+  Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## 类名（Class names）
 
-The class names are generated by [the class name generator](/system/styles/api/#creategenerateclassname-options-class-name-generator).
+类名（class names）由 [类名生成器](/system/styles/api/#creategenerateclassname-options-class-name-generator) 生成。
 
 ### 默认值
 
-默认情况下，`@mui/core/styles` 生成的类名 **不是固定值**； 所以你不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
+默认情况下，@material-ui/core/styles 生成的类名 **不是固定值**； 所以你不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
 
 ```js
 const useStyles = makeStyles({
@@ -433,11 +479,12 @@ const useStyles = makeStyles({
 });
 ```
 
-上述例子将生成一个类似于 `makeStyles-root-123` 这样的类名。
+上述例子将生成一个类似于 makeStyles-root-123 这样的类名。
 
-您必须使用组件的 `classes` 属性来覆盖样式。 类名的不确定性使样式隔离成为可能。
+您必须使用组件的 classes 属性来覆盖样式。
+类名的不确定性使样式隔离成为可能。
 
-- 在**开发环境中**，类名为：`.makeStyles-root-123`，它遵循以下逻辑：
+- 在**开发环境中**，类名为：.makeStyles-root-123，它遵循以下逻辑：
 
 ```js
 const sheetName = 'makeStyles';
@@ -447,7 +494,7 @@ const identifier = 123;
 const className = `${sheetName}-${ruleName}-${identifier}`;
 ```
 
-- 在**生产环境中**，类名为：`.jss123`，它遵循以下逻辑：
+- 在**生产环境中**，类名为：.jss123，它遵循以下逻辑：
 
 ```js
 const productionPrefix = 'jss';
@@ -459,14 +506,15 @@ const className = `${productionPrefix}-${identifier}`;
 当满足以下条件时，类名是 **确定的**：
 
 - 仅使用一个主题提供程序（**无主题嵌套**）。
-- 样式表的名称以 `Mui` 开头（包含所有 Material-UI 组件）。
-- The `disableGlobal` option of the [class name generator](/system/styles/api/#creategenerateclassname-options-class-name-generator) is `false` (the default).
+- 样式表的名称以 Mui 开头（包含所有 Material-UI 组件）。
+- [类名生成器](/system/styles/api/#creategenerateclassname-options-class-name-generator)的 disableGlobal 选项为 false（默认值）。
 
 ## 全局 CSS
 
-### `jss-plugin-global`
+### jss-plugin-global
 
-[`jss-plugin-global`](#jss-plugins) 插件安装在默认的预设中。 您可以使用它来定义全局类名称。
+[jss-plugin-global](#jss-plugins) 插件安装在默认的预设中。
+您可以使用它来定义全局类名称。
 
 {{"demo": "GlobalCss.js"}}
 
@@ -478,13 +526,14 @@ const className = `${productionPrefix}-${identifier}`;
 
 ## CSS 前缀（prefixes）
 
-JSS 使用特征探测来应用正确的前缀。 如果您看不到最新版本 Chrome 中显示一个特定前缀，[请不要感到惊讶](https://github.com/mui/material-ui/issues/9293)。 您的浏览器可能不需要它。
+JSS 使用特征探测来应用正确的前缀。
+如果您看不到最新版本 Chrome 中显示一个特定前缀，[请不要感到惊讶](https://github.com/mui/material-ui/issues/9293)。 您的浏览器可能不需要它。
 
 ## TypeScript usage
 
-在 TypeScript 中使用 `withStyles` 可能有点棘手，但有一些实用程序可以帮助提高使用感受。
+将 withStyles(styles) 作为函数来如期使用：
 
-### 使用 `createStyles` 来杜绝类型扩展
+### 使用 WithStyles 来扩充你的属性
 
 A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/literal-type-widening-in-typescript), which causes this example not to work as expected:
 
@@ -502,7 +551,7 @@ withStyles（styles）;
 //           'string' 类型不能赋予给这些类型：'"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'。
 ```
 
-然而，这是不是很 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ，因为它需要你在两个不同的地方保持类名（`'root'`， `'paper'`， `'button'`，...）。 我们提供了一个类型操作符 `WithStyles` 来帮助解决这个问题，因此您可以直接写入：:
+然而，这是不是很 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ，因为它需要你在两个不同的地方保持类名（'root'， 'paper'， 'button'，...）。 我们提供了一个类型操作符 WithStyles 来帮助解决这个问题，因此您可以直接写入：:
 
 ```ts
 withStyles({
@@ -529,40 +578,40 @@ withStyles(({ palette, spacing }) => ({
 
 这是因为 TypeScript [扩展了函数表达式](https://github.com/Microsoft/TypeScript/issues/241)的返回类型。
 
-因此，我们建议使用我们的 `createStyles` 帮助函数来构造样式规则对象：
+因此，我们建议使用我们的 createStyles 帮助函数来构造样式规则对象：
 
 ```ts
-const useStyles = makeStyles(
-  {
+const styles = (theme: Theme) =>
+  createStyles({
     root: {
-      /* … */
+      /* ... */
     },
-    label: {
-      /* … */
+    paper: {
+      /* ... */
     },
-    outlined: {
-      /* … */
-      '&$disabled': {
-        /* … */
-      },
+    button: {
+      /* ... */
     },
-    outlinedPrimary: {
-      /* … */
-      '&:hover': {
-        /* … */
-      },
-    },
-    disabled: {},
-  },
-  { name: 'MuiButton' },
-);
+  });
+
+interface Props {
+  // 未被注入样式的属性
+  foo: number;
+  bar: boolean;
+  // 已被注入样式的属性
+  classes: {
+    root: string;
+    paper: string;
+    button: string;
+  };
+}
 ```
 
-`createStyles` 只是身份函数；它不会在运行时“做任何事情”，只是在编译时指导类型推断。
+createStyles 只是身份函数；它不会在运行时“做任何事情”，只是在编译时指导类型推断。
 
 ### Media queries（媒体查询）
 
-`withStyles` 允许样式对象具有顶级媒体查询的权限，如下所示：
+withStyles 允许样式对象具有顶级媒体查询的权限，如下所示：
 
 ```ts
 const styles = createStyles({
@@ -606,38 +655,38 @@ const ambiguousStyles = createStyles({
 });
 ```
 
-### 使用 `WithStyles` 来扩充你的属性
+### 由于用 withStyles(styles) 装饰的组件被注入了一个特殊的 classes 属性，您需要相应地定义其属性：
 
-由于用 `withStyles(styles)` 装饰的组件被注入了一个特殊的 `classes` 属性，您需要相应地定义其属性：
+由于用 withStyles(styles) 装饰的组件被注入了一个特殊的 classes 属性，您需要相应地定义其属性：
 
 ```ts
-const styles = (theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles(
+  {
     root: {
-      /* ... */
+      /* … */
     },
-    paper: {
-      /* ... */
+    label: {
+      /* … */
     },
-    button: {
-      /* ... */
+    outlined: {
+      /* … */
+      '&$disabled': {
+        /* … */
+      },
     },
-  });
-
-interface Props {
-  // 未被注入样式的属性
-  foo: number;
-  bar: boolean;
-  // 已被注入样式的属性
-  classes: {
-    root: string;
-    paper: string;
-    button: string;
-  };
-}
+    outlinedPrimary: {
+      /* … */
+      '&:hover': {
+        /* … */
+      },
+    },
+    disabled: {},
+  },
+  { name: 'MuiButton' },
+);
 ```
 
-However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
+However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names ('root', 'paper', 'button', ...) in two different places. We provide a type operator WithStyles to help with this, so that you can just write: We provide a type operator WithStyles to help with this, so that you can just write:
 
 ```ts
 这是对 <code>@mui/core/Button</code> 组件样式表的简化。
@@ -668,4 +717,4 @@ const DecoratedClass = withStyles(styles)(
 );
 ```
 
-将 `withStyles(styles)` 作为函数来如期使用：
+To allow these styles to pass TypeScript however, the definitions have to be unambiguous concerning the names for CSS classes and actual CSS property names. Due to this, class names that are equal to CSS properties should be avoided. Due to this, class names that are equal to CSS properties should be avoided.
