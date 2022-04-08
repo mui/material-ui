@@ -4,7 +4,7 @@ title: Componente React Modal
 components: Modal
 githubLabel: 'component: modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
-unstyled: /base/react-modal/
+unstyled: import ModalUnstyled from '@mui/base/ModalUnstyled';
 ---
 
 # Modal
@@ -23,7 +23,7 @@ O componente renderiza o conteúdo de seu `children` sobre um componente backdro
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
-If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/react-dialog/) component rather than directly using Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
+Se você está criando um diálogo modal, você provavelmente quer usar o componente [Dialog](/material-ui/react-dialog/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer](/material-ui/react-drawer/)
@@ -42,16 +42,16 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "NestedModal.js"}}
 
-## Transitions
+## Transições
 
-The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
+O estado de aberto/fechado do modal pode ser animado com um componente de transição. Este componente deve respeitar as seguintes condições:
 
-- Be a direct child descendent of the modal.
-- Have an `in` prop. This corresponds to the open/close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
+- Tenha uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
+- Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
+- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem que o modal desmonte o conteúdo filho quando fechado e seja totalmente transitado.
 
-Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+O modal possui suporte interno para [react-transition-group](https://github.com/reactjs/react-transition-group).
 
 {{"demo": "TransitionsModal.js"}}
 
@@ -61,7 +61,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 ## Performance
 
-The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+O conteúdo do modal é desmontado quando fechado. Se você precisa disponibilizar o conteúdo para mecanismos de busca ou renderizar árvores de componentes grandes dentro do seu modal enquanto otimiza interação responsiva, pode ser uma boa ideia mudar este comportamento padrão ativando a propriedade `keepMounted`:
 
 ```jsx
 <Modal keepMounted />
@@ -71,36 +71,36 @@ The content of modal is unmounted when closed. If you need to make the content a
 
 As with any performance optimization, this is not a silver bullet. Be sure to identify bottlenecks first, and then try out these optimization strategies.
 
-## Server-side modal
+## Modal, ModalUnstyled
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://pt-br.reactjs.org/docs/portals.html) no servidor. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
 
 {{"demo": "ServerModal.js"}}
 
-## Limitations
+## Modal do lado do servidor
 
 ### Captura do foco
 
-The modal moves the focus back to the body of the component if the focus tries to escape it.
+O modal move o foco de volta para o corpo do componente se o foco tentar escapar dele.
 
-This is done for accessibility purposes. However, it might create issues. In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+This is done for accessibility purposes. However, it might create issues. No caso de os usuários precisarem interagir com outra parte da página, por exemplo, com uma janela de chatbot, você pode desabilitar o comportamento:
 
 ```jsx
 <Modal disableEnforceFocus />
 ```
 
-## Accessibility
+## Limitações
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+- Certifique-se de adicionar `aria-labelledby="id..."`, referenciando o título modal, ao `Modal`. Adicionalmente, você pode dar uma descrição do seu modal com a propriedade `aria-describedby = "id..."` no `Modal`.
 
   ```jsx
   <Modal aria-labelledby="modal-title" aria-describedby="modal-description">
-    <h2 id="modal-title">My Title</h2>
-    <p id="modal-description">My Description</p>
+    <h2 id="modal-title">Meu Título</h2>
+    <p id="modal-description">Minha Descrição</p>
   </Modal>
   ```
 
-- The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. This might create [conflicting behaviors](#focus-trap).
+- O [WAI-ARIA authoring practices ](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
+- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa. Isso pode criar [comportamentos conflitantes](#focus-trap).
