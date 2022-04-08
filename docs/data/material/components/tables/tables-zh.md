@@ -29,7 +29,7 @@ materialDesign: https://material.io/components/data-tables
 
 `Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
+The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
 
 {{"demo": "DataTable.js", "bg": "inline"}}
 
@@ -49,7 +49,7 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ## 自定义表格
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTables.js", "bg": true}}
 
@@ -96,7 +96,7 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 ## 可折叠的表格
 
-以可扩展行的表格为例，揭示更多信息。 它利用了 [`Collapse`](/api/collapse/) 组件。
+以可扩展行的表格为例，揭示更多信息。 It utilizes the [`Collapse`](/material-ui/api/collapse/) component.
 
 {{"demo": "CollapsibleTable.js", "bg": true}}
 
@@ -124,4 +124,4 @@ A caption functions like a heading for a table. Most screen readers announce the
 
 ## Unstyled
 
-If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component. See the demos in the [unstyled table pagination docs](/base/react-table-pagination)
+If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component. See the demos in the [unstyled table pagination docs](/base/react-table-pagination/)
