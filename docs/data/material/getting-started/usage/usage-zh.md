@@ -2,9 +2,9 @@
 
 <p class="description">立即开始使用 React 和 Material-UI。</p>
 
-MUI components work in isolation. MUI components work in isolation. **它们是自我支持的**，只需注入所需样式即可运作。 它们并不依赖任何全局的样式表，如 [normalize.css](https://github.com/necolas/normalize.css/)。
+MUI components work in isolation. MUI components work in isolation. **它们是自我支持的**，只需注入所需样式即可运作。 MUI components work in isolation. **它们是自我支持的**，只需注入所需样式即可运作。 它们并不依赖任何全局的样式表，如 [normalize.css](https://github.com/necolas/normalize.css/)。
 
-您可以使用文档中演示的任意一个组件。 Please refer to each component's [demo page](/material-ui/react-button/) to see how they should be imported.
+您可以使用文档中演示的任意一个组件。 请参阅每个组件的 [示例页面](/material-ui/react-button/)，这样能够知晓如何导入它们。
 
 ## 快速入门
 
@@ -40,7 +40,7 @@ Material-UI 是先在移动设备上开发的，我们采用了首先为移动�
 
 ### CssBaseline
 
-MUI provides an optional [CssBaseline](/material-ui/react-css-baseline/) component. 它修复了浏览器和设备之间的一些不一致性，同时为常见的 HTML 元素提供了一点更多不同方式的的重置。
+Material-UI 提供了一个可选的 [CssBaseline](/material-ui/react-css-baseline/) 组件。 它修复了浏览器和设备之间的一些不一致性，同时为常见的 HTML 元素提供了一点更多不同方式的的重置。
 
 ## 不同版本的文档
 
@@ -50,6 +50,6 @@ MUI provides an optional [CssBaseline](/material-ui/react-css-baseline/) compone
 
 现在您已经了解了基本设置，现在是时候了解更多关于：
 
-- How to provide [the Material Design font and typography](/material-ui/react-typography/).
-- How to take advantage of the [theming solution](/material-ui/customization/theming/).
-- How to [override](/material-ui/customization/how-to-customize/) the look and feel of the components.
+- 如何提供 [Material Design 字体和文字铸排](/material-ui/react-typography/)。
+- 如何使用[主题解决方案](/material-ui/customization/theming/) 。
+- 如何 [覆盖](/material-ui/customization/how-to-customize/) 组件的呈现和观感。
