@@ -73,13 +73,13 @@ const styles = {
 
 应根据 ** 默认值 ** 选择布尔属性的名称。 此选项允许简写的表示：
 
-- the shorthand notation. the shorthand notation. 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。
+- the shorthand notation. the shorthand notation. the shorthand notation. 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。
 
   ```jsx
   -(<Input enabled={false} />) + <Input disabled />;
   ```
 
-- developers to know what the default value is from the name of the boolean prop. It's always the opposite. It's always the opposite.
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite. It's always the opposite. It's always the opposite.
 
 ### 受控的组件
 
