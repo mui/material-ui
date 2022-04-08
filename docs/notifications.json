@@ -11,12 +11,12 @@
   },
   {
     "id": 62,
-    "title": "📣 <b>Date and time pickers have been moved to MUI X</b>",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/lab-date-pickers-to-mui-x/\">Go to the post to</a> find out about the reasons behind this effort and how to migrate from lab to MUI X."
+    "title": "🗓 <b>MUI X expands its product line with advanced date and time picker components</b>",
+    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/lab-date-pickers-to-mui-x/\">Check out the blog post</a> to learn how to migrate to the new package and start building with our powerful date and time pickers, now part of MUI X."
   },
   {
     "id": 63,
-    "title": "📣 <b>Documentation per product is live!</b>",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"docs-restructure-2022/\" href=\"/blog/docs-restructure-2022/\">Check out</a> all the changes and improvements."
+    "title": "📄 <b>Our docs just got a major upgrade!</b>",
+    "text": "Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"docs-restructure-2022/\" href=\"/blog/docs-restructure-2022/\">Check out the blog post</a> for more details."
   }
 ]
