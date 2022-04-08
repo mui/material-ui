@@ -37,7 +37,7 @@ Para fontes auto-hospedadas, baixe os arquivos de fonte em formatos `ttf`, `woff
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
 ```
 
-Em seguida, você precisa alterar o tema para usar essa nova fonte. In order to globally define Raleway as a font face, the [`CssBaseline`](/material-ui/react-css-baseline/) component can be used (or any other CSS solution of your choice).
+Em seguida, você precisa alterar o tema para usar essa nova fonte. Para definir globalmente Raleway como uma fonte, o componente [`CssBaseline`](/material-ui/react-css-baseline/) pode ser usado (ou qualquer outra solução CSS de sua escolha).
 
 ```jsx
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -108,7 +108,7 @@ O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
 ### Tamanhos de fonte responsivo
 
-As propriedades de variações de tipografia são mapeadas diretamente para o CSS gerado. You can use [media queries](/material-ui/customization/breakpoints/#api) inside them:
+As propriedades de variações de tipografia são mapeadas diretamente para o CSS gerado. Você pode usar [consultas de mídia](/material-ui/customization/breakpoints/#api) dentro delas:
 
 ```js
 const theme = createTheme();
@@ -126,11 +126,11 @@ theme.typography.h3 = {
 
 {{"demo": "CustomResponsiveFontSizes.js"}}
 
-To automate this setup, you can use the [`responsiveFontSizes()`](/material-ui/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+Para automatizar estas configurações, você pode usar a função auxiliar [`responsiveFontSizes()`](/material-ui/customization/theming/#responsivefontsizes-theme-options-theme), para fazer a tipografia responsiva em relação aos tamanhos da fonte no tema.
 
 {{"demo": "ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-Você pode ver isso em ação no exemplo abaixo. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/material-ui/customization/breakpoints/):
+Você pode ver isso em ação no exemplo abaixo. Ajuste o tamanho da janela do navegador e observe como o tamanho da fonte muda à medida que a largura cruza os diferentes [pontos de quebra](/material-ui/customization/breakpoints/):
 
 ```js
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -174,7 +174,7 @@ _Você precisa aplicar o CSS acima no elemento html desta página para ver a dem
 
 ## Variantes
 
-The typography object comes with [13 variants](/material-ui/react-typography/#component) by default:
+O objeto de tipografia vem com [13 variantes](/material-ui/react-typography/#component) por padrão:
 
 - h1
 - h2
@@ -270,4 +270,4 @@ declare module '@material-ui/core/Typography' {
 
 ## Valores padrão
 
-You can explore the default values of the typography using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+Você pode explorar os valores padrão da tipografia usando [o explorador de tema](/material-ui/customization/default-theme/?expand-path=$.typography) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.typography`).
