@@ -19,7 +19,7 @@ githubLabel: 'hook: useMediaQuery'
 
 ## 简单的媒体查询
 
-你应该将媒体查询提供给 hook 作为第一个参数。 The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference).
+你应该将媒体查询提供给 hook 作为第一个参数。 媒体查询的字符串可以是任何有效的 CSS 媒体查询，例如 [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference)。
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
@@ -27,11 +27,11 @@ githubLabel: 'hook: useMediaQuery'
 
 ## 使用 Material-UI 的断点辅助功能
 
-You can use MUI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
+按照如下所示的例子，你可以这样使用 Material-UI 的 [断点辅助功能](/material-ui/customization/breakpoints/) ：
 
 ```jsx
-import { useTheme } from '@mui/core/styles';
-import useMediaQuery from '@mui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -46,7 +46,7 @@ function MyComponent() {
 或者你也可以使用一个回调函数，其第一个参数是 theme：
 
 ```jsx
-import useMediaQuery from '@mui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -136,7 +136,7 @@ const theme = createTheme({
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@mui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -208,6 +208,29 @@ function handleRender(req, res) {
 
   // …
 }
+      width: deviceType === 'mobile' ? '0px' : '1024px',
+    }),
+  });
+
+  const theme = createTheme({
+    components: {
+      // Change the default options of useMediaQuery
+      MuiUseMediaQuery: {
+        defaultProps: {
+          ssrMatchMedia,
+        },
+      },
+    },
+  });
+
+  const html = ReactDOMServer.renderToString(
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>,
+  );
+
+  // …
+}
 ```
 
 {{"demo": "ServerSide.js", "defaultCodeOpen": false}}
@@ -231,10 +254,10 @@ function handleRender(req, res) {
 
 - `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. 默认值为 `false`。 默认值为 `false`。
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. 用其您可以处理一个 iframe 内容窗口。 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (_bool_ [optional])：默认为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 A first time with `false`, the value of the server, and a second time with the resolved value. 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
+- `options.noSsr` (_bool_ [optional])：默认为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 A first time with `false`, the value of the server, and a second time with the resolved value. 这个双向渲染周期带有一个缺点。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
-Note: You can change the default options using the [`default props`](/material-ui/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
+注意：你可以使用主题的 [`默认属性`](/material-ui/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
 
 #### 返回结果
 
@@ -244,7 +267,7 @@ Note: You can change the default options using the [`default props`](/material-u
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@mui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('(min-width:600px)');
