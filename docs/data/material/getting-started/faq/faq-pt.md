@@ -356,6 +356,8 @@ function handleRender(req, res) {
   //…
 
   // Render the component to a string.
+
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
 ```
 
@@ -380,6 +382,8 @@ The class names value relies on the concept of [class name generator](/system/st
   function handleRender(req, res) {
   + // Create a new class name generator.
   -const generateClassName = createGenerateClassName();
+
+    // Renderize o componente para uma string.
 
     // Renderize o componente para uma string.
     const html = ReactDOMServer.renderToString(
