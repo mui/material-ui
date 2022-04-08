@@ -23,7 +23,7 @@ const theme = createTheme({
 
 {{"demo": "DefaultProps.js"}}
 
-To override lab component styles with TypeScript, check [this page](/components/about-the-lab/#typescript).
+To override lab component styles with TypeScript, check [this page](/material-ui/about-the-lab/#typescript).
 
 ## Global style overrides
 
@@ -180,7 +180,7 @@ declare module '@mui/material/Button' {
 
 ## Theme variables
 
-Another way to override the look of all component instances is to adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+Another way to override the look of all component instances is to adjust the [theme configuration variables](/material-ui/customization/theming/#theme-configuration-variables).
 
 ```js
 const theme = createTheme({

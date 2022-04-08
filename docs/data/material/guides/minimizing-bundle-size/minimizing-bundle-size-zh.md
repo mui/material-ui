@@ -194,7 +194,7 @@ module.exports = override(useBabelRc());
 
 ## 可用的捆绑包
 
-考虑到一些 [支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
+考虑到一些 [支持的平台](/material-ui/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
 
 ⚠️ 为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。 Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 

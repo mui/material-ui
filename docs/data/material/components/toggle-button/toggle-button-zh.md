@@ -72,7 +72,7 @@ const handleDevices = (event, newDevices) => {
 
 ## 自定义切换按钮
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedDividers.js", "bg": true}}
 

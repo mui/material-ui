@@ -24,7 +24,7 @@ If, however, you:
 - need to customize Material Design with your brand colors,
 - or need to implement a design system based on Material Design,
 
-then you may be better off using the `@mui/material` package and [customizing it](/customization/how-to-customize/).
+then you may be better off using the `@mui/material` package and [customizing it](/material-ui/customization/how-to-customize/).
 
 ## Components vs. hooks
 
@@ -87,7 +87,7 @@ Each component's API documentation lists all classes that the component uses. Ea
 
 If you don't want to rely on default components, you can override them with your own. This makes it possible to provide a styled component. Each unstyled component has a specific set of "slots" - that is subcomponents that you can override. This makes it possible to provide a styled component. Each unstyled component has a specific set of "slots" - that is subcomponents that you can override.
 
-Let's take a [SwitchUnstyled](/api/switch-unstyled/) as an example. It has three slots: `Root`, `Thumb`, and `Input`. Let's take a [SwitchUnstyled](/api/switch-unstyled/) as an example. It has three slots: `Root`, `Thumb`, and `Input`. The demo below shows how to create a styled component (using [System](/system/styled/) in this case, but it could well be any other solution)
+Let's take a [SwitchUnstyled](/base/api/switch-unstyled/) as an example. It has three slots: `Root`, `Thumb`, and `Input`. Let's take a [SwitchUnstyled](/base/api/switch-unstyled/) as an example. It has three slots: `Root`, `Thumb`, and `Input`. The demo below shows how to create a styled component (using [System](/system/styled/) in this case, but it could well be any other solution)
 
 {{"demo": "StylingSlots.js"}}
 

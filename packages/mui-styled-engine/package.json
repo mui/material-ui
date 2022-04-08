@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "5.5.2",
+  "version": "5.6.0",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -45,7 +45,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
-    "react": "^17.0.0"
+    "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@emotion/react": {

@@ -55,6 +55,7 @@ const IconButtonRoot = styled('button', {
     ...(ownerState.variant === 'outlined' && {
       padding: 'calc(var(--IconButton-padding) - var(--variant-outlinedBorderWidth))', // account for the border width
     }),
+    fontFamily: theme.vars.fontFamily.body,
     minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content
     minHeight: 'var(--IconButton-size)', // use min-height instead of height to make the button resilient to its content
     borderRadius: theme.vars.radius.sm,

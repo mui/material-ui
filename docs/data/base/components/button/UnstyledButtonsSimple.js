@@ -9,7 +9,7 @@ const blue = {
   700: '#0059B2',
 };
 
-const CustomButtonRoot = styled('button')`
+const CustomButton = styled(ButtonUnstyled)`
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
@@ -39,10 +39,6 @@ const CustomButtonRoot = styled('button')`
     cursor: not-allowed;
   }
 `;
-
-function CustomButton(props) {
-  return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
-}
 
 export default function UnstyledButtonsSimple() {
   return (

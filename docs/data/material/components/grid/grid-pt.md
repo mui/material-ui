@@ -14,7 +14,7 @@ Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria 
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> O componente `Grid` não deve ser confundido com um data grid; ele está mais próximo de um layout grid. Para um cabeçalho do data grid para [o componente `DataGrid`](/components/data-grid/).
+> O componente `Grid` não deve ser confundido com um data grid; ele está mais próximo de um layout grid. Para um cabeçalho do data grid para [o componente `DataGrid`](/x/react-data-grid/).
 
 ## Como funciona
 
@@ -25,7 +25,7 @@ O sistema de grade é implementado com o componente `Grid`:
 - Larguras de itens são definidas em porcentagens, desse modo são sempre fluidas e dimensionadas de acordo os seus elementos pai.
 - Itens têm preenchimento para criar o espaçamento entre itens individuais.
 - Existem cinco pontos de quebra (breakpoints) na grade: xs, sm, md, lg e xl.
-- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/customization/breakpoints/#default-breakpoints).
+- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
 
 Se você é **novo ou não está familiarizado com o flexbox**, nós recomendamos você a ler este [guia do Flexbox CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
@@ -51,7 +51,7 @@ Aqui por exemplo `xs={12} sm={6}` define que o componente ocupará metade da lar
 
 ## Espaçamento
 
-To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
 
 {{"demo": "SpacingGrid.js", "bg": true}}
 
@@ -77,11 +77,11 @@ Valores responsivos são suportados por:
 - todas as outras propriedades do sistema [other props](#system-props)
 
 > ⚠️ Quando Usamos a prop de código responsivo `colunas`, cada item da manha precisa de seu correspondente ponto de ruptura. For instance, this is not working. The grid item misses the value for `md`:
-> 
+>
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
->    <Grid item xs={2} />> >{' '}
-> > </Grid>
+>   <Grid item xs={2} />> > >{' '}
+> </Grid>
 > ```
 
 ## Interativo

@@ -27,7 +27,7 @@
 Para um desenvolvimento ágil para dispositivos móveis, use classes de exibição responsivas para mostrar e ocultar elementos por dispositivo. Evite criar versões totalmente diferentes do mesmo site, em vez disso, oculte o elemento de forma responsiva para cada tamanho de tela.
 
 | Tamanho da tela | Classe                                                       |
-|:--------------- |:------------------------------------------------------------ |
+| :-------------- | :----------------------------------------------------------- |
 | Oculto em todas | `sx={{ display: 'none' }}`                                   |
 | Oculto em xs    | `sx={{ display: { xs: 'none', sm: 'block' } }}`              |
 | Oculto em sm    | `sx={{ display: { xs: 'block', sm: 'none', md: 'block' } }}` |
@@ -127,7 +127,7 @@ import { display } from '@material-ui/system';
 ```
 
 | Nome da importação | Propriedade    | Propriedade CSS | Chave do tema |
-|:------------------ |:-------------- |:--------------- |:------------- |
+| :----------------- | :------------- | :-------------- | :------------ |
 | `displayPrint`     | `displayPrint` | `display`       | none          |
 | `displayRaw`       | `display`      | `display`       | none          |
 | `overflow`         | `overflow`     | `overflow`      | none          |

@@ -14,19 +14,19 @@
 
 以下组件有一些能够达到较大密度的属性：
 
-- [Button](/api/button/)
-- [Fab](/api/fab/)
-- [FilledInput](/api/filled-input/)
-- [FormControl](/api/form-control/)
-- [FormHelperText](/api/form-helper-text/)
-- [IconButton](/api/icon-button/)
-- [InputBase](/api/input-base/)
-- [InputLabel](/api/input-label/)
-- [ListItem](/api/list-item/)
-- [OutlinedInput](/api/outlined-input/)
-- [Table](/api/table/)
-- [TextField](/api/text-field/)
-- [Toolbar](/api/toolbar/)
+- [Button](/material-ui/api/button/)
+- [Fab](/material-ui/api/fab/)
+- [FilledInput](/material-ui/api/filled-input/)
+- [FormControl](/material-ui/api/form-control/)
+- [FormHelperText](/material-ui/api/form-helper-text/)
+- [IconButton](/material-ui/api/icon-button/)
+- [InputBase](/material-ui/api/input-base/)
+- [InputLabel](/material-ui/api/input-label/)
+- [ListItem](/material-ui/api/list-item/)
+- [OutlinedInput](/material-ui/api/outlined-input/)
+- [Table](/material-ui/api/table/)
+- [TextField](/material-ui/api/text-field/)
+- [Toolbar](/material-ui/api/toolbar/)
 
 ## 探索主题的密度
 

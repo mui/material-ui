@@ -1,35 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 import useBadge from './useBadge';
 import { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { variant, anchorOrigin, invisible, classes } = ownerState;
+  const { invisible } = ownerState;
 
   const slots = {
     root: ['root'],
-    badge: [
-      'badge',
-      variant,
-      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
-      invisible && 'invisible',
-    ],
+    badge: ['badge', invisible && 'invisible'],
   };
 
-  return composeClasses(slots, getBadgeUtilityClass, classes);
+  return composeClasses(slots, getBadgeUtilityClass, undefined);
 };
 
 const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
-    classes: classesProp,
     badgeContent: badgeContentProp,
     component,
     children,
@@ -39,25 +28,19 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     invisible: invisibleProp,
     max: maxProp = 99,
     showZero = false,
-    variant: variantProp = 'standard',
     ...other
   } = props;
 
-  const { anchorOrigin, badgeContent, max, variant, displayValue, invisible } = useBadge({
+  const { badgeContent, max, displayValue, invisible } = useBadge({
     ...props,
-    anchorOrigin: anchorOriginProp,
     max: maxProp,
-    variant: variantProp,
   });
 
   const ownerState = {
     ...props,
-    anchorOrigin,
     badgeContent,
-    classes: classesProp,
     invisible,
     max,
-    variant,
     showZero,
   };
 
@@ -90,17 +73,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The anchor of the badge.
-   * @default {
-   *   vertical: 'top',
-   *   horizontal: 'right',
-   * }
-   */
-  anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['left', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
-  }),
-  /**
    * The content rendered within the badge.
    */
   badgeContent: PropTypes.node,
@@ -108,10 +80,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
    * The badge will be added relative to this node.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -153,11 +121,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   showZero: PropTypes.bool,
-  /**
-   * The variant to use.
-   * @default 'standard'
-   */
-  variant: PropTypes.string,
 };
 
 export default BadgeUnstyled;

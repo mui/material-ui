@@ -36,7 +36,7 @@ npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-c
 yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-请参阅[Styled Engine guide](/guides/styled-engine/)，了解更多关于如何配置`styled-components`作为样式引擎的信息。
+请参阅[Styled Engine guide](/material-ui/guides/styled-engine/)，了解更多关于如何配置`styled-components`作为样式引擎的信息。
 
 ## 为什么要使用系统？
 
@@ -186,12 +186,12 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 - 运行时会造成性能影响：
 
-  | 基准测试                          | 代码片段                        | 花费时间  |
-  |:----------------------------- |:--------------------------- | ----- |
-  | a. Render 1,000 primitives    | `<div className="…">` | 100ms |
-  | b. b. b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
-  | c. c. c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. Render 1,000 Box           | `<Box sx={…}>`        | 370ms |
+  | 基准测试                             | 代码片段              | 花费时间 |
+  | :----------------------------------- | :-------------------- | -------- |
+  | a. Render 1,000 primitives           | `<div className="…">` | 100ms    |
+  | b. b. b. b. b. 渲染 1,000 个组件     | `<Div>`               | 120ms    |
+  | c. c. c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms    |
+  | d. Render 1,000 Box                  | `<Box sx={…}>`        | 370ms    |
 
 <!-- #default-branch-switch -->
 
@@ -336,7 +336,7 @@ export default function CustomBreakpoints() {
 }
 ```
 
-如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/guides/typescript/#customization-of-theme) 来让主题接收上述值。
+如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/material-ui/guides/typescript/#customization-of-theme) 来让主题接收上述值。
 
 ```ts
 declare module '@material-ui/core/styles/createBreakpoints' {
@@ -369,7 +369,7 @@ declare module '@material-ui/core/styles/createBreakpoints' {
 
 ### 2. 2. Box
 
-[`Box`](/components/box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
+[`Box`](/material-ui/react-box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
 
 ### 3. 3. 2. 自定义组件
 

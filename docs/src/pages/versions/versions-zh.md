@@ -51,7 +51,7 @@ Material-UI 遵循[语义化版本 2.0.0](https://semver.org/)。 Material-UI �
 
 ## 政策支持
 
-您可以查看 [所支持版本](/getting-started/support/#supported-versions) 的详细信息。
+您可以查看 [所支持版本](/material-ui/getting-started/support/#supported-versions) 的详细信息。
 
 ## 弃用的实践
 

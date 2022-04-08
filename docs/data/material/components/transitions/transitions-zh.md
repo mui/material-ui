@@ -58,7 +58,7 @@ The Slide component also accepts `container` prop, which is a reference to a DOM
 ## TransitionGroup 动画组
 
 - 为了更好地支持服务器渲染，Material-UI 为一些动画组件的子组件提供了一个 `style` 属性，（Fade, Grow, Zoom, Slide）。 为了让动画如期实现，必须将 `style` 属性应用到 DOM 上。
-- **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs) For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
+- **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs)
 - **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
 
 ```jsx
@@ -98,11 +98,11 @@ To animate a component when it is mounted or unmounted, you can use the [`Transi
 
 For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/). 你还可以访问一些组件的专用部分：
 
-- [Modal](/components/modal/#transitions)
-- [Dialog](/components/dialogs/#transitions)
-- [Popper](/components/popper/#transitions)
-- [Snackbar（消息条）](/components/snackbars/#transitions)
-- [Tooltip](/components/tooltips/#transitions)
+- [Modal](/material-ui/react-modal/#transitions)
+- [Dialog](/material-ui/react-dialog/#transitions)
+- [Popper](/material-ui/react-popper/#transitions)
+- [Snackbar（消息条）](/material-ui/react-snackbar/#transitions)
+- [Tooltip](/material-ui/react-tooltip/#transitions)
 
 ## Performance & SEO
 

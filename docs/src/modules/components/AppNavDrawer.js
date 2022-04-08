@@ -157,6 +157,9 @@ function ProductDrawerButton(props) {
             width: 18,
             height: 18,
           },
+          '& > span': {
+            ml: '4px',
+          },
         })}
       >
         {props.productName}
@@ -224,7 +227,7 @@ function ProductDrawerButton(props) {
         </li>
         <li role="none">
           <Link
-            href={ROUTES.dataGridSpace}
+            href={ROUTES.advancedComponents}
             sx={{
               p: 2,
               width: '100%',
@@ -513,35 +516,34 @@ function AppNavDrawer(props) {
             open={Boolean(anchorEl)}
             onClose={() => setAnchorEl(null)}
           >
-            {versions.map((item) => (
-              <MenuItem
-                key={item.text}
-                {...(item.current
-                  ? {
-                      selected: true,
-                      onClick: () => setAnchorEl(null),
-                    }
-                  : {
-                      component: 'a',
-                      href: item.href,
-                      onClick: onClose,
-                    })}
-              >
-                {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
-              </MenuItem>
-            ))}
-            {versions.length > 1 && [
-              <Divider key="divider" />,
-              <MenuItem
-                key="all-versions"
-                component="a"
-                href={`https://mui.com${languagePrefix}/versions/`}
-                onClick={onClose}
-              >
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-                {`View all versions`}
-              </MenuItem>,
-            ]}
+            {versions.map((item) => {
+              if (item.text === 'View all versions') {
+                return [
+                  <Divider key="divider" />,
+                  <MenuItem key="all-versions" component="a" href={item.href} onClick={onClose}>
+                    {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+                    {`View all versions`}
+                  </MenuItem>,
+                ];
+              }
+              return (
+                <MenuItem
+                  key={item.text}
+                  {...(item.current
+                    ? {
+                        selected: true,
+                        onClick: () => setAnchorEl(null),
+                      }
+                    : {
+                        component: 'a',
+                        href: item.href,
+                        onClick: onClose,
+                      })}
+                >
+                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
+                </MenuItem>
+              );
+            })}
           </Menu>
         </React.Fragment>
       );
@@ -556,8 +558,8 @@ function AppNavDrawer(props) {
                 component="a"
                 aria-label={t('goToHome')}
                 sx={{
-                  pr: 2,
-                  mr: 1,
+                  pr: '12px',
+                  mr: '4px',
                   borderRight: isProductScoped ? '1px solid' : '0px',
                   borderColor: (theme) =>
                     theme.palette.mode === 'dark'
@@ -573,6 +575,10 @@ function AppNavDrawer(props) {
                 [
                   { text: `v${process.env.LIB_VERSION}`, current: true },
                   { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
+                  {
+                    text: 'View all versions',
+                    href: `https://mui.com${languagePrefix}/versions/`,
+                  },
                 ],
                 { mr: 2 },
               )}
@@ -586,6 +592,10 @@ function AppNavDrawer(props) {
                     text: 'v4',
                     href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
                   },
+                  {
+                    text: 'View all versions',
+                    href: `https://mui.com${languagePrefix}/versions/`,
+                  },
                 ])}
               />
             )}
@@ -596,6 +606,10 @@ function AppNavDrawer(props) {
                 versionSelector={renderVersionSelector([
                   { text: `v${systemPkgJson.version}`, current: true },
                   { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
+                  {
+                    text: 'View all versions',
+                    href: `https://mui.com${languagePrefix}/versions/`,
+                  },
                 ])}
               />
             )}
@@ -608,15 +622,29 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
+            {router.asPath.startsWith('/x/advanced-components') && (
+              <ProductIdentifier name="Advanced components" metadata="MUI X" />
+            )}
             {(router.asPath.startsWith('/x/react-data-grid') ||
               router.asPath.startsWith('/x/api/data-grid')) && (
               <ProductIdentifier
                 name="Data Grid"
                 metadata="MUI X"
                 versionSelector={renderVersionSelector([
-                  // LIB_VERSION is set from the X repo
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
+                  // DATA_GRID_VERSION is set from the X repo
+                  { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
                   { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
+                ])}
+              />
+            )}
+            {(router.asPath.startsWith('/x/react-date-pickers') ||
+              router.asPath.startsWith('/x/api/date-pickers')) && (
+              <ProductIdentifier
+                name="Date pickers"
+                metadata="MUI X"
+                versionSelector={renderVersionSelector([
+                  // DATE_PICKERS_VERSION is set from the X repo
+                  { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
                 ])}
               />
             )}
