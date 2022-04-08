@@ -42,3 +42,22 @@ It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/
 You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "ColumnsGrid.js", "bg": true}}
+
+## Auto-layout
+
+The Auto-layout makes the _items_ equitably share the available space.
+That also means you can set the width of one _item_ and the others will automatically resize around it.
+
+{{"demo": "AutoGrid.js", "bg": true}}
+
+### Variable width content
+
+Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size
+a column based on the natural width of its content.
+
+{{"demo": "VariableWidthGrid.js", "bg": true}}
+
+## Nested
+
+{{"demo": "NestedGrid.js", "bg": true}}
+
