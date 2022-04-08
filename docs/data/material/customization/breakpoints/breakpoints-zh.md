@@ -4,7 +4,7 @@
 
 为了获得最佳的用户体验，在不同的断点下，Material Design 的接口需要适应它们的布局。 MUI 使用原始[规范](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)的**简化**实现。
 
-断点在各种组件内部使用以使它们具有响应性，但您也可以利用它们通过 [Grid](/components/grid/) 组件控制应用程序的布局。
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/material-ui/react-grid/) component.
 
 ## 默认的断点
 
@@ -57,7 +57,7 @@ const styles = (theme) => ({
 
 ### useMediaQuery 钩子（Hook）
 
-您可以在 [userMediaQuery](/components/use-media-query/) 页面上了解更多信息。
+You can learn more on the [useMediaQuery](/material-ui/react-use-media-query/) page.
 
 ## 自定义断点
 
@@ -65,7 +65,7 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values)：默认为 [以上值](#default-breakpoints)。 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
+- [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
 - `theme.breakpoints.unit`：默认为 `px`。 这个用于断点值的单位。
 - `theme.breakpoints.step`：默认为 5 (`0.05px`)。 这个增量除以 100 用于实现专用的断点。 例如，`{ step: 5 }` 意味着 `down(500)` 的结果为 `'(max-width: 499.95px)'`。
 
@@ -100,7 +100,7 @@ const theme = createTheme({
 });
 ```
 
-如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
+If you are using TypeScript, you would also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
@@ -262,4 +262,4 @@ const styles = (theme) => ({
 
 ## 默认值
 
-您可以使用[主题资源管理器（theme explorer）](/customization/default-theme/?expand-path=$.breakpoints)或通过打开此页面上的开发者工具控制台（dev tools console）来探索断点的一些默认值（`window.theme.breakpoints`）。
+You can explore the default values of the breakpoints using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
