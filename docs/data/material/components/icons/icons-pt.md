@@ -36,14 +36,6 @@ Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o c
 
 Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
 
-```sh
-// utilizando o npm
-npm install @material-ui/core
-
-// utilizando o yarn
-yarn add @material-ui/core
-```
-
 ### Uso
 
 Importe ícones usando uma destas duas opções:
@@ -91,7 +83,7 @@ tem o seguinte atributo assim que montado:
 
 ## SvgIcon
 
-Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/material-ui/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
+If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper. Este componente estende o elemento nativo `<svg>`:
 
 - Ele vem internamente com a acessibilidade.
 - Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material-UI que usam ícones. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
@@ -123,11 +115,11 @@ Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes esteja
 // webpack.config.js
 {
   test: /\.svg$/,
-  use: ['@svgr/webpack'],
+  use: ['@svgr/webpack', 'url-loader'],
 }
 
 // ---
-import StarIcon from './star.svg';
+import { ReactComponent as StarIcon } from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
@@ -138,18 +130,18 @@ Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a aborda
 // webpack.config.js
 {
   test: /\.svg$/,
-  use: ['@svgr/webpack', 'url-loader'],
+  use: ['@svgr/webpack'],
 }
 
 // ---
-import { ReactComponent as StarIcon } from './star.svg';
+import StarIcon from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
 ### createSvgIcon
 
-O site [materialdesignicons.com](https://materialdesignicons.com/) fornece mais de 2.000 ícones. Para o ícone desejado, copie o SVG `path` que eles fornecem, e use-o como elemento filho no componente `SvgIcon`, ou com `createSvgIcon()`.
+Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/material-ui/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -174,7 +166,7 @@ A propriedade `fullWidth` de FontAwesomeIcon também pode ser usada para aproxim
 
 #### MDI
 
-[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. Ele pode ser usado para encapsular um caminho SVG com um componente SvgIcon. Este componente estende o elemento nativo `<svg>`:
+O site [materialdesignicons.com](https://materialdesignicons.com/) fornece mais de 2.000 ícones. Para o ícone desejado, copie o SVG `path` que eles fornecem, e use-o como elemento filho no componente `SvgIcon`, ou com `createSvgIcon()`.
 
 Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
 
