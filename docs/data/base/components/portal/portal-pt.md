@@ -3,6 +3,7 @@ product: material-ui
 title: Componente React Portal
 components: Portal
 githubLabel: 'component: Portal'
+packageName: '@mui/base'
 ---
 
 # Portal
@@ -20,13 +21,3 @@ O filho do componente portal será adicionado ao `container` especificado. O com
 ## Do lado do servidor
 
 React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://pt-br.reactjs.org/docs/portals.html) no servidor. Você deve esperar pelo lado do cliente fazer a hidratação para ver o filho.
-
-## Unstyled
-
-- 📦 [970 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
-
-```js
-import Portal from '@mui/base/Portal';
-```
