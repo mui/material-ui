@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 import useBadge from './useBadge';
-import { getBadgeUtilityClass } from './badgeUnstyledClasses';
+import { getBadgeUnstyledUtilityClass } from './badgeUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { invisible } = ownerState;
@@ -14,7 +14,7 @@ const useUtilityClasses = (ownerState) => {
     badge: ['badge', invisible && 'invisible'],
   };
 
-  return composeClasses(slots, getBadgeUtilityClass, undefined);
+  return composeClasses(slots, getBadgeUnstyledUtilityClass, undefined);
 };
 
 const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
