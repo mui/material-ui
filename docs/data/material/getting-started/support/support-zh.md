@@ -40,7 +40,7 @@ For crowdsourced answers from expert MUI developers in our community. For crowds
 
 New to MUI? It's easy to learn if you know where to start! It's easy to learn if you know where to start!
 
-[Learn MUI](/getting-started/learn/)
+[Learn MUI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
