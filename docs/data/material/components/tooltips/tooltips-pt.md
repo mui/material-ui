@@ -27,7 +27,7 @@ O `Tooltip` tem 12 **posicionamentos** para ser escolhido. They don't have direc
 
 ## Dicas customizadas
 
-Aqui estão alguns exemplos de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTooltips.js"}}
 
@@ -54,7 +54,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
+Você pode encontrar um conceito similar no guia [encapaulando componentes](/material-ui/guides/composition/#wrapping-components).
 
 ## Gatilhos
 
