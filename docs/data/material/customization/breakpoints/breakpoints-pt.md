@@ -126,15 +126,15 @@ declare module '@mui/material/styles' {
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Retornos
+#### Returns
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela maior que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -153,15 +153,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Retornos
+#### Returns
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela menor que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({

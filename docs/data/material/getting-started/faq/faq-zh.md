@@ -8,7 +8,7 @@
 
 其实有很多方法可以支持 Material-UI：
 
-- **口口相传**。 Evangelize MUI by [linking to mui.com](https://mui.com/) on your website, every backlink matters. 在 [Twitter 上关注我们](https://twitter.com/MaterialUI) ，点赞并转发一些重要的新闻。 Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. 或者只是与您的朋友谈论我们。
+- **口口相传**。 Evangelize MUI by [linking to mui.com](https://mui.com/) on your website, every backlink matters. 在 [Twitter 上关注我们](https://twitter.com/MaterialUI) ，点赞并转发一些重要的新闻。 Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. 或者只是与您的朋友谈论我们。 或者只是与您的朋友谈论我们。
 - **给我们反馈** 。 告诉我们一些做得好的地方或者可以改进的地方。 请给您最希望看到能够解决的问题投票（👍）。
 - **帮助新用户** 。 You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/mui).
 - **做出一些改变吧**。
@@ -17,7 +17,7 @@
   - 查看和评论一些现有的 [pull requests](https://github.com/mui/material-ui/pulls) 和 [issues](https://github.com/mui/material-ui/issues)。
   - 帮助我们 [翻译](https://translate.mui.com) 文档。
   - [Improve our documentation](https://github.com/mui/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/mui)**. 如果您在商业项目中使用了 Material-UI，并希望通过成为我们的赞助商来支持我们的持续发展，或者在一个业余的或者爱好的项目中使用了，并想成为我们的一个支持者， 您都可以通过 OpenCollective 来资助我们。 If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. 筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上都会获得认可。
+- **Support us financially on [OpenCollective](https://opencollective.com/mui)**. 如果您在商业项目中使用了 Material-UI，并希望通过成为我们的赞助商来支持我们的持续发展，或者在一个业余的或者爱好的项目中使用了，并想成为我们的一个支持者， 您都可以通过 OpenCollective 来资助我们。 If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. 筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上都会获得认可。 筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上都会获得认可。
 
 ## 为什么我的组件在生产构造中没有正确地渲染？
 
@@ -37,6 +37,10 @@ const theme = createTheme({
       defaultProps: {
         // The props to apply
         disableRipple: true, // No more ripple, on the whole application 💣!
+      },
+    },
+  },
+});
       },
     },
   },
@@ -215,7 +219,7 @@ Lerna 根目录下的 package.json 文件示例：
 
 ## 我的页面上有多个样式实例。
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration.
+If it doesn't work, in 99% of cases it's a configuration issue. If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration.
 
 找出所在问题的最佳方法是将你的项目与 **已经在正常工作的设置** 进行比较。 请逐位查看 [参考实现](/material-ui/guides/server-rendering/#reference-implementations)。
 
@@ -297,6 +301,10 @@ return (
       selected ? 'Mui-selected' : ''
     }`}
   />
+); 'Mui-disabled' : ''} ${
+      selected ? 'Mui-selected' : ''
+    }`}
+  />
 );
 ```
 
@@ -315,7 +323,7 @@ return (
 );
 ```
 
-## I cannot use components as selectors in the styled() utility. What should I do?
+## I cannot use components as selectors in the styled() utility. What should I do? What should I do?
 
 If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.
 
@@ -347,6 +355,7 @@ CSS 只在页面第一次加载时生成。 那么，若连续地请求服务器
 
 ```diff
 -// Create a sheets instance.
+-// Create a sheets instance.
 -// 创建一个 sheets 实例
 
 -const sheets = new ServerStyleSheets();
@@ -371,7 +380,7 @@ function handleRender(req, res) {
 
 #### 要运行的操作
 
-The class names value relies on the concept of [class name generator](/system/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. 这个生成器需要在服务端和客户端上的行为一致。 就像这样：
+The class names value relies on the concept of [class name generator](/system/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. 这个生成器需要在服务端和客户端上的行为一致。 The whole page needs to be rendered with **a single generator**. 这个生成器需要在服务端和客户端上的行为一致。 就像这样：
 
 - 您需要为每个请求提供一个新的类名生成器。 但是您不应该在不同的请求之间共享 `createGenerateClassName()`：
 
@@ -388,7 +397,8 @@ The class names value relies on the concept of [class name generator](/system/st
     //…
 
     // Render the component to a string.
-    const html = ReactDOMServer.renderToString(
+    // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
   ```
 
 - 你需要验证你的客户端和服务端运行的 Material-UI 的**版本** 是否完全相同。 即使是小小的版本的不匹配也可能导致样式问题。 若想检查版本号，您可以在搭建应用程序的环境以及部署环境中都运行 `npm list @material-ui/core`。
@@ -400,9 +410,12 @@ The class names value relies on the concept of [class name generator](/system/st
   ```diff
     "dependencies": {
       ...
+  "dependencies": {
+      ...
   -   "@mui/material": "^4.0.0",
   +   "@mui/material": "4.0.0",
       ...
+    },
     },
   ```
 

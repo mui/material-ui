@@ -20,10 +20,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp() {
   return (
-    <React.Fragment>
+    <React. Fragment>
       <CssBaseline />
       {/* O resto da sua aplicação */}
-    </React.Fragment>
+    </React. Fragment>
   );
 }
 ```

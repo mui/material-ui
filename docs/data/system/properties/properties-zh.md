@@ -6,8 +6,8 @@
 
 请注意，此表仅列出自定义属性，支持所有其他常规的 CSS 属性和选择器。 您可以参考下面的 [图例](/system/properties/#legend)。
 
-| 系统键                | CSS 属性                                                                                     | 系统样式函数                                                 | 主题映射                                                                                            |
-| :-------------------- | :------------------------------------------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------------------------------------------------------------------------- |
+| 系统键                   | CSS 属性                                                                                       | 系统样式函数                                                       | 主题映射                                                                                                |
+|:--------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |:--------------------------------------------------------------------------------------------------- |
 | `border`              | `border`                                                                                     | [`border`](/system/borders/#border)                          | `${value}px solid`                                                                                  |
 | `borderBottom`        | `border-bottom`                                                                              | [`borderBottom`](/system/borders/#border)                    | `${value}px solid`                                                                                  |
 | `borderColor`         | `border-color`                                                                               | [`borderColor`](/system/borders/#border-color)               | [`theme.palette[value]`](/material-ui/customization/default-theme/?expand-path=$.palette)           |
@@ -28,9 +28,9 @@
 | `flexWrap`            | `flex-wrap`                                                                                  | [`flexWrap`](/system/flexbox/#flex-wrap)                     | none                                                                                                |
 | `justifyContent`      | `justify-content`                                                                            | [`justifyContent`](/system/flexbox/#justify-content)         | none                                                                                                |
 | `order`               | `order`                                                                                      | [`order`](/system/flexbox/#order)                            | none                                                                                                |
-| `gap`                 | `gap`                                                                                        | [`gap`](/system/grid/#gap)                                   | none                                                                                                |
-| `columnGap`           | `column-gap`                                                                                 | [`columnGap`](/system/grid/#row-gap-amp-column-gap)          | none                                                                                                |
-| `rowGap`              | `row-gap`                                                                                    | [`rowGap`](/system/grid/#row-gap-amp-column-gap)             | none                                                                                                |
+| `gap`                 | `gap`                                                                                        | [`gap`](/system/grid/#gap)                                   | [`theme.spacing(value)`](/material-ui/customization/default-theme/?expand-path=$.spacing)           |
+| `columnGap`           | `column-gap`                                                                                 | [`columnGap`](/system/grid/#row-gap-amp-column-gap)          | [`theme.spacing(value)`](/material-ui/customization/default-theme/?expand-path=$.spacing)           |
+| `rowGap`              | `row-gap`                                                                                    | [`rowGap`](/system/grid/#row-gap-amp-column-gap)             | [`theme.spacing(value)`](/material-ui/customization/default-theme/?expand-path=$.spacing)           |
 | `gridColumn`          | `grid-column`                                                                                | [`gridColumn`](/system/grid/#grid-column)                    | none                                                                                                |
 | `gridRow`             | `grid-row`                                                                                   | [`gridRow`](/system/grid/#grid-row)                          | none                                                                                                |
 | `gridAutoFlow`        | `grid-auto-flow`                                                                             | [`gridAutoFlow`](/system/grid/#grid-auto-flow)               | none                                                                                                |
@@ -94,15 +94,15 @@
 
 Let's take one row from [the table above](#properties-reference-table), for example:
 
-| 系统键               | CSS 属性        | 系统样式函数                  | 主题映射                                                                                  |
-| :------------------- | :-------------- | :---------------------------- | :---------------------------------------------------------------------------------------- |
+| 系统键                  | CSS 属性          | 系统样式函数                        | 主题映射                                                                                      |
+|:-------------------- |:--------------- |:----------------------------- |:----------------------------------------------------------------------------------------- |
 | `mb`, `marginBottom` | `margin-bottom` | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
 
 <br />
 
 and detail each column:
 
-- **System keys**. **System keys**. The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
+- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. You can see an example of using the style functions on the [advanced page](/system/advanced/#using-standalone-system-utilities). The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
   ```jsx
   <Button sx={{ mb: 3 }}>
@@ -112,7 +112,7 @@ and detail each column:
   <Box marginBottom={3}>
   ```
 
-- **CSS properties**. **CSS properties**. The column describes which CSS property will be generated when this system property is used.
+- **CSS properties**. **CSS properties**. **CSS properties**. The column describes which CSS property will be generated when this system property is used.
 
   ```css
   .my-class {
@@ -120,9 +120,9 @@ and detail each column:
   }
   ```
 
-- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. You can see an example of using the style functions on the [advanced page](/system/advanced/#using-standalone-system-utilities). The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
+- **System keys**. **System keys**. The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function). The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. You can see an example of using the style functions on the [advanced page](/system/advanced/#using-standalone-system-utilities). The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
-- **Theme mapping**. **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
+- **Theme mapping**. **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper. **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 
 让我们看看一个例子：
 

@@ -3,6 +3,7 @@ product: material-ui
 title: Componente React para Detectar clique fora
 components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
+packageName: '@mui/base'
 ---
 
 # Observador de Clique (ClickAwayListener)
@@ -51,13 +52,3 @@ In order to prevent screen readers from marking non-interactive children as "cli
 ```
 
 This is also required to fix a quirk in NVDA when using FireFox that prevents announcement of alert messages (see [mui-org/material-ui#29080](https://github.com/mui-org/material-ui/issues/29080)).
-
-## Unstyled
-
-- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
-
-```js
-import ClickAwayListener from '@mui/base/ClickAwayListener';
-```

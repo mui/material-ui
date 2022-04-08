@@ -73,6 +73,7 @@ import '@fontsource/roboto/700.css';
 <Typography variant="h1" component="h2">
   h1. 标题
 </Typography>; Heading
+</Typography>; Heading
 </Typography>;
 ```
 
@@ -107,7 +108,7 @@ const theme = createTheme({
 
 ## System props
 
-As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top: 您可以直接在组件上使用它们作为属性。 例如，顶边距：
 
 ```jsx
 <Typography mt={2}>

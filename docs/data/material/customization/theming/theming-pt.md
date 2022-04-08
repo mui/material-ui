@@ -223,8 +223,8 @@ This component takes a `theme` prop and applies it to the entire React tree that
 
 #### Props
 
-| Name             | Type                                     | Description                                                                                                                                                                                               |
-| :--------------- | :--------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name               | Type                                     | Description                                                                                                                                                                                               |
+|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
 | theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
@@ -246,6 +246,5 @@ const theme = createTheme({
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
-}
-ReactDOM.render(<App />, document.querySelector('#app'));
+} ReactDOM.render(<App />, document.querySelector('#app'));
 ```

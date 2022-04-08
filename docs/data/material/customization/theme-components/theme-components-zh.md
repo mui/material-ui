@@ -4,7 +4,7 @@
 
 ## 重写全局样式
 
-You can change the default of every prop of a MUI component. A `defaultProps` key is exposed in the theme's `components` key for this use case.
+You can change the default of every prop of a MUI component. You can change the default of every prop of a MUI component. A `defaultProps` key is exposed in the theme's `components` key for this use case.
 
 ```js
 const theme = createTheme({
@@ -13,6 +13,11 @@ const theme = createTheme({
     MuiButtonBase: {
       defaultProps: {
         // The props to change the default for.
+        disableRipple: true, // No more ripple!
+      },
+    },
+  },
+});
         disableRipple: true, // No more ripple!
       },
     },

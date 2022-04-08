@@ -79,7 +79,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### 一些重要的术语
 
-- **Palette**：调色板是颜色的集合，即色调及其深度。 MUI provides all colors from the Material Design guidelines. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
+- **Palette**：调色板是颜色的集合，即色调及其深度。 MUI provides all colors from the Material Design guidelines. MUI provides all colors from the Material Design guidelines. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 - **Hue & Shade**：调色板中的单一颜色由色调（如“red”）和深度（如“500”）组成。 "rad 50" 是红色的最浅的阴影（_ 粉红色！ _），而 "red 900" 是最暗的深红色。 除此之外，大多数的色调都带有以 `A` 为前缀的强调（accent）色调。
 
 ### 调色板

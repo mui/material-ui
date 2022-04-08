@@ -112,16 +112,6 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 {{"demo": "ReactVirtualizedTable.js", "bg": true}}
 
-## Unstyled
-
-If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
-
-{{"demo": "TableUnstyled.js"}}
-
-### Customized look and feel
-
-{{"demo": "TableCustomized.js"}}
-
 ## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
@@ -131,3 +121,7 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "AcccessibleTable.js", "bg": true}}
+
+## Unstyled
+
+If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below. See the demos in the [unstyled table pagination docs](/base/react-table-pagination/)

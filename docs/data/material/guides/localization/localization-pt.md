@@ -35,7 +35,7 @@ const theme = createTheme(
 ### Localidades suportadas
 
 | Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
-| :---------------------- | ------------------------- | ------------------ |
+|:----------------------- |:------------------------- |:------------------ |
 | Amharic                 | am-ET                     | `amET`             |
 | Arabic (Egypt)          | ar-EG                     | `arEG`             |
 | Arabic (Sudan)          | ar-SD                     | `arSD`             |
@@ -47,7 +47,8 @@ const theme = createTheme(
 | Chinese (Hong Kong)     | zh-HK                     | `zhHK`             |
 | Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
 | Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
-| Tcheco                  | cs-CZ                     | `csCZ`             |
+| Tcheco                  | hr-HR                     | `hrHR`             |
+| Czech                   | cs-CZ                     | `csCZ`             |
 | Danish                  | da-DK                     | `daDK`             |
 | Dutch                   | nl-NL                     | `nlNL`             |
 | English (United States) | en-US                     | `enUS`             |
@@ -66,12 +67,15 @@ const theme = createTheme(
 | Khmer                   | kh-KH                     | `khKH`             |
 | Kazakh                  | kz-KZ                     | `kzKZ`             |
 | Korean                  | ko-KR                     | `koKR`             |
+| Macedonian              | mk-MK                     | `mkMK`             |
+| Norwegian (bokmål)      | nb-NO                     | `nbNO`             |
 | Persian                 | fa-IR                     | `faIR`             |
 | Polish                  | pl-PL                     | `plPL`             |
 | Portuguese              | pt-PT                     | `ptPT`             |
 | Portuguese (Brazil)     | pt-BR                     | `ptBR`             |
 | Romanian                | ro-RO                     | `roRO`             |
 | Russian                 | ru-RU                     | `ruRU`             |
+| Serbian                 | sr-RS                     | `srRS`             |
 | Sinhalese               | si-LK                     | `siLK`             |
 | Slovak                  | sk-SK                     | `skSK`             |
 | Spanish                 | es-ES                     | `esES`             |

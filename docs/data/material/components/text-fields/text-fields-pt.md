@@ -4,6 +4,7 @@ title: Componente React para Campo de Texto
 components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
+unstyled: /base/react-input/
 ---
 
 # Campo de texto
@@ -36,7 +37,8 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ## Multilinha
 
-A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>. Unless the`rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)). You can use the <code>minRows` and `maxRows` props to bound it.
+The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element. Unless the</code>rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)).
+You can use the <code>minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
 
@@ -179,7 +181,7 @@ The floating label is absolutely positioned. It won't impact the layout of the p
 
 Campos com type="number" tem problemas potenciais de usabilidade:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others and silently discarding others
 - A funcionalidade de rolagem para incrementar/decrementar o número, pode causar alterações acidentais difíceis de notar
 
 e muito mais - consulte [este artigo](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) da equipe GOV.UK Design System para obter uma explicação mais detalhada.
@@ -262,7 +264,7 @@ Para que o campo de texto seja acessível, **o campo deve estar vinculado ao ró
 - If you are composing the component:
 
 ```jsx
-<div class="form-control" mark="crwd-mark">
+<div class="form-control">
   <label for="my-input">Endereço de e-mail</label>
   <input id="my-input" aria-describedby="my-helper-text" />
   <span id="my-helper-text">Nós nunca compartilharemos seu e-mail.</span>
@@ -274,24 +276,7 @@ Para que o campo de texto seja acessível, **o campo deve estar vinculado ao ró
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): MUI and react-hook-form combined.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
-
-## Unstyled
-
-For advanced customization scenarios, you can use the unstyled primitives.
-
-The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
-
-### Unstyled component
-
-The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead.
-
-{{"demo": "UnstyledInput.js"}}
-
-### Hook
-
-The `useInput` hook is the headless version of the `InputUnstyled` component. Use it for even greater control over the rendered output.
-
-{{"demo": "UseInput.js"}}
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).

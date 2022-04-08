@@ -43,7 +43,7 @@ The second example demonstrates how to change the `transform-origin`, and condit
 
 ### Slide relative to a container
 
-The Slide component also accepts `container` prop, which is a reference to a DOM node. If this prop is set, the Slide component will slide from the edge of that DOM node.
+The Slide component also accepts `container` prop, which is a reference to a DOM node. If this prop is set, the Slide component will slide from the edge of that DOM node. If this prop is set, the Slide component will slide from the edge of that DOM node.
 
 从子元素的中心向外扩展。
 
@@ -58,7 +58,7 @@ The Slide component also accepts `container` prop, which is a reference to a DOM
 ## TransitionGroup 动画组
 
 - 为了更好地支持服务器渲染，Material-UI 为一些动画组件的子组件提供了一个 `style` 属性，（Fade, Grow, Zoom, Slide）。 为了让动画如期实现，必须将 `style` 属性应用到 DOM 上。
-- **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs)
+- **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs)
 - **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
 
 ```jsx
@@ -84,7 +84,7 @@ export default Main() {
 
 ## TransitionComponent 属性
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
 {{"demo": "TransitionGroupExample.js"}}
 
@@ -96,7 +96,7 @@ To animate a component when it is mounted or unmounted, you can use the [`Transi
 - 当进入过渡时调用 `onEnter` 回调属性。
 - 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了当在一个关闭的状态并展示完过渡动画时，才会移除子内容。
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/). 你还可以访问一些组件的专用部分：
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/). 你还可以访问一些组件的专用部分： 你还可以访问一些组件的专用部分：
 
 - [Modal](/material-ui/react-modal/#transitions)
 - [Dialog](/material-ui/react-dialog/#transitions)
@@ -106,7 +106,7 @@ For more information on creating a custom transition, visit the _react-transitio
 
 ## Performance & SEO
 
-The content of transition component is mounted by default even if `in={false}`. This default behavior has server-side rendering and SEO in mind. The content of transition component is mounted by default even if `in={false}`. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your transition it might be a good idea to change this default behavior by enabling the `unmountOnExit` prop:
+The content of transition component is mounted by default even if `in={false}`. This default behavior has server-side rendering and SEO in mind. The content of transition component is mounted by default even if `in={false}`. This default behavior has server-side rendering and SEO in mind. The content of transition component is mounted by default even if `in={false}`. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your transition it might be a good idea to change this default behavior by enabling the `unmountOnExit` prop:
 
 ```jsx
 <Fade in={false} unmountOnExit />

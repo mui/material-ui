@@ -4,11 +4,11 @@
 
 ## Componentes de navegação
 
-Existem dois componentes principais disponíveis para realizar navegações. It renders a native `<a>` element and applies the `href` as an attribute. The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest.
+Existem dois componentes principais disponíveis para realizar navegações. The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest. It renders a native `<a>` element and applies the `href` as an attribute.
 
 {{"demo": "LinkDemo.js"}}
 
-Você também pode fazer com que um botão execute ações de navegação. Se seu componente está estendendo [`ButtonBase`](/material-ui/api/button-base/), fornecer uma propriedade `href` habilita o modo de link. For instance, with a `Button` component:
+Você também pode fazer com que um botão execute ações de navegação. For instance, with a `Button` component: Se seu componente está estendendo [`ButtonBase`](/material-ui/api/button-base/), fornecer uma propriedade `href` habilita o modo de link.
 
 {{"demo": "ButtonDemo.js"}}
 

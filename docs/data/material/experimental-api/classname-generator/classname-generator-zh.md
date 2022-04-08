@@ -112,6 +112,14 @@ function App() {
        }
      }
    });
+  +          [`& .${outlinedInputClasses.notchedOutline}`]: {
+               borderWidth: 1,
+             }
+           }
+         }
+       }
+     }
+   });
   ```
 
 - 此 API 只能在构建时使用。
