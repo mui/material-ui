@@ -118,7 +118,7 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.attribute('href', 'https://google.com');
     });
 
-    it('should allow to set type prop when component is not a button', () => {
+    it('should allow setting type attribute when component is not a button', () => {
       const MockButton = React.forwardRef((props, ref) => (
         <button data-testid="mockButton" {...props} ref={ref} />
       ));
