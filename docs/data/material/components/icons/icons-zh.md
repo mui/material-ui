@@ -16,9 +16,9 @@ MUI通过以下三种方式来支持图标的使用：
 1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
 1. 或者可以将自定义的 font 图标通过 [ Icon ](#icon-font-icons) 组件来包装成一个 React 组件。
 
-## Material Icons
+## Material SVG icons
 
-Google has created over 2,000 official Material icons, each in five different "themes" (see below). 对于每个 SVG 图标，我们从`@mui/icons-material` 包中导出相应的 React 组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
+Google has created over 2,000 official Material icons, each in five different "themes" (see below). 对于每个 SVG 图标，我们从`@mui/icons-material` 包中导出相应的 React 组件。 You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### 安装
 
@@ -34,7 +34,7 @@ yarn add @mui/icons-material
 
 这些组件使用 MUI的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
-如果你没有在你的项目中使用 Material UI，你可以按照 [安装指南](/getting-started/installation/) 添加它。
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
 
 ### 使用
 
@@ -53,7 +53,7 @@ yarn add @mui/icons-material
   import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
-对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。
+对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-2) before using the second approach.
 
 每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 例如，`@mui/icons/Delete` 图标可以：
 
@@ -83,7 +83,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 ## SvgIcon（Svg 图标）
 
-如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
+If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper. 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
 - SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 使用 `viewBox` 属性，您可以随意自定义。 要继承原始图像的 `viewBox` 值，可以使用 `inheritViewBox` 属性。
