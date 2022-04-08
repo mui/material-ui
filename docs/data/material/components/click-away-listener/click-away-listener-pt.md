@@ -9,8 +9,8 @@ githubLabel: 'component: ClickAwayListener'
 
 <p class="description">Detecta se um evento de clique ocorreu fora de um elemento. Ele ouve cliques que ocorrem em algum lugar no documento.</p>
 
-- 📦 [992 B gzipped](/size-snapshot).
-- ⚛️ Supports portals
+- 📦 [1.5 kB gzipped](/size-snapshot).
+- ⚛️ Suporte para portais
 
 [A paleta](/system/palette/) com funções de estilo.
 
@@ -20,11 +20,11 @@ Por exemplo, se você precisar ocultar um menu quando as pessoas clicarem em qua
 
 {{"demo": "ClickAway.js"}}
 
-Observe que o componente aceita apenas um elemento filho. You can find a more advanced demo on the [Menu documentation section](/material-ui/react-menu/#menulist-composition).
+Observe que o componente aceita apenas um elemento filho. Você pode encontrar demonstrações avançadas na [seção documentação de menu](/material-ui/react-menu/#menulist-composition).
 
 ## Portal
 
-The following demo uses [`Portal`](/material-ui/react-portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
+A demonstração a seguir usa [`Portal`](/material-ui/react-portal/) para renderizar o menu suspenso em uma nova "subárvore" fora da hierarquia atual do DOM.
 
 {{"demo": "PortalClickAway.js"}}
 
@@ -50,11 +50,11 @@ In order to prevent screen readers from marking non-interactive children as "cli
 </ClickAwayListern>
 ```
 
-Isso também é necessário para corrigir um estranho no NVDA ao usar o Firefox que impede o anúncio de mensagens de alerta (consulte [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080)).
+This is also required to fix a quirk in NVDA when using FireFox that prevents announcement of alert messages (see [mui-org/material-ui#29080](https://github.com/mui-org/material-ui/issues/29080)).
 
 ## Unstyled
 
-- 📦 [981 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
+- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 As the component does not have any styles, it also comes with the Base package.
 
