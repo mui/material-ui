@@ -65,7 +65,7 @@ Para garantir que um drawer temporário não seja desmontado, especifique a prop
 />
 ```
 
-More details in the [Modal performance section](/material-ui/react-modal/#performance).
+Mais detalhes na [seção de desempenho Modal](/material-ui/react-modal/#performance).
 
 ## Drawer responsivo
 
