@@ -20,11 +20,11 @@ githubLabel: 'component: ClickAwayListener'
 
 {{"demo": "ClickAway.js"}}
 
-请注意，该组件仅接受一个子元素。 你可以在 [Menu 的文档章节](/components/menus/#menulist-composition) 阅读更高级的样例。
+请注意，该组件仅接受一个子元素。 You can find a more advanced demo on the [Menu documentation section](/material-ui/react-menu/#menulist-composition).
 
 ## Portal（传送门）
 
-下面的演示使用 [`传送门组件（Portal）`](/components/portal/) 将下拉菜单渲染到当前 DOM 层次之外的新的“子级树”。
+The following demo uses [`Portal`](/material-ui/react-portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
 
 {{"demo": "PortalClickAway.js"}}
 
