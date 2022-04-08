@@ -4,6 +4,7 @@ title: React Switch（开关）组件
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
 githubLabel: 'component: switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
+unstyled: /base/react-switch/
 ---
 
 # Switch 开关组件
@@ -42,7 +43,7 @@ You can control the switch with the `checked` and `onChange` props:
 
 ## 带有 FormGroup 的开关
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API. However, you are encouraged to use [Checkboxes](/material-ui/react-checkbox/) instead if multiple related controls are required. (参见: [何时使用](#when-to-use))。
+`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API. `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API. However, you are encouraged to use [Checkboxes](/material-ui/react-checkbox/) instead if multiple related controls are required. (参见: [何时使用](#when-to-use))。 (参见: [何时使用](#when-to-use))。
 
 {{"demo": "SwitchesGroup.js"}}
 
@@ -58,41 +59,9 @@ You can control the switch with the `checked` and `onChange` props:
 
 The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size. It's ideal for doing heavy customizations and minimizing bundle size.
 
-### Unstyled component
-
-```jsx
-import SwitchUnstyled from '@mui/base/SwitchUnstyled';
-```
-
-The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own. You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc. It is also possible to replace these default components by other HTML elements or custom components. You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc. It is also possible to replace these default components by other HTML elements or custom components.
-
-There are three components you can override by the `components` prop: `Root`, `Thumb` and `Input`. Each one's props can be set using the `componentsProps` object. Each one's props can be set using the `componentsProps` object.
-
-{{"demo": "UnstyledSwitches.js"}}
-
-### useSwitch hook
-
-For the ultimate customizability, a `useSwitch` hook is available. For the ultimate customizability, a `useSwitch` hook is available. It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
-
-```jsx
-import { useSwitch } from '@mui/base/SwitchUnstyled';
-```
-
-#### Basic example
-
-{{"demo": "UseSwitchesBasic.js"}}
-
-#### Customized look and feel
-
-{{"demo": "UseSwitchesCustom.js"}}
-
-## 何时使用
-
-你可以更改标签的位置：
-
 {{"demo": "FormControlLabelPosition.js"}}
 
-## 无障碍设计
+## 何时使用
 
 - [多选框 对比 Switches（开关控件）](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
