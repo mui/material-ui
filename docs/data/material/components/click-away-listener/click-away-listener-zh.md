@@ -38,7 +38,7 @@ githubLabel: 'component: ClickAwayListener'
 
 ## Accessibility
 
-By default `<ClickAwayListener />` will add an `onClick` handler to its children. This can result in e.g. screen readers announcing the children as clickable. However, the purpose of the `onClick` handler is not to make `children` interactive.
+By default `<ClickAwayListener />` will add an `onClick` handler to its children. This can result in e.g. screen readers announcing the children as clickable. However, the purpose of the `onClick` handler is not to make `children` interactive. 这可能会导致例如屏幕阅读器宣布其子元素可以点击。 然而， `onClick` 处理程序的目的不是要让 `子元素` 可交互。
 
 In order to prevent screen readers from marking non-interactive children as "clickable" add `role="presentation"` to the immediate children:
 
