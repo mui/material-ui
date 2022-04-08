@@ -21,12 +21,11 @@ export default function VirtualElementPopper() {
       return;
     }
 
-    const getBoundingClientRect = () =>
-      selection.getRangeAt(0).getBoundingClientRect();
+    const rect = selection.getRangeAt(0).getBoundingClientRect();
 
     setOpen(true);
     setAnchorEl({
-      getBoundingClientRect,
+      getBoundingClientRect: () => rect,
     });
   };
 
