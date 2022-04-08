@@ -58,7 +58,7 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 ## Child requirement
 
 - Para um melhor suporte a renderização no servidor, Material-UI provê uma propriedade `style` para o elemento filho de alguns componentes de transição, (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
-- **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
+- **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs)
 - **Single element**: The transition components require only one child element (`React. Fragment` is not allowed).
 
 ```jsx
@@ -97,11 +97,11 @@ Alguns componentes do Material-UI usam essas transições internamente. Estas ac
 
 For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/). Você também pode visitar as seções dedicadas de alguns dos componentes:
 
-- [Modal](/components/modal/#transitions)
-- [Dialog](/components/dialogs/#transitions)
-- [Popper](/components/popper/#transitions)
-- [Snackbar](/components/snackbars/#transitions)
-- [Tooltip](/components/tooltips/#transitions)
+- [Modal](/material-ui/react-modal/#transitions)
+- [Dialog](/material-ui/react-dialog/#transitions)
+- [Popper](/material-ui/react-popper/#transitions)
+- [Snackbar](/material-ui/react-snackbar/#transitions)
+- [Tooltip](/material-ui/react-tooltip/#transitions)
 
 ## Performance & SEO
 

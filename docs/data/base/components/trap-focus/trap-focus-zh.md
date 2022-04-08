@@ -49,6 +49,6 @@ Clicks within the focus trap behave normally, but clicks outside the focus trap 
 
 ## Portal
 
-The following demo uses the [`Portal`](/components/portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy; so that they no longer form part of the focus loop.
+The following demo uses the [`Portal`](/material-ui/react-portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy; so that they no longer form part of the focus loop.
 
 {{"demo": "PortalTrapFocus.js"}}

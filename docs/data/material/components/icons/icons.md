@@ -16,11 +16,11 @@ MUI provides icons support in three ways:
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
-## Material icons
+## Material SVG icons
 
 Google has created over 2,000 official Material icons, each in five different "themes" (see below).
 For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
-You can [search the full list of these icons](/components/material-icons/).
+You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### Installation
 
@@ -36,7 +36,7 @@ yarn add @mui/icons-material
 
 These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 
-If you aren't already using Material UI in your project, you can add it following the [installation guide](/getting-started/installation/).
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
 
 ### Usage
 
@@ -56,7 +56,7 @@ Import icons using one of these two options:
   ```
 
 The safest for bundle size is Option 1, but some developers prefer Option 2.
-Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
+Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-2) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 
@@ -86,7 +86,7 @@ has the following attribute once mounted:
 
 ## SvgIcon
 
-If you need a custom SVG icon (not available in the [Material Icons](/components/material-icons/)) you can use the `SvgIcon` wrapper.
+If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper.
 This component extends the native `<svg>` element:
 
 - It comes with built-in accessibility.

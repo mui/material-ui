@@ -43,10 +43,10 @@ export default function AppFooter() {
         <div>
           <SvgMuiLogo width={32} />
           <Typography variant="body2" fontWeight="bold" sx={{ pt: 2 }}>
-            Join our newsletter!
+            Keep up to date
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            No spam, guaranteed.
+            Join our newsletter for regular updates. No spam ever.
           </Typography>
           <EmailSubscribe sx={{ mb: 1 }} />
         </div>

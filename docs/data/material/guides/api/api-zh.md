@@ -30,15 +30,15 @@
 <MenuItem disableRipple />
 ```
 
-`disableRipple` 属性将以这种方式流动：[`MenuItem`](/api/menu-item/)> [`ListItem`](/api/list-item/)> [`ButtonBase`](/api/button-base/)。
+`disableRipple` 属性将以这种方式流动：[`MenuItem`](/material-ui/api/menu-item/)> [`ListItem`](/material-ui/api/list-item/)> [`ButtonBase`](/material-ui/api/button-base/)。
 
 ### 原生属性
 
-我们避免记录 DOM 支持的那些原生属性，如[`className`](/customization/how-to-customize/#overriding-styles-with-class-names)。
+我们避免记录 DOM 支持的那些原生属性，如[`className`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names)。
 
 ### CSS classes
 
-为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 类设计兼顾两个约束： 使类结构尽可能简单，同时足以实现 Material Design 指南。
+为了自定义样式，所有组件都接受 [`classes`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 类设计兼顾两个约束： 使类结构尽可能简单，同时足以实现 Material Design 指南。
 
 - 应用于根元素的类始终称为 `root`。
 - 所有默认样式都分组在单个类中。
@@ -67,7 +67,7 @@ const styles = {
 - 它们自己的扁平化属性（当这些属性是顶层组件抽象的关键时），例如 `Input` 组件的 `id` 属性。
 - 当用户可能需要调整内部 render 方法的子组件时，他们自己的`xxxProps`属性，例如，在内部使用`input`的组件上公开`inputProps`和`InputProps`属性。
 - 他们自己的`xxxComponent`属性，用于执行组件注入。
-- 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这有助于回答 [“我如何访问 DOM 元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)。
+- 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这有助于回答 [“我如何访问 DOM 元素？”](/material-ui/getting-started/faq/#how-can-i-access-the-dom-element)。
 
 ### Prop naming
 

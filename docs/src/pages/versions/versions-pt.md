@@ -51,7 +51,7 @@ Você pode seguir os [milestones](https://github.com/mui/material-ui/milestones)
 
 ## Política de suporte
 
-Encontre detalhes nas [versões suportadas](/getting-started/support/#supported-versions).
+Encontre detalhes nas [versões suportadas](/material-ui/getting-started/support/#supported-versions).
 
 ## Práticas de descontinuação
 

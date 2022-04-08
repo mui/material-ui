@@ -18,19 +18,19 @@ O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.react
 
 Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
-- [`.paleta`](/customization/palette/)
-- [`.typography`](/customization/typography/)
-- [`.espaçamento`](/customization/spacing/)
-- [`.pontos de quebra`](/customization/breakpoints/)
-- [`.zIndex`](/customization/z-index/)
-- [`.transições`](/customization/transitions/)
-- [`.componentes`](/customization/theme-components/)
+- [`.paleta`](/material-ui/customization/palette/)
+- [`.typography`](/material-ui/customization/typography/)
+- [`.espaçamento`](/material-ui/customization/spacing/)
+- [`.pontos de quebra`](/material-ui/customization/breakpoints/)
+- [`.zIndex`](/material-ui/customization/z-index/)
+- [`.transições`](/material-ui/customization/transitions/)
+- [`.componentes`](/material-ui/customization/theme-components/)
 
-Você pode conferir a [seção de tema padrão](/customization/default-theme/) para visualizar o tema padrão na íntegra.
+Você pode conferir a [seção de tema padrão](/material-ui/customization/default-theme/) para visualizar o tema padrão na íntegra.
 
 ### Variáveis customizáveis
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
 
 ```jsx
 const theme = createTheme({
@@ -66,18 +66,18 @@ declare module '@material-ui/core/styles' {
   <source src="/static/studies.mp4" type="video/mp4" >
 </video>
 
-Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+Você [pode acessar](/system/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
 
 ## Acessando o tema em um componente
 
-Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+Você [pode acessar](/system/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
 ## Aninhando o tema
 
-[Você pode aninhar](/styles/advanced/#theme-nesting) vários provedores de tema.
+[Você pode aninhar](/system/styles/advanced/#theme-nesting) vários provedores de tema.
 
 {{"demo": "ThemeNesting.js"}}
 
@@ -155,7 +155,7 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [optional]):
 
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/material-ui/customization/breakpoints/) (identificadores).
 - `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
 - `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
 - `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
@@ -246,5 +246,6 @@ const theme = createTheme({
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
-} ReactDOM.render(<App />, document.querySelector('#app'));
+}
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```

@@ -64,13 +64,13 @@ Todos os componentes aceitam um método manipulador `onClick` que é aplicado ao
 </Button>
 ```
 
-Note que a documentação [evita](/guides/api/#native-properties) mencionar as propriedades nativas (existem várias) na seção de API dos componentes.
+Note que a documentação [evita](/material-ui/guides/api/#native-properties) mencionar as propriedades nativas (existem várias) na seção de API dos componentes.
 
 ## Cor
 
 {{"demo": "ColorButtons.js"}}
 
-Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
 
 ## Tamanhos
 
@@ -110,7 +110,7 @@ Use a propriedade `color` para aplicar uma paleta de cores ao componente.
 
 ## Botões customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -134,7 +134,7 @@ Os botões de texto, botões contidos, botões de ação flutuante e botões de 
 
 ## Biblioteca de roteamento de terceiros
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Aqui está um [guia mais detalhado](/guides/routing/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Aqui está um [guia mais detalhado](/material-ui/guides/routing/#button).
 
 ## Limitações
 
@@ -156,7 +156,7 @@ Se você deseja usar `not-allowed`, você tem duas opções:
 
 Então:
 
-- Você deve adicionar `pointer-events: none;` de volta quando você precisar exibir [dicas em elementos desabilitados](/components/tooltips/#disabled-elements).
+- Você deve adicionar `pointer-events: none;` de volta quando você precisar exibir [dicas em elementos desabilitados](/material-ui/react-tooltip/#disabled-elements).
 - O cursor não irá mudar se você renderizar algum outro elemento que não seja um botão, por exemplo, um elemento link `<a>`.
 
 2. **Alteração no DOM**. Você pode encapsular o botão:

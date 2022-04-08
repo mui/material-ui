@@ -61,7 +61,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 ### Customized horizontal stepper
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSteppers.js"}}
 
