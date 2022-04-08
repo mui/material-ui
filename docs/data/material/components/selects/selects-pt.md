@@ -3,6 +3,7 @@ product: material-ui
 title: Componente React Seleção
 components: Select, NativeSelect
 githubLabel: 'component: select'
+unstyled: import { useSelect } from '@mui/base/SelectUnstyled';
 ---
 
 # Seleção
@@ -43,11 +44,15 @@ O componente seleção é implementado como um elemento `<input>` personalizado 
 
 ### Outras propriedades
 
-{{"demo": "SelectOtherProps.js"}}
+{{"demo": "SelectSmall.js"}}
+
+### Padrão
+
+Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
 
 ## Campos de Texto
 
-Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
+As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
 
 {{"demo": "NativeSelect.js"}}
 
@@ -61,9 +66,9 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
-{{"demo": "CustomizedSelects.js"}}
-
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select/).
+
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select/).
 
 ## Seleção Aberta Controlada
 
@@ -71,11 +76,11 @@ The `Select` component can handle multiple selections. It's enabled with the `mu
 
 Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
-### Padrão
-
-{{"demo": "MultipleSelect.js"}}
-
 ### Marcações
+
+import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
+
+### Controlled select
 
 {{"demo": "MultipleSelectCheckmarks.js"}}
 
@@ -87,7 +92,7 @@ Como na seleção única, você pode extrair o novo valor acessando `event.targe
 
 {{"demo": "MultipleSelectPlaceholder.js"}}
 
-### Nativo
+### Unstyled component
 
 {{"demo": "MultipleSelectNative.js"}}
 
@@ -101,9 +106,9 @@ You can control the open state of the select with the `open` prop. Alternatively
 
 While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.
 
-Exiba categorias com o componente `ListSubheader` ou com o elemento nativo `<optgroup>`.
+{{"demo": "DialogSelect.js"}}
 
-## Agrupando
+## Grouping
 
 Display categories with the `ListSubheader` component or the native `<optgroup>` element.
 
@@ -121,7 +126,7 @@ Para rotular corretamente seu campo `Select` você precisa de um elemento extra 
 </Select>
 ```
 
-Para uma [seleção nativa](#native-select), você deve utilizar um rótulo fornecendo o atributo `id` do elemento de seleção para o atributo `htmlFor` do `InputLabel`:
+Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e ids para você:
 
 ```jsx
 <TextField id="select" label="Age" value="20" select>
@@ -130,7 +135,7 @@ Para uma [seleção nativa](#native-select), você deve utilizar um rótulo forn
 </TextField>
 ```
 
-Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e ids para você:
+Para uma [seleção nativa](#native-select), você deve utilizar um rótulo fornecendo o atributo `id` do elemento de seleção para o atributo `htmlFor` do `InputLabel`:
 
 ```jsx
 <InputLabel htmlFor="select">Age</InputLabel>
@@ -139,75 +144,3 @@ Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e
   <option value="20">Twenty</option>
 </NativeSelect>
 ```
-
-## Unstyled
-
-The Select also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
-
-### Unstyled component
-
-```jsx
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-```
-
-#### Basic usage
-
-{{"demo": "UnstyledSelectSimple.js"}}
-
-The `SelectUnstyled` is a component that accepts generic props. Due to Typescript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components). In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete. To avoid this, manually cast the resulting component to the correct type (as shown above).
-
-The rest of the demos below will not use `forwardRef` for brevity.
-
-#### Controlled select
-
-The SelectUnstyled can be used as either uncontrolled (as shown in the demo above) or controlled component.
-
-{{"demo": "UnstyledSelectControlled.js"}}
-
-#### Usage with object values
-
-The unstyled select may be used with non-string values.
-
-{{"demo": "UnstyledSelectObjectValues.js"}}
-
-#### Customizing the selected value appearance
-
-It is possible to customize the selected value display by providing a function to the `renderValue` prop. The element returned by this function will be rendered inside the select's button.
-
-{{"demo": "UnstyledSelectCustomRenderValue.js"}}
-
-#### Customizing the options' appearance
-
-Options don't have to be plain strings. You can include custom elements to be rendered inside the listbox.
-
-{{"demo": "UnstyledSelectRichOptions.js"}}
-
-#### Grouping
-
-Options can be grouped, similarly to the how the native `select` element works. Unlike the native `select`, however, the groups can be nested.
-
-Place the `Option` components inside `OptionGroup` to achieve this.
-
-{{"demo": "UnstyledSelectGrouping.js"}}
-
-#### Multiselect
-
-To be able to select multiple options at once, use the `MultiSelectUnstyled` component.
-
-```js
-import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
-```
-
-{{"demo": "UnstyledSelectMultiple.js"}}
-
-### useSelect hook
-
-```js
-import { useSelect } from '@mui/base/SelectUnstyled';
-```
-
-If you need to use Select's functionality in another component, you can use the `useSelect` hook. It enables maximal customizability at the cost of being low-level.
-
-The following example shows a select that opens when hovered over or focused. It can be controlled by a mouse/touch or a keyboard.
-
-{{"demo": "UseSelect.js"}}
