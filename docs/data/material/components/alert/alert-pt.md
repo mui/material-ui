@@ -36,7 +36,7 @@ Se um callback `onClose` é fornecido e a propriedade `action` não é definida,
 
 ### Transição
 
-Você pode utilizar um [componente de transição](/components/transitions/) como um `Collapse` para realizar uma transição na exibição do alerta.
+You can use a [transition component](/material-ui/transitions/) such as `Collapse` to transition the appearance of the alert.
 
 {{"demo": "TransitionAlerts.js"}}
 
@@ -44,7 +44,7 @@ Você pode utilizar um [componente de transição](/components/transitions/) com
 
 A propriedade `icon` permite que você adicione um ícone no início do componente de alerta. Isto substituirá o ícone padrão de acordo com a severidade especificada.
 
-Você pode alterar a severidade padrão e o mapeamento do ícone com a propriedade `iconMapping`. Isso pode ser definido globalmente utilizando a [customização do tema](/customization/theme-components/#default-props).
+Você pode alterar a severidade padrão e o mapeamento do ícone com a propriedade `iconMapping`. This can be defined globally using [theme customization](/material-ui/customization/theme-components/#default-props).
 
 Definir a propriedade `icon` como falso removerá o ícone completamente.
 
@@ -64,7 +64,7 @@ Duas variantes adicionais estão disponíveis – delineado e preenchido:
 
 ## Toast
 
-Você pode usar o componente Snackbar para [exibir um toast](/components/snackbars/#customized-snackbars) com o componente Alert.
+You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customized-snackbars) with the Alert.
 
 ## Cor
 
