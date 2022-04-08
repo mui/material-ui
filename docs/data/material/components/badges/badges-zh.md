@@ -3,7 +3,7 @@ product: material-ui
 title: React Badge（徽章）组件
 components: Badge
 githubLabel: 'component: badge'
-unstyled: /base/react-badge
+unstyled: /base/react-badge/
 ---
 
 # Badge 徽章
@@ -26,7 +26,7 @@ Use `color` prop to apply theme palette to component.
 
 ## 徽章组件的可见性
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBadges.js"}}
 
