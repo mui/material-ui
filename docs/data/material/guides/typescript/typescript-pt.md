@@ -37,4 +37,4 @@ Moved to [/customization/theming/#custom-variables](/material-ui/customization/t
 
 ## Uso da propriedade `component`
 
-Moved to [/guides/composition/#with-typescript](/material-ui/guides/composition/#with-typescript).
+No entanto, a ampliação de tipos continuará a causar dores de cabeça se você tentar fazer com que os estilos dependam do tema:
