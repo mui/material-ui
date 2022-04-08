@@ -8,7 +8,7 @@ githubLabel: 'component: Hidden'
 
 # Hidden 隐藏
 
-> `Hidden` 已废弃，参见 [迁移文档](/guides/migration-v4/#hidden)
+> `Hidden` is deprecated, checkout [migration docs](/material-ui/guides/migration-v4/#hidden)
 
 <p class="description"></p>
 
