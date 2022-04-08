@@ -1,6 +1,6 @@
 # 支持的组件
 
-<p class="description">以下是 Material Design 组件和功能的列表. Those currently supported by MUI are highlighted ✓. Those currently supported by MUI are highlighted ✓.</p>
+<p class="description">以下是 Material Design 组件和功能的列表. Those currently supported by MUI are highlighted ✓. 以下是 Material Design 组件和功能的列表. Those currently supported by MUI are highlighted ✓. Those currently supported by MUI are highlighted ✓.</p>
 
 虽然我们尽量遵循一些可行的指南（当指南有争议性的时候我们会更多地依赖于常识，而这种情况会比您想象中的发生更多），但是我们并不指望能够做到支持每一个组件或者每一个组件下的功能。
 
@@ -44,7 +44,7 @@
   - **[Inset（内凹分隔线）](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle（中段分隔线）](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader（副标题分隔线）](https://material.io/design/components/dividers.html#types) ✓**
-- **\***\*[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)\*\***\*\***\*\***
+- ****\***\*[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)\*\***\*\***\*\*****
 - **[Lists（列表）](https://material.io/design/components/lists.html) ✓**
   - [类型:](https://material.io/design/components/lists.html#types)
     - **Single line （单行）✓**
