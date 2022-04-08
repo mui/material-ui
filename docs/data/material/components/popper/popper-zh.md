@@ -14,9 +14,9 @@ githubLabel: 'component: Popper'
 - 🕷 Popper 依赖第三方库 ([Popper.js](https://github.com/popperjs/popper-core)) 来实现完美的定位。
 - 💄 这是 react-popper 的一个替代性 API。 它是为了简单性而设计。
 - 📦 [8kB 已压缩的包](/size-snapshot).
-- 为了避免渲染问题，子组件作为页面 body 的 [`Portal`](/components/portal/)。 您可以使用 `disablePortal` 来禁用此行为。
-- 不同于 [`Popper`](/components/popover/) 组件，你可以自由实现滚动（scroll）行为。 弹出提示的位置会随着视口中的可用面积而更新。
-- Clicking away 不会隐藏`弹出提示`组件。 若您需要这个功能，请使用 [`ClickAwayListener`](/components/click-away-listener/) - 可以参照 [menu 文档章节](/components/menus/#menulist-composition) 中的一个样例。
+- 为了避免渲染问题，子组件作为页面 body 的 [`Portal`](/material-ui/react-portal/)。 您可以使用 `disablePortal` 来禁用此行为。
+- 不同于 [`Popper`](/material-ui/react-popover/) 组件，你可以自由实现滚动（scroll）行为。 弹出提示的位置会随着视口中的可用面积而更新。
+- Clicking away 不会隐藏`弹出提示`组件。 若您需要这个功能，请使用 [`ClickAwayListener`](/material-ui/react-click-away-listener/) - 可以参照 [menu 文档章节](/material-ui/react-menu/#menulist-composition) 中的一个样例。
 - 创建一个新 `Popper.js` 实例时，`anchorEl` 作为一个参考对象在其中传递。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}

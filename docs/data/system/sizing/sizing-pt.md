@@ -37,7 +37,7 @@ If the value is between [0, 1], it's converted to percent. Otherwise, it is dire
 
 ### Max-width
 
-The max-width property allows setting a constraint on your breakpoints. In this example, the value resolves to [`theme.breakpoints.values.md`](/customization/default-theme/?expand-path=$.breakpoints.values).
+The max-width property allows setting a constraint on your breakpoints. In this example, the value resolves to [`theme.breakpoints.values.md`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values).
 
 ```jsx
 <Box sx={{ maxWidth: 'md' }}>…
@@ -60,12 +60,12 @@ The max-width property allows setting a constraint on your breakpoints. In this 
 import { sizing } from '@mui/system';
 ```
 
-| Nome da importação | Propriedade | Propriedade CSS | Chave do tema                                                                                |
-|:------------------ |:----------- |:--------------- |:-------------------------------------------------------------------------------------------- |
-| `width`            | `width`     | `width`         | none                                                                                         |
-| `maxWidth`         | `maxWidth`  | `max-width`     | [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) |
-| `minWidth`         | `minWidth`  | `min-width`     | none                                                                                         |
-| `height`           | `height`    | `height`        | none                                                                                         |
-| `maxHeight`        | `maxHeight` | `max-height`    | none                                                                                         |
-| `minHeight`        | `minHeight` | `min-height`    | none                                                                                         |
-| `boxSizing`        | `boxSizing` | `box-sizing`    | none                                                                                         |
+| Nome da importação | Propriedade | Propriedade CSS | Chave do tema                                                                                            |
+| :----------------- | :---------- | :-------------- | :------------------------------------------------------------------------------------------------------- |
+| `width`            | `width`     | `width`         | none                                                                                                     |
+| `maxWidth`         | `maxWidth`  | `max-width`     | [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values) |
+| `minWidth`         | `minWidth`  | `min-width`     | none                                                                                                     |
+| `height`           | `height`    | `height`        | none                                                                                                     |
+| `maxHeight`        | `maxHeight` | `max-height`    | none                                                                                                     |
+| `minHeight`        | `minHeight` | `min-height`    | none                                                                                                     |
+| `boxSizing`        | `boxSizing` | `box-sizing`    | none                                                                                                     |

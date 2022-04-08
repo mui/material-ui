@@ -553,7 +553,7 @@ The majority of respondents don't use any paid libraries, but those who do are m
 
 <p class="blog-description">75 out of 1589 answered.</p>
 
-- **More features:** [Grouping](/components/data-grid/group-pivot/#row-grouping) was the most requested feature for the Data Grid Pro, followed by [master detail](/components/data-grid/group-pivot/#master-detail), aggregation, search, [tree data](/components/data-grid/group-pivot/#tree-data), and [column pinning](/components/data-grid/columns/#column-pinning).
+- **More features:** [Grouping](/x/react-data-grid/group-pivot/#row-grouping) was the most requested feature for the Data Grid Pro, followed by [master detail](/x/react-data-grid/group-pivot/#master-detail), aggregation, search, [tree data](/x/react-data-grid/group-pivot/#tree-data), and [column pinning](/x/react-data-grid/columns/#column-pinning).
   We've already released some of these in the time it took us to analyze the survey results.
   Check the links to see their docs and demos.
   Alternatively, you can follow [the public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
@@ -804,9 +804,9 @@ Thanks again and until the next survey!
 
 Here is some additional content related to the topics covered throughout this post:
 
-- [How to migrate from v4 to v5](/guides/migration-v4/)
-- [Style Library Interoperability](/guides/interoperability/)
-- [Approaches to customizing Material-UI components](/customization/how-to-customize/)
+- [How to migrate from v4 to v5](/material-ui/guides/migration-v4/)
+- [Style Library Interoperability](/material-ui/guides/interoperability/)
+- [Approaches to customizing Material-UI components](/material-ui/customization/how-to-customize/)
 
 Lastly, check out the last two iterations on the MUI Developer Survey:
 

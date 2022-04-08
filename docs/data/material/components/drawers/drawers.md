@@ -72,7 +72,7 @@ To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop lik
 />
 ```
 
-More details in the [Modal performance section](/components/modal/#performance).
+More details in the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## Responsive drawer
 

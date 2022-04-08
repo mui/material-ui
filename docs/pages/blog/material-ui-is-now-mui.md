@@ -7,7 +7,7 @@ tags: ['Company']
 card: true
 ---
 
-<img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new MUI logo" style="width: 100%; margin-bottom: 16px;" />
+<img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new MUI logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
@@ -43,12 +43,9 @@ Our primary focus was to revamp the **customization Developer Experience (DX)**.
 It had become clear that design (aesthetic, UX) and DX were key to unlocking the next stage of growth.
 
 The new brand supports the [v5.0.0 release](/blog/mui-core-v5/) while also creating space for new initiatives that broaden the company horizon. It's a big deal!
-
 Our ultimate goal is to become the most effective and efficient tool to build UIs while making it accessible to the many.
 
 ## Our new brand
-
-Let's dig in.
 
 ### A new name
 
@@ -74,11 +71,11 @@ It's basically the same, to keep it familiar –
 we're keeping the geometrical shape, to resonate with the _building blocks_ idea of the components –
 however, we're reducing the emphasis on the 3D perspective, stepping away from the notion of elevation that Material Design coined.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="Side-by-side of the new and old logo" style="width: 612px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="Side-by-side of the new and old logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
 To better identify, market, and promote each product, we're introducing logos for each one of them.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 600px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
 - **MUI Core** contains ready-to-use foundational components, free forever.
 - **MUI X** includes advanced and powerful components for complex use-cases.
@@ -92,18 +89,12 @@ The npm organization name (scope) has moved from @material-ui to [@mui](https://
 
 ### A new website & documentation
 
-Lastly, to celebrate the start of a new chapter for the company with the release of v5.0.0, and new products in the making, we're introducing a brand new website and documentation design.
+Lastly, to celebrate the start of a new chapter for the company with the release of v5.0.0, and new products in the making, we're introducing a brand new website and documentation design. You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
+all done using the flexible theming features of v5. [Head to the new website](/)!
 
-You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
-all done using the flexible theming features of v5.
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/website-homepage.png" alt="Screenshot of the new website homepage" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="Selection of the new color palette and gradients" style="width: 600px; margin-bottom: 16px;" />
-
-<p class="blog-description">The color palette of our brand.</p>
-
-[Head to the new website](/).
-
-> Note that these changes do **not** impact the design of the components released under the `@mui/*` npm packages.
+> 💡 Note that these changes in the website and documentation do **not** impact the design of the components released under the `@mui/*` npm packages.
 
 ## The path ahead
 

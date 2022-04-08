@@ -8,7 +8,7 @@
 
 Adicione um `ThemeProvider` para o nível superior de sua aplicação para passar um tema pela árvore de componentes do React. Dessa maneira, você poderá acessar o objeto de tema em funções de estilo.
 
-> Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/customization/theming/) para aprender como construir seu tema customizado do Material-UI.
+> Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/material-ui/customization/theming/) para aprender como construir seu tema customizado do Material-UI.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -390,7 +390,7 @@ function render() {
 }
 ```
 
-Você pode [seguir o guia de renderização no servidor](/guides/server-rendering/) para um exemplo mais detalhado, ou leia o [`ServerStyleSheets` na documentação da API](/styles/api/#serverstylesheets).
+Você pode [seguir o guia de renderização no servidor](/material-ui/guides/server-rendering/) para um exemplo mais detalhado, ou leia o [`ServerStyleSheets` na documentação da API](/system/styles/api/#serverstylesheets).
 
 ### Gatsby
 
@@ -410,7 +410,7 @@ Refer to [this example project](https://github.com/mui/material-ui/tree/master/e
 
 ## Nomes de classes
 
-Os nomes de classes são gerados pelo [gerador de nome de classe](/styles/api/#creategenerateclassname-options-class-name-generator).
+Os nomes de classes são gerados pelo [gerador de nome de classe](/system/styles/api/#creategenerateclassname-options-class-name-generator).
 
 ### Padrão
 
@@ -451,7 +451,7 @@ Quando as seguintes condições são atendidas, os nomes das classes são **dete
 
 - Apenas um provedor de tema é usado (**Sem aninhamento de tema **)
 - A folha de estilo tem um nome que começa com `Mui` (todos os componentes do Material-UI).
-- A opção `disableGlobal` do [gerador de nome de classe](/styles/api/#creategenerateclassname-options-class-name-generator) é `false` (o padrão).
+- A opção `disableGlobal` do [gerador de nome de classe](/system/styles/api/#creategenerateclassname-options-class-name-generator) é `false` (o padrão).
 
 ## CSS global
 
@@ -659,7 +659,7 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 ));
 
 const DecoratedClass = withStyles(styles)(
-  class extends React. Component<Props> {
+  class extends React.Component<Props> {
     render() {
       const { text, type, color, classes } = this.props;
       return (

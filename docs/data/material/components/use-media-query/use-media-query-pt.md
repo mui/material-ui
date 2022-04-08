@@ -19,7 +19,7 @@ Algumas das principais características:
 
 ## Consulta de mídia simples
 
-Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A string de consulta de mídia pode ser qualquer consulta de mídia CSS válida, por exemplo [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
+Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A string de consulta de mídia pode ser qualquer consulta de mídia CSS válida, por exemplo [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
@@ -27,7 +27,7 @@ Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A stri
 
 ## Usando auxiliares de ponto de quebra do Material-UI
 
-Você pode usar os [auxiliares de ponto de quebra](/customization/breakpoints/) do Material-UI da seguinte maneira:
+Você pode usar os [auxiliares de ponto de quebra](/material-ui/customization/breakpoints/) do Material-UI da seguinte maneira:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -116,7 +116,7 @@ const theme = createTheme({
 Tente confiar em consultas de mídia CSS do lado do cliente primeiro. Por exemplo, você poderia usar:
 
 - [`<Box display>`](/system/display/#hiding-elements)
-- [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
+- [`themes.breakpoints.up(x)`](/material-ui/customization/breakpoints/#css-media-queries)
 - or [`sx prop`](/system/basics/#heading-the-sx-prop)
 
 Se nenhuma das alternativas acima for uma opção, você poderá continuar lendo esta seção da documentação.
@@ -138,7 +138,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
-  const ssrMatchMedia = query => ({
+  const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
       // O CSS estimado pelo navegador.
       width: deviceType === 'mobile' ? '0px' : '1024px',
@@ -190,7 +190,7 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 - `options.noSsr` (_bool_ [opcional]): Padrão `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
-Nota: Você pode alterar as opções padrão usando [`default props`](/customization/theme-components/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
+Nota: Você pode alterar as opções padrão usando [`default props`](/material-ui/customization/theme-components/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
 
 #### Retornos
 

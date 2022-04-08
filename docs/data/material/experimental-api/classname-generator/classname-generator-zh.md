@@ -2,7 +2,7 @@
 
 <p class="description">在构建时配置类名生成</p>
 
-这个 API 在 `@mui/material` (v5.0.5) 中引入，作为已弃用[`createGenerateClassName`](/styles/api/#creategenerateclassname-options-class-name-generator)的替代品
+这个 API 在 `@mui/material` (v5.0.5) 中引入，作为已弃用[`createGenerateClassName`](/system/styles/api/#creategenerateclassname-options-class-name-generator)的替代品
 
 > ⚠️ **注意**: 这个 API 处于不稳定阶段，将来可能发生变化。
 
@@ -62,7 +62,7 @@ function App() {
 
 ## 组件更名
 
-每个 MUI 组件都有 `${componentName}-${slot}` 类名称格式。 例如， [`Chip`](/components/chips/) 的组件名称为 `MuiChip`, 它被用作每一个 `<Chip />` 元素的全局类名称。 您可以删除/更改 `Mui` 前缀，如下所示：
+每个 MUI 组件都有 `${componentName}-${slot}` 类名称格式。 例如， [`Chip`](/material-ui/react-chip/) 的组件名称为 `MuiChip`, 它被用作每一个 `<Chip />` 元素的全局类名称。 您可以删除/更改 `Mui` 前缀，如下所示：
 
 ```js
 import { unstable_ClassNameGenerator } from '@mui/material/utils';
@@ -87,7 +87,7 @@ function App() {
 </div>
 ```
 
-> **注：** [状态类](/customization/how-to-customize/#state-classes)**不是**组件名称，因此不能更改/删除
+> **注：** [状态类](/material-ui/customization/how-to-customize/#state-classes)**不是**组件名称，因此不能更改/删除
 
 ## 注意事项
 

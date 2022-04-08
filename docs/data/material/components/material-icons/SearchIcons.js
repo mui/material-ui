@@ -304,7 +304,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           </Tooltip>
           <ImportLink
             color="text.secondary"
-            href="/components/icons/"
+            href="/material-ui/icons/"
             variant="caption"
           >
             {t('searchIcons.learnMore')}

@@ -27,14 +27,14 @@ Material-UI was started [3 years ago](https://github.com/mui/material-ui/commit/
 
 ### Customizability
 
-Material-UI v1 is our second stab at the execution of [the vision](/discover-more/vision/).
+Material-UI v1 is our second stab at the execution of [the vision](/material-ui/discover-more/vision/).
 We want Material-UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines. Material-UI is not only an implementation of the Material Design guidelines, but a general use UI library of components that are needed by many. We are even allowing developers to build non Material themes on top of Material-UI components. We will soon open source examples of this.
 
 - **CSS-in-JS**. We have seen [a great potential for **inline-styles** in the past](https://github.com/mui/material-ui/issues/30). It was an opportunity to solve four problems at once: removing the LESS toolchain dependency, allowing dynamic styles, allowing style code splitting and make overrides simpler.
   Unfortunately, the [**execution didn't deliver**](https://github.com/mui/material-ui/issues/4066). We were lacking key features only available in CSS: media queries, pseudo selectors, pseudo elements, browser prefixes. Debugging was much harder. Overriding styles was very challenging – developers always had to look the implementation, and couldn't use CSS without relying on !important.
-  Two years ago, we decided to move away [from inline-styles toward **CSS-in-JS**](https://github.com/oliviertassinari/a-journey-toward-better-style). We are very happy with the outcome. We would like to thank [@kof](https://github.com/kof) for the awesome work he has done with [JSS](https://github.com/cssinjs/jss), the internal solution we use. It's allowing us to be [interoperable](/guides/interoperability/) with all the other styling solutions.
+  Two years ago, we decided to move away [from inline-styles toward **CSS-in-JS**](https://github.com/oliviertassinari/a-journey-toward-better-style). We are very happy with the outcome. We would like to thank [@kof](https://github.com/kof) for the awesome work he has done with [JSS](https://github.com/cssinjs/jss), the internal solution we use. It's allowing us to be [interoperable](/material-ui/guides/interoperability/) with all the other styling solutions.
 
-- **Theme**. You can't have a good customizability story without a good theming story. We have been redesigning the theme. It's a [JavaScript object](/customization/default-theme/) that contains all the variables and utility functions you might need to style your components: a palette, a typography, breakpoints helpers, transition helpers, etc.
+- **Theme**. You can't have a good customizability story without a good theming story. We have been redesigning the theme. It's a [JavaScript object](/material-ui/customization/default-theme/) that contains all the variables and utility functions you might need to style your components: a palette, a typography, breakpoints helpers, transition helpers, etc.
   The theme object can be dynamic and nested.
 
 ### Ease of use
@@ -119,7 +119,7 @@ We have shipped the long-awaited Material-UI v1 stable release. With a new codeb
 Finally, one last thank you to everyone who's contributed to Material-UI v1.
 I'm so excited at the idea we are making it stable, but rest assured, it's just the beginning. We will keep working hard on delivering the best possible UI library components.
 
-Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). If you'd like to join them, please consider:
+Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome [backers](/material-ui/discover-more/backers/). If you'd like to join them, please consider:
 
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/mui).
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).

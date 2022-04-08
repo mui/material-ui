@@ -115,7 +115,7 @@ import { Link } from 'react-router-dom';
 
 ### 使用 TypeScript
 
-Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/guides/routing/#component-prop)。
+Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/material-ui/guides/routing/#component-prop)。
 
 To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component. Otherwise, the `component` prop will not be present in the props of the MUI component.
 

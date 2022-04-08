@@ -22,12 +22,12 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 > **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 模态框的窗口描述了 UI 的一部分。 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
 
-当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
+当你创建一个模态对话框时，使用[对话框（Dialog）](/material-ui/react-dialog/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
-- [Dialog](/components/dialogs/)
-- [Drawer（抽屉）](/components/drawers/)
-- [Menu](/components/menus/)
-- [弹出框 (Popover)](/components/popover/)
+- [Dialog](/material-ui/react-dialog/)
+- [Drawer（抽屉）](/material-ui/react-drawer/)
+- [Menu](/material-ui/react-menu/)
+- [弹出框 (Popover)](/material-ui/react-popover/)
 
 ## Basic modal
 
