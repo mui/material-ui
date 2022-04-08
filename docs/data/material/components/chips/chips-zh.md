@@ -53,7 +53,7 @@ You can use the following actions.
 
 您可以在组件的开头添加修饰。
 
-Use the `avatar` prop to add an avatar or use the `icon` prop to add an icon.
+使用`avatar`属性来添加一个头像，或是使用`icon`属性添加一个图标。
 
 ### Avatar chip
 
