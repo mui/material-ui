@@ -49,11 +49,11 @@ type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };
  *
  * Demos:
  *
- * - [Multiple Snackbars](https://mui.com/components/multiple-snackbars/)
+ * - [Multiple Snackbars](https://mui.com/material-ui/react-multiple-snackbar/)
  *
  * API:
  *
- * - [SnackbarsProvider API](https://mui.com/api/snackbars-provider/)
+ * - [SnackbarsProvider API](https://mui.com/material-ui/api/snackbars-provider/)
  */
 const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.ReactNode }) => {
   const [snackbars, setSnackbars] = React.useState<ShowSnackbarProps[]>([]);
