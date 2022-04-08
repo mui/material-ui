@@ -81,7 +81,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 您可以使用[`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery)来实现一个全屏显示的对话框。
 
 ```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -103,7 +103,7 @@ function MyComponent() {
 
 ## 可拖动的对话框
 
-You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). 为此，您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. 这样一来，您就可以拖动整个对话框。
+You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). 为此，您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. 这样一来，您就可以拖动整个对话框。 这样一来，您就可以拖动整个对话框。
 
 {{"demo": "DraggableDialog.js"}}
 
