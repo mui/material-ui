@@ -14,13 +14,17 @@ This means we'll be dedicating even more time and effort to these complex compon
 
 Date and time pickers are interface controls that enable the user to select a date (or time) from a menu.
 
+<img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Date and time picker component" />
+
+<p class="blog-description">Date and time pickers using the default Material UI design</p>
+
 Common design patterns include text inputs, dropdown lists, calendars, timelines, and scrolling pickers on mobile devices.
 
 The user may need to select an individual date/time, or a range.
 
 ## What is MUI X?
 
-MUI X is a collection of advanced components built for complex use cases.
+[MUI X](/x/) is a collection of advanced components built for complex use cases.
 
 As opposed to the Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
 

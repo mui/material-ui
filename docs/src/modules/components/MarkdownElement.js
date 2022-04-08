@@ -254,22 +254,19 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.divider,
   },
   '& kbd.key': {
-    // Style taken from GitHub
-    padding: '4px 5px',
+    padding: '5px',
     display: 'inline-block',
     whiteSpace: 'nowrap',
     margin: '0 1px',
-    font: '11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
+    font: '11px Consolas,Liberation Mono,Menlo,monospace',
     lineHeight: '10px',
     color: theme.palette.text.primary,
     verticalAlign: 'middle',
-    backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : theme.palette.grey[50],
-    border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
-    }`,
+    backgroundColor: theme.palette.mode === 'dark' ? blueDark[900] : theme.palette.grey[50],
+    border: `1px solid ${theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[300]}`,
     borderRadius: 5,
     boxShadow: `inset 0 -1px 0 ${
-      theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
+      theme.palette.mode === 'dark' ? blueDark[700] : theme.palette.grey[300]
     }`,
   },
   '& details': {
