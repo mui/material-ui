@@ -4,7 +4,7 @@
 
 Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/guides/migration-v3/migration-v3.md).
+> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introdução
 
@@ -179,7 +179,7 @@ function MySelect({ children }) {
 }
 ```
 
-This change is explained in more detail in the [TypeScript guide](/material-ui/guides/typescript/#handling-value-and-event-handlers)
+Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -209,7 +209,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
   +<Fab variant="extended" />
   ```
 
-- [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
   Isso também se aplica a `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` bem como `ListItem` se a propriedade `button` for `true`.
 
@@ -228,7 +228,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 - [DialogActions] Renomeie a propriedade `disableActionSpacing` para `disableSpacing`.
 - [DialogActions] Renomeie a classe CSS `action` para `spacing`.
 - [DialogContentText] Use a variante de tipografia `body1` em vez de `subtitle1`.
-- [Dialog] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
 ### Divisor
 
@@ -262,7 +262,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 
 ### Modal
 
-- [Modal] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Modal] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
   Isso também se aplica aos componentes `Dialog` e `Popover`.
 
@@ -282,11 +282,11 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 
 ### Portal
 
-- [Portal] O elemento filho precisa ser capaz de lidar com ref, quando a propriedade `disablePortal` é usada. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Portal] O elemento filho precisa ser capaz de lidar com ref, quando a propriedade `disablePortal` é usada. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
 ### Slide
 
-- [Slide] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Slide] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
 ### Slider
 
@@ -381,7 +381,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 
 ### Dica
 
-- [Tooltip] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.
 
 ### Tipografia
