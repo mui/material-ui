@@ -1,6 +1,6 @@
 ---
 product: base
-title: React Modal component
+title: Unstyled React Modal component
 components: ModalUnstyled
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
@@ -11,7 +11,7 @@ packageName: '@mui/base'
 
 <p class="description">The <code>Modal</code> component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
 
-The `Modal` component renders its `children` in front of a backdrop. This lets you create an element that your users must interact with before continuing in the parent application.
+The `Modal` component renders its children in front of a backdrop. This lets you create an element that your users must interact with before continuing in the parent application.
 
 Features:
 
@@ -74,9 +74,9 @@ You can also use [react-spring](https://github.com/pmndrs/react-spring) with the
 ## Performance
 
 The Modal component's content is unmounted when it is not open.
-This means that it will need to be re-mounted each time it is opened. If you are rendering expensive component trees inside your modal, and you want to optimize for interaction responsiveness, you can change this default behavior by enabling the keepMounted prop.
+This means that it will need to be re-mounted each time it is opened. If you are rendering expensive component trees inside your modal, and you want to optimize for interaction responsiveness, you can change this default behavior by enabling the `keepMounted` prop.
 
-You can also use the keepMounted prop if you want to make the content of the modal available to search engines (even when the modal is closed).
+You can also use the `keepMounted` prop if you want to make the content of the modal available to search engines (even when the modal is closed).
 
 ```jsx
 <Modal keepMounted />
@@ -101,9 +101,9 @@ In order to display a modal rendered on the server, you need to disable the port
 
 ### Focus trap
 
-The modal moves the focus back to the body of the component if the focus tries to escape it.
+`Modal` moves the focus back to the body of the component if the focus tries to escape it.
 
-This is done for accessibility purposes, but it can create issues for your users.
+This is done for accessibility purposes, but it can potentially create issues for your users.
 
 If the user needs to interact with another part of the page—for example, to interact with a chatbot window while a modal is open in the parent app—you can disable the default behavior:
 

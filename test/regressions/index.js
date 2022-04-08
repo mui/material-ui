@@ -53,17 +53,6 @@ const blacklist = [
   'docs-components-chips/ChipsPlayground.png', // Redux isolation
   'docs-components-click-away-listener', // Needs interaction
   'docs-components-container', // Can't see the impact
-  'docs-components-date-picker/CustomInput.png', // Redundant
-  'docs-components-date-picker/LocalizedDatePicker.png', // Redundant
-  'docs-components-date-picker/ResponsiveDatePickers.png', // Redundant
-  'docs-components-date-picker/ServerRequestDatePicker.png', // Redundant
-  'docs-components-date-picker/ViewsDatePicker.png', // Redundant
-  'docs-components-date-range-picker/CalendarsDateRangePicker.png', // Redundant
-  'docs-components-date-range-picker/CustomDateRangeInputs.png', // Redundant
-  'docs-components-date-range-picker/MinMaxDateRangePicker.png', // Redundant
-  'docs-components-date-range-picker/ResponsiveDateRangePicker.png', // Redundant
-  'docs-components-date-time-picker/BasicDateTimePicker.png', // Redundant
-  'docs-components-date-time-picker/ResponsiveDateTimePickers.png', // Redundant
   'docs-components-dialogs', // Needs interaction
   'docs-components-drawers/SwipeableEdgeDrawer.png', // Needs interaction
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
@@ -119,8 +108,6 @@ const blacklist = [
   'docs-components-tabs/AccessibleTabs1.png', // Need interaction
   'docs-components-tabs/AccessibleTabs2.png', // Need interaction
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
-  'docs-components-time-picker/LocalizedTimePicker.png', // Redundant
-  'docs-components-time-picker/ResponsiveTimePickers.png', // Redundant
   'docs-components-tooltips', // Needs interaction
   'docs-components-transitions', // Needs interaction
   'docs-components-trap-focus', // Need interaction
