@@ -37,13 +37,13 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ## 多行属性
 
-The `multiline` prop transforms the text field into a [TextareaAutosize](/components/textarea-autosize/) element. 除非设置了 `rows` 属性，否则文本框的高度会动态匹配其内容（当你使用 [TextareaAutosize](/components/textarea-autosize/) 属性时）。 You can use the `minRows` and `maxRows` props to bound it.
+The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element. Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)). You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
 
 ## Select 选择属性
 
-使用 `select` 属性的时候，您可以在文本框内插入一个 [Select](/components/selects/) 组件。
+The `select` prop makes the text field use the [Select](/material-ui/react-select/) component internally.
 
 {{"demo": "SelectTextFields.js"}}
 
@@ -89,7 +89,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 ## Components 组件
 
-`TextField` 是由一些较小的组件组成的 ( [`FormControl`](/api/form-control/)， [`Input`](/api/input/)， [`FilledInput`](/api/filled-input/)， [`InputLabel`](/api/input-label/)， [`OutlinedInput`](/api/outlined-input/)， and [`FormHelperText`](/api/form-helper-text/) ) ，而你可以直接使用这些小的组件，来自定制你的表单域输入框。
+`TextField` is composed of smaller components ( [`FormControl`](/material-ui/api/form-control/), [`Input`](/material-ui/api/input/), [`FilledInput`](/material-ui/api/filled-input/), [`InputLabel`](/material-ui/api/input-label/), [`OutlinedInput`](/material-ui/api/outlined-input/), and [`FormHelperText`](/material-ui/api/form-helper-text/) ) that you can leverage directly to significantly customize your form inputs.
 
 您可能注意到了， 和原生的 HTML input 组件相比，`TextField` 组件缺失了一些属性。 这是故意为之的。 The component takes care of the most used properties. Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
 
@@ -107,11 +107,11 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 ## 自定义输入
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedInputs.js"}}
 
-Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/material-ui/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
