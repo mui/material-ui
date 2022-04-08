@@ -112,7 +112,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [Você pode seguir este guia para uma abordagem prática](/guides/server-rendering/).
+Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [You can follow this guide for a practical approach](/material-ui/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
