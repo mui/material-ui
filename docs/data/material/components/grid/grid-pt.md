@@ -14,7 +14,7 @@ Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria 
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> O componente `Grid` não deve ser confundido com um data grid; ele está mais próximo de um layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+> O componente `Grid` não deve ser confundido com um data grid; ele está mais próximo de um layout grid. Para um cabeçalho do data grid para [o componente `DataGrid`](/x/react-data-grid/).
 
 ## Como funciona
 
@@ -45,7 +45,7 @@ Um valor aplicado a um ponto de ruptura se aplica a todos os outros pontos maior
 
 Podemos definir várias larguras para os componentes, resultando em um leiaute que muda de acordo com o ponto de ruptura. Os valores de largura dados para pontos de quebra maiores, substituem aqueles dados a pontos de quebra menores.
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/material-ui/customization/breakpoints/#default-breakpoints). Já para dispositivos menores, o componente vai tomar todas as 12 colunas.
+Aqui por exemplo `xs={12} sm={6}` define que o componente ocupará metade da largura da tela (6 colunas) em um dispositivo com resolução de 600px pra cima. Já para dispositivos menores, o componente vai tomar todas as 12 colunas.
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
 
@@ -92,7 +92,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Leiaute Automático
 
-O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele That also means you can set the width of one _item_ and the others will automatically resize around it.
+O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele That also means you can set the width of one _item_ and the others will automatically resize around it.
 
 {{"demo": "AutoGrid.js", "bg": true}}
 
