@@ -43,6 +43,16 @@ describe('<Link />', () => {
     expect(container.firstChild).not.to.have.class('link-body2');
   });
 
+  it('using sx color as a function should not crash', () => {
+    expect(() =>
+      render(
+        <Link href="/" sx={{ color: (theme) => theme.palette.primary.light }}>
+          Test
+        </Link>,
+      ),
+    ).not.to.throw();
+  });
+
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
       const events = ['onBlur', 'onFocus'];

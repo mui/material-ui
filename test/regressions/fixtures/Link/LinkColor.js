@@ -27,6 +27,9 @@ export default function DeterminateLinearProgress() {
       <Link href="#unknown" sx={(theme) => ({ color: theme.palette.secondary.main })}>
         secondary
       </Link>
+      <Link href="#unknown" sx={{ color: (theme) => theme.palette.error.main }}>
+        error
+      </Link>
     </ThemeProvider>
   );
 }
