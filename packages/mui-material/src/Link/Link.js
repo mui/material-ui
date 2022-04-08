@@ -160,6 +160,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   return (
     <LinkRoot
+      color={color}
       className={clsx(classes.root, className)}
       classes={TypographyClasses}
       component={component}
