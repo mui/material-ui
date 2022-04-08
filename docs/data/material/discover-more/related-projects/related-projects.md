@@ -18,16 +18,6 @@ The Material UI components are also available for you to use on your favorite de
 - [Sketch](https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted MUI symbols.
 - [UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
 
-## Images and illustrations
-
-- [Unsplash](https://unsplash.com): 📷 A great resource for finding beautiful, high-resolution, free photos that you can use in your projects.
-- [unDraw](https://undraw.co/): 📐 Like Unsplash but for amazing vector illustrations.
-- [Simple Icons](https://simpleicons.org/): Over 1000 Free SVG icons for popular brands.
-
-## Application frameworks
-
-- [react-admin](https://github.com/marmelab/react-admin): A frontend Framework for building B2B applications running in the browser on top of REST/GraphQL APIs.
-
 ## IDE tools
 
 - [Material UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets): VSCode extension providing snippets.
