@@ -57,7 +57,7 @@ const styles = (theme) => ({
 
 ### useMediaQuery hook
 
-You can learn more on the [useMediaQuery](/material-ui/react-use-media-query/) page.
+Você pode aprender mais na página [useMediaQuery](/material-ui/react-use-media-query/).
 
 ## Pontos de quebra customizados
 
@@ -65,7 +65,7 @@ Você define os pontos de quebra do seu projeto na seção `theme.breakpoints` d
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-- [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). As chaves são seus nomes de tela e os valores são a largura mínima onde esse ponto de quebra deve iniciar.
+- [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values): Padrão são [os valores acima](#default-breakpoints). As chaves são seus nomes de tela e os valores são a largura mínima onde esse ponto de quebra deve iniciar.
 - `theme.breakpoints.unit`: Padrão é `px`. A unidade usada para os valores do ponto de quebra.
 - `theme.breakpoints.step`: Padrão é 5 (`0.05px`). O incremento usado para implementar os pontos de quebra exclusivos. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
@@ -100,7 +100,7 @@ const theme = createTheme({
 });
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/material-ui/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
