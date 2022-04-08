@@ -115,7 +115,7 @@ npm install @emotion/react @emotion/styled
 yarn add @emotion/react @emotion/styled
 ```
 
-> 💡 如果您想要使用 MUI Core v5 的同时使用 **styled-components** 而不是 emotion，请查看[安装指引](/getting-started/installation/#npm)。
+> 💡 If you want to use MUI Core v5 with **styled-components** instead of emotion, check out [the installation guide](/material-ui/getting-started/installation/#npm).
 
 If you are using SSR (or a framework that depends on it), there is currently a [known bug](https://github.com/mui/material-ui/issues/29742) with the babel plugin for `styled-components`, which prevents `@mui/styled-engine-sc` (the adapter for `styled-components`) from being used. We strongly recommend using the default setup with emotion instead.
 
@@ -215,11 +215,11 @@ npx @mui/codemod v5.0.0/link-underline-hover <path>
 - Safari 14 (macOS) 和 12.5 (iOS)（最低兼容到 10）
 - 更多内容请（参阅 [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11)）
 
-不再支持 IE 11。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
+不再支持 IE 11。 If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
 
 ### 非转发类（non-ref-forwarding class）组件
 
-对 `component` 属性中的非转发（non-ref-forwarding）类组件或作为直接 `子类（children）` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
+对 `component` 属性中的非转发（non-ref-forwarding）类组件或作为直接 `子类（children）` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 Otherwise check out the [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) section in the composition guide to find out how to migrate. 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
 
 ### Ref type specificity
 
@@ -251,21 +251,21 @@ The list of components that expect a specific element type is as follows:
 
 #### `@mui/material`
 
-- [Accordion](/api/accordion/) - `HTMLDivElement`
-- [Alert](/api/alert/) - `HTMLDivElement`
-- [Avatar](/api/avatar/) - `HTMLDivElement`
-- [ButtonGroup](/api/button-group/) - `HTMLDivElement`
-- [Card](/api/card/) - `HTMLDivElement`
-- [Dialog](/api/dialog/) - `HTMLDivElement`
-- [ImageList](/api/image-list/) - `HTMLUListElement`
-- [List](/api/list/) - `HTMLUListElement`
-- [Tab](/api/tab/) - `HTMLDivElement`
-- [Tabs](/api/tabs/) - `HTMLDivElement`
-- [ToggleButton](/api/toggle-button/) - `HTMLButtonElement`
+- [Accordion](/material-ui/api/accordion/) - `HTMLDivElement`
+- [Alert](/material-ui/api/alert/) - `HTMLDivElement`
+- [Avatar](/material-ui/api/avatar/) - `HTMLDivElement`
+- [ButtonGroup](/material-ui/api/button-group/) - `HTMLDivElement`
+- [Card](/material-ui/api/card/) - `HTMLDivElement`
+- [Dialog](/material-ui/api/dialog/) - `HTMLDivElement`
+- [ImageList](/material-ui/api/image-list/) - `HTMLUListElement`
+- [List](/material-ui/api/list/) - `HTMLUListElement`
+- [Tab](/material-ui/api/tab/) - `HTMLDivElement`
+- [Tabs](/material-ui/api/tabs/) - `HTMLDivElement`
+- [ToggleButton](/material-ui/api/toggle-button/) - `HTMLButtonElement`
 
 #### `@mui/lab`
 
-- [Timeline](/api/timeline/) - `HTMLUListElement`
+- [Timeline](/material-ui/api/timeline/) - `HTMLUListElement`
 
 ### Style library
 
@@ -552,7 +552,7 @@ declare module '@mui/styles' {
   >   +import { createGenerateClassName } from '@mui/styles';
   > ```
 
-  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/guides/classname-generator/) for more details.
+  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/material-ui/experimental-api/classname-generator/) for more details.
 
 #### createMuiTheme
 
@@ -749,7 +749,7 @@ declare module '@mui/styles' {
 
 #### withWidth
 
-- This HOC was removed. This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/components/use-media-query/#migrating-from-withwidth).
+- This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/material-ui/react-use-media-query/#migrating-from-withwidth).
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
 
@@ -761,7 +761,7 @@ The `GitHub` icon was reduced in size from 24px to 22px wide to match the other 
 
 ### @material-ui/pickers
 
-We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5
+We have a [dedicated page](/material-ui/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5
 
 ### System
 
@@ -1386,7 +1386,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +<Grid justifyContent="center">
   > ```
 
-- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/customization/theme-components/#overrides-based-on-props).
+- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1448,7 +1448,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Hidden
 
-- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query/) hook.
+- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, further fixes are required.
 
@@ -1577,7 +1577,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<MenuItem classes={{...}}>
   ```
 
-  Read more about [MenuItem CSS API](/api/menu-item/#css)
+  Read more about [MenuItem CSS API](/material-ui/api/menu-item/#css)
 
 ### Modal
 
@@ -1877,11 +1877,11 @@ As the core components use emotion as their style engine, the props used by emot
    />
   ```
 
-- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/). [See documentation](/components/slider/).
+- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/). [See documentation](/material-ui/react-slider/).
 
-  <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+  <a href="/material-ui/react-slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
-  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/material-ui/react-slider/#sizes).
 
 ### Snackbar
 
@@ -2244,7 +2244,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<span style={visuallyHidden}>Create a user</span>
   ```
 
-- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/customization/theme-components/#overrides-based-on-props). For example:
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props). For example:
 
   ```diff
   const theme = createTheme({
@@ -2467,7 +2467,7 @@ import Typography from '@mui/material/Typography';
  }
 ```
 
-Take a look at the whole [list of global state classnames](/customization/how-to-customize/#state-classes) available.
+Take a look at the whole [list of global state classnames](/material-ui/customization/how-to-customize/#state-classes) available.
 
 ## Migrate from JSS
 
@@ -2594,7 +2594,7 @@ In some cases, you might want to create multiple styled components in a file ins
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
-> Note: This API will not work if you are [using `styled-components` as underlying styling engine in place of `@emotion`](/guides/interoperability/#styled-components).
+> Note: This API will not work if you are [using `styled-components` as underlying styling engine in place of `@emotion`](/material-ui/guides/interoperability/#styled-components).
 
 The API is similar to JSS `makeStyles` but works with emotion. It is also features a much better TypeScript support than v4's `makeStyles`.
 
@@ -2773,7 +2773,7 @@ function Parent() {
 
 [Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) is supported out of the box by TSS. You just need to follow [the related section of the migration guide](https://github.com/mui/material-ui/blob/bbdf5080fc9bd9d979d657a3cb237d88b27035d9/docs/data/material/guides/migration-v4/migration-v4.md?plain=1#L481-L500) and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
-In MUI v5 however, [style overrides also accept callbacks](https://mui.com/customization/theme-components/). By default TSS is only able to provide the theme. If you want to provide the props and the `ownerState` [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
+In MUI v5 however, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/). By default TSS is only able to provide the theme. If you want to provide the props and the `ownerState` [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
 
 **Note:** `tss-react` is **not maintained** by MUI. If you have any question about how to setup SSR (Next.js) or if you are wondering how to customize the `theme` object please refer to `tss-react`'s documentation, the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular. You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 
