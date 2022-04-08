@@ -1,7 +1,7 @@
 ---
 product: material-ui
 title: React Hidden（隐藏）组件
-description: The Hidden component is deprecated, check out the migration guide for more details.
+description: Hidden 组件已废弃，详情请查看迁移指南。
 components: Hidden
 githubLabel: 'component: Hidden'
 ---
