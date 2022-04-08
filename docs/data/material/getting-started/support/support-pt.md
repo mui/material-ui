@@ -50,20 +50,7 @@ Receba as últimas notícias sobre Material-UI.
 
 ### Versões suportadas
 
-MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
-
-Dada a realidade das restrições de tempo e recursos, bem como o desejo de continuar inovando, com o tempo, torna-se necessário mudar o foco para as versões mais recentes do framework ([nosso cronograma de lançamento](https://material-ui.com/versions/#release-frequency)), enquanto essa transição ocorre para as versões mais recentes, sempre que possível, inclusões de publicação de guias de migração são feitas, como [esta para a v4](/material-ui/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
-
-The current status of each MUI version is as follows:
-
-- Obtenha as ferramentas que você precisa continuamente catalogar e entenda o software de código aberto do qual seu aplicativo depende.
-- Sua assinatura ajuda a pagar os mantenedores da comunidade de código aberto dos pacotes que você usa, para garantir que eles cumpram os padrões que você precisa.
-- Resolve proativamente problemas, com ferramentas que buscam novos problemas de segurança, licenciamento e manutenção, e alerta os mantenedores de código aberto participantes para que possam resolvê-los em seu nome.
-- Tidelift ajuda a medir e melhorar a saúde das suas dependências de código aberto - o que aprimora a saúde do seu aplicativo - e fornece uma lista de etapas de alto impacto que sua equipe pode dar para aprimorar ainda mais.
-- Material-UI v1 (reescrita): ❌ Inativa.
-- Material-UI v0.x: ❌ Inativa.
-
-O status atual de cada versão do Material-UI é o seguinte:
+Find details on the [supported versions](/versions/#supported-versions).
 
 ## Suporte profissional (premium)
 
@@ -73,15 +60,15 @@ MUI comes in [three plans](/pricing/). The support available on the Community pl
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
 
-Se você quiser a flexibilidade do código aberto e a confiança do software em nível comercial, vale a pena conferir.
+O status atual de cada versão do Material-UI é o seguinte:
 
 ### Tidelift subscription
 
-A Tidelift Subscription fornece esses recursos para você:
+MUI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 
 Se você quiser a flexibilidade do código aberto e a confiança do software em nível comercial, vale a pena conferir.
 
-A Tidelift Subscription fornece esses recursos para você:
+Se você quiser a flexibilidade do código aberto e a confiança do software em nível comercial, vale a pena conferir.
 
 - Obtenha as ferramentas que você precisa continuamente catalogar e entenda o software de código aberto do qual seu aplicativo depende.
 - Sua assinatura ajuda a pagar os mantenedores da comunidade de código aberto dos pacotes que você usa, para garantir que eles cumpram os padrões que você precisa.
@@ -109,9 +96,9 @@ Solicite uma demonstração
 
 Ajuste Material-UI para atender requisitos específicos. Nos dê um resumo das suas necessidades e ajudaremos você se pudermos. Nós poderíamos:
 
-- Dar a você uma estimativa de tempo e preço se o trabalho for simples
+- Obtenha as ferramentas que você precisa continuamente catalogar e entenda o software de código aberto do qual seu aplicativo depende.
 - Suggest alternatives that might not require MUI
-- Recusar o trabalho devido a tempo ou relevância
+- Resolve proativamente problemas, com ferramentas que buscam novos problemas de segurança, licenciamento e manutenção, e alerta os mantenedores de código aberto participantes para que possam resolvê-los em seu nome.
 
 Note que o trabalho deve estar relacionado ao Material-UI. Não aceitamos trabalhos genéricos de desenvolvimento React. Nosso preço de contratação é de $200/hora ou $1.500/dia.
 
