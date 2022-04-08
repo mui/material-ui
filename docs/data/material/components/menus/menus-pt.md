@@ -40,13 +40,13 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 
 ## Composição de MenuList
 
-Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variante` para "menu".
+Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)). Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variante` para "menu".
 
 {{"demo": "SimpleListMenu.js"}}
 
 ## Menu customizado
 
-Devido ao componente `Menu` usar o componente `Popover` para se posicionar, você pode usar as mesmas [propriedades de posicionamento](/components/popover/#anchor-playground) para posicioná-lo. Por exemplo, você pode exibir o menu abaixo da âncora:
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it. Por exemplo, você pode exibir o menu abaixo da âncora:
 
 {{"demo": "PositionedMenu.js"}}
 
@@ -66,7 +66,7 @@ Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu 
 
 ## Trocar transição
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedMenus.js"}}
 
