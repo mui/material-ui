@@ -6,7 +6,7 @@
 
 > ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
-Material-UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更加清晰的结构，**我们单独发布了 Material-UI 组件中使用的样式方案**，它将作为一个 `@mui/styles` 的依赖包存在。 @mui/styles 并不是你唯一的选择，Material-UI 也可以与其他主流样式方案[彼此协作](/guides/interoperability/)。
+Material-UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更加清晰的结构，**我们单独发布了 Material-UI 组件中使用的样式方案**，它将作为一个 `@mui/styles` 的依赖包存在。 You can use it, but you don't have to, since MUI is also [interoperable with](/material-ui/guides/interoperability/) all the other major styling solutions.
 
 ## 为什么要使用 Material-UI 的样式方案呢？
 
@@ -70,7 +70,7 @@ export default function Hook() {
 
 ### Styled components API
 
-注意：在只是用调用语法—— 您仍需使用一个 JSS 对象来定义你的样式。 你可以[改变这样的行为](/styles/advanced/#string-templates)，但还是存在一些限制。
+注意：在只是用调用语法—— 您仍需使用一个 JSS 对象来定义你的样式。 You can also [change this behavior](/system/styles/advanced/#string-templates), with some limitations.
 
 ```jsx
 import * as React from 'react';
