@@ -94,9 +94,8 @@ If you'd like to learn more about this topic, we recommend checking out [the MDN
 
 #### Why do I need to increase specificity to override one component state?
 
-By design, the CSS specification makes the pseudo-classes increase the specificity.
-For consistency with native elements, Material UI increases the specificity of its custom state classes.
-This has one important advantage: it allows you to cherry-pick the state you want to customize.
+CSS pseudo-classes have a high level of specificity.
+For consistency with native elements, Material UI's state classes have the same level of specificity as CSS pseudo-classes, making it possible to target an individual component's state.
 
 #### What custom state classes are available in Material UI?
 
