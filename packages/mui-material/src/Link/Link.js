@@ -168,7 +168,10 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       ref={handlerRef}
       ownerState={ownerState}
       variant={variant}
-      sx={[{ color: colorTransformations[color] || color }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[
+        ...(inProps.color ? [{ color: colorTransformations[color] || color }] : []),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...other}
     />
   );
