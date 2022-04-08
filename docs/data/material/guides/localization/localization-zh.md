@@ -9,8 +9,8 @@ The default locale of MUI is English (United States). 如果您想使用其他�
 使用 theme 来全局地配置语言环境文本：
 
 ```jsx
-import { createTheme, ThemeProvider } from '@mui/core/styles';
-import { zhCN } from '@mui/core/locale';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { zhCN } from '@material-ui/core/locale';
 
 const theme = createTheme(
   {
@@ -39,15 +39,15 @@ const theme = createTheme(
 | Amharic                 | am-ET       | `amET` |
 | Arabic (Egypt)          | ar-EG       | `arEG` |
 | Arabic (Sudan)          | ar-SD       | `arSD` |
-| Armenian                | hy-AM       | `hyAM` |
-| Azerbaijani             | az-AZ       | `azAZ` |
+| 亚美尼亚语                   | hy-AM       | `hyAM` |
+| 阿塞拜疆语                   | az-AZ       | `azAZ` |
 | Bangla                  | bn-BD       | `bnBD` |
-| Bulgarian               | bg-BG       | `bgBG` |
-| Catalan                 | ca-ES       | `caES` |
+| 保加利亚语                   | bg-BG       | `bgBG` |
+| 加泰罗尼亚语                  | ca-ES       | `caES` |
 | Chinese (Hong Kong)     | zh-HK       | `zhHK` |
-| Chinese (Simplified)    | zh-CN       | `zhCN` |
+| 简体中文                    | zh-CN       | `zhCN` |
 | Chinese (Taiwan)        | zh-TW       | `zhTW` |
-| Croatian                | hr-HR       | `hrHR` |
+| 捷克语                     | hr-HR       | `hrHR` |
 | Czech                   | cs-CZ       | `csCZ` |
 | Danish                  | da-DK       | `daDK` |
 | Dutch                   | nl-NL       | `nlNL` |
@@ -95,4 +95,4 @@ const theme = createTheme(
 
 ## RTL 支持
 
-支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 Follow [this guide](/material-ui/guides/right-to-left/) to use them.
+支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 请遵循 [本指南](/material-ui/guides/right-to-left/) 来使用这些语言。
