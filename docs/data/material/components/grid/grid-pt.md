@@ -77,11 +77,11 @@ Valores responsivos são suportados por:
 - todas as outras propriedades do sistema [other props](#system-props)
 
 > ⚠️ Quando Usamos a prop de código responsivo `colunas`, cada item da manha precisa de seu correspondente ponto de ruptura. For instance, this is not working. The grid item misses the value for `md`:
->
+> 
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
->   <Grid item xs={2} />> > >{' '}
-> </Grid>
+>    <Grid item xs={2} />> >{' '}
+> > </Grid>
 > ```
 
 ## Interativo
@@ -92,7 +92,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Leiaute Automático
 
-O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele That also means you can set the width of one _item_ and the others will automatically resize around it.
+O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ O leiaute automático faz com que o espaço disponível seja compartilhado de forma proporcional _items_ Isso também quer dizer que podemos definir que a largura de um _item_ se ajustará automaticamente ao redor dele That also means you can set the width of one _item_ and the others will automatically resize around it.
 
 {{"demo": "AutoGrid.js", "bg": true}}
 
