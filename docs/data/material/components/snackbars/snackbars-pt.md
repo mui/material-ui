@@ -27,7 +27,7 @@ Um snackbar básico que tem como objetivo reproduzir o comportamento do Google K
 
 ## Snackbars customizados
 
-Aqui estão alguns exemplos de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSnackbars.js"}}
 
@@ -59,13 +59,13 @@ Snackbars devem aparecer acima de BAFs (no mobile).
 
 ### Modificando a transição
 
-[Grow](/material-ui/transitions/#grow) is the default transition but you can use a different one.
+[Grow](/material-ui/transitions/#grow) é a transição padrão, mas você pode usar uma diferente.
 
 {{"demo": "TransitionsSnackbar.js"}}
 
 ### Controlando a direção do Slide
 
-You can change the direction of the [Slide](/material-ui/transitions/#slide) transition.
+Você pode alterar a direção da transição do [Slide](/material-ui/transitions/#slide).
 
 Example of making the slide transition to the left:
 
