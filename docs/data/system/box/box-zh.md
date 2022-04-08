@@ -29,7 +29,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用 CSS 继承来解决这个问题。 为了回避这个 CSS 继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
+但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用CSS继承来解决这个问题。 为了回避这个 CSS 继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -50,14 +50,14 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
-| 名称                                     | 类型                                                                                                        | 默认值                                  | 描述                                                                 |
-| :--------------------------------------- | :---------------------------------------------------------------------------------------------------------- | :-------------------------------------- | :------------------------------------------------------------------- |
-| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                     |                                         | Box 渲染函数或者返回节点。                                           |
+| 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
+|:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------ |
+| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Box 渲染函数或者返回节点。                            |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |
-| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                       | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                          |
+| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                   |
 
 ## 系统属性
 
