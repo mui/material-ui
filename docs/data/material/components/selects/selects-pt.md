@@ -22,11 +22,11 @@ Os menus são posicionados sobre seus elementos emissores, de modo que o item de
 
 O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
 
-Se você estiver procurando por recursos mais avançados, como combobox, seleção múltipla, autocompletar, uso assíncrono ou com suporte de adição, vá para o [ componente `Autocomplete`](/components/autocomplete/). A ideia dessa ferramenta é ser uma versão melhorada das bibliotecas "react-select" e "downshift".
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/material-ui/react-autocomplete/). A ideia dessa ferramenta é ser uma versão melhorada das bibliotecas "react-select" e "downshift".
 
 ## Propriedades
 
-O componente seleção é implementado como um elemento `<input>` personalizado do [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields/) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. Ele compartilha os mesmos estilos e muitas das mesmas propriedades. Consulte a página da API do respectivo componente para obter detalhes.
+The Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/). It extends the [text field components](/material-ui/react-text-field/) sub-components, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected. Ele compartilha os mesmos estilos e muitas das mesmas propriedades. Consulte a página da API do respectivo componente para obter detalhes.
 
 ### Filled and standard variants
 
@@ -58,11 +58,11 @@ As the user experience can be improved on mobile using the native select of the 
 
 ## TextField
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/components/text-fields/#select).
+The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/material-ui/react-text-field/#select).
 
 ## Seleções customizadas
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` prop to have a `select` field. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
