@@ -47,7 +47,7 @@ The `TabPanelUnstyled`, on the other hand, renders a native `div` element by def
 
 ## Third-party routing library
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
 
 ## Accessibility
 
