@@ -11,7 +11,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 
 <p class="description">用户可以通过单选按钮从一组中选择一个选项。</p>
 
-当用户想要看到所有的选项时，可以使用单选按钮。 如果可用选项可以折叠，请您考虑使用占用空间更少的下拉菜单。
+当用户想要看到所有的选项时，可以使用单选按钮。 If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.
 
 默认情况下，单选按钮应该选择了最常用的选项。
 
@@ -65,7 +65,7 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 
 ## Customized radios 自定义单选框
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedRadios.js"}}
 
@@ -99,7 +99,7 @@ import { useRadioGroup } from '@mui/core/RadioGroup';
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
 
-- 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/api/form-control-label/)）实现的。
+- 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - 如果无法使用标签，您则必须在输入组件中直接添加属性。 在这种情况下，您可以经由 `inputProps` 属性，来附着一些额外的属性（例如 `arial-label`，`aria-labelledby`，`title`）。
 
 ```jsx
