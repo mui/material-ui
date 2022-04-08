@@ -1,6 +1,6 @@
 ---
-product: base
-title: React Portal component
+product: material-ui
+title: Componente React Portal
 components: Portal
 githubLabel: 'component: Portal'
 packageName: '@mui/base'
@@ -8,16 +8,16 @@ packageName: '@mui/base'
 
 # Portal
 
-<p class="description">The portal component renders its children into a new "subtree" outside of the current DOM hierarchy.</p>
+<p class="description">O componente portal renderiza seus elementos filho em uma nova "subárvore" fora da hierarquia do DOM atual.</p>
 
-The children of the portal component will be appended to the `container` specified. The component is used internally by the [`Modal`](/material-ui/react-modal/) and [`Popper`](/material-ui/react-popper/) components.
+O filho do componente portal será adicionado ao `container` especificado. O componente é usado internamente pelos componentes [`Modal`](/material-ui/react-modal/) e [`Popper`](/material-ui/react-popper/).
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
-## Example
+## Exemplo
 
 {{"demo": "SimplePortal.js"}}
 
-## Server-side
+## Do lado do servidor
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. You have to wait for the client-side hydration to see the children.
+React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://pt-br.reactjs.org/docs/portals.html) no servidor. Você deve esperar pelo lado do cliente fazer a hidratação para ver o filho.
