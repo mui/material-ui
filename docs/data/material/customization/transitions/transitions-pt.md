@@ -87,4 +87,4 @@ const theme = createTheme({
 
 ## Referências
 
-Confira a página de [Transições](/components/transitions/) para explorar os componentes de transição que estão incluídos com o Material-UI.
+Check out the [Transitions](/material-ui/transitions/) page to explore the transition components that are included with MUI.
