@@ -30,7 +30,7 @@
 
 ### 自定义变量
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样： For instance:
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样： For instance: For instance:
 
 ```jsx
 const theme = createTheme({
@@ -96,7 +96,7 @@ declare module '@mui/material/styles' {
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-> Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+> Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -220,10 +220,10 @@ This component takes a `theme` prop and applies it to the entire React tree that
 
 #### 属性
 
-| Name             | Type                                     | Description                                                                                                                                                                                               |
-| :--------------- | :--------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
-| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
+| Name               | Type                                     | Description                                                                                                                                                                                                                                                                                                               |
+|:------------------ |:---------------------------------------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                                                                                                                                      |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
 #### Examples
 
