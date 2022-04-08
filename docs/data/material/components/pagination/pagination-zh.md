@@ -58,7 +58,7 @@ githubLabel: 'component: pagination'
 For advanced customization use cases, a headless `usePagination()` hook is exposed. 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 The Pagination component is built on this hook.
 
 ```jsx
-import { usePagination } from '@mui/core/Pagination';
+import { usePagination } from '@material-ui/core/Pagination';
 ```
 
 {{"demo": "UsePagination.js"}}
@@ -73,7 +73,7 @@ import { usePagination } from '@mui/core/Pagination';
 
 > ⚠️ 注意，`Pagination` 页面的属性从 1 开始，以满足在 URL 中包含当前页面参数值的要求，而 `TablePagination` 页面的属性则从 0 开始，以满足渲染大量表格数据时基于零开始的 JavaScript 数组的要求。
 
-You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.
+您可以在文档的 [表格部分](/material-ui/react-table/#custom-pagination-options) 中了解更多关于此用例的信息。
 
 ## Accessibility
 
