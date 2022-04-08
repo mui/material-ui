@@ -57,7 +57,7 @@ const styles = (theme) => ({
 
 ### useMediaQuery 钩子（Hook）
 
-You can learn more on the [useMediaQuery](/material-ui/react-use-media-query/) page.
+您可以在 [userMediaQuery](/material-ui/react-use-media-query/) 页面上了解更多信息。
 
 ## 自定义断点
 
@@ -65,9 +65,9 @@ You can learn more on the [useMediaQuery](/material-ui/react-use-media-query/) p
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-- [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
+- [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values)：默认为 [以上值](#default-breakpoints)。 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
 - `theme.breakpoints.unit`：默认为 `px`。 这个用于断点值的单位。
-- `theme.breakpoints.step`：默认为 5 (`0.05px`)。 这个增量除以 100 用于实现专用的断点。 例如，`{ step: 5 }` 意味着 `down(500)` 的结果为 `'(max-width: 499.95px)'`。
+- `theme.breakpoints.step`：默认为 5 (`0.05px`)。 这个增量除以 100 用于实现专用的断点。 The increment divided by 100 used to implement exclusive breakpoints. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
 如果您需要更改断点的默认值，则需要提供所有的断点值：
 
@@ -100,19 +100,19 @@ const theme = createTheme({
 });
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+如果您使用的是 TypeScript，您还需要使用 [module augmentation](/material-ui/guides/typescript/#customization-of-theme) 来让主题接受上述值。
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
 ```ts
-declare module '@mui/core/styles' {
+declare module '@material-ui/core/styles' {
   interface BreakpointOverrides {
     xs: false; // 移除 `xs` 断点
     sm: false;
     md: false;
     lg: false;
     xl: false;
-    mobile: true; // 添加 `mobile` 断点
+    mobile: true; // adds the `mobile` breakpoint
     tablet: true;
     laptop: true;
     desktop: true;
