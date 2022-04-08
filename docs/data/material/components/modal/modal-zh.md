@@ -1,10 +1,10 @@
 ---
 product: material-ui
 title: React Modal（模态框）组件
-components: Modal
+components: Modal, ModalUnstyled
 githubLabel: 'component: modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
-unstyled: /base/react-modal/
+unstyled: import ModalUnstyled from '@mui/base/ModalUnstyled';
 ---
 
 # Modal 模态框组件
@@ -23,7 +23,7 @@ unstyled: /base/react-modal/
 
 > **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 模态框的窗口描述了 UI 的一部分。 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
 
-If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/react-dialog/) component rather than directly using Modal. 以下的组件将将模态框作为一个低级别的组件运用：
+当你创建一个模态对话框时，使用[对话框（Dialog）](/material-ui/react-dialog/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer（抽屉）](/material-ui/react-drawer/)
@@ -44,14 +44,14 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 ## Transitions
 
-The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
+通过使用一个过渡组件，您可以给模态框的打开/关闭状态加上动画效果。 此组件应遵守以下条件：
 
-- Be a direct child descendent of the modal.
-- Have an `in` prop. This corresponds to the open/close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
+- 有一个 `in` 属性。 这对应于打开/关闭的状态。
+- 当进入过渡时调用 `onEnter` 回调属性。
+- 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了模态框在关闭并展示完过渡动画时，将会移除子内容。
 
-Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+模态框已经内嵌支持 [react-transition-group](https://github.com/reactjs/react-transition-group)。
 
 {{"demo": "TransitionsModal.js"}}
 
@@ -59,9 +59,9 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 {{"demo": "SpringModal.js"}}
 
-## Performance
+## 过渡动画
 
-The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+模态的内容在关闭时是不被加载的。 如果你需要将内容提供给搜索引擎或在你的模态框中渲染昂贵的组件树，同时还要优化交互响应能力，那么你可以启用 `keepMounted` 属性来改变这一默认行为：
 
 ```jsx
 <Modal keepMounted />
@@ -69,19 +69,19 @@ The content of modal is unmounted when closed. If you need to make the content a
 
 {{"demo": "KeepMountedModal.js", "defaultCodeOpen": false}}
 
-As with any performance optimization, this is not a silver bullet. Be sure to identify bottlenecks first, and then try out these optimization strategies.
+As with any performance optimization, this is not a silver bullet. As with any performance optimization, this is not a silver bullet. Be sure to identify bottlenecks first, and then try out these optimization strategies. Be sure to identify bottlenecks first, and then try out these optimization strategies. Be sure to identify bottlenecks first, and then try out these optimization strategies.
 
-## Server-side modal
+## 性能
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染的 [`createPortal()`](https://reactjs.org/docs/portals.html) API。 若您想显示模态框，则需要通过 `disablePortal` 这个属性来禁用 protal 功能：
 
 {{"demo": "ServerModal.js"}}
 
-## Limitations
+## 服务端渲染的模态框
 
 ### 焦点陷阱
 
-The modal moves the focus back to the body of the component if the focus tries to escape it.
+如果用户试图将焦点离开模态框，模态框会将丢失的焦点移回到组件的主体。
 
 This is done for accessibility purposes. However, it might create issues. In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
 
@@ -89,18 +89,18 @@ This is done for accessibility purposes. However, it might create issues. In the
 <Modal disableEnforceFocus />
 ```
 
-## Accessibility
+## 设计局限
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+- 记得用 `aria-labelledby="id..."` 属性来指向 `Modal` 的标题。 此外，您可以使用 `aria-describedby="id..."` 属性来为 `Modal` 组件添加一段描述。
 
   ```jsx
   <Modal aria-labelledby="modal-title" aria-describedby="modal-description">
-    <h2 id="modal-title">My Title</h2>
-    <p id="modal-description">My Description</p>
+    <h2 id="modal-title">我的标题</h2>
+    <p id="modal-description">我的描述</p>
   </Modal>
   ```
 
-- The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. This might create [conflicting behaviors](#focus-trap).
+- 这篇 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法帮助你通过模态窗口里的内容，为最相关的元素设置初始焦点。
+- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. 因为这可能会造成[冲突行为](#focus-trap)。
