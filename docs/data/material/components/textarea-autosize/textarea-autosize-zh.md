@@ -29,7 +29,7 @@ githubLabel: 'component: TextareaAutosize'
 
 ## Base
 
-The [TextareaAutosize](/base/react-textarea-autosize) component is defined in the @mui/base package. It is reexported from @mui/material for convenience. In your application you may import it from either package.
+The [TextareaAutosize](/base/react-textarea-autosize/) component is defined in the @mui/base package. It is reexported from @mui/material for convenience. In your application you may import it from either package.
 
 ```js
 import TextareaAutosize from '@mui/base/TextareaAutosize';
