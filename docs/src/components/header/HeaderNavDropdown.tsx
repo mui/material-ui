@@ -46,22 +46,22 @@ const UList = styled('ul')({
 const PRODUCTS = [
   {
     name: 'MUI Core',
-    description: 'Ready-to-use foundational components, free forever.',
+    description: 'Foundational components for shipping features faster.',
     href: ROUTES.productCore,
   },
   {
     name: 'MUI X',
-    description: 'Advanced and powerful components for complex use-cases.',
+    description: 'Advanced components for complex use cases.',
     href: ROUTES.productAdvanced,
   },
   {
     name: 'Templates',
-    description: 'Fully built, out-of-the-box, templates for your application.',
+    description: 'Professionally designed UI layouts to jumpstart your next project.',
     href: ROUTES.productTemplates,
   },
   {
     name: 'Design kits',
-    description: 'Our components available in your favorite design tool.',
+    description: 'Bring our components to your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
 ];

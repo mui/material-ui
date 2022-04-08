@@ -202,7 +202,7 @@ function ProductDrawerButton(props) {
             role="menuitem"
             icon={<IconImage name="product-core" />}
             name="MUI Core"
-            description="Ready-to-use foundational components, free forever."
+            description="Foundational components for shipping features faster."
           />
           <LinksWrapper>
             <Link href={ROUTES.materialDocs} sx={{ my: -0.5 }}>
@@ -247,7 +247,7 @@ function ProductDrawerButton(props) {
                   MUI&nbsp;X
                 </Box>
               }
-              description="Advanced and powerful components for complex use cases."
+              description="Advanced components for complex use cases."
             />
           </Link>
         </li>

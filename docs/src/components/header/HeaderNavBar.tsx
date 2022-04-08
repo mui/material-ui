@@ -256,7 +256,7 @@ export default function HeaderNavBar() {
                           href={ROUTES.productCore}
                           icon={<IconImage name="product-core" />}
                           name="MUI Core"
-                          description="Ready-to-use foundational components, free forever."
+                          description="Foundational components for shipping features faster."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
@@ -271,7 +271,7 @@ export default function HeaderNavBar() {
                               MUI&nbsp;X
                             </Box>
                           }
-                          description="Advanced and powerful components for complex use-cases."
+                          description="Advanced components for complex use cases."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
@@ -282,7 +282,7 @@ export default function HeaderNavBar() {
                           href={ROUTES.productTemplates}
                           icon={<IconImage name="product-templates" />}
                           name="Templates"
-                          description="Fully built, out-of-the-box, templates for your application."
+                          description="Professionally designed UI layouts to jumpstart your next project."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
@@ -293,7 +293,7 @@ export default function HeaderNavBar() {
                           href={ROUTES.productDesignKits}
                           icon={<IconImage name="product-designkits" />}
                           name="Design kits"
-                          description="Our components available in your favorite design tool."
+                          description="Bring our components to your favorite design tool."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
