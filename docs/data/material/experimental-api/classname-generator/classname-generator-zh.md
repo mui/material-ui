@@ -2,7 +2,7 @@
 
 <p class="description">在构建时配置类名生成</p>
 
-This API is introduced in `@mui/material` (v5.0.5) as a replacement of deprecated [`createGenerateClassName`](/system/styles/api/#creategenerateclassname-options-class-name-generator).
+这个 API 在 `@mui/material` (v5.0.5) 中引入，作为已弃用[`createGenerateClassName`](/system/styles/api/#creategenerateclassname-options-class-name-generator)的替代品
 
 > ⚠️ **注意**: 这个 API 处于不稳定阶段，将来可能发生变化。
 
@@ -31,14 +31,23 @@ function App() {
 使用 `ClassNameGenerator.configure(callback)` 回调函数，可为 MUI 所有生成组件类名添加前缀。
 
 ```js
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
++import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
-// call this function at the root of the application and before any MUI components import
-ClassNameGenerator.configure((componentName) => `foo-bar-${componentName}`);
-
-function App() {
-  return <Button>Button</Button>;
-}
+   const theme = createTheme({
+     components: {
+       MuiOutlinedInput: {
+         styleOverrides: {
+           root: {
+  -          '& .MuiOutlinedInput-notchedOutline': {
+  +          // the result will contain the prefix.
+  +          [`& .${outlinedInputClasses.notchedOutline}`]: {
+               borderWidth: 1,
+             }
+           }
+         }
+       }
+     }
+   });
 ```
 
 返回 HTML 结果
@@ -53,12 +62,12 @@ function App() {
 
 ## 组件更名
 
-每个 MUI 组件都有 `${componentName}-${slot}` 类名称格式。 For example, the component name of [`Chip`](/material-ui/react-chip/) is `MuiChip`, which is used as a global class name for every `<Chip />` element. 您可以删除/更改 `Mui` 前缀，如下所示：
+每个 MUI 组件都有 `${componentName}-${slot}` 类名称格式。 例如， [`Chip`](/material-ui/react-chip/) 的组件名称为 `MuiChip`, 它被用作每一个 `<Chip />` 元素的全局类名称。 您可以删除/更改 `Mui` 前缀，如下所示：
 
 ```js
-import { unstable_ClassNameGenerator } from '@mui/material/className';
+import { unstable_ClassNameGenerator } from '@mui/material/utils';
 
-// call this function at the root of the application
+// 在应用程序的根调用这个函数
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace('Mui', ''),
 );
@@ -78,7 +87,7 @@ function App() {
 </div>
 ```
 
-> **Note**: [state classes](/material-ui/customization/how-to-customize/#state-classes) are **NOT** component names and therefore cannot be changed/removed.
+> **注：** [状态类](/material-ui/customization/how-to-customize/#state-classes)**不是**组件名称，因此不能更改/删除
 
 ## 注意事项
 
@@ -103,6 +112,14 @@ function App() {
        }
      }
    });
+  +          [`& .${outlinedInputClasses.notchedOutline}`]: {
+               borderWidth: 1,
+             }
+           }
+         }
+       }
+     }
+   });
   ```
 
 - 此 API 只能在构建时使用。
@@ -114,7 +131,7 @@ function App() {
 
 ```js
 /* eslint-disable import/first */
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
 ```
 
 ### Next.js
@@ -122,7 +139,7 @@ import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material
 在 `/pages/_app.js` 中使用 ClassNameGenerator。
 
 ```diff
-+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
++import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
 
 +ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
@@ -144,7 +161,7 @@ import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material
 在`/src/index.js` 中使用 ClassNameGenerator
 
 ```diff
-+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
++import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
 
 +ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
@@ -160,7 +177,7 @@ import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material
 在根文件夹中的 `gatsby-ssr.js` 文件内使用 GlassNameGenerator
 
 ```diff
-+import { unstable_ClassNameGenerator as ClassNameGenerator } from "@mui/material/className";
++import { unstable_ClassNameGenerator as ClassNameGenerator } from "@mui/material/utils";
 
 +ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
