@@ -89,4 +89,4 @@ const theme = createTheme({
 
 ## 参考
 
-你可以通过提供一个自定义的 CSS <code>transition-timing-function</code> 值来改变部分或全部的缓动值，或者提供你自己的缓动值。
+Check out the [Transitions](/material-ui/transitions/) page to explore the transition components that are included with MUI.
