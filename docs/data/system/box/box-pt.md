@@ -21,7 +21,7 @@ All system properties are available via the [`sx` prop](/system/basics/#the-sx-p
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
-## Sobrescrevendo componentes do Material-UI
+## Sobrescrevendo componentes do Material UI
 
 O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<div>` por padrão, algo que pode ser modificado com a propriedade `component`. Digamos que você queira usar um `<span>`:
 
@@ -29,7 +29,7 @@ O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<di
 
 Isso funciona muito bem quando as alterações precisam ser isoladas em um novo elemento DOM. Note no exemplo, a forma que você alterou a margem.
 
-No entanto, às vezes, você precisa modificar o elemento DOM subjacente. As an example, you may want to change the border of the Button. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
+No entanto, às vezes, você precisa modificar o elemento DOM subjacente. As an example, you may want to change the border of the Button. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -38,7 +38,7 @@ No entanto, às vezes, você precisa modificar o elemento DOM subjacente. As an 
 +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
-For non-Material-UI components, use the `component` prop.
+For non-Material UI components, use the `component` prop.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>

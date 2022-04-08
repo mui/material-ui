@@ -17,7 +17,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **请注意：**步骤条不再出现在 [Material Design 指南](https://material.io/)中, 但 Material-UI 会继续支持此组件。
+> **请注意：**步骤条不再出现在 [Material Design 指南](https://material.io/)中, 但 Material UI 会继续支持此组件。
 
 ## 水平步骤条
 

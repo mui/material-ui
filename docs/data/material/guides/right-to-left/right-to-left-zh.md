@@ -1,6 +1,6 @@
 # 从右到左读取
 
-<p class="description">支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 要更改 Material-UI 组件的读取方向，您必须执行以下步骤。</p>
+<p class="description">支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 要更改 Material UI 组件的读取方向，您必须执行以下步骤。</p>
 
 ## 步骤
 
@@ -52,7 +52,7 @@ npm install stylis-plugin-rtl
 npm install jss-rtl
 ```
 
-在你的项目中安装了该插件后，Material-UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
+在你的项目中安装了该插件后，Material UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
 
 ### 4. 4. 4. 加载 rtl 插件
 

@@ -68,7 +68,7 @@ function App() {
 
 ## Renderizando input
 
-Introduzimos uma nova propriedade **requerida**, `renderInput`. Isso simplifica o uso de componentes de entrada de texto sem Material-UI.
+Introduzimos uma nova propriedade **requerida**, `renderInput`. Isso simplifica o uso de componentes de entrada de texto sem Material UI.
 
 ```jsx
 <DatePicker renderInput={(props) => <TextField {...props} />} />

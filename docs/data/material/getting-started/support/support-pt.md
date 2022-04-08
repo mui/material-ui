@@ -38,13 +38,13 @@ Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
 
 ### Recursos 📖
 
-Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
+Novo no Material UI? É fácil de aprender, se você souber por onde começar!
 
-[Aprenda Material-UI](/material-ui/getting-started/learn/)
+[Aprenda Material UI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
-Receba as últimas notícias sobre Material-UI.
+Receba as últimas notícias sobre Material UI.
 
 [Siga-nos](https://twitter.com/MUI_hq)
 
@@ -60,7 +60,7 @@ MUI comes in [three plans](/pricing/). The support available on the Community pl
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
 
-O status atual de cada versão do Material-UI é o seguinte:
+O status atual de cada versão do Material UI é o seguinte:
 
 ### Tidelift subscription
 
@@ -94,12 +94,12 @@ Solicite uma demonstração
 
 ### Trabalho customizado 🛠
 
-Ajuste Material-UI para atender requisitos específicos. Nos dê um resumo das suas necessidades e ajudaremos você se pudermos. Nós poderíamos:
+Ajuste Material UI para atender requisitos específicos. Nos dê um resumo das suas necessidades e ajudaremos você se pudermos. Nós poderíamos:
 
 - Obtenha as ferramentas que você precisa continuamente catalogar e entenda o software de código aberto do qual seu aplicativo depende.
 - Suggest alternatives that might not require MUI
 - Resolve proativamente problemas, com ferramentas que buscam novos problemas de segurança, licenciamento e manutenção, e alerta os mantenedores de código aberto participantes para que possam resolvê-los em seu nome.
 
-Note que o trabalho deve estar relacionado ao Material-UI. Não aceitamos trabalhos genéricos de desenvolvimento React. Nosso preço de contratação é de $200/hora ou $1.500/dia.
+Note que o trabalho deve estar relacionado ao Material UI. Não aceitamos trabalhos genéricos de desenvolvimento React. Nosso preço de contratação é de $200/hora ou $1.500/dia.
 
 [Envie-nos um e-mail](mailto:custom-work@mui.com)

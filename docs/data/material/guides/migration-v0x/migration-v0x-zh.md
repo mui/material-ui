@@ -10,7 +10,7 @@ I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't ch
 
 ### 到底是什么带来了如此巨大的改变呢？
 
-Material-UI 这个项目是从[4 年前](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material-UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化： 譬如这些主要的变化：
+Material UI 这个项目是从[4 年前](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化： 譬如这些主要的变化：
 
 - 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/material-ui/customization/how-to-customize/)的能力和整体性能）
 - 新的主题处理 （有嵌套，自主支撑等。）
@@ -21,7 +21,7 @@ Material-UI 这个项目是从[4 年前](https://github.com/mui/material-ui/comm
 
 ### 我应该从哪里开始迁移？
 
-1. 首先，和 v0.x 版本一起，安装 v1.x 版本的 Material-UI。
+1. 首先，和 v0.x 版本一起，安装 v1.x 版本的 Material UI。
 
 用 yarn：
 
@@ -77,7 +77,7 @@ export default App;
 
 ### Autocomplete 自动补全组件
 
-Material-UI doesn't provide a high-level API for solving this problem. Material-UI doesn't provide a high-level API for solving this problem. MUI doesn't provide a high-level API for solving this problem. Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/material-ui/react-autocomplete/).
+Material UI doesn't provide a high-level API for solving this problem. Material UI doesn't provide a high-level API for solving this problem. MUI doesn't provide a high-level API for solving this problem. Material UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/material-ui/react-autocomplete/).
 
 在你的项目上运行 [迁移助手](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod)
 

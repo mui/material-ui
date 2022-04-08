@@ -1,6 +1,6 @@
 # API 的设计方法
 
-<p class="description">我们在如何使用 Material-UI 方面学到了很多相关的知识，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
+<p class="description">我们在如何使用 Material UI 方面学到了很多相关的知识，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
 
 > API 设计的难点在于你可以让一些复杂的东西看起来简单，也可能把简单的东西搞得复杂。
 
@@ -112,7 +112,7 @@ const styles = {
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
-Material-UI 组件根据以下规则将两种方法结合使用：
+Material UI 组件根据以下规则将两种方法结合使用：
 
 - 当需要 **2** 个可能的值时，我们使用 _boolean_。
 - **host element**：`react-dom` 中的一个 DOM 节点，例如 `window.HTMLDivElement` 的实例。

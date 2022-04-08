@@ -1,10 +1,10 @@
 # 支持的平台
 
-<p class="description">了解更多Material-UI支持的从最新版到旧版的平台。</p>
+<p class="description">了解更多Material UI支持的从最新版到旧版的平台。</p>
 
 ## 浏览器
 
-Material-UI 支持所有主流浏览器和平台的最新稳定版本。 您不需要提供任何 JavaScript polyfill， 鉴于它在内部管理了不支持的浏览器的功能并且将其隔离。
+Material UI 支持所有主流浏览器和平台的最新稳定版本。 您不需要提供任何 JavaScript polyfill， 鉴于它在内部管理了不支持的浏览器的功能并且将其隔离。
 
 <!-- #stable-snapshot -->
 
@@ -20,7 +20,7 @@ Because Googlebot uses a web rendering service (WRS) to index the page content, 
 
 ### IE 11
 
-Material-UI provides **partial** supports for IE 11. Be aware of the following: Be aware of the following: Be aware of the following: Be aware of the following:
+Material UI provides **partial** supports for IE 11. Be aware of the following: Be aware of the following: Be aware of the following: Be aware of the following:
 
 - Some of the components have no support. Some of the components have no support. For instance, the new components, the data grid, the date picker. For instance, the new components, the data grid, the date picker. For instance, the new components, the data grid, the date picker.
 - Some of the components have degraded support. Some of the components have degraded support. Some of the components have degraded support. Some of the components have degraded support. For instance, the outlined input border radius is missing, the combobox doesn't remove diacritics, the circular progress animation is wobbling.
@@ -36,7 +36,7 @@ v6 will completely remove the support of IE 11.
 
 <!-- #stable-snapshot -->
 
-Material-UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported. This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode. This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode. This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
+Material UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported. This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode. This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode. This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
 
 ### CSS 前缀
 
@@ -48,8 +48,8 @@ Material-UI supports [Node.js](https://github.com/nodejs/node) starting with ver
 
 <!-- #react-peer-version -->
 
-Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 我们同时提供了向后兼容的 [版本](https://material-ui.com/versions/)。 我们同时提供了向后兼容的 [版本](https://mui.com/versions/)。
+Material UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 我们同时提供了向后兼容的 [版本](https://material-ui.com/versions/)。 我们同时提供了向后兼容的 [版本](https://mui.com/versions/)。
 
 ## TypeScript
 
-MUI requires a minimum version of TypeScript 3.5. Material-UI requires a minimum version of TypeScript 3.5. This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old. Material-UI requires a minimum version of TypeScript 3.5. This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.
+MUI requires a minimum version of TypeScript 3.5. Material UI requires a minimum version of TypeScript 3.5. This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old. Material UI requires a minimum version of TypeScript 3.5. This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.

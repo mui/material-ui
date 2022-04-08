@@ -8,7 +8,7 @@ Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/ve
 
 ## Introdução
 
-Esta é uma referência para atualizar seu site de Material-UI v3 para v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
+Esta é uma referência para atualizar seu site de Material UI v3 para v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
 
 ## Por que você deve migrar
 
@@ -18,9 +18,9 @@ Esta página de documentação cobre o **como** migrar da v3 para a v4. O **porq
 
 A primeira coisa que você precisa fazer é atualizar suas dependências.
 
-### Atualize a versão do Material-UI
+### Atualize a versão do Material UI
 
-Você precisa atualizar seu `package.json` para usar a versão mais recente do Material-UI.
+Você precisa atualizar seu `package.json` para usar a versão mais recente do Material UI.
 
 ```json
 "dependencies": {
@@ -42,9 +42,9 @@ yarn add @material-ui/core
 
 A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
 
-### Atualize a versão do Material-UI Styles
+### Atualize a versão do Material UI Styles
 
-Se você estava usando anteriormente `@material-ui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material-UI Styles.
+Se você estava usando anteriormente `@material-ui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material UI Styles.
 
 ```json
 "dependencies": {
@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
+- ⚠️ Material UI depende do JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
 - Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
 
   It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
@@ -414,7 +414,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui
 
 ### UMD
 
-- Essa alteração facilita o uso de Material-UI com uma CDN:
+- Essa alteração facilita o uso de Material UI com uma CDN:
 
   ```diff
   const {

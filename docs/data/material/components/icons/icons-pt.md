@@ -8,9 +8,9 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 # Ícones
 
-<p class="description">Orientação e sugestões para usar ícones com o Material-UI.</p>
+<p class="description">Orientação e sugestões para usar ícones com o Material UI.</p>
 
-Material-UI fornece suporte de ícones de três maneiras:
+Material UI fornece suporte de ícones de três maneiras:
 
 1. Padronizados como [ícones do Material Design](#material-icons) e exportados como componentes do React (ícones SVG).
 1. Com o componente [SvgIcon](#svgicon), um wrapper React para ícones SVG customizados.
@@ -32,9 +32,9 @@ npm install @mui/icons-material
 yarn add @mui/icons-material
 ```
 
-Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
+Esses componentes usam o componente `SvgIcon` do Material UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
 
-Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
+Se você ainda não estiver usando Material UI no seu projeto, você pode adicioná-lo com:
 
 ### Uso
 
@@ -86,7 +86,7 @@ tem o seguinte atributo assim que montado:
 If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper. Este componente estende o elemento nativo `<svg>`:
 
 - Ele vem internamente com a acessibilidade.
-- Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material-UI que usam ícones. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
+- Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material UI que usam ícones. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - Por padrão, o componente herda a cor atual. Opcionalmente, você pode aplicar uma das cores do tema usando a propriedade `color`.
 
 ```jsx

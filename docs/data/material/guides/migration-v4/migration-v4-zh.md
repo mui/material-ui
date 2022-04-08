@@ -283,7 +283,7 @@ export default function GlobalCssPriority() {
   return (
     {/* Inject emotion before JSS */}
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. 现在您可以覆盖 Material-UI 的样式。 现在您可以覆盖 MUI 的样式。 */}
+      {/* Your component tree. 现在您可以覆盖 Material UI 的样式。 现在您可以覆盖 MUI 的样式。 */}
     </StyledEngineProvider>
   );
 }

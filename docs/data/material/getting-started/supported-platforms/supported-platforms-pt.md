@@ -1,10 +1,10 @@
 # Plataformas Suportadas
 
-<p class="description">Aprenda sobre as plataformas, desde as modernas até antigas, quais delas são suportadas pelo Material-UI.</p>
+<p class="description">Aprenda sobre as plataformas, desde as modernas até antigas, quais delas são suportadas pelo Material UI.</p>
 
 ## Navegador
 
-O Material-UI suporta as versões mais recentes e estáveis de todos os principais navegadores e plataformas. Você não precisa fornecer nenhum poyfill JavaScript, pois ele gerencia recursos não suportados do navegador internamente e isoladamente.
+O Material UI suporta as versões mais recentes e estáveis de todos os principais navegadores e plataformas. Você não precisa fornecer nenhum poyfill JavaScript, pois ele gerencia recursos não suportados do navegador internamente e isoladamente.
 
 <!-- #stable-snapshot -->
 
@@ -20,7 +20,7 @@ Because Googlebot uses a web rendering service (WRS) to index the page content, 
 
 ### IE 11
 
-Material-UI provides **partial** supports for IE 11. Be aware of the following:
+Material UI provides **partial** supports for IE 11. Be aware of the following:
 
 - Some of the components have no support. For instance, the new components, the data grid, the date picker.
 - Some of the components have degraded support. For instance, the outlined input border radius is missing, the combobox doesn't remove diacritics, the circular progress animation is wobbling.
@@ -36,7 +36,7 @@ v6 will completely remove the support of IE 11.
 
 <!-- #stable-snapshot -->
 
-Material-UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
+Material UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
 
 ### Prefixos CSS
 
@@ -48,8 +48,8 @@ O CSS exibido nesta documentação é processado com [`autoprefixer`](https://ww
 
 <!-- #react-peer-version -->
 
-Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). Dê uma olhada nas [versões](https://mui.com/versions/) mais antigas para compatibilidade.
+Material UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). Dê uma olhada nas [versões](https://mui.com/versions/) mais antigas para compatibilidade.
 
 ## TypeScript
 
-Material-UI requires a minimum version of TypeScript 3.5. This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.
+Material UI requires a minimum version of TypeScript 3.5. This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.

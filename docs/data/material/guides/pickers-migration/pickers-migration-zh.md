@@ -77,7 +77,7 @@ function App() {
 
 ## 渲染输入
 
-我们在 `renderInput` 中引入了一个新的 **required** 属性。 这简化了在非 Material-UI 输入框组件中的使用成本。
+我们在 `renderInput` 中引入了一个新的 **required** 属性。 这简化了在非 Material UI 输入框组件中的使用成本。
 
 ```jsx
 <DatePicker renderInput={(props) => <TextField {...props} />} />

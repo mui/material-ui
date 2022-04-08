@@ -1,4 +1,4 @@
-# Material-UI 系统（System）
+# Material UI 系统（System）
 
 <p class="description">用于快速布置自定义设计的 CSS 工具集。</p>
 

@@ -8,9 +8,9 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 # Icons 图标
 
-<p class="description">我们提供了一些建议和指导，能够帮助您在 Material-UI 中使用图标。</p>
+<p class="description">我们提供了一些建议和指导，能够帮助您在 Material UI 中使用图标。</p>
 
-Material-UI 通过以下三种方式来支持图标的使用：
+Material UI 通过以下三种方式来支持图标的使用：
 
 1. 您可以将标准的 [Material Design 图标](#material-icons) 导出为 React 组件 (SVG icons)。
 1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
@@ -32,7 +32,7 @@ npm install @mui/icons-material
 yarn add @mui/icons-material
 ```
 
-这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
+这些组件使用 Material UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
 如果你的项目中还没有使用 MUI，那么你可以用以下方法添加它：
 
@@ -86,7 +86,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/material-ui/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
-- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 使用 `viewBox` 属性，您可以随意自定义。 This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
+- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material UI 组件的子元素。 使用 `viewBox` 属性，您可以随意自定义。 This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - 默认情况下，此组件会继承当前的颜色。 当然，通过 `color` 这个属性，你可以让图标使用主题里的颜色。
 
 ```jsx
