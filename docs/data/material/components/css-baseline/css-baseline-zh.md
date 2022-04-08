@@ -57,7 +57,7 @@ export default function MyApp() {
 
 - 所有浏览器中的边距将会被删除。
 - 默认使用 Material Design 的背景颜色。 它在标准设备上使用的是 [`theme.palette.background.default`](/material-ui/customization/default-theme/?expand-path=$.palette.background) ，而打印设备上使用的是白色背景。
-- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`. The value used is provided by the theme property `theme.palette.mode`.
+- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`. The value used is provided by the theme property `theme.palette.mode`. The value used is provided by the theme property `theme.palette.mode`.
 
 ### 布局
 
@@ -67,10 +67,10 @@ export default function MyApp() {
 
 > This API is deprecated, consider using [color-scheme](#color-scheme) instead.
 
-The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode).
+The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode).
 
 ```jsx
-import darkScrollbar from '@material-ui/core/darkScrollbar';
+import darkScrollbar from '@mui/core/darkScrollbar';
 
 const theme = createTheme({
   components: {
@@ -95,7 +95,7 @@ This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, 
 
 ### 文字铸排
 
-This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows: To enable it, you can set `enableColorScheme=true` as follows:
+This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows: To enable it, you can set `enableColorScheme=true` as follows: To enable it, you can set `enableColorScheme=true` as follows:
 
 ```jsx
 <CssBaseline enableColorScheme />
