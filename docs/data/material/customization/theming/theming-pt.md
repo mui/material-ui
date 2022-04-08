@@ -18,19 +18,19 @@ O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.react
 
 Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
-- [`.paleta`](/customization/palette/)
-- [`.typography`](/customization/typography/)
-- [`.espaçamento`](/customization/spacing/)
-- [`.pontos de quebra`](/customization/breakpoints/)
-- [`.zIndex`](/customization/z-index/)
-- [`.transições`](/customization/transitions/)
-- [`.componentes`](/customization/theme-components/)
+- [`.paleta`](/material-ui/customization/palette/)
+- [`.typography`](/material-ui/customization/typography/)
+- [`.espaçamento`](/material-ui/customization/spacing/)
+- [`.pontos de quebra`](/material-ui/customization/breakpoints/)
+- [`.zIndex`](/material-ui/customization/z-index/)
+- [`.transições`](/material-ui/customization/transitions/)
+- [`.componentes`](/material-ui/customization/theme-components/)
 
-Você pode conferir a [seção de tema padrão](/customization/default-theme/) para visualizar o tema padrão na íntegra.
+You can check out the [default theme section](/material-ui/customization/default-theme/) to view the default theme in full.
 
 ### Variáveis customizáveis
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
 
 ```jsx
 const theme = createTheme({
@@ -73,11 +73,11 @@ Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as va
 
 ## Acessando o tema em um componente
 
-Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
 
 ## Aninhando o tema
 
-[Você pode aninhar](/styles/advanced/#theme-nesting) vários provedores de tema.
+[You can nest](/system/styles/advanced/#theme-nesting) multiple theme providers.
 
 {{"demo": "ThemeNesting.js"}}
 
@@ -155,7 +155,7 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [optional]):
 
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/material-ui/customization/breakpoints/) (identifiers).
 - `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
 - `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
 - `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
@@ -223,12 +223,10 @@ This component takes a `theme` prop and applies it to the entire React tree that
 
 #### Props
 
-| Name | Type | Description |
-|:---- | ---- | ----------- |
-|      |      |             |
- product: material--------------- |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | | children&nbsp;\* | node | Your component tree. | | theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of 
-
-[`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
+| Name               | Type                                     | Description                                                                                                                                                                                               |
+|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
 #### Examples
 
