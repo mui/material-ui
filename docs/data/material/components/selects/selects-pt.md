@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React Seleção
 components: Select, NativeSelect
 githubLabel: 'component: select'
-unstyled: /base/react-select/
+unstyled: import { useSelect } from '@mui/base/SelectUnstyled';
 ---
 
 # Seleção
@@ -22,11 +22,11 @@ Os menus são posicionados sobre seus elementos emissores, de modo que o item de
 
 O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/material-ui/react-autocomplete/). A ideia dessa ferramenta é ser uma versão melhorada das bibliotecas "react-select" e "downshift".
+Se você estiver procurando por recursos mais avançados, como combobox, seleção múltipla, autocompletar, uso assíncrono ou com suporte de adição, vá para o [ componente `Autocomplete`](/material-ui/react-autocomplete/). A ideia dessa ferramenta é ser uma versão melhorada das bibliotecas "react-select" e "downshift".
 
 ## Propriedades
 
-The Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/). It extends the [text field components](/material-ui/react-text-field/) sub-components, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected. Ele compartilha os mesmos estilos e muitas das mesmas propriedades. Consulte a página da API do respectivo componente para obter detalhes.
+O componente seleção é implementado como um elemento `<input>` personalizado do [InputBase](/material-ui/api/input-base/). It extends the [text field components](/material-ui/react-text-field/) sub-components, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected. Ele compartilha os mesmos estilos e muitas das mesmas propriedades. Consulte a página da API do respectivo componente para obter detalhes.
 
 ### Filled and standard variants
 
@@ -42,13 +42,13 @@ The Select component is implemented as a custom `<input>` element of the [InputB
 
 {{"demo": "SelectAutoWidth.js"}}
 
-### Small Size
+### Outras propriedades
 
 {{"demo": "SelectSmall.js"}}
 
-### Other props
+### Padrão
 
-{{"demo": "SelectOtherProps.js"}}
+Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
 
 ## Campos de Texto
 
@@ -58,15 +58,15 @@ As the user experience can be improved on mobile using the native select of the 
 
 ## TextField
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/material-ui/react-text-field/#select).
+O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/material-ui/react-text-field/#select).
 
 ## Seleções customizadas
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` prop to have a `select` field. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
+O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
-{{"demo": "CustomizedSelects.js"}}
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select/).
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select/).
 
@@ -74,13 +74,13 @@ The first step is to style the `InputBase` component. Once it's styled, you can 
 
 The `Select` component can handle multiple selections. It's enabled with the `multiple` prop.
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
-### Default
+### Marcações
 
-{{"demo": "MultipleSelect.js"}}
+import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
 
-### Checkmarks
+### Controlled select
 
 {{"demo": "MultipleSelectCheckmarks.js"}}
 
@@ -92,7 +92,7 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "MultipleSelectPlaceholder.js"}}
 
-### Native
+### Unstyled component
 
 {{"demo": "MultipleSelectNative.js"}}
 
@@ -116,7 +116,7 @@ Display categories with the `ListSubheader` component or the native `<optgroup>`
 
 ## Acessibilidade
 
-To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+Para rotular corretamente seu campo `Select` você precisa de um elemento extra com um `id` que contenha o rótulo desejado. Esse `id` precisa coincidir com o `labelId` do `Select`, por exemplo.
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>
@@ -126,7 +126,7 @@ To properly label your `Select` input you need an extra element with an `id` tha
 </Select>
 ```
 
-Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e ids para você:
 
 ```jsx
 <TextField id="select" label="Age" value="20" select>
@@ -135,7 +135,7 @@ Alternatively a `TextField` with an `id` and `label` creates the proper markup a
 </TextField>
 ```
 
-For a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:
+Para uma [seleção nativa](#native-select), você deve utilizar um rótulo fornecendo o atributo `id` do elemento de seleção para o atributo `htmlFor` do `InputLabel`:
 
 ```jsx
 <InputLabel htmlFor="select">Age</InputLabel>
