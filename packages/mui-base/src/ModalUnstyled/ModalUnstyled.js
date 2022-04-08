@@ -70,6 +70,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     disableRestoreFocus = false,
     disableScrollLock = false,
     hideBackdrop = false,
+    isRtl = false,
     keepMounted = false,
     // private
     // eslint-disable-next-line react/prop-types
@@ -84,6 +85,8 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     onTransitionExited,
     ...other
   } = props;
+
+  const dir = isRtl ? 'rtl' : 'ltr';
 
   const [exited, setExited] = React.useState(true);
   const modal = React.useRef({});
@@ -262,6 +265,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
           theme,
         })}
         {...other}
+        dir={dir}
         ref={handleRef}
         onKeyDown={handleKeyDown}
         className={clsx(classes.root, rootProps.className, className)}
@@ -393,6 +397,11 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   hideBackdrop: PropTypes.bool,
+  /**
+   * Indicates whether the theme context has rtl direction. It is set automatically.
+   * @default false
+   */
+  isRtl: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or

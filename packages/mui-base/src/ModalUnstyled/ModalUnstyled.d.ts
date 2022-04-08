@@ -96,6 +96,11 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      */
     hideBackdrop?: boolean;
     /**
+     * Indicates whether the theme context has rtl direction. It is set automatically.
+     * @default false
+     */
+    isRtl?: boolean;
+    /**
      * Always keep the children in the DOM.
      * This prop can be useful in SEO situation or
      * when you want to maximize the responsiveness of the Modal.

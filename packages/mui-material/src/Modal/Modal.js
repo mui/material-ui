@@ -6,6 +6,7 @@ import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
+import useTheme from '../styles/useTheme';
 
 export const modalClasses = modalUnstyledClasses;
 
@@ -76,6 +77,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ...other
   } = props;
 
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
+
   const [exited, setExited] = React.useState(true);
 
   const commonProps = {
@@ -116,6 +120,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
       ref={ref}
+      isRtl={isRtl}
       {...other}
       classes={classes}
       {...commonProps}
@@ -230,6 +235,11 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   hideBackdrop: PropTypes.bool,
+  /**
+   * Indicates whether the theme context has rtl direction. It is set automatically.
+   * @default false
+   */
+  isRtl: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or

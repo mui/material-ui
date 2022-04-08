@@ -26,6 +26,7 @@
     "disableRestoreFocus": { "type": { "name": "bool" } },
     "disableScrollLock": { "type": { "name": "bool" } },
     "hideBackdrop": { "type": { "name": "bool" } },
+    "isRtl": { "type": { "name": "bool" } },
     "keepMounted": { "type": { "name": "bool" } },
     "onBackdropClick": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
