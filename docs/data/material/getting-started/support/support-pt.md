@@ -40,7 +40,7 @@ Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
 
 Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
 
-[Aprenda Material-UI](/getting-started/learn/)
+[Aprenda Material-UI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
