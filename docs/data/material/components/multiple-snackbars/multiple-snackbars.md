@@ -2,14 +2,13 @@
 product: material-ui
 title: Multiple Snackbars React component
 components: SnackbarsProvider
-githubLabel: 'component: snackbar'
 materialDesign: https://material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 ---
 
 # Multiple Snackbars
 
-<p class="description">Place multiple snack bars on the page.</p>
+<p class="description">Place multiple snackbars on the page.</p>
 
 Multiple snackbars can be placed on the page by using `SnackbarsProvider` and `useSnackbars` hook.
 
