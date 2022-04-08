@@ -266,9 +266,15 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     ComponentProp = 'a';
   }
 
-  const buttonProps = {};
+  const buttonProps = {
+    type,
+  };
+
+  if (typeof ComponentProp === 'string' && ComponentProp !== 'button') {
+    buttonProps.type = undefined;
+  }
+
   if (ComponentProp === 'button') {
-    buttonProps.type = type;
     buttonProps.disabled = disabled;
   } else {
     if (ComponentProp !== 'a' || !other.href) {

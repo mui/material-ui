@@ -117,6 +117,31 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.property('nodeName', 'SPAN');
       expect(button).to.have.attribute('href', 'https://google.com');
     });
+
+    it('should allow to set type prop when component is not a button', () => {
+      const MockButton = React.forwardRef((props, ref) => (
+        <button data-testid="mockButton" {...props} ref={ref} />
+      ));
+
+      const { getByRole } = render(
+        // @ts-ignore
+        <ButtonBase component={MockButton} type="submit">
+          Hello
+        </ButtonBase>,
+      );
+      const button = getByRole('button');
+      expect(button).to.have.attribute('type', 'submit');
+    });
+
+    it('should not set type prop when component is an anchor', () => {
+      const { getByText } = render(
+        <ButtonBase component="a" type="submit">
+          Hello
+        </ButtonBase>,
+      );
+      const button = getByText('Hello');
+      expect(button).not.to.have.attribute('type', 'submit');
+    });
   });
 
   describe('event callbacks', () => {
