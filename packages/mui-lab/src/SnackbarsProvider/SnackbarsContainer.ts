@@ -26,33 +26,37 @@ const SnackbarsContainer = styled('div', {
     zIndex: theme.zIndex.snackbar,
     position: 'fixed',
     display: 'flex',
-    left: 8,
-    right: 8,
+    left: theme.spacing(),
+    right: theme.spacing(),
     justifyContent: 'center',
     alignItems: 'center',
-    ...(ownerState.anchorOrigin!.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
+    ...(ownerState.anchorOrigin!.vertical === 'top'
+      ? { top: theme.spacing() }
+      : { bottom: theme.spacing() }),
     ...(ownerState.anchorOrigin!.horizontal === 'left' && { justifyContent: 'flex-start' }),
     ...(ownerState.anchorOrigin!.horizontal === 'right' && { justifyContent: 'flex-end' }),
     [theme.breakpoints.up('sm')]: {
-      ...(ownerState.anchorOrigin!.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
+      ...(ownerState.anchorOrigin!.vertical === 'top'
+        ? { top: theme.spacing(3) }
+        : { bottom: theme.spacing(3) }),
       ...(ownerState.anchorOrigin!.horizontal === 'center' && center),
       ...(ownerState.anchorOrigin!.horizontal === 'left' && {
         ...(!ownerState.isRtl && {
-          left: 24,
+          left: theme.spacing(3),
           right: 'auto',
         }),
         ...(ownerState.isRtl && {
-          right: 24,
+          right: theme.spacing(3),
           left: 'auto',
         }),
       }),
       ...(ownerState.anchorOrigin!.horizontal === 'right' && {
         ...(!ownerState.isRtl && {
-          right: 24,
+          right: theme.spacing(3),
           left: 'auto',
         }),
         ...(ownerState.isRtl && {
-          left: 24,
+          left: theme.spacing(3),
           right: 'auto',
         }),
       }),
