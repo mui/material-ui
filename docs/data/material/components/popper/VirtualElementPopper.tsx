@@ -13,20 +13,24 @@ export default function VirtualElementPopper() {
   };
 
   const handleMouseUp = () => {
-    const selection = window.getSelection();
+    // `selection` might not be updated, so we wait for the next event cycle
+    // before proceeding.
+    setTimeout(() => {
+      const selection = window.getSelection();
 
-    // Resets when the selection has a length of 0
-    if (!selection || selection.anchorOffset === selection.focusOffset) {
-      handleClose();
-      return;
-    }
+      // Resets when the selection has a length of 0
+      if (!selection || selection.anchorOffset === selection.focusOffset) {
+        handleClose();
+        return;
+      }
 
-    const rect = selection.getRangeAt(0).getBoundingClientRect();
+      const rect = selection.getRangeAt(0).getBoundingClientRect();
 
-    setOpen(true);
-    setAnchorEl({
-      getBoundingClientRect: () => rect,
-    });
+      setOpen(true);
+      setAnchorEl({
+        getBoundingClientRect: () => rect,
+      });
+    }, 0);
   };
 
   const id = open ? 'virtual-element-popper' : undefined;
