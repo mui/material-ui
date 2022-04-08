@@ -2,7 +2,7 @@
 
 <p class="description">Configure classname generation at build time.</p>
 
-This API is introduced in `@mui/material` (v5.0.5) as a replacement of deprecated [`createGenerateClassName`](/styles/api/#creategenerateclassname-options-class-name-generator).
+This API is introduced in `@mui/material` (v5.0.5) as a replacement of deprecated [`createGenerateClassName`](/system/styles/api/#creategenerateclassname-options-class-name-generator).
 
 > ⚠️ **Note**: this API is at an unstable stage which might change in the future.
 
@@ -53,7 +53,7 @@ As a result, the HTML result changes to the following:
 
 ## Component renaming
 
-Every MUI component has `${componentName}-${slot}` classname format. For example, the component name of [`Chip`](/components/chips/) is `MuiChip`, which is used as a global class name for every `<Chip />` element. You can remove/change the `Mui` prefix as follows:
+Every MUI component has `${componentName}-${slot}` classname format. For example, the component name of [`Chip`](/material-ui/react-chip/) is `MuiChip`, which is used as a global class name for every `<Chip />` element. You can remove/change the `Mui` prefix as follows:
 
 ```js
 import { unstable_ClassNameGenerator } from '@mui/material/className';
@@ -78,7 +78,7 @@ Now, the `Mui` class is gone.
 </div>
 ```
 
-> **Note**: [state classes](/customization/how-to-customize/#state-classes) are **NOT** component names and therefore cannot be changed/removed.
+> **Note**: [state classes](/material-ui/customization/how-to-customize/#state-classes) are **NOT** component names and therefore cannot be changed/removed.
 
 ## Caveat
 
