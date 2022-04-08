@@ -36,7 +36,7 @@ npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-c
 yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+Dê uma olhada no [guia do Motor de Estilização](/material-ui/guides/styled-engine/) para mais informações sobre como configurar `componentes estilizados` como seu motor de estilização.
 
 ## Por que usar o sistema?
 
@@ -188,10 +188,10 @@ Contras:
 
   | Benchmark                             | Fragmento de código         | Tempo normalizado |
   |:------------------------------------- |:--------------------------- | ----------------- |
-  | c. Renderizar 1,000 styled components | `<div className="…">` | 100ms             |
+  | c. Render 1,000 styled components     | `<div className="…">` | 100ms             |
   | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
-  | c. Render 1,000 styled components     | `<StyledDiv>`         | 160ms             |
-  | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
+  | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
+  | d. d. a. Renderizar 1.000 Box         | `<Box sx={…}>`        | 370ms             |
 
 <!-- #default-branch-switch -->
 
@@ -233,7 +233,7 @@ Estas abreviações são **opcionais**, elas são ótimas para economizar tempo 
 
 ### Super conjunto de CSS
 
-Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos: Here are a few examples:
+Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos: Here are a few examples: Here are a few examples:
 
 - Usando pseudo seletores:
 
@@ -336,7 +336,7 @@ export default function CustomBreakpoints() {
 }
 ```
 
-If you are using TypeScript, you will also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/material-ui/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 ```ts
 declare module '@material-ui/core/styles/createBreakpoints' {
@@ -369,7 +369,7 @@ Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 2. Box
 
-[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components. Ele renderiza um elemento `<div>` por padrão.
+[`Box`](/material-ui/react-box/) é um componente leve que dá acesso a propriedade `sx`, e pode ser usado como um componente utilitário, e como um encapsulador para outros componentes. Ele renderiza um elemento `<div>` por padrão.
 
 ### 3. Componentes customizados
 
