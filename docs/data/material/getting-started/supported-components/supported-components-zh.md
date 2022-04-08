@@ -14,11 +14,11 @@
 - **[Bottom navigation（底部导航栏）](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons（按钮）](https://material.io/design/components/buttons.html) ✓**
   - **[Text & contained buttons（原为 flat & raised）](https://material.io/design/components/buttons.html) ✓**
-  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([实验室](/components/about-the-lab/))
+  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/material-ui/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (自定义 Checkbox)
 - **[Buttons: Floating Action Button（按钮：浮动操作按钮）](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transitions（过渡动画）：
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([实验室](/components/about-the-lab/))
+    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/material-ui/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [变形（Morph）](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [全屏（Full screen）](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
