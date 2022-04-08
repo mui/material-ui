@@ -13,5 +13,6 @@
 - modal（模态框）：1300
 - snackbar（消息条）：1400
 - tooltip（工具提示）：1500
+- tooltip: 1500
 
 这些值是可以自定义的。 你可以在主题的 [`zIndex`](/material-ui/customization/default-theme/?expand-path=$.zIndex) 键（key）下找到它们。 我们不鼓励自定义单个值；如果你更改了其中一个值，那么则可能需要把其他的所有值都更改一遍。
