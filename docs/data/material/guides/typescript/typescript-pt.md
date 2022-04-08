@@ -33,8 +33,8 @@ As demonstrações incluem variantes tipadas que usam conversão de tipo. É uma
 
 ## Uso da propriedade `component`
 
-Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
+Moved to [/customization/theming/#custom-variables](/material-ui/customization/theming/#custom-variables).
 
 ## Uso da propriedade `component`
 
-No entanto, a ampliação de tipos continuará a causar dores de cabeça se você tentar fazer com que os estilos dependam do tema:
+Moved to [/guides/composition/#with-typescript](/material-ui/guides/composition/#with-typescript).
