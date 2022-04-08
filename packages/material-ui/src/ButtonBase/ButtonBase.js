@@ -84,7 +84,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     onDragLeave,
     tabIndex = 0,
     TouchRippleProps,
-    type = 'button',
+    type,
     ...other
   } = props;
 
@@ -266,15 +266,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     ComponentProp = 'a';
   }
 
-  const buttonProps = {
-    type,
-  };
-
-  if (typeof ComponentProp === 'string' && ComponentProp !== 'button') {
-    buttonProps.type = undefined;
-  }
+  const buttonProps = {};
 
   if (ComponentProp === 'button') {
+    buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
     if (ComponentProp !== 'a' || !other.href) {
@@ -334,6 +329,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       onTouchStart={handleTouchStart}
       ref={handleRef}
       tabIndex={disabled ? -1 : tabIndex}
+      type={type}
       {...buttonProps}
       {...other}
     >

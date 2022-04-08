@@ -133,14 +133,14 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.attribute('type', 'submit');
     });
 
-    it('should not set type prop when component is an anchor', () => {
+    it('should allow setting type attribute explicitly even when component is an anchor', () => {
       const { getByText } = render(
         <ButtonBase component="a" type="submit">
           Hello
         </ButtonBase>,
       );
       const button = getByText('Hello');
-      expect(button).not.to.have.attribute('type', 'submit');
+      expect(button).to.have.attribute('type', 'submit');
     });
   });
 
