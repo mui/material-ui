@@ -18,4 +18,4 @@ yarn add @mui/base
 
 <!-- #default-branch-switch -->
 
-[The documentation](https://mui.com/customization/unstyled-components/)
+[The documentation](https://mui.com/material-ui/customization/unstyled-components/)

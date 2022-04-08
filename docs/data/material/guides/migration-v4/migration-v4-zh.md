@@ -115,7 +115,7 @@ npm install @emotion/react @emotion/styled
 yarn add @emotion/react @emotion/styled
 ```
 
-> 💡 如果您想要使用 MUI Core v5 的同时使用 **styled-components** 而不是 emotion，请查看[安装指引](/getting-started/installation/#npm)。
+> 💡 如果您想要使用 MUI Core v5 的同时使用 **styled-components** 而不是 emotion，请查看[安装指引](/material-ui/getting-started/installation/#npm)。
 
 If you are using SSR (or a framework that depends on it), there is currently a [known bug](https://github.com/mui/material-ui/issues/29742) with the babel plugin for `styled-components`, which prevents `@mui/styled-engine-sc` (the adapter for `styled-components`) from being used. We strongly recommend using the default setup with emotion instead.
 
@@ -215,11 +215,11 @@ npx @mui/codemod v5.0.0/link-underline-hover <path>
 - Safari 14 (macOS) 和 12.5 (iOS)（最低兼容到 10）
 - 更多内容请（参阅 [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11)）
 
-不再支持 IE 11。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
+不再支持 IE 11。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/material-ui/guides/minimizing-bundle-size/#legacy-bundle)。
 
 ### 非转发类（non-ref-forwarding class）组件
 
-对 `component` 属性中的非转发（non-ref-forwarding）类组件或作为直接 `子类（children）` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
+对 `component` 属性中的非转发（non-ref-forwarding）类组件或作为直接 `子类（children）` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/material-ui/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
 
 ### Ref type specificity
 
@@ -251,21 +251,21 @@ The list of components that expect a specific element type is as follows:
 
 #### `@mui/material`
 
-- [Accordion](/api/accordion/) - `HTMLDivElement`
-- [Alert](/api/alert/) - `HTMLDivElement`
-- [Avatar](/api/avatar/) - `HTMLDivElement`
-- [ButtonGroup](/api/button-group/) - `HTMLDivElement`
-- [Card](/api/card/) - `HTMLDivElement`
-- [Dialog](/api/dialog/) - `HTMLDivElement`
-- [ImageList](/api/image-list/) - `HTMLUListElement`
-- [List](/api/list/) - `HTMLUListElement`
-- [Tab](/api/tab/) - `HTMLDivElement`
-- [Tabs](/api/tabs/) - `HTMLDivElement`
-- [ToggleButton](/api/toggle-button/) - `HTMLButtonElement`
+- [Accordion](/material-ui/api/accordion/) - `HTMLDivElement`
+- [Alert](/material-ui/api/alert/) - `HTMLDivElement`
+- [Avatar](/material-ui/api/avatar/) - `HTMLDivElement`
+- [ButtonGroup](/material-ui/api/button-group/) - `HTMLDivElement`
+- [Card](/material-ui/api/card/) - `HTMLDivElement`
+- [Dialog](/material-ui/api/dialog/) - `HTMLDivElement`
+- [ImageList](/material-ui/api/image-list/) - `HTMLUListElement`
+- [List](/material-ui/api/list/) - `HTMLUListElement`
+- [Tab](/material-ui/api/tab/) - `HTMLDivElement`
+- [Tabs](/material-ui/api/tabs/) - `HTMLDivElement`
+- [ToggleButton](/material-ui/api/toggle-button/) - `HTMLButtonElement`
 
 #### `@mui/lab`
 
-- [Timeline](/api/timeline/) - `HTMLUListElement`
+- [Timeline](/material-ui/api/timeline/) - `HTMLUListElement`
 
 ### Style library
 
@@ -290,7 +290,7 @@ export default function GlobalCssPriority() {
 ```
 
 > **注意：** 如果您使用 emotion 样式库渲染您的应用，并且有一个自定义缓存，它会覆盖 MUI 提供的缓存。 为了使注入顺序仍然正确，您需要添加 `prepend` 选项到 `createCache` 中。
-> 
+>
 > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
 Here is an example:
@@ -367,8 +367,8 @@ The following changes are supported by the adapter:
 
 - The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    import { createTheme } from '@mui/material/styles';
   >   -const theme = createTheme({palette: { type: 'dark' }}),
@@ -479,12 +479,12 @@ The following changes are supported by the adapter:
 
 - Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   - import { fade } from '@mui/material/styles';
   >   + import { alpha } from '@mui/material/styles';
-  > 
+  >
   >   const classes = makeStyles(theme => ({
   >   -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   >   +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
@@ -493,8 +493,8 @@ The following changes are supported by the adapter:
 
 - The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { createStyles } from '@mui/material/styles';
   >   +import { createStyles } from '@mui/styles';
@@ -532,8 +532,8 @@ declare module '@mui/styles' {
 
 - Nested imports of more than 1 level are private. Nested imports of more than 1 level are private. You can't import color from `@mui/material/colors/red`.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import red from '@mui/material/colors/red';
   >   +import { red } from '@mui/material/colors';
@@ -545,25 +545,25 @@ declare module '@mui/styles' {
 
 - The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { createGenerateClassName } from '@mui/material/styles';
   >   +import { createGenerateClassName } from '@mui/styles';
   > ```
 
-  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/guides/classname-generator/) for more details.
+  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/material-ui/experimental-api/classname-generator/) for more details.
 
 #### createMuiTheme
 
 - The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { createMuiTheme } from '@mui/material/styles';
   >   +import { createTheme } from '@mui/material/styles';
-  > 
+  >
   >   -const theme = createMuiTheme({
   >   +const theme = createTheme({
   > ```
@@ -572,8 +572,8 @@ declare module '@mui/styles' {
 
 - The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { jssPreset } from '@mui/material/styles';
   >   +import { jssPreset } from '@mui/styles';
@@ -583,13 +583,13 @@ declare module '@mui/styles' {
 
 - The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use the one exported from `@mui/styles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. You can use `@mui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended that you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { makeStyles } from '@mui/material/styles';
   >   +import { makeStyles } from '@mui/styles';
   >   +import { createTheme, ThemeProvider } from '@mui/material/styles';
-  > 
+  >
   >   +const theme = createTheme();
   >    const useStyles = makeStyles((theme) => ({
   >      background: theme.palette.primary.main,
@@ -598,7 +598,7 @@ declare module '@mui/styles' {
   >      const classes = useStyles();
   >      return <div className={classes.root} />
   >    }
-  > 
+  >
   >    // In the root of your app
   >    function App(props) {
   >   -  return <Component />;
@@ -610,8 +610,8 @@ declare module '@mui/styles' {
 
 - The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`. Use `ThemeProvider` instead. Use `ThemeProvider` instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { MuiThemeProvider } from '@mui/material/styles';
   >   +import { ThemeProvider } from '@mui/material/styles';
@@ -621,8 +621,8 @@ declare module '@mui/styles' {
 
 - The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { ServerStyleSheets } from '@mui/material/styles';
   >   +import { ServerStyleSheets } from '@mui/styles';
@@ -650,8 +650,8 @@ declare module '@mui/styles' {
 
 - The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { StylesProvider } from '@mui/material/styles';
   >   +import { StylesProvider } from '@mui/styles';
@@ -661,8 +661,8 @@ declare module '@mui/styles' {
 
 - The `useThemeVariants` hook is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. You should import it directly from `@mui/styles`.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { useThemeVariants } from '@mui/material/styles';
   >   +import { useThemeVariants } from '@mui/styles';
@@ -672,19 +672,19 @@ declare module '@mui/styles' {
 
 - The `withStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { withStyles } from '@mui/material/styles';
   >   +import { withStyles } from '@mui/styles';
   >   +import { createTheme, ThemeProvider } from '@mui/material/styles';
-  > 
+  >
   >   +const defaultTheme = createTheme();
   >    const MyComponent = withStyles((props) => {
   >      const { classes, className, ...other } = props;
   >      return <div className={clsx(className, classes.root)} {...other} />
   >    })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
-  > 
+  >
   >    function App() {
   >   -  return <MyComponent />;
   >   +  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
@@ -693,18 +693,18 @@ declare module '@mui/styles' {
 
 - Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component. Refs are now automatically forwarded to the inner component.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    import * as React from 'react';
   >    import { withStyles } from '@mui/styles';
-  > 
+  >
   >    const MyComponent = withStyles({
   >      root: {
   >        backgroundColor: 'red',
   >      },
   >    })(({ classes }) => <div className={classes.root} />);
-  > 
+  >
   >    function MyOtherComponent(props) {
   >      const ref = React.useRef();
   >   -  return <MyComponent innerRef={ref} />;
@@ -716,16 +716,16 @@ declare module '@mui/styles' {
 
 - The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. You can use `@mui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import { withTheme } from '@mui/material/styles';
   >   +import { withTheme } from '@mui/styles';
   >   +import { createTheme, ThemeProvider } from '@mui/material/styles';
-  > 
+  >
   >   +const theme = createTheme();
   >    const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
-  > 
+  >
   >    function App(props) {
   >   -  return <MyComponent />;
   >   +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
@@ -749,7 +749,7 @@ declare module '@mui/styles' {
 
 #### withWidth
 
-- This HOC was removed. This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/components/use-media-query/#migrating-from-withwidth).
+- This HOC was removed. This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/material-ui/react-use-media-query/#migrating-from-withwidth).
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
 
@@ -761,7 +761,7 @@ The `GitHub` icon was reduced in size from 24px to 22px wide to match the other 
 
 ### @material-ui/pickers
 
-We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5
+We have a [dedicated page](/material-ui/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5
 
 ### System
 
@@ -775,8 +775,8 @@ We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-
 
 - Use spacing unit in `gap`, `rowGap`, and `columnGap`. Use spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Box
   >   -  gap={2}
@@ -786,8 +786,8 @@ We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-
 
 - Replace `css` prop with `sx` to avoid collision with styled-components & emotion `css` prop.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Box css={{ color: 'primary.main' }} />
   >   +<Box sx={{ color: 'primary.main' }} />
@@ -816,8 +816,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the component from the lab to the core. The component is now stable. The component is now stable.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import Alert from '@mui/lab/Alert';
   >   -import AlertTitle from '@mui/lab/AlertTitle';
@@ -829,8 +829,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the component from the lab to the core. The component is now stable. The component is now stable.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import Autocomplete from '@mui/lab/Autocomplete';
   >   -import useAutocomplete  from '@mui/lab/useAutocomplete';
@@ -862,8 +862,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `closeIcon` prop to `clearIcon` to avoid confusion.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Autocomplete closeIcon={defaultClearIcon} />
   >   +<Autocomplete clearIcon={defaultClearIcon} />
@@ -884,8 +884,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Autocomplete
   >   -  getOptionSelected={(option, value) => option.title === value.title}
@@ -896,8 +896,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `circle` to `circular` for consistency:
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Avatar variant="circle">
   >   -<Avatar classes={{ circle: 'className' }}>
@@ -914,8 +914,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the AvatarGroup from the lab to the core.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import AvatarGroup from '@mui/lab/AvatarGroup';
   >   +import AvatarGroup from '@mui/material/AvatarGroup';
@@ -925,8 +925,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Badge overlap="circle">
   >   -<Badge overlap="rectangle">
@@ -981,8 +981,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The `borderRadius` system prop value transformation has been changed. The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit `px` value. Use a string to provide an explicit `px` value.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Box borderRadius="borderRadius">
   >   +<Box borderRadius={1}>
@@ -995,8 +995,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```jsx
   >   <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
   >   <Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
@@ -1052,8 +1052,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design guidelines and simplifies the API. This makes the button closer to the Material Design guidelines and simplifies the API.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   <Button color="default">
   >   +<Button>
@@ -1110,8 +1110,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. It was an exception to Material Design, and was removed from the specification. It was an exception to Material Design, and was removed from the specification.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<CircularProgress variant="static" classes={{ static: 'className' }} />
   >   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
@@ -1123,8 +1123,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Collapse collapsedHeight={40}>
   >   +<Collapse collapsedSize={40}>
@@ -1184,8 +1184,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The onE\* transition props were removed. Use TransitionProps instead. Use TransitionProps instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Dialog
   >   -  onEnter={onEnter}
@@ -1207,8 +1207,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead. Remove the `disableBackdropClick` prop because it is redundant. Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Dialog
   >   -  disableBackdropClick
@@ -1223,31 +1223,31 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Remove the `withMobileDialog` higher-order component. The hook API allows a simpler and more flexible solution: The hook API allows a simpler and more flexible solution:
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, further fixes are required. 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, further fixes are required.
+  >
   > ```diff
   >   -import withMobileDialog from '@mui/material/withMobileDialog';
   >   +import { useTheme, useMediaQuery } from '@mui/material';
-  > 
+  >
   >   function ResponsiveDialog(props) {
   >   - const { fullScreen } = props;
   >   + const theme = useTheme();
   >   + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   >     const [open, setOpen] = React.useState(false);
-  > 
+  >
   >   // ...
-  > 
+  >
   >   -export default withMobileDialog()(ResponsiveDialog);
   >   +export default ResponsiveDialog;
-  > 
+  >
   >   -export default withMobileDialog()(ResponsiveDialog);
   >   +export default ResponsiveDialog;
   > ```
 
 - Flatten DialogTitle DOM structure, remove `disableTypography` prop
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<DialogTitle disableTypography>
   >   -  <Typography variant="h4" component="h2">
@@ -1272,8 +1272,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import ExpansionPanel from '@mui/material/ExpansionPanel';
   >   -import ExpansionPanelSummary from '@mui/material/ExpansionPanelSummary';
@@ -1283,7 +1283,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +import AccordionSummary from '@mui/material/AccordionSummary';
   >   +import AccordionDetails from '@mui/material/AccordionDetails';
   >   +import AccordionActions from '@mui/material/AccordionActions';
-  > 
+  >
   >   -<ExpansionPanel>
   >   >   +<Accordion>
   >   >   -  <ExpansionPanelSummary>
@@ -1339,8 +1339,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `round` to `circular` for consistency:
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Fab variant="round">
   >   +<Fab variant="circular">
@@ -1360,8 +1360,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. Standard has been removed from the Material Design guidelines.
 
-  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod. 
-  > 
+  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod.
+  >
   > ```diff
   >   -<FormControl value="Standard" />
   >   -<FormControl value="Outlined" variant="outlined" />
@@ -1382,17 +1382,17 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `justify` prop to `justifyContent` to align with the CSS property name.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Grid justify="center">
   >   +<Grid justifyContent="center">
   > ```
 
-- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/customization/theme-components/#overrides-based-on-props).
+- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   const theme = createTheme({
   >     components: {
@@ -1451,7 +1451,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Hidden
 
-- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query/) hook.
+- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, further fixes are required.
 
@@ -1492,8 +1492,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   - <IconButton>
   >   + <IconButton size="large">
@@ -1513,10 +1513,10 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The default `underline` prop is changed from `"hover"` to `"always"`. To get the same behavior as in v4, apply `defaultProps` in theme To get the same behavior as in v4, apply `defaultProps` in theme
 
-  > ✅ This is handled in [link-underline-hover codemod](#link-underline-hover), read the details before running this codemod. 
-  > 
+  > ✅ This is handled in [link-underline-hover codemod](#link-underline-hover), read the details before running this codemod.
+  >
   > ```js
-  >   createTheme({
+  > createTheme({
   >   components: {
   >     MuiLink: {
   >       defaultProps: {
@@ -1531,8 +1531,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The onE\* transition props were removed. Use TransitionProps instead. Use TransitionProps instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Menu
   >   -  onEnter={onEnter}
@@ -1580,14 +1580,14 @@ As the core components use emotion as their style engine, the props used by emot
   +<MenuItem classes={{...}}>
   ```
 
-  Read more about [MenuItem CSS API](/api/menu-item/#css)
+  Read more about [MenuItem CSS API](/material-ui/api/menu-item/#css)
 
 ### Modal
 
 - Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Modal
   >   -  disableBackdropClick
@@ -1602,8 +1602,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Remove the `onEscapeKeyDown` prop because it is redundant. Remove the `onEscapeKeyDown` prop because it is redundant. Use `onClose` with `reason === "escapeKeyDown"` instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Modal
   >   -  onEscapeKeyDown={handleEscapeKeyDown}
@@ -1653,8 +1653,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the component from the lab to the core. The component is now stable. The component is now stable.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import Pagination from '@mui/lab/Pagination';
   >   -import PaginationItem from '@mui/lab/PaginationItem';
@@ -1666,8 +1666,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `round` to `circular` for consistency:
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Pagination shape="round">
   >   -<PaginationItem shape="round">
@@ -1679,8 +1679,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The onE\* transition props were removed. Use TransitionProps instead. Use TransitionProps instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Popover
   >   -  onEnter={onEnter}
@@ -1756,8 +1756,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the component from the lab to the core. The component is now stable. The component is now stable.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import Rating from '@mui/lab/Rating';
   >   +import Rating from '@mui/material/Rating';
@@ -1787,8 +1787,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - This component was removed. You can get a reference to the underlying DOM node of our components via `ref` prop. The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, further fixes are required. 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, further fixes are required.
+  >
   > ```diff
   >   <RootRef rootRef={ref}>
   >   >   -  <Button />
@@ -1800,8 +1800,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
-  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod. 
-  > 
+  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod.
+  >
   > ```diff
   >   -<Select value="Standard" />
   >   -<Select value="Outlined" variant="outlined" />
@@ -1836,8 +1836,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the component from the lab to the core. The component is now stable. The component is now stable.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import Skeleton from '@mui/lab/Skeleton';
   >   +import Skeleton from '@mui/material/Skeleton';
@@ -1845,8 +1845,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Skeleton variant="circle" />
   >   -<Skeleton variant="rect" />
@@ -1880,9 +1880,9 @@ As the core components use emotion as their style engine, the props used by emot
    />
   ```
 
-- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/). [See documentation](/components/slider/). <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/material-ui/react-slider/). [See documentation](/material-ui/react-slider/). <a href="/material-ui/react-slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
-  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/material-ui/react-slider/#sizes).
 
 ### Snackbar
 
@@ -1895,8 +1895,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The onE\* transition props were removed. Use TransitionProps instead. Use TransitionProps instead.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <Snackbar
   >   -  onEnter={onEnter}
@@ -1920,8 +1920,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the component from the lab to the core. The component is now stable. The component is now stable.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import SpeedDial from '@mui/lab/SpeedDial';
   >   -import SpeedDialAction from '@mui/lab/SpeedDialAction';
@@ -2025,8 +2025,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >    <TablePagination
   >   -  onChangeRowsPerPage={()=>{}}
@@ -2074,8 +2074,8 @@ As the core components use emotion as their style engine, the props used by emot
   - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
   - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<Tabs scrollButtons="on" />
   >   -<Tabs scrollButtons="desktop" />
@@ -2104,8 +2104,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. Standard has been removed from the Material Design guidelines.
 
-  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod. 
-  > 
+  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod.
+  >
   > ```diff
   >   -<TextField value="Standard" />
   >   -<TextField value="Outlined" variant="outlined" />
@@ -2115,8 +2115,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<TextField rowsMax={6}>
   >   +<TextField maxRows={6}>
@@ -2124,8 +2124,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case: You need to use the `minRows` prop in the following case:
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<TextField rows={2} maxRows={5} />
   >   +<TextField minRows={2} maxRows={5} />
@@ -2169,8 +2169,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Remove the `rows` prop, use the `minRows` prop instead. This change aims to clarify the behavior of the prop. This change aims to clarify the behavior of the prop.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<TextareaAutosize rows={2} />
   >   +<TextareaAutosize minRows={2} />
@@ -2178,8 +2178,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<TextareAutosize rowsMax={6}>
   >   +<TextareAutosize maxRows={6}>
@@ -2187,8 +2187,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -<TextareAutosize rowsMin={1}>
   >   +<TextareAutosize minRows={1}>
@@ -2198,8 +2198,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the component from the lab to the core. The component is now stable. The component is now stable.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -import ToggleButton from '@mui/lab/ToggleButton';
   >   -import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
@@ -2245,7 +2245,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<span style={visuallyHidden}>Create a user</span>
   ```
 
-- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/customization/theme-components/#overrides-based-on-props). For example:
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props). For example:
 
   ```diff
   const theme = createTheme({
@@ -2333,8 +2333,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values. Use `theme.breakpoints.values` to get the same values.
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```diff
   >   -theme.breakpoints.width('md')
   >   +theme.breakpoints.values.md
@@ -2349,10 +2349,10 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below: If you need it, use the function below:
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
-  > 
+  > ✅ This is handled in the [preset-safe codemod](#preset-safe).
+  >
   > ```js
-  >   function round(value) {
+  > function round(value) {
   >   return Math.round(value * 1e5) / 1e5;
   > }
   > ```
@@ -2468,7 +2468,7 @@ import Typography from '@mui/material/Typography';
  }
 ```
 
-Take a look at the whole [list of global state classnames](/customization/how-to-customize/#state-classes) available.
+Take a look at the whole [list of global state classnames](/material-ui/customization/how-to-customize/#state-classes) available.
 
 ## Migrate from JSS
 
@@ -2631,7 +2631,8 @@ Then here is one example:
 ```diff
  The <code>withStyles</code> JSS utility is no longer exported from <code>@mui/material/styles</code>. You can use <code>@mui/styles/withStyles</code> instead. Make sure to add a <code>ThemeProvider</code> at the root of your application, as the <code>defaultTheme</code> is no longer available. If you are using this utility together with <code>@mui/material</code>, you should use the <code>ThemeProvider</code> component from <code>@mui/material/styles</code> instead.
 ```
- JSS utility is no longer exported from @mui/material/styles. You can use @mui/styles/withStyles instead. Make sure to add a ThemeProvider at the root of your application, as the defaultTheme is no longer available. If you are using this utility together with @mui/material, you should use the ThemeProvider component from @mui/material/styles instead.
+
+JSS utility is no longer exported from @mui/material/styles. You can use @mui/styles/withStyles instead. Make sure to add a ThemeProvider at the root of your application, as the defaultTheme is no longer available. If you are using this utility together with @mui/material, you should use the ThemeProvider component from @mui/material/styles instead.
 </code>
 
 If you were using the `$` syntax, the transformation would look like this:
@@ -2639,7 +2640,8 @@ If you were using the `$` syntax, the transformation would look like this:
 ```diff
  The <code>makeStyles</code> JSS utility is no longer exported from <code>@mui/material/styles</code>. You can use <code>@mui/styles/makeStyles</code> instead. Make sure to add a <code>ThemeProvider</code> at the root of your application, as the <code>defaultTheme</code> is no longer available. If you are using this utility together with <code>@mui/material</code>, it's recommended that you use the <code>ThemeProvider</code> component from <code>@mui/material/styles</code> instead.
 ```
- JSS utility is no longer exported from @mui/material/styles. You can use @mui/styles/makeStyles instead. Make sure to add a ThemeProvider at the root of your application, as the defaultTheme is no longer available. If you are using this utility together with @mui/material, it's recommended that you use the ThemeProvider component from @mui/material/styles instead.
+
+JSS utility is no longer exported from @mui/material/styles. You can use @mui/styles/makeStyles instead. Make sure to add a ThemeProvider at the root of your application, as the defaultTheme is no longer available. If you are using this utility together with @mui/material, it's recommended that you use the ThemeProvider component from @mui/material/styles instead.
 </code>
 
 > 📝 在进行下一步前，请确保您的程序仍然可以正确**运行**没有报错并且已经**应用了**更改。

@@ -4,7 +4,7 @@ title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel: 'component: switch'
 materialDesign: https://material.io/components/selection-controls#switches
-unstyled: /base/react-switch
+unstyled: /base/react-switch/
 ---
 
 # Switch
@@ -46,14 +46,14 @@ You can control the switch with the `checked` and `onChange` props:
 ## Switches with FormGroup
 
 `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
-However, you are encouraged to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
+However, you are encouraged to use [Checkboxes](/material-ui/react-checkbox/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
 
 {{"demo": "SwitchesGroup.js"}}
 
 ## Customization
 
 Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSwitches.js"}}
 
@@ -75,7 +75,7 @@ You can change the placement of the label:
   role isn't widely supported yet. Please test first if assistive technology of your
   target audience supports this role properly. Then you can change the role with
   `<Switch inputProps={{ role: 'switch' }}>`
-- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
   In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.
 

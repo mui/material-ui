@@ -13,7 +13,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#link
 
 ## Basic links
 
-The Link component is built on top of the [Typography](/api/typography/) component, meaning that you can use its props.
+The Link component is built on top of the [Typography](/material-ui/api/typography/) component, meaning that you can use its props.
 
 {{"demo": "Links.js"}}
 
@@ -41,7 +41,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `Link` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/guides/routing/#link).
+Here is a [more detailed guide](/material-ui/guides/routing/#link).
 
 ## Accessibility
 

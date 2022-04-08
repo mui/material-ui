@@ -6,8 +6,8 @@ module.exports = {
   enable_docsnav_banner: false,
   // TODO: cleanup once migration is done
   enable_product_scope: true, // related to new structure change
-  enable_redirects: false, // related to new structure change
+  enable_redirects: true, // related to new structure change
   enable_mui_base_scope: true, // will be enabled after the migration
-  enable_system_scope: false, // will be enabled after the migration
+  enable_system_scope: true, // will be enabled after the migration
   enable_joy_scope: true,
 };

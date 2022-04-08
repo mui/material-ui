@@ -14,11 +14,11 @@
 - **[Bottom navigation（底部导航栏）](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons（按钮）](https://material.io/design/components/buttons.html) ✓**
   - **[Text & contained buttons（原为 flat & raised）](https://material.io/design/components/buttons.html) ✓**
-  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([实验室](/components/about-the-lab/))
+  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([实验室](/material-ui/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (自定义 Checkbox)
 - **[Buttons: Floating Action Button（按钮：浮动操作按钮）](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transitions（过渡动画）：
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([实验室](/components/about-the-lab/))
+    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([实验室](/material-ui/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [变形（Morph）](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [全屏（Full screen）](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -44,7 +44,7 @@
   - **[Inset（内凹分隔线）](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle（中段分隔线）](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader（副标题分隔线）](https://material.io/design/components/dividers.html#types) ✓**
-- **\***\*[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)****\*\*******
+- **\***\*[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)\*\***\*\***\*\***
 - **[Lists（列表）](https://material.io/design/components/lists.html) ✓**
   - [类型:](https://material.io/design/components/lists.html#types)
     - **Single line （单行）✓**

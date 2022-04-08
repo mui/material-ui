@@ -70,7 +70,7 @@ export interface AutocompleteProps<
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
-   * Props applied to the [`Chip`](/api/chip/) element.
+   * Props applied to the [`Chip`](/material-ui/api/chip/) element.
    */
   ChipProps?: ChipProps<ChipComponent>;
   /**
@@ -85,14 +85,14 @@ export interface AutocompleteProps<
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText?: string;
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText?: string;
@@ -150,7 +150,7 @@ export interface AutocompleteProps<
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText?: React.ReactNode;
@@ -163,14 +163,14 @@ export interface AutocompleteProps<
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText?: React.ReactNode;
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText?: string;
@@ -244,11 +244,11 @@ export interface AutocompleteProps<
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/components/autocomplete/)
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://mui.com/api/autocomplete/)
+ * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   T,

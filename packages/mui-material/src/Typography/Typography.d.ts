@@ -81,12 +81,12 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/components/breadcrumbs/)
- * - [Typography](https://mui.com/components/typography/)
+ * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Typography](https://mui.com/material-ui/react-typography/)
  *
  * API:
  *
- * - [Typography API](https://mui.com/api/typography/)
+ * - [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const Typography: OverridableComponent<TypographyTypeMap>;
 

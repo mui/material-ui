@@ -50,7 +50,7 @@ const Plan = React.forwardRef<
           noLinkStyle
           href={
             plan === 'community'
-              ? '/getting-started/usage/'
+              ? '/material-ui/getting-started/usage/'
               : 'https://mui.com/store/items/material-ui-pro/'
           }
           endIcon={<KeyboardArrowRightRounded />}

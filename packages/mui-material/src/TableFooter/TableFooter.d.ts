@@ -25,11 +25,11 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
  *
  * Demos:
  *
- * - [Tables](https://mui.com/components/tables/)
+ * - [Tables](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableFooter API](https://mui.com/api/table-footer/)
+ * - [TableFooter API](https://mui.com/material-ui/api/table-footer/)
  */
 declare const TableFooter: OverridableComponent<TableFooterTypeMap>;
 

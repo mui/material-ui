@@ -91,7 +91,7 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 ## 自定义的选项卡
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedTabs.js"}}
 
@@ -127,7 +127,7 @@ By default, the icon is positioned at the `top` of a tab. Other supported positi
 
 ## 无障碍设计
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
 
 ## Accessibility
 

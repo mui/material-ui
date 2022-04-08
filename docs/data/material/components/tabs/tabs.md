@@ -5,7 +5,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnsty
 githubLabel: 'component: tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: https://www.w3.org/TR/wai-aria-practices/#tabpanel
-unstyled: /base/react-tabs
+unstyled: /base/react-tabs/
 ---
 
 # Tabs
@@ -97,7 +97,7 @@ All scrolling must be initiated through user agent scrolling mechanisms (e.g. le
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTabs.js"}}
 
@@ -135,7 +135,7 @@ By default, the icon is positioned at the `top` of a tab. Other supported positi
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `Tab` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/guides/routing/#tabs).
+Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
 
 ## Accessibility
 

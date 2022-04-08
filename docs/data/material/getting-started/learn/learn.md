@@ -22,17 +22,17 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-In the interactive demo below, try changing the code and see how it affects the output. (Hint: change `variant` to `"outlined"` and `color` to `"secondary"`. For more options, see the [`Button` component page](components/buttons/).)
+In the interactive demo below, try changing the code and see how it affects the output. (Hint: change `variant` to `"outlined"` and `color` to `"secondary"`. For more options, see the [`Button` component page](/material-ui/react-button/).)
 
 {{"demo": "../usage/Usage.js", "hideToolbar": true, "bg": true}}
 
 ## Example projects
 
-Visit the [example projects](/getting-started/example-projects/) page to see how we recommend implementing Material UI with various React libraries and frameworks like Next.js, Gatsby, Create React App, and more.
+Visit the [example projects](/material-ui/getting-started/example-projects/) page to see how we recommend implementing Material UI with various React libraries and frameworks like Next.js, Gatsby, Create React App, and more.
 
 ## Templates
 
-Check out our [selection of basic templates](/getting-started/templates/) to get started building your next app more quickly.
+Check out our [selection of basic templates](/material-ui/getting-started/templates/) to get started building your next app more quickly.
 
 ## Recommended resources
 

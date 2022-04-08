@@ -97,7 +97,7 @@ You can use the React context to toggle the mode with a button inside your page.
 
 用户可能已经指定了一个亮色或者暗色主题的偏好。 用户表达其偏好的方法可以有所不同。 它可能是操作系统曝光的覆盖整个系统的设置，或由用户代理控制的设置。
 
-您可以通过 [useMediaQuery](/components/use-media-query/) hook 和 [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 的媒体查询来动态地利用此偏好设置。
+您可以通过 [useMediaQuery](/material-ui/react-use-media-query/) hook 和 [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 的媒体查询来动态地利用此偏好设置。
 
 例如，您可以自动启用暗色模式：
 

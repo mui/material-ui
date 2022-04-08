@@ -3,7 +3,7 @@ product: material-ui
 title: React Badge component
 components: Badge
 githubLabel: 'component: badge'
-unstyled: /base/react-badge
+unstyled: /base/react-badge/
 ---
 
 # Badge
@@ -27,7 +27,7 @@ Use `color` prop to apply theme palette to component.
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBadges.js"}}
 

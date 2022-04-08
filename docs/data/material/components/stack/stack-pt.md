@@ -13,11 +13,11 @@ githubLabel: 'component: Stack'
 
 ## Uso
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+`Stack` is concerned with one-dimensional layouts, while [Grid](/material-ui/react-grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 {{"demo": "BasicStack.js", "bg": true}}
 
-Para controlar o espaço entre os filhos, use a prop `spacing` The spacing value can be any number, including decimals and any string. The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar [`theme.spacing()`](/customization/spacing/)
+Para controlar o espaço entre os filhos, use a prop `spacing` The spacing value can be any number, including decimals and any string. The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar [`theme.spacing()`](/material-ui/customization/spacing/)
 
 ## Direção
 
@@ -27,7 +27,7 @@ By default, `Stack` arranges items vertically in a `column`. However, the `direc
 
 ## Divisores
 
-Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/components/dividers/) component.
+Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/material-ui/react-divider/) component.
 
 {{"demo": "DividerStack.js", "bg": true}}
 

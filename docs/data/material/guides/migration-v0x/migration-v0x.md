@@ -17,12 +17,12 @@ The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
 
-- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
+- New styling solution using CSS-in-JS (better [customization](/material-ui/customization/how-to-customize/) power, better performance)
 - New theme handling (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
-- Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui/material-ui))
-- Full [server-side rendering](/guides/server-rendering/) support
-- Wide range of [supported browsers](/getting-started/supported-platforms/)
+- Way better [test coverage](/material-ui/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui/material-ui))
+- Full [server-side rendering](/material-ui/guides/server-rendering/) support
+- Wide range of [supported browsers](/material-ui/getting-started/supported-platforms/)
 
 ### Where should I start in a migration?
 
@@ -83,7 +83,7 @@ export default App;
 ### Autocomplete
 
 Material-UI doesn't provide a high-level API for solving this problem.
-You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
+You're encouraged you to explore [the solutions the React community has built](/material-ui/react-autocomplete/).
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui/material-ui/issues/9997).
 

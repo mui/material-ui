@@ -42,7 +42,7 @@ Stay up to date with the development of the library by following the blog.
 
 New to MUI? It's easy to learn if you know where to start!
 
-[Learn MUI](/getting-started/learn/)
+[Learn MUI](/material-ui/getting-started/learn/)
 
 ### Twitter
 

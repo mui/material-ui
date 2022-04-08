@@ -130,7 +130,7 @@ The spacing properties: `margin`, `padding` and the corresponding longhand prope
 The following aliases are available for the spacing properties:
 
 | Prop | CSS property                    |
-|:---- |:------------------------------- |
+| :--- | :------------------------------ |
 | `m`  | `margin`                        |
 | `mt` | `margin-top`                    |
 | `mr` | `margin-right`                  |

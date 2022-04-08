@@ -26,7 +26,7 @@ const theme = createTheme({
 
 ## 默认属性
 
-要用 TypeScript 重写 lab 组件的样式，请查看 [此文档](/components/about-the-lab/#typescript)。
+要用 TypeScript 重写 lab 组件的样式，请查看 [此文档](/material-ui/about-the-lab/#typescript)。
 
 ```js
 const theme = createTheme({
@@ -49,7 +49,7 @@ const theme = createTheme({
 
 The list of each component's classes is documented under the **CSS** section of its API page.
 
-要使用 TypeScript 覆盖实验室组件样式，请检查 [此文档](/components/about-the-lab/#typescript)
+要使用 TypeScript 覆盖实验室组件样式，请检查 [此文档](/material-ui/about-the-lab/#typescript)
 
 ### Overrides based on props
 
@@ -87,7 +87,7 @@ const theme = createTheme({
 
 If you are not familiar `sx`, first check out [the concept](/system/the-sx-prop/) and [the difference with the `styled`](/system/styled/#difference-with-the-sx-prop).
 
-覆盖所有组件实例的另一种方式是调整 [theme configuration variables](/customization/theming/#theme-configuration-variables)。
+覆盖所有组件实例的另一种方式是调整 [theme configuration variables](/material-ui/customization/theming/#theme-configuration-variables)。
 
 {{"demo": "GlobalThemeOverrideSx.js"}}
 
@@ -132,7 +132,7 @@ const theme = createTheme({
 
 ## 主题变量
 
-Another way to override the look of all component instances is to adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+Another way to override the look of all component instances is to adjust the [theme configuration variables](/material-ui/customization/theming/#theme-configuration-variables).
 
 ```js
 const theme = createTheme({

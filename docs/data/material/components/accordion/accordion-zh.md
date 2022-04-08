@@ -29,7 +29,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 ## 自定义的扩展面板
 
-以下是自定义扩展面板的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多。
+以下是自定义扩展面板的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多。
 
 {{"demo": "CustomizedAccordions.js"}}
 

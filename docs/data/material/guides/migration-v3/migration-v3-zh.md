@@ -179,7 +179,7 @@ function MySelect({ children }) {
 }
 ```
 
-我们在 [TypeScript 指南中](/guides/typescript/#handling-value-and-event-handlers)更详细地解释了此变更。
+我们在 [TypeScript 指南中](/material-ui/guides/typescript/#handling-value-and-event-handlers)更详细地解释了此变更。
 
 ### Button
 
@@ -209,7 +209,7 @@ function MySelect({ children }) {
   +<Fab variant="extended" />
   ```
 
-- [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 我们在 [组合指南](/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
+- [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 我们在 [组合指南](/material-ui/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
 
   当 `button` 属性设置为 true 时，这也适用于 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem`。
 
@@ -228,7 +228,7 @@ function MySelect({ children }) {
 - [DialogActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [DialogActions] 将 CSS 类 `action` 重命名为 `spacing`。
 - [DialogContentText] 不使用文字铸排变体 `subtitle1`，而使用 `body1`。
-- [Dialog] 子组件能够接受一个 ref。 我们在 [组合指南](/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
+- [Dialog] 子组件能够接受一个 ref。 我们在 [组合指南](/material-ui/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
 
 ### Divider
 
@@ -262,7 +262,7 @@ function MySelect({ children }) {
 
 ### Modal
 
-- [Modal] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Modal] 子组件能够接受一个 ref。 [组合指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
   这也适用于 `Dialog` 和 `Popover` 。
 
@@ -282,11 +282,11 @@ function MySelect({ children }) {
 
 ### Portal
 
-- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
 ### Slide 滑动
 
-- [Slide] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Slide] 子组件能够接受一个 ref。 [组合指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
 ### Slider
 
@@ -381,7 +381,7 @@ function MySelect({ children }) {
 
 ### Tooltip
 
-- [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Tooltip] 子组件能够接受一个 ref。 [组合指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移的策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
 ### 文字铸排

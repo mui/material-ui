@@ -199,7 +199,7 @@ It will perform the following diffs:
 
 ## Available bundles
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
+The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/material-ui/getting-started/supported-platforms/).
 
 ⚠️ Developers are **strongly discouraged** to import from any of the other bundles directly.
 Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles.

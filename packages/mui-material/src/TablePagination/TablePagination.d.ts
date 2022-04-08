@@ -25,7 +25,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        */
       ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
       /**
-       * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
+       * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
        */
       backIconButtonProps?: Partial<IconButtonProps>;
       /**
@@ -42,7 +42,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * Accepts a function which returns a string value that provides a user-friendly name for the current page.
        * This is important for screen reader users.
        *
-       * For localization purposes, you can use the provided [translations](/guides/localization/).
+       * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
        * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
        * @returns {string}
        * @default function defaultGetAriaLabel(type) {
@@ -54,7 +54,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
        * object.
        *
-       * For localization purposes, you can use the provided [translations](/guides/localization/).
+       * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
        * @default function defaultLabelDisplayedRows({ from, to, count }) {
        *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
        * }
@@ -63,12 +63,12 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       /**
        * Customize the rows per page label.
        *
-       * For localization purposes, you can use the provided [translations](/guides/localization/).
+       * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
        * @default 'Rows per page:'
        */
       labelRowsPerPage?: React.ReactNode;
       /**
-       * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
+       * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
        */
       nextIconButtonProps?: Partial<IconButtonProps>;
       /**
@@ -102,7 +102,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        */
       rowsPerPageOptions?: Array<number | { value: number; label: string }>;
       /**
-       * Props applied to the rows per page [`Select`](/api/select/) element.
+       * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
        * @default {}
        */
       SelectProps?: Partial<SelectProps>;
@@ -129,12 +129,12 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
  *
  * Demos:
  *
- * - [Tables](https://mui.com/components/tables/)
+ * - [Tables](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TablePagination API](https://mui.com/api/table-pagination/)
- * - inherits [TableCell API](https://mui.com/api/table-cell/)
+ * - [TablePagination API](https://mui.com/material-ui/api/table-pagination/)
+ * - inherits [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>

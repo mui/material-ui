@@ -21,7 +21,7 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
      */
     BackdropComponent?: React.ElementType<BackdropProps>;
     /**
-     * Props applied to the [`Backdrop`](/api/backdrop/) element.
+     * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
      */
     BackdropProps?: Partial<BackdropProps>;
     /**
@@ -41,23 +41,23 @@ export type ModalClassKey = keyof NonNullable<ModalTypeMap['props']['classes']>;
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * *   [Dialog](https://mui.com/api/dialog/)
- * *   [Drawer](https://mui.com/api/drawer/)
- * *   [Menu](https://mui.com/api/menu/)
- * *   [Popover](https://mui.com/api/popover/)
+ * *   [Dialog](https://mui.com/material-ui/api/dialog/)
+ * *   [Drawer](https://mui.com/material-ui/api/drawer/)
+ * *   [Menu](https://mui.com/material-ui/api/menu/)
+ * *   [Popover](https://mui.com/material-ui/api/popover/)
  *
- * If you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/api/dialog/) component
+ * If you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/material-ui/api/dialog/) component
  * rather than directly using Modal.
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  *
  * Demos:
  *
- * - [Modal](https://mui.com/components/modal/)
+ * - [Modal](https://mui.com/material-ui/react-modal/)
  *
  * API:
  *
- * - [Modal API](https://mui.com/api/modal/)
+ * - [Modal API](https://mui.com/material-ui/api/modal/)
  */
 declare const Modal: ExtendModalUnstyled<ModalTypeMap>;
 

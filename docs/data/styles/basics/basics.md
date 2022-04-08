@@ -10,7 +10,7 @@
 
 MUI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in MUI components** as the `@mui/styles` package.
-You can use it, but you don't have to, since MUI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+You can use it, but you don't have to, since MUI is also [interoperable with](/material-ui/guides/interoperability/) all the other major styling solutions.
 
 ## Why use MUI's styling solution?
 
@@ -77,7 +77,7 @@ export default function Hook() {
 ### Styled components API
 
 Note: this only applies to the calling syntax – style definitions still use a JSS object.
-You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
+You can also [change this behavior](/system/styles/advanced/#string-templates), with some limitations.
 
 ```jsx
 import * as React from 'react';

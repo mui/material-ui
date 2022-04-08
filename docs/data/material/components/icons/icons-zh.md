@@ -18,7 +18,7 @@ Material-UI 通过以下三种方式来支持图标的使用：
 
 ## Material Icons
 
-Google has created over 2,000 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. You can [search the full list of these icons](/components/material-icons/).
+Google has created over 2,000 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### 安装
 
@@ -61,7 +61,7 @@ yarn add @mui/material
   import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
-对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。
+对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/material-ui/guides/minimizing-bundle-size/#option-2)。
 
 每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 例如，`@material-ui/icons/Delete` 图标可以：
 
@@ -91,7 +91,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 ## SvgIcon（Svg 图标）
 
-如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
+如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/material-ui/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
 - SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.

@@ -108,7 +108,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-这是一个处理服务器端渲染的类助手（class helper）。 [您可以遵循本指南以了解实际的操作](/guides/server-rendering/)。
+这是一个处理服务器端渲染的类助手（class helper）。 [您可以遵循本指南以了解实际的操作](/material-ui/guides/server-rendering/)。
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -207,13 +207,13 @@ It should preferably be used at **the root of your component tree**.
 
 ### 属性
 
-| 名称                 | 类型     | 默认值   | 描述                                                                                                                                  |
-|:------------------ |:------ |:----- |:----------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\* | node   |       | 您的组件树。                                                                                                                              |
-| disableGeneration  | bool   | false | 使用此选项，你可以禁用样式表的生成。 当在服务端的 HTML 之外渲染步骤中遍历 React 树的时候，这个属性卓有成效。 举个例子，若你正在使用 react-apillo 来提取服务端接口发出的所有查询（queries）。 使用这个属性可以大大加快遍历的速度。 |
-| generateClassName  | func   |       | JSS 的类名生成器。                                                                                                                         |
-| injectFirst        | bool   | false | 默认情况下，在页面中注入的 style 会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material-UI 的样式，请设置此属性。                            |
-| jss                | object |       | JSS 的实例。                                                                                                                            |
+| 名称              | 类型   | 默认值 | 描述                                                                                                                                                                                                                              |
+| :---------------- | :----- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\*  | node   |        | 您的组件树。                                                                                                                                                                                                                      |
+| disableGeneration | bool   | false  | 使用此选项，你可以禁用样式表的生成。 当在服务端的 HTML 之外渲染步骤中遍历 React 树的时候，这个属性卓有成效。 举个例子，若你正在使用 react-apillo 来提取服务端接口发出的所有查询（queries）。 使用这个属性可以大大加快遍历的速度。 |
+| generateClassName | func   |        | JSS 的类名生成器。                                                                                                                                                                                                                |
+| injectFirst       | bool   | false  | 默认情况下，在页面中注入的 style 会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material-UI 的样式，请设置此属性。                                                              |
+| jss               | object |        | JSS 的实例。                                                                                                                                                                                                                      |
 
 ### 例子
 
@@ -235,10 +235,10 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### 属性
 
-| 名称                 | 类型                                       | 默认值 | 描述                                        |
-|:------------------ |:---------------------------------------- |:--- |:----------------------------------------- |
-| children&nbsp;\* | node                                     |     | 您的组件树。                                    |
-| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |     | 一个主题对象（theme object）。 您可以提供一个能够扩展外层主题的函数。 |
+| 名称             | 类型                                     | 默认值 | 描述                                                                  |
+| :--------------- | :--------------------------------------- | :----- | :-------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     |        | 您的组件树。                                                          |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |        | 一个主题对象（theme object）。 您可以提供一个能够扩展外层主题的函数。 |
 
 ### 例子
 

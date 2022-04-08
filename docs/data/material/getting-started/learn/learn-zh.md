@@ -6,15 +6,15 @@ Developers come to MUI from different backgrounds and with different learning st
 
 ## First example
 
-您可以在 [用法页面](/getting-started/usage/#quick-start) 找到一个带有实时编辑器的小小的 Material-UI 示例。 Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
+您可以在 [用法页面](/material-ui/getting-started/usage/#quick-start) 找到一个带有实时编辑器的小小的 Material-UI 示例。 Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
 
 ## Example projects
 
-我们托管了 [一些范例项目](/getting-started/example-projects/)，他们都提供了开发和部署一个 React 网站所必须的架构。
+我们托管了 [一些范例项目](/material-ui/getting-started/example-projects/)，他们都提供了开发和部署一个 React 网站所必须的架构。
 
 ## 模板
 
-我们提供了一些 [基本模板的选项](/getting-started/templates/) 来帮助您开始开发应用程序。
+我们提供了一些 [基本模板的选项](/material-ui/getting-started/templates/) 来帮助您开始开发应用程序。
 
 ## 推荐资源
 

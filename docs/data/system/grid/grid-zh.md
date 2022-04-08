@@ -131,8 +131,8 @@ The `grid-area` property allows you to give an item a name so that it can be ref
 import { flexbox } from '@material-ui/system';
 ```
 
-| 导入名称                  | 属性                    | CSS 属性                  | Theme key |
-|:--------------------- |:--------------------- |:----------------------- |:--------- |
+| 导入名称              | 属性                  | CSS 属性                | Theme key |
+| :-------------------- | :-------------------- | :---------------------- | :-------- |
 | `gap`                 | `gap`                 | `gap`                   | none      |
 | `columnGap`           | `columnGap`           | `column-gap`            | none      |
 | `rowGap`              | `rowGap`              | `row-gap`               | none      |

@@ -347,161 +347,141 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   // Advanced
   'data-grid/column-groups': (
-    <ColumnHead label="Column groups" nested href="/components/data-grid/columns/#column-groups" />
+    <ColumnHead label="Column groups" nested href="/x/react-data-grid/columns/#column-groups" />
   ),
   'data-grid/column-spanning': (
-    <ColumnHead
-      label="Column spanning"
-      nested
-      href="/components/data-grid/columns/#column-spanning"
-    />
+    <ColumnHead label="Column spanning" nested href="/x/react-data-grid/columns/#column-spanning" />
   ),
   'data-grid/column-resizing': (
-    <ColumnHead label="Column resizing" nested href="/components/data-grid/columns/#resizing" />
+    <ColumnHead label="Column resizing" nested href="/x/react-data-grid/columns/#resizing" />
   ),
   'data-grid/column-reorder': (
-    <ColumnHead
-      label="Column reorder"
-      nested
-      href="/components/data-grid/columns/#column-reorder"
-    />
+    <ColumnHead label="Column reorder" nested href="/x/react-data-grid/columns/#column-reorder" />
   ),
   'data-grid/column-pinning': (
-    <ColumnHead
-      label="Column pinning"
-      nested
-      href="/components/data-grid/columns/#column-pinning"
-    />
+    <ColumnHead label="Column pinning" nested href="/x/react-data-grid/columns/#column-pinning" />
   ),
   'data-grid/column-sorting': (
-    <ColumnHead label="Column sorting" nested href="/components/data-grid/sorting/" />
+    <ColumnHead label="Column sorting" nested href="/x/react-data-grid/sorting/" />
   ),
   'data-grid/multi-column-sorting': (
     <ColumnHead
       label="Multi-column sorting"
       nested
-      href="/components/data-grid/sorting/#multi-sorting"
+      href="/x/react-data-grid/sorting/#multi-sorting"
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/components/data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/components/data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/components/data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
   ),
   'data-grid/row-selection': (
-    <ColumnHead
-      label="Row selection"
-      nested
-      href="/components/data-grid/selection/#row-selection"
-    />
+    <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
   ),
   'data-grid/row-multiselection': (
     <ColumnHead
       label="Multi-row selection"
       nested
-      href="/components/data-grid/selection/#multiple-row-selection"
+      href="/x/react-data-grid/selection/#multiple-row-selection"
     />
   ),
   'data-grid/row-rangeselection': (
     <ColumnHead
       label="Range selection"
       nested
-      href="/components/data-grid/selection/#range-selection"
+      href="/x/react-data-grid/selection/#range-selection"
     />
   ),
   'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" nested href="/components/data-grid/filtering/#quick-filter" />
+    <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/#quick-filter" />
   ),
   'data-grid/filter-column': (
-    <ColumnHead label="Column filters" nested href="/components/data-grid/filtering/" />
+    <ColumnHead label="Column filters" nested href="/x/react-data-grid/filtering/" />
   ),
   'data-grid/filter-multicolumn': (
     <ColumnHead
       label="Multi-column filtering"
       nested
-      href="/components/data-grid/filtering/#single-and-multi-filtering"
+      href="/x/react-data-grid/filtering/#single-and-multi-filtering"
     />
   ),
   'data-grid/pagination': (
-    <ColumnHead label="Pagination" nested href="/components/data-grid/pagination/" />
+    <ColumnHead label="Pagination" nested href="/x/react-data-grid/pagination/" />
   ),
   'data-grid/pagination-large': (
     <ColumnHead
       label="Pagination > 100 rows per page"
       nested
-      href="/components/data-grid/pagination/#size-of-the-page"
+      href="/x/react-data-grid/pagination/#size-of-the-page"
     />
   ),
   'data-grid/edit-row': (
-    <ColumnHead label="Row editing" nested href="/components/data-grid/editing/#row-editing" />
+    <ColumnHead label="Row editing" nested href="/x/react-data-grid/editing/#row-editing" />
   ),
   'data-grid/edit-cell': (
-    <ColumnHead label="Cell editing" nested href="/components/data-grid/editing/#cell-editing" />
+    <ColumnHead label="Cell editing" nested href="/x/react-data-grid/editing/#cell-editing" />
   ),
   'data-grid/file-csv': (
-    <ColumnHead label="CSV export" nested href="/components/data-grid/export/#csv-export" />
+    <ColumnHead label="CSV export" nested href="/x/react-data-grid/export/#csv-export" />
   ),
   'data-grid/file-print': (
-    <ColumnHead label="Print" nested href="/components/data-grid/export/#print-export" />
+    <ColumnHead label="Print" nested href="/x/react-data-grid/export/#print-export" />
   ),
   'data-grid/file-clipboard': (
-    <ColumnHead label="Clipboard" nested href="/components/data-grid/export/#clipboard" />
+    <ColumnHead label="Clipboard" nested href="/x/react-data-grid/export/#clipboard" />
   ),
   'data-grid/file-excel': (
-    <ColumnHead label="Excel export" nested href="/components/data-grid/export/#excel-export" />
+    <ColumnHead label="Excel export" nested href="/x/react-data-grid/export/#excel-export" />
   ),
   'data-grid/customizable-components': (
-    <ColumnHead label="Customizable components" nested href="/components/data-grid/components/" />
+    <ColumnHead label="Customizable components" nested href="/x/react-data-grid/components/" />
   ),
   'data-grid/virtualize-column': (
     <ColumnHead
       label="Column virtualization"
       nested
-      href="/components/data-grid/virtualization/#column-virtualization"
+      href="/x/react-data-grid/virtualization/#column-virtualization"
     />
   ),
   'data-grid/virtualize-row': (
     <ColumnHead
       label="Row virtualization > 100 rows"
       nested
-      href="/components/data-grid/virtualization/#row-virtualization"
+      href="/x/react-data-grid/virtualization/#row-virtualization"
     />
   ),
   'data-grid/tree-data': (
-    <ColumnHead label="Tree data" nested href="/components/data-grid/group-pivot/#tree-data" />
+    <ColumnHead label="Tree data" nested href="/x/react-data-grid/group-pivot/#tree-data" />
   ),
   'data-grid/master-detail': (
-    <ColumnHead
-      label="Master detail"
-      nested
-      href="/components/data-grid/group-pivot/#master-detail"
-    />
+    <ColumnHead label="Master detail" nested href="/x/react-data-grid/group-pivot/#master-detail" />
   ),
   'data-grid/grouping': (
-    <ColumnHead label="Grouping" nested href="/components/data-grid/group-pivot/#grouping" />
+    <ColumnHead label="Grouping" nested href="/x/react-data-grid/group-pivot/#grouping" />
   ),
   'data-grid/aggregation': (
-    <ColumnHead label="Aggregation" nested href="/components/data-grid/group-pivot/#aggregation" />
+    <ColumnHead label="Aggregation" nested href="/x/react-data-grid/group-pivot/#aggregation" />
   ),
   'data-grid/pivoting': (
-    <ColumnHead label="Pivoting" nested href="/components/data-grid/group-pivot/#pivoting" />
+    <ColumnHead label="Pivoting" nested href="/x/react-data-grid/group-pivot/#pivoting" />
   ),
   'data-grid/accessibility': (
-    <ColumnHead label="Accessibility" nested href="/components/data-grid/accessibility/" />
+    <ColumnHead label="Accessibility" nested href="/x/react-data-grid/accessibility/" />
   ),
   'data-grid/keyboard-nav': (
     <ColumnHead
       label="Keyboard navigation"
       nested
-      href="/components/data-grid/accessibility/#keyboard-navigation"
+      href="/x/react-data-grid/accessibility/#keyboard-navigation"
     />
   ),
   'data-grid/localization': (
-    <ColumnHead label="Localization" nested href="/components/data-grid/localization/" />
+    <ColumnHead label="Localization" nested href="/x/react-data-grid/localization/" />
   ),
   'date-picker/simple': <ColumnHead label="Date picker" />,
   'date-picker/range': <ColumnHead label="Date range picker" />,
@@ -889,7 +869,7 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
-              href="/getting-started/usage/"
+              href="/material-ui/getting-started/usage/"
               variant="outlined"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}

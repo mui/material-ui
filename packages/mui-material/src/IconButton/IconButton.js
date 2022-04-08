@@ -103,7 +103,7 @@ const IconButtonRoot = styled(ButtonBase, {
 );
 
 /**
- * Refer to the [Icons](/components/icons/) section of the documentation
+ * Refer to the [Icons](/material-ui/icons/) section of the documentation
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
@@ -181,7 +181,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

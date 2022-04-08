@@ -11,7 +11,11 @@ import Box from '@mui/material/Box';
 
 const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
   (props, ref) => (
-    <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
+    <RouterLink
+      ref={ref}
+      to="/material-ui/getting-started/installation/"
+      {...props}
+    />
   ),
 );
 

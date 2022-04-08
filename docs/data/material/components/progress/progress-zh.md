@@ -85,7 +85,7 @@ function Progress(props) {
 
 ## 定制的进度条
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedProgressBars.js", "defaultCodeOpen": false}}
 

@@ -10,6 +10,11 @@ After more than 18 months in the lab, the date and time picker components have f
 
 This means we'll be dedicating even more time and effort to these complex components, to better meet the needs of both you and your users.
 
+## TL;DR
+
+- **No licenses change**, the MIT and paid date pickers remains the same.
+- Follow the [migration steps](/x/react-date-pickers/migration-lab/)
+
 ## What are date and time pickers?
 
 Date and time pickers are interface controls that enable the user to select a date (or time) from a menu.
@@ -60,19 +65,18 @@ Visit [the MUI Store](https://mui.com/store/items/material-ui-pro/) to purchase 
 
 ## How do I migrate?
 
-To migrate, update the package name and change from a default export to a named export:
+Follow the [migration steps](/x/react-date-pickers/migration-lab/) by updating the package name and change from a default export to a named export:
 
-```ts
-// before
-import DatePicker from '@mui/lab/DatePicker';
-import DateRangePicker from '@mui/lab/DateRangePicker';
-import { DatePicker, DateRangePicker } from '@mui/lab';
+```diff
+-import DatePicker from '@mui/lab/DatePicker';
++import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-// after
-import DatePicker from '@mui/x-date-pickers/DatePicker';
-import DateRangePicker from '@mui/x-date-pickers-pro/DateRangePicker';
-import { DatePicker } from '@mui/x-date-pickers'; // DatePicker is also available in `@mui/x-date-pickers-pro`
-import { DateRangePicker } from '@mui/x-date-pickers-pro';
+-import DateRangePicker from '@mui/lab/DateRangePicker';
++import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+
+-import { DatePicker, DateRangePicker } from '@mui/lab';
++import { DatePicker } from '@mui/x-date-pickers'; // DatePicker is also available in `@mui/x-date-pickers-pro`
++import { DateRangePicker } from '@mui/x-date-pickers-pro';
 ```
 
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-date-pickers` or `@mui/x-date-pickers-pro`:

@@ -29,7 +29,7 @@ They don't have directional arrows; instead, they rely on motion emanating from 
 ## Customization
 
 Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTooltips.js"}}
 
@@ -57,7 +57,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
+You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
 
 ## Triggers
 

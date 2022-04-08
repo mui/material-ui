@@ -22,13 +22,13 @@ const PopperRoot = styled(PopperUnstyled, {
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/components/autocomplete/)
- * - [Menus](https://mui.com/components/menus/)
- * - [Popper](https://mui.com/components/popper/)
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Popper](https://mui.com/material-ui/react-popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/api/popper/)
+ * - [Popper API](https://mui.com/material-ui/api/popper/)
  */
 const Popper = React.forwardRef(function Popper(
   inProps: PopperProps,

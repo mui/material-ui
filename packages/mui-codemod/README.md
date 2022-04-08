@@ -145,7 +145,7 @@ Imports and inserts `adaptV4Theme` into `createTheme` (or `createMuiTheme`)
 npx @mui/codemod v5.0.0/adapter-v4 <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#theme).
 
 #### `autocomplete-rename-closeicon`
 
@@ -162,7 +162,7 @@ Renames `Autocomplete`'s `closeIcon` prop to `clearIcon`.
 npx @mui/codemod v5.0.0/autocomplete-rename-closeicon  <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#autocomplete).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#autocomplete).
 
 #### `autocomplete-rename-option`
 
@@ -181,7 +181,7 @@ Renames `Autocomplete`'s `getOptionSelected` to `isOptionEqualToValue`.
 npx @mui/codemod v5.0.0/autocomplete-rename-option  <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#autocomplete).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#autocomplete).
 
 #### `avatar-circle-circular`
 
@@ -200,7 +200,7 @@ Updates the `Avatar`'s `variant` value and `classes` key from 'circle' to 'circu
 npx @mui/codemod v5.0.0/avatar-circle-circular <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#avatar).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#avatar).
 
 #### `badge-overlap-value`
 
@@ -235,7 +235,7 @@ Renames the badge's props.
 npx @mui/codemod v5.0.0/badge-overlap-value <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#badge).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#badge).
 
 #### `box-borderradius-values`
 
@@ -254,7 +254,7 @@ Updates the Box API from separate system props to `sx`.
 npx @mui/codemod v5.0.0/box-borderradius-values <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#box).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#box).
 
 #### `box-rename-css`
 
@@ -269,7 +269,7 @@ Renames the Box `css` prop to `sx`
 npx @mui/codemod v5.0.0/box-rename-css <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#box).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#box).
 
 #### `box-rename-gap`
 
@@ -290,7 +290,7 @@ Renames the Box `grid*Gap` props.
 npx @mui/codemod v5.0.0/box-rename-gap <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#box).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#box).
 
 #### `button-color-prop`
 
@@ -307,7 +307,7 @@ Removes the outdated `color` prop values.
 npx @mui/codemod v5.0.0/button-color-prop <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#button).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#button).
 
 #### `chip-variant-prop`
 
@@ -324,7 +324,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 npx @mui/codemod v5.0.0/chip-variant-prop <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#chip).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#chip).
 
 #### `circularprogress-variant`
 
@@ -341,7 +341,7 @@ Renames the CircularProgress `static` variant to `determinate`.
 npx @mui/codemod v5.0.0/circularprogress-variant <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#circularprogress).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#circularprogress).
 
 #### `collapse-rename-collapsedheight`
 
@@ -360,7 +360,7 @@ Renames `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
 npx @mui/codemod v5.0.0/collapse-rename-collapsedheight <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#collapse).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#collapse).
 
 #### `component-rename-prop`
 
@@ -418,7 +418,7 @@ Remove `disableBackdropClick` prop from `<Dialog>`
 npx @mui/codemod v5.0.0/dialog-props <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#dialog).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#dialog).
 
 #### `dialog-title-props`
 
@@ -433,7 +433,7 @@ Remove `disableTypography` prop from `<DialogTitle>`
 npx @mui/codemod v5.0.0/dialog-title-props <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#dialog).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#dialog).
 
 #### `emotion-prepend-cache`
 
@@ -458,7 +458,7 @@ Renames `ExpansionPanel*` to `Accordion*`
 npx @mui/codemod v5.0.0/expansion-panel-component <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#expansionpanel).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#expansionpanel).
 
 #### `fab-variant`
 
@@ -471,7 +471,7 @@ You can find more details about this breaking change in [the migration guide](ht
 npx @mui/codemod v5.0.0/fab-variant <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#fab).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#fab).
 
 #### `fade-rename-alpha`
 
@@ -491,7 +491,7 @@ Renames the `fade` style utility import and calls to `alpha`.
 npx @mui/codemod v5.0.0/fade-rename-alpha <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#styles).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#styles).
 
 #### `grid-justify-justifycontent`
 
@@ -508,7 +508,7 @@ Renames `Grid`'s `justify` prop to `justifyContent`.
 npx @mui/codemod v5.0.0/grid-justify-justifycontent <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#grid).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#grid).
 
 #### `grid-list-component`
 
@@ -518,7 +518,7 @@ Renames `GridList*` to `ImageList*`
 npx @mui/codemod v5.0.0/grid-list-component <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#gridlist).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#gridlist).
 
 #### `icon-button-size`
 
@@ -535,7 +535,7 @@ Adds `size="large"` if `size` is not defined to get the same appearance as v4.
 npx @mui/codemod v5.0.0/icon-button-size <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#iconbutton).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#iconbutton).
 
 #### `jss-to-styled`
 
@@ -600,10 +600,10 @@ export const MyCard = () => {
 npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#1-use-styled-or-sx-api).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#1-use-styled-or-sx-api).
 
 > **Note:** This approach converts the first element in the return statement into styled component but also increases CSS specificity to override nested children.
-> This codemod should be adopted after handling all breaking changes, [check out the migration documentation](https://mui.com/guides/migration-v4/)
+> This codemod should be adopted after handling all breaking changes, [check out the migration documentation](https://mui.com/material-ui/guides/migration-v4/)
 
 #### `link-underline-hover`
 
@@ -618,7 +618,7 @@ Apply `underline="hover"` to `<Link />` that does not define `underline` prop (t
 npx @mui/codemod v5.0.0/icon-button-size <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#link).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#link).
 
 #### `material-ui-styles`
 
@@ -669,7 +669,7 @@ Renames `Omit` import from `@material-ui/types` to `DistributiveOmit`
 npx @mui/codemod v5.0.0/material-ui-types <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#material-ui-types).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#material-ui-types).
 
 #### `modal-props`
 
@@ -686,7 +686,7 @@ Removes `disableBackdropClick` and `onEscapeKeyDown` from `<Modal>`
 npx @mui/codemod v5.0.0/modal-props <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#modal).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#modal).
 
 #### `moved-lab-modules`
 
@@ -712,13 +712,13 @@ npx @mui/codemod v5.0.0/moved-lab-modules <path>
 
 You can find more details about this breaking change in the migration guide.
 
-- [Alert](https://mui.com/guides/migration-v4/#alert)
-- [Autocomplete](https://mui.com/guides/migration-v4/#autocomplete)
-- [AvatarGroup](https://mui.com/guides/migration-v4/#avatar)
-- [Pagination](https://mui.com/guides/migration-v4/#pagination)
-- [Skeleton](https://mui.com/guides/migration-v4/#skeleton)
-- [SpeedDial](https://mui.com/guides/migration-v4/#speeddial)
-- [ToggleButton](https://mui.com/guides/migration-v4/#togglebutton)
+- [Alert](https://mui.com/material-ui/guides/migration-v4/#alert)
+- [Autocomplete](https://mui.com/material-ui/guides/migration-v4/#autocomplete)
+- [AvatarGroup](https://mui.com/material-ui/guides/migration-v4/#avatar)
+- [Pagination](https://mui.com/material-ui/guides/migration-v4/#pagination)
+- [Skeleton](https://mui.com/material-ui/guides/migration-v4/#skeleton)
+- [SpeedDial](https://mui.com/material-ui/guides/migration-v4/#speeddial)
+- [ToggleButton](https://mui.com/material-ui/guides/migration-v4/#togglebutton)
 
 #### `pagination-round-circular`
 
@@ -735,7 +735,7 @@ Renames `Pagination*`'s `shape` values from 'round' to 'circular'.
 npx @mui/codemod v5.0.0/pagination-round-circular <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#pagination).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#pagination).
 
 #### `optimal-imports`
 
@@ -762,7 +762,7 @@ Removes `RootRef` from the codebase.
 npx @mui/codemod v5.0.0/root-ref <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#rootref).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#rootref).
 
 #### `skeleton-variant`
 
@@ -777,7 +777,7 @@ You can find more details about this breaking change in [the migration guide](ht
 npx @mui/codemod v5.0.0/skeleton-variant <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#skeleton).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#skeleton).
 
 #### `styled-engine-provider`
 
@@ -787,7 +787,7 @@ Applies `StyledEngineProvider` to the files that contains `ThemeProvider`.
 npx @mui/codemod v5.0.0/styled-engine-provider <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#style-library).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#style-library).
 
 #### `table-props`
 
@@ -813,7 +813,7 @@ Renames props in `Table*` components.
 npx @mui/codemod v5.0.0/table-props <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#table).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#table).
 
 #### `tabs-scroll-buttons`
 
@@ -832,7 +832,7 @@ Renames the `Tabs`'s `scrollButtons` prop values.
 npx @mui/codemod v5.0.0/tabs-scroll-buttons <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#tabs).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#tabs).
 
 #### `textarea-minmax-rows`
 
@@ -853,8 +853,8 @@ npx @mui/codemod v5.0.0/textarea-minmax-rows <path>
 
 You can find more details about this breaking change in the migration guide.
 
-- [TextareaAutosize](https://mui.com/guides/migration-v4/#textareaautoresize)
-- [TextField](https://mui.com/guides/migration-v4/#textfield)
+- [TextareaAutosize](https://mui.com/material-ui/guides/migration-v4/#textareaautoresize)
+- [TextField](https://mui.com/material-ui/guides/migration-v4/#textfield)
 
 #### `theme-augment`
 
@@ -864,7 +864,7 @@ Adds `DefaultTheme` module augmentation to typescript projects.
 npx @mui/codemod v5.0.0/theme-augment <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#material-ui-styles).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#material-ui-styles).
 
 #### `theme-breakpoints`
 
@@ -883,7 +883,7 @@ Updates breakpoint values to match new logic. ⚠️ This mod is not idempotent,
 npx @mui/codemod v5.0.0/theme-breakpoints <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#theme).
 
 #### `theme-breakpoints-width`
 
@@ -893,7 +893,7 @@ Renames `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`.
 npx @mui/codemod v5.0.0/theme-breakpoints-width <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#theme).
 
 #### `theme-options`
 
@@ -921,7 +921,7 @@ Renames `type` to `mode`.
 npx @mui/codemod v5.0.0/theme-palette-mode <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#theme).
 
 #### `theme-provider`
 
@@ -931,7 +931,7 @@ Renames `MuiThemeProvider` to `ThemeProvider`.
 npx @mui/codemod v5.0.0/theme-provider <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#material-ui-core-styles).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#material-ui-core-styles).
 
 #### `theme-spacing`
 
@@ -950,7 +950,7 @@ Removes the 'px' suffix from some template strings.
 npx @mui/codemod v5.0.0/theme-spacing <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#theme).
 
 #### `theme-typography-round`
 
@@ -965,7 +965,7 @@ Renames `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`.
 npx @mui/codemod v5.0.0/theme-typography-round <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#theme).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#theme).
 
 #### `top-level-imports`
 
@@ -1035,7 +1035,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 npx @mui/codemod v5.0.0/use-transitionprops <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](/guides/migration-v4/#dialog).
+You can find more details about this breaking change in [the migration guide](/material-ui/guides/migration-v4/#dialog).
 
 #### `variant-prop`
 
@@ -1079,7 +1079,7 @@ Removes imported `withMobileDialog`, and inserts hardcoded version to prevent ap
 npx @mui/codemod v5.0.0/with-mobile-dialog <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#dialog).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#dialog).
 
 #### `with-width`
 
@@ -1095,7 +1095,7 @@ Removes `withWidth` import, and inserts hardcoded version to prevent application
 npx @mui/codemod v5.0.0/with-width <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#material-ui-core-styles).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#material-ui-core-styles).
 
 #### `mui-replace`
 
@@ -1156,7 +1156,7 @@ Replace every occurrence of `material-ui` related package with the new package n
 npx @mui/codemod v5.0.0/mui-replace <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#update-material-ui-version).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#update-material-ui-version).
 
 ### v4.0.0
 

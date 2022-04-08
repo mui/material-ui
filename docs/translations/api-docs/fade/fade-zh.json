@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Fade 淡入淡出被用于 [Modal](/components/modal/) 组件。\n该组件的动画效果是来源于底层的 [react-transition-group](https://github.com/reactjs/react-transition-group)。",
+  "componentDescription": "Fade 淡入淡出被用于 [Modal](/material-ui/react-modal/) 组件。\n该组件的动画效果是来源于底层的 [react-transition-group](https://github.com/reactjs/react-transition-group)。",
   "propDescriptions": {
     "addEndListener": "Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided.",
     "appear": "Perform the enter transition when it first mounts if <code>in</code> is also <code>true</code>. Set this to <code>false</code> to disable this behavior.",
