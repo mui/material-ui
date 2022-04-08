@@ -39,7 +39,7 @@ yarn add @mui/material
 
 ## TypeScript
 
-Para se beneficiar de [CSS overrides](/customization/theme-components/#global-style-overrides) e [customização de propriedades padrão](/customization/theme-components/#default-props) com o tema, usuários de TypeScript precisam importar os seguintes tipos. Internamente, ele usa [ampliação de módulos](/guides/typescript/#customization-of-theme) para estender a estrutura padrão do tema com os componentes de extensão disponíveis no lab.
+In order to benefit from the [CSS overrides](/material-ui/customization/theme-components/#global-style-overrides) and [default prop customization](/material-ui/customization/theme-components/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/material-ui/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
 
 ```tsx
 // Quando utilizando TypeScript 4.x e acima
