@@ -15,4 +15,4 @@
 - snackbar: 1400
 - tooltip: 1500
 
-这些值是可以自定义的。 你可以在主题的 [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) 键（key）下找到它们。 我们不鼓励自定义单个值；如果你更改了其中一个值，那么则可能需要把其他的所有值都更改一遍。
+这些值是可以自定义的。 You will find them in the theme under the [`zIndex`](/material-ui/customization/default-theme/?expand-path=$.zIndex) key of the theme. 我们不鼓励自定义单个值；如果你更改了其中一个值，那么则可能需要把其他的所有值都更改一遍。
