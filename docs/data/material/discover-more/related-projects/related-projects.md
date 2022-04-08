@@ -2,8 +2,7 @@
 
 <p class="description">A carefully curated list of libraries that are worth having a look at.</p>
 
-Because the scope of problems Material UI solves is bound, we try to play nicely with
-other libraries.
+Since Material UI is an open-ended UI library, we do our best to ensure that it works well with other libraries and tools.
 Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
 
 ## Design resources
