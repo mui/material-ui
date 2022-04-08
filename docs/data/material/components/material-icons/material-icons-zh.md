@@ -7,7 +7,7 @@ packageName: '@mui/icons-material'
 githubLabel: 'package: icons'
 ---
 
-# Browse material icons
+# Material 图标
 
 <p class="description">2,000+ React Material icons ready-to-use from the official website.</p>
 
