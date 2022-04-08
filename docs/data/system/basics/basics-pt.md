@@ -36,7 +36,7 @@ npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-c
 yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Dê uma olhada no [guia do Motor de Estilização](/guides/styled-engine/) para mais informações sobre como configurar `componentes estilizados` como seu motor de estilização.
+Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Por que usar o sistema?
 
@@ -336,7 +336,7 @@ export default function CustomBreakpoints() {
 }
 ```
 
-Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+If you are using TypeScript, you will also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
 declare module '@material-ui/core/styles/createBreakpoints' {
@@ -369,7 +369,7 @@ Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 2. Box
 
-[`Box`](/components/box/) é um componente leve que dá acesso a propriedade `sx`, e pode ser usado como um componente utilitário, e como um encapsulador para outros componentes. Ele renderiza um elemento `<div>` por padrão.
+[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components. Ele renderiza um elemento `<div>` por padrão.
 
 ### 3. Componentes customizados
 
