@@ -67,7 +67,7 @@ const styles = (theme) => ({
 
 - [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values)：默认为 [以上值](#default-breakpoints)。 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
 - `theme.breakpoints.unit`：默认为 `px`。 这个用于断点值的单位。
-- `theme.breakpoints.step`：默认为 5 (`0.05px`)。 The increment divided by 100 used to implement exclusive breakpoints. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
+- `theme.breakpoints.step`：默认为 5 (`0.05px`)。 这个增量除以 100 用于实现专用的断点。 The increment divided by 100 used to implement exclusive breakpoints. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
 如果您需要更改断点的默认值，则需要提供所有的断点值：
 
