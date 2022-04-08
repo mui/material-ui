@@ -30,7 +30,7 @@ const theme = createTheme(
 
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
-> ⚠️ For [`DataGrid` and `DataGridPro`](/components/data-grid/) components, they have their own [localization](/components/data-grid/localization/).
+> ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
 
 ### 支持的地区
 
@@ -95,4 +95,4 @@ const theme = createTheme(
 
 ## RTL 支持
 
-支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 请遵循 [本指南](/guides/right-to-left/) 来使用这些语言。
+支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 Follow [this guide](/material-ui/guides/right-to-left/) to use them.
