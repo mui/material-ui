@@ -1,6 +1,6 @@
 ---
 product: material-ui
-title: React Multiple Snackbars component
+title: Multiple Snackbars React component
 components: SnackbarsProvider
 githubLabel: 'component: snackbar'
 materialDesign: https://material.io/components/snackbars
