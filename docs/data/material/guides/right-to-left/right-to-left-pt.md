@@ -44,7 +44,7 @@ Você precisa deste plugin JSS para inverter os estilos: [jss-rtl](https://githu
 npm install stylis-plugin-rtl
 ```
 
-> **Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version.
+> **Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version.
 
 Se você estiver usando `emotion` ou `styled-components`, você precisa deste plugin de estilo para inverter os estilos: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
 
@@ -58,7 +58,7 @@ Tendo instalado o plugin em seu projeto, os componentes do Material-UI ainda exi
 
 #### 3.1 JSS
 
-Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/styles/api/#stylesprovider) permite isso:
+Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/system/styles/api/#stylesprovider) permite isso:
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -95,7 +95,7 @@ function RTL(props) {
 
 #### 3.3 styled-components
 
-Tendo instalado o plugin em seu projeto, os componentes de Material-UI ainda exigem que ele seja carregado pela instância do jss, conforme descrito abaixo. Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. The [`StylesProvider`](/system/styles/api/#stylesprovider) component enables this:
+Tendo instalado o plugin em seu projeto, os componentes de Material-UI ainda exigem que ele seja carregado pela instância do jss, conforme descrito abaixo. Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/system/styles/api/#stylesprovider) permite isso:
 
 ```jsx
 import { create } from 'jss';
