@@ -5,6 +5,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnsty
 githubLabel: 'component: tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
+unstyled: /base/react-tabs/
 ---
 
 # Abas
@@ -161,26 +162,3 @@ As duas demonstrações seguintes diferem apenas no seu comportamento de navega�
 ```
 
 {{"demo": "AccessibleTabs2.js", "defaultCodeOpen": false}}
-
-## Unstyled
-
-The Tabs also come with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
-
-### Unstyled component
-
-```js
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabUnstyled';
-import TabUnstyled from '@mui/base/TabUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-```
-
-{{"demo": "UnstyledTabsBasic.js"}}
-
-#### Customizing the root element
-
-The `TabPanelUnstyled` on the other hand renders a native `div` element by default. You are free to override this as well by setting the `component` or `components. Root` prop on the `TabPanelUnstyled`.
-
-By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components. Root` prop.
-
-{{"demo": "UnstyledTabsCustomized.js"}}
