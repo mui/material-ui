@@ -33,8 +33,8 @@ MUI requires a minimum version of TypeScript 3.5. Material-UI requires a minimum
 
 ## `component` 属性的用法
 
-Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
+Moved to [/customization/theming/#custom-variables](/material-ui/customization/theming/#custom-variables).
 
 ## `component` 属性的用法
 
-然而，如果您尝试根据主题来构建样式，那么类型扩展会再次显示其不怎么雅观的部分：
+Moved to [/guides/composition/#with-typescript](/material-ui/guides/composition/#with-typescript).
