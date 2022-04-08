@@ -39,7 +39,7 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 
 ### 布局
 
-- [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
+- [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
 ### 通知
 
