@@ -30,7 +30,7 @@ const theme = createTheme(
 
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
-> ⚠️ For [`DataGrid` and `DataGridPro`](/components/data-grid/) components, they have their own [localization](/components/data-grid/localization/).
+> ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
 
 ### Localidades suportadas
 
@@ -95,4 +95,4 @@ Por favor, considere contribuir com novas traduções de volta para o Material-U
 
 ## Suporte RTL
 
-Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/guides/right-to-left/) para usá-los.
+Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Follow [this guide](/material-ui/guides/right-to-left/) to use them.
