@@ -12,15 +12,15 @@ const darkTheme = createTheme({
 });
 ```
 
-While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following: The colors modified by the palette mode are the following: The colors modified by the palette mode are the following:
+While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following: The colors modified by the palette mode are the following: The colors modified by the palette mode are the following: The colors modified by the palette mode are the following:
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-> Note: The colors are modified only if you use the default palette. Note: The colors are modified only if you use the default palette. If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The following section explains how you can do it. The following section explains how you can do it.
+> Note: The colors are modified only if you use the default palette. Note: The colors are modified only if you use the default palette. If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The following section explains how you can do it. The following section explains how you can do it. Note: The colors are modified only if you use the default palette. If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The following section explains how you can do it. The following section explains how you can do it.
 
 ## Dark mode with custom palette
 
-The easiest way of how you can implement your custom palette that depends on mode is to have a dedicated function that will return the palette based on the mode. For example: For example:
+The easiest way of how you can implement your custom palette that depends on mode is to have a dedicated function that will return the palette based on the mode. For example: For example: For example:
 
 ```ts
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -50,10 +50,33 @@ const getDesignTokens = (mode: PaletteMode) => ({
           },
         }),
   },
+}); {
+          // palette values for light mode
+          primary: amber,
+          divider: amber[200],
+          text: {
+            primary: grey[900],
+            secondary: grey[800],
+          },
+        }
+      : {
+          // palette values for dark mode
+          primary: deepOrange,
+          divider: deepOrange[700],
+          background: {
+            default: deepOrange[900],
+            paper: deepOrange[900],
+          },
+          text: {
+            primary: '#fff',
+            secondary: grey[500],
+          },
+        }),
+  },
 });
 ```
 
-You can see on the example that there are different colors used based on whether the mode is light or dark. The next step is to use this function when creating the theme. The next step is to use this function when creating the theme.
+You can see on the example that there are different colors used based on whether the mode is light or dark. The next step is to use this function when creating the theme. You can see on the example that there are different colors used based on whether the mode is light or dark. The next step is to use this function when creating the theme. The next step is to use this function when creating the theme.
 
 ```tsx
 export default function App() {
@@ -64,6 +87,23 @@ export default function App() {
       toggleColorMode: () => {
         setMode((prevMode: PaletteMode) =>
           prevMode === 'light' ? 'dark' : 'light',
+        );
+      },
+    }),
+    [],
+  );
+
+  // Update the theme only if the mode changes
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <Page />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+} 'dark' : 'light',
         );
       },
     }),
