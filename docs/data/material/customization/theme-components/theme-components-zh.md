@@ -22,7 +22,7 @@ const theme = createTheme({
 
 {{"demo": "DefaultProps.js"}}
 
-在组件 API 页面的 **CSS**介绍部分，列出了每个组件样式类的文档。
+To override lab component styles with TypeScript, check [this page](/material-ui/about-the-lab/#typescript).
 
 ## 默认属性
 
@@ -49,7 +49,7 @@ const theme = createTheme({
 
 The list of each component's classes is documented under the **CSS** section of its API page.
 
-要使用 TypeScript 覆盖实验室组件样式，请检查 [此文档](/components/about-the-lab/#typescript)
+To override a lab component's styles with TypeScript, check [this section of the documentation](/material-ui/about-the-lab/#typescript).
 
 ### Overrides based on props
 
@@ -132,7 +132,7 @@ const theme = createTheme({
 
 ## 主题变量
 
-Another way to override the look of all component instances is to adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+Another way to override the look of all component instances is to adjust the [theme configuration variables](/material-ui/customization/theming/#theme-configuration-variables).
 
 ```js
 const theme = createTheme({
