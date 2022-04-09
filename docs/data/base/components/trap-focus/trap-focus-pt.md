@@ -1,7 +1,7 @@
 ---
-product: material-ui
+product: base
 title: Componente React para capturar foco
-components: Unstable_TrapFocus
+components: TrapFocus
 githubLabel: 'component: TrapFocus'
 packageName: '@mui/base'
 ---

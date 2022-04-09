@@ -1,7 +1,7 @@
 ---
-product: material-ui
+product: base
 title: React Trap Focus（容器焦点）组件
-components: Unstable_TrapFocus
+components: TrapFocus
 githubLabel: 'component: TrapFocus'
 packageName: '@mui/base'
 ---
