@@ -2328,7 +2328,7 @@ Here are some highlights ✨:
 
   This change removes the need to install the `@material-ui/styles` package directly.
   It prevents the duplication of `@material-ui/styles` in bundles and avoids confusion.
-  You can [learn more about the difference](https://mui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
+  You can [learn more about the difference](https://v4.mui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
 
 - ♿️ Improve the accessibility of the table and select components (#17696, #17773) @adeelibr, @eps1lon.
 - 📊 Launch a [developer survey](https://www.surveymonkey.com/r/5XHDL76) as a precursor to a major DatePicker enhancement effort.
