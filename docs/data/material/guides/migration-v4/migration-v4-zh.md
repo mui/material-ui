@@ -148,8 +148,7 @@ npx @mui/codemod v5.0.0/preset-safe <path>
 > ❗️ 如果您已经在主题中定义了默认值`variant: "outlined"`，那么您**不应该**应用此 codemod。
 
 ```js
-// if you have theme setup like this, ❌ don't run this codemod.
-// 这些默认属性可以在之后移除，因为`always`在v5里面是默认值。
+// 如果您的主题像这样设置，❌请不要运行此 codemod。
 createMuiTheme({
   components: {
     MuiLink: {
@@ -161,7 +160,7 @@ createMuiTheme({
 });
 ```
 
-更多技术细节请参考此链接 [variant-prop codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop)。
+但是，如果您想要在组件中保留 `variant="standard"`，请执行此 codemod 或在主题中配置默认属性。
 
 ```sh
 npx @mui/codemod v5.0.0/variant-prop <path>
@@ -281,9 +280,9 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 export default function GlobalCssPriority() {
   return (
-    {/* Inject emotion before JSS */}
+    {/* 在JSS前注入emotion */}
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. 现在您可以覆盖 Material UI 的样式。 现在您可以覆盖 MUI 的样式。 */}
+      {/* 您的组件树 现在您可以覆盖 MUI 的样式。 */}
     </StyledEngineProvider>
   );
 }
@@ -605,7 +604,7 @@ declare module '@mui/styles' {
   >      return <div className={classes.root} />
   >    }
   > 
-  >    // In the root of your app
+  >    // 在您程序的根节点
   >    function App(props) {
   >   -  return <Component />;
   >   +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
@@ -1120,7 +1119,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   > ```
 
-> 注意：如果你之前已经定制了 determinate，那么你的定制可能不再有效。 所以请删除它们。
+> 注意：如果您之前已经定制了 determinate，那么您的定制可能不再有效。 所以请删除它们。
 
 ### Collapse
 
@@ -2741,7 +2740,7 @@ JSS utility is no longer exported from @mui/material/styles. You can use @mui/st
 
 Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
 
-> **注意：**这个库**不是由 MUI 维护**。 如果您对此有任何问题，请在 [tss-react repository](https://github.com/garronej/tss-react/issues/new) 中创建一个问题。
+> **注意：**这个库**不是由 MUI 维护**。 [查看文档](https://github.com/garronej/tss-react#nested-selector-with-the-withstyles-api)。
 
 ```diff
 -import { withStyles } from '@mui/material/styles';
@@ -2751,7 +2750,7 @@ Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters
   +const defaultTheme = createTheme();
    const MyComponent = withStyles((props) => {
      const { classes, className, ...other } = props;
-     return !!crwd_bt_997_tb_dwrc!!
+     return !!crwd_bt_998_tb_dwrc!!
    })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
 
    function App() {
@@ -2760,7 +2759,7 @@ Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters
    }
 ```
 
-#### 将 theme 的 `styleOverrides`迁移至 emotion
+#### 覆盖样式 — `classes` 属性
 
 This component was removed. You can get a reference to the underlying DOM node of our components via `ref` prop. The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
@@ -2772,7 +2771,7 @@ import * as React from 'react';
      root: {
        backgroundColor: 'red',
      },
-   })(({ classes }) => !!crwd_bt_998_tb_dwrc!!);
+   })(({ classes }) => !!crwd_bt_999_tb_dwrc!!);
 
    function MyOtherComponent(props) {
      const ref = React.useRef();
