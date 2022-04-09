@@ -1,19 +1,19 @@
 # Breakpoints 断点
 
-<p class="description">API 解锁了各种情况下断点的使用。</p>
+<p class="description">能够在各种情况下使用断点的 API。</p>
 
-为了获得最佳的用户体验，在不同的断点下，material design 的接口需要适应它们的布局。 Material UI 使用了原先 [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) 的 **简化** 实现。
+为了获得最佳的用户体验，在不同的断点下，Material Design 的接口需要适应它们的布局。 MUI 使用原始[规范](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)的**简化**实现。
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/material-ui/react-grid/) component.
 
 ## 默认的断点
 
-每个断点（一个键）匹配了一个*固定*的屏幕宽度（一个值）：
+每个断点（一个键）匹配了一个_固定_的屏幕宽度（一个值）：
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-- ** xs， ** 超小：0px
-- ** sm， **小：600px
+- **xs，**超小（extra-small）：0px
+- **sm，**小（small）：600px
 - **md,** medium: 900px
 - **lg,** large: 1200px
 - **xl,** extra-large: 1536px
@@ -140,8 +140,8 @@ declare module '@material-ui/core/styles' {
 const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, ∞)
-    //       [900px, ∞)
+    // 匹配 [md, ∞)
+    //      [900px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -167,8 +167,8 @@ const styles = (theme) => ({
 const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [0, md)
-    //       [0, 900px)
+    // 匹配 [0, md)
+    //      [0, 900px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -186,7 +186,7 @@ const styles = (theme) => ({
 
 #### Returns
 
-`media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它会匹配屏幕宽度，并包括断点键给出的屏幕尺寸。
+`media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它会匹配屏幕宽度，从断点键（包含）给出的屏幕尺寸开始，到下一个断点键（不包含）给出的屏幕尺寸停止。
 
 #### Examples
 
@@ -194,9 +194,9 @@ const styles = (theme) => ({
 const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, md + 1)
-    //       [md, lg)
-    //       [900px, 1200px)
+    // 匹配 [md, md + 1)
+    //      [md, lg)
+    //      [900px, 1200px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
