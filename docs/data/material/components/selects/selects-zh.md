@@ -6,7 +6,7 @@ githubLabel: 'component: select'
 unstyled: import { useSelect } from '@mui/base/SelectUnstyled';
 ---
 
-# Select 选择属性
+# Select 选择器
 
 <p class="description">选择器组件能从一个选项列表中去获得用户所提供的信息。</p>
 
