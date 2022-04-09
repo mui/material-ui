@@ -61,7 +61,7 @@ All other date and time picker components are available in `mui/x-date-pickers` 
 
 ## How do I purchase a commercial license?
 
-Visit [the MUI Store](https://mui.com/store/items/material-ui-pro/) to purchase a commercial license.
+Visit [the MUI Store](/store/items/material-ui-pro/) to purchase a commercial license.
 
 ## How do I migrate?
 
@@ -87,7 +87,7 @@ npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
 
 ## Where is the date and time picker documentation?
 
-You can find the documentation for the picker components in the [MUI X docs](https://mui.com/x/react-date-pickers/).
+You can find the documentation for the picker components in the [MUI X docs](/x/react-date-pickers/getting-started/).
 
 ## What's next for the date and time pickers?
 
