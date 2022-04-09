@@ -52,7 +52,7 @@ In order to prevent screen readers from marking non-interactive children as "cli
 
 This is also required to fix a quirk in NVDA when using FireFox that prevents announcement of alert messages (see [mui-org/material-ui#29080](https://github.com/mui-org/material-ui/issues/29080)).
 
-## Unstyled
+## 素颜模式
 
 - 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
