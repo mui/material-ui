@@ -49,7 +49,7 @@ type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };
  *
  * Demos:
  *
- * - [Multiple Snackbars](https://mui.com/material-ui/react-multiple-snackbar/)
+ * - [Multiple Snackbars](https://mui.com/material-ui/react-multiple-snackbars/)
  *
  * API:
  *
