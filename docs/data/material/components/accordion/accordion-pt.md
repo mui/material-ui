@@ -11,7 +11,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 <p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
-[Um painel de expansão](https://material.io/archive/guidelines/components/expansion-panels.html) é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
+Um acordeão é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
