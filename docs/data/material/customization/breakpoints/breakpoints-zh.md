@@ -2,9 +2,9 @@
 
 <p class="description">API 解锁了各种情况下断点的使用。</p>
 
-为了获得最佳的用户体验，在不同的断点下，material design 的接口需要适应它们的布局。 Material-UI 使用了原先 [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) 的 **简化** 实现。
+为了获得最佳的用户体验，在不同的断点下，material design 的接口需要适应它们的布局。 Material UI 使用了原先 [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) 的 **简化** 实现。
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) component.
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/material-ui/react-grid/) component.
 
 ## 默认的断点
 
@@ -57,7 +57,7 @@ const styles = (theme) => ({
 
 ### useMediaQuery hook
 
-您可以在 [userMediaQuery](/components/use-media-query/) 页面上了解更多信息。
+您可以在 [userMediaQuery](/material-ui/react-use-media-query/) 页面上了解更多信息。
 
 ## 自定义断点
 
@@ -65,9 +65,9 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values)：默认为 [以上值](#default-breakpoints)。 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
+- [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values)：默认为 [以上值](#default-breakpoints)。 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
 - `theme.breakpoints.unit`：默认为 `px`。 这个用于断点值的单位。
-- `theme.breakpoints.step`：默认为 5 (`0.05px`)。 The increment divided by 100 used to implement exclusive breakpoints. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
+- `theme.breakpoints.step`：默认为 5 (`0.05px`)。 这个增量除以 100 用于实现专用的断点。 The increment divided by 100 used to implement exclusive breakpoints. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
 如果您需要更改断点的默认值，则需要提供所有的断点值：
 
@@ -100,7 +100,7 @@ const theme = createTheme({
 });
 ```
 
-如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
+如果您使用的是 TypeScript，您还需要使用 [module augmentation](/material-ui/guides/typescript/#customization-of-theme) 来让主题接受上述值。
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
@@ -262,4 +262,4 @@ const styles = (theme) => ({
 
 ## 默认值
 
-You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+You can explore the default values of the breakpoints using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

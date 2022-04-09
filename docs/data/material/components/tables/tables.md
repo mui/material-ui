@@ -30,7 +30,7 @@ A simple example with no frills.
 The `Table` component has a close mapping to the native `<table>` elements.
 This constraint makes building rich data tables challenging.
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
+The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 {{"demo": "DataTable.js", "bg": "inline"}}
@@ -52,7 +52,7 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTables.js", "bg": true}}
 
@@ -103,7 +103,7 @@ You can group column headers by rendering multiple table rows inside a table hea
 ## Collapsible table
 
 An example of a table with expandable rows, revealing more information.
-It utilizes the [`Collapse`](/api/collapse/) component.
+It utilizes the [`Collapse`](/material-ui/api/collapse/) component.
 
 {{"demo": "CollapsibleTable.js", "bg": true}}
 
@@ -134,4 +134,4 @@ A caption functions like a heading for a table. Most screen readers announce the
 ## Unstyled
 
 If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component.
-See the demos in the [unstyled table pagination docs](/base/react-table-pagination)
+See the demos in the [unstyled table pagination docs](/base/react-table-pagination/)

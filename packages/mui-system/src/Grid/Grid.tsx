@@ -4,6 +4,7 @@ import { extendSxProp } from '../styleFunctionSx';
 import type { GridProps } from './GridProps';
 
 const NestedContext = React.createContext(false);
+const ImplementationContext = React.createContext(false);
 
 const generateGrid = (
   value: number | boolean | 'auto' | undefined,
@@ -40,6 +41,8 @@ const GridRoot = styled('div', {
   slot: 'Root',
 })<{ ownerState: GridProps & { nested: boolean } }>(({ ownerState, theme }) => [
   {
+    minWidth: 0,
+    boxSizing: 'border-box',
     ...(ownerState.container && {
       '--Grid-container-columns': ownerState.columns,
       ...(typeof ownerState.rowSpacing === 'number' && {
@@ -53,24 +56,18 @@ const GridRoot = styled('div', {
       // TODO: handle responsive spacing
       margin: `calc(var(--Grid-item-rowSpacing) / -2) calc(var(--Grid-item-columnSpacing) / -2)`,
     }),
-    minWidth: 0,
     ...(!ownerState.container && {
       padding: `calc(var(--Grid-item-rowSpacing) / 2) calc(var(--Grid-item-columnSpacing) / 2)`,
     }),
     ...(ownerState.container &&
       !ownerState.nested && {
-        '--Grid-internal-rowSpacing': 'var(--Grid-item-rowSpacing)',
-        '--Grid-internal-columnSpacing': 'var(--Grid-item-columnSpacing)',
+        '--Grid-nested-rowSpacing': 'var(--Grid-item-rowSpacing)',
+        '--Grid-nested-columnSpacing': 'var(--Grid-item-columnSpacing)',
       }),
     ...(ownerState.nested &&
       ownerState.container && {
-        padding: `calc(var(--Grid-internal-rowSpacing) / 2) calc(var(--Grid-internal-columnSpacing) / 2)`,
+        padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
       }),
-    // ...((ownerState.nested || !ownerState.container) && {
-    //   // use React context
-    //   // TODO: handle responsive spacing
-    //   padding: `calc(var(--Grid-item-rowSpacing) / 2) calc(var(--Grid-item-columnSpacing) / 2)`,
-    // }),
   },
   ownerState.container &&
     typeof ownerState.columnSpacing === 'object' && {
@@ -147,6 +144,7 @@ const GridRoot = styled('div', {
 
 const Grid = React.forwardRef<HTMLDivElement, GridProps>(function Grid(inProps, ref) {
   const props = extendSxProp(inProps);
+  const nested = React.useContext(NestedContext);
   const {
     columns: columnsProp = 12,
     container = false,
@@ -161,7 +159,6 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(function Grid(inProps, 
     xl,
     ...other
   } = props;
-  const nested = React.useContext(NestedContext);
   const columns = inProps.columns || (nested ? undefined : columnsProp);
   const spacing = inProps.spacing || (nested ? undefined : spacingProp);
   const rowSpacing = inProps.rowSpacing || inProps.spacing || (nested ? undefined : rowSpacingProp);
@@ -182,6 +179,10 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(function Grid(inProps, 
     lg,
     xl,
   };
+  if (nested) {
+    // to reduce the number of contexts in React devtool
+    return <GridRoot ref={ref} ownerState={ownerState} {...other} />;
+  }
   return (
     <NestedContext.Provider value>
       <GridRoot ref={ref} ownerState={ownerState} {...other} />

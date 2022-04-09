@@ -16,7 +16,7 @@ export default function NestedGrid() {
         <Grid xs={12} sm={12} md={3} lg={4}>
           <Item>Email subscribe section</Item>
         </Grid>
-        <Grid container xs={12} sm={12} md={9} lg={8} spacing={3}>
+        <Grid container xs={12} sm={12} md={9} lg={8} spacing={4}>
           <Grid xs={6} lg={3}>
             <Item>
               <Box
@@ -87,7 +87,7 @@ export default function NestedGrid() {
           <Grid>
             <Item>© Copyright</Item>
           </Grid>
-          <Grid container>
+          <Grid container columnSpacing={1}>
             <Grid>
               <Item>Link A</Item>
             </Grid>

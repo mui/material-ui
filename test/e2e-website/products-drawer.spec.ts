@@ -24,9 +24,7 @@ test('able to navigate between products', async ({ page }) => {
     '/system/basics/',
   );
 
-  await expect(
-    page.locator('#mui-product-menu a[href="/x/react-data-grid/getting-started/"]'),
-  ).toBeVisible();
+  await expect(page.locator('#mui-product-menu a[href="/x/advanced-components/"]')).toBeVisible();
 
   if (FEATURE_TOGGLE.enable_mui_base_scope) {
     await expect(

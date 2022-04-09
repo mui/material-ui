@@ -30,11 +30,11 @@ npm install @mui/material @mui/styled-engine-sc styled-components
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
-> 💡 Dê uma olhada no [guia de motor de estilos](/guides/styled-engine/) para obter mais informações de como configurar `styled-components` como o motor de estilos.
+> 💡 Dê uma olhada no [guia de motor de estilos](/material-ui/guides/styled-engine/) para obter mais informações de como configurar `styled-components` como o motor de estilos.
 
 ## Fonte Roboto
 
-MUI foi desenvolvida com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir [estas instruções](/components/typography/#general) para carregá-la. Como alternativa, carregue através do Google Web Fonts:
+MUI foi desenvolvida com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir [estas instruções](/material-ui/react-typography/#general) para carregá-la. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link
@@ -45,7 +45,7 @@ MUI foi desenvolvida com base na fonte [Roboto](https://fonts.google.com/specime
 
 ## Ícones de fonte
 
-Para usar o componente de fonte `Icon`, você deve primeiramente adiciona a fonte de [ícones Material](https://fonts.google.com/icons). Aqui estão [algumas instruções](/components/icons/#font-icons) de como fazer isso. Como alternativa, carregue através do Google Web Fonts:
+Para usar o componente de fonte `Icon`, você deve primeiramente adiciona a fonte de [ícones Material](https://fonts.google.com/icons). Aqui estão [algumas instruções](/material-ui/icons/#font-icons) de como fazer isso. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link
@@ -56,7 +56,7 @@ Para usar o componente de fonte `Icon`, você deve primeiramente adiciona a font
 
 ## Ícones SVG
 
-Para usar os ícones SVG pré-definidos do Material, como os encontrados na [demonstração de ícones](/components/icons/), você deve primeiro instalar o pacote [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material):
+Para usar os ícones SVG pré-definidos do Material, como os encontrados na [demonstração de ícones](/material-ui/icons/), você deve primeiro instalar o pacote [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material):
 
 <!-- #default-branch-switch -->
 

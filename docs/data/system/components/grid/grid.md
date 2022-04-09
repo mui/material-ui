@@ -60,4 +60,3 @@ a column based on the natural width of its content.
 ## Nested
 
 {{"demo": "NestedGrid.js", "bg": true}}
-
