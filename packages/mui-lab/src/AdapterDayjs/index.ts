@@ -1,1 +1,1 @@
-export { default } from '@date-io/dayjs';
+export { AdapterDayjs as default } from '@mui/x-date-pickers/AdapterDayjs';

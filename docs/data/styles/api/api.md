@@ -126,7 +126,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle server-side rendering. [You can follow this guide for a practical approach](/guides/server-rendering/).
+This is a class helper to handle server-side rendering. [You can follow this guide for a practical approach](/material-ui/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';

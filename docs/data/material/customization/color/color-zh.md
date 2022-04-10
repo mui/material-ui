@@ -42,11 +42,11 @@ const theme = createTheme({
 
 ### 练习
 
-若想用 Material-UI 文档来测试 [material.io/design/color](https://material.io/design/color/) 的配色方案，只需使用下面的调色板和滑块来选取颜色即可。 另外，您也可以在主要（Primary）和次要（Secondary）文本字段中输入十六进制（hex）值。
+若想用 Material UI 文档来测试 [material.io/design/color](https://material.io/design/color/) 的配色方案，只需使用下面的调色板和滑块来选取颜色即可。 另外，您也可以在主要（Primary）和次要（Secondary）文本字段中输入十六进制（hex）值。
 
 {{"demo": "ColorTool.js", "hideToolbar": true, "bg": true}}
 
-The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
+The output shown in the color sample can be pasted directly into a [`createTheme()`](/material-ui/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/material-ui/customization/theming/#theme-provider)):
 
 ```jsx
 import { createTheme } from '@material-ui/core/styles';
@@ -64,13 +64,13 @@ const theme = createTheme({
 });
 ```
 
-Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/customization/palette/) section.
+Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/material-ui/customization/palette/) section.
 
 If you are using the default primary and / or secondary shades then by providing the color object, `createTheme()` will use the appropriate shades from the material color for main, light and dark.
 
 ### 社区提供的一些工具
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 Material-UI 组件库主题的工具。 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 Material UI 组件库主题的工具。 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
 - [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
 
 ## 2014 Material Design 调色板
@@ -79,7 +79,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### 一些重要的术语
 
-- **Palette**：调色板是颜色的集合，即色调及其深度。 MUI provides all colors from the Material Design guidelines. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
+- **Palette**：调色板是颜色的集合，即色调及其深度。 MUI provides all colors from the Material Design guidelines. MUI provides all colors from the Material Design guidelines. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 - **Hue & Shade**：调色板中的单一颜色由色调（如“red”）和深度（如“500”）组成。 "rad 50" 是红色的最浅的阴影（_ 粉红色！ _），而 "red 900" 是最暗的深红色。 除此之外，大多数的色调都带有以 `A` 为前缀的强调（accent）色调。
 
 ### 调色板

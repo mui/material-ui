@@ -8,6 +8,7 @@ import { ListProps, ListSlot } from '../List/ListProps';
 import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
 import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
 import { AvatarProps, AvatarSlot } from '../Avatar/AvatarProps';
+import { AvatarGroupProps, AvatarGroupSlot } from '../AvatarGroup/AvatarGroupProps';
 import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListItemButtonProps';
 import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
 import {
@@ -46,6 +47,10 @@ export interface Components<Theme = unknown> {
   MuiAvatar?: {
     defaultProps?: Partial<AvatarProps>;
     styleOverrides?: OverridesStyleRules<AvatarSlot, AvatarProps, Theme>;
+  };
+  MuiAvatarGroup?: {
+    defaultProps?: Partial<AvatarGroupProps>;
+    styleOverrides?: OverridesStyleRules<AvatarGroupSlot, AvatarGroupProps, Theme>;
   };
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;

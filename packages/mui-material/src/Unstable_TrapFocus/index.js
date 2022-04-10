@@ -1,1 +1,1 @@
-export { default } from '@mui/base/Unstable_TrapFocus';
+export { default } from '@mui/base/TrapFocus';

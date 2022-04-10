@@ -22,5 +22,5 @@ module.exports = [
   { pathname: '/base/api/tabs-unstyled' },
   { pathname: '/base/api/tab-unstyled' },
   { pathname: '/base/api/textarea-autosize' },
-  { pathname: '/base/api/unstable-trap-focus' },
+  { pathname: '/base/api/trap-focus' },
 ];

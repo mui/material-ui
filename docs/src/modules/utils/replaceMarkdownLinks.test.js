@@ -198,7 +198,7 @@ describe('replaceMarkdownLinks', () => {
       [ButtonUnstyled](/api/button-unstyled)
       [TabPanelUnstyled](/api/tab-panel-unstyled)
       [TabsListUnstyled](/api/tabs-list-unstyled)
-      [Unstable_TrapFocus](/api/unstable-trap-focus)
+      [TrapFocus](/api/trap-focus)
       [ClickAwayListener](/api/click-away-listener)
       [IconButton](/api/icon-button)
       [LoadingButton](/api/loading-button)
@@ -217,7 +217,7 @@ describe('replaceMarkdownLinks', () => {
       [ButtonUnstyled](/base/api/button-unstyled)
       [TabPanelUnstyled](/base/api/tab-panel-unstyled)
       [TabsListUnstyled](/base/api/tabs-list-unstyled)
-      [Unstable_TrapFocus](/base/api/unstable-trap-focus)
+      [TrapFocus](/base/api/trap-focus)
       [ClickAwayListener](/base/api/click-away-listener)
       [IconButton](/material-ui/api/icon-button)
       [LoadingButton](/material-ui/api/loading-button)
@@ -338,9 +338,11 @@ describe('replaceMarkdownLinks', () => {
         [System](/system/basics)
     `);
     if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(`[Styles](/styles/api/)`).to.equal(`[Styles](/system/styles/api/)`);
+      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(
+        `[Styles](/system/styles/api/)`,
+      );
     } else {
-      expect(`[Styles](/styles/api/)`).to.equal(`[Styles](/styles/api/)`);
+      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(`[Styles](/styles/api/)`);
     }
   });
 
@@ -364,5 +366,11 @@ describe('replaceMarkdownLinks', () => {
         [text](/material-ui/react-select/#main-content)
         [text](/material-ui/react-switch/#main-content)
     `);
+  });
+
+  it('does not trasform material-ui', () => {
+    expect(
+      replaceMarkdownLinks(`[Trap Focus](https://mui.com/material-ui/react-trap-focus/)`),
+    ).to.equal(`[Trap Focus](https://mui.com/material-ui/react-trap-focus/)`);
   });
 });

@@ -58,9 +58,7 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click Away Listener](https://mui.com/base/components/click-away-listener/)
- * - [Click Away Listener](https://mui.com/material-ui/react-click-away-listener/)
- * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Click Away Listener](https://mui.com/base/react-click-away-listener/)
  *
  * API:
  *

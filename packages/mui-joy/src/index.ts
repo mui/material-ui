@@ -4,6 +4,9 @@ export * from './styles';
 export { default as Avatar } from './Avatar';
 export * from './Avatar';
 
+export { default as AvatarGroup } from './AvatarGroup';
+export * from './AvatarGroup';
+
 export { default as Button } from './Button';
 export * from './Button';
 

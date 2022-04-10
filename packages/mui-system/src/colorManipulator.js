@@ -99,6 +99,20 @@ export function decomposeColor(color) {
 }
 
 /**
+ * Returns a channel created from the input color.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @returns {string} - The channel for the color, that can be used in rgba or hsla colors
+ */
+export const colorChannel = (color) => {
+  const decomposedColor = decomposeColor(color);
+  return decomposedColor.values
+    .slice(0, 3)
+    .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
+    .join(' ');
+};
+
+/**
  * Converts a color object with type and values to a string.
  * @param {object} color - Decomposed color
  * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'

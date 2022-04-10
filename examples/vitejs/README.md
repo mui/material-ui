@@ -29,11 +29,11 @@ or:
 ## The idea behind the example
 
 This example uses [Vite.js](https://github.com/vitejs/vite).
-It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5.
+It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in Material UI v5.
 
 ## What's next?
 
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/getting-started/templates/) section.
+You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
