@@ -13,10 +13,10 @@ export default function NestedGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid xs={12} sm={12} md={3} lg={4}>
+        <Grid xs={12} md={5} lg={4}>
           <Item>Email subscribe section</Item>
         </Grid>
-        <Grid container xs={12} sm={12} md={9} lg={8} spacing={4}>
+        <Grid container xs={12} md={7} lg={8} spacing={4}>
           <Grid xs={6} lg={3}>
             <Item>
               <Box
@@ -82,12 +82,14 @@ export default function NestedGrid() {
           xs={12}
           container
           justifyContent="space-between"
+          alignItems="center"
+          flexDirection={{ xs: 'column', sm: 'row' }}
           sx={{ fontSize: '12px' }}
         >
-          <Grid>
+          <Grid sx={{ order: { xs: 2, sm: 1 } }}>
             <Item>© Copyright</Item>
           </Grid>
-          <Grid container columnSpacing={1}>
+          <Grid container columnSpacing={1} sx={{ order: { xs: 1, sm: 2 } }}>
             <Grid>
               <Item>Link A</Item>
             </Grid>

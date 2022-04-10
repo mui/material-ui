@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { ResponsiveStyleValue } from '@mui/system';
+import { SxProps } from '../styleFunctionSx';
+import { Theme as SystemTheme } from '../createTheme';
+
+type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
@@ -9,7 +12,7 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 'auto' | number;
 
-export interface GridProps {
+export interface GridProps<Theme extends object = SystemTheme> {
   /**
    * The content of the component.
    */
@@ -37,9 +40,7 @@ export interface GridProps {
    */
   direction?: ResponsiveStyleValue<GridDirection>;
   /**
-   * If `true`, the component will have the flex *item* behavior.
-   * You should be wrapping *items* with a *container*.
-   * @default false
+   * @deprecated This prop has no effect anymore. It is safe to be removed.
    */
   item?: boolean;
   /**
@@ -110,9 +111,11 @@ export interface GridProps {
    */
   xs?: boolean | GridSize;
   /**
-   * If `true`, it sets `min-width: 0` on the item.
-   * Refer to the limitations section of the documentation to better understand the use case.
-   * @default false
+   * @deprecated This prop is not needed anymore. It is safe to be removed.
    */
   zeroMinWidth?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
