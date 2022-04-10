@@ -1,14 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled } from '../styles';
+import { styled, JoyTheme } from '../styles';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
 
 const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) => {
-  const { classes, checked, disabled, focusVisible, readOnly } = ownerState;
+  const { classes, checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
 
   const slots = {
     root: [
@@ -17,6 +18,8 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       readOnly && 'readOnly',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
     ],
     thumb: ['thumb', checked && 'checked'],
     track: ['track', checked && 'checked'],
@@ -26,53 +29,82 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
   return composeClasses(slots, getSwitchUtilityClass, classes);
 };
 
+const switchColorVariables =
+  ({ theme, ownerState }: { theme: JoyTheme; ownerState: SwitchProps }) =>
+  (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
+    const variant = ownerState.variant;
+    const color = ownerState.color;
+    return {
+      '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
+      '--Switch-track-color':
+        ownerState.variant === 'contained' ? '#fff' : theme.vars.palette[color!]?.textColor,
+      '--Switch-track-borderColor':
+        variant === 'outlined'
+          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
+          : 'currentColor',
+      '--Switch-thumb-background':
+        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
+      '--Switch-thumb-color':
+        ownerState.variant === 'contained' ? theme.vars.palette[color!]?.textColor : '#fff',
+    };
+  };
+
 const SwitchRoot = styled('span', {
   name: 'MuiSwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
-  return {
-    '--Switch-track-radius': theme.vars.radius.lg,
-    '--Switch-track-width': '48px',
-    '--Switch-track-height': '24px',
-    '--Switch-thumb-size': '16px',
-    ...(ownerState.size === 'sm' && {
-      '--Switch-track-width': '40px',
-      '--Switch-track-height': '20px',
-      '--Switch-thumb-size': '12px',
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Switch-track-width': '64px',
-      '--Switch-track-height': '32px',
-      '--Switch-thumb-size': '24px',
-    }),
-    '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
-    '--Switch-thumb-width': 'var(--Switch-thumb-size)',
-    '--Switch-thumb-offset':
-      'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
-    display: 'inline-block',
-    width: 'var(--Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
-    borderRadius: 'var(--Switch-track-radius)',
-    position: 'relative',
-    padding:
-      'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
-    color: theme.vars.palette.neutral.containedBg,
-    '&:hover': {
-      color: theme.vars.palette.neutral.containedBg,
-    },
-    [`&.${switchClasses.checked}`]: {
-      color: theme.vars.palette[ownerState.color!].containedBg,
+  const getColorVariables = switchColorVariables({ theme, ownerState });
+  return [
+    {
+      ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
+      '--Switch-track-radius': theme.vars.radius.lg,
+      '--Switch-thumb-shadow': '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
+      ...(ownerState.size === 'sm' && {
+        '--Switch-track-width': '40px',
+        '--Switch-track-height': '20px',
+        '--Switch-thumb-size': '12px',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Switch-track-width': '48px',
+        '--Switch-track-height': '24px',
+        '--Switch-thumb-size': '16px',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Switch-track-width': '64px',
+        '--Switch-track-height': '32px',
+        '--Switch-thumb-size': '24px',
+      }),
+      '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
+      '--Switch-thumb-width': 'var(--Switch-thumb-size)',
+      '--Switch-thumb-offset':
+        'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
+      ...getColorVariables(),
       '&:hover': {
-        color: theme.vars.palette[ownerState.color!].containedHoverBg,
+        ...getColorVariables({ state: 'Hover' }),
       },
+      [`&.${switchClasses.checked}`]: {
+        ...getColorVariables({ checked: true }),
+        '&:hover': {
+          ...getColorVariables({ checked: true, state: 'Hover' }),
+        },
+      },
+      [`&.${switchClasses.disabled}`]: {
+        pointerEvents: 'none',
+        ...getColorVariables({ state: 'Disabled', checked: ownerState.checked }),
+      },
+      display: 'inline-block',
+      width: 'var(--Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
+      borderRadius: 'var(--Switch-track-radius)',
+      position: 'relative',
+      padding:
+        'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
+      backgroundColor: 'initial',
+      color: 'var(--Switch-thumb-background)',
+      border: 'none',
     },
-    [`&.${switchClasses.disabled}`]: {
-      pointerEvents: 'none',
-      cursor: 'default',
-      opacity: 0.6,
-    },
-    [`&.${switchClasses.focusVisible}`]: theme.focus.default,
-  };
+    theme.focus.default,
+  ];
 });
 
 const SwitchInput = styled('input', {
@@ -96,14 +128,29 @@ const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(() => ({
+})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(({ theme, ownerState }) => ({
   position: 'relative',
-  color: 'inherit',
+  color: 'var(--Switch-track-color)',
   height: 'var(--Switch-track-height)',
   width: 'var(--Switch-track-width)',
-  display: 'block',
-  backgroundColor: 'currentColor',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  boxSizing: 'border-box',
+  border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+  borderColor: 'var(--Switch-track-borderColor)',
+  backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
+  fontFamily: theme.vars.fontFamily.body,
+  ...(ownerState.size === 'sm' && {
+    fontSize: theme.vars.fontSize.xs,
+  }),
+  ...(ownerState.size === 'md' && {
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'lg' && {
+    fontSize: theme.vars.fontSize.md,
+  }),
 }));
 
 const SwitchThumb = styled('span', {
@@ -111,7 +158,11 @@ const SwitchThumb = styled('span', {
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SwitchProps }>(() => ({
+  '--Icon-fontSize': 'calc(var(--Switch-thumb-size) * 0.75)',
   transition: 'left 0.2s',
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   position: 'absolute',
   top: '50%',
   left: 'calc(50% - var(--Switch-track-width) / 2 + var(--Switch-thumb-width) / 2 + var(--Switch-thumb-offset))',
@@ -119,7 +170,9 @@ const SwitchThumb = styled('span', {
   width: 'var(--Switch-thumb-width)',
   height: 'var(--Switch-thumb-size)',
   borderRadius: 'var(--Switch-thumb-radius)',
-  backgroundColor: '#fff',
+  boxShadow: 'var(--Switch-thumb-shadow)',
+  color: 'var(--Switch-thumb-color)',
+  backgroundColor: 'var(--Switch-thumb-background)',
   [`&.${switchClasses.checked}`]: {
     left: 'calc(50% + var(--Switch-track-width) / 2 - var(--Switch-thumb-width) / 2 - var(--Switch-thumb-offset))',
   },
@@ -140,8 +193,9 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
-    color = 'primary',
-    size,
+    color,
+    variant = 'contained',
+    size = 'md',
     ...otherProps
   } = props;
 
@@ -164,7 +218,8 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     disabled,
     focusVisible,
     readOnly,
-    color,
+    color: checked ? color || 'primary' : color || 'neutral',
+    variant,
     size,
   };
 
@@ -217,7 +272,7 @@ Switch.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
@@ -283,6 +338,14 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'contained'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'light', 'outlined']),
     PropTypes.string,
   ]),
 } as any;

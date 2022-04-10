@@ -11,6 +11,7 @@ import DeleteForever from '@mui/icons-material/DeleteForeverOutlined';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import ThumbUp from '@mui/icons-material/ThumbUp';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -46,29 +47,7 @@ export default function JoyButton() {
     size: ['sm', 'md', 'lg'],
   } as const;
   return (
-    <CssVarsProvider
-      theme={{
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3, pb: 4 }}>
           <ColorSchemePicker />
@@ -158,6 +137,15 @@ export default function JoyButton() {
             </Button>
             <Button variant="outlined" endIcon={<KeyboardArrowRight />} color="success">
               Checkout
+            </Button>
+            <Button
+              size="sm"
+              variant="outlined"
+              color="neutral"
+              endIcon={<ArrowDropDown />}
+              sx={{ '--Icon-color': (theme) => theme.vars.palette.primary[500] }}
+            >
+              10
             </Button>
           </Box>
         </Box>

@@ -1,6 +1,0 @@
-<StyledBadge badgeContent={5}>
-  <BadgeContent />
-</StyledBadge>
-<StyledBadge badgeContent={5} variant="dot">
-  <BadgeContent />
-</StyledBadge>

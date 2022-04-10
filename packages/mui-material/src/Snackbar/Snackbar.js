@@ -6,7 +6,6 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
-import { duration } from '../styles/createTransitions';
 import useEventCallback from '../utils/useEventCallback';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -95,6 +94,12 @@ const SnackbarRoot = styled('div', {
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
+  const theme = useTheme();
+  const defaultTransitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     action,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
@@ -113,15 +118,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     open,
     resumeHideDuration,
     TransitionComponent = Grow,
-    transitionDuration = {
-      enter: duration.enteringScreen,
-      exit: duration.leavingScreen,
-    },
+    transitionDuration = defaultTransitionDuration,
     TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
     ...other
   } = props;
 
-  const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
   const ownerState = { ...props, anchorOrigin: { vertical, horizontal }, isRtl };
@@ -276,6 +277,9 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
         onMouseLeave={handleMouseLeave}
         ownerState={ownerState}
         ref={ref}
+        // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
+        // See https://github.com/mui/material-ui/issues/29080
+        role="presentation"
         {...other}
       >
         <TransitionComponent
@@ -338,7 +342,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**
@@ -405,7 +409,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
@@ -413,8 +417,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration: PropTypes.oneOfType([

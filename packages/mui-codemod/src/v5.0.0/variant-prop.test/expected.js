@@ -6,15 +6,15 @@ import FormControl from '@material-ui/core/FormControl';
 export default function TextFieldComponent(props) {
   return (
     <div>
-      <TextField {...props} variant="standard" />
+      <TextField variant="standard" {...props} />
       <TextField variant="outlined" />
       <TextField variant="standard" />
       <TextField variant="filled" />
-      <Select {...props} variant="standard" />
+      <Select variant="standard" {...props} />
       <Select variant="outlined" />
       <Select variant="standard" />
       <Select variant="filled" />
-      <FormControl {...props} variant="standard" />
+      <FormControl variant="standard" {...props} />
       <FormControl variant="outlined" />
       <FormControl variant="standard" />
       <FormControl variant="filled" />

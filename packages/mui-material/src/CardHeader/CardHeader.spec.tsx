@@ -216,8 +216,8 @@ function titleTypographyPropsTest() {
       propThatDoesntExist: 'shouldNotWork',
     }}
   />;
-  // Regression test for https://github.com/mui-org/material-ui/issues/21583
-  // which was probably fixed in https://github.com/mui-org/material-ui/pull/21552.
+  // Regression test for https://github.com/mui/material-ui/issues/21583
+  // which was probably fixed in https://github.com/mui/material-ui/pull/21552.
   <CardHeader
     title={<strong>Contemplative Reptile</strong>}
     titleTypographyProps={{ component: 'h2' }}

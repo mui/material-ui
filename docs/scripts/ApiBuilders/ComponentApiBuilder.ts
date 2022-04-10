@@ -514,6 +514,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
     getInheritance,
     getDemos,
     readFile,
+    skipApiGeneration,
   } = componentInfo;
 
   const { shouldSkip, spread, EOL, src } = readFile();
@@ -606,12 +607,14 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.name);
 
-  // Generate pages, json and translations
-  generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-  generateApiPage(apiPagesDirectory, reactApi);
+  if (!skipApiGeneration) {
+    // Generate pages, json and translations
+    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
+    generateApiPage(apiPagesDirectory, reactApi);
 
-  // Add comment about demo & api links (including inherited component) to the component file
-  await annotateComponentDefinition(reactApi);
+    // Add comment about demo & api links (including inherited component) to the component file
+    await annotateComponentDefinition(reactApi);
+  }
 
   return reactApi;
 };

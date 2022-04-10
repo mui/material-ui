@@ -58,7 +58,7 @@ function KarmaReporterReactProfiler(karmaConfig) {
     const browserRenders = allRenders.get(browser.id);
     if (browserRenders === undefined) {
       // Can be undefined if the run for this browser never started.
-      // For example, when starting the browser timed out in https://app.circleci.com/pipelines/github/mui-org/material-ui/32869/workflows/a2f398d9-2eb4-4390-a912-40c1b8d458d8/jobs/211413.
+      // For example, when starting the browser timed out in https://app.circleci.com/pipelines/github/mui/material-ui/32869/workflows/a2f398d9-2eb4-4390-a912-40c1b8d458d8/jobs/211413.
       console.warn(
         `Unable to find browser renders for '${browser.id}'. ` +
           `Only recorded renders for '${Array.from(allRenders.keys()).join("', '")}. ` +

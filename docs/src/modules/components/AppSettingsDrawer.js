@@ -88,6 +88,11 @@ function AppSettingsDrawer(props) {
     changeTheme({ direction });
   };
 
+  const handleLanguageClick = (language) => () => {
+    document.cookie = `userLanguage=${language.code};path=/;max-age=31536000`;
+    onClose();
+  };
+
   return (
     <Drawer
       anchor="right"
@@ -188,6 +193,7 @@ function AppSettingsDrawer(props) {
                 data-no-markdown-link="true"
                 href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
                 key={language.code}
+                onClick={handleLanguageClick(language)}
                 selected={userLanguage === language.code}
                 lang={language.code}
                 hrefLang={language.code}
@@ -215,7 +221,7 @@ function AppSettingsDrawer(props) {
         <Heading gutterBottom>{t('settings.color')}</Heading>
         <Button
           component="a"
-          href="/customization/color/#playground"
+          href="/material-ui/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
           size="small"

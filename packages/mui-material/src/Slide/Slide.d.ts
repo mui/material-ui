@@ -26,8 +26,8 @@ export interface SlideProps extends TransitionProps {
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
    * @default {
-   *   enter: easing.easeOut,
-   *   exit: easing.sharp,
+   *   enter: theme.transitions.easing.easeOut,
+   *   exit: theme.transitions.easing.sharp,
    * }
    */
   easing?: TransitionProps['easing'];
@@ -40,25 +40,25 @@ export interface SlideProps extends TransitionProps {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   timeout?: TransitionProps['timeout'];
 }
 
 /**
- * The Slide transition is used by the [Drawer](https://mui.com/components/drawers/) component.
+ * The Slide transition is used by the [Drawer](https://mui.com/material-ui/react-drawer/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *
- * - [Dialogs](https://mui.com/components/dialogs/)
- * - [Transitions](https://mui.com/components/transitions/)
+ * - [Dialogs](https://mui.com/material-ui/react-dialog/)
+ * - [Transitions](https://mui.com/material-ui/transitions/)
  *
  * API:
  *
- * - [Slide API](https://mui.com/api/slide/)
+ * - [Slide API](https://mui.com/material-ui/api/slide/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export default function Slide(props: SlideProps): JSX.Element;

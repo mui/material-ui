@@ -26,8 +26,8 @@ export interface ZoomProps extends TransitionProps {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   timeout?: TransitionProps['timeout'];
@@ -35,16 +35,16 @@ export interface ZoomProps extends TransitionProps {
 
 /**
  * The Zoom transition can be used for the floating variant of the
- * [Button](https://mui.com/components/buttons/#floating-action-buttons) component.
+ * [Button](https://mui.com/material-ui/react-button/#floating-action-buttons) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *
- * - [Transitions](https://mui.com/components/transitions/)
+ * - [Transitions](https://mui.com/material-ui/transitions/)
  *
  * API:
  *
- * - [Zoom API](https://mui.com/api/zoom/)
+ * - [Zoom API](https://mui.com/material-ui/api/zoom/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export default function Zoom(props: ZoomProps): JSX.Element;

@@ -4,11 +4,9 @@ import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
 import * as ttp from 'typescript-to-proptypes';
-import { findPages, findComponents } from 'docs/src/modules/utils/find';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { findComponents } from 'docs/src/modules/utils/find';
 import {
   ComponentInfo,
-  getGenericComponentInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
   extractApiPage,
@@ -116,27 +114,7 @@ interface Settings {
   getComponentInfo: (filename: string) => ComponentInfo;
 }
 
-const BEFORE_MIGRATION_SETTINGS: Settings[] = [
-  {
-    input: {
-      libDirectory: [
-        path.join(process.cwd(), 'packages/mui-base/src'),
-        path.join(process.cwd(), 'packages/mui-material/src'),
-        path.join(process.cwd(), 'packages/mui-lab/src'),
-      ],
-    },
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
-    },
-    getApiPages: () => {
-      const pages = findPages({ front: true }, path.join(process.cwd(), 'docs/pages'));
-      return pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children ?? [];
-    },
-    getComponentInfo: getGenericComponentInfo,
-  },
-];
-
-const MIGRATION_SETTINGS: Settings[] = [
+const SETTINGS: Settings[] = [
   {
     input: {
       libDirectory: [
@@ -147,7 +125,7 @@ const MIGRATION_SETTINGS: Settings[] = [
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
-    getApiPages: () => findApiPages('docs/pages/material/api'),
+    getApiPages: () => findApiPages('docs/pages/material-ui/api'),
     getComponentInfo: getMaterialComponentInfo,
   },
   {
@@ -160,39 +138,14 @@ const MIGRATION_SETTINGS: Settings[] = [
     getApiPages: () => findApiPages('docs/pages/base/api'),
     getComponentInfo: getBaseComponentInfo,
   },
-  // add other products, eg. joy, data-grid, ...etc
-  {
-    // use old config so that component type definition does not change by `annotateComponentDefinition`
-    // TODO: remove this setting at cleanup phase
-    input: {
-      libDirectory: [
-        path.join(process.cwd(), 'packages/mui-base/src'),
-        path.join(process.cwd(), 'packages/mui-material/src'),
-        path.join(process.cwd(), 'packages/mui-lab/src'),
-      ],
-    },
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
-    },
-    getApiPages: () => {
-      const pages = findPages({ front: true }, path.join(process.cwd(), 'docs/pages'));
-      return pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children ?? [];
-    },
-    getComponentInfo: getGenericComponentInfo,
-  },
 ];
-
-// TODO: Switch to MIGRATION_SETTINGS once ready to migrate content
-const ACTIVE_SETTINGS = FEATURE_TOGGLE.enable_product_scope
-  ? MIGRATION_SETTINGS
-  : BEFORE_MIGRATION_SETTINGS;
 
 type CommandOptions = { grep?: string };
 
 async function run(argv: CommandOptions) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
-  await ACTIVE_SETTINGS.reduce(async (resolvedPromise, setting) => {
+  await SETTINGS.reduce(async (resolvedPromise, setting) => {
     await resolvedPromise;
     const workspaceRoot = path.resolve(__dirname, '../../');
     /**
@@ -216,7 +169,11 @@ async function run(argv: CommandOptions) {
         return directories.concat(findComponents(componentDirectory));
       }, [] as ReadonlyArray<{ filename: string }>)
       .filter((component) => {
-        if (component.filename.includes('ThemeProvider')) {
+        if (
+          component.filename.includes('ThemeProvider') ||
+          (component.filename.includes('mui-material') &&
+            component.filename.includes('CssVarsProvider'))
+        ) {
           return false;
         }
         if (grep === null) {

@@ -19,7 +19,9 @@ export type SliderTypeMap<
 > = ExtendSliderUnstyledTypeMap<{
   props: P & {
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'primary'
      */
     color?: OverridableStringUnion<'primary' | 'secondary', SliderPropsColorOverrides>;
@@ -75,12 +77,12 @@ export const SliderInput: React.FC<SliderInputProps>;
  *
  * Demos:
  *
- * - [Slider](https://mui.com/components/slider/)
+ * - [Slider](https://mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://mui.com/api/slider/)
- * - inherits [SliderUnstyled API](https://mui.com/api/slider-unstyled/)
+ * - [Slider API](https://mui.com/material-ui/api/slider/)
+ * - inherits [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
  */
 declare const Slider: ExtendSliderUnstyled<SliderTypeMap>;
 

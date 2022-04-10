@@ -170,4 +170,34 @@ describe('style', () => {
       fontWeight: 700,
     });
   });
+
+  describe('vars', () => {
+    it('should use value from vars', () => {
+      const bgcolorStyle = style({
+        prop: 'bgcolor',
+        cssProperty: 'backgroundColor',
+        themeKey: 'vars.palette',
+      });
+      const output = bgcolorStyle({
+        bgcolor: 'primary.main',
+        theme: {
+          palette: {
+            primary: {
+              main: '#ff5252',
+            },
+          },
+          vars: {
+            palette: {
+              primary: {
+                main: 'var(--token)',
+              },
+            },
+          },
+        },
+      });
+      expect(output).to.deep.equal({
+        backgroundColor: 'var(--token)',
+      });
+    });
+  });
 });

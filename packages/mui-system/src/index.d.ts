@@ -118,6 +118,7 @@ export * from './spacing';
 
 export {
   default as unstable_styleFunctionSx,
+  unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
@@ -161,6 +162,6 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
-export { default as unstable_createCssVarsProvider } from './cssVars';
+export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult } from './cssVars';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export * from './cssVars';

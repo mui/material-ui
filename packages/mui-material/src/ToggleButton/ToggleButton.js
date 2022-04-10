@@ -164,6 +164,8 @@ ToggleButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the button when it is in an active state.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -194,11 +196,17 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * @ignore
+   * Callback fired when the state changes.
+   *
+   * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+   * @param {any} value of the selected button.
    */
   onChange: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when the button is clicked.
+   *
+   * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+   * @param {any} value of the selected button.
    */
   onClick: PropTypes.func,
   /**

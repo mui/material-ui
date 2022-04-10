@@ -99,6 +99,18 @@ describe('<Badge />', () => {
       ).container;
       expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
+
+    it('should render with invisible class when invisible and showZero are set to false and content is 0', () => {
+      const { container } = render(<Badge badgeContent={0} showZero={false} invisible={false} />);
+      expect(findBadge(container)).to.have.class(classes.invisible);
+      expect(findBadge(container)).to.have.text('');
+    });
+
+    it('should not render with invisible class when invisible and showZero are set to false and content is not 0', () => {
+      const { container } = render(<Badge badgeContent={1} showZero={false} invisible={false} />);
+      expect(findBadge(container)).not.to.have.class(classes.invisible);
+      expect(findBadge(container)).to.have.text('1');
+    });
   });
 
   describe('prop: showZero', () => {

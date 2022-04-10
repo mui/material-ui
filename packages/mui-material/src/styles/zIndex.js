@@ -2,6 +2,7 @@
 // like global values in the browser.
 const zIndex = {
   mobileStepper: 1000,
+  fab: 1050,
   speedDial: 1050,
   appBar: 1100,
   drawer: 1200,

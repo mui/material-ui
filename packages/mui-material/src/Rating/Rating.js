@@ -412,7 +412,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     let newValue = event.target.value === '' ? null : parseFloat(event.target.value);
 
     // Give mouse priority over keyboard
-    // Fix https://github.com/mui-org/material-ui/issues/22827
+    // Fix https://github.com/mui/material-ui/issues/22827
     if (hover !== -1) {
       newValue = hover;
     }
@@ -641,7 +641,7 @@ Rating.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @param {number} value The rating label's value to format.
    * @returns {string}
    * @default function defaultLabelText(value) {

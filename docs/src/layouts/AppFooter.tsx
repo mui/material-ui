@@ -43,10 +43,10 @@ export default function AppFooter() {
         <div>
           <SvgMuiLogo width={32} />
           <Typography variant="body2" fontWeight="bold" sx={{ pt: 2 }}>
-            Join our newsletter!
+            Keep up to date
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            No spam, guaranteed.
+            Join our newsletter for regular updates. No spam ever.
           </Typography>
           <EmailSubscribe sx={{ mb: 1 }} />
         </div>
@@ -136,14 +136,14 @@ export default function AppFooter() {
         }}
       >
         <Typography color="text.secondary" variant="body2">
-          Copyright © {new Date().getFullYear()} Material-UI SAS.
+          Copyright © {new Date().getFullYear()} Material UI SAS.
         </Typography>
         <Box sx={{ py: { xs: 2, sm: 0 } }}>
           <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/mui-org"
+              href="https://github.com/mui"
               aria-label="github"
               title="GitHub"
               size="small"

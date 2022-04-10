@@ -6,6 +6,10 @@ export interface MuiPage {
   disableDrawer?: boolean;
   icon?: string;
   /**
+   * Indicates if the pages are regarding some legacy API.
+   */
+  legacy?: boolean;
+  /**
    * In case the children have pathnames out of pathname value, use this field to scope other pathnames
    */
   scopePathnames?: string[];
@@ -39,7 +43,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/getting-started/usage' },
       { pathname: '/getting-started/example-projects' },
       { pathname: '/getting-started/templates' },
-      { pathname: '/getting-started/learn' },
+      { pathname: '/getting-started/learn', title: 'Learning resources' },
       { pathname: '/getting-started/faq', title: 'FAQs' },
       { pathname: '/getting-started/supported-components' },
       { pathname: '/getting-started/supported-platforms' },
@@ -184,21 +188,9 @@ const pages: readonly MuiPage[] = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
-          {
-            pathname: '/components',
-            subheader: '/components/lab-pickers',
-            title: 'Date / Time',
-            children: [
-              { pathname: '/components/pickers', title: 'Introduction' },
-              { pathname: '/components/date-picker' },
-              { pathname: '/components/date-range-picker', title: 'Date Range Picker ⚡️' },
-              { pathname: '/components/date-time-picker' },
-              { pathname: '/components/time-picker' },
-            ],
-          },
+          { pathname: '/components/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/components/masonry' },
           { pathname: '/components/timeline' },
-          { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
         ],
       },
@@ -302,7 +294,6 @@ const pages: readonly MuiPage[] = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
-      { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
@@ -324,9 +315,19 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
+    pathname: '/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      { pathname: '/experimental-api/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/experimental-api/css-variables', title: 'CSS Variables' },
+    ],
+  },
+  {
     pathname: '/styles',
-    title: 'Styles (legacy)',
+    title: 'Styles',
     icon: 'StyleIcon',
+    legacy: true,
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },

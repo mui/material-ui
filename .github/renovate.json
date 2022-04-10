@@ -26,6 +26,10 @@
       "matchPackagePatterns": "@emotion/*"
     },
     {
+      "groupName": "Font awesome SVG icons",
+      "matchPackagePatterns": "@fortawesome/*"
+    },
+    {
       "groupName": "core-js",
       "matchPackageNames": ["core-js"],
       "allowedVersions": "< 2.0.0"

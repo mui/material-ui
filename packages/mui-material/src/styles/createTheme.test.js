@@ -22,9 +22,70 @@ describe('createTheme', () => {
     expect(theme.palette.secondary.main).to.equal(green.A400);
   });
 
-  it('should allow providing a partial structure', () => {
-    const theme = createTheme({ transitions: { duration: { shortest: 150 } } });
-    expect(theme.transitions.duration.shorter).not.to.equal(undefined);
+  describe('transitions', () => {
+    it('[`easing`]: should provide the default values', () => {
+      const theme = createTheme();
+      expect(theme.transitions.easing.easeInOut).to.equal('cubic-bezier(0.4, 0, 0.2, 1)');
+      expect(theme.transitions.easing.easeOut).to.equal('cubic-bezier(0.0, 0, 0.2, 1)');
+      expect(theme.transitions.easing.easeIn).to.equal('cubic-bezier(0.4, 0, 1, 1)');
+      expect(theme.transitions.easing.sharp).to.equal('cubic-bezier(0.4, 0, 0.6, 1)');
+    });
+
+    it('[`duration`]: should provide the default values', () => {
+      const theme = createTheme();
+      expect(theme.transitions.duration.shortest).to.equal(150);
+      expect(theme.transitions.duration.shorter).to.equal(200);
+      expect(theme.transitions.duration.short).to.equal(250);
+      expect(theme.transitions.duration.standard).to.equal(300);
+      expect(theme.transitions.duration.complex).to.equal(375);
+      expect(theme.transitions.duration.enteringScreen).to.equal(225);
+      expect(theme.transitions.duration.leavingScreen).to.equal(195);
+    });
+
+    it('[`easing`]: should provide the custom values', () => {
+      const theme = createTheme({
+        transitions: {
+          easing: {
+            easeInOut: 'cubic-bezier(1, 1, 1, 1)',
+            easeOut: 'cubic-bezier(1, 1, 1, 1)',
+            easeIn: 'cubic-bezier(1, 1, 1, 1)',
+            sharp: 'cubic-bezier(1, 1, 1, 1)',
+          },
+        },
+      });
+      expect(theme.transitions.easing.easeInOut).to.equal('cubic-bezier(1, 1, 1, 1)');
+      expect(theme.transitions.easing.easeOut).to.equal('cubic-bezier(1, 1, 1, 1)');
+      expect(theme.transitions.easing.easeIn).to.equal('cubic-bezier(1, 1, 1, 1)');
+      expect(theme.transitions.easing.sharp).to.equal('cubic-bezier(1, 1, 1, 1)');
+    });
+
+    it('[`duration`]: should provide the custom values', () => {
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            shortest: 1,
+            shorter: 1,
+            short: 1,
+            standard: 1,
+            complex: 1,
+            enteringScreen: 1,
+            leavingScreen: 1,
+          },
+        },
+      });
+      expect(theme.transitions.duration.shortest).to.equal(1);
+      expect(theme.transitions.duration.shorter).to.equal(1);
+      expect(theme.transitions.duration.short).to.equal(1);
+      expect(theme.transitions.duration.standard).to.equal(1);
+      expect(theme.transitions.duration.complex).to.equal(1);
+      expect(theme.transitions.duration.enteringScreen).to.equal(1);
+      expect(theme.transitions.duration.leavingScreen).to.equal(1);
+    });
+
+    it('should allow providing a partial structure', () => {
+      const theme = createTheme({ transitions: { duration: { shortest: 150 } } });
+      expect(theme.transitions.duration.shorter).not.to.equal(undefined);
+    });
   });
 
   describe('shadows', () => {

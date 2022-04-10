@@ -3,7 +3,7 @@ title: Q2 2020 Update
 description: An update on our mission for Q2 2020.
 date: 2020-07-17T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
@@ -12,9 +12,9 @@ This update covers our progress over the last three months, and what we aim to a
 
 Here are the most significant improvements since March 2020:
 
-- 🚧 Work has started on [the next major version: v5](https://github.com/mui-org/material-ui/issues/20012).<br />
+- 🚧 Work has started on [the next major version: v5](https://github.com/mui/material-ui/issues/20012).<br />
   The last 14 months have been spent focusing on improving the library under the v4.x development branch, while not introducing any breaking changes. During this period we have identified several important areas for improvement. While the absence of breaking changes is a significant time-saver for developers, it also limits the scope of the problems that can be solved and the quality of the solutions. We're excited about what comes next!<br /><br />
-  You can find the documentation for the next version at https://mui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui-org/material-ui/issues/20012) and [milestone](https://github.com/mui-org/material-ui/milestone/35).
+  You can find the documentation for the next version at https://mui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui/material-ui/issues/20012) and [milestone](https://github.com/mui/material-ui/milestone/35).
 
 - 📍 The icons package has been updated with changes made by Google, leading to [200+ new icons](https://mui.com/components/material-icons/).
 
@@ -34,7 +34,7 @@ Here are the most significant improvements since March 2020:
 
   ![props](/static/blog/2020-q1-update/props.png)
 
-- ⏰ A new [`Timeline` component](/components/timeline/) joins the lab.
+- ⏰ A new [`Timeline` component](/material-ui/react-timeline/) joins the lab.
 
   <img src="/static/blog/2020-q2-update/timeline.png" alt="timeline" style="width: 244px; margin-bottom: 24px;" />
 
@@ -48,7 +48,7 @@ Here are the most significant improvements since March 2020:
   After English, Chinese, and Brazilian, the languages that would benefit the most from translation are **Russian** and **Spanish**.<br />
   Feel free to [get stuck into](https://translate.mui.com/) if you are a native speaker and able to give a hand with either of these two languages.
 
-- 🗂 A new extension of the Tab API [in the lab](/components/tabs/#experimental-api) implements accessible tabs following [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel) authoring practices.
+- 🗂 A new extension of the Tab API [in the lab](/material-ui/react-tabs/#experimental-api) implements accessible tabs following [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel) authoring practices.
 
 ```jsx
 <TabContext value={value}>
@@ -94,7 +94,7 @@ We'll do our best, no guarantee!
 
 - 👩‍🎨 We will work with a design agency to do the branding of the company, redo the homepage, do the marketing pages of the enterprise version of the library, improve the documentation, introduce new themes (as alternatives to Material Design).
 
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
 
 ### Company
 

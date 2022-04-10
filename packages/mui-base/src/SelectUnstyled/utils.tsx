@@ -1,7 +1,7 @@
 import React from 'react';
 import { OptionUnstyledProps } from '../OptionUnstyled';
 import { OptionGroupUnstyledProps } from '../OptionGroupUnstyled';
-import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from './useSelectProps';
+import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from './useSelect.types';
 
 export function areOptionsEqual<TValue>(
   option1: SelectOption<TValue>,
@@ -43,7 +43,7 @@ export function getOptionsFromChildren<TValue>(children: React.ReactNode): Selec
 
     const option = {
       value: element.props.value,
-      label: element.props.children,
+      label: element.props.label || element.props.children,
       disabled: element.props.disabled ?? false,
     };
 

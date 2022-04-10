@@ -24,6 +24,18 @@ export interface CSSSelectorObject<Theme extends object = {}> {
   [cssSelector: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme>;
 }
 
+type CssVariableType = string | number;
+
+/**
+ * Map all nested selectors and CSS variables.
+ */
+export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
+  [cssSelectorOrVariable: string]:
+    | ((theme: Theme) => SystemStyleObject<Theme> | string | number)
+    | SystemStyleObject<Theme>
+    | CssVariableType;
+}
+
 /**
  * Map of all available CSS properties (including aliases) and their raw value.
  * Only used internally to map CSS properties to input types (responsive value,
@@ -48,8 +60,7 @@ export type SystemCssProperties<Theme extends object = {}> = {
 export type SystemStyleObject<Theme extends object = {}> =
   | SystemCssProperties<Theme>
   | CSSPseudoSelectorProps<Theme>
-  | CSSSelectorObject<Theme>
-  | { [cssVariable: string]: string | number }
+  | CSSSelectorObjectOrCssVariables<Theme>
   | null;
 
 /**
@@ -60,5 +71,16 @@ export type SxProps<Theme extends object = {}> =
   | ((theme: Theme) => SystemStyleObject<Theme>)
   | Array<boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)>;
 
+export interface StyleFunctionSx {
+  (props: object): object;
+  filterProps?: string[];
+}
+
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export default function unstable_styleFunctionSx(props: object): object;
+export function unstable_createStyleFunctionSx(
+  styleFunctionMapping: Record<string, StyleFunctionSx>,
+): StyleFunctionSx;
+
+declare const styleFunctionSx: StyleFunctionSx;
+
+export default styleFunctionSx;

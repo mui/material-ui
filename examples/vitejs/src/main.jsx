@@ -11,7 +11,8 @@ ReactDOM.render(
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <App />
-    </ThemeProvider>,
+    </ThemeProvider>
+    ,
   </React.StrictMode>,
-  document.getElementById('root')
-)
+  document.getElementById('root'),
+);

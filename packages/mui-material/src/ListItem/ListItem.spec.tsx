@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 
 // button: boolean
 function BooleanButtonTest() {
-  // https://github.com/mui-org/material-ui/issues/14971
+  // https://github.com/mui/material-ui/issues/14971
 
   function EditableItemFail(props: { editable: boolean }) {
     const { editable } = props;
@@ -21,7 +21,7 @@ function BooleanButtonTest() {
   }
 }
 
-// verify that https://github.com/mui-org/material-ui/issues/19756 already worked.
+// verify that https://github.com/mui/material-ui/issues/19756 already worked.
 function MouseEnterTest() {
   function handleMouseEnter(event: React.MouseEvent<HTMLLIElement>) {}
   <ListItem onMouseEnter={handleMouseEnter} />;
@@ -32,7 +32,7 @@ function MouseEnterTest() {
   <ListItem button onMouseEnter={handleMouseEnterButton} />;
 }
 
-// https://github.com/mui-org/material-ui/issues/26469
+// https://github.com/mui/material-ui/issues/26469
 const StyledListItem = styled(ListItem)({});
 function StyledTest() {
   <StyledListItem dense />;

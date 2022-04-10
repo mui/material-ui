@@ -30,10 +30,10 @@ const DesignSystemComponents = () => {
   return (
     <Container ref={ref} sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <SectionHeadline
-        overline="Ready to use"
+        overline="Production-ready components"
         title={
           <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-            Self-supporting, simple, declarative <GradientText>components</GradientText>
+            Beautiful and powerful, <GradientText>right out of the box</GradientText>
           </Typography>
         }
       />

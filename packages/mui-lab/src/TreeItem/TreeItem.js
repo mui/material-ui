@@ -106,7 +106,7 @@ const StyledTreeItemContent = styled(TreeItemContent, {
   },
   [`& .${treeItemClasses.label}`]: {
     width: '100%',
-    // fixes overflow - see https://github.com/mui-org/material-ui/issues/27372
+    // fixes overflow - see https://github.com/mui/material-ui/issues/27372
     minWidth: 0,
     paddingLeft: 4,
     position: 'relative',
@@ -409,7 +409,7 @@ TreeItem.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   TransitionComponent: PropTypes.elementType,

@@ -78,7 +78,7 @@ async function main(argv) {
    */
   const timeline = octokit.paginate.iterator(
     octokit.repos.compareCommits.endpoint.merge({
-      owner: 'mui-org',
+      owner: 'mui',
       repo: 'material-ui',
       base: lastRelease,
       head: release,
@@ -126,7 +126,7 @@ async function main(argv) {
       .toString()
       // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
       // i.e. we can sort the lines alphanumerically
-      .padStart(Math.ceil(Math.log10(commitsItemsByDateDesc.length)), '0')} -->`;
+      .padStart(Math.floor(Math.log10(commitsItemsByDateDesc.length)) + 1, '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
     return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
   });

@@ -53,7 +53,7 @@ export default function Home() {
   "logo": "https://mui.com/static/logo.png",
   "sameAs": [
     "https://twitter.com/MUI_hq",
-    "https://github.com/mui-org/",
+    "https://github.com/mui/",
     "https://opencollective.com/mui"
   ]
 }

@@ -96,9 +96,10 @@ function GoogleAnalytics() {
      * @type {MediaQueryList}
      */
     const matchMedia = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
-    matchMedia.addEventListener('change', trackDevicePixelRation);
+    // Intentionally use deprecated listener methods to support iOS & old browsers
+    matchMedia.addListener(trackDevicePixelRation);
     return () => {
-      matchMedia.removeEventListener('change', trackDevicePixelRation);
+      matchMedia.removeListener(trackDevicePixelRation);
     };
   }, []);
 
