@@ -60,3 +60,10 @@ a column based on the natural width of its content.
 ## Nested
 
 {{"demo": "NestedGrid.js", "bg": true}}
+
+
+## Integration
+
+### Typography `nowrap`
+
+{{"demo": "AutoGridNoWrap.js", "bg": true}}
