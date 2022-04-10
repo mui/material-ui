@@ -3261,10 +3261,10 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jscodeshift@0.11.3":
-  version "0.11.3"
-  resolved "https://registry.yarnpkg.com/@types/jscodeshift/-/jscodeshift-0.11.3.tgz#8dcab24ced39dcab1c8ff3461b3d171aafee3d48"
-  integrity sha512-pM0JD9kWVDH9DQp5Y6td16924V3MwZHei8P3cTeuFhXpzpk0K+iWraBZz8wF61QkFs9fZeAQNX0q8SG0+TFm2w==
+"@types/jscodeshift@0.11.4":
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/@types/jscodeshift/-/jscodeshift-0.11.4.tgz#adb0c806df6224911a0886220c6da9689eaf9405"
+  integrity sha512-9VYMEWsjpYgCe3DhHbr6JhdWjUZ2yAP7BQ4MpxLogyDW2K+PW+mGzaPeS/h+hCRkebiOw6NpF3V+gKY30kjOoA==
   dependencies:
     ast-types "^0.14.1"
     recast "^0.20.3"
