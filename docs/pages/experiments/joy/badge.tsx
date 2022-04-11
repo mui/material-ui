@@ -57,15 +57,17 @@ export default function JoyBadge() {
         </Box>
         {/* Examples */}
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
-          {['primary', 'danger', 'info', 'success', 'warning', 'neutral'].map((color) => (
-            <Badge badgeContent={100} size="lg" color={color}>
-              <Sheet
-                variant="contained"
-                color={color}
-                sx={{ width: 70, height: 70, borderRadius: 35, opacity: 0.8 }}
-              />
-            </Badge>
-          ))}
+          {(['primary', 'danger', 'info', 'success', 'warning', 'neutral'] as const).map(
+            (color) => (
+              <Badge badgeContent={100} size="lg" color={color}>
+                <Sheet
+                  variant="contained"
+                  color={color}
+                  sx={{ width: 70, height: 70, borderRadius: 35, opacity: 0.8 }}
+                />
+              </Badge>
+            ),
+          )}
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
           {[
