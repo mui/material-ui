@@ -12,7 +12,7 @@ export function getPath(obj, path) {
     const val = `vars.${path}`
       .split('.')
       .reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
-    if (!!val) {
+    if (val != null) {
       return val;
     }
   }
