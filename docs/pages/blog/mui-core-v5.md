@@ -105,7 +105,7 @@ const StyledDiv = styled.div`
 <p class="blog-description"><a href="https://codesandbox.io/s/elastic-yonath-uedfv?file=/src/App.js">Codesandbox</a></p>
 
 You can find it in [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
-While MUI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/styles/basics/#hook-api) API.
+While MUI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
 
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
    The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/s/nb05w?file=/src/App.js) than emotion,
@@ -400,7 +400,7 @@ We have moved all the prop descriptions to TypeScript, so IntelliSense in your e
 
 <p class="blog-description">The popup explains what the <code>forcePopupIcon</code> prop is for.</p>
 
-These TypeScript prop descriptions are also used to generate the [API pages](https://mui.com/api/autocomplete/#props) of the documentation, so there is a single source of truth.
+These TypeScript prop descriptions are also used to generate the [API pages](https://mui.com/material-ui/api/autocomplete/#props) of the documentation, so there is a single source of truth.
 
 ### Migration from Enzyme to Testing Library
 

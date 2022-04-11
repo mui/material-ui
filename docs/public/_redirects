@@ -84,8 +84,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/data-grid/grid-export-csv-options/ /api/data-grid/grid-csv-export-options/ 301
 # 2022
 ## MUI X
-/components/data-grid/* /x/react-data-grid/:splat/ 301
-/:lang/components/data-grid/* /:lang/x/react-data-grid/:splat/ 301
+/components/data-grid/* /x/react-data-grid/:splat 301
+/:lang/components/data-grid/* /:lang/x/react-data-grid/:splat 301
 
 /api/data-grid/* /x/api/data-grid/:splat 301
 ### specific to current supported languages, to prevent this redirect: /x/api/data-grid/* => /x/x/api/data-grid/*
