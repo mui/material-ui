@@ -296,7 +296,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/api', title: 'API design approach' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
-      { pathname: '/guides/interoperability', title: 'Style interoperability' },
+      { pathname: '/guides/interoperability', title: 'Style library interoperability' },
       { pathname: '/guides/styled-engine' },
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },

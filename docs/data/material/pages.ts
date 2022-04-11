@@ -189,7 +189,7 @@ const pages = [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
       { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
-      { pathname: '/material-ui/guides/interoperability', title: 'Style interoperability' },
+      { pathname: '/material-ui/guides/interoperability', title: 'Style library interoperability' },
       { pathname: '/material-ui/guides/styled-engine' },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
       { pathname: '/material-ui/guides/composition' },

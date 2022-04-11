@@ -301,7 +301,7 @@
     "/material-ui/guides": "How To Guides",
     "/material-ui/guides/understand-mui-packages": "Understand MUI packages",
     "/material-ui/guides/typescript": "TypeScript",
-    "/material-ui/guides/interoperability": "Style interoperability",
+    "/material-ui/guides/interoperability": "Style library interoperability",
     "/material-ui/guides/styled-engine": "Styled engine",
     "/material-ui/guides/minimizing-bundle-size": "Minimizing bundle size",
     "/material-ui/guides/composition": "Composition",

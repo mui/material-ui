@@ -6323,7 +6323,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 - [docs] Fix documentation error in <Input /> (#12955) @lukePeavey
 - [docs] Minor style update of the tabs demos (#12958) @dotku
 - [docs] Glamorous is deprecated for emotion (#12963) @oliviertassinari
-- [docs] Add Emotion to style interoperability guide (#12966) @lukePeavey
+- [docs] Add Emotion to style library interoperability guide (#12966) @lukePeavey
 - [docs] Fix IconButton Snackbar demos (#12964) @bhalahariharan
 - [docs] Show how to combine OutlinedInput and FilledInput (#12968) @oliviertassinari
 - [docs] Fix Typo in PaymentForm.js (#12971) @n3n
