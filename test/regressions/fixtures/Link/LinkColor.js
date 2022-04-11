@@ -10,14 +10,14 @@ export default function DeterminateLinearProgress() {
           MuiLink: {
             styleOverrides: {
               root: {
-                color: '#0068a9', // blue
+                color: '#fbca04', // orange
               },
             },
           },
         },
       })}
     >
-      <Link href="#unknown">#0068a9</Link>
+      <Link href="#unknown">#fbca04</Link>
       <Link href="#unknown" color="#ff5252">
         #ff5252
       </Link>
@@ -26,6 +26,9 @@ export default function DeterminateLinearProgress() {
       </Link>
       <Link href="#unknown" sx={(theme) => ({ color: theme.palette.secondary.main })}>
         secondary
+      </Link>
+      <Link href="#unknown" sx={{ color: (theme) => theme.palette.error.main }}>
+        error
       </Link>
     </ThemeProvider>
   );
