@@ -61,6 +61,8 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'colorSuccess',
   'colorWarning',
   'invisible',
+  'overlapRectangular',
+  'overlapCircular',
   'sizeSm',
   'sizeMd',
   'sizeLg',

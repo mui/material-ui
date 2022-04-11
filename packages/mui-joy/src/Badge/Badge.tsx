@@ -12,7 +12,7 @@ import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeTypeMap } from './BadgeProps';
 
 const useUtilityClasses = (ownerState: BadgeProps) => {
-  const { color, variant, size, anchorOrigin, invisible } = ownerState;
+  const { color, variant, size, anchorOrigin, overlap, invisible } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -24,6 +24,7 @@ const useUtilityClasses = (ownerState: BadgeProps) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      overlap && `overlap${capitalize(overlap)}`,
     ],
   };
 
@@ -86,7 +87,8 @@ const BadgeBadge = styled('button', {
       zIndex: 1, // Render the badge on top of potential ripples.
       transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.anchorOrigin!.vertical === 'top' &&
-        ownerState.anchorOrigin!.horizontal === 'right' && {
+        ownerState.anchorOrigin!.horizontal === 'right' &&
+        ownerState.overlap === 'rectangular' && {
           top: 0,
           right: 0,
           transform: 'scale(1) translate(50%, -50%)',
@@ -96,7 +98,8 @@ const BadgeBadge = styled('button', {
           },
         }),
       ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
-        ownerState.anchorOrigin!.horizontal === 'right' && {
+        ownerState.anchorOrigin!.horizontal === 'right' &&
+        ownerState.overlap === 'rectangular' && {
           bottom: 0,
           right: 0,
           transform: 'scale(1) translate(50%, 50%)',
@@ -106,7 +109,8 @@ const BadgeBadge = styled('button', {
           },
         }),
       ...(ownerState.anchorOrigin!.vertical === 'top' &&
-        ownerState.anchorOrigin!.horizontal === 'left' && {
+        ownerState.anchorOrigin!.horizontal === 'left' &&
+        ownerState.overlap === 'rectangular' && {
           top: 0,
           left: 0,
           transform: 'scale(1) translate(-50%, -50%)',
@@ -116,9 +120,54 @@ const BadgeBadge = styled('button', {
           },
         }),
       ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
-        ownerState.anchorOrigin!.horizontal === 'left' && {
+        ownerState.anchorOrigin!.horizontal === 'left' &&
+        ownerState.overlap === 'rectangular' && {
           bottom: 0,
           left: 0,
+          transform: 'scale(1) translate(-50%, 50%)',
+          transformOrigin: '0% 100%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(-50%, 50%)',
+          },
+        }),
+      ...(ownerState.anchorOrigin!.vertical === 'top' &&
+        ownerState.anchorOrigin!.horizontal === 'right' &&
+        ownerState.overlap === 'circular' && {
+          top: '14%',
+          right: '14%',
+          transform: 'scale(1) translate(50%, -50%)',
+          transformOrigin: '100% 0%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(50%, -50%)',
+          },
+        }),
+      ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
+        ownerState.anchorOrigin!.horizontal === 'right' &&
+        ownerState.overlap === 'circular' && {
+          bottom: '14%',
+          right: '14%',
+          transform: 'scale(1) translate(50%, 50%)',
+          transformOrigin: '100% 100%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(50%, 50%)',
+          },
+        }),
+      ...(ownerState.anchorOrigin!.vertical === 'top' &&
+        ownerState.anchorOrigin!.horizontal === 'left' &&
+        ownerState.overlap === 'circular' && {
+          top: '14%',
+          left: '14%',
+          transform: 'scale(1) translate(-50%, -50%)',
+          transformOrigin: '0% 0%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(-50%, -50%)',
+          },
+        }),
+      ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
+        ownerState.anchorOrigin!.horizontal === 'left' &&
+        ownerState.overlap === 'circular' && {
+          bottom: '14%',
+          left: '14%',
           transform: 'scale(1) translate(-50%, 50%)',
           transformOrigin: '0% 100%',
           [`&.${badgeClasses.invisible}`]: {
@@ -149,6 +198,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     componentsProps = {},
     size: sizeProp = 'sm',
     color: colorProp = 'neutral',
+    overlap: overlapProp = 'rectangular',
     invisible: invisibleProp = false,
     max,
     badgeContent: badgeContentProp,
@@ -160,6 +210,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const prevProps = usePreviousProps({
     anchorOrigin: anchorOriginProp,
     size: sizeProp,
+    overlap: overlapProp,
     color: colorProp,
     variant: variantProp,
   });
@@ -175,11 +226,13 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const {
     color = colorProp,
+    overlap = overlapProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
   }: {
     size?: BadgeTypeMap['props']['size'];
+    overlap?: BadgeTypeMap['props']['overlap'];
     color?: BadgeTypeMap['props']['color'];
     anchorOrigin?: BadgeTypeMap['props']['anchorOrigin'];
     variant?: BadgeTypeMap['props']['variant'];
@@ -215,6 +268,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
               anchorOrigin,
               color,
               variant,
+              overlap,
               size,
             },
           }),
@@ -227,6 +281,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
               anchorOrigin,
               color,
               variant,
+              overlap,
               size,
             },
           }),
@@ -304,6 +359,11 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 99
    */
   max: PropTypes.number,
+  /**
+   * Wrapped shape the badge should overlap.
+   * @default 'rectangular'
+   */
+  overlap: PropTypes.oneOf(['circular', 'rectangular']),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    * @default false

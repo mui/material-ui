@@ -36,6 +36,11 @@ export type BadgeTypeMap<
      */
     color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, BadgePropsColorOverrides>;
     /**
+     * Wrapped shape the badge should overlap.
+     * @default 'rectangular'
+     */
+    overlap?: 'rectangular' | 'circular';
+    /**
      * The size of the component.
      * @default 'md'
      */
