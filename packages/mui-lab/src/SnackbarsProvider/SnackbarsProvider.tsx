@@ -35,7 +35,7 @@ const StyledSnackbar = styled(Snackbar)<{ ownerState: ShowSnackbarProps }>(
 export interface SnackbarsProviderProps
   extends Omit<SnackbarProps, 'children' | 'classes' | 'key' | 'message' | 'onClose' | 'open'> {
   /** The maximum number of snackbars to display at a time.
-   * @default 5
+   * @default 3
    */
   limit?: number;
   /**
@@ -77,7 +77,7 @@ const SnackbarsProvider = React.forwardRef<
     ClickAwayListenerProps,
     content,
     ContentProps,
-    limit = 5,
+    limit = 3,
     TransitionComponent = Grow,
     transitionDuration = defaultTransitionDuration,
     TransitionProps,
@@ -244,7 +244,7 @@ SnackbarsProvider.propTypes /* remove-proptypes */ = {
   ContentProps: PropTypes.object,
   /**
    * The maximum number of snackbars to display at a time.
-   * @default 5
+   * @default 3
    */
   limit: PropTypes.number,
   /**
