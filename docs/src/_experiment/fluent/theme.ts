@@ -2,9 +2,6 @@ import { JoyThemeInput } from '@mui/joy/styles';
 
 declare module '@mui/joy/styles' {
   interface TypographySystemOverrides {
-    body1: false;
-    body2: false;
-    body3: false;
     metadata: true;
     body: true;
     subjectTitle: true;
@@ -356,6 +353,11 @@ const fluentTheme: JoyThemeInput = {
           ...(ownerState.variant === 'outlined' &&
             ownerState.color === 'neutral' && {
               '--Switch-thumb-background': theme.vars.palette.grey[130],
+              '&.Mui-disabled': {
+                '--Switch-track-background': '#fff',
+                '--Switch-thumb-background': theme.vars.palette.grey[60],
+                '--Switch-track-borderColor': theme.vars.palette.grey[60],
+              },
             }),
           '&.Mui-focusVisible, &:focus-visible': {
             outlineOffset: '0px',
@@ -372,6 +374,10 @@ const fluentTheme: JoyThemeInput = {
             '&:hover': {
               '--Switch-track-background': theme.vars.palette.primary.containedHoverBg,
               '--Switch-thumb-background': '#fff',
+            },
+            '&.Mui-disabled': {
+              '--Switch-track-background': theme.vars.palette.grey[60],
+              '--Switch-thumb-background': theme.vars.palette.grey[20],
             },
           },
         }),

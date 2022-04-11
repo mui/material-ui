@@ -275,6 +275,8 @@ export default function Strapi() {
             <Switch defaultChecked />
             <Switch endDecorator="On" />
             <Switch defaultChecked />
+            <Switch disabled />
+            <Switch defaultChecked disabled />
           </div>
         </Box>
       </Box>
