@@ -1,9 +1,15 @@
 import Moon from '@mui/icons-material/DarkMode';
+import Favorite from '@mui/icons-material/Favorite';
 import Sun from '@mui/icons-material/LightMode';
 import MailIcon from '@mui/icons-material/Mail';
+import MoreHoriz from '@mui/icons-material/MoreHoriz';
+import Share from '@mui/icons-material/Share';
+import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
+import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
@@ -49,7 +55,67 @@ export default function JoyBadge() {
         <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
         </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+        {/* Examples */}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
+          {['primary', 'danger', 'info', 'success', 'warning', 'neutral'].map((color) => (
+            <Badge badgeContent={100} size="lg" color={color}>
+              <Sheet
+                variant="contained"
+                color={color}
+                sx={{ width: 70, height: 70, borderRadius: 35, opacity: 0.8 }}
+              />
+            </Badge>
+          ))}
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
+          {[
+            { badgeContent: '1', name: 'Jon Doe' },
+            { badgeContent: '2', name: 'Benny Joo' },
+            { badgeContent: '3', name: 'Jun' },
+            { badgeContent: '4', name: 'Marija' },
+          ].map(({ badgeContent, name }) => (
+            <Badge
+              badgeContent={badgeContent}
+              size="lg"
+              color={'success'}
+              sx={{ width: '50%' }}
+              anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+            >
+              <Sheet
+                variant="outlined"
+                color={'success'}
+                sx={{
+                  width: '100%',
+                  height: 70,
+                  borderRadius: 10,
+                  display: 'flex',
+                  alignItems: 'center',
+                  pl: 3,
+                  backgroundColor: 'var(--joy-palette-background-level1)',
+                }}
+              >
+                <Avatar size="lg" src={`/static/images/avatar/${badgeContent}.jpg`} />
+                <Typography
+                  level="body1"
+                  sx={{ m: 2, color: 'var(--joy-palette-success-textColor)' }}
+                >
+                  {name}
+                </Typography>
+                <IconButton size="sm" variant="text" color="danger" sx={{ ml: 'auto', mr: 1 }}>
+                  <Favorite />
+                </IconButton>
+                <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
+                  <Share />
+                </IconButton>
+                <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
+                  <MoreHoriz />
+                </IconButton>
+              </Sheet>
+            </Badge>
+          ))}
+        </Box>
+        {/* Props */}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 10 }}>
           {Object.entries(props).map(([propName, propValue]) => (
             <Box
               key={propName}

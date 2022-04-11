@@ -68,7 +68,6 @@ const BadgeBadge = styled('button', {
         '--Badge-fontSize': theme.vars.fontSize.lg,
       }),
       border: 0, // Remove `button` border
-      padding: 0, // Remove `button` padding
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
