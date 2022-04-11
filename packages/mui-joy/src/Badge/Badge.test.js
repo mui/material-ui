@@ -123,7 +123,27 @@ describe('<Badge />', () => {
     });
   });
 
+  describe('prop: size', () => {
+    it('adds a sm class by default', () => {
+      const { container } = render(<Badge {...defaultProps} />);
+      expect(findBadge(container)).to.have.class(classes.sizeSm);
+    });
+
+    ['sm', 'md', 'lg'].forEach((size) => {
+      it(`should render ${size}`, () => {
+        const { container } = render(<Badge size={size} {...defaultProps} />);
+
+        expect(findBadge(container)).to.have.class(classes[`size${capitalize(size)}`]);
+      });
+    });
+  });
+
   describe('prop: variant', () => {
+    it('addas a light class by default', () => {
+      const { container } = render(<Badge {...defaultProps} />);
+      expect(findBadge(container)).to.have.class(classes.variantLight);
+    });
+
     ['outlined', 'light', 'contained'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { container } = render(<Badge variant={variant} {...defaultProps} />);

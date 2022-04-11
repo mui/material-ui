@@ -238,7 +238,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     variant?: BadgeTypeMap['props']['variant'];
   } = invisible ? prevProps : props;
 
-  const ownerState = { ...props, anchorOrigin, invisible, color, size };
+  const ownerState = { ...props, anchorOrigin, variant, invisible, color, size };
   const classes = useUtilityClasses(ownerState);
   const displayValue =
     max !== undefined && badgeContentProp && Number(badgeContentProp) > max
