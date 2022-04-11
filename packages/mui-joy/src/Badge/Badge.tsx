@@ -42,7 +42,7 @@ const BadgeRoot = styled('span', {
   flexShrink: 0,
 }));
 
-const BadgeBadge = styled('span', {
+const BadgeBadge = styled('button', {
   name: 'MuiBadge',
   slot: 'Badge',
   overridesResolver: (props, styles) => styles.badge,
@@ -67,6 +67,8 @@ const BadgeBadge = styled('span', {
         '--Badge-borderRadius': '0.75rem',
         '--Badge-fontSize': theme.vars.fontSize.lg,
       }),
+      border: 0, // Remove `button` border
+      padding: 0, // Remove `button` padding
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
