@@ -8,7 +8,7 @@ export function getPath(obj, path) {
   }
 
   // Check if CSS variables are used
-  if (obj && !!obj.vars) {
+  if (obj && obj.vars) {
     const val = `vars.${path}`
       .split('.')
       .reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
