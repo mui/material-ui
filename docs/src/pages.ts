@@ -43,7 +43,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/getting-started/usage' },
       { pathname: '/getting-started/example-projects' },
       { pathname: '/getting-started/templates' },
-      { pathname: '/getting-started/learn' },
+      { pathname: '/getting-started/learn', title: 'Learning resources' },
       { pathname: '/getting-started/faq', title: 'FAQs' },
       { pathname: '/getting-started/supported-components' },
       { pathname: '/getting-started/supported-platforms' },

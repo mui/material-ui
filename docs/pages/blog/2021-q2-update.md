@@ -38,7 +38,7 @@ Here are the most significant improvements since March 2021.
 - 👩‍🎤 We have rolled out the new **style engine** to all the components.
   The community provided invaluable assistance in completing this effort.
   In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://mui.com/system/the-sx-prop/) for one-off customizations.
-  The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://mui.com/guides/styled-engine/#how-to-switch-to-styled-components).
+  The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://mui.com/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
 
 - ⚒️ We added a [codemod CLI](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
   If you're not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g).
@@ -109,14 +109,14 @@ The date picker is at the border between the core component and advanced compone
 
 - 🚨 We have continued to work on breaking changes to reach a stable version.
   We think that the component is good enough for use in production (and many developers already are using it), but we want to get the public API right before committing to a stable release.
-- ✍️ We have added support for the [cell edit mode](https://mui.com/components/data-grid/editing/).
+- ✍️ We have added support for the [cell edit mode](https://mui.com/x/react-data-grid/editing/).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
 
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
   We want our users to be able to adopt new features as fast as we build them.
-- 🔘 We have added support for a built-in [single select](/components/data-grid/columns/#column-types) column type:
+- 🔘 We have added support for a built-in [single select](/x/react-data-grid/columns/#column-types) column type:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
@@ -130,9 +130,9 @@ The date picker is at the border between the core component and advanced compone
   We have added memo logic on the render cell's parent, and worked on its effectiveness to reduce the re-rendering of custom cells.
   We have identified more opportunities to improve the performance that we will prioritize later.
 - 📚 We have worked on providing more reference documentation. We are semi-automatically generating it from the TypeScript source definitions, with the descriptions.
-  For instance, you can now find all the [properties available](/api/data-grid/grid-col-def/) of the `GridColDef`.
+  For instance, you can now find all the [properties available](/x/api/data-grid/grid-col-def/) of the `GridColDef`.
 - ⚡️ We have fixed support for components that use portals, like Select and Autocomplete, in the cell editing mode.
-- 🌏 We have accepted many new built-in locales (+15) from the community, after the introduction of [the feature](/components/data-grid/localization/#supported-locales) in Q1.
+- 🌏 We have accepted many new built-in locales (+15) from the community, after the introduction of [the feature](/x/react-data-grid/localization/#supported-locales) in Q1.
 
 ### Design kits
 

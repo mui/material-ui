@@ -21,7 +21,7 @@ githubLabel: 'component: Box'
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
-## 覆盖 Material-UI 组件
+## 覆盖 Material UI 组件
 
 Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默认情况下为 `<div>`，并可以通过 `组件` 的属性进行更改。 假设反之你想使用一个 `<span>`：
 
@@ -29,7 +29,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用CSS继承来解决这个问题。 为了回避这个CSS继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
+但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用CSS继承来解决这个问题。 为了回避这个 CSS 继承无效的问题， 如该组件的子组件是一个 Material UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -38,7 +38,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
-如该组件的子组件不是一个 Material-UI 组件，您可通过使用 `component` 属性来达到效果。
+如该组件的子组件不是一个 Material UI 组件，您可通过使用 `component` 属性来达到效果。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -50,7 +50,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
 | 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
@@ -61,7 +61,7 @@ import Box from '@material-ui/core/Box';
 
 ## 系统属性
 
-作为一个CSS通用组件，`Box` 组件同时支持所有的 [`system`](/system/properties/) 属性。 与定义属性一样，您可在组件中直接定义它们。 例如您想定义 margin-top 时
+作为一个 CSS 通用组件，`Box` 组件同时支持所有的 [`system`](/system/properties/) 属性。 与定义属性一样，您可在组件中直接定义它们。 例如您想定义 margin-top 时
 
 ```jsx
 <Box mt={2}>

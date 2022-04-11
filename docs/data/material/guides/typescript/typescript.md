@@ -45,7 +45,7 @@ by default and loose via opt-in.
 
 ## Customization of `Theme`
 
-Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
+Moved to [/customization/theming/#custom-variables](/material-ui/customization/theming/#custom-variables).
 
 ## Usage of `component` prop
 
@@ -55,7 +55,7 @@ You are likely going to use one of these two options:
 1. Wrap the Material UI component in order to enhance it
 2. Use the `styled()` utility in order to customize the styles of the component
 
-If you are using the first option, take a look at the [composition guide][/guides/composition/#with-typescript](/guides/composition/#with-typescript) for more details on this.
+If you are using the first option, take a look at the [composition guide](/material-ui/guides/composition/#with-typescript) for more details on this.
 
 If you are using the `styled()` utility (regardless of whether it comes from `@mui/material`, or `@emotion/styled`), you will need to cast the result component as shown below:
 

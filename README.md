@@ -40,9 +40,9 @@ yarn add @mui/material @emotion/react @emotion/styled
 <details>
   <summary>Older versions</summary>
 
-- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/guides/migration-v4/))
-- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/guides/migration-v3/))
-- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/guides/migration-v0x/))
+- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/guides/migration-v4/))
+- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/guides/migration-v3/))
+- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/guides/migration-v0x/))
 
 </details>
 
@@ -79,7 +79,7 @@ Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 ### There is more
 
-See the full list of [our backers](https://mui.com/discover-more/backers/).
+See the full list of [our backers](https://mui.com/material-ui/discover-more/backers/).
 
 ## Usage
 
@@ -114,7 +114,7 @@ There is a StackOverflow tag called "material-ui" that you can use to tag your q
 ## Examples
 
 Are you looking for an example project to get started?
-[We host some](https://mui.com/getting-started/example-projects/).
+[We host some](https://mui.com/material-ui/getting-started/example-projects/).
 
 ## Documentation
 
@@ -129,7 +129,7 @@ You can find complete templates & themes in the [MUI Store](https://mui.com/stor
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to MUI.
 
 Notice that contributions go far beyond pull requests and commits.
-Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project).
+Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 
@@ -137,7 +137,7 @@ If you have recently updated, please read the [changelog](https://github.com/mui
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [roadmap](https://mui.com/discover-more/roadmap/) file.
+The future plans and high priority features and enhancements can be found in the [roadmap](https://mui.com/material-ui/discover-more/roadmap/) file.
 
 ## License
 
