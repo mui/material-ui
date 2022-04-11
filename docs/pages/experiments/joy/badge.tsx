@@ -69,18 +69,34 @@ export default function JoyBadge() {
             ),
           )}
         </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
+        <Sheet
+          color="success"
+          variant="contained"
+          sx={{
+            borderRadius: 20,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 5,
+            mt: 5,
+            p: 3,
+            alignItems: 'center',
+          }}
+        >
           {[
             { badgeContent: '1', name: 'Jon Doe' },
-            { badgeContent: '2', name: 'Benny Joo' },
+            { badgeContent: '2', name: 'Benny' },
             { badgeContent: '3', name: 'Jun' },
             { badgeContent: '4', name: 'Marija' },
+            { badgeContent: '5', name: 'Danilo' },
+            { badgeContent: '6', name: 'Michal' },
+            { badgeContent: '7', name: 'Olivier' },
+            { badgeContent: '8', name: 'Harry' },
           ].map(({ badgeContent, name }) => (
             <Badge
               badgeContent={badgeContent}
               size="lg"
               color={'success'}
-              sx={{ width: '50%' }}
+              sx={{ width: '100%' }}
               anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
             >
               <Sheet
@@ -103,9 +119,11 @@ export default function JoyBadge() {
                 >
                   {name}
                 </Typography>
-                <IconButton size="sm" variant="text" color="danger" sx={{ ml: 'auto', mr: 1 }}>
-                  <Favorite />
-                </IconButton>
+                <Badge max={1000} badgeContent={200} color="danger" sx={{ ml: 'auto', mr: 1 }}>
+                  <IconButton size="sm" variant="text" color="danger" sx={{ mx: 1 }}>
+                    <Favorite />
+                  </IconButton>
+                </Badge>
                 <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
                   <Share />
                 </IconButton>
@@ -115,7 +133,7 @@ export default function JoyBadge() {
               </Sheet>
             </Badge>
           ))}
-        </Box>
+        </Sheet>
         {/* Props */}
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 10 }}>
           {Object.entries(props).map(([propName, propValue]) => (
