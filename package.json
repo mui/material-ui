@@ -95,7 +95,7 @@
     "@types/jsdom": "^16.2.14",
     "@types/lodash": "^4.14.181",
     "@types/mocha": "^9.1.0",
-    "@types/prettier": "^2.4.4",
+    "@types/prettier": "^2.6.0",
     "@types/react": "^17.0.43",
     "@types/sinon": "^10.0.11",
     "@types/stylis": "^4.0.2",
