@@ -59,7 +59,7 @@ export default function JoyBadge() {
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
           {(['primary', 'danger', 'info', 'success', 'warning', 'neutral'] as const).map(
             (color) => (
-              <Badge badgeContent={100} size="lg" color={color}>
+              <Badge badgeContent={100} size="lg" color={color} overlap="circular">
                 <Sheet
                   variant="contained"
                   color={color}
