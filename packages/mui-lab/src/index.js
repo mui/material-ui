@@ -81,6 +81,7 @@ export { default as Skeleton } from './Skeleton';
 export * from './Skeleton';
 
 export { default as SnackbarsProvider } from './SnackbarsProvider';
+export * from './SnackbarsProvider';
 
 export { default as SpeedDial } from './SpeedDial';
 export * from './SpeedDial';

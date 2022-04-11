@@ -45,6 +45,8 @@ export interface SnackbarsProviderProps
 }
 
 type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };
+
+export type CloseSnackbarRef = { closeSnackbar: (key: string) => () => void };
 /**
  *
  * Demos:
@@ -55,7 +57,10 @@ type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };
  *
  * - [SnackbarsProvider API](https://mui.com/material-ui/api/snackbars-provider/)
  */
-const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.ReactNode }) => {
+const SnackbarsProvider = React.forwardRef<
+  CloseSnackbarRef,
+  SnackbarsProviderProps & { children?: React.ReactNode }
+>(function SnackbarsProvider(props, ref) {
   const [snackbars, setSnackbars] = React.useState<ShowSnackbarProps[]>([]);
   const theme = useTheme();
 
@@ -111,6 +116,10 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
       }),
     );
   };
+
+  React.useImperativeHandle(ref, () => ({
+    closeSnackbar: (key: string) => handleClose(key),
+  }));
 
   const handleExited = (key: string) => () => {
     setSnackbars([...snackbars.filter((snackbar) => snackbar.key !== key)]);
@@ -185,7 +194,7 @@ const SnackbarsProvider = (props: SnackbarsProviderProps & { children?: React.Re
       {children}
     </SnackbarsContext.Provider>
   );
-};
+});
 
 SnackbarsProvider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
