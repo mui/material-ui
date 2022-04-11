@@ -18,7 +18,7 @@ If you need to change the direction of the text at runtime, but React does not c
 document.dir = 'rtl';
 ```
 
-As an alternative to the above, you can also wrap your (or part of it) in an element with the `dir` attribute.
+As an alternative to the above, you can also wrap your application (or part of it) in an element with the `dir` attribute.
 This, however, will not work correctly with portaled elements, such as Dialogs, as they will render outside of the element with the `dir` attribute.
 
 To fix the portaled components, add an explicit `dir` attribute to them:
