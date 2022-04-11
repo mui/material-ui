@@ -1,5 +1,8 @@
 {
-  "props": { "disabled": { "type": { "name": "bool" } } },
+  "props": {
+    "disabled": { "type": { "name": "bool" } },
+    "label": { "type": { "name": "string" } }
+  },
   "name": "MenuItemUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,

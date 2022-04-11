@@ -22,7 +22,7 @@ For instance, if you need to hide a menu dropdown when people click anywhere els
 {{"demo": "ClickAway.js"}}
 
 Notice that the component only accepts one child element.
-You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
+You can find a more advanced demo on the [Menu documentation section](/material-ui/react-menu/#menulist-composition).
 
 ## Portal
 

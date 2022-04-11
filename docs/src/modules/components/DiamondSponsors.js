@@ -22,7 +22,7 @@ export default function DiamondSponsors(props) {
     <Root>
       <Button
         component="a"
-        href="/discover-more/backers/#diamond"
+        href="/material-ui/discover-more/backers/#diamond"
         target="_blank"
         rel="noopener nofollow"
         size="small"

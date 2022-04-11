@@ -24,6 +24,18 @@ import {
 } from '../ListboxUnstyled';
 import { EventHandlers } from '../utils/types';
 
+const defaultOptionStringifier = <TValue>(option: SelectOption<TValue>) => {
+  const { label, value } = option;
+  if (typeof label === 'string') {
+    return label;
+  }
+  if (typeof value === 'string') {
+    return value;
+  }
+  // Fall back string representation
+  return String(option);
+};
+
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
 function useSelect<TValue>(props: UseSelectParameters<TValue>) {
@@ -39,6 +51,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     onOpenChange,
     open = false,
     options,
+    optionStringifier = defaultOptionStringifier,
     value: valueProp,
   } = props;
 
@@ -220,6 +233,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         (onChange as (value: TValue[]) => void)?.(newOptions.map((o) => o.value));
       },
       options,
+      optionStringifier,
       value: selectedOption as SelectOption<TValue>[],
     };
   } else {
@@ -234,6 +248,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         (onChange as (value: TValue | null) => void)?.(option?.value ?? null);
       },
       options,
+      optionStringifier,
       stateReducer: listboxReducer,
       value: selectedOption as SelectOption<TValue> | null,
     };

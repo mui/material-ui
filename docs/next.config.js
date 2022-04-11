@@ -262,6 +262,11 @@ module.exports = {
           permanent: false,
         },
         {
+          source: '/experimental-api/:path*',
+          destination: '/material-ui/experimental-api/:path*',
+          permanent: false,
+        },
+        {
           source: '/discover-more/:path*',
           destination: '/material-ui/discover-more/:path*',
           permanent: false,

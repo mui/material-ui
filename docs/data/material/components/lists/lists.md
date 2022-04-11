@@ -26,7 +26,7 @@ The last item of the previous demo shows how you can render a link:
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
+You can find a [demo with React Router following this section](/material-ui/guides/routing/#list) of the documentation.
 
 ## Nested List
 
@@ -108,7 +108,7 @@ If this library doesn't cover your use case, you should consider using [react-vi
 
 Here are some examples of customizing the component.
 You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+[overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedList.js"}}
 

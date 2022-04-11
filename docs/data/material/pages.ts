@@ -187,7 +187,6 @@ const pages = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/material-ui/guides/api', title: 'API Design Approach' },
-      { pathname: '/material-ui/guides/classname-generator', title: 'ClassName Generator' },
       { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
       { pathname: '/material-ui/guides/interoperability', title: 'Style Library Interoperability' },
@@ -209,6 +208,18 @@ const pages = [
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/material-ui/guides/flow' },
+    ],
+  },
+  {
+    pathname: '/material-ui/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      {
+        pathname: '/material-ui/experimental-api/classname-generator',
+        title: 'ClassName Generator',
+      },
+      { pathname: '/material-ui/experimental-api/css-variables', title: 'CSS Variables' },
     ],
   },
   {
