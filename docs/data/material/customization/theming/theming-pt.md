@@ -1,6 +1,6 @@
 # Temas
 
-<p class="description">Customize Material-UI com seu tema. Você pode mudar as cores, a tipografia e muito mais.</p>
+<p class="description">Customize Material UI com seu tema. Você pode mudar as cores, a tipografia e muito mais.</p>
 
 O tema especifica a cor dos componentes, o escurecimento das superfícies, o nível de sombra, a opacidade apropriada dos elementos de tinta, etc.
 
@@ -10,13 +10,13 @@ Para promover uma maior consistência entre os aplicativos, os temas claro e esc
 
 ## Provedor de Temas
 
-Se você deseja personalizar o tema, você precisa usar o `ThemeProvider` componente para injetar um tema em sua aplicação. No entanto, isso é opcional; Material-UI componentes vêm com um tema padrão.
+Se você deseja personalizar o tema, você precisa usar o `ThemeProvider` componente para injetar um tema em sua aplicação. No entanto, isso é opcional; Material UI componentes vêm com um tema padrão.
 
 O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. Você pode aprender mais sobre isso lendo a [sessão da API](#themeprovider).
 
 ## Variáveis de configuração do tema
 
-Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
+Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
 - [`.paleta`](/material-ui/customization/palette/)
 - [`.typography`](/material-ui/customization/typography/)
@@ -69,7 +69,7 @@ declare module '@material-ui/core/styles' {
 Você [pode acessar](/system/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material UI por meio da ferramenta de cor do Material Design.
 
 ## Acessando o tema em um componente
 
@@ -223,8 +223,8 @@ This component takes a `theme` prop and applies it to the entire React tree that
 
 #### Props
 
-| Name             | Type                                     | Description                                                                                                                                                                                               |
-| :--------------- | :--------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name               | Type                                     | Description                                                                                                                                                                                               |
+|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
 | theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
@@ -246,6 +246,5 @@ const theme = createTheme({
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
-}
-ReactDOM.render(<App />, document.querySelector('#app'));
+} ReactDOM.render(<App />, document.querySelector('#app'));
 ```

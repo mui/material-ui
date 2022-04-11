@@ -1,6 +1,6 @@
 # Composição
 
-<p class="description">Material-UI tenta tornar a composição a mais simples possível.</p>
+<p class="description">Material UI tenta tornar a composição a mais simples possível.</p>
 
 ## Encapsulando componentes
 
@@ -13,19 +13,18 @@ Se você se deparar com esta situação, precisará usar a mesma propriedade `mu
 Vamos ver um exemplo:
 
 ```jsx
-const WrappedIcon = (props) => <Icon {...props} />;
-WrappedIcon.muiName = Icon.muiName;
+const WrappedIcon = (props) => <Icon {...props} />; WrappedIcon.muiName = Icon.muiName;
 ```
 
 {{"demo": "Composition.js"}}
 
 ## Propriedade Componente
 
-Material-UI permite que você altere o elemento raiz que será renderizado por meio de uma propriedade chamada `component`.
+Material UI permite que você altere o elemento raiz que será renderizado por meio de uma propriedade chamada `component`.
 
 ### Como é que funciona?
 
-O componente customizado será renderizado pelo Material-UI desta forma:
+O componente customizado será renderizado pelo Material UI desta forma:
 
 ```js
 return React.createElement(props.component, props);
@@ -164,11 +163,12 @@ Esta seção aborda advertências ao usar um componente customizado como `childr
 
 Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função está obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
 
-- Qualquer componente do Material-UI
-- Componentes de classe, ou seja, `React. Component` ou `React.</li>
+- Qualquer componente do Material UI
+- Componentes React.forwardRef
+- Component</code> ou `React.&lt;/li&gt;
 <li>Componentes DOM (ou hospedeiro), por exemplo, <code>div` ou `button`
-- [Componentes React.forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactlazy)
+- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactforwardref)
+- [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactlazy)
 - [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
@@ -197,7 +197,7 @@ Só as duas formas de utilização mais comuns são cobertas aqui. Para mais inf
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-Para descobrir se o componente de Material-UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
+Para descobrir se o componente de Material UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
 
 ### Advertência com StrictMode
 

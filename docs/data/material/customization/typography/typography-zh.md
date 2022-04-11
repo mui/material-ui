@@ -99,15 +99,27 @@ return (
     </Box>
   </ThemeProvider>
 );
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Box
+      sx={{
+        fontFamily: 'Raleway',
+      }}
+    >
+      Raleway
+    </Box>
+  </ThemeProvider>
+);
 ```
 
 Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
 
 ## 字体大小（Font size）
 
-Material-UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` 元素的默认字体大小为 `16px`，但是浏览器提供了一个改变这个值的选项，所以 `rem` 单元能够让我们适应用户的设置，从而提供更好的无障碍设计的支持。 其实用户改变字体大小设置的原因多种多样，有不太好的视力，或者选择适应设备的最佳设置，这样在大小和查看距离上会有很大的差异。
+Material UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` 元素的默认字体大小为 `16px`，但是浏览器提供了一个改变这个值的选项，所以 `rem` 单元能够让我们适应用户的设置，从而提供更好的无障碍设计的支持。 其实用户改变字体大小设置的原因多种多样，有不太好的视力，或者选择适应设备的最佳设置，这样在大小和查看距离上会有很大的差异。
 
-若想更改 Material-UI 的字体大小，您可以提供一个 `fontSize` 属性。 它的默认值为 `14px`。
+若想更改 Material UI 的字体大小，您可以提供一个 `fontSize` 属性。 它的默认值为 `14px`。
 
 ```js
 const theme = createTheme({
@@ -173,14 +185,17 @@ theme = responsiveFontSizes(theme);
 
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    // Tell Material UI what's the font-size on the html element is.
+    htmlFontSize: 10,
+  },
+});
     htmlFontSize: 10,
   },
 });
@@ -244,7 +259,7 @@ const theme = createTheme({
 
 除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 Here is what you need to do:
 
-**Step 1. Step 1. Step 1. Step 1. Step 1. Update the theme's typography object**
+**Step 1. Step 1. Step 1. Step 1. Step 1. Step 1. Update the theme's typography object**
 
 ```js
 const theme = createTheme({
@@ -258,7 +273,7 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Step 2. Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. Step 2. Step 2. Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
 
 > If you aren't using TypeScript you should skip this step.
 
@@ -287,7 +302,7 @@ declare module '@material-ui/core/Typography' {
 }
 ```
 
-**Step 3. You can now use the new variant**
+**Step 3. Step 3. You can now use the new variant**
 
 {{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 

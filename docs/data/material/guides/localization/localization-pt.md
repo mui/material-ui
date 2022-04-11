@@ -2,7 +2,7 @@
 
 <p class="description">Localização (também referida como "l10n") é o processo de adaptação de um produto ou conteúdo a um idioma ou mercado específico (localidade).</p>
 
-A localidade padrão do Material-UI é em inglês (Estados Unidos). Se você quiser usar outras localidades, siga as instruções abaixo.
+A localidade padrão do Material UI é em inglês (Estados Unidos). Se você quiser usar outras localidades, siga as instruções abaixo.
 
 ## Texto da localidade
 
@@ -35,7 +35,7 @@ const theme = createTheme(
 ### Localidades suportadas
 
 | Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
-| :---------------------- | ------------------------- | ------------------ |
+|:----------------------- |:------------------------- |:------------------ |
 | Amharic                 | am-ET                     | `amET`             |
 | Arabic (Egypt)          | ar-EG                     | `arEG`             |
 | Arabic (Sudan)          | ar-SD                     | `arSD`             |
@@ -47,7 +47,8 @@ const theme = createTheme(
 | Chinese (Hong Kong)     | zh-HK                     | `zhHK`             |
 | Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
 | Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
-| Tcheco                  | cs-CZ                     | `csCZ`             |
+| Tcheco                  | hr-HR                     | `hrHR`             |
+| Czech                   | cs-CZ                     | `csCZ`             |
 | Danish                  | da-DK                     | `daDK`             |
 | Dutch                   | nl-NL                     | `nlNL`             |
 | English (United States) | en-US                     | `enUS`             |
@@ -66,12 +67,15 @@ const theme = createTheme(
 | Khmer                   | kh-KH                     | `khKH`             |
 | Kazakh                  | kz-KZ                     | `kzKZ`             |
 | Korean                  | ko-KR                     | `koKR`             |
+| Macedonian              | mk-MK                     | `mkMK`             |
+| Norwegian (bokmål)      | nb-NO                     | `nbNO`             |
 | Persian                 | fa-IR                     | `faIR`             |
 | Polish                  | pl-PL                     | `plPL`             |
 | Portuguese              | pt-PT                     | `ptPT`             |
 | Portuguese (Brazil)     | pt-BR                     | `ptBR`             |
 | Romanian                | ro-RO                     | `roRO`             |
 | Russian                 | ru-RU                     | `ruRU`             |
+| Serbian                 | sr-RS                     | `srRS`             |
 | Sinhalese               | si-LK                     | `siLK`             |
 | Slovak                  | sk-SK                     | `skSK`             |
 | Spanish                 | es-ES                     | `esES`             |
@@ -87,7 +91,7 @@ Você pode [encontrar o fonte](https://github.com/mui/material-ui/blob/master/pa
 
 Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
-Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, Material-UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
+Por favor, considere contribuir com novas traduções de volta para o Material UI abrindo uma pull request. No entanto, Material UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
 
 ## Suporte RTL
 

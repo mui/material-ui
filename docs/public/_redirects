@@ -92,17 +92,17 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /zh/api/data-grid/* /zh/x/api/data-grid/:splat 301
 /pt/api/data-grid/* /pt/x/api/data-grid/:splat 301
 
-/components/date-pickers/ /x/react-date-pickers/getting-started/ 301
-/:lang/components/date-pickers/ /:lang/x/react-date-pickers/getting-started/ 301
+/components/date-picker/ /x/react-date-pickers/date-picker/ 301
+/:lang/components/date-picker/ /:lang/x/react-date-pickers/date-picker/ 301
 
-/components/date-range-pickers/ /x/react-date-pickers/date-range-picker/ 301
-/:lang/components/date-range-pickers/ /:lang/x/react-date-pickers/date-range-picker/ 301
+/components/date-range-picker/ /x/react-date-pickers/date-range-picker/ 301
+/:lang/components/date-range-picker/ /:lang/x/react-date-pickers/date-range-picker/ 301
 
-/components/date-time-pickers/ /x/react-date-pickers/date-time-picker/ 301
-/:lang/components/date-time-pickers/ /:lang/x/react-date-pickers/date-time-picker/ 301
+/components/date-time-picker/ /x/react-date-pickers/date-time-picker/ 301
+/:lang/components/date-time-picker/ /:lang/x/react-date-pickers/date-time-picker/ 301
 
-/components/time-pickers/ /x/react-date-pickers/time-picker/ 301
-/:lang/components/time-pickers/ /:lang/x/react-date-pickers/time-picker/ 301
+/components/time-picker/ /x/react-date-pickers/time-picker/ 301
+/:lang/components/time-picker/ /:lang/x/react-date-pickers/time-picker/ 301
 
 /api/date-picker/ /x/api/date-pickers/date-picker/ 301
 /zh/api/date-picker/ /zh/x/api/date-pickers/date-picker/ 301

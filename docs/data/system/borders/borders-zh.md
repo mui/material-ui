@@ -36,7 +36,11 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 
 ```jsx
 <Box sx={{ border: 0 }}>…
+<Box sx={{ border: 0 }}>…
 <Box sx={{ borderTop: 0 }}>…
+<Box sx={{ borderRight: 0 }}>…
+<Box sx={{ borderBottom: 0 }}>…
+<Box sx={{ borderLeft: 0 }}>…
 <Box sx={{ borderRight: 0 }}>…
 <Box sx={{ borderBottom: 0 }}>…
 <Box sx={{ borderLeft: 0 }}>…
@@ -48,6 +52,10 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 
 ```jsx
 <Box sx={{ borderColor: 'primary.main' }}>…
+<Box sx={{ borderColor: 'secondary.main' }}>…
+<Box sx={{ borderColor: 'error.main' }}>…
+<Box sx={{ borderColor: 'grey.500' }}>…
+<Box sx={{ borderColor: 'text.primary' }}>…
 <Box sx={{ borderColor: 'secondary.main' }}>…
 <Box sx={{ borderColor: 'error.main' }}>…
 <Box sx={{ borderColor: 'grey.500' }}>…
@@ -67,6 +75,13 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 <Box borderRadius={16}>…
 <Box sx={{ borderRadius: 1 }}>… // theme.shape.borderRadius * 1
 <Box sx={{ borderRadius: 16 }}>…
+<Box sx={{ borderRadius: 1 }}>… <Box sx={{ borderRadius: '50%' }}>…
+<Box borderRadius="borderRadius">…
+<Box borderRadius={16}>…
+<Box borderRadius="borderRadius">…
+<Box borderRadius={16}>…
+<Box sx={{ borderRadius: 1 }}>… // theme.shape.borderRadius * 1
+<Box sx={{ borderRadius: 16 }}>…
 ```
 
 ## API
@@ -75,8 +90,8 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 import { borders } from '@material-ui/system';
 ```
 
-| 导入名称            | 属性                | CSS 属性              | Theme key                                                                    |
-| :------------------ | :------------------ | :-------------------- | :--------------------------------------------------------------------------- |
+| 导入名称                | 属性                  | CSS 属性                | Theme key                                                                    |
+|:------------------- |:------------------- |:--------------------- |:---------------------------------------------------------------------------- |
 | `border`            | `border`            | `border`              | `borders`                                                                    |
 | `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                                    |
 | `borderLeft`        | `borderLeft`        | `border-left`         | `borders`                                                                    |

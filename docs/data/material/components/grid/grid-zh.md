@@ -51,7 +51,7 @@ For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport w
 
 ## Spacing 间距
 
-To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. 该属性借助 [`theme.spaming()`](/material-ui/customization/spacing/) 被转换为 CSS 属性。
+To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. 该属性借助 [`theme.spaming()`](/material-ui/customization/spacing/) 被转换为 CSS 属性。 间距值可以是任何数字（包括浮点数）和字符串。 The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
 
 {{"demo": "SpacingGrid.js", "bg": true}}
 
@@ -76,12 +76,12 @@ To control space between children, use the `spacing` prop. The spacing value can
 - `spacing`
 - 系统中的所有[其它属性](#system-props)
 
-> ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`: 例如，这种做法行不通。 For instance, this is not working. 网格项目丢失了 `md` 的值：
->
+> ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`: 例如，这种做法行不通。 例如，下面这种做法是行不通的。 网格项丢失了 `md` 的值：
+> 
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
->   <Grid item xs={2} />>{' '}
-> </Grid>
+>    <Grid item xs={2} />
+> > </Grid>
 > ```
 
 ## 交互式
@@ -100,7 +100,7 @@ To control space between children, use the `spacing` prop. The spacing value can
 
 The Auto-layout makes the _items_ equitably share the available space. That also means you can set the width of one _item_ and the others will automatically resize around it.
 
-The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+{{"demo": "VariableWidthGrid.js", "bg": true}}
 
 ## 复杂的栅格
 
@@ -164,13 +164,13 @@ They define the number of grids the component will use for a given breakpoint. �
 
 ## CSS 栅格布局
 
-The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages. 但如下文所述，您也可以使用 [系统（system）](/system/grid/)和 CSS 网格来轻松地布局您的页面。
 
 {{"demo": "CSSGrid.js", "bg": true}}
 
 ## System props
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding: You can use them as props directly on the component. For instance, a padding: You can use them as props directly on the component. For instance, a padding:
+As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding: You can use them as props directly on the component. For instance, a padding: You can use them as props directly on the component. For instance, a padding: 您可以直接在组件上使用它们作为 props。 例如您想定义  padding 时：
 
 ```jsx
 <Grid item p={2}>

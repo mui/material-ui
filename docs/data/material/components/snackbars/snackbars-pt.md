@@ -110,7 +110,7 @@ export default function MyComponent() {
   const [open, setOpen] = React.useState(true);
 
   return (
-    <React.Fragment>
+    <React. Fragment>
       <Snackbar
         open={open}
         onClose={(event, reason) => {
@@ -120,7 +120,7 @@ export default function MyComponent() {
         }}
       />
       <Snackbar open={open} onClose={() => setOpen(false)} />
-    </React.Fragment>
+    </React. Fragment>
   );
 }
 ```

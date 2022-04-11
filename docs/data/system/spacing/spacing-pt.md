@@ -82,6 +82,8 @@ const theme = {
 <Box sx={{ p: 2 }}>…
 <Box sx={{ m: 1 }}>…
 <Box sx={{ p: 2 }}>…
+<Box sx={{ m: 1 }}>…
+<Box sx={{ p: 2 }}>…
 ```
 
 ## Centralização horizontal
@@ -149,7 +151,7 @@ import { spacing } from '@material-ui/system';
 ```
 
 | Nome da importação | Propriedade | Propriedade CSS                 | Chave do tema                                                                |
-| :----------------- | :---------- | :------------------------------ | :--------------------------------------------------------------------------- |
+|:------------------ |:----------- |:------------------------------- |:---------------------------------------------------------------------------- |
 | `spacing`          | `m`         | `margin`                        | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`          | `mt`        | `margin-top`                    | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`          | `mr`        | `margin-right`                  | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |

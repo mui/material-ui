@@ -68,7 +68,7 @@ function App() {
 
 ## Renderizando input
 
-Introduzimos uma nova propriedade **requerida**, `renderInput`. Isso simplifica o uso de componentes de entrada de texto sem Material-UI.
+Introduzimos uma nova propriedade **requerida**, `renderInput`. Isso simplifica o uso de componentes de entrada de texto sem Material UI.
 
 ```jsx
 <DatePicker renderInput={(props) => <TextField {...props} />} />
@@ -116,8 +116,7 @@ Máscara já não é necessária. Além disso, se a máscara fornecida não for 
 
 - `````diff <DatePicker
   -  format="DD-MMM-YYYY"
-  +  inputFormat="DD-MMM-YYYY" ``` ````
-  `````
+  +  inputFormat="DD-MMM-YYYY" ``` ```` `````
 
 Há muitas mudanças, tenha cuidado, certifique-se de que seus testes e build passe. No evento em que você tem um uso avançado do seletor de data, provavelmente será mais simples reescrevê-lo.
 

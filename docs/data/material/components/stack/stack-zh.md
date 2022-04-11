@@ -13,7 +13,7 @@ githubLabel: 'component: Stack'
 
 ## 使用
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/material-ui/react-grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+然而， `direction` prop 也可以用来将项目水平定位在 `row` 中。 默认情况下， `Stack` 将项目垂直安排在 `column` 中。
 
 {{"demo": "BasicStack.js", "bg": true}}
 
@@ -21,7 +21,7 @@ githubLabel: 'component: Stack'
 
 ## 方向
 
-默认情况下， `Stack` 将项目垂直安排在 `column` 中。 然而， `direction` prop 也可以用来将项目水平定位在 `row` 中。
+`Stack` is concerned with one-dimensional layouts, while [Grid](/material-ui/react-grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically. 然而， `direction` prop 也可以用来将项目水平定位在 `row` 中。
 
 {{"demo": "DirectionStack.js", "bg": true}}
 

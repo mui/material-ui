@@ -1,10 +1,11 @@
 ---
 product: material-ui
 title: Componente React para Botão
-components: Button, IconButton, ButtonBase
+components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
+unstyled: import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 ---
 
 # Button
@@ -170,41 +171,3 @@ Então:
 ```
 
 Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de link `<a>`.
-
-## Unstyled
-
-The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
-
-### Componente sem estilo
-
-```js
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
-```
-
-{{"demo": "UnstyledButtonsSimple.js"}}
-
-#### Customizando o elemento raiz
-
-By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components. Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
-
-{{"demo": "UnstyledButtonsSpan.js"}}
-
-Compare the attributes on the span with the button from the previous demo.
-
-#### Complex customization
-
-You are not limited to using HTML elements for the button structure. Elementos SVG, mesmo que com uma estrutura complexa, são igualmente aceitáveis.
-
-{{"demo": "UnstyledButtonCustom.js"}}
-
-### useButton hook
-
-```js
-import { useButton } from '@mui/base/ButtonUnstyled';
-```
-
-If you need to use Button's functionality in another component, you can use the `useButton` hook. It returns props to be placed on a custom button element and fields representing the internal state of the button.
-
-The `useButton` hook requires the ref of the element it'll be used on. Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
-
-{{"demo": "UseButton.js"}}

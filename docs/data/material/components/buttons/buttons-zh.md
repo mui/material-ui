@@ -5,6 +5,7 @@ components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
+unstyled: import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 ---
 
 # Button 按钮
@@ -34,7 +35,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 ### 实心按钮
 
-[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。 They contain actions that are important but aren't the primary action in an app.
 
 {{"demo": "ContainedButtons.js"}}
 
@@ -44,7 +45,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 ### 描边按钮
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。 They contain actions that are important but aren't the primary action in an app.
+[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
 
 你也可以将描边按钮作为比实心按钮次要一点的替代方案，或者用来作为比文本按钮重要一点的展示。
 
@@ -70,7 +71,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"demo": "ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
+除了使用默认按钮颜色外，您可以添加自定义颜色，或者禁用任何您不需要的颜色。 In addition to using the default button colors, you can add custom ones, or disable any you don't need. In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
 
 ## 尺寸
 
@@ -169,41 +170,3 @@ One frequent use case is to perform navigation on the client only, without an HT
 ```
 
 这个方法能支持任何元素，例如，一个 `<a>` 元素。
-
-## Unstyled
-
-The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size. It's ideal for doing heavy customizations and minimizing bundle size.
-
-### Unstyled component
-
-```js
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
-```
-
-{{"demo": "UnstyledButtonsSimple.js"}}
-
-#### Customizing the root element
-
-By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
-
-{{"demo": "UnstyledButtonsSpan.js"}}
-
-Compare the attributes on the span with the button from the previous demo.
-
-#### Complex customization
-
-You are not limited to using HTML elements for the button structure. SVG elements, even with complex structure, are equally acceptable. SVG elements, even with complex structure, are equally acceptable.
-
-{{"demo": "UnstyledButtonCustom.js"}}
-
-### useButton hook
-
-```js
-import { useButton } from '@mui/base/ButtonUnstyled';
-```
-
-If you need to use Button's functionality in another component, you can use the `useButton` hook. It returns props to be placed on a custom button element and fields representing the internal state of the button. It returns props to be placed on a custom button element and fields representing the internal state of the button.
-
-The `useButton` hook requires the ref of the element it'll be used on. The `useButton` hook requires the ref of the element it'll be used on. Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
-
-{{"demo": "UseButton.js"}}

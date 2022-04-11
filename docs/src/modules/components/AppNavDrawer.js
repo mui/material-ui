@@ -26,6 +26,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
@@ -445,12 +446,8 @@ function AppNavDrawer(props) {
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const drawer = React.useMemo(() => {
-    const isProductScoped =
-      router.asPath.startsWith('/x') ||
-      router.asPath.startsWith('/material-ui') ||
-      router.asPath.startsWith('/joy-ui') ||
-      (router.asPath.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) ||
-      router.asPath.startsWith('/base');
+    const isProductScoped = isNewLocation(router.asPath);
+    const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
@@ -582,7 +579,7 @@ function AppNavDrawer(props) {
                 ],
                 { mr: 2 },
               )}
-            {router.asPath.startsWith('/material-ui/') && (
+            {asPathWithoutLang.startsWith('/material-ui/') && (
               <ProductIdentifier
                 name="Material UI"
                 metadata="MUI Core"
@@ -599,7 +596,7 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
-            {router.asPath.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
+            {asPathWithoutLang.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
               <ProductIdentifier
                 name="MUI System"
                 metadata="MUI Core"
@@ -613,7 +610,7 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
-            {router.asPath.startsWith('/base/') && (
+            {asPathWithoutLang.startsWith('/base/') && (
               <ProductIdentifier
                 name="MUI Base"
                 metadata="MUI Core"
@@ -622,11 +619,11 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
-            {router.asPath.startsWith('/x/advanced-components') && (
+            {asPathWithoutLang.startsWith('/x/advanced-components') && (
               <ProductIdentifier name="Advanced components" metadata="MUI X" />
             )}
-            {(router.asPath.startsWith('/x/react-data-grid') ||
-              router.asPath.startsWith('/x/api/data-grid')) && (
+            {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
+              asPathWithoutLang.startsWith('/x/api/data-grid')) && (
               <ProductIdentifier
                 name="Data Grid"
                 metadata="MUI X"
@@ -637,8 +634,8 @@ function AppNavDrawer(props) {
                 ])}
               />
             )}
-            {(router.asPath.startsWith('/x/react-date-pickers') ||
-              router.asPath.startsWith('/x/api/date-pickers')) && (
+            {(asPathWithoutLang.startsWith('/x/react-date-pickers') ||
+              asPathWithoutLang.startsWith('/x/api/date-pickers')) && (
               <ProductIdentifier
                 name="Date pickers"
                 metadata="MUI X"

@@ -73,7 +73,7 @@ const faqData = [
       <React.Fragment>
         After you purchase a license, you'll receive a license key by email Once you have the
         license key, you need to follow the{' '}
-        <Link href="/x/react-data-grid/getting-started/#license-key-installation">
+        <Link href="/x/advanced-components/#license-key-installation">
           instructions
         </Link>{' '}
         necessary to set it up.

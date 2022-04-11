@@ -806,7 +806,7 @@ Here is some additional content related to the topics covered throughout this po
 
 - [How to migrate from v4 to v5](/material-ui/guides/migration-v4/)
 - [Style Library Interoperability](/material-ui/guides/interoperability/)
-- [Approaches to customizing Material-UI components](/material-ui/customization/how-to-customize/)
+- [Approaches to customizing Material UI components](/material-ui/customization/how-to-customize/)
 
 Lastly, check out the last two iterations on the MUI Developer Survey:
 

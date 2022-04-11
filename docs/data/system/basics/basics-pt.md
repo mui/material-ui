@@ -1,8 +1,8 @@
-# Sistema Material-UI
+# Sistema Material UI
 
 <p class="description">CSS utilities for rapidly laying out custom designs.</p>
 
-Material-UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
+Material UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
 
 O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
@@ -186,12 +186,12 @@ Contras:
 
 - O desempenho em tempo de execução é impactado.
 
-  | Benchmark                             | Fragmento de código   | Tempo normalizado |
-  | :------------------------------------ | :-------------------- | ----------------- |
-  | c. Renderizar 1,000 styled components | `<div className="…">` | 100ms             |
+  | Benchmark                             | Fragmento de código         | Tempo normalizado |
+  |:------------------------------------- |:--------------------------- | ----------------- |
+  | c. Render 1,000 styled components     | `<div className="…">` | 100ms             |
   | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
-  | c. Render 1,000 styled components     | `<StyledDiv>`         | 160ms             |
-  | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
+  | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
+  | d. d. a. Renderizar 1.000 Box         | `<Box sx={…}>`        | 370ms             |
 
 <!-- #default-branch-switch -->
 
@@ -233,7 +233,7 @@ Estas abreviações são **opcionais**, elas são ótimas para economizar tempo 
 
 ### Super conjunto de CSS
 
-Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos: Here are a few examples:
+Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos: Here are a few examples: Here are a few examples:
 
 - Usando pseudo seletores:
 
@@ -290,7 +290,7 @@ A segunda opção é definir seus pontos de quebra como um array, do menor ao ma
 
 {{"demo": "BreakpointsAsArray.js"}}
 
-> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material-UI tem 5.
+> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material UI tem 5.
 
 Você pode ignorar pontos de quebra usando o valor como `null`:
 
@@ -365,7 +365,7 @@ A propriedade `sx` pode ser usada em quatro locais diferentes:
 
 ### 1. Componentes do core
 
-Todos os componentes Material-UI do core suportarão a propriedade `sx`.
+Todos os componentes Material UI do core suportarão a propriedade `sx`.
 
 ### 2. Box
 
@@ -373,7 +373,7 @@ Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 3. Componentes customizados
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
+In addition to Material UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
 
 ```jsx
 import { styled } from '@material-ui/core/styles';
