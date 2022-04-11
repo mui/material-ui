@@ -1,5 +1,50 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.6.1
+
+<!-- generated comparing v5.6.0..master -->
+
+_Apr 11, 2022_
+
+A big thanks to the 8 contributors who made this release possible.  
+This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.6.1`
+
+- [Grow] Extend Safari CSS transition bug workaround on WebKit browsers (#32202) @igordanchenko
+- [Link] Fix style overrides 5.6.0 regression (#32182) @siriwatknp
+- [Select] Bug when the first child is a ListSubheader (#27299) @DouglasPds
+
+### `@mui/base@5.0.0-alpha.76`
+
+- [ButtonUnstyled] Allow receiving focus when disabled (#32090) @michaldudak
+
+### Docs
+
+- [blog] Share what's changed about the new docs structure (#32044) @danilo-leal
+- [docs] Format number icons search (#32239) @oliviertassinari
+- [docs] Fix small external links issue (#32212) @oliviertassinari
+- [docs] Make sidenav crawlable (#32241) @oliviertassinari
+- [docs] Base Badge style revisions and final review (#32098) @samuelsycamore
+- [docs] Fix wrong url (#32208) @siriwatknp
+- [docs] Fix date-pickers redirects (#32207) @siriwatknp
+- [docs] Add notification for the doc restructure and date pickers update (#32195) @siriwatknp
+- [docs] Fix 404 from `ahrefs` report (#32206) @siriwatknp
+- [docs] Remove notifications temporary (#32192) @siriwatknp
+- [docs] Redirect to new urls (#32048) @siriwatknp
+- [docs] Update Learn page copy and resource list (#31989) @samuelsycamore
+- [website] Fix wrong MUI X installation instruction link @oliviertassinari
+- [website] Revise homepage copy below the hero section (#31283) @samuelsycamore
+- [website] Revise homepage Hero copy for more clarity (#31212) @samuelsycamore
+- [website] Give up on promoting roles in our docs @oliviertassinari
+
+### Core
+
+- [core] Fix misleading types range (#32236) @oliviertassinari
+- [core] Small polish on the product name (#32199) @oliviertassinari
+
+All contributors of this release in alphabetical order: @danilo-leal, @DouglasPds, @igordanchenko, @l10nbot, @michaldudak, @oliviertassinari, @samuelsycamore, @siriwatknp
+
 ## 5.6.0
 
 <!-- generated comparing v5.5.3..master -->
