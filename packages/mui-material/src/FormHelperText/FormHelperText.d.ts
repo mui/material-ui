@@ -56,7 +56,7 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/material-ui/react-text-field/)
+ * - [Text fields](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *

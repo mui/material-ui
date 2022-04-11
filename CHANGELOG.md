@@ -3575,7 +3575,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 28 -->[docs] Fix broken overrides link on API pages (#26244) @mnajdova
 - &#8203;<!-- 27 -->[docs] Improve documentation for Buttons (#26184) @arpitBhalla
 - &#8203;<!-- 24 -->[docs] Emphasize on props for screen readers (#26222) @atisheyJain03
-- &#8203;<!-- 23 -->[docs] Link third-party routing in Bottom Navigation (#26190) @arpitBhalla
+- &#8203;<!-- 23 -->[docs] Link third-party routing in Bottom navigation (#26190) @arpitBhalla
 - &#8203;<!-- 22 -->[docs] Migrate Select, Progress demos to emotion (#26178) @mnajdova
 - &#8203;<!-- 20 -->[docs] Add accessibility section to Badges (#26009) @likitarai1
 - &#8203;<!-- 15 -->[docs] Migrate Popper, Drawer demos to emotion (#26183) @mnajdova
@@ -4587,7 +4587,7 @@ The prop didn't solve any important problem better than any of its alternatives 
 
 ### Docs
 
-- &#8203;<!-- 22 -->[docs] Migrate Bottom Navigation demos to emotion (#25180) @vicasas
+- &#8203;<!-- 22 -->[docs] Migrate Bottom navigation demos to emotion (#25180) @vicasas
 - &#8203;<!-- 09 -->[docs] Migrate Button demos to emotion (#25138) @vicasas
 - &#8203;<!-- 17 -->[docs] Migrate Divider demos to emotion (#25145) @vicasas
 - &#8203;<!-- 24 -->[docs] Migrate Pagination demos to emotion (#25183) @vicasas

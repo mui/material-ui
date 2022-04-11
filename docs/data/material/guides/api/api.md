@@ -1,4 +1,4 @@
-# API Design Approach
+# API design approach
 
 <p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 

@@ -42,7 +42,7 @@ export interface ImageListItemBarProps
  *
  * Demos:
  *
- * - [Image List](https://mui.com/material-ui/react-image-list/)
+ * - [Image list](https://mui.com/material-ui/react-image-list/)
  *
  * API:
  *
