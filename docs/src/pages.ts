@@ -16,9 +16,9 @@ export interface MuiPage {
   /**
    * Pages are considered to be ordered depth-first.
    * If a page should be excluded from this order, set `order: false`.
-   * You want to set `ordered: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
+   * You want to set `inSideNav: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
    */
-  ordered?: boolean;
+  inSideNav?: boolean;
   /**
    * Props spread to the Link component
    */
@@ -358,8 +358,8 @@ const pages: readonly MuiPage[] = [
       'data-ga-event-label': 'sidenav',
     },
   },
-  { pathname: '/versions', ordered: false },
-  { pathname: '/', ordered: false, disableDrawer: true },
+  { pathname: '/versions', inSideNav: false },
+  { pathname: '/', inSideNav: false, disableDrawer: true },
   { pathname: '/blog', title: 'Blog', icon: 'BookIcon' },
 ];
 

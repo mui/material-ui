@@ -5505,8 +5505,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#box-sx-prop).
 
   ```diff
-  -<Box p={2} bgColor="primary.main">
-  +<Box sx={{ p: 2, bgColor: 'primary.main' }}>
+  -<Box p={2} bgcolor="primary.main">
+  +<Box sx={{ p: 2, bgcolor: 'primary.main' }}>
   ```
 
 #### Changes

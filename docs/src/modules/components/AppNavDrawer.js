@@ -326,29 +326,25 @@ PersistScroll.propTypes = {
 // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
 const ToolbarIE11 = styled('div')({ display: 'flex' });
 
-const ToolbarDiv = styled('div')(({ theme }) => {
-  return {
-    padding: theme.spacing(1.45, 2),
-    paddingRight: 0,
-    height: 'var(--MuiDocs-header-height)',
-    display: 'flex',
-    flexGrow: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  };
-});
+const ToolbarDiv = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1.45, 2),
+  paddingRight: 0,
+  height: 'var(--MuiDocs-header-height)',
+  display: 'flex',
+  flexGrow: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+}));
 
-const StyledDrawer = styled(Drawer)(({ theme }) => {
-  return {
-    [theme.breakpoints.up('xs')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.up('lg')]: {
-      display: 'block',
-    },
-  };
-});
+const StyledDrawer = styled(Drawer)(({ theme }) => ({
+  [theme.breakpoints.up('xs')]: {
+    display: 'none',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'block',
+  },
+}));
 
 const SwipeableDrawerPaperComponent = styled('div')(({ theme }) => {
   return {
@@ -367,7 +363,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List disablePadding>
+    <List sx={{ my: 0.5 }}>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -384,33 +380,40 @@ function renderNavItems(options) {
 function reduceChildRoutes(context) {
   const { onClose, activePage, items, depth, t } = context;
   let { page } = context;
-  if (page.ordered === false) {
+  if (page.inSideNav === false) {
     return items;
   }
 
+  const title = pageToTitleI18n(page, t);
+
   if (page.children && page.children.length >= 1) {
-    const title = pageToTitleI18n(page, t);
     const topLevel = activePage
       ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
         page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
       : false;
+    let firstChild = page.children[0];
+
+    if (firstChild.subheader && firstChild.subheader.children) {
+      firstChild = firstChild.children[0];
+    }
 
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
-        topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
+        href={firstChild.pathname}
         legacy={page.legacy}
         icon={page.icon}
+        subheader={Boolean(page.subheader)}
+        topLevel={topLevel && !page.subheader}
+        openImmediately={topLevel || Boolean(page.subheader)}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppNavDrawerItem>,
     );
   } else {
-    const title = pageToTitleI18n(page, t);
     page = page.children && page.children.length === 1 ? page.children[0] : page;
 
     items.push(
@@ -421,8 +424,9 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         legacy={page.legacy}
-        onClick={onClose}
         icon={page.icon}
+        subheader={Boolean(page.subheader)}
+        onClick={onClose}
       />,
     );
   }

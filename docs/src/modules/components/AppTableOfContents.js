@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => ({
@@ -164,14 +165,7 @@ export default function AppTableOfContents(props) {
 
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
-    if (
-      event.defaultPrevented ||
-      event.button !== 0 || // ignore everything but left-click
-      event.metaKey ||
-      event.ctrlKey ||
-      event.altKey ||
-      event.shiftKey
-    ) {
+    if (openLinkInNewTab(event)) {
       return;
     }
 
