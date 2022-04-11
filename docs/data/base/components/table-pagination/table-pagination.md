@@ -17,7 +17,7 @@ The `TablePaginationUnstyled` component controls two properties of its parent ta
 - displayed page index
 - number of rows per page
 
-By default it renders its internal components wrapped in a `<tr>` tag, so it can be inserted into a table's `<tr>`.
+By default it renders its internal components wrapped in a `<td>` tag, so it can be inserted into a table's `<tr>`.
 
 You can change this default behavior by supplying the `component` or `components.Root` prop.
 This is useful it you need to place the pagination controls outside of the table.
