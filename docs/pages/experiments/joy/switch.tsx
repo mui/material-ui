@@ -133,6 +133,13 @@ export default function JoySwitch() {
             />
           </Box>
           <Box>
+            <Typography>Decorator</Typography>
+            <Switch startDecorator="Off" checked={false} />
+            <Switch endDecorator="On" checked />
+            <Switch endDecorator="On" checked disabled />
+            <Switch endDecorator="On" checked size="sm" />
+          </Box>
+          <Box>
             <Typography color="info.textColor">Fluent</Typography>
             {(
               [

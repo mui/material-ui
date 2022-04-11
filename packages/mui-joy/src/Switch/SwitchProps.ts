@@ -33,6 +33,8 @@ export interface SwitchProps
     thumb?: React.HTMLAttributes<HTMLSpanElement>;
     input?: React.InputHTMLAttributes<HTMLInputElement>;
     track?: React.HTMLAttributes<HTMLSpanElement>;
+    startDecorator?: React.HTMLAttributes<HTMLSpanElement>;
+    endDecorator?: React.HTMLAttributes<HTMLSpanElement>;
   };
   /**
    * Override or extend the styles applied to the component.
@@ -44,10 +46,18 @@ export interface SwitchProps
    */
   color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SwitchPropsColorOverrides>;
   /**
+   * The element that appears at the end of the switch.
+   */
+  endDecorator?: React.ReactNode;
+  /**
    * The size of the component.
    * @default 'md'
    */
   size?: OverridableStringUnion<'sm' | 'md' | 'lg', SwitchPropsSizeOverrides>;
+  /**
+   * The element that appears at the end of the switch.
+   */
+  startDecorator?: React.ReactNode;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
