@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: React Tree View（树视图）组件
+title: Tree view React component
 components: TreeView, TreeItem
 githubLabel: 'component: tree view'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
 packageName: '@mui/lab'
 ---
 
-# Tree View 树视图
+# Tree view
 
 <p class="description">树视图组件能够展现一个分层的列表。</p>
 
