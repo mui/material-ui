@@ -22,10 +22,10 @@ export interface AlertTitleProps extends StandardProps<React.HTMLAttributes<HTML
  *
  * Demos:
  *
- * - [Alert](https://mui.com/components/alert/)
+ * - [Alert](https://mui.com/material-ui/react-alert/)
  *
  * API:
  *
- * - [AlertTitle API](https://mui.com/api/alert-title/)
+ * - [AlertTitle API](https://mui.com/material-ui/api/alert-title/)
  */
 export default function AlertTitle(props: AlertTitleProps): JSX.Element;

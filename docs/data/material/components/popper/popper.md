@@ -16,12 +16,12 @@ Some important features of the `Popper` component:
 - 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
 - 📦 [8 kB gzipped](/size-snapshot).
-- The children is [`Portal`](/components/portal/) to the body of the document to avoid rendering problems.
+- The children is [`Portal`](/material-ui/react-portal/) to the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
-- The scroll isn't blocked like with the [`Popover`](/components/popover/) component.
+- The scroll isn't blocked like with the [`Popover`](/material-ui/react-popover/) component.
   The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the `Popper` component.
-  If you need this behavior, you can use [`ClickAwayListener`](/components/click-away-listener/) - see the example in the [menu documentation section](/components/menus/#menulist-composition).
+  If you need this behavior, you can use [`ClickAwayListener`](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
