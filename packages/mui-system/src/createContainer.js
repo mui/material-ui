@@ -36,7 +36,7 @@ export default function createContainer(options = {}) {
     slot: 'Root',
     overridesResolver: (props, styles) => {
       const { ownerState } = props;
-  
+
       return [
         styles.root,
         styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
@@ -64,7 +64,7 @@ export default function createContainer(options = {}) {
       ownerState.fixed &&
       Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
         const value = theme.breakpoints.values[breakpoint];
-  
+
         if (value !== 0) {
           acc[theme.breakpoints.up(breakpoint)] = {
             maxWidth: `${value}${theme.breakpoints.unit}`,
