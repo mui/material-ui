@@ -85,6 +85,10 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * @default 'contained'
        */
       variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, CheckboxPropsVariantOverrides>;
+      /**
+       * The icon when `checked` is false.
+       */
+      uncheckedIcon?: React.ReactNode;
     };
   defaultComponent: D;
 }
