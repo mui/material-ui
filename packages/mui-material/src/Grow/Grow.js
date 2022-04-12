@@ -22,13 +22,13 @@ const styles = {
 };
 
 /**
- * Conditionally apply a workaround for the CSS transition bug in Safari 15.4.
- * Remove this workaround once the Safari bug is fixed.
+ * Conditionally apply a workaround for the CSS transition bug in Safari 15.4 / WebKit browsers.
+ * Remove this workaround once the WebKit bug fix is released.
  */
-const isSafari154 =
+const isWebKit154 =
   typeof navigator !== 'undefined' &&
-  /^((?!chrome|android).)*safari/i.test(navigator.userAgent) &&
-  /version\/15\.[4-9]/i.test(navigator.userAgent);
+  /^((?!chrome|android).)*(safari|mobile)/i.test(navigator.userAgent) &&
+  /(os |version\/)15(.|_)[4-9]/i.test(navigator.userAgent);
 
 /**
  * The Grow transition is used by the [Tooltip](/material-ui/react-tooltip/) and
@@ -105,7 +105,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         delay,
       }),
       theme.transitions.create('transform', {
-        duration: isSafari154 ? duration : duration * 0.666,
+        duration: isWebKit154 ? duration : duration * 0.666,
         delay,
         easing: transitionTimingFunction,
       }),
@@ -146,8 +146,8 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         delay,
       }),
       theme.transitions.create('transform', {
-        duration: isSafari154 ? duration : duration * 0.666,
-        delay: isSafari154 ? delay : delay || duration * 0.333,
+        duration: isWebKit154 ? duration : duration * 0.666,
+        delay: isWebKit154 ? delay : delay || duration * 0.333,
         easing: transitionTimingFunction,
       }),
     ].join(',');

@@ -31,8 +31,9 @@ export default function useMenuItem(props: UseMenuItemParameters) {
 
   const { getRootProps: getButtonProps, focusVisible } = useButton({
     component,
-    ref: handleRef,
     disabled,
+    focusableWhenDisabled: true,
+    ref: handleRef,
   });
 
   // Ensure the menu item is focused when highlighted

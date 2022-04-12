@@ -52,7 +52,7 @@ export type FormControlUnstyledOwnerState = Omit<
  *
  * Demos:
  *
- * - [Form Control](https://mui.com/base/react-form-control/)
+ * - [Form control](https://mui.com/base/react-form-control/)
  *
  * API:
  *

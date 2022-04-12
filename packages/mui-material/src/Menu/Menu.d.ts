@@ -83,7 +83,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
  *
  * Demos:
  *
- * - [App Bar](https://mui.com/material-ui/react-app-bar/)
+ * - [App bar](https://mui.com/material-ui/react-app-bar/)
  * - [Menus](https://mui.com/material-ui/react-menu/)
  *
  * API:

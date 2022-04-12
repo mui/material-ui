@@ -24,7 +24,7 @@ We currently offer two main product lines:
 
 ## What has changed?
 
-All MUI products still live under the [mui.com](http://mui.com) domain, but each of them now has its own respective URL and documentation.
+All MUI products still live under the [mui.com](https://mui.com) domain, but each of them now has its own respective URL and documentation.
 We added an identifier and menu to the upper-left corner of the docs for improved navigation:
 
 <img src="/static/blog/docs-updates/docs-separation.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of the product identifier menu" />

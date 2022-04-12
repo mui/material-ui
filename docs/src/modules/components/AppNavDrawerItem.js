@@ -5,7 +5,7 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import { alpha, styled, experimental_sx as sx } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
-import ButtonBase from '@mui/material/ButtonBase';
+import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
@@ -37,9 +37,14 @@ const iconsMap = {
   DatePickerIcon: DateRangeRounded,
 };
 
-const Item = styled(function Item({ component: Component = 'div', ...props }) {
-  return <Component {...props} />;
-})(({ theme }) => ({
+const Item = styled(
+  function Item({ component: Component = 'div', ...props }) {
+    return <Component {...props} />;
+  },
+  {
+    shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader',
+  },
+)(({ theme, hasIcon, depth, subheader }) => ({
   ...theme.typography.body2,
   display: 'flex',
   alignItems: 'center',
@@ -53,13 +58,57 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
   transition: theme.transitions.create(['color', 'background-color'], {
     duration: theme.transitions.duration.shortest,
   }),
-  '&:hover': {
-    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
+  fontSize: theme.typography.pxToRem(14),
+  textDecoration: 'none',
+  paddingLeft: 31 + (depth > 2 ? (depth - 2) * 10 : 0),
+  color: theme.palette.text.secondary,
+  ...(depth === 0 && {
+    color: theme.palette.text.primary,
+  }),
+  ...(subheader && {
+    marginTop: theme.spacing(1),
+    textTransform: 'uppercase',
+    letterSpacing: '.08rem',
+    fontWeight: theme.typography.fontWeightBold,
+    fontSize: theme.typography.pxToRem(11),
+    color: theme.palette.grey[600],
+  }),
+  ...(hasIcon && {
+    paddingLeft: 2,
+  }),
+  '&.app-drawer-active': {
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
     backgroundColor:
-      theme.palette.mode === 'dark'
-        ? alpha(theme.palette.primaryDark[700], 0.4)
-        : theme.palette.grey[50],
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
+    '&:hover': {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      },
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+      ),
+    },
   },
+  '& .MuiChip-root': {
+    marginTop: '2px',
+  },
+  ...(!subheader && {
+    '&:hover': {
+      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.primaryDark[700], 0.4)
+          : theme.palette.grey[50],
+    },
+  }),
   '&.Mui-focusVisible': {
     backgroundColor: theme.palette.action.focus,
   },
@@ -67,119 +116,28 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
     paddingTop: 3,
     paddingBottom: 3,
   },
+  '& .ItemButtonIcon': {
+    marginLeft: 'auto !important',
+    marginRight: '5px',
+  },
+  '&:hover .ItemButtonIcon': {
+    color: theme.palette.text.primary,
+  },
 }));
-
-const ItemLink = styled(Item, {
-  shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
-})(({ theme, hasIcon, depth }) => {
-  return {
-    fontSize: theme.typography.pxToRem(14),
-    color: theme.palette.text.secondary,
-    textDecoration: 'none',
-    '&.app-drawer-active': {
-      // color: theme.palette.primary.main,
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-        },
-      },
-      '&.Mui-focusVisible': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
-      },
-    },
-    '& .MuiChip-root': {
-      marginTop: '2px',
-    },
-    paddingLeft: 31 + (depth > 2 ? (depth - 2) * 10 : 0),
-    ...(hasIcon && {
-      paddingLeft: 2,
-    }),
-    ...(depth === 0 && {
-      fontSize: theme.typography.pxToRem(14),
-      color: theme.palette.text.primary,
-    }),
-  };
-});
 
 const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ open, theme }) => {
-  return {
-    fontSize: '1rem',
-    float: 'right',
-    color: theme.palette.primary.main,
-    transform: open && 'rotate(90deg)',
-  };
-});
-
-const ItemButton = styled(Item, {
-  shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
-})(({ depth, hasIcon, theme }) => {
-  let marginTop;
-  if (depth === 0) {
-    marginTop = 5;
-  } else if (depth > 1) {
-    marginTop = -4 * (depth - 3);
-  } else {
-    marginTop = 10;
-  }
-  return {
-    color: (() => {
-      if (depth >= 1) {
-        return theme.palette.grey[600];
-      }
-      return theme.palette.text.primary;
-    })(),
-    fontSize: theme.typography.pxToRem(depth === 0 ? 14 : 11),
-    textTransform: depth === 0 ? 'none' : 'uppercase',
-    letterSpacing: depth === 0 ? null : '.08rem',
-    fontWeight: depth === 0 ? theme.typography.fontWeightMedium : theme.typography.fontWeightBold,
-    marginBottom: depth === 0 ? '5px' : null,
-    marginTop,
-    '&:hover': {
-      backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
-      color: (() => {
-        if (depth === 0) {
-          return '';
-        }
-        return theme.palette.grey[600];
-      })(),
-      cursor: depth === 0 ? '' : 'text',
-    },
-    [`&:hover ${ItemButtonIcon}`]: {
-      color: theme.palette.text.primary,
-    },
-    paddingLeft: 31 + (depth > 1 ? (depth - 3) * -10 : 0),
-    ...(hasIcon && {
-      paddingLeft: 2,
-    }),
-    '& .KeyboardArrowRightRoundedIcon': {
-      marginLeft: 'auto',
-      marginRight: '5px',
-    },
-  };
-});
+})(({ open, theme }) => ({
+  fontSize: '1rem',
+  color: theme.palette.primary.main,
+  transform: open && 'rotate(90deg)',
+}));
 
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
-  ({ theme, depth }) => {
-    return {
-      padding: depth === 0 ? '0 10px' : '2px 0',
-      marginTop: depth === 0 ? theme.spacing(1) : undefined,
-      display: 'block',
-    };
-  },
+  ({ theme, depth }) => ({
+    display: 'block',
+    padding: depth === 0 ? theme.spacing(1, '10px', 0, '10px') : '2px 0',
+  }),
 );
 
 const LegacyChip = styled(function LegacyChip(props) {
@@ -187,13 +145,6 @@ const LegacyChip = styled(function LegacyChip(props) {
 })(
   sx({
     ml: 1,
-    '&:hover': {
-      bgcolor: (theme) =>
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.warning[900], 0.5)
-          : alpha(theme.palette.warning[100], 0.5),
-    },
-    '& .MuiChip-label': { px: 0.6 },
     fontSize: (theme) => theme.typography.pxToRem(10),
     fontWeight: 'semiBold',
     textTransform: 'uppercase',
@@ -210,26 +161,61 @@ const LegacyChip = styled(function LegacyChip(props) {
         : alpha(theme.palette.warning[100], 0.5),
     color: (theme) =>
       theme.palette.mode === 'dark' ? theme.palette.warning[300] : theme.palette.warning[700],
+    '&:hover': {
+      bgcolor: (theme) =>
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.warning[900], 0.5)
+          : alpha(theme.palette.warning[100], 0.5),
+    },
+    '& .MuiChip-label': {
+      px: 0.6,
+    },
   }),
 );
+
+function DeadLink(props) {
+  const { activeClassName, href, noLinkStyle, prefetch, ...other } = props;
+  return <div {...other} />;
+}
+
+DeadLink.propTypes = {
+  activeClassName: PropTypes.any,
+  href: PropTypes.any,
+  noLinkStyle: PropTypes.any,
+  prefetch: PropTypes.any,
+};
 
 export default function AppNavDrawerItem(props) {
   const {
     children,
     depth,
     href,
-    onClick,
-    openImmediately = false,
-    topLevel = false,
-    title,
-    linkProps,
     icon,
     legacy,
+    linkProps,
+    onClick,
+    openImmediately,
+    subheader,
+    title,
+    topLevel = false,
     ...other
   } = props;
+  const expandable = openImmediately != null;
   const [open, setOpen] = React.useState(openImmediately);
-  const handleClick = () => {
-    setOpen((oldOpen) => !oldOpen);
+  const handleClick = (event) => {
+    // Ignore the action if opening the link in a new tab
+    if (openLinkInNewTab(event)) {
+      return;
+    }
+
+    if (onClick) {
+      onClick(event);
+    }
+
+    if (expandable && !subheader) {
+      event.preventDefault();
+      setOpen((oldOpen) => !oldOpen);
+    }
   };
 
   const hasIcon = icon && iconsMap[icon];
@@ -244,64 +230,41 @@ export default function AppNavDrawerItem(props) {
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        py: 0.3,
+        py: '2px',
       }}
     >
       <IconComponent {...iconProps} />
     </Box>
   ) : null;
 
-  if (href) {
-    return (
-      <React.Fragment>
-        <StyledLi {...other} depth={depth}>
-          {/* Fix overloading with prefetch={false}, only prefetch on hover */}
-          <ItemLink
-            component={Link}
-            activeClassName="app-drawer-active"
-            href={href}
-            underline="none"
-            noLinkStyle
-            onClick={onClick}
-            depth={depth}
-            hasIcon={hasIcon}
-            prefetch={false}
-            {...linkProps}
-          >
-            {iconElement}
-            {title}
-            {legacy && <LegacyChip />}
-          </ItemLink>
-        </StyledLi>
-      </React.Fragment>
-    );
-  }
-
   return (
-    <React.Fragment>
-      <StyledLi {...other} depth={depth}>
-        <ItemButton
-          component={ButtonBase}
-          depth={depth}
-          hasIcon={hasIcon}
-          disableRipple
-          className={topLevel ? 'algolia-lvl0' : null}
-          onClick={handleClick}
-        >
-          {iconElement}
-          {title}
-          {legacy && <LegacyChip />}
-          {depth === 0 && <ItemButtonIcon open={open} className="KeyboardArrowRightRoundedIcon" />}
-        </ItemButton>
-        {depth === 0 ? (
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            {children}
-          </Collapse>
-        ) : (
-          children
-        )}
-      </StyledLi>
-    </React.Fragment>
+    <StyledLi {...other} depth={depth}>
+      {/* Fix overloading with prefetch={false}, only prefetch on hover */}
+      <Item
+        component={subheader ? DeadLink : Link}
+        depth={depth}
+        hasIcon={hasIcon}
+        href={href}
+        prefetch={false}
+        subheader={subheader}
+        activeClassName={expandable ? null : 'app-drawer-active'}
+        className={topLevel ? 'algolia-lvl0' : null}
+        onClick={handleClick}
+        {...linkProps}
+      >
+        {iconElement}
+        {title}
+        {legacy && <LegacyChip />}
+        {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
+      </Item>
+      {expandable ? (
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          {children}
+        </Collapse>
+      ) : (
+        children
+      )}
+    </StyledLi>
   );
 }
 
@@ -314,6 +277,7 @@ AppNavDrawerItem.propTypes = {
   linkProps: PropTypes.object,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
+  subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
 };

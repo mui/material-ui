@@ -404,6 +404,10 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   width: '100%',
 }));
 
+function formatNumber(value) {
+  return new Intl.NumberFormat('en-US').format(value);
+}
+
 const Input = styled(InputBase)({
   marginLeft: 8,
   flex: 1,
@@ -558,7 +562,9 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>{`${icons.length} matching results`}</Typography>
+        <Typography sx={{ mb: 1 }}>{`${formatNumber(
+          icons.length,
+        )} matching results`}</Typography>
         <Icons icons={icons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails

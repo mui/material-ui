@@ -7,7 +7,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const Root = styled('div')(({ theme }) => ({
-  margin: theme.spacing(1, 2, 2),
+  margin: theme.spacing(1, 2),
   '& img': {
     display: 'inline-block',
   },
