@@ -1,4 +1,4 @@
-# 从 v0.x 版本迁移到 v1 版本
+# Migration from v0.x to v1
 
 <p class="description">是的，v1 版本已经发布了！ 我们用了两年的努力达到了这个里程碑。</p>
 
