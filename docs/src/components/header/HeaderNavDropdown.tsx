@@ -46,7 +46,7 @@ const UList = styled('ul')({
 const PRODUCTS = [
   {
     name: 'MUI Core',
-    description: 'Foundational components for shipping features faster.',
+    description: 'Ready-to-use foundational components—free forever.',
     href: ROUTES.productCore,
   },
   {

@@ -202,7 +202,7 @@ function ProductDrawerButton(props) {
             role="menuitem"
             icon={<IconImage name="product-core" />}
             name="MUI Core"
-            description="Foundational components for shipping features faster."
+            description="Ready-to-use foundational components—free forever."
           />
           <LinksWrapper>
             <Link href={ROUTES.materialDocs} sx={{ my: -0.5 }}>
