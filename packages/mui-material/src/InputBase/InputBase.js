@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, elementTypeAcceptingRef } from '@mui/utils';
+import { elementTypeAcceptingRef, refType } from '@mui/utils';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import {
-  unstable_composeClasses as composeClasses,
   isHostComponent,
   TextareaAutosize,
+  unstable_composeClasses as composeClasses,
 } from '@mui/base';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -342,7 +342,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   useEnhancedEffect(() => {
     if (isControlled) {
-      checkDirty({ value });
+      checkDirty(inputRef.current ?? { value });
     }
   }, [value, checkDirty, isControlled]);
 
@@ -394,9 +394,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         );
       }
 
-      checkDirty({
-        value: element.value,
-      });
+      checkDirty(element);
     }
 
     if (inputPropsProp.onChange) {

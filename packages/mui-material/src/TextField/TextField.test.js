@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, fireEvent } from 'test/utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import TextField, { textFieldClasses as classes } from '@mui/material/TextField';
+import sinon from 'sinon';
 
 describe('<TextField />', () => {
   const { render } = createRenderer();
@@ -68,6 +69,40 @@ describe('<TextField />', () => {
         const { container } = render(<TextField label={label} variant="standard" />);
 
         expect(container.querySelector('label')).to.equal(null);
+      });
+    });
+
+    describe('input type number', () => {
+      let sandbox;
+      beforeEach('setup sandbox', () => {
+        sandbox = sinon.createSandbox();
+      });
+
+      afterEach(() => {
+        sandbox.restore();
+      });
+
+      it('should shrink label if invalid value - uncontrolled', () => {
+        // In the browsers (Safari, Chrome, and Firefox) the input value and input's displayed value are
+        // different when the input type is different from text, and is invalid.
+
+        const { container } = render(<TextField label={'Number'} type={'number'} />);
+
+        const input = container.querySelector('input');
+
+        // Simulates a badInput situation since the `render` here doesn't care about validity attribute.
+        // One can insert invalid inputs and the badInput is not properly set (like occurs in browsers
+        // like Safari, Chrome or Firefox), so an input mock is needed here.
+        const inputStub = sandbox.stub(input, 'validity');
+        inputStub.get(() => ({ badInput: true }));
+
+        expect(input.validity.badInput).to.equal(true);
+
+        fireEvent.change(input, { target: { value: '', ...input } });
+
+        // FIXME: Find a workaround to simulate badInput when the input is rendered
+        // const label = container.querySelector('label');
+        // expect(container.querySelector('label').className).to.include('MuiInputLabel-shrink');
       });
     });
   });
