@@ -1,4 +1,4 @@
-# 样式库的互通性
+# Style library interoperability
 
 <p class="description">虽然您可以使用 Material-UI 提供的基于 emotion 的样式解决方案来自定义您的程序，但也可以使用您喜欢的其他方案（从普通的 CSS 到 styled-components）。</p>
 
