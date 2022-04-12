@@ -6,6 +6,8 @@ import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import Close from '@mui/icons-material/Close';
+import Done from '@mui/icons-material/Done';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -81,6 +83,23 @@ export default function JoyCheckbox() {
               <Checkbox indeterminate />
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                 indeterminate
+              </Typography>
+            </Box>
+            <Box>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <Checkbox uncheckedIcon={<Close />} />
+                <Checkbox
+                  uncheckedIcon={<Done />}
+                  sx={{
+                    '&:not(.Mui-checked)': {
+                      '& svg': { opacity: 0 },
+                      '&:hover svg': { opacity: 1 },
+                    },
+                  }}
+                />
+              </Box>
+              <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
+                unchecked
               </Typography>
             </Box>
           </Box>

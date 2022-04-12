@@ -92,6 +92,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const {
     checked: checkedProp,
+    uncheckedIcon,
     checkedIcon = defaultCheckedIcon,
     className,
     component,
@@ -164,6 +165,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       />
       {indeterminate && !checked && indeterminateIcon}
       {checked && checkedIcon}
+      {!checked && !indeterminate && uncheckedIcon}
     </Root>
   );
 }) as OverridableComponent<CheckboxTypeMap>;
