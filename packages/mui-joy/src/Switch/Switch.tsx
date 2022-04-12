@@ -9,7 +9,7 @@ import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
 
 const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) => {
-  const { classes, checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
+  const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
 
   const slots = {
     root: [
@@ -23,10 +23,11 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
     ],
     thumb: ['thumb', checked && 'checked'],
     track: ['track', checked && 'checked'],
+    action: ['action', focusVisible && 'focusVisible'],
     input: ['input'],
   };
 
-  return composeClasses(slots, getSwitchUtilityClass, classes);
+  return composeClasses(slots, getSwitchUtilityClass, {});
 };
 
 const switchColorVariables =
@@ -55,65 +56,75 @@ const SwitchRoot = styled('span', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
-  return [
-    {
-      ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
-      '--Switch-track-radius': theme.vars.radius.lg,
-      '--Switch-thumb-shadow':
-        ownerState.variant === 'light' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
-      ...(ownerState.size === 'sm' && {
-        '--Switch-track-width': '40px',
-        '--Switch-track-height': '20px',
-        '--Switch-thumb-size': '12px',
-        '--Switch-decorator-paddingX': '4px',
-        fontSize: theme.vars.fontSize.sm,
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Switch-track-width': '48px',
-        '--Switch-track-height': '24px',
-        '--Switch-thumb-size': '16px',
-        '--Switch-decorator-paddingX': '8px',
-        fontSize: theme.vars.fontSize.md,
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Switch-track-width': '64px',
-        '--Switch-track-height': '32px',
-        '--Switch-thumb-size': '24px',
-        '--Switch-decorator-paddingX': '12px',
-      }),
-      '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
-      '--Switch-thumb-width': 'var(--Switch-thumb-size)',
-      '--Switch-thumb-offset':
-        'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
-      ...getColorVariables(),
-      '&:hover': {
-        ...getColorVariables({ state: 'Hover' }),
-      },
-      [`&.${switchClasses.checked}`]: {
-        ...getColorVariables({ checked: true }),
-        '&:hover': {
-          ...getColorVariables({ checked: true, state: 'Hover' }),
-        },
-      },
-      [`&.${switchClasses.disabled}`]: {
-        pointerEvents: 'none',
-        color: theme.vars.palette.text.tertiary,
-        ...getColorVariables({ state: 'Disabled', checked: ownerState.checked }),
-      },
-      display: 'inline-flex',
-      alignItems: 'center',
-      alignSelf: 'center',
-      fontFamily: theme.vars.fontFamily.body,
-      borderRadius: 'var(--Switch-track-radius)',
-      position: 'relative',
-      padding:
-        'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
-      backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
-      border: 'none',
+  return {
+    ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
+    '--Switch-track-radius': theme.vars.radius.lg,
+    '--Switch-thumb-shadow':
+      ownerState.variant === 'light' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
+    ...(ownerState.size === 'sm' && {
+      '--Switch-track-width': '40px',
+      '--Switch-track-height': '20px',
+      '--Switch-thumb-size': '12px',
+      '--Switch-decorator-paddingX': '4px',
+      fontSize: theme.vars.fontSize.sm,
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Switch-track-width': '48px',
+      '--Switch-track-height': '24px',
+      '--Switch-thumb-size': '16px',
+      '--Switch-decorator-paddingX': '8px',
+      fontSize: theme.vars.fontSize.md,
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Switch-track-width': '64px',
+      '--Switch-track-height': '32px',
+      '--Switch-thumb-size': '24px',
+      '--Switch-decorator-paddingX': '12px',
+    }),
+    '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
+    '--Switch-thumb-width': 'var(--Switch-thumb-size)',
+    '--Switch-thumb-offset':
+      'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
+    ...getColorVariables(),
+    '&:hover': {
+      ...getColorVariables({ state: 'Hover' }),
     },
-    theme.focus.default,
-  ];
+    [`&.${switchClasses.checked}`]: {
+      ...getColorVariables({ checked: true }),
+      '&:hover': {
+        ...getColorVariables({ checked: true, state: 'Hover' }),
+      },
+    },
+    [`&.${switchClasses.disabled}`]: {
+      pointerEvents: 'none',
+      color: theme.vars.palette.text.tertiary,
+      ...getColorVariables({ state: 'Disabled', checked: ownerState.checked }),
+    },
+    display: 'inline-flex',
+    alignItems: 'center',
+    alignSelf: 'center',
+    fontFamily: theme.vars.fontFamily.body,
+    position: 'relative',
+    padding:
+      'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
+    backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
+    border: 'none',
+  };
 });
+
+const SwitchAction = styled('div', {
+  name: 'MuiSwitch',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})<{ ownerState: SwitchProps }>(({ theme }) => ({
+  borderRadius: 'var(--Switch-track-radius)',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  ...theme.focus.default,
+}));
 
 const SwitchInput = styled('input', {
   name: 'MuiSwitch',
@@ -125,10 +136,6 @@ const SwitchInput = styled('input', {
   width: '100%',
   opacity: 0,
   position: 'absolute',
-  top: 0,
-  left: 0,
-  bottom: 0,
-  right: 0,
   cursor: 'pointer',
 });
 
@@ -264,10 +271,11 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
       {startDecorator && (
         <SwitchStartDecorator
           aria-hidden="true"
-          ownerState={ownerState}
           {...componentsProps.startDecorator}
+          ownerState={ownerState}
+          className={clsx(classes.input, componentsProps.startDecorator?.className)}
         >
-          {startDecorator}
+          {typeof startDecorator === 'function' ? startDecorator(ownerState) : startDecorator}
         </SwitchStartDecorator>
       )}
       <SwitchTrack
@@ -282,19 +290,26 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
           className={clsx(classes.thumb, componentsProps.thumb?.className)}
         />
       </SwitchTrack>
-      <SwitchInput
-        {...componentsProps.input}
+      <SwitchAction
+        {...componentsProps.action}
         ownerState={ownerState}
-        {...getInputProps()}
-        className={clsx(classes.input, componentsProps.input?.className)}
-      />
+        className={clsx(classes.action, componentsProps.action?.className)}
+      >
+        <SwitchInput
+          {...componentsProps.input}
+          ownerState={ownerState}
+          {...getInputProps()}
+          className={clsx(classes.input, componentsProps.input?.className)}
+        />
+      </SwitchAction>
       {endDecorator && (
         <SwitchEndDecorator
           aria-hidden="false"
+          {...componentsProps.endDecorator}
           ownerState={ownerState}
-          {...componentsProps.startDecorator}
+          className={clsx(classes.input, componentsProps.endDecorator?.className)}
         >
-          {endDecorator}
+          {typeof endDecorator === 'function' ? endDecorator(ownerState) : endDecorator}
         </SwitchEndDecorator>
       )}
     </SwitchRoot>
