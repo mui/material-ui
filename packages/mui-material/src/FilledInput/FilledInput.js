@@ -68,7 +68,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
     },
     ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
+        borderBottom: `2px solid ${theme.palette[ownerState.color]?.main || 'primary'}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
