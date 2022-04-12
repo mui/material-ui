@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
@@ -24,7 +24,10 @@ const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
+    checkbox: ['checkbox', checked && 'checked', disabled && 'disabled'],
+    action: ['action', focusVisible && 'focusVisible'],
     input: ['input'],
+    label: ['label'],
   };
 
   return composeClasses(slots, getCheckboxUtilityClass, {});
@@ -34,37 +37,69 @@ const CheckboxRoot = styled('span', {
   name: 'MuiCheckbox',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => {
-  return [
-    {
-      ...(ownerState.size === 'sm' && {
-        '--Checkbox-size': '1rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Checkbox-size': '1.25rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Checkbox-size': '1.5rem',
-      }),
-      '--Icon-fontSize': 'var(--Checkbox-size)',
-      borderRadius: theme.vars.radius.xs,
-      boxSizing: 'border-box',
-      width: 'var(--Checkbox-size)',
-      height: 'var(--Checkbox-size)',
-      position: 'relative',
-      display: 'inline-flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      verticalAlign: 'middle',
-      flexShrink: 0,
-    },
-    theme.focus.default,
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-  ];
-});
+})<{ ownerState: CheckboxProps }>(({ ownerState, theme }) => ({
+  '--Icon-fontSize': 'var(--Checkbox-size)',
+  ...(ownerState.size === 'sm' && {
+    '--Checkbox-size': '1rem',
+    '--Checkbox-gap': '0.375rem',
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Checkbox-size': '1.25rem',
+    '--Checkbox-gap': '0.5rem',
+    fontSize: theme.vars.fontSize.md,
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Checkbox-size': '1.5rem',
+    '--Checkbox-gap': '0.625rem',
+    fontSize: theme.vars.fontSize.lg,
+  }),
+  position: 'relative',
+  display: 'inline-flex',
+  justifyContent: 'center',
+  verticalAlign: 'middle',
+  fontFamily: theme.vars.fontFamily.body,
+  lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
+  color: theme.vars.palette.text.primary,
+  '&.Mui-disabled': {
+    color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+  },
+}));
+
+const CheckboxCheckbox = styled('span', {
+  name: 'MuiCheckbox',
+  slot: 'Checkbox',
+  overridesResolver: (props, styles) => styles.checkbox,
+})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
+  {
+    boxSizing: 'border-box',
+    borderRadius: theme.vars.radius.xs,
+    width: 'var(--Checkbox-size)',
+    height: 'var(--Checkbox-size)',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexShrink: 0,
+  },
+  theme.variants[ownerState.variant!]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+]);
+
+const CheckboxAction = styled('span', {
+  name: 'MuiCheckbox',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})<{ ownerState: CheckboxProps }>(({ theme }) => ({
+  borderRadius: theme.vars.radius.xs,
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  ...theme.focus.default,
+}));
 
 const CheckboxInput = styled('input', {
   name: 'MuiCheckbox',
@@ -72,14 +107,20 @@ const CheckboxInput = styled('input', {
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: CheckboxProps }>(() => ({
   margin: 0,
-  width: 'var(--Checkbox-size)',
-  height: 'var(--Checkbox-size)',
   opacity: 0,
   position: 'absolute',
-  top: 'calc(-1 * var(--variant-outlinedBorderWidth, 0px))',
-  left: 'calc(-1 * var(--variant-outlinedBorderWidth, 0px))',
+  width: '100%',
+  height: '100%',
   cursor: 'pointer',
 }));
+
+const CheckboxLabel = styled('label', {
+  name: 'MuiCheckbox',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})<{ ownerState: CheckboxProps }>({
+  marginLeft: 'var(--Checkbox-gap)',
+});
 
 const defaultCheckedIcon = <CheckIcon />;
 const defaultIndeterminateIcon = <IndeterminateIcon />;
@@ -94,13 +135,13 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     checked: checkedProp,
     uncheckedIcon,
     checkedIcon = defaultCheckedIcon,
+    label,
     className,
     component,
-    components = {},
     componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
-    id,
+    id: idOverride,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
     name,
@@ -114,6 +155,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     size = 'md',
     ...otherProps
   } = props;
+  const id = useId(idOverride);
 
   const useCheckboxProps = {
     checked: checkedProp,
@@ -145,28 +187,48 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = components.Root ?? CheckboxRoot;
-  const Input = components.Input ?? CheckboxInput;
-
   return (
-    <Root
+    <CheckboxRoot
       ref={ref}
       {...otherProps}
       as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
     >
-      <Input
+      <CheckboxCheckbox
+        {...componentsProps?.checkbox}
         ownerState={ownerState}
-        {...getInputProps(componentsProps.input)}
-        id={id}
-        name={name}
-        className={clsx(classes.input, componentsProps.input?.className)}
-      />
-      {indeterminate && !checked && indeterminateIcon}
-      {checked && checkedIcon}
-      {!checked && !indeterminate && uncheckedIcon}
-    </Root>
+        className={clsx(classes.checkbox, componentsProps.checkbox?.className)}
+      >
+        <CheckboxAction
+          {...componentsProps?.action}
+          ownerState={ownerState}
+          className={clsx(classes.action, componentsProps.action?.className)}
+        >
+          <CheckboxInput
+            {...componentsProps?.input}
+            ownerState={ownerState}
+            {...getInputProps(componentsProps.input)}
+            id={id}
+            name={name}
+            className={clsx(classes.input, componentsProps.input?.className)}
+          />
+        </CheckboxAction>
+        {indeterminate && !checked && indeterminateIcon}
+        {checked && checkedIcon}
+        {!checked && !indeterminate && uncheckedIcon}
+      </CheckboxCheckbox>
+      {label && (
+        <CheckboxLabel
+          {...componentsProps?.label}
+          htmlFor={id}
+          ownerState={ownerState}
+          className={clsx(classes.label, componentsProps.label?.className)}
+        >
+          {label}
+        </CheckboxLabel>
+      )}
+    </CheckboxRoot>
   );
 }) as OverridableComponent<CheckboxTypeMap>;
 
