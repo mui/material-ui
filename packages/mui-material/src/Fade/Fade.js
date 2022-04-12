@@ -16,7 +16,7 @@ const styles = {
 };
 
 /**
- * The Fade transition is used by the [Modal](/components/modal/) component.
+ * The Fade transition is used by the [Modal](/material-ui/react-modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Fade = React.forwardRef(function Fade(props, ref) {

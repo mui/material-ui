@@ -1,6 +1,6 @@
 ---
 product: base
-title: React Input unstyled component and hook
+title: Unstyled React Input component and hook
 components: InputUnstyled
 githubLabel: 'component: input'
 packageName: '@mui/base'
@@ -46,7 +46,7 @@ To set minimum and maximum sizes, add the 'minRows`and`maxRows` props.
 
 {{"demo": "InputMultilineAutosize.js"}}
 
-## useInput hook
+## The useInput hook
 
 ```js
 import { useInput } from '@mui/base/InputUnstyled';

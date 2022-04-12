@@ -24,7 +24,8 @@ const pages = [
   },
   {
     pathname: '/system/styles',
-    title: 'Styles (legacy)',
+    title: 'Styles',
+    legacy: true,
     icon: 'StyleIcon',
     children: [
       { pathname: '/system/styles/basics' },

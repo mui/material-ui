@@ -34,6 +34,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     componentsProps = {},
     disabled,
     value,
+    label,
     ...other
   } = props;
 
@@ -46,7 +47,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const selectOption = {
     value,
-    label: children,
+    label: label || children,
     disabled,
   };
 
@@ -136,6 +137,11 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * A text representation of the option's content.
+   * Used for keyboard text navigation matching.
+   */
+  label: PropTypes.string,
   /**
    * The value of the option.
    */

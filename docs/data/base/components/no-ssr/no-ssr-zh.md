@@ -2,6 +2,7 @@
 product: material-ui
 title: React No SSR（非服务端渲染）的组件
 components: NoSsr
+packageName: '@mui/base'
 ---
 
 # 非服务端渲染（SSR）
@@ -29,13 +30,3 @@ components: NoSsr
 但你也可以使用它来推迟客户端自身的渲染。 您可以使用 `defer` 属性来**等待一个屏幕帧**后，再渲染子组件。 React 会做 [2 次提交](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) 而不是 1 次。
 
 {{"demo": "FrameDeferring.js"}}
-
-## Unstyled
-
-- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
-
-```js
-import NoSsr from '@mui/base/NoSsr';
-```

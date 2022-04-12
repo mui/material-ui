@@ -123,20 +123,20 @@ TextField.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * Props applied to the [`InputLabel`](/api/input-label/) element.
+   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
    */
   InputLabelProps: PropTypes.object,
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
    */
   InputProps: PropTypes.object,
   noBorder: PropTypes.bool,
   /**
-   * Props applied to the [`Select`](/api/select/) element.
+   * Props applied to the [`Select`](/material-ui/api/select/) element.
    */
   SelectProps: PropTypes.object,
   size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
