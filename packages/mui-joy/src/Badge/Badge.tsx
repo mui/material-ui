@@ -43,7 +43,7 @@ const BadgeRoot = styled('span', {
   flexShrink: 0,
 }));
 
-const BadgeBadge = styled('button', {
+const BadgeBadge = styled('span', {
   name: 'MuiBadge',
   slot: 'Badge',
   overridesResolver: (props, styles) => styles.badge,
@@ -54,21 +54,23 @@ const BadgeBadge = styled('button', {
         '--Badge-minWidth': '1rem',
         '--Badge-height': '1rem',
         '--Badge-borderRadius': '0.5rem',
+        '--Badge-padding': '0.333rem',
         '--Badge-fontSize': theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Badge-minWidth': '1.25rem',
         '--Badge-height': '1.25rem',
         '--Badge-borderRadius': '0.625rem',
+        '--Badge-padding': '0.416rem',
         '--Badge-fontSize': theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Badge-minWidth': '1.5rem',
         '--Badge-height': '1.5rem',
         '--Badge-borderRadius': '0.75rem',
+        '--Badge-padding': '0.5rem',
         '--Badge-fontSize': theme.vars.fontSize.lg,
       }),
-      border: 0, // Remove `button` border
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -80,6 +82,7 @@ const BadgeBadge = styled('button', {
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.sm,
       lineHeight: 1,
+      padding: '0 var(--Badge-padding)',
       fontSize: 'var(--Badge-fontSize)',
       minWidth: 'var(--Badge-minWidth)',
       height: 'var(--Badge-height)',
@@ -179,9 +182,6 @@ const BadgeBadge = styled('button', {
       }),
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   ];
 });
 
