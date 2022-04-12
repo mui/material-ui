@@ -5,7 +5,7 @@ components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
 ---
 
-# Click away listener 它处点击监听器
+# Click-away listener
 
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
