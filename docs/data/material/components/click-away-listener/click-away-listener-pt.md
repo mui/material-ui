@@ -5,7 +5,7 @@ components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
 ---
 
-# Observador de Clique (ClickAwayListener)
+# Click-away listener
 
 <p class="description">Detecta se um evento de clique ocorreu fora de um elemento. Ele ouve cliques que ocorrem em algum lugar no documento.</p>
 
