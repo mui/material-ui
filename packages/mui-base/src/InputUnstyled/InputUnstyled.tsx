@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { OverridableComponent } from '@mui/types';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import appendOwnerState from '../utils/appendOwnerState';
 import isHostComponent from '../utils/isHostComponent';
+import resolveComponentProps from '../utils/resolveComponentProps';
 import classes from './inputUnstyledClasses';
 import {
   InputUnstyledInputSlotProps,
@@ -75,7 +77,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     disabled,
     defaultValue,
     error,
-    inputRef: componentsProps.input?.ref,
     onBlur,
     onClick,
     onChange,
@@ -125,25 +126,32 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   };
 
   const Root = component ?? components.Root ?? 'div';
+  const rootComponentsProps = resolveComponentProps(componentsProps.root, ownerState);
   const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = appendOwnerState(
     Root,
     {
       ...getRootProps({ ...other, ...componentsProps.root }),
-      className: clsx(classes.root, rootStateClasses, className, componentsProps.root?.className),
+      className: clsx(classes.root, rootStateClasses, className, rootComponentsProps?.className),
     },
     ownerState,
   );
 
+  // TODO: make sure getRootProps is typed properly, then uncomment:
+  // rootProps.ref = useForkRef(rootProps.ref, rootComponentsProps?.ref);
+
   let Input = components.Input ?? 'input';
+  const inputComponentsProps = resolveComponentProps(componentsProps.input, ownerState);
 
   let inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = appendOwnerState(
     Input,
     {
       ...getInputProps({ ...componentsProps.input, ...propsToForward }),
-      className: clsx(classes.input, inputStateClasses, componentsProps.input?.className),
+      className: clsx(classes.input, inputStateClasses, inputComponentsProps?.className),
     },
     ownerState,
   );
+
+  inputProps.ref = useForkRef(inputProps.ref, inputComponentsProps?.ref);
 
   if (multiline) {
     const hasHostTextarea = isHostComponent(components.Textarea ?? 'textarea');
@@ -233,8 +241,8 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default value. Use when the component is not controlled.

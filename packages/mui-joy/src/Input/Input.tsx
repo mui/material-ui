@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { appendOwnerState } from '@mui/base/utils';
@@ -218,7 +218,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     onClick,
     onChange,
     onFocus,
-    inputRef,
     required,
     value,
   });
@@ -274,6 +273,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ownerState,
   );
 
+  // TODO: sync `ref` and `componentsProps.root.ref` with the ref returned by `getRootProps`, as below
+
   const InputComponent = components.Input ?? InputInput;
   const inputProps = appendOwnerState(
     InputComponent,
@@ -283,6 +284,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     },
     ownerState,
   );
+
+  inputProps.ref = useForkRef(inputProps.ref, inputRef);
 
   return (
     <Root ref={ref} {...rootProps}>
