@@ -1,4 +1,4 @@
-# Interoperabilidade da Biblioteca de Estilo
+# Style library interoperability
 
 <p class="description">Enquanto você pode usar a solução de estilo baseada em emotion fornecida pelo Material-UI para estilizar sua aplicação, você também pode usar o que você já conhece e ama (desde CSS simples a styled-components).</p>
 
