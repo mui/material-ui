@@ -1,0 +1,16 @@
+<SnackbarsProvider
+  ref={snackbarRef}
+  autoHideDuration={4000}
+  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  content={(key) => (
+    <Alert
+      onClose={snackbarRef.current!.closeSnackbar(key)}
+      severity="warning"
+      sx={{ width: '100%' }}
+    >
+      This is a warning message!
+    </Alert>
+  )}
+>
+  <MyApp />
+</SnackbarsProvider>

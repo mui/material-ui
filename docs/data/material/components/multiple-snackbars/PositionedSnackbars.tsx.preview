@@ -1,0 +1,3 @@
+<SnackbarsProvider limit={6} autoHideDuration={4000}>
+  <MyApp />
+</SnackbarsProvider>

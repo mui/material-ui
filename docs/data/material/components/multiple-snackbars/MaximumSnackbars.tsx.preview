@@ -1,0 +1,3 @@
+<SnackbarsProvider limit={snackbarLimit}>
+  <MyApp snackbarLimit={snackbarLimit} setSnackbarLimit={setSnackbarLimit} />
+</SnackbarsProvider>

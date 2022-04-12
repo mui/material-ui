@@ -13,7 +13,7 @@ export interface ShowSnackbarProps extends Omit<SnackbarProps, 'open' | 'childre
 }
 
 export interface SnackbarsContextProps {
-  showSnackbar(props: ShowSnackbarProps): void;
+  showSnackbar(props?: ShowSnackbarProps): void;
   closeSnackbar(key: string): () => void;
 }
 

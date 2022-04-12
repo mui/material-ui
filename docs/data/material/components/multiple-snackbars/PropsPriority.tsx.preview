@@ -1,0 +1,10 @@
+<SnackbarsProvider
+  autoHideDuration={5000}
+  TransitionComponent={Fade}
+  anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'left',
+  }}
+>
+  <MyApp />
+</SnackbarsProvider>
