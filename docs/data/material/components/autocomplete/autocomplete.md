@@ -85,8 +85,6 @@ The prop is designed to cover the primary use case of a **search input** with su
 
 > ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.  
 > The value created by typing into the textbox is always a string, regardless of the type of the options.
->
-> If you use the `getOptionLabel` prop in free solo mode, you must make sure it accepts both the option type and a string.
 
 ### Creatable
 
