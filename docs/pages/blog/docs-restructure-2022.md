@@ -19,8 +19,8 @@ We currently offer two main product lines:
   - _MUI Base_ —unstyled components for implementing your own design system
   - _MUI System_ —CSS utilities for quickly laying out design systems
 - **MUI X**—a collection of advanced components for complex use cases, including:
-  - _Data Grid_ —fast, feature-rich, extendable React data table
-  - _Date and Time Pickers_ —interface control components for selecting dates and times
+  - _Data grid_ —fast, feature-rich, extendable React data table
+  - _Date and Time pickers_ —interface control components for selecting dates and times
 
 ## What has changed?
 
@@ -36,8 +36,8 @@ As for the URLs, this is how they look now:
   - MUI Base: [https://mui.com/base/](https://mui.com/base/getting-started/installation/)
   - MUI System: [https://mui.com/system/](https://mui.com/system/basics/)
 - MUI X:
-  - Data Grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
-  - Date and Time Pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
+  - Data grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
+  - Date and Time pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
 
 > 📖 The date and time pickers have been promoted from the lab (`@mui/lab`) to MUI X—still available under the MIT license. To learn more, check out the [blog post about the newest MUI X components](/blog/lab-date-pickers-to-mui-x/).
 
