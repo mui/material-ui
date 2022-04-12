@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
@@ -11,9 +12,15 @@ import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
-  const { sticky, nested } = ownerState;
+  const { sticky, nested, variant, color } = ownerState;
   const slots = {
-    root: ['root', nested && 'nested', sticky && 'sticky'],
+    root: [
+      'root',
+      nested && 'nested',
+      sticky && 'sticky',
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
     startAction: ['startAction'],
     endAction: ['endAction'],
   };
@@ -56,6 +63,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
       '--internal-endActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
     }),
     boxSizing: 'border-box',
+    borderRadius: 'var(--List-item-radius)',
     display: 'flex',
     position: 'relative',
     padding: 'var(--List-item-paddingY)',
@@ -84,6 +92,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
           marginTop: 'var(--List-gap)',
         },
   },
+  theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
 
 const ListItemStartAction = styled('div', {
@@ -124,6 +133,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     children,
     nested = false,
     sticky = false,
+    variant = 'text',
+    color = 'neutral',
     startAction,
     endAction,
     ...other
@@ -134,6 +145,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     startAction,
     endAction,
     row,
+    variant,
+    color,
     ...props,
   };
 
@@ -179,6 +192,11 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -201,6 +219,11 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   sticky: PropTypes.bool,
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;
 
 export default ListItem;
