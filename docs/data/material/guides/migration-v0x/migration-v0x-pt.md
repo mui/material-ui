@@ -1,4 +1,4 @@
-# Migrando da v0.x para v1
+# Migration from v0.x to v1
 
 <p class="description">Sim, v1 foi lançada! Tire proveito de 2 anos de esforço.</p>
 
