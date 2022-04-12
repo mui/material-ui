@@ -227,5 +227,35 @@ describe('style', () => {
         backgroundColor: 'var(--token)',
       });
     });
+
+    it('should use theme value if the var does not exist', () => {
+      const opacityStyle = style({
+        prop: 'opacity',
+        themeKey: 'opacity',
+      });
+      const output = opacityStyle({
+        opacity: 'hover',
+        theme: {
+          palette: {
+            primary: {
+              main: '#ff5252',
+            },
+          },
+          opacity: {
+            hover: 0.5,
+          },
+          vars: {
+            palette: {
+              primary: {
+                main: 'var(--token)',
+              },
+            },
+          },
+        },
+      });
+      expect(output).to.deep.equal({
+        opacity: 0.5,
+      });
+    });
   });
 });
