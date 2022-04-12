@@ -4,7 +4,7 @@ import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export type CheckboxSlot = 'root' | 'input';
+export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
 
 export interface CheckboxPropsVariantOverrides {}
 
@@ -30,21 +30,15 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       component?: React.ElementType;
       /**
-       * The components used for each slot inside the InputBase.
-       * Either a string to use a HTML element or a component.
-       * @default {}
-       */
-      components?: {
-        Root?: React.ElementType;
-        Input?: React.ElementType;
-      };
-      /**
        * The props used for each slot inside the Input.
        * @default {}
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'span'>;
+        action?: React.ComponentPropsWithRef<'span'>;
+        checkbox?: React.ComponentPropsWithRef<'span'>;
         input?: React.ComponentPropsWithRef<'input'>;
+        label?: React.ComponentPropsWithRef<'label'>;
       };
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
@@ -67,6 +61,10 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * @default <IndeterminateCheckBoxIcon />
        */
       indeterminateIcon?: React.ReactNode;
+      /**
+       * The label element next to the checkbox.
+       */
+      label?: React.ReactNode;
       /**
        * The `name` attribute of the input.
        */

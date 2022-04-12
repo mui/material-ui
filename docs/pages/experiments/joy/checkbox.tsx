@@ -2,6 +2,8 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
 import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
@@ -102,6 +104,33 @@ export default function JoyCheckbox() {
                 unchecked
               </Typography>
             </Box>
+            <Box>
+              <Typography id="sandwich-group" sx={{ color: 'primary.500', mb: 1 }}>
+                Sandwich Condiments
+              </Typography>
+              <Box role="group" aria-labelledby="sandwich-group">
+                <List size="sm">
+                  <ListItem>
+                    <Checkbox label="Label" size="lg" />
+                  </ListItem>
+                  <ListItem>
+                    <Checkbox label="Label" />
+                  </ListItem>
+                  <ListItem>
+                    <Checkbox label="Label" size="sm" disabled />
+                  </ListItem>
+                </List>
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={{ maxWidth: 300 }}>
+            <Checkbox
+              label={
+                <React.Fragment>
+                  By clicking this checkbox, you accept our terms and agreements.
+                </React.Fragment>
+              }
+            />
           </Box>
         </Box>
       </Box>
