@@ -1,8 +1,9 @@
 import Container from './Container';
-import styled from './styled';
+import { CreateMUIStyled } from './createStyled';
+import { Theme as DefaultTheme } from './createTheme';
 
-export default function createContainer(options?: {
+export default function createContainer<Theme extends object = DefaultTheme>(options?: {
   defaultTheme: object;
-  styled: typeof styled;
+  styled: CreateMUIStyled<Theme>;
   getContainerUtilityClass: (slot: string) => string;
 }): typeof Container;

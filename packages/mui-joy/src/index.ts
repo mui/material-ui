@@ -57,3 +57,9 @@ export * from './FormHelperText';
 
 export { default as TextField } from './TextField';
 export * from './TextField';
+
+export { default as Box } from './Box';
+export * from './Box';
+
+export { default as Container } from './Container';
+export * from './Container';
