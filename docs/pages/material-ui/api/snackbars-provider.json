@@ -12,7 +12,7 @@
     "ClickAwayListenerProps": { "type": { "name": "object" } },
     "content": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
     "ContentProps": { "type": { "name": "object" } },
-    "limit": { "type": { "name": "number" }, "default": "5" },
+    "limit": { "type": { "name": "number" }, "default": "3" },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "transitionDuration": {
       "type": {
