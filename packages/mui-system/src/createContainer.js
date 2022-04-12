@@ -4,9 +4,11 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from './composeClasses';
 import useThemeProps from './useThemeProps';
-import useTheme from './useTheme';
+import createTheme from './createTheme';
 import systemStyled from './styled';
 import { getContainerUtilityClass as defaultGetContainerUtilityClasses } from './Container/containerClasses';
+
+const systemDefaultTheme = createTheme();
 
 const useUtilityClasses = (ownerState, getContainerUtilityClass) => {
   const { classes, fixed, disableGutters, maxWidth } = ownerState;
@@ -25,7 +27,7 @@ const useUtilityClasses = (ownerState, getContainerUtilityClass) => {
 
 export default function createContainer(options = {}) {
   const {
-    defaultTheme,
+    defaultTheme = systemDefaultTheme,
     // This will allow adding custom styled fn (for example for custom sx style function)
     styled = systemStyled,
     getContainerUtilityClass = defaultGetContainerUtilityClasses,
@@ -88,7 +90,6 @@ export default function createContainer(options = {}) {
   );
 
   const Container = React.forwardRef(function Container(inProps, ref) {
-    const theme = useTheme(defaultTheme);
     const props = useThemeProps({ props: inProps, name: 'MuiContainer', defaultTheme });
     const {
       className,
@@ -116,7 +117,6 @@ export default function createContainer(options = {}) {
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
-        theme={theme}
         {...other}
       />
     );
