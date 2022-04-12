@@ -6,7 +6,7 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline
 
-<p class="description">Material-UI oferece um componente CSS Base a fim de inciar uma elegante, consistente e simples base para construção de aplicativos.</p>
+<p class="description">Material UI oferece um componente CSS Base a fim de inciar uma elegante, consistente e simples base para construção de aplicativos.</p>
 
 [A paleta](/system/palette/) com funções de estilo.
 
@@ -20,17 +20,17 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp() {
   return (
-    <React.Fragment>
+    <React. Fragment>
       <CssBaseline />
       {/* O resto da sua aplicação */}
-    </React.Fragment>
+    </React. Fragment>
   );
 }
 ```
 
 ## Escopando componentes filhos
 
-No entanto, você pode estar migrando progressivamente um site para Material-UI, usar um reset global pode não ser uma opção. É possível aplicar a baseline apenas aos filhos usando o componente `ScopedCssBaseline`.
+No entanto, você pode estar migrando progressivamente um site para Material UI, usar um reset global pode não ser uma opção. É possível aplicar a baseline apenas aos filhos usando o componente `ScopedCssBaseline`.
 
 ```jsx
 import * as React from 'react';
@@ -56,7 +56,7 @@ export default function MyApp() {
 Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrões para toda a página. Mais especificamente:
 
 - A margem é removida em todos navegadores.
-- A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
+- A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/material-ui/customization/default-theme/?expand-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
 - If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`.
 
 ### Leiaute
@@ -100,11 +100,11 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 
 ### Typography
 
-- Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/customization/typography/#typography-html-font-size).
+- Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/material-ui/customization/typography/#typography-html-font-size).
 - Define o estilo `theme.typography.body1` no elemento `<body>`.
 - Define o font-weight para `theme.typography.fontWeightBold` em elementos `<b>` e `<strong>`.
 - Uma customização da suavização da fonte (font-smoothing) é ativada para melhor exibição da fonte Roboto.
 
 ## Customização
 
-Vá até a seção de [customização global](/customization/how-to-customize/#5-global-css-override) da documentação para alterar o comportamento desses componentes.
+Vá até a seção de [customização global](/material-ui/customization/how-to-customize/#5-global-css-override) da documentação para alterar o comportamento desses componentes.

@@ -9,7 +9,7 @@
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Input.",
-    "ContainerComponent": "The container component used when a <code>ListItemSecondaryAction</code> is the last child.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+    "ContainerComponent": "The container component used when a <code>ListItemSecondaryAction</code> is the last child.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "ContainerProps": "Props applied to the container component if used.",
     "dense": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component.",
     "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
