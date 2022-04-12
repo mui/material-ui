@@ -122,7 +122,7 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 
 If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits and the maintainers of the project can assist.
 
-Lastly, if your pull request is for resolving a certain problem for which there is an open issue, make sure to link the PR to that issue.
+If your pull request addresses an open issue, make sure to link the PR to that issue.
 Use any [supported GitHub keyword](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in the PR description to automatically link them.
 This makes it easier to understand where the PR is coming from and also speeds things up as the issue gets closed when the PR is merged.
 
