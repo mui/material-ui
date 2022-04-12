@@ -1,4 +1,4 @@
-# API 的设计方法
+# API design approach
 
 <p class="description">我们在如何使用 Material-UI 方面学到了很多相关的知识，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
 
