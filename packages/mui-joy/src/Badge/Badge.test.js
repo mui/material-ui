@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { BadgeUnstyled } from '@mui/base';
 
 function findBadge(container) {
-  return container.firstChild.querySelector('button');
+  return container.firstChild.querySelector('span');
 }
 
 describe('<Badge />', () => {
