@@ -52,7 +52,7 @@ We have also added product labels for Material UI and MUI Base in case it's uncl
 
 As a side benefit of the documentation restructuring, we have seen a huge improvement in the quality of search results related to MUI X. Data Grid users can now see comprehensive results when searching for features. Here is a comparison of before and after when searching for the "pagination" feature:
 
-<img src="/static/blog/docs-updates/docs-search-comparison.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshots of the docs before and after comparing Data Grid search results" />
+<img src="/static/blog/docs-updates/docs-search-comparison.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshots of the docs before and after comparing Data grid search results" />
 
 ## Moving forward
 
