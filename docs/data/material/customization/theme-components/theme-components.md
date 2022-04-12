@@ -4,7 +4,7 @@
 
 ## Default props
 
-Every Material UI component has preset values for each of its props by default.
+Every Material UI component has default preset values for each of its props.
 To change these default values, use the `defaultProps` key exposed in the theme's `components` key:
 
 ```js
@@ -14,7 +14,7 @@ const theme = createTheme({
     MuiButtonBase: {
       defaultProps: {
         // The props to change the default for.
-        disableRipple: true, // No more ripple!
+        disableRipple: true, // No more ripple, on the whole application 💣!
       },
     },
   },
@@ -23,7 +23,7 @@ const theme = createTheme({
 
 {{"demo": "DefaultProps.js"}}
 
-To override lab component styles with TypeScript, check [this page](/material-ui/about-the-lab/#typescript).
+If you're using Typescript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
 
 ## Global style overrides
 
