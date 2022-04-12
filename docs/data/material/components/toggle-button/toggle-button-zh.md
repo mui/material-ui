@@ -1,12 +1,12 @@
 ---
 product: material-ui
-title: React Toggle Button（切换按钮）组件
+title: Toggle button React component
 components: ToggleButton, ToggleButtonGroup
 githubLabel: 'component: toggle button'
 materialDesign: 'https://material.io/components/buttons#toggle-button'
 ---
 
-# Toggle Button 切换按钮
+# Toggle button
 
 <p class="description">切换按钮组件可用于对相关选项进行分组。</p>
 
