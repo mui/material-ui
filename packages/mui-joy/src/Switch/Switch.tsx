@@ -278,6 +278,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
           {typeof startDecorator === 'function' ? startDecorator(ownerState) : startDecorator}
         </SwitchStartDecorator>
       )}
+
       <SwitchTrack
         {...componentsProps.track}
         ownerState={ownerState}
@@ -351,7 +352,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    action: PropTypes.object,
+    endDecorator: PropTypes.object,
     input: PropTypes.object,
+    startDecorator: PropTypes.object,
     thumb: PropTypes.object,
     track: PropTypes.object,
   }),
@@ -363,6 +367,13 @@ Switch.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * The element that appears at the end of the switch.
+   */
+  endDecorator: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
   /**
    * @ignore
    */
@@ -402,6 +413,13 @@ Switch.propTypes /* remove-proptypes */ = {
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
+  ]),
+  /**
+   * The element that appears at the end of the switch.
+   */
+  startDecorator: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
   ]),
   /**
    * The variant to use.
