@@ -1,4 +1,4 @@
-# Abordagem do Design da API
+# API design approach
 
 <p class="description">Nós aprendemos bastante como o Material-UI é usado e a refatoração da v1 permitiu-nos repensar completamente a API dos componentes.</p>
 
