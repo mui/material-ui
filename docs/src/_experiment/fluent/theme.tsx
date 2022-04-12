@@ -402,11 +402,8 @@ const fluentTheme: JoyThemeInput = {
         ),
       },
       styleOverrides: {
-        root: ({ ownerState, theme }) => ({
+        checkbox: ({ ownerState, theme }) => ({
           borderRadius: '2px',
-          '&.Mui-focusVisible, &:focus-visible': {
-            outlineOffset: '0px',
-          },
           ...(ownerState.variant === 'outlined' && {
             backgroundColor: 'initial',
           }),
@@ -443,6 +440,12 @@ const fluentTheme: JoyThemeInput = {
             },
           }),
         }),
+        action: {
+          borderRadius: 0,
+          '&.Mui-focusVisible, &:focus-visible': {
+            outlineOffset: '0px',
+          },
+        },
       },
     },
   },

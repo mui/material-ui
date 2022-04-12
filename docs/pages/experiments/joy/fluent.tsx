@@ -2,14 +2,19 @@ import * as React from 'react';
 import Head from 'next/head';
 import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Checkbox from '@mui/joy/Checkbox';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
 import Input from '@mui/joy/Input';
 import TextField from '@mui/joy/TextField';
+import Typography from '@mui/joy/Typography';
 import Switch from '@mui/joy/Switch';
-import Checkbox from '@mui/joy/Checkbox';
+import Sheet from '@mui/joy/Sheet';
 import fluentTheme from 'docs/src/_experiment/fluent/theme';
 
 import Moon from '@mui/icons-material/DarkMode';
@@ -286,6 +291,57 @@ export default function Strapi() {
             <Checkbox defaultChecked disabled />
             <Checkbox indeterminate />
             <Checkbox indeterminate disabled />
+            <Checkbox label="String" />
+            <Checkbox disabled label="String" />
+            <Checkbox defaultChecked label="String" />
+          </div>
+          <div>
+            <Box role="group">
+              <List
+                row
+                sx={{ '--List-item-paddingLeft': '0px', '--List-item-paddingRight': '0px' }}
+              >
+                {[...Array(3)].map((num, index) => (
+                  <ListItem key={index}>
+                    <Sheet
+                      sx={{
+                        px: 3,
+                        py: 2,
+                        position: 'relative',
+                      }}
+                    >
+                      <Checkbox
+                        defaultChecked={index === 0}
+                        componentsProps={{
+                          input: {
+                            'aria-label': 'Martha KA',
+                          },
+                        }}
+                        sx={{
+                          alignSelf: 'flex-start',
+                          ml: -1.5,
+                          mt: -1.5,
+                          position: 'initial',
+                          zIndex: 1,
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          gap: 1,
+                        }}
+                        aria-hidden="true"
+                      >
+                        <Avatar variant="contained">M</Avatar>
+                        <Typography>Martha KA</Typography>
+                      </Box>
+                    </Sheet>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
           </div>
         </Box>
       </Box>
