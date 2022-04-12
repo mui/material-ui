@@ -52,11 +52,11 @@ We have also added product labels for Material UI and MUI Base in case it's uncl
 
 As a side benefit of the documentation restructuring, we have seen a huge improvement in the quality of search results related to MUI X. Data Grid users can now see comprehensive results when searching for features. Previously a search for pagination returned results for the Material UI pagination component, followed by those for the data grid:
 
-<img src="/static/blog/docs-updates/docs-search-before.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of search result for pagination before the documentation restructuring returning at first results for the Material UI pagination component, followed by those for the data grid" />
+<img src="/static/blog/docs-updates/docs-search-before.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of search results for pagination before the documentation restructuring, returning at first results for the Material UI pagination component followed by those for the data grid" />
 
 Now when viewing the MUI X section, only results related to the data grid pagination feature are returned:
 
-<img src="/static/blog/docs-updates/docs-search-after.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of search result for pagination after the documention restructuring. Now when viewing the MUI X section, only results related to the data grid pagination feature are returned." />
+<img src="/static/blog/docs-updates/docs-search-after.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of search results for pagination after the documentation restructuring. Now when viewing the MUI X section, only results related to the data grid pagination feature are returned." />
 
 ## Moving forward
 
