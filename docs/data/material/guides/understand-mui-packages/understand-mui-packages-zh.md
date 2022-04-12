@@ -2,7 +2,7 @@
 
 <p class="description">An overview of the MUI packages and the relationships between them.</p>
 
-## Tl;DR
+## TL;DR
 
 - Use `@mui/material` if you want to use the components following the Material Design guidelines.
 
