@@ -1,40 +1,40 @@
 ---
 product: material-ui
-title: React App Bar（应用栏）组件
+title: App bar React component
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 
-# App Bar 应用栏
+# App bar
 
-<p class="description">应用栏组件展示了与当前屏幕息息相关的信息和操作。</p>
+<p class="description">The App bar displays information and actions relating to the current screen.</p>
 
-而顶部应用栏（App Bar）则提供与当前屏幕相关的内容和操作。 该组件常用于展示品牌、展示标题、提供导航和一些可操作的内容。
+The top App bar provides content and actions related to the current screen. 该组件常用于展示品牌、展示标题、提供导航和一些可操作的内容。
 
 它既可以用作于转换为上下文相关的操作栏，又可以直接充当导航栏。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的应用栏
+## Basic App bar
 
 {{"demo": "ButtonAppBar.js", "bg": true}}
 
-## 带有菜单的应用栏
+## App bar with menu
 
 {{"demo": "MenuAppBar.js", "bg": true}}
 
-## 带有响应式菜单的应用栏
+## App bar with responsive menu
 
 {{"demo": "ResponsiveAppBar.js", "bg": true}}
 
-## 带有搜索输入框的应用栏
+## App bar with search field
 
 侧边搜索栏。
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
-## 带有主要搜索输入框的应用栏
+## App bar with a primary search field
 
 主要搜索栏。
 
@@ -50,7 +50,7 @@ A prominent app bar.
 
 {{"demo": "ProminentAppBar.js", "bg": true}}
 
-## 底部应用栏
+## Bottom App bar
 
 {{"demo": "BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
@@ -95,13 +95,13 @@ function App() {
 
 您可以使用 `useScrollTrigger()` 这个 hook 来响应用户触发的滚动操作。
 
-### 隐藏应用栏
+### Hide App bar
 
 向下滚动会隐藏应用栏，这样一来会留有更多的空间进行阅读。
 
 {{"demo": "HideAppBar.js", "iframe": true}}
 
-### 变高的应用栏
+### Elevate App bar
 
 应用栏阴影会在滚动时加深，以表明用户还未到页面的顶部。
 
