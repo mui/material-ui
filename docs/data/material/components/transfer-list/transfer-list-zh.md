@@ -1,11 +1,11 @@
 ---
 product: material-ui
-title: React Transfer List（传递列表）组件
+title: Transfer list React component
 components: List, ListItem, Checkbox, Switch
 githubLabel: 'component: transfer list'
 ---
 
-# Transfer List 传递列表
+# Transfer list
 
 <p class="description">使用一个传递列表（或“穿梭框”（shuttle）），用户可以在列表之间移动一个或多个列表项。</p>
 
