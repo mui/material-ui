@@ -20,11 +20,11 @@ Por exemplo, se você precisar ocultar um menu quando as pessoas clicarem em qua
 
 {{"demo": "ClickAway.js"}}
 
-Observe que o componente aceita apenas um elemento filho. Você pode encontrar demonstrações avançadas na [seção documentação de menu](/components/menus/#menulist-composition).
+Observe que o componente aceita apenas um elemento filho. Você pode encontrar demonstrações avançadas na [seção documentação de menu](/material-ui/react-menu/#menulist-composition).
 
 ## Portal
 
-A demonstração a seguir usa [`Portal`](/components/portal/) para renderizar o menu suspenso em uma nova "subárvore" fora da hierarquia atual do DOM.
+A demonstração a seguir usa [`Portal`](/material-ui/react-portal/) para renderizar o menu suspenso em uma nova "subárvore" fora da hierarquia atual do DOM.
 
 {{"demo": "PortalClickAway.js"}}
 

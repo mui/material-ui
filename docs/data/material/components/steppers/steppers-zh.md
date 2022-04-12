@@ -17,7 +17,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **请注意：**步骤条不再出现在 [Material Design 指南](https://material.io/)中, 但 Material-UI 会继续支持此组件。
+> **请注意：**步骤条不再出现在 [Material Design 指南](https://material.io/)中, 但 Material UI 会继续支持此组件。
 
 ## 水平步骤条
 
@@ -57,7 +57,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 ### 自定义水平步骤条
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedSteppers.js"}}
 

@@ -2,6 +2,7 @@
 product: material-ui
 title: Componente React Sem SSR
 components: NoSsr
+packageName: '@mui/base'
 ---
 
 # Sem SSR
@@ -29,13 +30,3 @@ Em sua essência, o objetivo do componente NoSsr é **adiar a renderização**. 
 Mas você também pode usá-lo para adiar a renderização dentro do próprio cliente. Você pode **aguardar um quadro de tela** com a propriedade `defer` para renderizar o children. React faz [2 commits](https://pt-br.reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) em vez de 1.
 
 {{"demo": "FrameDeferring.js"}}
-
-## Unstyled
-
-- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
-
-```js
-import NoSsr from '@mui/base/NoSsr';
-```

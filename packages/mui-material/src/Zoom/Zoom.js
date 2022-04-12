@@ -17,7 +17,7 @@ const styles = {
 
 /**
  * The Zoom transition can be used for the floating variant of the
- * [Button](/components/buttons/#floating-action-buttons) component.
+ * [Button](/material-ui/react-button/#floating-action-buttons) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Zoom = React.forwardRef(function Zoom(props, ref) {

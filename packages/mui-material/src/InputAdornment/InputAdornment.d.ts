@@ -46,11 +46,11 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Text fields](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputAdornment API](https://mui.com/api/input-adornment/)
+ * - [InputAdornment API](https://mui.com/material-ui/api/input-adornment/)
  */
 declare const InputAdornment: OverridableComponent<InputAdornmentTypeMap>;
 

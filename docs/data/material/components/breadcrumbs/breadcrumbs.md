@@ -39,7 +39,7 @@ In the following examples, we are using two string separators and an SVG icon.
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBreadcrumbs.js"}}
 
