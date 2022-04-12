@@ -10,7 +10,7 @@ As MUI continues to grow beyond our flagship product, Material UI (we [rebranded
 
 That's why we're excited to announce that we are shipping a major upgrade to our documentation, to make it easier than ever to find exactly what you need—no matter which MUI products you're working with.
 
-## Wait... what MUI products are you talking about?
+## Wait… what MUI products are you talking about?
 
 We currently offer two main product lines:
 
