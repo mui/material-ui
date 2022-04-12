@@ -60,7 +60,6 @@ const CheckboxRoot = styled('span', {
   verticalAlign: 'middle',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
-  color: theme.vars.palette.text.primary,
   '&.Mui-disabled': {
     color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
   },
@@ -268,20 +267,14 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    action: PropTypes.object,
+    checkbox: PropTypes.object,
     input: PropTypes.object,
+    label: PropTypes.object,
     root: PropTypes.object,
   }),
   /**
@@ -309,6 +302,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon: PropTypes.node,
+  /**
+   * The label element next to the checkbox.
+   */
+  label: PropTypes.node,
   /**
    * The `name` attribute of the input.
    */
@@ -345,6 +342,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The icon when `checked` is false.
+   */
+  uncheckedIcon: PropTypes.node,
   /**
    * The variant to use.
    * @default 'contained'
