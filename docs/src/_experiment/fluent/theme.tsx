@@ -1,4 +1,7 @@
+import * as React from 'react';
 import { JoyThemeInput } from '@mui/joy/styles';
+import Box from '@mui/joy/Box';
+import Done from '@mui/icons-material/Done';
 
 declare module '@mui/joy/styles' {
   interface TypographySystemOverrides {
@@ -96,6 +99,7 @@ const fluentTheme: JoyThemeInput = {
           outlinedColor: 'var(--joy-palette-grey-190)',
           outlinedDisabledBg: 'var(--joy-palette-grey-20)',
           outlinedDisabledColor: 'var(--joy-palette-grey-90)',
+          outlinedDisabledBorder: 'var(--joy-palette-grey-60)',
           outlinedBorder: 'var(--joy-palette-grey-110)',
           outlinedHoverBg: 'var(--joy-palette-grey-20)',
           outlinedHoverBorder: undefined,
@@ -108,6 +112,9 @@ const fluentTheme: JoyThemeInput = {
           secondary: 'var(--joy-palette-grey-130)',
           tertiary: 'var(--joy-palette-grey-90)',
         },
+        background: {
+          level1: '#f8f8f8',
+        },
       },
     },
   },
@@ -116,9 +123,6 @@ const fluentTheme: JoyThemeInput = {
       '&.Mui-focusVisible, &:focus-visible': {
         outlineOffset: -1,
         outline: '1px solid',
-        '&[class*="-variantContained"]': {
-          outlineColor: '#fff',
-        },
       },
     },
   },
@@ -175,8 +179,13 @@ const fluentTheme: JoyThemeInput = {
           '&.Mui-disabled': {
             border: 'none',
           },
-
-          ...((ownerState.variant === 'contained' || ownerState.variant === 'outlined') && {
+          ...(ownerState.variant === 'contained' && {
+            '&.Mui-focusVisible, &:focus-visible': {
+              outlineOffset: '-3px',
+              outlineColor: '#fff',
+            },
+          }),
+          ...(ownerState.variant === 'outlined' && {
             '&.Mui-focusVisible, &:focus-visible': {
               outlineOffset: '-3px',
             },
@@ -349,7 +358,6 @@ const fluentTheme: JoyThemeInput = {
       },
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
-          borderRadius: 0,
           ...(ownerState.variant === 'outlined' &&
             ownerState.color === 'neutral' && {
               '--Switch-thumb-background': theme.vars.palette.grey[130],
@@ -359,9 +367,6 @@ const fluentTheme: JoyThemeInput = {
                 '--Switch-track-borderColor': theme.vars.palette.grey[60],
               },
             }),
-          '&.Mui-focusVisible, &:focus-visible': {
-            outlineOffset: '0px',
-          },
           ...(ownerState.size === 'md' && {
             '--Switch-track-width': '40px',
             '--Switch-track-height': '20px',
@@ -380,6 +385,63 @@ const fluentTheme: JoyThemeInput = {
               '--Switch-thumb-background': theme.vars.palette.grey[20],
             },
           },
+        }),
+        action: () => ({
+          borderRadius: 0,
+          '&.Mui-focusVisible, &:focus-visible': {
+            outlineOffset: '0px',
+          },
+        }),
+      },
+    },
+    MuiCheckbox: {
+      defaultProps: {
+        uncheckedIcon: <Done />,
+        indeterminateIcon: (
+          <Box width="10px" height="10px" borderRadius="2px" bgcolor="currentColor" />
+        ),
+      },
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          borderRadius: '2px',
+          '&.Mui-focusVisible, &:focus-visible': {
+            outlineOffset: '0px',
+          },
+          ...(ownerState.variant === 'outlined' && {
+            backgroundColor: 'initial',
+          }),
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              '&.Mui-disabled': {
+                color: '#fff',
+                backgroundColor: theme.vars.palette.grey[60],
+              },
+            }),
+          ...(!ownerState.checked &&
+            !ownerState.indeterminate && {
+              '& svg': {
+                color: theme.vars.palette.grey[130],
+                opacity: 0,
+              },
+              '&:hover svg': {
+                opacity: 1,
+              },
+            }),
+          ...(ownerState.indeterminate && {
+            border: '1px solid',
+            color: theme.vars.palette.primary[500],
+            borderColor: 'currentColor',
+            backgroundColor: 'initial',
+            '&:hover': {
+              color: primary.dark,
+              backgroundColor: 'initial',
+            },
+            '&.Mui-disabled': {
+              background: 'initial',
+              color: theme.vars.palette.grey[60],
+              borderColor: 'currentColor',
+            },
+          }),
         }),
       },
     },

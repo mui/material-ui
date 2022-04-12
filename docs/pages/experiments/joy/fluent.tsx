@@ -9,6 +9,7 @@ import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
 import TextField from '@mui/joy/TextField';
 import Switch from '@mui/joy/Switch';
+import Checkbox from '@mui/joy/Checkbox';
 import fluentTheme from 'docs/src/_experiment/fluent/theme';
 
 import Moon from '@mui/icons-material/DarkMode';
@@ -277,6 +278,14 @@ export default function Strapi() {
             <Switch defaultChecked />
             <Switch disabled />
             <Switch defaultChecked disabled />
+          </div>
+          <div>
+            <Checkbox />
+            <Checkbox disabled />
+            <Checkbox defaultChecked />
+            <Checkbox defaultChecked disabled />
+            <Checkbox indeterminate />
+            <Checkbox indeterminate disabled />
           </div>
         </Box>
       </Box>
