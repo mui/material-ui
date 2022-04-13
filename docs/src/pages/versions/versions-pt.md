@@ -47,18 +47,18 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 
 Você pode seguir os [milestones](https://github.com/mui/material-ui/milestones) para uma visão geral mais detalhada.
 
-> ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. As informações disponibilizadas destinam-se a traçar a orientação geral do framework. Destina-se apenas a fins informativos. Podemos decidir adicionar/remover itens novos a qualquer momento, com base em nossos recursos de capacidade de entrega ou para manter nossos padrões de qualidade. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. O roadmap não representa um compromisso, obrigação ou promessa que será entregue em um determinado momento.
+> ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. As informações disponibilizadas destinam-se a traçar a orientação geral do framework. Destina-se apenas a fins informativos. Podemos decidir adicionar/remover itens novos a qualquer momento, com base em nossos recursos de capacidade de entrega ou para manter nossos padrões de qualidade. O desenvolvimento, lançamentos e disponibilidade de recursos ou funcionalidades do Material-UI permanece a critério exclusivo da equipe. O roadmap não representa um compromisso, obrigação ou promessa que será entregue em um determinado momento.
 
-## Política de suporte
+## Versões compatíveis
 
 O MUI Core tem sido open-source ([MIT](https://tldrlegal.com/license/mit-license)) desde o início, e sempre será. Os desenvolvedores podem garantir que Material-UI seja a escolha certa para seus aplicativos React através da estratégia de manutenção da comunidade do Material-UI. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
 Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/material-ui/guides/migration-v4/). The open-source community is always welcome to submit new features and bug fixes as well.
 
-Para tornar essas transições o mais fácil possível:
+The current status of each MUI version is as follows:
 
-- O número de alterações recentes é minimizado, e ferramentas de migração são disponibilizadas quando possível.
-- A política de descontinuação descrita abaixo é seguida para que dessa forma, você tenha tempo para atualizar seus aplicativos para as versões mais recentes da API bem como aplicar as melhores práticas.
+- MUI Core v5: ✅ Desenvolvimento ativo e suporte contínuo.
+- [MUI Core v4](https://v4.mui.com/): ⚠️ Suporte garantido (apenas) para problemas de segurança e regressões.
 - [MUI Core v3](https://v3.mui.com/): "Não há mais suportado".
 - ~MUI Core v2 (nunca existiu)~.
 - [MUI Core v1](https://v1.mui.com/): "Não suportado".
@@ -66,7 +66,7 @@ Para tornar essas transições o mais fácil possível:
 
 For teams and organizations that require additional support for older versions, MUI has [options available](/material-ui/getting-started/support/#professional-support-premium).
 
-### Política de descontinuação
+### Long-term support (LTS)
 
 A MUI continuará fornecendo atualizações de segurança e suporte de regressões (por exemplo, se houver alguma regressão causada pelo Chrome, React, etc) para a versão anterior ao principal atual até a próxima ser lançada.
 
@@ -76,12 +76,12 @@ A MUI continuará fornecendo atualizações de segurança e suporte de regressõ
 
 Para tornar essas transições o mais fácil possível:
 
-- Recursos descontinuados são anunciados no log de mudanças, e quando possível, com avisos colocados em tempo de execução.
-- Quando uma descontinuação é anunciada, um caminho para efetuar a atualização é fornecido.
+- O número de alterações recentes é minimizado, e ferramentas de migração são disponibilizadas quando possível.
+- A política de depreciação descrita abaixo é seguida, para que você tenha tempo de atualizar seus aplicativos para as APIs mais recentes e as melhores práticas.
 
 ### Política de Descontinuação
 
 - Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
-- O uso já existente da API durante o período de descontinuação é suportado, então seu código continuará a funcionar durante esse período.
-- Atualizações de subdependências do framework (React) que exigem alterações nos seus aplicativos só são feitas em uma versão principal.
+- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
+- Peer dependency updates (React) that require changes to your apps are only made in a major release.
