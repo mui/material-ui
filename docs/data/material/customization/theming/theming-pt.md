@@ -26,7 +26,7 @@ Alterar as variáveis de configuração do tema é a maneira mais eficaz de comb
 - [`.transições`](/material-ui/customization/transitions/)
 - [`.componentes`](/material-ui/customization/theme-components/)
 
-Você pode conferir a [seção de tema padrão](/material-ui/customization/default-theme/) para visualizar o tema padrão na íntegra.
+You can check out the [default theme section](/material-ui/customization/default-theme/) to view the default theme in full.
 
 ### Variáveis customizáveis
 
@@ -66,18 +66,18 @@ declare module '@material-ui/core/styles' {
   <source src="/static/studies.mp4" type="video/mp4" >
 </video>
 
-Você [pode acessar](/system/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
 
 ## Acessando o tema em um componente
 
-Você [pode acessar](/system/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
 
 ## Aninhando o tema
 
-[Você pode aninhar](/system/styles/advanced/#theme-nesting) vários provedores de tema.
+[You can nest](/system/styles/advanced/#theme-nesting) multiple theme providers.
 
 {{"demo": "ThemeNesting.js"}}
 
@@ -155,7 +155,7 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [optional]):
 
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/material-ui/customization/breakpoints/) (identificadores).
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/material-ui/customization/breakpoints/) (identifiers).
 - `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
 - `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
 - `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
