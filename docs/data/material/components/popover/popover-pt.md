@@ -11,8 +11,8 @@ githubLabel: 'component: Popover'
 
 Coisas para saber ao usar o componente `Popover`:
 
-- O componente é construído sobre o componente [`Modal`](/material-ui/react-modal/).
-- A rolagem e o clique fora não é permitido, ao contrário do componente [`Popper`](/material-ui/react-popper/).
+- The component is built on top of the [`Modal`](/material-ui/react-modal/) component.
+- The scroll and click away are blocked unlike with the [`Popper`](/material-ui/react-popper/) component.
 
 [A paleta](/system/palette/) com funções de estilo.
 
