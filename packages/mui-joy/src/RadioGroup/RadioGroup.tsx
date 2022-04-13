@@ -10,9 +10,10 @@ import radioClasses from '../Radio/radioClasses';
 import { RadioGroupProps, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: RadioGroupProps) => {
+  const { row } = ownerState;
   const slots = {
-    root: ['root'],
+    root: ['root', row && 'row'],
   };
 
   return composeClasses(slots, getRadioGroupUtilityClass, {});
@@ -78,7 +79,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     ...props,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValueState(event.target.value);
