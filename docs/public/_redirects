@@ -237,6 +237,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /guides/classname-generator/ /experimental-api/classname-generator/ 301
 /:lang/guides/classname-generator/ /:lang/experimental-api/classname-generator/ 301
 
+/system/box/ /system/react-box/ 301
+
 ### React plural
 /components/tabs/ /material-ui/react-tabs/ 301
 /:lang/components/tabs/ /:lang/material-ui/react-tabs/ 301
