@@ -5,7 +5,7 @@ components: Backdrop
 githubLabel: 'component: backdrop'
 ---
 
-# Backdrop
+# 蒙版
 
 <p class="description">蒙版组件用于特定元素或其部分的强调。</p>
 
