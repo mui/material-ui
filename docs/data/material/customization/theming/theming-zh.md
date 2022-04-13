@@ -26,11 +26,11 @@
 - [`.transitions 过渡动画`](/material-ui/customization/transitions/)
 - [`.components 组件`](/material-ui/customization/theme-components/)
 
-您可以在[默认主题部分](/material-ui/customization/default-theme/)查看完整的默认样式。
+You can check out the [default theme section](/material-ui/customization/default-theme/) to view the default theme in full.
 
 ### 自定义变量
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样： For instance: For instance:
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 ```jsx
 const theme = createTheme({
@@ -73,11 +73,11 @@ declare module '@mui/material/styles' {
 
 ## 访问一个组件中的主题
 
-你[可以访问](/system/styles/advanced/#accessing-the-theme-in-a-component) React 组件内部的主题变量。
+You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
 
 ## 嵌套主题
 
-[您可以嵌套](/system/styles/advanced/#theme-nesting)多个主题提供者。
+[You can nest](/system/styles/advanced/#theme-nesting) multiple theme providers.
 
 {{"demo": "ThemeNesting.js"}}
 
@@ -96,12 +96,12 @@ declare module '@mui/material/styles' {
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-> Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+> Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import { createTheme } from '@mui/core/styles';
+import purple from '@mui/core/colors/purple';
+import green from '@mui/core/colors/green';
 
 const theme = createTheme({
   palette: {
@@ -122,7 +122,7 @@ const theme = createTheme({
 #### Examples
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/core/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -133,7 +133,7 @@ theme = responsiveFontSizes(theme);
 通过接收的选项生成一个主题基础。
 
 ```js
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme } from '@mui/core/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 
@@ -159,7 +159,7 @@ Think of creating a theme as a two-step composition process: first, you define t
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [optional]):
 
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. 一个 [breakpoints](/material-ui/customization/breakpoints/) 的数组（identifiers）。 一个 [breakpoints](/material-ui/customization/breakpoints/) 的数组（identifiers）。
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。 Array of [breakpoints](/material-ui/customization/breakpoints/) (identifiers).
 - `disableAlign` (_bool_ [optional]): Default to `false`. 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 这需要主题样式中的无单位行高度。
 - `factor` (_number_ [optional]): Default to `2`. 此值决定了字体大小调整的强度。 此值决定了字体大小调整的强度。 值越高的话，在较小的屏幕上字体大小之间的差异就越小。 值越低的话，在较小屏幕上的字体就越大。 该值必须大于 1。
 - `variants` (_array\<string\>_ [optional]): Default to all. 需要处理的文字变体。 需要处理的文字变体。
@@ -220,10 +220,10 @@ This component takes a `theme` prop and applies it to the entire React tree that
 
 #### 属性
 
-| Name               | Type                                     | Description                                                                                                                                                                                                                                                                                                               |
-|:------------------ |:---------------------------------------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                                                                                                                                      |
-| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
+| Name               | Type                                     | Description                                                                                                                                                                                               |
+|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
 #### Examples
 
