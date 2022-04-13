@@ -1,29 +1,29 @@
 ---
-product: material-ui
-title: React Textarea Autosize（自适应文本框）组件
+product: base
+title: Textarea Autosize React component
 components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'
 packageName: '@mui/base'
 ---
 
-# Textarea Autosize 自适应文本框
+# Textarea Autosize
 
-<p class="description">一个自适应内容大小的 React 文本框组件。</p>
+<p class="description">A textarea component for React which grows with content.</p>
 
-- 📦 [2.1kB 的压缩包](/size-snapshot)
+- 📦 [1.5 kB gzipped](/size-snapshot)
 
-当触发键盘和窗口大小事件的时候，`TextareaAutosize` 组件将自动调整的文本框的高度。
+The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 空白的文本框
+## Empty
 
 {{"demo": "EmptyTextarea.js"}}
 
-## 最小高度
+## Minimum height
 
 {{"demo": "MinHeightTextarea.js"}}
 
-## 最大高度
+## Maximum height
 
 {{"demo": "MaxHeightTextarea.js"}}
