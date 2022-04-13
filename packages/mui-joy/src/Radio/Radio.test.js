@@ -21,34 +21,34 @@ describe('<Radio />', () => {
     expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
   });
 
-  it('renders a `role="checkbox"` with the id', () => {
+  it('renders a `role="radio"` with the id', () => {
     const { getByRole } = render(<Radio id="foo" />);
 
-    expect(getByRole('checkbox')).to.have.property('id', 'foo');
+    expect(getByRole('radio')).to.have.property('id', 'foo');
   });
 
-  it('renders a `role="checkbox"` with the name', () => {
+  it('renders a `role="radio"` with the name', () => {
     const { getByRole } = render(<Radio name="bar" />);
 
-    expect(getByRole('checkbox')).to.have.property('name', 'bar');
+    expect(getByRole('radio')).to.have.property('name', 'bar');
   });
 
-  it('renders a `role="checkbox"` with the Unchecked state by default', () => {
+  it('renders a `role="radio"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Radio />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByRole('radio')).to.have.property('checked', false);
   });
 
-  it('renders a checkbox with the Checked state when checked', () => {
+  it('renders a radio with the Checked state when checked', () => {
     const { getByRole } = render(<Radio defaultChecked />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(getByRole('radio')).to.have.property('checked', true);
   });
 
-  it('the checkbox can be disabled', () => {
+  it('the radio can be disabled', () => {
     const { getByRole } = render(<Radio disabled />);
 
-    expect(getByRole('checkbox')).to.have.property('disabled', true);
+    expect(getByRole('radio')).to.have.property('disabled', true);
   });
 
   it('the Checked state changes after change events', () => {
@@ -56,11 +56,11 @@ describe('<Radio />', () => {
 
     // how a user would trigger it
     act(() => {
-      getByRole('checkbox').click();
-      fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+      getByRole('radio').click();
+      fireEvent.change(getByRole('radio'), { target: { checked: '' } });
     });
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByRole('radio')).to.have.property('checked', false);
   });
 
   it('should have configurable color', () => {
@@ -88,12 +88,5 @@ describe('<Radio />', () => {
 
     rerender(<Radio size="sm" />);
     expect(container.firstChild).to.have.class(classes.sizeSm);
-  });
-
-  describe('prop: indeterminate', () => {
-    it('should render an indeterminate icon', () => {
-      const { getByTestId } = render(<Radio indeterminate />);
-      expect(getByTestId('HorizontalRuleIcon')).not.to.equal(null);
-    });
   });
 });
