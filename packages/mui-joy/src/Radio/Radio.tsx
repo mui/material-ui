@@ -281,7 +281,6 @@ Radio.propTypes /* remove-proptypes */ = {
   checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
-   * @default <CheckIcon />
    */
   checkedIcon: PropTypes.node,
   /**
@@ -306,20 +305,14 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    action: PropTypes.object,
     input: PropTypes.object,
+    label: PropTypes.object,
+    radio: PropTypes.object,
     root: PropTypes.object,
   }),
   /**
@@ -335,18 +328,9 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the component appears indeterminate.
-   * This does not set the native input element to indeterminate due
-   * to inconsistent behavior across browsers.
-   * However, we set a `data-indeterminate` attribute on the `input`.
-   * @default false
+   * The label element at the end the radio.
    */
-  indeterminate: PropTypes.bool,
-  /**
-   * The icon to display when the component is indeterminate.
-   * @default <IndeterminateCheckBoxIcon />
-   */
-  indeterminateIcon: PropTypes.node,
+  label: PropTypes.node,
   /**
    * The `name` attribute of the input.
    */
@@ -384,8 +368,16 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The icon to display when the component is not checked.
+   */
+  uncheckedIcon: PropTypes.node,
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   */
+  value: PropTypes.any,
+  /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined']),

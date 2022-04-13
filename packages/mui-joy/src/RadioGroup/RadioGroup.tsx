@@ -115,15 +115,6 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * If `true`, the component is checked.
-   */
-  checked: PropTypes.bool,
-  /**
-   * The icon to display when the component is checked.
-   * @default <CheckIcon />
-   */
-  checkedIcon: PropTypes.node,
-  /**
    * @ignore
    */
   children: PropTypes.node,
@@ -133,7 +124,6 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
@@ -145,75 +135,25 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
-   * @default {}
+   * The default value. Use when the component is not controlled.
    */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
-  }),
-  /**
-   * The default checked state. Use when the component is not controlled.
-   */
-  defaultChecked: PropTypes.bool,
-  /**
-   * If `true`, the component is disabled.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  id: PropTypes.string,
-  /**
-   * If `true`, the component appears indeterminate.
-   * This does not set the native input element to indeterminate due
-   * to inconsistent behavior across browsers.
-   * However, we set a `data-indeterminate` attribute on the `input`.
-   * @default false
-   */
-  indeterminate: PropTypes.bool,
-  /**
-   * The icon to display when the component is indeterminate.
-   * @default <IndeterminateCheckBoxIcon />
-   */
-  indeterminateIcon: PropTypes.node,
+  defaultValue: PropTypes.any,
   /**
    * The `name` attribute of the input.
    */
   name: PropTypes.string,
   /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * Callback fired when the state is changed.
+   * Callback fired when a radio button is selected.
    *
    * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
-   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
   /**
-   * @ignore
+   * If `true`, flex direction is set to 'row'.
+   * @default false
    */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocusVisible: PropTypes.func,
-  /**
-   * If `true`, the `input` element is required.
-   */
-  required: PropTypes.bool,
+  row: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'
@@ -223,8 +163,11 @@ RadioGroup.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * Value of the selected radio button. The DOM API casts this to a string.
+   */
+  value: PropTypes.any,
+  /**
    * The variant to use.
-   * @default 'contained'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined']),
