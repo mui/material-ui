@@ -3,7 +3,7 @@
   "version": "5.6.1",
   "private": false,
   "author": "MUI Team",
-  "description": "MUI Styles - The styling solution of MUI.",
+  "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
   "main": "./src/index.js",
   "keywords": [
     "react",

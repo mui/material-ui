@@ -3,7 +3,7 @@
   "version": "6.0.0-alpha.31",
   "private": false,
   "author": "MUI Team",
-  "description": "Material Design components built using @mui/base.",
+  "description": "v6-alpha: React components that implement Google's Material Design",
   "main": "./src/index.ts",
   "keywords": [
     "react",

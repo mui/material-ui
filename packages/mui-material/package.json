@@ -3,7 +3,7 @@
   "version": "5.6.1",
   "private": false,
   "author": "MUI Team",
-  "description": "Quickly build beautiful React apps. MUI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
+  "description": "React components that implement Google's Material Design.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
