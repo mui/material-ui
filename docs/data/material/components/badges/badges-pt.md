@@ -1,7 +1,7 @@
 ---
 product: material-ui
 title: Componente React para emblemas
-components: Badge, BadgeUnstyled
+components: Badge
 githubLabel: 'component: badge'
 unstyled: /base/react-badge/
 ---
@@ -26,7 +26,7 @@ Você pode usar a propriedade `overlap` para colocar o emblema em relação ao c
 
 ## Visibilidade do emblema
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBadges.js"}}
 
@@ -36,7 +36,7 @@ A visibilidade dos emblemas pode ser controlada usando a propriedade `invisible`
 
 {{"demo": "BadgeVisibility.js"}}
 
-O emblema se esconde automaticamente quando o badgeContent é zero. Você pode sobrescrever isso com a propriedade `showZero`.
+The badge hides automatically when `badgeContent` is zero. Você pode sobrescrever isso com a propriedade `showZero`.
 
 {{"demo": "ShowZeroBadge.js"}}
 
@@ -64,8 +64,8 @@ Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer 
 
 {{"demo": "BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled
+## Accessibility
 
-Você não pode confiar que o conteúdo do badge seja anunciado corretamente. Você deve fornecer uma descrição completa, por exemplo, com `aria-label`:
+You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
 
 {{"demo": "AccessibleBadges.js"}}
