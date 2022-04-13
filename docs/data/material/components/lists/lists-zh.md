@@ -26,7 +26,7 @@ materialDesign: https://material.io/components/lists
 </ListItemButton>
 ```
 
-你可以从这里查看 [React Router 与文档此部分结合使用的相关样例](/material-ui/guides/routing/#list)。
+You can find a [demo with React Router following this section](/material-ui/guides/routing/#list) of the documentation.
 
 ## 嵌套列表
 
@@ -48,7 +48,7 @@ materialDesign: https://material.io/components/lists
 
 ## 对齐列表项
 
-When displaying three lines or more, the avatar is not aligned at the top. When displaying three lines or more, the avatar is not aligned at the top. When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
+When displaying three lines or more, the avatar is not aligned at the top. When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
 
 {{"demo": "AlignItemsList.js", "bg": true}}
 
@@ -100,7 +100,7 @@ When displaying three lines or more, the avatar is not aligned at the top. When 
 
 ## Customized List
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedList.js"}}
 
