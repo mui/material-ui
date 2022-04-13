@@ -6,18 +6,18 @@
 
 ### 哇—— API 看起来完全不一样！ Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't changed. The core concepts haven't changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
+I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### 到底是什么带来了如此巨大的改变呢？
 
 Material UI was started [4 years ago](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material UI from the **ground-up** taking advantage of this knowledge to address long-standing issues. 譬如这些主要的变化： 譬如这些主要的变化：
 
-- 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/material-ui/customization/how-to-customize/)的能力和整体性能）
+- New styling solution using CSS-in-JS (better [customization](/material-ui/customization/how-to-customize/) power, better performance)
 - 新的主题处理 （有嵌套，自主支撑等。）
 - Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
-- 更容易检测 [测试覆盖率](/material-ui/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui/material-ui)）
-- 完全的 [服务器端渲染](/material-ui/guides/server-rendering/) 支持
-- 大范围地 [支持的浏览器](/material-ui/getting-started/supported-platforms/)
+- Way better [test coverage](/material-ui/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui/material-ui))
+- Full [server-side rendering](/material-ui/guides/server-rendering/) support
+- Wide range of [supported browsers](/material-ui/getting-started/supported-platforms/)
 
 ### 我应该从哪里开始迁移？
 
@@ -77,7 +77,7 @@ export default App;
 
 ### Autocomplete 自动补全组件
 
-Material UI doesn't provide a high-level API for solving this problem. Material-UI doesn't provide a high-level API for solving this problem. MUI doesn't provide a high-level API for solving this problem. Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/material-ui/react-autocomplete/).
+Material UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/material-ui/react-autocomplete/).
 
 在你的项目上运行 [迁移助手](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod)
 
