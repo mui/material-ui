@@ -6,7 +6,7 @@ components: Hidden
 githubLabel: 'component: Hidden'
 ---
 
-# Hidden
+# Hidden 隐藏
 
 > `Hidden` is deprecated, checkout [migration docs](/material-ui/guides/migration-v4/#hidden)
 
