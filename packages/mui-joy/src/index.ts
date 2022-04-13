@@ -57,3 +57,9 @@ export * from './FormHelperText';
 
 export { default as TextField } from './TextField';
 export * from './TextField';
+
+export { default as Radio } from './Radio';
+export * from './Radio';
+
+export { default as RadioGroup } from './RadioGroup';
+export * from './RadioGroup';
