@@ -16,9 +16,9 @@ Material-UI fornece suporte de ícones de três maneiras:
 1. Com o componente [SvgIcon](#svgicon), um wrapper React para ícones SVG customizados.
 1. Com o componente [Icon](#icon-font-icons), um wrapper React para ícones de fonte customizados.
 
-## Ícones Material
+## Material SVG icons
 
-Google has created over 2,000 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/material-ui/material-icons/).
+Google has created over 2,000 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### Instalação
 
@@ -34,7 +34,7 @@ yarn add @mui/icons-material
 
 Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
 
-Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
 
 ### Uso
 
@@ -53,7 +53,7 @@ Importe ícones usando uma destas duas opções:
   import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
-O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/material-ui/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
+O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-2) before using the second approach.
 
 Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded, Two-tone, e Sharp. Para importar o componente de ícone com um tema diferente do padrão, acrescente o nome do tema ao nome do ícone. Por exemplo, para usar o ícone `@material-ui/icons/Delete`, temos:
 
@@ -115,13 +115,13 @@ Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes esteja
 // webpack.config.js
 {
   test: /\.svg$/,
-  use: ['@svgr/webpack', 'url-loader'],
+  use: ['@svgr/webpack'],
 }
 
 // ---
-import { ReactComponent as StarIcon } from './star.svg';
+import StarIcon from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a abordagem usada pelo Create React App.
@@ -130,18 +130,18 @@ Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a aborda
 // webpack.config.js
 {
   test: /\.svg$/,
-  use: ['@svgr/webpack'],
+  use: ['@svgr/webpack', 'url-loader'],
 }
 
 // ---
-import StarIcon from './star.svg';
+import { ReactComponent as StarIcon } from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 ### createSvgIcon
 
-Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/material-ui/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
+O site [materialdesignicons.com](https://materialdesignicons.com/) fornece mais de 2.000 ícones. Para o ícone desejado, copie o SVG `path` que eles fornecem, e use-o como elemento filho no componente `SvgIcon`, ou com `createSvgIcon()`.
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -166,7 +166,7 @@ A propriedade `fullWidth` de FontAwesomeIcon também pode ser usada para aproxim
 
 #### MDI
 
-O site [materialdesignicons.com](https://materialdesignicons.com/) fornece mais de 2.000 ícones. Para o ícone desejado, copie o SVG `path` que eles fornecem, e use-o como elemento filho no componente `SvgIcon`, ou com `createSvgIcon()`.
+[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. Ele pode ser usado para encapsular um caminho SVG com um componente SvgIcon. Este componente estende o elemento nativo `<svg>`:
 
 Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
 
@@ -175,7 +175,7 @@ Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-mater
 The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. Para usar um ícone, simplesmente coloque o nome do ícone (font ligature) com o componente `Icon`, por exemplo:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>;
 ```
@@ -200,12 +200,12 @@ Por padrão, um ícone herdará a cor do texto atual. Opcionalmente, você pode 
 Para outras fontes, você pode customizar o nome de classe base usando a propriedade `baseClassName`. Por exemplo, você pode exibir ícones de dois tons com Material Design:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
-  // Importe a variante MD de dois tons                           ^^^^^^^^
+  // Import the two tones MD variant                           ^^^^^^^^
 />;
 ```
 
@@ -287,12 +287,12 @@ Você deve incluir a propriedade `titleAccess` com um valor significativo. O atr
 No caso de elementos interativos focalizáveis, por exemplo, quando usado com um botão de ícone, você pode usar a propriedade `aria-label`:
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
-<IconButton aria-label="deletar">
+<IconButton aria-label="delete">
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
@@ -304,9 +304,9 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 Você precisa fornecer um texto alternativo que só seja visível para tecnologia assistiva.
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/utils';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
+import { visuallyHidden } from '@mui/utils';
 
 // ...
 
