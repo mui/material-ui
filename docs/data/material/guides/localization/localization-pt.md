@@ -39,15 +39,15 @@ const theme = createTheme(
 | Amharic                 | am-ET                     | `amET`             |
 | Arabic (Egypt)          | ar-EG                     | `arEG`             |
 | Arabic (Sudan)          | ar-SD                     | `arSD`             |
-| Armênio                 | hy-AM                     | `hyAM`             |
-| Azerbaijano             | az-AZ                     | `azAZ`             |
+| Armenian                | hy-AM                     | `hyAM`             |
+| Azerbaijani             | az-AZ                     | `azAZ`             |
 | Bangla                  | bn-BD                     | `bnBD`             |
-| Búlgaro                 | bg-BG                     | `bgBG`             |
-| Catalão                 | ca-ES                     | `caES`             |
+| Bulgarian               | bg-BG                     | `bgBG`             |
+| Catalan                 | ca-ES                     | `caES`             |
 | Chinese (Hong Kong)     | zh-HK                     | `zhHK`             |
-| Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
+| Chinese (Simplified)    | zh-CN                     | `zhCN`             |
 | Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
-| Tcheco                  | hr-HR                     | `hrHR`             |
+| Croatian                | hr-HR                     | `hrHR`             |
 | Czech                   | cs-CZ                     | `csCZ`             |
 | Danish                  | da-DK                     | `daDK`             |
 | Dutch                   | nl-NL                     | `nlNL`             |
@@ -95,4 +95,4 @@ Por favor, considere contribuir com novas traduções de volta para o Material-U
 
 ## Suporte RTL
 
-Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/material-ui/guides/right-to-left/) para usá-los.
+Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Follow [this guide](/material-ui/guides/right-to-left/) to use them.
