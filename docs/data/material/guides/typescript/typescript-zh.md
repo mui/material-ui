@@ -6,7 +6,7 @@
 
 <!-- #default-branch-switch -->
 
-MUI requires a minimum version of TypeScript 3.5. MUI requires a minimum version of TypeScript 3.5. Material-UI requires a minimum version of TypeScript 3.5. 请查看一下 [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。
+MUI requires a minimum version of TypeScript 3.5. Material-UI requires a minimum version of TypeScript 3.5. 请查看一下 [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。
 
 请查看 [Create React App with TypeScript](https://github.com/mui/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。
 
@@ -37,4 +37,4 @@ Moved to [/customization/theming/#custom-variables](/material-ui/customization/t
 
 ## `component` 属性的用法
 
-然而，如果您尝试根据主题来构建样式，那么类型扩展会再次显示其不怎么雅观的部分：
+Moved to [/guides/composition/#with-typescript](/material-ui/guides/composition/#with-typescript).
