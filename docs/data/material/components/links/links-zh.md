@@ -13,7 +13,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## 简单的链接
 
-链接（Links）组件是基于 [文字铸排（Typography）](/material-ui/api/typography/) 组件构建的，这意味着你也可以使用文字铸排组件的属性。
+The Link component is built on top of the [Typography](/material-ui/api/typography/) component, meaning that you can use its props.
 
 {{"demo": "Links.js"}}
 
