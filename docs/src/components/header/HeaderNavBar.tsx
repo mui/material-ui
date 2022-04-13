@@ -282,7 +282,7 @@ export default function HeaderNavBar() {
                           href={ROUTES.productTemplates}
                           icon={<IconImage name="product-templates" />}
                           name="Templates"
-                          description="Professionally designed UI layouts to jumpstart your next project."
+                          description="Professionally designed UI templates to start your next project faster. Curated by MUI."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
