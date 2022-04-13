@@ -1,22 +1,34 @@
-# 学习使用 Material-UI
+# 学习资源
 
 <p class="description"> Material-UI 新手? 我们为你精心准备的学习资源，可以帮助你快速入门。</p>
 
-## First example
+## 第一个组件
 
 下面的代码片段展示了一个基本的Material UI应用，它有一个 `<Button>` 组件：
 
 ```jsx
-📝 <a href="https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555">博文</a>
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import Button from '@mui/material/Button';
+
+function App() {
+  return (
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
+  );
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 在下面的交互式演示中，尝试更改代码并查看它如何影响输出。 (注：将 `varian` 更改为 `"outlined"` 并且 `color` 更改为 `"secondary"`。 For more options, see the [`Button` component page](/material-ui/react-button/).)
 
-我们托管了 [一些范例项目](/material-ui/getting-started/example-projects/)，他们都提供了开发和部署一个 React 网站所必须的架构。
+{{"demo": "../usage/Usage.js", "hideToolbar": true, "bg": true}}
 
-## Example projects
+## 示例项目
 
-我们提供了一些 [基本模板的选项](/material-ui/getting-started/templates/) 来帮助您开始开发应用程序。
+Visit the [example projects](/material-ui/getting-started/example-projects/) page to see how we recommend implementing Material UI with various React libraries and frameworks like Next.js, Gatsby, Create React App, and more.
 
 ## 模板
 
@@ -30,12 +42,12 @@ Check out our [selection of basic templates](/material-ui/getting-started/templa
 
 ### 免费的资源
 
-- **Introduction to Material-UI**：一系列涵盖所有重要的 Material-UI 组件的视频。
+- [**Material UI v5 Crash Course**](https://www.youtube.com/watch?v=o1chMISeTC0) by Laith Harb：使用最新版Material UI构建应用须知
 
-- **Learn React & Material-UI**：一系列涵盖所有重要的 Material-UI 组件的视频。
+- [**React + Material UI - From Zero to Hero**](https://www.youtube.com/playlist?list=PLDxCaNaYIuUlG5ZqoQzFE27CUOoQvOqnQ) by Atheast 开发者：深入浅出地介绍了从基本的搭建到高级组件的实现。
 
 - [**Next.js 11 Setup with Material UI v5**](https://www.youtube.com/watch?v=IFaFFmPYyMI) by Leo Roese: 学习如何使用 Emode 作为样式引擎，将Material UI 整合到您的Next.js 应用。
 
-- **Cookbook**：通过使用 Material-UI 在 React 中实现 Material Design 原则来构建现代应用程序。
-
-- 📹 [视频](https://www.youtube.com/watch?v=bDkB3LoQKxs)
+- **Create a Responsive Navigation Bar with Material UI v5</a> by Nikhil Thadani：详细介绍Create React App脚手架下使用Material UI。</p></li> 
+  
+  - [**The Clever Dev**](https://www.youtube.com/channel/UCb6AZy0_D1y661PMZck3jOw) 和 [**The Smart Devterur**](https://smartdevpreneur.com/category/javascript/material-ui/) by Jon M: 几十个高质量的视频和文章深入探讨Material UI 的具体细节。</ul>
