@@ -180,7 +180,16 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
     };
   defaultComponent: D;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Box](https://mui.com/system/box/box/)
+ *
+ * API:
+ *
+ * - [Box API](https://mui.com/system/api/box/)
+ */
 declare const Box: OverridableComponent<BoxTypeMap>;
 
 export type BoxProps<

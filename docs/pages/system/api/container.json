@@ -33,7 +33,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/mui-material/src/Container/Container.js",
+  "filename": "/packages/mui-system/src/Container/Container.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-container/\">Container</a></li></ul>",
   "cssComponent": false

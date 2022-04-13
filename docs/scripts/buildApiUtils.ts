@@ -285,3 +285,40 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
     },
   };
 };
+
+export const getSystemComponentInfo = (filename: string): ComponentInfo => {
+  const { name } = extractPackageFile(filename);
+  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
+  if (!name) {
+    throw new Error(`Could not find the component name from: ${filename}`);
+  }
+  return {
+    filename,
+    name,
+    muiName: getMuiName(name),
+    apiPathname: `/system/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/system/api`),
+    readFile() {
+      srcInfo = parseFile(filename);
+      return srcInfo;
+    },
+    getInheritance(inheritedComponent = srcInfo?.inheritedComponent) {
+      return null;
+    },
+    getDemos: () => {
+      const allMarkdowns = findPagesMarkdownNew()
+        .filter((markdown) => {
+          if (migratedBaseComponents.some((component) => filename.includes(component))) {
+            return markdown.filename.match(/[\\/]data[\\/]system[\\/]/);
+          }
+          return true;
+        })
+        .map((markdown) => ({
+          ...markdown,
+          components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+            .components as string[],
+        }));
+      return findBaseDemos(name, allMarkdowns);
+    },
+  };
+};

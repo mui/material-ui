@@ -382,7 +382,7 @@ function plugin(
           if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
             getFromProp(arg.params[0]);
           } else {
-            if(systemComponents.includes(nodeName)) {
+            if (systemComponents.includes(nodeName)) {
               getFromProp(node);
             }
           }
