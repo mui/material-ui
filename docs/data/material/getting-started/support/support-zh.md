@@ -8,11 +8,11 @@
 
 ### StackOverflow
 
-For crowdsourced answers from expert MUI developers in our community. For crowdsourced answers from expert MUI developers in our community. StackOverflow is also visited from time to time by the maintainers of MUI. For crowdsourced answers from expert MUI developers in our community. StackOverflow is also visited from time to time by the maintainers of MUI.
+For crowdsourced answers from expert MUI developers in our community. For crowdsourced answers from expert MUI developers in our community. StackOverflow is also visited from time to time by the maintainers of MUI.
 
 [发布一个问题](https://stackoverflow.com/questions/tagged/mui)
 
-> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/). To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/). To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/). To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
 
 ### GitHub
 
@@ -38,7 +38,7 @@ For crowdsourced answers from expert MUI developers in our community. For crowds
 
 ### 资源 📖
 
-New to MUI? It's easy to learn if you know where to start! It's easy to learn if you know where to start! It's easy to learn if you know where to start!
+New to MUI? It's easy to learn if you know where to start! It's easy to learn if you know where to start!
 
 [Learn MUI](/material-ui/getting-started/learn/)
 
@@ -50,7 +50,7 @@ Receive the latest news on MUI.
 
 ### 支持的版本
 
-MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+Find details on the [supported versions](/versions/#supported-versions).
 
 ## 专业支持（高级）
 
@@ -60,23 +60,23 @@ MUI comes in [three plans](/pricing/). The support available on the Community pl
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
 
-各个 Material-UI 版本的当前状态如下所示：
+The Premium plan goes one step further by providing SLAs on the quality of the support.
 
 ### Tidelift subscription
 
-MUI comes in [three plans](/pricing/). The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
+MUI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 
-The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
+If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
 
-我们当然推荐您试一下，若您想要兼有开源的灵活性和使用商业级软件的自信心。
+The Tidelift Subscription manages your dependencies for you:
 
-- 获取不断地分类所需的工具，并了解您的应用程序所依赖的开源软件。
-- 您的订阅有助于向您使用的软件包的开源社区维护者支付费用，这也能确保它们符合您要求的标准。
-- 使用一些可扫描新的软件安全、证书和维护问题的工具，您可以主动解决问题，并且也可以向参与的开源维护者发出警告，以便他们能够帮助您解决这些问题。
-- Tidelift 有助于衡量和改善你使用的开源软件依赖项的健康状况 — 从而改善您的应用程序的健康状况 — 与此同时会生成一个简短的列表，列出您的团队可以采取的一些积极影响的步骤，以便您进一步改进它们。
-- 您可以获得商业保证，而不是只使用免费的开源软件包，例如知识产权赔偿和服务级别协议（SLA）的支持。 您可以期望从专有软件中获得这些商业保证，并且在使用开源软件时也可以获得这些商业保证。
+- Get the tools you need to continuously catalog and understand the open-source software that your application depends on.
+- Your subscription helps pay the open-source community maintainers of the packages you use, to ensure they meet the standards you require.
+- Address issues proactively, with tools that scan for new security, licensing, and maintenance issues, and alert participating open-source maintainers so they can resolve them on your behalf.
+- Tidelift helps measure and improve your open-source dependencies' health – which improves your app's health – and gives a shortlist of high-impact steps your team can take to improve them even more.
+- Get commercial assurances that don't come for free with open-source packages, such as intellectual property indemnification and support under a service level agreement. You expect these guarantees from proprietary software, and you can get them when using open-source as well.
 
-最终结果是什么？ 所有您期望从商业级软件中获得的功能，都可以适用于您所使用的所有开源软件。 这意味着花您可以更少的时间来处理深奥的开源软件的琐事，而把更多精力放在处理您自己的应用程序 — 以及您的业务中。
+The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications – and your business.
 
 <a
   data-ga-event-category="support"
@@ -94,12 +94,12 @@ The Pro plan allows developers to license extra features that are challenging to
 
 ### 定制的工作 🛠
 
-调整 Material-UI 以满足您的特定要求。 请给我们一个需求摘要；如果可以的话，我们会帮助您。 我们可能：
+Tweak MUI to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
 
-- 获取不断地分类所需的工具，并了解您的应用程序所依赖的开源软件。
+- Give you an estimate of time and price if the work is straightforward
 - Suggest alternatives that might not require MUI
-- 使用一些可扫描新的软件安全、证书和维护问题的工具，您可以主动解决问题，并且也可以向参与的开源维护者发出警告，以便他们能够帮助您解决这些问题。
+- Decline the work due to timing or relevancy
 
-请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 我们的合同价格是 200 美元/小时 或 1500 美元/天。
+Note that work must be MUI related. We don't accept general React development work. Our contracting price is $200/hour or $1,500/day.
 
-[给我们发送一封电子邮件](mailto:custom-work@mui.com)
+[Send us an email](mailto:custom-work@mui.com)
