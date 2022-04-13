@@ -56,29 +56,29 @@ const getDesignTokens = (mode: PaletteMode) => ({
 You can see on the example that there are different colors used based on whether the mode is light or dark. The next step is to use this function when creating the theme.
 
 ```tsx
-import * as React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
+export default function App() {
+  const [mode, setMode] = React.useState<PaletteMode>('light');
+  const colorMode = React.useMemo(
+    () => ({
+      // The dark mode switch would invoke this method
+      toggleColorMode: () => {
+        setMode((prevMode: PaletteMode) =>
+          prevMode === 'light' ? 'dark' : 'light',
+        );
+      },
+    }),
+    [],
   );
 
+  // Update the theme only if the mode changes
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes />
-    </ThemeProvider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <Page />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 ```
@@ -97,7 +97,7 @@ You can use the React context to toggle the mode with a button inside your page.
 
 Usuários podem especificar uma preferência por um tema claro ou escuro. O método pelo qual o usuário expressa a sua preferência pode variar. Pode ser uma configuração de sistema exposta pelo Sistema Operacional, ou uma configuração controlada pelo Agente de Usuário.
 
-Você pode utilizar essa preferência dinamicamente com o hook [useMediaQuery](/material-ui/react-use-media-query/) e a consulta de mídia [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+You can leverage this preference dynamically with the [useMediaQuery](/material-ui/react-use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
 
 Por exemplo, você pode ativar o modo escuro automaticamente:
 
