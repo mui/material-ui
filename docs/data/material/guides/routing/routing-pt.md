@@ -4,11 +4,11 @@
 
 ## Componentes de navegação
 
-Existem dois componentes principais disponíveis para realizar navegações. The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest. It renders a native `<a>` element and applies the `href` as an attribute.
+Existem dois componentes principais disponíveis para realizar navegações. The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest. The most common one is the [`Link`](/components/links/) as its name might suggest.
 
 {{"demo": "LinkDemo.js"}}
 
-Você também pode fazer com que um botão execute ações de navegação. For instance, with a `Button` component: Se seu componente está estendendo [`ButtonBase`](/material-ui/api/button-base/), fornecer uma propriedade `href` habilita o modo de link.
+Você também pode fazer com que um botão execute ações de navegação. If your component is extending [`ButtonBase`](/material-ui/api/button-base/), providing a `href` prop enables the link mode. For instance, with a `Button` component:
 
 {{"demo": "ButtonDemo.js"}}
 
@@ -48,7 +48,7 @@ const theme = createTheme({
 
 ## Propriedade `component`
 
-Você pode conseguir a integração com bibliotecas de roteamento de terceiros com a propriedade `component`. You can learn more about this prop in the [composition guide](/material-ui/guides/composition/#component-prop).
+Você pode conseguir a integração com bibliotecas de roteamento de terceiros com a propriedade `component`. You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop).
 
 ### Link
 
@@ -103,7 +103,7 @@ O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-ref
   }
   ```
 
-- A segunda versão do adaptador é o componente `Link`. Este componente é estilizado. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+- A segunda versão do adaptador é o componente `Link`. Este componente é estilizado. It leverages the [link component of MUI](/material-ui/react-link/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';
