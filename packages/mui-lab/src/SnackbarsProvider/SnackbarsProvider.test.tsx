@@ -9,7 +9,7 @@ import { snackbarClasses } from '@mui/material/Snackbar';
 import { ShowSnackbarProps } from './SnackbarsContext';
 
 describe('MultipleSnackbars', () => {
-  const { render } = createRenderer();
+  const { render, clock } = createRenderer({ clock: 'fake' });
 
   const MyApp = (snackbarOptions: ShowSnackbarProps) => {
     const snackbars = useSnackbars();
@@ -25,13 +25,15 @@ describe('MultipleSnackbars', () => {
   const renderComponent = ({
     snackbarsProviderProps,
     snackbarOptions,
+    children,
   }: {
     snackbarsProviderProps?: Omit<SnackbarsProviderProps, 'ref'>;
     snackbarOptions?: ShowSnackbarProps;
+    children?: React.ReactNode;
   }) => {
     return render(
       <SnackbarsProvider {...snackbarsProviderProps}>
-        <MyApp {...snackbarOptions} />
+        {children || <MyApp {...snackbarOptions} />}
       </SnackbarsProvider>,
     );
   };
@@ -55,7 +57,7 @@ describe('MultipleSnackbars', () => {
     expect(screen.getAllByRole('alert')).to.have.length(4);
   });
 
-  it('individual snackbars properties should take precedence over SnackbarsProvider', () => {
+  it('individual snackbar properties should take precedence over SnackbarsProvider', () => {
     const childRef = React.createRef<HTMLDivElement>();
     const SlideTransition = () => {
       return (
@@ -81,10 +83,48 @@ describe('MultipleSnackbars', () => {
     });
 
     const showSnackbar = screen.getByText('Show Snackbar');
-
     fireEvent.click(showSnackbar);
 
     expect(childRef.current!.style.transform).to.contain('translateY');
     expect(screen.getByRole('presentation')).to.have.class(snackbarClasses.anchorOriginBottomRight);
+  });
+
+  it('each snackbars can be closed correctly', () => {
+    const TestSnackbar = () => {
+      const snackbars = useSnackbars();
+      return (
+        <Button
+          onClick={() =>
+            snackbars.showSnackbar({
+              message: 'Note Archived',
+              action: (key: string) => (
+                <Button color="secondary" size="small" onClick={snackbars.closeSnackbar(key)}>
+                  Close
+                </Button>
+              ),
+            })
+          }
+        >
+          Show Snackbar
+        </Button>
+      );
+    };
+    renderComponent({
+      children: <TestSnackbar />,
+    });
+
+    const showSnackbar = screen.getByText('Show Snackbar');
+
+    fireEvent.click(showSnackbar);
+    fireEvent.click(showSnackbar);
+    fireEvent.click(showSnackbar);
+
+    fireEvent.click(screen.getAllByText('Close')[1]);
+    clock.tick(1000);
+    expect(screen.getAllByRole('alert')).to.have.length(2);
+
+    fireEvent.click(screen.getAllByText('Close')[0]);
+    clock.tick(1000);
+    expect(screen.getAllByRole('alert')).to.have.length(1);
   });
 });
