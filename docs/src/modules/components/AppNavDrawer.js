@@ -393,7 +393,7 @@ function reduceChildRoutes(context) {
       : false;
     let firstChild = page.children[0];
 
-    if (firstChild.subheader && firstChild.subheader.children) {
+    if (firstChild.subheader && firstChild.children) {
       firstChild = firstChild.children[0];
     }
 
