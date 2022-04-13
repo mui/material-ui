@@ -12,7 +12,7 @@ import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeTypeMap } from './BadgeProps';
 
 const useUtilityClasses = (ownerState: BadgeProps) => {
-  const { color, variant, size, anchorOrigin, overlap, invisible } = ownerState;
+  const { color, variant, size, anchorOrigin, location, invisible } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: BadgeProps) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      overlap && `overlap${capitalize(overlap)}`,
+      location && `location${capitalize(location)}`,
     ],
   };
 
@@ -91,7 +91,7 @@ const BadgeBadge = styled('span', {
       transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.anchorOrigin!.vertical === 'top' &&
         ownerState.anchorOrigin!.horizontal === 'right' &&
-        ownerState.overlap === 'rectangular' && {
+        ownerState.location === 'outside' && {
           top: 0,
           right: 0,
           transform: 'scale(1) translate(50%, -50%)',
@@ -102,7 +102,7 @@ const BadgeBadge = styled('span', {
         }),
       ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
         ownerState.anchorOrigin!.horizontal === 'right' &&
-        ownerState.overlap === 'rectangular' && {
+        ownerState.location === 'outside' && {
           bottom: 0,
           right: 0,
           transform: 'scale(1) translate(50%, 50%)',
@@ -113,7 +113,7 @@ const BadgeBadge = styled('span', {
         }),
       ...(ownerState.anchorOrigin!.vertical === 'top' &&
         ownerState.anchorOrigin!.horizontal === 'left' &&
-        ownerState.overlap === 'rectangular' && {
+        ownerState.location === 'outside' && {
           top: 0,
           left: 0,
           transform: 'scale(1) translate(-50%, -50%)',
@@ -124,7 +124,7 @@ const BadgeBadge = styled('span', {
         }),
       ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
         ownerState.anchorOrigin!.horizontal === 'left' &&
-        ownerState.overlap === 'rectangular' && {
+        ownerState.location === 'outside' && {
           bottom: 0,
           left: 0,
           transform: 'scale(1) translate(-50%, 50%)',
@@ -135,7 +135,7 @@ const BadgeBadge = styled('span', {
         }),
       ...(ownerState.anchorOrigin!.vertical === 'top' &&
         ownerState.anchorOrigin!.horizontal === 'right' &&
-        ownerState.overlap === 'circular' && {
+        ownerState.location === 'inside' && {
           top: '14%',
           right: '14%',
           transform: 'scale(1) translate(50%, -50%)',
@@ -146,7 +146,7 @@ const BadgeBadge = styled('span', {
         }),
       ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
         ownerState.anchorOrigin!.horizontal === 'right' &&
-        ownerState.overlap === 'circular' && {
+        ownerState.location === 'inside' && {
           bottom: '14%',
           right: '14%',
           transform: 'scale(1) translate(50%, 50%)',
@@ -157,7 +157,7 @@ const BadgeBadge = styled('span', {
         }),
       ...(ownerState.anchorOrigin!.vertical === 'top' &&
         ownerState.anchorOrigin!.horizontal === 'left' &&
-        ownerState.overlap === 'circular' && {
+        ownerState.location === 'inside' && {
           top: '14%',
           left: '14%',
           transform: 'scale(1) translate(-50%, -50%)',
@@ -168,7 +168,7 @@ const BadgeBadge = styled('span', {
         }),
       ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
         ownerState.anchorOrigin!.horizontal === 'left' &&
-        ownerState.overlap === 'circular' && {
+        ownerState.location === 'inside' && {
           bottom: '14%',
           left: '14%',
           transform: 'scale(1) translate(-50%, 50%)',
@@ -198,7 +198,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     componentsProps = {},
     size: sizeProp = 'sm',
     color: colorProp = 'neutral',
-    overlap: overlapProp = 'rectangular',
+    location: locationProp = 'outside',
     invisible: invisibleProp = false,
     max,
     badgeContent: badgeContentProp,
@@ -210,7 +210,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const prevProps = usePreviousProps({
     anchorOrigin: anchorOriginProp,
     size: sizeProp,
-    overlap: overlapProp,
+    location: locationProp,
     color: colorProp,
     variant: variantProp,
   });
@@ -226,19 +226,19 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const {
     color = colorProp,
-    overlap = overlapProp,
+    location = locationProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
   }: {
     size?: BadgeTypeMap['props']['size'];
-    overlap?: BadgeTypeMap['props']['overlap'];
+    location?: BadgeTypeMap['props']['location'];
     color?: BadgeTypeMap['props']['color'];
     anchorOrigin?: BadgeTypeMap['props']['anchorOrigin'];
     variant?: BadgeTypeMap['props']['variant'];
   } = invisible ? prevProps : props;
 
-  const ownerState = { ...props, anchorOrigin, variant, invisible, color, size };
+  const ownerState = { ...props, anchorOrigin, variant, invisible, color, size, location };
   const classes = useUtilityClasses(ownerState);
   const displayValue =
     max !== undefined && badgeContentProp && Number(badgeContentProp) > max
@@ -268,7 +268,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
               anchorOrigin,
               color,
               variant,
-              overlap,
+              location,
               size,
             },
           }),
@@ -281,7 +281,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
               anchorOrigin,
               color,
               variant,
-              overlap,
+              location,
               size,
             },
           }),
@@ -355,15 +355,15 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   invisible: PropTypes.bool,
   /**
+   * The position of the badge relative to the wrapped component.
+   * @default 'outside'
+   */
+  location: PropTypes.oneOf(['inside', 'outside']),
+  /**
    * Max count to show.
    * @default 99
    */
   max: PropTypes.number,
-  /**
-   * Wrapped shape the badge should overlap.
-   * @default 'rectangular'
-   */
-  overlap: PropTypes.oneOf(['circular', 'rectangular']),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    * @default false

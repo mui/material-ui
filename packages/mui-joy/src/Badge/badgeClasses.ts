@@ -27,6 +27,10 @@ export interface BadgeClasses {
   colorWarning: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
+  /** State class applied to the badge `span` element if `location="inside"`. */
+  locationInside: string;
+  /** State class applied to the badge `span` element if `location="outside"`. */
+  locationOutside: string;
   /** Styles applied to the badge `span` element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the badge `span` element if `size="md"`. */
@@ -61,8 +65,8 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'colorSuccess',
   'colorWarning',
   'invisible',
-  'overlapRectangular',
-  'overlapCircular',
+  'locationInside',
+  'locationOutside',
   'sizeSm',
   'sizeMd',
   'sizeLg',
