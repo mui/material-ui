@@ -20,10 +20,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp() {
   return (
-    <React. Fragment>
+    <React.Fragment>
       <CssBaseline />
       {/* O resto da sua aplicação */}
-    </React. Fragment>
+    </React.Fragment>
   );
 }
 ```
@@ -56,7 +56,7 @@ export default function MyApp() {
 Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrões para toda a página. Mais especificamente:
 
 - A margem é removida em todos navegadores.
-- A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/material-ui/customization/default-theme/?expand-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
+- A cor de fundo padrão do material design é aplicada. It's using [`theme.palette.background.default`](/material-ui/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
 - If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`.
 
 ### Leiaute
@@ -100,11 +100,11 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 
 ### Typography
 
-- Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/material-ui/customization/typography/#typography-html-font-size).
+- Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#typography-html-font-size) page.
 - Define o estilo `theme.typography.body1` no elemento `<body>`.
 - Define o font-weight para `theme.typography.fontWeightBold` em elementos `<b>` e `<strong>`.
 - Uma customização da suavização da fonte (font-smoothing) é ativada para melhor exibição da fonte Roboto.
 
 ## Customização
 
-Vá até a seção de [customização global](/material-ui/customization/how-to-customize/#5-global-css-override) da documentação para alterar o comportamento desses componentes.
+Head to the [global customization](/material-ui/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.
