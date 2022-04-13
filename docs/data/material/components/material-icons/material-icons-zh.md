@@ -7,7 +7,7 @@ packageName: '@mui/icons-material'
 githubLabel: 'package: icons'
 ---
 
-# Material 图标
+# Browse material icons
 
 <p class="description">2,000+ React Material icons ready-to-use from the official website.</p>
 
@@ -17,4 +17,4 @@ The following npm package, [@mui/icons-material](https://www.npmjs.com/package/@
 
 {{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
 
-ℹ️ 我们的搜索也支持同义词。 Try searching for "hamburger" or "logout".
+ℹ️ 我们的搜索也支持同义词。 你可以尝试搜索“hamburger”或“logout”。
