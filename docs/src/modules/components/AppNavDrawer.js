@@ -676,10 +676,6 @@ export default function AppNavDrawer(props) {
           PaperProps={{
             className: 'algolia-drawer',
             component: AppNavPaperComponent,
-            sx: {
-              background: (theme) =>
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
-            },
           }}
         >
           <PersistScroll slot="swipeable" enabled={mobileOpen}>
@@ -692,14 +688,6 @@ export default function AppNavDrawer(props) {
           variant="permanent"
           PaperProps={{
             component: AppNavPaperComponent,
-            sx: {
-              background: (theme) =>
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primary[100], 0.08)
-                  : theme.palette.grey[100],
-            },
           }}
           open
         >
