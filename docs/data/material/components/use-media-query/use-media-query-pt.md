@@ -19,7 +19,7 @@ Algumas das principais características:
 
 ## Consulta de mídia simples
 
-Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A string de consulta de mídia pode ser qualquer consulta de mídia CSS válida, por exemplo [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference).
+Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
@@ -27,7 +27,7 @@ Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A stri
 
 ## Usando auxiliares de ponto de quebra do Material-UI
 
-Você pode usar os [auxiliares de ponto de quebra](/material-ui/customization/breakpoints/) do Material-UI da seguinte maneira:
+You can use MUI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -138,7 +138,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
-  const ssrMatchMedia = (query) => ({
+  const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
       // O CSS estimado pelo navegador.
       width: deviceType === 'mobile' ? '0px' : '1024px',
@@ -163,7 +163,6 @@ function handleRender(req, res) {
   );
 
   // …
-}
 }
 ```
 
@@ -191,7 +190,7 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 - `options.noSsr` (_bool_ [opcional]): Padrão `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
-Nota: Você pode alterar as opções padrão usando [`default props`](/material-ui/customization/theme-components/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
+Note: You can change the default options using the [`default props`](/material-ui/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### Retornos
 
