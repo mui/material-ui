@@ -14,11 +14,11 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
 - **[Navegação inferior](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Botões](https://material.io/design/components/buttons.html) ✓**
   - **[Botões de texto & contidos (Antigamente flat & raised)](https://material.io/design/components/buttons.html) ✓**
-  - **[Botões de alternância](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/material-ui/about-the-lab/))
+  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/material-ui/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Botões: Botão de ação flutuante](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transições:
-    - **[Acesso rápido](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/material-ui/about-the-lab/))
+    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/material-ui/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Tela cheia](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -44,7 +44,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- ****\***\*[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)\*\***\*\***\*\*****
+- **\***\*[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****\*\*******
 - **[Listas](https://material.io/design/components/lists.html) ✓**
   - [Tipos:](https://material.io/design/components/lists.html#types)
     - **Linha única ✓**
