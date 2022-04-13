@@ -343,7 +343,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const SwipeableDrawerPaperComponent = styled('div')(({ theme }) => {
+const AppNavPaperComponent = styled('div')(({ theme }) => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
@@ -675,7 +675,7 @@ function AppNavDrawer(props) {
           }}
           PaperProps={{
             className: 'algolia-drawer',
-            component: SwipeableDrawerPaperComponent,
+            component: AppNavPaperComponent,
             sx: {
               background: (theme) =>
                 theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
@@ -691,7 +691,7 @@ function AppNavDrawer(props) {
         <StyledDrawer
           variant="permanent"
           PaperProps={{
-            component: SwipeableDrawerPaperComponent,
+            component: AppNavPaperComponent,
             sx: {
               background: (theme) =>
                 theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
