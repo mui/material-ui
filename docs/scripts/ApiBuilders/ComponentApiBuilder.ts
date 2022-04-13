@@ -541,9 +541,14 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
                 .get('declarations')
                 .each((declarator: any) => definitions.push(declarator.get('init')));
             }
-            const declarator = definitions[0];
-            const name = declarator.value.callee.name;
-            node = declarator;
+
+            definitions.forEach((definition) => {
+              const definitionName = definition.value.callee.name;
+
+              if (definitionName === `create${name}`) {
+                node = definition;
+              }
+            });
             return false;
           },
         });
