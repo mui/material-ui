@@ -30,11 +30,11 @@ npm install @mui/material @mui/styled-engine-sc styled-components
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
-> 💡 参考 [Styled Engine 指南](/material-ui/guides/styled-engine/) 来了解更多配置 `styled-components` 作为样式引擎的更多信息。
+> 💡 Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Roboto 字体
 
-MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计的。 因此请务必遵循 [这些说明](/material-ui/react-typography/#general) 来引入字体。 例如，通过 Google Web Fonts 引入：
+MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计的。 So be sure to follow [these instructions](/material-ui/react-typography/#general). 例如，通过 Google Web Fonts 引入：
 
 ```html
 <link
@@ -45,7 +45,7 @@ MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计
 
 ## 字体图标
 
-To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 我们提供了安装字体的[一些说明](/material-ui/icons/#font-icons)。 这是如何去做的 [一些说明](/material-ui/icons/#font-icons) 例如，通过 Google Web Fonts 引入： For instance, via Google Web Fonts: For instance, via Google Web Fonts:
+To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 我们提供了安装字体的[一些说明](/components/icons/#font-icons)。 Here are [some instructions](/material-ui/icons/#font-icons) on how to do so. For instance, via Google Web Fonts:
 
 ```html
 <link
@@ -56,7 +56,7 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 ## SVG 图标
 
-MUI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. 或者你想使用 `styled-components` 来作为样式引擎：
+In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/material-ui/icons/) you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package:
 
 <!-- #default-branch-switch -->
 
