@@ -17,6 +17,7 @@ export default function PinnedSubheaderList() {
         '& ul': { padding: 0 },
       }}
       subheader={<li />}
+      tabIndex={0}
     >
       {[0, 1, 2, 3, 4].map((sectionId) => (
         <li key={`section-${sectionId}`}>
