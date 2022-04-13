@@ -1,4 +1,5 @@
 import { createContainer } from '@mui/system';
+import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { getContainerUtilityClass } from './containerClasses';
 import { ContainerTypeMap } from './ContainerProps';
@@ -11,5 +12,16 @@ const Container = createContainer<JoyTheme>({
   getContainerUtilityClass,
   styled,
 }) as OverridableComponent<ContainerTypeMap>;
+
+Container.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+} as any;
 
 export default Container;
