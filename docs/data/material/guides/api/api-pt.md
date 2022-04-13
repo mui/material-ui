@@ -30,7 +30,7 @@ Agora, digamos que você queira desabilitar o efeito cascata do `MenuItem`. Voc�
 <MenuItem disableRipple />
 ```
 
-A propriedade `disableRipple` propagará desta maneira: [`MenuItem`](/material-ui/api/menu-item/) > [`ListItem`](/material-ui/api/list-item/) > [`ButtonBase`](/material-ui/api/button-base/).
+The `disableRipple` prop will flow this way: [`MenuItem`](/material-ui/api/menu-item/) > [`ListItem`](/material-ui/api/list-item/) > [`ButtonBase`](/material-ui/api/button-base/).
 
 ### Propriedades nativas
 
@@ -38,7 +38,7 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 
 ### Classes CSS
 
-Todos os componentes aceitam uma propriedade [`classes`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names) para customizar os estilos. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
+All components accept a [`classes`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - A classe aplicada ao elemento raiz é sempre chamada de `root`.
 - Todos os estilos padrão são agrupados em uma única classe.
@@ -67,7 +67,7 @@ Os componentes aninhados dentro de um componente possuem:
 - suas próprias propriedades niveladas quando estas são chaves para a abstração do componente de nível superior, por exemplo, uma propriedade `id` para o componente `input`.
 - suas próprias propriedades `xxxProps`, quando os usuários podem precisar ajustar os subcomponentes do método de renderização interno, por exemplo, expondo as propriedades `inputProps` e `InputProps` em componentes que usam `Input` internamente.
 - suas próprias propriedades `xxxComponent` para executar a injeção de componentes.
-- suas próprias propriedades `xxxRef`, quando o usuário precisar executar ações imperativas, por exemplo, expondo uma propriedade `inputRef` para acessar nativamente o `input` no componente `Input`. Isso ajuda a responder a pergunta ["Como posso acessar o elemento DOM?"](/material-ui/getting-started/faq/#how-can-i-access-the-dom-element)
+- suas próprias propriedades `xxxRef`, quando o usuário precisar executar ações imperativas, por exemplo, expondo uma propriedade `inputRef` para acessar nativamente o `input` no componente `Input`. This helps answer the question ["How can I access the DOM element?"](/material-ui/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Prop naming
 
