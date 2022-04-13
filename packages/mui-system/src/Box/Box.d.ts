@@ -184,7 +184,8 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Box](https://mui.com/system/box/box/)
+ * - [Box](https://mui.com/material-ui/react-box/)
+ * - [Box](https://mui.com/system/react-box/)
  *
  * API:
  *

@@ -5,9 +5,6 @@ import { createTheme } from '../styles';
 
 const defaultTheme = createTheme();
 
-/**
- * @ignore - do not document.
- */
 const Box = createBox({
   defaultTheme,
   defaultClassName: 'MuiBox-root',

@@ -531,8 +531,8 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
   if (systemComponents.includes(name)) {
     reactApi = docgenParse(
       src,
-      (ast, parser) => {
-        let node = null;
+      (ast) => {
+        let node;
         astTypes.visit(ast, {
           visitVariableDeclaration: (path) => {
             let definitions: any[] = [];

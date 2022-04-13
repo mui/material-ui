@@ -174,6 +174,7 @@ function findMaterialUIDemos(
     .filter((page) => page.components.includes(componentName))
     .map((page) => page.pathname);
   return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .filter((pathname) => pathname.indexOf('material') >= 0)
     .map((pathname) => ({
       name: pageToTitle({ pathname }) || '',
       demoPathname: replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`),
