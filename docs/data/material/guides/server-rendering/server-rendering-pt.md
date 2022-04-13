@@ -119,8 +119,8 @@ function handleRender(req, res) {
   // Render the component to a string.
   app.use(handleRender);
 
-  const port = 3000;
-  app.listen(port);
+const port = 3000;
+app.listen(port);
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
@@ -212,4 +212,4 @@ We host different reference implementations which you can find in the [GitHub re
 
 ## Resolução de problemas
 
-Confira a resposta no FAQ: [Minha aplicação não é renderizada corretamente no servidor](/material-ui/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Check out the FAQ answer: [My App doesn't render correctly on the server](/material-ui/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
