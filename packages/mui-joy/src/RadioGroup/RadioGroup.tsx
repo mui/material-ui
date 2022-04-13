@@ -24,13 +24,13 @@ const RadioGroupRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: RadioGroupProps }>(({ ownerState }) => ({
   ...(ownerState.size === 'sm' && {
-    '--RadioGroup-gap': '0.25rem',
-  }),
-  ...(ownerState.size === 'md' && {
     '--RadioGroup-gap': '0.5rem',
   }),
-  ...(ownerState.size === 'lg' && {
+  ...(ownerState.size === 'md' && {
     '--RadioGroup-gap': '0.75rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--RadioGroup-gap': '1rem',
   }),
   display: 'flex',
   flexDirection: ownerState.row ? 'row' : 'column',
@@ -61,7 +61,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     onChange,
     color,
     variant,
-    size,
+    size = 'md',
     row = false,
     ...otherProps
   } = props;
@@ -74,6 +74,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
 
   const ownerState = {
     row,
+    size,
     ...props,
   };
 
