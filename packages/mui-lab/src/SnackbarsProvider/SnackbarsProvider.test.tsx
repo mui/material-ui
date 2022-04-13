@@ -90,7 +90,7 @@ describe('MultipleSnackbars', () => {
   });
 
   it('each snackbars can be closed correctly', () => {
-    const TestSnackbar = () => {
+    const TestApp = () => {
       const snackbars = useSnackbars();
       return (
         <Button
@@ -110,7 +110,7 @@ describe('MultipleSnackbars', () => {
       );
     };
     renderComponent({
-      children: <TestSnackbar />,
+      children: <TestApp />,
     });
 
     const showSnackbar = screen.getByText('Show Snackbar');
