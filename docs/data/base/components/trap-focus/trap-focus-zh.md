@@ -1,7 +1,7 @@
 ---
-product: material-ui
+product: base
 title: React Trap Focus（容器焦点）组件
-components: Unstable_TrapFocus
+components: TrapFocus
 githubLabel: 'component: TrapFocus'
 packageName: '@mui/base'
 ---
@@ -27,7 +27,7 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 As the component does not have any styles, it also comes with the Base package.
 
 ```js
-import TrapFocus from '@mui/base/Unstable_TrapFocus';
+import TrapFocus from '@mui/base/TrapFocus';
 ```
 
 ## 禁用强制对焦
@@ -48,6 +48,6 @@ Clicks within the focus trap behave normally, but clicks outside the focus trap 
 
 ## Portal
 
-The following demo uses the [`Portal`](/material-ui/react-portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy; so that they no longer form part of the focus loop.
+The following demo uses the [`Portal`](/base/react-portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy; so that they no longer form part of the focus loop.
 
 {{"demo": "PortalTrapFocus.js"}}
