@@ -40,13 +40,13 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 
 ## Composição de MenuList
 
-Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variante` para "menu". O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/material-ui/api/list-item/)).
+Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)). Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variante` para "menu".
 
 {{"demo": "SimpleListMenu.js"}}
 
 ## Menu customizado
 
-Devido ao componente `Menu` usar o componente `Popover` para se posicionar, você pode usar as mesmas [propriedades de posicionamento](/material-ui/react-popover/#anchor-playground) para posicioná-lo. Por exemplo, você pode exibir o menu abaixo da âncora:
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it. Por exemplo, você pode exibir o menu abaixo da âncora:
 
 {{"demo": "PositionedMenu.js"}}
 
@@ -66,7 +66,7 @@ Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu 
 
 ## Trocar transição
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedMenus.js"}}
 
@@ -100,10 +100,10 @@ Aqui está um exemplo de um menu de contexto. (Clique com o botão direito para 
 
 ## Complementary projects
 
-Para situações de uso mais avançadas, você pode tirar proveito com:
+For more advanced use cases you might be able to take advantage of:
 
 ### PopupState helper
 
-Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado do menu para você na maioria das situações.
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
 {{"demo": "MenuPopupState.js"}}
