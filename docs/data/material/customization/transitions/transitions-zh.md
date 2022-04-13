@@ -11,8 +11,8 @@
 1. `props` (_string_ | _string[]_): Defaults to `['all']`. 这将提供一个 CSS 属性，或者提供一个应该具有动画效果的 CSS 属性列表。 这将提供一个 CSS 属性，或者提供一个应该具有动画效果的 CSS 属性列表。
 2. `options` (_object_ [optional]):
 
-- `options.duration` (_string_ | _number_ [optional]): Defaults to `theme.transitions.duration.standard`. 这将提供动画效果的时长。 Provides the easing for the transition.
 - `options.easing` (_string_ [optional])：默认为 `theme.transitions.easing.easeInOut`。 这将为动画提供缓动效果。
+- `options.duration` (_string_ | _number_ [optional]): Defaults to `theme.transitions.duration.standard`. 这将提供动画效果的时长。 Provides the easing for the transition.
 - `options.delay` (_string_ | _number_ [optional]): Defaults to `0`. 这将为动画提供延迟效果。 这将为动画提供延迟效果。
 
 #### 返回结果
@@ -78,8 +78,6 @@ const theme = createTheme({
       // Objects enter the screen at full velocity from off-screen and
       // slowly decelerate to a resting point.
       easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
-      // 物体以全速离开屏幕。
-      easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
       // 物体以全速离开屏幕。 它们在屏幕外不会减速。
       easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
       // 锐化曲线是由可能随时返回屏幕的对象使用的。
@@ -91,4 +89,4 @@ const theme = createTheme({
 
 ## 参考
 
-你可以通过提供一个自定义的 CSS <code>transition-timing-function</code> 值来改变部分或全部的缓动值，或者提供你自己的缓动值。
+Check out the [Transitions](/material-ui/transitions/) page to explore the transition components that are included with MUI.
