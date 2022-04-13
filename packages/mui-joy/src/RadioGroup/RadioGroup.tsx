@@ -6,6 +6,7 @@ import { unstable_useControlled as useControlled, unstable_useId as useId } from
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '../styles';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
+import radioClasses from '../Radio/radioClasses';
 import { RadioGroupProps, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
 
@@ -21,10 +22,28 @@ const RadioGroupRoot = styled('div', {
   name: 'MuiRadioGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: RadioGroupProps }>({
+})<{ ownerState: RadioGroupProps }>(({ ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--RadioGroup-gap': '0.25rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--RadioGroup-gap': '0.5rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--RadioGroup-gap': '0.75rem',
+  }),
   display: 'flex',
-  flexDirection: 'column',
-});
+  flexDirection: ownerState.row ? 'row' : 'column',
+  [`.${radioClasses.root} + .${radioClasses.root}`]: {
+    ...(ownerState.row
+      ? {
+          marginLeft: 'var(--RadioGroup-gap)',
+        }
+      : {
+          marginTop: 'var(--RadioGroup-gap)',
+        }),
+  },
+}));
 
 const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -43,6 +62,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     color,
     variant,
     size,
+    row = false,
     ...otherProps
   } = props;
 
@@ -53,6 +73,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   });
 
   const ownerState = {
+    row,
     ...props,
   };
 

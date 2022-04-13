@@ -111,7 +111,7 @@ const RadioAction = styled('span', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: RadioProps }>(({ theme }) => ({
   position: 'absolute',
-  borderRadius: 'var(--Radio-radius)',
+  borderRadius: 'var(--Radio-action-radius, var(--Radio-radius))',
   top: 0,
   left: 0,
   right: 0,
