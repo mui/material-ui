@@ -40,7 +40,7 @@
     },
     "anchorOriginBottomRight": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
     },
     "anchorOriginTopLeft": {
