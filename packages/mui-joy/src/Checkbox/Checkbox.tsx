@@ -54,6 +54,10 @@ const CheckboxRoot = styled('span', {
     '--Checkbox-gap': '0.625rem',
     fontSize: theme.vars.fontSize.lg,
   }),
+  ...(ownerState.label && {
+    // add some space at the end to not have focus overlapping the label
+    paddingInlineEnd: 'var(--Checkbox-gap)',
+  }),
   position: 'relative',
   display: 'inline-flex',
   justifyContent: 'center',
@@ -118,7 +122,7 @@ const CheckboxLabel = styled('label', {
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })<{ ownerState: CheckboxProps }>({
-  marginLeft: 'var(--Checkbox-gap)',
+  marginInlineStart: 'var(--Checkbox-gap)',
 });
 
 const defaultCheckedIcon = <CheckIcon />;
