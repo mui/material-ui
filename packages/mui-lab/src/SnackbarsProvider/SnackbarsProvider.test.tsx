@@ -4,6 +4,8 @@ import { createRenderer, fireEvent, screen } from 'test/utils';
 import SnackbarsProvider, { SnackbarsProviderProps } from '@mui/lab/SnackbarsProvider';
 import useSnackbars from '@mui/lab/useSnackbars';
 import Button from '@mui/material/Button';
+import Slide from '@mui/material/Slide';
+import { snackbarClasses } from '@mui/material/Snackbar';
 import { ShowSnackbarProps } from './SnackbarsContext';
 
 describe('MultipleSnackbars', () => {
@@ -51,5 +53,38 @@ describe('MultipleSnackbars', () => {
     fireEvent.click(showSnackbar);
 
     expect(screen.getAllByRole('alert')).to.have.length(4);
+  });
+
+  it('individual snackbars properties should take precedence over SnackbarsProvider', () => {
+    const childRef = React.createRef<HTMLDivElement>();
+    const SlideTransition = () => {
+      return (
+        <Slide>
+          <div ref={childRef} />
+        </Slide>
+      );
+    };
+    renderComponent({
+      snackbarsProviderProps: {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'right',
+        },
+      },
+      snackbarOptions: {
+        TransitionComponent: SlideTransition,
+        anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'right',
+        },
+      },
+    });
+
+    const showSnackbar = screen.getByText('Show Snackbar');
+
+    fireEvent.click(showSnackbar);
+
+    expect(childRef.current!.style.transform).to.contain('translateY');
+    expect(screen.getByRole('presentation')).to.have.class(snackbarClasses.anchorOriginBottomRight);
   });
 });
