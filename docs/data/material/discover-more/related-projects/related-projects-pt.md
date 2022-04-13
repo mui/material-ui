@@ -45,7 +45,7 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Facilita a exibição de snackbars (assim você não precisa ter que lidar com o estado de aberto/fechado delas).
 
-### Upload
+### Envio
 
 - [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Construído sobre o react-dropzone.
 
@@ -64,7 +64,7 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 ### Imagem
 
-- [mui-image](https://mui-image.surge.sh): The only MUI image component to satisfy the Material guidelines for loading images.
+- [mui-image](https://mui-image.surge.sh): O único componente de imagem MUI que atende às diretrizes de material para carregar imagens.
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Imagens são feias até serem carregadas. Materialize elas com material image! Irá desvanecer, como sugere o padrão de carregamento de imagem material.
 
 ### Agenda/Calendário
@@ -75,7 +75,7 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 - [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Gráficos Material-UI para visualizar dados usando uma variedade de tipos de série, incluindo barra, linha, área, dispersão, pizza e muito mais ([licença paga](https://js.devexpress.com/licensing/)).
 
-### Dialog
+### Diálogo
 
 - [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Fornece diálogos de confirmação fáceis de usar para simplificar as ações de confirmação do usuário sem escrever código boilerplate.
 
@@ -85,11 +85,11 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 ### Sparkline
 
-- [mui-plus](https://mui-plus.vercel.app/components/Sparkline): A sparkline is a tiny chart that can be used to indicate the trend of a value.
+- [mui-plus](https://mui-plus.vercel.app/components/Sparkline): Um sparkline é um pequeno gráfico que pode ser usado para indicar a tendência de um valor.
 
 ## Blocos
 
-- [components-extra](https://github.com/alexandre-lelain/components-extra): Fornece um conjunto de componentes "molecule" construídos com base no Material-UI, com componentes de Footer, CookiesBanner, botão BackToTop e outros elementos complexos altamente customizados para ajudar os desenvolvedores a construir partes macro de sua interface muito rapidamente. Esses componentes são frequentemente duplicados em sites - esta biblioteca resolve exatamente este problema. This library solves this exact problem.
+- [components-extra](https://github.com/alexandre-lelain/components-extra): Fornece um conjunto de componentes "molecule" construídos com base no Material-UI, com componentes de Footer, CookiesBanner, botão BackToTop e outros elementos complexos altamente customizados para ajudar os desenvolvedores a construir partes macro de sua interface muito rapidamente. Esses componentes são frequentemente duplicados em sites - esta biblioteca resolve exatamente este problema. Essa biblioteca resolve esse exato problema.
 
 ## Temas
 
