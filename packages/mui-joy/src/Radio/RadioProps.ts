@@ -4,7 +4,7 @@ import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export type RadioSlot = 'root' | 'input';
+export type RadioSlot = 'root' | 'radio' | 'action' | 'input' | 'label';
 
 export interface RadioPropsVariantOverrides {}
 

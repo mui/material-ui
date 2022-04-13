@@ -23,6 +23,7 @@ import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
 import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
 import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
+import { RadioProps, RadioSlot } from '../Radio/RadioProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -123,5 +124,9 @@ export interface Components<Theme = unknown> {
   MuiTextField?: {
     defaultProps?: Partial<TextFieldProps>;
     styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldProps, Theme>;
+  };
+  MuiRadio?: {
+    defaultProps?: Partial<RadioProps>;
+    styleOverrides?: OverridesStyleRules<RadioSlot, RadioProps, Theme>;
   };
 }
