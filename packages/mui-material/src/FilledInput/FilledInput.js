@@ -177,6 +177,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const {
     disableUnderline,
+    color = 'primary',
     components = {},
     componentsProps: componentsPropsProp,
     fullWidth = false,
@@ -189,6 +190,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const ownerState = {
     ...props,
+    color,
     fullWidth,
     inputComponent,
     multiline,
