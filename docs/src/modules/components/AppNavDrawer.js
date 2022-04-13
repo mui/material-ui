@@ -323,9 +323,6 @@ PersistScroll.propTypes = {
   slot: PropTypes.string.isRequired,
 };
 
-// https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
-const ToolbarIE11 = styled('div')({ display: 'flex' });
-
 const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.45, 2),
   paddingRight: 0,
@@ -552,105 +549,103 @@ function AppNavDrawer(props) {
 
     return (
       <React.Fragment>
-        <ToolbarIE11>
-          <ToolbarDiv>
-            <NextLink href="/" passHref onClick={onClose}>
-              <Box
-                component="a"
-                aria-label={t('goToHome')}
-                sx={{
-                  pr: '12px',
-                  mr: '4px',
-                  borderRight: isProductScoped ? '1px solid' : '0px',
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.primary[100], 0.08)
-                      : theme.palette.grey[200],
-                }}
-              >
-                <SvgMuiLogo width={30} />
-              </Box>
-            </NextLink>
-            {!isProductScoped &&
-              renderVersionSelector(
-                [
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                  {
-                    text: 'View all versions',
-                    href: `https://mui.com${languagePrefix}/versions/`,
-                  },
-                ],
-                { mr: 2 },
-              )}
-            {asPathWithoutLang.startsWith('/material-ui/') && (
-              <ProductIdentifier
-                name="Material UI"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${materialPkgJson.version}`, current: true },
-                  {
-                    text: 'v4',
-                    href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
-                  },
-                  {
-                    text: 'View all versions',
-                    href: `https://mui.com${languagePrefix}/versions/`,
-                  },
-                ])}
-              />
+        <ToolbarDiv>
+          <NextLink href="/" passHref onClick={onClose}>
+            <Box
+              component="a"
+              aria-label={t('goToHome')}
+              sx={{
+                pr: '12px',
+                mr: '4px',
+                borderRight: isProductScoped ? '1px solid' : '0px',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primary[100], 0.08)
+                    : theme.palette.grey[200],
+              }}
+            >
+              <SvgMuiLogo width={30} />
+            </Box>
+          </NextLink>
+          {!isProductScoped &&
+            renderVersionSelector(
+              [
+                { text: `v${process.env.LIB_VERSION}`, current: true },
+                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
+                {
+                  text: 'View all versions',
+                  href: `https://mui.com${languagePrefix}/versions/`,
+                },
+              ],
+              { mr: 2 },
             )}
-            {asPathWithoutLang.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
-              <ProductIdentifier
-                name="MUI System"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${systemPkgJson.version}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
-                  {
-                    text: 'View all versions',
-                    href: `https://mui.com${languagePrefix}/versions/`,
-                  },
-                ])}
-              />
-            )}
-            {asPathWithoutLang.startsWith('/base/') && (
-              <ProductIdentifier
-                name="MUI Base"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${basePkgJson.version}`, current: true },
-                ])}
-              />
-            )}
-            {asPathWithoutLang.startsWith('/x/advanced-components') && (
-              <ProductIdentifier name="Advanced components" metadata="MUI X" />
-            )}
-            {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
-              asPathWithoutLang.startsWith('/x/api/data-grid')) && (
-              <ProductIdentifier
-                name="Data Grid"
-                metadata="MUI X"
-                versionSelector={renderVersionSelector([
-                  // DATA_GRID_VERSION is set from the X repo
-                  { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
-                ])}
-              />
-            )}
-            {(asPathWithoutLang.startsWith('/x/react-date-pickers') ||
-              asPathWithoutLang.startsWith('/x/api/date-pickers')) && (
-              <ProductIdentifier
-                name="Date pickers"
-                metadata="MUI X"
-                versionSelector={renderVersionSelector([
-                  // DATE_PICKERS_VERSION is set from the X repo
-                  { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
-                ])}
-              />
-            )}
-          </ToolbarDiv>
-        </ToolbarIE11>
+          {asPathWithoutLang.startsWith('/material-ui/') && (
+            <ProductIdentifier
+              name="Material UI"
+              metadata="MUI Core"
+              versionSelector={renderVersionSelector([
+                { text: `v${materialPkgJson.version}`, current: true },
+                {
+                  text: 'v4',
+                  href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
+                },
+                {
+                  text: 'View all versions',
+                  href: `https://mui.com${languagePrefix}/versions/`,
+                },
+              ])}
+            />
+          )}
+          {asPathWithoutLang.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
+            <ProductIdentifier
+              name="MUI System"
+              metadata="MUI Core"
+              versionSelector={renderVersionSelector([
+                { text: `v${systemPkgJson.version}`, current: true },
+                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
+                {
+                  text: 'View all versions',
+                  href: `https://mui.com${languagePrefix}/versions/`,
+                },
+              ])}
+            />
+          )}
+          {asPathWithoutLang.startsWith('/base/') && (
+            <ProductIdentifier
+              name="MUI Base"
+              metadata="MUI Core"
+              versionSelector={renderVersionSelector([
+                { text: `v${basePkgJson.version}`, current: true },
+              ])}
+            />
+          )}
+          {asPathWithoutLang.startsWith('/x/advanced-components') && (
+            <ProductIdentifier name="Advanced components" metadata="MUI X" />
+          )}
+          {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
+            asPathWithoutLang.startsWith('/x/api/data-grid')) && (
+            <ProductIdentifier
+              name="Data Grid"
+              metadata="MUI X"
+              versionSelector={renderVersionSelector([
+                // DATA_GRID_VERSION is set from the X repo
+                { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
+                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
+              ])}
+            />
+          )}
+          {(asPathWithoutLang.startsWith('/x/react-date-pickers') ||
+            asPathWithoutLang.startsWith('/x/api/date-pickers')) && (
+            <ProductIdentifier
+              name="Date pickers"
+              metadata="MUI X"
+              versionSelector={renderVersionSelector([
+                // DATE_PICKERS_VERSION is set from the X repo
+                { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
+              ])}
+            />
+          )}
+        </ToolbarDiv>
         <Divider
           sx={{
             borderColor: (theme) =>
