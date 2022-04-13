@@ -437,7 +437,7 @@ function reduceChildRoutes(context) {
 // So: <SwipeableDrawer disableBackdropTransition={false} />
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-function AppNavDrawer(props) {
+export default function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
   const router = useRouter();
@@ -719,5 +719,3 @@ AppNavDrawer.propTypes = {
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
 };
-
-export default AppNavDrawer;
