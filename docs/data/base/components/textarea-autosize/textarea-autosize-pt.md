@@ -1,29 +1,29 @@
 ---
-product: material-ui
-title: Componente React de texto autoajustável
+product: base
+title: Textarea Autosize React component
 components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'
 packageName: '@mui/base'
 ---
 
-# Texto autoajustável
+# Textarea Autosize
 
-<p class="description">Um componente de texto para React que se ajusta conforme o conteúdo.</p>
+<p class="description">A textarea component for React which grows with content.</p>
 
-- 📦 [2.1 kB gzipped](/size-snapshot)
+- 📦 [1.5 kB gzipped](/size-snapshot)
 
-O componente `TextareaAutosize` ajusta automaticamente a altura do textarea em eventos de teclado e redimensionamento de janela.
+The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Vazio
+## Empty
 
 {{"demo": "EmptyTextarea.js"}}
 
-## Altura mínima
+## Minimum height
 
 {{"demo": "MinHeightTextarea.js"}}
 
-## Altura máxima
+## Maximum height
 
 {{"demo": "MaxHeightTextarea.js"}}
