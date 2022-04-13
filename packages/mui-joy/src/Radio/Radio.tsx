@@ -2,12 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { getRadioUtilityClass } from './radioClasses';
 import { RadioProps, RadioTypeMap } from './RadioProps';
+import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 
 const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) => {
   const { checked, disabled, focusVisible, color, variant, size } = ownerState;
@@ -30,6 +31,15 @@ const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) =
 
   return composeClasses(slots, getRadioUtilityClass, {});
 };
+
+function areEqualValues(a: unknown, b: unknown) {
+  if (typeof b === 'object' && b !== null) {
+    return a === b;
+  }
+
+  // The value could be a number, the DOM will stringify it anyway.
+  return String(a) === String(b);
+}
 
 const RadioRoot = styled('span', {
   name: 'MuiRadio',
@@ -65,7 +75,7 @@ const RadioRoot = styled('span', {
       verticalAlign: 'middle',
       flexShrink: 0,
       fontFamily: theme.vars.fontFamily.body,
-      lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
+      lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
       '&.Mui-disabled': {
         color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
       },
@@ -163,22 +173,35 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     defaultChecked,
     disabled: disabledProp,
     label,
-    id,
-    name,
+    id: idOverride,
+    name: nameProp,
     onBlur,
     onChange,
     onFocus,
     onFocusVisible,
     required,
-    color,
-    variant = 'outlined',
-    size = 'md',
+    color: colorProp,
+    variant: variantProp = 'outlined',
+    size: sizeProp = 'md',
     uncheckedIcon,
+    value,
     ...otherProps
   } = props;
+  const id = useId(idOverride);
+  const radioGroup = React.useContext(RadioGroupContext);
+  const color = inProps.color || radioGroup.color || colorProp;
+  const activeColor = color || 'primary';
+  const inactiveColor = color || 'neutral';
+  const variant = inProps.variant || radioGroup.variant || variantProp;
+  const size = inProps.size || radioGroup.size || sizeProp;
+  const name = inProps.name || radioGroup.name || nameProp;
 
+  const radioChecked =
+    typeof checkedProp === 'undefined' && !!value
+      ? areEqualValues(radioGroup.value, value)
+      : checkedProp;
   const useRadioProps = {
-    checked: checkedProp,
+    checked: radioChecked,
     defaultChecked,
     disabled: disabledProp,
     onBlur,
@@ -188,9 +211,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   };
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useRadioProps);
-
-  const activeColor = color || 'primary';
-  const inactiveColor = color || 'neutral';
 
   const ownerState = {
     ...props,
@@ -227,10 +247,11 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
         >
           <RadioInput
             ownerState={ownerState}
-            {...getInputProps(componentsProps.input)}
+            {...getInputProps({ ...componentsProps.input, onChange: radioGroup.onChange })}
             type="radio"
             id={id}
             name={name}
+            value={String(value)}
             className={clsx(classes.input, componentsProps.input?.className)}
           />
         </RadioAction>
@@ -238,6 +259,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       {label && (
         <RadioLabel
           {...componentsProps?.label}
+          htmlFor={id}
           ownerState={ownerState}
           className={clsx(classes.label, componentsProps?.label?.className)}
         >

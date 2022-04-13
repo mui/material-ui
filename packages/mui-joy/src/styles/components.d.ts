@@ -24,6 +24,7 @@ import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
 import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 import { RadioProps, RadioSlot } from '../Radio/RadioProps';
+import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -128,5 +129,9 @@ export interface Components<Theme = unknown> {
   MuiRadio?: {
     defaultProps?: Partial<RadioProps>;
     styleOverrides?: OverridesStyleRules<RadioSlot, RadioProps, Theme>;
+  };
+  MuiRadioGroup?: {
+    defaultProps?: Partial<RadioGroupProps>;
+    styleOverrides?: OverridesStyleRules<RadioGroupSlot, RadioGroupProps, Theme>;
   };
 }
