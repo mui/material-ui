@@ -347,6 +347,7 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    paddingBottom: theme.spacing(5),
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
     },
@@ -656,7 +657,6 @@ function AppNavDrawer(props) {
         />
         <DiamondSponsors spot="drawer" />
         {navItems}
-        <Box sx={{ height: 40 }} />
       </React.Fragment>
     );
   }, [activePage, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
