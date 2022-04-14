@@ -19,5 +19,5 @@ The library includes prebuilt, unstyled components with production-ready functio
 
 MUI Base features many of the same components as Material UI, but _without the Material Design implementation_.
 
-You could think of MUI Base as the "skeletal" version of Material UI—components with no built-in style choices.
+You could think of MUI Base as the "skeletal" version of Material UI—foundational components with no built-in style choices.
 This makes MUI Base a better option than Material UI if you need to customize the design significantly beyond the Material Design specifications.
