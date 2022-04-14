@@ -1,10 +1,13 @@
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
+import CheckIcon from '@mui/icons-material/Check';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import ThumbUp from '@mui/icons-material/ThumbUp';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
+import ChipDelete from '@mui/joy/ChipDelete';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
@@ -50,6 +53,33 @@ export default function JoyChip() {
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
+        </Box>
+        {/* Examples */}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
+          {['Benny', 'Jun', 'Danilo', 'Marija', 'Michal', 'Olivier'].map((name) => (
+            <Chip variant="light" endDecorator={<ChipDelete />}>
+              {name}
+            </Chip>
+          ))}
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
+          {['Benny', 'Jun', 'Danilo', 'Marija', 'Michal', 'Olivier'].map((name, index) => (
+            <Chip
+              sx={{
+                paddingLeft: 0,
+                justifyContent: 'flex-start',
+                borderRadius: 20,
+                width: '11%',
+                height: 40,
+              }}
+              variant="contained"
+              color="success"
+              startDecorator={<Avatar size="sm" src={`/static/images/avatar/${index + 1}.jpg`} />}
+              endDecorator={<CheckIcon />}
+            >
+              {name}
+            </Chip>
+          ))}
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {/* Without decorators */}
