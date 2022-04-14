@@ -1,7 +1,8 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from 'test/utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/material/SvgIcon';
+import * as React from 'react';
+import capitalize from '../utils/capitalize';
 
 describe('<SvgIcon />', () => {
   const { render } = createRenderer();
@@ -95,6 +96,14 @@ describe('<SvgIcon />', () => {
 
       expect(container.firstChild).to.have.class(classes.fontSizeInherit);
     });
+
+    ['small', 'medium', 'large'].map((fontSize) =>
+      it('should render the correct fontSize class', () => {
+        const { container } = render(<SvgIcon fontSize={fontSize}>{path}</SvgIcon>);
+
+        expect(container.firstChild).to.have.class(classes[`fontSize${capitalize(fontSize)}`]);
+      }),
+    );
   });
 
   describe('prop: inheritViewBox', () => {
