@@ -4,6 +4,7 @@ description: Migrate to the new package to start building with our powerful date
 date: 2022-04-03T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'News']
+card: true
 ---
 
 After more than 18 months in the lab, the date and time picker components have found a new home as part of MUI X.
