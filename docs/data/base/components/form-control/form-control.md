@@ -62,7 +62,7 @@ They are meant to be used when creating custom inputs.
 
 ## Using FormControlUnstyled without reading context
 
-In addition to providing a context, `FormControlUnstyled`, you can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
+In addition to providing a context, you can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
 The state will be provided as a parameter to this function.
 
 {{"demo": "FormControlFunctionChild.js"}}
