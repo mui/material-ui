@@ -1,0 +1,11 @@
+{
+  "props": { "component": { "type": { "name": "elementType" } } },
+  "name": "Box",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Box/Box.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-box/\">Box</a></li></ul>",
+  "cssComponent": true
+}
