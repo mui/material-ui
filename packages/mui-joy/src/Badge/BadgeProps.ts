@@ -32,7 +32,7 @@ export type BadgeTypeMap<
     anchorOrigin?: BadgeOrigin;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
+     * @default 'primary'
      */
     color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, BadgePropsColorOverrides>;
     /**
@@ -51,7 +51,7 @@ export type BadgeTypeMap<
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'light'
+     * @default 'contained'
      */
     variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, BadgePropsVariantOverrides>;
   };

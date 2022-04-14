@@ -255,7 +255,7 @@ Badge.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
+   * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -310,7 +310,7 @@ Badge.propTypes /* remove-proptypes */ = {
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The variant to use.
-   * @default 'light'
+   * @default 'contained'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
