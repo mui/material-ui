@@ -50,7 +50,7 @@ Moved to [/customization/theming/#custom-variables](/material-ui/customization/t
 ## Complications with the `component` prop
 
 The usage of the `component` prop can be problematic if you are creating your custom component based on the Mateiral UI's components.
-You are likely going to use one of these two options:
+You will likely need to use one of these two options:
 
 1. Wrap the Material UI component in order to enhance it
 2. Use the `styled()` utility in order to customize the styles of the component
