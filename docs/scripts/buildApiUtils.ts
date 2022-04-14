@@ -245,9 +245,11 @@ const pathToSystemTitle = (pathname: string) => {
   const defaultTitle = pageToTitle({ pathname });
   if (pathname.match(/material\//)) {
     return `${defaultTitle} (Material UI)`;
-  } else if (pathname.match(/system\//)) {
+  }
+  if (pathname.match(/system\//)) {
     return `${defaultTitle} (MUI System)`;
-  } else if (pathname.match(/joy\//)) {
+  }
+  if (pathname.match(/joy\//)) {
     return `${defaultTitle} (Joy UI)`;
   }
   return defaultTitle;
