@@ -33,41 +33,19 @@ const ChipStartDecorator = styled('span', {
   name: 'MuiChip',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: ChipProps }>(({ ownerState }) => ({
+})<{ ownerState: ChipProps }>({
   display: 'inherit',
-  ...(ownerState.size === 'sm' && {
-    marginLeft: 8,
-    marginRight: 8,
-  }),
-  ...(ownerState.size === 'md' && {
-    marginLeft: 12,
-    marginRight: 12,
-  }),
-  ...(ownerState.size === 'lg' && {
-    marginLeft: 16,
-    marginRight: 16,
-  }),
-}));
+  margin: '0 var(--Chip-decorator-marginX)',
+});
 
 const ChipEndDecorator = styled('span', {
   name: 'MuiChip',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: ChipProps }>(({ ownerState }) => ({
+})<{ ownerState: ChipProps }>({
   display: 'inherit',
-  ...(ownerState.size === 'sm' && {
-    marginLeft: 8,
-    marginRight: 8,
-  }),
-  ...(ownerState.size === 'md' && {
-    marginLeft: 12,
-    marginRight: 12,
-  }),
-  ...(ownerState.size === 'lg' && {
-    marginLeft: 16,
-    marginRight: 16,
-  }),
-}));
+  margin: '0 var(--Chip-decorator-marginX)',
+});
 
 const ChipRoot = styled('div', {
   name: 'MuiChip',
@@ -88,8 +66,10 @@ const ChipRoot = styled('div', {
         '--Chip-radius': '1.5rem',
         '--Chip-fontSize': theme.vars.fontSize.md,
       }),
+      '--Chip-color': theme.variants[ownerState.variant!]?.[ownerState.color!].color,
       '--Chip-paddingX': '0.5rem',
       '--Chip-label-paddingX': '0.2rem',
+      '--Chip-decorator-marginX': '0.5rem',
       '--Chip-delete-radius':
         'max(var(--Chip-radius) - var(--Chip-paddingX), min(var(--Chip-paddingX) / 2, var(--Chip-radius) / 2))',
       padding: '0.25rem var(--Chip-paddingX)',
@@ -125,7 +105,7 @@ const ChipLabel = styled('span', {
   name: 'MuiChip',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: ChipProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: ChipProps }>({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
@@ -140,26 +120,9 @@ const ChipLabel = styled('span', {
     padding: 0,
     border: 'none',
     background: 'none',
-    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    color: 'var(--Chip-color)',
   },
-}));
-
-const ChipDeleteComponent = styled('button', {
-  name: 'MuiChipDelete',
-  slot: 'Root',
-})`
-  width: 20px;
-  height: 20px;
-  font-size: 10px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #888;
-  border-radius: 'var(--Chip-delete-radius)';
-  cursor: pointer;
-`;
-
-export const ChipDelete = () => <ChipDeleteComponent>{'X'}</ChipDeleteComponent>;
+});
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
