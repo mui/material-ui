@@ -1,5 +1,4 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import ButtonBase from '@mui/material/ButtonBase';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import clsx from 'clsx';
@@ -78,42 +77,44 @@ const ChipRoot = styled('div', {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Chip-height': '1.5rem',
-        '--Chip-border-radius': '0.75rem',
-        fontSize: theme.vars.fontSize.sm,
+        '--Chip-radius': '1rem',
+        '--Chip-fontSize': theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
-        '--Chip-height': '2rem',
-        '--Chip-border-radius': '1rem',
-        fontSize: theme.vars.fontSize.md,
+        '--Chip-radius': '1.25rem',
+        '--Chip-fontSize': theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Chip-height': '2.5rem',
-        '--Chip-border-radius': '1.25rem',
-        fontSize: theme.vars.fontSize.lg,
+        '--Chip-radius': '1.5rem',
+        '--Chip-fontSize': theme.vars.fontSize.md,
       }),
+      '--Chip-paddingX': '0.5rem',
+      '--Chip-label-paddingX': '0.2rem',
+      '--Chip-delete-radius':
+        'max(var(--Chip-radius) - var(--Chip-paddingX), min(var(--Chip-paddingX) / 2, var(--Chip-radius) / 2))',
+      padding: '0.25rem var(--Chip-paddingX)',
+      borderRadius: 'var(--Chip-radius)',
+      fontSize: 'var(--Chip-fontSize)',
+      position: 'relative',
       maxWidth: '100%',
       fontFamily: theme.vars.fontFamily.body,
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 'var(--Chip-height)',
-      borderRadius: 'var(--Chip-border-radius)',
       whiteSpace: 'nowrap',
       transition:
         'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      // label will inherit this from root, then `clickable` class overrides this for both
-      cursor: 'default',
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 0,
       textDecoration: 'none',
-      border: 0, // Remove `button` border
-      padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       ...(ownerState.disabled && {
         opacity: 0.5,
         pointerEvents: 'none',
+      }),
+      ...(ownerState.clickable && {
+        cursor: 'pointer',
       }),
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -124,22 +125,23 @@ const ChipLabel = styled('span', {
   name: 'MuiChip',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: ChipProps }>(({ ownerState }) => ({
+})<{ ownerState: ChipProps }>(({ theme, ownerState }) => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-  ...(ownerState.size === 'sm' && {
-    paddingLeft: 8,
-    paddingRight: 8,
-  }),
-  ...(ownerState.size === 'md' && {
-    paddingLeft: 12,
-    paddingRight: 12,
-  }),
-  ...(ownerState.size === 'lg' && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
+  padding: '0 var(--Chip-label-paddingX)',
+  '& > button': {
+    fontSize: 'var(--Chip-fontSize)',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 0,
+    padding: 0,
+    border: 'none',
+    background: 'none',
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  },
 }));
 
 /**
@@ -165,7 +167,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
-  const component = clickable ? ButtonBase : ComponentProp || 'div';
+  const component = ComponentProp || 'div';
 
   const ownerState = {
     ...props,
@@ -202,7 +204,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     >
       {startDecorator}
       <ChipLabel className={clsx(classes.label)} ownerState={ownerState}>
-        {children}
+        {clickable ? <button type="button">{children}</button> : children}
       </ChipLabel>
       {endDecorator}
     </ChipRoot>
