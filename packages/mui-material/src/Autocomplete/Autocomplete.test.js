@@ -1291,6 +1291,33 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: disableClearOnSelect', () => {
+    it('should not clear the input with `multiple` enabled', () => {
+      render(
+        <Autocomplete
+          multiple
+          disableClearOnSelect
+          options={['one']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const testbox = screen.getByRole('combobox');
+
+      act(() => {
+        testbox.focus();
+        fireEvent.change(document.activeElement, { target: { value: 'o' } });
+      });
+
+      const listbox = screen.getByRole('listbox');
+      const firstOption = listbox.querySelector('li');
+      act(() => {
+        fireEvent.click(firstOption);
+      });
+
+      expect(testbox.value).to.equal('o');
+    });
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       PropTypes.resetWarningCache();

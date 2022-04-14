@@ -78,6 +78,7 @@ export default function useAutocomplete(props) {
     componentName = 'useAutocomplete',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
+    disableClearOnSelect = false,
     disableCloseOnSelect = false,
     disabledItemsFocusable = false,
     disableListWrap = false,
@@ -159,6 +160,9 @@ export default function useAutocomplete(props) {
       if (!isOptionSelected && !clearOnBlur) {
         return;
       }
+      if (multiple && disableClearOnSelect) {
+        return;
+      }
       let newInputValue;
       if (multiple) {
         newInputValue = '';
@@ -179,7 +183,16 @@ export default function useAutocomplete(props) {
         onInputChange(event, newInputValue, 'reset');
       }
     },
-    [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
+    [
+      getOptionLabel,
+      inputValue,
+      multiple,
+      onInputChange,
+      setInputValueState,
+      clearOnBlur,
+      value,
+      disableClearOnSelect,
+    ],
   );
 
   const prevValue = React.useRef();

@@ -93,6 +93,11 @@ export interface UseAutocompleteProps<
    */
   disableClearable?: DisableClearable;
   /**
+   * If `true`, the input's text is clear when a value is selected.
+   * @default false
+   */
+  disableClearOnSelect?: boolean;
+  /**
    * If `true`, the popup won't close when a value is selected.
    * @default false
    */
