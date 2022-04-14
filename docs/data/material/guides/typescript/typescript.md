@@ -47,7 +47,7 @@ by default and loose via opt-in.
 
 Moved to [/customization/theming/#custom-variables](/material-ui/customization/theming/#custom-variables).
 
-## Usage of `component` prop
+## Complications with the `component` prop
 
 The usage of the `component` prop can be problematic if you are creating your custom component based on the Mateiral UI's components.
 You are likely going to use one of these two options:
