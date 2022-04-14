@@ -28,6 +28,6 @@
   "spread": true,
   "filename": "/packages/mui-lab/src/SnackbarsProvider/SnackbarsProvider.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-multiple-snackbars/\">Multiple Snackbars</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-multiple-snackbars/\">Multiple snackbars</a></li></ul>",
   "cssComponent": false
 }
