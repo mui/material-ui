@@ -4,7 +4,7 @@
 
 ## About the company
 
-MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+MUI started with Material UI, the most successful React implementation of Google's Material Design.
 It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
@@ -19,18 +19,18 @@ For additional details about the MUI team and culture, you can check our [career
 
 ## Why we're hiring
 
-Material-UI started as an open-source project.
+Material UI started as an open-source project.
 Over time, the audience and usage grew considerably, and some of the library's early contributors became full-time maintainers.
-A company was incorporated to support this growth, and more recently [was rebranded from Material-UI to MUI](/blog/material-ui-is-now-mui/).
+A company was incorporated to support this growth, and more recently [was rebranded from Material UI to MUI](/blog/material-ui-is-now-mui/).
 The new brand was fundamental to set the stage for MUI to become larger than Material Design, which was something we were already doing.
 Currently, we have five main projects that are not at all related to MD:
 
 - [MUI Core](/core/):
-  - [MUI Base](/customization/unstyled-components/): the unstyled version of the components.
+  - [MUI Base](/material-ui/customization/unstyled-components/): the unstyled version of the components.
   - [MUI System](/system/basics/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
 - [MUI X](/x/): as mentioned, a growing set of advanced components.
-  Today, the flagship is the [Data Grid](/components/data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
+  Today, the flagship is the [Data Grid](/x/react-data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
 - MUI Toolpad: a very recent endeavor aimed at exploring how our users can visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
 We also know, especially due to [our annual developer survey](/blog/2021-developer-survey-results/), that design quality plays a huge part when developers are considering component library options.

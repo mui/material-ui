@@ -17,14 +17,14 @@ export default function ActiveLastBreadcrumb() {
         <Link
           underline="hover"
           color="inherit"
-          href="/getting-started/installation/"
+          href="/material-ui/getting-started/installation/"
         >
           Core
         </Link>
         <Link
           underline="hover"
           color="text.primary"
-          href="/components/breadcrumbs/"
+          href="/material-ui/react-breadcrumbs/"
           aria-current="page"
         >
           Breadcrumbs

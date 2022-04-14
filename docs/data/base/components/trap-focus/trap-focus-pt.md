@@ -1,8 +1,9 @@
 ---
-product: material-ui
+product: base
 title: Componente React para capturar foco
-components: Unstable_TrapFocus
+components: TrapFocus
 githubLabel: 'component: TrapFocus'
+packageName: '@mui/base'
 ---
 
 # Capturar foco
@@ -14,8 +15,6 @@ TrapFocus é um componente que gerencia o foco para seus descendentes. This is u
 When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
 
 [A paleta](/system/palette/) com funções de estilo.
-
-> ⚠️ O componente é experimental e instável.
 
 ## Exemplo
 
@@ -49,6 +48,6 @@ Você pode desabilitar esse comportamento e deixá-lo de forma tardia com a prop
 
 ## Portal
 
-The following demo uses the [`Portal`](/components/portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy; so that they no longer form part of the focus loop.
+The following demo uses the [`Portal`](/material-ui/react-portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy; so that they no longer form part of the focus loop.
 
 {{"demo": "PortalTrapFocus.js"}}
