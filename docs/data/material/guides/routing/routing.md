@@ -31,7 +31,7 @@ import {
 import { LinkProps } from '@mui/material/Link';
 
 const LinkBehavior = React.forwardRef<
-  any,
+  HTMLAnchorElement,
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
