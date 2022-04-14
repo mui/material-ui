@@ -51,44 +51,52 @@ const BadgeBadge = styled('span', {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Badge-minWidth': '1rem',
-        '--Badge-height': '1rem',
-        '--Badge-borderRadius': '0.5rem',
-        '--Badge-padding': '0.333rem',
-        '--Badge-fontSize': theme.vars.fontSize.sm,
+        '--Badge-minHeight': '0.5rem',
+        ...(ownerState.badgeContent && {
+          '--Badge-minHeight': '1rem',
+        }),
+        '--Badge-paddingX': '0.25rem',
+        fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
-        '--Badge-minWidth': '1.25rem',
-        '--Badge-height': '1.25rem',
-        '--Badge-borderRadius': '0.625rem',
-        '--Badge-padding': '0.416rem',
-        '--Badge-fontSize': theme.vars.fontSize.md,
+        '--Badge-minHeight': '0.75rem',
+        ...(ownerState.badgeContent && {
+          '--Badge-minHeight': '1.25rem',
+        }),
+        '--Badge-paddingX': '0.375rem',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Badge-minWidth': '1.5rem',
-        '--Badge-height': '1.5rem',
-        '--Badge-borderRadius': '0.75rem',
-        '--Badge-padding': '0.5rem',
-        '--Badge-fontSize': theme.vars.fontSize.lg,
+        '--Badge-minHeight': '1rem',
+        ...(ownerState.badgeContent && {
+          '--Badge-minHeight': '1.5rem',
+        }),
+        '--Badge-paddingX': '0.5rem',
+        fontSize: theme.vars.fontSize.md,
       }),
-      display: 'flex',
-      flexDirection: 'row',
+      '--Badge-ringSize': '2px',
+      '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.body})`,
+      display: 'inline-flex',
       flexWrap: 'wrap',
       justifyContent: 'center',
       alignContent: 'center',
       alignItems: 'center',
       position: 'absolute',
       boxSizing: 'border-box',
+      boxShadow: 'var(--Badge-ring)',
       fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.sm,
+      fontWeight: theme.vars.fontWeight.md,
       lineHeight: 1,
-      padding: '0 var(--Badge-padding)',
-      fontSize: 'var(--Badge-fontSize)',
-      minWidth: 'var(--Badge-minWidth)',
-      height: 'var(--Badge-height)',
-      borderRadius: 'var(--Badge-borderRadius)',
-      zIndex: 1, // Render the badge on top of potential ripples.
+      padding:
+        'calc(var(--Badge-paddingX) / 2 - var(--variant-outlinedBorderWidth, 0px)) calc(var(--Badge-paddingX) - var(--variant-outlinedBorderWidth, 0px))',
+      minHeight: 'var(--Badge-minHeight)',
+      minWidth: 'var(--Badge-minHeight)',
+      borderRadius: 'var(--Badge-minHeight)',
+      zIndex: 1,
       transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      ...(ownerState.variant === 'outlined' && {
+        backgroundColor: theme.vars.palette.background.body,
+      }),
       ...(ownerState.anchorOrigin!.vertical === 'top' &&
         ownerState.anchorOrigin!.horizontal === 'right' &&
         ownerState.overlap === 'rectangular' && {
@@ -196,14 +204,14 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     component = 'span',
     components = {},
     componentsProps = {},
-    size: sizeProp = 'sm',
-    color: colorProp = 'neutral',
+    size: sizeProp = 'md',
+    color: colorProp = 'primary',
     overlap: overlapProp = 'rectangular',
     invisible: invisibleProp = false,
     max,
-    badgeContent: badgeContentProp,
+    badgeContent: badgeContentProp = '',
     showZero = false,
-    variant: variantProp = 'light',
+    variant: variantProp = 'contained',
     ...other
   } = props;
 

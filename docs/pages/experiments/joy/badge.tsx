@@ -45,8 +45,29 @@ const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
   variant: ['contained', 'outlined', 'light'],
-  invisible: [true, false],
 } as const;
+
+const InvisibleBadgeButton = () => {
+  const [invisible, setInvisible] = React.useState(true);
+  return (
+    <Badge badgeContent={1} invisible={invisible}>
+      <IconButton onClick={() => setInvisible((bool) => !bool)}>
+        <MailIcon />
+      </IconButton>
+    </Badge>
+  );
+};
+
+const InvisibleBadgeIcon = () => {
+  const [invisible, setInvisible] = React.useState(true);
+  return (
+    <IconButton onClick={() => setInvisible((bool) => !bool)}>
+      <Badge badgeContent={1} invisible={invisible} color="danger">
+        <MailIcon />
+      </Badge>
+    </IconButton>
+  );
+};
 
 export default function JoyBadge() {
   return (
@@ -69,71 +90,74 @@ export default function JoyBadge() {
             ),
           )}
         </Box>
-        <Sheet
-          color="success"
-          variant="contained"
+        <Box
           sx={{
-            borderRadius: 20,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 5,
-            mt: 5,
-            p: 3,
-            alignItems: 'center',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: 2,
           }}
         >
-          {[
-            { badgeContent: '1', name: 'Jon Doe' },
-            { badgeContent: '2', name: 'Benny' },
-            { badgeContent: '3', name: 'Jun' },
-            { badgeContent: '4', name: 'Marija' },
-            { badgeContent: '5', name: 'Danilo' },
-            { badgeContent: '6', name: 'Michal' },
-            { badgeContent: '7', name: 'Olivier' },
-            { badgeContent: '8', name: 'Harry' },
-          ].map(({ badgeContent, name }) => (
-            <Badge
-              badgeContent={badgeContent}
-              size="lg"
-              color={'success'}
-              sx={{ width: '100%' }}
-              anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-            >
-              <Sheet
-                variant="outlined"
+          <Sheet
+            color="success"
+            variant="contained"
+            sx={{
+              borderRadius: 20,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 5,
+              mt: 5,
+              p: 3,
+              alignItems: 'center',
+            }}
+          >
+            {[
+              { badgeContent: '1', name: 'Jon Doe' },
+              { badgeContent: '2', name: 'Benny' },
+              { badgeContent: '3', name: 'Jun' },
+            ].map(({ badgeContent, name }) => (
+              <Badge
+                badgeContent={badgeContent}
+                size="lg"
                 color={'success'}
-                sx={{
-                  width: '100%',
-                  height: 70,
-                  borderRadius: 10,
-                  display: 'flex',
-                  alignItems: 'center',
-                  pl: 3,
-                  backgroundColor: 'var(--joy-palette-background-level1)',
-                }}
+                sx={{ width: '100%' }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
               >
-                <Avatar size="lg" src={`/static/images/avatar/${badgeContent}.jpg`} />
-                <Typography
-                  level="body1"
-                  sx={{ m: 2, color: 'var(--joy-palette-success-textColor)' }}
+                <Sheet
+                  variant="outlined"
+                  color={'success'}
+                  sx={{
+                    width: '100%',
+                    height: 70,
+                    borderRadius: 10,
+                    display: 'flex',
+                    alignItems: 'center',
+                    pl: 3,
+                    backgroundColor: 'var(--joy-palette-background-level1)',
+                  }}
                 >
-                  {name}
-                </Typography>
-                <Badge max={1000} badgeContent={200} color="danger" sx={{ ml: 'auto', mr: 1 }}>
-                  <IconButton size="sm" variant="text" color="danger" sx={{ mx: 1 }}>
-                    <Favorite />
+                  <Avatar size="lg" src={`/static/images/avatar/${badgeContent}.jpg`} />
+                  <Typography
+                    level="body1"
+                    sx={{ m: 2, color: 'var(--joy-palette-success-textColor)' }}
+                  >
+                    {name}
+                  </Typography>
+                  <Badge max={1000} badgeContent={200} color="danger" sx={{ ml: 'auto', mr: 1 }}>
+                    <IconButton size="sm" variant="text" color="danger" sx={{ mx: 1 }}>
+                      <Favorite />
+                    </IconButton>
+                  </Badge>
+                  <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
+                    <Share />
                   </IconButton>
-                </Badge>
-                <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
-                  <Share />
-                </IconButton>
-                <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
-                  <MoreHoriz />
-                </IconButton>
-              </Sheet>
-            </Badge>
-          ))}
-        </Sheet>
+                  <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
+                    <MoreHoriz />
+                  </IconButton>
+                </Sheet>
+              </Badge>
+            ))}
+          </Sheet>
+        </Box>
         {/* Props */}
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 10 }}>
           {Object.entries(props).map(([propName, propValue]) => (
@@ -189,6 +213,27 @@ export default function JoyBadge() {
                 )}
               </Box>
             ))}
+          </Box>
+          <Box
+            sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
+          >
+            <Typography sx={{ textDecoration: 'underline' }}>Invisible</Typography>
+            <InvisibleBadgeIcon />
+            <InvisibleBadgeButton />
+          </Box>
+          <Box
+            sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
+          >
+            <Typography sx={{ textDecoration: 'underline' }}>Dot</Typography>
+            <Badge color="success" size="sm">
+              <MailIcon />
+            </Badge>
+            <Badge color="success">
+              <MailIcon />
+            </Badge>
+            <Badge color="success" size="lg">
+              <MailIcon />
+            </Badge>
           </Box>
         </Box>
       </Box>
