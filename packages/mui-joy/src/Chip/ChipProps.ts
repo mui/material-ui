@@ -26,7 +26,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     clickable?: boolean;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
+     * @default 'primary'
      */
     color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, ChipPropsColorOverrides>;
     /**
@@ -54,7 +54,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'light'
+     * @default 'contained'
      */
     variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, ChipPropsVariantOverrides>;
   };

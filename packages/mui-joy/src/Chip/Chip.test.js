@@ -22,10 +22,10 @@ describe('<Chip />', () => {
   }));
 
   describe('prop: variant', () => {
-    it('light by default', () => {
+    it('contained by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantLight);
+      expect(getByTestId('root')).to.have.class(classes.variantContained);
     });
 
     ['outlined', 'light', 'contained'].forEach((variant) => {
@@ -38,10 +38,10 @@ describe('<Chip />', () => {
   });
 
   describe('prop: color', () => {
-    it('adds a neutral class by default', () => {
+    it('adds a primary class by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
 
     ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {

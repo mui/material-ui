@@ -153,12 +153,12 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     children,
     className,
     clickable: clickableProp,
-    color = 'neutral',
+    color = 'primary',
     component: ComponentProp,
     disabled = false,
     onClick,
     size = 'md',
-    variant = 'light',
+    variant = 'contained',
     startDecorator: startDecoratorProp,
     endDecorator: endDecoratorProp,
     ...other
@@ -235,7 +235,7 @@ Chip.propTypes /* remove-proptypes */ = {
   clickable: PropTypes.bool,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
+   * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -274,7 +274,7 @@ Chip.propTypes /* remove-proptypes */ = {
   startDecorator: PropTypes.node,
   /**
    * The variant to use.
-   * @default 'light'
+   * @default 'contained'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
