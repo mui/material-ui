@@ -16,6 +16,7 @@ describe('<RadioGroup />', () => {
     ThemeProvider,
     muiName: 'MuiRadioGroup',
     refInstanceof: window.HTMLDivElement,
+    testVariantProps: { row: true },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
 

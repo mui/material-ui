@@ -13,8 +13,9 @@ describe('<Radio />', () => {
     ThemeProvider,
     muiName: 'MuiRadio',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
+    testVariantProps: { variant: 'light' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeVariants'],
+    skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
 
   it('should have the classes required for Radio', () => {
