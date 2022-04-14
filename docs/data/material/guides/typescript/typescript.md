@@ -55,7 +55,7 @@ You are likely going to use one of these two options:
 1. Wrap the Material UI component in order to enhance it
 2. Use the `styled()` utility in order to customize the styles of the component
 
-If you are using the first option, take a look at the [composition guide](/material-ui/guides/composition/#with-typescript) for more details on this.
+If you are using the first option, take a look at the [composition guide](/material-ui/guides/composition/#with-typescript) for more details.
 
 If you are using the `styled()` utility (regardless of whether it comes from `@mui/material` or `@emotion/styled`), you will need to cast the resulting component as shown below:
 
