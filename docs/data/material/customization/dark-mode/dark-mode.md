@@ -31,7 +31,7 @@ The modified colors are the following:
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-> Note: The colors are modified only if you use [the default palette](/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The following section explains how you can do it.
+> Note: The colors are modified only if you use [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The following section explains how you can do it.
 
 ## Dark mode with a custom palette
 
