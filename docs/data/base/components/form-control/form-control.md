@@ -9,12 +9,12 @@ packageName: '@mui/base'
 # Unstyled form control
 
 <p class="description">
-  The <code>FormControlUnstyled</code> is a utility that lets you associate a form input with auxillary components, such as labels, error indicators, or helper text.
+  The <code>FormControlUnstyled</code> component is a utility that lets you associate a form input with auxillary components, such as labels, error indicators, or helper text.
 </p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## FormControlUnstyled
+## Basic usage
 
 `FormControlUnstyled` wraps an input with other associated components in order to make the state of the input available to those components.
 
