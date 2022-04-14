@@ -17,6 +17,8 @@ export interface SvgIconClasses {
   fontSizeInherit: string;
   /** Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: string;
+  /** Styles applied to the root element if `fontSize="medium"`. */
+  fontSizeMedium: string;
   /** Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: string;
 }
