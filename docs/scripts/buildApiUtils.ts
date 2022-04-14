@@ -303,7 +303,7 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
       srcInfo = parseFile(filename);
       return srcInfo;
     },
-    getInheritance(inheritedComponent = srcInfo?.inheritedComponent) {
+    getInheritance() {
       return null;
     },
     getDemos: () => {

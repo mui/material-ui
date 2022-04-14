@@ -1,5 +1,5 @@
-import createBox from '../createBox';
 import PropTypes from 'prop-types';
+import createBox from '../createBox';
 
 const Box = createBox();
 

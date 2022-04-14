@@ -381,10 +381,8 @@ function plugin(
           const arg = nodeInit.arguments[0];
           if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
             getFromProp(arg.params[0]);
-          } else {
-            if (systemComponents.includes(nodeName)) {
-              getFromProp(node);
-            }
+          } else if (systemComponents.includes(nodeName)) {
+            getFromProp(node);
           }
         }
       },

@@ -122,5 +122,18 @@ export default function createContainer(options = {}) {
     );
   });
 
+  Container.propTypes = {
+    children: PropTypes.node,
+    classes: PropTypes.object,
+    disableGutters: PropTypes.bool,
+    fixed: PropTypes.bool,
+    maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
+    sx: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+      PropTypes.func,
+      PropTypes.object,
+    ]),
+  };
+
   return Container;
 }

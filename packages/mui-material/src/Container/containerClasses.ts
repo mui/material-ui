@@ -1,7 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 import { ContainerClasses } from '@mui/system';
 
-export { ContainerClassKey } from '@mui/system';
+export type { ContainerClassKey } from '@mui/system';
 export type { ContainerClasses };
 
 export function getContainerUtilityClass(slot: string): string {

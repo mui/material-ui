@@ -534,10 +534,10 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
       (ast) => {
         let node;
         astTypes.visit(ast, {
-          visitVariableDeclaration: (path) => {
-            let definitions: any[] = [];
-            if (path.node.declarations) {
-              path
+          visitVariableDeclaration: (variablePath) => {
+            const definitions: any[] = [];
+            if (variablePath.node.declarations) {
+              variablePath
                 .get('declarations')
                 .each((declarator: any) => definitions.push(declarator.get('init')));
             }
