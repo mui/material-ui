@@ -93,6 +93,9 @@ const ChipRoot = styled('div', {
       }),
       ...(ownerState.clickable && {
         cursor: 'pointer',
+        '&:hover': {
+          opacity: 0.8,
+        },
       }),
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],

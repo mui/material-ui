@@ -32,6 +32,9 @@ const ChipDeleteRoot = styled('button', {
   border: 'none',
   background: 'none',
   padding: '0px',
+  '&:hover': {
+    opacity: 0.8,
+  },
 });
 
 const DeleteIcon = createSvgIcon(
