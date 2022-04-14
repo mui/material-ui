@@ -35,7 +35,7 @@ const ChipStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ChipProps }>({
   display: 'inherit',
-  margin: '0 var(--Chip-decorator-marginX)',
+  padding: '0 0.2rem',
 });
 
 const ChipEndDecorator = styled('span', {
@@ -44,7 +44,7 @@ const ChipEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ChipProps }>({
   display: 'inherit',
-  margin: '0 var(--Chip-decorator-marginX)',
+  padding: '0 0.2rem',
 });
 
 const ChipRoot = styled('div', {
@@ -68,8 +68,6 @@ const ChipRoot = styled('div', {
       }),
       '--Chip-color': theme.variants[ownerState.variant!]?.[ownerState.color!].color,
       '--Chip-paddingX': '0.5rem',
-      '--Chip-label-paddingX': '0.2rem',
-      '--Chip-decorator-marginX': '0.5rem',
       '--Chip-delete-radius':
         'max(var(--Chip-radius) - var(--Chip-paddingX), min(var(--Chip-paddingX) / 2, var(--Chip-radius) / 2))',
       padding: '0.25rem var(--Chip-paddingX)',
@@ -109,7 +107,7 @@ const ChipLabel = styled('span', {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-  padding: '0 var(--Chip-label-paddingX)',
+  padding: '0 0.2rem',
   '& > button': {
     fontSize: 'var(--Chip-fontSize)',
     cursor: 'pointer',
