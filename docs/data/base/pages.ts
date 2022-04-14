@@ -5,8 +5,8 @@ const pages = [
     pathname: '/base/getting-started',
     icon: 'DescriptionIcon',
     children: [
-      { pathname: '/base/getting-started/overview', title: 'Overview' }, 
-      { pathname: '/base/getting-started/installation', title: 'Installation' }
+      { pathname: '/base/getting-started/overview', title: 'Overview' },
+      { pathname: '/base/getting-started/installation', title: 'Installation' },
     ],
   },
   {
