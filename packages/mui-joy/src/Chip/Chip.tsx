@@ -144,6 +144,23 @@ const ChipLabel = styled('span', {
   },
 }));
 
+const ChipDeleteComponent = styled('button', {
+  name: 'MuiChipDelete',
+  slot: 'Root',
+})`
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #888;
+  border-radius: 'var(--Chip-delete-radius)';
+  cursor: pointer;
+`;
+
+export const ChipDelete = () => <ChipDeleteComponent>{'X'}</ChipDeleteComponent>;
+
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
