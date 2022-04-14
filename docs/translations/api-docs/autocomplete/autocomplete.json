@@ -15,6 +15,7 @@
     "componentsProps": "The props used for each slot inside.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disableClearable": "If <code>true</code>, the input can&#39;t be cleared.",
+    "disableClearOnSelect": "If <code>true</code>, the input&#39;s text is clear when a value is selected.",
     "disableCloseOnSelect": "If <code>true</code>, the popup won&#39;t close when a value is selected.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "disabledItemsFocusable": "If <code>true</code>, will allow focus on disabled items.",

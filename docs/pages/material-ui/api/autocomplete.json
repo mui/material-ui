@@ -28,6 +28,7 @@
       "default": "props.multiple ? [] : null"
     },
     "disableClearable": { "type": { "name": "bool" } },
+    "disableClearOnSelect": { "type": { "name": "bool" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disabledItemsFocusable": { "type": { "name": "bool" } },
