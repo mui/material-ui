@@ -57,7 +57,7 @@ You are likely going to use one of these two options:
 
 If you are using the first option, take a look at the [composition guide](/material-ui/guides/composition/#with-typescript) for more details on this.
 
-If you are using the `styled()` utility (regardless of whether it comes from `@mui/material`, or `@emotion/styled`), you will need to cast the result component as shown below:
+If you are using the `styled()` utility (regardless of whether it comes from `@mui/material` or `@emotion/styled`), you will need to cast the resulting component as shown below:
 
 ```tsx
 import Button from '@mui/material/Button';
