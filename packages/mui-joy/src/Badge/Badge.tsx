@@ -91,7 +91,7 @@ const BadgeBadge = styled('span', {
         'calc(var(--Badge-paddingX) / 2 - var(--variant-outlinedBorderWidth, 0px)) calc(var(--Badge-paddingX) - var(--variant-outlinedBorderWidth, 0px))',
       minHeight: 'var(--Badge-minHeight)',
       minWidth: 'var(--Badge-minHeight)',
-      borderRadius: 'var(--Badge-minHeight)',
+      borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
       zIndex: 1,
       transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.variant === 'outlined' && {
