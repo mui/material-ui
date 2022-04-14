@@ -12,7 +12,7 @@
 
 ## About the company
 
-MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+MUI started with Material UI, the most successful React implementation of Google's Material Design.
 It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
@@ -31,7 +31,7 @@ Both our open-source community and our premium products are growing fast (x2-3 Y
 We need talented people to keep that going!
 
 The advanced components team (X) needs help to build its best features.
-We have started with the [data grid](/components/data-grid/) a year ago, but it's the beginning.
+We have started with the [data grid](/x/react-data-grid/) a year ago, but it's the beginning.
 Our users are continuously providing feedback on the most important [pains they face](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc).
 
 ## About the role

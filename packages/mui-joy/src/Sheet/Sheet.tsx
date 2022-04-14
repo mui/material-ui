@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useThemeProps } from '../styles';
+import { resolveSxValue } from '../styles/styleUtils';
 import styled from '../styles/styled';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetTypeMap } from './SheetProps';
@@ -32,15 +33,17 @@ const SheetRoot = styled('div', {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return [
     {
+      '--List-item-stickyBackground':
+        variantStyle?.backgroundColor ||
+        variantStyle?.background ||
+        theme.vars.palette.background.body, // for sticky List
+      '--Link-overlayRadius': resolveSxValue({ theme, ownerState }, 'borderRadius'),
       // TODO: discuss the theme transition.
       // This value is copied from mui-material Sheet.
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       boxShadow: theme.vars.shadow[ownerState.elevation!],
       backgroundColor: theme.vars.palette.background.body,
-      '--List-item-stickyBackground':
-        variantStyle?.backgroundColor ||
-        variantStyle?.background ||
-        theme.vars.palette.background.body, // for sticky List
+      position: 'relative',
     },
     variantStyle,
   ];

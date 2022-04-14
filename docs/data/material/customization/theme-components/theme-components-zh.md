@@ -4,7 +4,7 @@
 
 ## 重写全局样式
 
-You can change the default of every prop of a MUI component. A `defaultProps` key is exposed in the theme's `components` key for this use case.
+You can change the default of every prop of a MUI component. You can change the default of every prop of a MUI component. A `defaultProps` key is exposed in the theme's `components` key for this use case.
 
 ```js
 const theme = createTheme({
@@ -18,6 +18,11 @@ const theme = createTheme({
     },
   },
 });
+        disableRipple: true, // No more ripple!
+      },
+    },
+  },
+});
 ```
 
 {{"demo": "DefaultProps.js"}}
@@ -26,7 +31,7 @@ const theme = createTheme({
 
 ## 默认属性
 
-要用 TypeScript 重写 lab 组件的样式，请查看 [此文档](/components/about-the-lab/#typescript)。
+要用 TypeScript 重写 lab 组件的样式，请查看 [此文档](/material-ui/about-the-lab/#typescript)。
 
 ```js
 const theme = createTheme({
@@ -49,7 +54,7 @@ const theme = createTheme({
 
 The list of each component's classes is documented under the **CSS** section of its API page.
 
-要使用 TypeScript 覆盖实验室组件样式，请检查 [此文档](/components/about-the-lab/#typescript)
+要使用 TypeScript 覆盖实验室组件样式，请检查 [此文档](/material-ui/about-the-lab/#typescript)
 
 ### Overrides based on props
 
@@ -87,13 +92,13 @@ const theme = createTheme({
 
 If you are not familiar `sx`, first check out [the concept](/system/the-sx-prop/) and [the difference with the `styled`](/system/styled/#difference-with-the-sx-prop).
 
-覆盖所有组件实例的另一种方式是调整 [theme configuration variables](/customization/theming/#theme-configuration-variables)。
+覆盖所有组件实例的另一种方式是调整 [theme configuration variables](/material-ui/customization/theming/#theme-configuration-variables)。
 
 {{"demo": "GlobalThemeOverrideSx.js"}}
 
 ## 添加新的组件变量
 
-You can use the `variants` key in the theme's `components` section to add new variants to Material-UI components. These new variants can specify what styles the component should have when specific props are applied. 这些变量能够决定当使用特定的属性时组件应该采用什么样的样式。 这些变量能够决定当使用特定的属性时组件应该采用什么样的样式。
+You can use the `variants` key in the theme's `components` section to add new variants to Material UI components. These new variants can specify what styles the component should have when specific props are applied. 这些变量能够决定当使用特定的属性时组件应该采用什么样的样式。 这些变量能够决定当使用特定的属性时组件应该采用什么样的样式。
 
 在组件名称（如：MuiButton）下以数组形式定义组件变量。 数组中的每个变量都会对应一个 CSS 类添加到 HTML`<head>`中。 For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
 
@@ -132,7 +137,7 @@ const theme = createTheme({
 
 ## 主题变量
 
-Another way to override the look of all component instances is to adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+Another way to override the look of all component instances is to adjust the [theme configuration variables](/material-ui/customization/theming/#theme-configuration-variables).
 
 ```js
 const theme = createTheme({

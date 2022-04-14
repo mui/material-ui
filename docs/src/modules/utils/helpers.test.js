@@ -11,12 +11,12 @@ describe('docs getDependencies helpers', () => {
   });
 
   it('should return correct title', () => {
-    expect(pageToTitle({ pathname: '/docs/src/pages/components/buttons/buttons.md' })).to.equal(
-      'Buttons',
+    expect(pageToTitle({ pathname: '/docs/src/pages/components/button/button.md' })).to.equal(
+      'Button',
     );
     expect(pageToTitle({ pathname: '/components' })).to.equal('Components');
     expect(pageToTitle({ pathname: '/customization/how-to-customize' })).to.equal(
-      'How To Customize',
+      'How to customize',
     );
   });
 

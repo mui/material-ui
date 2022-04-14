@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
+import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 import MailIcon from '@mui/icons-material/Mail';
 
 const StyledBadge = styled(BadgeUnstyled)`
@@ -15,7 +15,7 @@ const StyledBadge = styled(BadgeUnstyled)`
   display: inline-block;
   line-height: 1;
 
-  & .MuiBadge-badge {
+  & .${badgeUnstyledClasses.badge} {
     z-index: auto;
     min-width: 20px;
     height: 20px;

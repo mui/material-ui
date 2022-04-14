@@ -44,6 +44,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-popper/\">Popper</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-popper/\">Popper</a></li></ul>",
   "cssComponent": false
 }

@@ -6,6 +6,7 @@ import Sun from '@mui/icons-material/LightMode';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
+import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 import LocationOn from '@mui/icons-material/LocationOn';
@@ -188,6 +189,31 @@ export default function JoyButton() {
               Careers
             </Link>
           </Box>
+          <Sheet variant="outlined" sx={{ borderRadius: 'xs', p: 2 }}>
+            <Typography sx={{ fontWeight: 'bold' }}>Title</Typography>
+            <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Typography>
+            <Link href="#overlay" overlay>
+              Learn more
+            </Link>
+          </Sheet>
+          <Sheet
+            variant="outlined"
+            color="danger"
+            sx={{
+              borderRadius: 'md',
+              p: 2,
+              '--joy-palette-focusVisible': 'var(--joy-palette-danger-lightBg)',
+              '&:hover': {
+                boxShadow: 'md',
+              },
+            }}
+          >
+            <Typography sx={{ fontWeight: 'bold' }}>Title</Typography>
+            <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Typography>
+            <Link href="#overlay" overlay>
+              Learn more
+            </Link>
+          </Sheet>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(buttonProps).map(([propName, propValue]) => (
