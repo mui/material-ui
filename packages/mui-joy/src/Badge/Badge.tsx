@@ -48,6 +48,13 @@ const BadgeBadge = styled('span', {
   slot: 'Badge',
   overridesResolver: (props, styles) => styles.badge,
 })<{ ownerState: BadgeProps }>(({ theme, ownerState }) => {
+  const offset = ownerState.location === 'inside' ? '14%' : 0;
+  const translateY =
+    ownerState.anchorOrigin?.vertical === 'top' ? 'translateY(-50%)' : 'translateY(50%)';
+  const translateX =
+    ownerState.anchorOrigin?.horizontal === 'left' ? 'translateX(-50%)' : 'translateX(50%)';
+  const transformOriginY = ownerState.anchorOrigin?.vertical === 'top' ? '0%' : '100%';
+  const transformOriginX = ownerState.anchorOrigin?.horizontal === 'left' ? '0%' : '100%';
   return [
     {
       ...(ownerState.size === 'sm' && {
@@ -97,94 +104,13 @@ const BadgeBadge = styled('span', {
       ...(ownerState.variant === 'outlined' && {
         backgroundColor: theme.vars.palette.background.body,
       }),
-      ...(ownerState.anchorOrigin!.vertical === 'top' &&
-        ownerState.anchorOrigin!.horizontal === 'right' &&
-        ownerState.location === 'outside' && {
-          top: 0,
-          right: 0,
-          transform: 'scale(1) translate(50%, -50%)',
-          transformOrigin: '100% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, -50%)',
-          },
-        }),
-      ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
-        ownerState.anchorOrigin!.horizontal === 'right' &&
-        ownerState.location === 'outside' && {
-          bottom: 0,
-          right: 0,
-          transform: 'scale(1) translate(50%, 50%)',
-          transformOrigin: '100% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, 50%)',
-          },
-        }),
-      ...(ownerState.anchorOrigin!.vertical === 'top' &&
-        ownerState.anchorOrigin!.horizontal === 'left' &&
-        ownerState.location === 'outside' && {
-          top: 0,
-          left: 0,
-          transform: 'scale(1) translate(-50%, -50%)',
-          transformOrigin: '0% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, -50%)',
-          },
-        }),
-      ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
-        ownerState.anchorOrigin!.horizontal === 'left' &&
-        ownerState.location === 'outside' && {
-          bottom: 0,
-          left: 0,
-          transform: 'scale(1) translate(-50%, 50%)',
-          transformOrigin: '0% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, 50%)',
-          },
-        }),
-      ...(ownerState.anchorOrigin!.vertical === 'top' &&
-        ownerState.anchorOrigin!.horizontal === 'right' &&
-        ownerState.location === 'inside' && {
-          top: '14%',
-          right: '14%',
-          transform: 'scale(1) translate(50%, -50%)',
-          transformOrigin: '100% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, -50%)',
-          },
-        }),
-      ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
-        ownerState.anchorOrigin!.horizontal === 'right' &&
-        ownerState.location === 'inside' && {
-          bottom: '14%',
-          right: '14%',
-          transform: 'scale(1) translate(50%, 50%)',
-          transformOrigin: '100% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, 50%)',
-          },
-        }),
-      ...(ownerState.anchorOrigin!.vertical === 'top' &&
-        ownerState.anchorOrigin!.horizontal === 'left' &&
-        ownerState.location === 'inside' && {
-          top: '14%',
-          left: '14%',
-          transform: 'scale(1) translate(-50%, -50%)',
-          transformOrigin: '0% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, -50%)',
-          },
-        }),
-      ...(ownerState.anchorOrigin!.vertical === 'bottom' &&
-        ownerState.anchorOrigin!.horizontal === 'left' &&
-        ownerState.location === 'inside' && {
-          bottom: '14%',
-          left: '14%',
-          transform: 'scale(1) translate(-50%, 50%)',
-          transformOrigin: '0% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, 50%)',
-          },
-        }),
+      [ownerState.anchorOrigin!.vertical]: offset,
+      [ownerState.anchorOrigin!.horizontal]: offset,
+      transform: `scale(1) ${translateX} ${translateY}`,
+      transformOrigin: `${transformOriginX} ${transformOriginY}`,
+      [`&.${badgeClasses.invisible}`]: {
+        transform: `scale(0) ${translateX} ${translateY}`,
+      },
       ...(ownerState.invisible && {
         transition: 'transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       }),
