@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Moon from '@mui/icons-material/DarkMode';
 import Favorite from '@mui/icons-material/Favorite';
 import Sun from '@mui/icons-material/LightMode';
@@ -8,11 +9,19 @@ import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
-import * as React from 'react';
+import Redeem from '@mui/icons-material/Redeem';
+import Notifications from '@mui/icons-material/Notifications';
+import ViewCompact from '@mui/icons-material/ViewCompact';
+import ViewKanban from '@mui/icons-material/ViewKanban';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -50,7 +59,7 @@ const props = {
 const InvisibleBadgeButton = () => {
   const [invisible, setInvisible] = React.useState(true);
   return (
-    <Badge badgeContent={1} invisible={invisible}>
+    <Badge badgeContent={1} invisible={invisible} sx={{ '--Badge-radius': '4px' }}>
       <IconButton onClick={() => setInvisible((bool) => !bool)}>
         <MailIcon />
       </IconButton>
@@ -95,6 +104,7 @@ export default function JoyBadge() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             gap: 2,
+            alignItems: 'center',
           }}
         >
           <Sheet
@@ -110,11 +120,7 @@ export default function JoyBadge() {
               alignItems: 'center',
             }}
           >
-            {[
-              { badgeContent: '1', name: 'Jon Doe' },
-              { badgeContent: '2', name: 'Benny' },
-              { badgeContent: '3', name: 'Jun' },
-            ].map(({ badgeContent, name }) => (
+            {[{ badgeContent: '1', name: 'Jon Doe' }].map(({ badgeContent, name }) => (
               <Badge
                 badgeContent={badgeContent}
                 size="lg"
@@ -156,6 +162,70 @@ export default function JoyBadge() {
                 </Sheet>
               </Badge>
             ))}
+          </Sheet>
+          <Sheet
+            sx={{
+              bgcolor: 'background.level1',
+              '--Badge-ringColor': (theme) => theme.vars.palette.background.level1,
+            }}
+          >
+            <List row sx={{ '--List-gap': '0px' }} size="sm">
+              <ListItem>
+                <IconButton variant="text" color="neutral">
+                  <Badge color="danger" size="sm" location="inside">
+                    <Redeem />
+                  </Badge>
+                </IconButton>
+              </ListItem>
+              <ListItem>
+                <IconButton variant="text" color="neutral">
+                  <Badge badgeContent="23" color="danger" size="sm">
+                    <Notifications />
+                  </Badge>
+                </IconButton>
+              </ListItem>
+              <ListItem>
+                <Badge color="success" size="sm" location="inside" sx={{ px: 1 }}>
+                  <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+                </Badge>
+              </ListItem>
+            </List>
+          </Sheet>
+          <Sheet>
+            <List
+              row
+              size="sm"
+              sx={{
+                '--List-decorator-width': '1.5rem',
+                '--List-gap': '1rem',
+                '--List-item-radius': '8px',
+              }}
+            >
+              <ListItem>
+                <ListItemDecorator>
+                  <ViewCompact />
+                </ListItemDecorator>
+                Backlog
+                <Badge size="sm" sx={{ alignSelf: 'center', ml: 1 }}>
+                  <IconButton
+                    size="sm"
+                    variant="outlined"
+                    color="neutral"
+                    sx={{ '--IconButton-size': '20px' }}
+                  >
+                    <ArrowDropDown />
+                  </IconButton>
+                </Badge>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>
+                  <ListItemDecorator>
+                    <ViewKanban />
+                  </ListItemDecorator>
+                  <Badge size="sm">View 2</Badge>
+                </ListItemButton>
+              </ListItem>
+            </List>
           </Sheet>
         </Box>
         {/* Props */}
