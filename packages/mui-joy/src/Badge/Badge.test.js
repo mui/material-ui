@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import Badge, { badgeClasses as classes } from '@mui/joy/Badge';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { BadgeUnstyled } from '@mui/base';
+import { ThemeProvider } from '@mui/joy/styles';
+import Badge, { badgeClasses as classes } from '@mui/joy/Badge';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
@@ -29,16 +30,11 @@ describe('<Badge />', () => {
       classes,
       inheritComponent: BadgeUnstyled,
       render,
+      ThemeProvider,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
       testVariantProps: { color: 'neutral', variant: 'light' },
-      skip: [
-        'themeVariants',
-        'classesRoot',
-        'componentsProp',
-        'themeDefaultProps',
-        'themeStyleOverrides',
-      ],
+      skip: ['classesRoot', 'componentsProp'],
     }),
   );
 
@@ -111,7 +107,7 @@ describe('<Badge />', () => {
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
       const { container } = render(<Badge {...defaultProps} />);
-      expect(findBadge(container)).to.have.class(classes.colorNeutral);
+      expect(findBadge(container)).to.have.class(classes.colorPrimary);
     });
 
     ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
@@ -126,7 +122,7 @@ describe('<Badge />', () => {
   describe('prop: size', () => {
     it('adds a sm class by default', () => {
       const { container } = render(<Badge {...defaultProps} />);
-      expect(findBadge(container)).to.have.class(classes.sizeSm);
+      expect(findBadge(container)).to.have.class(classes.sizeMd);
     });
 
     ['sm', 'md', 'lg'].forEach((size) => {
@@ -141,7 +137,7 @@ describe('<Badge />', () => {
   describe('prop: variant', () => {
     it('addas a light class by default', () => {
       const { container } = render(<Badge {...defaultProps} />);
-      expect(findBadge(container)).to.have.class(classes.variantLight);
+      expect(findBadge(container)).to.have.class(classes.variantContained);
     });
 
     ['outlined', 'light', 'contained'].forEach((variant) => {
