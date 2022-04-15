@@ -89,7 +89,7 @@ export default function JoyBadge() {
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
           {(['primary', 'danger', 'info', 'success', 'warning', 'neutral'] as const).map(
             (color) => (
-              <Badge badgeContent={100} size="lg" color={color} location="inside">
+              <Badge key={color} badgeContent={100} size="lg" color={color}>
                 <Sheet
                   variant="contained"
                   color={color}
@@ -172,7 +172,7 @@ export default function JoyBadge() {
             <List row sx={{ '--List-gap': '0px' }} size="sm">
               <ListItem>
                 <IconButton variant="text" color="neutral">
-                  <Badge color="danger" size="sm" location="inside">
+                  <Badge color="danger" size="sm">
                     <Redeem />
                   </Badge>
                 </IconButton>
@@ -185,7 +185,13 @@ export default function JoyBadge() {
                 </IconButton>
               </ListItem>
               <ListItem>
-                <Badge color="success" size="sm" location="inside" sx={{ px: 1 }}>
+                <Badge
+                  color="success"
+                  size="sm"
+                  badgeInset="20%"
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                  sx={{ px: 1 }}
+                >
                   <Avatar size="sm" src="/static/images/avatar/1.jpg" />
                 </Badge>
               </ListItem>
@@ -206,7 +212,7 @@ export default function JoyBadge() {
                   <ViewCompact />
                 </ListItemDecorator>
                 Backlog
-                <Badge size="sm" sx={{ alignSelf: 'center', ml: 1 }}>
+                <Badge size="sm" badgeInset="12%" sx={{ alignSelf: 'center', ml: 1 }}>
                   <IconButton
                     size="sm"
                     variant="outlined"
@@ -222,7 +228,9 @@ export default function JoyBadge() {
                   <ListItemDecorator>
                     <ViewKanban />
                   </ListItemDecorator>
-                  <Badge size="sm">View 2</Badge>
+                  <Badge size="sm" badgeInset="2px -3px">
+                    View 2
+                  </Badge>
                 </ListItemButton>
               </ListItem>
             </List>
