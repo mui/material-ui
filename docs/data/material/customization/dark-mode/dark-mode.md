@@ -4,7 +4,7 @@
 
 ## Dark mode by default
 
-You can make your application use the dark theme by default setting the `mode: 'dark'`, regardless of the user's preference.
+You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme` helper:
 
 ```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -26,17 +26,15 @@ function App() {
 export default App;
 ```
 
-While it seems like only a single value change, the `createTheme` helper actually modifies several palette values, adapting them accordingly to the dark mode.
-The modified colors are the following:
+Adding `mode: 'dark'` to the `createTheme` helper modifies several palette values, as shown in the following demo:
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-> Note: The colors are modified only if you use [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The following section explains how you can do it.
+> Note: setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The next section explain how to do this.
 
 ## Dark mode with a custom palette
 
-If you want to have a certain palette for when each mode is set, you can create a function that will return the correct palette depending on the selected mode.
-For example:
+To use custom palettes for light and dark modes, you can create a function that will return the correct palette depending on the selected mode, as shown here:
 
 ```ts
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -105,17 +103,17 @@ Here is a fully working example:
 
 ## Toggling color mode
 
-If you want to provide your users a way to toggle between modes, you can use React's context adding it to a button's `onClick` event:
+To give your users a way to toggle between modes, you can add React's context to a button's `onClick` event, as shown in the following demo:
 
 {{"demo": "ToggleColorMode.js", "defaultCodeOpen": false}}
 
 ## System preference
 
-The method by which users express their mode preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent (user specifying a preference for a light or dark theme).
+Users might have a preference for light or dark mode that they've set through their operating system—either systemwide, or for a single user agent.
 
-You can leverage this preference dynamically with the [useMediaQuery](/material-ui/react-use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
+You can make use of this preference with the [useMediaQuery](/material-ui/react-use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
 
-For instance, you can enable dark mode automatically by checking if the user prefers it whether through the OS or browser settings:
+The following demo shows how to enable dark mode automatically by checking for the user's preference in their OS or browser settings:
 
 ```jsx
 import * as React from 'react';
