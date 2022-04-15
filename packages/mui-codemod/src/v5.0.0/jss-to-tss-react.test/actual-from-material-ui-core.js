@@ -9,6 +9,12 @@ const useStyles = makeStyles(() => ({
     "&$qualifier": {
       textDecoration: "underline"
     },
+    "&$qualifier$qualifier2": {
+      textStyle: "italic"
+    },
+    "&$qualifier2 .testStuffInBetween $qualifier": {
+      color: "brown"
+    },
     "&$qualifier:hover": {
       backgroundColor: "red"
     },
@@ -37,5 +43,6 @@ export default function ComponentUsingStyles(props) {
     <div className={classes.test}>Test<InnerComponent/></div>
     <div className={clsx(classes.test, classes.qualifier)}>Qualifier Test</div>
     <div className={clsx(classes.test, classes.qualifier2)}>Qualifier 2 Test</div>
+    <div className={clsx(classes.test, classes.qualifier, classes.qualifier2)}>Qualifier & Qualifier 2 Test</div>
     </>;
 }

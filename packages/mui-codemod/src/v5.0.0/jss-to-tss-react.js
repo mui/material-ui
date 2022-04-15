@@ -1,28 +1,41 @@
-function transformNestedKeys(j, propValueNode, ruleNames, nestedKeys) {
+const ruleEndRegEx = /[^a-zA-Z0-9_]+/;
+
+function transformNestedKeys(j, propValueNode, ruleRegEx, nestedKeys) {
   propValueNode.properties.forEach((prop) => {
     if (prop.value.type === 'ObjectExpression') {
-      ruleNames.forEach((ruleName) => {
-        if (typeof prop.key.value === 'string') {
-          const ruleRegEx = new RegExp(`(\\$${ruleName}$|\\$${ruleName}[^a-zA-Z0-9_]+)`);
-          const ruleIndex = prop.key.value.search(ruleRegEx);
+      if (typeof prop.key.value === 'string') {
+        let ruleIndex = prop.key.value.search(ruleRegEx);
+        let searchStartIndex = 0;
+        const elements = [];
+        const identifiers = [];
+        while (ruleIndex >= 0) {
+          const valueStartingAtRuleName = prop.key.value.substring(ruleIndex + 1);
+          const ruleEndIndex = valueStartingAtRuleName.search(ruleEndRegEx);
+          const ruleName =
+            ruleEndIndex >= 0
+              ? prop.key.value.substring(ruleIndex + 1, ruleIndex + 1 + ruleEndIndex)
+              : valueStartingAtRuleName;
+          if (!nestedKeys.includes(ruleName)) {
+            nestedKeys.push(ruleName);
+          }
+          const before = prop.key.value.substring(searchStartIndex, ruleIndex);
+          elements.push(j.templateElement({ raw: `${before}.`, cooked: `${before}.` }, false));
+          identifiers.push(j.identifier(`classes.${ruleName}`));
+          searchStartIndex = ruleIndex + ruleName.length + 1;
+          const after = prop.key.value.substring(searchStartIndex);
+          ruleIndex = after.search(ruleRegEx);
           if (ruleIndex >= 0) {
-            if (!nestedKeys.includes(ruleName)) {
-              nestedKeys.push(ruleName);
-            }
-            const before = prop.key.value.substring(0, ruleIndex);
-            const after = prop.key.value.substring(ruleIndex + ruleName.length + 1);
-            prop.key = j.templateLiteral(
-              [
-                j.templateElement({ raw: `${before}.`, cooked: `${before}.` }, false),
-                j.templateElement({ raw: after, cooked: after }, true),
-              ],
-              [j.identifier(`classes.${ruleName}`)],
-            );
-            prop.computed = true;
+            ruleIndex += searchStartIndex;
+          } else {
+            elements.push(j.templateElement({ raw: after, cooked: after }, false));
           }
         }
-      });
-      transformNestedKeys(j, prop.value, ruleNames, nestedKeys);
+        if (identifiers.length > 0) {
+          prop.key = j.templateLiteral(elements, identifiers);
+          prop.computed = true;
+        }
+      }
+      transformNestedKeys(j, prop.value, ruleRegEx, nestedKeys);
     }
   });
 }
@@ -43,8 +56,17 @@ function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExp
     objectExpression.properties.forEach((prop) => {
       ruleNames.push(prop.key.name);
     });
+    let ruleRegExString = '(';
+    ruleNames.forEach((ruleName, index) => {
+      if (index > 0) {
+        ruleRegExString += '|';
+      }
+      ruleRegExString += `\\$${ruleName}`;
+    });
+    ruleRegExString += ')';
+    const ruleRegEx = new RegExp(ruleRegExString, 'g');
     objectExpression.properties.forEach((prop) => {
-      transformNestedKeys(j, prop.value, ruleNames, nestedKeys);
+      transformNestedKeys(j, prop.value, ruleRegEx, nestedKeys);
     });
     if (nestedKeys.length > 0) {
       let arrowFunction;
@@ -149,6 +171,18 @@ export default function transformer(file, api, options) {
     });
   }
   if (foundMakeStyles) {
+    let clsxOrClassnamesName = null;
+    root.find(j.ImportDeclaration).forEach((path) => {
+      const importSource = path.node.source.value;
+      if (importSource === 'clsx' || importSource === 'classnames') {
+        path.node.specifiers.forEach((specifier) => {
+          if (specifier.type === 'ImportDefaultSpecifier') {
+            clsxOrClassnamesName = specifier.local.name;
+          }
+        });
+        j(path).remove();
+      }
+    });
     /**
      * Convert makeStyles syntax
      */
@@ -172,14 +206,29 @@ export default function transformer(file, api, options) {
         styleHooks.push(path.node.id.name);
       });
     /**
-     * Convert classes assignment syntax in calls to the hook (e.g. useStyles)
+     * Convert classes assignment syntax in calls to the hook (e.g. useStyles) and
+     * convert usages of clsx or classnames to cx.
      */
     styleHooks.forEach((hookName) => {
       root
         .find(j.CallExpression, { callee: { name: hookName } })
         .closest(j.VariableDeclarator)
         .forEach((path) => {
-          path.node.id.name = '{ classes }';
+          let foundClsxOrClassnamesUsage = false;
+          if (clsxOrClassnamesName !== null) {
+            j(path)
+              .closestScope()
+              .find(j.CallExpression, { callee: { name: clsxOrClassnamesName } })
+              .forEach((path) => {
+                path.node.callee.name = 'cx';
+                foundClsxOrClassnamesUsage = true;
+              });
+          }
+          if (foundClsxOrClassnamesUsage) {
+            path.node.id.name = '{ classes, cx }';
+          } else {
+            path.node.id.name = '{ classes }';
+          }
         });
     });
   }

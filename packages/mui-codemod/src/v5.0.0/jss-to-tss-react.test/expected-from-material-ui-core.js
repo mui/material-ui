@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from 'tss-react/mui';
-import clsx from "clsx";
 
 const useStyles = makeStyles()((_theme, _params, classes) => ({
   test: {
@@ -8,6 +7,12 @@ const useStyles = makeStyles()((_theme, _params, classes) => ({
     color: "white",
     [`&.${classes.qualifier}`]: {
       textDecoration: "underline"
+    },
+    [`&.${classes.qualifier}.${classes.qualifier2}`]: {
+      textStyle: "italic"
+    },
+    [`&.${classes.qualifier2} .testStuffInBetween .${classes.qualifier}`]: {
+      color: "brown"
     },
     [`&.${classes.qualifier}:hover`]: {
       backgroundColor: "red"
@@ -32,10 +37,11 @@ function InnerComponent() {
   return <div className={classes.test2}>Inner Test</div>;
 }
 export default function ComponentUsingStyles(props) {
-  const { classes } = useStyles();
+  const { classes, cx } = useStyles();
   return <>
     <div className={classes.test}>Test<InnerComponent/></div>
-    <div className={clsx(classes.test, classes.qualifier)}>Qualifier Test</div>
-    <div className={clsx(classes.test, classes.qualifier2)}>Qualifier 2 Test</div>
+    <div className={cx(classes.test, classes.qualifier)}>Qualifier Test</div>
+    <div className={cx(classes.test, classes.qualifier2)}>Qualifier 2 Test</div>
+    <div className={cx(classes.test, classes.qualifier, classes.qualifier2)}>Qualifier & Qualifier 2 Test</div>
     </>;
 }
