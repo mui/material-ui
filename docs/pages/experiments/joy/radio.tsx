@@ -12,6 +12,7 @@ import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -265,6 +266,91 @@ export default function JoyRadio() {
                   Engineer
                 </Typography>
               </Sheet>
+            </RadioGroup>
+          </Box>
+          <Box>
+            <Typography level="h2" fontSize="lg" id="display-heading">
+              Display
+            </Typography>
+            <Sheet
+              variant="light"
+              sx={{ p: 2, display: 'flex', gap: 2, my: 2, borderRadius: '18px' }}
+            >
+              <Typography level="body3" color="text.primary">
+                <Typography fontWeight="md">
+                  Choose from two anti-reflective glass options.
+                </Typography>{' '}
+                <Typography>
+                  Standard glass is engineered for extremely low reflectivity. Nano-texture glass
+                  scatters light to further minimize glare while delivering outstanding image
+                  quality in workspaces with bright light sources.
+                </Typography>
+              </Typography>
+              <InfoOutlined fontSize="lg" color="primary" />
+            </Sheet>
+            <RadioGroup name="display" aria-labelledby="display-heading">
+              <List
+                component="div"
+                sx={{
+                  '--List-gap': '1rem',
+                  '--Radio-action-radius': '18px',
+                  '& .MuiListItem-root': { borderRadius: '18px', padding: '14px' },
+                  '& .MuiRadio-root': {
+                    position: 'initial',
+                    fontWeight: 'md',
+                    flexGrow: 1,
+                    '&.Mui-checked': {
+                      '& .MuiRadio-action': {
+                        border: '2px solid',
+                        borderColor: 'primary.500',
+                        boxShadow: 'md',
+                      },
+                    },
+                  },
+                  '& .MuiRadio-radio': { display: 'contents' },
+                  '& .MuiRadio-action': (theme) => theme.variants.outlined.neutral,
+                  '& .MuiRadio-label': {
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  },
+                }}
+              >
+                <ListItem>
+                  <Radio
+                    checkedIcon={null}
+                    uncheckedIcon={null}
+                    label={
+                      <React.Fragment>
+                        <span>Standard glass</span>
+                        <Typography component="span" fontWeight="sm" textAlign="right">
+                          From $1599
+                          <br />
+                          <span aria-hidden="true">or $133.25/mo. for 12 mo.*</span>
+                        </Typography>
+                      </React.Fragment>
+                    }
+                    value="1"
+                  />
+                </ListItem>
+                <ListItem>
+                  <Radio
+                    checkedIcon={null}
+                    uncheckedIcon={null}
+                    label={
+                      <React.Fragment>
+                        <span>Nano-texture glass</span>
+                        <Typography component="span" fontWeight="sm" textAlign="right">
+                          From $1899
+                          <br />
+                          <span aria-hidden="true">or $158.25/mo. for 12 mo.*</span>
+                        </Typography>
+                      </React.Fragment>
+                    }
+                    value="2"
+                  />
+                </ListItem>
+              </List>
             </RadioGroup>
           </Box>
         </Box>

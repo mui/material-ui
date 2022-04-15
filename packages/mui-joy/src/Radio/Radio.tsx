@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) =
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    radio: ['radio', checked && 'checked', disabled && 'disabled'],
+    radio: ['radio', disabled && 'disabled'], // disabled class is necessary for displaying global variant
     action: ['action', focusVisible && 'focusVisible'],
     input: ['input'],
     label: ['label'],
@@ -71,7 +71,6 @@ const RadioRoot = styled('span', {
       }),
       position: 'relative',
       display: 'inline-flex',
-      justifyContent: 'center',
       verticalAlign: 'middle',
       flexShrink: 0,
       fontFamily: theme.vars.fontFamily.body,
@@ -137,6 +136,8 @@ const RadioLabel = styled('label', {
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })<{ ownerState: RadioProps }>({
+  flex: 1,
+  minWidth: 0,
   marginInlineStart: 'var(--Radio-gap)',
 });
 
@@ -239,7 +240,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       >
         {checked && checkedIcon}
         {!checked && uncheckedIcon}
-        {!checkedIcon && !uncheckedIcon && <RadioIcon ownerState={ownerState} />}
+        {checkedIcon === undefined && uncheckedIcon === undefined && (
+          <RadioIcon ownerState={ownerState} />
+        )}
         <RadioAction
           {...componentsProps?.action}
           ownerState={ownerState}
