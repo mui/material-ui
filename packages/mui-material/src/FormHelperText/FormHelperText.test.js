@@ -9,9 +9,9 @@ describe('<FormHelperText />', () => {
 
   describeConformance(<FormHelperText />, () => ({
     classes,
-    inheritComponent: 'p',
+    inheritComponent: 'div',
     render,
-    refInstanceof: window.HTMLParagraphElement,
+    refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
     muiName: 'MuiFormHelperText',
     testVariantProps: { size: 'small' },
