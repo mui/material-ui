@@ -73,8 +73,7 @@ const RadioRoot = styled('span', {
       position: 'relative',
       display: 'inline-flex',
       boxSizing: 'border-box',
-      verticalAlign: 'middle',
-      flexShrink: 0,
+      minWidth: 0,
       fontFamily: theme.vars.fontFamily.body,
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
       '&.Mui-disabled': {
@@ -99,6 +98,9 @@ const RadioRadio = styled('span', {
     justifyContent: 'center',
     alignItems: 'center',
     flexShrink: 0,
+    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     ...(ownerState.disableIcon && {
       display: 'contents',
     }),
@@ -126,6 +128,9 @@ const RadioAction = styled('span', {
     right: 0,
     bottom: 0,
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
+    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     ...theme.focus.default,
   },
   ...(ownerState.disableIcon
