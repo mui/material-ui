@@ -25,6 +25,11 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      */
     defaultValue?: any;
     /**
+     * The value is passed to Radio via React context.
+     * @default false
+     */
+    disableIcon?: boolean;
+    /**
      * The `name` attribute of the input.
      */
     name?: string;

@@ -288,69 +288,67 @@ export default function JoyRadio() {
               </Typography>
               <InfoOutlined fontSize="lg" color="primary" />
             </Sheet>
-            <RadioGroup name="display" aria-labelledby="display-heading">
-              <List
-                component="div"
-                sx={{
-                  '--List-gap': '1rem',
-                  '--Radio-action-radius': '18px',
-                  '& .MuiListItem-root': { borderRadius: '18px', padding: '14px' },
-                  '& .MuiRadio-root': {
-                    position: 'initial',
-                    fontWeight: 'md',
-                    flexGrow: 1,
-                    '&.Mui-checked': {
-                      '& .MuiRadio-action': {
-                        border: '2px solid',
-                        borderColor: 'primary.500',
-                        boxShadow: 'md',
-                      },
+            <RadioGroup
+              disableIcon
+              name="display"
+              aria-labelledby="display-heading"
+              sx={{
+                '--Radio-action-radius': '18px',
+                '& .MuiRadio-root': {
+                  padding: '14px',
+                  minHeight: '83px',
+                  fontWeight: 'md',
+                  flexGrow: 1,
+                  '&.Mui-checked': {
+                    '& .MuiRadio-action': {
+                      borderWidth: 2,
+                      borderColor: 'primary.500',
                     },
                   },
-                  '& .MuiRadio-radio': { display: 'contents' },
-                  '& .MuiRadio-action': (theme) => theme.variants.outlined.neutral,
-                  '& .MuiRadio-label': {
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  },
-                }}
+                },
+                '& .MuiRadio-label': {
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                },
+              }}
+            >
+              <Radio
+                label={
+                  <React.Fragment>
+                    <span>Standard glass</span>
+                    <Typography component="span" fontWeight="sm" textAlign="right">
+                      From $1599
+                      <br />
+                      <span aria-hidden="true">or $133.25/mo. for 12 mo.*</span>
+                    </Typography>
+                  </React.Fragment>
+                }
+                aria-describedby="standard-description"
+                value="1"
+              />
+              <Typography
+                id="standard-description"
+                level="body3"
+                startDecorator={<InfoOutlined />}
+                mt={0.5}
+                mb={2}
               >
-                <ListItem>
-                  <Radio
-                    checkedIcon={null}
-                    uncheckedIcon={null}
-                    label={
-                      <React.Fragment>
-                        <span>Standard glass</span>
-                        <Typography component="span" fontWeight="sm" textAlign="right">
-                          From $1599
-                          <br />
-                          <span aria-hidden="true">or $133.25/mo. for 12 mo.*</span>
-                        </Typography>
-                      </React.Fragment>
-                    }
-                    value="1"
-                  />
-                </ListItem>
-                <ListItem>
-                  <Radio
-                    checkedIcon={null}
-                    uncheckedIcon={null}
-                    label={
-                      <React.Fragment>
-                        <span>Nano-texture glass</span>
-                        <Typography component="span" fontWeight="sm" textAlign="right">
-                          From $1899
-                          <br />
-                          <span aria-hidden="true">or $158.25/mo. for 12 mo.*</span>
-                        </Typography>
-                      </React.Fragment>
-                    }
-                    value="2"
-                  />
-                </ListItem>
-              </List>
+                Description
+              </Typography>
+              <Radio
+                label={
+                  <React.Fragment>
+                    <span>Nano-texture glass</span>
+                    <Typography component="span" fontWeight="sm" textAlign="right">
+                      From $1899
+                      <br />
+                      <span aria-hidden="true">or $158.25/mo. for 12 mo.*</span>
+                    </Typography>
+                  </React.Fragment>
+                }
+                value="2"
+              />
             </RadioGroup>
           </Box>
         </Box>

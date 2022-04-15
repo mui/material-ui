@@ -71,6 +71,7 @@ const RadioRoot = styled('span', {
       }),
       position: 'relative',
       display: 'inline-flex',
+      boxSizing: 'border-box',
       verticalAlign: 'middle',
       flexShrink: 0,
       fontFamily: theme.vars.fontFamily.body,
@@ -97,26 +98,44 @@ const RadioRadio = styled('span', {
     justifyContent: 'center',
     alignItems: 'center',
     flexShrink: 0,
+    ...(ownerState.disableIcon && {
+      display: 'contents',
+    }),
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  ...(!ownerState.disableIcon
+    ? [
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ]
+    : []),
 ]);
 
 const RadioAction = styled('span', {
   name: 'MuiRadio',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: RadioProps }>(({ theme }) => ({
-  position: 'absolute',
-  borderRadius: 'var(--Radio-action-radius, var(--Radio-radius))',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  ...theme.focus.default,
-}));
+})<{ ownerState: RadioProps }>(({ theme, ownerState }) => [
+  {
+    position: 'absolute',
+    borderRadius: 'var(--Radio-action-radius, var(--Radio-radius))',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 0,
+    ...theme.focus.default,
+  },
+  ...(ownerState.disableIcon
+    ? [
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ]
+    : []),
+]);
 
 const RadioInput = styled('input', {
   name: 'MuiRadio',
@@ -135,11 +154,19 @@ const RadioLabel = styled('label', {
   name: 'MuiRadio',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: RadioProps }>({
+})<{ ownerState: RadioProps }>(({ ownerState, theme }) => ({
   flex: 1,
   minWidth: 0,
-  marginInlineStart: 'var(--Radio-gap)',
-});
+  ...(ownerState.disableIcon
+    ? {
+        pointerEvents: 'none',
+        zIndex: 1,
+        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+      }
+    : {
+        marginInlineStart: 'var(--Radio-gap)',
+      }),
+}));
 
 /**
  * internal component
@@ -173,6 +200,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
+    disableIcon: disableIconProp = false,
     label,
     id: idOverride,
     name: nameProp,
@@ -196,6 +224,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const variant = inProps.variant || radioGroup.variant || variantProp;
   const size = inProps.size || radioGroup.size || sizeProp;
   const name = inProps.name || radioGroup.name || nameProp;
+  const disableIcon = inProps.disableIcon || radioGroup.disableIcon || disableIconProp;
 
   const radioChecked =
     typeof checkedProp === 'undefined' && !!value
@@ -221,6 +250,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     color: checked ? activeColor : inactiveColor,
     variant,
     size,
+    disableIcon,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -238,11 +268,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
         ownerState={ownerState}
         className={clsx(classes.radio, componentsProps?.radio?.className)}
       >
-        {checked && checkedIcon}
-        {!checked && uncheckedIcon}
-        {checkedIcon === undefined && uncheckedIcon === undefined && (
-          <RadioIcon ownerState={ownerState} />
-        )}
+        {checked && !disableIcon && checkedIcon}
+        {!checked && !disableIcon && uncheckedIcon}
+        {!checkedIcon && !uncheckedIcon && !disableIcon && <RadioIcon ownerState={ownerState} />}
         <RadioAction
           {...componentsProps?.action}
           ownerState={ownerState}

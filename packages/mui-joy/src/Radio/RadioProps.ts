@@ -56,6 +56,11 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       name?: string;
       /**
+       * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
+       * @default false
+       */
+      disableIcon?: boolean;
+      /**
        * The size of the component.
        * @default 'md'
        */

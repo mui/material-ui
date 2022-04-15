@@ -58,6 +58,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     children,
     name: nameProp,
     defaultValue,
+    disableIcon = false,
     value: valueProp,
     onChange,
     color,
@@ -93,7 +94,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
 
   return (
     <RadioGroupContext.Provider
-      value={{ color, size, variant, name, value, onChange: handleChange }}
+      value={{ color, disableIcon, size, variant, name, value, onChange: handleChange }}
     >
       <RadioGroupRoot
         ref={ref}
