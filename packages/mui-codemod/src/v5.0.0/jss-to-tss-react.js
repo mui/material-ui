@@ -219,8 +219,8 @@ export default function transformer(file, api, options) {
             j(path)
               .closestScope()
               .find(j.CallExpression, { callee: { name: clsxOrClassnamesName } })
-              .forEach((path) => {
-                path.node.callee.name = 'cx';
+              .forEach((callPath) => {
+                callPath.node.callee.name = 'cx';
                 foundClsxOrClassnamesUsage = true;
               });
           }
