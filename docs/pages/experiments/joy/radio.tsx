@@ -4,7 +4,9 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import ListDivider from '@mui/joy/ListDivider';
 import ListItemContent from '@mui/joy/ListItemContent';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
@@ -13,6 +15,10 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
+import Person from '@mui/icons-material/Person';
+import People from '@mui/icons-material/People';
+import CheckCircle from '@mui/icons-material/CheckCircle';
+import Apartment from '@mui/icons-material/Apartment';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -351,7 +357,295 @@ export default function JoyRadio() {
               />
             </RadioGroup>
           </Box>
+          <Sheet
+            variant="outlined"
+            sx={{
+              boxShadow: 'sm',
+              borderRadius: '1rem',
+              color: 'text.primary',
+              alignSelf: 'flex-start',
+            }}
+          >
+            <RadioGroup
+              name="plan-type"
+              defaultValue="sm"
+              sx={{
+                '& .MuiRadio-root': {
+                  flexGrow: 1,
+                  position: 'initial',
+                  alignItems: 'center',
+                  pr: 0,
+                  '--Radio-gap': '1rem',
+                  '--Radio-action-radius': '15px',
+                },
+                '& .MuiRadio-action': {
+                  outlineOffset: '-4px',
+                },
+              }}
+            >
+              <List
+                component="div"
+                sx={{
+                  '--List-radius': '1rem',
+                  '--List-gap': '0px',
+                  '--List-item-paddingY': '0.75rem',
+                }}
+              >
+                <ListItem>
+                  <Radio
+                    label={
+                      <Box component="span" sx={{ display: 'flex' }}>
+                        <Typography component="span" level="inherit" fontWeight="md" flexGrow={1}>
+                          Small <br />
+                          <Typography
+                            component="span"
+                            fontWeight="normal"
+                            fontSize="sm"
+                            color="text.secondary"
+                          >
+                            Description
+                          </Typography>
+                        </Typography>
+                        <Typography
+                          component="span"
+                          level="inherit"
+                          fontWeight="md"
+                          textAlign="right"
+                        >
+                          $40 <br />
+                          <Typography
+                            component="span"
+                            fontWeight="normal"
+                            fontSize="sm"
+                            color="text.secondary"
+                          >
+                            per month
+                          </Typography>
+                        </Typography>
+                      </Box>
+                    }
+                    value="sm"
+                  />
+                </ListItem>
+                <ListDivider />
+                <ListItem>
+                  <Radio label="Medium" value="md" />
+                </ListItem>
+                <ListDivider />
+                <ListItem>
+                  <Radio label="Large" value="lg" />
+                </ListItem>
+              </List>
+            </RadioGroup>
+          </Sheet>
+          <RadioGroup name="people">
+            <List
+              sx={(theme) => ({
+                '--List-item-paddingY': '1rem',
+                '& .MuiListItem-root': {
+                  ...theme.variants.outlined.neutral,
+                  borderRadius: '4px',
+                  boxShadow: 'sm',
+                  bgcolor: 'background.body',
+                },
+                '& .MuiRadio-root': {
+                  '--Radio-action-radius': '4px',
+                  position: 'initial',
+                  flexGrow: 1,
+                  flexDirection: 'row-reverse',
+                  '&.Mui-checked': {
+                    '& .MuiRadio-action': {
+                      inset: -1,
+                      border: '2px solid',
+                      borderColor: theme.vars.palette.primary[500],
+                    },
+                  },
+                },
+              })}
+            >
+              <ListItem>
+                <ListItemDecorator>
+                  <Person />
+                </ListItemDecorator>
+                <Radio value="person" label="Individual" />
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <People />
+                </ListItemDecorator>
+                <Radio value="team" label="Team" />
+              </ListItem>
+              <ListItem>
+                <ListItemDecorator>
+                  <Apartment />
+                </ListItemDecorator>
+                <Radio value="interprise" label="Interprise" />
+              </ListItem>
+            </List>
+          </RadioGroup>
+          <Sheet variant="outlined" sx={{ borderRadius: '12px' }}>
+            <RadioGroup name="method" sx={{ '--RadioGroup': '12px' }}>
+              <List row>
+                <ListItem sx={{ flexBasis: '50%' }}>
+                  <Radio value="credit-card" label="Credit Card" />
+                </ListItem>
+                <ListDivider />
+                <ListItem sx={{ flexBasis: '50%' }}>
+                  <Radio value="paypal" label="Paypal" />
+                </ListItem>
+              </List>
+            </RadioGroup>
+          </Sheet>
         </Box>
+        <RadioGroup name="size" sx={{ my: 3 }}>
+          <List
+            row
+            sx={(theme) => ({
+              '--List-gap': '1.5rem',
+              '--Radio-action-radius': '8px',
+              '& > li': {
+                minWidth: 200,
+                flexDirection: 'column',
+                alignItems: 'initial',
+                borderRadius: '8px',
+                py: 0,
+                ...theme.variants.outlined.neutral,
+              },
+              '& .MuiRadio-root': {
+                flexGrow: 1,
+                flexDirection: 'row-reverse',
+                padding: 1.5,
+                mx: -1.5,
+                borderBottom: '1px solid',
+                borderColor: 'neutral.outlinedBorder',
+                position: 'initial',
+                '&.Mui-checked': {
+                  borderColor: 'primary.500',
+                  '& .MuiRadio-action': {
+                    inset: -1,
+                    border: '1px solid',
+                    borderColor: theme.vars.palette.primary[500],
+                  },
+                },
+              },
+              '& .MuiRadio-label': {
+                margin: 0,
+              },
+            })}
+          >
+            <ListItem>
+              <Radio label="Small" value="sm" />
+              <Box sx={{ mt: 1.5 }}>
+                <Typography level="body2">8gb/4CPUs</Typography>
+                <Typography level="body2">160 GB SSD Disk</Typography>
+                <Typography fontSize="xl" fontWeight="lg" my={1.5}>
+                  $40/mo
+                </Typography>
+              </Box>
+            </ListItem>
+            <ListItem>
+              <Radio label="Medium" value="md" />
+              <Box sx={{ mt: 1.5 }}>
+                <Typography level="body2">16gb/4CPUs</Typography>
+                <Typography level="body2">320 GB SSD Disk</Typography>
+                <Typography fontSize="xl" fontWeight="lg" my={1.5}>
+                  $80/mo
+                </Typography>
+              </Box>
+            </ListItem>
+            <ListItem>
+              <Radio label="Large" value="lg" />
+              <Box sx={{ mt: 1.5 }}>
+                <Typography level="body2">32gb/8CPUs</Typography>
+                <Typography level="body2">640 GB SSD Disk</Typography>
+                <Typography fontSize="xl" fontWeight="lg" my={1.5}>
+                  $120/mo
+                </Typography>
+              </Box>
+            </ListItem>
+          </List>
+        </RadioGroup>
+        <RadioGroup
+          row
+          size="lg"
+          name="platform"
+          sx={{
+            my: 3,
+            gap: 2,
+            '& > div': {
+              borderRadius: '4px',
+              bgcolor: 'background.level1',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 1,
+              p: 2,
+              minWidth: 120,
+            },
+            '& .MuiRadio-root': {
+              position: 'initial',
+              '--Radio-action-radius': '4px',
+              '&.Mui-checked': {
+                '& .MuiRadio-action': {
+                  inset: -1,
+                  border: '3px solid',
+                  borderColor: 'primary.500',
+                },
+              },
+            },
+            '& .MuiRadio-radio': {
+              display: 'contents',
+              '& > svg': {
+                zIndex: 2,
+                position: 'absolute',
+                top: '-8px',
+                right: '-8px',
+                bgcolor: 'background.body',
+                borderRadius: '50%',
+              },
+            },
+          }}
+        >
+          <Sheet variant="outlined">
+            <Radio id="website" value="website" checkedIcon={<CheckCircle />} />
+            <Avatar variant="light" size="lg" />
+            <Typography
+              htmlFor="website"
+              component="label"
+              level="body2"
+              letterSpacing="md"
+              fontWeight="md"
+            >
+              Website
+            </Typography>
+          </Sheet>
+          <Sheet variant="outlined">
+            <Radio id="documents" value="documents" checkedIcon={<CheckCircle />} />
+            <Avatar variant="light" size="lg" />
+            <Typography
+              htmlFor="documents"
+              component="label"
+              level="body2"
+              letterSpacing="md"
+              fontWeight="md"
+            >
+              Documents
+            </Typography>
+          </Sheet>
+          <Sheet variant="outlined">
+            <Radio id="social-account" value="social-account" checkedIcon={<CheckCircle />} />
+            <Avatar variant="light" size="lg" />
+            <Typography
+              htmlFor="social-account"
+              component="label"
+              level="body2"
+              letterSpacing="md"
+              fontWeight="md"
+            >
+              Social Account
+            </Typography>
+          </Sheet>
+        </RadioGroup>
       </Box>
     </CssVarsProvider>
   );

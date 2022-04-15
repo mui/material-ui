@@ -124,7 +124,7 @@ const RadioAction = styled('span', {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 0,
+    zIndex: 1,
     ...theme.focus.default,
   },
   ...(ownerState.disableIcon
