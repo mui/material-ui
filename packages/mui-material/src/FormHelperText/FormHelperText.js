@@ -68,7 +68,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const {
     children,
     className,
-    component = 'p',
+    component = 'div',
     disabled,
     error,
     filled,
