@@ -57,3 +57,6 @@ export * from './FormHelperText';
 
 export { default as TextField } from './TextField';
 export * from './TextField';
+
+export { default as Badge } from './Badge';
+export * from './Badge';
