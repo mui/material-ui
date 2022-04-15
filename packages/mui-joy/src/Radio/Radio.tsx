@@ -9,6 +9,7 @@ import { styled, useThemeProps } from '../styles';
 import { getRadioUtilityClass } from './radioClasses';
 import { RadioProps, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
+import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) => {
   const { checked, disabled, focusVisible, color, variant, size } = ownerState;
@@ -124,7 +125,7 @@ const RadioAction = styled('span', {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 1,
+    zIndex: 1, // The action element usually cover the area of nearest positioned parent
     ...theme.focus.default,
   },
   ...(ownerState.disableIcon
@@ -159,8 +160,8 @@ const RadioLabel = styled('label', {
   minWidth: 0,
   ...(ownerState.disableIcon
     ? {
-        pointerEvents: 'none',
-        zIndex: 1,
+        zIndex: 1, // label should stay on top of the action.
+        pointerEvents: 'none', // makes hover ineffect.
         color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
       }
     : {
@@ -294,7 +295,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
           ownerState={ownerState}
           className={clsx(classes.label, componentsProps?.label?.className)}
         >
-          {label}
+          {/* Automatically adjust the Typography to render `span` */}
+          <TypographyContext.Provider value>{label}</TypographyContext.Provider>
         </RadioLabel>
       )}
     </RadioRoot>

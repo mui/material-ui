@@ -164,7 +164,7 @@ export default function JoyRadio() {
                   <Radio
                     value="startup"
                     label={
-                      <Typography component="span" lineHeight="inherit" fontWeight="md">
+                      <Typography lineHeight="inherit" fontWeight="md">
                         Startup
                         <Typography level="body2" display="block" fontWeight="normal">
                           12GB/6 CPUs • 160 GB SSD disk
@@ -177,7 +177,7 @@ export default function JoyRadio() {
                   <Radio
                     value="business"
                     label={
-                      <Typography component="span" lineHeight="inherit" fontWeight="md">
+                      <Typography lineHeight="inherit" fontWeight="md">
                         Business
                         <Typography level="body2" display="block" fontWeight="normal">
                           16GB/8 CPUs • 512 GB SSD disk
@@ -190,7 +190,7 @@ export default function JoyRadio() {
                   <Radio
                     value="enterprise"
                     label={
-                      <Typography component="span" lineHeight="inherit" fontWeight="md">
+                      <Typography lineHeight="inherit" fontWeight="md">
                         Enterprise
                         <Typography level="body2" display="block" fontWeight="normal">
                           32GB/12 CPUs • 1024 GB SSD disk
@@ -323,7 +323,7 @@ export default function JoyRadio() {
                 label={
                   <React.Fragment>
                     <span>Standard glass</span>
-                    <Typography component="span" fontWeight="sm" textAlign="right">
+                    <Typography fontWeight="sm" textAlign="right">
                       From $1599
                       <br />
                       <span aria-hidden="true">or $133.25/mo. for 12 mo.*</span>
@@ -346,7 +346,7 @@ export default function JoyRadio() {
                 label={
                   <React.Fragment>
                     <span>Nano-texture glass</span>
-                    <Typography component="span" fontWeight="sm" textAlign="right">
+                    <Typography fontWeight="sm" textAlign="right">
                       From $1899
                       <br />
                       <span aria-hidden="true">or $158.25/mo. for 12 mo.*</span>
@@ -394,35 +394,20 @@ export default function JoyRadio() {
                 <ListItem>
                   <Radio
                     label={
-                      <Box component="span" sx={{ display: 'flex' }}>
-                        <Typography component="span" level="inherit" fontWeight="md" flexGrow={1}>
+                      <Typography sx={{ display: 'flex' }}>
+                        <Typography level="inherit" fontWeight="md" flexGrow={1}>
                           Small <br />
-                          <Typography
-                            component="span"
-                            fontWeight="normal"
-                            fontSize="sm"
-                            color="text.secondary"
-                          >
+                          <Typography fontWeight="normal" fontSize="sm" color="text.secondary">
                             Description
                           </Typography>
                         </Typography>
-                        <Typography
-                          component="span"
-                          level="inherit"
-                          fontWeight="md"
-                          textAlign="right"
-                        >
+                        <Typography level="inherit" fontWeight="md" textAlign="right">
                           $40 <br />
-                          <Typography
-                            component="span"
-                            fontWeight="normal"
-                            fontSize="sm"
-                            color="text.secondary"
-                          >
+                          <Typography fontWeight="normal" fontSize="sm" color="text.secondary">
                             per month
                           </Typography>
                         </Typography>
-                      </Box>
+                      </Typography>
                     }
                     value="sm"
                   />
