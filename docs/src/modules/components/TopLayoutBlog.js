@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, createTheme, alpha } from '@mui/material/styles';
-import { withStyles } from '@mui/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Head from 'docs/src/modules/components/Head';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -276,7 +275,7 @@ function TopLayoutBlog(props) {
 }
 
 TopLayoutBlog.propTypes = {
-  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
   docs: PropTypes.object.isRequired,
 };
 
@@ -284,5 +283,4 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-const defaultTheme = createTheme();
 export default styled(TopLayoutBlog)(styles);
