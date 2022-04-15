@@ -71,7 +71,7 @@ function useUniqueId(prefix) {
 }
 
 const Root = styled('div')(({ theme }) => ({
-  marginBottom: 40,
+  marginBottom: 24,
   marginLeft: theme.spacing(-2),
   marginRight: theme.spacing(-2),
   [theme.breakpoints.up('sm')]: {
