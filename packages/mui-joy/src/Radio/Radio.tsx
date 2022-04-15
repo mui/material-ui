@@ -357,6 +357,11 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
+   * @default false
+   */
+  disableIcon: PropTypes.bool,
+  /**
    * @ignore
    */
   id: PropTypes.string,

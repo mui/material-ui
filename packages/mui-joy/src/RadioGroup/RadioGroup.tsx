@@ -140,6 +140,11 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   defaultValue: PropTypes.any,
   /**
+   * The value is passed to Radio via React context.
+   * @default false
+   */
+  disableIcon: PropTypes.bool,
+  /**
    * The `name` attribute of the input.
    */
   name: PropTypes.string,
