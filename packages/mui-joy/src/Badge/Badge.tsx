@@ -53,6 +53,7 @@ const BadgeBadge = styled('span', {
     bottom: ownerState.badgeInset,
     right: ownerState.badgeInset,
   };
+
   if (typeof ownerState.badgeInset === 'string') {
     const insetValues = ownerState.badgeInset.split(' ');
     if (insetValues.length > 1) {
