@@ -235,6 +235,11 @@ const pages = [
       { pathname: '/material-ui/discover-more/languages' },
     ],
   },
+  {
+    title: 'Design kits',
+    pathname: 'https://mui.com/store/items/figma-react/',
+    icon: 'DesignServicesRoundedIcon',
+  },
 ];
 
 export default pages;
