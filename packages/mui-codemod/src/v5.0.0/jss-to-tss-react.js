@@ -196,7 +196,7 @@ export default function transformer(file, api, options) {
         });
         if (isTypeScript && nestedKeys.length > 0) {
           const nestedKeysUnion = nestedKeys.join('\' | \'');
-          path.node.callee.name = `makeStyles<void, \'${nestedKeysUnion}\'>()`;
+          path.node.callee.name = `makeStyles<void, '${nestedKeysUnion}'>()`;
         } else {
           path.node.callee.name = 'makeStyles()';
         }
