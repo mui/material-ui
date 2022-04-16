@@ -59,7 +59,7 @@ const CheckboxRoot = styled('span', {
       // add some space at the end to not have focus overlapping the label
       paddingInlineEnd: 'var(--Checkbox-gap)',
     }),
-  position: 'relative',
+  position: ownerState.overlay ? 'initial' : 'relative',
   display: 'inline-flex',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
@@ -105,7 +105,9 @@ const CheckboxAction = styled('span', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
   {
-    borderRadius: 'var(--Checkbox-action-radius, inherit)',
+    borderRadius: `var(--Checkbox-action-radius, ${
+      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+    })`,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -178,6 +180,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     defaultChecked,
     disabled: disabledProp,
     disableIcon = false,
+    overlay,
     id: idOverride,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
@@ -217,6 +220,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     checked,
     disabled,
     disableIcon,
+    overlay: overlay ?? disableIcon,
     focusVisible,
     color: isCheckboxActive ? activeColor : inactiveColor,
     variant: isCheckboxActive ? activeVariant : inactiveVariant,
