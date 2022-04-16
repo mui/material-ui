@@ -2833,7 +2833,7 @@ function App() {
 
   return (
     <div className={classes.parent}>
-      <div className={classes.children}>
+      <div className={classes.child}>
         Background turns red when the mouse hovers over the parent
       </div>
     </div>
