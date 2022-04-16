@@ -332,6 +332,11 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
+   * @default false
+   */
+  disableIcon: PropTypes.bool,
+  /**
    * @ignore
    */
   id: PropTypes.string,
@@ -376,6 +381,11 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocusVisible: PropTypes.func,
+  /**
+   * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
+   * This prop is useful for composing Checkbox with ListItem component.
+   */
+  overlay: PropTypes.bool,
   /**
    * If `true`, the `input` element is required.
    */
