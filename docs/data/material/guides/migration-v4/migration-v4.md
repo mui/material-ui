@@ -2814,7 +2814,7 @@ the transformation would look like this:
 -import { makeStyles } from '@material-ui/core/styles';
 -import clsx from 'clsx';
 +import { makeStyles } from 'tss-react/mui';
- 
+
 -const useStyles = makeStyles((theme) => ({
 +const useStyles = makeStyles<void, 'child' | 'small'>()((theme, _params, classes) => ({
    parent: {
@@ -2835,7 +2835,7 @@ the transformation would look like this:
      }
    },
  }));
- 
+
  function App() {
 -  const classes = useStyles();
 +  const { classes, cx } = useStyles();
