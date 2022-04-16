@@ -2806,41 +2806,54 @@ npx @mui/codemod v5.0.0/jss-to-tss-react <path>
  export default Apply;
 ```
 
-If you were using the `$` syntax, the transformation would look like this:
+If you were using the `$` syntax and `clsx` to combine multiple CSS classes,
+the transformation would look like this:
 
 ```diff
-import * as React from 'react';
--import makeStyles from '@material-ui/styles/makeStyles';
+ import * as React from 'react';
+-import { makeStyles } from '@material-ui/core/styles';
+-import clsx from 'clsx';
 +import { makeStyles } from 'tss-react/mui';
-
+ 
 -const useStyles = makeStyles((theme) => ({
-+const useStyles = makeStyles<void, "child">()((theme, _params, classes) => ({
-  parent: {
-    padding: 30,
++const useStyles = makeStyles<void, 'child' | 'small'>()((theme, _params, classes) => ({
+   parent: {
+     padding: 30,
 -    '&:hover $child': {
 +    [`&:hover .${classes.child}`]: {
-      backgroundColor: 'red',
-    },
-  },
-  child: {
-    backgroundColor: 'blue',
-  },
-}));
-
-function App() {
+       backgroundColor: 'red',
+     },
+   },
+   small: {},
+   child: {
+     backgroundColor: 'blue',
+     height: 50,
+-    '&$small': {
++    [`&.${classes.small}`]: {
+       backgroundColor: 'lightblue',
+       height: 30
+     }
+   },
+ }));
+ 
+ function App() {
 -  const classes = useStyles();
-+  const { classes } = useStyles();
++  const { classes, cx } = useStyles();
+   return (
+     <div className={classes.parent}>
+       <div className={classes.child}>
+         Background turns red when the mouse hovers over the parent.
+       </div>
+-      <div className={clsx(classes.child, classes.small)}>
++      <div className={cx(classes.child, classes.small)}>
+         Background turns red when the mouse hovers over the parent.
+         I am smaller than the other child.
+       </div>
+     </div>
+   );
+ }
 
-  return (
-    <div className={classes.parent}>
-      <div className={classes.child}>
-        Background turns red when the mouse hovers over the parent
-      </div>
-    </div>
-  );
-}
-
-export default App;
+ export default App;
 ```
 
 Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters
