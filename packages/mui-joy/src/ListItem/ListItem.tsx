@@ -56,6 +56,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
   },
   // Base styles
   {
+    '--internal-action-radius': 'var(--List-item-radius)',
     ...(ownerState.startAction && {
       '--internal-startActionWidth': '3rem', // to add sufficient padding-left on ListItemButton
     }),
