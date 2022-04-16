@@ -372,9 +372,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       return;
     }
 
-    // Workaround for https://github.com/facebook/react/issues/7769
-    // The autoFocus of React might trigger the event before the componentDidMount.
-    // We need to account for this eventuality.
     if (!childNode) {
       setChildNode(event.currentTarget);
     }
