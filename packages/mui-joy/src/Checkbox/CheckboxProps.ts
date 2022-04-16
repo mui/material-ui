@@ -49,6 +49,11 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
         CheckboxPropsColorOverrides
       >;
       /**
+       * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
+       * @default false
+       */
+      disableIcon?: boolean;
+      /**
        * If `true`, the component appears indeterminate.
        * This does not set the native input element to indeterminate due
        * to inconsistent behavior across browsers.

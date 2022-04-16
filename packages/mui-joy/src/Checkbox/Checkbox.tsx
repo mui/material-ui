@@ -54,14 +54,13 @@ const CheckboxRoot = styled('span', {
     '--Checkbox-gap': '0.625rem',
     fontSize: theme.vars.fontSize.lg,
   }),
-  ...(ownerState.label && {
-    // add some space at the end to not have focus overlapping the label
-    paddingInlineEnd: 'var(--Checkbox-gap)',
-  }),
+  ...(ownerState.label &&
+    !ownerState.disableIcon && {
+      // add some space at the end to not have focus overlapping the label
+      paddingInlineEnd: 'var(--Checkbox-gap)',
+    }),
   position: 'relative',
   display: 'inline-flex',
-  justifyContent: 'center',
-  verticalAlign: 'middle',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
   '&.Mui-disabled': {
@@ -83,26 +82,50 @@ const CheckboxCheckbox = styled('span', {
     justifyContent: 'center',
     alignItems: 'center',
     flexShrink: 0,
+    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    ...(ownerState.disableIcon && {
+      display: 'contents',
+    }),
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  ...(!ownerState.disableIcon
+    ? [
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ]
+    : []),
 ]);
 
 const CheckboxAction = styled('span', {
   name: 'MuiCheckbox',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: CheckboxProps }>(({ theme }) => ({
-  borderRadius: theme.vars.radius.xs,
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  bottom: 0,
-  right: 0,
-  ...theme.focus.default,
-}));
+})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
+  {
+    borderRadius: 'var(--Checkbox-action-radius, inherit)',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    zIndex: 1, // The action element usually cover the area of nearest positioned parent
+    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    ...theme.focus.default,
+  },
+  ...(ownerState.disableIcon
+    ? [
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ]
+    : []),
+]);
 
 const CheckboxInput = styled('input', {
   name: 'MuiCheckbox',
@@ -121,9 +144,19 @@ const CheckboxLabel = styled('label', {
   name: 'MuiCheckbox',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: CheckboxProps }>({
-  marginInlineStart: 'var(--Checkbox-gap)',
-});
+})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => ({
+  flex: 1,
+  minWidth: 0,
+  ...(ownerState.disableIcon
+    ? {
+        zIndex: 1, // label should stay on top of the action.
+        pointerEvents: 'none', // makes hover ineffect.
+        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+      }
+    : {
+        marginInlineStart: 'var(--Checkbox-gap)',
+      }),
+}));
 
 const defaultCheckedIcon = <CheckIcon />;
 const defaultIndeterminateIcon = <IndeterminateIcon />;
@@ -144,6 +177,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
+    disableIcon = false,
     id: idOverride,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
@@ -182,6 +216,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     ...props,
     checked,
     disabled,
+    disableIcon,
     focusVisible,
     color: isCheckboxActive ? activeColor : inactiveColor,
     variant: isCheckboxActive ? activeVariant : inactiveVariant,
@@ -217,9 +252,9 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
             className={clsx(classes.input, componentsProps.input?.className)}
           />
         </CheckboxAction>
-        {indeterminate && !checked && indeterminateIcon}
-        {checked && checkedIcon}
-        {!checked && !indeterminate && uncheckedIcon}
+        {indeterminate && !checked && !disableIcon && indeterminateIcon}
+        {checked && !disableIcon && checkedIcon}
+        {!checked && !disableIcon && !indeterminate && uncheckedIcon}
       </CheckboxCheckbox>
       {label && (
         <CheckboxLabel
