@@ -50,7 +50,6 @@ const RadioRoot = styled('span', {
   return [
     {
       '--Icon-fontSize': 'var(--Radio-size)',
-      '--Radio-radius': 'var(--Radio-size)',
       ...(ownerState.size === 'sm' && {
         '--Radio-size': '1rem',
         '--Radio-gap': '0.375rem',
@@ -66,11 +65,12 @@ const RadioRoot = styled('span', {
         '--Radio-gap': '0.625rem',
         fontSize: theme.vars.fontSize.lg,
       }),
-      ...(ownerState.label && {
-        // add some space at the end to not have focus overlapping the label
-        paddingInlineEnd: 'var(--Radio-gap)',
-      }),
-      position: 'relative',
+      ...(ownerState.label &&
+        !ownerState.disableIcon && {
+          // add some space at the end to not have focus overlapping the label
+          paddingInlineEnd: 'var(--Radio-gap)',
+        }),
+      position: ownerState.overlay ? 'initial' : 'relative',
       display: 'inline-flex',
       boxSizing: 'border-box',
       minWidth: 0,
@@ -93,7 +93,7 @@ const RadioRadio = styled('span', {
     boxSizing: 'border-box',
     width: 'var(--Radio-size)',
     height: 'var(--Radio-size)',
-    borderRadius: 'var(--Radio-radius)',
+    borderRadius: 'var(--Radio-size)',
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -122,7 +122,9 @@ const RadioAction = styled('span', {
 })<{ ownerState: RadioProps }>(({ theme, ownerState }) => [
   {
     position: 'absolute',
-    borderRadius: 'var(--Radio-action-radius, var(--Radio-radius))',
+    borderRadius: `var(--Radio-action-radius, ${
+      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+    })`,
     top: 0,
     left: 0,
     right: 0,
@@ -184,7 +186,7 @@ const RadioIcon = styled('span', {
 })<{ ownerState: RadioProps }>(({ ownerState }) => ({
   width: '50%',
   height: '50%',
-  borderRadius: 'var(--Radio-radius)',
+  borderRadius: 'inherit',
   color: 'inherit',
   backgroundColor: 'currentColor',
   // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
@@ -207,6 +209,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     defaultChecked,
     disabled: disabledProp,
     disableIcon: disableIconProp = false,
+    overlay: overlayProp = false,
     label,
     id: idOverride,
     name: nameProp,
@@ -231,6 +234,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const size = inProps.size || radioGroup.size || sizeProp;
   const name = inProps.name || radioGroup.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup.disableIcon || disableIconProp;
+  const overlay = inProps.overlay || radioGroup.overlay || overlayProp;
 
   const radioChecked =
     typeof checkedProp === 'undefined' && !!value
@@ -257,6 +261,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     variant,
     size,
     disableIcon,
+    overlay,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -398,6 +403,12 @@ Radio.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocusVisible: PropTypes.func,
+  /**
+   * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
+   * This prop is useful for composing Radio with ListItem component.
+   * @default false;
+   */
+  overlay: PropTypes.bool,
   /**
    * If `true`, the `input` element is required.
    */

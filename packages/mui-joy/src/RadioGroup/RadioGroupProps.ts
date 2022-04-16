@@ -25,14 +25,17 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      */
     defaultValue?: any;
     /**
-     * The value is passed to Radio via React context.
-     * @default false
+     * The radio's `disabledIcon` prop. If specified, the value is passed down to every radios under this element.
      */
     disableIcon?: boolean;
     /**
      * The `name` attribute of the input.
      */
     name?: string;
+    /**
+     * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
+     */
+    overlay?: boolean;
     /**
      * Callback fired when a radio button is selected.
      *

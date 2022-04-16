@@ -147,17 +147,11 @@ export default function JoyRadio() {
             <Typography id="plan" fontSize="lg" mb={1}>
               Plan
             </Typography>
-            <RadioGroup
-              aria-labelledby="plan"
-              sx={{
-                '& .MuiRadio-root': { position: 'initial' },
-              }}
-            >
+            <RadioGroup aria-labelledby="plan" overlay>
               <List
                 component="div"
                 sx={{
                   '--List-item-radius': '8px',
-                  '--Radio-action-radius': 'var(--List-item-radius)',
                 }}
               >
                 <ListItem>
@@ -209,8 +203,8 @@ export default function JoyRadio() {
             <RadioGroup
               name="member"
               aria-labelledby="member"
+              row
               sx={{
-                flexDirection: 'row',
                 gap: 1,
                 '--Radio-action-radius': '4px',
                 '& > div': {
@@ -367,19 +361,18 @@ export default function JoyRadio() {
             }}
           >
             <RadioGroup
+              overlay
               name="plan-type"
               defaultValue="sm"
               sx={{
                 '& .MuiRadio-root': {
                   flexGrow: 1,
-                  position: 'initial',
                   alignItems: 'center',
                   pr: 0,
                   '--Radio-gap': '1rem',
-                  '--Radio-action-radius': '15px',
                 },
                 '& .MuiRadio-action': {
-                  outlineOffset: '-4px',
+                  outlineOffset: '-2px',
                 },
               }}
             >
@@ -423,19 +416,17 @@ export default function JoyRadio() {
               </List>
             </RadioGroup>
           </Sheet>
-          <RadioGroup name="people">
+          <RadioGroup name="people" overlay>
             <List
               sx={(theme) => ({
                 '--List-item-paddingY': '1rem',
+                '--List-item-radius': '4px',
                 '& .MuiListItem-root': {
                   ...theme.variants.outlined.neutral,
-                  borderRadius: '4px',
                   boxShadow: 'sm',
                   bgcolor: 'background.body',
                 },
                 '& .MuiRadio-root': {
-                  '--Radio-action-radius': '4px',
-                  position: 'initial',
                   flexGrow: 1,
                   flexDirection: 'row-reverse',
                   '&.Mui-checked': {
@@ -482,7 +473,7 @@ export default function JoyRadio() {
             </RadioGroup>
           </Sheet>
         </Box>
-        <RadioGroup name="size" sx={{ my: 3 }}>
+        <RadioGroup name="size" overlay sx={{ my: 3 }}>
           <List
             row
             sx={(theme) => ({
@@ -503,7 +494,6 @@ export default function JoyRadio() {
                 mx: -1.5,
                 borderBottom: '1px solid',
                 borderColor: 'neutral.outlinedBorder',
-                position: 'initial',
                 '&.Mui-checked': {
                   borderColor: 'primary.500',
                   '& .MuiRadio-action': {
@@ -552,6 +542,7 @@ export default function JoyRadio() {
         </RadioGroup>
         <RadioGroup
           row
+          overlay
           size="lg"
           name="platform"
           sx={{
@@ -568,7 +559,6 @@ export default function JoyRadio() {
               minWidth: 120,
             },
             '& .MuiRadio-root': {
-              position: 'initial',
               '--Radio-action-radius': '4px',
               '&.Mui-checked': {
                 '& .MuiRadio-action': {

@@ -48,6 +48,11 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
         RadioPropsColorOverrides
       >;
       /**
+       * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
+       * @default false
+       */
+      disableIcon?: boolean;
+      /**
        * The label element at the end the radio.
        */
       label?: React.ReactNode;
@@ -56,10 +61,11 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       name?: string;
       /**
-       * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
-       * @default false
+       * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
+       * This prop is useful for composing Radio with ListItem component.
+       * @default false;
        */
-      disableIcon?: boolean;
+      overlay?: boolean;
       /**
        * The size of the component.
        * @default 'md'

@@ -59,6 +59,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     name: nameProp,
     defaultValue,
     disableIcon = false,
+    overlay,
     value: valueProp,
     onChange,
     color,
@@ -94,7 +95,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
 
   return (
     <RadioGroupContext.Provider
-      value={{ color, disableIcon, size, variant, name, value, onChange: handleChange }}
+      value={{ color, disableIcon, overlay, size, variant, name, value, onChange: handleChange }}
     >
       <RadioGroupRoot
         ref={ref}
@@ -140,8 +141,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   defaultValue: PropTypes.any,
   /**
-   * The value is passed to Radio via React context.
-   * @default false
+   * The radio's `disabledIcon` prop. If specified, the value is passed down to every radios under this element.
    */
   disableIcon: PropTypes.bool,
   /**
@@ -155,6 +155,10 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
+  /**
+   * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
+   */
+  overlay: PropTypes.bool,
   /**
    * If `true`, flex direction is set to 'row'.
    * @default false
