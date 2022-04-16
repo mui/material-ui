@@ -621,6 +621,72 @@ export default function JoyRadio() {
             </Typography>
           </Sheet>
         </RadioGroup>
+        <RadioGroup
+          name="capacity"
+          disableIcon
+          sx={{
+            '--RadioGroup-gap': '0px',
+            my: 3,
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 2,
+            maxWidth: 320,
+            '& .MuiRadio-label': {
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: 1,
+              minHeight: 120,
+            },
+            '--Radio-action-radius': '8px',
+          }}
+        >
+          <Radio
+            value="xs"
+            label={
+              <React.Fragment>
+                <Typography fontWeight="lg" display="block">
+                  Extra Small
+                </Typography>
+                <Typography level="body2">10GB / 1RAM</Typography>
+              </React.Fragment>
+            }
+          />
+          <Radio
+            value="sm"
+            label={
+              <React.Fragment>
+                <Typography fontWeight="lg" display="block">
+                  Small
+                </Typography>
+                <Typography level="body2">12GB / 2RAM</Typography>
+              </React.Fragment>
+            }
+          />
+          <Radio
+            value="md"
+            label={
+              <React.Fragment>
+                <Typography fontWeight="lg" display="block">
+                  Medium
+                </Typography>
+                <Typography level="body2">16GB / 4RAM</Typography>
+              </React.Fragment>
+            }
+          />
+          <Radio
+            value="lg"
+            label={
+              <React.Fragment>
+                <Typography fontWeight="lg" display="block">
+                  Large
+                </Typography>
+                <Typography level="body2">128GB / 16RAM</Typography>
+              </React.Fragment>
+            }
+          />
+        </RadioGroup>
       </Box>
     </CssVarsProvider>
   );
