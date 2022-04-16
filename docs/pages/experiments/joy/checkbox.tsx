@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Head from 'next/head';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -49,6 +50,13 @@ const props = {
 export default function JoyCheckbox() {
   return (
     <CssVarsProvider>
+      <Head>
+        <script
+          type="module"
+          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+        />
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
+      </Head>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
@@ -126,13 +134,7 @@ export default function JoyCheckbox() {
             </Box>
           </Box>
           <Box sx={{ maxWidth: 300 }}>
-            <Checkbox
-              label={
-                <React.Fragment>
-                  By clicking this checkbox, you accept our terms and agreements.
-                </React.Fragment>
-              }
-            />
+            <Checkbox label="By clicking this checkbox, you accept our terms and agreements." />
           </Box>
         </Box>
         <Box
@@ -160,32 +162,31 @@ export default function JoyCheckbox() {
               <List
                 sx={{
                   '--List-item-radius': '4px',
-                  '& .MuiCheckbox-root': { position: 'initial' },
                   '[data-mui-color-scheme="light"] &': {
                     '--joy-palette-neutral-lightBg': 'var(--joy-palette-neutral-50)',
                   },
                 }}
               >
                 <ListItem variant="light" color="danger">
-                  <Checkbox label="Declined Payment" color="danger" checked />
+                  <Checkbox label="Declined Payment" color="danger" checked overlay />
                   <Typography color="inherit" sx={{ ml: 'auto' }}>
                     8
                   </Typography>
                 </ListItem>
                 <ListItem variant="light" color="warning">
-                  <Checkbox label="Delivery Error" color="warning" checked />
+                  <Checkbox label="Delivery Error" color="warning" checked overlay />
                   <Typography color="inherit" sx={{ ml: 'auto' }}>
                     24
                   </Typography>
                 </ListItem>
                 <ListItem variant="light">
-                  <Checkbox label="Wrong Amount" color="neutral" />
+                  <Checkbox label="Wrong Amount" color="neutral" overlay />
                 </ListItem>
                 <ListItem variant="light">
-                  <Checkbox label="Wrong Address" color="neutral" />
+                  <Checkbox label="Wrong Address" color="neutral" overlay />
                 </ListItem>
                 <ListItem variant="light">
-                  <Checkbox label="Wrong UX Solution" color="neutral" />
+                  <Checkbox label="Wrong UX Solution" color="neutral" overlay />
                 </ListItem>
               </List>
             </Box>
@@ -212,7 +213,6 @@ export default function JoyCheckbox() {
                 sx={{
                   '--List-item-radius': '4px',
                   '& .MuiCheckbox-root': {
-                    position: 'initial',
                     mr: 'auto',
                     alignItems: 'center',
                     '--Checkbox-gap': '12px',
@@ -223,21 +223,21 @@ export default function JoyCheckbox() {
                 }}
               >
                 <ListItem>
-                  <Checkbox label="Friedrich Oberbrunner" />
+                  <Checkbox label="Friedrich Oberbrunner" overlay />
                   <Avatar aria-hidden="true" src="/static/images/avatar/1.jpg" />
                 </ListItem>
                 <ListItem variant="light" color="primary">
                   <Checkbox
+                    overlay
                     label={
                       <React.Fragment>
                         Adeline O&apos;Reilly
-                        <Box
-                          component="span"
+                        <Typography
                           aria-hidden="true"
                           sx={{ display: 'block', fontSize: 'sm', color: 'primary.500' }}
                         >
                           This user was picked
-                        </Box>
+                        </Typography>
                       </React.Fragment>
                     }
                     checked
@@ -245,11 +245,11 @@ export default function JoyCheckbox() {
                   <Avatar aria-hidden="true" src="/static/images/avatar/2.jpg" />
                 </ListItem>
                 <ListItem>
-                  <Checkbox label="Fernando Pidrillio" color="neutral" />
+                  <Checkbox label="Fernando Pidrillio" color="neutral" overlay />
                   <Avatar aria-hidden="true" src="/static/images/avatar/3.jpg" />
                 </ListItem>
                 <ListItem>
-                  <Checkbox label="Anonymous User" color="neutral" />
+                  <Checkbox label="Anonymous User" color="neutral" overlay />
                   <Avatar aria-hidden="true" variant="contained">
                     AU
                   </Avatar>
@@ -257,6 +257,84 @@ export default function JoyCheckbox() {
               </List>
             </Box>
           </Sheet>
+          <Box>
+            <Typography id="ingredient" level="h2" fontSize="xl" sx={{ mb: 1 }}>
+              Ingredient
+            </Typography>
+            <Box role="group" aria-labelledby="ingredient">
+              <List
+                row
+                sx={{
+                  '--List-gap': '0px',
+                  '--List-item-radius': '20px',
+                  flexWrap: 'wrap',
+                  gap: 1,
+                }}
+              >
+                {[
+                  'Avocado',
+                  'Jalapenos',
+                  'Habaneors',
+                  'Mushrooms',
+                  'Fried Egg',
+                  'Caramelized Onions',
+                  'Rillamook Cheddar',
+                ].map((item) => (
+                  <ListItem
+                    key={item}
+                    sx={{
+                      boxShadow: 'md',
+                      bgcolor: 'background.body',
+                    }}
+                  >
+                    <Checkbox
+                      label={item}
+                      overlay
+                      // @ts-ignore
+                      checkedIcon={<ion-icon name="checkmark-outline" />}
+                      sx={{
+                        '--ionicon-stroke-width': '72px',
+                        '& .MuiCheckbox-checkbox': {
+                          fontSize: '12px',
+                          borderRadius: '50%',
+                        },
+                      }}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+          </Box>
+          <Box>
+            <Typography id="topping" level="h2" fontSize="xl" sx={{ mb: 1 }}>
+              Pizza toppings
+            </Typography>
+            <Box role="group" aria-labelledby="topping">
+              <List
+                row
+                sx={{
+                  '--List-gap': '0px',
+                  '--List-item-radius': '20px',
+                  flexWrap: 'wrap',
+                  gap: 1,
+                }}
+              >
+                {[
+                  'Perpperoni',
+                  'Cheese',
+                  'Olives',
+                  'Tomatoes',
+                  'Fried Bacon',
+                  'Spinach',
+                  'Sausage',
+                ].map((item) => (
+                  <ListItem key={item}>
+                    <Checkbox disableIcon variant="light" label={item} />
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </CssVarsProvider>
