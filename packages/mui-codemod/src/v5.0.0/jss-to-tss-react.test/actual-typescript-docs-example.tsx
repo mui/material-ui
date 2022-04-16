@@ -1,6 +1,5 @@
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,22 +9,27 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'red',
     },
   },
-  smallParent: {
-    padding: 15
-  },
+  small: {},
   child: {
     backgroundColor: 'blue',
+    height: 50,
+    '&$small': {
+      backgroundColor: 'lightblue',
+      height: 30
+    }
   },
 }));
 
 function App() {
   const classes = useStyles();
-  const theme = useTheme();
-  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    <div className={clsx(classes.parent, {[classes.smallParent]: isSmall})}>
+    <div className={classes.parent}>
       <div className={classes.child}>
-        Background turns red when the mouse hovers over the parent
+        Background turns red when the mouse hovers over the parent.
+      </div>
+      <div className={clsx(classes.child, classes.small)}>
+        Background turns red when the mouse hovers over the parent.
+        I am smaller than the other child.
       </div>
     </div>
   );
