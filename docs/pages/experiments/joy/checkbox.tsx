@@ -47,6 +47,112 @@ const props = {
   variant: ['outlined', 'light', 'contained'],
 } as const;
 
+const Rank = () => {
+  const [value, setValue] = React.useState<string[]>([]);
+  return (
+    <Box>
+      <Typography id="rank" level="h2" fontSize="xl" sx={{ mb: 1 }}>
+        Rank
+      </Typography>
+      <Box role="group" aria-labelledby="rank">
+        <List
+          row
+          size="sm"
+          sx={{
+            '--List-gap': '0px',
+            '--List-item-paddingLeft': '0.75rem',
+            '--List-item-paddingRight': '1rem',
+            '--List-item-radius': '20px',
+            gap: 1,
+            flexWrap: 'wrap',
+          }}
+        >
+          {['Freshman', 'Sophomore', 'Junior', 'Senior'].map((item) => (
+            <ListItem key={item}>
+              {value.includes(item) && <Done sx={{ zIndex: 2, color: 'primary.500', mr: 1 }} />}
+              <Checkbox
+                disableIcon
+                variant="outlined"
+                label={item}
+                checked={value.includes(item)}
+                onChange={(event) => {
+                  if (event.target.checked) {
+                    setValue((val) => [...val, item]);
+                  } else {
+                    setValue((val) => val.filter((text) => text !== item));
+                  }
+                }}
+                sx={{
+                  '&.Mui-checked': {
+                    '& .MuiCheckbox-action': {
+                      borderColor: 'primary.500',
+                    },
+                  },
+                }}
+              />
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    </Box>
+  );
+};
+
+const Pattern = () => {
+  const [value, setValue] = React.useState<string[]>([]);
+  return (
+    <Box>
+      <Typography id="rank" level="h2" fontSize="xl" sx={{ mb: 1 }}>
+        Pattern
+      </Typography>
+      <Box role="group" aria-labelledby="rank">
+        <List
+          row
+          size="sm"
+          sx={{
+            '--List-gap': '0px',
+            '--List-item-paddingLeft': '0.75rem',
+            '--List-item-paddingRight': '0.75rem',
+            '--List-item-radius': '20px',
+            gap: 1,
+            flexWrap: 'wrap',
+          }}
+        >
+          {['Colors', 'Shapes', 'Textures'].map((item) => (
+            <ListItem key={item}>
+              {value.includes(item) && <Done sx={{ zIndex: 2, color: '#fff', mr: 0.5 }} />}
+              <Checkbox
+                size="sm"
+                disableIcon
+                color="primary"
+                variant={value.includes(item) ? 'contained' : 'light'}
+                label={item}
+                checked={value.includes(item)}
+                onChange={(event) => {
+                  if (event.target.checked) {
+                    setValue((val) => [...val, item]);
+                  } else {
+                    setValue((val) => val.filter((text) => text !== item));
+                  }
+                }}
+                sx={{
+                  fontWeight: 'md',
+                  '&.Mui-checked': {
+                    '& .MuiCheckbox-action': {
+                      boxShadow: 'md',
+                      borderColor: 'primary.500',
+                    },
+                  },
+                }}
+              />
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    </Box>
+  );
+};
+
 export default function JoyCheckbox() {
   return (
     <CssVarsProvider>
@@ -335,6 +441,8 @@ export default function JoyCheckbox() {
               </List>
             </Box>
           </Box>
+          <Rank />
+          <Pattern />
         </Box>
       </Box>
     </CssVarsProvider>
