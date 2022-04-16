@@ -10,6 +10,7 @@ import { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxProps, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
+import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }) => {
   const { checked, disabled, focusVisible, color, variant, size } = ownerState;
@@ -261,14 +262,16 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
         {!checked && !disableIcon && !indeterminate && uncheckedIcon}
       </CheckboxCheckbox>
       {label && (
-        <CheckboxLabel
-          {...componentsProps?.label}
-          htmlFor={id}
-          ownerState={ownerState}
-          className={clsx(classes.label, componentsProps.label?.className)}
-        >
-          {label}
-        </CheckboxLabel>
+        <TypographyContext.Provider value>
+          <CheckboxLabel
+            {...componentsProps?.label}
+            htmlFor={id}
+            ownerState={ownerState}
+            className={clsx(classes.label, componentsProps.label?.className)}
+          >
+            {label}
+          </CheckboxLabel>
+        </TypographyContext.Provider>
       )}
     </CheckboxRoot>
   );
