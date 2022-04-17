@@ -13,7 +13,7 @@ import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
 import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }) => {
-  const { checked, disabled, focusVisible, color, variant, size } = ownerState;
+  const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
 
   const slots = {
     root: [
@@ -25,8 +25,8 @@ const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    checkbox: ['checkbox', checked && 'checked', disabled && 'disabled'],
-    action: ['action', focusVisible && 'focusVisible'],
+    checkbox: ['checkbox', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    action: ['action', disableIcon && disabled && 'disabled', focusVisible && 'focusVisible'], // add disabled class to action element for displaying global variant
     input: ['input'],
     label: ['label'],
   };
@@ -67,6 +67,12 @@ const CheckboxRoot = styled('span', {
   '&.Mui-disabled': {
     color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
   },
+  ...(ownerState.disableIcon && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant}Color`],
+    '&.Mui-disabled': {
+      color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+    },
+  }),
 }));
 
 const CheckboxCheckbox = styled('span', {
@@ -147,14 +153,13 @@ const CheckboxLabel = styled('label', {
   name: 'MuiCheckbox',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: CheckboxProps }>(({ ownerState }) => ({
   flex: 1,
   minWidth: 0,
   ...(ownerState.disableIcon
     ? {
         zIndex: 1, // label should stay on top of the action.
         pointerEvents: 'none', // makes hover ineffect.
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
       }
     : {
         marginInlineStart: 'var(--Checkbox-gap)',
@@ -221,7 +226,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     checked,
     disabled,
     disableIcon,
-    overlay: overlay ?? disableIcon,
+    overlay,
     focusVisible,
     color: isCheckboxActive ? activeColor : inactiveColor,
     variant: isCheckboxActive ? activeVariant : inactiveVariant,
@@ -384,6 +389,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
    * This prop is useful for composing Checkbox with ListItem component.
+   * @default false
    */
   overlay: PropTypes.bool,
   /**

@@ -67,11 +67,13 @@ const Rank = () => {
             flexWrap: 'wrap',
           }}
         >
-          {['Freshman', 'Sophomore', 'Junior', 'Senior'].map((item) => (
+          {['Freshman', 'Sophomore', 'Junior', 'Senior'].map((item, index) => (
             <ListItem key={item}>
               {value.includes(item) && <Done sx={{ zIndex: 2, color: 'primary.500', mr: 1 }} />}
               <Checkbox
+                disabled={index === 0}
                 disableIcon
+                overlay
                 variant="outlined"
                 label={item}
                 checked={value.includes(item)}
@@ -118,11 +120,13 @@ const Pattern = () => {
             flexWrap: 'wrap',
           }}
         >
-          {['Colors', 'Shapes', 'Textures'].map((item) => (
+          {['Colors', 'Shapes', 'Textures'].map((item, index) => (
             <ListItem key={item}>
               {value.includes(item) && <Done sx={{ zIndex: 2, color: '#fff', mr: 0.5 }} />}
               <Checkbox
+                disabled={index === 0}
                 size="sm"
+                overlay
                 disableIcon
                 color="primary"
                 variant={value.includes(item) ? 'contained' : 'light'}
@@ -286,7 +290,7 @@ export default function JoyCheckbox() {
                   </Typography>
                 </ListItem>
                 <ListItem variant="light">
-                  <Checkbox label="Wrong Amount" color="neutral" overlay />
+                  <Checkbox disabled label="Wrong Amount" color="neutral" overlay />
                 </ListItem>
                 <ListItem variant="light">
                   <Checkbox label="Wrong Address" color="neutral" overlay />
@@ -329,7 +333,7 @@ export default function JoyCheckbox() {
                 }}
               >
                 <ListItem>
-                  <Checkbox label="Friedrich Oberbrunner" overlay />
+                  <Checkbox disabled label="Friedrich Oberbrunner" overlay />
                   <Avatar aria-hidden="true" src="/static/images/avatar/1.jpg" />
                 </ListItem>
                 <ListItem variant="light" color="primary">
@@ -385,7 +389,7 @@ export default function JoyCheckbox() {
                   'Fried Egg',
                   'Caramelized Onions',
                   'Rillamook Cheddar',
-                ].map((item) => (
+                ].map((item, index) => (
                   <ListItem
                     key={item}
                     sx={{
@@ -394,6 +398,7 @@ export default function JoyCheckbox() {
                     }}
                   >
                     <Checkbox
+                      disabled={index === 0}
                       label={item}
                       overlay
                       // @ts-ignore
@@ -433,9 +438,15 @@ export default function JoyCheckbox() {
                   'Fried Bacon',
                   'Spinach',
                   'Sausage',
-                ].map((item) => (
+                ].map((item, index) => (
                   <ListItem key={item}>
-                    <Checkbox disableIcon variant="light" label={item} />
+                    <Checkbox
+                      disabled={index === 0}
+                      overlay
+                      disableIcon
+                      variant="light"
+                      label={item}
+                    />
                   </ListItem>
                 ))}
               </List>
