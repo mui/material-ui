@@ -443,7 +443,7 @@ export default function JoyRadio() {
                 <ListItemDecorator>
                   <Person />
                 </ListItemDecorator>
-                <Radio value="person" label="Individual" />
+                <Radio disabled value="person" label="Individual" />
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
@@ -478,12 +478,11 @@ export default function JoyRadio() {
             row
             sx={(theme) => ({
               '--List-gap': '1.5rem',
-              '--Radio-action-radius': '8px',
+              '--List-item-radius': '8px',
               '& > li': {
                 minWidth: 200,
                 flexDirection: 'column',
                 alignItems: 'initial',
-                borderRadius: '8px',
                 py: 0,
                 ...theme.variants.outlined.neutral,
               },
@@ -509,7 +508,7 @@ export default function JoyRadio() {
             })}
           >
             <ListItem>
-              <Radio label="Small" value="sm" />
+              <Radio disabled label="Small" value="sm" />
               <Box sx={{ mt: 1.5 }}>
                 <Typography level="body2">8gb/4CPUs</Typography>
                 <Typography level="body2">160 GB SSD Disk</Typography>
@@ -631,6 +630,14 @@ export default function JoyRadio() {
             gridTemplateColumns: '1fr 1fr',
             gap: 2,
             maxWidth: 320,
+            '& .Mui-checked': {
+              '& .MuiRadio-action': {
+                bgcolor: 'primary.outlinedHoverBg',
+              },
+            },
+            '& .Mui-disabled label *': {
+              color: 'neutral.textDisabledColor',
+            },
             '& .MuiRadio-label': {
               display: 'flex',
               flexDirection: 'column',
@@ -646,12 +653,17 @@ export default function JoyRadio() {
             value="xs"
             label={
               <React.Fragment>
-                <Typography fontWeight="lg" display="block">
+                <Typography
+                  fontWeight="lg"
+                  display="block"
+                  sx={{ '.Mui-checked &': { color: 'primary.600' } }}
+                >
                   Extra Small
                 </Typography>
                 <Typography level="body2">10GB / 1RAM</Typography>
               </React.Fragment>
             }
+            sx={{ '&.Mui-checked': { color: 'primary.outlinedColor' } }}
           />
           <Radio
             value="sm"
@@ -666,6 +678,7 @@ export default function JoyRadio() {
           />
           <Radio
             value="md"
+            disabled
             label={
               <React.Fragment>
                 <Typography fontWeight="lg" display="block">

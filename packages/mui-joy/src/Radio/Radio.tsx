@@ -12,7 +12,7 @@ import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) => {
-  const { checked, disabled, focusVisible, color, variant, size } = ownerState;
+  const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
 
   const slots = {
     root: [
@@ -25,7 +25,7 @@ const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) =
       size && `size${capitalize(size)}`,
     ],
     radio: ['radio', disabled && 'disabled'], // disabled class is necessary for displaying global variant
-    action: ['action', focusVisible && 'focusVisible'],
+    action: ['action', disableIcon && disabled && 'disabled', focusVisible && 'focusVisible'], // add disabled class to action element for displaying global variant
     input: ['input'],
     label: ['label'],
   };
@@ -79,6 +79,11 @@ const RadioRoot = styled('span', {
       '&.Mui-disabled': {
         color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
       },
+      ...(ownerState.disableIcon && {
+        '&.Mui-disabled': {
+          color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+        },
+      }),
     },
   ];
 });
@@ -162,14 +167,13 @@ const RadioLabel = styled('label', {
   name: 'MuiRadio',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: RadioProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: RadioProps }>(({ ownerState }) => ({
   flex: 1,
   minWidth: 0,
   ...(ownerState.disableIcon
     ? {
         zIndex: 1, // label should stay on top of the action.
         pointerEvents: 'none', // makes hover ineffect.
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
       }
     : {
         marginInlineStart: 'var(--Radio-gap)',
