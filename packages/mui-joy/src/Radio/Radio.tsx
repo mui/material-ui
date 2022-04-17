@@ -80,6 +80,7 @@ const RadioRoot = styled('span', {
         color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
       },
       ...(ownerState.disableIcon && {
+        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
         '&.Mui-disabled': {
           color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
         },
@@ -128,6 +129,7 @@ const RadioAction = styled('span', {
   {
     position: 'absolute',
     borderRadius: `var(--Radio-action-radius, ${
+      // Automatic radius adjustment when composing with ListItem
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
     })`,
     top: 0,

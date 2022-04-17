@@ -295,6 +295,7 @@ export default function JoyRadio() {
               sx={{
                 '--Radio-action-radius': '18px',
                 '& .MuiRadio-root': {
+                  color: 'initial',
                   padding: '14px',
                   minHeight: '83px',
                   fontWeight: 'md',
