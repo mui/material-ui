@@ -58,6 +58,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
       '--internal-endActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
     }),
     boxSizing: 'border-box',
+    borderRadius: 'var(--List-item-radius)',
     display: 'flex',
     position: 'relative',
     padding: 'var(--List-item-paddingY)',
