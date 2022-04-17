@@ -1,6 +1,11 @@
-export { default, calendarPickerClasses } from './CalendarPicker';
+export {
+  CalendarPicker as default,
+  calendarPickerClasses,
+} from '@mui/x-date-pickers/CalendarPicker';
 
-export type CalendarPickerClassKey = import('./CalendarPicker').CalendarPickerClassKey;
-export type CalendarPickerClasses = import('./CalendarPicker').CalendarPickerClasses;
-export type CalendarPickerProps<TDate> = import('./CalendarPicker').CalendarPickerProps<TDate>;
-export type CalendarPickerView = NonNullable<CalendarPickerProps<unknown>['view']>;
+export type {
+  CalendarPickerClassKey,
+  CalendarPickerClasses,
+  CalendarPickerProps,
+  CalendarPickerView,
+} from '@mui/x-date-pickers/CalendarPicker';

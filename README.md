@@ -40,9 +40,9 @@ yarn add @mui/material @emotion/react @emotion/styled
 <details>
   <summary>Older versions</summary>
 
-- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/guides/migration-v4/))
-- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/guides/migration-v3/))
-- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/guides/migration-v0x/))
+- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/guides/migration-v4/))
+- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/guides/migration-v3/))
+- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/guides/migration-v0x/))
 
 </details>
 
@@ -69,7 +69,6 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
   <a href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-rig ht: 16px;"><img height="96" width="96" src="https://github.com/teambit.png?size=192" alt="bit.dev" title="The fastest way to share code" loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://images.opencollective.com/callemall/09710fe/logo/192.png" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
   <a href="https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/laststance/daffd6c/avatar/192.png" alt="laststance.io" title="Indipendent organization for OSS activity based on Tokyo" loading="lazy" /></a>
-  <a href="https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/movavi-software/a1d0167/logo/192.png" alt="movavi.com" title="Screen recorder for Mac" loading="lazy" /></a>
   <a href="https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/aussiecasinohex/923df37/logo/192.png" alt="online-aussie-casino.com" title="Aussie Gambling Guide" loading="lazy" /></a>
   <a href="https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/192.png" alt="sumatosoft.com" title="We help companies to digitalize their businesses" loading="lazy" /></a>
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=192" alt="megafamous.com" title="The best place to buy Instagram followers & likes." loading="lazy" /></a>
@@ -79,7 +78,7 @@ Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 ### There is more
 
-See the full list of [our backers](https://mui.com/discover-more/backers/).
+See the full list of [our backers](https://mui.com/material-ui/discover-more/backers/).
 
 ## Usage
 
@@ -114,7 +113,7 @@ There is a StackOverflow tag called "material-ui" that you can use to tag your q
 ## Examples
 
 Are you looking for an example project to get started?
-[We host some](https://mui.com/getting-started/example-projects/).
+[We host some](https://mui.com/material-ui/getting-started/example-projects/).
 
 ## Documentation
 
@@ -129,7 +128,7 @@ You can find complete templates & themes in the [MUI Store](https://mui.com/stor
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to MUI.
 
 Notice that contributions go far beyond pull requests and commits.
-Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project).
+Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 
@@ -137,7 +136,7 @@ If you have recently updated, please read the [changelog](https://github.com/mui
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [roadmap](https://mui.com/discover-more/roadmap/) file.
+The future plans and high priority features and enhancements can be found in the [roadmap](https://mui.com/material-ui/discover-more/roadmap/) file.
 
 ## License
 

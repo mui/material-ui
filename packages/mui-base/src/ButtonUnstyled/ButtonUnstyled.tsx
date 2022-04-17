@@ -43,13 +43,14 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
 >(props: ButtonUnstyledProps<D>, forwardedRef: React.ForwardedRef<any>) {
   const {
+    action,
+    children,
     className,
     component,
     components = {},
     componentsProps = {},
-    children,
     disabled,
-    action,
+    focusableWhenDisabled = false,
     onBlur,
     onClick,
     onFocus,
@@ -68,6 +69,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     component: ButtonRoot,
+    focusableWhenDisabled,
     ref: handleRef,
   });
 
@@ -85,6 +87,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const ownerState: ButtonUnstyledOwnerState = {
     ...props,
     active,
+    focusableWhenDisabled,
     focusVisible,
   };
 
@@ -154,6 +157,11 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, allows a disabled button to receive focus.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */

@@ -9,7 +9,7 @@ const blue = {
   700: '#0059B2',
 };
 
-const CustomButtonRoot = styled('span')`
+const CustomButtonRoot = styled(ButtonUnstyled)`
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
@@ -41,7 +41,7 @@ const CustomButtonRoot = styled('span')`
 `;
 
 function CustomButton(props) {
-  return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
+  return <CustomButtonRoot {...props} component="span" />;
 }
 
 export default function UnstyledButtonsSpan() {

@@ -58,7 +58,7 @@ const InputRoot = styled('div', {
     '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
-      theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     boxSizing: 'border-box',
     minHeight: `var(--Input-minHeight)`,
     minWidth: 0, // forces the Input to stay inside a container by default
@@ -124,6 +124,7 @@ const InputInput = styled('input', {
   alignSelf: 'stretch',
   color: 'inherit',
   backgroundColor: 'transparent',
+  fontFamily: 'inherit',
   fontSize: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background

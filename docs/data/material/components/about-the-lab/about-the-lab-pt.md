@@ -8,7 +8,7 @@ A principal diferença entre o lab e o core (núcleo) é como os componentes sã
 
 Para que um componente esteja pronto para ir para o core, são considerados os seguintes critérios:
 
-- Ele precisa ser **utilizado**. The Material-UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. Um componente do lab com baixo uso significa que ainda não está totalmente funcional, ou que há uma baixa demanda por ele.
+- Ele precisa ser **utilizado**. The Material UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. Um componente do lab com baixo uso significa que ainda não está totalmente funcional, ou que há uma baixa demanda por ele.
 - Ele precisa atender critérios de **qualidade de código**, semelhante aos componentes do core. O componente não precisa ser perfeito para fazer parte do core, mas ele deve ser confiável o suficiente para que os desenvolvedores possam depender dele.
   - Cada componente precisa de **definições de tipo**. Atualmente, não é necessário que um componente do lab seja tipado, mas ele precisará ser tipado para passar para o core.
   - Requer boa **cobertura de teste**. Atualmente, alguns dos componentes do lab não têm testes abrangentes.
@@ -39,7 +39,7 @@ yarn add @mui/material
 
 ## TypeScript
 
-Para se beneficiar de [CSS overrides](/customization/theme-components/#global-style-overrides) e [customização de propriedades padrão](/customization/theme-components/#default-props) com o tema, usuários de TypeScript precisam importar os seguintes tipos. Internamente, ele usa [ampliação de módulos](/guides/typescript/#customization-of-theme) para estender a estrutura padrão do tema com os componentes de extensão disponíveis no lab.
+Para se beneficiar de [CSS overrides](/material-ui/customization/theme-components/#global-style-overrides) e [customização de propriedades padrão](/material-ui/customization/theme-components/#default-props) com o tema, usuários de TypeScript precisam importar os seguintes tipos. Internamente, ele usa [ampliação de módulos](/material-ui/guides/typescript/#customization-of-theme) para estender a estrutura padrão do tema com os componentes de extensão disponíveis no lab.
 
 ```tsx
 // Quando utilizando TypeScript 4.x e acima
