@@ -85,7 +85,7 @@
     "date-fns": "^2.28.0",
     "dayjs": "^1.11.0",
     "luxon": "^1.21.3 || ^2.x",
-    "moment": "^2.29.1"
+    "moment": "^2.29.3"
   },
   "sideEffects": false,
   "publishConfig": {
