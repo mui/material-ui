@@ -56,7 +56,9 @@ function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExp
   }
   if (objectExpression !== undefined) {
     objectExpression.properties.forEach((prop) => {
-      ruleNames.push(prop.key.name);
+      if (prop.key?.name) {
+        ruleNames.push(prop.key.name);
+      }
     });
     let ruleRegExString = '(';
     ruleNames.forEach((ruleName, index) => {
@@ -68,7 +70,9 @@ function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExp
     ruleRegExString += ')';
     const ruleRegEx = new RegExp(ruleRegExString, 'g');
     objectExpression.properties.forEach((prop) => {
-      transformNestedKeys(j, prop.value, ruleRegEx, nestedKeys);
+      if (prop.value) {
+        transformNestedKeys(j, prop.value, ruleRegEx, nestedKeys);
+      }
     });
     if (nestedKeys.length > 0) {
       let arrowFunction;
@@ -217,6 +221,8 @@ export default function transformer(file, api, options) {
         .closest(j.VariableDeclarator)
         .forEach((path) => {
           let foundClsxOrClassnamesUsage = false;
+          const classesName = path.node.id.name;
+          const classesAssign = classesName === 'classes' ? 'classes' : `classes: ${classesName}`;
           if (clsxOrClassnamesName !== null) {
             j(path)
               .closestScope()
@@ -227,9 +233,9 @@ export default function transformer(file, api, options) {
               });
           }
           if (foundClsxOrClassnamesUsage) {
-            path.node.id.name = '{ classes, cx }';
+            path.node.id.name = `{ ${classesAssign}, cx }`;
           } else {
-            path.node.id.name = '{ classes }';
+            path.node.id.name = `{ ${classesAssign} }`;
           }
         });
     });
