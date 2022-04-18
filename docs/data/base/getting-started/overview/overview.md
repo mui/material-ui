@@ -7,7 +7,7 @@
 MUI Base is library of unstyled React UI components.
 It features the same robust engineering as Material UI, but without implementing Material Design.
 
-With MUI Base, developers can rapidly build UIs with custom design systems, without the need to override any default style settings.
+With MUI Base, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engines or settings.
 
 ## Why use MUI Base?
 
