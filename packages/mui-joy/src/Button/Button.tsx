@@ -241,9 +241,18 @@ Button.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
    * Element placed after the children.
    */
   endIcon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  focusVisibleClassName: PropTypes.string,
   /**
    * If `true`, the button will take up the full width of its container.
    * @default false
@@ -260,6 +269,18 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed before the children.
    */
   startIcon: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
   /**
    * The variant to use.
    * @default 'contained'
