@@ -1,16 +1,17 @@
-import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
-import CheckIcon from '@mui/icons-material/Check';
-import Moon from '@mui/icons-material/DarkMode';
-import Sun from '@mui/icons-material/LightMode';
-import ThumbUp from '@mui/icons-material/ThumbUp';
+/* eslint-disable no-alert */
+import * as React from 'react';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
-import * as React from 'react';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
+import CheckIcon from '@mui/icons-material/Check';
+import Moon from '@mui/icons-material/DarkMode';
+import Sun from '@mui/icons-material/LightMode';
+import ThumbUp from '@mui/icons-material/ThumbUp';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -44,7 +45,6 @@ const props = {
   color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
   variant: ['contained', 'outlined', 'light'],
   disabled: [true, false],
-  clickable: [true, false],
 } as const;
 
 export default function JoyChip() {
@@ -57,7 +57,28 @@ export default function JoyChip() {
         {/* Examples */}
         <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 5, mt: 5 }}>
           <Chip endDecorator={<ChipDelete />}>Benny</Chip>
+          <Chip disabled endDecorator={<ChipDelete />}>
+            Benny
+          </Chip>
           <Chip variant="light" startDecorator={<ChipDelete />}>
+            Benny
+          </Chip>
+          <Chip variant="light" onClick={() => alert('hey')}>
+            Benny
+          </Chip>
+          <Chip variant="light" startDecorator={<ChipDelete />} onClick={() => alert('hey')}>
+            Benny
+          </Chip>
+          <Chip
+            variant="light"
+            endDecorator={<ChipDelete />}
+            componentsProps={{
+              action: {
+                component: 'a',
+                href: '#unknown',
+              },
+            }}
+          >
             Benny
           </Chip>
           <Chip
@@ -81,6 +102,17 @@ export default function JoyChip() {
             size="lg"
             startDecorator={<Avatar size="sm" src={`/static/images/avatar/1.jpg`} />}
             endDecorator={<CheckIcon fontSize="md" sx={{ mr: 0.25 }} />}
+            onClick={() => alert('hey')}
+            sx={{ '--Chip-radius': '8px' }}
+          >
+            Benny
+          </Chip>
+          <Chip
+            variant="outlined"
+            color="neutral"
+            size="lg"
+            startDecorator={<Avatar src={`/static/images/avatar/1.jpg`} size="sm" />}
+            endDecorator={<ChipDelete variant="text" />}
             sx={{ '--Chip-radius': '8px' }}
           >
             Benny
