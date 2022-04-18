@@ -1,5 +1,7 @@
 {
-  "props": { "component": { "type": { "name": "elementType" } } },
+  "props": {
+    "component": { "type": { "name": "custom", "description": "PropTypes.elementType" } }
+  },
   "name": "Box",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
