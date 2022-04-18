@@ -1,6 +1,6 @@
 # MUI Base - Overview
 
-<p class="description">MUI Base is a library of blank ("unstyled") React UI components and low-level hooks, ideally suited for implementing a custom design system.</p>
+<p class="description">MUI Base is a library of blank ("unstyled") React UI components and low-level hooks.</p>
 
 ## Introduction
 
