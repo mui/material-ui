@@ -2,6 +2,7 @@
 product: base
 title: React form control
 components: FormControlUnstyled
+githubLabel: 'component: FormControl'
 packageName: '@mui/base'
 ---
 
@@ -22,9 +23,9 @@ For instance, you may want to show an additional element asking the user to ente
 
 {{"demo": "BasicFormControl.js"}}
 
-The FormControlUnstyled provides a context that can be read by the useFormControl hook.
+The FormControlUnstyled provides a context that can be read by the useFormControlUnstyledContext hook.
 
-## useFormControl hook
+## useFormControlUnstyledContext hook
 
 The useFormControl hook can be used to enable integration between custom form inputs and FormControlUnstyled.
 Additionally, you can read the form control's state and react to its changes in a custom component.
@@ -36,10 +37,10 @@ The demo below shows both.
 {{"demo": "UseFormControl.js", "defaultCodeOpen": false}}
 
 Note that even though FormControlUnstyled supports both controlled and uncontrolled-style API
-(i.e. it accepts `value` and `defaultValue` props), `useFormControl` returns only the controlled `value`.
+(i.e. it accepts `value` and `defaultValue` props), `useFormControlUnstyledContext` returns only the controlled `value`.
 This way, you don't have to implement both in your custom input - FormControlUnstyled does this for you.
 
-`useFormControl` returns an object with the following fields:
+`useFormControlUnstyledContext` returns an object with the following fields:
 
 | Name       | Type    | Description                                                                                                                                                            |
 | ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -58,3 +59,10 @@ They are meant to be used when creating custom inputs.
 | `onChange` | React.ChangeEvent => void | Value change handler. Should be forwarded to the inner input. |
 | `onBlur`   | () => void                | Focus change handler. Should be forwarded to the inner input. |
 | `onFocus`  | () => void                | Focus change handler. Should be forwarded to the inner input. |
+
+## Using FormControlUnstyled without reading context
+
+In addition to providing a context, you can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
+The state will be provided as a parameter to this function.
+
+{{"demo": "FormControlFunctionChild.js"}}
