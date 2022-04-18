@@ -8,6 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipTypeMap } from './ChipProps';
+import ChipColorContext from './ChipColorContext';
 
 const useUtilityClasses = (ownerState: ChipProps) => {
   const { disabled, size, color, clickable, variant } = ownerState;
@@ -29,13 +30,17 @@ const useUtilityClasses = (ownerState: ChipProps) => {
   return composeClasses(slots, getChipUtilityClass, {});
 };
 
+// base paddingBlock for the all chip sizes
+const PADDING_BLOCK = '0.25rem';
+
 const ChipStartDecorator = styled('span', {
   name: 'MuiChip',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ChipProps }>({
   display: 'inherit',
-  padding: '0 0.2rem',
+  marginInlineEnd: 'var(--Chip-gap)',
+  marginInlineStart: `calc(-1 * (var(--Chip-paddingInline) - ${PADDING_BLOCK}))`,
 });
 
 const ChipEndDecorator = styled('span', {
@@ -44,7 +49,8 @@ const ChipEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ChipProps }>({
   display: 'inherit',
-  padding: '0 0.2rem',
+  marginInlineStart: 'var(--Chip-gap)',
+  marginInlineEnd: `calc(-1 * (var(--Chip-paddingInline) - ${PADDING_BLOCK}))`,
 });
 
 const ChipRoot = styled('div', {
@@ -54,27 +60,37 @@ const ChipRoot = styled('div', {
 })<{ ownerState: ChipProps }>(({ theme, ownerState }) => {
   return [
     {
+      '--Chip-color': theme.variants[ownerState.variant!]?.[ownerState.color!].color,
+      '--Chip-radius': '1.5rem',
+      '--Chip-delete-radius': `max(var(--Chip-radius) - ${PADDING_BLOCK}, min(${PADDING_BLOCK} / 2, var(--Chip-radius) / 2))`,
+      '--Avatar-radius': `max(var(--Chip-radius) - ${PADDING_BLOCK}, min(${PADDING_BLOCK} / 2, var(--Chip-radius) / 2))`,
       ...(ownerState.size === 'sm' && {
-        '--Chip-radius': '1rem',
-        '--Chip-fontSize': theme.vars.fontSize.xs,
+        '--Chip-minHeight': '1.5rem',
+        '--Chip-gap': '0.25rem',
+        '--Chip-paddingInline': '0.5rem',
+        '--Icon-fontSize': '1rem',
+        fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
-        '--Chip-radius': '1.25rem',
-        '--Chip-fontSize': theme.vars.fontSize.sm,
+        '--Chip-minHeight': '2rem',
+        '--Chip-gap': '0.375rem',
+        '--Chip-paddingInline': '0.75rem',
+        '--Icon-fontSize': '1.125rem',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Chip-radius': '1.5rem',
-        '--Chip-fontSize': theme.vars.fontSize.md,
+        '--Chip-minHeight': '2.5rem',
+        '--Chip-gap': '0.5rem',
+        '--Chip-paddingInline': '1rem',
+        '--Icon-fontSize': '1.25rem',
+        fontSize: theme.vars.fontSize.md,
       }),
-      '--Chip-color': theme.variants[ownerState.variant!]?.[ownerState.color!].color,
-      '--Chip-paddingX': '0.5rem',
-      '--Chip-delete-radius':
-        'max(var(--Chip-radius) - var(--Chip-paddingX), min(var(--Chip-paddingX) / 2, var(--Chip-radius) / 2))',
-      padding: '0.25rem var(--Chip-paddingX)',
+      minHeight: 'var(--Chip-minHeight)',
+      paddingBlock: PADDING_BLOCK,
+      paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--Chip-radius)',
-      fontSize: 'var(--Chip-fontSize)',
       position: 'relative',
-      maxWidth: '100%',
+      fontWeight: theme.vars.fontWeight.md,
       fontFamily: theme.vars.fontFamily.body,
       display: 'inline-flex',
       alignItems: 'center',
@@ -82,47 +98,13 @@ const ChipRoot = styled('div', {
       whiteSpace: 'nowrap',
       transition:
         'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      // We disable the focus ring for mouse, touch and keyboard users.
-      outline: 0,
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
-      ...(ownerState.disabled && {
-        opacity: 0.5,
-        pointerEvents: 'none',
-      }),
-      ...(ownerState.clickable && {
-        cursor: 'pointer',
-        '&:hover': {
-          opacity: 0.8,
-        },
-      }),
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
+    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   ];
-});
-
-const ChipLabel = styled('span', {
-  name: 'MuiChip',
-  slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: ChipProps }>({
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-  padding: '0 0.2rem',
-  '& > button': {
-    fontSize: 'var(--Chip-fontSize)',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 0,
-    padding: 0,
-    border: 'none',
-    background: 'none',
-    color: 'var(--Chip-color)',
-  },
 });
 
 /**
@@ -140,8 +122,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onClick,
     size = 'md',
     variant = 'contained',
-    startDecorator: startDecoratorProp,
-    endDecorator: endDecoratorProp,
+    startDecorator,
+    endDecorator,
     ...other
   } = props;
 
@@ -162,33 +144,29 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const startDecorator = startDecoratorProp && (
-    <ChipStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-      {startDecoratorProp}
-    </ChipStartDecorator>
-  );
-
-  const endDecorator = endDecoratorProp && (
-    <ChipEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-      {endDecoratorProp}
-    </ChipEndDecorator>
-  );
-
   return (
-    <ChipRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      onClick={onClick}
-      ref={handleRef}
-      ownerState={ownerState}
-      {...other}
-    >
-      {startDecorator}
-      <ChipLabel className={clsx(classes.label)} ownerState={ownerState}>
-        {clickable ? <button type="button">{children}</button> : children}
-      </ChipLabel>
-      {endDecorator}
-    </ChipRoot>
+    <ChipColorContext.Provider value={color}>
+      <ChipRoot
+        as={component}
+        className={clsx(classes.root, className)}
+        onClick={onClick}
+        ref={handleRef}
+        ownerState={ownerState}
+        {...other}
+      >
+        {startDecorator && (
+          <ChipStartDecorator className={classes.startDecorator} ownerState={ownerState}>
+            {startDecorator}
+          </ChipStartDecorator>
+        )}
+        {children}
+        {endDecorator && (
+          <ChipEndDecorator className={classes.endDecorator} ownerState={ownerState}>
+            {endDecorator}
+          </ChipEndDecorator>
+        )}
+      </ChipRoot>
+    </ChipColorContext.Provider>
   );
 }) as OverridableComponent<ChipTypeMap>;
 

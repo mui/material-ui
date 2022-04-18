@@ -55,31 +55,36 @@ export default function JoyChip() {
           <ColorSchemePicker />
         </Box>
         {/* Examples */}
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
-          {['Benny', 'Jun', 'Danilo', 'Marija', 'Michal', 'Olivier'].map((name) => (
-            <Chip variant="light" endDecorator={<ChipDelete />}>
-              {name}
-            </Chip>
-          ))}
-        </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
-          {['Benny', 'Jun', 'Danilo', 'Marija', 'Michal', 'Olivier'].map((name, index) => (
-            <Chip
-              sx={{
-                paddingLeft: 0,
-                justifyContent: 'flex-start',
-                borderRadius: 20,
-                width: '11%',
-                height: 40,
-              }}
-              variant="contained"
-              color="success"
-              startDecorator={<Avatar size="sm" src={`/static/images/avatar/${index + 1}.jpg`} />}
-              endDecorator={<CheckIcon />}
-            >
-              {name}
-            </Chip>
-          ))}
+        <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 5, mt: 5 }}>
+          <Chip endDecorator={<ChipDelete />}>Benny</Chip>
+          <Chip variant="light" startDecorator={<ChipDelete />}>
+            Benny
+          </Chip>
+          <Chip
+            variant="contained"
+            color="success"
+            size="sm"
+            startDecorator={
+              <Avatar
+                size="sm"
+                src={`/static/images/avatar/1.jpg`}
+                sx={{ ml: '-4px', my: '-4px', '--Avatar-size': '28px' }}
+              />
+            }
+            endDecorator={<CheckIcon />}
+          >
+            Benny
+          </Chip>
+          <Chip
+            variant="outlined"
+            color="neutral"
+            size="lg"
+            startDecorator={<Avatar size="sm" src={`/static/images/avatar/1.jpg`} />}
+            endDecorator={<CheckIcon fontSize="md" sx={{ mr: 0.25 }} />}
+            sx={{ '--Chip-radius': '8px' }}
+          >
+            Benny
+          </Chip>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {/* Without decorators */}
@@ -116,11 +121,10 @@ export default function JoyChip() {
                   key={`${value}-with-decorator`}
                   sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                 >
-                  <Chip
-                    startDecorator={<ThumbUp />}
-                    endDecorator={<ArrowDropDown />}
-                    {...{ [propName]: value }}
-                  >{`${propName}: ${value}`}</Chip>
+                  <Chip endDecorator={<ArrowDropDown />} {...{ [propName]: value }}>
+                    <ThumbUp sx={{ mr: 'var(--Chip-gap)' }} />
+                    {`${propName}: ${value}`}
+                  </Chip>
                   {value !== undefined && (
                     <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                       {`${value}`}
