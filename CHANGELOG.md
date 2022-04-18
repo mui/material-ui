@@ -6,9 +6,7 @@
 
 _Apr 18, 2022_
 
-A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
-
-- This release is mostly about 📚 documentation improvements.
+A big thanks to the 11 contributors who made this release possible. This release is mostly about 📚 documentation improvements.
 
 ### `@mui/material@5.6.2`
 
@@ -25,7 +23,6 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 
 ### Docs
 
-- &#8203;<!-- 24 -->[website] Mark DataGrid Column spanning done on Pricing page (#32305) @cherniavskii
 - &#8203;<!-- 22 -->[blog] Fix images for the docs separation post (#32257) @danilo-leal
 - &#8203;<!-- 20 -->[docs] Fix `borderRadius` in the docs example (#32347) @ZeeshanTamboli
 - &#8203;<!-- 19 -->[docs] Fix 404 link in the code (#32323) @oliviertassinari
@@ -42,6 +39,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - &#8203;<!-- 08 -->[docs] Uniformize capitalization (#32238) @oliviertassinari
 - &#8203;<!-- 02 -->[website] Improve new role template @oliviertassinari
 - &#8203;<!-- 01 -->[website] Remove a gold sponsor (#32261) @hbjORbj
+- &#8203;<!-- 24 -->[website] Mark DataGrid Column spanning done on Pricing page (#32305) @cherniavskii
 
 ### Core
 
