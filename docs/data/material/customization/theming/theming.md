@@ -261,5 +261,5 @@ function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
 ```
