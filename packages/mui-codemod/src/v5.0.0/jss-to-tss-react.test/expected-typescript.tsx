@@ -21,8 +21,7 @@ const useStyles = makeStyles<void, 'test2'>()((theme: Theme, _params, classes) =
     backgroundColor: "blue",
     color: "lime"
   }
-})
-);
+}));
 
 function InnerComponent({ classes }) {
   return <div className={classes.test2}>Inner Test2</div>;

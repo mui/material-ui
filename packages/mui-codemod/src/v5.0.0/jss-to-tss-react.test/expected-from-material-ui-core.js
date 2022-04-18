@@ -9,7 +9,7 @@ const useStyles = makeStyles()((_theme, _params, classes) => ({
       textDecoration: "underline"
     },
     [`&.${classes.qualifier}.${classes.qualifier2}`]: {
-      textStyle: "italic"
+      fontStyle: "italic"
     },
     [`&.${classes.qualifier2} .testStuffInBetween .${classes.qualifier}`]: {
       color: "brown"

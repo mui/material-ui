@@ -197,15 +197,25 @@ export default function transformer(file, api, options) {
       .find(j.CallExpression, { callee: { name: 'makeStyles' } })
       .forEach((path) => {
         const nestedKeys = [];
+        let options = null;
+        if (path.node.arguments.length > 1) {
+          options = path.node.arguments[1];
+        }
+        let stylesExpression = path.node.arguments[0];
         transformStylesExpression(j, path.node.arguments[0], nestedKeys, (newStylesExpression) => {
-          path.node.arguments[0] = newStylesExpression;
+          stylesExpression = newStylesExpression;
         });
+        let makeStylesIdentifier = 'makeStyles';
         if (isTypeScript && nestedKeys.length > 0) {
           const nestedKeysUnion = nestedKeys.join("' | '");
-          path.node.callee.name = `makeStyles<void, '${nestedKeysUnion}'>()`;
-        } else {
-          path.node.callee.name = 'makeStyles()';
+          makeStylesIdentifier += `<void, '${nestedKeysUnion}'>`;
         }
+        j(path).replaceWith(
+          j.callExpression(
+            j.callExpression(j.identifier(makeStylesIdentifier), options === null ? [] : [options]),
+            [stylesExpression],
+          ),
+        );
       })
       .closest(j.VariableDeclarator)
       .forEach((path) => {

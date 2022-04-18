@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     backgroundColor: "purple",
     color: "white"
   }
-});
+}, { name: "TestName" });
 
 const useStyles2 = makeStyles(() => ({
   test2: {

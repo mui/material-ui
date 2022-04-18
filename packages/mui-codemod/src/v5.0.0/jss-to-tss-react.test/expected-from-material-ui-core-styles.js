@@ -7,7 +7,7 @@ JSS - https://codesandbox.io/s/case1-jss-dedp2f?file=/src/App.js
 TSS - https://codesandbox.io/s/case1-tss-s0z7tx?file=/src/App.js
  */
 
-const useStyles = makeStyles()({
+const useStyles = makeStyles({ name: "TestName" })({
   test: {
     backgroundColor: "purple",
     color: "white"

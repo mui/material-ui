@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
       textDecoration: "underline"
     },
     "&$qualifier$qualifier2": {
-      textStyle: "italic"
+      fontStyle: "italic"
     },
     "&$qualifier2 .testStuffInBetween $qualifier": {
       color: "brown"
