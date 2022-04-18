@@ -53,6 +53,19 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-from-material-ui-core.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+      it('transforms makeStyles with style rules returned by function to use tss-react', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-tss-react.test/actual-mixins-pattern.js'),
+            path: require.resolve('./jss-to-tss-react.test/actual-mixins-pattern.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-tss-react.test/expected-mixins-pattern.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
       it('transforms @mui/styles makeStyles to use tss-react', () => {
         const actual = transform(
           {

@@ -47,7 +47,9 @@ function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExp
   } else if (stylesExpression.type === 'ArrowFunctionExpression') {
     if (stylesExpression.body.type === 'BlockStatement') {
       const returnStatement = stylesExpression.body.body.find((b) => b.type === 'ReturnStatement');
-      objectExpression = returnStatement.argument;
+      if (returnStatement.argument.type === 'ObjectExpression') {
+        objectExpression = returnStatement.argument;
+      }
     } else if (stylesExpression.body.type === 'ObjectExpression') {
       objectExpression = stylesExpression.body;
     }
