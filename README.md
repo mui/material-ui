@@ -70,7 +70,7 @@ yarn add @mui/base
 ```
 
 **Note**: MUI Base is still in alpha.
-We are adding new components on a regular basis.
+We are adding new components regularly.
 We welcome all community contributions!
 
 ### MUI System
@@ -158,7 +158,7 @@ For more options, see the [`Button` component page](https://mui.com/material-ui/
 ## Questions
 
 For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
-Use the "material-ui" tag on Stack Overflow to make it easier for the community to find your question.
+Use the "mui" tag on Stack Overflow to make it easier for the community to find your question.
 
 ## Examples
 
@@ -208,7 +208,7 @@ Netlify lets us distribute the documentation.
 
 [<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
 
-CrowdIn lets us translate the documentation.
+Crowdin lets us translate the documentation.
 
 [<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
 
