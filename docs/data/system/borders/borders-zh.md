@@ -60,13 +60,8 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 
 ```jsx
 <Box sx={{ borderRadius: '50%' }}>…
-<Box sx={{ borderRadius: 1 }}>… <Box sx={{ borderRadius: '50%' }}>…
-<Box borderRadius="borderRadius">…
-<Box borderRadius={16}>…
-<Box borderRadius="borderRadius">…
-<Box borderRadius={16}>…
 <Box sx={{ borderRadius: 1 }}>… // theme.shape.borderRadius * 1
-<Box sx={{ borderRadius: 16 }}>…
+<Box sx={{ borderRadius: '16px' }}>…
 ```
 
 ## API
