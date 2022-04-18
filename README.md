@@ -134,7 +134,7 @@ See the full list of [our backers](https://mui.com/material-ui/discover-more/bac
 Here is an example of a basic app using Material UI's `Button` component:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
