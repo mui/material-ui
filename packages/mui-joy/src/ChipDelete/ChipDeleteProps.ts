@@ -23,7 +23,7 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
      * The variant to use.
      * @default 'contained'
      */
-    variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, ChipPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, ChipPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
