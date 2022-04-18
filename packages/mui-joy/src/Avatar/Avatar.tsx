@@ -59,7 +59,7 @@ const AvatarRoot = styled('div', {
       width: 'var(--Avatar-size)',
       height: 'var(--Avatar-size)',
       lineHeight: 1,
-      borderRadius: '50%',
+      borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -80,7 +80,7 @@ const AvatarImg = styled('img', {
   color: 'transparent',
   // Hide the image broken icon, only works on Chrome.
   textIndent: 10000,
-  borderRadius: '50%',
+  borderRadius: 'var(--Avatar-radius, 50%)',
 });
 
 const AvatarFallback = styled(Person, {
