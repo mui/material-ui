@@ -6,7 +6,7 @@
 
 _Apr 18, 2022_
 
-A big thanks to the 11 contributors who made this release possible. This release is mostly about 📚 documentation improvements.
+A big thanks to the 11 contributors who made this release possible. This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.6.2`
 
