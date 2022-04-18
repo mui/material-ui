@@ -26,9 +26,7 @@ For instance, you may want to show an additional element asking the user to ente
 
 The `FormControlUnstyled` component provides a context that can be read by the `useFormControlUnstyledContext` hook.
 
-## The useFormControl hook
-
-You can use the `useFormControl` hook to enable integration between custom form inputs and `FormControlUnstyled`.
+You can use the `useFormControlUnstyledContext` hook to enable integration between custom form inputs and `FormControlUnstyled`.
 You can also use it to read the form control's state and react to its changes in a custom component.
 
 The demo below shows both:
