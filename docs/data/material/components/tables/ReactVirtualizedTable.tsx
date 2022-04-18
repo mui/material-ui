@@ -31,23 +31,23 @@ const styles = ({ theme }: { theme: Theme }) =>
         paddingRight: undefined,
       }),
     },
-    [`$ .${classes.flexContainer}`]: {
+    [`& .${classes.flexContainer}`]: {
       display: 'flex',
       alignItems: 'center',
       boxSizing: 'border-box',
     },
-    [`&. ${classes.tableRow}`]: {
+    [`& .${classes.tableRow}`]: {
       cursor: 'pointer',
     },
-    [`&. ${classes.tableRowHover}`]: {
+    [`& .${classes.tableRowHover}`]: {
       '&:hover': {
         backgroundColor: theme.palette.grey[200],
       },
     },
-    [`&. ${classes.tableCell}`]: {
+    [`& .${classes.tableCell}`]: {
       flex: 1,
     },
-    [`&. ${classes.noClick}`]: {
+    [`& .${classes.noClick}`]: {
       cursor: 'initial',
     },
   } as const);
