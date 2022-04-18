@@ -1,11 +1,12 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import * as React from 'react';
+import { OverridableComponent } from '@mui/types';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import createSvgIcon from '../utils/createSvgIcon';
+import Close from '../internal/svg-icons/Close';
 import { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteTypeMap } from './ChipDeleteProps';
 
@@ -21,26 +22,24 @@ const ChipDeleteRoot = styled('button', {
   name: 'MuiChipDelete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ChipDeleteProps }>({
-  color: 'var(--Chip-color)',
-  fontSize: 'var(--Chip-fontSize)',
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderRadius: 'var(--Chip-delete-radius)',
-  cursor: 'pointer',
-  border: 'none',
-  background: 'none',
-  padding: '0px',
-  '&:hover': {
-    opacity: 0.8,
+})<{ ownerState: ChipDeleteProps }>(({ theme, ownerState }) => [
+  {
+    width: 'var(--Chip-delete-size, 1.5rem)',
+    height: 'var(--Chip-delete-size, 1.5rem)',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 'var(--Chip-delete-radius)',
+    border: 'none', // reset user agent stylesheet
+    background: 'none', // reset user agent stylesheet
+    padding: '0px', // reset user agent stylesheet
   },
-});
-
-const DeleteIcon = createSvgIcon(
-  <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" />,
-  'Delete',
-);
+  theme.focus.default,
+  theme.variants[ownerState.variant!]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+]);
 
 const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipDeleteProps>({
@@ -48,9 +47,23 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     name: 'MuiChipDelete',
   });
 
-  const { className, component, ...other } = props;
+  const { className, component, variant = 'contained', color = 'primary', ...other } = props;
 
-  const ownerState = props;
+  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const handleRef = useForkRef(buttonRef, ref);
+
+  const { focusVisible, getRootProps } = useButton({
+    ...props,
+    component,
+    ref: handleRef,
+  });
+
+  const ownerState = {
+    ...props,
+    variant,
+    color,
+    focusVisible,
+  };
 
   const classes = useUtilityClasses();
 
@@ -58,11 +71,11 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     <ChipDeleteRoot
       as={component}
       className={clsx(classes.root, className)}
-      ref={ref}
       ownerState={ownerState}
       {...other}
+      {...getRootProps()}
     >
-      <DeleteIcon />
+      <Close />
     </ChipDeleteRoot>
   );
 }) as OverridableComponent<ChipDeleteTypeMap>;
