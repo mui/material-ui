@@ -68,7 +68,7 @@ const CheckboxRoot = styled('span', {
     color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
   },
   ...(ownerState.disableIcon && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant}Color`],
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
     '&.Mui-disabled': {
       color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
     },
