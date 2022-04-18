@@ -3,7 +3,7 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export type ChipSlot = 'root' | 'label' | 'startDecorator' | 'endDecorator';
+export type ChipSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
 
 export interface ChipPropsColorOverrides {}
 export interface ChipPropsSizeOverrides {}
@@ -12,18 +12,24 @@ export interface ChipPropsVariantOverrides {}
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
+     * The props used for each slot inside the Input.
+     * @default {}
+     */
+    componentsProps?: {
+      root?: JSX.IntrinsicElements['div'];
+      label?: JSX.IntrinsicElements['span'];
+      action?: React.HTMLAttributes<HTMLElement> & {
+        href?: string;
+        component?: React.ElementType;
+        ref?: React.Ref<HTMLElement>;
+      };
+      startDecorator?: JSX.IntrinsicElements['span'];
+      endDecorator?: JSX.IntrinsicElements['span'];
+    };
+    /**
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * If `true`, the chip will appear clickable, and will raise when pressed,
-     * even if the onClick prop is not defined.
-     * If `false`, the chip will not appear clickable, even if onClick prop is defined.
-     * This can be used, for example,
-     * along with the component prop to indicate an anchor Chip is clickable.
-     * Note: this controls the UI and does not affect the onClick event.
-     */
-    clickable?: boolean;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
