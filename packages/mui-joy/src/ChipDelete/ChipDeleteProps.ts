@@ -16,6 +16,10 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
      */
     color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, ChipPropsColorOverrides>;
     /**
+     * If provided, it will replace the default icon.
+     */
+    children?: React.ReactNode;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;

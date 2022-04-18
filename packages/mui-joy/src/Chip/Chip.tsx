@@ -44,38 +44,38 @@ const ChipRoot = styled('div', {
 })<{ ownerState: ChipProps & { clickable: boolean } }>(({ theme, ownerState }) => {
   return [
     {
-      '--Chip-paddingBlock': ownerState.clickable
-        ? '0.25rem'
-        : 'calc(0.25rem - var(--variant-outlinedBorderWidth, 0px))',
+      '--Chip-paddingBlock':
+        ownerState.clickable || ownerState.variant !== 'outlined'
+          ? '0.25rem'
+          : 'calc(0.25rem - var(--variant-outlinedBorderWidth, 0px))',
       '--Chip-color': theme.variants[ownerState.variant!]?.[ownerState.color!].color,
       '--Chip-radius': '1.5rem',
       '--Chip-delete-radius': `max(var(--Chip-radius) - var(--Chip-paddingBlock), min(var(--Chip-paddingBlock) / 2, var(--Chip-radius) / 2))`,
       '--Avatar-radius': `max(var(--Chip-radius) - var(--Chip-paddingBlock), min(var(--Chip-paddingBlock) / 2, var(--Chip-radius) / 2))`,
       ...(ownerState.size === 'sm' && {
-        '--Chip-minHeight': '1.5rem',
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-delete-size': '1.25rem',
         '--Icon-fontSize': '1rem',
+        minHeight: '1.5rem',
         fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
-        '--Chip-minHeight': '2rem',
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
         '--Chip-delete-size': '1.5rem',
         '--Icon-fontSize': '1.125rem',
+        minHeight: '2rem',
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Chip-minHeight': '2.5rem',
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
         '--Chip-delete-size': '2rem',
         '--Icon-fontSize': '1.25rem',
+        minHeight: '2.5rem',
         fontSize: theme.vars.fontSize.md,
       }),
-      minHeight: 'var(--Chip-minHeight)',
       paddingBlock: 'var(--Chip-paddingBlock)',
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--Chip-radius)',
