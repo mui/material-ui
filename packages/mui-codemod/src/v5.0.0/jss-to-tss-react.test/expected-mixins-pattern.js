@@ -9,6 +9,11 @@ function mixins() {
     }
   };
 }
+function cssProps() {
+  return {
+    paddingLeft: "8px"
+  }
+}
 
 const useStyles = makeStyles()(theme => {
   return mixins();
@@ -17,7 +22,8 @@ const useStyles = makeStyles()(theme => {
 const useStyles2 = makeStyles()(theme => ({
   ...mixins(),
   test2: {
-    color: "red"
+    color: "red",
+    ...cssProps()
   }
 }));
 

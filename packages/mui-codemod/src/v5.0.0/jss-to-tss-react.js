@@ -2,7 +2,7 @@ const ruleEndRegEx = /[^a-zA-Z0-9_]+/;
 
 function transformNestedKeys(j, propValueNode, ruleRegEx, nestedKeys) {
   propValueNode.properties.forEach((prop) => {
-    if (prop.value.type === 'ObjectExpression') {
+    if (prop.value?.type === 'ObjectExpression') {
       if (typeof prop.key.value === 'string') {
         let ruleIndex = prop.key.value.search(ruleRegEx);
         let searchStartIndex = 0;
