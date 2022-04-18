@@ -88,7 +88,7 @@ const PopoverPaper = styled(Paper, {
   minWidth: 16,
   minHeight: 16,
   maxWidth: 'calc(100% - 32px)',
-  maxHeight: 'calc(100% - 32px)',
+  maxHeight: 'calc(50% - 32px)',
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
 });
