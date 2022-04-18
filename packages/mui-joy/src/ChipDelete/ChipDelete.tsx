@@ -9,6 +9,7 @@ import styled from '../styles/styled';
 import Close from '../internal/svg-icons/Close';
 import { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteTypeMap } from './ChipDeleteProps';
+import ChipColorContext from '../Chip/ChipColorContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -47,7 +48,15 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     name: 'MuiChipDelete',
   });
 
-  const { className, component, variant = 'contained', color = 'primary', ...other } = props;
+  const {
+    className,
+    component,
+    variant = 'contained',
+    color: colorProp = 'primary',
+    ...other
+  } = props;
+  const chipColor = React.useContext(ChipColorContext);
+  const color = inProps.color || chipColor || colorProp;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
