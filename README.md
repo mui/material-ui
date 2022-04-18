@@ -146,7 +146,7 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
 ```
 
 In the interactive demo below, try changing the code and see how it affects the output.
