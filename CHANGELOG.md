@@ -1,5 +1,56 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.6.2
+
+<!-- generated comparing v5.6.1..master -->
+
+_Apr 18, 2022_
+
+A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+
+- This release is mostly about 📚 documentation improvements.
+
+### `@mui/material@5.6.2`
+
+- &#8203;<!-- 03 -->[TextField] Add a workaround for Safari CSS transition scale bug (#32188) @igordanchenko
+
+### `@mui/system@5.6.2`
+
+- &#8203;<!-- 05 -->[system] Update style function to use vars automatically if available (#32244) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.24`
+
+- &#8203;<!-- 07 -->[Joy] Add `Badge` component (#31401) @hbjORbj
+- &#8203;<!-- 06 -->[Joy] Fix misuse variable in `Input` (#32268) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 24 -->[website] Mark DataGrid Column spanning done on Pricing page (#32305) @cherniavskii
+- &#8203;<!-- 22 -->[blog] Fix images for the docs separation post (#32257) @danilo-leal
+- &#8203;<!-- 20 -->[docs] Fix `borderRadius` in the docs example (#32347) @ZeeshanTamboli
+- &#8203;<!-- 19 -->[docs] Fix 404 link in the code (#32323) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Sync h1 with side nav label (#32235) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Fix SEO issues (#32282) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Fix broken link in the test contributing guide (#32283) @sirartemis
+- &#8203;<!-- 15 -->[docs] Update "How to customize" page anchor links #32315 @abaker93
+- &#8203;<!-- 14 -->[docs] Mark `onBackdropClick` prop as deprecated in `Dialog`, `Modal` and `ModalUnstyled` components (#32297) @ZeeshanTamboli
+- &#8203;<!-- 13 -->[docs] Link to advanced components page (#32290) @siriwatknp
+- &#8203;<!-- 12 -->[docs] Sync package description with the docs (#32211) @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Revise "Component theming" and "How to customize" guides (#31997) @danilo-leal
+- &#8203;<!-- 10 -->[docs] Add note in the Contributing guide about linking issues to a PR (#32174) @danilo-leal
+- &#8203;<!-- 09 -->[docs] Update RTL guide (#32242) @michaldudak
+- &#8203;<!-- 08 -->[docs] Uniformize capitalization (#32238) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Improve new role template @oliviertassinari
+- &#8203;<!-- 01 -->[website] Remove a gold sponsor (#32261) @hbjORbj
+
+### Core
+
+- &#8203;<!-- 23 -->[core] Revert #32229 (#32262) @michaldudak
+- &#8203;<!-- 21 -->[core] Remove unecessary div (#32237) @oliviertassinari
+- &#8203;<!-- 04 -->[test] Fix running unit tests on Windows (#32260) @michaldudak
+
+All contributors of this release in alphabetical order: @abaker93, @cherniavskii, @danilo-leal, @hbjORbj, @igordanchenko, @michaldudak, @mnajdova, @oliviertassinari, @sirartemis, @siriwatknp, @ZeeshanTamboli
+
 ## 5.6.1
 
 <!-- generated comparing v5.6.0..master -->
