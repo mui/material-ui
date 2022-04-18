@@ -13,7 +13,7 @@
 
 - _MUI Base_ is our library of "unstyled" components and low-level hooks. With Base, you have complete control over your app's CSS.
 
-- _MUI System_ is a collection of CSS utilities help you rapidly lay out custom designs.
+- _MUI System_ is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
