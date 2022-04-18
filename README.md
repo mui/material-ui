@@ -5,8 +5,6 @@
 
 <h1 align="center">MUI Core</h1>
 
-<div align="center">
-
 **MUI Core** contains foundational React UI component libraries for shipping new features faster.
 
 - _Material UI_ is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
@@ -14,6 +12,8 @@
 - _MUI Base_ is our library of "unstyled" components and low-level hooks. With Base, you have complete control over your app's CSS.
 
 - _MUI System_ is a collection of CSS utilities to help you rapidly lay out custom designs.
+
+<div align="center">
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
