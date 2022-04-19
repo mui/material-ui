@@ -41,8 +41,14 @@ const ResponsiveAppBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
           >
             LOGO
           </Typography>
@@ -86,8 +92,14 @@ const ResponsiveAppBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            component="a"
+            href=""
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'flex', md: 'none' },
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
           >
             LOGO
           </Typography>
