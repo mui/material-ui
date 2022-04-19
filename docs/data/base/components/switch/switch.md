@@ -23,7 +23,7 @@ import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 
 ## Basic switch
 
-The `SwitchUnstyled` component is composed of three interior components—`Root`, `Thumb` and `Input`—and it assigns CSS classes for styling each piece, respectively.
+The `SwitchUnstyled` component is composed of three interior components—`Root`, `Thumb`, and `Input`—and it assigns CSS classes for styling each piece, respectively.
 
 You can set the props for these interior components using the `componentsProps` object.
 
