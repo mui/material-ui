@@ -83,6 +83,9 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 {{"demo": "FreeSolo.js"}}
 
+> ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.  
+> The value created by typing into the textbox is always a string, regardless of the type of the options.
+
 ### 自由创造
 
 如果您打算将此模块用于类似 [组合框](#combo-box) 的体验（一个选择控件元素的增强版），我们则建议如下的设置：
@@ -161,7 +164,7 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 {{"demo": "GoogleMaps.js"}}
 
-> ⚠️ 在你开始使用 Google Maps JavaScript API 之前，你必须注册并且创建一个可支付的账户。
+> ⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
 
 ## 多个输入值
 
