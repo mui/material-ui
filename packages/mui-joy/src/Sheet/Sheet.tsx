@@ -9,7 +9,7 @@ import { resolveSxValue } from '../styles/styleUtils';
 import styled from '../styles/styled';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetTypeMap } from './SheetProps';
-import { VariantOverrideProvider, useVariantOverride } from '../styles/VariantOverride';
+import VariantOverride, { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { elevation, variant, color } = ownerState;
@@ -93,7 +93,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   );
 
   if (enableVariantOverride) {
-    return <VariantOverrideProvider variant={variant}>{result}</VariantOverrideProvider>;
+    return <VariantOverride.Provider value={variant}>{result}</VariantOverride.Provider>;
   }
   return result;
 }) as OverridableComponent<SheetTypeMap>;

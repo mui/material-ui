@@ -4,16 +4,12 @@ import sinon from 'sinon';
 import { createRenderer } from 'test/utils';
 import useThemeProps from './useThemeProps';
 import ThemeProvider from './ThemeProvider';
-import {
-  useVariantOverride,
-  VariantOverrideProvider,
-  createContainedOverrides,
-} from './VariantOverride';
+import VariantOverride, { useVariantOverride, createContainedOverrides } from './VariantOverride';
 
 const Parent = ({ children, variant, enableVariantOverride }) => (
-  <VariantOverrideProvider variant={enableVariantOverride ? variant : undefined}>
+  <VariantOverride.Provider value={enableVariantOverride ? variant : undefined}>
     {children}
-  </VariantOverrideProvider>
+  </VariantOverride.Provider>
 );
 
 const Child = (inProps) => {
@@ -46,7 +42,7 @@ describe('VariantOverride', () => {
     sinon.assert.match(result, {
       primary: {
         '--foo-palette-text-primary': '#fff',
-        '--variant-textColor': 'var(--foo-palette-primary-100)',
+        '--variant-textColor': 'var(--foo-palette-primary-50)',
       },
       secondary: {
         '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
@@ -100,18 +96,6 @@ describe('VariantOverride', () => {
           </Parent>,
         );
         expect(container.firstChild).to.have.text('context');
-      });
-
-      it('other variant should display error', () => {
-        expect(() => {
-          render(
-            <Parent variant="outlined" enableVariantOverride>
-              <Child variant="text" />
-            </Parent>,
-          );
-        }).toErrorDev(
-          'MUI: Variant override feature does not support "outlined" variant. Please use either "contained", or "light" instead.',
-        );
       });
 
       it('light variant has no affect on contained child', () => {

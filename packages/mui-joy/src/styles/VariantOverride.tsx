@@ -58,7 +58,7 @@ export const createLightOverrides = (theme: JoyTheme) => {
             [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
             [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-500`),
             [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-400`),
-            '--variant-textColor': `rgba(0 0 0 / 0.6)`,
+            '--variant-textColor': getCssVar(`palette-${color}-700`),
             '--variant-textHoverColor': getCssVar(`palette-${color}-800`),
             '--variant-textHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
             '--variant-textActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
@@ -94,7 +94,7 @@ export const createLightOverrides = (theme: JoyTheme) => {
             [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-200`),
             [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-400`),
             [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
-            '--variant-textColor': 'rgba(255 255 255 / 0.72)',
+            '--variant-textColor': getCssVar(`palette-${color}-50`),
             '--variant-textHoverColor': '#fff',
             '--variant-textHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
             '--variant-textActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
@@ -153,13 +153,13 @@ export const createContainedOverrides = (theme: JoyTheme) => {
           [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
           '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
 
-          '--variant-textColor': getCssVar(`palette-${color}-100`),
+          '--variant-textColor': getCssVar(`palette-${color}-50`),
           '--variant-textHoverColor': `#fff`,
           '--variant-textHoverBg': `rgba(255 255 255 / 0.12)`,
           '--variant-textActiveBg': `rgba(255 255 255 / 0.2)`,
           '--variant-textDisabledColor': getCssVar(`palette-${color}-300`),
 
-          '--variant-outlinedColor': getCssVar(`palette-${color}-100`),
+          '--variant-outlinedColor': getCssVar(`palette-${color}-50`),
           '--variant-outlinedBorder': getCssVar(`palette-${color}-300`),
           '--variant-outlinedHoverColor': `#fff`,
           '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-200`),
@@ -168,10 +168,10 @@ export const createContainedOverrides = (theme: JoyTheme) => {
           '--variant-outlinedDisabledColor': getCssVar(`palette-${color}-300`),
           '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
 
-          '--variant-lightColor': getCssVar(`palette-${color}-100`),
+          '--variant-lightColor': getCssVar(`palette-${color}-50`),
           '--variant-lightHoverColor': '#fff',
           '--variant-lightBg': getCssVar(`palette-${color}-700`),
-          '--variant-lightHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-lightHoverBg': `rgba(255 255 255 / 0.08)`,
           '--variant-lightActiveBg': `rgba(255 255 255 / 0.2)`,
           '--variant-lightDisabledColor': getCssVar(`palette-${color}-300`),
           '--variant-lightDisabledBg': `rgba(0 0 0 / 0.08)`,
@@ -207,18 +207,4 @@ export const useVariantOverride = (childVariant: VariantProp | undefined) => {
   };
 };
 
-export const VariantOverrideProvider = ({
-  children,
-  variant,
-}: React.PropsWithChildren<{ variant: VariantProp | undefined }>) => {
-  const upperVariant = React.useContext(VariantOverride);
-  const rootVariant = variant || upperVariant;
-  if (process.env.NODE_ENV !== 'production') {
-    if (rootVariant && !rootVariant.match(/(contained|light)/)) {
-      console.error(
-        `MUI: Variant override feature does not support "${rootVariant}" variant. Please use either "contained", or "light" instead.`,
-      );
-    }
-  }
-  return <VariantOverride.Provider value={rootVariant}>{children}</VariantOverride.Provider>;
-};
+export default VariantOverride;
