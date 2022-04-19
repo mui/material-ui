@@ -83,6 +83,9 @@ A propriedade é projetada para cobrir o principal caso de uso de uma **caixa de
 
 {{"demo": "FreeSolo.js"}}
 
+> ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.  
+> The value created by typing into the textbox is always a string, regardless of the type of the options.
+
 ### Creatable
 
 Se você pretende usar este modo para uma [caixa de combinação](#combo-box), por experiência (uma versão aprimorada de um elemento select) recomendamos a configuração:
@@ -161,7 +164,7 @@ Uma customização de UI para o autocompletar de lugares do Google Maps. For thi
 
 {{"demo": "GoogleMaps.js"}}
 
-> ⚠️ Antes de você começar a usar a API JavaScript do Google Maps você precisará estar cadastrado e ter uma conta.
+> ⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
 
 ## Múltiplos valores
 
