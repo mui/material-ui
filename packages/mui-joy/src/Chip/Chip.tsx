@@ -48,7 +48,6 @@ const ChipRoot = styled('div', {
         ownerState.clickable || ownerState.variant !== 'outlined'
           ? '0.25rem'
           : 'calc(0.25rem - var(--variant-outlinedBorderWidth, 0px))',
-      '--Chip-color': theme.variants[ownerState.variant!]?.[ownerState.color!].color,
       '--Chip-radius': '1.5rem',
       '--Chip-delete-radius': `max(var(--Chip-radius) - var(--Chip-paddingBlock), min(var(--Chip-paddingBlock) / 2, var(--Chip-radius) / 2))`,
       '--Avatar-radius': `max(var(--Chip-radius) - var(--Chip-paddingBlock), min(var(--Chip-paddingBlock) / 2, var(--Chip-radius) / 2))`,
