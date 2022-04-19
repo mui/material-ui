@@ -3,8 +3,6 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface ChipClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
-  clickable: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */

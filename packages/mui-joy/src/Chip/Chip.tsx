@@ -28,7 +28,7 @@ const useUtilityClasses = (
       variant && `variant${capitalize(variant)}`,
       clickable && 'clickable',
     ],
-    action: ['action', focusVisible && 'focusVisible'],
+    action: ['action', disabled && 'disabled', focusVisible && 'focusVisible'],
     label: ['label', size && `label${capitalize(size)}`],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
@@ -200,6 +200,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const actionRef = React.useRef<HTMLElement | null>(null);
   const handleActionRef = useForkRef(actionRef, actionProps.ref);
   const { focusVisible, getRootProps } = useButton({
+    disabled,
     ...actionProps,
     component: actionComponent,
     ref: handleActionRef,

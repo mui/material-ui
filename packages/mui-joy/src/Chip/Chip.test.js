@@ -21,6 +21,30 @@ describe('<Chip />', () => {
     skip: ['classesRoot', 'componentsProp', 'themeVariants'],
   }));
 
+  it('renders children', () => {
+    const { getByText } = render(
+      <Chip>
+        <span>test</span>
+      </Chip>,
+    );
+
+    expect(getByText('test')).toBeVisible();
+  });
+
+  describe('decorator', () => {
+    it('should render startDecorator element', () => {
+      const { getByText } = render(<Chip startDecorator="foo" />);
+
+      expect(getByText('foo')).to.have.class(classes.startDecorator);
+    });
+
+    it('should render endDecorator element', () => {
+      const { getByText } = render(<Chip endDecorator="bar" />);
+
+      expect(getByText('bar')).to.have.class(classes.endDecorator);
+    });
+  });
+
   describe('prop: variant', () => {
     it('contained by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
@@ -68,23 +92,25 @@ describe('<Chip />', () => {
     });
   });
 
-  describe('prop: clickable', () => {
-    it('renders as a clickable chip when `clickable` is `true`', () => {
-      const { getByTestId } = render(<Chip data-testid="root" clickable />);
+  describe('clickable', () => {
+    it('renders action element when `onClick` is provided', () => {
+      const { getByRole } = render(<Chip onClick={() => {}} />);
 
-      expect(getByTestId('root')).to.have.class(classes.clickable);
+      expect(getByRole('button')).toBeVisible();
     });
 
-    it('renders as a non-clickable chip when `clickable` is `false`', () => {
-      const { getByTestId } = render(<Chip data-testid="root" />);
+    it('renders action element when `componentsProps.action` is provided', () => {
+      const { getByRole } = render(<Chip componentsProps={{ action: {} }} />);
 
-      expect(getByTestId('root')).not.to.have.class(classes.clickable);
+      expect(getByRole('button')).toBeVisible();
     });
 
-    it('renders as a clickable chip when `onClick` is passed', () => {
-      const { getByTestId } = render(<Chip data-testid="root" onClick={() => {}} />);
+    it('renders custom action element', () => {
+      const { getByRole } = render(
+        <Chip componentsProps={{ action: { component: 'a', href: '#' } }} />,
+      );
 
-      expect(getByTestId('root')).to.have.class(classes.clickable);
+      expect(getByRole('link')).to.have.attr('href', '#');
     });
   });
 
@@ -99,6 +125,12 @@ describe('<Chip />', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
       expect(getByTestId('root')).not.to.have.class(classes.disabled);
+    });
+
+    it('renders disabled action element', () => {
+      const { getByRole } = render(<Chip disabled onClick={() => {}} />);
+
+      expect(getByRole('button')).to.have.attr('disabled');
     });
   });
 });

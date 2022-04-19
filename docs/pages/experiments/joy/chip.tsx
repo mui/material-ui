@@ -61,7 +61,7 @@ export default function JoyChip() {
         {/* Examples */}
         <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 5, mt: 5 }}>
           <Chip endDecorator={<ChipDelete />}>Benny</Chip>
-          <Chip disabled endDecorator={<ChipDelete />}>
+          <Chip disabled onClick={() => {}} endDecorator={<ChipDelete />}>
             Benny
           </Chip>
           <Chip variant="light" startDecorator={<ChipDelete />}>
