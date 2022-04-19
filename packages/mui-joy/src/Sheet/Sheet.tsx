@@ -82,17 +82,20 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <VariantOverrideProvider variant={enableVariantOverride ? variant : undefined}>
-      <SheetRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      />
-    </VariantOverrideProvider>
+  const result = (
+    <SheetRoot
+      as={component}
+      ownerState={ownerState}
+      className={clsx(classes.root, className)}
+      ref={ref}
+      {...other}
+    />
   );
+
+  if (enableVariantOverride) {
+    return <VariantOverrideProvider variant={variant}>{result}</VariantOverrideProvider>;
+  }
+  return result;
 }) as OverridableComponent<SheetTypeMap>;
 
 Sheet.propTypes /* remove-proptypes */ = {
