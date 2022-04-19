@@ -407,7 +407,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             elevation: 0,
             color: theme.palette.text.secondary,
             backgroundImage: 'none',
-            bgColor:
+            backgroundColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.background.paper,

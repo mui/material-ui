@@ -16,7 +16,9 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
        */
       classes?: Partial<AppBarClasses>;
       /**
-       * The color of the component. It supports those theme colors that make sense for this component.
+       * The color of the component.
+       * It supports both default and custom theme colors, which can be added as shown in the
+       * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
        * @default 'primary'
        */
       color?: OverridableStringUnion<PropTypes.Color | 'transparent', AppBarPropsColorOverrides>;
@@ -44,12 +46,12 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
  *
  * Demos:
  *
- * - [App Bar](https://mui.com/components/app-bar/)
+ * - [App bar](https://mui.com/material-ui/react-app-bar/)
  *
  * API:
  *
- * - [AppBar API](https://mui.com/api/app-bar/)
- * - inherits [Paper API](https://mui.com/api/paper/)
+ * - [AppBar API](https://mui.com/material-ui/api/app-bar/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 
 declare const AppBar: OverridableComponent<AppBarTypeMap>;

@@ -75,6 +75,6 @@ test.describe.parallel('Redirects', () => {
 
     await expect(page).toHaveURL(`/system/styles/basics/`);
 
-    await expect(page.locator('h1')).toHaveText('@mui/styles');
+    await expect(page.locator('h1')).toHaveText('@mui/styles (LEGACY)');
   });
 });

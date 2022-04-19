@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, describeConformance } from 'test/utils';
-import Typography from '@mui/joy/Typography';
 import Link, { linkClasses as classes } from '@mui/joy/Link';
 import { ThemeProvider } from '@mui/joy/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -20,7 +19,7 @@ describe('<Link />', () => {
 
   describeConformance(<Link href="/">Home</Link>, () => ({
     classes,
-    inheritComponent: Typography,
+    inheritComponent: 'a',
     render,
     ThemeProvider,
     muiName: 'MuiLink',

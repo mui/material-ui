@@ -7,17 +7,18 @@ import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => ({
-  top: 'var(--MuiDocs-header-height)',
+  top: 0,
   order: 1,
   width: 240,
   flexShrink: 0,
   position: 'sticky',
-  height: 'calc(100vh - var(--MuiDocs-header-height))',
+  height: '100vh',
   overflowY: 'auto',
-  padding: theme.spacing(2, 4, 2, 0),
+  padding: theme.spacing('calc(var(--MuiDocs-header-height) + 1rem)', 4, 2, 0),
   display: 'none',
   [theme.breakpoints.up('sm')]: {
     display: 'block',
@@ -164,14 +165,7 @@ export default function AppTableOfContents(props) {
 
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
-    if (
-      event.defaultPrevented ||
-      event.button !== 0 || // ignore everything but left-click
-      event.metaKey ||
-      event.ctrlKey ||
-      event.altKey ||
-      event.shiftKey
-    ) {
+    if (openLinkInNewTab(event)) {
       return;
     }
 

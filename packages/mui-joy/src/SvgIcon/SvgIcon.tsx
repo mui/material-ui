@@ -48,7 +48,7 @@ const SvgIconRoot = styled('svg', {
       color:
         ownerState.color !== 'inherit' && theme.vars.palette[ownerState.color!]
           ? theme.vars.palette[ownerState.color!].textColor
-          : 'inherit',
+          : 'var(--Icon-color)',
     };
   },
 );
@@ -121,7 +121,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -129,7 +132,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 1rem, but can be configure to inherit font size.
-   * @default 'md'
+   * @default 'xl'
    */
   fontSize: PropTypes.oneOf([
     'inherit',

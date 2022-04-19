@@ -68,7 +68,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
       position: 'sticky',
       top: 0,
       zIndex: 1,
-      background: 'var(--List-background)',
+      background: 'var(--List-item-stickyBackground)',
     }),
     // Using :last-child or :first-child selector would complicate ListDivider margin
     [`& + .${listItemClasses.root}`]: ownerState.row

@@ -155,7 +155,7 @@ const appList = [
       'cost, usage and performance in one place. ' +
       '(Used for the business application, but not the marketing website.)',
     image: 'cloudhealth.jpg',
-    link: 'https://www.cloudhealthtech.com/',
+    link: 'https://cloudhealth.vmware.com/',
     similarWebVisits: 132,
     dateAdded: '2018-01-37',
   },
@@ -528,13 +528,6 @@ const appList = [
     stars: 15079,
     similarWebVisits: 62,
     dateAdded: '2022-02-05',
-  },
-  {
-    title: 'Work in biotech',
-    description: 'Job board for small biotech startup companies',
-    image: 'workinbiotech.png',
-    link: 'https://workinbiotech.com/',
-    dateAdded: '2022-03-13',
   },
 ];
 
