@@ -128,6 +128,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     props: inProps,
     name: 'MuiButton',
   });
+
   const {
     children,
     className,
