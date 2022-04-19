@@ -35,7 +35,7 @@ The following demo shows how to assign styles and props to the interior componen
 
 ## Accessibility
 
-To make the `SwtichUnstyled` component accessible, you should ensure that the corresponding labels reflect the current state of the switch.
+To make the `SwitchUnstyled` component accessible, you should ensure that the corresponding labels reflect the current state of the switch.
 
 ## The useSwitch hook
 
