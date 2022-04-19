@@ -21,26 +21,10 @@ Feel free to submit a pull request to add another project; it will be accepted i
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
-### Notification
-
-- [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
-
-### Form
-
-- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using Material UI with [formik](https://formik.org/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
-- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema), JSON Schema compatible
-- [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).
-
 ### Image
 
 - [mui-image](https://mui-image.surge.sh): The only Material UI image component to satisfy the Material Design guidelines for loading images.
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like [Material's image loading pattern](https://material.io/archive/guidelines/patterns/loading-images.html#loading-images-usage) suggests.
-
-### Dialog
-
-- [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Provides easy to use confirmation dialogs to simplify confirming user actions without writing boilerplate code.
 
 ### Color picker
 
