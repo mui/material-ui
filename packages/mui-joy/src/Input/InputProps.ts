@@ -5,7 +5,7 @@ import { InputClasses } from './inputClasses';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export type InputSlot = 'root' | 'input' | 'startAdornment' | 'endAdornment';
+export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
 export interface InputPropsVariantOverrides {}
 
@@ -61,7 +61,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * Trailing adornment for this input.
        */
-      endAdornment?: React.ReactNode;
+      endDecorator?: React.ReactNode;
       /**
        * If `true`, the button will take up the full width of its container.
        * @default false
@@ -93,7 +93,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * Leading adornment for this input.
        */
-      startAdornment?: React.ReactNode;
+      startDecorator?: React.ReactNode;
       /**
        * The size of the component.
        * @default 'md'

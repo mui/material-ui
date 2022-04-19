@@ -90,7 +90,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     TabIndicatorProps?: React.HTMLAttributes<HTMLDivElement>;
     /**
-     * Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element.
+     * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
      * @default {}
      */
     TabScrollButtonProps?: Partial<TabScrollButtonProps>;

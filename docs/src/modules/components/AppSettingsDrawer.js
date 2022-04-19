@@ -221,7 +221,7 @@ function AppSettingsDrawer(props) {
         <Heading gutterBottom>{t('settings.color')}</Heading>
         <Button
           component="a"
-          href="/customization/color/#playground"
+          href="/material-ui/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
           size="small"

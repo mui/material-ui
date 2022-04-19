@@ -27,5 +27,5 @@ Este exemplo troca os botões "mover todos" por uma caixa de seleção para "sel
 
 The component comes with a couple of limitations:
 
-- It only works on desktop. If you have a limited amount of options to select, prefer the [Autocomplete](/components/autocomplete/#multiple-values) component. If mobile support is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579).
+- It only works on desktop. If mobile support is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579). If you have a limited amount of options to select, prefer the [Autocomplete](/material-ui/react-autocomplete/#multiple-values) component.
 - There are no high-level components exported from npm. The demos are based on composition. If this is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579).

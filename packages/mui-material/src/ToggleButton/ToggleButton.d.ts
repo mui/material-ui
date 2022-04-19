@@ -25,6 +25,8 @@ export type ToggleButtonTypeMap<
     classes?: Partial<ToggleButtonClasses>;
     /**
      * The color of the button when it is in an active state.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'standard'
      */
     color?: OverridableStringUnion<
@@ -87,12 +89,12 @@ export type ToggleButtonTypeMap<
  *
  * Demos:
  *
- * - [Toggle Button](https://mui.com/components/toggle-button/)
+ * - [Toggle button](https://mui.com/material-ui/react-toggle-button/)
  *
  * API:
  *
- * - [ToggleButton API](https://mui.com/api/toggle-button/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [ToggleButton API](https://mui.com/material-ui/api/toggle-button/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 

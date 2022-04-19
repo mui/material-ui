@@ -43,6 +43,6 @@
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePaginationUnstyled/TablePaginationUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Tables</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-table-pagination/\">Table pagination</a></li></ul>",
   "cssComponent": false
 }

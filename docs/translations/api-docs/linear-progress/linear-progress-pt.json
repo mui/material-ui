@@ -2,7 +2,7 @@
   "componentDescription": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
   "propDescriptions": {
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
-    "color": "A cor do componente. Ela da suporte para as cores do tema que fazem sentido para este componente.",
+    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "value": "The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.",
     "valueBuffer": "The value for the buffer variant. Value between 0 and 100.",

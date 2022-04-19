@@ -102,8 +102,8 @@ const SwitchRoot = styled('span', {
       backgroundColor: 'initial',
       color: 'var(--Switch-thumb-background)',
       border: 'none',
-      [`&.${switchClasses.focusVisible}`]: theme.focus.default,
     },
+    theme.focus.default,
   ];
 });
 

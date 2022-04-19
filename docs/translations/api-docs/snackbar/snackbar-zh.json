@@ -7,7 +7,7 @@
     "children": "Replace the <code>SnackbarContent</code> component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "ClickAwayListenerProps": "Props applied to the <code>ClickAwayListener</code> element.",
-    "ContentProps": "Props applied to the <a href=\"/api/snackbar-content/\"><code>SnackbarContent</code></a> element.",
+    "ContentProps": "Props applied to the <a href=\"/material-ui/api/snackbar-content/\"><code>SnackbarContent</code></a> element.",
     "disableWindowBlurListener": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused.",
     "key": "When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/&gt;, add the key prop to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} /&gt;, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled.",
     "message": "The message to display.",
@@ -15,7 +15,7 @@
     "open": "Control the popup` open state.",
     "resumeHideDuration": "The number of milliseconds to wait before dismissing after user interaction. If <code>autoHideDuration</code> prop isn&#39;t specified, it does nothing. If <code>autoHideDuration</code> prop is specified but <code>resumeHideDuration</code> isn&#39;t, we default to <code>autoHideDuration / 2</code> ms.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
-    "TransitionComponent": "The component used for the transition. <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
+    "TransitionComponent": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
     "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
   },

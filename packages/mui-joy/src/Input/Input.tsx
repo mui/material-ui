@@ -24,8 +24,8 @@ const useUtilityClasses = (ownerState: InputProps) => {
       size && `size${capitalize(size)}`,
     ],
     input: ['input'],
-    startAdornment: ['startAdornment'],
-    endAdornment: ['endAdornment'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   return composeClasses(slots, getInputUtilityClass, classes);
@@ -39,31 +39,31 @@ const InputRoot = styled('div', {
   {
     ...(ownerState.size === 'sm' && {
       '--Input-gutter': '0.5rem',
-      '--Input-height': '32px',
+      '--Input-minHeight': '32px',
       '--Icon-fontSize': '1.25rem',
     }),
     ...(ownerState.size === 'md' && {
       '--Input-gutter': '0.75rem', // gutter is the padding-x
-      '--Input-height': '40px',
+      '--Input-minHeight': '40px',
       '--Icon-fontSize': '1.5rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--Input-gutter': '1rem',
-      '--Input-height': '48px',
+      '--Input-minHeight': '48px',
       '--Input-gap': '0.75rem',
       '--Icon-fontSize': '1.75rem',
     }),
     '--Input-radius': theme.vars.radius.sm, // radius is used by
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
-    '--Input-adornment-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
+    '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
       ownerState.color === 'context'
         ? 'var(--variant-outlinedBorder)'
         : theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     boxSizing: 'border-box',
-    height: `var(--Input-height)`,
+    minHeight: `var(--Input-minHeight)`,
     minWidth: 0, // forces the Input to stay inside a container by default
     ...(ownerState.fullWidth && {
       width: '100%',
@@ -74,6 +74,7 @@ const InputRoot = styled('div', {
     alignItems: 'center',
     padding: `0.25rem var(--Input-gutter)`,
     borderRadius: 'var(--Input-radius)',
+    fontFamily: theme.vars.fontFamily.body,
     fontSize: theme.vars.fontSize.md,
     ...(ownerState.size === 'sm' && {
       fontSize: theme.vars.fontSize.sm,
@@ -126,6 +127,7 @@ const InputInput = styled('input', {
   alignSelf: 'stretch',
   color: 'inherit',
   backgroundColor: 'transparent',
+  fontFamily: 'inherit',
   fontSize: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
@@ -136,14 +138,14 @@ const InputInput = styled('input', {
   '&::-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Edge
 });
 
-const InputStartAdornment = styled('span', {
+const InputStartDecorator = styled('span', {
   name: 'MuiInput',
-  slot: 'StartAdornment',
-  overridesResolver: (props, styles) => styles.startIcon,
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
-  marginLeft: 'calc(var(--Input-adornment-offset) * -1)',
+  marginLeft: 'calc(var(--Input-decorator-offset) * -1)',
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
@@ -154,14 +156,14 @@ const InputStartAdornment = styled('span', {
   }),
 }));
 
-const InputEndAdornment = styled('span', {
+const InputEndDecorator = styled('span', {
   name: 'MuiInput',
-  slot: 'EndAdornment',
-  overridesResolver: (props, styles) => styles.endIcon,
+  slot: 'EndDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
-  marginRight: 'calc(var(--Input-adornment-offset) * -1)',
+  marginRight: 'calc(var(--Input-decorator-offset) * -1)',
   color:
     ownerState.color === 'context'
       ? 'inherit'
@@ -181,13 +183,13 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     autoComplete,
     autoFocus,
     className,
-    color: colorProp,
+    color: colorProp = 'neutral',
     component,
     components = {},
     componentsProps = {},
     defaultValue,
     disabled,
-    endAdornment,
+    endDecorator,
     fullWidth = false,
     error,
     id,
@@ -203,14 +205,14 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     readOnly,
     required,
     type = 'text',
-    startAdornment,
+    startDecorator,
     size = 'md',
     value,
     variant = 'outlined',
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, colorProp, 'neutral');
+  const color = getColor(inProps.color, colorProp);
 
   const {
     getRootProps,
@@ -252,8 +254,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     [inputClasses.error]: errorState,
     [inputClasses.focused]: focused,
     [inputClasses.formControl]: Boolean(formControlContext),
-    [inputClasses.adornedStart]: Boolean(startAdornment),
-    [inputClasses.adornedEnd]: Boolean(endAdornment),
   };
 
   const inputStateClasses = {
@@ -299,17 +299,17 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   return (
     <Root ref={ref} {...rootProps}>
-      {startAdornment && (
-        <InputStartAdornment className={classes.startAdornment} ownerState={ownerState}>
-          {startAdornment}
-        </InputStartAdornment>
+      {startDecorator && (
+        <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
+          {startDecorator}
+        </InputStartDecorator>
       )}
 
       <InputComponent {...inputProps} />
-      {endAdornment && (
-        <InputEndAdornment className={classes.endAdornment} ownerState={ownerState}>
-          {endAdornment}
-        </InputEndAdornment>
+      {endDecorator && (
+        <InputEndDecorator className={classes.endDecorator} ownerState={ownerState}>
+          {endDecorator}
+        </InputEndDecorator>
       )}
     </Root>
   );
@@ -391,7 +391,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * Trailing adornment for this input.
    */
-  endAdornment: PropTypes.node,
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -468,7 +468,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * Leading adornment for this input.
    */
-  startAdornment: PropTypes.node,
+  startDecorator: PropTypes.node,
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'

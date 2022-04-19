@@ -43,11 +43,9 @@ const ListItemButtonRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
   {
-    ...(ownerState.color &&
-      ownerState.color !== 'context' && {
-        '--List-decorator-color':
-          theme.vars.palette[ownerState.color]?.[`${ownerState.variant!}Color`],
-      }),
+    ...(ownerState.selected && {
+      '--List-decorator-color': 'initial',
+    }),
     boxSizing: 'border-box',
     display: 'flex',
     alignItems: 'center',
@@ -73,7 +71,6 @@ const ListItemButtonRoot = styled('div', {
     ...(ownerState.selected && {
       fontWeight: theme.vars.fontWeight.md,
     }),
-    '&.Mui-focusVisible': theme.focus.default,
     // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
     // We want to be specific on what siblings the gap should be added.
     [`& + .${listItemButtonClasses.root}`]: ownerState.row
@@ -97,6 +94,7 @@ const ListItemButtonRoot = styled('div', {
         'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     }),
   },
+  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
@@ -115,6 +113,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     children,
     className,
     action,
+    role,
     component = 'div',
     color: colorProp,
     selected = false,
@@ -158,13 +157,16 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = getRootProps();
+
   return (
     <ListItemButtonRoot
       as={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}
-      {...getRootProps()}
+      {...rootProps}
+      role={role ?? rootProps.role}
     >
       {children}
     </ListItemButtonRoot>
@@ -208,6 +210,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * Use to apply selected styling.
    * @default false

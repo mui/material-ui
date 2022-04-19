@@ -1,6 +1,6 @@
 # Da direita para a esquerda
 
-<p class="description">Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Para alterar a direção dos componentes de Material-UI, você deve seguir as etapas a seguir.</p>
+<p class="description">Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Para alterar a direção dos componentes de Material UI, você deve seguir as etapas a seguir.</p>
 
 ## Passos
 
@@ -52,13 +52,13 @@ Se você estiver usando `emotion` ou `styled-components`, você precisa deste pl
 npm install jss-rtl
 ```
 
-Tendo instalado o plugin em seu projeto, os componentes do Material-UI ainda exigem que ele seja carregado pela instância do motor de estilo que você usa. Encontre guias abaixo de como você pode carregá-lo.
+Tendo instalado o plugin em seu projeto, os componentes do Material UI ainda exigem que ele seja carregado pela instância do motor de estilo que você usa. Encontre guias abaixo de como você pode carregá-lo.
 
 ### 3. Carregando o plugin rtl
 
 #### 3.1 JSS
 
-Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/styles/api/#stylesprovider) permite isso:
+Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/system/styles/api/#stylesprovider) permite isso:
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -95,7 +95,7 @@ function RTL(props) {
 
 #### 3.3 styled-components
 
-Tendo instalado o plugin em seu projeto, os componentes de Material-UI ainda exigem que ele seja carregado pela instância do jss, conforme descrito abaixo. Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/styles/api/#stylesprovider) permite isso:
+Tendo instalado o plugin em seu projeto, os componentes de Material UI ainda exigem que ele seja carregado pela instância do jss, conforme descrito abaixo. Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/system/styles/api/#stylesprovider) permite isso:
 
 ```jsx
 import { create } from 'jss';

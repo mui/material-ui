@@ -103,7 +103,7 @@ export default function JoyTypography() {
             label="Label"
             placeholder="Placeholder"
             helperText="Helper text"
-            endAdornment={<Info />}
+            endDecorator={<Info />}
           />
 
           <TextField disabled label="Label" placeholder="Placeholder" helperText="Helper text" />
@@ -149,8 +149,8 @@ export default function JoyTypography() {
             size="lg"
             placeholder="Placeholder"
             helperText="This is a helper text."
-            startAdornment={<Key fontSize="lg" />}
-            endAdornment={<Verified fontSize="lg" />}
+            startDecorator={<Key fontSize="lg" />}
+            endDecorator={<Verified fontSize="lg" />}
           />
         </Box>
       </Box>
