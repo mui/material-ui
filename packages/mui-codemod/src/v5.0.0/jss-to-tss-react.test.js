@@ -53,6 +53,19 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-from-material-ui-core.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+      it('adds todo comments for scenarios that are not supported', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-tss-react.test/actual-todo-comments.js'),
+            path: require.resolve('./jss-to-tss-react.test/actual-todo-comments.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-tss-react.test/expected-todo-comments.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
       it('transforms makeStyles with style rules returned by function to use tss-react', () => {
         const actual = transform(
           {

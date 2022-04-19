@@ -1,15 +1,6 @@
 const ruleEndRegEx = /[^a-zA-Z0-9_]+/;
 
 function transformNestedKeys(j, comments, propValueNode, ruleRegEx, nestedKeys) {
-  if (propValueNode.type !== 'ObjectExpression') {
-    comments.push(
-      j.commentLine(
-        ' TODO jss-to-tss-react codemod: Unable to handle style definition reliably.',
-        true,
-      ),
-    );
-    return;
-  }
   propValueNode.properties.forEach((prop) => {
     if (prop.value?.type === 'ObjectExpression') {
       if (typeof prop.key.value === 'string') {
@@ -45,6 +36,13 @@ function transformNestedKeys(j, comments, propValueNode, ruleRegEx, nestedKeys) 
         }
       }
       transformNestedKeys(j, comments, prop.value, ruleRegEx, nestedKeys);
+    } else if (prop.value?.type === 'ArrowFunctionExpression') {
+      comments.push(
+        j.commentLine(
+          ' TODO jss-to-tss-react codemod: Unable to handle style definition reliably. ArrowFunctionExpression in CSS prop.',
+          true,
+        ),
+      );
     }
   });
 }
@@ -84,7 +82,8 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
         if (prop.value.type !== 'ObjectExpression') {
           if (
             prop.value.type === 'ArrowFunctionExpression' &&
-            prop.value.body.type === 'ObjectExpression'
+            prop.value.body.type === 'ObjectExpression' &&
+            prop.value.params[0].type === 'ObjectPattern'
           ) {
             prop.value.params[0].properties.forEach((property) => {
               const name = property.key.name;
@@ -137,8 +136,10 @@ function addComments(j, path, commentsToAdd) {
   j(path)
     .closest(j.VariableDeclaration)
     .forEach((declaration) => {
-      const comments = declaration.node.comments ? declaration.node.comments : [];
-      comments.push(...commentsToAdd);
+      if (!declaration.node.comments) {
+        declaration.node.comments = [];
+      }
+      declaration.node.comments.push(...commentsToAdd);
     });
 }
 
