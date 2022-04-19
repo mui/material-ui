@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/system';
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
+import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -22,7 +22,7 @@ const StyledBadge = styled(BadgeUnstyled)`
   display: inline-block;
   line-height: 1;
 
-  & .MuiBadge-badge {
+  & .${badgeUnstyledClasses.badge} {
     z-index: auto;
     min-width: 20px;
     height: 20px;
@@ -45,7 +45,7 @@ const StyledBadge = styled(BadgeUnstyled)`
     transition: opacity 0.2s ease-in-out;
   }
 
-  & .MuiBadge-invisible {
+  & .${badgeUnstyledClasses.invisible} {
     opacity: 0;
     pointer-events: none;
   }
@@ -68,7 +68,7 @@ export default function BadgeVisibility() {
         '& > *': {
           marginBottom: 2,
         },
-        '& .MuiBadge-root': {
+        [`& .${badgeUnstyledClasses.root}`]: {
           marginRight: 4,
         },
       }}

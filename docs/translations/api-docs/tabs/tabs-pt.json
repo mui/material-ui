@@ -17,7 +17,7 @@
     "selectionFollowsFocus": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "TabIndicatorProps": "Props applied to the tab indicator element.",
-    "TabScrollButtonProps": "Props applied to the <a href=\"/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element.",
+    "TabScrollButtonProps": "Props applied to the <a href=\"/material-ui/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element.",
     "textColor": "Determines the color of the <code>Tab</code>.",
     "value": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>false</code>.",
     "variant": "Determines additional display behavior of the tabs:<br> - <code>scrollable</code> will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -<code>fullWidth</code> will make the tabs grow to use all the available space,  which should be used for small views, like on mobile.  - <code>standard</code> will render the default state.",

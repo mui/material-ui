@@ -26,10 +26,10 @@ export interface PortalProps {
  *
  * Demos:
  *
- * - [Portal](https://mui.com/components/portal/)
+ * - [Portal](https://mui.com/base/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://mui.com/api/portal/)
+ * - [Portal API](https://mui.com/base/api/portal/)
  */
 export default function Portal(props: PortalProps): JSX.Element;

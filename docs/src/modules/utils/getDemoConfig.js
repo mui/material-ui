@@ -12,15 +12,14 @@ function jsDemo(demoData, options) {
       'demo.js': demoData.raw,
       'index.js': `
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
 
-ReactDOM.render(
+ReactDOM.createRoot(document.querySelector("#root")).render(
   <StyledEngineProvider injectFirst>
     <Demo />
-  </StyledEngineProvider>,
-  document.querySelector("#root")
+  </StyledEngineProvider>
 );
     `.trim(),
     },
@@ -38,15 +37,14 @@ function tsDemo(demoData, options) {
       'demo.tsx': demoData.raw,
       'index.tsx': `
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
 
-ReactDOM.render(
+ReactDOM.createRoot(document.querySelector("#root")).render(
   <StyledEngineProvider injectFirst>
     <Demo />
-  </StyledEngineProvider>,
-  document.querySelector("#root")
+  </StyledEngineProvider>
 );
     `.trim(),
       'tsconfig.json': `{

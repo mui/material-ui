@@ -51,6 +51,10 @@ export interface LinkClasses {
   body2: string;
   /** Styles applied to the root element if `level="body3"`. */
   body3: string;
+  /** Styles applied to the startDecorator element */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element */
+  endDecorator: string;
 }
 
 export type LinkClassKey = keyof LinkClasses;
@@ -86,6 +90,8 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'body1',
   'body2',
   'body3',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default linkClasses;

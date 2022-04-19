@@ -1,16 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { isHostComponent } from '@mui/base';
-import BackdropUnstyled, { backdropUnstyledClasses } from '@mui/base/BackdropUnstyled';
+import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
+import { getBackdropUtilityClass } from './backdropClasses';
 
-export const backdropClasses = backdropUnstyledClasses;
+const useUtilityClasses = (ownerState) => {
+  const { classes, invisible } = ownerState;
 
-const extendUtilityClasses = (ownerState) => {
-  const { classes } = ownerState;
-  return classes;
+  const slots = {
+    root: ['root', invisible && 'invisible'],
+  };
+
+  return composeClasses(slots, getBackdropUtilityClass, classes);
 };
 
 const BackdropRoot = styled('div', {
@@ -41,6 +45,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
+    component = 'div',
     components = {},
     componentsProps = {},
     className,
@@ -54,33 +59,24 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   const ownerState = {
     ...props,
+    component,
     invisible,
   };
 
-  const classes = extendUtilityClasses(ownerState);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
-      <BackdropUnstyled
-        className={className}
-        invisible={invisible}
-        components={{
-          Root: BackdropRoot,
-          ...components,
-        }}
-        componentsProps={{
-          root: {
-            ...componentsProps.root,
-            ...((!components.Root || !isHostComponent(components.Root)) && {
-              ownerState: { ...componentsProps.root?.ownerState },
-            }),
-          },
-        }}
+      <BackdropRoot
+        aria-hidden
+        as={components.Root ?? component}
+        className={clsx(classes.root, className)}
+        ownerState={{ ...ownerState, ...componentsProps.root?.ownerState }}
         classes={classes}
         ref={ref}
       >
         {children}
-      </BackdropUnstyled>
+      </BackdropRoot>
     </TransitionComponent>
   );
 });
@@ -102,6 +98,11 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the Backdrop.
    * Either a string to use a HTML element or a component.

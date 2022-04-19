@@ -5,6 +5,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://material.io/components/menus
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
+unstyled: /base/react-menu/
 ---
 
 # Menu 菜单
@@ -39,13 +40,13 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 
 ## MenuList 组合
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
+If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/material-ui/api/list-item/)中），您能够设置当前被选中的选项。 The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "SimpleListMenu.js"}}
 
 ## 自定义菜单
 
-因为 `Menu` 组件是基于 `Popover` 组件来进行定位的，所以你也可以使用与之相同的 [定位属性](/components/popover/#anchor-playground) 来对它的位置进行改变。 例如，你可以在描点的下方显示菜单：
+因为 `Menu` 组件是基于 `Popover` 组件来进行定位的，所以你也可以使用与之相同的 [定位属性](/material-ui/react-popover/#anchor-playground) 来对它的位置进行改变。 例如，你可以在描点的下方显示菜单：
 
 {{"demo": "PositionedMenu.js"}}
 
@@ -65,7 +66,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 ## 更改过渡动画
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedMenus.js"}}
 

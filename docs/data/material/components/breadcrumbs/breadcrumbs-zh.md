@@ -38,7 +38,7 @@ In the following examples, we are using two string separators and an SVG icon.
 
 ## 自定义的面包屑导航
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedBreadcrumbs.js"}}
 

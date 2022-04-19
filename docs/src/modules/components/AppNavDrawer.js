@@ -26,6 +26,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
@@ -157,6 +158,9 @@ function ProductDrawerButton(props) {
             width: 18,
             height: 18,
           },
+          '& > span': {
+            ml: '4px',
+          },
         })}
       >
         {props.productName}
@@ -224,7 +228,7 @@ function ProductDrawerButton(props) {
         </li>
         <li role="none">
           <Link
-            href={ROUTES.dataGridSpace}
+            href={ROUTES.advancedComponents}
             sx={{
               p: 2,
               width: '100%',
@@ -319,37 +323,31 @@ PersistScroll.propTypes = {
   slot: PropTypes.string.isRequired,
 };
 
-// https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
-const ToolbarIE11 = styled('div')({ display: 'flex' });
+const ToolbarDiv = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1.45, 2),
+  paddingRight: 0,
+  height: 'var(--MuiDocs-header-height)',
+  display: 'flex',
+  flexGrow: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+}));
 
-const ToolbarDiv = styled('div')(({ theme }) => {
-  return {
-    padding: theme.spacing(1.45, 2),
-    paddingRight: 0,
-    height: 'var(--MuiDocs-header-height)',
-    display: 'flex',
-    flexGrow: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  };
-});
+const StyledDrawer = styled(Drawer)(({ theme }) => ({
+  [theme.breakpoints.up('xs')]: {
+    display: 'none',
+  },
+  [theme.breakpoints.up('lg')]: {
+    display: 'block',
+  },
+}));
 
-const StyledDrawer = styled(Drawer)(({ theme }) => {
-  return {
-    [theme.breakpoints.up('xs')]: {
-      display: 'none',
-    },
-    [theme.breakpoints.up('lg')]: {
-      display: 'block',
-    },
-  };
-});
-
-const SwipeableDrawerPaperComponent = styled('div')(({ theme }) => {
+const AppNavPaperComponent = styled('div')(({ theme }) => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    paddingBottom: theme.spacing(5),
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
     },
@@ -363,7 +361,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List disablePadding>
+    <List sx={{ my: 0.5 }}>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -380,33 +378,40 @@ function renderNavItems(options) {
 function reduceChildRoutes(context) {
   const { onClose, activePage, items, depth, t } = context;
   let { page } = context;
-  if (page.ordered === false) {
+  if (page.inSideNav === false) {
     return items;
   }
 
+  const title = pageToTitleI18n(page, t);
+
   if (page.children && page.children.length >= 1) {
-    const title = pageToTitleI18n(page, t);
     const topLevel = activePage
       ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
         page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
       : false;
+    let firstChild = page.children[0];
+
+    if (firstChild.subheader && firstChild.children) {
+      firstChild = firstChild.children[0];
+    }
 
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
-        topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
+        href={firstChild.pathname}
         legacy={page.legacy}
         icon={page.icon}
+        subheader={Boolean(page.subheader)}
+        topLevel={topLevel && !page.subheader}
+        openImmediately={topLevel || Boolean(page.subheader)}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppNavDrawerItem>,
     );
   } else {
-    const title = pageToTitleI18n(page, t);
     page = page.children && page.children.length === 1 ? page.children[0] : page;
 
     items.push(
@@ -417,8 +422,9 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         legacy={page.legacy}
-        onClick={onClose}
         icon={page.icon}
+        subheader={Boolean(page.subheader)}
+        onClick={onClose}
       />,
     );
   }
@@ -431,7 +437,7 @@ function reduceChildRoutes(context) {
 // So: <SwipeableDrawer disableBackdropTransition={false} />
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-function AppNavDrawer(props) {
+export default function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
   const router = useRouter();
@@ -442,12 +448,8 @@ function AppNavDrawer(props) {
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const drawer = React.useMemo(() => {
-    const isProductScoped =
-      router.asPath.startsWith('/x') ||
-      router.asPath.startsWith('/material-ui') ||
-      router.asPath.startsWith('/joy-ui') ||
-      (router.asPath.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) ||
-      router.asPath.startsWith('/base');
+    const isProductScoped = isNewLocation(router.asPath);
+    const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
@@ -513,35 +515,34 @@ function AppNavDrawer(props) {
             open={Boolean(anchorEl)}
             onClose={() => setAnchorEl(null)}
           >
-            {versions.map((item) => (
-              <MenuItem
-                key={item.text}
-                {...(item.current
-                  ? {
-                      selected: true,
-                      onClick: () => setAnchorEl(null),
-                    }
-                  : {
-                      component: 'a',
-                      href: item.href,
-                      onClick: onClose,
-                    })}
-              >
-                {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
-              </MenuItem>
-            ))}
-            {versions.length > 1 && [
-              <Divider key="divider" />,
-              <MenuItem
-                key="all-versions"
-                component="a"
-                href={`https://mui.com${languagePrefix}/versions/`}
-                onClick={onClose}
-              >
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-                {`View all versions`}
-              </MenuItem>,
-            ]}
+            {versions.map((item) => {
+              if (item.text === 'View all versions') {
+                return [
+                  <Divider key="divider" />,
+                  <MenuItem key="all-versions" component="a" href={item.href} onClick={onClose}>
+                    {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+                    {`View all versions`}
+                  </MenuItem>,
+                ];
+              }
+              return (
+                <MenuItem
+                  key={item.text}
+                  {...(item.current
+                    ? {
+                        selected: true,
+                        onClick: () => setAnchorEl(null),
+                      }
+                    : {
+                        component: 'a',
+                        href: item.href,
+                        onClick: onClose,
+                      })}
+                >
+                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
+                </MenuItem>
+              );
+            })}
           </Menu>
         </React.Fragment>
       );
@@ -549,79 +550,103 @@ function AppNavDrawer(props) {
 
     return (
       <React.Fragment>
-        <ToolbarIE11>
-          <ToolbarDiv>
-            <NextLink href="/" passHref onClick={onClose}>
-              <Box
-                component="a"
-                aria-label={t('goToHome')}
-                sx={{
-                  pr: 2,
-                  mr: 1,
-                  borderRight: isProductScoped ? '1px solid' : '0px',
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.primary[100], 0.08)
-                      : theme.palette.grey[200],
-                }}
-              >
-                <SvgMuiLogo width={30} />
-              </Box>
-            </NextLink>
-            {!isProductScoped &&
-              renderVersionSelector(
-                [
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                ],
-                { mr: 2 },
-              )}
-            {router.asPath.startsWith('/material-ui/') && (
-              <ProductIdentifier
-                name="Material UI"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${materialPkgJson.version}`, current: true },
-                  {
-                    text: 'v4',
-                    href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
-                  },
-                ])}
-              />
+        <ToolbarDiv>
+          <NextLink href="/" passHref onClick={onClose}>
+            <Box
+              component="a"
+              aria-label={t('goToHome')}
+              sx={{
+                pr: '12px',
+                mr: '4px',
+                borderRight: isProductScoped ? '1px solid' : '0px',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primary[100], 0.08)
+                    : theme.palette.grey[200],
+              }}
+            >
+              <SvgMuiLogo width={30} />
+            </Box>
+          </NextLink>
+          {!isProductScoped &&
+            renderVersionSelector(
+              [
+                { text: `v${process.env.LIB_VERSION}`, current: true },
+                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
+                {
+                  text: 'View all versions',
+                  href: `https://mui.com${languagePrefix}/versions/`,
+                },
+              ],
+              { mr: 2 },
             )}
-            {router.asPath.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
-              <ProductIdentifier
-                name="MUI System"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${systemPkgJson.version}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
-                ])}
-              />
-            )}
-            {router.asPath.startsWith('/base/') && (
-              <ProductIdentifier
-                name="MUI Base"
-                metadata="MUI Core"
-                versionSelector={renderVersionSelector([
-                  { text: `v${basePkgJson.version}`, current: true },
-                ])}
-              />
-            )}
-            {(router.asPath.startsWith('/x/react-data-grid') ||
-              router.asPath.startsWith('/x/api/data-grid')) && (
-              <ProductIdentifier
-                name="Data Grid"
-                metadata="MUI X"
-                versionSelector={renderVersionSelector([
-                  // LIB_VERSION is set from the X repo
-                  { text: `v${process.env.LIB_VERSION}`, current: true },
-                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
-                ])}
-              />
-            )}
-          </ToolbarDiv>
-        </ToolbarIE11>
+          {asPathWithoutLang.startsWith('/material-ui/') && (
+            <ProductIdentifier
+              name="Material UI"
+              metadata="MUI Core"
+              versionSelector={renderVersionSelector([
+                { text: `v${materialPkgJson.version}`, current: true },
+                {
+                  text: 'v4',
+                  href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
+                },
+                {
+                  text: 'View all versions',
+                  href: `https://mui.com${languagePrefix}/versions/`,
+                },
+              ])}
+            />
+          )}
+          {asPathWithoutLang.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
+            <ProductIdentifier
+              name="MUI System"
+              metadata="MUI Core"
+              versionSelector={renderVersionSelector([
+                { text: `v${systemPkgJson.version}`, current: true },
+                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
+                {
+                  text: 'View all versions',
+                  href: `https://mui.com${languagePrefix}/versions/`,
+                },
+              ])}
+            />
+          )}
+          {asPathWithoutLang.startsWith('/base/') && (
+            <ProductIdentifier
+              name="MUI Base"
+              metadata="MUI Core"
+              versionSelector={renderVersionSelector([
+                { text: `v${basePkgJson.version}`, current: true },
+              ])}
+            />
+          )}
+          {asPathWithoutLang.startsWith('/x/advanced-components') && (
+            <ProductIdentifier name="Advanced components" metadata="MUI X" />
+          )}
+          {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
+            asPathWithoutLang.startsWith('/x/api/data-grid')) && (
+            <ProductIdentifier
+              name="Data Grid"
+              metadata="MUI X"
+              versionSelector={renderVersionSelector([
+                // DATA_GRID_VERSION is set from the X repo
+                { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
+                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
+              ])}
+            />
+          )}
+          {(asPathWithoutLang.startsWith('/x/react-date-pickers') ||
+            asPathWithoutLang.startsWith('/x/api/date-pickers')) && (
+            <ProductIdentifier
+              name="Date pickers"
+              metadata="MUI X"
+              versionSelector={renderVersionSelector([
+                // DATE_PICKERS_VERSION is set from the X repo
+                { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
+              ])}
+            />
+          )}
+        </ToolbarDiv>
         <Divider
           sx={{
             borderColor: (theme) =>
@@ -632,7 +657,6 @@ function AppNavDrawer(props) {
         />
         <DiamondSponsors spot="drawer" />
         {navItems}
-        <Box sx={{ height: 40 }} />
       </React.Fragment>
     );
   }, [activePage, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
@@ -651,11 +675,7 @@ function AppNavDrawer(props) {
           }}
           PaperProps={{
             className: 'algolia-drawer',
-            component: SwipeableDrawerPaperComponent,
-            sx: {
-              background: (theme) =>
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
-            },
+            component: AppNavPaperComponent,
           }}
         >
           <PersistScroll slot="swipeable" enabled={mobileOpen}>
@@ -667,15 +687,7 @@ function AppNavDrawer(props) {
         <StyledDrawer
           variant="permanent"
           PaperProps={{
-            component: SwipeableDrawerPaperComponent,
-            sx: {
-              background: (theme) =>
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primary[100], 0.08)
-                  : theme.palette.grey[100],
-            },
+            component: AppNavPaperComponent,
           }}
           open
         >
@@ -695,5 +707,3 @@ AppNavDrawer.propTypes = {
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
 };
-
-export default AppNavDrawer;

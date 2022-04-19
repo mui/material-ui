@@ -15,7 +15,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **注意：** 扩展面板将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。 它之前被称为 "expansion panel（扩展面板）"。
+> **注意：** 扩展面板将不再记录在 [Material Design 指南中](https://material.io/)，但 Material UI 将继续支持它。 它之前被称为 "expansion panel（扩展面板）"。
 
 ## 简单的扩展面板
 
@@ -29,7 +29,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 ## 自定义的扩展面板
 
-以下是自定义扩展面板的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多。
+以下是自定义扩展面板的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多。
 
 {{"demo": "CustomizedAccordions.js"}}
 

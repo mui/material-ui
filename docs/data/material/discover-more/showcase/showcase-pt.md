@@ -1,6 +1,6 @@
 # Casos de sucesso
 
-<p class="description">A seguir uma lista de algumas aplicações que estão utilizando Material-UI.</p>
+<p class="description">A seguir uma lista de algumas aplicações que estão utilizando Material UI.</p>
 
 Você está usando MUI? [Compartilhe seu produto](https://github.com/mui/material-ui/issues/22426).
 

@@ -42,7 +42,9 @@ export interface BaseTextFieldProps
    */
   classes?: Partial<TextFieldClasses>;
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
@@ -64,7 +66,7 @@ export interface BaseTextFieldProps
    */
   error?: boolean;
   /**
-   * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
+   * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
    */
   FormHelperTextProps?: Partial<FormHelperTextProps>;
   /**
@@ -82,7 +84,7 @@ export interface BaseTextFieldProps
    */
   id?: string;
   /**
-   * Props applied to the [`InputLabel`](/api/input-label/) element.
+   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
    */
   InputLabelProps?: Partial<InputLabelProps>;
@@ -131,13 +133,13 @@ export interface BaseTextFieldProps
    */
   minRows?: string | number;
   /**
-   * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
+   * Render a [`Select`](/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    * @default false
    */
   select?: boolean;
   /**
-   * Props applied to the [`Select`](/api/select/) element.
+   * Props applied to the [`Select`](/material-ui/api/select/) element.
    */
   SelectProps?: Partial<SelectProps>;
   /**
@@ -173,8 +175,8 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
   variant?: 'standard';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<StandardInputProps>;
@@ -195,8 +197,8 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
   variant: 'filled';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<FilledInputProps>;
@@ -217,8 +219,8 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   variant: 'outlined';
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<OutlinedInputProps>;
@@ -235,12 +237,12 @@ export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | Out
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * *   [FormControl](https://mui.com/api/form-control/)
- * *   [InputLabel](https://mui.com/api/input-label/)
- * *   [FilledInput](https://mui.com/api/filled-input/)
- * *   [OutlinedInput](https://mui.com/api/outlined-input/)
- * *   [Input](https://mui.com/api/input/)
- * *   [FormHelperText](https://mui.com/api/form-helper-text/)
+ * *   [FormControl](https://mui.com/material-ui/api/form-control/)
+ * *   [InputLabel](https://mui.com/material-ui/api/input-label/)
+ * *   [FilledInput](https://mui.com/material-ui/api/filled-input/)
+ * *   [OutlinedInput](https://mui.com/material-ui/api/outlined-input/)
+ * *   [Input](https://mui.com/material-ui/api/input/)
+ * *   [FormHelperText](https://mui.com/material-ui/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -260,13 +262,12 @@ export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | Out
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/components/autocomplete/)
- * - [Pickers](https://mui.com/components/pickers/)
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Text fields](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [TextField API](https://mui.com/api/text-field/)
- * - inherits [FormControl API](https://mui.com/api/form-control/)
+ * - [TextField API](https://mui.com/material-ui/api/text-field/)
+ * - inherits [FormControl API](https://mui.com/material-ui/api/form-control/)
  */
 export default function TextField(props: TextFieldProps): JSX.Element;
