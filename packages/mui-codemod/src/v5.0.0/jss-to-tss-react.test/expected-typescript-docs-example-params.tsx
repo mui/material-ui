@@ -17,7 +17,7 @@ const useStyles = makeStyles<{color: 'primary' | 'secondary', padding: number}, 
   }
 }));
 
-function App({classes: classesProp}) {
+function App({classes: classesProp}: {classes?: any}) {
   const { classes, cx } = useStyles({
     color: 'primary',
     padding: 30

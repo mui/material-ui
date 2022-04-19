@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => createStyles<
   }
 }), {name: 'App'});
 
-function App({classes: classesProp}) {
+function App({classes: classesProp}: {classes?: any}) {
   const classes = useStyles({color: 'primary', padding: 30, classes: classesProp});
 
   return (

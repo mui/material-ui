@@ -137,7 +137,7 @@ function addComments(j, path, commentsToAdd) {
   j(path)
     .closest(j.VariableDeclaration)
     .forEach((declaration) => {
-      const comments = (declaration.node.comments = declaration.node.comments || []);
+      const comments = declaration.node.comments ? declaration.node.comments : [];
       comments.push(...commentsToAdd);
     });
 }
@@ -253,9 +253,9 @@ export default function transformer(file, api, options) {
             });
         }
         const nestedKeys = [];
-        let options = null;
+        let makeStylesOptions = null;
         if (path.node.arguments.length > 1) {
-          options = path.node.arguments[1];
+          makeStylesOptions = path.node.arguments[1];
         }
         let stylesExpression = path.node.arguments[0];
         const commentsToAdd = [];
@@ -284,7 +284,10 @@ export default function transformer(file, api, options) {
         }
         j(path).replaceWith(
           j.callExpression(
-            j.callExpression(j.identifier(makeStylesIdentifier), options === null ? [] : [options]),
+            j.callExpression(
+              j.identifier(makeStylesIdentifier),
+              makeStylesOptions === null ? [] : [makeStylesOptions],
+            ),
             [stylesExpression],
           ),
         );
