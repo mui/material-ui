@@ -2,7 +2,7 @@
 
 <p class="description">3 easy steps to get started with Joy UI, the React components for building your design system.</p>
 
-## 1. Creating a project
+## 1. Create a project
 
 We recommend using `npm` or `yarn`.
 
@@ -26,7 +26,7 @@ yarn add @mui/joy @emotion/react @emotion/styled
 yarn start
 ```
 
-## 2. Setup the Provider
+## 2. Set up the Provider
 
 Open `src/App.js` and replace with this snippet. You should see the text `Hello from Joy` on your browser.
 
@@ -40,7 +40,7 @@ function App() {
 export default App;
 ```
 
-## 3. Render a component
+## 3. Render the first component
 
 All Joy components need to render under the `CssVarsProvider`. Let's render the first component with a button.
 
@@ -61,8 +61,8 @@ export default App;
 
 Save the file and see what it looks like on your browser! (make sure your development server is running).
 
-## What's next
+## What's next?
 
-- 👨‍💻👩‍💻 Follow the tutorial to explore other components
+- 👨‍💻👩‍💻 [Follow the tutorial](/joy-ui/getting-started/tutorial/) to explore other components
 - 💎 Check out what Joy can do on the features page
 - 📖 Read the Joy's principles to understand what it is for.
