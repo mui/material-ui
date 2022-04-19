@@ -36,7 +36,7 @@ const savedScrollTop = {};
 
 const shouldShowJoy =
   process.env.NODE_ENV === 'development' ||
-  process.env.PULL_REQUEST === 'true' ||
+  process.env.PULL_REQUEST ||
   FEATURE_TOGGLE.enable_joy_scope;
 
 const LinksWrapper = styled('div')(({ theme }) => {
