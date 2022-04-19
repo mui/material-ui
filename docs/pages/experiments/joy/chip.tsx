@@ -13,6 +13,9 @@ import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import ThumbUp from '@mui/icons-material/ThumbUp';
 import DeleteForever from '@mui/icons-material/DeleteForever';
+import LocationOn from '@mui/icons-material/LocationOn';
+import DirectionsBike from '@mui/icons-material/DirectionsBike';
+import AlarmOn from '@mui/icons-material/AlarmOn';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -90,7 +93,7 @@ export default function JoyChip() {
               <Avatar
                 size="sm"
                 src={`/static/images/avatar/1.jpg`}
-                sx={{ ml: '-4px', my: '-4px', '--Avatar-size': '28px' }}
+                sx={{ m: 'calc(-1 * var(--Chip-paddingBlock))', mr: 0, '--Avatar-size': '28px' }}
               />
             }
             endDecorator={<CheckIcon />}
@@ -193,6 +196,38 @@ export default function JoyChip() {
                 </Chip>
               ))}
             </Box>
+          </Box>
+          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+            {(['light', 'outlined'] as const).map((variant) => (
+              <React.Fragment key={variant}>
+                <Chip
+                  color="neutral"
+                  variant={variant}
+                  size="sm"
+                  endDecorator={<ChipDelete />}
+                  sx={{ '--Chip-delete-size': '16px' }}
+                >
+                  <LocationOn sx={{ mr: 0.5 }} /> Portland
+                </Chip>
+                <Chip
+                  color="neutral"
+                  variant={variant}
+                  size="sm"
+                  endDecorator={<ChipDelete />}
+                  sx={{ '--Chip-delete-size': '16px' }}
+                >
+                  <DirectionsBike sx={{ mr: 0.5 }} /> Biking
+                </Chip>
+              </React.Fragment>
+            ))}
+          </Box>
+          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+            <Chip variant="light" startDecorator={<Sun />}>
+              Turn on lights
+            </Chip>
+            <Chip variant="light" startDecorator={<AlarmOn />}>
+              Set alarm
+            </Chip>
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>

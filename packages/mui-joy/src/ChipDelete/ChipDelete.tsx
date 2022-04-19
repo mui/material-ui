@@ -54,7 +54,7 @@ const ChipDeleteRoot = styled('button', {
 const chipVariantMapping = {
   outlined: 'light',
   light: 'contained',
-  contained: 'contained',
+  contained: 'light',
 } as const;
 
 const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {

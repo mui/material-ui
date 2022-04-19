@@ -56,7 +56,7 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-delete-size': '1.25rem',
-        '--Icon-fontSize': '1rem',
+        '--Icon-fontSize': '0.875rem',
         minHeight: '1.5rem',
         fontSize: theme.vars.fontSize.xs,
       }),
