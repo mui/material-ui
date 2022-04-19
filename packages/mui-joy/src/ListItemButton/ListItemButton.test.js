@@ -43,6 +43,11 @@ describe('Joy <ListItemButton />', () => {
     expect(container.firstChild).to.have.class(classes.disabled);
   });
 
+  it('should accept custom role', () => {
+    const { getByRole } = render(<ListItemButton role="menuitem" />);
+    expect(getByRole('menuitem')).toBeVisible();
+  });
+
   describe('prop: focusVisibleClassName', () => {
     it('should have focusVisible classes', () => {
       const { getByRole } = render(<ListItemButton />);

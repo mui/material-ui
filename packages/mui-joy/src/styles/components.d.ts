@@ -1,6 +1,13 @@
 import { GlobalStateSlot } from '@mui/base';
 import { CSSInterpolation } from '@mui/system';
+import { AvatarProps, AvatarSlot } from '../Avatar/AvatarProps';
+import { AvatarGroupProps, AvatarGroupSlot } from '../AvatarGroup/AvatarGroupProps';
+import { BadgeProps, BadgeSlot } from '../Badge/BadgeProps';
 import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
+import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
+import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
+import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
+import { IconButtonProps, IconButtonSlot } from '../IconButton/IconButtonProps';
 import { InputProps, InputSlot } from '../Input/InputProps';
 import { LinkProps, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListSlot } from '../List/ListProps';
@@ -15,11 +22,8 @@ import {
 import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
 import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
-import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
-import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
-import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
-import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
+import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -41,9 +45,25 @@ export type OverridesStyleRules<
 >;
 
 export interface Components<Theme = unknown> {
+  MuiAvatar?: {
+    defaultProps?: Partial<AvatarProps>;
+    styleOverrides?: OverridesStyleRules<AvatarSlot, AvatarProps, Theme>;
+  };
+  MuiAvatarGroup?: {
+    defaultProps?: Partial<AvatarGroupProps>;
+    styleOverrides?: OverridesStyleRules<AvatarGroupSlot, AvatarGroupProps, Theme>;
+  };
+  MuiBadge?: {
+    defaultProps?: Partial<BadgeProps>;
+    styleOverrides?: OverridesStyleRules<BadgeSlot, BadgeProps, Theme>;
+  };
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonProps, Theme>;
+  };
+  MuiIconButton?: {
+    defaultProps?: Partial<IconButtonProps>;
+    styleOverrides?: OverridesStyleRules<IconButtonSlot, IconButtonProps, Theme>;
   };
   MuiSwitch?: {
     defaultProps?: Partial<SwitchProps>;

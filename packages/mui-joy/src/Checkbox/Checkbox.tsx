@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
-import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
+import { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxProps, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
@@ -56,8 +56,9 @@ const CheckboxRoot = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       verticalAlign: 'middle',
-      [`&.${checkboxClasses.focusVisible}`]: theme.focus.default,
+      flexShrink: 0,
     },
+    theme.focus.default,
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
@@ -94,10 +95,14 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     checkedIcon = defaultCheckedIcon,
     className,
     component,
+    components = {},
+    componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
+    id,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
+    name,
     onBlur,
     onChange,
     onFocus,
@@ -139,18 +144,27 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const Root = components.Root ?? CheckboxRoot;
+  const Input = components.Input ?? CheckboxInput;
+
   return (
-    <CheckboxRoot
+    <Root
       ref={ref}
       {...otherProps}
       as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
     >
-      <CheckboxInput ownerState={ownerState} {...getInputProps()} className={clsx(classes.input)} />
+      <Input
+        ownerState={ownerState}
+        {...getInputProps(componentsProps.input)}
+        id={id}
+        name={name}
+        className={clsx(classes.input, componentsProps.input?.className)}
+      />
       {indeterminate && !checked && indeterminateIcon}
       {checked && checkedIcon}
-    </CheckboxRoot>
+    </Root>
   );
 }) as OverridableComponent<CheckboxTypeMap>;
 
@@ -190,6 +204,23 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
    * The default checked state. Use when the component is not controlled.
    */
   defaultChecked: PropTypes.bool,
@@ -197,6 +228,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
   /**
    * If `true`, the component appears indeterminate.
    * This does not set the native input element to indeterminate due
@@ -210,6 +245,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon: PropTypes.node,
+  /**
+   * The `name` attribute of the input.
+   */
+  name: PropTypes.string,
   /**
    * @ignore
    */

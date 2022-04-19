@@ -118,6 +118,10 @@
 <Box component="div" sx={{ whiteSpace: 'normal' }}>
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 </Box>
+</Box>
+<Box component="div" sx={{ whiteSpace: 'normal' }}>
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+</Box>
 ```
 
 ## API

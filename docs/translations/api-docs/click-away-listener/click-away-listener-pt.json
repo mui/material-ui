@@ -1,7 +1,7 @@
 {
   "componentDescription": "Ouça eventos de clique que ocorram em algum lugar no documento, fora do próprio elemento.\nPor exemplo, se você precisar ocultar um menu quando as pessoas clicarem em qualquer outro lugar da sua página.",
   "propDescriptions": {
-    "children": "O elemento embrulhado.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Precisa ser capaz de segurar uma ref</a>.",
+    "children": "The wrapped element.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "disableReactTree": "Se <code>true</code>, a árvore React é ignorada e apenas a árvore DOM é considerada. Essa propriedade muda a forma como os elementos portáteis são tratados.",
     "mouseEvent": "O evento do mouse a escutar. Você pode desativar o ouvinte fornecendo <code>false</code>.",
     "onClickAway": "Callback fired when a &quot;click away&quot; event is detected.",

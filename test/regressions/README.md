@@ -41,7 +41,7 @@ It allows catching regressions like this one:
 
 Screenshots are saved in `./screenshots/$BROWSER_NAME/`.
 Each test tests only a single fixture.
-A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('Unstable_TrapFocus/OpenTrapFocus')`.
+A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('TrapFocus/OpenTrapFocus')`.
 
 ## Commands
 

@@ -46,7 +46,7 @@ export default function JoySheet() {
   return (
     <CssVarsProvider>
       <GlobalStyles
-        styles={{ body: { backgroundColor: 'var(--joy-palette-background-level2)' } }}
+        styles={{ body: { backgroundColor: 'var(--joy-palette-background-level1)' } }}
       />
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3, pb: 4 }}>

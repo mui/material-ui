@@ -17,6 +17,11 @@ describe('getUrlProduct', () => {
     expect(getUrlProduct('/zh/joy-ui/react-button/')).to.equal('joy-ui');
   });
 
+  it('get system', () => {
+    expect(getUrlProduct('/system/')).to.equal('system');
+    expect(getUrlProduct('/zh/system/basics/')).to.equal('system');
+  });
+
   it('get data-grid', () => {
     expect(getUrlProduct('/x/react-data-grid/components')).to.equal('data-grid');
     expect(getUrlProduct('/zh/x/react-data-grid/components')).to.equal('data-grid');

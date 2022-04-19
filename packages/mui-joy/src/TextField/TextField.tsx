@@ -87,8 +87,9 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     size = 'md',
     variant = 'outlined',
     fullWidth = false,
-    startAdornment,
-    endAdornment,
+    type = 'text',
+    startDecorator,
+    endDecorator,
     ...other
   } = props;
 
@@ -99,14 +100,15 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   const ownerState = {
     label,
     helperText,
-    startAdornment,
-    endAdornment,
+    startDecorator,
+    endDecorator,
     disabled,
     error,
     required,
     size,
     variant,
     fullWidth,
+    type,
     ...props,
   };
 
@@ -139,6 +141,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       <Input
         {...componentsProps.input}
         id={id}
+        name={name}
+        type={type}
         inputRef={inputRef}
         aria-describedby={helperTextId}
         autoComplete={autoComplete}
@@ -156,8 +160,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        startAdornment={startAdornment}
-        endAdornment={endAdornment}
+        startDecorator={startDecorator}
+        endDecorator={endDecorator}
       />
       {helperText && (
         <FormHelperText
@@ -199,6 +203,7 @@ TextField.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -239,7 +244,7 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Trailing adornment for this input.
    */
-  endAdornment: PropTypes.node,
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -308,7 +313,12 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Leading adornment for this input.
    */
-  startAdornment: PropTypes.node,
+  startDecorator: PropTypes.node,
+  /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * @default 'text'
+   */
+  type: PropTypes.string,
   /**
    * The value of the `input` element, required for a controlled component.
    */

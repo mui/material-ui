@@ -17,7 +17,7 @@ const theme = createTheme({
 export default function DefaultProps() {
   return (
     <ThemeProvider theme={theme}>
-      <Button>Change default props</Button>
+      <Button>This button has disabled ripples.</Button>
     </ThemeProvider>
   );
 }

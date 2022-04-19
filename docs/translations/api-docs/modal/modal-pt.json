@@ -1,9 +1,9 @@
 {
-  "componentDescription": "Modal is a lower-level construct that is leveraged by the following components:\n\n- [Dialog](/api/dialog/)\n- [Drawer](/api/drawer/)\n- [Menu](/api/menu/)\n- [Popover](/api/popover/)\n\nIf you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component\nrather than directly using Modal.\n\nThis component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).",
+  "componentDescription": "Modal is a lower-level construct that is leveraged by the following components:\n\n- [Dialog](/material-ui/api/dialog/)\n- [Drawer](/material-ui/api/drawer/)\n- [Menu](/material-ui/api/menu/)\n- [Popover](/material-ui/api/popover/)\n\nIf you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/api/dialog/) component\nrather than directly using Modal.\n\nThis component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).",
   "propDescriptions": {
     "BackdropComponent": "A backdrop component. This prop enables custom backdrop rendering.",
-    "BackdropProps": "Props applied to the <a href=\"/api/backdrop/\"><code>Backdrop</code></a> element.",
-    "children": "A single child content element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+    "BackdropProps": "Props applied to the <a href=\"/material-ui/api/backdrop/\"><code>Backdrop</code></a> element.",
+    "children": "A single child content element.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
     "closeAfterTransition": "When set to true the Modal waits until a nested Transition is completed before closing.",
     "components": "The components used for each slot inside the Modal. Either a string to use a HTML element or a component.",

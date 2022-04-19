@@ -21,6 +21,18 @@ describe('<Checkbox />', () => {
     expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
   });
 
+  it('renders a `role="checkbox"` with the id', () => {
+    const { getByRole } = render(<Checkbox id="foo" />);
+
+    expect(getByRole('checkbox')).to.have.property('id', 'foo');
+  });
+
+  it('renders a `role="checkbox"` with the name', () => {
+    const { getByRole } = render(<Checkbox name="bar" />);
+
+    expect(getByRole('checkbox')).to.have.property('name', 'bar');
+  });
+
   it('renders a `role="checkbox"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Checkbox />);
 
