@@ -23,10 +23,12 @@ To make the switch accessible, you should ensure that the corresponding label re
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 ```
 
-The `SwitchUnstyled` component provides default components and assigns respective CSS classes for styling.
+The `SwitchUnstyled` component provides three default components and assigns respective CSS classes for styling.
 
 There are three components you can override with the `components` prop: `Root`, `Thumb` and `Input`.
 You can set the props for each one using the `componentsProps` object.
+
+These 
 
 {{"demo": "UnstyledSwitches.js"}}
 
