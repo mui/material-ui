@@ -70,7 +70,7 @@ const AvatarImg = styled('img', {
   name: 'MuiAvatar',
   slot: 'Img',
   overridesResolver: (props, styles) => styles.img,
-})<{ ownerState: AvatarProps }>({
+})<{ ownerState: AvatarProps }>(({ ownerState }) => ({
   width: '100%',
   height: '100%',
   textAlign: 'center',
@@ -80,8 +80,11 @@ const AvatarImg = styled('img', {
   color: 'transparent',
   // Hide the image broken icon, only works on Chrome.
   textIndent: 10000,
-  borderRadius: 'var(--Avatar-radius, 50%)',
-});
+  borderRadius:
+    ownerState.variant === 'outlined'
+      ? `calc(var(--Avatar-radius, 50%) - var(--variant-outlinedBorderWidth, 0px))`
+      : 'var(--Avatar-radius, 50%)',
+}));
 
 const AvatarFallback = styled(Person, {
   name: 'MuiAvatar',
