@@ -97,11 +97,20 @@ const LinkRoot = styled('a', {
             marginInline: '-0.25em',
           }
         : {
-            color: theme.vars.palette[ownerState.color!]?.textColor,
+            color:
+              ownerState.color === 'context'
+                ? 'inherit'
+                : theme.vars.palette[ownerState.color!]?.textColor,
             cursor: 'pointer',
             '&.Mui-disabled': {
               pointerEvents: 'none',
-              color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+              ...(ownerState.color === 'context'
+                ? {
+                    opacity: 0.6,
+                  }
+                : {
+                    color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+                  }),
             },
           }),
       userSelect: 'none',
@@ -110,10 +119,6 @@ const LinkRoot = styled('a', {
       '&::-moz-focus-inner': {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
-      ...(ownerState.variant &&
-        ownerState.color !== 'context' && {
-          color: theme.vars.palette[ownerState.color!]?.textColor,
-        }),
       ...(ownerState.overlay && {
         position: 'initial',
         '&::after': {
