@@ -224,7 +224,7 @@ describe('createTheme', () => {
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });
 
-  it('should apply the correct styles if theme values are 0', function test() {
+  it('should apply the correct styles via sx prop if theme values are 0', function test() {
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
     if (isJSDOM) {
