@@ -4,11 +4,11 @@
 
 ## Manual installation
 
-One quick option is to use [CRA (create react app)](https://create-react-app.dev/docs/getting-started) to help you set up React and the development server. 
+One quick option is to use [CRA (create react app)](https://create-react-app.dev/docs/getting-started) to help you set up React and the development server.
 
 ### 1. Creating a project
 
-We recommend using `npm` or `yarn`. Open the terminal and navigate to the directory that you want to create the project, then follow the commands below. 
+We recommend using `npm` or `yarn`. Open the terminal and navigate to the directory that you want to create the project, then follow the commands below.
 
 #### npm
 
@@ -36,10 +36,7 @@ Open `src/App.js` and replace with this snippet.
 import { CssVarsProvider } from '@mui/joy/styles';
 
 function App() {
-  return (
-    <CssVarsProvider>
-    </CssVarsProvider>
-  );
+  return <CssVarsProvider></CssVarsProvider>;
 }
 
 export default App;
