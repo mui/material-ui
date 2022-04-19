@@ -37,7 +37,9 @@ function InnerComponent() {
   return <div className={classes.test2}>Inner Test</div>;
 }
 export default function ComponentUsingStyles(props) {
-  const { classes, cx } = useStyles();
+  const { classes, cx } = useStyles(props, {
+    props: props
+  });
   return <>
     <div className={classes.test}>Test<InnerComponent/></div>
     <div className={cx(classes.test, classes.qualifier)}>Qualifier Test</div>

@@ -306,9 +306,15 @@ export default function transformer(file, api, options) {
         .forEach((hookCall) => {
           if (hookCall.node.arguments.length === 1) {
             const hookArg = hookCall.node.arguments[0];
-            const hookArgPropsMinusClasses = [];
-            let classesProp = null;
-            if (hookArg.properties) {
+            if (hookArg.type === 'Identifier') {
+              const secondArg = j.objectExpression([]);
+              secondArg.properties.push(
+                j.objectProperty(j.identifier('props'), j.identifier(hookArg.name)),
+              );
+              hookCall.node.arguments.push(secondArg);
+            } else if (hookArg.properties) {
+              const hookArgPropsMinusClasses = [];
+              let classesProp = null;
               hookArg.properties.forEach((hookProp) => {
                 if (hookProp.key.name === 'classes') {
                   classesProp = hookProp;
