@@ -5,8 +5,8 @@ import { ColorPaletteProp, VariantProp } from '../styles/types';
 
 export type ChipDeleteSlot = 'root';
 
-export interface ChipPropsColorOverrides {}
-export interface ChipPropsVariantOverrides {}
+export interface ChipDeletePropsColorOverrides {}
+export interface ChipDeletePropsVariantOverrides {}
 
 export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
@@ -14,7 +14,10 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, ChipPropsColorOverrides>;
+    color?: OverridableStringUnion<
+      Exclude<ColorPaletteProp, 'context'>,
+      ChipDeletePropsColorOverrides
+    >;
     /**
      * If provided, it will replace the default icon.
      */
@@ -27,7 +30,7 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
      * The variant to use.
      * @default 'contained'
      */
-    variant?: OverridableStringUnion<VariantProp, ChipPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, ChipDeletePropsVariantOverrides>;
   };
   defaultComponent: D;
 }
