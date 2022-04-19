@@ -15,6 +15,8 @@
 
 <div align="center">
 
+**[Stable channel v5](https://mui.com/)**
+
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
 [![npm next package](https://img.shields.io/npm/v/@mui/material/next.svg)](https://www.npmjs.com/package/@mui/material)
@@ -34,8 +36,6 @@
 ### Material UI
 
 Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
-
-**[Stable channel v5](https://mui.com/)**
 
 ```sh
 // with npm
