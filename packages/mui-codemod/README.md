@@ -602,33 +602,57 @@ You can find more details about this breaking change in [the migration guide](ht
 Migrate JSS styling with `makeStyles` or `withStyles` to the corresponding `tss-react` API.
 
 ```diff
-import * as React from 'react';
--import makeStyles from '@material-ui/styles/makeStyles';
+-import clsx from 'clsx';
+-import {makeStyles, createStyles} from '@material-ui/core/styles';
 +import { makeStyles } from 'tss-react/mui';
 
--const useStyles = makeStyles((theme) => ({
-+const useStyles = makeStyles<void, "child">()((theme, _params, classes) => ({
-  parent: {
-    padding: 30,
+-const useStyles = makeStyles((theme) => createStyles<
+-  'root' | 'small' | 'child', {color: 'primary' | 'secondary', padding: number}
+->
+-({
+-  root: ({color, padding}) => ({
++const useStyles = makeStyles<{color: 'primary' | 'secondary', padding: number}, 'child' | 'small'>({name: 'App'})((theme, { color, padding }, classes) => ({
++  root: {
+     padding: padding,
 -    '&:hover $child': {
 +    [`&:hover .${classes.child}`]: {
-      backgroundColor: 'red',
-    },
-  },
-  child: {
-    backgroundColor: 'blue',
-  },
-}));
+       backgroundColor: theme.palette[color].main,
+     }
+-  }),
++  },
+   small: {},
+   child: {
+     border: '1px solid black',
+     height: 50,
+-    '&$small': {
++    [`&.${classes.small}`]: {
+       height: 30
+     }
+   }
+-}), {name: 'App'});
++}));
 
-function App() {
--  const classes = useStyles();
-+  const { classes } = useStyles();
+ function App({classes: classesProp}: {classes?: any}) {
+-  const classes = useStyles({color: 'primary', padding: 30, classes: classesProp});
++  const { classes, cx } = useStyles({
++    color: 'primary',
++    padding: 30
++  }, {
++    props: {
++      classes: classesProp
++    }
++  });
 
-  return (
-    <div className={classes.parent}>
-      <div className={classes.children}>
-        Background turns red when the mouse hovers over the parent
-      </div>
+   return (
+     <div className={classes.root}>
+       <div className={classes.child}>
+         The Background take the primary theme color when the mouse hovers the parent.
+       </div>
+-      <div className={clsx(classes.child, classes.small)}>
++      <div className={cx(classes.child, classes.small)}>
+         The Background take the primary theme color when the mouse hovers the parent.
+         I am smaller than the other child.
+       </div>
     </div>
   );
 }
@@ -640,7 +664,7 @@ export default App;
 npx @mui/codemod v5.0.0/jss-to-tss-react <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://mui.com/guides/migration-v4/#2-use-tss-react).
+You can find more details about migrating from JSS to tss-react in [the migration guide](https://mui.com/guides/migration-v4/#2-use-tss-react).
 
 #### `link-underline-hover`
 
