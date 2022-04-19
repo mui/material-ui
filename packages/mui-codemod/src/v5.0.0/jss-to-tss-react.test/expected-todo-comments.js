@@ -13,12 +13,24 @@ const useStyles = makeStyles()((_theme, _params, classes) => ({
   qualifier: {},
 }));
 
-// TODO jss-to-tss-react codemod: Unable to handle style definition reliably.
+// TODO jss-to-tss-react codemod: Unable to handle style definition reliably. Unsupported arrow function syntax.
+// Arrow function has parameter type of Identifier instead of ObjectPattern (e.g. `(props) => ({...})` instead of `({color}) => ({...})`).
 const useStyles2 = makeStyles()({
   test2: props => ({
     backgroundColor: "blue",
     color: "lime"
   })
+});
+
+// TODO jss-to-tss-react codemod: Unable to handle style definition reliably. Unsupported arrow function syntax.
+// Arrow function has body type of BlockStatement instead of ObjectExpression.
+const useStyles3 = makeStyles()({
+  test3: props => {
+    return {
+      backgroundColor: "blue",
+      color: "lime"
+    };
+  }
 });
 
 function InnerComponent() {

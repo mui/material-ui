@@ -93,12 +93,25 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
             });
             prop.value = prop.value.body;
           } else {
+            let extraComment = `Unexpected value type of ${prop.value.type}.`;
+            if (prop.value.type === 'ArrowFunctionExpression') {
+              if (prop.value.body.type === 'ObjectExpression') {
+                let example = '';
+                if (prop.value.params[0].type === 'Identifier') {
+                  example = ' (e.g. `(props) => ({...})` instead of `({color}) => ({...})`)';
+                }
+                extraComment = ` Arrow function has parameter type of ${prop.value.params[0].type} instead of ObjectPattern${example}.`;
+              } else {
+                extraComment = ` Arrow function has body type of ${prop.value.body.type} instead of ObjectExpression.`;
+              }
+            }
             comments.push(
               j.commentLine(
-                ' TODO jss-to-tss-react codemod: Unable to handle style definition reliably.',
+                ` TODO jss-to-tss-react codemod: Unable to handle style definition reliably. Unsupported arrow function syntax.`,
                 true,
               ),
             );
+            comments.push(j.commentLine(extraComment, true));
             return;
           }
         }

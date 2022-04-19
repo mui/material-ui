@@ -20,6 +20,15 @@ const useStyles2 = makeStyles({
   })
 });
 
+const useStyles3 = makeStyles({
+  test3: props => {
+    return {
+      backgroundColor: "blue",
+      color: "lime"
+    };
+  }
+});
+
 function InnerComponent() {
   const classes = useStyles2();
   return <div className={classes.test2}>Inner Test</div>;
