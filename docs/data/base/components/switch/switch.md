@@ -9,11 +9,9 @@ packageName: '@mui/base'
 
 # Unstyled switch
 
-<p class="description">The `SwitchUnstyled` component lets your users toggle the state of a single setting.</p>
+<p class="description">The `SwitchUnstyled` component provides users with a toggle button for choosing one from a predefined set of options.</p>
 
 Switches can be used on either desktop or mobile, but they are the preferred method for toggling on mobile UIs.
-
-To make the switch accessible, you should ensure that the corresponding label reflects the current state of the switch.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -23,14 +21,21 @@ To make the switch accessible, you should ensure that the corresponding label re
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 ```
 
-The `SwitchUnstyled` component provides three default components and assigns respective CSS classes for styling.
+## Basic switch
 
-There are three components you can override with the `components` prop: `Root`, `Thumb` and `Input`.
-You can set the props for each one using the `componentsProps` object.
+The `SwitchUnstyled` component is composed of three interior components—`Root`, `Thumb` and `Input`—and it assigns CSS classes for styling each piece, respectively.
 
-These 
+You can set the props for these interior components using the `componentsProps` object.
+
+You can also override them entirely with the `components` prop.
+
+The following demo shows how to assign styles and props to the interior components of the `SwitchUnstyled` component:
 
 {{"demo": "UnstyledSwitches.js"}}
+
+## Accessibility
+
+To make the `SwtichUnstyled` component accessible, you should ensure that the corresponding labels reflect the current state of the switch.
 
 ## The useSwitch hook
 
