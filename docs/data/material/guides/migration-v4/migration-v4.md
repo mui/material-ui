@@ -2856,7 +2856,8 @@ the transformation would look like this:
  export default App;
 ```
 
-Now, a comprehensive example using the `$` syntax, `useStyles()` parameters, merging in classes from a `classes` prop,
+Now, a comprehensive example using the `$` syntax, `useStyles()` parameters,
+merging in classes from a `classes` prop ([see doc](https://docs.tss-react.dev/your-own-classes-prop)),
 and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
 
 ```diff
@@ -2920,7 +2921,7 @@ export default App;
 
 After running the codemod, search your code for "TODO jss-to-tss-react codemod" to find cases that
 the codemod could not handle reliably; though there may be cases beyond those with TODO comments that
-are not handled fully by the codemod -- particularly if parts of the styles are returned by functions.
+are not handled fully by the codemod particularly if parts of the styles are returned by functions.
 If the styles buried within a function use the `$` syntax or `useStyles` params, then those styles won't
 be migrated appropriately.
 
@@ -2967,6 +2968,15 @@ Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com
 
  export default MyCustomButton;
 ```
+
+#### Theme style overrides
+
+[Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) is supported out of the box by TSS.
+You just need to follow [the related section of the migration guide](https://github.com/mui/material-ui/blob/bbdf5080fc9bd9d979d657a3cb237d88b27035d9/docs/data/material/guides/migration-v4/migration-v4.md?plain=1#L481-L500) and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
+
+In MUI v5 however, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
+By default TSS is only able to provide
+the theme. If you want to provide the props and the `ownerState` [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
 
 **Note:** `tss-react` is **not maintained** by MUI.
 If you have any question about how to setup SSR (Next.js) or if you are wondering
