@@ -27,7 +27,7 @@ The `SwitchUnstyled` component is composed of three interior components—`Root`
 
 You can set the props for these interior components using the `componentsProps` object.
 
-You can also override them entirely with the `components` prop.
+You can also override them entirely with the `components` prop, to replace them with other HTML elements or custom components.
 
 The following demo shows how to assign styles and props to the interior components of the `SwitchUnstyled` component:
 
