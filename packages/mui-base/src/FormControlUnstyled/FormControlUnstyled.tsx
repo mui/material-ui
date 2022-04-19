@@ -3,28 +3,20 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useControlled as useControlled } from '@mui/utils';
-import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlContext';
+import FormControlUnstyledContext from './FormControlUnstyledContext';
 import appendOwnerState from '../utils/appendOwnerState';
 import classes from './formControlUnstyledClasses';
-import FormControlUnstyledProps, {
+import {
+  FormControlUnstyledProps,
   NativeFormControlElement,
-  FormControlUnstyledOwnProps,
   FormControlUnstyledTypeMap,
-} from './FormControlUnstyledProps';
+  FormControlUnstyledOwnerState,
+  FormControlUnstyledState,
+} from './FormControlUnstyled.types';
 
 function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
 }
-
-type NonOptionalOwnerState = 'disabled' | 'error' | 'focused' | 'required';
-
-export type FormControlUnstyledOwnerState = Omit<
-  FormControlUnstyledOwnProps,
-  NonOptionalOwnerState
-> &
-  Required<Pick<FormControlUnstyledProps, NonOptionalOwnerState>> & {
-    filled: boolean;
-  };
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.
@@ -70,7 +62,6 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     componentsProps = {},
     disabled = false,
     error = false,
-    focused: visuallyFocused,
     onChange,
     required = false,
     value: incomingValue,
@@ -86,12 +77,10 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
 
   const filled = hasValue(value);
 
-  const [focusedState, setFocused] = React.useState(false);
-  if (disabled && focusedState) {
+  const [focused, setFocused] = React.useState(false);
+  if (disabled && focused) {
     setFocused(false);
   }
-
-  const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
   const ownerState: FormControlUnstyledOwnerState = {
     ...props,
@@ -101,27 +90,6 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     focused,
     required,
   };
-
-  let registerEffect = () => {};
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const registeredInput = React.useRef(false);
-    registerEffect = () => {
-      if (registeredInput.current) {
-        console.error(
-          [
-            'MUI: There are multiple `Input` components inside a FormControl.',
-            'This creates visual inconsistencies, only use one `Input`.',
-          ].join('\n'),
-        );
-      }
-
-      registeredInput.current = true;
-      return () => {
-        registeredInput.current = false;
-      };
-    };
-  }
 
   const handleChange = (event: React.ChangeEvent<NativeFormControlElement>) => {
     setValue(event.target.value);
@@ -140,13 +108,20 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     onFocus: () => {
       setFocused(true);
     },
-    registerEffect,
     required,
     value: value ?? '',
   };
 
   const Root = component ?? components.Root ?? 'div';
   const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
+
+  const renderChildren = () => {
+    if (typeof children === 'function') {
+      return children(childContext);
+    }
+
+    return children;
+  };
 
   return (
     <FormControlUnstyledContext.Provider value={childContext}>
@@ -158,9 +133,13 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
           className,
           rootProps?.className,
           disabled && classes.disabled,
+          error && classes.error,
+          filled && classes.filled,
+          focused && classes.focused,
+          required && classes.required,
         )}
       >
-        {children}
+        {renderChildren()}
       </Root>
     </FormControlUnstyledContext.Provider>
   );
@@ -174,7 +153,10 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The content of the component.
    */
-  children: PropTypes.node,
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
   /**
    * Class name applied to the root element.
    */
@@ -212,11 +194,6 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   error: PropTypes.bool,
-  /**
-   * If `true`, the component is displayed in focused state.
-   * @default false
-   */
-  focused: PropTypes.bool,
   /**
    * @ignore
    */
