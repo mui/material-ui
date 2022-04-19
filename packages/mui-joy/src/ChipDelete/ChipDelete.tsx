@@ -116,7 +116,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
+   * If provided, it will replace the default icon.
    */
   children: PropTypes.node,
   /**
