@@ -224,7 +224,7 @@ describe('createTheme', () => {
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });
 
-  it('should apply the correct styles via sx prop if theme values are 0', function test() {
+  it('should apply the correct borderRadius styles via sx prop if theme values are 0', function test() {
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
     if (isJSDOM) {
@@ -235,12 +235,11 @@ describe('createTheme', () => {
       shape: {
         borderRadius: 0,
       },
-      spacing: 0,
     });
 
     const { container } = render(
       <ThemeProvider theme={theme}>
-        <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4, pt: 2 }} />
+        <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
       </ThemeProvider>,
     );
 
@@ -249,9 +248,6 @@ describe('createTheme', () => {
       borderBottomLeftRadius: '0px',
       borderTopRightRadius: '0px',
       borderBottomRightRadius: '0px',
-    });
-    expect(container.firstChild).toHaveComputedStyle({
-      paddingTop: '0px',
     });
   });
 });
