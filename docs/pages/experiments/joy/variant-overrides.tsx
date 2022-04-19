@@ -326,6 +326,9 @@ export default function JoyVariant() {
             helperText="Helper text"
           />
           <Link component="button">Link (default)</Link>
+          <Link component="button" disabled>
+            Link (default)
+          </Link>
           <Link component="button" variant="contained">
             Link (contained)
           </Link>
