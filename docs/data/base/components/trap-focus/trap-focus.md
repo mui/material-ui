@@ -22,7 +22,7 @@ import TrapFocus from '@mui/base/TrapFocus';
 
 ## Basic trap focus
 
-The following demo shows a `Button` that opens a `Box` component nested inside of a `TrapFocus`. As long the `Box` is open, the user's keyboard cannot interact with the rest of the app:
+The following demo shows a `Button` that opens a `Box` component nested inside of a `TrapFocus`. As long as the `Box` is open, the user's keyboard cannot interact with the rest of the app:
 
 {{"demo": "BasicTrapFocus.js"}}
 
