@@ -2,15 +2,13 @@
 
 <p class="description">3 easy steps to get started with Joy UI, the React components for building your design system.</p>
 
-## Manual installation
+## 1. Creating a project
 
-One quick option is to use [CRA (create react app)](https://create-react-app.dev/docs/getting-started) to help you set up React and the development server.
+We recommend using `npm` or `yarn`.
 
-### 1. Creating a project
+Open the terminal on your machine and navigate to the directory that you want to save the project, then follow the commands below.
 
-We recommend using `npm` or `yarn`. Open the terminal and navigate to the directory that you want to create the project, then follow the commands below.
-
-#### npm
+### npm
 
 ```sh
 npm init react-app spark-joy
@@ -19,7 +17,7 @@ npm install @mui/joy @emotion/react @emotion/styled
 npm start
 ```
 
-#### Yarn
+### Yarn
 
 ```sh
 yarn create react-app spark-joy
@@ -28,21 +26,21 @@ yarn add @mui/joy @emotion/react @emotion/styled
 yarn start
 ```
 
-### 2. Setup the Provider
+## 2. Setup the Provider
 
-Open `src/App.js` and replace with this snippet.
+Open `src/App.js` and replace with this snippet. You should see the text `Hello from Joy` on your browser.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
 
 function App() {
-  return <CssVarsProvider></CssVarsProvider>;
+  return <CssVarsProvider>Hello from Joy</CssVarsProvider>;
 }
 
 export default App;
 ```
 
-### 3. Render a component
+## 3. Render a component
 
 All Joy components need to render under the `CssVarsProvider`. Let's render the first component with a button.
 
