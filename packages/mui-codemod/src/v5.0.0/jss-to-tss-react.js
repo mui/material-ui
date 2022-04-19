@@ -1,6 +1,15 @@
 const ruleEndRegEx = /[^a-zA-Z0-9_]+/;
 
-function transformNestedKeys(j, propValueNode, ruleRegEx, nestedKeys) {
+function transformNestedKeys(j, comments, propValueNode, ruleRegEx, nestedKeys) {
+  if (propValueNode.type !== 'ObjectExpression') {
+    comments.push(
+      j.commentLine(
+        ' TODO jss-to-tss-react codemod: Unable to handle style definition reliably.',
+        true,
+      ),
+    );
+    return;
+  }
   propValueNode.properties.forEach((prop) => {
     if (prop.value?.type === 'ObjectExpression') {
       if (typeof prop.key.value === 'string') {
@@ -35,12 +44,13 @@ function transformNestedKeys(j, propValueNode, ruleRegEx, nestedKeys) {
           prop.computed = true;
         }
       }
-      transformNestedKeys(j, prop.value, ruleRegEx, nestedKeys);
+      transformNestedKeys(j, comments, prop.value, ruleRegEx, nestedKeys);
     }
   });
 }
-function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExpression) {
+function transformStylesExpression(j, comments, stylesExpression, nestedKeys, setStylesExpression) {
   const ruleNames = [];
+  const paramNames = [];
   let objectExpression;
   if (stylesExpression.type === 'ObjectExpression') {
     objectExpression = stylesExpression;
@@ -71,10 +81,32 @@ function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExp
     const ruleRegEx = new RegExp(ruleRegExString, 'g');
     objectExpression.properties.forEach((prop) => {
       if (prop.value) {
-        transformNestedKeys(j, prop.value, ruleRegEx, nestedKeys);
+        if (prop.value.type !== 'ObjectExpression') {
+          if (
+            prop.value.type === 'ArrowFunctionExpression' &&
+            prop.value.body.type === 'ObjectExpression'
+          ) {
+            prop.value.params[0].properties.forEach((property) => {
+              const name = property.key.name;
+              if (!paramNames.includes(name)) {
+                paramNames.push(name);
+              }
+            });
+            prop.value = prop.value.body;
+          } else {
+            comments.push(
+              j.commentLine(
+                ' TODO jss-to-tss-react codemod: Unable to handle style definition reliably.',
+                true,
+              ),
+            );
+            return;
+          }
+        }
+        transformNestedKeys(j, comments, prop.value, ruleRegEx, nestedKeys);
       }
     });
-    if (nestedKeys.length > 0) {
+    if (paramNames.length > 0 || nestedKeys.length > 0) {
       let arrowFunction;
       if (stylesExpression.type === 'ArrowFunctionExpression') {
         arrowFunction = stylesExpression;
@@ -85,8 +117,14 @@ function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExp
       if (arrowFunction.params.length === 0) {
         arrowFunction.params.push(j.identifier('_theme'));
       }
-      arrowFunction.params.push(j.identifier('_params'));
-      arrowFunction.params.push(j.identifier('classes'));
+      let paramsString = '_params';
+      if (paramNames.length > 0) {
+        paramsString = `{ ${paramNames.join(', ')} }`;
+      }
+      arrowFunction.params.push(j.identifier(paramsString));
+      if (nestedKeys.length > 0) {
+        arrowFunction.params.push(j.identifier('classes'));
+      }
       if (arrowFunction.body.type === 'ObjectExpression') {
         // In some cases, some needed parentheses were being lost without this.
         arrowFunction.body = j.parenthesizedExpression(objectExpression);
@@ -94,12 +132,23 @@ function transformStylesExpression(j, stylesExpression, nestedKeys, setStylesExp
     }
   }
 }
+
+function addComments(j, path, commentsToAdd) {
+  j(path)
+    .closest(j.VariableDeclaration)
+    .forEach((declaration) => {
+      const comments = (declaration.node.comments = declaration.node.comments || []);
+      comments.push(...commentsToAdd);
+    });
+}
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
 export default function transformer(file, api, options) {
   const j = api.jscodeshift;
+
   const root = j(file.source);
   const printOptions = options.printOptions || { quote: 'single' };
 
@@ -168,14 +217,6 @@ export default function transformer(file, api, options) {
     return file.source;
   }
   const isTypeScript = file.path.endsWith('.tsx') || file.path.endsWith('.ts');
-  /**
-   * Remove usages of createStyles
-   */
-  if (foundCreateStyles) {
-    root.find(j.CallExpression, { callee: { name: 'createStyles' } }).replaceWith((path) => {
-      return path.node.arguments[0];
-    });
-  }
   if (foundMakeStyles) {
     let clsxOrClassnamesName = null;
     root.find(j.ImportDeclaration).forEach((path) => {
@@ -196,19 +237,50 @@ export default function transformer(file, api, options) {
     root
       .find(j.CallExpression, { callee: { name: 'makeStyles' } })
       .forEach((path) => {
+        let paramsTypes = null;
+        if (foundCreateStyles) {
+          j(path)
+            .find(j.CallExpression, { callee: { name: 'createStyles' } })
+            .replaceWith((createStylesPath) => {
+              if (
+                isTypeScript &&
+                createStylesPath.node.typeParameters &&
+                createStylesPath.node.typeParameters.params.length > 1
+              ) {
+                paramsTypes = createStylesPath.node.typeParameters.params[1];
+              }
+              return createStylesPath.node.arguments[0];
+            });
+        }
         const nestedKeys = [];
         let options = null;
         if (path.node.arguments.length > 1) {
           options = path.node.arguments[1];
         }
         let stylesExpression = path.node.arguments[0];
-        transformStylesExpression(j, path.node.arguments[0], nestedKeys, (newStylesExpression) => {
-          stylesExpression = newStylesExpression;
-        });
+        const commentsToAdd = [];
+        transformStylesExpression(
+          j,
+          commentsToAdd,
+          path.node.arguments[0],
+          nestedKeys,
+          (newStylesExpression) => {
+            stylesExpression = newStylesExpression;
+          },
+        );
+        addComments(j, path, commentsToAdd);
         let makeStylesIdentifier = 'makeStyles';
-        if (isTypeScript && nestedKeys.length > 0) {
-          const nestedKeysUnion = nestedKeys.join("' | '");
-          makeStylesIdentifier += `<void, '${nestedKeysUnion}'>`;
+        if (isTypeScript && (nestedKeys.length > 0 || paramsTypes !== null)) {
+          let paramsTypeString = 'void';
+          if (paramsTypes !== null) {
+            paramsTypeString = j(paramsTypes).toSource(printOptions);
+          }
+          let nestedKeysString = '';
+          if (nestedKeys.length > 0) {
+            const nestedKeysUnion = nestedKeys.join("' | '");
+            nestedKeysString = `, '${nestedKeysUnion}'`;
+          }
+          makeStylesIdentifier += `<${paramsTypeString}${nestedKeysString}>`;
         }
         j(path).replaceWith(
           j.callExpression(
@@ -228,6 +300,35 @@ export default function transformer(file, api, options) {
     styleHooks.forEach((hookName) => {
       root
         .find(j.CallExpression, { callee: { name: hookName } })
+        .forEach((hookCall) => {
+          if (hookCall.node.arguments.length === 1) {
+            const hookArg = hookCall.node.arguments[0];
+            const hookArgPropsMinusClasses = [];
+            let classesProp = null;
+            if (hookArg.properties) {
+              hookArg.properties.forEach((hookProp) => {
+                if (hookProp.key.name === 'classes') {
+                  classesProp = hookProp;
+                } else {
+                  hookArgPropsMinusClasses.push(hookProp);
+                }
+              });
+              if (classesProp !== null) {
+                hookArg.properties = hookArgPropsMinusClasses;
+                const secondArg = j.objectExpression([]);
+                secondArg.properties.push(
+                  j.objectProperty(
+                    j.identifier('props'),
+                    j.objectExpression([
+                      j.objectProperty(j.identifier('classes'), classesProp.value),
+                    ]),
+                  ),
+                );
+                hookCall.node.arguments.push(secondArg);
+              }
+            }
+          }
+        })
         .closest(j.VariableDeclarator)
         .forEach((path) => {
           let foundClsxOrClassnamesUsage = false;
@@ -266,9 +367,11 @@ export default function transformer(file, api, options) {
           styleVariables.push(styles.name);
         } else {
           const nestedKeys = [];
-          transformStylesExpression(j, styles, nestedKeys, (newStylesExpression) => {
+          const commentsToAdd = [];
+          transformStylesExpression(j, commentsToAdd, styles, nestedKeys, (newStylesExpression) => {
             path.node.callee.arguments[0] = newStylesExpression;
           });
+          addComments(j, path, commentsToAdd);
         }
         const component = path.node.arguments[0];
         withStylesCall.arguments.unshift(component);
@@ -277,9 +380,17 @@ export default function transformer(file, api, options) {
     styleVariables.forEach((styleVar) => {
       root.find(j.VariableDeclarator, { id: { name: styleVar } }).forEach((path) => {
         const nestedKeys = [];
-        transformStylesExpression(j, path.node.init, nestedKeys, (newStylesExpression) => {
-          path.node.init = newStylesExpression;
-        });
+        const commentsToAdd = [];
+        transformStylesExpression(
+          j,
+          commentsToAdd,
+          path.node.init,
+          nestedKeys,
+          (newStylesExpression) => {
+            path.node.init = newStylesExpression;
+          },
+        );
+        addComments(j, path, commentsToAdd);
       });
     });
   }

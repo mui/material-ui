@@ -105,6 +105,23 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-typescript-docs-example.tsx');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+      it('transforms typescript makeStyles advanced example in docs with params to use tss-react', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-tss-react.test/actual-typescript-docs-example-params.tsx'),
+            path: require.resolve(
+              './jss-to-tss-react.test/actual-typescript-docs-example-params.tsx',
+            ),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read(
+          './jss-to-tss-react.test/expected-typescript-docs-example-params.tsx',
+        );
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
       it('transforms withStyles to use tss-react', () => {
         const actual = transform(
           {
