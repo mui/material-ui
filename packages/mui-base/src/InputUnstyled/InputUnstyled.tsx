@@ -143,6 +143,8 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   if (multiline) {
     const hasHostTextarea = isHostComponent(components.Textarea ?? 'textarea');
 
+    const { ownerState: ownerStateInputProps, ...inputPropsWithoutOwnerState } = inputProps;
+
     if (rows) {
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
@@ -151,28 +153,15 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
           );
         }
       }
-      inputProps = {
-        type: undefined,
-        minRows: hasHostTextarea ? undefined : rows,
-        maxRows: hasHostTextarea ? undefined : rows,
-        ...inputProps,
-        ...(hasHostTextarea && {
-          ownerState: undefined,
-        }),
-      };
-    } else {
-      inputProps = {
-        type: undefined,
-        maxRows: hasHostTextarea ? undefined : maxRows,
-        minRows: hasHostTextarea ? undefined : minRows,
-        ...inputProps,
-        ...(hasHostTextarea && {
-          ownerState: undefined,
-        }),
-      };
-    }
 
-    Input = components.Textarea ?? 'textarea';
+      inputProps = {
+        type: undefined,
+        ...(!hasHostTextarea && { minRows: rows ?? minRows, maxRows: rows ?? maxRows }),
+        ...(hasHostTextarea ? inputPropsWithoutOwnerState : inputProps),
+      };
+
+      Input = components.Textarea ?? 'textarea';
+    }
   }
 
   return (
