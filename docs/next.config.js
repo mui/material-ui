@@ -14,6 +14,9 @@ if (reactStrictMode) {
 }
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
+const isDeployPreview = process.env.PULL_REQUEST === 'true';
+// For crowdin PRs we want to build all locales for testing.
+const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 const staging =
   process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
@@ -172,6 +175,7 @@ module.exports = {
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     STAGING: staging,
+    BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
@@ -218,8 +222,8 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    // For crowdin PRs we want to build all locales for testing.
-    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy) {
+    // For this, consider only English language on deploy previews, except for crowdin PRs.
+    if (buildOnlyEnglishLocale) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
