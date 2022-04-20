@@ -153,15 +153,14 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
           );
         }
       }
-
-      inputProps = {
-        type: undefined,
-        ...(!hasHostTextarea && { minRows: rows ?? minRows, maxRows: rows ?? maxRows }),
-        ...(hasHostTextarea ? inputPropsWithoutOwnerState : inputProps),
-      };
-
-      Input = components.Textarea ?? 'textarea';
     }
+
+    inputProps = {
+      type: undefined,
+      ...(!hasHostTextarea && { minRows: rows ?? minRows, maxRows: rows ?? maxRows }),
+      ...(hasHostTextarea ? inputPropsWithoutOwnerState : inputProps),
+    };
+    Input = components.Textarea ?? 'textarea';
   }
 
   return (
