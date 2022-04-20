@@ -143,7 +143,9 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   useEnhancedEffect(() => {
     if (autoFocus) {
       if (listItemRef.current) {
-        listItemRef.current.focus({ preventScroll });
+        setTimeout(() => {
+          listItemRef.current.focus({ preventScroll });
+        }, 0);
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
           'MUI: Unable to set focus to a ListItemButton whose component has not been rendered.',
@@ -218,10 +220,6 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   dense: PropTypes.bool,
   /**
-   * Prevent scroll on autoFocus
-   */
-  preventScroll: PropTypes.bool, 
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -245,6 +243,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * Prevent scroll on autoFocus
+   */
+  preventScroll: PropTypes.bool, 
   /**
    * Use to apply selected styling.
    * @default false
