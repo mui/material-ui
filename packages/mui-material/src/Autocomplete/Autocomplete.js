@@ -538,7 +538,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
-            endAdornment: (
+            endAdornment: (hasClearIcon || hasPopupIcon) && (
               <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
                 {hasClearIcon ? (
                   <AutocompleteClearIndicator
