@@ -6,7 +6,7 @@ The Material UI design kits allow you to be more efficient by designing and deve
 
 - **For designers:** Save time getting the Material UI components all set up, leveraging the latest features from your favorite design tool.
 - **For product managers:** Quickly put together ideas and high-fidelity mockups/prototypes using components from your actual product.
-- **For developers:** Effortlessly communicate with designers using the same language around the Materia UI components props and variants.
+- **For developers:** Effortlessly communicate with designers using the same language around the Material UI component props and variants.
 
 Find them in your design tool of choice:
 

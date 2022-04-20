@@ -1,13 +1,15 @@
 # Related projects
 
-<p class="description">A carefully curated list of complementary to Material UI libraries that are worth having a look at.</p>
+<p class="description">A carefully curated list of third-party tools that expand or build on top of Material UI's component library.</p>
 
-Since Material UI is an open-ended UI library, we do our best to ensure that it works well with other libraries and tools.
-Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
+Developers from the MUI community have built some excellent supplemental tools for working with Material UI—this page gathers the best that we've seen.
+Do you have a project that you think should be featured here?
+We would love to see it.
+Feel free to submit a pull request!
 
 ## Design resources
 
-- [UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components. It renders the components in a web runtime and it uses the same React implementation as your production environment.
+- [UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components. It renders the components in a web runtime and uses the same React implementation as your production environment.
 
 ## IDE tools
 
@@ -24,11 +26,11 @@ Feel free to submit a pull request to add another project; it will be accepted i
 ### Image
 
 - [mui-image](https://mui-image.surge.sh): The only Material UI image component to satisfy the Material Design guidelines for loading images.
-- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like [Material's image loading pattern](https://material.io/archive/guidelines/patterns/loading-images.html#loading-images-usage) suggests.
+- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Adds a "materializing" effect to images so they fade in like [Material's image loading pattern](https://material.io/archive/guidelines/patterns/loading-images.html#loading-images-usage) suggests.
 
 ### Color picker
 
-- [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for Material UI. No dependencies, small, highly customizable and theming support!
+- [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for Material UI. No dependencies, small, highly customizable, and supports theming.
 
 ### Sparkline
 
@@ -36,9 +38,9 @@ Feel free to submit a pull request to add another project; it will be accepted i
 
 ## Blocks
 
-- [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of Material UI, such as a `Footer`, a `CookiesBanner`, a `BackToTop` button, and other highly customizable complex elements, to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites. This library solves this exact problem.
+- [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of Material UI, such as a `Footer`, a `CookiesBanner`, a `BackToTop` button, and other complex elements.
 
 ## Theming
 
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material UI applications by just selecting the colors and having a live preview.
-- [Material palette generator](https://material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you input.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material UI applications that features live previewing.
+- [Material palette generator](https://material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you choose.
