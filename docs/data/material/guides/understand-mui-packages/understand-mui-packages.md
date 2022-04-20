@@ -117,6 +117,6 @@ Using MUI system:
 
 > **Note**: To use it, you will have to install either `emotion` or `styled-components`, because the respective styled-engine package depends on it.
 
-<img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; margin: 40px auto;" />
+<img src="/static/images/packages/mui-system.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" />
 
 If you want to switch the styled-engine to use styled-components, [follow this guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
