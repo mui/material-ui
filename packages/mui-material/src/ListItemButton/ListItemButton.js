@@ -152,7 +152,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         );
       }
     }
-  }, [autoFocus]);
+  }, [autoFocus, preventScroll]);
 
   const ownerState = {
     ...props,
@@ -245,6 +245,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   focusVisibleClassName: PropTypes.string,
   /**
    * Prevent scroll on autoFocus
+   * @default false
    */
   preventScroll: PropTypes.bool,
   /**
