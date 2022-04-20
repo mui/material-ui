@@ -4,8 +4,6 @@
 
 ## 1. Create a project
 
-We recommend using `npm` or `yarn`.
-
 Open the terminal on your machine and navigate to the directory that you want to save the project, then follow the commands below.
 
 ### npm

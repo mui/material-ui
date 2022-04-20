@@ -18,7 +18,7 @@
 
 - A project which has Joy UI installed (follow the [quick start](/joy-ui/getting-started/quick-start/) if you don't have one).
 
-## Building the login UI
+## Building the login page
 
 ### 1. Use `Sheet` to create layout
 
@@ -79,16 +79,14 @@ import Typography from '@mui/joy/Typography';
 
 <Sheet
   variant="outlined"
-  sx={
-    {
-      // ...
-    }
-  }
+  sx={...}
 >
-  <Typography level="h4" component="h1">
-    <b>Welcome!</b>
-  </Typography>
-  <Typography level="body2">Sign in to continue</Typography>
+  <div>
+    <Typography level="h4" component="h1">
+      <b>Welcome!</b>
+    </Typography>
+    <Typography level="body2">Sign in to continue</Typography>
+  </div>
 </Sheet>;
 ```
 
@@ -113,8 +111,20 @@ import TextField from '@mui/joy/TextField';
   }
 >
   ...typography
-  <TextField label="Email" type="email" placeholder="johndoe@email.com" />
-  <TextField label="Password" type="password" placeholder="password" />
+  <TextField
+    // html input attribute
+    name="email"
+    type="email"
+    placeholder="johndoe@email.com"
+    // pass down to FormLabel as children
+    label="Email"
+  />
+  <TextField
+    name="password"
+    type="password"
+    placeholder="password"
+    label="Password"
+  />
 </Sheet>;
 ```
 
@@ -122,7 +132,7 @@ import TextField from '@mui/joy/TextField';
 
 We will render a log in button and a sign up link to navigate to a different page.
 
-The default `Button` comes with the `contained` variant and theme `primary` color. You can try changing the variant and color on the Button to the one you like!
+The default `Button` comes with the `contained` variant and theme `primary` color.
 
 The `Box` is used to create a flexbox container so that the Typography and the Link are aligned.
 
@@ -142,12 +152,24 @@ import Link from '@mui/joy/Link';
   }
 >
   ...typography and text-fields
-  <Button size="lg">Log in</Button>
-  <Typography endDecorator={<Link href="/sign-up">Sign up</Link>}>
+  <Button
+    sx={{
+      mt: 1, // margin top
+    }}
+  >
+    Log in
+  </Button>
+  <Typography
+    endDecorator={<Link href="/sign-up">Sign up</Link>}
+    fontSize="sm"
+    sx={{ alignSelf: 'center' }}
+  >
     Don't have an account?
   </Typography>
 </Sheet>;
 ```
+
+Try changing the button's variant between `'text' | 'outlined' | 'light' | 'contained'` and goes with the one that you like!
 
 <!-- TODO: Add last step image -->
 
@@ -156,7 +178,8 @@ import Link from '@mui/joy/Link';
 Joy provides an effortless way to toggle dark mode by calling `setMode` from the react hook `useColorScheme`. All you need to do is creating a component that use the hook and renders under the `CssVarsProvider`.
 
 ```jsx
-import { CssVarsProvider, styled, useColorScheme } from '@mui/joy/styles';
+import React from 'react';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 // ...other imports
 
 const ModeToggle = () => {
@@ -205,4 +228,5 @@ Congratulations! you have completed the turorial.
 ## What's next?
 
 - 💎 Check out all the features of Joy
-- 📖 Read the Joy's principles to understand at its core.
+- 💅 Learn more about customization
+- 📖 Read the Joy's principles to find out why it exists.
