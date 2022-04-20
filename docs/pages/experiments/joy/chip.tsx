@@ -8,6 +8,8 @@ import Checkbox from '@mui/joy/Checkbox';
 import Chip from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
 import Typography from '@mui/joy/Typography';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Radio from '@mui/joy/Radio';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import CheckIcon from '@mui/icons-material/Check';
 import Moon from '@mui/icons-material/DarkMode';
@@ -55,43 +57,107 @@ const props = {
 const FavoriteMovies = () => {
   const [selected, setSelected] = React.useState<string[]>([]);
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-      {[
-        'Star trek',
-        'Batman',
-        'Spider man',
-        'Eternals',
-        'Shang chi',
-        'Jungle cruise',
-        'No time to die',
-        'Thor',
-        'The hulk',
-      ].map((name) => {
-        const checked = selected.includes(name);
-        return (
-          <Chip
-            key={name}
-            variant={checked ? 'light' : 'text'}
-            color={checked ? 'primary' : 'neutral'}
-            startDecorator={checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />}
-            sx={{ '--Chip-radius': '4px' }}
-          >
-            <Checkbox
-              variant="outlined"
+    <Box>
+      <Typography level="h2" fontSize="lg" id="fav-movie" mb={2}>
+        Favorite Movies
+      </Typography>
+      <Box
+        role="group"
+        aria-labelledby="fav-movie"
+        sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}
+      >
+        {[
+          'Star trek',
+          'Batman',
+          'Spider man',
+          'Eternals',
+          'Shang chi',
+          'Jungle cruise',
+          'No time to die',
+          'Thor',
+          'The hulk',
+        ].map((name) => {
+          const checked = selected.includes(name);
+          return (
+            <Chip
+              key={name}
+              variant={checked ? 'light' : 'text'}
               color={checked ? 'primary' : 'neutral'}
-              disableIcon
-              overlay
-              label={name}
-              checked={checked}
-              onChange={(event) => {
-                setSelected((names) =>
-                  !event.target.checked ? names.filter((n) => n !== name) : [...names, name],
-                );
-              }}
-            />
-          </Chip>
-        );
-      })}
+              startDecorator={checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />}
+              sx={{ '--Chip-radius': '4px' }}
+            >
+              <Checkbox
+                variant="outlined"
+                color={checked ? 'primary' : 'neutral'}
+                disableIcon
+                overlay
+                label={name}
+                checked={checked}
+                onChange={(event) => {
+                  setSelected((names) =>
+                    !event.target.checked ? names.filter((n) => n !== name) : [...names, name],
+                  );
+                }}
+              />
+            </Chip>
+          );
+        })}
+      </Box>
+    </Box>
+  );
+};
+
+const BestMovie = () => {
+  const [selected, setSelected] = React.useState('');
+  return (
+    <Box>
+      <Typography level="h2" fontSize="lg" id="best-movie" mb={2}>
+        Best Movie
+      </Typography>
+      <RadioGroup
+        name="best-movie"
+        aria-labelledby="best-movie"
+        row
+        sx={{ flexWrap: 'wrap', gap: 1 }}
+      >
+        {[
+          'Star trek',
+          'Batman',
+          'Spider man',
+          'Eternals',
+          'Shang chi',
+          'Jungle cruise',
+          'No time to die',
+          'Thor',
+          'The hulk',
+        ].map((name) => {
+          const checked = selected === name;
+          return (
+            <Chip
+              key={name}
+              variant={checked ? 'light' : 'text'}
+              color={checked ? 'primary' : 'neutral'}
+              startDecorator={checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />}
+              sx={{ '--Chip-radius': '4px' }}
+            >
+              <Radio
+                variant="outlined"
+                color={checked ? 'primary' : 'neutral'}
+                disableIcon
+                overlay
+                label={name}
+                value={name}
+                checked={checked}
+                onChange={(event) => {
+                  if (event.target.checked) {
+                    setSelected(name);
+                  }
+                }}
+              />
+            </Chip>
+          );
+        })}
+      </RadioGroup>
     </Box>
   );
 };
@@ -278,6 +344,7 @@ export default function JoyChip() {
             </Chip>
           </Box>
           <FavoriteMovies />
+          <BestMovie />
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {/* Without decorators */}
