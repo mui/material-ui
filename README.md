@@ -70,7 +70,7 @@ yarn add @mui/base
 ```
 
 **Note**: MUI Base is still in alpha.
-We are adding new components regularly and you're welcome to contribute! 
+We are adding new components regularly and you're welcome to contribute!
 
 ### MUI System
 
