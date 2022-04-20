@@ -1,5 +1,5 @@
-import { SxProps } from '@mui/system';
 import * as React from 'react';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { TypographyTypeMap } from '../Typography';
@@ -40,7 +40,7 @@ declare const DialogTitle: OverridableComponent<DialogTitleTypeMap>;
 
 export type DialogTitleProps<
   D extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
-  P = {},
+  P = { component?: React.ElementType },
 > = OverrideProps<DialogTitleTypeMap<P, D>, D>;
 
 export default DialogTitle;
