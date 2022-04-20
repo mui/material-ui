@@ -3,13 +3,15 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface SwitchClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** State class applied to the internal `SwitchBase` component's `checked` class. */
+  /** State class applied to the root `checked` class. */
   checked: string;
-  /** State class applied to the internal SwitchBase component's disabled class. */
+  /** State class applied to the root disabled class. */
   disabled: string;
-  /** Styles applied to the internal SwitchBase component's input element. */
+  /** Styles applied to the action element. */
+  action: string;
+  /** Styles applied to the input element. */
   input: string;
-  /** Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
+  /** Styles Styles applied to the input element. */
   thumb: string;
   /** Styles applied to the track element. */
   track: string;
@@ -51,6 +53,7 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'root',
   'checked',
   'disabled',
+  'action',
   'input',
   'thumb',
   'track',
