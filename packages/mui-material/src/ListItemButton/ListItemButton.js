@@ -246,7 +246,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   /**
    * Prevent scroll on autoFocus
    */
-  preventScroll: PropTypes.bool, 
+  preventScroll: PropTypes.bool,
   /**
    * Use to apply selected styling.
    * @default false
