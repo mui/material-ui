@@ -106,7 +106,7 @@
     "react-is": "^17.0.2",
     "react-number-format": "^4.9.0",
     "react-router-dom": "^6.3.0",
-    "react-runner": "^1.0.1",
+    "react-runner": "^1.0.3",
     "react-spring": "^8.0.27",
     "react-swipeable-views": "^0.14.0",
     "react-transition-group": "^4.4.2",

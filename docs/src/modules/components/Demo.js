@@ -194,7 +194,7 @@ export default function Demo(props) {
   const showPreview =
     !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
 
-  const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
+  const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0);
 
   const demoId = useUniqueId('demo-');
   const demoSourceId = useUniqueId(`demoSource-`);
@@ -205,6 +205,15 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
 
   const [code, setCode] = React.useState(demoData.raw);
+  React.useEffect(() => {
+    setCode(demoData.raw);
+  }, [demoData.raw]);
+
+  const resetDemo = () => {
+    setDemoKey();
+    setCode(demoData.raw);
+  }
+
   const { element, error } = useRunner({ code, scope: demo.scope });
 
   const editorRef = React.useRef(null);
@@ -273,6 +282,7 @@ export default function Demo(props) {
             id={demoSourceId}
             code={showPreview && !codeOpen ? demo.jsxPreview : code}
             language={demoData.sourceLanguage}
+            spellCheck="false"
           />
         </div>
       </Collapse>

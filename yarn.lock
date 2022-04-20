@@ -13814,12 +13814,12 @@ react-router@6.3.0:
   dependencies:
     history "^5.2.0"
 
-react-runner@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-runner/-/react-runner-1.0.1.tgz#2d69656c2d9ab58ec15ff8ae6436a04dd49bd34b"
-  integrity sha512-gA/8ACiGJqqUNczzcowNgRfSTtPh/yuCoz/afiL3FZioaQsfxMYZK6yVEJ+b86hO9FcfqfpBlAOHMEsdHwjy5w==
+react-runner@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-runner/-/react-runner-1.0.3.tgz#b519bf19eec73dece3ec720b15657f73a55746e3"
+  integrity sha512-KyAzNzSVdrBc4A7aGW3FD0wVuujfgcBlyIGF0QVicJu0ucMpLYyTHE+PgBu82Iq698TPKRH+eEi6Mrq/e7OffA==
   dependencies:
-    sucrase-esm "^3.21.0"
+    sucrase "^3.21.0"
 
 react-shallow-renderer@^16.13.1:
   version "16.14.1"
@@ -15775,10 +15775,10 @@ stylis@4.0.13, stylis@^4.0.13:
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.0.13.tgz#f5db332e376d13cc84ecfe5dace9a2a51d954c91"
   integrity sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==
 
-sucrase-esm@^3.21.0:
+sucrase@^3.21.0:
   version "3.21.0"
-  resolved "https://registry.yarnpkg.com/sucrase-esm/-/sucrase-esm-3.21.0.tgz#acf772b2e168594de72caa04dbfc19706ded8e62"
-  integrity sha512-RwdsUJFawSrj9jPuQyZpGHW/WwXc5xcUosGCuthPAJdOn/8GPdErDCbJTN9uCWBzcaxpmMxS6PwY3cLXY0VPjw==
+  resolved "https://registry.yarnpkg.com/sucrase/-/sucrase-3.21.0.tgz#6a5affdbe716b22e4dc99c57d366ad0d216444b9"
+  integrity sha512-FjAhMJjDcifARI7bZej0Bi1yekjWQHoEvWIXhLPwDhC6O4iZ5PtGb86WV56riW87hzpgB13wwBKO9vKAiWu5VQ==
   dependencies:
     commander "^4.0.0"
     glob "7.1.6"
