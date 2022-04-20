@@ -280,8 +280,8 @@ AppNavDrawerItem.propTypes = {
   linkProps: PropTypes.object,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
-  plan: PropTypes.oneOf(['pro', 'premium']),
+  plan: PropTypes.oneOf(['community', 'pro', 'premium']),
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  topLevel: PropTypes.bool
+  topLevel: PropTypes.bool,
 };
