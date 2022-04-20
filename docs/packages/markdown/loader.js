@@ -1,6 +1,7 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
 const { prepareMarkdown } = require('./parseMarkdown');
+const { extractImports } = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 // TODO: pass as argument
@@ -124,6 +125,7 @@ module.exports = async function demoLoader() {
 
   const demos = {};
   const demoModuleIDs = new Set();
+  const demoImportedModuleIDs = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -150,11 +152,11 @@ module.exports = async function demoLoader() {
         moduleID.replace(/\//g, path.sep),
       );
       this.addDependency(moduleFilepath);
-      demos[demoName] = {
-        module: moduleID,
-        raw: await fs.readFile(moduleFilepath, { encoding: 'utf-8' }),
-      };
+      const raw = await fs.readFile(moduleFilepath, { encoding: 'utf8' });
+      demos[demoName] = { module: moduleID, raw };
       demoModuleIDs.add(moduleID);
+      const importedModuleIDs = extractImports(raw);
+      importedModuleIDs.forEach((importModuleID) => demoImportedModuleIDs.add(importModuleID));
 
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
@@ -194,10 +196,23 @@ module.exports = async function demoLoader() {
     return moduleIDToJSIdentifier(moduleID);
   }
 
+  /**
+   * @param {string} moduleID
+   */
+  function getImportIdentifier(moduleID) {
+    return moduleIDToJSIdentifier(moduleID.replace('@', '$'));
+  }
+
   const transformed = `
     ${Array.from(demoModuleIDs)
       .map((moduleID) => {
         return `import ${getDemoIdentifier(moduleID)} from '${moduleID}';`;
+      })
+      .join('\n')}
+
+    ${Array.from(demoImportedModuleIDs)
+      .map((moduleID) => {
+        return `import * as ${getImportIdentifier(moduleID)} from '${moduleID}';`;
       })
       .join('\n')}
 
@@ -206,6 +221,15 @@ module.exports = async function demoLoader() {
     export const demoComponents = {${Array.from(demoModuleIDs)
       .map((moduleID) => {
         return `${JSON.stringify(moduleID)}: ${getDemoIdentifier(moduleID)},`;
+      })
+      .join('\n')}};
+
+    demos.scope = {
+      process,
+    };
+    demos.scope.import = {${Array.from(demoImportedModuleIDs)
+      .map((moduleID) => {
+        return `${JSON.stringify(moduleID)}: ${getImportIdentifier(moduleID)},`;
       })
       .join('\n')}};
   `;

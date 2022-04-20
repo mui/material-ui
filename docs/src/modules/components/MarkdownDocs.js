@@ -83,6 +83,7 @@ function MarkdownDocs(props) {
             key={index}
             demo={{
               raw: demo.raw,
+              scope: demos.scope,
               js: demoComponents[demo.module] ?? noComponent(demo.module),
               jsxPreview: demo.jsxPreview,
               rawTS: demo.rawTS,

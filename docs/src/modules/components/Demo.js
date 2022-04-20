@@ -13,7 +13,6 @@ import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import scope from 'docs/src/modules/scope';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
@@ -206,7 +205,7 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
 
   const [code, setCode] = React.useState(demoData.raw);
-  const { element, error } = useRunner({ code, scope });
+  const { element, error } = useRunner({ code, scope: demo.scope });
 
   const editorRef = React.useRef(null);
   const onEditableChange = React.useCallback((newCode) => {
