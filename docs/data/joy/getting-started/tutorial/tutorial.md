@@ -41,6 +41,8 @@ function App() {
 export default App;
 ```
 
+Try changing the sheet's variant between `text`, `outlined`, `light` or `contained` to see what they look like.
+
 ### 2. Use `sx` prop to customize style
 
 All Joy components accept `sx` prop, so you can specify the styles with short-hand syntax (accessible to the theme) directly to the component.
@@ -169,9 +171,9 @@ import Link from '@mui/joy/Link';
 </Sheet>;
 ```
 
-Try changing the button's variant between `'text' | 'outlined' | 'light' | 'contained'` and goes with the one that you like!
+Try changing the button's variant between `text`, `outlined`, `light` or `contained`, and goes with the one that you like!.
 
-<!-- TODO: Add last step image -->
+<!-- TODO: Add the result image -->
 
 ## 🎁 Bonus: Dark mode
 
