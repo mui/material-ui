@@ -11,7 +11,7 @@ He has started last month full-time and is now part of the Core team.
 
 Before joining full-time, Benny was our first intern during the summer.
 He joined us right after graduating from The University of Edinburgh.
-He had a great start with his internship, implementing the [Masonry component](https://mui.com/components/masonry/)! It was one of the [most upvoted issues](https://github.com/mui/material-ui/issues/17000) that we simply didn't have the bandwidth to work on.
+He had a great start with his internship, implementing the [Masonry component](https://mui.com/material-ui/react-masonry/)! It was one of the [most upvoted issues](https://github.com/mui/material-ui/issues/17000) that we simply didn't have the bandwidth to work on.
 
 As part of the Core team, he will help with the community support, as well as work on some of the new features we plan for the community version of the library, like the unstyled components and the second design system.
 I am excited to see what other valuable contributions he will make in the future.

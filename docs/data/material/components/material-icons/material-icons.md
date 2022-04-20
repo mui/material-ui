@@ -1,15 +1,14 @@
 ---
 product: material-ui
-title: Material icons
 components: Icon, SvgIcon
 materialDesign: https://material.io/design/iconography/system-icons.html
 packageName: '@mui/icons-material'
 githubLabel: 'package: icons'
 ---
 
-# Browse material icons
+# Material Icons
 
-<p class="description">2,000+ React Material icons ready-to-use from the official website.</p>
+<p class="description">2,000+ ready-to-use React Material Icons from the official website.</p>
 
 The following npm package,
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material),
