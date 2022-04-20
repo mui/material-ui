@@ -10,6 +10,7 @@ import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
+import ComponentListContext from '../List/ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
   const { sticky, nested, variant, color } = ownerState;
@@ -126,6 +127,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'MuiListItem',
   });
 
+  const listComponent = React.useContext(ComponentListContext);
   const row = React.useContext(RowListContext);
 
   const {
@@ -157,7 +159,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     <NestedListContext.Provider value={nested}>
       <ListItemRoot
         ref={ref}
-        as={component}
+        as={
+          component || (listComponent && !listComponent.match(/^(ul|ol|menu)$/) ? 'div' : undefined)
+        }
         className={clsx(classes.root, className)}
         ownerState={ownerState}
         {...other}

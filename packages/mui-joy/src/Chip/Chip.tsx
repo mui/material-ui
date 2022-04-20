@@ -49,6 +49,7 @@ const ChipRoot = styled('div', {
           ? '0.25rem'
           : 'calc(0.25rem - var(--variant-outlinedBorderWidth, 0px))',
       '--Chip-radius': '1.5rem',
+      '--internal-action-radius': 'var(--Chip-radius)',
       '--Chip-delete-radius': `max(var(--Chip-radius) - var(--Chip-paddingBlock), min(var(--Chip-paddingBlock) / 2, var(--Chip-radius) / 2))`,
       '--Avatar-radius': `max(var(--Chip-radius) - var(--Chip-paddingBlock), min(var(--Chip-paddingBlock) / 2, var(--Chip-radius) / 2))`,
       ...(ownerState.size === 'sm' && {
@@ -111,6 +112,7 @@ const ChipLabel = styled('span', {
 })<{ ownerState: ChipProps & { clickable: boolean } }>(({ ownerState }) => ({
   display: 'inherit',
   alignItems: 'center',
+  order: 1,
   ...(ownerState.clickable && {
     zIndex: 1,
     pointerEvents: 'none',
@@ -149,29 +151,29 @@ const ChipStartDecorator = styled('span', {
   name: 'MuiChip',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: ChipProps & { clickable: boolean } }>(({ ownerState }) => ({
+})<{ ownerState: ChipProps & { clickable: boolean } }>({
   display: 'inherit',
   marginInlineEnd: 'var(--Chip-gap)',
   marginInlineStart: `calc(-1 * (var(--Chip-paddingInline) - var(--Chip-paddingBlock)))`,
-  ...(ownerState.clickable && {
-    zIndex: 1,
-    pointerEvents: 'none',
-  }),
-}));
+  // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
+  order: 0,
+  zIndex: 1,
+  pointerEvents: 'none',
+});
 
 const ChipEndDecorator = styled('span', {
   name: 'MuiChip',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: ChipProps & { clickable: boolean } }>(({ ownerState }) => ({
+})<{ ownerState: ChipProps & { clickable: boolean } }>({
   display: 'inherit',
   marginInlineStart: 'var(--Chip-gap)',
   marginInlineEnd: `calc(-1 * (var(--Chip-paddingInline) - var(--Chip-paddingBlock)))`,
-  ...(ownerState.clickable && {
-    zIndex: 1,
-    pointerEvents: 'none',
-  }),
-}));
+  // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
+  order: 2,
+  zIndex: 1,
+  pointerEvents: 'none',
+});
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
@@ -240,6 +242,15 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
           />
         )}
 
+        {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
+        <ChipLabel
+          id={id}
+          {...componentsProps.label}
+          className={clsx(classes.label, componentsProps.label?.className)}
+          ownerState={ownerState}
+        >
+          {children}
+        </ChipLabel>
         {startDecorator && (
           <ChipStartDecorator
             {...componentsProps.startDecorator}
@@ -250,14 +261,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
           </ChipStartDecorator>
         )}
 
-        <ChipLabel
-          id={id}
-          {...componentsProps.label}
-          className={clsx(classes.label, componentsProps.label?.className)}
-          ownerState={ownerState}
-        >
-          {children}
-        </ChipLabel>
         {endDecorator && (
           <ChipEndDecorator
             {...componentsProps.endDecorator}
