@@ -6062,12 +6062,12 @@ convert-source-map@^1.1.0, convert-source-map@^1.5.0, convert-source-map@^1.6.0,
     safe-buffer "~5.1.1"
 
 convict@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/convict/-/convict-6.0.0.tgz#4be829f001a778d337d32ec79e9ae7f2e39df1a6"
-  integrity sha512-osfPkv5yjVoZqrTWBXuh/ABGpFoaJplbt0WXr0CodR4CSWt8UnzY4PSUyRz/+5BX5YUtWcToG29Kr0B6xhdIMg==
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/convict/-/convict-6.2.2.tgz#8168abe41d45b4f5ecd6e249c02553c0612a31af"
+  integrity sha512-3MsROJiEFN3BAzeFit1t87t7EUFzd44MNd13MLSikV2dsnDl7znwKgtYPPONtnDzxiDW0nBAsxVhSRNrjUrTTg==
   dependencies:
     lodash.clonedeep "^4.5.0"
-    yargs-parser "^18.1.3"
+    yargs-parser "^20.2.7"
 
 cookie-signature@1.0.6:
   version "1.0.6"
@@ -17206,7 +17206,7 @@ yargs-parser@20.2.4:
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-20.2.4.tgz#b42890f14566796f85ae8e3a25290d205f154a54"
   integrity sha512-WOkpgNhPTlE73h4VFAFsOnomJVaovO8VqLDzy5saChRBFQFBoMYirowyW+Q9HB4HFF4Z7VZTiG3iSzJJA29yRA==
 
-yargs-parser@^18.1.2, yargs-parser@^18.1.3:
+yargs-parser@^18.1.2:
   version "18.1.3"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-18.1.3.tgz#be68c4975c6b2abf469236b0c870362fab09a7b0"
   integrity sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==
