@@ -2,7 +2,7 @@
 
 <p class="description">An overview of the MUI packages and the relationships between them.</p>
 
-## TL;DR
+## Overview
 
 If you want to build a design system based on Material Design, use `@mui/material`.
 
@@ -37,7 +37,7 @@ With the growth of that product over the years, we started exploring other types
 
 Each of these opportunities are now individual packages within our two main product lines, MUI Core and MUI X:
 
-<img src="/static/images/packages/mui-packages.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" />
+<img src="/static/images/packages/mui-packages.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="The first half of the image shows @mui/material and @mui/base as component libraries, and @mui/system and styled engines as styling solutions, both under the MUI Core umbrella. The second half shows @mui/x-data-grid and @mui/x-date-pickers as components from MUI X."/>
 
 In this article, we'll only cover the MUI Core packages.
 Check the [MUI X overview](/x/advanced-components) for more information about our collection of advanced components.
@@ -117,6 +117,6 @@ Using MUI system:
 
 > **Note**: To use it, you will have to install either `emotion` or `styled-components`, because the respective styled-engine package depends on it.
 
-<img src="/static/images/packages/mui-system.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" />
+<img src="/static/images/packages/mui-system.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="A diagram showing an arrow going from @mui/system to @mui/styled-engine, with a note that it is the default engine. Then, from @mui/styled-engine a solid arrow points to @emotion/react and @emotion/styled while a dashed arrow points to @mui/styled-engine-sc, which points to styled-components." />
 
 If you want to switch the styled-engine to use styled-components, [follow this guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
