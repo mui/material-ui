@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import copy from 'clipboard-copy';
 import { alpha, darken, styled } from '@mui/material/styles';
 import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
@@ -279,6 +280,34 @@ const Root = styled('div')(({ theme }) => ({
       marginTop: theme.spacing(1),
     },
   },
+  '& .MuiCode-root': {
+    position: 'relative',
+    '&:hover': {
+      '& .MuiCode-copy': {
+        opacity: 1,
+      },
+    },
+  },
+  '& .MuiCode-copy': {
+    opacity: 0,
+    backgroundColor: 'initial',
+    cursor: 'pointer',
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+    fontSize: '0.875rem',
+    padding: theme.spacing(0.5, 1),
+    borderRadius: 4,
+    border: `1px solid`,
+    borderColor: blueDark[500],
+    color: theme.palette.primary[100],
+    '&:hover, &:focus-visible': {
+      opacity: 1,
+      color: '#fff',
+      borderColor: blueDark[300],
+      backgroundColor: blueDark[700],
+    },
+  },
 }));
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
@@ -290,6 +319,27 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
     // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
     more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
   }
+
+  React.useEffect(() => {
+    const buttons = document.getElementsByClassName('MuiCode-copy');
+
+    if (buttons !== null) {
+      Array.from(buttons).forEach((b) => {
+        b.addEventListener('click', async function handleClick(event) {
+          const trigger = event.currentTarget;
+          const pre = event.currentTarget.previousElementSibling;
+          trigger.textContent = 'Copied!';
+          setTimeout(() => {
+            trigger.textContent = 'Copy';
+          }, 2000);
+          try {
+            await copy(pre.textContent);
+            // eslint-disable-next-line no-empty
+          } catch (error) {}
+        });
+      });
+    }
+  }, []);
 
   return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
 });

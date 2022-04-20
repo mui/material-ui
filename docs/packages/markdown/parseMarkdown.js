@@ -227,6 +227,15 @@ function createRender(context) {
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
     };
+    renderer.code = (code, infostring) => {
+      const lang = (infostring || '').match(/\S*/)[0];
+      code = prism(code, lang);
+      code = `${code.replace(/\n$/, '')}\n`;
+
+      return `<div class="MuiCode-root"><pre><code${
+        lang ? ` class="language-${lang}"` : ''
+      }>${code}</code$></pre><button class="MuiCode-copy">Copy</button></div>\n`;
+    };
 
     const markedOptions = {
       gfm: true,
