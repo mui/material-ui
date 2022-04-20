@@ -44,8 +44,8 @@ The `focusableWhenDisabled` prop lets you change this behavior.
 When this prop is set, the underlying button does not set the `disabled` prop.
 Instead, `aria-disabled` is used, which makes the button focusable.
 
-This should be used whenever the disabled button needs to be read by screen readers. 
- 
+This should be used whenever the disabled button needs to be read by screen readers.
+
 MUI Base uses this prop internally in [menu items](/base/react-menu), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
 
 {{"demo": "UnstyledButtonsDisabledFocus.js"}}
