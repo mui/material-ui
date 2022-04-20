@@ -114,10 +114,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   );
 
   React.useEffect(() => {
-    if (focusVisible && focusRipple && !disableRipple) {
+    if (focusVisible && focusRipple && !disableRipple && mountedState) {
       rippleRef.current.pulsate();
     }
-  }, [disableRipple, focusRipple, focusVisible]);
+  }, [disableRipple, focusRipple, focusVisible, mountedState]);
 
   function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
     return useEventCallback((event) => {
