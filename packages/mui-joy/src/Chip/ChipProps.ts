@@ -62,7 +62,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'contained'
      */
-    variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, ChipPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, ChipPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
