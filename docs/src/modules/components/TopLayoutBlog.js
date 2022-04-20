@@ -260,7 +260,7 @@ function TopLayoutBlog(props) {
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
-            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
+            return <MarkdownElement key={index} enableCodeCopy renderedMarkdown={chunk} />;
           })}
         </AppContainer>
         <HeroEnd />

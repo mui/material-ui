@@ -289,29 +289,37 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
   '& .MuiCode-copy': {
+    display: 'none',
     opacity: 0,
-    backgroundColor: 'initial',
+    backgroundColor: alpha(blue[800], 0.3),
     cursor: 'pointer',
     position: 'absolute',
     top: theme.spacing(1),
     right: theme.spacing(1),
-    fontSize: '0.875rem',
+    fontFamily: 'inherit',
+    fontSize: '0.75rem',
     padding: theme.spacing(0.5, 1),
     borderRadius: 4,
     border: `1px solid`,
     borderColor: blueDark[500],
-    color: theme.palette.primary[100],
-    '&:hover, &:focus-visible': {
+    color: theme.palette.text.secondary,
+    '&:hover, &:focus': {
       opacity: 1,
-      color: '#fff',
-      borderColor: blueDark[300],
-      backgroundColor: blueDark[700],
+      color: theme.palette.text.primary,
     },
+    '&:focus-visible': {
+      outline: '2px solid',
+      outlineOffset: 2,
+      outlineColor: blueDark[500],
+    },
+  },
+  '&.enable-codeCopy .MuiCode-copy': {
+    display: 'initial',
   },
 }));
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
-  const { className, renderedMarkdown, ...other } = props;
+  const { className, renderedMarkdown, enableCodeCopy, ...other } = props;
   const more = {};
 
   if (typeof renderedMarkdown === 'string') {
@@ -324,8 +332,8 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
     const buttons = document.getElementsByClassName('MuiCode-copy');
 
     if (buttons !== null) {
-      Array.from(buttons).forEach((b) => {
-        b.addEventListener('click', async function handleClick(event) {
+      Array.from(buttons).forEach((btn) => {
+        btn.addEventListener('click', async function handleClick(event) {
           const trigger = event.currentTarget;
           const pre = event.currentTarget.previousElementSibling;
           trigger.textContent = 'Copied!';
@@ -337,15 +345,34 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
             // eslint-disable-next-line no-empty
           } catch (error) {}
         });
+        btn.addEventListener('keydown', (event) => {
+          if (event.code === 'KeyC' && (!!event.metaKey || !!event.ctrlKey) && !event.shiftKey) {
+            btn.click();
+          }
+        });
+        btn.parentElement.addEventListener('mouseenter', () => {
+          btn.focus();
+        });
+        btn.parentElement.addEventListener('mouseleave', () => {
+          btn.blur();
+        });
       });
     }
   }, []);
 
-  return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
+  return (
+    <Root
+      className={clsx('markdown-body', enableCodeCopy && 'enable-codeCopy', className)}
+      {...more}
+      {...other}
+      ref={ref}
+    />
+  );
 });
 
 MarkdownElement.propTypes = {
   className: PropTypes.string,
+  enableCodeCopy: PropTypes.bool,
   renderedMarkdown: PropTypes.string,
 };
 

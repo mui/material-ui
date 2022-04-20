@@ -10,6 +10,34 @@ const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g;
 const emptyRegExp = /^\s*$/;
 
 /**
+ * Same as https://github.com/markedjs/marked/blob/master/src/helpers.js
+ * Need to duplicate because `marked` does not export `escape` function
+ */
+const escapeTest = /[&<>"']/;
+const escapeReplace = /[&<>"']/g;
+const escapeTestNoEncode = /[<>"']|&(?!#?\w+;)/;
+const escapeReplaceNoEncode = /[<>"']|&(?!#?\w+;)/g;
+const escapeReplacements = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+const getEscapeReplacement = (ch) => escapeReplacements[ch];
+function escape(html, encode) {
+  if (encode) {
+    if (escapeTest.test(html)) {
+      return html.replace(escapeReplace, getEscapeReplacement);
+    }
+  } else if (escapeTestNoEncode.test(html)) {
+    return html.replace(escapeReplaceNoEncode, getEscapeReplacement);
+  }
+
+  return html;
+}
+
+/**
  * Extract information from the top of the markdown.
  * For instance, the following input:
  *
@@ -227,14 +255,24 @@ function createRender(context) {
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
     };
-    renderer.code = (code, infostring) => {
+    renderer.code = (code, infostring, escaped) => {
+      // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
       const lang = (infostring || '').match(/\S*/)[0];
-      code = prism(code, lang);
+      const out = prism(code, lang);
+      if (out != null && out !== code) {
+        escaped = true;
+        code = out;
+      }
+
       code = `${code.replace(/\n$/, '')}\n`;
 
-      return `<div class="MuiCode-root"><pre><code${
-        lang ? ` class="language-${lang}"` : ''
-      }>${code}</code$></pre><button class="MuiCode-copy">Copy</button></div>\n`;
+      if (!lang) {
+        return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
+      }
+
+      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
+        escaped ? code : escape(code, true)
+      }</code></pre><button class="MuiCode-copy">Copy</button></div>\n`;
     };
 
     const markedOptions = {
