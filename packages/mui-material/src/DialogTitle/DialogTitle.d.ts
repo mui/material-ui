@@ -36,11 +36,11 @@ export interface DialogTitleTypeMap<
  *
  * - [DialogTitle API](https://mui.com/material-ui/api/dialog-title/)
  */
-declare const DialogContentText: OverridableComponent<DialogTitleTypeMap>;
+declare const DialogTitle: OverridableComponent<DialogTitleTypeMap>;
 
-export type DialogContentTextProps<
+export type DialogTitleProps<
   D extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<DialogTitleTypeMap<P, D>, D>;
 
-export default DialogContentText;
+export default DialogTitle;
