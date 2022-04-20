@@ -141,7 +141,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   );
 
   if (multiline) {
-    const hasHostTexarea = isHostComponent(components.Textarea ?? 'textarea');
+    const hasHostTextarea = isHostComponent(components.Textarea ?? 'textarea');
 
     if (rows) {
       if (process.env.NODE_ENV !== 'production') {
@@ -153,20 +153,20 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
       }
       inputProps = {
         type: undefined,
-        minRows: hasHostTexarea ? undefined : rows,
-        maxRows: hasHostTexarea ? undefined : rows,
+        minRows: hasHostTextarea ? undefined : rows,
+        maxRows: hasHostTextarea ? undefined : rows,
         ...inputProps,
-        ...(hasHostTexarea && {
+        ...(hasHostTextarea && {
           ownerState: undefined,
         }),
       };
     } else {
       inputProps = {
         type: undefined,
-        maxRows: hasHostTexarea ? undefined : maxRows,
-        minRows: hasHostTexarea ? undefined : minRows,
+        maxRows: hasHostTextarea ? undefined : maxRows,
+        minRows: hasHostTextarea ? undefined : minRows,
         ...inputProps,
-        ...(hasHostTexarea && {
+        ...(hasHostTextarea && {
           ownerState: undefined,
         }),
       };
