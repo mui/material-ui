@@ -4,104 +4,60 @@
 
 ## TL;DR
 
-- Use `@mui/material` if you want to use the components following the Material Design guidelines.
-  > 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
-- Use `@mui/base` if you want to style the components from scratch using your preferred styling method.
-  > 💡 This package can be imported alongside `@mui/material` without an installation.
-- Use `@mui/system` if you want APIs that enable building your own design system from scratch.
+If you want to build a design system based on Material Design, use `@mui/material`.
 
----
+> 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
 
-product: material-ui
+If you want to use components that offers you complete control over your app's CSS, use `@mui/base`.
+
+> 💡 You can import any component from MUI Base while using`@mui/material` without an installation.
+
+If you want to use CSS utilities to lay out custom designs, use `@mui/system`.
+
+### Glossary
+
+- **install** refers to running `yarn add $module` or `npm install $module`.
+- **import** refers to making a module API available in your code by adding `import ... from '$module'`.
 
 ## MUI packages
 
 The following is an up-to-date list of `@mui` public packages.
 
 - `@mui/material`
-- `@mui/system`
 - `@mui/base`
+- `@mui/system`
 - `@mui/styled-engine`
 - `@mui/styled-engine-sc`
 - `@mui/styles`
 
-**Why does MUI have multiple packages? Why not just one?**
+### Why does MUI have multiple packages? Why not just one?
 
-MUI started as a single package that provided React Material Design components.
-However, as the library grew and more people started to use it, we saw an opportunity to break the main package down into smaller parts. For example, there was rising interest in specific use cases, such as using a version of the components without styles so as to use a preferred styling method, or using the MUI styling API to build a design system.
+MUI started with Material UI, the most successful React implementation of Google's Material Design.
+With the growth of that product over the years, we started exploring other types of problems around the UI building space, such as a version of the components without styles and a proprietary styling API to increase efficiency.
 
-For this reason, abstracting into smaller packages not only allows MUI to grow out of Material Design, but also extends how the library can be used, providing more flexibility and customizability.
+Each of these opportunities are now individual packages within our two main product lines, MUI Core and MUI X:
 
-The packages can be categorized into 3 layers, as shown in the picture below:
+<img src="/static/images/packages/mui-packages.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" />
 
-<img src="/static/images/packages/mui-packages.png" style="display: block; width: 448px; margin: auto;" />
+In this article, we'll only cover the MUI Core packages.
+Check the [MUI X overview](/x/advanced-components) for more information about our collection of advanced components.
 
-Let's take a look at each layer to understand how they work together, starting from the bottom:
+## Component libraries
 
-> 📖 Glossary
->
-> - **install** refers to running `yarn add $module` or `npm install $module`.
-> - **import** refers to making a module API available in your code by adding `import ... from '$module'`.
+### Material UI
 
-## Styled engines
+Material UI is a comprehensive library of components that features our implementation of Google's Material Design system. It has `@mui/system` and `@mui/base` as dependencies, meaning you don't need to install or import them seperately—importing any modules you need from `@mui/material` itself will work.
 
-This layer is specifically related to stylesheet generation (CSS-in-JS).
-MUI has introduced new styled-engines in v5 to unlock more possibilities and enable enhanced customization.
-Usually, developers do not need to interact with this layer on a daily basis because it is used internally in `@mui/system`.
+### MUI Base
 
-They come in two packages:
+MUI Base is our library of "unstyled" components and low-level hooks.
+With Base, you gain complete control over your app's CSS and accessibility features.
 
-- `@mui/styled-engine` : an [emotion](https://emotion.sh/docs/styled) wrapper.
-- `@mui/styled-engine-sc` : a [styled-components](https://styled-components.com/docs/basics#getting-started) wrapper.
+Check [the documentation](/base/getting-started/installation) to get started with it right way.
 
-These adapters unify the APIs of both `emotion` and `styled-components`, so that developers can choose to use whichever suits them best.
+### Using them together
 
-The previous style library `@mui/styles` (JSS wrapper) is deprecated and will be removed in the future.
-
-> The details about the change in styling solution are in [this RFC](https://github.com/mui/material-ui/issues/22342).
-
-## System
-
-There is only one package in this layer - `@mui/system`.
-
-It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
-
-If you want to switch the styled-engine to use styled-components, [follow this guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
-
-<img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; margin: 40px auto;" />
-
-Here are some benefits:
-
-- You have full control of the `theme` object.
-- The `styled` API supports the `sx` prop by default.
-- Components created with `styled` are themeable via slots & variants.
-
-> **Note**: you will have to install either `emotion` or `styled-components`, because the respective styled-engine package depends on it.
-
-## Base
-
-The base layer, `@mui/base`, is also known as unstyled components.
-
-It provides only React component functionality and accessibility features without any styles. It's very useful if you want to take full control of the styling, but don't want to spend time building components from scratch.
-
-Since it doesn't rely on any specific styling solution, you can pick a method that best fits your needs, from pure CSS to CSS-in-JS.
-
-For more details, check out the [unstyled components page](/material-ui/customization/unstyled-components/)
-
-## Design system
-
-This is the most used layer (based on npm downloads) because it comes with everything you need to get started:
-
-- Theming capabilities (has `@mui/system` as dependency).
-- Accessible components, and utility hooks (has `@mui/base` as dependency).
-- Default styles based on the design language being followed.
-
-Currently, MUI has one package in the design system layer, `@mui/material`, but we plan to add more in the future.
-This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies.
-Since it has `@mui/system` and `@mui/base` as dependencies, you don't need to install or import them separately.
-Instead, you should import any modules you need from `@mui/material` directly.
-
-There are, however, some cases where you might want to use building blocks from `@mui/base` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design.
+Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that looks very different from the one found in Material Design.
 In this case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in `@mui/base`, from scratch:
 
 ```js
@@ -129,3 +85,38 @@ export default function CustomSwitch() {
   return <SwitchUnstyled component={Root} {...label} />;
 }
 ```
+
+## Styling
+
+### Styled engines
+
+Styled engines come in two packages:
+
+- `@mui/styled-engine`: an [emotion](https://emotion.sh/docs/styled) wrapper.
+- `@mui/styled-engine-sc`: a [styled-components](https://styled-components.com/docs/basics#getting-started) wrapper.
+
+They were introduced in MUI Core's v5 to unlock more styling possibilities and enhanced customization features.
+It refers specifically to stylesheet generation (CSS-in-JS).
+
+These adapters unify the APIs of both `emotion` and `styled-components`, and you can choose to use whichever suits you best.
+The previous style library `@mui/styles` (JSS wrapper) is deprecated and will be removed in the future.
+
+In any case, it's likely that you won't interact much with these as they're used internally in `@mui/system`.
+Check [the RFC](https://github.com/mui/material-ui/issues/22342) to learn more about v5's styling solution change.
+
+### MUI System
+
+MUI System is a collection of CSS utilities to help you rapidly lay out custom designs.
+It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine to create the CSS utilities.
+
+Using MUI system:
+
+- You have full control of the `theme` object.
+- You can use `sx` prop normally as the `styled` API supports it by default.
+- You can have themeable components by using `styled` via slots and variants.
+
+> **Note**: To use it, you will have to install either `emotion` or `styled-components`, because the respective styled-engine package depends on it.
+
+<img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; margin: 40px auto;" />
+
+If you want to switch the styled-engine to use styled-components, [follow this guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
