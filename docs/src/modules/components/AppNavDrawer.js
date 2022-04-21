@@ -28,16 +28,22 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
+import joyPkgJson from '../../../../packages/mui-joy/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
+const shouldShowJoy =
+  process.env.NODE_ENV === 'development' ||
+  process.env.PULL_REQUEST ||
+  FEATURE_TOGGLE.enable_joy_scope;
+
 const LinksWrapper = styled('div')(({ theme }) => {
   return {
     paddingLeft: theme.spacing(5.5),
     paddingTop: theme.spacing(1.5),
-    height: 124,
+    height: shouldShowJoy ? 162 : 124,
     '& > a': {
       position: 'relative',
       display: 'flex',
@@ -212,6 +218,14 @@ function ProductDrawerButton(props) {
                 {"React components that implement Google's Material Design."}
               </Typography>
             </Link>
+            {shouldShowJoy && (
+              <Link href={ROUTES.joyDocs} sx={{ my: -0.5 }}>
+                <ProductLabel>Joy UI</ProductLabel>
+                <Typography color="text.secondary" variant="body2">
+                  React components for building your design system.
+                </Typography>
+              </Link>
+            )}
             <Link href={ROUTES.baseDocs} sx={{ mb: -0.5 }}>
               <ProductLabel>MUI Base</ProductLabel>
               <Typography color="text.secondary" variant="body2">
@@ -594,6 +608,15 @@ export default function AppNavDrawer(props) {
                   text: 'View all versions',
                   href: `https://mui.com${languagePrefix}/versions/`,
                 },
+              ])}
+            />
+          )}
+          {asPathWithoutLang.startsWith('/joy-ui/') && (
+            <ProductIdentifier
+              name="Joy UI"
+              metadata="MUI Core"
+              versionSelector={renderVersionSelector([
+                { text: `v${joyPkgJson.version}`, current: true },
               ])}
             />
           )}
