@@ -25,8 +25,8 @@ const FocusStyle = styled('button')(({ theme }) => [
   {
     fontWeight: theme.vars.fontWeight.md,
     backgroundColor: theme.vars.palette.background.body,
+    [theme.focus.selector]: theme.focus.default,
   },
-  theme.focus.default,
 ]);
 
 const Variants = styled('button')(({ theme }) => [

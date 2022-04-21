@@ -450,7 +450,7 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('default');
+      expect(container.firstChild?.textContent).to.equal('selector,default');
     });
   });
 

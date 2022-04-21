@@ -549,7 +549,6 @@ export default function JoyRadio() {
             my: 3,
             gap: 2,
             '& > div': {
-              borderRadius: '4px',
               bgcolor: 'background.level1',
               display: 'flex',
               flexDirection: 'column',
@@ -559,7 +558,6 @@ export default function JoyRadio() {
               minWidth: 120,
             },
             '& .MuiRadio-root': {
-              '--Radio-action-radius': '4px',
               '&.Mui-checked': {
                 '& .MuiRadio-action': {
                   inset: -1,
@@ -581,7 +579,7 @@ export default function JoyRadio() {
             },
           }}
         >
-          <Sheet variant="outlined">
+          <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="website" value="website" checkedIcon={<CheckCircle />} />
             <Avatar variant="light" size="lg" />
             <Typography
@@ -594,7 +592,7 @@ export default function JoyRadio() {
               Website
             </Typography>
           </Sheet>
-          <Sheet variant="outlined">
+          <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="documents" value="documents" checkedIcon={<CheckCircle />} />
             <Avatar variant="light" size="lg" />
             <Typography
@@ -607,7 +605,7 @@ export default function JoyRadio() {
               Documents
             </Typography>
           </Sheet>
-          <Sheet variant="outlined">
+          <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="social-account" value="social-account" checkedIcon={<CheckCircle />} />
             <Avatar variant="light" size="lg" />
             <Typography

@@ -37,7 +37,7 @@ const SheetRoot = styled('div', {
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
         theme.vars.palette.background.body, // for sticky List
-      '--Link-overlayRadius': resolveSxValue({ theme, ownerState }, 'borderRadius'),
+      '--internal-action-radius': resolveSxValue({ theme, ownerState }, 'borderRadius'),
       // TODO: discuss the theme transition.
       // This value is copied from mui-material Sheet.
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
