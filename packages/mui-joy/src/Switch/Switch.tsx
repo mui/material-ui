@@ -331,10 +331,6 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * Class name applied to the root element.
    */
   className: PropTypes.string,
@@ -419,19 +415,19 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The element that appears at the end of the switch.
+   */
+  startDecorator: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
-  ]),
-  /**
-   * The element that appears at the end of the switch.
-   */
-  startDecorator: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
   ]),
   /**
    * The variant to use.
