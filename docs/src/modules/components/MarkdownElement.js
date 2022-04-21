@@ -306,6 +306,12 @@ const Root = styled('div')(({ theme }) => ({
       opacity: 1,
       color: '#fff',
     },
+    '&[data-copied]': {
+      // style of the button when it is in copied state.
+      borderColor: blue[400],
+      color: '#fff',
+      backgroundColor: blueDark[600],
+    },
     '&:focus-visible': {
       outline: '2px solid',
       outlineOffset: 2,

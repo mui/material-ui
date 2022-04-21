@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { setupKeyboardCopy } from 'docs/src/modules/utils/useCodeCopy';
+import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   const {
@@ -19,7 +19,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     return prism(code.trim(), language);
   }, [code, language]);
   const [copied, setCopied] = React.useState(false);
-  const btnRef = React.useRef(null);
+  const handlers = useCodeCopy();
   React.useEffect(() => {
     if (copied) {
       const timeout = setTimeout(() => {
@@ -31,13 +31,10 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     }
     return () => {};
   }, [copied]);
-  React.useEffect(() => {
-    setupKeyboardCopy(btnRef.current);
-  }, []);
 
   return (
     <Component ref={ref} enableCodeCopy={enableCodeCopy} {...other}>
-      <div className="MuiCode-root">
+      <div className="MuiCode-root" {...handlers}>
         <pre>
           <code
             className={`language-${language}`}
@@ -48,7 +45,6 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
         {enableCodeCopy && (
           <button
             {...analytics}
-            ref={btnRef}
             aria-label="Copy the code"
             type="button"
             className="MuiCode-copy"
