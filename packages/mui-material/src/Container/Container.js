@@ -24,6 +24,11 @@ Container.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * If `true`, the left and right padding is removed.
    * @default false
    */

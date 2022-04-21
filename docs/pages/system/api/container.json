@@ -1,6 +1,7 @@
 {
   "props": {
     "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
     "disableGutters": { "type": { "name": "bool" } },
     "fixed": { "type": { "name": "bool" } },
     "maxWidth": {
