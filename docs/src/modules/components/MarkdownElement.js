@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import copy from 'clipboard-copy';
 import { alpha, darken, styled } from '@mui/material/styles';
 import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
@@ -302,10 +301,10 @@ const Root = styled('div')(({ theme }) => ({
     borderRadius: 4,
     border: `1px solid`,
     borderColor: blueDark[500],
-    color: theme.palette.text.secondary,
+    color: `rgba(255,255,255,0.8)`,
     '&:hover, &:focus': {
       opacity: 1,
-      color: theme.palette.text.primary,
+      color: '#fff',
     },
     '&:focus-visible': {
       outline: '2px solid',
@@ -327,38 +326,6 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
     // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
     more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
   }
-
-  React.useEffect(() => {
-    const buttons = document.getElementsByClassName('MuiCode-copy');
-
-    if (buttons !== null) {
-      Array.from(buttons).forEach((btn) => {
-        btn.addEventListener('click', async function handleClick(event) {
-          const trigger = event.currentTarget;
-          const pre = event.currentTarget.previousElementSibling;
-          trigger.textContent = 'Copied!';
-          setTimeout(() => {
-            trigger.textContent = 'Copy';
-          }, 2000);
-          try {
-            await copy(pre.textContent);
-            // eslint-disable-next-line no-empty
-          } catch (error) {}
-        });
-        btn.addEventListener('keydown', (event) => {
-          if (event.code === 'KeyC' && (!!event.metaKey || !!event.ctrlKey) && !event.shiftKey) {
-            btn.click();
-          }
-        });
-        btn.parentElement.addEventListener('mouseenter', () => {
-          btn.focus();
-        });
-        btn.parentElement.addEventListener('mouseleave', () => {
-          btn.blur();
-        });
-      });
-    }
-  }, []);
 
   return (
     <Root

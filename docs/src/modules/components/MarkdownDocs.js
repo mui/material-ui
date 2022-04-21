@@ -6,6 +6,7 @@ import { exactProp } from '@mui/utils';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import useCodeCopy from 'docs/src/modules/utils/useCodeCopy';
 
 // TODO: Only import on demand via @mui/markdown/loader
 const markdownComponents = {
@@ -25,6 +26,8 @@ function MarkdownDocs(props) {
   const t = useTranslate();
 
   const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
+
+  useCodeCopy();
 
   return (
     <AppLayoutDocs

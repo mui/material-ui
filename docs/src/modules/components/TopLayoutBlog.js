@@ -17,6 +17,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import ROUTES from 'docs/src/route';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Link from 'docs/src/modules/components/Link';
+import useCodeCopy from 'docs/src/modules/utils/useCodeCopy';
 
 export const authors = {
   oliviertassinari: {
@@ -189,6 +190,7 @@ function TopLayoutBlog(props) {
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
+  useCodeCopy();
 
   return (
     <BrandingProvider>

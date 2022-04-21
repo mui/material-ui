@@ -250,13 +250,12 @@ export default function Demo(props) {
         </NoSsr>
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <div>
-          <Code
-            id={demoSourceId}
-            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
-            language={demoData.sourceLanguage}
-          />
-        </div>
+        <Code
+          id={demoSourceId}
+          code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
+          language={demoData.sourceLanguage}
+          enableCodeCopy
+        />
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
     </Root>
