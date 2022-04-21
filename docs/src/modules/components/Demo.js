@@ -255,6 +255,11 @@ export default function Demo(props) {
           code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
           language={demoData.sourceLanguage}
           enableCodeCopy
+          analytics={{
+            'data-ga-event-category': 'demo',
+            'data-ga-event-label': demoOptions.demo,
+            'data-ga-event-action': 'copy-click',
+          }}
         />
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}

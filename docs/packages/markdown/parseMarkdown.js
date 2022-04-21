@@ -272,7 +272,7 @@ function createRender(context) {
 
       return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
-      }</code></pre><button class="MuiCode-copy">Copy</button></div>\n`;
+      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy</button></div>\n`;
     };
 
     const markedOptions = {

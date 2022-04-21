@@ -8,6 +8,18 @@ export const setupKeyboardCopy = (copyBtn: HTMLButtonElement) => {
   copyBtn.addEventListener('keydown', (event) => {
     if (event.code === 'KeyC' && (!!event.metaKey || !!event.ctrlKey) && !event.shiftKey) {
       copyBtn.click();
+      if (typeof window !== 'undefined' && 'ga' in window) {
+        // @ts-ignore
+        window.ga('send', {
+          hitType: 'event',
+          eventCategory: copyBtn.getAttribute('data-ga-event-category') || 'code',
+          eventAction:
+            // the button's `data-ga-event-action` usually is `copy-click`
+            copyBtn.getAttribute('data-ga-event-action')?.replace('click', 'keyboard') ||
+            'copy-keyboard',
+          eventLabel: copyBtn.getAttribute('data-ga-event-label'),
+        });
+      }
     }
   });
   copyBtn.parentElement?.addEventListener('mouseenter', () => {

@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
@@ -7,6 +8,7 @@ import { setupKeyboardCopy } from 'docs/src/modules/utils/useCodeCopy';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   const {
+    analytics,
     code,
     language,
     component: Component = MarkdownElement,
@@ -45,7 +47,9 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
         </pre>
         {enableCodeCopy && (
           <button
+            {...analytics}
             ref={btnRef}
+            aria-label="Copy the code"
             type="button"
             className="MuiCode-copy"
             onClick={async (event) => {
@@ -53,7 +57,6 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
               setCopied(true);
               await copy(code);
             }}
-            // eslint-disable-next-line material-ui/no-hardcoded-labels
           >
             {copied ? 'Copied' : 'Copy'}
           </button>
@@ -64,6 +67,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
 });
 
 HighlightedCode.propTypes = {
+  analytics: PropTypes.object,
   code: PropTypes.string.isRequired,
   component: PropTypes.elementType,
   enableCodeCopy: PropTypes.bool,
