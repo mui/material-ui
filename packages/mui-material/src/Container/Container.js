@@ -1,6 +1,6 @@
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
-import { defaultTheme } from '../styles/defaultTheme';
+import defaultTheme from '../styles/defaultTheme';
 import styled from '../styles/styled';
 import { getContainerUtilityClass } from './containerClasses';
 
