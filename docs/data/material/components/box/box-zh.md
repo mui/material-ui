@@ -1,6 +1,7 @@
 ---
 product: material-ui
-title: React Box（分组）组件
+title: React Box
+components: Box
 githubLabel: 'component: Box'
 ---
 
@@ -48,19 +49,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
 ```
 
-## API
-
-```jsx
-import Box from '@mui/material/Box';
-```
-
-| 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
-|:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------ |
-| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Box 渲染函数或者返回节点。                            |
-| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |
-| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                   |
-
-## 系统属性
+## System props
 
 作为一个 CSS 实用组件, `Box` 也支持所有 [`system`](/system/properties/) 属性。 您可以直接在组件上使用它们作为 prop。 例如，margin-top:
 
