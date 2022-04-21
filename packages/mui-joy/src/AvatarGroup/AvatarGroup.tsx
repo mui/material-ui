@@ -111,7 +111,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -340,8 +340,8 @@ const internalDefaultTheme = {
   focus: {
     default: {
       '&.Mui-focusVisible, &:focus-visible': {
-        outline: '4px solid',
-        outlineColor: 'var(--joy-palette-focusVisible)',
+        outlineOffset: 0, // reset user agent stylesheet
+        outline: '4px solid var(--joy-palette-focusVisible)',
       },
     },
   },
