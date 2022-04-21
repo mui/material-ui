@@ -43,6 +43,7 @@ type ConcatDeep<T> = T extends Record<string | number, infer V>
 type NormalizeVars<T> = ConcatDeep<Split<T>>;
 
 export interface Focus {
+  selector: string;
   default: CSSObject;
 }
 
@@ -338,11 +339,10 @@ const internalDefaultTheme = {
     dark: darkColorSystem,
   },
   focus: {
+    selector: '&.Mui-focusVisible, &:focus-visible',
     default: {
-      '&.Mui-focusVisible, &:focus-visible': {
-        outlineOffset: 0, // reset user agent stylesheet
-        outline: '4px solid var(--joy-palette-focusVisible)',
-      },
+      outlineOffset: 0, // reset user agent stylesheet
+      outline: '4px solid var(--joy-palette-focusVisible)',
     },
   },
   typography: {

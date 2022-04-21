@@ -124,7 +124,7 @@ const SwitchAction = styled('div', {
   left: 0,
   bottom: 0,
   right: 0,
-  ...theme.focus.default,
+  [theme.focus.selector]: theme.focus.default,
 }));
 
 const SwitchInput = styled('input', {

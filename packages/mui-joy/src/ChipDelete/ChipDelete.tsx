@@ -43,8 +43,8 @@ const ChipDeleteRoot = styled('button', {
     border: 'none', // reset user agent stylesheet
     background: 'none', // reset user agent stylesheet
     padding: '0px', // reset user agent stylesheet
+    [theme.focus.selector]: theme.focus.default,
   },
-  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.palette!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
   theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
