@@ -246,7 +246,8 @@ function createRender(context) {
           name: 'callout',
           level: 'block',
           start(src) {
-            return src.match(/:::/)?.index;
+            const match = src.match(/:::/);
+            return match ? match.index : undefined;
           },
           tokenizer(src) {
             const rule =
