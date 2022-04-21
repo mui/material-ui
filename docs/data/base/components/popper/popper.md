@@ -21,11 +21,11 @@ packageName: '@mui/base'
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 ```
 
-By default, the popper is mounted to the DOM when its `open` prop is set to `true`, and removed from the DOM when `open` turns `false`. 
+By default, the popper is mounted to the DOM when its `open` prop is set to `true`, and removed from the DOM when `open` turns `false`.
 
 `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 The children are placed in a [`Portal`](/base/react-portal/) prepended to the body of the document to avoid rendering problems.
-  You can disable this behavior with `disablePortal` prop.
+You can disable this behavior with `disablePortal` prop.
 
 {{"demo": "SimplePopper.js"}}
 
@@ -47,6 +47,6 @@ You can animate the open and close states of the popper with a render prop child
 
 These two callbacks allow the popper to unmount the child content when closed and fully transitioned.
 
-## Bundle size 
+## Bundle size
 
 📦 [8 kB gzipped](/size-snapshot).
