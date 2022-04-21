@@ -160,6 +160,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
       ...(!hasHostTextarea && { minRows: rows || minRows, maxRows: rows || maxRows }),
       ...(hasHostTextarea ? inputPropsWithoutOwnerState : inputProps),
     };
+
     Input = components.Textarea ?? 'textarea';
   }
 
