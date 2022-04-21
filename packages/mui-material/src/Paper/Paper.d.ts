@@ -56,7 +56,7 @@ declare const Paper: OverridableComponent<PaperTypeMap>;
 
 export type PaperProps<
   D extends React.ElementType = PaperTypeMap['defaultComponent'],
-  P = {},
+  P = { component?: React.ElementType },
 > = OverrideProps<PaperTypeMap<P, D>, D>;
 
 export default Paper;
