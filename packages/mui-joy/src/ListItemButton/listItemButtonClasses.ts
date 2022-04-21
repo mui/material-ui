@@ -3,20 +3,20 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface ListItemButtonClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
-  colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
-  colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string;
-  /** Styles applied to the root element if `color="context"`. */
-  colorContext: string;
+  /** Styles applied to the root element if `palette="primary"`. */
+  palettePrimary: string;
+  /** Styles applied to the root element if `palette="neutral"`. */
+  paletteNeutral: string;
+  /** Styles applied to the root element if `palette="danger"`. */
+  paletteDanger: string;
+  /** Styles applied to the root element if `palette="info"`. */
+  paletteInfo: string;
+  /** Styles applied to the root element if `palette="success"`. */
+  paletteSuccess: string;
+  /** Styles applied to the root element if `palette="warning"`. */
+  paletteWarning: string;
+  /** Styles applied to the root element if `palette="context"`. */
+  paletteContext: string;
   /** State class applied to the `component`'s `focusVisibleClassName` prop. */
   focusVisible: string;
   /** State class applied to the inner `component` element if `disabled={true}`. */
@@ -41,13 +41,13 @@ export function getListItemButtonUtilityClass(slot: string): string {
 
 const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('MuiListItemButton', [
   'root',
-  'colorPrimary',
-  'colorNeutral',
-  'colorDanger',
-  'colorInfo',
-  'colorSuccess',
-  'colorWarning',
-  'colorContext',
+  'palettePrimary',
+  'paletteNeutral',
+  'paletteDanger',
+  'paletteInfo',
+  'paletteSuccess',
+  'paletteWarning',
+  'paletteContext',
   'focusVisible',
   'disabled',
   'selected',

@@ -33,7 +33,7 @@ describe('<Badge />', () => {
       ThemeProvider,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
-      testVariantProps: { color: 'neutral', variant: 'light' },
+      testVariantProps: { palette: 'neutral', variant: 'light' },
       skip: ['classesRoot', 'componentsProp'],
     }),
   );
@@ -104,17 +104,17 @@ describe('<Badge />', () => {
     });
   });
 
-  describe('prop: color', () => {
+  describe('prop: palette', () => {
     it('adds a neutral class by default', () => {
       const { container } = render(<Badge {...defaultProps} />);
-      expect(findBadge(container)).to.have.class(classes.colorPrimary);
+      expect(findBadge(container)).to.have.class(classes.palettePrimary);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
-      it(`should render ${color}`, () => {
-        const { container } = render(<Badge color={color} {...defaultProps} />);
+    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((palette) => {
+      it(`should render ${palette}`, () => {
+        const { container } = render(<Badge palette={palette} {...defaultProps} />);
 
-        expect(findBadge(container)).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(findBadge(container)).to.have.class(classes[`palette${capitalize(palette)}`]);
       });
     });
   });

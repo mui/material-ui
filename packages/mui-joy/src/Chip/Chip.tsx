@@ -17,13 +17,13 @@ import ChipContext from './ChipContext';
 const useUtilityClasses = (
   ownerState: ChipProps & { focusVisible: boolean; clickable: boolean },
 ) => {
-  const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
+  const { disabled, size, palette, clickable, variant, focusVisible } = ownerState;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
       variant && `variant${capitalize(variant)}`,
       clickable && 'clickable',
@@ -94,12 +94,12 @@ const ChipRoot = styled('div', {
     },
     ...(!ownerState.clickable
       ? [
-          theme.variants[ownerState.variant!]?.[ownerState.color!],
-          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          theme.variants[ownerState.variant!]?.[ownerState.palette!],
+          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
         ]
       : [
           {
-            color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+            color: theme.vars.palette[ownerState.palette!]?.[`${ownerState.variant!}Color`],
           },
         ]),
   ];
@@ -141,10 +141,10 @@ const ChipAction = styled('button', {
       'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   },
   theme.focus.default,
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  theme.variants[ownerState.variant!]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
 ]);
 
 const ChipStartDecorator = styled('span', {
@@ -184,7 +184,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     children,
     className,
     componentsProps = {},
-    color = 'primary',
+    palette = 'primary',
     component,
     onClick,
     disabled = false,
@@ -214,7 +214,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     focusVisible,
     size,
-    color,
+    palette,
     clickable,
     variant,
   };
@@ -222,7 +222,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <ChipContext.Provider value={{ disabled, variant, color }}>
+    <ChipContext.Provider value={{ disabled, variant, palette }}>
       <ChipRoot
         as={component}
         className={clsx(classes.root, className)}
@@ -289,10 +289,10 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

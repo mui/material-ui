@@ -3,18 +3,18 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface CardClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
-  colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
-  colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string;
+  /** Styles applied to the root element if `palette="primary"`. */
+  palettePrimary: string;
+  /** Styles applied to the root element if `palette="neutral"`. */
+  paletteNeutral: string;
+  /** Styles applied to the root element if `palette="danger"`. */
+  paletteDanger: string;
+  /** Styles applied to the root element if `palette="info"`. */
+  paletteInfo: string;
+  /** Styles applied to the root element if `palette="success"`. */
+  paletteSuccess: string;
+  /** Styles applied to the root element if `palette="warning"`. */
+  paletteWarning: string;
   /** Styles applied to the root element if `variant="text"`. */
   variantText: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -39,12 +39,12 @@ export function getCardUtilityClass(slot: string): string {
 
 const cardClasses: CardClasses = generateUtilityClasses('MuiCard', [
   'root',
-  'colorPrimary',
-  'colorNeutral',
-  'colorDanger',
-  'colorInfo',
-  'colorSuccess',
-  'colorWarning',
+  'palettePrimary',
+  'paletteNeutral',
+  'paletteDanger',
+  'paletteInfo',
+  'paletteSuccess',
+  'paletteWarning',
   'variantText',
   'variantOutlined',
   'variantLight',

@@ -75,13 +75,13 @@ describe('<Checkbox />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', false);
   });
 
-  it('should have configurable color', () => {
+  it('should have configurable palette', () => {
     const { container, rerender } = render(<Checkbox />);
 
-    expect(container.firstChild).to.have.class(classes.colorNeutral); // default
+    expect(container.firstChild).to.have.class(classes.paletteNeutral); // default
 
-    rerender(<Checkbox color="primary" />);
-    expect(container.firstChild).to.have.class(classes.colorPrimary);
+    rerender(<Checkbox palette="primary" />);
+    expect(container.firstChild).to.have.class(classes.palettePrimary);
   });
 
   it('should have configurable variant', () => {

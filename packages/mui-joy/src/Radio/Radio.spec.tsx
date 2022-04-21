@@ -17,12 +17,12 @@ import Radio from '@mui/joy/Radio';
   }}
 />;
 
-<Radio color="primary" />;
-<Radio color="danger" />;
-<Radio color="info" />;
-<Radio color="success" />;
-<Radio color="warning" />;
-<Radio color="neutral" />;
+<Radio palette="primary" />;
+<Radio palette="danger" />;
+<Radio palette="info" />;
+<Radio palette="success" />;
+<Radio palette="warning" />;
+<Radio palette="neutral" />;
 
 <Radio variant="outlined" />;
 <Radio variant="light" />;

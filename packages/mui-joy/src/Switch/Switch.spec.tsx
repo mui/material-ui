@@ -20,12 +20,12 @@ import Switch from '@mui/joy/Switch';
   }}
 />;
 
-<Switch color="primary" />;
-<Switch color="danger" />;
-<Switch color="info" />;
-<Switch color="success" />;
-<Switch color="warning" />;
-<Switch color="neutral" />;
+<Switch palette="primary" />;
+<Switch palette="danger" />;
+<Switch palette="info" />;
+<Switch palette="success" />;
+<Switch palette="warning" />;
+<Switch palette="neutral" />;
 
 <Switch variant="outlined" />;
 <Switch variant="light" />;

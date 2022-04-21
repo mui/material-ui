@@ -12,7 +12,7 @@ import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
 
 const useUtilityClasses = (ownerState: TextFieldProps) => {
-  const { error, disabled, variant, size, color, fullWidth } = ownerState;
+  const { error, disabled, variant, size, palette, fullWidth } = ownerState;
   const slots = {
     root: [
       'root',
@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState: TextFieldProps) => {
       fullWidth && 'fullWidth',
       variant && `variant${capitalize(variant)}`,
       size && `size${capitalize(size)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
     ],
   };
 
@@ -36,7 +36,7 @@ const TextFieldRoot = styled('div', {
   '--FormLabel-margin': '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.25rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
-  '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
+  '--FormHelperText-color': theme.vars.palette[ownerState.palette!]?.[500],
   ...(ownerState.size === 'sm' && {
     '--FormHelperText-fontSize': theme.vars.fontSize.xs,
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
@@ -45,8 +45,9 @@ const TextFieldRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${textFieldClasses.disabled}`]: {
-    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
-    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
+    '--FormLabel-color': theme.vars.palette[ownerState.palette || 'neutral']?.textDisabledColor,
+    '--FormHelperText-color':
+      theme.vars.palette[ownerState.palette || 'neutral']?.textDisabledColor,
   },
   display: 'flex',
   flexDirection: 'column',
@@ -80,7 +81,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     onChange,
     onFocus,
     inputRef,
-    color,
+    palette,
     disabled = false,
     error = false,
     required = false,
@@ -151,7 +152,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         disabled={disabled}
         error={error}
         required={required}
-        color={color}
+        palette={palette}
         size={size}
         fullWidth={fullWidth}
         variant={variant}
@@ -202,10 +203,10 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

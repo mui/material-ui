@@ -62,12 +62,12 @@ describe('Joy <TextField />', () => {
     expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(inputClasses.sizeSm);
   });
 
-  it('should have configurable color', () => {
-    const { container } = render(<TextField color="primary" />);
+  it('should have configurable palette', () => {
+    const { container } = render(<TextField palette="primary" />);
 
-    expect(container.firstChild).to.have.class(classes.colorPrimary);
+    expect(container.firstChild).to.have.class(classes.palettePrimary);
     expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(
-      inputClasses.colorPrimary,
+      inputClasses.palettePrimary,
     );
   });
 

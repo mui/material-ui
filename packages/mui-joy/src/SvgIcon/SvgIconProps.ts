@@ -21,11 +21,11 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     classes?: Partial<SvgIconClasses>;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
-     * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
+     * You can use the `htmlColor` prop to apply a palette attribute to the SVG element.
      * @default 'inherit'
      */
-    color?: OverridableStringUnion<
+    palette?: OverridableStringUnion<
       'inherit' | Exclude<ColorPaletteProp, 'context'>,
       SvgIconPropsSizeOverrides
     >;

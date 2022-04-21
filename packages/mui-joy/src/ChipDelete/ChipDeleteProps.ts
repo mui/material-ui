@@ -11,10 +11,10 @@ export interface ChipDeletePropsVariantOverrides {}
 export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<
+    palette?: OverridableStringUnion<
       Exclude<ColorPaletteProp, 'context'>,
       ChipDeletePropsColorOverrides
     >;

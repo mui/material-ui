@@ -12,7 +12,7 @@ import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) => {
-  const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
+  const { checked, disabled, disableIcon, focusVisible, palette, variant, size } = ownerState;
 
   const slots = {
     root: [
@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) =
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
     ],
     radio: ['radio', disabled && 'disabled'], // disabled class is necessary for displaying global variant
@@ -77,12 +77,12 @@ const RadioRoot = styled('span', {
       fontFamily: theme.vars.fontFamily.body,
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
       '&.Mui-disabled': {
-        color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+        color: theme.vars.palette[ownerState.palette!]?.textDisabledColor,
       },
       ...(ownerState.disableIcon && {
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+        color: theme.vars.palette[ownerState.palette!]?.[`${ownerState.variant!}Color`],
         '&.Mui-disabled': {
-          color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+          color: theme.vars.palette[ownerState.palette!]?.[`${ownerState.variant!}DisabledColor`],
         },
       }),
     },
@@ -113,10 +113,10 @@ const RadioRadio = styled('span', {
   },
   ...(!ownerState.disableIcon
     ? [
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        theme.variants[ownerState.variant!]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
       ]
     : []),
 ]);
@@ -144,10 +144,10 @@ const RadioAction = styled('span', {
   },
   ...(ownerState.disableIcon
     ? [
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        theme.variants[ownerState.variant!]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
       ]
     : []),
 ]);
@@ -224,7 +224,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onFocus,
     onFocusVisible,
     required,
-    color: colorProp,
+    palette: paletteProp,
     variant: variantProp = 'outlined',
     size: sizeProp = 'md',
     uncheckedIcon,
@@ -233,9 +233,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   } = props;
   const id = useId(idOverride);
   const radioGroup = React.useContext(RadioGroupContext);
-  const color = inProps.color || radioGroup.color || colorProp;
-  const activeColor = color || 'primary';
-  const inactiveColor = color || 'neutral';
+  const palette = inProps.palette || radioGroup.palette || paletteProp;
+  const activeColor = palette || 'primary';
+  const inactiveColor = palette || 'neutral';
   const variant = inProps.variant || radioGroup.variant || variantProp;
   const size = inProps.size || radioGroup.size || sizeProp;
   const name = inProps.name || radioGroup.name || nameProp;
@@ -263,7 +263,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     checked,
     disabled,
     focusVisible,
-    color: checked ? activeColor : inactiveColor,
+    palette: checked ? activeColor : inactiveColor,
     variant,
     size,
     disableIcon,
@@ -341,10 +341,10 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

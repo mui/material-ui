@@ -16,10 +16,10 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
      */
     children?: React.ReactNode;
     /**
-     * The color of the link.
+     * The palette of the link.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, LinkPropsColorOverrides>;
+    palette?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, LinkPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false

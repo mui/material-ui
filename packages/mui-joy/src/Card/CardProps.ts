@@ -17,10 +17,10 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, CardPropsColorOverrides>;
+    palette?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, CardPropsColorOverrides>;
     /**
      * The size of the component.
      * It accepts theme values between 'xs' and 'xl'.

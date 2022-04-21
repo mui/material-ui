@@ -14,7 +14,7 @@ describe('Joy <ListItemButton />', () => {
     ThemeProvider,
     muiName: 'MuiListItemButton',
     refInstanceof: window.HTMLDivElement,
-    testVariantProps: { color: 'primary' },
+    testVariantProps: { palette: 'primary' },
     skip: ['componentsProp', 'classesRoot'],
   }));
 
@@ -28,9 +28,9 @@ describe('Joy <ListItemButton />', () => {
     expect(getByRole('button')).to.have.class(classes.variantOutlined);
   });
 
-  it('should render with primary color class', () => {
-    const { getByRole } = render(<ListItemButton color="primary" />);
-    expect(getByRole('button')).to.have.class(classes.colorPrimary);
+  it('should render with primary palette class', () => {
+    const { getByRole } = render(<ListItemButton palette="primary" />);
+    expect(getByRole('button')).to.have.class(classes.palettePrimary);
   });
 
   it('should accept className prop', () => {

@@ -11,6 +11,26 @@ export interface ListItemClasses {
   nested: string;
   /** Styles applied to the root element, if sticky={true}. */
   sticky: string;
+  /** Styles applied to the root element if `palette="primary"`. */
+  palettePrimary: string;
+  /** Styles applied to the root element if `palette="neutral"`. */
+  paletteNeutral: string;
+  /** Styles applied to the root element if `palette="danger"`. */
+  paletteDanger: string;
+  /** Styles applied to the root element if `palette="info"`. */
+  paletteInfo: string;
+  /** Styles applied to the root element if `palette="success"`. */
+  paletteSuccess: string;
+  /** Styles applied to the root element if `palette="warning"`. */
+  paletteWarning: string;
+  /** Styles applied to the root element if `variant="text"`. */
+  variantText: string;
+  /** Styles applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** Styles applied to the root element if `variant="light"`. */
+  variantLight: string;
+  /** Styles applied to the root element if `variant="contained"`. */
+  variantContained: string;
 }
 
 export type ListItemClassKey = keyof ListItemClasses;
@@ -25,6 +45,16 @@ const listItemClasses: ListItemClasses = generateUtilityClasses('MuiListItem', [
   'endAction',
   'nested',
   'sticky',
+  'palettePrimary',
+  'paletteNeutral',
+  'paletteDanger',
+  'paletteInfo',
+  'paletteSuccess',
+  'paletteWarning',
+  'variantText',
+  'variantOutlined',
+  'variantLight',
+  'variantContained',
 ]);
 
 export default listItemClasses;

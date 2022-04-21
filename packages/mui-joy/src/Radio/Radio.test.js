@@ -64,13 +64,13 @@ describe('<Radio />', () => {
     expect(getByRole('radio')).to.have.property('checked', false);
   });
 
-  it('should have configurable color', () => {
+  it('should have configurable palette', () => {
     const { container, rerender } = render(<Radio />);
 
-    expect(container.firstChild).to.have.class(classes.colorNeutral); // default
+    expect(container.firstChild).to.have.class(classes.paletteNeutral); // default
 
-    rerender(<Radio color="primary" />);
-    expect(container.firstChild).to.have.class(classes.colorPrimary);
+    rerender(<Radio palette="primary" />);
+    expect(container.firstChild).to.have.class(classes.palettePrimary);
   });
 
   it('should have configurable variant', () => {

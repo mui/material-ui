@@ -15,10 +15,13 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SheetPropsColorOverrides>;
+    palette?: OverridableStringUnion<
+      Exclude<ColorPaletteProp, 'context'>,
+      SheetPropsColorOverrides
+    >;
     /**
      * Shadow depth, corresponds to the `theme.shadow` scale.
      * It accepts theme values between 'xs' and 'xl'.

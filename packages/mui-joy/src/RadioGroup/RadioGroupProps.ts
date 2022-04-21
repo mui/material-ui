@@ -17,9 +17,9 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      */
     component?: React.ElementType;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      */
-    color?: RadioProps['color'];
+    palette?: RadioProps['palette'];
     /**
      * The default value. Use when the component is not controlled.
      */

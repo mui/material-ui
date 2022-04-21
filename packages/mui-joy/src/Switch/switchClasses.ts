@@ -19,16 +19,16 @@ export interface SwitchClasses {
   focusVisible: string;
   /** Class applied to the root element if the switch is read-only */
   readOnly: string;
-  /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string;
-  /** Styles applied to the root element if `color="danger"`. */
-  colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string;
+  /** Styles applied to the root element if `palette="primary"`. */
+  palettePrimary: string;
+  /** Styles applied to the root element if `palette="danger"`. */
+  paletteDanger: string;
+  /** Styles applied to the root element if `palette="info"`. */
+  paletteInfo: string;
+  /** Styles applied to the root element if `palette="success"`. */
+  paletteSuccess: string;
+  /** Styles applied to the root element if `palette="warning"`. */
+  paletteWarning: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -59,11 +59,11 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'track',
   'focusVisible',
   'readOnly',
-  'colorPrimary',
-  'colorDanger',
-  'colorInfo',
-  'colorSuccess',
-  'colorWarning',
+  'palettePrimary',
+  'paletteDanger',
+  'paletteInfo',
+  'paletteSuccess',
+  'paletteWarning',
   'sizeSm',
   'sizeMd',
   'sizeLg',

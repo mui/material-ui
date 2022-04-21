@@ -3,20 +3,20 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface SvgIconClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `color="inherit"`. */
-  colorInherit: string;
-  /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
-  colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
-  colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string;
+  /** Styles applied to the root element if `palette="inherit"`. */
+  paletteInherit: string;
+  /** Styles applied to the root element if `palette="primary"`. */
+  palettePrimary: string;
+  /** Styles applied to the root element if `palette="neutral"`. */
+  paletteNeutral: string;
+  /** Styles applied to the root element if `palette="danger"`. */
+  paletteDanger: string;
+  /** Styles applied to the root element if `palette="info"`. */
+  paletteInfo: string;
+  /** Styles applied to the root element if `palette="success"`. */
+  paletteSuccess: string;
+  /** Styles applied to the root element if `palette="warning"`. */
+  paletteWarning: string;
   /** Styles applied to the root element if `fontSize="inherit"`. */
   fontSizeInherit: string;
   /** Styles applied to the root element if `fontSize="xs"`. */
@@ -49,13 +49,13 @@ export function getSvgIconUtilityClass(slot: string): string {
 
 const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'root',
-  'colorInherit',
-  'colorPrimary',
-  'colorNeutral',
-  'colorDanger',
-  'colorInfo',
-  'colorSuccess',
-  'colorWarning',
+  'paletteInherit',
+  'palettePrimary',
+  'paletteNeutral',
+  'paletteDanger',
+  'paletteInfo',
+  'paletteSuccess',
+  'paletteWarning',
   'fontSizeInherit',
   'fontSizeXs',
   'fontSizeSm',

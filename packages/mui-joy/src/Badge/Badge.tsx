@@ -12,7 +12,7 @@ import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeTypeMap } from './BadgeProps';
 
 const useUtilityClasses = (ownerState: BadgeProps) => {
-  const { color, variant, size, anchorOrigin, invisible } = ownerState;
+  const { palette, variant, size, anchorOrigin, invisible } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -22,7 +22,7 @@ const useUtilityClasses = (ownerState: BadgeProps) => {
       anchorOrigin &&
         `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
     ],
   };
@@ -139,7 +139,7 @@ const BadgeBadge = styled('span', {
         transition: 'transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       }),
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    theme.variants[ownerState.variant!]?.[ownerState.palette!],
   ];
 });
 
@@ -156,7 +156,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     components = {},
     componentsProps = {},
     size: sizeProp = 'md',
-    color: colorProp = 'primary',
+    palette: paletteProp = 'primary',
     invisible: invisibleProp = false,
     max,
     badgeContent: badgeContentProp = '',
@@ -169,7 +169,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     anchorOrigin: anchorOriginProp,
     size: sizeProp,
     badgeInset: badgeInsetProp,
-    color: colorProp,
+    palette: paletteProp,
     variant: variantProp,
   });
 
@@ -183,20 +183,20 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   }
 
   const {
-    color = colorProp,
+    palette = paletteProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
     badgeInset = badgeInsetProp,
   }: {
     size?: BadgeProps['size'];
-    color?: BadgeProps['color'];
+    palette?: BadgeProps['palette'];
     anchorOrigin?: BadgeProps['anchorOrigin'];
     variant?: BadgeProps['variant'];
     badgeInset?: BadgeProps['badgeInset'];
   } = invisible ? prevProps : props;
 
-  const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
+  const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, palette, size };
   const classes = useUtilityClasses(ownerState);
   const displayValue =
     max !== undefined && badgeContentProp && Number(badgeContentProp) > max
@@ -224,7 +224,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
             as: component,
             ownerState: {
               anchorOrigin,
-              color,
+              palette,
               variant,
               badgeInset,
               size,
@@ -237,7 +237,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
           ...(shouldSpreadAdditionalProps(components.Badge) && {
             ownerState: {
               anchorOrigin,
-              color,
+              palette,
               variant,
               badgeInset,
               size,
@@ -283,10 +283,10 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

@@ -13,7 +13,7 @@ import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
 import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }) => {
-  const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
+  const { checked, disabled, disableIcon, focusVisible, palette, variant, size } = ownerState;
 
   const slots = {
     root: [
@@ -22,7 +22,7 @@ const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
     ],
     checkbox: ['checkbox', disabled && 'disabled'], // disabled class is necessary for displaying global variant
@@ -65,12 +65,12 @@ const CheckboxRoot = styled('span', {
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
   '&.Mui-disabled': {
-    color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+    color: theme.vars.palette[ownerState.palette!]?.textDisabledColor,
   },
   ...(ownerState.disableIcon && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    color: theme.vars.palette[ownerState.palette!]?.[`${ownerState.variant!}Color`],
     '&.Mui-disabled': {
-      color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+      color: theme.vars.palette[ownerState.palette!]?.[`${ownerState.variant!}DisabledColor`],
     },
   }),
 }));
@@ -98,10 +98,10 @@ const CheckboxCheckbox = styled('span', {
   },
   ...(!ownerState.disableIcon
     ? [
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        theme.variants[ownerState.variant!]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
       ]
     : []),
 ]);
@@ -128,10 +128,10 @@ const CheckboxAction = styled('span', {
   },
   ...(ownerState.disableIcon
     ? [
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        theme.variants[ownerState.variant!]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
       ]
     : []),
 ]);
@@ -196,7 +196,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     onFocus,
     onFocusVisible,
     required,
-    color,
+    palette,
     variant,
     size = 'md',
     ...otherProps
@@ -216,8 +216,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useCheckboxProps);
 
   const isCheckboxActive = checked || indeterminate;
-  const activeColor = color || 'primary';
-  const inactiveColor = color || 'neutral';
+  const activeColor = palette || 'primary';
+  const inactiveColor = palette || 'neutral';
   const activeVariant = variant || 'contained';
   const inactiveVariant = variant || 'outlined';
 
@@ -228,7 +228,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     disableIcon,
     overlay,
     focusVisible,
-    color: isCheckboxActive ? activeColor : inactiveColor,
+    palette: isCheckboxActive ? activeColor : inactiveColor,
     variant: isCheckboxActive ? activeVariant : inactiveVariant,
     size,
   };
@@ -305,10 +305,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

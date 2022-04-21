@@ -40,22 +40,22 @@ describe('<CardOverflow />', () => {
     });
   });
 
-  describe('prop: color', () => {
+  describe('prop: palette', () => {
     it('adds a neutral class by default', () => {
       const { getByTestId } = render(<CardOverflow data-testid="root">Hello World</CardOverflow>);
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(getByTestId('root')).to.have.class(classes.paletteNeutral);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
-      it(`should render ${color}`, () => {
+    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((palette) => {
+      it(`should render ${palette}`, () => {
         const { getByTestId } = render(
-          <CardOverflow data-testid="root" color={color}>
+          <CardOverflow data-testid="root" palette={palette}>
             Hello World
           </CardOverflow>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(classes[`palette${capitalize(palette)}`]);
       });
     });
   });

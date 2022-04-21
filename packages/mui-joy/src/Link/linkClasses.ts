@@ -3,18 +3,18 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface LinkClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
-  colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
-  colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string;
+  /** Styles applied to the root element if `palette="primary"`. */
+  palettePrimary: string;
+  /** Styles applied to the root element if `palette="neutral"`. */
+  paletteNeutral: string;
+  /** Styles applied to the root element if `palette="danger"`. */
+  paletteDanger: string;
+  /** Styles applied to the root element if `palette="info"`. */
+  paletteInfo: string;
+  /** Styles applied to the root element if `palette="success"`. */
+  paletteSuccess: string;
+  /** Styles applied to the root element if `palette="warning"`. */
+  paletteWarning: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** State class applied to the root element if the link is keyboard focused. */
@@ -67,12 +67,12 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'root',
   'disabled',
   'focusVisible',
-  'colorPrimary',
-  'colorNeutral',
-  'colorDanger',
-  'colorInfo',
-  'colorSuccess',
-  'colorWarning',
+  'palettePrimary',
+  'paletteNeutral',
+  'paletteDanger',
+  'paletteInfo',
+  'paletteSuccess',
+  'paletteWarning',
   'focusVisible',
   'variantText',
   'variantOutlined',

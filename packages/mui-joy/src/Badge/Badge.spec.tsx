@@ -10,19 +10,19 @@ import * as React from 'react';
 <Badge variant="outlined" />;
 <Badge variant="contained" />;
 
-// `color`
-<Badge color="primary" />;
-<Badge color="danger" />;
-<Badge color="info" />;
-<Badge color="success" />;
-<Badge color="warning" />;
-<Badge color="neutral" />;
+// `palette`
+<Badge palette="primary" />;
+<Badge palette="danger" />;
+<Badge palette="info" />;
+<Badge palette="success" />;
+<Badge palette="warning" />;
+<Badge palette="neutral" />;
 
 // @ts-expect-error there is no variant `filled`
 <Badge variant="filled" />;
 
-// @ts-expect-error there is no color `secondary`
-<Badge color="secondary" />;
+// @ts-expect-error there is no palette `secondary`
+<Badge palette="secondary" />;
 
 // @ts-expect-error there is no elevation `xl2`
 <Badge elevation="xl2" />;

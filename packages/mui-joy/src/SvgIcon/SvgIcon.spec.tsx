@@ -15,23 +15,23 @@ const HomeIcon = () => <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
   <HomeIcon />
 </SvgIcon>;
 
-// `color`
-<SvgIcon color="primary">
+// `palette`
+<SvgIcon palette="primary">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon color="danger">
+<SvgIcon palette="danger">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon color="info">
+<SvgIcon palette="info">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon color="success">
+<SvgIcon palette="success">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon color="warning">
+<SvgIcon palette="warning">
   <HomeIcon />
 </SvgIcon>;
-<SvgIcon color="neutral">
+<SvgIcon palette="neutral">
   <HomeIcon />
 </SvgIcon>;
 

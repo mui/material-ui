@@ -24,7 +24,7 @@ describe('<Link />', () => {
     ThemeProvider,
     muiName: 'MuiLink',
     refInstanceof: window.HTMLAnchorElement,
-    testVariantProps: { color: 'primary', variant: 'text' },
+    testVariantProps: { palette: 'primary', variant: 'text' },
     testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
     skip: [
       'classesRoot',
@@ -111,7 +111,7 @@ describe('<Link />', () => {
     });
   });
 
-  describe('prop: color', () => {
+  describe('prop: palette', () => {
     it('adds a primary class by default', () => {
       const { getByTestId } = render(
         <Link href="/" data-testid="root">
@@ -119,18 +119,18 @@ describe('<Link />', () => {
         </Link>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
+      expect(getByTestId('root')).to.have.class(classes.palettePrimary);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
-      it(`should render ${color}`, () => {
+    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((palette) => {
+      it(`should render ${palette}`, () => {
         const { getByTestId } = render(
-          <Link href="/" data-testid="root" color={color}>
+          <Link href="/" data-testid="root" palette={palette}>
             Hello World
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(classes[`palette${capitalize(palette)}`]);
       });
     });
   });

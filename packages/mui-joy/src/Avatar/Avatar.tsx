@@ -12,13 +12,13 @@ import { AvatarProps, AvatarTypeMap } from './AvatarProps';
 import { AvatarGroupContext } from '../AvatarGroup/AvatarGroup';
 
 const useUtilityClasses = (ownerState: AvatarProps) => {
-  const { size, variant, color, src, srcSet } = ownerState;
+  const { size, variant, palette, src, srcSet } = ownerState;
 
   const slots = {
     root: [
       'root',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
     ],
     img: [(src || srcSet) && 'img'],
@@ -62,7 +62,7 @@ const AvatarRoot = styled('div', {
       borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    theme.variants[ownerState.variant!]?.[ownerState.palette!],
   ];
 });
 
@@ -149,7 +149,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const {
     alt,
     className,
-    color: colorProp = 'neutral',
+    palette: paletteProp = 'neutral',
     component = 'div',
     size: sizeProp = 'md',
     variant: variantProp = 'light',
@@ -159,7 +159,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children: childrenProp,
     ...other
   } = props;
-  const color = inProps.color || groupContext?.color || colorProp;
+  const palette = inProps.palette || groupContext?.palette || paletteProp;
   const variant = inProps.variant || groupContext?.variant || variantProp;
   const size = inProps.size || groupContext?.size || sizeProp;
 
@@ -172,7 +172,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
+    palette,
     component,
     size,
     variant,
@@ -232,10 +232,10 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

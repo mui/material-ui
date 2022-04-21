@@ -10,12 +10,12 @@ import { getAspectRatioUtilityClass } from './aspectRatioClasses';
 import { AspectRatioProps, AspectRatioTypeMap } from './AspectRatioProps';
 
 const useUtilityClasses = (ownerState: AspectRatioProps) => {
-  const { variant, color } = ownerState;
+  const { variant, palette } = ownerState;
   const slots = {
     root: [
       'root',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
     ],
   };
 
@@ -56,7 +56,7 @@ const AspectRatioRoot = styled('div', {
         },
       },
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    theme.variants[ownerState.variant!]?.[ownerState.palette!],
   ];
 });
 
@@ -74,7 +74,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     min,
     max,
     objectFit = 'cover',
-    color = 'neutral',
+    palette = 'neutral',
     variant = 'light',
     ...other
   } = props;
@@ -86,7 +86,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     max,
     objectFit,
     ratio,
-    color,
+    palette,
     variant,
   };
 
@@ -124,10 +124,10 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  palette: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

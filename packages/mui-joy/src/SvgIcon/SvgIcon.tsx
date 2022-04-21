@@ -10,12 +10,12 @@ import { getSvgIconUtilityClass } from './svgIconClasses';
 import { SvgIconProps, SvgIconTypeMap } from './SvgIconProps';
 
 const useUtilityClasses = (ownerState: SvgIconProps) => {
-  const { color, fontSize, classes } = ownerState;
+  const { palette, fontSize, classes } = ownerState;
 
   const slots = {
     root: [
       'root',
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       fontSize && `fontSize${capitalize(fontSize)}`,
     ],
   };
@@ -46,8 +46,8 @@ const SvgIconRoot = styled('svg', {
           fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
         }),
       color:
-        ownerState.color !== 'inherit' && theme.vars.palette[ownerState.color!]
-          ? theme.vars.palette[ownerState.color!].textColor
+        ownerState.palette !== 'inherit' && theme.vars.palette[ownerState.palette!]
+          ? theme.vars.palette[ownerState.palette!].textColor
           : 'var(--Icon-color)',
     };
   },
@@ -62,7 +62,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const {
     children,
     className,
-    color = 'inherit',
+    palette = 'inherit',
     component = 'svg',
     fontSize = 'xl',
     htmlColor,
@@ -74,7 +74,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
+    palette,
     component,
     fontSize,
     instanceFontSize: inProps.fontSize,
@@ -117,11 +117,11 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
+   * You can use the `htmlColor` prop to apply a palette attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
@@ -148,7 +148,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
     'xs',
   ]),
   /**
-   * Applies a color attribute to the SVG element.
+   * Applies a palette attribute to the SVG element.
    */
   htmlColor: PropTypes.string,
   /**

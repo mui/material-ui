@@ -11,13 +11,13 @@ import * as React from 'react';
 <Sheet variant="outlined" />;
 <Sheet variant="contained" />;
 
-// `color`
-<Sheet color="primary" />;
-<Sheet color="danger" />;
-<Sheet color="info" />;
-<Sheet color="success" />;
-<Sheet color="warning" />;
-<Sheet color="neutral" />;
+// `palette`
+<Sheet palette="primary" />;
+<Sheet palette="danger" />;
+<Sheet palette="info" />;
+<Sheet palette="success" />;
+<Sheet palette="warning" />;
+<Sheet palette="neutral" />;
 
 // `elevation`
 <Sheet elevation="xs" />;
@@ -29,8 +29,8 @@ import * as React from 'react';
 // @ts-expect-error there is no variant `filled`
 <Sheet variant="filled" />;
 
-// @ts-expect-error there is no color `secondary`
-<Sheet color="secondary" />;
+// @ts-expect-error there is no palette `secondary`
+<Sheet palette="secondary" />;
 
 // @ts-expect-error there is no elevation `xl2`
 <Sheet elevation="xl2" />;

@@ -25,10 +25,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
       focusVisible(): void;
     }>;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
+    palette?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false

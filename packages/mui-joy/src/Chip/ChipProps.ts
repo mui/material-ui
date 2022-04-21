@@ -31,10 +31,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, ChipPropsColorOverrides>;
+    palette?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, ChipPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false

@@ -13,18 +13,18 @@ export interface BadgeClasses {
   anchorOriginTopLeft: string;
   /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
   anchorOriginBottomLeft: string;
-  /** Styles applied to the badge `span` element if `color="primary"`. */
-  colorPrimary: string;
-  /** Styles applied to the badge `span` element if `color="danger"`. */
-  colorDanger: string;
-  /** Styles applied to the badge `span` element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the badge `span` element if `color="neutral"`. */
-  colorNeutral: string;
-  /** Styles applied to the badge `span` element if `color="success"`. */
-  colorSuccess: string;
-  /** Styles applied to the badge `span` element if `color="warning"`. */
-  colorWarning: string;
+  /** Styles applied to the badge `span` element if `palette="primary"`. */
+  palettePrimary: string;
+  /** Styles applied to the badge `span` element if `palette="danger"`. */
+  paletteDanger: string;
+  /** Styles applied to the badge `span` element if `palette="info"`. */
+  paletteInfo: string;
+  /** Styles applied to the badge `span` element if `palette="neutral"`. */
+  paletteNeutral: string;
+  /** Styles applied to the badge `span` element if `palette="success"`. */
+  paletteSuccess: string;
+  /** Styles applied to the badge `span` element if `palette="warning"`. */
+  paletteWarning: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
   /** State class applied to the badge `span` element if `location="inside"`. */
@@ -58,12 +58,12 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'anchorOriginBottomRight',
   'anchorOriginTopLeft',
   'anchorOriginBottomLeft',
-  'colorPrimary',
-  'colorDanger',
-  'colorInfo',
-  'colorNeutral',
-  'colorSuccess',
-  'colorWarning',
+  'palettePrimary',
+  'paletteDanger',
+  'paletteInfo',
+  'paletteNeutral',
+  'paletteSuccess',
+  'paletteWarning',
   'invisible',
   'locationInside',
   'locationOutside',

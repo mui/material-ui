@@ -11,10 +11,10 @@ export interface CardOverflowPropsVariantOverrides {}
 export interface CardOverflowTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<
+    palette?: OverridableStringUnion<
       Exclude<ColorPaletteProp, 'context'>,
       CardOverflowPropsColorOverrides
     >;

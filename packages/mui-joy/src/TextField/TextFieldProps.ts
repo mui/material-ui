@@ -22,7 +22,7 @@ type InputRootKeys =
   | 'onBlur'
   | 'type'
   | 'variant'
-  | 'color'
+  | 'palette'
   | 'size'
   | 'startDecorator'
   | 'endDecorator';

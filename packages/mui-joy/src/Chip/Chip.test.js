@@ -61,18 +61,18 @@ describe('<Chip />', () => {
     });
   });
 
-  describe('prop: color', () => {
+  describe('prop: palette', () => {
     it('adds a primary class by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
+      expect(getByTestId('root')).to.have.class(classes.palettePrimary);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
-      it(`should render ${color}`, () => {
-        const { getByTestId } = render(<Chip data-testid="root" color={color} />);
+    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((palette) => {
+      it(`should render ${palette}`, () => {
+        const { getByTestId } = render(<Chip data-testid="root" palette={palette} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(classes[`palette${capitalize(palette)}`]);
       });
     });
   });

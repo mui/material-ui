@@ -11,13 +11,13 @@ import * as React from 'react';
 <Chip variant="outlined" />;
 <Chip variant="contained" />;
 
-// `color`
-<Chip color="primary" />;
-<Chip color="danger" />;
-<Chip color="info" />;
-<Chip color="success" />;
-<Chip color="warning" />;
-<Chip color="neutral" />;
+// `palette`
+<Chip palette="primary" />;
+<Chip palette="danger" />;
+<Chip palette="info" />;
+<Chip palette="success" />;
+<Chip palette="warning" />;
+<Chip palette="neutral" />;
 
 // `size`
 <Chip size="sm" />;
@@ -27,8 +27,8 @@ import * as React from 'react';
 // @ts-expect-error there is no variant `filled`
 <Chip variant="filled" />;
 
-// @ts-expect-error there is no color `secondary`
-<Chip color="secondary" />;
+// @ts-expect-error there is no palette `secondary`
+<Chip palette="secondary" />;
 
 // @ts-expect-error there is no size `xl2`
 <Chip size="xl2" />;

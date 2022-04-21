@@ -49,7 +49,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const {
     className,
-    color = 'neutral',
+    palette = 'neutral',
     component = 'div',
     size = 'md',
     variant = 'light',
@@ -59,7 +59,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
+    palette,
     component,
     size,
     variant,
@@ -97,10 +97,10 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

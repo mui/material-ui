@@ -9,7 +9,7 @@ import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
 
 const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) => {
-  const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
+  const { checked, disabled, focusVisible, readOnly, palette, variant } = ownerState;
 
   const slots = {
     root: [
@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
       focusVisible && 'focusVisible',
       readOnly && 'readOnly',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
     ],
     thumb: ['thumb', checked && 'checked'],
     track: ['track', checked && 'checked'],
@@ -34,19 +34,20 @@ const switchColorVariables =
   ({ theme, ownerState }: { theme: JoyTheme; ownerState: SwitchProps }) =>
   (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
     const variant = ownerState.variant;
-    const color = ownerState.color;
+    const palette = ownerState.palette;
     return {
-      '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
+      '--Switch-track-background':
+        theme.vars.palette[palette!]?.[`${variant!}${data.state || ''}Bg`],
       '--Switch-track-color':
-        ownerState.variant === 'contained' ? '#fff' : theme.vars.palette[color!]?.textColor,
+        ownerState.variant === 'contained' ? '#fff' : theme.vars.palette[palette!]?.textColor,
       '--Switch-track-borderColor':
         variant === 'outlined'
-          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
+          ? theme.vars.palette[palette!]?.[`${variant!}${data.state || ''}Border`]
           : 'currentColor',
       '--Switch-thumb-background':
-        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
+        theme.vars.palette[palette!]?.[`${variant!}${data.state || ''}Color`],
       '--Switch-thumb-color':
-        ownerState.variant === 'contained' ? theme.vars.palette[color!]?.textColor : '#fff',
+        ownerState.variant === 'contained' ? theme.vars.palette[palette!]?.textColor : '#fff',
     };
   };
 
@@ -57,7 +58,7 @@ const SwitchRoot = styled('span', {
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return {
-    ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
+    ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.palette!]),
     '--Switch-track-radius': theme.vars.radius.lg,
     '--Switch-thumb-shadow':
       ownerState.variant === 'light' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
@@ -226,7 +227,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
-    color,
+    palette,
     variant = 'contained',
     size = 'md',
     startDecorator,
@@ -253,7 +254,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     disabled,
     focusVisible,
     readOnly,
-    color: checked ? color || 'primary' : color || 'neutral',
+    palette: checked ? palette || 'primary' : palette || 'neutral',
     variant,
     size,
   };
@@ -335,10 +336,10 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

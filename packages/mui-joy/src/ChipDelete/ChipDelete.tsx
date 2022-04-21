@@ -12,14 +12,14 @@ import { ChipDeleteProps, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
 
 const useUtilityClasses = (ownerState: ChipDeleteProps & { focusVisible: boolean }) => {
-  const { focusVisible, variant, color, disabled } = ownerState;
+  const { focusVisible, variant, palette, disabled } = ownerState;
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
     ],
   };
 
@@ -45,10 +45,10 @@ const ChipDeleteRoot = styled('button', {
     padding: '0px', // reset user agent stylesheet
   },
   theme.focus.default,
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  theme.variants[ownerState.variant!]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
 ]);
 
 const chipVariantMapping = {
@@ -69,12 +69,12 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     component,
     children,
     variant: variantProp,
-    color: colorProp,
+    palette: paletteProp,
     disabled: disabledProp,
     ...other
   } = props;
   const chipContext = React.useContext(ChipContext);
-  const color = colorProp || chipContext.color || 'primary';
+  const palette = paletteProp || chipContext.palette || 'primary';
   const variant = variantProp || chipVariantMapping[chipContext.variant!] || 'contained';
   const disabled = disabledProp ?? chipContext.disabled;
 
@@ -92,7 +92,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     ...props,
     disabled,
     variant,
-    color,
+    palette,
     focusVisible,
   };
 
@@ -125,10 +125,10 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  palette: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

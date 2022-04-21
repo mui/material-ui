@@ -48,22 +48,22 @@ describe('<ChipDelete />', () => {
       expect(getByRole('button')).to.have.class(classes.variantOutlined);
     });
 
-    it('change color according to the Chip', () => {
+    it('change palette according to the Chip', () => {
       const { getByRole } = render(
-        <Chip color="danger">
+        <Chip palette="danger">
           <ChipDelete />
         </Chip>,
       );
-      expect(getByRole('button')).to.have.class(classes.colorDanger);
+      expect(getByRole('button')).to.have.class(classes.paletteDanger);
     });
 
-    it('use color prop if provided', () => {
+    it('use palette prop if provided', () => {
       const { getByRole } = render(
-        <Chip color="danger">
-          <ChipDelete color="neutral" />
+        <Chip palette="danger">
+          <ChipDelete palette="neutral" />
         </Chip>,
       );
-      expect(getByRole('button')).to.have.class(classes.colorNeutral);
+      expect(getByRole('button')).to.have.class(classes.paletteNeutral);
     });
   });
 });

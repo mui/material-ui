@@ -9,7 +9,7 @@ import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
 const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
+  const { palette, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
 
   const slots = {
     root: [
@@ -17,7 +17,7 @@ const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
     ],
   };
@@ -70,10 +70,10 @@ const IconButtonRoot = styled('button', {
       'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   },
   theme.focus.default,
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  theme.variants[ownerState.variant!]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
 ]);
 
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
@@ -87,7 +87,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     className,
     action,
     component = 'button',
-    color = 'primary',
+    palette = 'primary',
     variant = 'light',
     size = 'md',
     ...other
@@ -118,7 +118,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const ownerState = {
     ...props,
     component,
-    color,
+    palette,
     variant,
     size,
     focusVisible,
@@ -164,10 +164,10 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

@@ -11,7 +11,7 @@ import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 
 const useUtilityClasses = (ownerState: InputProps) => {
-  const { classes, disabled, fullWidth, variant, color, size } = ownerState;
+  const { classes, disabled, fullWidth, variant, palette, size } = ownerState;
 
   const slots = {
     root: [
@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState: InputProps) => {
       disabled && 'disabled',
       fullWidth && 'fullWidth',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
     ],
     input: ['input'],
@@ -58,7 +58,7 @@ const InputRoot = styled('div', {
     '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
-      theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      theme.vars.palette[ownerState.palette === 'neutral' ? 'primary' : ownerState.palette!]?.[500],
     boxSizing: 'border-box',
     minHeight: `var(--Input-minHeight)`,
     minWidth: 0, // forces the Input to stay inside a container by default
@@ -94,9 +94,9 @@ const InputRoot = styled('div', {
       margin: 'calc(var(--variant-outlinedBorderWidth) * -1)', // for outlined variant
     },
   },
-  theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  theme.variants[`${ownerState.variant!}`]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
   ownerState.variant !== 'contained' && {
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
@@ -128,7 +128,7 @@ const InputInput = styled('input', {
   fontSize: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
+    WebkitTextFillColor: theme.vars.palette[ownerState.palette!]?.overrideTextPrimary,
   },
   '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
   '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
@@ -147,7 +147,7 @@ const InputStartDecorator = styled('span', {
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    color: theme.vars.palette[ownerState.palette!]?.[`${ownerState.variant!}Color`],
   }),
 }));
 
@@ -159,7 +159,7 @@ const InputEndDecorator = styled('span', {
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
   marginRight: 'calc(var(--Input-decorator-offset) * -1)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  color: theme.vars.palette[ownerState.palette!]?.[`${ownerState.variant!}Color`],
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
@@ -175,7 +175,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     autoComplete,
     autoFocus,
     className,
-    color = 'neutral',
+    palette = 'neutral',
     component,
     components = {},
     componentsProps = {},
@@ -229,7 +229,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const ownerState = {
     ...props,
     fullWidth,
-    color: errorState ? 'danger' : color,
+    palette: errorState ? 'danger' : palette,
     disabled: disabledState,
     error: errorState,
     focused,
@@ -341,10 +341,10 @@ Input.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

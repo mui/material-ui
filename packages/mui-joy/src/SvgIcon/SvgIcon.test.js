@@ -60,7 +60,7 @@ describe('<SvgIcon />', () => {
     });
   });
 
-  describe('prop: color', () => {
+  describe('prop: palette', () => {
     it('should render with the user and SvgIcon classes', () => {
       const { container } = render(<SvgIcon className="meow">{path}</SvgIcon>);
 
@@ -70,14 +70,14 @@ describe('<SvgIcon />', () => {
     it('should render with `inherit` by default', () => {
       const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.colorInherit);
+      expect(container.firstChild).to.have.class(classes.paletteInherit);
     });
 
-    ['inherit', 'primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
-      it(`should render ${color}`, () => {
-        const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
+    ['inherit', 'primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((palette) => {
+      it(`should render ${palette}`, () => {
+        const { container } = render(<SvgIcon palette={palette}>{path}</SvgIcon>);
 
-        expect(container.firstChild).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(container.firstChild).to.have.class(classes[`palette${capitalize(palette)}`]);
       });
     });
   });

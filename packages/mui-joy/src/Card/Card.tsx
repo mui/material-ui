@@ -11,13 +11,13 @@ import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 
 const useUtilityClasses = (ownerState: CardProps) => {
-  const { size, variant, color } = ownerState;
+  const { size, variant, palette } = ownerState;
 
   const slots = {
     root: [
       'root',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
     ],
   };
@@ -71,7 +71,7 @@ const CardRoot = styled('div', {
     display: 'flex',
     flexDirection: 'column',
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
+  theme.variants[ownerState.variant!]?.[ownerState.palette!],
 ]);
 
 const Card = React.forwardRef(function Card(inProps, ref) {
@@ -82,7 +82,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color = 'neutral',
+    palette = 'neutral',
     component = 'div',
     size = 'md',
     variant = 'text',
@@ -92,7 +92,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
+    palette,
     component,
     size,
     variant,
@@ -139,10 +139,10 @@ Card.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

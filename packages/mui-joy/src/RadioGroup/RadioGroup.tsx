@@ -62,7 +62,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     overlay,
     value: valueProp,
     onChange,
-    color,
+    palette,
     variant,
     size = 'md',
     row = false,
@@ -95,7 +95,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
 
   return (
     <RadioGroupContext.Provider
-      value={{ color, disableIcon, overlay, size, variant, name, value, onChange: handleChange }}
+      value={{ palette, disableIcon, overlay, size, variant, name, value, onChange: handleChange }}
     >
       <RadioGroupRoot
         ref={ref}
@@ -125,9 +125,9 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

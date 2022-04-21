@@ -40,22 +40,22 @@ describe('<AspectRatio />', () => {
     });
   });
 
-  describe('prop: color', () => {
+  describe('prop: palette', () => {
     it('adds a neutral class by default', () => {
       const { getByTestId } = render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(getByTestId('root')).to.have.class(classes.paletteNeutral);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
-      it(`should render ${color}`, () => {
+    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((palette) => {
+      it(`should render ${palette}`, () => {
         const { getByTestId } = render(
-          <AspectRatio data-testid="root" color={color}>
+          <AspectRatio data-testid="root" palette={palette}>
             Hello World
           </AspectRatio>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(classes[`palette${capitalize(palette)}`]);
       });
     });
   });

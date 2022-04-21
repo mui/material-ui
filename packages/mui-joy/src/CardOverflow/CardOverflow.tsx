@@ -10,12 +10,12 @@ import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
 
 const useUtilityClasses = (ownerState: CardOverflowProps) => {
-  const { variant, color } = ownerState;
+  const { variant, palette } = ownerState;
   const slots = {
     root: [
       'root',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
     ],
   };
 
@@ -50,7 +50,7 @@ const CardOverflowRoot = styled('div', {
         marginBottom: 'var(--CardOverflow-offset)',
       },
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    theme.variants[ownerState.variant!]?.[ownerState.palette!],
   ];
 });
 
@@ -64,7 +64,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     className,
     component = 'div',
     children,
-    color = 'neutral',
+    palette = 'neutral',
     variant = 'text',
     ...other
   } = props;
@@ -72,7 +72,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   const ownerState = {
     ...props,
     component,
-    color,
+    palette,
     variant,
   };
 
@@ -106,10 +106,10 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  palette: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

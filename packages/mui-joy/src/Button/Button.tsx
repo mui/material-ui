@@ -9,7 +9,7 @@ import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
+  const { palette, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
     ownerState;
 
   const slots = {
@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       focusVisible && 'focusVisible',
       fullWidth && 'fullWidth',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       size && `size${capitalize(size)}`,
     ],
     startIcon: ['startIcon'],
@@ -115,10 +115,10 @@ const ButtonRoot = styled('button', {
       width: '100%',
     },
     theme.focus.default,
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    theme.variants[ownerState.variant!]?.[ownerState.palette!],
+    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.palette!],
+    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.palette!],
+    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.palette!],
   ];
 });
 
@@ -133,7 +133,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     className,
     action,
     component = 'button',
-    color = 'primary',
+    palette = 'primary',
     variant = 'contained',
     size = 'md',
     fullWidth = false,
@@ -167,7 +167,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const ownerState = {
     ...props,
     component,
-    color,
+    palette,
     fullWidth,
     variant,
     size,
@@ -228,10 +228,10 @@ Button.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

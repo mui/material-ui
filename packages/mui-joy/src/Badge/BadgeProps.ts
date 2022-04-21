@@ -36,10 +36,13 @@ export type BadgeTypeMap<
      */
     badgeInset?: number | string;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, BadgePropsColorOverrides>;
+    palette?: OverridableStringUnion<
+      Exclude<ColorPaletteProp, 'context'>,
+      BadgePropsColorOverrides
+    >;
     /**
      * The size of the component.
      * @default 'md'

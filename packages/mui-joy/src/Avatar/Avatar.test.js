@@ -39,18 +39,18 @@ describe('<Avatar />', () => {
     });
   });
 
-  describe('prop: color', () => {
+  describe('prop: palette', () => {
     it('adds a neutral class by default', () => {
       const { getByTestId } = render(<Avatar data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(getByTestId('root')).to.have.class(classes.paletteNeutral);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
-      it(`should render ${color}`, () => {
-        const { getByTestId } = render(<Avatar data-testid="root" color={color} />);
+    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((palette) => {
+      it(`should render ${palette}`, () => {
+        const { getByTestId } = render(<Avatar data-testid="root" palette={palette} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(classes[`palette${capitalize(palette)}`]);
       });
     });
   });
@@ -87,7 +87,7 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
-      expect(avatar).not.to.have.class(classes.colorDefault);
+      expect(avatar).not.to.have.class(classes.paletteDefault);
       expect(img).to.have.class(classes.img);
       expect(img).to.have.attribute('alt', 'Hello World!');
       expect(img).to.have.attribute('src', '/fake.png');
@@ -151,7 +151,7 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
-    it('should apply the colorNeutral class', () => {
+    it('should apply the paletteNeutral class', () => {
       const { container } = render(
         <Avatar data-testid="avatar">
           <span>icon</span>
@@ -159,7 +159,7 @@ describe('<Avatar />', () => {
       );
       const avatar = container.firstChild;
 
-      expect(avatar).to.have.class(classes.colorNeutral);
+      expect(avatar).to.have.class(classes.paletteNeutral);
     });
   });
 
@@ -190,7 +190,7 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
-    it('should apply the colorNeutral class', () => {
+    it('should apply the paletteNeutral class', () => {
       const container = render(
         <Avatar>
           <PersonIcon />
@@ -198,7 +198,7 @@ describe('<Avatar />', () => {
       ).container;
       const avatar = container.firstChild;
 
-      expect(avatar).to.have.class(classes.colorNeutral);
+      expect(avatar).to.have.class(classes.paletteNeutral);
     });
   });
 
@@ -224,11 +224,11 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
-    it('should apply the colorNeutral class', () => {
+    it('should apply the paletteNeutral class', () => {
       const container = render(<Avatar>OT</Avatar>).container;
       const avatar = container.firstChild;
 
-      expect(avatar).to.have.class(classes.colorNeutral);
+      expect(avatar).to.have.class(classes.paletteNeutral);
     });
   });
 
@@ -254,11 +254,11 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
-    it('should apply the colorNeutral class', () => {
+    it('should apply the paletteNeutral class', () => {
       const container = render(<Avatar>{0}</Avatar>).container;
       const avatar = container.firstChild;
 
-      expect(avatar).to.have.class(classes.colorNeutral);
+      expect(avatar).to.have.class(classes.paletteNeutral);
     });
   });
 });

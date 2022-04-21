@@ -19,12 +19,12 @@ import Checkbox from '@mui/joy/Checkbox';
   }}
 />;
 
-<Checkbox color="primary" />;
-<Checkbox color="danger" />;
-<Checkbox color="info" />;
-<Checkbox color="success" />;
-<Checkbox color="warning" />;
-<Checkbox color="neutral" />;
+<Checkbox palette="primary" />;
+<Checkbox palette="danger" />;
+<Checkbox palette="info" />;
+<Checkbox palette="success" />;
+<Checkbox palette="warning" />;
+<Checkbox palette="neutral" />;
 
 <Checkbox variant="outlined" />;
 <Checkbox variant="light" />;

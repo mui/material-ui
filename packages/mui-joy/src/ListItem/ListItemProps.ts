@@ -13,10 +13,10 @@ export interface ListItemPropsColorOverrides {}
 export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The palette of the component. It supports those theme palettes that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<ColorPaletteProp, ListItemPropsColorOverrides>;
+    palette?: OverridableStringUnion<ColorPaletteProp, ListItemPropsColorOverrides>;
     /**
      * The content of the component.
      */

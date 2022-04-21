@@ -25,14 +25,14 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 // @ts-expect-error no `custom` variant
 <Button variant="custom">Button</Button>;
 
-<Button color="primary">Button</Button>;
-<Button color="neutral">Button</Button>;
-<Button color="danger">Button</Button>;
-<Button color="info">Button</Button>;
-<Button color="success">Button</Button>;
-<Button color="warning">Button</Button>;
-// @ts-expect-error no `black` color
-<Button color="black">Button</Button>;
+<Button palette="primary">Button</Button>;
+<Button palette="neutral">Button</Button>;
+<Button palette="danger">Button</Button>;
+<Button palette="info">Button</Button>;
+<Button palette="success">Button</Button>;
+<Button palette="warning">Button</Button>;
+// @ts-expect-error no `black` palette
+<Button palette="black">Button</Button>;
 
 <Button size="sm">Button</Button>;
 <Button size="lg">Button</Button>;
@@ -72,7 +72,7 @@ function Icon() {
 </Button>;
 <Button
   variant="contained"
-  color="success"
+  palette="success"
   endIcon={<Icon />}
   sx={{ width: 'var(--Button-minHeight)' }}
 >
@@ -81,6 +81,6 @@ function Icon() {
 <Button variant="contained" startIcon={<Icon />} size="sm">
   Add to cart
 </Button>;
-<Button variant="outlined" endIcon={<Icon />} color="success">
+<Button variant="outlined" endIcon={<Icon />} palette="success">
   Checkout
 </Button>;

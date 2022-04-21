@@ -15,12 +15,12 @@ import { LinkProps, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: LinkProps) => {
-  const { level, color, variant, underline, focusVisible, disabled } = ownerState;
+  const { level, palette, variant, underline, focusVisible, disabled } = ownerState;
 
   const slots = {
     root: [
       'root',
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       level,
@@ -96,11 +96,11 @@ const LinkRoot = styled('a', {
             marginInline: '-0.25em',
           }
         : {
-            color: theme.vars.palette[ownerState.color!]?.textColor,
+            color: theme.vars.palette[ownerState.palette!]?.textColor,
             cursor: 'pointer',
             '&.Mui-disabled': {
               pointerEvents: 'none',
-              color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+              color: theme.vars.palette[ownerState.palette!]?.textDisabledColor,
             },
           }),
       userSelect: 'none',
@@ -131,10 +131,10 @@ const LinkRoot = styled('a', {
         outlineColor: theme.vars.palette.focusVisible,
       },
     },
-    ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
+    ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.palette!],
+    ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.palette!],
+    ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.palette!],
+    ownerState.variant && theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.palette!],
   ];
 });
 
@@ -148,7 +148,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const {
     className,
-    color = 'primary',
+    palette = 'primary',
     component = 'a',
     children,
     disabled = false,
@@ -194,7 +194,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
+    palette,
     component,
     disabled,
     focusVisible,
@@ -247,10 +247,10 @@ Link.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the link.
+   * The palette of the link.
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

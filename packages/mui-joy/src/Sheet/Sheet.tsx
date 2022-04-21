@@ -11,13 +11,13 @@ import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetTypeMap } from './SheetProps';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
-  const { elevation, variant, color } = ownerState;
+  const { elevation, variant, palette } = ownerState;
 
   const slots = {
     root: [
       'root',
       variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
+      palette && `palette${capitalize(palette)}`,
       elevation && `elevation${capitalize(elevation)}`,
     ],
   };
@@ -30,7 +30,7 @@ const SheetRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.palette!];
   return [
     {
       '--List-item-stickyBackground':
@@ -57,7 +57,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
 
   const {
     className,
-    color = 'neutral',
+    palette = 'neutral',
     component = 'div',
     variant = 'text',
     elevation,
@@ -66,7 +66,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
+    palette,
     component,
     elevation,
     variant,
@@ -99,10 +99,10 @@ Sheet.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The palette of the component. It supports those theme palettes that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  palette: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),

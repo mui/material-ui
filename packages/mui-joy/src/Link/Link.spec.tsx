@@ -10,13 +10,13 @@ import * as React from 'react';
 <Link variant="outlined" />;
 <Link variant="contained" />;
 
-// `color`
-<Link color="primary" />;
-<Link color="danger" />;
-<Link color="info" />;
-<Link color="success" />;
-<Link color="warning" />;
-<Link color="neutral" />;
+// `palette`
+<Link palette="primary" />;
+<Link palette="danger" />;
+<Link palette="info" />;
+<Link palette="success" />;
+<Link palette="warning" />;
+<Link palette="neutral" />;
 
 // `level`
 <Link level="h2" />;
@@ -37,8 +37,8 @@ import * as React from 'react';
 // @ts-expect-error there is no variant `filled`
 <Link variant="filled" />;
 
-// @ts-expect-error there is no color `secondary`
-<Link color="secondary" />;
+// @ts-expect-error there is no palette `secondary`
+<Link palette="secondary" />;
 
 // @ts-expect-error there is no level `h7`
 <Link level="h7" />;

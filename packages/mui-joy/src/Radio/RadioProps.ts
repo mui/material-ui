@@ -40,10 +40,10 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
         label?: React.ComponentPropsWithRef<'label'>;
       };
       /**
-       * The color of the component. It supports those theme colors that make sense for this component.
+       * The palette of the component. It supports those theme palettes that make sense for this component.
        * @default 'neutral'
        */
-      color?: OverridableStringUnion<
+      palette?: OverridableStringUnion<
         Exclude<ColorPaletteProp, 'context'>,
         RadioPropsColorOverrides
       >;
