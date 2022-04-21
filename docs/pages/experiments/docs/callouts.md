@@ -17,3 +17,20 @@ This is an success alert — check it out!
 :::error
 This is an error alert — check it out!
 :::
+
+:::info
+
+**Title**
+
+Some description
+
+- list item 1
+- list item 2
+  ```js
+  <div>Test</div>
+  ```
+- list item 3
+  ```js
+  <div>Test</div>
+  ```
+  :::

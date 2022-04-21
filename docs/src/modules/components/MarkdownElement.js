@@ -315,6 +315,11 @@ const Root = styled('div')(({ theme }) => ({
       marginTop: theme.spacing(1),
     },
   },
+  '& li': {
+    '& pre': {
+      marginTop: theme.spacing(1),
+    },
+  },
 }));
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
