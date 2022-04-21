@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import createContainer from '../createContainer';
+import PropTypes from 'prop-types';
 
 const Container = createContainer();
 

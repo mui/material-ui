@@ -42,8 +42,8 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Container](https://mui.com/material-ui/react-container/)
- * - [Container](https://mui.com/system/react-container/)
+ * - [Container (Material UI)](https://mui.com/material-ui/react-container/)
+ * - [Container (MUI System)](https://mui.com/system/react-container/)
  *
  * API:
  *
