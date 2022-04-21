@@ -110,11 +110,11 @@ const ButtonRoot = styled('button', {
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
+      ...(ownerState.fullWidth && {
+        width: '100%',
+      }),
+      [theme.focus.selector]: theme.focus.default,
     },
-    ownerState.fullWidth && {
-      width: '100%',
-    },
-    theme.focus.default,
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
