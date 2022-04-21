@@ -241,6 +241,36 @@ function findBaseDemos(
     }));
 }
 
+const pathToSystemTitle = (pathname: string) => {
+  const defaultTitle = pageToTitle({ pathname });
+  if (pathname.match(/material\//)) {
+    return `${defaultTitle} (Material UI)`;
+  }
+  if (pathname.match(/system\//)) {
+    return `${defaultTitle} (MUI System)`;
+  }
+  if (pathname.match(/joy\//)) {
+    return `${defaultTitle} (Joy UI)`;
+  }
+  return defaultTitle;
+};
+
+function findSystemDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
+) {
+  const filteredMarkdowns = pagesMarkdown
+    .filter((page) => page.components.includes(componentName))
+    .map((page) => page.pathname);
+  return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .map((pathname) => ({
+      name: pathToSystemTitle(pathname) || '',
+      demoPathname: pathname.match(/material\//)
+        ? replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`)
+        : `${pathname.replace('/components/', '/react-')}/`,
+    }));
+}
+
 export const getBaseComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
@@ -319,7 +349,7 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
           components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
             .components as string[],
         }));
-      return findBaseDemos(name, allMarkdowns);
+      return findSystemDemos(name, allMarkdowns);
     },
   };
 };

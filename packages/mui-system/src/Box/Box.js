@@ -4,10 +4,10 @@ import createBox from '../createBox';
 const Box = createBox();
 
 Box.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // --------------------------------- Warning ---------------------------------
+  // | The propTypes for the system components are NOT automatically generated |
+  // |  If you are updating the props, make sure to update the propTypes too   |
+  // ---------------------------------------------------------------------------
   /**
    * @ignore
    */
@@ -18,7 +18,7 @@ Box.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * @ignore
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),

@@ -49,6 +49,12 @@ export * from './Sheet';
 export { default as Checkbox } from './Checkbox';
 export * from './Checkbox';
 
+export { default as Chip } from './Chip';
+export * from './Chip';
+
+export { default as ChipDelete } from './ChipDelete';
+export * from './ChipDelete';
+
 export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
@@ -63,3 +69,11 @@ export * from './Box';
 
 export { default as Container } from './Container';
 export * from './Container';
+export { default as Badge } from './Badge';
+export * from './Badge';
+
+export { default as Radio } from './Radio';
+export * from './Radio';
+
+export { default as RadioGroup } from './RadioGroup';
+export * from './RadioGroup';

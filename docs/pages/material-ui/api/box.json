@@ -1,5 +1,13 @@
 {
-  "props": { "component": { "type": { "name": "elementType" } } },
+  "props": {
+    "component": { "type": { "name": "elementType" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
   "name": "Box",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,

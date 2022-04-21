@@ -28,7 +28,7 @@ const pages = [
     title: 'Components',
     icon: 'ToggleOnIcon',
     children: [
-      { pathname: '/system/react-box' },
+      { pathname: '/system/react-box', title: 'Box' },
       { pathname: '/system/react-container', title: 'Container' },
     ],
   },
