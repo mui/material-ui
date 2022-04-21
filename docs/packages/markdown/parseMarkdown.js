@@ -267,9 +267,9 @@ function createRender(context) {
             return undefined;
           },
           renderer(token) {
-            return `<div class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
               token.tokens,
-            )}\n</div>`;
+            )}\n</aside>`;
           },
         },
       ],
