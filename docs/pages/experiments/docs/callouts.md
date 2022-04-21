@@ -26,13 +26,10 @@ Some description
 
 - list item 1
 - list item 2
-
   ```js
   <div>Test</div>
   ```
-
 - list item 3
-
   ```js
   <div>Test</div>
   ```
