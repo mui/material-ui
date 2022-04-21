@@ -9,7 +9,7 @@ const Root = styled('div')(({ theme }) => ({
   color: theme.palette.text.primary,
   wordBreak: 'break-word',
   '& .anchor-link': {
-    marginTop: -96, // Offset for the anchor.
+    marginTop: -96,
     position: 'absolute',
   },
   '& pre': {
@@ -22,7 +22,7 @@ const Root = styled('div')(({ theme }) => ({
     border: '1px solid',
     borderColor: blueDark[700],
     overflow: 'auto',
-    WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+    WebkitOverflowScrolling: 'touch',
     maxWidth: 'calc(100vw - 32px)',
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100vw - 32px - 16px)',
@@ -158,7 +158,7 @@ const Root = styled('div')(({ theme }) => ({
     display: 'block',
     wordBreak: 'normal',
     overflowX: 'auto',
-    WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+    WebkitOverflowScrolling: 'touch',
     borderCollapse: 'collapse',
     marginBottom: '20px',
     borderSpacing: 0,
@@ -203,7 +203,7 @@ const Root = styled('div')(({ theme }) => ({
     paddingTop: 12,
     paddingBottom: 12,
   },
-  '& blockquote': {
+  '& blockquote, & .MuiCallout-root': {
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
     borderLeft: '8px solid',
@@ -222,6 +222,42 @@ const Root = styled('div')(({ theme }) => ({
     '& p': {
       marginTop: 10,
       color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[800],
+    },
+    '&.MuiCallout-info': {
+      borderColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            theme.palette.primary[500] ?? theme.palette.primary.dark
+          : theme.palette.primary[300] ?? theme.palette.primary.light,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.2)
+          : theme.palette.primary[50] ?? theme.palette.primary.light,
+    },
+    '&.MuiCallout-success': {
+      borderColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            theme.palette.success[500] ?? theme.palette.success.dark
+          : theme.palette.success[300] ?? theme.palette.success.light,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.2)
+          : theme.palette.success[50] ?? theme.palette.success.light,
+    },
+    '&.MuiCallout-error': {
+      borderColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            theme.palette.error[500] ?? theme.palette.error.dark
+          : theme.palette.error[300] ?? theme.palette.error.light,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.2)
+          : theme.palette.error[50] ?? theme.palette.error.light,
     },
   },
   '& a, & a code': {
