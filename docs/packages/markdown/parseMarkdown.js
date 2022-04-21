@@ -240,6 +240,40 @@ function createRender(context) {
       renderer,
     };
 
+    marked.use({
+      extensions: [
+        {
+          name: 'callout',
+          level: 'block',
+          start(src) {
+            return src.match(/:::/)?.index;
+          },
+          tokenizer(src) {
+            const rule =
+              /^ {0,3}(:{3,}(?=[^:\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~:]* *(?=\n|$)|$)/;
+            const match = rule.exec(src);
+            if (match) {
+              const token = {
+                type: 'callout',
+                raw: match[0],
+                text: match[3].trim(),
+                severity: match[2],
+                tokens: [],
+              };
+              this.lexer.blockTokens(token.text, token.tokens);
+              return token;
+            }
+            return undefined;
+          },
+          renderer(token) {
+            return `<div class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
+              token.tokens,
+            )}\n</div>`;
+          },
+        },
+      ],
+    });
+
     return marked(markdown, markedOptions);
   }
 
