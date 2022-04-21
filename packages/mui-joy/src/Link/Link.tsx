@@ -1,3 +1,6 @@
+import * as React from 'react';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import {
@@ -5,9 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
+import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getLinkUtilityClass } from './linkClasses';
@@ -139,12 +140,14 @@ const LinkRoot = styled('a', {
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
-  const props = useThemeProps<typeof inProps & LinkProps>({
+  const themeProps = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
     name: 'MuiLink',
   });
 
   const nested = React.useContext(TypographyContext);
+
+  const props = extendSxProp(themeProps);
 
   const {
     className,
@@ -160,6 +163,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     variant,
     endDecorator,
     startDecorator,
+    color,
     ...other
   } = props;
 

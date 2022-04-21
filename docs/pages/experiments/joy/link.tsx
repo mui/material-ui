@@ -132,7 +132,11 @@ export default function JoyButton() {
           <Box>
             <Typography level="body2">
               Keep me updated about the new features and upcoming improvements (by doing this you
-              accept the <Link endDecorator={<OpenInNew />}>terms</Link> and the{' '}
+              accept the{' '}
+              <Link color="text.primary" fontWeight="lg" endDecorator={<OpenInNew />}>
+                terms
+              </Link>{' '}
+              and the{' '}
               <Link disabled startDecorator={<OpenInNew />}>
                 privacy policy
               </Link>
