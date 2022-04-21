@@ -245,6 +245,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /pt/components/trap-focus/ /pt/base/react-trap-focus/ 301
 /zh/components/trap-focus/ /zh/base/react-trap-focus/ 301
 
+/system/box/ /system/react-box/ 301
+/:lang/system/box/ /:lang/system/react-box/ 301
+
 ### React plural
 /components/tabs/ /material-ui/react-tabs/ 301
 /pt/components/tabs/ /pt/material-ui/react-tabs/ 301
