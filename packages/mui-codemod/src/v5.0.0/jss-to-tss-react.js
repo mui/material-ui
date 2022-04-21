@@ -315,7 +315,7 @@ export default function transformer(file, api, options) {
         styleHooks.push(path.node.id.name);
         j(path)
           .closest(j.ExportNamedDeclaration)
-          .forEach((declaration) => {
+          .forEach(() => {
             const comments = [
               j.commentLine(
                 ` TODO jss-to-tss-react codemod: usages of this hook outside of this file will not be converted.`,
