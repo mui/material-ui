@@ -83,7 +83,7 @@ const ColorSchemePicker = () => {
 export default function JoyButton() {
   const buttonProps = {
     variant: ['text', 'outlined', 'light', 'contained'],
-    color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
+    palette: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
     level: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'],
     underline: ['hover', 'always', 'none'],
   } as const;
@@ -169,7 +169,7 @@ export default function JoyButton() {
               Processing...
             </Link>
             <Link
-              color="neutral"
+              palette="neutral"
               endDecorator={
                 <Box
                   sx={{
@@ -198,7 +198,7 @@ export default function JoyButton() {
           </Sheet>
           <Sheet
             variant="outlined"
-            color="danger"
+            palette="danger"
             sx={{
               borderRadius: 'md',
               p: 2,

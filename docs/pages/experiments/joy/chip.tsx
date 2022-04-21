@@ -49,7 +49,7 @@ const ColorSchemePicker = () => {
 
 const props = {
   size: ['sm', 'md', 'lg'],
-  color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
+  palette: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
   variant: ['contained', 'outlined', 'light'],
   disabled: [true, false],
 } as const;
@@ -82,13 +82,13 @@ const FavoriteMovies = () => {
             <Chip
               key={name}
               variant={checked ? 'light' : 'text'}
-              color={checked ? 'primary' : 'neutral'}
+              palette={checked ? 'primary' : 'neutral'}
               startDecorator={checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />}
               sx={{ '--Chip-radius': '4px' }}
             >
               <Checkbox
                 variant="outlined"
-                color={checked ? 'primary' : 'neutral'}
+                palette={checked ? 'primary' : 'neutral'}
                 disableIcon
                 overlay
                 label={name}
@@ -136,13 +136,13 @@ const BestMovie = () => {
             <Chip
               key={name}
               variant={checked ? 'light' : 'text'}
-              color={checked ? 'primary' : 'neutral'}
+              palette={checked ? 'primary' : 'neutral'}
               startDecorator={checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />}
               sx={{ '--Chip-radius': '4px' }}
             >
               <Radio
                 variant="outlined"
-                color={checked ? 'primary' : 'neutral'}
+                palette={checked ? 'primary' : 'neutral'}
                 disableIcon
                 overlay
                 label={name}
@@ -201,7 +201,7 @@ export default function JoyChip() {
           </Chip>
           <Chip
             variant="contained"
-            color="success"
+            palette="success"
             size="sm"
             startDecorator={
               <Avatar
@@ -216,7 +216,7 @@ export default function JoyChip() {
           </Chip>
           <Chip
             variant="outlined"
-            color="neutral"
+            palette="neutral"
             size="lg"
             startDecorator={<Avatar size="sm" src={`/static/images/avatar/1.jpg`} />}
             endDecorator={<CheckIcon fontSize="md" sx={{ mr: 0.25 }} />}
@@ -227,7 +227,7 @@ export default function JoyChip() {
           </Chip>
           <Chip
             variant="outlined"
-            color="neutral"
+            palette="neutral"
             size="lg"
             startDecorator={<Avatar src={`/static/images/avatar/1.jpg`} size="sm" />}
             endDecorator={<ChipDelete variant="text" />}
@@ -237,10 +237,10 @@ export default function JoyChip() {
           </Chip>
           <Chip
             variant="outlined"
-            color="danger"
+            palette="danger"
             size="sm"
             endDecorator={
-              <ChipDelete color="danger" variant="text">
+              <ChipDelete palette="danger" variant="text">
                 <DeleteForever />
               </ChipDelete>
             }
@@ -250,7 +250,7 @@ export default function JoyChip() {
           </Chip>
           <Chip
             variant="outlined"
-            color="danger"
+            palette="danger"
             size="sm"
             onClick={() => {}}
             endDecorator={<DeleteForever />}
@@ -301,7 +301,7 @@ export default function JoyChip() {
               ].map((item) => (
                 <Chip
                   key={item}
-                  color="neutral"
+                  palette="neutral"
                   variant="outlined"
                   endDecorator={<ChipDelete variant="text" />}
                   sx={{ '--Chip-radius': '10px' }}
@@ -315,7 +315,7 @@ export default function JoyChip() {
             {(['light', 'outlined'] as const).map((variant) => (
               <React.Fragment key={variant}>
                 <Chip
-                  color="neutral"
+                  palette="neutral"
                   variant={variant}
                   size="sm"
                   endDecorator={<ChipDelete />}
@@ -324,7 +324,7 @@ export default function JoyChip() {
                   <LocationOn sx={{ mr: 0.5 }} /> Portland
                 </Chip>
                 <Chip
-                  color="neutral"
+                  palette="neutral"
                   variant={variant}
                   size="sm"
                   endDecorator={<ChipDelete />}

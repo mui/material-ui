@@ -46,7 +46,7 @@ const ColorSchemePicker = () => {
 
 const props = {
   size: ['sm', 'md', 'lg'],
-  color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
+  palette: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
   variant: ['contained', 'outlined', 'light'],
 } as const;
 
@@ -120,7 +120,7 @@ export default function JoyAvatar() {
             <Avatar src="/static/images/avatar/2.jpg" />
             <Avatar src="/static/images/avatar/3.jpg" />
             <IconButton
-              color="neutral"
+              palette="neutral"
               onClick={() => alert('clicked')}
               sx={{
                 borderRadius: '50%',
@@ -174,7 +174,7 @@ export default function JoyAvatar() {
               <Avatar src="/static/images/avatar/2.jpg" />
               <Avatar src="/static/images/avatar/3.jpg" />
               <IconButton
-                color="neutral"
+                palette="neutral"
                 onClick={() => alert('clicked')}
                 sx={{
                   borderRadius: '50%',
@@ -186,7 +186,7 @@ export default function JoyAvatar() {
               </IconButton>
             </AvatarGroup>
           </Sheet>
-          <Sheet variant="contained" color="danger" sx={{ p: 2 }}>
+          <Sheet variant="contained" palette="danger" sx={{ p: 2 }}>
             <AvatarGroup>
               <Avatar src="/static/images/avatar/1.jpg" />
               <Avatar src="/static/images/avatar/2.jpg" />
@@ -194,7 +194,7 @@ export default function JoyAvatar() {
               <Avatar>+99</Avatar>
             </AvatarGroup>
           </Sheet>
-          <Sheet variant="contained" color="primary" sx={{ p: 2 }}>
+          <Sheet variant="contained" palette="primary" sx={{ p: 2 }}>
             <AvatarGroup
               size="sm"
               sx={{ '--Avatar-ringColor': 'var(--joy-palette-primary-outlinedBorder)' }}

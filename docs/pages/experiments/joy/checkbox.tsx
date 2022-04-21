@@ -43,7 +43,7 @@ const ColorSchemePicker = () => {
 
 const props = {
   size: ['sm', 'md', 'lg'],
-  color: ['primary', 'danger', 'info', 'success', 'warning'],
+  palette: ['primary', 'danger', 'info', 'success', 'warning'],
   variant: ['outlined', 'light', 'contained'],
 } as const;
 
@@ -128,7 +128,7 @@ const Pattern = () => {
                 size="sm"
                 overlay
                 disableIcon
-                color="primary"
+                palette="primary"
                 variant={value.includes(item) ? 'contained' : 'light'}
                 label={item}
                 checked={value.includes(item)}
@@ -277,30 +277,30 @@ export default function JoyCheckbox() {
                   },
                 }}
               >
-                <ListItem variant="light" color="danger">
-                  <Checkbox label="Declined Payment" color="danger" checked overlay />
+                <ListItem variant="light" palette="danger">
+                  <Checkbox label="Declined Payment" palette="danger" checked overlay />
                   <Typography color="inherit" sx={{ ml: 'auto' }}>
                     8
                   </Typography>
                 </ListItem>
-                <ListItem variant="light" color="warning">
-                  <Checkbox label="Delivery Error" color="warning" checked overlay />
+                <ListItem variant="light" palette="warning">
+                  <Checkbox label="Delivery Error" palette="warning" checked overlay />
                   <Typography color="inherit" sx={{ ml: 'auto' }}>
                     24
                   </Typography>
                 </ListItem>
                 <ListItem variant="light">
-                  <Checkbox disabled label="Wrong Amount" color="neutral" overlay />
+                  <Checkbox disabled label="Wrong Amount" palette="neutral" overlay />
                 </ListItem>
                 <ListItem variant="light">
-                  <Checkbox label="Wrong Address" color="neutral" overlay />
+                  <Checkbox label="Wrong Address" palette="neutral" overlay />
                 </ListItem>
                 <ListItem variant="light">
-                  <Checkbox label="Wrong UX Solution" color="neutral" overlay />
+                  <Checkbox label="Wrong UX Solution" palette="neutral" overlay />
                 </ListItem>
               </List>
             </Box>
-            <Button variant="text" color="warning" size="sm" sx={{ px: 1.5, mt: 1 }}>
+            <Button variant="text" palette="warning" size="sm" sx={{ px: 1.5, mt: 1 }}>
               Clear All
             </Button>
           </Sheet>
@@ -336,7 +336,7 @@ export default function JoyCheckbox() {
                   <Checkbox disabled label="Friedrich Oberbrunner" overlay />
                   <Avatar aria-hidden="true" src="/static/images/avatar/1.jpg" />
                 </ListItem>
-                <ListItem variant="light" color="primary">
+                <ListItem variant="light" palette="primary">
                   <Checkbox
                     overlay
                     label={
@@ -355,11 +355,11 @@ export default function JoyCheckbox() {
                   <Avatar aria-hidden="true" src="/static/images/avatar/2.jpg" />
                 </ListItem>
                 <ListItem>
-                  <Checkbox label="Fernando Pidrillio" color="neutral" overlay />
+                  <Checkbox label="Fernando Pidrillio" palette="neutral" overlay />
                   <Avatar aria-hidden="true" src="/static/images/avatar/3.jpg" />
                 </ListItem>
                 <ListItem>
-                  <Checkbox label="Anonymous User" color="neutral" overlay />
+                  <Checkbox label="Anonymous User" palette="neutral" overlay />
                   <Avatar aria-hidden="true" variant="contained">
                     AU
                   </Avatar>

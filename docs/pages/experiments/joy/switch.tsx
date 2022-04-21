@@ -38,7 +38,7 @@ const ColorSchemePicker = () => {
 
 const props = {
   size: ['sm', 'md', 'lg'],
-  color: ['primary', 'danger', 'info', 'success', 'warning'],
+  palette: ['primary', 'danger', 'info', 'success', 'warning'],
   variant: ['outlined', 'light', 'contained'],
 } as const;
 

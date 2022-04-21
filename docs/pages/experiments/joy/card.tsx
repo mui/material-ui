@@ -135,7 +135,7 @@ const Covers = () => {
             key={t}
             size="sm"
             variant={t === type ? 'contained' : 'light'}
-            color={t === type ? 'primary' : 'neutral'}
+            palette={t === type ? 'primary' : 'neutral'}
             onClick={() => setType(t)}
           >
             {t}
@@ -178,7 +178,7 @@ export default function JoySvgIcon() {
               <IconButton
                 aria-label="bookmark Bahamas Islands"
                 variant="text"
-                color="neutral"
+                palette="neutral"
                 sx={{ position: 'absolute', top: '1rem', right: '1rem' }}
               >
                 <BookmarkAdd />
@@ -209,7 +209,7 @@ export default function JoySvgIcon() {
                 </div>
                 <Button
                   variant="outlined"
-                  color="neutral"
+                  palette="neutral"
                   aria-label="Explore Bahamas Islands"
                   sx={{ ml: 'auto' }}
                 >
@@ -282,15 +282,15 @@ export default function JoySvgIcon() {
             <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
               <Sheet
                 variant="contained"
-                color="primary"
+                palette="primary"
                 sx={{ borderRadius: '20px', px: '0.5rem', py: '4px', fontSize: 'xs' }}
               >
                 Research
               </Sheet>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="text" palette="neutral">
                 <Add />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral" sx={{ ml: 'auto' }}>
+              <IconButton size="sm" variant="text" palette="neutral" sx={{ ml: 'auto' }}>
                 <MoreHoriz />
               </IconButton>
             </Box>
@@ -416,7 +416,7 @@ export default function JoySvgIcon() {
               </AspectRatio>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 1 }}>
-              <IconButton variant="text" color="neutral" size="sm">
+              <IconButton variant="text" palette="neutral" size="sm">
                 <StarBorder />
               </IconButton>
               <Avatar
@@ -424,7 +424,7 @@ export default function JoySvgIcon() {
                 size="lg"
                 sx={{ '--Avatar-ring': '0 0 0 3px var(--joy-palette-background-body)', mt: -2 }}
               />
-              <IconButton variant="text" color="neutral" size="sm">
+              <IconButton variant="text" palette="neutral" size="sm">
                 <MoreHoriz />
               </IconButton>
             </Box>
@@ -479,16 +479,16 @@ export default function JoySvgIcon() {
               />
             </AspectRatio>
             <Box sx={{ display: 'flex', gap: 1 }}>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="text" palette="neutral">
                 <Download />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="text" palette="neutral">
                 <Favorite />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="text" palette="neutral">
                 <Share />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="text" palette="neutral">
                 <MoreHoriz />
               </IconButton>
             </Box>
@@ -499,10 +499,10 @@ export default function JoySvgIcon() {
             sx={{ gridColumn: 'span 2', maxWidth: 360, '--Typography-gap': '0.5rem' }}
           >
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mt: -1, mr: -1 }}>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="text" palette="neutral">
                 <StarBorder />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="text" palette="neutral">
                 <MoreHoriz />
               </IconButton>
             </Box>
@@ -613,10 +613,10 @@ export default function JoySvgIcon() {
                         Ooki Crypto Trade Platform
                       </Link>
                     </Typography>
-                    <IconButton size="sm" color="neutral" sx={{ ml: 'auto' }}>
+                    <IconButton size="sm" palette="neutral" sx={{ ml: 'auto' }}>
                       <CreateNewFolder />
                     </IconButton>
-                    <IconButton size="sm" color="neutral">
+                    <IconButton size="sm" palette="neutral">
                       <Favorite />
                     </IconButton>
                   </Box>
@@ -702,7 +702,7 @@ export default function JoySvgIcon() {
                 <IconButton
                   size="sm"
                   variant="text"
-                  color="neutral"
+                  palette="neutral"
                   sx={{ ml: 'auto', alignSelf: 'flex-start' }}
                 >
                   <CallMade />
@@ -715,7 +715,7 @@ export default function JoySvgIcon() {
                 />
               </AspectRatio>
               <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
-                <Avatar variant="contained" color="neutral">
+                <Avatar variant="contained" palette="neutral">
                   S
                 </Avatar>
                 <div>

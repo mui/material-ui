@@ -56,10 +56,10 @@ export default function JoySheet() {
           elevation="sm"
           sx={{ p: 2, display: 'flex', gap: 2, borderRadius: 'sm', alignItems: 'center' }}
         >
-          <Sheet variant="light" color="primary" sx={{ p: 1, borderRadius: 'xs' }}>
+          <Sheet variant="light" palette="primary" sx={{ p: 1, borderRadius: 'xs' }}>
             <Sheet
               variant="contained"
-              color="primary"
+              palette="primary"
               sx={{ borderRadius: 'xs', display: 'flex', p: 1 }}
             >
               <Info />

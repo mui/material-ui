@@ -52,7 +52,7 @@ const ColorSchemePicker = () => {
 
 const props = {
   size: ['sm', 'md', 'lg'],
-  color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
+  palette: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
   variant: ['contained', 'outlined', 'light'],
 } as const;
 
@@ -71,7 +71,7 @@ const InvisibleBadgeIcon = () => {
   const [invisible, setInvisible] = React.useState(true);
   return (
     <IconButton onClick={() => setInvisible((bool) => !bool)}>
-      <Badge badgeContent={1} invisible={invisible} color="danger">
+      <Badge badgeContent={1} invisible={invisible} palette="danger">
         <MailIcon />
       </Badge>
     </IconButton>
@@ -89,10 +89,10 @@ export default function JoyBadge() {
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, mt: 5 }}>
           {(['primary', 'danger', 'info', 'success', 'warning', 'neutral'] as const).map(
             (color) => (
-              <Badge key={color} badgeContent={100} size="lg" color={color}>
+              <Badge key={color} badgeContent={100} size="lg" palette={color}>
                 <Sheet
                   variant="contained"
-                  color={color}
+                  palette={color}
                   sx={{ width: 70, height: 70, borderRadius: 35, opacity: 0.8 }}
                 />
               </Badge>
@@ -108,7 +108,7 @@ export default function JoyBadge() {
           }}
         >
           <Sheet
-            color="success"
+            palette="success"
             variant="contained"
             sx={{
               borderRadius: 20,
@@ -122,15 +122,16 @@ export default function JoyBadge() {
           >
             {[{ badgeContent: '1', name: 'Jon Doe' }].map(({ badgeContent, name }) => (
               <Badge
+                key={name}
                 badgeContent={badgeContent}
                 size="lg"
-                color={'success'}
+                palette={'success'}
                 sx={{ width: '100%' }}
                 anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
               >
                 <Sheet
                   variant="outlined"
-                  color={'success'}
+                  palette={'success'}
                   sx={{
                     width: '100%',
                     height: 70,
@@ -148,15 +149,15 @@ export default function JoyBadge() {
                   >
                     {name}
                   </Typography>
-                  <Badge max={1000} badgeContent={200} color="danger" sx={{ ml: 'auto', mr: 1 }}>
-                    <IconButton size="sm" variant="text" color="danger" sx={{ mx: 1 }}>
+                  <Badge max={1000} badgeContent={200} palette="danger" sx={{ ml: 'auto', mr: 1 }}>
+                    <IconButton size="sm" variant="text" palette="danger" sx={{ mx: 1 }}>
                       <Favorite />
                     </IconButton>
                   </Badge>
-                  <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
+                  <IconButton size="sm" variant="text" palette="neutral" sx={{ mx: 1 }}>
                     <Share />
                   </IconButton>
-                  <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
+                  <IconButton size="sm" variant="text" palette="neutral" sx={{ mx: 1 }}>
                     <MoreHoriz />
                   </IconButton>
                 </Sheet>
@@ -171,22 +172,22 @@ export default function JoyBadge() {
           >
             <List row sx={{ '--List-gap': '0px' }} size="sm">
               <ListItem>
-                <IconButton variant="text" color="neutral">
-                  <Badge color="danger" size="sm">
+                <IconButton variant="text" palette="neutral">
+                  <Badge palette="danger" size="sm">
                     <Redeem />
                   </Badge>
                 </IconButton>
               </ListItem>
               <ListItem>
-                <IconButton variant="text" color="neutral">
-                  <Badge badgeContent="23" color="danger" size="sm">
+                <IconButton variant="text" palette="neutral">
+                  <Badge badgeContent="23" palette="danger" size="sm">
                     <Notifications />
                   </Badge>
                 </IconButton>
               </ListItem>
               <ListItem>
                 <Badge
-                  color="success"
+                  palette="success"
                   size="sm"
                   badgeInset="20%"
                   anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -216,7 +217,7 @@ export default function JoyBadge() {
                   <IconButton
                     size="sm"
                     variant="outlined"
-                    color="neutral"
+                    palette="neutral"
                     sx={{ '--IconButton-size': '20px' }}
                   >
                     <ArrowDropDown />
@@ -303,13 +304,13 @@ export default function JoyBadge() {
             sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
           >
             <Typography sx={{ textDecoration: 'underline' }}>Dot</Typography>
-            <Badge color="success" size="sm">
+            <Badge palette="success" size="sm">
               <MailIcon />
             </Badge>
-            <Badge color="success">
+            <Badge palette="success">
               <MailIcon />
             </Badge>
-            <Badge color="success" size="lg">
+            <Badge palette="success" size="lg">
               <MailIcon />
             </Badge>
           </Box>

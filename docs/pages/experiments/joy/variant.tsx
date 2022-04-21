@@ -48,22 +48,22 @@ declare module '@mui/joy/styles' {
   }
 }
 
-// how to add more color and use with variants
+// how to add more palette and use with variants
 const Tile = ({
   children,
   variant = 'light',
-  color = 'primary',
+  palette = 'primary',
   sx = [],
   ...props
 }: {
   variant?: 'light' | 'contained';
-  color?: ColorPaletteProp | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) => {
+  palette?: ColorPaletteProp | 'secondary' | 'alternate';
+} & BoxProps) => {
   return (
     <Box
       sx={[
         { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
-        (theme) => theme.variants[variant][color],
+        (theme) => theme.variants[variant][palette],
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       {...props}
@@ -128,25 +128,25 @@ export default function JoyVariant() {
               (theme) => theme.variants.containedOverrides.primary,
             ]}
           >
-            <Button color="context" variant="text">
+            <Button palette="context" variant="text">
               Text
             </Button>
-            <Button color="context" variant="outlined">
+            <Button palette="context" variant="outlined">
               Outlined
             </Button>
-            <Button disabled color="context" variant="outlined">
+            <Button disabled palette="context" variant="outlined">
               Disabled
             </Button>
-            <Button color="context" variant="light">
+            <Button palette="context" variant="light">
               Light
             </Button>
-            <Button disabled color="context" variant="light">
+            <Button disabled palette="context" variant="light">
               Disabled
             </Button>
-            <Button color="context" variant="contained">
+            <Button palette="context" variant="contained">
               Contained
             </Button>
-            <Button disabled color="context" variant="contained">
+            <Button disabled palette="context" variant="contained">
               Disabled
             </Button>
           </Box>
@@ -304,23 +304,6 @@ export default function JoyVariant() {
                     border: '1px solid',
                     borderColor: 'var(--strapi-palette-neutral-outlinedDisabledBorder)',
                   },
-                }),
-              },
-            },
-            MuiSvgIcon: {
-              defaultProps: {
-                fontSize: 'xl',
-              },
-              styleOverrides: {
-                root: ({ ownerState, theme }) => ({
-                  ...(ownerState.fontSize &&
-                    ownerState.fontSize !== 'inherit' && {
-                      fontSize: theme.vars.fontSize[ownerState.fontSize],
-                    }),
-                  ...(ownerState.color &&
-                    ownerState.color !== 'inherit' && {
-                      color: theme.vars.palette[ownerState.color].textColor,
-                    }),
                 }),
               },
             },
@@ -556,32 +539,32 @@ declare module '@mui/joy/styles' {
               <Button disabled>Disabled</Button>
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button color="danger" variant="contained">
+              <Button palette="danger" variant="contained">
                 Contained
               </Button>
-              <Button color="danger" variant="outlined">
+              <Button palette="danger" variant="outlined">
                 Outlined
               </Button>
-              <Button color="danger" disabled>
+              <Button palette="danger" disabled>
                 Disabled
               </Button>
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button color="success" variant="contained">
+              <Button palette="success" variant="contained">
                 Contained
               </Button>
-              <Button color="success" variant="outlined">
+              <Button palette="success" variant="outlined">
                 Outlined
               </Button>
-              <Button color="success" disabled>
+              <Button palette="success" disabled>
                 Disabled
               </Button>
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button color="neutral" variant="outlined">
+              <Button palette="neutral" variant="outlined">
                 Outlined
               </Button>
-              <Button color="neutral" disabled>
+              <Button palette="neutral" disabled>
                 Disabled
               </Button>
             </Box>
@@ -611,13 +594,13 @@ declare module '@mui/joy/styles' {
               (theme) => theme.variants.containedOverrides.primary,
             ]}
           >
-            <Button color="context" variant="contained">
+            <Button palette="context" variant="contained">
               Contained
             </Button>
-            <Button color="context" variant="outlined">
+            <Button palette="context" variant="outlined">
               Outlined
             </Button>
-            <Button color="context" disabled>
+            <Button palette="context" disabled>
               Disabled
             </Button>
           </Box>
@@ -690,18 +673,18 @@ declare module '@mui/joy/styles' {
                 <Info />
               </Tile>
             </Tile>
-            <Tile sx={{ p: 2 }} color="warning">
-              <Tile variant="contained" color="warning">
+            <Tile sx={{ p: 2 }} palette="warning">
+              <Tile variant="contained" palette="warning">
                 <Code />
               </Tile>
             </Tile>
-            <Tile sx={{ p: 2 }} color="secondary">
-              <Tile variant="contained" color="secondary">
+            <Tile sx={{ p: 2 }} palette="secondary">
+              <Tile variant="contained" palette="secondary">
                 <PlayArrow />
               </Tile>
             </Tile>
-            <Tile sx={{ p: 2 }} color="alternate">
-              <Tile variant="contained" color="alternate">
+            <Tile sx={{ p: 2 }} palette="alternate">
+              <Tile variant="contained" palette="alternate">
                 <HistoryEdu />
               </Tile>
             </Tile>
@@ -772,18 +755,18 @@ declare module '@mui/joy/styles' {
 const Tile = ({
   children,
   variant = 'light',
-  color = 'primary',
+  palette = 'primary',
   sx = [],
   ...props
 }: {
   variant?: 'light' | 'contained';
-  color?: 'primary' | 'warning' | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) => {
+  palette?: 'primary' | 'warning' | 'secondary' | 'alternate';
+} & BoxProps) => {
   return (
     <Box
       sx={[
         { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
-        (theme) => theme.variants[variant][color], // easy
+        (theme) => theme.variants[variant][palette], // easy
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       {...props}
@@ -798,18 +781,18 @@ const Tile = ({
     <Info />
   </Tile>
 </Tile>
-<Tile sx={{ p: 2 }} color="warning">
-  <Tile variant="contained" color="warning">
+<Tile sx={{ p: 2 }} palette="warning">
+  <Tile variant="contained" palette="warning">
     <Code />
   </Tile>
 </Tile>
-<Tile sx={{ p: 2 }} color="secondary">
-  <Tile variant="contained" color="secondary">
+<Tile sx={{ p: 2 }} palette="secondary">
+  <Tile variant="contained" palette="secondary">
     <PlayArrow />
   </Tile>
 </Tile>
-<Tile sx={{ p: 2 }} color="alternate">
-  <Tile variant="contained" color="alternate">
+<Tile sx={{ p: 2 }} palette="alternate">
+  <Tile variant="contained" palette="alternate">
     <HistoryEdu />
   </Tile>
 </Tile>

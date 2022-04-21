@@ -49,7 +49,7 @@ const ColorSchemePicker = () => {
 
 const props = {
   size: ['sm', 'md', 'lg'],
-  color: ['primary', 'danger', 'info', 'success', 'warning'],
+  palette: ['primary', 'danger', 'info', 'success', 'warning'],
   variant: ['outlined', 'light', 'contained'],
 } as const;
 
@@ -115,7 +115,7 @@ export default function JoyRadio() {
                   </ListItem>
                   <ListItem component="div">
                     <ListItemContent>
-                      <Radio label="Thin" value="Thin" color="warning" />
+                      <Radio label="Thin" value="Thin" palette="warning" />
                       <Typography level="body3" ml="28px" mt={0.5} color="warning.400">
                         This might make your pizza too crispy.
                       </Typography>
@@ -286,7 +286,7 @@ export default function JoyRadio() {
                   quality in workspaces with bright light sources.
                 </Typography>
               </Typography>
-              <InfoOutlined fontSize="lg" color="primary" />
+              <InfoOutlined fontSize="lg" palette="primary" />
             </Sheet>
             <RadioGroup
               disableIcon

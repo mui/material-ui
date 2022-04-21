@@ -95,9 +95,9 @@ const ColorSchemePicker = () => {
 
 const Circle = ({
   sx: sxProp = [],
-  color = 'neutral',
+  palette = 'neutral',
   ...props
-}: Omit<BoxProps, 'color'> & { color?: ColorPaletteProp }) => (
+}: BoxProps & { palette?: ColorPaletteProp }) => (
   <Box
     {...props}
     sx={[
@@ -105,7 +105,7 @@ const Circle = ({
         display: 'inline-flex',
         borderRadius: '40px',
         p: '0.5rem',
-        ...theme.variants.light[color],
+        ...theme.variants.light[palette],
       }),
       ...(Array.isArray(sxProp) ? sxProp : [sxProp]),
     ]}
@@ -143,7 +143,7 @@ function CheckboxList() {
           >
             <ListItemButton
               selected={selected}
-              color={selected ? 'success' : undefined}
+              palette={selected ? 'success' : undefined}
               role={undefined}
               onClick={handleToggle(value)}
             >
@@ -179,7 +179,7 @@ function Gmail() {
         <ListItemButton
           selected={index === 0}
           variant={index === 0 ? 'light' : 'text'}
-          color={index === 0 ? 'danger' : undefined}
+          palette={index === 0 ? 'danger' : undefined}
           onClick={() => setIndex(0)}
         >
           <ListItemDecorator sx={{ color: 'inherit' }}>
@@ -195,7 +195,7 @@ function Gmail() {
         <ListItemButton
           selected={index === 1}
           variant={index === 1 ? 'light' : 'text'}
-          color={index === 1 ? 'info' : undefined}
+          palette={index === 1 ? 'info' : undefined}
           onClick={() => setIndex(1)}
         >
           <ListItemDecorator>
@@ -209,7 +209,7 @@ function Gmail() {
             <ListItemButton
               selected={index === 2}
               variant={index === 2 ? 'light' : 'text'}
-              color={index === 2 ? 'primary' : undefined}
+              palette={index === 2 ? 'primary' : undefined}
               onClick={() => setIndex(2)}
             >
               <ListItemDecorator>
@@ -223,7 +223,7 @@ function Gmail() {
             <ListItemButton
               selected={index === 3}
               variant={index === 3 ? 'light' : 'text'}
-              color={index === 3 ? 'warning' : undefined}
+              palette={index === 3 ? 'warning' : undefined}
               onClick={() => setIndex(3)}
             >
               <ListItemDecorator>
@@ -393,7 +393,7 @@ function MuiNav() {
                     return (
                       <ListItem key={nestedPage.pathname}>
                         <ListItemButton
-                          color={nestedIndex === 0 ? 'primary' : undefined}
+                          palette={nestedIndex === 0 ? 'primary' : undefined}
                           selected={nestedIndex === 0}
                           variant={nestedIndex === 0 ? 'light' : 'text'}
                         >
@@ -478,7 +478,7 @@ const Firebash = () => {
           endAction={
             <IconButton
               variant="text"
-              color="neutral"
+              palette="neutral"
               sx={{
                 '--IconButton-padding': '12px',
                 right: 0,
@@ -514,7 +514,7 @@ const Firebash = () => {
             </IconButton>
           }
         >
-          <ListItemButton color="primary">
+          <ListItemButton palette="primary">
             <ListItemDecorator>
               <Home />
             </ListItemDecorator>
@@ -642,7 +642,7 @@ const Gatsby = () => {
           nested
           sx={{ my: 1 }}
           startAction={
-            <IconButton variant="text" size="sm" color="neutral" onClick={() => setOpen(!open)}>
+            <IconButton variant="text" size="sm" palette="neutral" onClick={() => setOpen(!open)}>
               <KeyboardArrowDown sx={{ transform: open ? 'initial' : 'rotate(-90deg)' }} />
             </IconButton>
           }
@@ -682,7 +682,7 @@ const Gatsby = () => {
           nested
           sx={{ my: 1 }}
           startAction={
-            <IconButton variant="text" size="sm" color="neutral">
+            <IconButton variant="text" size="sm" palette="neutral">
               <KeyboardArrowDown />
             </IconButton>
           }
@@ -780,7 +780,7 @@ export default function JoyList() {
           {/* ex4 */}
           <List>
             <ListItem>
-              <ListItemButton color="primary">
+              <ListItemButton palette="primary">
                 <ListItemDecorator>
                   <InboxIcon />
                 </ListItemDecorator>
@@ -788,7 +788,7 @@ export default function JoyList() {
               </ListItemButton>
             </ListItem>
             <ListItem>
-              <ListItemButton color="success">
+              <ListItemButton palette="success">
                 <ListItemDecorator>
                   <DraftsIcon />
                 </ListItemDecorator>
@@ -891,7 +891,7 @@ export default function JoyList() {
 
           {/* ex7 */}
           <List component="nav">
-            <ListItemButton color="primary">
+            <ListItemButton palette="primary">
               <ListItemContent>New file</ListItemContent>
               <Typography level="body2">⌘ N</Typography>
             </ListItemButton>
@@ -945,14 +945,14 @@ export default function JoyList() {
               <ListItemContent>Inbox</ListItemContent>
               <KeyboardArrowUp />
             </ListItemButton>
-            <ListItemButton color="primary">
+            <ListItemButton palette="primary">
               <ListItemDecorator>
                 <Star />
               </ListItemDecorator>
               <ListItemContent>Starred</ListItemContent>
             </ListItemButton>
             <ListDivider component="hr" />
-            <ListItemButton color="primary">
+            <ListItemButton palette="primary">
               <ListItemDecorator>
                 <Favorite />
               </ListItemDecorator>
@@ -974,7 +974,7 @@ export default function JoyList() {
             >
               <ListItemButton selected variant="light">
                 <ListItemDecorator>
-                  <Circle color="primary">
+                  <Circle palette="primary">
                     <InboxIcon />
                   </Circle>
                 </ListItemDecorator>
@@ -987,14 +987,14 @@ export default function JoyList() {
             <ListDivider component="hr" />
             <ListItem
               endAction={
-                <Button variant="light" color="danger" size="sm">
+                <Button variant="light" palette="danger" size="sm">
                   Clear
                 </Button>
               }
             >
-              <ListItemButton selected variant="outlined" color="danger">
+              <ListItemButton selected variant="outlined" palette="danger">
                 <ListItemDecorator>
-                  <Circle color="danger">
+                  <Circle palette="danger">
                     <Star />
                   </Circle>
                 </ListItemDecorator>
@@ -1009,7 +1009,7 @@ export default function JoyList() {
               endAction={
                 <IconButton
                   variant="outlined"
-                  color="success"
+                  palette="success"
                   size="sm"
                   sx={{
                     borderColor: 'success.200',
@@ -1024,11 +1024,11 @@ export default function JoyList() {
               <ListItemButton
                 selected
                 variant="contained"
-                color="success"
+                palette="success"
                 sx={(theme) => theme.variants.containedOverrides.success}
               >
                 <ListItemDecorator>
-                  <Circle color="success">
+                  <Circle palette="success">
                     <Favorite />
                   </Circle>
                 </ListItemDecorator>

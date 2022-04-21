@@ -42,18 +42,18 @@ const ColorSchemePicker = () => {
 const Tile = ({
   children,
   variant = 'light',
-  color = 'primary',
+  palette = 'primary',
   sx = [],
   ...props
 }: {
   variant?: 'light' | 'contained';
-  color?: ColorPaletteProp | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) => {
+  palette?: ColorPaletteProp | 'secondary' | 'alternate';
+} & BoxProps) => {
   return (
     <Box
       sx={[
         { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
-        (theme) => theme.variants[variant][color],
+        (theme) => theme.variants[variant][palette],
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       {...props}
@@ -64,7 +64,7 @@ const Tile = ({
 };
 
 export default function JoyVariant() {
-  const renderContent = (variant: VariantProp, color: ColorPaletteProp) => (
+  const renderContent = (variant: VariantProp, palette: ColorPaletteProp) => (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <ScheduleRounded fontSize="md" />
@@ -75,7 +75,7 @@ export default function JoyVariant() {
       <Box sx={{ my: 'auto' }}>
         <Tile
           variant={variant.match(/(contained)/) ? 'light' : 'contained'}
-          color={color}
+          palette={palette}
           sx={{
             ...(variant.match(/(contained)/) && {
               bgcolor: 'background.body',
@@ -104,10 +104,10 @@ export default function JoyVariant() {
             Michael Scott
           </Typography>
         </Box>
-        <Button color={variant === 'contained' ? 'context' : color} sx={{ ml: 'auto' }}>
+        <Button palette={variant === 'contained' ? 'context' : palette} sx={{ ml: 'auto' }}>
           Check
         </Button>
-        <IconButton color={variant.match(/(contained)/) ? 'context' : color}>
+        <IconButton palette={variant.match(/(contained)/) ? 'context' : palette}>
           <DeleteForeverRounded />
         </IconButton>
       </Box>

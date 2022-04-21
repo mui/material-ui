@@ -158,16 +158,16 @@ const components: {
     name: 'IconButton',
     render: (props: any) => (
       <React.Fragment>
-        <IconButton color="success" {...props}>
+        <IconButton palette="success" {...props}>
           <Add />
         </IconButton>
-        <IconButton variant="contained" color="danger" {...props}>
+        <IconButton variant="contained" palette="danger" {...props}>
           <DeleteForever />
         </IconButton>
-        <IconButton variant="outlined" color="primary" {...props}>
+        <IconButton variant="outlined" palette="primary" {...props}>
           <Moon />
         </IconButton>
-        <IconButton variant="outlined" color="primary" shape="circular" {...props}>
+        <IconButton variant="outlined" palette="primary" shape="circular" {...props}>
           <Sun />
         </IconButton>
       </React.Fragment>
@@ -226,7 +226,7 @@ const components: {
         </List>
         <List component="nav" {...props}>
           <ListItem nested>
-            <ListItemButton selected color="primary">
+            <ListItemButton selected palette="primary">
               <ListItemDecorator>
                 <Inbox />
               </ListItemDecorator>
@@ -238,7 +238,7 @@ const components: {
                 nested
                 component="div"
                 endAction={
-                  <IconButton variant="text" color="danger">
+                  <IconButton variant="text" palette="danger">
                     <DeleteForever />
                   </IconButton>
                 }
@@ -310,31 +310,31 @@ const components: {
           placeholder="Placeholder"
           startAdornment={<Key />}
           endAdornment={
-            <IconButton size="sm" color="neutral">
+            <IconButton size="sm" palette="neutral">
               <Visibility />
             </IconButton>
           }
           {...props}
         />
         <Input
-          color="primary"
+          palette="primary"
           placeholder="Placeholder"
           startAdornment={<Typography color="inherit">$</Typography>}
           endAdornment={<Typography color="text.tertiary">USD</Typography>}
           {...props}
         />
-        <Input placeholder="Placeholder" color="danger" endAdornment={<Info />} {...props} />
+        <Input placeholder="Placeholder" palette="danger" endAdornment={<Info />} {...props} />
         <Input
           placeholder="Placeholder"
           variant="light"
-          color="success"
+          palette="success"
           endAdornment={<TaskAlt />}
           {...props}
         />
         <Input
           placeholder="Placeholder"
           variant="contained"
-          color="info"
+          palette="info"
           endAdornment={<TaskAlt />}
           {...props}
         />
@@ -536,18 +536,18 @@ const components: {
             Delete
             <Delete sx={{ ml: 0.5, mr: -0.5 }} />
           </Chip>
-          <Chip variant="outlined" color="success" onClick={() => alert('test')} {...props}>
+          <Chip variant="outlined" palette="success" onClick={() => alert('test')} {...props}>
             <Info sx={{ mr: 0.5, ml: -0.5 }} />
             Info
           </Chip>
         </Box>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <Chip variant="light" color="neutral" endDecorator={<ChipDelete />} {...props}>
+          <Chip variant="light" palette="neutral" endDecorator={<ChipDelete />} {...props}>
             Fruit
           </Chip>
           <Chip
             variant="light"
-            color="neutral"
+            palette="neutral"
             endDecorator={<ChipDelete variant="outlined" />}
             {...props}
           >
@@ -555,7 +555,7 @@ const components: {
           </Chip>
           <Chip
             variant="outlined"
-            color="neutral"
+            palette="neutral"
             endDecorator={<ChipDelete variant="light" />}
             {...props}
           >
@@ -566,7 +566,7 @@ const components: {
           <Chip
             startDecorator={<Favorite sx={{ ml: 0.5 }} />}
             variant="outlined"
-            color="danger"
+            palette="danger"
             onClick={() => {}}
             {...props}
           >
@@ -575,7 +575,7 @@ const components: {
           <Chip
             startDecorator={<Favorite sx={{ ml: 0.5 }} />}
             variant="outlined"
-            color="neutral"
+            palette="neutral"
             onClick={() => {}}
             {...props}
           >
@@ -584,7 +584,7 @@ const components: {
           <Chip
             startDecorator={<Favorite sx={{ ml: 0.5 }} />}
             variant="outlined"
-            color="neutral"
+            palette="neutral"
             onClick={() => {}}
             {...props}
           >
@@ -641,7 +641,7 @@ function Playground({ initialName }: { initialName?: string }) {
           {components.map((config) => (
             <ListItem key={config.name} sx={{ mb: 1 }}>
               <ListItemButton
-                color={config.name === current ? 'primary' : 'neutral'}
+                palette={config.name === current ? 'primary' : 'neutral'}
                 variant={config.name === current ? 'light' : 'text'}
                 selected={config.name === current}
                 onClick={() => setCurrent(config.name)}

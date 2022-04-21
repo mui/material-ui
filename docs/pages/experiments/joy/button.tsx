@@ -43,7 +43,7 @@ const ColorSchemePicker = () => {
 export default function JoyButton() {
   const buttonProps = {
     variant: ['text', 'outlined', 'light', 'contained'],
-    color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
+    palette: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
     size: ['sm', 'md', 'lg'],
   } as const;
   return (
@@ -86,7 +86,7 @@ export default function JoyButton() {
               </Typography>
             </Box>
             <Box>
-              <IconButton variant="outlined" size="sm" color="danger">
+              <IconButton variant="outlined" size="sm" palette="danger">
                 <DeleteForever />
               </IconButton>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
@@ -94,14 +94,14 @@ export default function JoyButton() {
               </Typography>
             </Box>
             <Box>
-              <IconButton variant="contained" size="lg" color="success">
+              <IconButton variant="contained" size="lg" palette="success">
                 <ThumbUp />
               </IconButton>
               <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                 48x48
               </Typography>
             </Box>
-            <IconButton variant="contained" size="lg" color="success">
+            <IconButton variant="contained" size="lg" palette="success">
               <ThumbUp fontSize="xl4" />
             </IconButton>
             <IconButton variant="outlined" sx={{ borderRadius: 'var(--IconButton-size)' }}>
@@ -116,7 +116,7 @@ export default function JoyButton() {
             </Typography>
             <Button
               variant="contained"
-              color="success"
+              palette="success"
               endIcon={<KeyboardArrowDown fontSize="lg" />}
               sx={{ '--Button-gutter': '0.5rem' }}
               // sx={{ px: '0.5rem' }} // should not use `px` because endIcon will have mismatch position
@@ -135,13 +135,13 @@ export default function JoyButton() {
             <Button variant="contained" startIcon={<Add />} size="lg">
               Add to cart
             </Button>
-            <Button variant="outlined" endIcon={<KeyboardArrowRight />} color="success">
+            <Button variant="outlined" endIcon={<KeyboardArrowRight />} palette="success">
               Checkout
             </Button>
             <Button
               size="sm"
               variant="outlined"
-              color="neutral"
+              palette="neutral"
               endIcon={<ArrowDropDown />}
               sx={{ '--Icon-color': (theme) => theme.vars.palette.primary[500] }}
             >
@@ -152,82 +152,82 @@ export default function JoyButton() {
         {/* Danilo's not smart iteration below 😅 - wanted to see each color with every variant. */}
         <Box sx={{ display: 'flex', py: 16 }}>
           <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" palette="primary">
               Button
             </Button>
-            <Button variant="contained" color="neutral">
+            <Button variant="contained" palette="neutral">
               Button
             </Button>
-            <Button variant="contained" color="danger">
+            <Button variant="contained" palette="danger">
               Button
             </Button>
-            <Button variant="contained" color="info">
+            <Button variant="contained" palette="info">
               Button
             </Button>
-            <Button variant="contained" color="success">
+            <Button variant="contained" palette="success">
               Button
             </Button>
-            <Button variant="contained" color="warning">
-              Button
-            </Button>
-          </Box>
-          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
-            <Button variant="outlined" color="primary">
-              Button
-            </Button>
-            <Button variant="outlined" color="neutral">
-              Button
-            </Button>
-            <Button variant="outlined" color="danger">
-              Button
-            </Button>
-            <Button variant="outlined" color="info">
-              Button
-            </Button>
-            <Button variant="outlined" color="success">
-              Button
-            </Button>
-            <Button variant="outlined" color="warning">
+            <Button variant="contained" palette="warning">
               Button
             </Button>
           </Box>
           <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
-            <Button variant="light" color="primary">
+            <Button variant="outlined" palette="primary">
               Button
             </Button>
-            <Button variant="light" color="neutral">
+            <Button variant="outlined" palette="neutral">
               Button
             </Button>
-            <Button variant="light" color="danger">
+            <Button variant="outlined" palette="danger">
               Button
             </Button>
-            <Button variant="light" color="info">
+            <Button variant="outlined" palette="info">
               Button
             </Button>
-            <Button variant="light" color="success">
+            <Button variant="outlined" palette="success">
               Button
             </Button>
-            <Button variant="light" color="warning">
+            <Button variant="outlined" palette="warning">
               Button
             </Button>
           </Box>
           <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
-            <Button variant="text" color="primary">
+            <Button variant="light" palette="primary">
               Button
             </Button>
-            <Button variant="text" color="neutral">
+            <Button variant="light" palette="neutral">
               Button
             </Button>
-            <Button variant="text" color="danger">
+            <Button variant="light" palette="danger">
               Button
             </Button>
-            <Button variant="text" color="info">
+            <Button variant="light" palette="info">
               Button
             </Button>
-            <Button variant="text" color="success">
+            <Button variant="light" palette="success">
               Button
             </Button>
-            <Button variant="text" color="warning">
+            <Button variant="light" palette="warning">
+              Button
+            </Button>
+          </Box>
+          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
+            <Button variant="text" palette="primary">
+              Button
+            </Button>
+            <Button variant="text" palette="neutral">
+              Button
+            </Button>
+            <Button variant="text" palette="danger">
+              Button
+            </Button>
+            <Button variant="text" palette="info">
+              Button
+            </Button>
+            <Button variant="text" palette="success">
+              Button
+            </Button>
+            <Button variant="text" palette="warning">
               Button
             </Button>
           </Box>

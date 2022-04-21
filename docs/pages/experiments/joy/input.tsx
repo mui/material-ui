@@ -64,7 +64,7 @@ export default function JoyTypography() {
           <Input placeholder="Placeholder" startDecorator={<Mail />} size="lg" />
           <Input
             placeholder="Placeholder"
-            color="primary"
+            palette="primary"
             type="password"
             startDecorator={<Key />}
             endDecorator={
@@ -75,17 +75,17 @@ export default function JoyTypography() {
           />
           <Input
             placeholder="Placeholder"
-            color="danger"
+            palette="danger"
             endDecorator={
-              <Button color="danger" size="sm" sx={{ mr: '-6px' }}>
+              <Button palette="danger" size="sm" sx={{ mr: '-6px' }}>
                 Delete
               </Button>
             }
           />
-          <Input placeholder="Placeholder" color="danger" endDecorator={<Info />} />
+          <Input placeholder="Placeholder" palette="danger" endDecorator={<Info />} />
           <Input
             placeholder="Placeholder"
-            color="info"
+            palette="info"
             endDecorator={
               <Button variant="light" size="sm" sx={{ mr: '-6px' }}>
                 Search
@@ -95,7 +95,7 @@ export default function JoyTypography() {
           <Box sx={{ display: 'flex', height: 56 }}>
             <Input
               placeholder="Placeholder"
-              color="success"
+              palette="success"
               endDecorator={<Check />}
               sx={{
                 minWidth: 0,
@@ -105,7 +105,7 @@ export default function JoyTypography() {
               }}
             />
             <Button
-              color="success"
+              palette="success"
               sx={{ px: '0.75rem', borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
             >
               Subscribe
@@ -113,7 +113,7 @@ export default function JoyTypography() {
           </Box>
           <Input
             placeholder="Placeholder"
-            color="warning"
+            palette="warning"
             startDecorator={<Typography sx={{ color: 'inherit' }}>$</Typography>}
           />
           <Input placeholder="Placeholder" disabled />
@@ -121,15 +121,15 @@ export default function JoyTypography() {
           <Input variant="text" placeholder="Text variant" defaultValue="Default Value" />
           <Input variant="text" placeholder="Text variant" />
           <Input variant="text" placeholder="Text variant" disabled />
-          <Input variant="text" placeholder="Text variant" color="primary" />
+          <Input variant="text" placeholder="Text variant" palette="primary" />
           <Input variant="light" placeholder="Light variant" defaultValue="Default Value" />
           <Input variant="light" placeholder="Light variant" />
           <Input variant="light" placeholder="Light variant" disabled />
-          <Input variant="light" placeholder="Light variant" color="primary" />
+          <Input variant="light" placeholder="Light variant" palette="primary" />
           <Input variant="contained" placeholder="Contained variant" defaultValue="Default Value" />
           <Input variant="contained" placeholder="Contained variant" />
           <Input variant="contained" placeholder="Contained variant" disabled />
-          <Input variant="contained" placeholder="Contained variant" color="primary" />
+          <Input variant="contained" placeholder="Contained variant" palette="primary" />
         </Box>
       </Box>
     </CssVarsProvider>
