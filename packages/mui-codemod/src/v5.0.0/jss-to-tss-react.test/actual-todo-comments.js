@@ -13,6 +13,13 @@ const useStyles = makeStyles(() => ({
   qualifier: {},
 }));
 
+export const useExportedStyles = makeStyles({
+  test: {
+    backgroundColor: "purple",
+    color: "white",
+  }
+});
+
 const useStyles2 = makeStyles({
   test2: props => ({
     backgroundColor: "blue",

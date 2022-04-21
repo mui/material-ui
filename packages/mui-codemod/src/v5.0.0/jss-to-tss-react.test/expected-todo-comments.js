@@ -13,6 +13,14 @@ const useStyles = makeStyles()((_theme, _params, classes) => ({
   qualifier: {},
 }));
 
+// TODO jss-to-tss-react codemod: usages of this hook outside of this file will not be converted.
+export const useExportedStyles = makeStyles()({
+  test: {
+    backgroundColor: "purple",
+    color: "white",
+  }
+});
+
 // TODO jss-to-tss-react codemod: Unable to handle style definition reliably. Unsupported arrow function syntax.
 // Arrow function has parameter type of Identifier instead of ObjectPattern (e.g. `(props) => ({...})` instead of `({color}) => ({...})`).
 const useStyles2 = makeStyles()({

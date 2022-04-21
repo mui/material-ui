@@ -149,10 +149,14 @@ function addComments(j, path, commentsToAdd) {
   j(path)
     .closest(j.VariableDeclaration)
     .forEach((declaration) => {
-      if (!declaration.node.comments) {
-        declaration.node.comments = [];
+      let commentsPath = declaration;
+      if (declaration.parentPath.node.type === 'ExportNamedDeclaration') {
+        commentsPath = declaration.parentPath;
       }
-      declaration.node.comments.push(...commentsToAdd);
+      if (!commentsPath.node.comments) {
+        commentsPath.node.comments = [];
+      }
+      commentsPath.node.comments.push(...commentsToAdd);
     });
 }
 
@@ -309,6 +313,17 @@ export default function transformer(file, api, options) {
       .closest(j.VariableDeclarator)
       .forEach((path) => {
         styleHooks.push(path.node.id.name);
+        j(path)
+          .closest(j.ExportNamedDeclaration)
+          .forEach((declaration) => {
+            const comments = [
+              j.commentLine(
+                ` TODO jss-to-tss-react codemod: usages of this hook outside of this file will not be converted.`,
+                true,
+              ),
+            ];
+            addComments(j, path, comments);
+          });
       });
     /**
      * Convert classes assignment syntax in calls to the hook (e.g. useStyles) and
