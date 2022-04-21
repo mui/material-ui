@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from './composeClasses';
@@ -121,19 +120,6 @@ export default function createContainer(options = {}) {
       />
     );
   });
-
-  Container.propTypes = {
-    children: PropTypes.node,
-    classes: PropTypes.object,
-    disableGutters: PropTypes.bool,
-    fixed: PropTypes.bool,
-    maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
-    sx: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-      PropTypes.func,
-      PropTypes.object,
-    ]),
-  };
 
   return Container;
 }
