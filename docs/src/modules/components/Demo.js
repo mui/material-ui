@@ -36,6 +36,22 @@ function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
 }
 
+/**
+ * Removes leading spaces (indentation) present in the `.tsx` previews
+ * to be able to replace the existing code with the incoming dynamic code
+ * @param {string} input
+ */
+
+function trimLeadingSpaces(input) {
+  if (!input) {
+    return undefined;
+  }
+  return input
+    .split('\n')
+    .map((line) => line.trim())
+    .join('\n');
+}
+
 function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
   const title = `${getDemoName(githubLocation)} Material Demo`;
@@ -204,25 +220,29 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
 
-  const [code, setCode] = React.useState(demoData.raw);
+  const usePreview = showPreview && !codeOpen;
+  const [code, setCode] = React.useState(usePreview ? demo.jsxPreview : demoData.raw);
   React.useEffect(() => {
-    setCode(demoData.raw);
-  }, [demoData.raw]);
+    setCode(usePreview ? demo.jsxPreview : demoData.raw);
+  }, [demoData.raw, demoData.sourceLanguage, usePreview]);
 
   const resetDemo = () => {
     setDemoKey();
     setCode(demoData.raw);
-  }
+  };
 
-  const { element, error } = useRunner({ code, scope: demo.scope });
+  const { element, error } = useRunner({
+    code: usePreview
+      ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demo.jsxPreview), code)
+      : code,
+    scope: demo.scope,
+  });
 
   const editorRef = React.useRef(null);
   const onEditableChange = React.useCallback((newCode) => {
     setCode(newCode.slice(0, -1));
   }, []);
-  useEditable(editorRef, onEditableChange, {
-    disabled: !codeOpen,
-  });
+  useEditable(editorRef, onEditableChange);
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -280,7 +300,7 @@ export default function Demo(props) {
           <Code
             ref={editorRef}
             id={demoSourceId}
-            code={showPreview && !codeOpen ? demo.jsxPreview : code}
+            code={code}
             language={demoData.sourceLanguage}
             spellCheck="false"
           />
