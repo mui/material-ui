@@ -203,7 +203,7 @@ const Root = styled('div')(({ theme }) => ({
     paddingTop: 12,
     paddingBottom: 12,
   },
-  '& blockquote, & .MuiCallout-root': {
+  '& blockquote': {
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
     borderLeft: '8px solid',
@@ -223,7 +223,44 @@ const Root = styled('div')(({ theme }) => ({
       marginTop: 10,
       color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[800],
     },
+  },
+  '& .MuiCallout-root': {
+    borderRadius: theme.shape.borderRadius,
+    border: '1px solid',
+    borderLeft: '8px solid',
+    padding: '20px',
+    margin: '20px 0',
+    '& > p': {
+      margin: 0,
+      color: 'inherit',
+    },
+    '& ul, li': {
+      color: 'inherit',
+    },
+    '& strong': {
+      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
+    },
+    '&.MuiCallout-error': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.error[100] ?? '#fff'
+          : theme.palette.error[900] ?? theme.palette.text.primary,
+      borderColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            theme.palette.error[500] ?? theme.palette.error.dark
+          : theme.palette.error[600] ?? theme.palette.error.light,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.2)
+          : theme.palette.error[50] ?? theme.palette.error.light,
+    },
     '&.MuiCallout-info': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.primary[100] ?? '#fff'
+          : theme.palette.primary[900] ?? theme.palette.text.primary,
       borderColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
@@ -236,28 +273,36 @@ const Root = styled('div')(({ theme }) => ({
           : theme.palette.primary[50] ?? theme.palette.primary.light,
     },
     '&.MuiCallout-success': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.success[100] ?? '#fff'
+          : theme.palette.success[900] ?? theme.palette.text.primary,
       borderColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
             theme.palette.success[500] ?? theme.palette.success.dark
-          : theme.palette.success[300] ?? theme.palette.success.light,
+          : theme.palette.success[600] ?? theme.palette.success.light,
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
             alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.2)
           : theme.palette.success[50] ?? theme.palette.success.light,
     },
-    '&.MuiCallout-error': {
+    '&.MuiCallout-warning': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.warning[100] ?? '#fff'
+          : theme.palette.warning[900] ?? theme.palette.text.primary,
       borderColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            theme.palette.error[500] ?? theme.palette.error.dark
-          : theme.palette.error[300] ?? theme.palette.error.light,
+            theme.palette.warning[500] ?? theme.palette.warning.dark
+          : theme.palette.warning[400] ?? theme.palette.warning.light,
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.2)
-          : theme.palette.error[50] ?? theme.palette.error.light,
+            alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
+          : theme.palette.warning[50] ?? theme.palette.warning.light,
     },
   },
   '& a, & a code': {
