@@ -5,6 +5,15 @@ const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivEleme
   current: null,
 });
 
+/**
+ * How to use: spread the handlers to the .MuiCode-root
+ *
+ * The html structure should be:
+ * <div className="MuiCode-root">
+ *  <pre>...</pre>
+ *  <button className="MuiCode-copy">...</button>
+ * </div>
+ */
 export const useCodeCopy = () => {
   const rootNode = React.useContext(CodeBlockContext);
   return {
@@ -63,6 +72,10 @@ const InitCodeCopy = () => {
   return null;
 };
 
+/**
+ * Place <CodeCopyProvider> at the page level. It will check the keydown event and try to initiate copy click if rootNode exist.
+ * Any code block inside the tree can set the rootNode when mouse enter to leverage keyboard copy.
+ */
 export const CodeCopyProvider = ({ children }: { children: React.ReactNode }) => {
   const rootNode = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
