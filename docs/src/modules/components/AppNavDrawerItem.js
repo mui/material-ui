@@ -198,6 +198,7 @@ export default function AppNavDrawerItem(props) {
     subheader,
     title,
     topLevel = false,
+    plan,
     ...other
   } = props;
   const expandable = openImmediately != null;
@@ -254,6 +255,8 @@ export default function AppNavDrawerItem(props) {
       >
         {iconElement}
         {title}
+        {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
+        {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
         {legacy && <LegacyChip />}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
       </Item>
@@ -277,6 +280,7 @@ AppNavDrawerItem.propTypes = {
   linkProps: PropTypes.object,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
+  plan: PropTypes.oneOf(['community', 'pro', 'premium']),
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,

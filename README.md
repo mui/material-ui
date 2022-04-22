@@ -3,11 +3,19 @@
   <a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="https://mui.com/static/logo.svg" alt="MUI logo"></a>
 </p>
 
-<h1 align="center">MUI</h1>
+<h1 align="center">MUI Core</h1>
+
+**MUI Core** contains foundational React UI component libraries for shipping new features faster.
+
+- _Material UI_ is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
+
+- _MUI Base_ is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+
+- _MUI System_ is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
 
-Quickly build beautiful [React](https://reactjs.org/) apps. MUI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with [Material Design](https://material.io/design/introduction/).
+**[Stable channel v5](https://mui.com/)**
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
@@ -25,9 +33,9 @@ Quickly build beautiful [React](https://reactjs.org/) apps. MUI is a simple and 
 
 ## Installation
 
-MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+### Material UI
 
-**[Stable channel v5](https://mui.com/)**
+Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
 ```sh
 // with npm
@@ -46,9 +54,49 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 </details>
 
-Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
+**Note:** `@next` only points to pre-releases.
+Use `@latest` for the latest stable release.
 
-## Who sponsors MUI?
+### MUI Base
+
+MUI Base is available as an [npm package](https://www.npmjs.com/package/@mui/base).
+
+```sh
+// with npm
+npm install @mui/base
+
+// with yarn
+yarn add @mui/base
+```
+
+**Note**: MUI Base is still in alpha.
+We are adding new components regularly and you're welcome to contribute!
+
+### MUI System
+
+MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/system).
+
+```sh
+// with npm
+npm install @mui/system @emotion/react @emotion/styled
+
+// with yarn
+yarn add @mui/system @emotion/react @emotion/styled
+```
+
+Or if you want to use `styled-components` as a styling engine:
+
+```sh
+// with npm
+npm install @mui/system @mui/styled-engine-sc styled-components
+
+// with yarn
+yarn add @mui/system @mui/styled-engine-sc styled-components
+```
+
+Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+
+## Sponsors
 
 ### Diamond 💎
 
@@ -76,16 +124,16 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
-### There is more
+### More backers
 
 See the full list of [our backers](https://mui.com/material-ui/discover-more/backers/).
 
-## Usage
+## Getting started with Material UI
 
-Here is a quick example to get you started, **it's all you need**:
+Here is an example of a basic app using Material UI's `Button` component:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
@@ -97,46 +145,48 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
 ```
 
-Yes, it's really all you need to get started as you can see in this live and interactive demo:
+In the interactive demo below, try changing the code and see how it affects the output.
+(Hint: change `variant` to `"outlined"` and `color` to `"secondary"`.
+For more options, see the [`Button` component page](https://mui.com/material-ui/react-button/) in our docs.)
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4j7m47vlm4)
 
 ## Questions
 
-For _how-to_ questions and other non-issues,
-please use [StackOverflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
-There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
+For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
+Use the "mui" tag on Stack Overflow to make it easier for the community to find your question.
 
 ## Examples
 
-Are you looking for an example project to get started?
-[We host some](https://mui.com/material-ui/getting-started/example-projects/).
+Our documentation features [a collection of example projects using Material UI](https://mui.com/material-ui/getting-started/example-projects/).
 
 ## Documentation
 
-Check out our [documentation website](https://mui.com/).
+- [Material UI](https://mui.com/material-ui/getting-started/installation/)
+- [MUI Base](https://mui.com/base/getting-started/installation/)
+- [MUI System](https://mui.com/system/basics/)
 
-## Premium Themes
+## Premium themes
 
-You can find complete templates & themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
+You can find complete templates and themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
 ## Contributing
 
-Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to MUI.
+Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
-Notice that contributions go far beyond pull requests and commits.
-Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project).
+Contributing to MUI Core is about more than just issues and pull requests!
+There are many other ways to [support MUI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
 
 ## Changelog
 
-If you have recently updated, please read the [changelog](https://github.com/mui/material-ui/releases) for details of what has changed.
+The [changelog](https://github.com/mui/material-ui/releases) is regularly updated to reflect what's changed in each new release.
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [roadmap](https://mui.com/material-ui/discover-more/roadmap/) file.
+Future plans and high-priority features and enhancements can be found in our [roadmap](https://mui.com/material-ui/discover-more/roadmap/).
 
 ## License
 
@@ -149,20 +199,20 @@ These great services sponsor MUI's core infrastructure:
 
 [<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
 
-GitHub allows us to host the Git repository and coordinate contributions.
+GitHub lets us host the Git repository and coordinate contributions.
 
 [<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
 
-Netlify allows us to distribute the documentation.
+Netlify lets us distribute the documentation.
 
 [<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
 
-CrowdIn allows us to translate the documentation.
+Crowdin lets us translate the documentation.
 
 [<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
 
-BrowserStack allows us to test in real browsers.
+BrowserStack lets us test in real browsers.
 
 [<img loading="lazy" alt="CodeCov" src="https://github.com/codecov.png?size=70" width="35" height="35">](https://codecov.io/)
 
-CodeCov allows us to monitor the test coverage.
+CodeCov lets us monitor test coverage.

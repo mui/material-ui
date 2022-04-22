@@ -1,3 +1,5 @@
+import pagesApi from './pagesApi';
+
 const pages = [
   {
     pathname: '/system',
@@ -18,9 +20,20 @@ const pages = [
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
       { pathname: '/system/advanced' },
-      { pathname: '/system/box' },
       { pathname: '/system/styled', title: 'styled' },
     ],
+  },
+  {
+    pathname: '/system/react-',
+    title: 'Components',
+    icon: 'ToggleOnIcon',
+    children: [{ pathname: '/system/react-box', title: 'Box' }],
+  },
+  {
+    title: 'Component API',
+    pathname: '/system/api',
+    icon: 'CodeIcon',
+    children: pagesApi,
   },
   {
     pathname: '/system/styles',
