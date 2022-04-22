@@ -13,7 +13,7 @@ const Wrapper = styled(MarkdownElement)(({ theme }) => ({
   },
   '& > pre': {
     margin: '0 auto',
-    maxHeight: 'min(68vh, 1000px)',
+    maxHeight: 'min(48vh, 600px)',
   },
 }));
 

@@ -40,14 +40,8 @@ function getDemoName(location) {
  * to be able to replace the existing code with the incoming dynamic code
  * @param {string} input
  */
-function trimLeadingSpaces(input) {
-  if (!input) {
-    return undefined;
-  }
-  return input
-    .split('\n')
-    .map((line) => line.trim())
-    .join('\n');
+function trimLeadingSpaces(input = '') {
+  return input.replace(/^\s+/gm, '');
 }
 
 function useDemoData(codeVariant, demo, githubLocation) {
@@ -241,11 +235,6 @@ export default function Demo(props) {
           {element}
         </DemoSandboxed>
       </DemoRoot>
-      {error && (
-        <Typography color="error" component="pre">
-          {error}
-        </Typography>
-      )}
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
       {demoOptions.hideToolbar ? null : (
@@ -282,6 +271,11 @@ export default function Demo(props) {
             onChange={setCode}
             language={demoData.sourceLanguage}
           />
+          {error && (
+            <Typography color="error" component="pre">
+              {error}
+            </Typography>
+          )}
         </div>
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
