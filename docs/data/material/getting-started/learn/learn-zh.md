@@ -19,7 +19,7 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
 ```
 
 在下面的交互式演示中，尝试更改代码并查看它如何影响输出。 (注：将 `varian` 更改为 `"outlined"` 并且 `color` 更改为 `"secondary"`。 For more options, see the [`Button` component page](/material-ui/react-button/).)
