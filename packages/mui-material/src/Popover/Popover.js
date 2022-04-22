@@ -87,8 +87,8 @@ const PopoverPaper = styled(Paper, {
   // It's most likely on issue on userland.
   minWidth: 16,
   minHeight: 16,
-  maxWidth: 'calc(100% - ${marginThreshold * 2)',
-  maxHeight: 'calc(100% - ${marginThreshold * 2)',
+  maxWidth: 'calc(100% - ${marginThreshold * 2})',
+  maxHeight: 'calc(100% - ${marginThreshold * 2})',
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
 });
