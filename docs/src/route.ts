@@ -12,7 +12,7 @@ const ROUTES = {
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
   baseDocs: '/base/getting-started/installation/',
   materialDocs: '/material-ui/getting-started/installation/',
-  joyDocs: '/joy-ui/react-button/',
+  joyDocs: '/joy-ui/getting-started/quick-start/',
   systemDocs: '/system/basics/',
   materialIcons: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/material-icons/'
@@ -49,6 +49,7 @@ const ROUTES = {
   support: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/getting-started/support/#professional-support-premium'
     : '/getting-started/support/#professional-support-premium',
+  privacyPolicy: 'https://mui.com/store/privacy/',
   goldSponsor: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',

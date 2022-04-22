@@ -1457,7 +1457,7 @@ Here are some highlights ✨:
 - 🐛 Clean and synchronize the material icons with Google (#19483, #19485) @timmydoza.
 - 🐛 Fix outline input regressions (#19389, #19409, #19495) @Alexeyun1k, @kusmierz, @cadrimiranda.
 - 🐛 Fix IME support of the Autocomplete, important for Chinese, Japanese, and Korean (#19499) @teramotodaiki.
-- 📚 Improve the Style Library Interoperability docs section (#19457) @oliviertassinari.
+- 📚 Improve the Style library interoperability docs section (#19457) @oliviertassinari.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.9.1`
@@ -1511,7 +1511,7 @@ Here are some highlights ✨:
 - [docs] Fix some typos and correct a grammar mistake (#19324) @konekoya
 - [docs] Fix typo (#19492) @Blechkelle
 - [docs] Fix typo in Autocomplete CSS API (#19503) @DenrizSusam
-- [docs] Improve Style Library Interoperability (#19457) @oliviertassinari
+- [docs] Improve Style library interoperability (#19457) @oliviertassinari
 - [docs] Include more info on RMUIF v2.2.0 (#19410) @phoqe
 - [docs] Increase button variant demos consistency (#19392) @theswerd
 - [docs] Refresh the home page (#19430) @mbrookes
@@ -2881,7 +2881,7 @@ A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
-- 🌳 Introduce a new Tree View component in the (#14827) @joshwooding.
+- 🌳 Introduce a new Tree view component in the (#14827) @joshwooding.
 
   This is a first step toward a feature rich tree view component.
   We will keep iterate on it to add customization demos, filter, drag and drop, and checkboxes.
@@ -4207,11 +4207,11 @@ Here are some highlights ✨:
 - [docs] More Table TypeScript demos (#15086) @jasondashwang
 - [docs] Add most Progress TypeScript demos (#15104) @sperry94
 - [docs] Flatten /layout/layout (#15120) @oliviertassinari
-- [docs] Migrate docs' App Bar page to hooks (#15121) @gabrielgene
+- [docs] Migrate docs' App bar page to hooks (#15121) @gabrielgene
 - [docs] Migrate docs' Tooltips page to hooks (#15137) @gabrielgene
 - [docs] Use Date type instead of any for MUI pickers demo (#15144) @gabrielgene
 - [docs] Add virtualized List example (#15149) @joshwooding
-- [docs] Update Style Library Interoperability + Container forwardRef (#15147) @oliviertassinari
+- [docs] Update Style library interoperability + Container forwardRef (#15147) @oliviertassinari
 - [docs] Run the TypeScript demos (#15159) @oliviertassinari
 - [docs] Add Breadcrumbs TypeScript demos (#15139) @Adherentman
 - [docs] Fix anchor link (#15174) @eps1lon
@@ -6323,7 +6323,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 - [docs] Fix documentation error in <Input /> (#12955) @lukePeavey
 - [docs] Minor style update of the tabs demos (#12958) @dotku
 - [docs] Glamorous is deprecated for emotion (#12963) @oliviertassinari
-- [docs] Add Emotion to style interoperability guide (#12966) @lukePeavey
+- [docs] Add Emotion to style library interoperability guide (#12966) @lukePeavey
 - [docs] Fix IconButton Snackbar demos (#12964) @bhalahariharan
 - [docs] Show how to combine OutlinedInput and FilledInput (#12968) @oliviertassinari
 - [docs] Fix Typo in PaymentForm.js (#12971) @n3n
@@ -8932,7 +8932,7 @@ It's unclear if this change is making the implementation follow the specificatio
 ### Docs
 
 - [docs] Add a section about how to test changes locally (#9935) @nicolasiensen
-- [docs] Style Library Interoperability v2 (#9939) @oliviertassinari
+- [docs] Style library interoperability v2 (#9939) @oliviertassinari
 - [docs] Fix markdown list (#9948) @yuchi
 - [docs] Remove one DOM element in the Card actions (#9952) @maprihoda
 - [docs] Improve the documentation on the breakpoints (#9949) @oliviertassinari

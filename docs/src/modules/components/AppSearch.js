@@ -105,7 +105,7 @@ const NewStartScreen = () => {
       },
       items: [
         { name: 'Material Icons', href: '/material-ui/material-icons/' },
-        { name: 'Text Fields', href: '/material-ui/react-text-field/' },
+        { name: 'Text field', href: '/material-ui/react-text-field/' },
         { name: 'Button', href: '/material-ui/react-button/' },
       ],
     },
@@ -115,7 +115,7 @@ const NewStartScreen = () => {
         icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'How To Customize', href: '/material-ui/customization/how-to-customize/' },
+        { name: 'How to customize', href: '/material-ui/customization/how-to-customize/' },
         { name: 'Theming', href: '/material-ui/customization/theming/' },
         { name: 'Default Theme', href: '/material-ui/customization/default-theme/' },
       ],

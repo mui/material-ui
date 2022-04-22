@@ -10,6 +10,11 @@ export interface MuiPage {
    */
   legacy?: boolean;
   /**
+   * Indicates if the pages are only available in some plan.
+   * @default 'community'
+   */
+  plan?: 'community' | 'pro' | 'premium';
+  /**
    * In case the children have pathnames out of pathname value, use this field to scope other pathnames
    */
   scopePathnames?: string[];
@@ -293,10 +298,10 @@ const pages: readonly MuiPage[] = [
     title: 'How To Guides',
     icon: 'VisibilityIcon',
     children: [
-      { pathname: '/guides/api', title: 'API Design Approach' },
+      { pathname: '/guides/api', title: 'API design approach' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
-      { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
+      { pathname: '/guides/interoperability', title: 'Style library interoperability' },
       { pathname: '/guides/styled-engine' },
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },
@@ -304,9 +309,9 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/server-rendering' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
       { pathname: '/guides/pickers-migration', title: 'Migration from @material-ui/pickers' },
-      { pathname: '/guides/migration-v4', title: 'Migration From v4' },
-      { pathname: '/guides/migration-v3', title: 'Migration From v3' },
-      { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
+      { pathname: '/guides/migration-v4', title: 'Migration from v4' },
+      { pathname: '/guides/migration-v3', title: 'Migration from v3' },
+      { pathname: '/guides/migration-v0x', title: 'Migration from v0.x' },
       { pathname: '/guides/testing' },
       { pathname: '/guides/localization' },
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
@@ -319,8 +324,8 @@ const pages: readonly MuiPage[] = [
     title: 'Experimental APIs',
     icon: 'ExperimentIcon',
     children: [
-      { pathname: '/experimental-api/classname-generator', title: 'ClassName Generator' },
-      { pathname: '/experimental-api/css-variables', title: 'CSS Variables' },
+      { pathname: '/experimental-api/classname-generator', title: 'ClassName generator' },
+      { pathname: '/experimental-api/css-variables', title: 'CSS variables' },
     ],
   },
   {
