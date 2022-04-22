@@ -1,10 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
+import AspectRatio from '@mui/joy/AspectRatio';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Badge from '@mui/joy/Badge';
+import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 import Checkbox from '@mui/joy/Checkbox';
+import Chip from '@mui/joy/Chip';
+import ChipDelete from '@mui/joy/ChipDelete';
 import IconButton from '@mui/joy/IconButton';
 import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
@@ -12,6 +18,9 @@ import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
+import Radio from '@mui/joy/Radio';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Switch from '@mui/joy/Switch';
 import { CssVarsProvider, ColorPaletteProp, VariantProp, useColorScheme } from '@mui/joy/styles';
 import CodeRounded from '@mui/icons-material/CodeRounded';
 import ScheduleRounded from '@mui/icons-material/ScheduleRounded';
@@ -24,6 +33,7 @@ import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import Explore from '@mui/icons-material/Explore';
 import DocumentScanner from '@mui/icons-material/DocumentScanner';
 import Settings from '@mui/icons-material/Settings';
+import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -92,10 +102,10 @@ export default function JoyVariant() {
             Michael Scott
           </Typography>
         </Box>
-        <Button color={variant === 'contained' ? 'context' : color} sx={{ ml: 'auto' }}>
+        <Button color={variant === 'contained' ? undefined : color} sx={{ ml: 'auto' }}>
           Check
         </Button>
-        <IconButton color={variant.match(/(contained)/) ? 'context' : color}>
+        <IconButton color={variant.match(/(contained)/) ? undefined : color}>
           <DeleteForeverRounded />
         </IconButton>
       </Box>
@@ -279,28 +289,133 @@ export default function JoyVariant() {
           <Avatar variant="contained">SK</Avatar>
           <Avatar variant="light">SK</Avatar>
           <Avatar variant="outlined">SK</Avatar>
+          <Badge badgeInset="14%" color="danger">
+            <Avatar variant="light">SK</Avatar>
+          </Badge>
+          <Badge badgeInset="4%" variant="light" badgeContent="99">
+            <Avatar variant="contained">SK</Avatar>
+          </Badge>
+          <Badge badgeInset="8%" badgeContent="20">
+            <Avatar variant="outlined">SK</Avatar>
+          </Badge>
           <Button variant="contained">Contained</Button>
           <Button variant="light">Light</Button>
           <Button variant="outlined">Outlined</Button>
           <Button variant="text">Text</Button>
-          <IconButton variant="contained">
-            <Explore />
-          </IconButton>
-          <IconButton variant="light">
-            <Explore />
-          </IconButton>
-          <IconButton variant="outlined">
-            <Explore />
-          </IconButton>
-          <IconButton variant="text">
-            <Explore />
-          </IconButton>
-          <Checkbox variant="outlined" checked={false} />
-          <Checkbox variant="light" checked={false} />
-          <Checkbox variant="contained" checked={false} />
-          <Checkbox variant="outlined" checked />
-          <Checkbox variant="light" checked />
-          <Checkbox variant="contained" checked />
+          <Card
+            size="lg"
+            variant="text"
+            component="li"
+            sx={{ '--Card-radius': '8px', boxShadow: 'none', minWidth: 240 }}
+          >
+            <CardContent>
+              <Typography level="h2" sx={{ fontSize: 'lg', mb: 1, alignSelf: 'flex-start' }}>
+                Bahamas Islands
+              </Typography>
+              <IconButton
+                aria-label="bookmark Bahamas Islands"
+                variant="text"
+                sx={{ position: 'absolute', top: '1rem', right: '1rem' }}
+              >
+                <BookmarkAdd />
+              </IconButton>
+              <Typography level="body2">24 April - 02 May, 2021</Typography>
+              <Typography level="body3">Category/Ocean</Typography>
+              <Typography sx={{ mt: 3 }}>Avarage Temperature</Typography>
+              <Box sx={{ width: 24, height: 2, bgcolor: 'text.primary', mt: 0.5, mb: 1.5 }} />
+              <Typography
+                level="h5"
+                endDecorator={<Sun sx={{ color: '#f3be77' }} />}
+                sx={{ fontWeight: 'md' }}
+              >
+                +18°C
+              </Typography>
+              <AspectRatio min="120px" max="200px" sx={{ my: 2 }}>
+                <img
+                  src="https://images.unsplash.com/photo-1501698335706-90b736210a61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                  alt=""
+                />
+              </AspectRatio>
+              <Box sx={{ display: 'flex' }}>
+                <div>
+                  <Typography level="body3">Total Price</Typography>
+                  <Typography level="h5" sx={{ fontWeight: 'lg' }}>
+                    $2950
+                  </Typography>
+                </div>
+                <Button variant="light" aria-label="Explore Bahamas Islands" sx={{ ml: 'auto' }}>
+                  Explore
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <Chip endDecorator={<ChipDelete />}>Label</Chip>
+            <Chip variant="light" endDecorator={<ChipDelete />}>
+              Label
+            </Chip>
+            <Chip variant="outlined" endDecorator={<ChipDelete />}>
+              Label
+            </Chip>
+            <Chip color="danger" variant="light" endDecorator={<ChipDelete />}>
+              Label
+            </Chip>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <IconButton variant="contained">
+              <Explore />
+            </IconButton>
+            <IconButton variant="light">
+              <Explore />
+            </IconButton>
+            <IconButton variant="outlined">
+              <Explore />
+            </IconButton>
+            <IconButton variant="text">
+              <Explore />
+            </IconButton>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <Checkbox label="Label" variant="outlined" checked={false} />
+            <Checkbox label="Label" variant="outlined" checked />
+            <Checkbox label="Label" variant="outlined" disabled checked={false} />
+            <Checkbox label="Label" variant="outlined" disabled checked />
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <Checkbox label="Label" variant="light" checked={false} />
+            <Checkbox label="Label" variant="light" checked />
+            <Checkbox label="Label" variant="light" disabled checked={false} />
+            <Checkbox label="Label" variant="light" disabled checked />
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <Checkbox label="Label" variant="contained" checked={false} />
+            <Checkbox label="Label" variant="contained" checked />
+            <Checkbox label="Label" variant="contained" disabled checked={false} />
+            <Checkbox label="Label" variant="contained" disabled checked />
+          </Box>
+          <RadioGroup name="a">
+            <Radio label="Label" variant="outlined" checked={false} value="1" />
+            <Radio label="Label" variant="outlined" checked value="2" />
+            <Radio label="Label" variant="outlined" disabled checked={false} value="3" />
+            <Radio label="Label" variant="outlined" disabled checked value="4" />
+          </RadioGroup>
+          <RadioGroup name="b">
+            <Radio label="Label" variant="light" checked={false} value="1" />
+            <Radio label="Label" variant="light" checked value="2" />
+            <Radio label="Label" variant="light" disabled checked={false} value="3" />
+            <Radio label="Label" variant="light" disabled checked value="4" />
+          </RadioGroup>
+          <RadioGroup name="c">
+            <Radio label="Label" variant="contained" checked={false} value="1" />
+            <Radio label="Label" variant="contained" checked value="2" />
+            <Radio label="Label" variant="contained" disabled checked={false} value="3" />
+            <Radio label="Label" variant="contained" disabled checked value="4" />
+          </RadioGroup>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <Switch />
+            <Switch variant="outlined" />
+            <Switch variant="light" />
+          </Box>
           <TextField
             placeholder="Placeholder"
             variant="contained"
@@ -341,6 +456,10 @@ export default function JoyVariant() {
           <Link component="button" variant="text">
             Link (text)
           </Link>
+          <Sun />
+          <Moon color="danger" />
+          <Settings color="success" />
+          <DocumentScanner color="neutral" />
         </Sheet>
       ))}
       <Box
