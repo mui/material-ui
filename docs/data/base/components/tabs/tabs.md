@@ -16,7 +16,7 @@ Tabs are implemented using a collection of related components:
 - `TabUnstyled` - the tab element itself. Clicking on it displays the associated content.
 - `TabsListUnstyled` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
 - `TabPanelUnstyled` - the card that hosts the content associated with a tab.
-- `TabsUnstyled` - the top-level component that wraps `TabsListUnstyled` and `TabPanelUnstyled` so they can communicate.
+- `TabsUnstyled` - the top-level component that wraps `TabsListUnstyled` and `TabPanelUnstyled` so that tabs and their panels can communicate with one another.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
