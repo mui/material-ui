@@ -41,7 +41,6 @@ function getDemoName(location) {
  * to be able to replace the existing code with the incoming dynamic code
  * @param {string} input
  */
-
 function trimLeadingSpaces(input) {
   if (!input) {
     return undefined;
