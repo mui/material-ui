@@ -96,7 +96,7 @@ const LinkRoot = styled('a', {
             marginInline: '-0.25em',
           }
         : {
-            color: theme.resolveColorVar(ownerState.color, 'textColor', 'inherit'),
+            color: theme.resolveColorVar?.(ownerState.color, 'textColor', 'inherit'),
             cursor: 'pointer',
             '&.Mui-disabled': {
               pointerEvents: 'none',

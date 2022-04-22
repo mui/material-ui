@@ -37,19 +37,22 @@ const switchColorVariables =
     const variant = ownerState.variant;
     const color = ownerState.color;
     return {
-      '--Switch-track-background': theme.resolveColorVar(color, `${variant!}${data.state || ''}Bg`),
+      '--Switch-track-background': theme.resolveColorVar?.(
+        color,
+        `${variant!}${data.state || ''}Bg`,
+      ),
       '--Switch-track-color':
-        ownerState.variant === 'contained' ? '#fff' : theme.resolveColorVar(color, 'textColor'),
+        ownerState.variant === 'contained' ? '#fff' : theme.resolveColorVar?.(color, 'textColor'),
       '--Switch-track-borderColor':
         variant === 'outlined'
-          ? theme.resolveColorVar(color, `${variant!}${data.state || ''}Border`)
+          ? theme.resolveColorVar?.(color, `${variant!}${data.state || ''}Border`)
           : 'currentColor',
-      '--Switch-thumb-background': theme.resolveColorVar(
+      '--Switch-thumb-background': theme.resolveColorVar?.(
         color,
         `${variant!}${data.state || ''}Color`,
       ),
       '--Switch-thumb-color':
-        ownerState.variant === 'contained' ? theme.resolveColorVar(color, 'textColor') : '#fff',
+        ownerState.variant === 'contained' ? theme.resolveColorVar?.(color, 'textColor') : '#fff',
     };
   };
 

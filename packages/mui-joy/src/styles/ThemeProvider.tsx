@@ -34,6 +34,16 @@ export default function ThemeProvider({
     ...mergedTheme,
     vars: mergedTheme,
     components,
+    resolveColorVar: (colorProp, paletteNode, defaultContextValue) => {
+      if (!colorProp || !paletteNode) {
+        return undefined;
+      }
+      // @ts-ignore internal logic
+      if (colorProp === 'context') {
+        return defaultContextValue || `var(--variant-${paletteNode})`;
+      }
+      return mergedTheme.palette[colorProp][paletteNode];
+    },
   } as JoyTheme & { components: Components };
   return <SystemThemeProvider theme={mergedTheme}>{children}</SystemThemeProvider>;
 }

@@ -37,7 +37,7 @@ const TextFieldRoot = styled('div', {
   '--FormLabel-margin': '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.25rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
-  '--FormHelperText-color': theme.resolveColorVar(ownerState.color, '500', 'inherit'),
+  '--FormHelperText-color': theme.resolveColorVar?.(ownerState.color, '500', 'inherit'),
   ...(ownerState.size === 'sm' && {
     '--FormHelperText-fontSize': theme.vars.fontSize.xs,
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
@@ -46,8 +46,8 @@ const TextFieldRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${textFieldClasses.disabled}`]: {
-    '--FormLabel-color': theme.resolveColorVar(ownerState.color, 'textDisabledColor', 'inherit'),
-    '--FormHelperText-color': theme.resolveColorVar(
+    '--FormLabel-color': theme.resolveColorVar?.(ownerState.color, 'textDisabledColor', 'inherit'),
+    '--FormHelperText-color': theme.resolveColorVar?.(
       ownerState.color,
       'textDisabledColor',
       'inherit',

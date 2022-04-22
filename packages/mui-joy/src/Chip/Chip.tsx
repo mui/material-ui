@@ -100,7 +100,7 @@ const ChipRoot = styled('div', {
         ]
       : [
           {
-            color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}Color`),
+            color: theme.resolveColorVar?.(ownerState.color, `${ownerState.variant!}Color`),
           },
         ]),
   ];

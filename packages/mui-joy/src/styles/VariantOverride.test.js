@@ -16,7 +16,7 @@ const Child = (inProps) => {
   // eslint-disable-next-line material-ui/mui-name-matches-component-name
   const props = useThemeProps({ name: 'Child', props: inProps });
   const { getColor } = useVariantOverride(props.variant);
-  const finalColor = getColor(inProps.color, props.color, 'default');
+  const finalColor = getColor(inProps.color, props.color || 'default');
   return finalColor;
 };
 

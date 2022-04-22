@@ -150,7 +150,7 @@ const InputStartDecorator = styled('span', {
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
-    color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}Color`, 'inherit'),
+    color: theme.resolveColorVar?.(ownerState.color, `${ownerState.variant!}Color`, 'inherit'),
   }),
 }));
 
@@ -162,7 +162,7 @@ const InputEndDecorator = styled('span', {
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
   marginRight: 'calc(var(--Input-decorator-offset) * -1)',
-  color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}Color`, 'inherit'),
+  color: theme.resolveColorVar?.(ownerState.color, `${ownerState.variant!}Color`, 'inherit'),
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {

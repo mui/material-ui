@@ -66,12 +66,12 @@ const CheckboxRoot = styled('span', {
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
   '&.Mui-disabled': {
-    color: theme.resolveColorVar(ownerState.color, 'textDisabledColor'),
+    color: theme.resolveColorVar?.(ownerState.color, 'textDisabledColor'),
   },
   ...(ownerState.disableIcon && {
-    color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}Color`),
+    color: theme.resolveColorVar?.(ownerState.color, `${ownerState.variant!}Color`),
     '&.Mui-disabled': {
-      color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}DisabledColor`),
+      color: theme.resolveColorVar?.(ownerState.color, `${ownerState.variant!}DisabledColor`),
     },
   }),
 }));
