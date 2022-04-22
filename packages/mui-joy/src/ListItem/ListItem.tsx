@@ -11,6 +11,7 @@ import { listItemButtonClasses } from '../ListItemButton';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import ComponentListContext from '../List/ComponentListContext';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
   const { sticky, nested, variant, color } = ownerState;
@@ -137,11 +138,13 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     nested = false,
     sticky = false,
     variant = 'text',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     startAction,
     endAction,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     sticky,

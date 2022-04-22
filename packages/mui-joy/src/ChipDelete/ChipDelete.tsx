@@ -10,6 +10,7 @@ import Close from '../internal/svg-icons/Close';
 import { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: ChipDeleteProps & { focusVisible: boolean }) => {
   const { focusVisible, variant, color, disabled } = ownerState;
@@ -74,8 +75,10 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     ...other
   } = props;
   const chipContext = React.useContext(ChipContext);
-  const color = colorProp || chipContext.color || 'primary';
+  const intermediateColor = colorProp || 'primary';
   const variant = variantProp || chipVariantMapping[chipContext.variant!] || 'contained';
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color || chipContext.color, intermediateColor);
   const disabled = disabledProp ?? chipContext.disabled;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);

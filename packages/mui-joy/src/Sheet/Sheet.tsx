@@ -48,7 +48,6 @@ const SheetRoot = styled('div', {
     },
     variantStyle,
     ownerState.enableVariantOverride &&
-      ownerState.color !== 'context' &&
       theme.variants[`${ownerState.variant!}Override`]?.[ownerState.color!],
   ];
 });
@@ -62,14 +61,14 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   const {
     className,
     component = 'div',
-    color: colorProp,
+    color: colorProp = 'neutral',
     variant = 'text',
     elevation,
     enableVariantOverride = false,
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, colorProp, 'neutral');
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

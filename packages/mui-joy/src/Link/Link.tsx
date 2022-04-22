@@ -96,13 +96,11 @@ const LinkRoot = styled('a', {
             marginInline: '-0.25em',
           }
         : {
-            color:
-              ownerState.color === 'context'
-                ? 'inherit'
-                : theme.vars.palette[ownerState.color!]?.textColor,
+            color: theme.resolveColorVar(ownerState.color, 'textColor', 'inherit'),
             cursor: 'pointer',
             '&.Mui-disabled': {
               pointerEvents: 'none',
+              // @ts-ignore internal logic
               ...(ownerState.color === 'context'
                 ? {
                     opacity: 0.6,
@@ -158,7 +156,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const {
     className,
-    color: colorProp,
+    color: colorProp = 'primary',
     component = 'a',
     children,
     disabled = false,
@@ -173,7 +171,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, colorProp, 'primary');
+  const color = getColor(inProps.color, colorProp);
 
   const level = nested ? inProps.level || 'inherit' : levelProp;
 

@@ -69,6 +69,7 @@ export const createLightOverrides = (theme: JoyTheme) => {
             '--variant-outlinedColor': getCssVar(`palette-${color}-700`),
             '--variant-outlinedBg': 'initial',
             '--variant-outlinedBorder': getCssVar(`palette-${color}-400`),
+            '--variant-outlinedHoverColor': getCssVar(`palette-${color}-800`),
             '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-600`),
             '--variant-outlinedHoverBg': getCssVar(`palette-${color}-200`),
             '--variant-outlinedActiveBg': getCssVar(`palette-${color}-300`),
@@ -81,6 +82,7 @@ export const createLightOverrides = (theme: JoyTheme) => {
 
             '--variant-lightColor': getCssVar(`palette-${color}-700`),
             '--variant-lightBg': getCssVar(`palette-${color}-50`),
+            '--variant-lightHoverColor': getCssVar(`palette-${color}-800`),
             '--variant-lightHoverBg': getCssVar(`palette-${color}-200`),
             '--variant-lightActiveBg': getCssVar(`palette-${color}-300`),
             '--variant-lightDisabledColor': `rgba(${getCssVar(
@@ -171,7 +173,7 @@ export const createContainedOverrides = (theme: JoyTheme) => {
           '--variant-lightColor': getCssVar(`palette-${color}-50`),
           '--variant-lightHoverColor': '#fff',
           '--variant-lightBg': getCssVar(`palette-${color}-700`),
-          '--variant-lightHoverBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-lightHoverBg': `rgba(255 255 255 / 0.12)`,
           '--variant-lightActiveBg': `rgba(255 255 255 / 0.2)`,
           '--variant-lightDisabledColor': getCssVar(`palette-${color}-300`),
           '--variant-lightDisabledBg': `rgba(0 0 0 / 0.08)`,
@@ -193,16 +195,17 @@ export const useVariantOverride = (childVariant: VariantProp | undefined) => {
   const upperVariant = React.useContext(VariantOverride);
   return {
     getColor: (
-      instanceColorProp: ColorPaletteProp | undefined,
-      themeColorProp: ColorPaletteProp | undefined,
-      defaultColor?: ColorPaletteProp,
-    ) => {
+      instanceColorProp: ColorPaletteProp | 'inherit' | undefined,
+      defaultColorProp: ColorPaletteProp | 'inherit' | undefined,
+    ): ColorPaletteProp | undefined => {
       if (upperVariant && upperVariant.match(/^(light|contained)$/)) {
         if (upperVariant !== 'light' || childVariant !== 'contained') {
+          // @ts-ignore internal logic
           return instanceColorProp || 'context';
         }
       }
-      return instanceColorProp || themeColorProp || defaultColor;
+      // @ts-ignore internal logic
+      return instanceColorProp || defaultColorProp;
     },
   };
 };

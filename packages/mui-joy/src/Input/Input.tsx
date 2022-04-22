@@ -59,6 +59,7 @@ const InputRoot = styled('div', {
     '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
+      // @ts-ignore internal logic
       ownerState.color === 'context'
         ? 'var(--variant-outlinedBorder)'
         : theme.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
@@ -149,10 +150,7 @@ const InputStartDecorator = styled('span', {
   marginRight: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
-    color:
-      ownerState.color === 'context'
-        ? 'inherit'
-        : theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}Color`, 'inherit'),
   }),
 }));
 
@@ -164,10 +162,7 @@ const InputEndDecorator = styled('span', {
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
   marginRight: 'calc(var(--Input-decorator-offset) * -1)',
-  color:
-    ownerState.color === 'context'
-      ? 'inherit'
-      : theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}Color`, 'inherit'),
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {

@@ -13,7 +13,7 @@ import defaultTheme, {
 } from './defaultTheme';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Variants } from './types/variants';
-import { ColorSystem } from './types/colorSystem';
+import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { TypographySystem, FontSize } from './types/typography';
 import { Components } from './components';
 import { createVariant } from './variantUtils';
@@ -129,6 +129,19 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       mergedTheme.variants,
       { clone: false },
     );
+    mergedTheme.resolveColorVar = function resolveColorVar(
+      colorProp: ColorPaletteProp | 'context' | undefined,
+      paletteNode: keyof PaletteRange | undefined,
+      defaultContextValue?: string,
+    ) {
+      if (!colorProp || !paletteNode) {
+        return undefined;
+      }
+      if (colorProp === 'context') {
+        return defaultContextValue || `var(--variant-${paletteNode})`;
+      }
+      return mergedTheme.vars.palette[colorProp][paletteNode];
+    };
     return mergedTheme;
   },
   shouldSkipGeneratingVar: (keys) =>

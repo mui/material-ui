@@ -37,8 +37,7 @@ const TextFieldRoot = styled('div', {
   '--FormLabel-margin': '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.25rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
-  '--FormHelperText-color':
-    ownerState.color === 'context' ? 'inherit' : theme.vars.palette[ownerState.color!]?.[500],
+  '--FormHelperText-color': theme.resolveColorVar(ownerState.color, '500', 'inherit'),
   ...(ownerState.size === 'sm' && {
     '--FormHelperText-fontSize': theme.vars.fontSize.xs,
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
@@ -47,14 +46,12 @@ const TextFieldRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${textFieldClasses.disabled}`]: {
-    '--FormLabel-color':
-      ownerState.color === 'context'
-        ? 'inherit'
-        : theme.vars.palette[ownerState.color!]?.textDisabledColor,
-    '--FormHelperText-color':
-      ownerState.color === 'context'
-        ? 'inherit'
-        : theme.vars.palette[ownerState.color!]?.textDisabledColor,
+    '--FormLabel-color': theme.resolveColorVar(ownerState.color, 'textDisabledColor', 'inherit'),
+    '--FormHelperText-color': theme.resolveColorVar(
+      ownerState.color,
+      'textDisabledColor',
+      'inherit',
+    ),
   },
   display: 'flex',
   flexDirection: 'column',
@@ -88,7 +85,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     onChange,
     onFocus,
     inputRef,
-    color: colorProp,
+    color: colorProp = 'neutral',
     disabled = false,
     error = false,
     required = false,
@@ -101,7 +98,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, colorProp, 'neutral');
+  const color = getColor(inProps.color, colorProp);
 
   const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;

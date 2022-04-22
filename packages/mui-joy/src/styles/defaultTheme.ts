@@ -10,7 +10,7 @@ import {
   hexToRgb,
 } from '@mui/system';
 import colors from '../colors';
-import { ColorSystem, ColorPaletteProp } from './types/colorSystem';
+import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Variants } from './types/variants';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Shadow } from './types/shadow';
@@ -446,6 +446,11 @@ export interface JoyTheme extends ThemeScales, ColorSystem {
   prefix: string;
   vars: Vars;
   getCssVar: ReturnType<typeof createGetCssVar>;
+  resolveColorVar: (
+    colorProp: ColorPaletteProp | undefined,
+    paletteNode: keyof PaletteRange | undefined,
+    defaultContextValue?: string,
+  ) => string | undefined;
 }
 
 export type SxProps = SystemSxProps<JoyTheme>;

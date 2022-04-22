@@ -9,6 +9,7 @@ import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: CardProps) => {
   const { size, variant, color } = ownerState;
@@ -35,7 +36,7 @@ const CardRoot = styled('div', {
       ownerState.variant === 'outlined'
         ? 'calc(-1 * var(--variant-outlinedBorderWidth))'
         : undefined,
-    '--Link-overlayRadius': resolveSxValue(
+    '--internal-action-radius': resolveSxValue(
       { theme, ownerState },
       'borderRadius',
       'var(--Card-radius)',
@@ -82,13 +83,15 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     component = 'div',
     size = 'md',
     variant = 'text',
     children,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

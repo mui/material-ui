@@ -134,7 +134,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     className,
     action,
     component = 'button',
-    color: colorProp,
+    color: colorProp = 'primary',
     variant = 'contained',
     size = 'md',
     fullWidth = false,
@@ -143,7 +143,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, colorProp, 'primary');
+  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

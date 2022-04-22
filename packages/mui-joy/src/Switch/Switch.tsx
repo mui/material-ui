@@ -7,6 +7,7 @@ import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, JoyTheme } from '../styles';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) => {
   const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
@@ -36,17 +37,19 @@ const switchColorVariables =
     const variant = ownerState.variant;
     const color = ownerState.color;
     return {
-      '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
+      '--Switch-track-background': theme.resolveColorVar(color, `${variant!}${data.state || ''}Bg`),
       '--Switch-track-color':
-        ownerState.variant === 'contained' ? '#fff' : theme.vars.palette[color!]?.textColor,
+        ownerState.variant === 'contained' ? '#fff' : theme.resolveColorVar(color, 'textColor'),
       '--Switch-track-borderColor':
         variant === 'outlined'
-          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
+          ? theme.resolveColorVar(color, `${variant!}${data.state || ''}Border`)
           : 'currentColor',
-      '--Switch-thumb-background':
-        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
+      '--Switch-thumb-background': theme.resolveColorVar(
+        color,
+        `${variant!}${data.state || ''}Color`,
+      ),
       '--Switch-thumb-color':
-        ownerState.variant === 'contained' ? theme.vars.palette[color!]?.textColor : '#fff',
+        ownerState.variant === 'contained' ? theme.resolveColorVar(color, 'textColor') : '#fff',
     };
   };
 
@@ -226,7 +229,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
-    color,
+    color: colorProp,
     variant = 'contained',
     size = 'md',
     startDecorator,
@@ -247,13 +250,16 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
 
   const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
 
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, checked ? colorProp || 'primary' : colorProp || 'neutral');
+
   const ownerState = {
     ...props,
     checked,
     disabled,
     focusVisible,
     readOnly,
-    color: checked ? color || 'primary' : color || 'neutral',
+    color,
     variant,
     size,
   };

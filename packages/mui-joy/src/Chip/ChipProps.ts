@@ -34,7 +34,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, ChipPropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, ChipPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false

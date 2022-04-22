@@ -10,6 +10,7 @@ import useThemeProps from '../styles/useThemeProps';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeTypeMap } from './BadgeProps';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: BadgeProps) => {
   const { color, variant, size, anchorOrigin, invisible } = ownerState;
@@ -165,7 +166,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     ...other
   } = props;
 
-  const prevProps = usePreviousProps({
+  const prevProps: BadgeProps = usePreviousProps({
     anchorOrigin: anchorOriginProp,
     size: sizeProp,
     badgeInset: badgeInsetProp,
@@ -183,18 +184,14 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   }
 
   const {
-    color = colorProp,
+    color: intermediateColor = colorProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
     badgeInset = badgeInsetProp,
-  }: {
-    size?: BadgeProps['size'];
-    color?: BadgeProps['color'];
-    anchorOrigin?: BadgeProps['anchorOrigin'];
-    variant?: BadgeProps['variant'];
-    badgeInset?: BadgeProps['badgeInset'];
   } = invisible ? prevProps : props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, intermediateColor);
 
   const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
   const classes = useUtilityClasses(ownerState);

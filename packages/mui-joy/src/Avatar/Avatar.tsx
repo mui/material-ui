@@ -62,7 +62,6 @@ const AvatarRoot = styled('div', {
       lineHeight: 1,
       borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
-      fontFamily: theme.fontFamily.body,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];

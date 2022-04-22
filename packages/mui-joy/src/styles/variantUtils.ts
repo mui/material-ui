@@ -107,7 +107,7 @@ export const createVariant = (variant: VariantKey, theme?: JoyTheme) => {
   if (theme) {
     Object.entries(theme.palette).forEach((entry) => {
       const [color, colorPalette] = entry as [
-        Exclude<DefaultColorPalette, 'context'>,
+        DefaultColorPalette,
         string | number | Record<string, any>,
       ];
       if (isVariantPalette(colorPalette)) {

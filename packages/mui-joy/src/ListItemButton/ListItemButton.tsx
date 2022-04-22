@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/ButtonUnstyled';
-import { styled, useThemeProps, useVariantOverride } from '../styles';
+import { styled, useThemeProps } from '../styles';
+import { useVariantOverride } from '../styles/VariantOverride';
 import {
   ListItemButtonProps,
   ExtendListItemButton,
@@ -115,13 +116,13 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     action,
     role,
     component = 'div',
-    color: colorProp,
+    color: colorProp = 'neutral',
     selected = false,
     variant = 'text',
     ...other
   } = props;
   const { getColor } = useVariantOverride(variant);
-  const color = getColor(inProps.color, selected ? 'primary' : colorProp, 'neutral');
+  const color = getColor(inProps.color, selected ? 'primary' : colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

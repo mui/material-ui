@@ -20,10 +20,7 @@ export type DefaultVariantKey =
   | Exclude<DefaultVariantProp, 'contained'>
   | `${Exclude<DefaultVariantProp, 'contained'>}${State}`;
 
-type BaseContextOverrides = Record<
-  DefaultContextualOverride,
-  Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>
->;
+type BaseContextOverrides = Record<DefaultContextualOverride, Record<ColorPaletteProp, CSSObject>>;
 
 // Split interfaces into multiple chunks so that they can be augmented independently
 

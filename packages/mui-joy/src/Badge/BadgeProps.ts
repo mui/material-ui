@@ -39,7 +39,7 @@ export type BadgeTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, BadgePropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, BadgePropsColorOverrides>;
     /**
      * The size of the component.
      * @default 'md'

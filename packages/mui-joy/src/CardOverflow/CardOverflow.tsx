@@ -8,6 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: CardOverflowProps) => {
   const { variant, color } = ownerState;
@@ -64,10 +65,12 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     className,
     component = 'div',
     children,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'text',
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

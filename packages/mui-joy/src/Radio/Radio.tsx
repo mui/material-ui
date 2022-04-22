@@ -10,6 +10,7 @@ import { getRadioUtilityClass } from './radioClasses';
 import { RadioProps, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import { TypographyContext } from '../Typography/Typography';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) => {
   const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
@@ -77,12 +78,12 @@ const RadioRoot = styled('span', {
       fontFamily: theme.vars.fontFamily.body,
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
       '&.Mui-disabled': {
-        color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+        color: theme.resolveColorVar(ownerState.color, 'textDisabledColor'),
       },
       ...(ownerState.disableIcon && {
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+        color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}Color`),
         '&.Mui-disabled': {
-          color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+          color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}DisabledColor`),
         },
       }),
     },
@@ -233,9 +234,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   } = props;
   const id = useId(idOverride);
   const radioGroup = React.useContext(RadioGroupContext);
-  const color = inProps.color || radioGroup.color || colorProp;
-  const activeColor = color || 'primary';
-  const inactiveColor = color || 'neutral';
+  const activeColor = colorProp || 'primary';
+  const inactiveColor = colorProp || 'neutral';
   const variant = inProps.variant || radioGroup.variant || variantProp;
   const size = inProps.size || radioGroup.size || sizeProp;
   const name = inProps.name || radioGroup.name || nameProp;
@@ -258,12 +258,15 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useRadioProps);
 
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color || radioGroup.color, checked ? activeColor : inactiveColor);
+
   const ownerState = {
     ...props,
     checked,
     disabled,
     focusVisible,
-    color: checked ? activeColor : inactiveColor,
+    color,
     variant,
     size,
     disableIcon,

@@ -13,6 +13,7 @@ import styled from '../styles/styled';
 import { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (
   ownerState: ChipProps & { focusVisible: boolean; clickable: boolean },
@@ -99,7 +100,7 @@ const ChipRoot = styled('div', {
         ]
       : [
           {
-            color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+            color: theme.resolveColorVar(ownerState.color, `${ownerState.variant!}Color`),
           },
         ]),
   ];
@@ -184,7 +185,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     children,
     className,
     componentsProps = {},
-    color = 'primary',
+    color: colorProp = 'primary',
     component,
     onClick,
     disabled = false,
@@ -195,6 +196,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     ...other
   } = props;
   const { component: actionComponent, ...actionProps } = componentsProps.action || {};
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const clickable = !!onClick || !!componentsProps.action;
   const id = useId(componentsProps.action?.id);

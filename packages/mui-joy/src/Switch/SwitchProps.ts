@@ -17,7 +17,7 @@ interface SwitchOwnerState extends UseSwitchProps {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SwitchPropsColorOverrides>;
+  color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
   /**
    * The size of the component.
    * @default 'md'
