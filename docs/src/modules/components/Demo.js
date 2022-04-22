@@ -256,11 +256,12 @@ export default function Demo(props) {
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
-          component={element}
           iframe={demoOptions.iframe}
           name={demoName}
           onResetDemoClick={resetDemo}
-        />
+        >
+          {element}
+        </DemoSandboxed>
       </DemoRoot>
       {error && (
         <Typography color="error" component="pre">

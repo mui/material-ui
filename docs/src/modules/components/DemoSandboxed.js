@@ -162,7 +162,7 @@ const jss = create({
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandboxed(props) {
-  const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
+  const { children, iframe, name, onResetDemoClick, ...other } = props;
   const Sandbox = iframe ? DemoFrame : React.Fragment;
   const sandboxProps = iframe ? { name, ...other } : {};
 
@@ -173,8 +173,8 @@ function DemoSandboxed(props) {
       <StylesProvider jss={jss}>
         <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
           <Sandbox {...sandboxProps}>
-            {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-            {Component}
+            {/* WARNING: `children` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+            {children}
           </Sandbox>
         </ThemeProvider>
       </StylesProvider>
@@ -183,7 +183,7 @@ function DemoSandboxed(props) {
 }
 
 DemoSandboxed.propTypes = {
-  component: PropTypes.node,
+  children: PropTypes.node,
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
