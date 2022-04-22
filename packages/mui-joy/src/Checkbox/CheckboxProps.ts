@@ -4,7 +4,7 @@ import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
 
-export type CheckboxSlot = 'root' | 'input';
+export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
 
 export interface CheckboxPropsVariantOverrides {}
 
@@ -30,27 +30,26 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       component?: React.ElementType;
       /**
-       * The components used for each slot inside the InputBase.
-       * Either a string to use a HTML element or a component.
-       * @default {}
-       */
-      components?: {
-        Root?: React.ElementType;
-        Input?: React.ElementType;
-      };
-      /**
        * The props used for each slot inside the Input.
        * @default {}
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'span'>;
+        action?: React.ComponentPropsWithRef<'span'>;
+        checkbox?: React.ComponentPropsWithRef<'span'>;
         input?: React.ComponentPropsWithRef<'input'>;
+        label?: React.ComponentPropsWithRef<'label'>;
       };
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, CheckboxPropsColorOverrides>;
+      /**
+       * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
+       * @default false
+       */
+      disableIcon?: boolean;
       /**
        * If `true`, the component appears indeterminate.
        * This does not set the native input element to indeterminate due
@@ -65,9 +64,19 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       indeterminateIcon?: React.ReactNode;
       /**
+       * The label element next to the checkbox.
+       */
+      label?: React.ReactNode;
+      /**
        * The `name` attribute of the input.
        */
       name?: string;
+      /**
+       * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
+       * This prop is useful for composing Checkbox with ListItem component.
+       * @default false
+       */
+      overlay?: boolean;
       /**
        * The size of the component.
        * @default 'md'
@@ -82,6 +91,10 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * @default 'contained'
        */
       variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, CheckboxPropsVariantOverrides>;
+      /**
+       * The icon when `checked` is false.
+       */
+      uncheckedIcon?: React.ReactNode;
     };
   defaultComponent: D;
 }

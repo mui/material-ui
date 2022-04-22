@@ -60,7 +60,7 @@ const AvatarRoot = styled('div', {
       width: 'var(--Avatar-size)',
       height: 'var(--Avatar-size)',
       lineHeight: 1,
-      borderRadius: '50%',
+      borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
       fontFamily: theme.fontFamily.body,
     },
@@ -72,7 +72,7 @@ const AvatarImg = styled('img', {
   name: 'MuiAvatar',
   slot: 'Img',
   overridesResolver: (props, styles) => styles.img,
-})<{ ownerState: AvatarProps }>({
+})<{ ownerState: AvatarProps }>(({ ownerState }) => ({
   width: '100%',
   height: '100%',
   textAlign: 'center',
@@ -82,8 +82,11 @@ const AvatarImg = styled('img', {
   color: 'transparent',
   // Hide the image broken icon, only works on Chrome.
   textIndent: 10000,
-  borderRadius: '50%',
-});
+  borderRadius:
+    ownerState.variant === 'outlined'
+      ? `calc(var(--Avatar-radius, 50%) - var(--variant-outlinedBorderWidth, 0px))`
+      : 'var(--Avatar-radius, 50%)',
+}));
 
 const AvatarFallback = styled(Person, {
   name: 'MuiAvatar',
@@ -251,7 +254,7 @@ Avatar.propTypes /* remove-proptypes */ = {
   imgProps: PropTypes.object,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -267,6 +270,14 @@ Avatar.propTypes /* remove-proptypes */ = {
    * Use this attribute for responsive image display.
    */
   srcSet: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'light'

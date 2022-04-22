@@ -174,6 +174,7 @@ function findMaterialUIDemos(
     .filter((page) => page.components.includes(componentName))
     .map((page) => page.pathname);
   return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .filter((pathname) => pathname.indexOf('material') >= 0)
     .map((pathname) => ({
       name: pageToTitle({ pathname }) || '',
       demoPathname: replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`),
@@ -240,6 +241,36 @@ function findBaseDemos(
     }));
 }
 
+const pathToSystemTitle = (pathname: string) => {
+  const defaultTitle = pageToTitle({ pathname });
+  if (pathname.match(/material\//)) {
+    return `${defaultTitle} (Material UI)`;
+  }
+  if (pathname.match(/system\//)) {
+    return `${defaultTitle} (MUI System)`;
+  }
+  if (pathname.match(/joy\//)) {
+    return `${defaultTitle} (Joy UI)`;
+  }
+  return defaultTitle;
+};
+
+function findSystemDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
+) {
+  const filteredMarkdowns = pagesMarkdown
+    .filter((page) => page.components.includes(componentName))
+    .map((page) => page.pathname);
+  return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .map((pathname) => ({
+      name: pathToSystemTitle(pathname) || '',
+      demoPathname: pathname.match(/material\//)
+        ? replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`)
+        : `${pathname.replace('/components/', '/react-')}/`,
+    }));
+}
+
 export const getBaseComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
@@ -282,6 +313,43 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
             .components as string[],
         }));
       return findBaseDemos(name, allMarkdowns);
+    },
+  };
+};
+
+export const getSystemComponentInfo = (filename: string): ComponentInfo => {
+  const { name } = extractPackageFile(filename);
+  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
+  if (!name) {
+    throw new Error(`Could not find the component name from: ${filename}`);
+  }
+  return {
+    filename,
+    name,
+    muiName: getMuiName(name),
+    apiPathname: `/system/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/system/api`),
+    readFile() {
+      srcInfo = parseFile(filename);
+      return srcInfo;
+    },
+    getInheritance() {
+      return null;
+    },
+    getDemos: () => {
+      const allMarkdowns = findPagesMarkdownNew()
+        .filter((markdown) => {
+          if (migratedBaseComponents.some((component) => filename.includes(component))) {
+            return markdown.filename.match(/[\\/]data[\\/]system[\\/]/);
+          }
+          return true;
+        })
+        .map((markdown) => ({
+          ...markdown,
+          components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+            .components as string[],
+        }));
+      return findSystemDemos(name, allMarkdowns);
     },
   };
 };
