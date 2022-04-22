@@ -1870,6 +1870,18 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('あ');
     });
+
+    it('should only render endAdornment when hasClearIcon or hasPopupIcon are true', () => {
+      const { container } = render(
+        <Autocomplete
+          freeSolo
+          options={[]}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.endAdornment);
+    });
   });
 
   describe('prop: onChange', () => {
