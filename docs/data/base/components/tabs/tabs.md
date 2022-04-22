@@ -45,7 +45,7 @@ You can override this by setting the `component` or `components.Root` prop.
 If a non-interactive element (such as a `<span>`) is provided this way, the `TabUnstyled` will take care of adding the necessary accessibility attributes.
 
 The `TabPanelUnstyled` renders a native `<div>` element by default.
-You can override by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+You can override this by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
 
 {{"demo": "UnstyledTabsCustomized.js"}}
 
