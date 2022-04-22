@@ -1873,11 +1873,7 @@ describe('<Autocomplete />', () => {
 
     it('should only render endAdornment when hasClearIcon or hasPopupIcon is true', () => {
       const { container } = render(
-        <Autocomplete
-          freeSolo
-          options={[]}
-          renderInput={(params) => <TextField {...params} />}
-        />,
+        <Autocomplete freeSolo options={[]} renderInput={(params) => <TextField {...params} />} />,
       );
 
       expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.endAdornment);
