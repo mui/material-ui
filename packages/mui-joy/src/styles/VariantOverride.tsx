@@ -25,14 +25,14 @@ export const createTextOverrides = (theme: JoyTheme) => {
         ...result,
         [color]: {
           '[data-mui-color-scheme="light"] &': {
-            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
-            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-500`),
-            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-400`),
+            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
+            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-700`),
+            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-600`),
           },
           '[data-mui-color-scheme="dark"] &': {
-            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-200`),
-            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-400`),
-            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
+            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-200`),
+            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-400`),
           },
         },
       };
@@ -54,10 +54,14 @@ export const createLightOverrides = (theme: JoyTheme) => {
       result = {
         ...result,
         [color]: {
+          '--Badge-ringColor': getCssVar(`palette-${color}-lightBg`),
           '[data-mui-color-scheme="light"] &': {
-            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
-            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-500`),
-            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-400`),
+            [prefixVar('--palette-background-body')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.1)`,
+            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
+            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-700`),
+            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-600`),
             '--variant-textColor': getCssVar(`palette-${color}-700`),
             '--variant-textHoverColor': getCssVar(`palette-${color}-800`),
             '--variant-textHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
@@ -93,9 +97,12 @@ export const createLightOverrides = (theme: JoyTheme) => {
             )} / 0.12)`,
           },
           '[data-mui-color-scheme="dark"] &': {
-            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-200`),
-            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-400`),
-            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+            [prefixVar('--palette-background-body')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.1)`,
+            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
+            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-200`),
+            [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-400`),
             '--variant-textColor': getCssVar(`palette-${color}-50`),
             '--variant-textHoverColor': '#fff',
             '--variant-textHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
@@ -150,6 +157,8 @@ export const createContainedOverrides = (theme: JoyTheme) => {
       result = {
         ...result,
         [color]: {
+          '--Badge-ringColor': getCssVar(`palette-${color}-containedBg`),
+          [prefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
           [prefixVar('--palette-text-primary')]: '#fff',
           [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
           [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
@@ -180,6 +189,7 @@ export const createContainedOverrides = (theme: JoyTheme) => {
 
           '--variant-containedColor': getCssVar(`palette-${color}-600`),
           '--variant-containedBg': getCssVar(`palette-${color}-50`, 'rgba(0 0 0 / 0.16)'),
+          '--variant-containedHoverColor': getCssVar(`palette-${color}-700`),
           '--variant-containedHoverBg': '#fff',
           '--variant-containedActiveBg': getCssVar(`palette-${color}-100`),
           '--variant-containedDisabledColor': getCssVar(`palette-${color}-300`),
