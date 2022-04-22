@@ -1,10 +1,10 @@
 # Quick start
 
-<p class="description">3 easy steps to get started with Joy UI, the React components for building your design system.</p>
+<p class="description">Get started with Joy, a simple and beautiful starting point for your design system, in 3 quick steps.</p>
 
-## 1. Create a project
+## 1. Installation
 
-Open the terminal on your machine and navigate to the directory that you want to save the project, then follow the commands below.
+Install Joy via either npm or yarn using the commands below in your directory of choice.
 
 ### npm
 
@@ -24,9 +24,9 @@ yarn add @mui/joy @emotion/react @emotion/styled
 yarn start
 ```
 
-## 2. Set up the Provider
+## 2. Set up the `CssVarsProvider`
 
-Open `src/App.js` and replace with this snippet. You should see the text `Hello from Joy` on your browser.
+Open `src/App.js` and replace it with the code snippet below. You should see the text `Hello from Joy` being rendered on your browser.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -38,9 +38,9 @@ function App() {
 export default App;
 ```
 
-## 3. Render the first component
+## 3. Render your first component
 
-All Joy components need to render under the `CssVarsProvider`. Let's render the first component with a button.
+Every Joy component needs to render under the `CssVarProvider` element. Let's start off with a button component.
 
 ```diff
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -57,10 +57,11 @@ function App() {
 export default App;
 ```
 
-Save the file and see what it looks like on your browser! (make sure your development server is running).
+Make sure that your development server is running, save your file and that's it! It's that fast. 
+You're now ready to go on exploring Joy and build amazing UIs. 
 
-## What's next?
+## Where to go from here?
 
-- 👨‍💻👩‍💻 [Follow the tutorial](/joy-ui/getting-started/tutorial/) to explore other components
-- 💎 Check out what Joy can do on the features page
-- 📖 Read the Joy's principles to understand what it is for.
+- 👨‍💻👩‍💻 [See more tutorials](/joy-ui/getting-started/tutorial/) to learn how to use other components
+- 💎 Learn about Joy's main features.
+- 📖 Learn about Joy's guiding principles and core concepts.

@@ -1,8 +1,8 @@
 # Tutorial
 
-<p class="description">This tutorial gives you an overview of how to use Joy components by building a log in page.</p>
+<p class="description">We'll learn how to create a login page using Joy components.</p>
 
-## What you'll learn?
+## Topics covered
 
 1. Importing components.
 2. Building a log in page using Joy components.
@@ -20,9 +20,9 @@
 
 ## Building the login page
 
-### 1. Use `Sheet` to create layout
+### 1. Creating the basic layout
 
-The `Sheet` component is simply a html div that applies the global variant internally. It is a great building block for creating various layout styles.
+To create the structure for our login page layout, we'll use the `Sheet` component, which is simply an HTML div that supports the global variant feature.
 
 Open `src/App.js`, and use this snippet to render a sheet on the screen.
 
@@ -43,9 +43,9 @@ export default App;
 
 Try changing the sheet's variant between `text`, `outlined`, `light` or `contained` to see what they look like.
 
-### 2. Use `sx` prop to create one-off style
+### 2. Using the `sx` prop for quick styling
 
-All Joy components accept `sx` prop, an object with short-hand syntax, that lets you create a style directly to the component.
+Every Joy component accepts the `sx` prop, which allows a shorthand syntax for writing CSS. It's great for creating one-off customizations or quickly playing around with different styles.
 
 ```jsx
 // the rest of the code is hidden for simplicity
@@ -69,11 +69,13 @@ All Joy components accept `sx` prop, an object with short-hand syntax, that lets
 </Sheet>
 ```
 
-Don't worry if you are confused with the syntax of `sx` prop at this point, the link for more details is at the end of the tutorial.
+Don't worry if you're confused about the `sx` prop's syntax at this moment. You can learn more about it and get used to the shorthand CSS props after finishing this tutorial.
 
-### 3. Use `Typography` to create welcome text
+### 3. Using `Typography` to create a welcome text
 
-The `Typography` component is handy when you need to render headings and/or paragraphs.
+The `Typography` component has a `level` prop that allows you to choose between a pre-defined scale of typography values. 
+By default, Joy provides 9 typography levels: `h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3`.
+If you want to change what HTML tag the `Typography` component renders, you can use the `component` tag.
 
 ```jsx
 // ...other imports
@@ -96,9 +98,9 @@ The `Typography` lets you change the scale of each instance by using `level` pro
 
 Joy provides 9 built-in typography scale: `h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3`. You can play around with these values to see what they look like.
 
-### 4. Use `TextField` to create username and password inputs
+### 4. Using `TextField` to create user name and password inputs
 
-The `TextField` component is composed of `FormLabel`, `Input` and `FormHelperText`. It is perfect for a common use case like this.
+The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperText` components. 
 
 ```jsx
 // ...other imports
@@ -130,13 +132,12 @@ import TextField from '@mui/joy/TextField';
 </Sheet>;
 ```
 
-### 5. Use `Button` and `Link` for actions
+### 5. Using `Button` and `Link` for actions
 
-We will render a log in button and a sign up link to navigate to a different page.
+The `Button` comes with `contained` and `primary` set as its default variant and color. 
+You can play around with changing their values to see how each variant differs from one another. Try `text`, `outlined`,  or `light`. 
 
-- The default `Button` comes with the `contained` variant and `primary` color.
-- Another typography is used to add the text which is aligned at the center via the `sx` prop.
-- The `Link` is rendered at the end of the typography.
+We'll also use a `Link` component inside the `endDecorator` prop of the `Typography` component.
 
 ```jsx
 // ...other imports
@@ -173,9 +174,9 @@ Try changing the button's variant between `text`, `outlined`, `light` or `contai
 
 <!-- TODO: Add the result image -->
 
-## 🎁 Bonus: Dark mode
+## 🎁 Bonus: Setting up dark mode
 
-Joy provides an effortless way to toggle between modes by using the react hook `useColorScheme`. All you need to do is creating a component that use the hook and then renders it under the `CssVarsProvider`.
+Joy provides an effortless way to toggle between modes by using the react hook `useColorScheme`. All you need to do is create a component that uses the hook and then render it under the `CssVarsProvider` component.
 
 ```jsx
 import React from 'react';
@@ -221,12 +222,12 @@ export default function App() {
 }
 ```
 
-> 💡 By using `useColorScheme` hook, Joy ensures that the user selected mode (stored in localStorage by default) is in sync across the browser tabs.
+> 💡 By using the `useColorScheme` hook, Joy ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
 
-Congratulations 🎉! you have completed the turorial.
+Congratulations 🎉! You have seamlessly built a simple yet good looking UI!
 
-## What's next?
+## Where to go from here?
 
-- 💎 Check out all the features of Joy
+- 💎 Learn about Joy's main features
 - 💅 Learn more about customization
-- 📖 Read the Joy's principles to find out why it exists.
+- 📖 Learn about Joy's guiding principles and core concepts.
