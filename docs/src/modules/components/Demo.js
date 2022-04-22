@@ -1,18 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRunner } from 'react-runner';
-import { useEditable } from 'use-editable';
 import { alpha, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
 import Typography from '@mui/material/Typography';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { CodeEditor } from 'docs/src/modules/components/CodeEditor';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
@@ -137,19 +136,6 @@ const DemoRoot = styled('div', {
   }),
 }));
 
-const Code = styled(HighlightedCode)(({ theme }) => ({
-  padding: 0,
-  marginBottom: theme.spacing(1),
-  marginTop: theme.spacing(2),
-  [theme.breakpoints.up('sm')]: {
-    marginTop: theme.spacing(0),
-  },
-  '& pre': {
-    margin: '0 auto',
-    maxHeight: 'min(68vh, 1000px)',
-  },
-}));
-
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
   position: 'absolute',
@@ -218,15 +204,15 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
 
   const usePreview = showPreview && !codeOpen;
-  const [code, setCode] = React.useState(usePreview ? demo.jsxPreview : demoData.raw);
-  React.useEffect(() => {
-    setCode(usePreview ? demo.jsxPreview : demoData.raw);
-  }, [demoData.raw, demoData.sourceLanguage, usePreview]);
-
-  const resetDemo = () => {
+  const initialCode = usePreview ? demo.jsxPreview : demoData.raw;
+  const [code, setCode] = React.useState(initialCode);
+  const resetDemo = React.useCallback(() => {
+    setCode(initialCode);
     setDemoKey();
-    setCode(demoData.raw);
-  };
+  }, [initialCode]);
+  React.useEffect(() => {
+    resetDemo();
+  }, [resetDemo]);
 
   const { element, error } = useRunner({
     code: usePreview
@@ -234,12 +220,6 @@ export default function Demo(props) {
       : code,
     scope: demo.scope,
   });
-
-  const editorRef = React.useRef(null);
-  const onEditableChange = React.useCallback((newCode) => {
-    setCode(newCode.slice(0, -1));
-  }, []);
-  useEditable(editorRef, onEditableChange);
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -295,12 +275,12 @@ export default function Demo(props) {
       )}
       <Collapse in={openDemoSource} unmountOnExit>
         <div>
-          <Code
-            ref={editorRef}
+          <CodeEditor
+            key={demoKey}
             id={demoSourceId}
-            code={code}
+            value={code}
+            onChange={setCode}
             language={demoData.sourceLanguage}
-            spellCheck="false"
           />
         </div>
       </Collapse>
