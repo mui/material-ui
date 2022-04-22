@@ -1871,7 +1871,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('あ');
     });
 
-    it('should only render endAdornment when hasClearIcon or hasPopupIcon are true', () => {
+    it('should only render endAdornment when hasClearIcon or hasPopupIcon is true', () => {
       const { container } = render(
         <Autocomplete
           freeSolo
