@@ -124,8 +124,7 @@ module.exports = async function demoLoader() {
   const { docs } = prepareMarkdown({ pageFilename, translations, componentPackageMapping });
 
   const demos = {};
-  const demoModuleIDs = new Set();
-  const demoImportedModuleIDs = new Set();
+  const importedModuleIDs = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -154,9 +153,7 @@ module.exports = async function demoLoader() {
       this.addDependency(moduleFilepath);
       const raw = await fs.readFile(moduleFilepath, { encoding: 'utf8' });
       demos[demoName] = { module: moduleID, raw };
-      demoModuleIDs.add(moduleID);
-      const importedModuleIDs = extractImports(raw);
-      importedModuleIDs.forEach((importModuleID) => demoImportedModuleIDs.add(importModuleID));
+      extractImports(raw).forEach((importModuleID) => importedModuleIDs.add(importModuleID));
 
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
@@ -177,12 +174,7 @@ module.exports = async function demoLoader() {
         );
         this.addDependency(moduleTSFilepath);
         const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf-8' });
-
-        // In development devs can choose whether they want to work on the TS or JS version.
-        // But this leads to building both demo version i.e. more build time.
-        demos[demoName].moduleTS = this.mode === 'production' ? moduleID : moduleTS;
         demos[demoName].rawTS = rawTS;
-        demoModuleIDs.add(demos[demoName].moduleTS);
       } catch (error) {
         // TS version of the demo doesn't exist. This is fine.
       }
@@ -192,25 +184,12 @@ module.exports = async function demoLoader() {
   /**
    * @param {string} moduleID
    */
-  function getDemoIdentifier(moduleID) {
-    return moduleIDToJSIdentifier(moduleID);
-  }
-
-  /**
-   * @param {string} moduleID
-   */
   function getImportIdentifier(moduleID) {
     return moduleIDToJSIdentifier(moduleID.replace('@', '$'));
   }
 
   const transformed = `
-    ${Array.from(demoModuleIDs)
-      .map((moduleID) => {
-        return `import ${getDemoIdentifier(moduleID)} from '${moduleID}';`;
-      })
-      .join('\n')}
-
-    ${Array.from(demoImportedModuleIDs)
+    ${Array.from(importedModuleIDs)
       .map((moduleID) => {
         return `import * as ${getImportIdentifier(moduleID)} from '${moduleID}';`;
       })
@@ -218,16 +197,11 @@ module.exports = async function demoLoader() {
 
     export const docs = ${JSON.stringify(docs, null, 2)};
     export const demos = ${JSON.stringify(demos, null, 2)};
-    export const demoComponents = {${Array.from(demoModuleIDs)
-      .map((moduleID) => {
-        return `${JSON.stringify(moduleID)}: ${getDemoIdentifier(moduleID)},`;
-      })
-      .join('\n')}};
 
     demos.scope = {
       process,
     };
-    demos.scope.import = {${Array.from(demoImportedModuleIDs)
+    demos.scope.import = {${Array.from(importedModuleIDs)
       .map((moduleID) => {
         return `${JSON.stringify(moduleID)}: ${getImportIdentifier(moduleID)},`;
       })

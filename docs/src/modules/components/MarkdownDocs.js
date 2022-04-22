@@ -19,7 +19,7 @@ function noComponent(moduleID) {
 }
 
 function MarkdownDocs(props) {
-  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
+  const { disableAd = false, disableToc = false, demos = {}, docs } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -84,10 +84,8 @@ function MarkdownDocs(props) {
             demo={{
               raw: demo.raw,
               scope: demos.scope,
-              js: demoComponents[demo.module] ?? noComponent(demo.module),
               jsxPreview: demo.jsxPreview,
               rawTS: demo.rawTS,
-              tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}

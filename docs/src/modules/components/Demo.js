@@ -60,7 +60,6 @@ function useDemoData(codeVariant, demo, githubLocation) {
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
       language: userLanguage,
       raw: demo.rawTS,
-      Component: demo.tsx,
       sourceLanguage: 'tsx',
       title,
     };
@@ -71,7 +70,6 @@ function useDemoData(codeVariant, demo, githubLocation) {
     githubLocation,
     language: userLanguage,
     raw: demo.raw,
-    Component: demo.js,
     sourceLanguage: 'jsx',
     title,
   };
