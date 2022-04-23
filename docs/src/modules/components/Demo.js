@@ -7,11 +7,11 @@ import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
 import Typography from '@mui/material/Typography';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
+import CodeEditor from 'docs/src/modules/components/CodeEditor';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import { CodeEditor } from 'docs/src/modules/components/CodeEditor';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Editor from 'react-simple-code-editor';
 import { styled } from '@mui/material/styles';
 import prism from '@mui/markdown/prism';
@@ -45,7 +46,7 @@ const StyledEditor = styled(Editor)(({ theme }) => ({
   },
 }));
 
-export const CodeEditor = ({ language, onChange, ...rest }) => {
+const CodeEditor = ({ language = 'jsx', onChange, ...rest }) => {
   return (
     <Wrapper>
       <pre>
@@ -58,3 +59,10 @@ export const CodeEditor = ({ language, onChange, ...rest }) => {
     </Wrapper>
   );
 };
+
+CodeEditor.propTypes = {
+  language: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
+export default CodeEditor;

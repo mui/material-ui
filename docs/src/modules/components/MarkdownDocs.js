@@ -12,12 +12,6 @@ const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
 
-function noComponent(moduleID) {
-  return function NoComponent() {
-    throw new Error(`No demo component provided for '${moduleID}'`);
-  };
-}
-
 function MarkdownDocs(props) {
   const { disableAd = false, disableToc = false, demos = {}, docs } = props;
 
@@ -98,6 +92,8 @@ function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  // TODO: Remove this prop from page source
+  // eslint-disable-next-line react/no-unused-prop-types
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
