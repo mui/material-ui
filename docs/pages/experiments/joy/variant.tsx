@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, ColorPaletteProp, PaletteVariant } from '@mui/joy/styles';
 import Info from '@mui/icons-material/Info';
 import Code from '@mui/icons-material/Code';
@@ -115,7 +116,10 @@ export default function JoyVariant() {
           <Typography level="body2" sx={{ mb: 1 }}>
             Default context overrides feature
           </Typography>
-          <Box
+          <Sheet
+            enableVariantOverride
+            variant="contained"
+            color="primary"
             sx={[
               {
                 display: 'flex',
@@ -124,32 +128,22 @@ export default function JoyVariant() {
                 p: 2,
                 borderRadius: 1,
               },
-              (theme) => theme.variants.contained.primary,
-              (theme) => theme.variants.containedOverrides.primary,
             ]}
           >
-            <Button color="context" variant="text">
-              Text
-            </Button>
-            <Button color="context" variant="outlined">
-              Outlined
-            </Button>
-            <Button disabled color="context" variant="outlined">
+            <Button variant="text">Text</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button disabled variant="outlined">
               Disabled
             </Button>
-            <Button color="context" variant="light">
-              Light
-            </Button>
-            <Button disabled color="context" variant="light">
+            <Button variant="light">Light</Button>
+            <Button disabled variant="light">
               Disabled
             </Button>
-            <Button color="context" variant="contained">
-              Contained
-            </Button>
-            <Button disabled color="context" variant="contained">
+            <Button variant="contained">Contained</Button>
+            <Button disabled variant="contained">
               Disabled
             </Button>
-          </Box>
+          </Sheet>
         </Box>
       </CssVarsProvider>
       <CssVarsProvider
@@ -597,7 +591,10 @@ declare module '@mui/joy/styles' {
             Even though, Strapi does not have context override concept, it still work out-of-the
             box.
           </Typography>
-          <Box
+          <Sheet
+            variant="contained"
+            color="primary"
+            enableVariantOverride
             sx={[
               {
                 display: 'flex',
@@ -607,20 +604,12 @@ declare module '@mui/joy/styles' {
                 p: 2,
                 borderRadius: 1,
               },
-              (theme) => theme.variants.contained.primary,
-              (theme) => theme.variants.containedOverrides.primary,
             ]}
           >
-            <Button color="context" variant="contained">
-              Contained
-            </Button>
-            <Button color="context" variant="outlined">
-              Outlined
-            </Button>
-            <Button color="context" disabled>
-              Disabled
-            </Button>
-          </Box>
+            <Button variant="contained">Contained</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button disabled>Disabled</Button>
+          </Sheet>
           <br />
           <Typography component="h3" level="h5" gutterBottom>
             Focus

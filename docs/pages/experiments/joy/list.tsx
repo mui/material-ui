@@ -1025,7 +1025,7 @@ export default function JoyList() {
                 selected
                 variant="contained"
                 color="success"
-                sx={(theme) => theme.variants.containedOverrides.success}
+                sx={(theme) => theme.variants.containedOverride.success}
               >
                 <ListItemDecorator>
                   <Circle color="success">

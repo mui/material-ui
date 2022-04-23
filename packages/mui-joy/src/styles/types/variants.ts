@@ -24,25 +24,25 @@ type BaseContextOverrides = Record<DefaultContextualOverride, Record<ColorPalett
 
 // Split interfaces into multiple chunks so that they can be augmented independently
 
-export interface VariantText extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantTextHover extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantTextActive extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantTextDisabled extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantText extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantTextHover extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantTextActive extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantTextDisabled extends Record<ColorPaletteProp | 'context', CSSObject> {}
 
-export interface VariantOutlined extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOutlinedHover extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOutlinedActive extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOutlinedDisabled extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantOutlined extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantOutlinedHover extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantOutlinedActive extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantOutlinedDisabled extends Record<ColorPaletteProp | 'context', CSSObject> {}
 
-export interface VariantLight extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantLightHover extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantLightActive extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantLightDisabled extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantLight extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantLightHover extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantLightActive extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantLightDisabled extends Record<ColorPaletteProp | 'context', CSSObject> {}
 
-export interface VariantContained extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantContainedHover extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantContainedActive extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantContainedDisabled extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantContained extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantContainedHover extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantContainedActive extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantContainedDisabled extends Record<ColorPaletteProp | 'context', CSSObject> {}
 
 export interface Variants extends BaseContextOverrides {
   text: VariantText;

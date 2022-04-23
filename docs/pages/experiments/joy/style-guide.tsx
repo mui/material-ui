@@ -26,7 +26,7 @@ const Typography = styled('p', {
   ({ theme, level = 'body1', color }) => [
     { margin: 0 },
     theme.typography[level],
-    color && color !== 'context' && { color: getCssVar(`palette-${color}-textColor`) },
+    color && { color: getCssVar(`palette-${color}-textColor`) },
   ],
 );
 
