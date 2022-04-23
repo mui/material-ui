@@ -573,6 +573,25 @@ describe('<Slider />', () => {
     expect(container.querySelectorAll(`.${classes.mark}[data-index="2"]`).length).to.equal(1);
   });
 
+  it('should not render marks that are out of min&max bounds', () => {
+    const { container } = render(
+      <Slider
+        marks={[
+          { value: -1, label: -1 },
+          { value: 0, label: 0 },
+          { value: 100, label: 100 },
+          { value: 101, label: 101 },
+        ]}
+        defaultValue={0}
+      />,
+    );
+
+    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(2);
+    expect(container.querySelectorAll(`.${classes.mark}`).length).to.equal(2);
+    expect(container.querySelectorAll(`.${classes.markLabel}`)[0].textContent).to.equal('0');
+    expect(container.querySelectorAll(`.${classes.markLabel}`)[1].textContent).to.equal('100');
+  });
+
   describe('prop: ValueLabelComponent', () => {
     it('receives the formatted value', () => {
       function ValueLabelComponent(props) {

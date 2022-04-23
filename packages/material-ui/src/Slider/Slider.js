@@ -693,49 +693,51 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       <span className={classes.rail} />
       <span className={classes.track} style={trackStyle} />
       <input value={values.join(',')} name={name} type="hidden" />
-      {marks.map((mark, index) => {
-        const percent = valueToPercent(mark.value, min, max);
-        const style = axisProps[axis].offset(percent);
+      {marks
+        .filter((mark) => mark.value <= max && mark.value >= min)
+        .map((mark, index) => {
+          const percent = valueToPercent(mark.value, min, max);
+          const style = axisProps[axis].offset(percent);
 
-        let markActive;
-        if (track === false) {
-          markActive = values.indexOf(mark.value) !== -1;
-        } else {
-          markActive =
-            (track === 'normal' &&
-              (range
-                ? mark.value >= values[0] && mark.value <= values[values.length - 1]
-                : mark.value <= values[0])) ||
-            (track === 'inverted' &&
-              (range
-                ? mark.value <= values[0] || mark.value >= values[values.length - 1]
-                : mark.value >= values[0]));
-        }
+          let markActive;
+          if (track === false) {
+            markActive = values.indexOf(mark.value) !== -1;
+          } else {
+            markActive =
+              (track === 'normal' &&
+                (range
+                  ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+                  : mark.value <= values[0])) ||
+              (track === 'inverted' &&
+                (range
+                  ? mark.value <= values[0] || mark.value >= values[values.length - 1]
+                  : mark.value >= values[0]));
+          }
 
-        return (
-          <React.Fragment key={mark.value}>
-            <span
-              style={style}
-              data-index={index}
-              className={clsx(classes.mark, {
-                [classes.markActive]: markActive,
-              })}
-            />
-            {mark.label != null ? (
+          return (
+            <React.Fragment key={mark.value}>
               <span
-                aria-hidden
-                data-index={index}
                 style={style}
-                className={clsx(classes.markLabel, {
-                  [classes.markLabelActive]: markActive,
+                data-index={index}
+                className={clsx(classes.mark, {
+                  [classes.markActive]: markActive,
                 })}
-              >
-                {mark.label}
-              </span>
-            ) : null}
-          </React.Fragment>
-        );
-      })}
+              />
+              {mark.label != null ? (
+                <span
+                  aria-hidden
+                  data-index={index}
+                  style={style}
+                  className={clsx(classes.markLabel, {
+                    [classes.markLabelActive]: markActive,
+                  })}
+                >
+                  {mark.label}
+                </span>
+              ) : null}
+            </React.Fragment>
+          );
+        })}
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
