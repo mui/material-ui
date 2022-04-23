@@ -248,7 +248,7 @@ describe('<SliderUnstyled />', () => {
   });
 
   describe('marks', () => {
-    it('should not render marks that are out of min&max bounds', () => {
+    it('should not render marks that are out of min&max bounds', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
