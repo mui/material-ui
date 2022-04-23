@@ -81,7 +81,7 @@ const ButtonGroupRoot = styled('div', {
   [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
     // https://github.com/emotion-js/emotion/issues/1178
-    '&:not(style) + *,& > style * + * + * + *': {
+    '&:not(style) + *': {
       ...(ownerState.orientation === 'horizontal' && {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
