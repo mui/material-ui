@@ -80,26 +80,30 @@ export const CodeCopyProvider = ({ children }: { children: React.ReactNode }) =>
   const rootNode = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
+      if (document.getSelection()?.toString()) {
+        // Skip if user is highlighting a text.
+        return;
+      }
       if (event.code === 'KeyC' && (!!event.metaKey || !!event.ctrlKey) && !event.shiftKey) {
-        if (rootNode.current) {
-          const copyBtn = rootNode.current.querySelector(
-            '.MuiCode-copy',
-          ) as HTMLButtonElement | null;
-          if (copyBtn) {
-            copyBtn.click();
-            if (typeof window !== 'undefined' && 'ga' in window) {
-              // @ts-ignore
-              window.ga('send', {
-                hitType: 'event',
-                eventCategory: copyBtn.getAttribute('data-ga-event-category') || 'code',
-                eventAction:
-                  // the button's `data-ga-event-action` usually is `copy-click`
-                  copyBtn.getAttribute('data-ga-event-action')?.replace('click', 'keyboard') ||
-                  'copy-keyboard',
-                eventLabel: copyBtn.getAttribute('data-ga-event-label'),
-              });
-            }
-          }
+        if (!rootNode.current) {
+          return;
+        }
+        const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
+        if (!copyBtn) {
+          return;
+        }
+        copyBtn.click();
+        if (typeof window !== 'undefined' && 'ga' in window) {
+          // @ts-ignore
+          window.ga('send', {
+            hitType: 'event',
+            eventCategory: copyBtn.getAttribute('data-ga-event-category') || 'code',
+            eventAction:
+              // the button's `data-ga-event-action` usually is `copy-click`
+              copyBtn.getAttribute('data-ga-event-action')?.replace('click', 'keyboard') ||
+              'copy-keyboard',
+            eventLabel: copyBtn.getAttribute('data-ga-event-label'),
+          });
         }
       }
     });
