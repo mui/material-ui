@@ -272,7 +272,7 @@ export default function Demo(props) {
             language={demoData.sourceLanguage}
           />
           {error && (
-            <Typography color="error" component="pre">
+            <Typography color="error" component="pre" sx={{ whiteSpace: 'pre-wrap' }}>
               {error}
             </Typography>
           )}

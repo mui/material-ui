@@ -15,6 +15,12 @@ const Wrapper = styled(MarkdownElement)(({ theme }) => ({
   '& > pre': {
     margin: '0 auto',
     maxHeight: 'min(48vh, 600px)',
+    '&:focus-within': {
+      borderColor:
+        theme.palette.mode === 'dark'
+          ? theme.palette.primaryDark[500]
+          : theme.palette.primaryDark[800],
+    },
   },
 }));
 
