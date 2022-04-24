@@ -2149,6 +2149,24 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.property('value', 'ONE');
     });
 
+    it('should update the input value when getOptionLabel changes and options are objects', () => {
+      render(
+        <Autocomplete
+          value={'1'}
+          options={[
+            { label: 'one', value: '1' },
+            { label: 'two', value: '2' },
+            { label: 'three', value: '3' },
+          ]}
+          isOptionEqualToValue={(option, value) => option.value === value}
+          getOptionLabel={(option) => option.label}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      expect(textbox).to.have.property('value', 'one');
+    });
+
     it('should not update the input value when users is focusing', () => {
       const { setProps } = render(
         <Autocomplete

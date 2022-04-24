@@ -151,6 +151,11 @@ export default function useAutocomplete(props) {
 
   const [focused, setFocused] = React.useState(false);
 
+  const calculatedOption = value
+    ? options.find((option) => isOptionEqualToValue(option, value))
+    : undefined;
+  const calculatedOptionLabel = calculatedOption ? getOptionLabelProp(calculatedOption) : value;
+
   const resetInputValue = React.useCallback(
     (event, newValue) => {
       // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
@@ -165,8 +170,7 @@ export default function useAutocomplete(props) {
       } else if (newValue == null) {
         newInputValue = '';
       } else {
-        const optionLabel = getOptionLabel(newValue);
-        newInputValue = typeof optionLabel === 'string' ? optionLabel : '';
+        newInputValue = typeof calculatedOptionLabel === 'string' ? calculatedOptionLabel : '';
       }
 
       if (inputValue === newInputValue) {
@@ -179,7 +183,15 @@ export default function useAutocomplete(props) {
         onInputChange(event, newInputValue, 'reset');
       }
     },
-    [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
+    [
+      inputValue,
+      multiple,
+      onInputChange,
+      setInputValueState,
+      clearOnBlur,
+      value,
+      calculatedOptionLabel,
+    ],
   );
 
   const prevValue = React.useRef();
@@ -210,7 +222,7 @@ export default function useAutocomplete(props) {
   const [inputPristine, setInputPristine] = React.useState(true);
 
   const inputValueIsSelectedValue =
-    !multiple && value != null && inputValue === getOptionLabel(value);
+    !multiple && value != null && inputValue === calculatedOptionLabel;
 
   const popupOpen = open && !readOnly;
 
