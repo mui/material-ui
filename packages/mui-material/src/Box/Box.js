@@ -12,10 +12,10 @@ const Box = createBox({
 });
 
 Box.propTypes /* remove-proptypes */ = {
-  // --------------------------------- Warning ---------------------------------
-  // | The propTypes for the system components are NOT automatically generated |
-  // |  If you are updating the props, make sure to update the propTypes too   |
-  // ---------------------------------------------------------------------------
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
