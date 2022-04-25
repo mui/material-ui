@@ -152,11 +152,12 @@ export default function useAutocomplete(props) {
   const [focused, setFocused] = React.useState(false);
 
   const getCalculatedOptionLabel = React.useCallback(
-    (aValue) => {
-      const calculatedOption = aValue
-        ? options.find((option) => isOptionEqualToValue(option, aValue))
-        : options[0];
-      return calculatedOption ? getOptionLabelProp(calculatedOption) : aValue;
+    (newValue) => {
+      const calculatedOption = newValue
+        ? options.find((option) => isOptionEqualToValue(option, newValue))
+        : undefined;
+
+      return calculatedOption ? getOptionLabelProp(calculatedOption) : undefined;
     },
     [options, isOptionEqualToValue, getOptionLabelProp],
   );
