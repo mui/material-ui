@@ -105,7 +105,7 @@ export function PlanPrice(props: PlanPriceProps) {
           
         </Box>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
-          Billed annually annualy at $228.
+          Billed annually at $228.
         </Typography>
       </div>
     );
@@ -146,7 +146,7 @@ export function PlanPrice(props: PlanPriceProps) {
       </Box>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
       <Typography variant="body2" color="text.secondary">
-            Billed annually annualy at $444.
+            Billed annually at $444.
         </Typography>
         <Link href="#early-bird">* Early bird special.</Link>
         <br />
