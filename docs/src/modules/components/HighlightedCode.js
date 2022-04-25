@@ -1,10 +1,10 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   const {
@@ -15,6 +15,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     enableCodeCopy,
     ...other
   } = props;
+  const t = useTranslate();
   const renderedCode = React.useMemo(() => {
     return prism(code.trim(), language);
   }, [code, language]);
@@ -45,7 +46,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
         {enableCodeCopy && (
           <button
             {...analytics}
-            aria-label="Copy the code"
+            aria-label={t('clickToCopy')}
             type="button"
             className="MuiCode-copy"
             onClick={async (event) => {
@@ -54,7 +55,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
               await copy(code);
             }}
           >
-            {copied ? 'Copied' : 'Copy'}
+            {copied ? t('copied') : t('clickToCopy')}
           </button>
         )}
       </div>
