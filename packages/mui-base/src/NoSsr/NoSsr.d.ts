@@ -30,7 +30,7 @@ export interface NoSsrProps {
  *
  * Demos:
  *
- * - [No Ssr](https://mui.com/base/react-no-ssr/)
+ * - [No ssr](https://mui.com/base/react-no-ssr/)
  *
  * API:
  *

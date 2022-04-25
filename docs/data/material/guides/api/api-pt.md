@@ -1,6 +1,6 @@
 # Abordagem do Design da API
 
-<p class="description">Nós aprendemos bastante como o Material-UI é usado e a refatoração da v1 permitiu-nos repensar completamente a API dos componentes.</p>
+<p class="description">Nós aprendemos bastante como o Material UI é usado e a refatoração da v1 permitiu-nos repensar completamente a API dos componentes.</p>
 
 > O design da API é difícil porque você pode fazer com que pareça simples, mas na verdade é extremamente complexo ou simples, mas parece complexo.
 
@@ -30,15 +30,15 @@ Agora, digamos que você queira desabilitar o efeito cascata do `MenuItem`. Voc�
 <MenuItem disableRipple />
 ```
 
-A propriedade `disableRipple` propagará desta maneira: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
+A propriedade `disableRipple` propagará desta maneira: [`MenuItem`](/material-ui/api/menu-item/) > [`ListItem`](/material-ui/api/list-item/) > [`ButtonBase`](/material-ui/api/button-base/).
 
 ### Propriedades nativas
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/how-to-customize/#overriding-styles-with-class-names).
+We avoid documenting native properties supported by the DOM like [`className`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names).
 
 ### Classes CSS
 
-Todos os componentes aceitam uma propriedade [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) para customizar os estilos. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
+Todos os componentes aceitam uma propriedade [`classes`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names) para customizar os estilos. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - A classe aplicada ao elemento raiz é sempre chamada de `root`.
 - Todos os estilos padrão são agrupados em uma única classe.
@@ -67,7 +67,7 @@ Os componentes aninhados dentro de um componente possuem:
 - suas próprias propriedades niveladas quando estas são chaves para a abstração do componente de nível superior, por exemplo, uma propriedade `id` para o componente `input`.
 - suas próprias propriedades `xxxProps`, quando os usuários podem precisar ajustar os subcomponentes do método de renderização interno, por exemplo, expondo as propriedades `inputProps` e `InputProps` em componentes que usam `Input` internamente.
 - suas próprias propriedades `xxxComponent` para executar a injeção de componentes.
-- suas próprias propriedades `xxxRef`, quando o usuário precisar executar ações imperativas, por exemplo, expondo uma propriedade `inputRef` para acessar nativamente o `input` no componente `Input`. Isso ajuda a responder a pergunta ["Como posso acessar o elemento DOM?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- suas próprias propriedades `xxxRef`, quando o usuário precisar executar ações imperativas, por exemplo, expondo uma propriedade `inputRef` para acessar nativamente o `input` no componente `Input`. Isso ajuda a responder a pergunta ["Como posso acessar o elemento DOM?"](/material-ui/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Prop naming
 
@@ -115,7 +115,7 @@ Existem duas opções para projetar a API para as variações de um componente: 
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
-Os componentes do Material-UI usam uma combinação das duas abordagens de acordo com as seguintes regras:
+Os componentes do Material UI usam uma combinação das duas abordagens de acordo com as seguintes regras:
 
 - Um _booleano_ é usado quando **2** valores possíveis são necessários.
 - **elemento hospedeiro**: um nó DOM no contexto de `react-dom`, por exemplo, uma instância de `window.HTMLDivElement`.

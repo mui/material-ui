@@ -15,7 +15,7 @@ export interface AvatarClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the fallback icon */
+  /** Styles applied to the fallback icon. */
   fallback: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;

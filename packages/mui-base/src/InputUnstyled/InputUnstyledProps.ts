@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
-import { FormControlUnstyledState } from '../FormControlUnstyled/FormControlContext';
+import { FormControlUnstyledState } from '../FormControlUnstyled';
 
 export interface InputOwnerState
   extends Omit<InputUnstyledProps, 'component' | 'components' | 'componentsProps'> {
