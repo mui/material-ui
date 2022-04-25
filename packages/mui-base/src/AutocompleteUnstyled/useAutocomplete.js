@@ -151,10 +151,15 @@ export default function useAutocomplete(props) {
 
   const [focused, setFocused] = React.useState(false);
 
-  const calculatedOption = value
-    ? options.find((option) => isOptionEqualToValue(option, value))
-    : undefined;
-  const calculatedOptionLabel = calculatedOption ? getOptionLabelProp(calculatedOption) : value;
+  const getCalculatedOptionLabel = React.useCallback(
+    (aValue) => {
+      const calculatedOption = aValue
+        ? options.find((option) => isOptionEqualToValue(option, aValue))
+        : options[0];
+      return calculatedOption ? getOptionLabelProp(calculatedOption) : aValue;
+    },
+    [options, isOptionEqualToValue, getOptionLabelProp],
+  );
 
   const resetInputValue = React.useCallback(
     (event, newValue) => {
@@ -170,7 +175,8 @@ export default function useAutocomplete(props) {
       } else if (newValue == null) {
         newInputValue = '';
       } else {
-        newInputValue = typeof calculatedOptionLabel === 'string' ? calculatedOptionLabel : '';
+        const optionLabel = getCalculatedOptionLabel(newValue);
+        newInputValue = typeof optionLabel === 'string' ? optionLabel : '';
       }
 
       if (inputValue === newInputValue) {
@@ -184,13 +190,13 @@ export default function useAutocomplete(props) {
       }
     },
     [
+      getCalculatedOptionLabel,
       inputValue,
       multiple,
       onInputChange,
       setInputValueState,
       clearOnBlur,
       value,
-      calculatedOptionLabel,
     ],
   );
 
@@ -222,7 +228,7 @@ export default function useAutocomplete(props) {
   const [inputPristine, setInputPristine] = React.useState(true);
 
   const inputValueIsSelectedValue =
-    !multiple && value != null && inputValue === calculatedOptionLabel;
+    !multiple && value != null && inputValue === getCalculatedOptionLabel(value);
 
   const popupOpen = open && !readOnly;
 
