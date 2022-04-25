@@ -6,55 +6,58 @@
 
 _Apr 25, 2022_
 
-A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 🛠 Fixed TypeScript issue when the `fill` CSS property is used in the system (#32355) @valerii15298
 - And more 🐛 bug fixes and 📚 improvements.
 
 ### `@mui/material@5.6.3`
 
-- &#8203;<!-- 21 -->[Dialog] Fix `component` prop is not available in `DialogTitleProps` (#32389) @hbjORbj
-- &#8203;<!-- 05 -->[StepContent] Fix TypeScript type of `TransitionComponent` prop (#32314) @ZeeshanTamboli
+- [BottomNavigation] Action icon `padding` fix (#32030) @abhinav-22-tech
+- [Dialog] Fix `component` prop is not available in `DialogTitleProps` (#32389) @hbjORbj
+- [StepContent] Fix TypeScript type of `TransitionComponent` prop (#32314) @ZeeshanTamboli
 
 ### `@mui/system@5.6.3`
 
-- &#8203;<!-- 04 -->[system] Fix prop types when the `fill` CSS property is used (#32355) @valerii15298
-- &#8203;<!-- 03 -->[system] Fix broken behavior when theme value is `zero` (#32365) @ZeeshanTamboli
+- [system] Fix prop types when the `fill` CSS property is used (#32355) @valerii15298
+- [system] Fix broken behavior when theme value is `zero` (#32365) @ZeeshanTamboli
 
 ### `@mui/base@5.0.0-alpha.78`
 
-- &#8203;<!-- 11 -->[InputUnstyled] `multiline` property should not log DOM warnings for `maxRows` and `minRows` props (#32401) @ZeeshanTamboli
+- [InputUnstyled] `multiline` property should not log DOM warnings for `maxRows` and `minRows` props (#32401) @ZeeshanTamboli
 
 ### `@mui/joy@5.0.0-alpha.25`
 
-- &#8203;<!-- 10 -->[Joy] Improve theme focus to be more flexible (#32405) @siriwatknp
-- &#8203;<!-- 09 -->[Joy] Add `Radio`, `RadioGroup` components (#32279) @siriwatknp
-- &#8203;<!-- 08 -->[Joy] Add `Chip` component (#31983) @hbjORbj
-- &#8203;<!-- 07 -->[Joy] Improve controls (#32267) @siriwatknp
-- &#8203;<!-- 06 -->[Joy] Set up docs (#32370) @siriwatknp
+- [Joy] Improve theme focus to be more flexible (#32405) @siriwatknp
+- [Joy] Add `Radio`, `RadioGroup` components (#32279) @siriwatknp
+- [Joy] Add `Chip` component (#31983) @hbjORbj
+- [Joy] Improve controls (#32267) @siriwatknp
+- [Joy] Set up docs (#32370) @siriwatknp
 
 ### Docs
 
-- &#8203;<!-- 25 -->[docs] Enable row reordering on the pricing page (#31875) @DanailH
-- &#8203;<!-- 23 -->[blog] A few improvements on date picker change (#32325) @oliviertassinari
-- &#8203;<!-- 20 -->[docs] Emphasize how to avoid failing tests when migrating from v4 to v5 (#32159) @dwjohnston
-- &#8203;<!-- 19 -->[docs] Revise the related projects page (#32180) @danilo-leal
-- &#8203;<!-- 18 -->[docs] Cleanup remaining @mui/styles usages (#32313) @mnajdova
-- &#8203;<!-- 17 -->[docs] Fix sidenav mobile color (#32324) @oliviertassinari
-- &#8203;<!-- 16 -->[docs] Base TrapFocus style revisions and final review (#32364) @samuelsycamore
-- &#8203;<!-- 15 -->[docs] Update the README.md to better cover the different products (#32360) @samuelsycamore
-- &#8203;<!-- 14 -->[docs] Improve the propTypes generation and API demos' links (#32295) @mnajdova
-- &#8203;<!-- 13 -->[docs] Add ability to display a plan icon next to a page link in nav bar (#32393) @flaviendelangle
-- &#8203;<!-- 12 -->[docs] Change label on `FormControlLabelPlacement` (#32322) @ainatenhi
-- &#8203;<!-- 02 -->[website] Update Diamond sponsors list (#32433) @oliviertassinari
-- &#8203;<!-- 01 -->[website] Add privacy policy link to website's footer (#32080) @danilo-leal
+- [docs] Enable row reordering on the pricing page (#31875) @DanailH
+- [blog] A few improvements on date picker change (#32325) @oliviertassinari
+- [docs] Emphasize how to avoid failing tests when migrating from v4 to v5 (#32159) @dwjohnston
+- [docs] Revise the related projects page (#32180) @danilo-leal
+- [docs] Cleanup remaining @mui/styles usages (#32313) @mnajdova
+- [docs] Fix sidenav mobile color (#32324) @oliviertassinari
+- [docs] Base TrapFocus style revisions and final review (#32364) @samuelsycamore
+- [docs] Update the README.md to better cover the different products (#32360) @samuelsycamore
+- [docs] Improve the propTypes generation and API demos' links (#32295) @mnajdova
+- [docs] Add ability to display a plan icon next to a page link in nav bar (#32393) @flaviendelangle
+- [docs] Change label on `FormControlLabelPlacement` (#32322) @ainatenhi
+- [website] Update Diamond sponsors list (#32433) @oliviertassinari
+- [website] Add privacy policy link to website's footer (#32080) @danilo-leal
+- [website] Remove the designer role (#32384) @danilo-leal
 
 ### Core
 
-- &#8203;<!-- 24 -->[core] `yarn prettier` write @oliviertassinari
-- &#8203;<!-- 22 -->[core] Fix changelog warning message (#32240) @praveen001
+- [core] `yarn prettier` write @oliviertassinari
+- [core] Fix changelog warning message (#32240) @praveen001
+- [core] Update the proptypes scripts to support components in @mui/system (#32456) @mnajdova
 
-All contributors of this release in alphabetical order: @ainatenhi, @DanailH, @danilo-leal, @dwjohnston, @flaviendelangle, @hbjORbj, @mnajdova, @oliviertassinari, @praveen001, @samuelsycamore, @siriwatknp, @valerii15298, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @abhinav-22-tech, @ainatenhi, @DanailH, @danilo-leal, @dwjohnston, @flaviendelangle, @hbjORbj, @mnajdova, @oliviertassinari, @praveen001, @samuelsycamore, @siriwatknp, @valerii15298, @ZeeshanTamboli
 
 ## 5.6.2
 
