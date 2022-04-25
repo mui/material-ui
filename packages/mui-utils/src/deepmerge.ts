@@ -1,4 +1,4 @@
-export function isPlainObject(item: unknown): item is Record<keyof any, unknown> {
+export function isPlainObject(item: unknown) {
   return item !== null && typeof item === 'object' && item.constructor === Object;
 }
 
@@ -6,12 +6,31 @@ export interface DeepmergeOptions {
   clone?: boolean;
 }
 
-export default function deepmerge<T>(
-  target: T,
-  source: unknown,
+type Assign<A, B> = {
+  [key in keyof A | keyof B]: key extends keyof B
+    ? key extends keyof A
+      ? B[key] extends Record<keyof any, any>
+        ? A[key] extends Record<keyof any, any>
+          ? Assign<A[key], B[key]>
+          : B[key]
+        : B[key]
+      : B[key]
+    : key extends keyof A
+    ? A[key]
+    : never;
+};
+
+function deepmerge<A extends Record<keyof any, any>, B extends Record<keyof any, any>>(
+  target: A,
+  source: B,
+  options?: DeepmergeOptions,
+): B extends A ? A : Assign<A, B>;
+function deepmerge<A extends Record<keyof any, any>, B extends Record<keyof any, any>>(
+  target: A,
+  source: B,
   options: DeepmergeOptions = { clone: true },
-): T {
-  const output = options.clone ? { ...target } : target;
+): Assign<A, B> {
+  const output: A & B = options.clone ? { ...target } : target;
 
   if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {
@@ -21,13 +40,14 @@ export default function deepmerge<T>(
       }
 
       if (isPlainObject(source[key]) && key in target && isPlainObject(target[key])) {
-        // Since `output` is a clone of `target` and we have narrowed `target` in this block we can cast to the same type.
-        (output as Record<keyof any, unknown>)[key] = deepmerge(target[key], source[key], options);
+        output[key as keyof B | keyof A] = deepmerge(target[key], source[key], options);
       } else {
-        (output as Record<keyof any, unknown>)[key] = source[key];
+        output[key as keyof B | keyof A] = source[key];
       }
     });
   }
 
   return output;
 }
+
+export default deepmerge;
