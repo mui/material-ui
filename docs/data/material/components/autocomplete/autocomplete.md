@@ -83,6 +83,9 @@ The prop is designed to cover the primary use case of a **search input** with su
 
 {{"demo": "FreeSolo.js"}}
 
+> ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.  
+> The value created by typing into the textbox is always a string, regardless of the type of the options.
+
 ### Creatable
 
 If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:

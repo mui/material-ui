@@ -823,6 +823,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    *
+   * If used in free solo mode, it must accept both the type of the options and a string.
+   *
    * @param {T} option
    * @returns {string}
    * @default (option) => option.label ?? option

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
@@ -221,5 +222,32 @@ describe('createTheme', () => {
       </ThemeProvider>,
     );
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
+  });
+
+  it('should apply the correct borderRadius styles via sx prop if theme values are 0', function test() {
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      shape: {
+        borderRadius: 0,
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      borderTopLeftRadius: '0px',
+      borderBottomLeftRadius: '0px',
+      borderTopRightRadius: '0px',
+      borderBottomRightRadius: '0px',
+    });
   });
 });
