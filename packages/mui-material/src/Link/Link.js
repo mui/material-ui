@@ -48,6 +48,7 @@ const LinkRoot = styled(Typography, {
 
     return [
       styles.root,
+      styles[`color${capitalize(ownerState.color)}`],
       styles[`underline${capitalize(ownerState.underline)}`],
       ownerState.component === 'button' && styles.button,
     ];
