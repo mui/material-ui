@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.6.3
+
 <!-- generated comparing v5.6.2..master -->
+
 _Apr 25, 2022_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
@@ -12,7 +14,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 ### `@mui/material@5.6.2`
 
 - &#8203;<!-- 21 -->[Dialog] Fix `component` prop is not available in `DialogTitleProps` (#32389) @hbjORbj
-- &#8203;<!-- 05 -->[StepContent] Fix TypeScript type of `TransitionComponent` prop  (#32314) @ZeeshanTamboli
+- &#8203;<!-- 05 -->[StepContent] Fix TypeScript type of `TransitionComponent` prop (#32314) @ZeeshanTamboli
 
 ### `@mui/system@5.6.2`
 
