@@ -70,6 +70,11 @@ export interface AutocompleteProps<
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
+   * Force the menu items to use special styles in order to end with ellipsis.
+   * @default false
+   */
+  applyItemEllipsis?: boolean;
+  /**
    * Props applied to the [`Chip`](/material-ui/api/chip/) element.
    */
   ChipProps?: ChipProps<ChipComponent>;

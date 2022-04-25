@@ -59,6 +59,7 @@ export function getAutocompleteUtilityClass(slot: string): string {
 
 const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAutocomplete', [
   'root',
+  'ellipsised',
   'fullWidth',
   'focused',
   'focusVisible',

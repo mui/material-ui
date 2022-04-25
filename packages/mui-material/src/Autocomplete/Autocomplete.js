@@ -26,6 +26,7 @@ import capitalize from '../utils/capitalize';
 
 const useUtilityClasses = (ownerState) => {
   const {
+    applyItemEllipsis,
     classes,
     disablePortal,
     focused,
@@ -40,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
+      applyItemEllipsis && 'ellipsised',
       focused && 'focused',
       fullWidth && 'fullWidth',
       hasClearIcon && 'hasClearIcon',
@@ -69,7 +71,7 @@ const AutocompleteRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
+    const { applyItemEllipsis, fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
 
     return [
       { [`& .${autocompleteClasses.tag}`]: styles.tag },
@@ -78,6 +80,7 @@ const AutocompleteRoot = styled('div', {
       { [`& .${autocompleteClasses.input}`]: styles.input },
       { [`& .${autocompleteClasses.input}`]: inputFocused && styles.inputFocused },
       styles.root,
+      applyItemEllipsis && styles.ellipsised,
       fullWidth && styles.fullWidth,
       hasPopupIcon && styles.hasPopupIcon,
       hasClearIcon && styles.hasClearIcon,
@@ -293,6 +296,11 @@ const AutocompleteListbox = styled('div', {
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
+    [`&.${autocompleteClasses.ellipsised}`]: {
+      display: 'block',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
     [`&.${autocompleteClasses.focused}`]: {
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
@@ -355,6 +363,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
+    applyItemEllipsis = false,
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
@@ -514,7 +523,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
 
-    return renderOption({ ...optionProps, className: classes.option }, option, {
+    return renderOption({ ...optionProps, title: option.label ?? option, className: classes.option }, option, {
       selected: optionProps['aria-selected'],
       inputValue,
     });
