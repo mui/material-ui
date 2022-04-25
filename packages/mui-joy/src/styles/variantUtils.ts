@@ -1,7 +1,6 @@
 import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
 import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
 import { VariantKey } from './types/variants';
-import { JoyTheme } from './defaultTheme';
 
 export const isVariantPalette = (colorPalette: string | number | Record<string, any>) =>
   colorPalette &&
@@ -105,7 +104,13 @@ export const createVariantStyle = (
   return result;
 };
 
-export const createTextOverrides = (theme: JoyTheme) => {
+interface Theme {
+  prefix?: string;
+  palette: Record<Exclude<DefaultColorPalette, 'context'>, PaletteRange>;
+  vars: { palette: Record<Exclude<DefaultColorPalette, 'context'>, PaletteRange> };
+}
+
+export const createTextOverrides = (theme: Theme) => {
   const getCssVar = createGetCssVar(theme.prefix);
   const prefixVar = createPrefixVar(theme.prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
@@ -132,7 +137,7 @@ export const createTextOverrides = (theme: JoyTheme) => {
   return result;
 };
 
-export const createContainedOverrides = (theme: JoyTheme) => {
+export const createContainedOverrides = (theme: Theme) => {
   const getCssVar = createGetCssVar(theme.prefix);
   const prefixVar = createPrefixVar(theme.prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
@@ -184,7 +189,7 @@ export const createContainedOverrides = (theme: JoyTheme) => {
   return result;
 };
 
-export const createVariant = (variant: VariantKey, theme?: JoyTheme) => {
+export const createVariant = (variant: VariantKey, theme?: Theme) => {
   let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;
 
   if (theme) {
