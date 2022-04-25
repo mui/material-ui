@@ -34,4 +34,4 @@ MUI Base features many of the same components as Material UI, but _without the M
 Base is not packaged with any default theme or built-in style engine.
 This makes it a great choice if you need complete control over how your app's CSS is implemented.
 
-You could think of MUI Base as the "skeletal" version of Material UI—in fact, future versions of Material UI will use Base components and hooks for their foundational structure.
+You could think of MUI Base as the "skeletal" or "headless" version of Material UI—in fact, future versions of Material UI will use Base components and hooks for their foundational structure.
