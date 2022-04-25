@@ -236,9 +236,6 @@ const Root = styled('div')(({ theme }) => ({
     '& ul, li': {
       color: 'inherit',
     },
-    '& strong': {
-      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.primary,
-    },
     '&.MuiCallout-error': {
       color:
         theme.palette.mode === 'dark'
@@ -253,6 +250,12 @@ const Root = styled('div')(({ theme }) => ({
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.error[700] ?? theme.palette.error.dark
           : theme.palette.error[500] ?? theme.palette.error.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.error[100] ?? '#fff'
+            : theme.palette.error[800] ?? theme.palette.text.primary,
+      },
     },
     '&.MuiCallout-info': {
       color:
@@ -268,6 +271,12 @@ const Root = styled('div')(({ theme }) => ({
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.primary[700] ?? theme.palette.primary.dark
           : theme.palette.primary[500] ?? theme.palette.primary.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.primary[100] ?? '#fff'
+            : theme.palette.primary[800] ?? theme.palette.text.primary,
+      },
     },
     '&.MuiCallout-success': {
       color:
@@ -283,6 +292,12 @@ const Root = styled('div')(({ theme }) => ({
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.success[600] ?? theme.palette.success.dark
           : theme.palette.success[500] ?? theme.palette.success.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.success[100] ?? '#fff'
+            : theme.palette.success[900] ?? theme.palette.text.primary,
+      },
     },
     '&.MuiCallout-warning': {
       color:
@@ -298,6 +313,12 @@ const Root = styled('div')(({ theme }) => ({
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.warning[600] ?? theme.palette.warning.dark
           : theme.palette.warning[500] ?? theme.palette.warning.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.warning[100] ?? '#fff'
+            : theme.palette.warning[800] ?? theme.palette.text.primary,
+      },
     },
   },
   '& a, & a code': {

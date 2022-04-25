@@ -3,18 +3,26 @@
 <p class="description">Type of callouts.</p>
 
 :::error
+**Error callout**
+
 ❌ This is an error alert — check it out!
 :::
 
 :::info
+**Info callout**
+
 ℹ️ This is an info alert — check it out!
 :::
 
 :::warning
+**Warning callout**
+
 ⚠️ This is an warning alert — check it out!
 :::
 
 :::success
+**Success callout**
+
 ✅ This is an success alert — check it out!
 :::
 
