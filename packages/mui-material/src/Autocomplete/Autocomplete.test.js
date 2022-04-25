@@ -1318,9 +1318,6 @@ describe('<Autocomplete />', () => {
           'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         !strictModeDoubleLoggingSupressed &&
           'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
       ]);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('a');
