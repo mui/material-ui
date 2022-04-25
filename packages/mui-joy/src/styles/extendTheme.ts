@@ -1,7 +1,6 @@
 import * as CSS from 'csstype';
 import { deepmerge } from '@mui/utils';
 import {
-  CSSObject,
   BreakpointsOptions,
   SpacingOptions,
   Breakpoints,
@@ -13,8 +12,8 @@ import {
 } from '@mui/system';
 import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { Variants } from './types/variants';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
+import { Focus } from './types/focus';
 import { Shadow } from './types/shadow';
 import { Radius } from './types/radius';
 import {
@@ -25,6 +24,7 @@ import {
   LetterSpacing,
   TypographySystem,
 } from './types/typography';
+import { Variants } from './types/variants';
 import { Components } from './components';
 
 type CSSProperties = CSS.Properties<number | string>;
@@ -62,11 +62,6 @@ type ConcatDeep<T> = T extends Record<string | number, infer V>
   : never;
 
 type NormalizeVars<T> = ConcatDeep<Split<T>>;
-
-export interface Focus {
-  selector: string;
-  default: CSSObject;
-}
 
 export interface ColorSystemInput extends Partial3Level<ColorSystem> {}
 
