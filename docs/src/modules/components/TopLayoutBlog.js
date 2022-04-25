@@ -17,7 +17,6 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import ROUTES from 'docs/src/route';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Link from 'docs/src/modules/components/Link';
-import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 
 export const authors = {
   oliviertassinari: {
@@ -193,85 +192,81 @@ function TopLayoutBlog(props) {
 
   return (
     <BrandingProvider>
-      <CodeCopyProvider>
-        <AppHeader />
-        <Head
-          title={`${finalTitle} - MUI`}
-          description={description}
-          largeCard={headers.card === 'true' ? true : undefined}
-          disableAlternateLocale
-          card={
-            headers.card === 'true'
-              ? `https://mui.com/static${router.pathname}/card.png`
-              : undefined
-          }
-        />
-        <div className={classes.root}>
-          <AppContainer component="main" className={classes.container}>
-            <Link
-              href={ROUTES.blog}
-              {...(ROUTES.blog.startsWith('http') && {
-                rel: 'nofollow',
-              })}
-              color="text.secondary"
-              variant="body2"
-              className={classes.back}
-            >
-              <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-              {'Back to blog'}
-            </Link>
-            {headers.title ? (
-              <React.Fragment>
-                <time dateTime={headers.date} className={classes.time}>
-                  {new Intl.DateTimeFormat('en', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  }).format(new Date(headers.date))}
-                </time>
-                <MarkdownElement>
-                  <h1>{headers.title}</h1>
-                </MarkdownElement>
-                <AuthorsContainer>
-                  {headers.authors.map((author) => (
-                    <div key={author} className="author">
-                      <Avatar
-                        sx={{ width: 36, height: 36 }}
-                        alt=""
-                        src={`${authors[author].avatar}?s=${32}`}
-                        srcSet={`${authors[author].avatar}?s=${32 * 2} 2x`}
-                      />
-                      <div>
-                        <Typography variant="body2" fontWeight="500">
-                          {authors[author].name}
-                        </Typography>
-                        <Link
-                          href={`https://github.com/${authors[author].github}`}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          color="text.secondary"
-                          variant="body2"
-                          sx={{ fontWeight: 500 }}
-                        >
-                          @{authors[author].github}
-                        </Link>
-                      </div>
-                    </div>
-                  ))}
-                </AuthorsContainer>
-              </React.Fragment>
-            ) : null}
-            {rendered.map((chunk, index) => {
-              return <MarkdownElement key={index} enableCodeCopy renderedMarkdown={chunk} />;
+      <AppHeader />
+      <Head
+        title={`${finalTitle} - MUI`}
+        description={description}
+        largeCard={headers.card === 'true' ? true : undefined}
+        disableAlternateLocale
+        card={
+          headers.card === 'true' ? `https://mui.com/static${router.pathname}/card.png` : undefined
+        }
+      />
+      <div className={classes.root}>
+        <AppContainer component="main" className={classes.container}>
+          <Link
+            href={ROUTES.blog}
+            {...(ROUTES.blog.startsWith('http') && {
+              rel: 'nofollow',
             })}
-          </AppContainer>
-          <HeroEnd />
-          <Divider />
-          <AppFooter />
-        </div>
-      </CodeCopyProvider>
+            color="text.secondary"
+            variant="body2"
+            className={classes.back}
+          >
+            <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+            {'Back to blog'}
+          </Link>
+          {headers.title ? (
+            <React.Fragment>
+              <time dateTime={headers.date} className={classes.time}>
+                {new Intl.DateTimeFormat('en', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                }).format(new Date(headers.date))}
+              </time>
+              <MarkdownElement>
+                <h1>{headers.title}</h1>
+              </MarkdownElement>
+              <AuthorsContainer>
+                {headers.authors.map((author) => (
+                  <div key={author} className="author">
+                    <Avatar
+                      sx={{ width: 36, height: 36 }}
+                      alt=""
+                      src={`${authors[author].avatar}?s=${32}`}
+                      srcSet={`${authors[author].avatar}?s=${32 * 2} 2x`}
+                    />
+                    <div>
+                      <Typography variant="body2" fontWeight="500">
+                        {authors[author].name}
+                      </Typography>
+                      <Link
+                        href={`https://github.com/${authors[author].github}`}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        color="text.secondary"
+                        variant="body2"
+                        sx={{ fontWeight: 500 }}
+                      >
+                        @{authors[author].github}
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </AuthorsContainer>
+            </React.Fragment>
+          ) : null}
+          {rendered.map((chunk, index) => {
+            return <MarkdownElement key={index} enableCodeCopy renderedMarkdown={chunk} />;
+          })}
+        </AppContainer>
+        <HeroEnd />
+        <Divider />
+        <AppFooter />
+      </div>
     </BrandingProvider>
   );
 }
