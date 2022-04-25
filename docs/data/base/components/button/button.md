@@ -34,6 +34,26 @@ In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` co
 
 {{"demo": "UnstyledButtonCustom.js"}}
 
+## Focus of disabled buttons
+
+Similarly to the native `<button>`, the `ButtonUnstyled` component can't receive focus when it's disabled.
+This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
+The `focusableWhenDisabled` prop lets you change this behavior.  
+When this prop is set, the underlying button does not set the `disabled` prop.
+Instead, `aria-disabled` is used, which makes the button focusable.
+
+It should be used whenever the disabled buttons need to be read by screen readers.  
+MUI Base uses this prop internally in [menu items](/base/react-menu).
+It makes the keyboard navigation to disabled items possible (in compliance with [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
+
+{{"demo": "UnstyledButtonsDisabledFocus.js"}}
+
+It works the same when the root slot is customized.
+In this case, however, the `aria-disabled` attribute is used no matter the state of the `focusableWhenDisabled` prop.
+The ability to receive focus is controlled internally by the `tabindex` attribute.
+
+{{"demo": "UnstyledButtonsDisabledFocusCustom.js"}}
+
 ## useButton hook
 
 ```js

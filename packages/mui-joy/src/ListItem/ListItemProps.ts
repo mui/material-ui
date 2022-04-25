@@ -1,12 +1,22 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
+import { ColorPaletteProp, VariantProp } from '../styles/types';
 import { ListItemClasses } from './listItemClasses';
 
 export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
+export interface ListItemPropsVariantOverrides {}
+
+export interface ListItemPropsColorOverrides {}
+
 export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, ListItemPropsColorOverrides>;
     /**
      * The content of the component.
      */
@@ -33,6 +43,11 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      * @default false
      */
     sticky?: boolean;
+    /**
+     * The variant to use.
+     * @default 'text'
+     */
+    variant?: OverridableStringUnion<VariantProp, ListItemPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

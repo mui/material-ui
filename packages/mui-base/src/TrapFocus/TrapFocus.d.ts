@@ -56,7 +56,7 @@ export interface TrapFocusProps {
  *
  * Demos:
  *
- * - [Trap Focus](https://mui.com/base/react-trap-focus/)
+ * - [Trap focus](https://mui.com/base/react-trap-focus/)
  *
  * API:
  *

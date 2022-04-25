@@ -11,6 +11,7 @@ import {
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
+import ListSubheader from '@mui/material/ListSubheader';
 import InputBase from '@mui/material/InputBase';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -482,6 +483,88 @@ describe('<Select />', () => {
       );
 
       expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
+    });
+
+    describe('when the first child is a ListSubheader', () => {
+      it('first selectable option is focused to use the arrow', () => {
+        const { getAllByRole } = render(
+          <Select defaultValue="" open>
+            <ListSubheader>Category 1</ListSubheader>
+            <MenuItem value={1}>Option 1</MenuItem>
+            <MenuItem value={2}>Option 2</MenuItem>
+            <ListSubheader>Category 2</ListSubheader>
+            <MenuItem value={3}>Option 3</MenuItem>
+            <MenuItem value={4}>Option 4</MenuItem>
+          </Select>,
+        );
+
+        const options = getAllByRole('option');
+        expect(options[1]).to.have.attribute('tabindex', '0');
+
+        act(() => {
+          fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[4], { key: 'Enter' });
+        });
+
+        expect(options[4]).to.have.attribute('aria-selected', 'true');
+      });
+
+      describe('when also the second child is a ListSubheader', () => {
+        it('first selectable option is focused to use the arrow', () => {
+          const { getAllByRole } = render(
+            <Select defaultValue="" open>
+              <ListSubheader>Empty category</ListSubheader>
+              <ListSubheader>Category 1</ListSubheader>
+              <MenuItem value={1}>Option 1</MenuItem>
+              <MenuItem value={2}>Option 2</MenuItem>
+              <ListSubheader>Category 2</ListSubheader>
+              <MenuItem value={3}>Option 3</MenuItem>
+              <MenuItem value={4}>Option 4</MenuItem>
+            </Select>,
+          );
+
+          const options = getAllByRole('option');
+          expect(options[2]).to.have.attribute('tabindex', '0');
+
+          act(() => {
+            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[3], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[5], { key: 'Enter' });
+          });
+
+          expect(options[5]).to.have.attribute('aria-selected', 'true');
+        });
+      });
+    });
+
+    describe('when the first child is a MenuItem disabled', () => {
+      it('first selectable option is focused to use the arrow', () => {
+        const { getAllByRole } = render(
+          <Select defaultValue="" open>
+            <MenuItem value="" disabled>
+              <em>None</em>
+            </MenuItem>
+            <ListSubheader>Category 1</ListSubheader>
+            <MenuItem value={1}>Option 1</MenuItem>
+            <MenuItem value={2}>Option 2</MenuItem>
+            <ListSubheader>Category 2</ListSubheader>
+            <MenuItem value={3}>Option 3</MenuItem>
+            <MenuItem value={4}>Option 4</MenuItem>
+          </Select>,
+        );
+
+        const options = getAllByRole('option');
+        expect(options[2]).to.have.attribute('tabindex', '0');
+
+        act(() => {
+          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[3], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[5], { key: 'Enter' });
+        });
+
+        expect(options[5]).to.have.attribute('aria-selected', 'true');
+      });
     });
 
     it('it will fallback to its content for the accessible name when it has no name', () => {
