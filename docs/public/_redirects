@@ -20,10 +20,9 @@
 /r/issue-template-latest https://codesandbox.io/s/material-ui-issue-latest-s2dsx
 /r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /material-ui/customization/how-to-customize/#adding-new-component-variants
-/r/x-license https://mui.com/store/items/material-ui-pro/
-/r/migration-v4 /material-ui/guides/migration-v4/
+/r/migration-v4 /guides/migration-v4/
 
-/x/license/ https://docs.google.com/document/d/1nkd5JP5wCefo6UwpVi6PnbTaw8DxhstkCZlfHV5ZgfI/edit?usp=sharing 301
+/x/license https://mui.com/store/legal/mui-x-eula/ 301
 
 # Legacy redirection
 # Added in chronological order (the last line is the most recent one)
