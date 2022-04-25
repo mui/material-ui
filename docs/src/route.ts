@@ -49,6 +49,7 @@ const ROUTES = {
   support: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/getting-started/support/#professional-support-premium'
     : '/getting-started/support/#professional-support-premium',
+  privacyPolicy: 'https://mui.com/store/privacy/',
   goldSponsor: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',
