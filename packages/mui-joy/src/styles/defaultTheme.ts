@@ -3,13 +3,13 @@ import {
   createTheme as systemCreateTheme,
   Breakpoints,
   Spacing,
-  CSSObject,
   SxProps as SystemSxProps,
   SystemProps as SystemSystemProps,
   unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
 import colors from '../colors';
 import { ColorSystem, ColorPaletteProp } from './types/colorSystem';
+import { Focus } from './types/focus';
 import { Variants } from './types/variants';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Shadow } from './types/shadow';
@@ -41,11 +41,6 @@ type ConcatDeep<T> = T extends Record<string | number, infer V>
   : never;
 
 type NormalizeVars<T> = ConcatDeep<Split<T>>;
-
-export interface Focus {
-  selector: string;
-  default: CSSObject;
-}
 
 const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   textColor: `var(--joy-palette-${color}-600)`,
