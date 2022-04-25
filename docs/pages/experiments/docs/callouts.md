@@ -28,12 +28,6 @@ export default function App() {
 This is an error alert — check it out!
 :::
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
- 
 :::info
 This is an info alert — check it out!
 :::

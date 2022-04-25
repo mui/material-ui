@@ -242,7 +242,7 @@ const Root = styled('div')(({ theme }) => ({
     '&.MuiCallout-error': {
       color:
         theme.palette.mode === 'dark'
-          ? theme.palette.error[100] ?? '#fff'
+          ? theme.palette.error[50] ?? '#fff'
           : theme.palette.error[900] ?? theme.palette.text.primary,
       backgroundColor:
         theme.palette.mode === 'dark'
@@ -251,64 +251,53 @@ const Root = styled('div')(({ theme }) => ({
           : theme.palette.error[50] ?? theme.palette.error.light,
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
-          ? theme.palette.error[800] ?? theme.palette.error.dark
-          : theme.palette.error[500] ?? theme.palette.error.light,
-      borderLeft: '4px solid',
-      borderTopLeftRadius: '5px',
-      borderBottomLeftRadius: '5px',
-      borderLeftColor:
-        theme.palette.mode === 'dark' // Support Material Design theme
-          ? theme.palette.error[500] ?? theme.palette.error.dark
+          ? theme.palette.error[700] ?? theme.palette.error.dark
           : theme.palette.error[500] ?? theme.palette.error.light,
     },
     '&.MuiCallout-info': {
       color:
         theme.palette.mode === 'dark'
-          ? theme.palette.primary[100] ?? '#fff'
+          ? theme.palette.primary[50] ?? '#fff'
           : theme.palette.primary[900] ?? theme.palette.text.primary,
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.2)
+            alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.3)
           : theme.palette.primary[50] ?? theme.palette.primary.light,
-      borderLeft: '5px solid',
-      borderLeftColor:
-        theme.palette.mode === 'dark'
-          ? // Support Material Design theme
-            theme.palette.primary[500] ?? theme.palette.primary.dark
-          : theme.palette.primary[400] ?? theme.palette.primary.light,
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.primary[700] ?? theme.palette.primary.dark
+          : theme.palette.primary[500] ?? theme.palette.primary.light,
     },
     '&.MuiCallout-success': {
       color:
         theme.palette.mode === 'dark'
-          ? theme.palette.success[100] ?? '#fff'
+          ? theme.palette.success[50] ?? '#fff'
           : theme.palette.success[900] ?? theme.palette.text.primary,
-      // borderColor:
-      //   theme.palette.mode === 'dark'
-      //     ? // Support Material Design theme
-      //       theme.palette.success[500] ?? theme.palette.success.dark
-      //     : theme.palette.success[600] ?? theme.palette.success.light,
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.2)
+            alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.35)
           : theme.palette.success[50] ?? theme.palette.success.light,
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.success[600] ?? theme.palette.success.dark
+          : theme.palette.success[500] ?? theme.palette.success.light,
     },
     '&.MuiCallout-warning': {
       color:
         theme.palette.mode === 'dark'
-          ? theme.palette.warning[100] ?? '#fff'
+          ? theme.palette.warning[50] ?? '#fff'
           : theme.palette.warning[900] ?? theme.palette.text.primary,
-      // borderColor:
-      //   theme.palette.mode === 'dark'
-      //     ? // Support Material Design theme
-      //       theme.palette.warning[500] ?? theme.palette.warning.dark
-      //     : theme.palette.warning[400] ?? theme.palette.warning.light,
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
+            alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.35)
           : theme.palette.warning[50] ?? theme.palette.warning.light,
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.warning[600] ?? theme.palette.warning.dark
+          : theme.palette.warning[500] ?? theme.palette.warning.light,
     },
   },
   '& a, & a code': {
