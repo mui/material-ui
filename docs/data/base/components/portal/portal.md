@@ -15,7 +15,7 @@ It gives you the functionality of `createPortal()` in a convenient component for
 
 > 💡 According to [the React documentation](https://reactjs.org/docs/portals.html), portals are useful when "you need the child element to visually 'break out' of its container."
 
-The `Portal` component is used internally by the [`ModalUnstyled`](/components/modal/) and [`PopperUnstyled`](/components/popper/) components.
+The `Portal` component is used internally by Material UI's [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
 
 ## Basic usage
 
