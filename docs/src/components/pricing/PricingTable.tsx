@@ -18,18 +18,17 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
+    description: 'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
   },
   pro: {
     color: 'blue',
     title: 'Pro',
-    description: 'Best for professional developers building enterprise or data-rich applications.',
+    description: 'Best for developers building data-rich applications with essential features for handling a high volume of data.',
   },
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advanced features and professional support.',
+    description: 'Best for developers building data-rich applications with the most advanced UX use cases.',
   },
 } as const;
 
@@ -95,41 +94,19 @@ export function PlanPrice(props: PlanPriceProps) {
     return (
       <div>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-          <Typography
-            variant="body2"
-            fontWeight="bold"
-            color="error.500"
-            sx={{
-              borderRadius: 0.5,
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
-              textDecoration: 'line-through',
-              p: '4px',
-            }}
-          >
-            $249
-          </Typography>
           <Box sx={{ width: 10 }} />
           <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
-            $186
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            component="div"
-            fontWeight="bold"
-            color="primary.main"
-            sx={{ mb: 1 }}
-          >
-            *
+            $19
           </Typography>
           <Box sx={{ width: 5 }} />
           <Typography variant="body2" color="text.secondary">
-            / developer.
+            / dev / month.
           </Typography>
+          
         </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          <Link href="#early-bird">* Early bird special.</Link>
-          <br />
-          Price capped at 10 developers.
+        
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
+          Billed annually annualy at $228
         </Typography>
       </div>
     );
@@ -137,16 +114,44 @@ export function PlanPrice(props: PlanPriceProps) {
   return (
     <div>
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-        <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
-          $599
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          color="error.500"
+          sx={{
+            borderRadius: 0.5,
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
+            textDecoration: 'line-through',
+            p: '4px',
+          }}
+        >
+          $49
+        </Typography>
+        <Box sx={{ width: 10 }} />
+        <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
+          $37
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          component="div"
+          fontWeight="bold"
+          color="primary.main"
+          sx={{ mb: 1 }}
+        >
+          *
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / developer.
+          / dev / month.
         </Typography>
       </Box>
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-        Price capped at 10 developers per application
+      
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
+      <Typography variant="body2" color="text.secondary">
+            Billed annually annualy at $444
+        </Typography>
+        <Link href="#early-bird">* Early bird special.</Link>
+        <br />
       </Typography>
     </div>
   );
@@ -873,15 +878,28 @@ export default function PricingTable({
               variant="outlined"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 'auto' }}
+              sx={{ py: 1, mt: 'auto', mb:2 }}
             >
               Get started
             </Button>
           </Box>
           <ColumnHeadHighlight>
             <Recommended />
-            <PlanName plan="pro" />
-            <PlanPrice plan="pro" />
+            <Box >
+              <PlanName plan="pro" />
+              <PlanPrice plan="pro" />
+            </Box>
+            {/*<Button
+              component={Link}
+              noLinkStyle
+              href="https://mui.com/store/items/material-ui-premium-upgrade/"
+              variant="outlined"
+              fullWidth
+              endIcon={<KeyboardArrowRightRounded />}
+              sx={{ py: 1, mt: 'auto', mb:1 }}
+            >
+              Upgrade from Pro
+            </Button>*/}
             <Button
               component={Link}
               noLinkStyle
@@ -889,24 +907,31 @@ export default function PricingTable({
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
+              sx={{ py: 1, mt: 3 }}
+            >
+              Buy now
+            </Button>
+            <Typography variant="body2" textAlign="center" color="text.secondary">
+              Flat price at 10 devs / application
+            </Typography>
+          </ColumnHeadHighlight>
+          <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+            <PlanName plan="premium" />
+            <PlanPrice plan="premium" />
+            <Button
+              component={Link}
+              noLinkStyle
+              href="https://mui.com/store/items/material-ui-premium/"
+              variant="contained"
+              fullWidth
+              endIcon={<KeyboardArrowRightRounded />}
               sx={{ py: 1, mt: 'auto' }}
             >
               Buy now
             </Button>
-          </ColumnHeadHighlight>
-          <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-            <Box sx={{ opacity: 0.5 }}>
-              <PlanName plan="premium" />
-              <PlanPrice plan="premium" />
-            </Box>
-            <Button
-              variant="outlined"
-              disabled
-              fullWidth
-              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
-            >
-              In progress!
-            </Button>
+            <Typography variant="body2" textAlign="center" color="text.secondary">
+              Flat price at 10 devs / application
+            </Typography>
           </Box>
         </Box>
       )}
