@@ -127,9 +127,6 @@ export default function createCssVarsProvider(options) {
         : systemBreakpoints,
       getCssVar: createGetCssVar(prefix),
     };
-    // assign runtime mode & colorScheme
-    mergedTheme.palette.mode = mode;
-    mergedTheme.palette.colorScheme = colorScheme;
 
     const styleSheet = {};
 
@@ -149,6 +146,9 @@ export default function createCssVarsProvider(options) {
           ...mergedTheme,
           ...parsedScheme,
         };
+        // assign runtime mode & colorScheme
+        mergedTheme.palette.mode = mode;
+        mergedTheme.palette.colorScheme = resolvedColorScheme;
       }
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
