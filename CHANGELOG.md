@@ -16,7 +16,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - &#8203;<!-- 21 -->[Dialog] Fix `component` prop is not available in `DialogTitleProps` (#32389) @hbjORbj
 - &#8203;<!-- 05 -->[StepContent] Fix TypeScript type of `TransitionComponent` prop (#32314) @ZeeshanTamboli
 
-### `@mui/system@5.6.2`
+### `@mui/system@5.6.3`
 
 - &#8203;<!-- 04 -->[system] Fix prop types when the `fill` CSS property is used (#32355) @valerii15298
 - &#8203;<!-- 03 -->[system] Fix broken behavior when theme value is `zero` (#32365) @ZeeshanTamboli
