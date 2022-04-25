@@ -352,7 +352,11 @@ export default function transformer(file, api, options) {
                 }
               });
               if (classesProp !== null) {
-                hookArg.properties = hookArgPropsMinusClasses;
+                if (hookArgPropsMinusClasses.length === 0) {
+                  hookCall.node.arguments[0] = j.identifier('undefined');
+                } else {
+                  hookArg.properties = hookArgPropsMinusClasses;
+                }
                 const secondArg = j.objectExpression([]);
                 secondArg.properties.push(
                   j.objectProperty(

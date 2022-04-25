@@ -22,8 +22,16 @@ const useStyles = makeStyles<void, 'test2'>()((theme: Theme, _params, classes) =
     color: "lime"
   }
 }));
+export function MergeClassesNoParams({ classes: classesProp } : { classes?: any }) {
+  const { classes } = useStyles(undefined, {
+    props: {
+      classes: classesProp
+    }
+  });
+  return <div className={classes.test}>Test useStyles without params but with classes prop</div>;
+}
 
-function InnerComponent({ classes }) {
+function InnerComponent({ classes } : { classes: any }) {
   return <div className={classes.test2}>Inner Test2</div>;
 }
 export default function ComponentUsingStyles() {

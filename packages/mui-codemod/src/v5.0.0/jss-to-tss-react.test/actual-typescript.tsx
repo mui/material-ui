@@ -23,8 +23,12 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
+export function MergeClassesNoParams({ classes: classesProp } : { classes?: any }) {
+  const classes = useStyles({classes: classesProp});
+  return <div className={classes.test}>Test useStyles without params but with classes prop</div>;
+}
 
-function InnerComponent({ classes }) {
+function InnerComponent({ classes } : { classes: any }) {
   return <div className={classes.test2}>Inner Test2</div>;
 }
 export default function ComponentUsingStyles() {
