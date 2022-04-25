@@ -146,9 +146,11 @@ export default function createCssVarsProvider(options) {
           ...mergedTheme,
           ...parsedScheme,
         };
-        // assign runtime mode & colorScheme
-        mergedTheme.palette.mode = mode;
-        mergedTheme.palette.colorScheme = resolvedColorScheme;
+        if (mergedTheme.palette) {
+          // assign runtime mode & colorScheme
+          mergedTheme.palette.mode = mode;
+          mergedTheme.palette.colorScheme = resolvedColorScheme;
+        }
       }
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
