@@ -2949,14 +2949,14 @@
     lz-string "^1.4.4"
     pretty-format "^27.0.2"
 
-"@testing-library/react@^12.1.4":
-  version "12.1.4"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-12.1.4.tgz#09674b117e550af713db3f4ec4c0942aa8bbf2c0"
-  integrity sha512-jiPKOm7vyUw311Hn/HlNQ9P8/lHNtArAx0PisXyFixDDvfl8DbD6EUdbshK5eqauvBSvzZd19itqQ9j3nferJA==
+"@testing-library/react@^12.1.5":
+  version "12.1.5"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-12.1.5.tgz#bb248f72f02a5ac9d949dea07279095fa577963b"
+  integrity sha512-OfTXCJUFgjd/digLUuPxa0+/3ZxsQmE7ub9kcbW/wi96Bh3o/p5vrETcBGfP17NWPGqeYYl5LTRpwyGoMC4ysg==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^8.0.0"
-    "@types/react-dom" "*"
+    "@types/react-dom" "<18.0.0"
 
 "@theme-ui/color-modes@0.14.2":
   version "0.14.2"
@@ -3394,7 +3394,7 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-dom@*", "@types/react-dom@^17.0.15":
+"@types/react-dom@<18.0.0", "@types/react-dom@^17.0.15":
   version "17.0.15"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.15.tgz#f2c8efde11521a4b7991e076cb9c70ba3bb0d156"
   integrity sha512-Tr9VU9DvNoHDWlmecmcsE5ZZiUkYx+nKBzum4Oxe1K0yJVyBlfbq7H3eXjxXqJczBKqPGq3EgfTru4MgKb9+Yw==
