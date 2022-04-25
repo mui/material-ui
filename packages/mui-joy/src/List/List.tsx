@@ -7,8 +7,9 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
-import { useNestedList } from './NestedListContext';
+import NestedListContext from './NestedListContext';
 import RowListContext from './RowListContext';
+import ComponentListContext from './ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListProps & { nested: boolean }) => {
   const { size, nested, row } = ownerState;
@@ -105,7 +106,7 @@ const ListRoot = styled('ul', {
 );
 
 const List = React.forwardRef(function List(inProps, ref) {
-  const nested = useNestedList();
+  const nested = React.useContext(NestedListContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'MuiList',
@@ -125,15 +126,17 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   return (
     <RowListContext.Provider value={row}>
-      <ListRoot
-        ref={ref}
-        as={component}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        {...other}
-      >
-        {children}
-      </ListRoot>
+      <ComponentListContext.Provider value={typeof component === 'string' ? component : undefined}>
+        <ListRoot
+          ref={ref}
+          as={component}
+          className={clsx(classes.root, className)}
+          ownerState={ownerState}
+          {...other}
+        >
+          {children}
+        </ListRoot>
+      </ComponentListContext.Provider>
     </RowListContext.Provider>
   );
 }) as OverridableComponent<ListTypeMap>;
@@ -147,6 +150,10 @@ List.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -166,6 +173,14 @@ List.propTypes /* remove-proptypes */ = {
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
   ]),
 } as any;
 
