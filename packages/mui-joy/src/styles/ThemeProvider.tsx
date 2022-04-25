@@ -1,17 +1,49 @@
 import * as React from 'react';
+import { deepmerge } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
-import extendTheme, { Theme, ThemeInput } from './extendTheme';
+import extendTheme, {
+  Theme,
+  ThemeInput,
+  ColorSystemInput,
+  RuntimeColorSystem,
+} from './extendTheme';
 
-const getThemeWithVars = (themeInput?: ThemeInput): Theme => {
-  const { colorSchemes, breakpoints, spacing, getCssVar, ...scales } = extendTheme(themeInput);
-  const defaultTheme = {
-    ...scales,
-    ...colorSchemes.light,
+const getThemeWithVars = (
+  themeInput?: Omit<ThemeInput, 'colorSchemes'> & ColorSystemInput,
+): Theme => {
+  const {
     colorSchemes,
     breakpoints,
     spacing,
     getCssVar,
-    vars: { ...scales, ...colorSchemes.light },
+    palette: runtimePalette,
+    ...scales
+  } = extendTheme(themeInput);
+  const colorSchemePalette = deepmerge(
+    colorSchemes[runtimePalette?.colorScheme || 'light'].palette,
+    runtimePalette,
+  );
+  const {
+    mode = 'light',
+    colorScheme = 'light',
+    ...palette
+  } = colorSchemePalette as RuntimeColorSystem['palette'];
+
+  const defaultTheme = {
+    ...scales,
+    colorSchemes: {
+      ...colorSchemes,
+      [colorScheme]: palette,
+    },
+    palette: {
+      ...palette,
+      mode,
+      colorScheme,
+    },
+    breakpoints,
+    spacing,
+    getCssVar,
+    vars: { ...scales, palette },
   };
   return defaultTheme;
 };

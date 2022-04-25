@@ -68,6 +68,8 @@ export interface Focus {
   default: CSSObject;
 }
 
+export interface ColorSystemInput extends Partial3Level<ColorSystem> {}
+
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
 export interface ThemeInput extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
@@ -76,9 +78,7 @@ export interface ThemeInput extends Partial2Level<ThemeScales> {
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
-  colorSchemes?: Partial<
-    Record<DefaultColorScheme | ExtendedColorScheme, Partial3Level<ColorSystem>>
-  >;
+  colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemInput>>;
 }
 
 export interface ThemeScales {
@@ -97,7 +97,14 @@ export type ThemeVar = NormalizeVars<Vars>;
 
 export const createGetCssVar = (prefix = 'joy') => systemCreateGetCssVar<ThemeVar>(prefix);
 
-export interface Theme extends ThemeScales, ColorSystem {
+export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
+  palette: ColorSystem['palette'] & {
+    mode: 'light' | 'dark';
+    colorScheme: DefaultColorScheme | ExtendedColorScheme;
+  };
+}
+
+export interface Theme extends ThemeScales, RuntimeColorSystem {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
   focus: Focus;
   typography: TypographySystem;

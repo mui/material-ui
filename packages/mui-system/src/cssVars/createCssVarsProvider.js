@@ -127,6 +127,9 @@ export default function createCssVarsProvider(options) {
         : systemBreakpoints,
       getCssVar: createGetCssVar(prefix),
     };
+    // assign runtime mode & colorScheme
+    mergedTheme.palette.mode = mode;
+    mergedTheme.palette.colorScheme = colorScheme;
 
     const styleSheet = {};
 
