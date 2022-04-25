@@ -102,19 +102,12 @@ export const CodeCopyProvider = ({ children }: CodeCopyProviderProps) => {
       if (!copyBtn) {
         return;
       }
-      copyBtn.click();
-      if (typeof window !== 'undefined' && 'ga' in window) {
-        // @ts-ignore
-        window.ga('send', {
-          hitType: 'event',
-          eventCategory: copyBtn.getAttribute('data-ga-event-category') || 'code',
-          eventAction:
-            // the button's `data-ga-event-action` usually is `copy-click`
-            copyBtn.getAttribute('data-ga-event-action')?.replace('click', 'keyboard') ||
-            'copy-keyboard',
-          eventLabel: copyBtn.getAttribute('data-ga-event-label'),
-        });
-      }
+      const initialEventAction = copyBtn.getAttribute('data-ga-event-action');
+      // update the 'data-ga-event-action' on the button to track keyboard interaction
+      copyBtn.dataset.gaEventAction =
+        initialEventAction?.replace('click', 'keyboard') || 'copy-keyboard';
+      copyBtn.click(); // let the GA setup in GoogleAnalytics.js do the job
+      copyBtn.dataset.gaEventAction = initialEventAction!; // reset the 'data-ga-event-action' back to initial
     });
   }, []);
   return (

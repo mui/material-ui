@@ -8,7 +8,7 @@ import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   const {
-    analytics,
+    copyButtonProps,
     code,
     language,
     component: Component = MarkdownElement,
@@ -44,7 +44,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
         </pre>
         {enableCodeCopy && (
           <button
-            {...analytics}
+            {...copyButtonProps}
             aria-label="Copy the code"
             type="button"
             className="MuiCode-copy"
@@ -62,9 +62,9 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
 });
 
 HighlightedCode.propTypes = {
-  analytics: PropTypes.object,
   code: PropTypes.string.isRequired,
   component: PropTypes.elementType,
+  copyButtonProps: PropTypes.object,
   enableCodeCopy: PropTypes.bool,
   language: PropTypes.string.isRequired,
 };
