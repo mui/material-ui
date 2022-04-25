@@ -93,7 +93,7 @@
     "@types/format-util": "^1.0.2",
     "@types/fs-extra": "^9.0.13",
     "@types/jsdom": "^16.2.14",
-    "@types/lodash": "^4.14.181",
+    "@types/lodash": "^4.14.182",
     "@types/mocha": "^9.1.1",
     "@types/prettier": "^2.6.0",
     "@types/react": "^17.0.44",
