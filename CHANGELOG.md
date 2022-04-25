@@ -11,7 +11,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - 🛠 Fixed TypeScript issue when the `fill` CSS property is used in the system (#32355) @valerii15298
 - And more 🐛 bug fixes and 📚 improvements.
 
-### `@mui/material@5.6.2`
+### `@mui/material@5.6.3`
 
 - &#8203;<!-- 21 -->[Dialog] Fix `component` prop is not available in `DialogTitleProps` (#32389) @hbjORbj
 - &#8203;<!-- 05 -->[StepContent] Fix TypeScript type of `TransitionComponent` prop (#32314) @ZeeshanTamboli
