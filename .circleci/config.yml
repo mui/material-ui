@@ -99,7 +99,7 @@ commands:
             - restore_cache:
                 name: Restore playwright cache
                 keys:
-                  - v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+                  - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
       - run:
           name: Install js dependencies
           command: yarn install --verbose
@@ -117,7 +117,7 @@ commands:
           steps:
             - save_cache:
                 name: Save playwright cache
-                key: v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+                key: v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
                 paths:
                   # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
                   # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
