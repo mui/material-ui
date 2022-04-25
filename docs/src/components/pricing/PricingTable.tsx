@@ -104,7 +104,6 @@ export function PlanPrice(props: PlanPriceProps) {
           </Typography>
           
         </Box>
-        
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
           Billed annually annualy at $228
         </Typography>
@@ -145,7 +144,6 @@ export function PlanPrice(props: PlanPriceProps) {
           / dev / month.
         </Typography>
       </Box>
-      
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
       <Typography variant="body2" color="text.secondary">
             Billed annually annualy at $444
@@ -889,17 +887,6 @@ export default function PricingTable({
               <PlanName plan="pro" />
               <PlanPrice plan="pro" />
             </Box>
-            {/*<Button
-              component={Link}
-              noLinkStyle
-              href="https://mui.com/store/items/material-ui-premium-upgrade/"
-              variant="outlined"
-              fullWidth
-              endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 'auto', mb:1 }}
-            >
-              Upgrade from Pro
-            </Button>*/}
             <Button
               component={Link}
               noLinkStyle
