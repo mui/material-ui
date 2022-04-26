@@ -25,10 +25,11 @@ At its core, the `NoSsr` component's purpose is to **defer rendering** from the 
 
 {{"demo": "SimpleNoSsr.js"}}
 
-## Frame deferring
+## Delay client-side rendering
 
-You can also use `NoSsr` to defer rendering within the client itself.
-You can **wait a screen frame** with the `defer` property to render the children.
+You can also use `NoSsr` to delay the rendering of specific components on the client side—for example, to let the rest of the application load before an especially complex or data-heavy component.
+
+Use the `defer` prop to prioritize rendering the rest of the app outside of what is nested within `NoSsr`.
 
 > **Note**: when using `NoSsr` in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one.
 
