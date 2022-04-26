@@ -1,42 +1,47 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@mui/styles';
-import { createTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import { AutoSizer, Column, Table } from 'react-virtualized';
 
-const styles = (theme) => ({
-  flexContainer: {
+const classes = {
+  flexContainer: 'ReactVirtualizedDemo-flexContainer',
+  tableRow: 'ReactVirtualizedDemo-tableRow',
+  tableRowHover: 'ReactVirtualizedDemo-tableRowHover',
+  tableCell: 'ReactVirtualizedDemo-tableCell',
+  noClick: 'ReactVirtualizedDemo-noClick',
+};
+
+const styles = ({ theme }) => ({
+  // temporary right-to-left patch, waiting for
+  // https://github.com/bvaughn/react-virtualized/issues/454
+  '& .ReactVirtualized__Table__headerRow': {
+    ...(theme.direction === 'rtl' && {
+      paddingLeft: '0 !important',
+    }),
+    ...(theme.direction !== 'rtl' && {
+      paddingRight: undefined,
+    }),
+  },
+  [`& .${classes.flexContainer}`]: {
     display: 'flex',
     alignItems: 'center',
     boxSizing: 'border-box',
   },
-  table: {
-    // temporary right-to-left patch, waiting for
-    // https://github.com/bvaughn/react-virtualized/issues/454
-    '& .ReactVirtualized__Table__headerRow': {
-      ...(theme.direction === 'rtl' && {
-        paddingLeft: '0 !important',
-      }),
-      ...(theme.direction !== 'rtl' && {
-        paddingRight: undefined,
-      }),
-    },
-  },
-  tableRow: {
+  [`& .${classes.tableRow}`]: {
     cursor: 'pointer',
   },
-  tableRowHover: {
+  [`& .${classes.tableRowHover}`]: {
     '&:hover': {
       backgroundColor: theme.palette.grey[200],
     },
   },
-  tableCell: {
+  [`& .${classes.tableCell}`]: {
     flex: 1,
   },
-  noClick: {
+  [`& .${classes.noClick}`]: {
     cursor: 'initial',
   },
 });
@@ -48,7 +53,7 @@ class MuiVirtualizedTable extends React.PureComponent {
   };
 
   getRowClassName = ({ index }) => {
-    const { classes, onRowClick } = this.props;
+    const { onRowClick } = this.props;
 
     return clsx(classes.tableRow, classes.flexContainer, {
       [classes.tableRowHover]: index !== -1 && onRowClick != null,
@@ -56,7 +61,7 @@ class MuiVirtualizedTable extends React.PureComponent {
   };
 
   cellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, classes, rowHeight, onRowClick } = this.props;
+    const { columns, rowHeight, onRowClick } = this.props;
     return (
       <TableCell
         component="div"
@@ -77,7 +82,7 @@ class MuiVirtualizedTable extends React.PureComponent {
   };
 
   headerRenderer = ({ label, columnIndex }) => {
-    const { headerHeight, columns, classes } = this.props;
+    const { headerHeight, columns } = this.props;
 
     return (
       <TableCell
@@ -93,7 +98,7 @@ class MuiVirtualizedTable extends React.PureComponent {
   };
 
   render() {
-    const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
+    const { columns, rowHeight, headerHeight, ...tableProps } = this.props;
     return (
       <AutoSizer>
         {({ height, width }) => (
@@ -105,7 +110,6 @@ class MuiVirtualizedTable extends React.PureComponent {
               direction: 'inherit',
             }}
             headerHeight={headerHeight}
-            className={classes.table}
             {...tableProps}
             rowClassName={this.getRowClassName}
           >
@@ -134,7 +138,6 @@ class MuiVirtualizedTable extends React.PureComponent {
 }
 
 MuiVirtualizedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       dataKey: PropTypes.string.isRequired,
@@ -148,8 +151,7 @@ MuiVirtualizedTable.propTypes = {
   rowHeight: PropTypes.number,
 };
 
-const defaultTheme = createTheme();
-const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
+const VirtualizedTable = styled(MuiVirtualizedTable)(styles);
 
 // ---
 

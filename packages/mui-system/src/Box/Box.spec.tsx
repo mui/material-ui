@@ -86,3 +86,21 @@ function CssVariablesWithNestedSelectors() {
     }}
   />;
 }
+
+// The fill prop conflicts with the Array's fill functiom.
+// This test ensures that the callback value inside the sx prop
+// can be used without conflicting with the Array's fill function
+function TestFillPropCallback() {
+  <Box
+    sx={{
+      fill: (theme) => theme.palette.primary.main,
+    }}
+  />;
+  <Box
+    sx={[
+      {
+        fill: (theme) => theme.palette.primary.main,
+      },
+    ]}
+  />;
+}

@@ -63,7 +63,7 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
  * Demos:
  *
  * - [Icons](https://mui.com/material-ui/icons/)
- * - [Material Icons](https://mui.com/material-ui/material-icons/)
+ * - [Material icons](https://mui.com/material-ui/material-icons/)
  *
  * API:
  *

@@ -1,4 +1,4 @@
-# Style Library Interoperability
+# Style library interoperability
 
 <p class="description">While you can use the emotion based styling solution provided by MUI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 

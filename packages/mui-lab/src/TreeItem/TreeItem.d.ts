@@ -78,7 +78,7 @@ export interface TreeItemProps
  *
  * Demos:
  *
- * - [Tree View](https://mui.com/material-ui/react-tree-view/)
+ * - [Tree view](https://mui.com/material-ui/react-tree-view/)
  *
  * API:
  *

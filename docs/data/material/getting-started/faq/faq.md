@@ -107,7 +107,7 @@ But if you are using the default styled engine (`@mui/styled-engine`) the emotio
 
 Perhaps, however, you're adding some MUI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
-[Style Library Interoperability](/material-ui/guides/interoperability/) section,
+[Style library interoperability](/material-ui/guides/interoperability/) section,
 where we show how simple it is to restyle MUI components with alternative style libraries.
 
 ## When should I use inline-style vs. CSS?
