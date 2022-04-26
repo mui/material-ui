@@ -168,7 +168,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     <ListContext.Provider value={childContext}>
       <ListItemButtonRoot
         ref={handleRef}
-        component={other.href && component === 'div' ? 'a' : component}
+        component={(other.href || other.to) && component === 'div' ? 'a' : component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
         {...other}
