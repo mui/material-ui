@@ -120,6 +120,7 @@ export default function AppFooter() {
               </Box>
             </Box>
             <Link href={ROUTES.support}>Support</Link>
+            <Link href={ROUTES.privacyPolicy}>Privacy policy</Link>
             <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
               Contact us
             </Link>

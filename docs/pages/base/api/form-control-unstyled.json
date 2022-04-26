@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
+    "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
     "className": { "type": { "name": "string" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
@@ -9,7 +9,6 @@
     },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
-    "focused": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } }
   },
   "name": "FormControlUnstyled",

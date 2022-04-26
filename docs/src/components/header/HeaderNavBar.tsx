@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
@@ -113,6 +114,8 @@ function getNextIndex(eventKey: KeyboardEvent['key'], currentIndex: number, leng
 }
 
 export default function HeaderNavBar() {
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const [subMenuOpen, setSubMenuOpen] = React.useState(false);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
@@ -305,7 +308,12 @@ export default function HeaderNavBar() {
           </li>
         )}
         <li role="none">
-          <Link role="menuitem" href={ROUTES.documentation}>
+          <Link
+            role="menuitem"
+            href={
+              asPathWithoutLang.startsWith('/x') ? ROUTES.advancedComponents : ROUTES.documentation
+            }
+          >
             Docs
           </Link>
         </li>

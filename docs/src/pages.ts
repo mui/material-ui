@@ -10,6 +10,11 @@ export interface MuiPage {
    */
   legacy?: boolean;
   /**
+   * Indicates if the pages are only available in some plan.
+   * @default 'community'
+   */
+  plan?: 'community' | 'pro' | 'premium';
+  /**
    * In case the children have pathnames out of pathname value, use this field to scope other pathnames
    */
   scopePathnames?: string[];

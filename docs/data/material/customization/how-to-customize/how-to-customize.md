@@ -10,9 +10,9 @@ components: GlobalStyles
 Material UI provides several different ways to customize a component's styles. Your specific context will determine which one is ideal. From narrowest to broadest use case, here are the options:
 
 1. [One-off customization](#1-one-off-customization)
-1. [Reusable style overrides](#2-reusable-style-overrides)
-1. [Global theme variation](#4-global-theme-variation)
-1. [Global CSS override](#5-global-css-override)
+1. [Reusable component](#2-reusable-component)
+1. [Global theme variation](#3-global-theme-overrides)
+1. [Global CSS override](#4-global-css-override)
 
 ## 1. One-off customization
 

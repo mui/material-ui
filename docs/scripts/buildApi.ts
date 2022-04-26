@@ -9,6 +9,7 @@ import {
   ComponentInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
+  getSystemComponentInfo,
   extractApiPage,
 } from 'docs/scripts/buildApiUtils';
 import buildComponentApi, {
@@ -137,6 +138,16 @@ const SETTINGS: Settings[] = [
     },
     getApiPages: () => findApiPages('docs/pages/base/api'),
     getComponentInfo: getBaseComponentInfo,
+  },
+  {
+    input: {
+      libDirectory: [path.join(process.cwd(), 'packages/mui-system/src')],
+    },
+    output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
+    },
+    getApiPages: () => findApiPages('docs/pages/system/api'),
+    getComponentInfo: getSystemComponentInfo,
   },
 ];
 
