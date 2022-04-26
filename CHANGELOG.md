@@ -1,5 +1,64 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.6.3
+
+<!-- generated comparing v5.6.2..master -->
+
+_Apr 25, 2022_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 Fixed TypeScript issue when the `fill` CSS property is used in the system (#32355) @valerii15298
+- And more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.6.3`
+
+- [BottomNavigation] Action icon `padding` fix (#32030) @abhinav-22-tech
+- [Dialog] Fix `component` prop is not available in `DialogTitleProps` (#32389) @hbjORbj
+- [StepContent] Fix TypeScript type of `TransitionComponent` prop (#32314) @ZeeshanTamboli
+
+### `@mui/system@5.6.3`
+
+- [system] Fix prop types when the `fill` CSS property is used (#32355) @valerii15298
+- [system] Fix broken behavior when theme value is `zero` (#32365) @ZeeshanTamboli
+
+### `@mui/base@5.0.0-alpha.78`
+
+- [InputUnstyled] `multiline` property should not log DOM warnings for `maxRows` and `minRows` props (#32401) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.25`
+
+- [Joy] Improve theme focus to be more flexible (#32405) @siriwatknp
+- [Joy] Add `Radio`, `RadioGroup` components (#32279) @siriwatknp
+- [Joy] Add `Chip` component (#31983) @hbjORbj
+- [Joy] Improve controls (#32267) @siriwatknp
+- [Joy] Set up docs (#32370) @siriwatknp
+
+### Docs
+
+- [docs] Enable row reordering on the pricing page (#31875) @DanailH
+- [blog] A few improvements on date picker change (#32325) @oliviertassinari
+- [docs] Emphasize how to avoid failing tests when migrating from v4 to v5 (#32159) @dwjohnston
+- [docs] Revise the related projects page (#32180) @danilo-leal
+- [docs] Cleanup remaining @mui/styles usages (#32313) @mnajdova
+- [docs] Fix sidenav mobile color (#32324) @oliviertassinari
+- [docs] Base TrapFocus style revisions and final review (#32364) @samuelsycamore
+- [docs] Update the README.md to better cover the different products (#32360) @samuelsycamore
+- [docs] Improve the propTypes generation and API demos' links (#32295) @mnajdova
+- [docs] Add ability to display a plan icon next to a page link in nav bar (#32393) @flaviendelangle
+- [docs] Change label on `FormControlLabelPlacement` (#32322) @ainatenhi
+- [website] Update Diamond sponsors list (#32433) @oliviertassinari
+- [website] Add privacy policy link to website's footer (#32080) @danilo-leal
+- [website] Remove the designer role (#32384) @danilo-leal
+
+### Core
+
+- [core] `yarn prettier` write @oliviertassinari
+- [core] Fix changelog warning message (#32240) @praveen001
+- [core] Update the proptypes scripts to support components in @mui/system (#32456) @mnajdova
+
+All contributors of this release in alphabetical order: @abhinav-22-tech, @ainatenhi, @DanailH, @danilo-leal, @dwjohnston, @flaviendelangle, @hbjORbj, @mnajdova, @oliviertassinari, @praveen001, @samuelsycamore, @siriwatknp, @valerii15298, @ZeeshanTamboli
+
 ## 5.6.2
 
 <!-- generated comparing v5.6.1..master -->

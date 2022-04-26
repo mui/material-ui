@@ -19,7 +19,7 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
 ```
 
 In the interactive demo below, try changing the code and see how it affects the output. (Hint: change `variant` to `"outlined"` and `color` to `"secondary"`. For more options, see the [`Button` component page](/material-ui/react-button/).)

@@ -35,7 +35,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     };
     /**
      * The size of the component.
-     * It accepts theme values between 'xs' and 'xl'.
+     * It accepts theme values between 'sm' and 'lg'.
      * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', AvatarPropsSizeOverrides>;
