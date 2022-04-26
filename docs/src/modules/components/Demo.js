@@ -254,7 +254,6 @@ export default function Demo(props) {
           id={demoSourceId}
           code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
           language={demoData.sourceLanguage}
-          enableCodeCopy
           copyButtonProps={{
             'data-ga-event-category': 'demo',
             'data-ga-event-label': demoOptions.demo,

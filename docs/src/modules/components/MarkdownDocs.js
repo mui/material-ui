@@ -37,9 +37,7 @@ function MarkdownDocs(props) {
     >
       {rendered.map((renderedMarkdownOrDemo, index) => {
         if (typeof renderedMarkdownOrDemo === 'string') {
-          return (
-            <MarkdownElement key={index} enableCodeCopy renderedMarkdown={renderedMarkdownOrDemo} />
-          );
+          return <MarkdownElement key={index} renderedMarkdown={renderedMarkdownOrDemo} />;
         }
 
         if (renderedMarkdownOrDemo.component) {

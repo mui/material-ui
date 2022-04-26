@@ -12,7 +12,6 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     code,
     language,
     component: Component = MarkdownElement,
-    enableCodeCopy,
     ...other
   } = props;
   const renderedCode = React.useMemo(() => {
@@ -33,7 +32,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   }, [copied]);
 
   return (
-    <Component ref={ref} enableCodeCopy={enableCodeCopy} {...other}>
+    <Component ref={ref} {...other}>
       <div className="MuiCode-root" {...handlers}>
         <pre>
           <code
@@ -42,20 +41,19 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
             dangerouslySetInnerHTML={{ __html: renderedCode }}
           />
         </pre>
-        {enableCodeCopy && (
-          <button
-            {...copyButtonProps}
-            aria-label="Copy the code"
-            type="button"
-            className="MuiCode-copy"
-            onClick={async () => {
-              setCopied(true);
-              await copy(code);
-            }}
-          >
-            {copied ? 'Copied' : 'Copy'}
-          </button>
-        )}
+        <button
+          {...copyButtonProps}
+          aria-label="Copy the code"
+          type="button"
+          className="MuiCode-copy"
+          onClick={async () => {
+            setCopied(true);
+            await copy(code);
+          }}
+        >
+          {copied ? 'Copied' : 'Copy'}
+          <span className="MuiCode-copyKeypress">or ⌘C</span>
+        </button>
       </div>
     </Component>
   );
@@ -65,7 +63,6 @@ HighlightedCode.propTypes = {
   code: PropTypes.string.isRequired,
   component: PropTypes.elementType,
   copyButtonProps: PropTypes.object,
-  enableCodeCopy: PropTypes.bool,
   language: PropTypes.string.isRequired,
 };
 
