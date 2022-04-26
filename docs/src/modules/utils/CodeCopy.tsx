@@ -58,20 +58,33 @@ const InitCodeCopy = () => {
         });
         elm.addEventListener('mouseleave', () => {
           if (rootNode.current === elm) {
+            (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
+            rootNode.current = null;
+          }
+        });
+        elm.addEventListener('focusin', () => {
+          // use `focusin` because it bubbles from the copy button
+          rootNode.current = elm;
+        });
+        elm.addEventListener('focusout', () => {
+          // use `focusout` because it bubbles from the copy button
+          if (rootNode.current === elm) {
             rootNode.current = null;
           }
         });
         const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
         if (btn) {
-          btn.textContent?.replace('$key', key);
+          const keyNode = btn.childNodes[1]?.childNodes[1];
+          keyNode.textContent = keyNode?.textContent?.replace('$key', key) || null;
           btn.addEventListener('click', async function handleClick(event) {
             const trigger = event.currentTarget as HTMLButtonElement;
             const pre = (event.currentTarget as Element)?.previousElementSibling as Element;
-            trigger.textContent?.replace('Copy', 'Copied');
+            const textNode = trigger.childNodes[0];
+            textNode.nodeValue = textNode.textContent?.replace('Copy', 'Copied') || null;
             trigger.dataset.copied = 'true';
             setTimeout(() => {
               if (trigger) {
-                trigger.textContent?.replace('Copied', 'Copy');
+                textNode.nodeValue = textNode.textContent?.replace('Copied', 'Copy') || null;
                 delete trigger.dataset.copied;
               }
             }, 2000);
