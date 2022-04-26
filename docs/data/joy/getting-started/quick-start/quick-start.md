@@ -15,7 +15,7 @@ npm install @mui/joy @emotion/react @emotion/styled
 npm start
 ```
 
-### Yarn
+### yarn
 
 ```sh
 yarn create react-app spark-joy
@@ -26,7 +26,7 @@ yarn start
 
 ## 2. Set up the `CssVarsProvider`
 
-Open `src/App.js` and replace it with the code snippet below. You should see the text `Hello from Joy` being rendered on your browser.
+Go to your `App.js` file and replace it with the code snippet below. You should see the text `Hello from Joy` being rendered on your browser.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -40,7 +40,7 @@ export default App;
 
 ## 3. Render your first component
 
-Every Joy component needs to render under the `CssVarProvider` element. Let's start off with a button component.
+To render any Joy component, make sure you place them inside the `CssVarProvider` element. Let's start off with a button.
 
 ```diff
 import { CssVarsProvider } from '@mui/joy/styles';

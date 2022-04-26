@@ -1,6 +1,6 @@
 # Tutorial
 
-<p class="description">We'll learn how to create a login page using Joy components.</p>
+<p class="description">Quickly learn how to create a login UI using Joy components.</p>
 
 ## Topics covered
 
@@ -16,7 +16,7 @@
 
 ## Prerequisites
 
-- A project which has Joy UI installed (follow the [quick start](/joy-ui/getting-started/quick-start/) if you don't have one).
+- An app that has Joy UI installed. Follow the [quick start](/joy-ui/getting-started/quick-start/) to learn how to quickly install it.
 
 ## Building the login page
 
@@ -24,7 +24,7 @@
 
 To create the structure for our login page layout, we'll use the `Sheet` component, which is simply an HTML div that supports the global variant feature.
 
-Open `src/App.js`, and use this snippet to render a sheet on the screen.
+Open your `App.js` file and use this snippet to render a sheet,
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -69,7 +69,8 @@ Every Joy component accepts the `sx` prop, which allows a shorthand syntax for w
 </Sheet>
 ```
 
-Don't worry if you're confused about the `sx` prop's syntax at this moment. You can learn more about it and get used to the shorthand CSS props after finishing this tutorial.
+Don't worry if you're confused about the `sx` prop's syntax at this moment. 
+As you use it with more frequency, you'll get the hang of it. Check the [MUI System documentation](/system/the-sx-prop/) to learn the foundation for it.
 
 ### 3. Using `Typography` to create a welcome text
 
@@ -229,5 +230,5 @@ Congratulations 🎉! You have seamlessly built a simple yet good looking UI!
 ## Where to go from here?
 
 - 💎 Learn about Joy's main features
-- 💅 Learn more about customization
+- 💅 Learn about how to customize Joy components
 - 📖 Learn about Joy's guiding principles and core concepts.
