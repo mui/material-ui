@@ -22,6 +22,15 @@ export const useCodeCopy = () => {
     },
     onMouseLeave: (event: React.MouseEvent) => {
       if (rootNode.current === event.currentTarget) {
+        (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
+        rootNode.current = null;
+      }
+    },
+    onFocus: (event: React.MouseEvent) => {
+      rootNode.current = event.currentTarget as HTMLDivElement;
+    },
+    onBlur: (event: React.FocusEvent) => {
+      if (rootNode.current === event.currentTarget) {
         rootNode.current = null;
       }
     },
@@ -31,6 +40,13 @@ export const useCodeCopy = () => {
 const InitCodeCopy = () => {
   const rootNode = React.useContext(CodeBlockContext);
   React.useEffect(() => {
+    let key = 'Ctrl';
+    if (typeof window !== 'undefined') {
+      const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      if (macOS) {
+        key = '⌘';
+      }
+    }
     const codeRoots = document.getElementsByClassName(
       'MuiCode-root',
     ) as HTMLCollectionOf<HTMLDivElement>;
@@ -47,14 +63,15 @@ const InitCodeCopy = () => {
         });
         const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
         if (btn) {
+          btn.textContent?.replace('$key', key);
           btn.addEventListener('click', async function handleClick(event) {
             const trigger = event.currentTarget as HTMLButtonElement;
             const pre = (event.currentTarget as Element)?.previousElementSibling as Element;
-            trigger.textContent = 'Copied!';
+            trigger.textContent?.replace('Copy', 'Copied');
             trigger.dataset.copied = 'true';
             setTimeout(() => {
               if (trigger) {
-                trigger.textContent = 'Copy';
+                trigger.textContent?.replace('Copied', 'Copy');
                 delete trigger.dataset.copied;
               }
             }, 2000);

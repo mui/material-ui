@@ -18,7 +18,16 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     return prism(code.trim(), language);
   }, [code, language]);
   const [copied, setCopied] = React.useState(false);
+  const [key, setKey] = React.useState('Ctrl');
   const handlers = useCodeCopy();
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      if (macOS) {
+        setKey('⌘');
+      }
+    }
+  }, []);
   React.useEffect(() => {
     if (copied) {
       const timeout = setTimeout(() => {
@@ -52,7 +61,9 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
           }}
         >
           {copied ? 'Copied' : 'Copy'}
-          <span className="MuiCode-copyKeypress">or ⌘C</span>
+          <span className="MuiCode-copyKeypress">
+            <span>or</span> {key} + C
+          </span>
         </button>
       </div>
     </Component>

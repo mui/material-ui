@@ -288,7 +288,7 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
   '& .MuiCode-copy': {
-    display: 'none',
+    minWidth: 64,
     opacity: 0,
     backgroundColor: alpha(blueDark[600], 0.5),
     cursor: 'pointer',
@@ -308,6 +308,9 @@ const Root = styled('div')(({ theme }) => ({
       color: '#fff',
       backgroundColor: alpha(blueDark[600], 0.7),
       borderColor: blueDark[500],
+      '& .MuiCode-copyKeypress': {
+        opacity: 1,
+      },
     },
     '&[data-copied]': {
       // style of the button when it is in copied state.
@@ -321,13 +324,25 @@ const Root = styled('div')(({ theme }) => ({
       outlineColor: blueDark[500],
     },
   },
-  '&.enable-codeCopy .MuiCode-copy': {
-    display: 'initial',
+  '& .MuiCode-copyKeypress': {
+    pointerEvents: 'none',
+    userSelect: 'none',
+    opacity: 0,
+    position: 'absolute',
+    left: '50%',
+    top: '100%',
+    minWidth: '100%',
+    marginTop: theme.spacing(0.5),
+    whiteSpace: 'nowrap',
+    transform: 'translateX(-50%)',
+    '& > span': {
+      opacity: 0.72,
+    },
   },
 }));
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
-  const { className, renderedMarkdown, enableCodeCopy, ...other } = props;
+  const { className, renderedMarkdown, ...other } = props;
   const more = {};
 
   if (typeof renderedMarkdown === 'string') {
@@ -336,19 +351,11 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
     more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
   }
 
-  return (
-    <Root
-      className={clsx('markdown-body', enableCodeCopy && 'enable-codeCopy', className)}
-      {...more}
-      {...other}
-      ref={ref}
-    />
-  );
+  return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
 });
 
 MarkdownElement.propTypes = {
   className: PropTypes.string,
-  enableCodeCopy: PropTypes.bool,
   renderedMarkdown: PropTypes.string,
 };
 
