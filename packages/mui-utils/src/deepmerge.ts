@@ -6,12 +6,12 @@ export interface DeepmergeOptions {
   clone?: boolean;
 }
 
-type Assign<A, B> = {
+export type Deepmerge<A, B> = {
   [key in keyof A | keyof B]: key extends keyof B
     ? key extends keyof A
       ? B[key] extends Record<keyof any, any>
         ? A[key] extends Record<keyof any, any>
-          ? Assign<A[key], B[key]>
+          ? Deepmerge<A[key], B[key]>
           : B[key]
         : B[key]
       : B[key]
@@ -24,13 +24,13 @@ function deepmerge<A extends Record<keyof any, any>, B extends Record<keyof any,
   target: A,
   source: B,
   options?: DeepmergeOptions,
-): B extends A ? A : Assign<A, B>;
+): B extends A ? A : Deepmerge<A, B>;
 function deepmerge<A extends Record<keyof any, any>, B extends Record<keyof any, any>>(
   target: A,
   source: B,
   options: DeepmergeOptions = { clone: true },
-): Assign<A, B> {
-  const output: A & B = options.clone ? { ...target } : target;
+): Deepmerge<A, B> {
+  const output = options.clone ? { ...target } : target;
 
   if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {
