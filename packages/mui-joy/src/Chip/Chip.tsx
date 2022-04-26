@@ -139,8 +139,8 @@ const ChipAction = styled('button', {
     borderRadius: 'inherit',
     transition:
       'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    [theme.focus.selector]: theme.focus.default,
   },
-  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
@@ -338,6 +338,14 @@ Chip.propTypes /* remove-proptypes */ = {
    * Element placed before the children.
    */
   startDecorator: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'contained'

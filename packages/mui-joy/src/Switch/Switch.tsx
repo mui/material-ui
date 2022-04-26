@@ -123,7 +123,7 @@ const SwitchAction = styled('div', {
   left: 0,
   bottom: 0,
   right: 0,
-  ...theme.focus.default,
+  [theme.focus.selector]: theme.focus.default,
 }));
 
 const SwitchInput = styled('input', {
@@ -420,6 +420,14 @@ Switch.propTypes /* remove-proptypes */ = {
   startDecorator: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.node,
     PropTypes.func,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
   ]),
   /**
    * The variant to use.

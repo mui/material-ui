@@ -43,8 +43,8 @@ const ChipDeleteRoot = styled('button', {
     border: 'none', // reset user agent stylesheet
     background: 'none', // reset user agent stylesheet
     padding: '0px', // reset user agent stylesheet
+    [theme.focus.selector]: theme.focus.default,
   },
-  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
@@ -138,6 +138,14 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   disabled: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'contained'

@@ -417,6 +417,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={firstChild.pathname}
         legacy={page.legacy}
+        plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
         topLevel={topLevel && !page.subheader}
@@ -436,6 +437,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         legacy={page.legacy}
+        plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
         onClick={onClose}

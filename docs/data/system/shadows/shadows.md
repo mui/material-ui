@@ -5,7 +5,7 @@
 ## Example
 
 The helpers allow you to control relative depth, or distance, between two surfaces along the z-axis.
-By default, there is 25 elevation levels.
+By default, there are 25 elevation levels.
 
 {{"demo": "Demo.js", "defaultCodeOpen": false, "bg": true}}
 
