@@ -1,11 +1,11 @@
 ---
 product: material-ui
-title: Transfer List React component
+title: Transfer list React component
 components: List, ListItem, Checkbox, Switch
 githubLabel: 'component: transfer list'
 ---
 
-# Transfer List
+# Transfer list
 
 <p class="description">A transfer list (or "shuttle") enables the user to move one or more list items between lists.</p>
 

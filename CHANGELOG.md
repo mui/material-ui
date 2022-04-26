@@ -1,5 +1,123 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.6.3
+
+<!-- generated comparing v5.6.2..master -->
+
+_Apr 25, 2022_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 Fixed TypeScript issue when the `fill` CSS property is used in the system (#32355) @valerii15298
+- And more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.6.3`
+
+- [BottomNavigation] Action icon `padding` fix (#32030) @abhinav-22-tech
+- [Dialog] Fix `component` prop is not available in `DialogTitleProps` (#32389) @hbjORbj
+- [StepContent] Fix TypeScript type of `TransitionComponent` prop (#32314) @ZeeshanTamboli
+
+### `@mui/system@5.6.3`
+
+- [system] Fix prop types when the `fill` CSS property is used (#32355) @valerii15298
+- [system] Fix broken behavior when theme value is `zero` (#32365) @ZeeshanTamboli
+
+### `@mui/base@5.0.0-alpha.78`
+
+- [InputUnstyled] `multiline` property should not log DOM warnings for `maxRows` and `minRows` props (#32401) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.25`
+
+- [Joy] Improve theme focus to be more flexible (#32405) @siriwatknp
+- [Joy] Add `Radio`, `RadioGroup` components (#32279) @siriwatknp
+- [Joy] Add `Chip` component (#31983) @hbjORbj
+- [Joy] Improve controls (#32267) @siriwatknp
+- [Joy] Set up docs (#32370) @siriwatknp
+
+### Docs
+
+- [docs] Enable row reordering on the pricing page (#31875) @DanailH
+- [blog] A few improvements on date picker change (#32325) @oliviertassinari
+- [docs] Emphasize how to avoid failing tests when migrating from v4 to v5 (#32159) @dwjohnston
+- [docs] Revise the related projects page (#32180) @danilo-leal
+- [docs] Cleanup remaining @mui/styles usages (#32313) @mnajdova
+- [docs] Fix sidenav mobile color (#32324) @oliviertassinari
+- [docs] Base TrapFocus style revisions and final review (#32364) @samuelsycamore
+- [docs] Update the README.md to better cover the different products (#32360) @samuelsycamore
+- [docs] Improve the propTypes generation and API demos' links (#32295) @mnajdova
+- [docs] Add ability to display a plan icon next to a page link in nav bar (#32393) @flaviendelangle
+- [docs] Change label on `FormControlLabelPlacement` (#32322) @ainatenhi
+- [website] Update Diamond sponsors list (#32433) @oliviertassinari
+- [website] Add privacy policy link to website's footer (#32080) @danilo-leal
+- [website] Remove the designer role (#32384) @danilo-leal
+
+### Core
+
+- [core] `yarn prettier` write @oliviertassinari
+- [core] Fix changelog warning message (#32240) @praveen001
+- [core] Update the proptypes scripts to support components in @mui/system (#32456) @mnajdova
+
+All contributors of this release in alphabetical order: @abhinav-22-tech, @ainatenhi, @DanailH, @danilo-leal, @dwjohnston, @flaviendelangle, @hbjORbj, @mnajdova, @oliviertassinari, @praveen001, @samuelsycamore, @siriwatknp, @valerii15298, @ZeeshanTamboli
+
+## 5.6.2
+
+<!-- generated comparing v5.6.1..master -->
+
+_Apr 18, 2022_
+
+A big thanks to the 11 contributors who made this release possible. This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.6.2`
+
+- &#8203;<!-- 29 -->[Autocomplete] Explain how to use getOptionLabel in free solo mode and update getOptionLabel type (#32165) @michaldudak
+- &#8203;<!-- 28 -->[Badge] Fix customization of classes (#32185) @michaldudak
+- &#8203;<!-- 03 -->[TextField] Add a workaround for Safari CSS transition scale bug (#32188) @igordanchenko
+
+### `@mui/system@5.6.2`
+
+- &#8203;<!-- 05 -->[system] Update style function to use vars automatically if available (#32244) @mnajdova
+
+### `@mui/base@5.0.0-alpha.77`
+
+- &#8203;<!-- 08 -->[FormControlUnstyled] Revise API (#32134) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.24`
+
+- &#8203;<!-- 07 -->[Joy] Add `Badge` component (#31401) @hbjORbj
+- &#8203;<!-- 06 -->[Joy] Fix misuse variable in `Input` (#32268) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 27 -->[blog] Fix images for the docs separation post (#32257) @danilo-leal
+- &#8203;<!-- 25 -->[docs] Base Form Control style revisions and final review (#32309) @samuelsycamore
+- &#8203;<!-- 24 -->[docs] Base TablePagination style revisions and final review (#32178) @samuelsycamore
+- &#8203;<!-- 23 -->[docs] Revise the dark mode article (#32179) @danilo-leal
+- &#8203;<!-- 22 -->[docs] Add `aria-label` for `IconButton` (#32276) @SiarheiBobryk
+- &#8203;<!-- 21 -->[docs] Fix `borderRadius` in the docs example (#32347) @ZeeshanTamboli
+- &#8203;<!-- 20 -->[docs] Fix 404 link in the code (#32323) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Sync h1 with side nav label (#32235) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Fix SEO issues (#32282) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Fix broken link in the test contributing guide (#32283) @sirartemis
+- &#8203;<!-- 16 -->[docs] Update "How to customize" page anchor links #32315 @abaker93
+- &#8203;<!-- 15 -->[docs] Mark `onBackdropClick` prop as deprecated in `Dialog`, `Modal` and `ModalUnstyled` components (#32297) @ZeeshanTamboli
+- &#8203;<!-- 14 -->[docs] Link to advanced components page (#32290) @siriwatknp
+- &#8203;<!-- 13 -->[docs] Sync package description with the docs (#32211) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Revise "Component theming" and "How to customize" guides (#31997) @danilo-leal
+- &#8203;<!-- 11 -->[docs] Add note in the Contributing guide about linking issues to a PR (#32174) @danilo-leal
+- &#8203;<!-- 10 -->[docs] Update RTL guide (#32242) @michaldudak
+- &#8203;<!-- 09 -->[docs] Uniformize capitalization (#32238) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Improve new role template @oliviertassinari
+- &#8203;<!-- 01 -->[website] Remove a gold sponsor (#32261) @hbjORbj
+- &#8203;<!-- 24 -->[website] Mark DataGrid Column spanning done on Pricing page (#32305) @cherniavskii
+
+### Core
+
+- &#8203;<!-- 31 -->[core] Remove unecessary div (#32237) @oliviertassinari
+- &#8203;<!-- 30 -->[core] Revert #32229 (#32262) @michaldudak
+- &#8203;<!-- 04 -->[test] Fix running unit tests on Windows (#32260) @michaldudak
+
+All contributors of this release in alphabetical order: @abaker93, @cherniavskii, @danilo-leal, @hbjORbj, @igordanchenko, @michaldudak, @mnajdova, @oliviertassinari, @samuelsycamore, @SiarheiBobryk, @sirartemis, @siriwatknp, @ZeeshanTamboli
+
 ## 5.6.1
 
 <!-- generated comparing v5.6.0..master -->
@@ -3575,7 +3693,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 28 -->[docs] Fix broken overrides link on API pages (#26244) @mnajdova
 - &#8203;<!-- 27 -->[docs] Improve documentation for Buttons (#26184) @arpitBhalla
 - &#8203;<!-- 24 -->[docs] Emphasize on props for screen readers (#26222) @atisheyJain03
-- &#8203;<!-- 23 -->[docs] Link third-party routing in Bottom Navigation (#26190) @arpitBhalla
+- &#8203;<!-- 23 -->[docs] Link third-party routing in Bottom navigation (#26190) @arpitBhalla
 - &#8203;<!-- 22 -->[docs] Migrate Select, Progress demos to emotion (#26178) @mnajdova
 - &#8203;<!-- 20 -->[docs] Add accessibility section to Badges (#26009) @likitarai1
 - &#8203;<!-- 15 -->[docs] Migrate Popper, Drawer demos to emotion (#26183) @mnajdova
@@ -4587,7 +4705,7 @@ The prop didn't solve any important problem better than any of its alternatives 
 
 ### Docs
 
-- &#8203;<!-- 22 -->[docs] Migrate Bottom Navigation demos to emotion (#25180) @vicasas
+- &#8203;<!-- 22 -->[docs] Migrate Bottom navigation demos to emotion (#25180) @vicasas
 - &#8203;<!-- 09 -->[docs] Migrate Button demos to emotion (#25138) @vicasas
 - &#8203;<!-- 17 -->[docs] Migrate Divider demos to emotion (#25145) @vicasas
 - &#8203;<!-- 24 -->[docs] Migrate Pagination demos to emotion (#25183) @vicasas

@@ -135,6 +135,15 @@ Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
+## Complementary projects
+
+### Material UI Confirm
+
+![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
+
+This package provides dialogs for confirming user actions without writing boilerplate code.
+
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
