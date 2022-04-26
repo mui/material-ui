@@ -5,8 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
 export type ListItemButtonSlot = 'root';

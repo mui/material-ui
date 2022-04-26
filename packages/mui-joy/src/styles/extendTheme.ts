@@ -3,8 +3,6 @@ import { deepmerge } from '@mui/utils';
 import {
   BreakpointsOptions,
   SpacingOptions,
-  Breakpoints,
-  Spacing,
   createBreakpoints,
   createSpacing,
   unstable_createGetCssVar as systemCreateGetCssVar,
@@ -14,17 +12,9 @@ import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
-import { Shadow } from './types/shadow';
-import { Radius } from './types/radius';
-import {
-  FontFamily,
-  FontSize,
-  FontWeight,
-  LineHeight,
-  LetterSpacing,
-  TypographySystem,
-} from './types/typography';
+import { TypographySystem } from './types/typography';
 import { Variants } from './types/variants';
+import { Theme, ThemeCSSVar, ThemeScales } from './types';
 import { Components } from './components';
 
 type CSSProperties = CSS.Properties<number | string>;
@@ -47,22 +37,6 @@ type Partial3Level<T> = {
   };
 };
 
-type Split<T, K extends keyof T = keyof T> = K extends string | number
-  ? { [k in K]: Exclude<T[K], undefined> }
-  : never;
-
-type ConcatDeep<T> = T extends Record<string | number, infer V>
-  ? keyof T extends string | number
-    ? V extends string | number
-      ? keyof T
-      : keyof V extends string | number
-      ? `${keyof T}-${ConcatDeep<Split<V>>}`
-      : never
-    : never
-  : never;
-
-type NormalizeVars<T> = ConcatDeep<Split<T>>;
-
 export interface ColorSystemInput extends Partial3Level<ColorSystem> {}
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
@@ -76,40 +50,7 @@ export interface ThemeInput extends Partial2Level<ThemeScales> {
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemInput>>;
 }
 
-export interface ThemeScales {
-  radius: Radius;
-  shadow: Shadow;
-  fontFamily: FontFamily;
-  fontSize: FontSize;
-  fontWeight: FontWeight;
-  lineHeight: LineHeight;
-  letterSpacing: LetterSpacing;
-}
-
-type Vars = ThemeScales & ColorSystem;
-
-export type ThemeVar = NormalizeVars<Vars>;
-
-export const createGetCssVar = (prefix = 'joy') => systemCreateGetCssVar<ThemeVar>(prefix);
-
-export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
-  palette: ColorSystem['palette'] & {
-    mode: 'light' | 'dark';
-    colorScheme: DefaultColorScheme | ExtendedColorScheme;
-  };
-}
-
-export interface Theme extends ThemeScales, RuntimeColorSystem {
-  colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
-  focus: Focus;
-  typography: TypographySystem;
-  variants: Variants;
-  spacing: Spacing;
-  breakpoints: Breakpoints;
-  prefix: string;
-  vars: Vars;
-  getCssVar: ReturnType<typeof createGetCssVar>;
-}
+export const createGetCssVar = (prefix = 'joy') => systemCreateGetCssVar<ThemeCSSVar>(prefix);
 
 const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   textColor: `var(--joy-palette-${color}-600)`,

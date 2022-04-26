@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
-import extendTheme, {
-  Theme,
-  ThemeInput,
-  ColorSystemInput,
-  RuntimeColorSystem,
-} from './extendTheme';
+import extendTheme, { ThemeInput, ColorSystemInput } from './extendTheme';
+import { Theme, RuntimeColorSystem } from './types';
 
 const getThemeWithVars = (
   themeInput?: Omit<ThemeInput, 'colorSchemes'> & ColorSystemInput,

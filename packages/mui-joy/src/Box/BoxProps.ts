@@ -1,6 +1,6 @@
 import { OverrideProps } from '@mui/types';
 import { SxProps, SystemProps } from '@mui/system';
-import { JoyTheme as Theme } from '../styles/defaultTheme';
+import { Theme } from '../styles/types';
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &

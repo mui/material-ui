@@ -2,8 +2,7 @@ import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { UseInputProps } from '@mui/base/InputUnstyled';
 import { InputClasses } from './inputClasses';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
