@@ -5,6 +5,9 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCardContentUtilityClass } from './cardContentClasses';
+import createTheme from '../styles/createTheme';
+
+const theme = createTheme();
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -22,9 +25,9 @@ const CardContentRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })(() => {
   return {
-    padding: 16,
+    padding: theme.spacing(2),
     '&:last-child': {
-      paddingBottom: 24,
+      paddingBottom: theme.spacing(3),
     },
   };
 });
