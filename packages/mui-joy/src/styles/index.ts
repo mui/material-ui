@@ -1,5 +1,6 @@
 export * from './types';
 export * from './CssVarsProvider';
+export * from './extendTheme';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
