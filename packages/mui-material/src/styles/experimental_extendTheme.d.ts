@@ -41,16 +41,16 @@ export interface Opacity {
   disabled: number;
   focus: number;
   placeholder: number;
+  inputTouchBottomLine: number;
 }
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
   components?: Components<BaseTheme>;
-  // palette?: PaletteOptions;
   colorSchemes?: Record<
     SupportedColorScheme,
     {
-      palette: PaletteOptions;
+      palette?: PaletteOptions;
       opacity?: Partial<Opacity>;
     }
   >;

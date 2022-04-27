@@ -25,6 +25,7 @@ export default function extendTheme(options = {}, ...args) {
     colorSchemes: {
       ...colorSchemesInput,
       light: {
+        ...colorSchemesInput.light,
         palette: lightPalette,
         opacity: {
           ...defaultOpacity,
@@ -34,6 +35,7 @@ export default function extendTheme(options = {}, ...args) {
         },
       },
       dark: {
+        ...colorSchemesInput.dark,
         palette: darkPalette,
         opacity: {
           ...defaultOpacity,
@@ -48,11 +50,11 @@ export default function extendTheme(options = {}, ...args) {
 
   Object.keys(theme.colorSchemes).forEach((key) => {
     const palette = theme.colorSchemes[key].palette;
-    if (palette.background && !palette.background.defaultChannel) {
+    if (palette.background && !palette.background.invertChannel) {
       if (key === 'dark') {
-        palette.background.defaultChannel = '0 0 0';
+        palette.background.invertChannel = '255 255 255';
       } else {
-        palette.background.defaultChannel = '255 255 255';
+        palette.background.invertChannel = '0 0 0';
       }
     }
     Object.keys(palette).forEach((color) => {
