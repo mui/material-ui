@@ -55,7 +55,7 @@ function LanguageNegotiation() {
         acceptLanguage.get(navigator.language) ||
         userLanguage;
 
-      if (userLanguage !== preferedLanguage) {
+      if (userLanguage !== preferedLanguage && !process.env.BUILD_ONLY_ENGLISH_LOCALE) {
         window.location =
           preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
       }
