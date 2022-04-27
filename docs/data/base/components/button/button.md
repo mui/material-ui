@@ -29,9 +29,10 @@ Compare the attributes on the `<span>` in this demo with the `ButtonUnstyled` fr
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
-### Support for SVGs
+### Complex customization
 
-In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` component:
+`ButtonUnstyled` accepts a wide range of custom elements beyond HTML elements.
+You can even use SVGs, as the following demo illustrates:
 
 {{"demo": "UnstyledButtonCustom.js"}}
 
