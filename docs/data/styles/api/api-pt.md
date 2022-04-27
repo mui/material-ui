@@ -218,7 +218,6 @@ It should preferably be used at **the root of your component tree**.
 | generateClassName  | func   |        | Gerador de nome de classes do JSS.                                                                                                                                                                                                                                                                                                                      |
 | injectFirst        | bool   | false  | Por padrão, os estilos são injetados por último no elemento `<head>` da página. Como resultado, eles ganham mais especificidade do que qualquer outra folha de estilo. Se você quiser sobrescrever estilos do Material UI, defina esta propriedade.                                                                                               |
 | jss                | object |        | Instância do JSS.                                                                                                                                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                       |
-
 ### Exemplos
 
 ```jsx
