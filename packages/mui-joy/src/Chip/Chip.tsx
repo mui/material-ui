@@ -203,7 +203,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     disabled,
     ...actionProps,
-    component: actionComponent,
     ref: handleActionRef,
   });
 
