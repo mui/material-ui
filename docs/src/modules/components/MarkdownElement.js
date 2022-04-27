@@ -376,6 +376,66 @@ const Root = styled('div')(({ theme }) => ({
       marginTop: theme.spacing(1),
     },
   },
+  '& .MuiCode-root': {
+    position: 'relative',
+    '&:hover': {
+      '& .MuiCode-copy': {
+        opacity: 1,
+      },
+    },
+  },
+  '& .MuiCode-copy': {
+    minWidth: 64,
+    opacity: 0,
+    backgroundColor: alpha(blueDark[600], 0.5),
+    cursor: 'pointer',
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+    fontFamily: 'inherit',
+    fontSize: '0.813rem',
+    fontWeight: 500,
+    padding: theme.spacing(0.5, 1),
+    borderRadius: 4,
+    border: `1px solid`,
+    borderColor: blueDark[500],
+    color: blueDark[50],
+    '&:hover, &:focus': {
+      opacity: 1,
+      color: '#fff',
+      backgroundColor: alpha(blueDark[600], 0.7),
+      borderColor: blueDark[500],
+      '& .MuiCode-copyKeypress': {
+        opacity: 1,
+      },
+    },
+    '&[data-copied]': {
+      // style of the button when it is in copied state.
+      borderColor: blue[700],
+      color: '#fff',
+      backgroundColor: blueDark[600],
+    },
+    '&:focus-visible': {
+      outline: '2px solid',
+      outlineOffset: 2,
+      outlineColor: blueDark[500],
+    },
+  },
+  '& .MuiCode-copyKeypress': {
+    pointerEvents: 'none',
+    userSelect: 'none',
+    opacity: 0,
+    position: 'absolute',
+    left: '50%',
+    top: '100%',
+    minWidth: '100%',
+    marginTop: theme.spacing(0.5),
+    whiteSpace: 'nowrap',
+    transform: 'translateX(-50%)',
+    '& > span': {
+      opacity: 0.72,
+    },
+  },
   '& li': {
     '& pre': {
       marginTop: theme.spacing(1),
