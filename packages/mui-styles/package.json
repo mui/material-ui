@@ -38,7 +38,7 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0"
   },
   "peerDependenciesMeta": {
