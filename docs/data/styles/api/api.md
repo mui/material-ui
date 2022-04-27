@@ -248,7 +248,7 @@ function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 
-ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `ThemeProvider`
@@ -276,7 +276,7 @@ function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
 
-ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `useTheme() => theme`
