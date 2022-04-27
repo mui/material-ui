@@ -130,10 +130,16 @@ export const InputBaseComponent = styled('input', {
   slot: 'Input',
   overridesResolver: inputOverridesResolver,
 })(({ theme, ownerState }) => {
-  const light = (theme.vars || theme).palette.mode === 'light';
+  const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
-    opacity: light ? 0.42 : 0.5,
+    ...(theme.vars
+      ? {
+          opacity: theme.vars.opacity.placeholder,
+        }
+      : {
+          opacity: light ? 0.42 : 0.5,
+        }),
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
     }),
@@ -143,9 +149,13 @@ export const InputBaseComponent = styled('input', {
     opacity: '0 !important',
   };
 
-  const placeholderVisible = {
-    opacity: light ? 0.42 : 0.5,
-  };
+  const placeholderVisible = theme.vars
+    ? {
+        opacity: theme.vars.opacity.placeholder,
+      }
+    : {
+        opacity: light ? 0.42 : 0.5,
+      };
 
   return {
     font: 'inherit',

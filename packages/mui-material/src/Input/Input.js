@@ -42,8 +42,11 @@ const InputRoot = styled(InputBaseRoot, {
     ];
   },
 })(({ theme, ownerState }) => {
-  const light = (theme.vars || theme).palette.mode === 'light';
-  const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+  const light = theme.palette.mode === 'light';
+  let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+  if (theme.vars) {
+    bottomLineColor = `rgba(${theme.vars.palette.background.defaultChannel} / ${theme.vars.opacity.inputTouchBottomLine})`;
+  }
   return {
     position: 'relative',
     ...(ownerState.formControl && {
