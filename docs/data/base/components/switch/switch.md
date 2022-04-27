@@ -9,7 +9,7 @@ packageName: '@mui/base'
 
 # Unstyled switch
 
-<p class="description">The `SwitchUnstyled` component provides users with a toggle button for choosing one from a predefined set of options.</p>
+<p class="description">The `SwitchUnstyled` component provides users with a switch for toggling between two mutually exclusive states.</p>
 
 Switches can be used on either desktop or mobile, but they are the preferred method for toggling on mobile UIs.
 
@@ -23,13 +23,26 @@ import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 
 ## Basic switch
 
-The `SwitchUnstyled` component is composed of three interior components—`Root`, `Thumb`, and `Input`—and it assigns CSS classes for styling each piece, respectively.
+The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior elements—a track, a thumb, and an input—and it assigns CSS classes for styling each piece:
+
+```html
+<span class="MuiSwitch-root Mui-checked css-i6datd">
+  <span class="MuiSwitch-track"></span>
+  <span class="MuiSwitch-thumb"></span>
+  <input
+    type="checkbox"
+    aria-label="Demo switch"
+    class="MuiSwitch-input"
+    checked=""
+  />
+</span>
+```
 
 You can set the props for these interior components using the `componentsProps` object.
 
 You can also override them entirely with the `components` prop, to replace them with other HTML elements or custom components.
 
-The following demo shows how to assign styles and props to the interior components of the `SwitchUnstyled` component:
+The following demo shows how to assign styles and props to the interior elements of the `SwitchUnstyled` component:
 
 {{"demo": "UnstyledSwitches.js"}}
 
