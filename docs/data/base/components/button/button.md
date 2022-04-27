@@ -74,4 +74,4 @@ Additionally, you need to provide the `component` prop (unless you intend to use
 
 If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will have the default behavior in relation to forms.
 That is, clicking on such button will not submit a form it's in.
-Similarily `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
+Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
