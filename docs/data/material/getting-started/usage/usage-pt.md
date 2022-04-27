@@ -18,8 +18,6 @@ import Button from '@mui/material/Button';
 function App() {
   return <Button variant="contained"> Olá Mundo</Button>;
 }
-
-ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
 ```
 
 Sim, isso é tudo o que você precisa para começar, como você pode ver nesta demonstração ao vivo e interativa:
