@@ -29,7 +29,7 @@ Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes d
 
 O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
 
-O [componente `DataGrid`](/components/data-grid/) é projetado para casos de uso que se concentram em lidar com grandes quantidades de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
+O [componente `DataGrid`](/x/react-data-grid/) é projetado para casos de uso que se concentram em lidar com grandes quantidades de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
 
 {{"demo": "DataTable.js", "bg": "inline"}}
 
@@ -49,7 +49,7 @@ A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para imp
 
 ## Tabelas Customizadas
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTables.js", "bg": true}}
 
@@ -96,7 +96,7 @@ Você pode agrupar cabeçalhos de coluna renderizando várias linhas de tabela d
 
 ## Tabela minimizável
 
-Um exemplo de uma tabela com linhas expansíveis, revelando mais informações. Ela utiliza o componente [`Collapse`](/api/collapse/).
+Um exemplo de uma tabela com linhas expansíveis, revelando mais informações. Ela utiliza o componente [`Collapse`](/material-ui/api/collapse/).
 
 {{"demo": "CollapsibleTable.js", "bg": true}}
 
@@ -112,16 +112,6 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 {{"demo": "ReactVirtualizedTable.js", "bg": true}}
 
-## Unstyled
-
-If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
-
-{{"demo": "TableUnstyled.js"}}
-
-### Customized look and feel
-
-{{"demo": "TableCustomized.js"}}
-
 ## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
@@ -131,3 +121,7 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "AcccessibleTable.js", "bg": true}}
+
+## Unstyled
+
+If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below. See the demos in the [unstyled table pagination docs](/base/react-table-pagination/)

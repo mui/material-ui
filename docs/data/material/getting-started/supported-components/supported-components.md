@@ -20,11 +20,11 @@ to discuss the approach before submitting a pull request.
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓**
   - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
-  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
+  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/material-ui/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transitions:
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/components/about-the-lab/))
+    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/material-ui/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)

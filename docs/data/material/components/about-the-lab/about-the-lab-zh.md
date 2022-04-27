@@ -39,7 +39,7 @@ yarn add @mui/material
 
 ## TypeScript
 
-为了从 theme 中的 [CSS 重载](/customization/theme-components/#global-style-overrides) 和 [默认的属性自定义](/customization/theme-components/#default-props) 中获益，使用 TypeScript 的用户需要引入如下类型的 types。 TypeScript 在内部将实验室里可用的扩展组件和 [模块扩展(module augmentation)](/guides/typescript/#customization-of-theme) 一起使用，这样可以拓展默认的主题（theme）结构。
+为了从 theme 中的 [CSS 重载](/material-ui/customization/theme-components/#global-style-overrides) 和 [默认的属性自定义](/material-ui/customization/theme-components/#default-props) 中获益，使用 TypeScript 的用户需要引入如下类型的 types。 TypeScript 在内部将实验室里可用的扩展组件和 [模块扩展(module augmentation)](/material-ui/guides/typescript/#customization-of-theme) 一起使用，这样可以拓展默认的主题（theme）结构。
 
 ```tsx
 // 当使用 TypeScript 4.x 或更高版本时

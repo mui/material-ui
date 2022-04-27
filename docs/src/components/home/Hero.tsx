@@ -110,12 +110,12 @@ export default function Hero() {
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            The React <GradientText>UI&nbsp;library</GradientText> you always wanted
+            <GradientText>Move faster</GradientText> with intuitive React UI tools
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            MUI provides a robust, customizable, and accessible library of foundational and advanced
-            components, enabling you to build your design system and develop React applications
-            faster.
+            MUI offers a comprehensive suite of UI tools to help you ship new features faster. Start
+            with Material UI, our fully-loaded component library, or bring your own design system to
+            our production-ready components.
           </Typography>
           <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
         </Box>

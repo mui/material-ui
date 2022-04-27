@@ -14,7 +14,7 @@ const DIAMONDs = [
     src: '/static/sponsors/octopus.svg',
     srcSet: '/static/sponsors/octopus.svg',
     name: 'Octopus Deploy',
-    description: 'Repeatable reliable deployments.',
+    description: 'A unified DevOps automation platform for your team.',
     href: 'https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -23,13 +23,6 @@ const DIAMONDs = [
     name: 'Doit International',
     description: 'Management platform for Google Cloud and AWS.',
     href: 'https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: '/static/sponsors/aptugo.svg',
-    srcSet: '/static/sponsors/aptugo.svg',
-    name: 'Aptugo',
-    description: "Build scalable Web and Mobile Apps fast and easy with Aptugo's visual interface.",
-    href: 'https://www.aptugo.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 

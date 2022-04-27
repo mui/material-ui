@@ -18,10 +18,7 @@ function pascalCase(str: string) {
 }
 
 function titleize(hyphenedString: string): string {
-  return hyphenedString
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+  return upperFirst(hyphenedString.split('-').join(' '));
 }
 
 export interface Page {

@@ -4,15 +4,25 @@ description: Migrate to the new package to start building with our powerful date
 date: 2022-04-03T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'News']
+card: true
 ---
 
 After more than 18 months in the lab, the date and time picker components have found a new home as part of MUI X.
-
 This means we'll be dedicating even more time and effort to these complex components, to better meet the needs of both you and your users.
+
+## TL;DR
+
+- The date pickers are one step closer to a stable release.
+- **No surprise licenses changes**. We are staying true to [our promises](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd). What's MIT stays MIT, and what was [announced](https://v5-0-6.mui.com/components/date-range-picker/) over 12 months ago to move to a commercial license move.
+- Follow the [migration steps](/x/react-date-pickers/migration-lab/)
 
 ## What are date and time pickers?
 
 Date and time pickers are interface controls that enable the user to select a date (or time) from a menu.
+
+<img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Date and time picker component" />
+
+<p class="blog-description">Date and time pickers using the default Material UI design</p>
 
 Common design patterns include text inputs, dropdown lists, calendars, timelines, and scrolling pickers on mobile devices.
 
@@ -20,7 +30,7 @@ The user may need to select an individual date/time, or a range.
 
 ## What is MUI X?
 
-MUI X is a collection of advanced components built for complex use cases.
+[MUI X](/x/) is a collection of advanced components built for complex use cases.
 
 As opposed to the Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
 
@@ -41,8 +51,8 @@ And by offering an even more advanced component package through our commercial l
 
 The date and time picker components are now available in two packages:
 
-- `@mui/x-date-pickers` which contains all the MIT licensed components
-- `@mui/x-date-pickers-pro` which contains all the MIT and commercially licensed components
+- `@mui/x-date-pickers` has a [MIT license](https://unpkg.com/browse/@mui/x-date-pickers/LICENSE), it contains all the open-source components
+- `@mui/x-date-pickers-pro` has a [commercial license](https://unpkg.com/browse/@mui/x-date-pickers-pro/LICENSE), it contains all the MIT and commercially licensed components
 
 ## Which components are only available in the Pro package?
 
@@ -56,19 +66,18 @@ Visit [the MUI Store](https://mui.com/store/items/material-ui-pro/) to purchase 
 
 ## How do I migrate?
 
-To migrate, update the package name and change from a default export to a named export:
+Follow the [migration steps](/x/react-date-pickers/migration-lab/) by updating the package name and change from a default export to a named export:
 
-```ts
-// before
-import DatePicker from '@mui/lab/DatePicker';
-import DateRangePicker from '@mui/lab/DateRangePicker';
-import { DatePicker, DateRangePicker } from '@mui/lab';
+```diff
+-import DatePicker from '@mui/lab/DatePicker';
++import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-// after
-import DatePicker from '@mui/x-date-pickers/DatePicker';
-import DateRangePicker from '@mui/x-date-pickers-pro/DateRangePicker';
-import { DatePicker } from '@mui/x-date-pickers'; // DatePicker is also available in `@mui/x-date-pickers-pro`
-import { DateRangePicker } from '@mui/x-date-pickers-pro';
+-import DateRangePicker from '@mui/lab/DateRangePicker';
++import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+
+-import { DatePicker, DateRangePicker } from '@mui/lab';
++import { DatePicker } from '@mui/x-date-pickers'; // DatePicker is also available in `@mui/x-date-pickers-pro`
++import { DateRangePicker } from '@mui/x-date-pickers-pro';
 ```
 
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-date-pickers` or `@mui/x-date-pickers-pro`:
@@ -79,7 +88,7 @@ npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
 
 ## Where is the date and time picker documentation?
 
-You can find the documentation for the picker components in the [MUI X docs](https://mui.com/x/react-date-pickers/).
+You can find the documentation for the picker components in the [MUI X docs](/x/react-date-pickers/getting-started/).
 
 ## What's next for the date and time pickers?
 

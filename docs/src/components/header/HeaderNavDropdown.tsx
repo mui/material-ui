@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -67,6 +68,8 @@ const PRODUCTS = [
 ];
 
 export default function HeaderNavDropdown() {
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const [open, setOpen] = React.useState(false);
   const [productsOpen, setProductsOpen] = React.useState(true);
   const hambugerRef = React.useRef<HTMLButtonElement | null>(null);
@@ -173,7 +176,15 @@ export default function HeaderNavDropdown() {
                 </li>
               )}
               <li>
-                <Anchor href={ROUTES.documentation} as={Link} noLinkStyle>
+                <Anchor
+                  href={
+                    asPathWithoutLang.startsWith('/x')
+                      ? ROUTES.advancedComponents
+                      : ROUTES.documentation
+                  }
+                  as={Link}
+                  noLinkStyle
+                >
                   Docs
                 </Anchor>
               </li>

@@ -240,6 +240,41 @@ function createRender(context) {
       renderer,
     };
 
+    marked.use({
+      extensions: [
+        {
+          name: 'callout',
+          level: 'block',
+          start(src) {
+            const match = src.match(/:::/);
+            return match ? match.index : undefined;
+          },
+          tokenizer(src) {
+            const rule =
+              /^ {0,3}(:{3,}(?=[^:\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~:]* *(?=\n|$)|$)/;
+            const match = rule.exec(src);
+            if (match) {
+              const token = {
+                type: 'callout',
+                raw: match[0],
+                text: match[3].trim(),
+                severity: match[2],
+                tokens: [],
+              };
+              this.lexer.blockTokens(token.text, token.tokens);
+              return token;
+            }
+            return undefined;
+          },
+          renderer(token) {
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
+              token.tokens,
+            )}\n</aside>`;
+          },
+        },
+      ],
+    });
+
     return marked(markdown, markedOptions);
   }
 
@@ -274,6 +309,9 @@ function prepareMarkdown(config) {
     if (!product) {
       return `/api/${kebabCase(component)}/`;
     }
+    if (product === 'date-pickers') {
+      return `/x/api/date-pickers/${kebabCase(component)}/`;
+    }
     if (componentPkg === 'mui-base') {
       return `/base/api/${kebabCase(component)}/`;
     }
@@ -305,10 +343,6 @@ The component also comes with an [unstyled version](${headers.unstyled}). It's i
 
 ${headers.components
   .map((component) => {
-    return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
-
-    // TODO: enable the code below once the migration is done.
-    // eslint-disable-next-line no-unreachable
     const componentPkgMap = componentPackageMapping[headers.product];
     const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
     return `- [\`<${component} />\`](${resolveComponentApiUrl(

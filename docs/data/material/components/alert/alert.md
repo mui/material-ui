@@ -37,7 +37,7 @@ If an `onClose` callback is provided and no `action` prop is set, a close icon i
 
 ### Transition
 
-You can use a [transition component](/components/transitions/) such as `Collapse` to transition the appearance of the alert.
+You can use a [transition component](/material-ui/transitions/) such as `Collapse` to transition the appearance of the alert.
 
 {{"demo": "TransitionAlerts.js"}}
 
@@ -46,7 +46,7 @@ You can use a [transition component](/components/transitions/) such as `Collapse
 The `icon` prop allows you to add an icon to the beginning of the alert component.
 This will override the default icon for the specified severity.
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/theme-components/#default-props).
+You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/material-ui/customization/theme-components/#default-props).
 
 Setting the icon prop to `false` will remove the icon altogether.
 
@@ -66,7 +66,7 @@ Two additional variants are available – outlined, and filled:
 
 ## Toast
 
-You can use the Snackbar to [display a toast](/components/snackbars/#customized-snackbars) with the Alert.
+You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customized-snackbars) with the Alert.
 
 ## Color
 

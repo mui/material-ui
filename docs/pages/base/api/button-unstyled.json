@@ -15,7 +15,8 @@
       "type": { "name": "shape", "description": "{ root?: object }" },
       "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" } }
+    "disabled": { "type": { "name": "bool" } },
+    "focusableWhenDisabled": { "type": { "name": "bool" } }
   },
   "name": "ButtonUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

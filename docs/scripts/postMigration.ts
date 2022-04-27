@@ -89,8 +89,8 @@ function run() {
 /zh/api/data-grid/* /zh/x/api/data-grid/:splat 301
 /pt/api/data-grid/* /pt/x/api/data-grid/:splat 301
 
-/components/date-pickers/ /x/react-date-pickers/date-picker/ 301
-/:lang/components/date-pickers/ /:lang/x/react-date-pickers/date-picker/ 301
+/components/date-pickers/ /x/react-date-pickers/getting-started/ 301
+/:lang/components/date-pickers/ /:lang/x/react-date-pickers/getting-started/ 301
 
 /components/date-range-pickers/ /x/react-date-pickers/date-range-picker/ 301
 /:lang/components/date-range-pickers/ /:lang/x/react-date-pickers/date-range-picker/ 301
@@ -227,6 +227,9 @@ function run() {
 
 /components/trap-focus/ /base/react-trap-focus/ 301
 /:lang/components/trap-focus/ /:lang/base/react-trap-focus/ 301
+
+/guides/classname-generator/ /experimental-api/classname-generator/ 301
+/:lang/guides/classname-generator/ /:lang/experimental-api/classname-generator/ 301
 
 ### React plural
 /components/tabs/ /material-ui/react-tabs/ 301
