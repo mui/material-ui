@@ -143,6 +143,7 @@ describe('[Material UI] CssVarsProvider', () => {
         JSON.stringify({
           paper: 'var(--md-palette-background-paper)',
           default: 'var(--md-palette-background-default)',
+          invertChannel: 'var(--md-palette-background-invertChannel)',
         }),
       );
       expect(screen.getByTestId('palette-action').textContent).to.equal(
@@ -186,6 +187,8 @@ describe('[Material UI] CssVarsProvider', () => {
           selected: 'var(--md-opacity-selected)',
           disabled: 'var(--md-opacity-disabled)',
           focus: 'var(--md-opacity-focus)',
+          placeholder: 'var(--md-opacity-placeholder)',
+          inputTouchBottomLine: 'var(--md-opacity-inputTouchBottomLine)',
         }),
       );
     });

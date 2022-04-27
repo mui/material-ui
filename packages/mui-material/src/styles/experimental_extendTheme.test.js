@@ -80,20 +80,20 @@ describe('experimental_extendTheme', () => {
     expect(theme.colorSchemes.light.palette.action.disabledChannel).to.equal('0 0 0');
   });
 
-  it('should generate background defaultChannel', () => {
+  it('should generate background invertChannel', () => {
     const theme = extendTheme({
       colorSchemes: {
         dark: {
           palette: {
             background: {
-              defaultChannel: '12 12 12', // this should not be overridden
+              invertChannel: '248 248 248', // this should not be overridden
             },
           },
         },
       },
     });
-    expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
-    expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('12 12 12');
+    expect(theme.colorSchemes.light.palette.background.invertChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.dark.palette.background.invertChannel).to.equal('248 248 248');
   });
 
   it('should generate color channels for custom colors', () => {
