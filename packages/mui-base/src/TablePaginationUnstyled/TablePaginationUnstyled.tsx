@@ -44,7 +44,7 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Table Pagination](https://mui.com/base/react-table-pagination/)
+ * - [Table pagination](https://mui.com/base/react-table-pagination/)
  *
  * API:
  *
@@ -214,6 +214,10 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -265,7 +269,7 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    * @default function defaultGetAriaLabel(type: ItemAriaLabelType) {
@@ -277,7 +281,7 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
    * object.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
    *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
@@ -286,7 +290,7 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * Customize the rows per page label.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Rows per page:'
    */
   labelRowsPerPage: PropTypes.node,

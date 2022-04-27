@@ -26,7 +26,7 @@ export type IconButtonTypeMap<
     /**
      * The color of the component.
      * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'default'
      */
     color?: OverridableStringUnion<
@@ -66,17 +66,17 @@ export type IconButtonTypeMap<
 }>;
 
 /**
- * Refer to the [Icons](https://mui.com/components/icons/) section of the documentation
+ * Refer to the [Icons](https://mui.com/material-ui/icons/) section of the documentation
  * regarding the available icon options.
  *
  * Demos:
  *
- * - [Buttons](https://mui.com/components/buttons/)
+ * - [Buttons](https://mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [IconButton API](https://mui.com/api/icon-button/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [IconButton API](https://mui.com/material-ui/api/icon-button/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 

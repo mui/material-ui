@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
@@ -497,6 +498,8 @@ const attachPropsTable = (reactApi: ReactApi) => {
   reactApi.propsTable = componentProps;
 };
 
+const systemComponents = ['Box'];
+
 /**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
  *   and then generate the API page + json data
@@ -523,12 +526,41 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
     return null;
   }
 
-  const reactApi: ReactApi = docgenParse(
-    src,
-    null,
-    defaultHandlers.concat(muiDefaultPropsHandler),
-    { filename },
-  );
+  let reactApi: ReactApi;
+
+  if (systemComponents.includes(name)) {
+    reactApi = docgenParse(
+      src,
+      (ast) => {
+        let node;
+        astTypes.visit(ast, {
+          visitVariableDeclaration: (variablePath) => {
+            const definitions: any[] = [];
+            if (variablePath.node.declarations) {
+              variablePath
+                .get('declarations')
+                .each((declarator: any) => definitions.push(declarator.get('init')));
+            }
+
+            definitions.forEach((definition) => {
+              const definitionName = definition.value.callee.name;
+
+              if (definitionName === `create${name}`) {
+                node = definition;
+              }
+            });
+            return false;
+          },
+        });
+
+        return node;
+      },
+      defaultHandlers,
+      { filename },
+    );
+  } else {
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
+  }
 
   // === Handle unstyled component ===
   const unstyledFileName = getUnstyledFilename(filename);

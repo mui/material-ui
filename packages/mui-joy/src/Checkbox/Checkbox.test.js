@@ -45,6 +45,18 @@ describe('<Checkbox />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', true);
   });
 
+  it('renders a label', () => {
+    const { getByLabelText, getByRole } = render(<Checkbox label="foo" />);
+
+    expect(getByLabelText('foo')).toBeVisible();
+
+    act(() => {
+      getByLabelText('foo').click();
+    });
+
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+  });
+
   it('the checkbox can be disabled', () => {
     const { getByRole } = render(<Checkbox disabled />);
 

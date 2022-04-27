@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
@@ -9,11 +10,18 @@ import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
+import ComponentListContext from '../List/ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
-  const { sticky, nested } = ownerState;
+  const { sticky, nested, variant, color } = ownerState;
   const slots = {
-    root: ['root', nested && 'nested', sticky && 'sticky'],
+    root: [
+      'root',
+      nested && 'nested',
+      sticky && 'sticky',
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
     startAction: ['startAction'],
     endAction: ['endAction'],
   };
@@ -49,6 +57,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
   },
   // Base styles
   {
+    '--internal-action-radius': 'var(--List-item-radius)',
     ...(ownerState.startAction && {
       '--internal-startActionWidth': '3rem', // to add sufficient padding-left on ListItemButton
     }),
@@ -56,6 +65,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
       '--internal-endActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
     }),
     boxSizing: 'border-box',
+    borderRadius: 'var(--List-item-radius)',
     display: 'flex',
     position: 'relative',
     padding: 'var(--List-item-paddingY)',
@@ -84,6 +94,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
           marginTop: 'var(--List-gap)',
         },
   },
+  theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
 
 const ListItemStartAction = styled('div', {
@@ -116,6 +127,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'MuiListItem',
   });
 
+  const listComponent = React.useContext(ComponentListContext);
   const row = React.useContext(RowListContext);
 
   const {
@@ -124,6 +136,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     children,
     nested = false,
     sticky = false,
+    variant = 'text',
+    color = 'neutral',
     startAction,
     endAction,
     ...other
@@ -134,6 +148,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     startAction,
     endAction,
     row,
+    variant,
+    color,
     ...props,
   };
 
@@ -143,7 +159,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     <NestedListContext.Provider value={nested}>
       <ListItemRoot
         ref={ref}
-        as={component}
+        as={
+          component || (listComponent && !listComponent.match(/^(ul|ol|menu)$/) ? 'div' : undefined)
+        }
         className={clsx(classes.root, className)}
         ownerState={ownerState}
         {...other}
@@ -175,9 +193,18 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -201,6 +228,19 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   sticky: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;
 
 export default ListItem;

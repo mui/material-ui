@@ -8,7 +8,7 @@
 
 ## 简介
 
-This is a reference for upgrading your site from MUI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 While there's a lot covered here, you probably won't need to do everything for your site. 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
+This is a reference for upgrading your site from MUI v3 to v4. 您可能不会将这里所有涵盖的内容运用到你的站点上。 While there's a lot covered here, you probably won't need to do everything for your site. 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
 
 ## 为什么您需要迁移呢
 
@@ -18,9 +18,9 @@ This is a reference for upgrading your site from MUI v3 to v4. 您可能不会�
 
 您需要做的第一件事，就是更新您的依赖包。
 
-### 升级 Material-UI 的版本
+### 升级 Material UI 的版本
 
-若想要使用最新版本的 Material-UI，您必须更新 `package.json`。
+若想要使用最新版本的 Material UI，您必须更新 `package.json`。
 
 ```json
 "dependencies": {
@@ -42,9 +42,9 @@ yarn add @material-ui/core
 
 对于 React 版本的最低要求是从 `react@^16.3.0` 升级到 `react@^16.8.0`。 这样一来我们能够依赖 [Hooks](https://reactjs.org/docs/hooks-intro.html) 的功能（我们已经不再使用 class API）。
 
-### 更新 Material-UI Styles 的版本
+### 更新 Material UI Styles 的版本
 
-若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
+若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material UI Styles。
 
 ```json
 "dependencies": {
@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Styles（样式表单）
 
-- ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 JSS v10 is not backward compatible with v9. 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
+- ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 JSS v10 is not backward compatible with v9. 请保证您的开发环境中未安装 JSS v9 版本。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
 - 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是为从未出现的可能的未来选项的一个占位符。）
 
   It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
@@ -179,7 +179,7 @@ function MySelect({ children }) {
 }
 ```
 
-我们在 [TypeScript 指南中](/guides/typescript/#handling-value-and-event-handlers)更详细地解释了此变更。
+我们在 [TypeScript 指南中](/material-ui/guides/typescript/#handling-value-and-event-handlers)更详细地解释了此变更。
 
 ### Button
 
@@ -209,7 +209,7 @@ function MySelect({ children }) {
   +<Fab variant="extended" />
   ```
 
-- [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 我们在 [组合指南](/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
+- [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 我们在 [组合指南](/material-ui/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
 
   当 `button` 属性设置为 true 时，这也适用于 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem`。
 
@@ -228,7 +228,7 @@ function MySelect({ children }) {
 - [DialogActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [DialogActions] 将 CSS 类 `action` 重命名为 `spacing`。
 - [DialogContentText] 不使用文字铸排变体 `subtitle1`，而使用 `body1`。
-- [Dialog] 子组件能够接受一个 ref。 我们在 [组合指南](/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
+- [Dialog] 子组件能够接受一个 ref。 我们在 [组合指南](/material-ui/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
 
 ### Divider
 
@@ -262,7 +262,7 @@ function MySelect({ children }) {
 
 ### Modal
 
-- [Modal] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Modal] 子组件能够接受一个 ref。 [组合指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
   这也适用于 `Dialog` 和 `Popover` 。
 
@@ -282,11 +282,11 @@ function MySelect({ children }) {
 
 ### Portal
 
-- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
 ### Slide 滑动
 
-- [Slide] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Slide] 子组件能够接受一个 ref。 [组合指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
 ### Slider
 
@@ -381,7 +381,7 @@ function MySelect({ children }) {
 
 ### Tooltip
 
-- [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Tooltip] 子组件能够接受一个 ref。 [组合指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移的策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
 ### 文字铸排
@@ -414,7 +414,7 @@ function MySelect({ children }) {
 
 ### UMD
 
-- 此更改简化了 Material-UI 与 CDN 的使用：
+- 此更改简化了 Material UI 与 CDN 的使用：
 
   ```diff
   const {

@@ -1,9 +1,9 @@
 {
-  "componentDescription": "Refer to the [Icons](/components/icons/) section of the documentation\nregarding the available icon options.",
+  "componentDescription": "Refer to the [Icons](/material-ui/icons/) section of the documentation\nregarding the available icon options.",
   "propDescriptions": {
     "children": "The icon element.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
-    "color": "A cor do componente. Ela da suporte para as cores do tema que fazem sentido para este componente.",
+    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
     "disabled": "Se <code>true</code>, o componente está desabilitado.",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",

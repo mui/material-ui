@@ -49,7 +49,7 @@ Use border utilities to add or remove an element's borders. Choose from all bord
 ```jsx
 <Box sx={{ borderRadius: '50%' }}>…
 <Box sx={{ borderRadius: 1 }}>… // theme.shape.borderRadius * 1
-<Box sx={{ borderRadius: 16 }}>…
+<Box sx={{ borderRadius: '16px' }}>…
 ```
 
 ## API
@@ -58,16 +58,16 @@ Use border utilities to add or remove an element's borders. Choose from all bord
 import { borders } from '@mui/system';
 ```
 
-| Import name         | Prop                | CSS property          | Theme key                                                        |
-| :------------------ | :------------------ | :-------------------- | :--------------------------------------------------------------- |
-| `border`            | `border`            | `border`              | `borders`                                                        |
-| `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                        |
-| `borderLeft`        | `borderLeft`        | `border-left`         | `borders`                                                        |
-| `borderRight`       | `borderRight`       | `border-right`        | `borders`                                                        |
-| `borderBottom`      | `borderBottom`      | `border-bottom`       | `borders`                                                        |
-| `borderColor`       | `borderColor`       | `border-color`        | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderTopColor`    | `borderTopColor`    | `border-top-color`    | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderRightColor`  | `borderRightColor`  | `border-right-color`  | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderBottomColor` | `borderBottomColor` | `border-bottom-color` | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderLeftColor`   | `borderLeftColor`   | `border-left-color`   | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderRadius`      | `borderRadius`      | `border-radius`       | [`shape`](/customization/default-theme/?expand-path=$.shape)     |
+| Import name         | Prop                | CSS property          | Theme key                                                                    |
+| :------------------ | :------------------ | :-------------------- | :--------------------------------------------------------------------------- |
+| `border`            | `border`            | `border`              | `borders`                                                                    |
+| `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                                    |
+| `borderLeft`        | `borderLeft`        | `border-left`         | `borders`                                                                    |
+| `borderRight`       | `borderRight`       | `border-right`        | `borders`                                                                    |
+| `borderBottom`      | `borderBottom`      | `border-bottom`       | `borders`                                                                    |
+| `borderColor`       | `borderColor`       | `border-color`        | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderTopColor`    | `borderTopColor`    | `border-top-color`    | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderRightColor`  | `borderRightColor`  | `border-right-color`  | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderBottomColor` | `borderBottomColor` | `border-bottom-color` | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderLeftColor`   | `borderLeftColor`   | `border-left-color`   | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderRadius`      | `borderRadius`      | `border-radius`       | [`shape`](/material-ui/customization/default-theme/?expand-path=$.shape)     |

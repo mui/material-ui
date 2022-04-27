@@ -52,6 +52,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SpeedDial/SpeedDial.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed Dial</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed dial</a></li></ul>",
   "cssComponent": false
 }
