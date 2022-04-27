@@ -1,5 +1,6 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
+import { useRouter } from 'next/router';
 
 const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivElement | null>>({
   current: null,
@@ -39,6 +40,7 @@ export const useCodeCopy = () => {
 
 const InitCodeCopy = () => {
   const rootNode = React.useContext(CodeBlockContext);
+  const router = useRouter();
   React.useEffect(() => {
     let key = 'Ctrl';
     if (typeof window !== 'undefined') {
@@ -98,7 +100,7 @@ const InitCodeCopy = () => {
         }
       });
     }
-  }, [rootNode]);
+  }, [rootNode, router.pathname]);
   return null;
 };
 
