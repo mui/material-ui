@@ -16,7 +16,12 @@ export function getPath(obj, path) {
       return val;
     }
   }
-  return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
+  return path.split('.').reduce((acc, item) => {
+    if (acc && acc[item] != null) {
+      return acc[item];
+    }
+    return null;
+  }, obj);
 }
 
 function getValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {

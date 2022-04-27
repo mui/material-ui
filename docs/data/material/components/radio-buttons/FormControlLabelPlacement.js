@@ -8,7 +8,7 @@ import FormLabel from '@mui/material/FormLabel';
 export default function FormControlLabelPlacement() {
   return (
     <FormControl>
-      <FormLabel id="demo-form-control-label-placement">labelPlacement</FormLabel>
+      <FormLabel id="demo-form-control-label-placement">Label placement</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-form-control-label-placement"
