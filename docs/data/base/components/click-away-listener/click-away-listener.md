@@ -28,7 +28,7 @@ The following demo shows how to hide a menu dropdown when users click anywhere e
 
 ## Portal
 
-The following demo uses the [`Portal`](/base/react-portal/) component to render the dropdown into a new subtree outside of the current DOM hierarchy:
+The following demo uses the [`Portal` component](/base/react-portal/) to render the dropdown into a new subtree outside of the current DOM hierarchy:
 
 {{"demo": "PortalClickAway.js"}}
 
