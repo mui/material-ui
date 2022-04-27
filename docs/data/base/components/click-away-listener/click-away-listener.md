@@ -11,10 +11,11 @@ packageName: '@mui/base'
 <p class="description">The <code>ClickAwayListener</code> component detects when a click event happens outside of its child element.</p>
 
 `ClickAwayListener` is a utility component that listens for click events outside of its child.
+This is useful for components like [PopperUnstyled](/base/react-popper/) which should close when the user clicks anywhere else in the document.
 
 > **Note:** the `ClickAwayListener` component only accepts _one_ child element.
 
-`ClickAwayListener` complements components like the [`Portal`](/base/react-portal), which should close when the user clicks elsewhere in the document.
+`ClickAwayListener` supports the [`Portal` component](/base/react-portal/).
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
