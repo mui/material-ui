@@ -245,6 +245,7 @@ module.exports = {
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
       // Make sure to include the trailing slash if `trailingSlash` option is set
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+      { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
   },
   // For developement, adjust the redirects here (no effect on production because of `next export`)
