@@ -4,7 +4,7 @@ import { createRenderer } from 'test/utils';
 import Button from '@mui/material/Button';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as createTheme,
+  experimental_extendTheme as extendTheme,
 } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
@@ -34,13 +34,13 @@ describe('experimental_extendTheme', () => {
   });
 
   it('should have a colorSchemes', () => {
-    const theme = createTheme();
-    expect(typeof createTheme).to.equal('function');
+    const theme = extendTheme();
+    expect(typeof extendTheme).to.equal('function');
     expect(typeof theme.colorSchemes).to.equal('object');
   });
 
   it('should have the custom color schemes', () => {
-    const theme = createTheme({
+    const theme = extendTheme({
       colorSchemes: {
         light: {
           palette: { primary: { main: deepOrange[500] }, secondary: { main: green.A400 } },
@@ -52,7 +52,7 @@ describe('experimental_extendTheme', () => {
   });
 
   it('should generate color channels', () => {
-    const theme = createTheme();
+    const theme = extendTheme();
     expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
     expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
     expect(theme.colorSchemes.dark.palette.primary.lightChannel).to.equal('227 242 253');
@@ -80,8 +80,24 @@ describe('experimental_extendTheme', () => {
     expect(theme.colorSchemes.light.palette.action.disabledChannel).to.equal('0 0 0');
   });
 
+  it('should generate background defaultChannel', () => {
+    const theme = extendTheme({
+      colorSchemes: {
+        dark: {
+          palette: {
+            background: {
+              defaultChannel: '12 12 12', // this should not be overridden
+            },
+          },
+        },
+      },
+    });
+    expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('12 12 12');
+  });
+
   it('should generate color channels for custom colors', () => {
-    const theme = createTheme({
+    const theme = extendTheme({
       colorSchemes: {
         light: {
           palette: { primary: { main: deepOrange[500] }, secondary: { main: green.A400 } },
@@ -94,7 +110,7 @@ describe('experimental_extendTheme', () => {
 
   describe('transitions', () => {
     it('[`easing`]: should provide the default values', () => {
-      const theme = createTheme();
+      const theme = extendTheme();
       expect(theme.transitions.easing.easeInOut).to.equal('cubic-bezier(0.4, 0, 0.2, 1)');
       expect(theme.transitions.easing.easeOut).to.equal('cubic-bezier(0.0, 0, 0.2, 1)');
       expect(theme.transitions.easing.easeIn).to.equal('cubic-bezier(0.4, 0, 1, 1)');
@@ -102,7 +118,7 @@ describe('experimental_extendTheme', () => {
     });
 
     it('[`duration`]: should provide the default values', () => {
-      const theme = createTheme();
+      const theme = extendTheme();
       expect(theme.transitions.duration.shortest).to.equal(150);
       expect(theme.transitions.duration.shorter).to.equal(200);
       expect(theme.transitions.duration.short).to.equal(250);
@@ -113,7 +129,7 @@ describe('experimental_extendTheme', () => {
     });
 
     it('[`easing`]: should provide the custom values', () => {
-      const theme = createTheme({
+      const theme = extendTheme({
         transitions: {
           easing: {
             easeInOut: 'cubic-bezier(1, 1, 1, 1)',
@@ -130,7 +146,7 @@ describe('experimental_extendTheme', () => {
     });
 
     it('[`duration`]: should provide the custom values', () => {
-      const theme = createTheme({
+      const theme = extendTheme({
         transitions: {
           duration: {
             shortest: 1,
@@ -153,42 +169,73 @@ describe('experimental_extendTheme', () => {
     });
 
     it('should allow providing a partial structure', () => {
-      const theme = createTheme({ transitions: { duration: { shortest: 150 } } });
+      const theme = extendTheme({ transitions: { duration: { shortest: 150 } } });
       expect(theme.transitions.duration.shorter).not.to.equal(undefined);
     });
   });
 
   describe('opacity', () => {
     it('should provide the default opacities', () => {
-      const theme = createTheme();
-      expect(theme.opacity).to.deep.equal({
+      const theme = extendTheme();
+      expect(theme.colorSchemes.light.opacity).to.deep.equal({
         active: 0.54,
         hover: 0.04,
         selected: 0.08,
         disabled: 0.26,
         focus: 0.12,
+        placeholder: 0.42,
+        inputTouchBottomLine: 0.42,
       });
-    });
-
-    it('should allow overriding of the default opacities', () => {
-      const theme = createTheme({
-        opacity: {
-          active: 0.4,
-        },
-      });
-      expect(theme.opacity).to.deep.equal({
-        active: 0.4,
+      expect(theme.colorSchemes.dark.opacity).to.deep.equal({
+        active: 0.54,
         hover: 0.04,
         selected: 0.08,
         disabled: 0.26,
         focus: 0.12,
+        placeholder: 0.5,
+        inputTouchBottomLine: 0.7,
+      });
+    });
+
+    it('should allow overriding of the default opacities', () => {
+      const theme = extendTheme({
+        colorSchemes: {
+          light: {
+            opacity: {
+              active: 1,
+            },
+          },
+          dark: {
+            opacity: {
+              active: 0.2,
+            },
+          },
+        },
+      });
+      expect(theme.colorSchemes.light.opacity).to.deep.equal({
+        active: 1,
+        hover: 0.04,
+        selected: 0.08,
+        disabled: 0.26,
+        focus: 0.12,
+        placeholder: 0.42,
+        inputTouchBottomLine: 0.42,
+      });
+      expect(theme.colorSchemes.dark.opacity).to.deep.equal({
+        active: 0.2,
+        hover: 0.04,
+        selected: 0.08,
+        disabled: 0.26,
+        focus: 0.12,
+        placeholder: 0.5,
+        inputTouchBottomLine: 0.7,
       });
     });
   });
 
   describe('shadows', () => {
     it('should provide the default array', () => {
-      const theme = createTheme();
+      const theme = extendTheme();
       expect(theme.shadows[2]).to.equal(
         '0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)',
       );
@@ -222,7 +269,7 @@ describe('experimental_extendTheme', () => {
         11,
         11,
       ];
-      const theme = createTheme({ shadows });
+      const theme = extendTheme({ shadows });
       expect(theme.shadows).to.equal(shadows);
     });
   });
@@ -247,7 +294,7 @@ describe('experimental_extendTheme', () => {
           },
         },
       };
-      const theme = createTheme({ components });
+      const theme = extendTheme({ components });
       expect(theme.components).to.deep.equal(components);
     });
   });
@@ -257,20 +304,20 @@ describe('experimental_extendTheme', () => {
       let theme;
 
       expect(() => {
-        theme = createTheme({
+        theme = extendTheme({
           components: { Button: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).not.toErrorDev();
       expect(Object.keys(theme.components.Button.styleOverrides.disabled).length).to.equal(1);
 
       expect(() => {
-        theme = createTheme({
+        theme = extendTheme({
           components: { MuiButton: { styleOverrides: { root: { color: 'blue' } } } },
         });
       }).not.toErrorDev();
 
       expect(() => {
-        theme = createTheme({
+        theme = extendTheme({
           components: { MuiButton: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).toErrorDev(
@@ -281,19 +328,19 @@ describe('experimental_extendTheme', () => {
   });
 
   it('shallow merges multiple arguments', () => {
-    const theme = createTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
+    const theme = extendTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     expect(theme.foo).to.equal('I am foo');
     expect(theme.bar).to.equal('I am bar');
   });
 
   it('deep merges multiple arguments', () => {
-    const theme = createTheme({ custom: { foo: 'I am foo' } }, { custom: { bar: 'I am bar' } });
+    const theme = extendTheme({ custom: { foo: 'I am foo' } }, { custom: { bar: 'I am bar' } });
     expect(theme.custom.foo).to.equal('I am foo');
     expect(theme.custom.bar).to.equal('I am bar');
   });
 
   it('allows callbacks using theme in variants', () => {
-    const theme = createTheme({
+    const theme = extendTheme({
       typography: {
         fontFamily: 'cursive',
       },

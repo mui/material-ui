@@ -1,7 +1,6 @@
 import { deepmerge } from '@mui/utils';
 import { colorChannel } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
-import createPalette from './createPalette';
 
 export const defaultOpacity = {
   active: 0.54,
@@ -11,11 +10,10 @@ export const defaultOpacity = {
   focus: 0.12,
 };
 
-function createTheme(options = {}, ...args) {
-  const { colorSchemes: colorSchemesInput = {}, opacity: opacityInput = {}, ...input } = options;
+export default function extendTheme(options = {}, ...args) {
+  const { colorSchemes: colorSchemesInput = {}, ...input } = options;
 
-  // eslint-disable-next-line prefer-const
-  let { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
+  const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
     ...input,
     ...(colorSchemesInput.light && { palette: colorSchemesInput.light?.palette }),
   });
@@ -23,14 +21,40 @@ function createTheme(options = {}, ...args) {
     palette: { mode: 'dark', ...colorSchemesInput.dark?.palette },
   });
 
-  colorSchemesInput.light = { palette: lightPalette };
-  colorSchemesInput.dark = { palette: darkPalette };
+  let theme = {
+    colorSchemes: {
+      ...colorSchemesInput,
+      light: {
+        palette: lightPalette,
+        opacity: {
+          ...defaultOpacity,
+          placeholder: 0.42,
+          inputTouchBottomLine: 0.42,
+          ...colorSchemesInput.light?.opacity,
+        },
+      },
+      dark: {
+        palette: darkPalette,
+        opacity: {
+          ...defaultOpacity,
+          placeholder: 0.5,
+          inputTouchBottomLine: 0.7,
+          ...colorSchemesInput.dark?.opacity,
+        },
+      },
+    },
+    ...muiTheme,
+  };
 
-  const colorSchemes = {};
-
-  Object.keys(colorSchemesInput).forEach((key) => {
-    const palette = createPalette(colorSchemesInput[key].palette);
-
+  Object.keys(theme.colorSchemes).forEach((key) => {
+    const palette = theme.colorSchemes[key].palette;
+    if (palette.background && !palette.background.defaultChannel) {
+      if (key === 'dark') {
+        palette.background.defaultChannel = '0 0 0';
+      } else {
+        palette.background.defaultChannel = '255 255 255';
+      }
+    }
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
 
@@ -53,21 +77,9 @@ function createTheme(options = {}, ...args) {
         palette[color].disabledChannel = colorChannel(colors.disabled);
       }
     });
-
-    colorSchemes[key] = { palette };
   });
 
-  const opacity = {
-    ...defaultOpacity,
-    ...opacityInput,
-  };
+  theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
-  muiTheme.colorSchemes = colorSchemes;
-  muiTheme.opacity = opacity;
-
-  muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
-
-  return muiTheme;
+  return theme;
 }
-
-export default createTheme;
