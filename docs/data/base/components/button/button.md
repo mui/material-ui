@@ -14,9 +14,11 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 
 ```js
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+
+<ButtonUnstyled>Button</ButtonUnstyled>;
 ```
 
-{{"demo": "UnstyledButtonsSimple.js"}}
+{{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
 ## Customizing the root element
 
@@ -32,18 +34,18 @@ Compare the attributes on the `span` with the `button` from the previous demo.
 
 In addition to HTML elements, you can also use SVGs with the `ButtonUnstyled` component.
 
-{{"demo": "UnstyledButtonCustom.js"}}
+{{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
 
 ## Focus of disabled buttons
 
 Similarly to the native `<button>`, the `ButtonUnstyled` component can't receive focus when it's disabled.
 This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
-The `focusableWhenDisabled` prop lets you change this behavior.  
+The `focusableWhenDisabled` prop lets you change this behavior.
 When this prop is set, the underlying button does not set the `disabled` prop.
 Instead, `aria-disabled` is used, which makes the button focusable.
 
-It should be used whenever the disabled buttons need to be read by screen readers.  
-MUI Base uses this prop internally in [menu items](/base/react-menu).
+It should be used whenever the disabled buttons need to be read by screen readers.
+MUI Base uses this prop internally in [menu items](/base/react-menu/).
 It makes the keyboard navigation to disabled items possible (in compliance with [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
 
 {{"demo": "UnstyledButtonsDisabledFocus.js"}}
@@ -66,4 +68,4 @@ It returns props to be placed on a custom button element, along with fields repr
 The `useButton` hook requires the `ref` of the element it's used on.
 Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
 
-{{"demo": "UseButton.js"}}
+{{"demo": "UseButton.js", "defaultCodeOpen": true}}
