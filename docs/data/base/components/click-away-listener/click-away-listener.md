@@ -46,7 +46,7 @@ You can set the component to listen for **leading events** (the start of a click
 By default, `ClickAwayListener` will add an `onClick` handler to its children.
 This can result in screen readers announcing that the children are clickable, even though this `onClick` handler has no effect on the children elements themselves.
 
-To prevent this behavior, add `role="presentation"` to the immediate children:
+To prevent this behavior, add `role="presentation"` to the immediate child:
 
 ```tsx
 <ClickAwayListener>
