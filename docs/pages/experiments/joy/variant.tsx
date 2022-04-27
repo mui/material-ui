@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
-import { CssVarsProvider, ColorPaletteProp, PaletteVariant } from '@mui/joy/styles';
+import { CssVarsProvider, ColorPaletteProp, PaletteVariant, extendTheme } from '@mui/joy/styles';
 import Info from '@mui/icons-material/Info';
 import Code from '@mui/icons-material/Code';
 import PlayArrow from '@mui/icons-material/PlayArrow';
@@ -154,7 +154,7 @@ export default function JoyVariant() {
       </CssVarsProvider>
       <CssVarsProvider
         prefix="strapi"
-        theme={{
+        theme={extendTheme({
           colorSchemes: {
             light: {
               palette: {
@@ -325,7 +325,7 @@ export default function JoyVariant() {
               },
             },
           },
-        }}
+        })}
       >
         <Box sx={{ p: 2 }}>
           <Typography component="h2" level="h4">
@@ -362,7 +362,7 @@ declare module '@mui/joy/styles' {
 
 <CssVarsProvider
   prefix="strapi"
-  theme={{
+  theme={extendTheme({
     colorSchemes: {
       light: {
         palette: {
@@ -410,7 +410,7 @@ declare module '@mui/joy/styles' {
         },
       },
     },
-  }}
+  })}
 />
               `}
               language="jsx"
@@ -441,7 +441,7 @@ declare module '@mui/joy/styles' {
 
 <CssVarsProvider
   prefix="strapi"
-  theme={{
+  theme={extendTheme({
     colorSchemes: {
       light: {
         palette: {
@@ -530,7 +530,7 @@ declare module '@mui/joy/styles' {
         }),
       },
     },
-  }}
+  })}
 />
               `}
               language="jsx"
@@ -635,7 +635,7 @@ declare module '@mui/joy/styles' {
               code={`
 <CssVarsProvider
   prefix="strapi"
-  theme={{
+  theme={extendTheme({
     colorSchemes: {
       // ...
     },
@@ -646,7 +646,7 @@ declare module '@mui/joy/styles' {
         outlineColor: 'var(--strapi-palette-primary-700)',
       },
     },
-  }}
+  })}
 />
               `}
               language="jsx"
@@ -731,7 +731,7 @@ declare module '@mui/joy/styles' {
 
 <CssVarsProvider
   prefix="strapi"
-  theme={{
+  theme={extendTheme({
     colorSchemes: {
       light: {
         palette: {
@@ -765,7 +765,7 @@ declare module '@mui/joy/styles' {
         }
       }
     },
-  }}
+  })}
 />
 
 // Custom component for Strapi use-case.

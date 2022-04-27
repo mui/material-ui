@@ -2,12 +2,12 @@ import { deepmerge } from '@mui/utils';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import { Theme, DefaultColorScheme, ExtendedColorScheme, FontSize } from './types';
 import { Components } from './components';
-import extendTheme, { ThemeInput } from './extendTheme';
+import extendTheme from './extendTheme';
 import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme,
-  ThemeInput
+  Theme
 >({
   theme: {
     ...extendTheme(),
