@@ -8,10 +8,13 @@ packageName: '@mui/base'
 
 # Click-away listener
 
-<p class="description">The <code>ClickAwayListener</code> component detects when a click event happens outside of its children elements.</p>
+<p class="description">The <code>ClickAwayListener</code> component detects when a click event happens outside of its child element.</p>
 
-- 📦 [981 B gzipped](/size-snapshot)
-- ⚛️ Supports portals
+`ClickAwayListener` is a utility component that listens for click events outside of its child.
+
+> **Note:** the `ClickAwayListener` component only accepts _one_ child element.
+
+`ClickAwayListener` complements components like the [`Portal`](/base/react-portal), which should close when the user clicks elsewhere in the document.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -20,10 +23,6 @@ packageName: '@mui/base'
 The following demo shows how to hide a menu dropdown when users click anywhere else on the page:
 
 {{"demo": "ClickAway.js"}}
-
-> **Note:** the `ClickAwayListener` component only accepts _one_ child element.
-
-You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
 
 ## Portal
 
@@ -39,14 +38,14 @@ You can set the component to listen for **leading events** (the start of a click
 
 {{"demo": "LeadingClickAway.js"}}
 
-> ⚠️ **Note:** When the component is set to listen for leading events, interactions with the scrollbar are ignored.
+> ⚠️ **Note:** when the component is set to listen for leading events, interactions with the scrollbar are ignored.
 
 ## Accessibility
 
-By default, `ClickAwayListener` will add an `onClick` handler to its children.
-This can result in screen readers announcing that the children are clickable, even though this `onClick` handler has no effect on the children elements themselves.
+By default, `ClickAwayListener` will add an `onClick` handler to its child.
+This can result in screen readers announcing that the child is clickable, even though this `onClick` handler has no effect on the child itself.
 
-To prevent this behavior, add `role="presentation"` to the immediate child:
+To prevent this behavior, add `role="presentation"` to the child element:
 
 ```tsx
 <ClickAwayListener>
@@ -57,3 +56,7 @@ To prevent this behavior, add `role="presentation"` to the immediate child:
 ```
 
 This is also required to fix a known issue in NVDA when using Firefox that prevents the announcement of alert messages—see [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080) for details.
+
+## Bundle size
+
+📦 [981 B gzipped](/size-snapshot).
