@@ -139,7 +139,11 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark');
 
       rerender(
-        <CssVarsProvider theme={{ colorSchemes: { comfort: { palette: { color: '#e5e5e5' } } } }}>
+        <CssVarsProvider
+          theme={{
+            colorSchemes: { light: {}, dark: {}, comfort: { palette: { color: '#e5e5e5' } } },
+          }}
+        >
           <Consumer />
         </CssVarsProvider>,
       );
@@ -649,7 +653,7 @@ describe('createCssVarsProvider', () => {
   });
 
   describe('[Application] Customization', () => {
-    it('merge custom theme', () => {
+    it('custom theme replace the default theme', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           fontSize: { md: '1rem', sm: null },
@@ -670,7 +674,7 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('text-md').textContent).to.equal('var(--fontSize-md)');
+      expect(screen.getByTestId('text-md').textContent).to.equal('');
       expect(screen.getByTestId('text-sm').textContent).to.equal('var(--fontSize-sm)');
     });
 
@@ -741,7 +745,9 @@ describe('createCssVarsProvider', () => {
         );
       };
       render(
-        <CssVarsProvider theme={{ colorSchemes: { light: { palette: { bgcolor: '#ffffff' } } } }}>
+        <CssVarsProvider
+          theme={{ colorSchemes: { light: { palette: { color: '#000000', bgcolor: '#ffffff' } } } }}
+        >
           <Swatch />
         </CssVarsProvider>,
       );
@@ -769,7 +775,7 @@ describe('createCssVarsProvider', () => {
         return <div>{Object.keys(theme.colorSchemes).join(', ')}</div>;
       };
       const { container } = render(
-        <CssVarsProvider theme={{ colorSchemes: { dim: {} } }}>
+        <CssVarsProvider theme={{ colorSchemes: { light: {}, dark: {}, dim: {} } }}>
           <Consumer />
         </CssVarsProvider>,
       );

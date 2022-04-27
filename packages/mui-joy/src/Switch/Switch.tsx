@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled, JoyTheme } from '../styles';
+import { styled, Theme } from '../styles';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
 
@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
 };
 
 const switchColorVariables =
-  ({ theme, ownerState }: { theme: JoyTheme; ownerState: SwitchProps }) =>
+  ({ theme, ownerState }: { theme: Theme; ownerState: SwitchProps }) =>
   (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
     const variant = ownerState.variant;
     const color = ownerState.color;

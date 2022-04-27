@@ -78,7 +78,19 @@ export interface PaletteVariant {
 
 export interface PaletteRangeOverrides {}
 export type ExtendedPaletteRange = OverridableStringUnion<
-  '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900',
+  | '50'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | 'mainChannel'
+  | 'lightChannel'
+  | 'darkChannel',
   PaletteRangeOverrides
 >;
 

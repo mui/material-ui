@@ -1,7 +1,6 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, TypographySystem, VariantProp } from '../styles/types';
+import { ColorPaletteProp, TypographySystem, VariantProp, SxProps } from '../styles/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
 

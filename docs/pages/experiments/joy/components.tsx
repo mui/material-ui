@@ -97,7 +97,7 @@ const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
         size="sm"
         variant="light"
         {...props}
-        endAdornment={
+        endDecorator={
           unit ? (
             <Typography level="body3" sx={{ pointerEvents: 'none' }}>
               {unit}
@@ -308,8 +308,8 @@ const components: {
       <React.Fragment>
         <Input
           placeholder="Placeholder"
-          startAdornment={<Key />}
-          endAdornment={
+          startDecorator={<Key />}
+          endDecorator={
             <IconButton size="sm" color="neutral">
               <Visibility />
             </IconButton>
@@ -319,23 +319,23 @@ const components: {
         <Input
           color="primary"
           placeholder="Placeholder"
-          startAdornment={<Typography color="inherit">$</Typography>}
-          endAdornment={<Typography color="text.tertiary">USD</Typography>}
+          startDecorator={<Typography color="inherit">$</Typography>}
+          endDecorator={<Typography color="text.tertiary">USD</Typography>}
           {...props}
         />
-        <Input placeholder="Placeholder" color="danger" endAdornment={<Info />} {...props} />
+        <Input placeholder="Placeholder" color="danger" endDecorator={<Info />} {...props} />
         <Input
           placeholder="Placeholder"
           variant="light"
           color="success"
-          endAdornment={<TaskAlt />}
+          endDecorator={<TaskAlt />}
           {...props}
         />
         <Input
           placeholder="Placeholder"
           variant="contained"
           color="info"
-          endAdornment={<TaskAlt />}
+          endDecorator={<TaskAlt />}
           {...props}
         />
       </React.Fragment>

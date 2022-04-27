@@ -1,66 +1,16 @@
 import { deepmerge } from '@mui/utils';
-import {
-  unstable_createCssVarsProvider as createCssVarsProvider,
-  BreakpointsOptions,
-  SpacingOptions,
-} from '@mui/system';
-import defaultTheme, {
-  lightColorSystem,
-  darkColorSystem,
-  Focus,
-  ThemeScales,
-  JoyTheme,
-} from './defaultTheme';
-import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { Variants } from './types/variants';
-import { ColorSystem } from './types/colorSystem';
-import { TypographySystem, FontSize } from './types/typography';
+import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import { Theme, DefaultColorScheme, ExtendedColorScheme, FontSize } from './types';
 import { Components } from './components';
+import extendTheme from './extendTheme';
 import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
-
-type Partial2Level<T> = {
-  [K in keyof T]?: T[K] extends Record<any, any>
-    ? {
-        [J in keyof T[K]]?: T[K][J];
-      }
-    : T[K];
-};
-
-type Partial3Level<T> = {
-  [K in keyof T]?: {
-    [J in keyof T[K]]?: T[K][J] extends Record<any, any>
-      ? {
-          [P in keyof T[K][J]]?: T[K][J][P];
-        }
-      : T[K][J];
-  };
-};
-
-// Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-export interface JoyThemeInput extends Partial2Level<ThemeScales> {
-  focus?: Partial<Focus>;
-  typography?: Partial<TypographySystem>;
-  variants?: Partial2Level<Variants>;
-  breakpoints?: BreakpointsOptions;
-  spacing?: SpacingOptions;
-  components?: Components<JoyTheme>;
-  colorSchemes?: Partial<
-    Record<DefaultColorScheme | ExtendedColorScheme, Partial3Level<ColorSystem>>
-  >;
-}
-
-const { palette, ...rest } = defaultTheme;
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme,
-  JoyThemeInput
+  Theme
 >({
   theme: {
-    ...rest,
-    colorSchemes: {
-      light: lightColorSystem,
-      dark: darkColorSystem,
-    },
+    ...extendTheme(),
     components: {
       // TODO: find a way to abstract SvgIcon out of @mui/material
       MuiSvgIcon: {
@@ -88,14 +38,14 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
           },
         },
       },
-    } as Components<JoyTheme>,
+    } as Components<Theme>,
   },
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
   },
   prefix: 'joy',
-  resolveTheme: (mergedTheme: JoyTheme) => {
+  resolveTheme: (mergedTheme: Theme) => {
     mergedTheme.variants = deepmerge(
       {
         text: createVariant('text', mergedTheme),
