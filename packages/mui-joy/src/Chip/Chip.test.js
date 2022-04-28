@@ -17,7 +17,7 @@ describe('<Chip />', () => {
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'light' },
+    testVariantProps: { variant: 'soft' },
     skip: ['classesRoot', 'componentsProp', 'themeVariants'],
   }));
 

@@ -16,7 +16,7 @@ describe('<AspectRatio />', () => {
     muiName: 'MuiAspectRatio',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

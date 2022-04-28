@@ -16,7 +16,7 @@ describe('<CardOverflow />', () => {
     muiName: 'MuiCardOverflow',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

@@ -14,7 +14,7 @@ describe('Joy <Button />', () => {
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
     testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
-    testVariantProps: { variant: 'contained', fullWidth: true },
+    testVariantProps: { variant: 'solid', fullWidth: true },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 

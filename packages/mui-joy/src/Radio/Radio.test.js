@@ -13,7 +13,7 @@ describe('<Radio />', () => {
     ThemeProvider,
     muiName: 'MuiRadio',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
-    testVariantProps: { variant: 'light' },
+    testVariantProps: { variant: 'soft' },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));

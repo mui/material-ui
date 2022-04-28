@@ -19,7 +19,7 @@ describe('<Avatar />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

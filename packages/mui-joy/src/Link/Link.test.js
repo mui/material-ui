@@ -24,7 +24,7 @@ describe('<Link />', () => {
     ThemeProvider,
     muiName: 'MuiLink',
     refInstanceof: window.HTMLAnchorElement,
-    testVariantProps: { color: 'primary', variant: 'text' },
+    testVariantProps: { color: 'primary', variant: 'plain' },
     testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
     skip: [
       'classesRoot',

@@ -16,7 +16,7 @@ describe('<AvatarGroup />', () => {
     muiName: 'MuiAvatarGroup',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

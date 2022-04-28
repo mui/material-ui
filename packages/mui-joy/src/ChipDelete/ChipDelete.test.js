@@ -16,7 +16,7 @@ describe('<ChipDelete />', () => {
     muiName: 'MuiChipDelete',
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'light' },
+    testVariantProps: { variant: 'soft' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
