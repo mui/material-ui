@@ -58,6 +58,10 @@ export default function createCssVarsProvider(options) {
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
     enableColorScheme = designSystemEnableColorScheme,
+    storageWindow = window,
+    documentNode = document,
+    colorSchemeNode = document.documentElement,
+    colorSchemeSelector = ':root',
   }) {
     const hasMounted = React.useRef(false);
 
@@ -81,6 +85,7 @@ export default function createCssVarsProvider(options) {
       defaultDarkColorScheme,
       modeStorageKey,
       defaultMode,
+      storageWindow,
     });
     const resolvedColorScheme = (() => {
       if (!colorScheme) {
@@ -148,55 +153,57 @@ export default function createCssVarsProvider(options) {
         return defaultColorScheme.light;
       })();
       if (key === resolvedDefaultColorScheme) {
-        styleSheet[':root'] = css;
+        styleSheet[colorSchemeSelector] = css;
       } else {
-        styleSheet[`[${attribute}="${key}"]`] = css;
+        styleSheet[
+          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
+        ] = css;
       }
     });
 
     React.useEffect(() => {
-      if (colorScheme) {
+      if (colorScheme && colorSchemeNode) {
         // attaches attribute to <html> because the css variables are attached to :root (html)
-        document.documentElement.setAttribute(attribute, colorScheme);
+        colorSchemeNode.setAttribute(attribute, colorScheme);
       }
-    }, [colorScheme, attribute]);
+    }, [colorScheme, attribute, colorSchemeNode]);
 
     useEnhancedEffect(() => {
-      if (!mode || !enableColorScheme) {
+      if (!mode || !enableColorScheme || !colorSchemeNode) {
         return undefined;
       }
-      const priorColorScheme = document.documentElement.style.getPropertyValue('color-scheme');
+      const priorColorScheme = colorSchemeNode.style.getPropertyValue('color-scheme');
       // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
       if (mode === 'system') {
-        document.documentElement.style.setProperty('color-scheme', systemMode);
+        colorSchemeNode.style.setProperty('color-scheme', systemMode);
       } else {
-        document.documentElement.style.setProperty('color-scheme', mode);
+        colorSchemeNode.style.setProperty('color-scheme', mode);
       }
 
       return () => {
-        document.documentElement.style.setProperty('color-scheme', priorColorScheme);
+        colorSchemeNode.style.setProperty('color-scheme', priorColorScheme);
       };
-    }, [mode, systemMode, enableColorScheme]);
+    }, [mode, systemMode, enableColorScheme, colorSchemeNode]);
 
     React.useEffect(() => {
       let timer;
-      if (disableTransitionOnChange && hasMounted.current) {
+      if (disableTransitionOnChange && hasMounted.current && documentNode) {
         // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
-        const css = document.createElement('style');
-        css.appendChild(document.createTextNode(DISABLE_CSS_TRANSITION));
-        document.head.appendChild(css);
+        const css = documentNode.createElement('style');
+        css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
+        documentNode.head.appendChild(css);
 
         // Force browser repaint
-        (() => window.getComputedStyle(document.body))();
+        (() => window.getComputedStyle(documentNode.body))();
 
         timer = setTimeout(() => {
-          document.head.removeChild(css);
+          documentNode.head.removeChild(css);
         }, 1);
       }
       return () => {
         clearTimeout(timer);
       };
-    }, [colorScheme, disableTransitionOnChange]);
+    }, [colorScheme, disableTransitionOnChange, documentNode]);
 
     React.useEffect(() => {
       hasMounted.current = true;
@@ -234,6 +241,14 @@ export default function createCssVarsProvider(options) {
      */
     children: PropTypes.node,
     /**
+     * The node used to attach the color-scheme attribute
+     */
+    colorSchemeNode: PropTypes.any,
+    /**
+     * The CSS selector for attaching the generated custom properties
+     */
+    colorSchemeSelector: PropTypes.string,
+    /**
      * The initial color scheme used.
      */
     defaultColorScheme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -246,6 +261,10 @@ export default function createCssVarsProvider(options) {
      */
     disableTransitionOnChange: PropTypes.bool,
     /**
+     * The document to attach the attribute to
+     */
+    documentNode: PropTypes.any,
+    /**
      * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
      */
     enableColorScheme: PropTypes.bool,
@@ -257,6 +276,11 @@ export default function createCssVarsProvider(options) {
      * CSS variable prefix.
      */
     prefix: PropTypes.string,
+    /**
+     * The window that attaches the 'storage' event listener
+     * @default window
+     */
+    storageWindow: PropTypes.any,
     /**
      * The calculated theme object that will be passed through context.
      */
