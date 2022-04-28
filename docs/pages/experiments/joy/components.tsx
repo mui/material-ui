@@ -95,7 +95,7 @@ const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
       <Input
         id={id}
         size="sm"
-        variant="light"
+        variant="soft"
         {...props}
         endDecorator={
           unit ? (
@@ -140,7 +140,7 @@ const components: {
     render: (props: any) => (
       <React.Fragment>
         <Button {...props}>Text</Button>
-        <Button startIcon={<Add />} variant="light" {...props}>
+        <Button startIcon={<Add />} variant="soft" {...props}>
           Add more row
         </Button>
         <Button endIcon={<DeleteForever />} variant="outlined" {...props}>
@@ -161,7 +161,7 @@ const components: {
         <IconButton color="success" {...props}>
           <Add />
         </IconButton>
-        <IconButton variant="contained" color="danger" {...props}>
+        <IconButton variant="solid" color="danger" {...props}>
           <DeleteForever />
         </IconButton>
         <IconButton variant="outlined" color="primary" {...props}>
@@ -180,8 +180,8 @@ const components: {
       <React.Fragment>
         <Switch variant="outlined" {...props} />
         <Switch variant="outlined" defaultChecked {...props} />
-        <Switch variant="light" {...props} />
-        <Switch variant="light" defaultChecked {...props} />
+        <Switch variant="soft" {...props} />
+        <Switch variant="soft" defaultChecked {...props} />
         <Switch {...props} />
         <Switch defaultChecked {...props} />
       </React.Fragment>
@@ -238,7 +238,7 @@ const components: {
                 nested
                 component="div"
                 endAction={
-                  <IconButton variant="text" color="danger">
+                  <IconButton variant="plain" color="danger">
                     <DeleteForever />
                   </IconButton>
                 }
@@ -326,14 +326,14 @@ const components: {
         <Input placeholder="Placeholder" color="danger" endDecorator={<Info />} {...props} />
         <Input
           placeholder="Placeholder"
-          variant="light"
+          variant="soft"
           color="success"
           endDecorator={<TaskAlt />}
           {...props}
         />
         <Input
           placeholder="Placeholder"
-          variant="contained"
+          variant="solid"
           color="info"
           endDecorator={<TaskAlt />}
           {...props}
@@ -401,7 +401,7 @@ const components: {
               </Box>
               <IconButton
                 size="lg"
-                variant="contained"
+                variant="solid"
                 sx={{
                   position: 'absolute',
                   zIndex: 2,
@@ -489,7 +489,7 @@ const components: {
       <React.Fragment>
         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
           <Chip
-            variant="light"
+            variant="soft"
             size="sm"
             startDecorator={
               <Avatar
@@ -503,7 +503,7 @@ const components: {
             Robert Stark
           </Chip>
           <Chip
-            variant="light"
+            variant="soft"
             startDecorator={
               <Avatar
                 src="/static/images/avatar/2.jpg"
@@ -517,7 +517,7 @@ const components: {
             Robert Stark
           </Chip>
           <Chip
-            variant="light"
+            variant="soft"
             size="lg"
             startDecorator={
               <Avatar
@@ -542,11 +542,11 @@ const components: {
           </Chip>
         </Box>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <Chip variant="light" color="neutral" endDecorator={<ChipDelete />} {...props}>
+          <Chip variant="soft" color="neutral" endDecorator={<ChipDelete />} {...props}>
             Fruit
           </Chip>
           <Chip
-            variant="light"
+            variant="soft"
             color="neutral"
             endDecorator={<ChipDelete variant="outlined" />}
             {...props}
@@ -556,7 +556,7 @@ const components: {
           <Chip
             variant="outlined"
             color="neutral"
-            endDecorator={<ChipDelete variant="light" />}
+            endDecorator={<ChipDelete variant="soft" />}
             {...props}
           >
             Fruit
@@ -642,7 +642,7 @@ function Playground({ initialName }: { initialName?: string }) {
             <ListItem key={config.name} sx={{ mb: 1 }}>
               <ListItemButton
                 color={config.name === current ? 'primary' : 'neutral'}
-                variant={config.name === current ? 'light' : 'text'}
+                variant={config.name === current ? 'soft' : 'plain'}
                 selected={config.name === current}
                 onClick={() => setCurrent(config.name)}
                 sx={{

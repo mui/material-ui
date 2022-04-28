@@ -106,7 +106,7 @@ const Circle = ({
         display: 'inline-flex',
         borderRadius: '40px',
         p: '0.5rem',
-        ...theme.variants.light[color],
+        ...theme.variants.soft[color],
       }),
       ...(Array.isArray(sxProp) ? sxProp : [sxProp]),
     ]}
@@ -179,7 +179,7 @@ function Gmail() {
       <ListItem>
         <ListItemButton
           selected={index === 0}
-          variant={index === 0 ? 'light' : 'text'}
+          variant={index === 0 ? 'soft' : 'plain'}
           color={index === 0 ? 'danger' : undefined}
           onClick={() => setIndex(0)}
         >
@@ -195,7 +195,7 @@ function Gmail() {
       <ListItem nested>
         <ListItemButton
           selected={index === 1}
-          variant={index === 1 ? 'light' : 'text'}
+          variant={index === 1 ? 'soft' : 'plain'}
           color={index === 1 ? 'info' : undefined}
           onClick={() => setIndex(1)}
         >
@@ -209,7 +209,7 @@ function Gmail() {
           <ListItem>
             <ListItemButton
               selected={index === 2}
-              variant={index === 2 ? 'light' : 'text'}
+              variant={index === 2 ? 'soft' : 'plain'}
               color={index === 2 ? 'primary' : undefined}
               onClick={() => setIndex(2)}
             >
@@ -223,7 +223,7 @@ function Gmail() {
           <ListItem>
             <ListItemButton
               selected={index === 3}
-              variant={index === 3 ? 'light' : 'text'}
+              variant={index === 3 ? 'soft' : 'plain'}
               color={index === 3 ? 'warning' : undefined}
               onClick={() => setIndex(3)}
             >
@@ -348,7 +348,7 @@ function MuiNav() {
         '--List-item-paddingRight': '2px',
         '--List-item-paddingY': '0px',
         '--List-nestedInsetStart': '28px',
-        '--List-decorator-color': theme.vars.palette.primary.textColor,
+        '--List-decorator-color': theme.vars.palette.primary.plainColor,
       })}
     >
       {(pages as MuiPage[]).map((aPage, index) => {
@@ -396,7 +396,7 @@ function MuiNav() {
                         <ListItemButton
                           color={nestedIndex === 0 ? 'primary' : undefined}
                           selected={nestedIndex === 0}
-                          variant={nestedIndex === 0 ? 'light' : 'text'}
+                          variant={nestedIndex === 0 ? 'soft' : 'plain'}
                         >
                           {pageToTitleI18n(nestedPage, t) || ''}
                         </ListItemButton>
@@ -478,7 +478,7 @@ const Firebash = () => {
           }}
           endAction={
             <IconButton
-              variant="text"
+              variant="plain"
               color="neutral"
               sx={{
                 '--IconButton-padding': '12px',
@@ -643,7 +643,7 @@ const Gatsby = () => {
           nested
           sx={{ my: 1 }}
           startAction={
-            <IconButton variant="text" size="sm" color="neutral" onClick={() => setOpen(!open)}>
+            <IconButton variant="plain" size="sm" color="neutral" onClick={() => setOpen(!open)}>
               <KeyboardArrowDown sx={{ transform: open ? 'initial' : 'rotate(-90deg)' }} />
             </IconButton>
           }
@@ -683,7 +683,7 @@ const Gatsby = () => {
           nested
           sx={{ my: 1 }}
           startAction={
-            <IconButton variant="text" size="sm" color="neutral">
+            <IconButton variant="plain" size="sm" color="neutral">
               <KeyboardArrowDown />
             </IconButton>
           }
@@ -939,7 +939,7 @@ export default function JoyList() {
               '--List-item-minHeight': '3rem',
             }}
           >
-            <ListItemButton selected variant="contained">
+            <ListItemButton selected variant="solid">
               <ListItemDecorator>
                 <InboxIcon />
               </ListItemDecorator>
@@ -968,12 +968,12 @@ export default function JoyList() {
           >
             <ListItem
               endAction={
-                <Button variant="light" size="sm">
+                <Button variant="soft" size="sm">
                   Clear
                 </Button>
               }
             >
-              <ListItemButton selected variant="light">
+              <ListItemButton selected variant="soft">
                 <ListItemDecorator>
                   <Circle color="primary">
                     <InboxIcon />
@@ -988,7 +988,7 @@ export default function JoyList() {
             <ListDivider component="hr" />
             <ListItem
               endAction={
-                <Button variant="light" color="danger" size="sm">
+                <Button variant="soft" color="danger" size="sm">
                   Clear
                 </Button>
               }
@@ -1024,9 +1024,9 @@ export default function JoyList() {
             >
               <ListItemButton
                 selected
-                variant="contained"
+                variant="solid"
                 color="success"
-                sx={(theme) => theme.variants.containedOverrides.success}
+                sx={(theme) => theme.variants.solidOverrides.success}
               >
                 <ListItemDecorator>
                   <Circle color="success">
@@ -1196,7 +1196,7 @@ export default function JoyList() {
             }}
           >
             <ListItem>
-              <ListItemButton selected variant="light">
+              <ListItemButton selected variant="soft">
                 <ListItemDecorator>
                   <InboxIcon />
                 </ListItemDecorator>{' '}

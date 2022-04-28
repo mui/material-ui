@@ -105,10 +105,10 @@ export default function JoyVariant() {
               (theme) => theme.variants.outlined.neutral,
             ]}
           >
-            <Button variant="text">Text</Button>
+            <Button variant="plain">Text</Button>
             <Button variant="outlined">Outlined</Button>
-            <Button variant="light">Light</Button>
-            <Button variant="contained">Contained</Button>
+            <Button variant="soft">Light</Button>
+            <Button variant="solid">Contained</Button>
             <Button disabled>Disabled</Button>
           </Box>
           <br />
@@ -128,7 +128,7 @@ export default function JoyVariant() {
               (theme) => theme.variants.containedOverrides.primary,
             ]}
           >
-            <Button color="context" variant="text">
+            <Button color="context" variant="plain">
               Text
             </Button>
             <Button color="context" variant="outlined">
@@ -137,16 +137,16 @@ export default function JoyVariant() {
             <Button disabled color="context" variant="outlined">
               Disabled
             </Button>
-            <Button color="context" variant="light">
+            <Button color="context" variant="soft">
               Light
             </Button>
-            <Button disabled color="context" variant="light">
+            <Button disabled color="context" variant="soft">
               Disabled
             </Button>
-            <Button color="context" variant="contained">
+            <Button color="context" variant="solid">
               Contained
             </Button>
-            <Button disabled color="context" variant="contained">
+            <Button disabled color="context" variant="solid">
               Disabled
             </Button>
           </Box>
@@ -551,12 +551,12 @@ declare module '@mui/joy/styles' {
             ]}
           >
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button variant="contained">Contained</Button>
+              <Button variant="solid">Contained</Button>
               <Button variant="outlined">Outlined</Button>
               <Button disabled>Disabled</Button>
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button color="danger" variant="contained">
+              <Button color="danger" variant="solid">
                 Contained
               </Button>
               <Button color="danger" variant="outlined">
@@ -567,7 +567,7 @@ declare module '@mui/joy/styles' {
               </Button>
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button color="success" variant="contained">
+              <Button color="success" variant="solid">
                 Contained
               </Button>
               <Button color="success" variant="outlined">
@@ -611,7 +611,7 @@ declare module '@mui/joy/styles' {
               (theme) => theme.variants.containedOverrides.primary,
             ]}
           >
-            <Button color="context" variant="contained">
+            <Button color="context" variant="solid">
               Contained
             </Button>
             <Button color="context" variant="outlined">
@@ -686,22 +686,22 @@ declare module '@mui/joy/styles' {
             ]}
           >
             <Tile sx={{ p: 2 }}>
-              <Tile variant="contained">
+              <Tile variant="solid">
                 <Info />
               </Tile>
             </Tile>
             <Tile sx={{ p: 2 }} color="warning">
-              <Tile variant="contained" color="warning">
+              <Tile variant="solid" color="warning">
                 <Code />
               </Tile>
             </Tile>
             <Tile sx={{ p: 2 }} color="secondary">
-              <Tile variant="contained" color="secondary">
+              <Tile variant="solid" color="secondary">
                 <PlayArrow />
               </Tile>
             </Tile>
             <Tile sx={{ p: 2 }} color="alternate">
-              <Tile variant="contained" color="alternate">
+              <Tile variant="solid" color="alternate">
                 <HistoryEdu />
               </Tile>
             </Tile>
@@ -794,22 +794,22 @@ const Tile = ({
 };
 
 <Tile sx={{ p: 2 }}>
-  <Tile variant="contained">
+  <Tile variant="solid">
     <Info />
   </Tile>
 </Tile>
 <Tile sx={{ p: 2 }} color="warning">
-  <Tile variant="contained" color="warning">
+  <Tile variant="solid" color="warning">
     <Code />
   </Tile>
 </Tile>
 <Tile sx={{ p: 2 }} color="secondary">
-  <Tile variant="contained" color="secondary">
+  <Tile variant="solid" color="secondary">
     <PlayArrow />
   </Tile>
 </Tile>
 <Tile sx={{ p: 2 }} color="alternate">
-  <Tile variant="contained" color="alternate">
+  <Tile variant="solid" color="alternate">
     <HistoryEdu />
   </Tile>
 </Tile>

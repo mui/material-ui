@@ -134,7 +134,7 @@ const Covers = () => {
           <Button
             key={t}
             size="sm"
-            variant={t === type ? 'contained' : 'light'}
+            variant={t === type ? 'solid' : 'soft'}
             color={t === type ? 'primary' : 'neutral'}
             onClick={() => setType(t)}
           >
@@ -177,7 +177,7 @@ export default function JoySvgIcon() {
               </Typography>
               <IconButton
                 aria-label="bookmark Bahamas Islands"
-                variant="text"
+                variant="plain"
                 color="neutral"
                 sx={{ position: 'absolute', top: '1rem', right: '1rem' }}
               >
@@ -281,16 +281,16 @@ export default function JoySvgIcon() {
           <Card component="li" size="lg">
             <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
               <Sheet
-                variant="contained"
+                variant="solid"
                 color="primary"
                 sx={{ borderRadius: '20px', px: '0.5rem', py: '4px', fontSize: 'xs' }}
               >
                 Research
               </Sheet>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="plain" color="neutral">
                 <Add />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral" sx={{ ml: 'auto' }}>
+              <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: 'auto' }}>
                 <MoreHoriz />
               </IconButton>
             </Box>
@@ -343,7 +343,7 @@ export default function JoySvgIcon() {
                 </Box>
                 <IconButton
                   size="lg"
-                  variant="contained"
+                  variant="solid"
                   sx={{
                     position: 'absolute',
                     zIndex: 2,
@@ -416,7 +416,7 @@ export default function JoySvgIcon() {
               </AspectRatio>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 1 }}>
-              <IconButton variant="text" color="neutral" size="sm">
+              <IconButton variant="plain" color="neutral" size="sm">
                 <StarBorder />
               </IconButton>
               <Avatar
@@ -424,7 +424,7 @@ export default function JoySvgIcon() {
                 size="lg"
                 sx={{ '--Avatar-ring': '0 0 0 3px var(--joy-palette-background-body)', mt: -2 }}
               />
-              <IconButton variant="text" color="neutral" size="sm">
+              <IconButton variant="plain" color="neutral" size="sm">
                 <MoreHoriz />
               </IconButton>
             </Box>
@@ -479,16 +479,16 @@ export default function JoySvgIcon() {
               />
             </AspectRatio>
             <Box sx={{ display: 'flex', gap: 1 }}>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="plain" color="neutral">
                 <Download />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="plain" color="neutral">
                 <Favorite />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="plain" color="neutral">
                 <Share />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="plain" color="neutral">
                 <MoreHoriz />
               </IconButton>
             </Box>
@@ -499,10 +499,10 @@ export default function JoySvgIcon() {
             sx={{ gridColumn: 'span 2', maxWidth: 360, '--Typography-gap': '0.5rem' }}
           >
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mt: -1, mr: -1 }}>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="plain" color="neutral">
                 <StarBorder />
               </IconButton>
-              <IconButton size="sm" variant="text" color="neutral">
+              <IconButton size="sm" variant="plain" color="neutral">
                 <MoreHoriz />
               </IconButton>
             </Box>
@@ -631,7 +631,7 @@ export default function JoySvgIcon() {
               />
               <Typography sx={{ fontSize: 'sm' }}>Zajno Crew</Typography>
               <Sheet
-                variant="contained"
+                variant="solid"
                 sx={{ px: 1, py: 0.5, borderRadius: 'xs', fontSize: 'xs', fontWeight: 'md' }}
               >
                 TEAM
@@ -673,7 +673,7 @@ export default function JoySvgIcon() {
             })}
           >
             <AspectRatio
-              variant="light"
+              variant="soft"
               sx={{
                 flexGrow: 1,
                 pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
@@ -701,21 +701,21 @@ export default function JoySvgIcon() {
                 </div>
                 <IconButton
                   size="sm"
-                  variant="text"
+                  variant="plain"
                   color="neutral"
                   sx={{ ml: 'auto', alignSelf: 'flex-start' }}
                 >
                   <CallMade />
                 </IconButton>
               </Box>
-              <AspectRatio variant="light" sx={{ pb: 'clamp(0px, (100% - 200px) * 999, 200px)' }}>
+              <AspectRatio variant="soft" sx={{ pb: 'clamp(0px, (100% - 200px) * 999, 200px)' }}>
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
                 />
               </AspectRatio>
               <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
-                <Avatar variant="contained" color="neutral">
+                <Avatar variant="solid" color="neutral">
                   S
                 </Avatar>
                 <div>
