@@ -13,7 +13,7 @@ packageName: '@mui/base'
 `Portal` is a utility component built around [React's `createPortal()` API](https://reactjs.org/docs/portals.html).
 It gives you the functionality of `createPortal()` in a convenient component form.
 
-> 💡 According to [the React documentation](https://reactjs.org/docs/portals.html), portals are useful when "you need the child element to visually 'break out' of its container."
+> 💡 According to [the React docs](https://reactjs.org/docs/portals.html), portals are useful when "you need the child element to visually 'break out' of its container."
 
 The `Portal` component is used internally by Material UI's [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
 
