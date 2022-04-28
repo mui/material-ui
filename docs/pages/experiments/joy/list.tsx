@@ -3,6 +3,7 @@ import { GlobalStyles } from '@mui/system';
 import {
   ColorPaletteProp,
   CssVarsProvider,
+  extendTheme,
   useColorScheme,
   styled,
   experimental_sx as sx,
@@ -716,7 +717,7 @@ const Gatsby = () => {
 export default function JoyList() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         colorSchemes: {
           light: {
             palette: {
@@ -726,7 +727,7 @@ export default function JoyList() {
             },
           },
         },
-      }}
+      })}
     >
       <GlobalStyles
         styles={{ body: { margin: 0, backgroundColor: 'var(--joy-palette-background-level1)' } }}

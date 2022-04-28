@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme, useColorScheme } from '@mui/joy/styles';
 import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -40,7 +40,7 @@ const ColorSchemePicker = () => {
 export default function JoyTypography() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         components: {
           MuiSvgIcon: {
             defaultProps: {
@@ -60,7 +60,7 @@ export default function JoyTypography() {
             },
           },
         },
-      }}
+      })}
     >
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>

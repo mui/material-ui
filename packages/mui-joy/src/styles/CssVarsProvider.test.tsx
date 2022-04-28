@@ -96,6 +96,9 @@ describe('[Joy] CssVarsProvider', () => {
           overrideTextPrimary: 'var(--joy-palette-primary-overrideTextPrimary)',
           overrideTextSecondary: 'var(--joy-palette-primary-overrideTextSecondary)',
           overrideTextTertiary: 'var(--joy-palette-primary-overrideTextTertiary)',
+          mainChannel: 'var(--joy-palette-primary-mainChannel)',
+          lightChannel: 'var(--joy-palette-primary-lightChannel)',
+          darkChannel: 'var(--joy-palette-primary-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-neutral').textContent).to.equal(
@@ -139,6 +142,9 @@ describe('[Joy] CssVarsProvider', () => {
           overrideTextPrimary: 'var(--joy-palette-neutral-overrideTextPrimary)',
           overrideTextSecondary: 'var(--joy-palette-neutral-overrideTextSecondary)',
           overrideTextTertiary: 'var(--joy-palette-neutral-overrideTextTertiary)',
+          mainChannel: 'var(--joy-palette-neutral-mainChannel)',
+          lightChannel: 'var(--joy-palette-neutral-lightChannel)',
+          darkChannel: 'var(--joy-palette-neutral-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-danger').textContent).to.equal(
@@ -179,6 +185,9 @@ describe('[Joy] CssVarsProvider', () => {
           overrideTextPrimary: 'var(--joy-palette-danger-overrideTextPrimary)',
           overrideTextSecondary: 'var(--joy-palette-danger-overrideTextSecondary)',
           overrideTextTertiary: 'var(--joy-palette-danger-overrideTextTertiary)',
+          mainChannel: 'var(--joy-palette-danger-mainChannel)',
+          lightChannel: 'var(--joy-palette-danger-lightChannel)',
+          darkChannel: 'var(--joy-palette-danger-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-info').textContent).to.equal(
@@ -219,6 +228,9 @@ describe('[Joy] CssVarsProvider', () => {
           overrideTextPrimary: 'var(--joy-palette-info-overrideTextPrimary)',
           overrideTextSecondary: 'var(--joy-palette-info-overrideTextSecondary)',
           overrideTextTertiary: 'var(--joy-palette-info-overrideTextTertiary)',
+          mainChannel: 'var(--joy-palette-info-mainChannel)',
+          lightChannel: 'var(--joy-palette-info-lightChannel)',
+          darkChannel: 'var(--joy-palette-info-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-success').textContent).to.equal(
@@ -259,6 +271,9 @@ describe('[Joy] CssVarsProvider', () => {
           overrideTextPrimary: 'var(--joy-palette-success-overrideTextPrimary)',
           overrideTextSecondary: 'var(--joy-palette-success-overrideTextSecondary)',
           overrideTextTertiary: 'var(--joy-palette-success-overrideTextTertiary)',
+          mainChannel: 'var(--joy-palette-success-mainChannel)',
+          lightChannel: 'var(--joy-palette-success-lightChannel)',
+          darkChannel: 'var(--joy-palette-success-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-warning').textContent).to.equal(
@@ -299,6 +314,9 @@ describe('[Joy] CssVarsProvider', () => {
           overrideTextPrimary: 'var(--joy-palette-warning-overrideTextPrimary)',
           overrideTextSecondary: 'var(--joy-palette-warning-overrideTextSecondary)',
           overrideTextTertiary: 'var(--joy-palette-warning-overrideTextTertiary)',
+          mainChannel: 'var(--joy-palette-warning-mainChannel)',
+          lightChannel: 'var(--joy-palette-warning-lightChannel)',
+          darkChannel: 'var(--joy-palette-warning-darkChannel)',
         }),
       );
       expect(screen.getByTestId('palette-text').textContent).to.equal(

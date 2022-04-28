@@ -1,7 +1,6 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type AvatarSlot = 'root' | 'img' | 'fallback';
 
