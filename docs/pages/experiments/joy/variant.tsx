@@ -51,18 +51,19 @@ declare module '@mui/joy/styles' {
 // how to add more color and use with variants
 const Tile = ({
   children,
-  variant = 'light',
+  variant = 'soft',
   color = 'primary',
   sx = [],
   ...props
 }: {
-  variant?: 'light' | 'contained';
+  variant?: 'soft' | 'solid';
   color?: ColorPaletteProp | 'secondary' | 'alternate';
 } & Omit<BoxProps, 'color'>) => {
   return (
     <Box
       sx={[
         { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
+        // @ts-ignore
         (theme) => theme.variants[variant][color],
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -124,29 +125,21 @@ export default function JoyVariant() {
                 p: 2,
                 borderRadius: 1,
               },
-              (theme) => theme.variants.contained.primary,
-              (theme) => theme.variants.containedOverrides.primary,
+              (theme) => theme.variants.solid.primary,
+              (theme) => theme.variants.solidOverrides.primary,
             ]}
           >
-            <Button color="context" variant="plain">
-              Text
-            </Button>
-            <Button color="context" variant="outlined">
-              Outlined
-            </Button>
-            <Button disabled color="context" variant="outlined">
+            <Button variant="plain">Text</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button disabled variant="outlined">
               Disabled
             </Button>
-            <Button color="context" variant="soft">
-              Light
-            </Button>
-            <Button disabled color="context" variant="soft">
+            <Button variant="soft">Light</Button>
+            <Button disabled variant="soft">
               Disabled
             </Button>
-            <Button color="context" variant="solid">
-              Contained
-            </Button>
-            <Button disabled color="context" variant="solid">
+            <Button variant="solid">Contained</Button>
+            <Button disabled variant="solid">
               Disabled
             </Button>
           </Box>
@@ -164,10 +157,10 @@ export default function JoyVariant() {
                   500: '#7B79FF',
                   200: '#D9D8FF',
                   100: '#F0F0FF',
-                  lightColor: 'var(--strapi-palette-primary-600)',
-                  lightActiveBg: 'var(--strapi-palette-primary-200)',
-                  containedHoverBg: 'var(--strapi-palette-primary-500)',
-                  containedActiveBg: 'var(--strapi-palette-primary-700)',
+                  softColor: 'var(--strapi-palette-primary-600)',
+                  softActiveBg: 'var(--strapi-palette-primary-200)',
+                  solidHoverBg: 'var(--strapi-palette-primary-500)',
+                  solidActiveBg: 'var(--strapi-palette-primary-700)',
                   outlinedColor: 'var(--strapi-palette-primary-600)',
                   outlinedBorder: 'var(--strapi-palette-primary-200)',
                   outlinedBg: 'var(--strapi-palette-primary-100)',
@@ -183,8 +176,8 @@ export default function JoyVariant() {
                   500: '#5CB176',
                   200: '#C6F0C2',
                   100: '#EAFBE7',
-                  containedHoverBg: 'var(--strapi-palette-success-500)',
-                  containedActiveBg: 'var(--strapi-palette-success-700)',
+                  solidHoverBg: 'var(--strapi-palette-success-500)',
+                  solidActiveBg: 'var(--strapi-palette-success-700)',
                   outlinedColor: 'var(--strapi-palette-success-600)',
                   outlinedBorder: 'var(--strapi-palette-success-200)',
                   outlinedBg: 'var(--strapi-palette-success-100)',
@@ -200,8 +193,8 @@ export default function JoyVariant() {
                   500: '#EE5E52',
                   200: '#F5C0B8',
                   100: '#FCECEA',
-                  containedHoverBg: 'var(--strapi-palette-danger-500)',
-                  containedActiveBg: 'var(--strapi-palette-danger-700)',
+                  solidHoverBg: 'var(--strapi-palette-danger-500)',
+                  solidActiveBg: 'var(--strapi-palette-danger-700)',
                   outlinedColor: 'var(--strapi-palette-danger-600)',
                   outlinedBorder: 'var(--strapi-palette-danger-200)',
                   outlinedBg: 'var(--strapi-palette-danger-100)',
@@ -224,10 +217,10 @@ export default function JoyVariant() {
                   500: '#66B7F1',
                   200: '#B8E1FF',
                   100: '#EAF5FF',
-                  lightBg: 'var(--strapi-palette-secondary-100)',
-                  lightColor: 'var(--strapi-palette-secondary-700)',
-                  containedBg: 'var(--strapi-palette-secondary-500)',
-                  containedColor: '#fff',
+                  softBg: 'var(--strapi-palette-secondary-100)',
+                  softColor: 'var(--strapi-palette-secondary-700)',
+                  solidBg: 'var(--strapi-palette-secondary-500)',
+                  solidColor: '#fff',
                 },
                 alternate: {
                   700: '#8312D1',
@@ -235,10 +228,10 @@ export default function JoyVariant() {
                   500: '#AC73E6',
                   200: '#E0C1F4',
                   100: '#F6ECFC',
-                  lightBg: 'var(--strapi-palette-alternate-100)',
-                  lightColor: 'var(--strapi-palette-alternate-700)',
-                  containedBg: 'var(--strapi-palette-alternate-500)',
-                  containedColor: '#fff',
+                  softBg: 'var(--strapi-palette-alternate-100)',
+                  softColor: 'var(--strapi-palette-alternate-700)',
+                  solidBg: 'var(--strapi-palette-alternate-500)',
+                  solidColor: '#fff',
                 },
                 neutral: {
                   900: '#212134',
@@ -304,23 +297,6 @@ export default function JoyVariant() {
                     border: '1px solid',
                     borderColor: 'var(--strapi-palette-neutral-outlinedDisabledBorder)',
                   },
-                }),
-              },
-            },
-            MuiSvgIcon: {
-              defaultProps: {
-                fontSize: 'xl',
-              },
-              styleOverrides: {
-                root: ({ ownerState, theme }) => ({
-                  ...(ownerState.fontSize &&
-                    ownerState.fontSize !== 'inherit' && {
-                      fontSize: theme.vars.fontSize[ownerState.fontSize],
-                    }),
-                  ...(ownerState.color &&
-                    ownerState.color !== 'inherit' && {
-                      color: theme.vars.palette[ownerState.color].textColor,
-                    }),
                 }),
               },
             },
@@ -423,9 +399,9 @@ declare module '@mui/joy/styles' {
           <Typography level="body2" gutterBottom>
             Strapi does not define variant, so I have to translate the design myself to map with Joy
             variant. <br />
-            From what I see, Strapi defines 2 styles for the Button, `contained` and `outlined`.{' '}
-            Here is how to customize the variant token for each palette. Note that disabled state is
-            the same across colors, so it is best to configure under theme.components.MuiButton
+            From what I see, Strapi defines 2 styles for the Button, `solid` and `outlined`. Here is
+            how to customize the variant token for each palette. Note that disabled state is the
+            same across colors, so it is best to configure under theme.components.MuiButton
           </Typography>
           <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
@@ -447,8 +423,8 @@ declare module '@mui/joy/styles' {
         palette: {
           primary: {
             // ...tokens
-            containedHoverBg: 'var(--strapi-palette-primary-500)',
-            containedActiveBg: 'var(--strapi-palette-primary-700)',
+            solidHoverBg: 'var(--strapi-palette-primary-500)',
+            solidActiveBg: 'var(--strapi-palette-primary-700)',
             outlinedColor: 'var(--strapi-palette-primary-600)',
             outlinedBorder: 'var(--strapi-palette-primary-200)',
             outlinedBg: 'var(--strapi-palette-primary-100)',
@@ -460,8 +436,8 @@ declare module '@mui/joy/styles' {
           },
           success: {
             // ...tokens
-            containedHoverBg: 'var(--strapi-palette-success-500)',
-            containedActiveBg: 'var(--strapi-palette-success-700)',
+            solidHoverBg: 'var(--strapi-palette-success-500)',
+            solidActiveBg: 'var(--strapi-palette-success-700)',
             outlinedColor: 'var(--strapi-palette-success-600)',
             outlinedBorder: 'var(--strapi-palette-success-200)',
             outlinedBg: 'var(--strapi-palette-success-100)',
@@ -473,8 +449,8 @@ declare module '@mui/joy/styles' {
           },
           danger: {
             // ...tokens
-            containedHoverBg: 'var(--strapi-palette-danger-500)',
-            containedActiveBg: 'var(--strapi-palette-danger-700)',
+            solidHoverBg: 'var(--strapi-palette-danger-500)',
+            solidActiveBg: 'var(--strapi-palette-danger-700)',
             outlinedColor: 'var(--strapi-palette-danger-600)',
             outlinedBorder: 'var(--strapi-palette-danger-200)',
             outlinedBg: 'var(--strapi-palette-danger-100)',
@@ -607,19 +583,13 @@ declare module '@mui/joy/styles' {
                 p: 2,
                 borderRadius: 1,
               },
-              (theme) => theme.variants.contained.primary,
-              (theme) => theme.variants.containedOverrides.primary,
+              (theme) => theme.variants.solid.primary,
+              (theme) => theme.variants.solidOverrides.primary,
             ]}
           >
-            <Button color="context" variant="solid">
-              Contained
-            </Button>
-            <Button color="context" variant="outlined">
-              Outlined
-            </Button>
-            <Button color="context" disabled>
-              Disabled
-            </Button>
+            <Button variant="solid">Contained</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button disabled>Disabled</Button>
           </Box>
           <br />
           <Typography component="h3" level="h5" gutterBottom>
@@ -707,9 +677,9 @@ declare module '@mui/joy/styles' {
             </Tile>
           </Box>
           <Typography level="body2">
-            The above UI looks exactly like the contained variant on top of light variant. In this
-            case, developers should extend only light & contained variants to support secondary &
-            alternate colors. (Joy does not provide secondary & alternate colors by default)
+            The above UI looks exactly like the solid variant on top of soft variant. In this case,
+            developers should extend only soft & solid variants to support secondary & alternate
+            colors. (Joy does not provide secondary & alternate colors by default)
           </Typography>
           <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
@@ -744,10 +714,10 @@ declare module '@mui/joy/styles' {
             100: '#EAF5FF',
             // Joy can detect the variables and will automatically generate variant styles
             // even though the color does not exist in the default theme.
-            lightBg: 'var(--strapi-palette-secondary-100)',
-            lightColor: 'var(--strapi-palette-secondary-700)',
-            containedBg: 'var(--strapi-palette-secondary-500)',
-            containedColor: '#fff',
+            softBg: 'var(--strapi-palette-secondary-100)',
+            softColor: 'var(--strapi-palette-secondary-700)',
+            solidBg: 'var(--strapi-palette-secondary-500)',
+            solidColor: '#fff',
           },
           alternate: {
             700: '#8312D1',
@@ -757,10 +727,10 @@ declare module '@mui/joy/styles' {
             100: '#F6ECFC',
             // Joy can detect the variables and will automatically generate variant styles
             // even though the color does not exist in the default theme.
-            lightBg: 'var(--strapi-palette-alternate-100)',
-            lightColor: 'var(--strapi-palette-alternate-700)',
-            containedBg: 'var(--strapi-palette-alternate-500)',
-            containedColor: '#fff',
+            softBg: 'var(--strapi-palette-alternate-100)',
+            softColor: 'var(--strapi-palette-alternate-700)',
+            solidBg: 'var(--strapi-palette-alternate-500)',
+            solidColor: '#fff',
           },
         }
       }
@@ -771,12 +741,12 @@ declare module '@mui/joy/styles' {
 // Custom component for Strapi use-case.
 const Tile = ({
   children,
-  variant = 'light',
+  variant = 'soft',
   color = 'primary',
   sx = [],
   ...props
 }: {
-  variant?: 'light' | 'contained';
+  variant?: 'soft' | 'solid';
   color?: 'primary' | 'warning' | 'secondary' | 'alternate';
 } & Omit<BoxProps, 'color'>) => {
   return (
