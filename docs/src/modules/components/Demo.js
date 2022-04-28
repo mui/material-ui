@@ -215,6 +215,7 @@ export default function Demo(props) {
         <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandboxed
           key={demoKey}
+          id={demoOptions.iframeId}
           style={demoSandboxedStyle}
           component={DemoComponent}
           iframe={demoOptions.iframe}
