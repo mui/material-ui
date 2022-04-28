@@ -561,6 +561,17 @@ describe('createCssVarsProvider', () => {
 
       expect(() => render(<CssVarsProvider documentNode={null} />)).not.to.throw();
     });
+
+    it('does not crash if colorSchemeNode is null', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+
+      expect(() => render(<CssVarsProvider colorSchemeNode={null} />)).not.to.throw();
+    });
   });
 
   describe('Storage', () => {
