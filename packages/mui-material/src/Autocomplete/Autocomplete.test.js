@@ -1871,12 +1871,12 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('あ');
     });
 
-    it('should only render endAdornment when hasClearIcon or hasPopupIcon is true', () => {
+    it('should render endAdornment only when clear icon or popup icon is available', () => {
       const { container } = render(
         <Autocomplete freeSolo options={[]} renderInput={(params) => <TextField {...params} />} />,
       );
 
-      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.endAdornment);
+      expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
     });
   });
 
