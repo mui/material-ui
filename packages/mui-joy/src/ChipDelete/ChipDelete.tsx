@@ -150,7 +150,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'solid'
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default ChipDelete;
