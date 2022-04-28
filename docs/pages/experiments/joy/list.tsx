@@ -311,23 +311,23 @@ function MuiNav() {
         '--joy-palette-text-primary': theme.vars.palette.neutral[900],
         '--joy-palette-text-secondary': theme.vars.palette.neutral[700],
         '--joy-palette-text-tertiary': theme.vars.palette.neutral[600],
-        '--joy-palette-neutral-textHoverBg': theme.vars.palette.neutral[50],
-        '--joy-palette-neutral-textActiveBg': theme.vars.palette.neutral[50],
-        '--joy-palette-primary-textColor': theme.vars.palette.primary[500],
-        '--joy-palette-primary-lightColor': theme.vars.palette.primary[500],
-        '--joy-palette-primary-lightBg': theme.vars.palette.primary[50],
-        '--joy-palette-primary-lightHoverBg': 'rgba(0, 127, 255, 0.12)',
-        '--joy-palette-primary-lightActiveBg': 'rgba(0, 127, 255, 0.12)',
+        '--joy-palette-neutral-plainHoverBg': theme.vars.palette.neutral[50],
+        '--joy-palette-neutral-plainActiveBg': theme.vars.palette.neutral[50],
+        '--joy-palette-primary-plainColor': theme.vars.palette.primary[500],
+        '--joy-palette-primary-softColor': theme.vars.palette.primary[500],
+        '--joy-palette-primary-softBg': theme.vars.palette.primary[50],
+        '--joy-palette-primary-softHoverBg': 'rgba(0, 127, 255, 0.12)',
+        '--joy-palette-primary-softActiveBg': 'rgba(0, 127, 255, 0.12)',
         '[data-mui-color-scheme="dark"] &': {
           '--joy-palette-text-primary': '#fff',
           '--joy-palette-text-secondary': theme.vars.palette.neutral[400],
-          '--joy-palette-neutral-textHoverBg': 'rgba(19, 47, 76, 0.4)',
-          '--joy-palette-neutral-textActiveBg': 'rgba(19, 47, 76, 0.4)',
-          '--joy-palette-primary-textColor': theme.vars.palette.primary[400],
-          '--joy-palette-primary-lightColor': theme.vars.palette.primary[300],
-          '--joy-palette-primary-lightBg': '#132f4c',
-          '--joy-palette-primary-lightHoverBg': 'rgba(51, 153, 255, 0.24)',
-          '--joy-palette-primary-lightActiveBg': 'rgba(51, 153, 255, 0.24)',
+          '--joy-palette-neutral-plainHoverBg': 'rgba(19, 47, 76, 0.4)',
+          '--joy-palette-neutral-plainActiveBg': 'rgba(19, 47, 76, 0.4)',
+          '--joy-palette-primary-plainColor': theme.vars.palette.primary[400],
+          '--joy-palette-primary-softColor': theme.vars.palette.primary[300],
+          '--joy-palette-primary-softBg': '#132f4c',
+          '--joy-palette-primary-softHoverBg': 'rgba(51, 153, 255, 0.24)',
+          '--joy-palette-primary-softActiveBg': 'rgba(51, 153, 255, 0.24)',
           '--List-item-stickyBackground': 'rgb(10, 25, 41)',
         },
         '& *': {
@@ -378,7 +378,7 @@ function MuiNav() {
                 fontSize="md"
                 sx={{
                   transform: open[index] ? 'unset' : 'rotate(-90deg)',
-                  color: 'var(--joy-palette-primary-textColor)',
+                  color: 'var(--joy-palette-primary-plainColor)',
                 }}
               />
             </ListItemButton>
@@ -436,15 +436,15 @@ const Firebash = () => {
     { icon: <Public />, label: 'Hosting' },
   ];
   return (
-    <Box data-mui-color-scheme="dark">
+    <Sheet data-mui-color-scheme="dark" sx={{ bgcolor: 'rgb(5, 30, 52)' }}>
       <List
         sx={{
           '& *': {
             fontFamily: 'Roboto',
           },
 
-          '--joy-palette-neutral-textHoverBg': 'rgba(255, 255, 255, 0.08)',
-          '--joy-palette-neutral-textActiveBg': 'rgba(255, 255, 255, 0.08)',
+          '--joy-palette-neutral-plainHoverBg': 'rgba(255, 255, 255, 0.08)',
+          '--joy-palette-neutral-plainActiveBg': 'rgba(255, 255, 255, 0.08)',
           '--joy-palette-text-primary': '#fff',
           '--joy-palette-text-secondary': 'rgba(255,255,255,0.8)',
           '--joy-palette-text-tertiary': 'rgba(255,255,255,0.5)',
@@ -457,7 +457,6 @@ const Firebash = () => {
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
           '--List-divider-gap': '0px',
-          '--List-item-stickyBackground': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
           '--List-decorator-color': 'rgba(255, 255, 255, 0.8)',
           '& .MuiListItemButton-root, & .MuiListItemContent-root': {
@@ -579,7 +578,7 @@ const Firebash = () => {
           </List>
         </ListItem>
       </List>
-    </Box>
+    </Sheet>
   );
 };
 
@@ -590,14 +589,14 @@ const Gatsby = () => {
       <List
         size="sm"
         sx={{
-          '--joy-palette-primary-textColor': '#8a4baf',
-          '--joy-palette-neutral-textHoverBg': 'transparent',
-          '--joy-palette-neutral-textActiveBg': 'transparent',
-          '--joy-palette-primary-textHoverBg': 'transparent',
-          '--joy-palette-primary-textActiveBg': 'transparent',
+          '--joy-palette-primary-plainColor': '#8a4baf',
+          '--joy-palette-neutral-plainHoverBg': 'transparent',
+          '--joy-palette-neutral-plainActiveBg': 'transparent',
+          '--joy-palette-primary-plainHoverBg': 'transparent',
+          '--joy-palette-primary-plainActiveBg': 'transparent',
           '[data-mui-color-scheme="dark"] &': {
             '--joy-palette-text-secondary': '#635e69',
-            '--joy-palette-primary-textColor': '#d48cff',
+            '--joy-palette-primary-plainColor': '#d48cff',
           },
 
           '--List-radius': '0px',
