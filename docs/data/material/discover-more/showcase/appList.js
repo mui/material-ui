@@ -435,6 +435,18 @@ const appList = [
     similarWebVisits: 62,
     dateAdded: '2022-02-05',
   },
+  {
+    title: 'MQTT Explorer',
+    description:
+      'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
+      'The protocol is used in many IoT and home automation scenarios, ' +
+      'making integrating new services dead easy.',
+    link: 'https://mqtt-explorer.com/',
+    source: 'https://github.com/thomasnordquist/MQTT-Explorer',
+    image: 'mqtt-explorer.png',
+    stars: 1600,
+    dateAdded: '2019-03-25',
+  },
 ];
 
 export default appList;
