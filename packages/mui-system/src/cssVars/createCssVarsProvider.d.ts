@@ -60,7 +60,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
          * The node used to attach the color-scheme attribute
          * @default document
          */
-        colorSchemeNode?: Document | HTMLElement;
+        colorSchemeNode?: Document | HTMLElement | null;
         /**
          * The CSS selector for attaching the generated custom properties
          * @default ':root'

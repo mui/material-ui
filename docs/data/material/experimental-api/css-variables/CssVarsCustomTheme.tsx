@@ -53,9 +53,23 @@ const theme = experimental_extendTheme({
   },
 });
 
+const useEnhancedEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 export default function Page() {
+  const [frame, setFrame] = React.useState<null | HTMLIFrameElement>(null);
+  useEnhancedEffect(() => {
+    setFrame(
+      document.getElementById('css-vars-custom-theme') as null | HTMLIFrameElement,
+    );
+  }, []);
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider
+      theme={theme}
+      colorSchemeNode={frame?.contentDocument?.documentElement || null}
+      documentNode={frame?.contentDocument || null}
+      storageWindow={frame?.contentWindow || null}
+    >
       <Box bgcolor="background.paper" sx={{ p: 1 }}>
         <Box sx={{ py: 2, mx: 'auto' }}>
           <Box sx={{ pb: 4 }}>

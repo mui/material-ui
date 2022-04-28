@@ -22,9 +22,20 @@ const CssVarsCustomButton = styled(Button)({
   '--md-palette-primary-mainChannel': colorChannel('#FF0000'), // necessary for calculating the alpha values
 });
 
+const useEnhancedEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 export default function App() {
+  const [frame, setFrame] = React.useState(null);
+  useEnhancedEffect(() => {
+    setFrame(document.getElementById('css-vars-customization'));
+  }, []);
   return (
-    <CssVarsProvider>
+    <CssVarsProvider
+      colorSchemeNode={frame?.contentDocument?.documentElement || null}
+      documentNode={frame?.contentDocument || null}
+      storageWindow={frame?.contentWindow || null}
+    >
       <CustomButton sx={{ mr: 1 }}>Custom styles</CustomButton>
       <CssVarsCustomButton variant="contained">CSS variables</CssVarsCustomButton>
     </CssVarsProvider>
