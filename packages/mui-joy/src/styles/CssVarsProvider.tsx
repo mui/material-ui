@@ -28,7 +28,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
                 }),
               ...(ownerState.color &&
                 ownerState.color !== 'inherit' && {
-                  color: theme.vars.palette[ownerState.color].textColor,
+                  color: theme.vars.palette[ownerState.color].plainColor,
                 }),
               ...(instanceFontSize &&
                 instanceFontSize !== 'inherit' && {
@@ -48,28 +48,28 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   resolveTheme: (mergedTheme: Theme) => {
     mergedTheme.variants = deepmerge(
       {
-        text: createVariant('text', mergedTheme),
-        textHover: createVariant('textHover', mergedTheme),
-        textActive: createVariant('textActive', mergedTheme),
-        textDisabled: createVariant('textDisabled', mergedTheme),
+        plain: createVariant('plain', mergedTheme),
+        plainHover: createVariant('plainHover', mergedTheme),
+        plainActive: createVariant('plainActive', mergedTheme),
+        plainDisabled: createVariant('plainDisabled', mergedTheme),
         outlined: createVariant('outlined', mergedTheme),
         outlinedHover: createVariant('outlinedHover', mergedTheme),
         outlinedActive: createVariant('outlinedActive', mergedTheme),
         outlinedDisabled: createVariant('outlinedDisabled', mergedTheme),
-        light: createVariant('light', mergedTheme),
-        lightHover: createVariant('lightHover', mergedTheme),
-        lightActive: createVariant('lightActive', mergedTheme),
-        lightDisabled: createVariant('lightDisabled', mergedTheme),
-        contained: createVariant('contained', mergedTheme),
-        containedHover: createVariant('containedHover', mergedTheme),
-        containedActive: createVariant('containedActive', mergedTheme),
-        containedDisabled: createVariant('containedDisabled', mergedTheme),
+        soft: createVariant('soft', mergedTheme),
+        softHover: createVariant('softHover', mergedTheme),
+        softActive: createVariant('softActive', mergedTheme),
+        softDisabled: createVariant('softDisabled', mergedTheme),
+        solid: createVariant('solid', mergedTheme),
+        solidHover: createVariant('solidHover', mergedTheme),
+        solidActive: createVariant('solidActive', mergedTheme),
+        solidDisabled: createVariant('solidDisabled', mergedTheme),
 
         // variant overrides
-        textOverrides: createTextOverrides(mergedTheme),
+        plainOverrides: createTextOverrides(mergedTheme),
         outlinedOverrides: createTextOverrides(mergedTheme),
-        lightOverrides: createTextOverrides(mergedTheme),
-        containedOverrides: createContainedOverrides(mergedTheme),
+        softOverrides: createTextOverrides(mergedTheme),
+        solidOverrides: createContainedOverrides(mergedTheme),
       } as typeof mergedTheme.variants,
       mergedTheme.variants,
       { clone: false },

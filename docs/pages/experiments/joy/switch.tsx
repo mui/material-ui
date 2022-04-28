@@ -39,7 +39,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
-  variant: ['outlined', 'light', 'contained'],
+  variant: ['outlined', 'soft', 'solid'],
 } as const;
 
 export default function JoySwitch() {
@@ -146,9 +146,9 @@ export default function JoySwitch() {
             {(
               [
                 { checked: false, variant: 'outlined' },
-                { checked: true, variant: 'contained' },
+                { checked: true, variant: 'solid' },
                 { disabled: true, variant: 'outlined' },
-                { disabled: true, checked: true, variant: 'contained' },
+                { disabled: true, checked: true, variant: 'solid' },
               ] as const
             ).map((data, index) => (
               <Switch
@@ -239,10 +239,10 @@ export default function JoySwitch() {
             <Typography color="info.textColor">Material</Typography>
             {(
               [
-                { checked: false, variant: 'contained' },
-                { checked: true, variant: 'light' },
-                { disabled: true, checked: false, variant: 'contained' },
-                { disabled: true, checked: true, variant: 'light' },
+                { checked: false, variant: 'solid' },
+                { checked: true, variant: 'soft' },
+                { disabled: true, checked: false, variant: 'solid' },
+                { disabled: true, checked: true, variant: 'soft' },
               ] as const
             ).map((data, index) => (
               <Switch
@@ -344,9 +344,9 @@ export default function JoySwitch() {
             {(
               [
                 { checked: false, variant: 'outlined' },
-                { checked: true, variant: 'contained' },
+                { checked: true, variant: 'solid' },
                 { disabled: true, checked: false, variant: 'outlined' },
-                { disabled: true, checked: true, variant: 'contained' },
+                { disabled: true, checked: true, variant: 'solid' },
               ] as const
             ).map((data, index) => (
               <Switch

@@ -89,8 +89,8 @@ describe('<Checkbox />', () => {
 
     expect(container.firstChild).to.have.class(classes.variantOutlined); // default
 
-    rerender(<Checkbox variant="light" />);
-    expect(container.firstChild).to.have.class(classes.variantLight);
+    rerender(<Checkbox variant="soft" />);
+    expect(container.firstChild).to.have.class(classes.variantSoft);
   });
 
   it('should have configurable size', () => {

@@ -85,7 +85,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     color = 'neutral',
     component = 'div',
     size = 'md',
-    variant = 'text',
+    variant = 'plain',
     children,
     ...other
   } = props;
@@ -170,7 +170,7 @@ Card.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

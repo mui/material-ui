@@ -5,10 +5,10 @@ import * as React from 'react';
 <Link component="div" />;
 
 // `variant`
-<Link variant="text" />;
-<Link variant="light" />;
+<Link variant="plain" />;
+<Link variant="soft" />;
 <Link variant="outlined" />;
-<Link variant="contained" />;
+<Link variant="solid" />;
 
 // `color`
 <Link color="primary" />;
