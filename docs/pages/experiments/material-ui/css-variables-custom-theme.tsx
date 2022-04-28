@@ -7,6 +7,7 @@ import {
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import { teal, deepOrange, orange, cyan } from '@mui/material/colors';
@@ -186,6 +187,127 @@ export default function Page() {
             <Chip color="success" variant="filled" label="Text" />
             <Chip color="success" variant="outlined" label="Text" />
             <Chip color="success" variant="notification" label="Text" />
+          </Box>
+        </Box>
+        <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <ButtonGroup variant="contained" color="inherit">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup color="inherit">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="inherit">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <ButtonGroup variant="contained">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup>
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <ButtonGroup variant="contained" color="secondary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup color="secondary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="secondary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <ButtonGroup variant="contained" color="error">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup color="error">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="error">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <ButtonGroup variant="contained" color="info">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup color="info">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="info">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <ButtonGroup variant="contained" color="warning">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup color="warning">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="warning">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <ButtonGroup variant="contained" color="success">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup color="success">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="success">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
           </Box>
         </Box>
       </Box>
