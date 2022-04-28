@@ -113,6 +113,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -159,6 +163,20 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * @default false
    */
   inheritViewBox: PropTypes.bool,
+  /**
+   * The shape-rendering attribute. The behavior of the different options is described on the
+   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+   * If you are having issues with blurry icons you should investigate this prop.
+   */
+  shapeRendering: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent

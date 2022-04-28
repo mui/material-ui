@@ -333,6 +333,14 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The variant to use.
    * @default 'contained'
    */

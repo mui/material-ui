@@ -14,9 +14,11 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 
 ```js
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+
+<ButtonUnstyled>Button</ButtonUnstyled>;
 ```
 
-{{"demo": "UnstyledButtonsSimple.js"}}
+{{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
 ## Customizing the root element
 
@@ -34,7 +36,7 @@ Compare the attributes on the `<span>` in this demo with the `ButtonUnstyled` fr
 `ButtonUnstyled` accepts a wide range of custom elements beyond HTML elements.
 You can even use SVGs, as the following demo illustrates:
 
-{{"demo": "UnstyledButtonCustom.js"}}
+{{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
 
 ## Focus on disabled buttons
 
@@ -68,4 +70,4 @@ It returns props to be placed on a custom button element, along with fields repr
 The `useButton` hook requires the `ref` of the element it's used on.
 Additionally, you need to provide the `component` prop (unless you intend to use the native HTML `<button>`).
 
-{{"demo": "UseButton.js"}}
+{{"demo": "UseButton.js", "defaultCodeOpen": true}}

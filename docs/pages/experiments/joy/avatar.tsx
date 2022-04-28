@@ -50,7 +50,7 @@ const props = {
   variant: ['contained', 'outlined', 'light'],
 } as const;
 
-export default function JoySvgIcon() {
+export default function JoyAvatar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   return (
     <CssVarsProvider>
