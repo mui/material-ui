@@ -21,6 +21,8 @@ export interface LinkClasses {
   colorTextSecondary: string;
   /** Styles applied to the root element if `color="error"`. */
   colorError: string;
+  /** Styles applied to the root element if `color="inherit"`. */
+  colorInherit: string;
   /** State class applied to the root element if the link is keyboard focused. */
   focusVisible: string;
 }
@@ -38,10 +40,10 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'underlineAlways',
   'button',
   'focusVisible',
-  "colorPrimary",
-  "colorError",
-  "colorSecondary",
-  'colorTextInherit',
+  'colorInherit',
+  'colorPrimary',
+  'colorError',
+  'colorSecondary',
   'colorTextPrimary',
   'colorTextSecondary'
 ]);
