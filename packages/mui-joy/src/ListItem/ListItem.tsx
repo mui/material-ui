@@ -136,7 +136,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     children,
     nested = false,
     sticky = false,
-    variant = 'text',
+    variant = 'plain',
     color = 'neutral',
     startAction,
     endAction,
@@ -238,7 +238,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;

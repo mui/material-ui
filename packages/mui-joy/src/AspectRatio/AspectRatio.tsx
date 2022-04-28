@@ -75,7 +75,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     max,
     objectFit = 'cover',
     color = 'neutral',
-    variant = 'light',
+    variant = 'soft',
     ...other
   } = props;
 
@@ -172,7 +172,7 @@ AspectRatio.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;

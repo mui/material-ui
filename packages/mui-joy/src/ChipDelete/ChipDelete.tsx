@@ -52,10 +52,10 @@ const ChipDeleteRoot = styled('button', {
 ]);
 
 const chipVariantMapping = {
-  text: 'outlined',
-  outlined: 'light',
-  light: 'contained',
-  contained: 'contained',
+  plain: 'outlined',
+  outlined: 'soft',
+  soft: 'solid',
+  solid: 'solid',
 } as const;
 
 const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
@@ -148,7 +148,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;

@@ -227,7 +227,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     readOnly: readOnlyProp,
     required,
     color,
-    variant = 'contained',
+    variant = 'solid',
     size = 'md',
     startDecorator,
     endDecorator,
@@ -431,7 +431,7 @@ Switch.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined']),

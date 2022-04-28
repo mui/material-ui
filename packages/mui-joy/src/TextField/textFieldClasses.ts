@@ -27,12 +27,12 @@ export interface TextFieldClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
 }
@@ -57,9 +57,9 @@ const textFieldClasses: TextFieldClasses = generateUtilityClasses('MuiTextField'
   'sizeSm',
   'sizeMd',
   'sizeLg',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
+  'variantSoft',
   'fullWidth',
 ]);
 

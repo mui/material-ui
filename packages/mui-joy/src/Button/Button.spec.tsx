@@ -18,10 +18,10 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 // @ts-expect-error should be HTMLAnchorElement | HTMLButtonElement
 <Button onClick={handleClick4}>Button</Button>;
 
-<Button variant="text">Button</Button>;
+<Button variant="plain">Button</Button>;
 <Button variant="outlined">Button</Button>;
-<Button variant="light">Button</Button>;
-<Button variant="contained">Button</Button>;
+<Button variant="soft">Button</Button>;
+<Button variant="solid">Button</Button>;
 // @ts-expect-error no `custom` variant
 <Button variant="custom">Button</Button>;
 
@@ -71,14 +71,14 @@ function Icon() {
   <Icon />
 </Button>;
 <Button
-  variant="contained"
+  variant="solid"
   color="success"
   endIcon={<Icon />}
   sx={{ width: 'var(--Button-minHeight)' }}
 >
   <Icon />
 </Button>;
-<Button variant="contained" startIcon={<Icon />} size="sm">
+<Button variant="solid" startIcon={<Icon />} size="sm">
   Add to cart
 </Button>;
 <Button variant="outlined" endIcon={<Icon />} color="success">

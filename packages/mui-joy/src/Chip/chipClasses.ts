@@ -37,10 +37,10 @@ export interface ChipClasses {
   sizeLg: string;
   /** Styles applied to the startDecorator element if supplied. */
   startDecorator: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
 }
@@ -71,8 +71,8 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'sizeMd',
   'sizeLg',
   'startDecorator',
-  'variantContained',
-  'variantLight',
+  'variantSolid',
+  'variantSoft',
   'variantOutlined',
 ]);
 

@@ -6,10 +6,10 @@ import * as React from 'react';
 <Sheet component="div" />;
 
 // `variant`
-<Sheet variant="text" />;
-<Sheet variant="light" />;
+<Sheet variant="plain" />;
+<Sheet variant="soft" />;
 <Sheet variant="outlined" />;
-<Sheet variant="contained" />;
+<Sheet variant="solid" />;
 
 // `color`
 <Sheet color="primary" />;

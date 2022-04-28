@@ -49,10 +49,10 @@ describe('<Chip />', () => {
     it('contained by default', () => {
       const { getByTestId } = render(<Chip data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantContained);
+      expect(getByTestId('root')).to.have.class(classes.variantSolid);
     });
 
-    ['outlined', 'light', 'contained'].forEach((variant) => {
+    ['outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" variant={variant} />);
 

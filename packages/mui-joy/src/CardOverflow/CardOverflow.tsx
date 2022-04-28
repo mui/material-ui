@@ -65,7 +65,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     component = 'div',
     children,
     color = 'neutral',
-    variant = 'text',
+    variant = 'plain',
     ...other
   } = props;
 
@@ -125,7 +125,7 @@ CardOverflow.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;

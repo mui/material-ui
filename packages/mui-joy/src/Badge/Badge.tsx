@@ -161,7 +161,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     max,
     badgeContent: badgeContentProp = '',
     showZero = false,
-    variant: variantProp = 'contained',
+    variant: variantProp = 'solid',
     ...other
   } = props;
 
@@ -342,7 +342,7 @@ Badge.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

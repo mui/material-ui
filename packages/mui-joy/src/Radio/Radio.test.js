@@ -78,8 +78,8 @@ describe('<Radio />', () => {
 
     expect(container.firstChild).to.have.class(classes.variantOutlined); // default
 
-    rerender(<Radio variant="light" />);
-    expect(container.firstChild).to.have.class(classes.variantLight);
+    rerender(<Radio variant="soft" />);
+    expect(container.firstChild).to.have.class(classes.variantSoft);
   });
 
   it('should have configurable size', () => {
