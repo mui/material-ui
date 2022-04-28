@@ -33,7 +33,7 @@ const Variants = styled('button')(({ theme }) => [
   {
     width: 'auto',
   },
-  theme.variants.contained.primary,
+  theme.variants.solid.primary,
 ]);
 
 const DynamicVariants = styled('button')<{ variant?: VariantProp; color?: ColorPaletteProp }>(
