@@ -11,6 +11,16 @@ export interface LinkClasses {
   underlineAlways: string;
   /** Styles applied to the root element if `component="button"`. */
   button: string;
+  /** Styles applied to the root element if `color="primary"`. */
+  colorPrimary: string;
+  /** Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: string;
+  /** Styles applied to the root element if `color="textPrimary"`. */
+  colorTextPrimary: string;
+  /** Styles applied to the root element if `color="textSecondary"`. */
+  colorTextSecondary: string;
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string;
   /** State class applied to the root element if the link is keyboard focused. */
   focusVisible: string;
 }
@@ -28,6 +38,12 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'underlineAlways',
   'button',
   'focusVisible',
+  "colorPrimary",
+  "colorError",
+  "colorSecondary",
+  'colorTextInherit',
+  'colorTextPrimary',
+  'colorTextSecondary'
 ]);
 
 export default linkClasses;
