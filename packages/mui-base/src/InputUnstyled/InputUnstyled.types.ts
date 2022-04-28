@@ -1,41 +1,9 @@
 import React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { FormControlUnstyledState } from '../FormControlUnstyled';
+import { UseInputParameters, UseInputRootSlotProps } from './useInput.types';
 
-export interface InputOwnerState
-  extends Omit<InputUnstyledProps, 'component' | 'components' | 'componentsProps'> {
-  formControl: FormControlUnstyledState;
-  focused: boolean;
-}
-
-export interface UseInputProps {
-  /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue?: unknown;
-  /**
-   * If `true`, the component is disabled.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  disabled?: boolean;
-  /**
-   * If `true`, the `input` will indicate an error.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  error?: boolean;
-  onBlur?: React.FocusEventHandler;
-  onClick?: React.MouseEventHandler;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onFocus?: React.FocusEventHandler;
-  /**
-   * If `true`, the `input` element is required.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  required?: boolean;
-  value?: unknown;
-}
-
-export interface InputUnstyledOwnProps extends UseInputProps {
+export interface InputUnstyledOwnProps extends UseInputParameters {
   'aria-describedby'?: string;
   'aria-label'?: string;
   'aria-labelledby'?: string;
@@ -68,8 +36,8 @@ export interface InputUnstyledOwnProps extends UseInputProps {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & { ownerState: InputOwnerState };
-    input?: React.ComponentPropsWithRef<'input'> & { ownerState: InputOwnerState };
+    root?: React.ComponentPropsWithRef<'div'>;
+    input?: React.ComponentPropsWithRef<'input'>;
   };
   /**
    * Trailing adornment for this input.
@@ -119,7 +87,7 @@ export interface InputUnstyledOwnProps extends UseInputProps {
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
-  type?: string;
+  type?: React.HTMLInputTypeAttribute;
   /**
    * The value of the `input` element, required for a controlled component.
    */
@@ -131,7 +99,7 @@ export interface InputUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
   defaultComponent: D;
 }
 
-type InputUnstyledProps<
+export type InputUnstyledProps<
   D extends React.ElementType = InputUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<InputUnstyledTypeMap<P, D>, D> & {
@@ -143,4 +111,36 @@ type InputUnstyledProps<
   component?: D;
 };
 
-export default InputUnstyledProps;
+export type InputUnstyledOwnerState = Simplify<
+  Omit<InputUnstyledProps, 'component' | 'components' | 'componentsProps'> & {
+    formControlContext: FormControlUnstyledState | undefined;
+    focused: boolean;
+  }
+>;
+
+export type InputUnstyledRootSlotProps = Simplify<
+  UseInputRootSlotProps & {
+    ownerState: InputUnstyledOwnerState;
+    className: string;
+    children?: React.ReactNode;
+  }
+>;
+
+export type InputUnstyledInputSlotProps = Simplify<
+  Omit<UseInputRootSlotProps, 'onClick'> & {
+    'aria-describedby': React.AriaAttributes['aria-describedby'];
+    'aria-label': React.AriaAttributes['aria-label'];
+    'aria-labelledby': React.AriaAttributes['aria-labelledby'];
+    autoComplete: string | undefined;
+    autoFocus: boolean | undefined;
+    className: string;
+    id: string | undefined;
+    name: string | undefined;
+    onKeyDown: React.KeyboardEventHandler<HTMLInputElement> | undefined;
+    onKeyUp: React.KeyboardEventHandler<HTMLInputElement> | undefined;
+    ownerState: InputUnstyledOwnerState;
+    placeholder: string | undefined;
+    readOnly: boolean | undefined;
+    type: React.HTMLInputTypeAttribute | undefined;
+  }
+>;

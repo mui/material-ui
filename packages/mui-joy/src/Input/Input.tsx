@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { appendOwnerState } from '@mui/base/utils';
-import { useInput, InputOwnerState } from '@mui/base/InputUnstyled';
+import { useInput, InputUnstyledOwnerState } from '@mui/base/InputUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
@@ -34,7 +34,7 @@ const InputRoot = styled('div', {
   name: 'MuiInput',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => [
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => [
   {
     ...(ownerState.size === 'sm' && {
       '--Input-gutter': '0.5rem',
@@ -115,7 +115,7 @@ const InputInput = styled('input', {
   name: 'MuiInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
   border: 'none', // remove the native input width
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
@@ -140,7 +140,7 @@ const InputStartDecorator = styled('span', {
   name: 'MuiInput',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   marginLeft: 'calc(var(--Input-decorator-offset) * -1)',
@@ -155,7 +155,7 @@ const InputEndDecorator = styled('span', {
   name: 'MuiInput',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
   marginRight: 'calc(var(--Input-decorator-offset) * -1)',
@@ -211,20 +211,18 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     formControlContext,
     error: errorState,
     disabled: disabledState,
-  } = useInput(
-    {
-      disabled,
-      defaultValue,
-      error,
-      onBlur,
-      onClick,
-      onChange,
-      onFocus,
-      required,
-      value,
-    },
+  } = useInput({
+    disabled,
+    defaultValue,
+    error,
+    onBlur,
+    onClick,
+    onChange,
+    onFocus,
     inputRef,
-  );
+    required,
+    value,
+  });
 
   const ownerState = {
     ...props,
@@ -233,7 +231,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     disabled: disabledState,
     error: errorState,
     focused,
-    formControl: formControlContext!,
+    formControlContext: formControlContext!,
     type,
     size,
     variant,
