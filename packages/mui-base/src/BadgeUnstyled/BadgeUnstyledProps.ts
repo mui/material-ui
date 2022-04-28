@@ -1,24 +1,10 @@
 import * as React from 'react';
 import { OverrideProps, OverridableTypeMap } from '@mui/types';
-import { BadgeUnstyledClasses } from './badgeUnstyledClasses';
-
-export interface BadgeOrigin {
-  vertical: 'top' | 'bottom';
-  horizontal: 'left' | 'right';
-}
 
 export interface BadgeUnstyledComponentsPropsOverrides {}
 
 export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
-    /**
-     * The anchor of the badge.
-     * @default {
-     *   vertical: 'top',
-     *   horizontal: 'right',
-     * }
-     */
-    anchorOrigin?: BadgeOrigin;
     /**
      * The components used for each slot inside the Badge.
      * Either a string to use a HTML element or a component.
@@ -45,10 +31,6 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'spa
      */
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<BadgeUnstyledClasses>;
-    /**
      * If `true`, the badge is invisible.
      * @default false
      */
@@ -63,11 +45,6 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'spa
      * @default false
      */
     showZero?: boolean;
-    /**
-     * The variant to use.
-     * @default 'standard'
-     */
-    variant?: string;
   };
   defaultComponent: D;
 }

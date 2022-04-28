@@ -77,6 +77,11 @@ const getCssValue = (keys: string[], value: string | number) => {
       // CSS property that are unitless
       return value;
     }
+    const lastKey = keys[keys.length - 1];
+    if (lastKey.toLowerCase().indexOf('opacity') >= 0) {
+      // opacity values are unitless
+      return value;
+    }
     return `${value}px`;
   }
   return value;

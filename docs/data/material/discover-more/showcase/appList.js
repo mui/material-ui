@@ -136,7 +136,7 @@ const appList = [
       'cost, usage and performance in one place. ' +
       '(Used for the business application, but not the marketing website.)',
     image: 'cloudhealth.jpg',
-    link: 'https://www.cloudhealthtech.com/',
+    link: 'https://cloudhealth.vmware.com/',
     similarWebVisits: 132,
     dateAdded: '2018-01-37',
   },
@@ -435,6 +435,7 @@ const appList = [
     similarWebVisits: 62,
     dateAdded: '2022-02-05',
   },
+<<<<<<< HEAD
   {
     title: 'MQTT Explorer',
     description:
@@ -447,6 +448,8 @@ const appList = [
     stars: 1600,
     dateAdded: '2019-03-25',
   },
+=======
+>>>>>>> master
 ];
 
 export default appList;

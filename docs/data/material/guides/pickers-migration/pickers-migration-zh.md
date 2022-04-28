@@ -8,7 +8,7 @@
 
 ## 安装
 
-You need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
+You need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
 
 ## 导入
 
@@ -70,11 +70,14 @@ function App() {
     </LocalizationProvider>
   )
 );
+    </LocalizationProvider>
+  )
+);
 ```
 
 ## 渲染输入
 
-我们在 `renderInput` 中引入了一个新的 **required** 属性。 这简化了在非 Material-UI 输入框组件中的使用成本。
+我们在 `renderInput` 中引入了一个新的 **required** 属性。 这简化了在非 Material UI 输入框组件中的使用成本。
 
 ```jsx
 <DatePicker renderInput={(props) => <TextField {...props} />} />
@@ -120,9 +123,9 @@ function App() {
 
 ## 更多内容
 
-- ````diff <DatePicker
+- `````diff <DatePicker
   -  format="DD-MMM-YYYY"
-  +  inputFormat="DD-MMM-YYYY" ``` ````
+  +  inputFormat="DD-MMM-YYYY" ``` ```` `````
 
 除此之外还有很多改动，需要当心，确保你的测试和构建通过。 如果你对日期选择器有进阶使用方法，可能会更简单地重写它。
 

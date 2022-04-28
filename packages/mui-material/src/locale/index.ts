@@ -984,8 +984,8 @@ export const etEE: Localization = {
           return 'Vali eelmine lehekülg';
         },
         labelRowsPerPage: 'Ridu leheküljel:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} / ${count !== -1 ? count : `rohkem kui ${to}`}`,
       },
     },
     MuiRating: {

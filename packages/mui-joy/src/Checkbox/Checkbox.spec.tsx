@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Checkbox from '@mui/joy/Checkbox';
 
-<Checkbox />;
+<Checkbox id="test" name="test" />;
 
 <Checkbox component="div" />;
 

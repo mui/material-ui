@@ -6,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha, getPath } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
@@ -98,6 +99,7 @@ const LinkRoot = styled(Typography, {
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
+  const theme = useTheme();
   const props = useThemeProps({
     props: inProps,
     name: 'MuiLink',
@@ -112,8 +114,10 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     TypographyClasses,
     underline = 'always',
     variant = 'inherit',
+    sx,
     ...other
   } = props;
+  const sxColor = typeof sx === 'function' ? sx(theme).color : sx?.color;
 
   const {
     isFocusVisibleRef,
@@ -144,7 +148,9 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
+    // It is too complex to support any types of `sx`.
+    // Need to find a better way to get rid of the color manipulation for `textDecorationColor`.
+    color: (typeof sxColor === 'function' ? sxColor(theme) : sxColor) || color,
     component,
     focusVisible,
     underline,
@@ -155,15 +161,19 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   return (
     <LinkRoot
+      color={color}
       className={clsx(classes.root, className)}
       classes={TypographyClasses}
-      color={color}
       component={component}
       onBlur={handleBlur}
       onFocus={handleFocus}
       ref={handlerRef}
       ownerState={ownerState}
       variant={variant}
+      sx={[
+        ...(inProps.color ? [{ color: colorTransformations[color] || color }] : []),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...other}
     />
   );
@@ -213,7 +223,7 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Typography`](/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
   /**

@@ -21,6 +21,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabPanelUnstyled/TabPanelUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-tabs/\">Tabs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-tabs/\">Tabs</a></li></ul>",
   "cssComponent": false
 }

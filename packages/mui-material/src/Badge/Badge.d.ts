@@ -1,13 +1,19 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { ExtendBadgeUnstyledTypeMap, BadgeUnstyledTypeMap } from '@mui/base/BadgeUnstyled';
+import { ExtendBadgeUnstyledTypeMap } from '@mui/base/BadgeUnstyled';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { BadgeClasses } from './badgeClasses';
 
 export interface BadgePropsVariantOverrides {}
 
 export interface BadgePropsColorOverrides {}
+
+export interface BadgeOrigin {
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'right';
+}
 
 export type BadgeTypeMap<
   D extends React.ElementType = 'span',
@@ -15,9 +21,17 @@ export type BadgeTypeMap<
 > = ExtendBadgeUnstyledTypeMap<{
   props: P & {
     /**
+     * The anchor of the badge.
+     * @default {
+     *   vertical: 'top',
+     *   horizontal: 'right',
+     * }
+     */
+    anchorOrigin?: BadgeOrigin;
+    /**
      * Override or extend the styles applied to the component.
      */
-    classes?: BadgeUnstyledTypeMap['props']['classes'] & {
+    classes?: Partial<BadgeClasses> & {
       /** Styles applied to the badge `span` element if `color="primary"`. */
       colorPrimary?: string;
       /** Styles applied to the badge `span` element if `color="secondary"`. */
@@ -52,7 +66,13 @@ export type BadgeTypeMap<
       overlapCircular?: string;
     };
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * @ignore
+     */
+    className?: string;
+    /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'default'
      */
     color?: OverridableStringUnion<
@@ -83,24 +103,19 @@ type BadgeBadgeProps = NonNullable<BadgeTypeMap['props']['componentsProps']>['ba
 export const BadgeRoot: React.FC<BadgeRootProps>;
 export const BadgeMark: React.FC<BadgeBadgeProps>;
 
-export type BadgeClassKey = keyof NonNullable<BadgeTypeMap['props']['classes']>;
 /**
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/components/avatars/)
- * - [Badges](https://mui.com/components/badges/)
+ * - [Avatars](https://mui.com/material-ui/react-avatar/)
+ * - [Badges](https://mui.com/material-ui/react-badge/)
  *
  * API:
  *
- * - [Badge API](https://mui.com/api/badge/)
- * - inherits [BadgeUnstyled API](https://mui.com/api/badge-unstyled/)
+ * - [Badge API](https://mui.com/material-ui/api/badge/)
+ * - inherits [BadgeUnstyled API](https://mui.com/base/api/badge-unstyled/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
-
-export type BadgeClasses = Record<BadgeClassKey, string>;
-
-export const badgeClasses: BadgeClasses;
 
 export type BadgeProps<
   D extends React.ElementType = BadgeTypeMap['defaultComponent'],

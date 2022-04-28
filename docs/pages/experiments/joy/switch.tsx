@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
@@ -131,6 +133,13 @@ export default function JoySwitch() {
                 '--Switch-track-height': '31px',
               }}
             />
+          </Box>
+          <Box>
+            <Typography>Decorator</Typography>
+            <Switch startDecorator="Off" checked={false} />
+            <Switch endDecorator="On" checked />
+            <Switch endDecorator="On" checked disabled />
+            <Switch endDecorator="On" checked size="sm" />
           </Box>
           <Box>
             <Typography color="info.textColor">Fluent</Typography>
@@ -366,6 +375,26 @@ export default function JoySwitch() {
               />
             ))}
           </Box>
+        </Box>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: 2,
+          }}
+        >
+          <List>
+            <ListItem>
+              <Typography component="label" htmlFor="noti" noWrap sx={{ flex: 1 }}>
+                Notifications
+              </Typography>
+              <Switch
+                componentsProps={{ input: { id: 'noti' } }}
+                endDecorator={(ownerState) => (ownerState.checked ? 'On' : 'Off')}
+                sx={{ position: 'initial' }}
+              />
+            </ListItem>
+          </List>
         </Box>
       </Box>
     </CssVarsProvider>
