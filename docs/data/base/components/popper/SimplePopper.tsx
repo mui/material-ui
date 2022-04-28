@@ -6,7 +6,7 @@ const StyledPopperDiv = styled('div')(
   ({ theme }: { theme: Theme }) => `
   padding: 0.5rem;
   border: 1px solid;
-  background-color: ${theme.palette.background.paper};
+  background-color: ${theme.palette.mode === 'dark' ? '#121212' : '#fff'};
   opacity: 1;
   margin: 0.25rem 0px;
 `,
