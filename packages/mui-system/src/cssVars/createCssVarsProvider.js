@@ -58,9 +58,9 @@ export default function createCssVarsProvider(options) {
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
     enableColorScheme = designSystemEnableColorScheme,
-    storageWindow = window,
-    documentNode = document,
-    colorSchemeNode = document.documentElement,
+    storageWindow = typeof window === 'undefined' ? undefined : window,
+    documentNode = typeof document === 'undefined' ? undefined : document,
+    colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
     colorSchemeSelector = ':root',
   }) {
     const hasMounted = React.useRef(false);

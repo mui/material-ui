@@ -123,7 +123,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     supportedColorSchemes = [],
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-    storageWindow = window,
+    storageWindow = typeof window === 'undefined' ? undefined : window,
   } = options;
 
   const joinedColorSchemes = supportedColorSchemes.join(',');
