@@ -102,6 +102,10 @@ const nestedFolder = {
       return resolveNestedImport('mui-private-theming', importee);
     }
 
+    if (importee.indexOf('@mui/private-classnames/') === 0) {
+      return resolveNestedImport('mui-private-classnames', importee);
+    }
+
     if (importee.indexOf('@mui/styled-engine/') === 0) {
       return resolveNestedImport('mui-styled-engine', importee);
     }
