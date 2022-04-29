@@ -5,8 +5,8 @@ import {
 } from '@mui/material/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
