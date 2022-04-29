@@ -29,7 +29,7 @@ import { WithOptionalOwnerState } from '../utils';
  */
 const InputUnstyled = React.forwardRef(function InputUnstyled(
   props: InputUnstyledProps,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     'aria-describedby': ariaDescribedby,
@@ -136,8 +136,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     ownerState,
   );
 
-  // TODO: make sure getRootProps is typed properly, then uncomment:
-  // rootProps.ref = useForkRef(rootProps.ref, rootComponentsProps?.ref);
+  rootProps.ref = useForkRef(rootProps.ref, useForkRef(rootComponentsProps?.ref, forwardedRef));
 
   let Input = components.Input ?? 'input';
   const inputComponentsProps = resolveComponentProps(componentsProps.input, ownerState);
@@ -178,7 +177,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   }
 
   return (
-    <Root {...rootProps} ref={ref}>
+    <Root {...rootProps}>
       {startAdornment}
       <Input {...inputProps} />
       {endAdornment}

@@ -184,7 +184,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     fullWidth = false,
     error,
     id,
-    inputRef,
     name,
     onClick,
     onChange,
@@ -273,7 +272,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ownerState,
   );
 
-  // TODO: sync `ref` and `componentsProps.root.ref` with the ref returned by `getRootProps`, as below
+  rootProps.ref = useForkRef(ref, useForkRef(rootProps.ref, componentsProps.root?.ref));
 
   const InputComponent = components.Input ?? InputInput;
   const inputProps = appendOwnerState(
@@ -285,10 +284,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ownerState,
   );
 
-  inputProps.ref = useForkRef(inputProps.ref, inputRef);
+  inputProps.ref = useForkRef(componentsProps.input?.ref, inputProps.ref);
 
   return (
-    <Root ref={ref} {...rootProps}>
+    <Root {...rootProps}>
       {startDecorator && (
         <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
           {startDecorator}
@@ -400,15 +399,6 @@ Input.propTypes /* remove-proptypes */ = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
   /**
    * Name attribute of the `input` element.
    */

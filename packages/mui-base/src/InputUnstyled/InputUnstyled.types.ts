@@ -134,6 +134,7 @@ export type InputUnstyledRootSlotProps = Simplify<
     ownerState: InputUnstyledOwnerState;
     className: string;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
   }
 >;
 

@@ -79,7 +79,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     onBlur,
     onChange,
     onFocus,
-    inputRef,
     color,
     disabled = false,
     error = false,
@@ -143,7 +142,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         id={id}
         name={name}
         type={type}
-        inputRef={inputRef}
         aria-describedby={helperTextId}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
@@ -265,14 +263,9 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * Pass a ref to the `input` element.
+   * @ignore
    */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
+  inputRef: PropTypes.any.isRequired,
   /**
    * The label content.
    */
