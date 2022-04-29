@@ -196,6 +196,10 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /zh/api/time-picker/ /zh/x/api/date-pickers/time-picker/ 301
 /pt/api/time-picker/ /pt/x/api/date-pickers/time-picker/ 301
 
+### Group & Pivot page split https://github.com/mui/mui-x/pull/4441
+/x/react-data-grid/group-pivot#* /x/react-data-grid/:splat 301
+/:lang/x/react-data-grid/group-pivot#* /:lang/x/react-data-grid/:splat 301
+
 ## MUI Core
 /styles/* /system/styles/:splat 301
 /:lang/styles/* /:lang/system/styles/:splat 301
