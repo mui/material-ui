@@ -182,6 +182,7 @@
     "/system/styles/basics": "基础知识",
     "/system/styles/advanced": "进阶知识",
     "/base/getting-started": "入门",
+    "/base/getting-started/overview": "Overview",
     "/base/getting-started/installation": "安装",
     "/base/react-": "组件",
     "inputs": "Inputs",
