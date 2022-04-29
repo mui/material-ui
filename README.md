@@ -143,8 +143,6 @@ function App() {
     </Button>
   );
 }
-
-ReactDOM.createRoot(document.querySelector('#app')).render(<App />);
 ```
 
 In the interactive demo below, try changing the code and see how it affects the output.
