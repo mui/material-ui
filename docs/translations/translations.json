@@ -182,6 +182,7 @@
     "/system/styles/basics": "Basics",
     "/system/styles/advanced": "Advanced",
     "/base/getting-started": "Getting started",
+    "/base/getting-started/overview": "Overview",
     "/base/getting-started/installation": "Installation",
     "/base/react-": "Components",
     "inputs": "Inputs",

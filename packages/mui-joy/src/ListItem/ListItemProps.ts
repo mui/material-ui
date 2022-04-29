@@ -44,7 +44,7 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
     sticky?: boolean;
     /**
      * The variant to use.
-     * @default 'text'
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListItemPropsVariantOverrides>;
     /**

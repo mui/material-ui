@@ -13,10 +13,7 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<
-      Exclude<ColorPaletteProp, 'context'>,
-      ChipDeletePropsColorOverrides
-    >;
+    color?: OverridableStringUnion<ColorPaletteProp, ChipDeletePropsColorOverrides>;
     /**
      * If provided, it will replace the default icon.
      */
@@ -27,7 +24,7 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'solid'
      */
     variant?: OverridableStringUnion<VariantProp, ChipDeletePropsVariantOverrides>;
   };

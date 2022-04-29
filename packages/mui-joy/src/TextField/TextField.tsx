@@ -45,8 +45,8 @@ const TextFieldRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${textFieldClasses.disabled}`]: {
-    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
-    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
+    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
+    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
   },
   display: 'flex',
   flexDirection: 'column',
@@ -316,7 +316,7 @@ TextField.propTypes /* remove-proptypes */ = {
   startDecorator: PropTypes.node,
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'text'
+   * @default 'plain'
    */
   type: PropTypes.string,
   /**
