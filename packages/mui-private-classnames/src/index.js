@@ -1,4 +1,4 @@
-export { default as composeClasses } from './composeClasses';
+export { default as unstable_composeClasses } from './composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 
