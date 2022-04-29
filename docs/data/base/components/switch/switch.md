@@ -29,12 +29,7 @@ The `SwitchUnstyled` component is composed of a root `<span>` that houses three 
 <span class="MuiSwitch-root Mui-checked">
   <span class="MuiSwitch-track"></span>
   <span class="MuiSwitch-thumb"></span>
-  <input
-    type="checkbox"
-    aria-label="Demo switch"
-    class="MuiSwitch-input"
-    checked
-  />
+  <input type="checkbox" aria-label="Demo switch" class="MuiSwitch-input" checked />
 </span>
 ```
 
