@@ -1,3 +1,6 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import {
@@ -5,9 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
+import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getLinkUtilityClass } from './linkClasses';
@@ -67,14 +68,11 @@ const LinkRoot = styled('a', {
       ...(ownerState.underline === 'hover' && {
         textDecoration: 'none',
         '&:hover': {
-          textDecoration: 'underline',
+          textDecorationLine: 'underline',
         },
       }),
       ...(ownerState.underline === 'always' && {
         textDecoration: 'underline',
-        '&:hover': {
-          textDecorationColor: 'inherit',
-        },
       }),
       ...(ownerState.startDecorator && {
         verticalAlign: 'bottom', // to make the link align with the parent's content
@@ -89,6 +87,9 @@ const LinkRoot = styled('a', {
       margin: 0, // Remove the margin in Safari
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
+      textDecorationColor: `rgba(${
+        theme.vars.palette[ownerState.color!]?.mainChannel
+      } / var(--Link-underlineOpacity, 0.72))`,
       ...(ownerState.variant
         ? {
             paddingInline: '0.25em', // better than left, right because it also works with writing mode.
@@ -139,16 +140,17 @@ const LinkRoot = styled('a', {
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
-  const props = useThemeProps<typeof inProps & LinkProps>({
+  const { color = 'primary', ...themeProps } = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
     name: 'MuiLink',
   });
 
   const nested = React.useContext(TypographyContext);
 
+  const props = extendSxProp(themeProps) as LinkProps;
+
   const {
     className,
-    color = 'primary',
     component = 'a',
     children,
     disabled = false,

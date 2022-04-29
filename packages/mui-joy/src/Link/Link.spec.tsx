@@ -34,6 +34,9 @@ import * as React from 'react';
 <Link underline="none" />;
 <Link underline="hover" />;
 
+// extend sx
+<Link fontWeight="md" my={1} />;
+
 // @ts-expect-error there is no variant `filled`
 <Link variant="filled" />;
 
