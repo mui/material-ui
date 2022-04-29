@@ -3,7 +3,8 @@ import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/sy
 import { Theme, DefaultColorScheme, ExtendedColorScheme, FontSize } from './types';
 import { Components } from './components';
 import extendTheme from './extendTheme';
-import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
+import { createVariant } from './variantUtils';
+import { createPlainOverride, createSoftOverride, createSolidOverride } from './VariantOverride';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme,
@@ -64,14 +65,18 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
         solidHover: createVariant('solidHover', mergedTheme),
         solidActive: createVariant('solidActive', mergedTheme),
         solidDisabled: createVariant('solidDisabled', mergedTheme),
-
-        // variant overrides
-        plainOverrides: createTextOverrides(mergedTheme),
-        outlinedOverrides: createTextOverrides(mergedTheme),
-        softOverrides: createTextOverrides(mergedTheme),
-        solidOverrides: createContainedOverrides(mergedTheme),
-      } as typeof mergedTheme.variants,
+      },
       mergedTheme.variants,
+      { clone: false },
+    );
+    mergedTheme.variantOverrides = deepmerge(
+      {
+        plain: createPlainOverride(mergedTheme),
+        outlined: createPlainOverride(mergedTheme),
+        soft: createSoftOverride(mergedTheme),
+        solid: createSolidOverride(mergedTheme),
+      },
+      mergedTheme.variantOverrides,
       { clone: false },
     );
     return mergedTheme;
@@ -79,6 +84,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   shouldSkipGeneratingVar: (keys) =>
     keys[0] === 'typography' ||
     keys[0] === 'variants' ||
+    keys[0] === 'variantOverrides' ||
     keys[0] === 'focus' ||
     keys[0] === 'breakpoints',
 });

@@ -1,4 +1,4 @@
-import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
+import { CSSObject } from '@mui/system';
 import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
 import { VariantKey } from './types/variants';
 
@@ -21,10 +21,6 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
   if (variantVar.includes('Border')) {
     target.borderColor = value;
   }
-};
-
-const createPrefixVar = (prefix: string | undefined | null) => {
-  return (cssVar: string) => `--${prefix ? `${prefix}-` : ''}${cssVar.replace(/^--/, '')}`;
 };
 
 /**
@@ -109,85 +105,6 @@ interface Theme {
   palette: Record<DefaultColorPalette, PaletteRange>;
   vars: { palette: Record<DefaultColorPalette, PaletteRange> };
 }
-
-export const createTextOverrides = (theme: Theme) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
-  Object.entries(theme.palette).forEach((entry) => {
-    const [color, colorPalette] = entry as [
-      DefaultColorPalette,
-      string | number | Record<string, any>,
-    ];
-    if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
-          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-overrideTextPrimary`),
-          [prefixVar('--palette-text-secondary')]: getCssVar(
-            `palette-${color}-overrideTextSecondary`,
-          ),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(
-            `palette-${color}-overrideTextTertiary`,
-          ),
-        },
-      };
-    }
-  });
-  return result;
-};
-
-export const createContainedOverrides = (theme: Theme) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
-  Object.entries(theme.palette).forEach((entry) => {
-    const [color, colorPalette] = entry as [
-      DefaultColorPalette,
-      string | number | Record<string, any>,
-    ];
-    if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
-          [prefixVar('--palette-text-primary')]: '#fff',
-          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
-          '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
-
-          '--variant-plainColor': getCssVar(`palette-${color}-100`),
-          '--variant-plainHoverColor': `#fff`,
-          '--variant-plainHoverBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-plainActiveBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-plainDisabledColor': getCssVar(`palette-${color}-300`),
-
-          '--variant-outlinedColor': getCssVar(`palette-${color}-100`),
-          '--variant-outlinedBorder': getCssVar(`palette-${color}-300`),
-          '--variant-outlinedHoverColor': `#fff`,
-          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-200`),
-          '--variant-outlinedHoverBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-outlinedDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
-
-          '--variant-softColor': '#fff',
-          '--variant-softBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-softHoverBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-softActiveBg': `rgba(255 255 255 / 0.08)`,
-          '--variant-softDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-softDisabledBg': `rgba(255 255 255 / 0.08)`,
-
-          '--variant-solidBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
-          '--variant-solidHoverBg': 'rgba(0 0 0 / 0.32)',
-          '--variant-solidActiveBg': 'rgba(0 0 0 / 0.48)',
-          '--variant-solidDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-solidDisabledBg': `rgba(255 255 255 / 0.08)`,
-        },
-      };
-    }
-  });
-  return result;
-};
 
 export const createVariant = (variant: VariantKey, theme?: Theme) => {
   let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;

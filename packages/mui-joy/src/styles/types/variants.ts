@@ -10,13 +10,6 @@ export type DefaultVariantProp = 'plain' | 'outlined' | 'soft' | 'solid';
 
 export type VariantProp = OverridableStringUnion<DefaultVariantProp, VariantPropOverrides>;
 
-export type DefaultContextualOverrides = `${DefaultVariantProp}Overrides`;
-
-export type ContextualOverrideKeys = OverridableStringUnion<
-  DefaultContextualOverrides,
-  ContextualOverrides
->;
-
 type State = 'Hover' | 'Active' | 'Disabled';
 
 export type VariantKey = DefaultVariantProp | `${DefaultVariantProp}${State}`;
@@ -24,8 +17,6 @@ export type VariantKey = DefaultVariantProp | `${DefaultVariantProp}${State}`;
 export type DefaultVariantKey =
   | Exclude<DefaultVariantProp, 'solid'>
   | `${Exclude<DefaultVariantProp, 'solid'>}${State}`;
-
-type BaseContextOverrides = Record<DefaultContextualOverrides, Record<ColorPaletteProp, CSSObject>>;
 
 // Split interfaces into multiple chunks so that they can be augmented independently
 
@@ -49,7 +40,7 @@ export interface VariantSolidHover extends Record<ColorPaletteProp, CSSObject> {
 export interface VariantSolidActive extends Record<ColorPaletteProp, CSSObject> {}
 export interface VariantSolidDisabled extends Record<ColorPaletteProp, CSSObject> {}
 
-export interface Variants extends BaseContextOverrides {
+export interface Variants {
   plain: VariantPlain;
   plainHover: VariantPlainHover;
   plainActive: VariantPlainActive;
@@ -69,4 +60,16 @@ export interface Variants extends BaseContextOverrides {
   solidHover: VariantSolidHover;
   solidActive: VariantSolidActive;
   solidDisabled: VariantSolidDisabled;
+}
+
+export interface VariantOverridePlain extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantOverrideOutlined extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantOverrideSoft extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantOverrideSolid extends Record<ColorPaletteProp, CSSObject> {}
+
+export interface VariantOverrides {
+  plain: VariantOverridePlain;
+  outlined: VariantOverrideOutlined;
+  soft: VariantOverrideSoft;
+  solid: VariantOverrideSolid;
 }
