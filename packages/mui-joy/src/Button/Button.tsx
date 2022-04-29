@@ -7,6 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import { getButtonUtilityClass } from './buttonClasses';
+import { useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
@@ -105,6 +106,7 @@ const ButtonRoot = styled('button', {
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
+      fontWeight: theme.vars.fontWeight.md,
       lineHeight: 1,
       ...(ownerState.size === 'sm' && {
         fontSize: theme.vars.fontSize.sm,
@@ -133,7 +135,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     className,
     action,
     component = 'button',
-    color = 'primary',
+    color: colorProp = 'primary',
     variant = 'solid',
     size = 'md',
     fullWidth = false,
@@ -141,6 +143,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     endIcon: endIconProp,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

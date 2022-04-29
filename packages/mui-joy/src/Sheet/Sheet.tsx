@@ -9,6 +9,7 @@ import { resolveSxValue } from '../styles/styleUtils';
 import styled from '../styles/styled';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetTypeMap } from './SheetProps';
+import { VariantOverrideProvider, useVariantOverride } from '../styles/VariantOverride';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { elevation, variant, color } = ownerState;
@@ -46,6 +47,8 @@ const SheetRoot = styled('div', {
       position: 'relative',
     },
     variantStyle,
+    ownerState.enableVariantOverride &&
+      theme.variantOverrides[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -57,24 +60,28 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
 
   const {
     className,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     component = 'div',
     variant = 'plain',
     elevation,
+    enableVariantOverride = false,
     ...other
   } = props;
+  const { getColor } = useVariantOverride(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
     component,
     elevation,
+    enableVariantOverride,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
+  const result = (
     <SheetRoot
       as={component}
       ownerState={ownerState}
@@ -83,6 +90,11 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
       {...other}
     />
   );
+
+  if (enableVariantOverride) {
+    return <VariantOverrideProvider variant={variant}>{result}</VariantOverrideProvider>;
+  }
+  return result;
 }) as OverridableComponent<SheetTypeMap>;
 
 Sheet.propTypes /* remove-proptypes */ = {

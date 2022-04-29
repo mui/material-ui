@@ -149,12 +149,15 @@ export const createVariant = (variant: VariantKey, theme?: Theme) => {
 
     softColor: 'var(--variant-softColor)',
     softBg: 'var(--variant-softBg)',
+    softHoverColor: 'var(--variant-softHoverColor)',
     softHoverBg: 'var(--variant-softHoverBg)',
     softActiveBg: 'var(--variant-softActiveBg)',
     softDisabledColor: 'var(--variant-softDisabledColor)',
     softDisabledBg: 'var(--variant-softDisabledBg)',
 
+    solidColor: 'var(--variant-solidColor)',
     solidBg: 'var(--variant-solidBg)',
+    solidHoverColor: 'var(--variant-solidHoverColor)',
     solidHoverBg: 'var(--variant-solidHoverBg)',
     solidActiveBg: 'var(--variant-solidActiveBg)',
     solidDisabledColor: 'var(--variant-solidDisabledColor)',

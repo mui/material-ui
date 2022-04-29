@@ -24,6 +24,11 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     elevation?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     /**
+     * If `true`, the component create CSS variables that can override children with `context` color.
+     * @default false
+     */
+    enableVariantOverride?: boolean;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
