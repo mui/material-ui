@@ -6,6 +6,7 @@ import {
 } from '@mui/material/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
@@ -186,6 +187,18 @@ export default function Page() {
             <Chip color="success" variant="filled" label="Text" />
             <Chip color="success" variant="outlined" label="Text" />
             <Chip color="success" variant="notification" label="Text" />
+          </Box>
+        </Box>
+        <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar variant='rounded' alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar variant='square' alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <Avatar>H</Avatar>
+            <Avatar variant='rounded'>H</Avatar>
+            <Avatar variant='square'>H</Avatar>
           </Box>
         </Box>
       </Box>
