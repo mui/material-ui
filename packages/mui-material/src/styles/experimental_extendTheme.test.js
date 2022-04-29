@@ -56,28 +56,28 @@ describe('experimental_extendTheme', () => {
     expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
     expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
     expect(theme.colorSchemes.dark.palette.primary.lightChannel).to.equal('227 242 253');
+    expect(theme.colorSchemes.dark.palette.primary.contrastTextChannel).to.equal('0 0 0');
 
     expect(theme.colorSchemes.light.palette.primary.mainChannel).to.equal('25 118 210');
     expect(theme.colorSchemes.light.palette.primary.darkChannel).to.equal('21 101 192');
     expect(theme.colorSchemes.light.palette.primary.lightChannel).to.equal('66 165 245');
+    expect(theme.colorSchemes.light.palette.primary.contrastTextChannel).to.equal('255 255 255');
 
     expect(theme.colorSchemes.dark.palette.secondary.mainChannel).to.equal('206 147 216');
     expect(theme.colorSchemes.dark.palette.secondary.darkChannel).to.equal('171 71 188');
     expect(theme.colorSchemes.dark.palette.secondary.lightChannel).to.equal('243 229 245');
+    expect(theme.colorSchemes.dark.palette.secondary.contrastTextChannel).to.equal('0 0 0');
 
     expect(theme.colorSchemes.light.palette.secondary.mainChannel).to.equal('156 39 176');
     expect(theme.colorSchemes.light.palette.secondary.darkChannel).to.equal('123 31 162');
     expect(theme.colorSchemes.light.palette.secondary.lightChannel).to.equal('186 104 200');
+    expect(theme.colorSchemes.light.palette.secondary.contrastTextChannel).to.equal('255 255 255');
 
     expect(theme.colorSchemes.dark.palette.text.primaryChannel).to.equal('255 255 255');
     expect(theme.colorSchemes.dark.palette.text.secondaryChannel).to.equal('255 255 255');
-    expect(theme.colorSchemes.dark.palette.text.disabledChannel).to.equal('255 255 255');
-    expect(theme.colorSchemes.dark.palette.action.disabledChannel).to.equal('255 255 255');
 
     expect(theme.colorSchemes.light.palette.text.primaryChannel).to.equal('0 0 0');
     expect(theme.colorSchemes.light.palette.text.secondaryChannel).to.equal('0 0 0');
-    expect(theme.colorSchemes.light.palette.text.disabledChannel).to.equal('0 0 0');
-    expect(theme.colorSchemes.light.palette.action.disabledChannel).to.equal('0 0 0');
   });
 
   it('should generate background invertChannel', () => {
