@@ -97,13 +97,13 @@ export default function Page() {
         <div>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            <Avatar variant='rounded' alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            <Avatar variant='square' alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar variant="rounded" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar variant="square" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
             <Avatar>H</Avatar>
-            <Avatar variant='rounded'>H</Avatar>
-            <Avatar variant='square'>H</Avatar>
+            <Avatar variant="rounded">H</Avatar>
+            <Avatar variant="square">H</Avatar>
           </Box>
         </div>
       </Box>
