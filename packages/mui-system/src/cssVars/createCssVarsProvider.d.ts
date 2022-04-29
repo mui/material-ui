@@ -67,6 +67,11 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
          */
         colorSchemeSelector?: string;
         /**
+         * localStorage key used to store `colorScheme`
+         * @default 'mui-color-scheme'
+         */
+        colorSchemeStorageKey?: string;
+        /**
          * The window that attaches the 'storage' event listener
          * @default window
          */

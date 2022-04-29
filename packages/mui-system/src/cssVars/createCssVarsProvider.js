@@ -7,6 +7,7 @@ import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
 import getInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
+  DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
@@ -53,6 +54,7 @@ export default function createCssVarsProvider(options) {
     theme: themeProp = defaultTheme,
     prefix = designSystemPrefix,
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
+    colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     attribute = DEFAULT_ATTRIBUTE,
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
@@ -84,6 +86,7 @@ export default function createCssVarsProvider(options) {
       defaultLightColorScheme,
       defaultDarkColorScheme,
       modeStorageKey,
+      colorSchemeStorageKey,
       defaultMode,
       storageWindow,
     });
@@ -224,7 +227,7 @@ export default function createCssVarsProvider(options) {
           allColorSchemes,
         }}
       >
-        <GlobalStyles styles={{ ':root': rootCss }} />
+        <GlobalStyles styles={{ [colorSchemeSelector]: rootCss }} />
         <GlobalStyles styles={styleSheet} />
         <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
@@ -248,6 +251,10 @@ export default function createCssVarsProvider(options) {
      * The CSS selector for attaching the generated custom properties
      */
     colorSchemeSelector: PropTypes.string,
+    /**
+     * localStorage key used to store `colorScheme`
+     */
+    colorSchemeStorageKey: PropTypes.string,
     /**
      * The initial color scheme used.
      */
