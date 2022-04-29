@@ -41,7 +41,7 @@ To customize it using CSS variables, you'll need to wrap your application with `
 
 Play around with the demo below!
 
-{{"demo": "CssVariablesCustomization.js", "iframe": true, "iframeId": "css-vars-customization", "height": "100px" }}
+{{"demo": "CssVariablesCustomization.js", "id": "css-vars-customization" }}
 
 If you are using TypeScript you should use module augmentation to update the `Theme` structure:
 
@@ -81,7 +81,7 @@ const theme = experimental_extendTheme({
 });
 ```
 
-{{"demo": "CssVarsCustomTheme.js", "iframe": true, "iframeId": "css-vars-custom-theme" }}
+{{"demo": "CssVarsCustomTheme.js", "id": "css-vars-custom-theme" }}
 
 If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
 

@@ -26,15 +26,15 @@ const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 export default function App() {
-  const [frame, setFrame] = React.useState(null);
+  // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
+  const [node, setNode] = React.useState(null);
   useEnhancedEffect(() => {
-    setFrame(document.getElementById('css-vars-customization'));
+    setNode(document.getElementById('css-vars-customization'));
   }, []);
   return (
     <CssVarsProvider
-      colorSchemeNode={frame?.contentDocument?.documentElement || null}
-      documentNode={frame?.contentDocument || null}
-      storageWindow={frame?.contentWindow || null}
+      colorSchemeNode={node || null}
+      colorSchemeSelector="#css-vars-customization"
     >
       <CustomButton sx={{ mr: 1 }}>Custom styles</CustomButton>
       <CssVarsCustomButton variant="contained">CSS variables</CssVarsCustomButton>

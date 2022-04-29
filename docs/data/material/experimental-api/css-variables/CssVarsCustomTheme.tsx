@@ -57,18 +57,18 @@ const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 export default function Page() {
-  const [frame, setFrame] = React.useState<null | HTMLIFrameElement>(null);
+  // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
+  const [node, setNode] = React.useState<null | HTMLElement>(null);
   useEnhancedEffect(() => {
-    setFrame(
-      document.getElementById('css-vars-custom-theme') as null | HTMLIFrameElement,
-    );
+    setNode(document.getElementById('css-vars-custom-theme') as null | HTMLElement);
   }, []);
   return (
     <CssVarsProvider
       theme={theme}
-      colorSchemeNode={frame?.contentDocument?.documentElement || null}
-      documentNode={frame?.contentDocument || null}
-      storageWindow={frame?.contentWindow || null}
+      colorSchemeNode={node || null}
+      colorSchemeSelector="#css-vars-custom-theme"
+      colorSchemeStorageKey="custom-theme-color-scheme"
+      modeStorageKey="custom-theme-mode"
     >
       <Box bgcolor="background.paper" sx={{ p: 1 }}>
         <Box sx={{ py: 2, mx: 'auto' }}>
