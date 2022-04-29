@@ -26,7 +26,7 @@ import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior elements—a track, a thumb, and an input—and it assigns CSS classes for styling each piece:
 
 ```html
-<span class="MuiSwitch-root Mui-checked css-i6datd">
+<span class="MuiSwitch-root Mui-checked">
   <span class="MuiSwitch-track"></span>
   <span class="MuiSwitch-thumb"></span>
   <input
