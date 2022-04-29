@@ -208,14 +208,13 @@ export default function Demo(props) {
       <DemoRoot
         hiddenToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
-        id={demoOptions.id || demoId}
+        id={demoId}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
         <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandboxed
           key={demoKey}
-          id={demoOptions.id}
           style={demoSandboxedStyle}
           component={DemoComponent}
           iframe={demoOptions.iframe}

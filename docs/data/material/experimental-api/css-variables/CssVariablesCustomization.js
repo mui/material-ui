@@ -32,12 +32,14 @@ export default function App() {
     setNode(document.getElementById('css-vars-customization'));
   }, []);
   return (
-    <CssVarsProvider
-      colorSchemeNode={node || null}
-      colorSchemeSelector="#css-vars-customization"
-    >
-      <CustomButton sx={{ mr: 1 }}>Custom styles</CustomButton>
-      <CssVarsCustomButton variant="contained">CSS variables</CssVarsCustomButton>
-    </CssVarsProvider>
+    <div id="css-vars-customization">
+      <CssVarsProvider
+        colorSchemeNode={node || null}
+        colorSchemeSelector="#css-vars-customization"
+      >
+        <CustomButton sx={{ mr: 1 }}>Custom styles</CustomButton>
+        <CssVarsCustomButton variant="contained">CSS variables</CssVarsCustomButton>
+      </CssVarsProvider>
+    </div>
   );
 }
