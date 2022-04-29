@@ -24,7 +24,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, AvatarPropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, AvatarPropsColorOverrides>;
     /**
      * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
      * It can be used to listen for the loading error event.
@@ -53,7 +53,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'light'
+     * @default 'soft'
      */
     variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, AvatarPropsVariantOverrides>;
   };

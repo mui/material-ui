@@ -66,7 +66,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
     selected?: boolean;
     /**
      * The variant to use.
-     * @default 'text'
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListItemButtonPropsVariantOverrides>;
     /**

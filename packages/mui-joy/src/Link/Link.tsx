@@ -95,11 +95,11 @@ const LinkRoot = styled('a', {
             marginInline: '-0.25em',
           }
         : {
-            color: theme.vars.palette[ownerState.color!]?.textColor,
+            color: theme.vars.palette[ownerState.color!]?.plainColor,
             cursor: 'pointer',
             '&.Mui-disabled': {
               pointerEvents: 'none',
-              color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+              color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
             },
           }),
       userSelect: 'none',
@@ -309,7 +309,7 @@ Link.propTypes /* remove-proptypes */ = {
   underline: PropTypes.oneOf(['always', 'hover', 'none']),
   /**
    * Applies the theme link styles.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

@@ -97,7 +97,7 @@ const InputRoot = styled('div', {
   theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-  ownerState.variant !== 'contained' && {
+  ownerState.variant !== 'solid' && {
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
       '&:before': {
@@ -473,7 +473,7 @@ Input.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'text'
+   * @default 'plain'
    */
   type: PropTypes.string,
   /**

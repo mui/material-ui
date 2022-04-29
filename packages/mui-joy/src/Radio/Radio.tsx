@@ -77,7 +77,7 @@ const RadioRoot = styled('span', {
       fontFamily: theme.vars.fontFamily.body,
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
       '&.Mui-disabled': {
-        color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+        color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
       },
       ...(ownerState.disableIcon && {
         color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],

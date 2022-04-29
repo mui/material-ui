@@ -18,7 +18,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
      * The color of the link.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, LinkPropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, LinkPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -54,7 +54,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
     underline?: 'none' | 'hover' | 'always';
     /**
      * Applies the theme link styles.
-     * @default 'text'
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, LinkPropsVariantOverrides>;
   };

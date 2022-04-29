@@ -65,7 +65,7 @@ const CheckboxRoot = styled('span', {
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
   '&.Mui-disabled': {
-    color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+    color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
   },
   ...(ownerState.disableIcon && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
@@ -218,7 +218,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const isCheckboxActive = checked || indeterminate;
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
-  const activeVariant = variant || 'contained';
+  const activeVariant = variant || 'solid';
   const inactiveVariant = variant || 'outlined';
 
   const ownerState = {
@@ -418,7 +418,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   uncheckedIcon: PropTypes.node,
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined']),

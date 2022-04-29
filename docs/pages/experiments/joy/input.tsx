@@ -87,7 +87,7 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             color="info"
             endDecorator={
-              <Button variant="light" size="sm" sx={{ mr: '-6px' }}>
+              <Button variant="soft" size="sm" sx={{ mr: '-6px' }}>
                 Search
               </Button>
             }
@@ -118,18 +118,18 @@ export default function JoyTypography() {
           />
           <Input placeholder="Placeholder" disabled />
           <Input placeholder="Placeholder" disabled defaultValue="I am in disabled state" />
-          <Input variant="text" placeholder="Text variant" defaultValue="Default Value" />
-          <Input variant="text" placeholder="Text variant" />
-          <Input variant="text" placeholder="Text variant" disabled />
-          <Input variant="text" placeholder="Text variant" color="primary" />
-          <Input variant="light" placeholder="Light variant" defaultValue="Default Value" />
-          <Input variant="light" placeholder="Light variant" />
-          <Input variant="light" placeholder="Light variant" disabled />
-          <Input variant="light" placeholder="Light variant" color="primary" />
-          <Input variant="contained" placeholder="Contained variant" defaultValue="Default Value" />
-          <Input variant="contained" placeholder="Contained variant" />
-          <Input variant="contained" placeholder="Contained variant" disabled />
-          <Input variant="contained" placeholder="Contained variant" color="primary" />
+          <Input variant="plain" placeholder="Text variant" defaultValue="Default Value" />
+          <Input variant="plain" placeholder="Text variant" />
+          <Input variant="plain" placeholder="Text variant" disabled />
+          <Input variant="plain" placeholder="Text variant" color="primary" />
+          <Input variant="soft" placeholder="Light variant" defaultValue="Default Value" />
+          <Input variant="soft" placeholder="Light variant" />
+          <Input variant="soft" placeholder="Light variant" disabled />
+          <Input variant="soft" placeholder="Light variant" color="primary" />
+          <Input variant="solid" placeholder="Contained variant" defaultValue="Default Value" />
+          <Input variant="solid" placeholder="Contained variant" />
+          <Input variant="solid" placeholder="Contained variant" disabled />
+          <Input variant="solid" placeholder="Contained variant" color="primary" />
         </Box>
       </Box>
     </CssVarsProvider>

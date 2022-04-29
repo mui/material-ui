@@ -47,15 +47,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     name: 'MuiAvatarGroup',
   });
 
-  const {
-    className,
-    color = 'neutral',
-    component = 'div',
-    size = 'md',
-    variant = 'light',
-    children,
-    ...other
-  } = props;
+  const { className, color, component = 'div', size = 'md', variant, children, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -128,7 +120,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

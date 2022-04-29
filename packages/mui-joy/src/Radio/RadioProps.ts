@@ -42,10 +42,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
-      color?: OverridableStringUnion<
-        Exclude<ColorPaletteProp, 'context'>,
-        RadioPropsColorOverrides
-      >;
+      color?: OverridableStringUnion<ColorPaletteProp, RadioPropsColorOverrides>;
       /**
        * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
        * @default false

@@ -2,12 +2,11 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Typography from '@mui/joy/Typography';
 import {
   CssVarsProvider,
   useColorScheme,
   useTheme,
-  styled,
-  ColorPaletteProp,
   TypographySystem,
   createGetCssVar,
 } from '@mui/joy/styles';
@@ -19,16 +18,6 @@ const rgb2hex = (rgb: string) =>
     .slice(1)
     .map((n) => parseInt(n, 10).toString(16).padStart(2, '0'))
     .join('')}`;
-
-const Typography = styled('p', {
-  shouldForwardProp: (prop) => prop !== 'color' && prop !== 'level' && prop !== 'sx',
-})<{ color?: ColorPaletteProp; level?: keyof TypographySystem }>(
-  ({ theme, level = 'body1', color }) => [
-    { margin: 0 },
-    theme.typography[level],
-    color && color !== 'context' && { color: getCssVar(`palette-${color}-textColor`) },
-  ],
-);
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -57,7 +46,7 @@ const ColorSchemePicker = () => {
             <Button
               key={modeId}
               size="sm"
-              variant={mode === modeId ? 'contained' : 'text'}
+              variant={mode === modeId ? 'solid' : 'plain'}
               onClick={() => {
                 setMode(modeId);
               }}
