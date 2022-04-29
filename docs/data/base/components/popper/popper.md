@@ -27,7 +27,7 @@ By default, the popper is mounted to the DOM when its `open` prop is set to `tru
 The children are placed in a [`Portal`](/base/react-portal/) prepended to the body of the document to avoid rendering problems.
 You can disable this behavior with `disablePortal` prop.
 
-{{"demo": "SimplePopper.js"}}
+{{"demo": "SimplePopper.js", "defaultCodeOpen": true}}
 
 **Note:** clicking outside the popper does not hide it. If you need this behavior, you can use the [`ClickAwayListener`](/base/react-click-away-listener/) component.
 
