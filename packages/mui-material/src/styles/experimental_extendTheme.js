@@ -60,6 +60,7 @@ export default function extendTheme(options = {}, ...args) {
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
 
+      // Color palettes: primary, secondary, error, info, success, and warning
       if (colors.main) {
         palette[color].mainChannel = colorChannel(colors.main);
       }
@@ -69,14 +70,16 @@ export default function extendTheme(options = {}, ...args) {
       if (colors.dark) {
         palette[color].darkChannel = colorChannel(colors.dark);
       }
+      if (colors.contrastText) {
+        palette[color].contrastTextChannel = colorChannel(colors.contrastText);
+      }
+
+      // Text colors: text.primary, text.secondary
       if (colors.primary) {
         palette[color].primaryChannel = colorChannel(colors.primary);
       }
       if (colors.secondary) {
         palette[color].secondaryChannel = colorChannel(colors.secondary);
-      }
-      if (colors.disabled) {
-        palette[color].disabledChannel = colorChannel(colors.disabled);
       }
     });
   });
