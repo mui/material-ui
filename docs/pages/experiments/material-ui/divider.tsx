@@ -71,12 +71,12 @@ export default function DividerCssVars() {
           </Box>
           <Box>
             {content}
-            <Divider sx={{ my: 2 }} variant='inset' />
+            <Divider sx={{ my: 2 }} variant="inset" />
             {content}
           </Box>
           <Box>
             {content}
-            <Divider sx={{ my: 2 }} variant='middle' />
+            <Divider sx={{ my: 2 }} variant="middle" />
             {content}
           </Box>
           <Box>

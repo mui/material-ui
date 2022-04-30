@@ -68,7 +68,9 @@ const DividerRoot = styled('div', {
       width: '100%',
     }),
     ...(ownerState.light && {
-      borderColor: theme.vars ? `rgba(${theme.vars.palette.divider} / 0.08)` : alpha(theme.palette.divider, 0.08),
+      borderColor: theme.vars
+        ? `rgba(${theme.vars.palette.divider} / 0.08)`
+        : alpha(theme.palette.divider, 0.08),
     }),
     ...(ownerState.variant === 'inset' && {
       marginLeft: 72,
