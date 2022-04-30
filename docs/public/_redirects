@@ -319,5 +319,5 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /_next/* https://docs-v5--material-ui-x.netlify.app/_next/:splat 200
 /static/x/* https://docs-v5--material-ui-x.netlify.app/static/x/:splat 200
 /x/* https://docs-v5--material-ui-x.netlify.app/x/:splat 200
-/r/* https://docs-v5--material-ui-x.netlify.app/r/:splat 200
+/r/x-* https://docs-v5--material-ui-x.netlify.app/r/x-:splat 200
 /:lang/x/* https://docs-v5--material-ui-x.netlify.app/:lang/x/:splat 200
