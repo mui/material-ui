@@ -1,6 +1,6 @@
-# XXXXXX
+# Engineering Manager - Toolpad
 
-<p class="description">XXXXXX.</p>
+<p class="description">You will grow the engineering team working on MUI Toolpad, from a small team to multiple.</p>
 
 ## Details of the Role
 
@@ -31,13 +31,20 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
 
-XXXXXX
+Our mission is to empower as many people as possible to build great UIs, faster.
+The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
+We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
+
+A few months back we started to work on [MUI Toolpad](https://github.com/mui/mui-toolpad), an ambitious project to deliver on this objective.
+We have found the beginning of a market fit in this low-code segment.
+We need help to structure & grow the engineering team.
 
 ### Why this is interesting
 
-XXXXXX
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
 
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month. – hundreds of thousands of developers use MUI every month.
+Toolpad targets ~1/2 of this audience. While the team is still very small (5), we believe that the headcount on this product has the potential to grow +14% MoM until the end of 2023 (>70 people).
+Growing the engineering side will be full of challenges.
 
 ## About the role
 
@@ -45,20 +52,26 @@ Our solution empowers React developers to build awesome applications faster – 
 
 Depending on the day, you'll:
 
-- XXXXXX
-- XXXXXX
+- Hire and grow a diverse engineering team in a fast-scaling organization.
+- Cultivate excellence in the craft of the software your team builds.
+- Act as a servant leader for the engineers that report to you. You will support the career growth of individuals on your team.
+- Develop a great work environment.
+- Work directly with users and the engineering team to improve the product.
+- Improve our processes, e.g. the lifecycle of feature development from design through testing and release.
 
 ## About you
 
 ### Skills you should have
 
-- XXXXXX
-- XXXXXX
+- You've managed or supported a diverse, distributed engineers on small or large teams.
+- You have an interest in building a support structure for engineers to help them succeed.
+- You have phenomenal communication skills for working across the organization, capable of building strong relationships with peers and leadership.
+- You have had strong expertise and mastery of React or front-end development in the past.
+- You have deep empathy for users. You have experience with customer support or OSS community support.
 
 ### What would be nice if you had, but isn't required
 
-- XXXXXX
-- XXXXXX
+- **You've maintained an active repository before**. Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams. Previous experience with highly active repository workflows is a definite plus for this role.
 
 ## Benefits & Compensation
 
@@ -68,4 +81,4 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=XXXXXX&prefill_source=mui.com)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Engineering%20Manager&prefill_source=mui.com)

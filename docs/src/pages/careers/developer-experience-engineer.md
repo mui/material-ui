@@ -45,7 +45,7 @@ We are looking for someone that can contribute to the following outcomes:
 
 You have a lot of feedback, more than we can process. It's an opportunity to challenge the state of the art in the React component dev tool space.
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month. – hundreds of thousands of developers use MUI every month.
 
 ## About the role
 

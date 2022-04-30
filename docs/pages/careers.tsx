@@ -148,35 +148,27 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Full-stack Engineer - Toolpad',
-        description:
-          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
-        url: '/careers/fullstack-engineer/',
-      },
-      {
         title: 'React Support Engineer - X',
         description:
           "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
         url: '/careers/react-support-engineer/',
       },
-    ],
-  },
-];
-
-const nextRolesData = [
-  {
-    title: 'Engineering',
-    roles: [
       {
         title: 'React Engineer - X',
         description:
           'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer/',
+        url: '/careers/react-engineer-x/',
       },
       {
         title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/product-engineer/',
+      },
+      {
+        title: 'React Engineer - Core',
+        description:
+          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+        url: '/careers/react-engineer-core/',
       },
     ],
   },
@@ -199,6 +191,45 @@ const nextRolesData = [
         description:
           "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
         url: '/careers/support-agent/',
+      },
+    ],
+  },
+];
+
+const nextRolesData = [
+  {
+    title: 'Engineering',
+    roles: [
+      {
+        title: 'Engineering Manager - Toolpad',
+        description:
+          'You will grow the engineering team working on MUI Toolpad, from a small team to multiple.',
+        url: '/careers/engineering-manager/',
+      },
+      {
+        title: 'Full-stack Engineer - Toolpad',
+        description:
+          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
+        url: '/careers/fullstack-engineer/',
+      },
+    ],
+  },
+  {
+    title: 'Sales',
+    roles: [
+      {
+        title: 'Account Executive',
+        description:
+          'You will build client relationships and manage the sales process from start to finish.',
+      },
+    ],
+  },
+  {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description: 'You will hire the next engineers joining the team.',
       },
     ],
   },
