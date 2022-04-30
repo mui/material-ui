@@ -6,8 +6,10 @@ import useThemeProps from './useThemeProps';
 import ThemeProvider from './ThemeProvider';
 import VariantOverride, { useVariantOverride, createSolidOverride } from './VariantOverride';
 
-const Parent = ({ children, variant, enableVariantOverride }) => (
-  <VariantOverride.Provider value={enableVariantOverride ? variant : undefined}>
+const Parent = ({ children, enableVariantOverride }) => (
+  <VariantOverride.Provider
+    value={enableVariantOverride ? ['plain', 'outlined', 'soft', 'solid'] : undefined}
+  >
     {children}
   </VariantOverride.Provider>
 );
@@ -41,16 +43,13 @@ describe('VariantOverride', () => {
     // partially check the result
     sinon.assert.match(result, {
       primary: {
-        '--foo-palette-text-primary': '#fff',
         '--variant-plainColor': 'var(--foo-palette-primary-50)',
       },
       secondary: {
-        '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
-        '--variant-softBg': 'var(--foo-palette-secondary-700)',
+        '--variant-softBg': 'rgba(var(--foo-palette-secondary-darkChannel) / 0.32)',
       },
       alternate: {
-        '--foo-palette-text-tertiary': 'var(--foo-palette-alternate-200)',
-        '--variant-solidBg': 'var(--foo-palette-alternate-50, rgba(0 0 0 / 0.16))',
+        '--variant-solidBg': 'var(--foo-palette-alternate-50)',
       },
     });
   });
@@ -96,15 +95,6 @@ describe('VariantOverride', () => {
           </Parent>,
         );
         expect(container.firstChild).to.have.text('context');
-      });
-
-      it('soft variant has no affect on solid child', () => {
-        const { container } = render(
-          <Parent variant="soft" enableVariantOverride>
-            <Child variant="solid" />
-          </Parent>,
-        );
-        expect(container.firstChild).to.have.text('default');
       });
     });
   });

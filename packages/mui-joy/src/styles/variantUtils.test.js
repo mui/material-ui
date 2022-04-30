@@ -376,6 +376,7 @@ describe('variant utils', () => {
         backgroundColor: 'var(--variant-softBg)',
       });
       expect(createVariant('solid').context).to.deep.equal({
+        color: 'var(--variant-solidColor)',
         backgroundColor: 'var(--variant-solidBg)',
       });
     });
