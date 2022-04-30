@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, ColorPaletteProp, PaletteVariant, extendTheme } from '@mui/joy/styles';
 import Info from '@mui/icons-material/Info';
 import Code from '@mui/icons-material/Code';
@@ -116,7 +117,10 @@ export default function JoyVariant() {
           <Typography level="body2" sx={{ mb: 1 }}>
             Default context overrides feature
           </Typography>
-          <Box
+          <Sheet
+            variant="solid"
+            color="primary"
+            enableVariantOverride
             sx={[
               {
                 display: 'flex',
@@ -125,8 +129,6 @@ export default function JoyVariant() {
                 p: 2,
                 borderRadius: 1,
               },
-              (theme) => theme.variants.solid.primary,
-              (theme) => theme.variants.solidOverrides.primary,
             ]}
           >
             <Button variant="plain">Text</Button>
@@ -142,7 +144,7 @@ export default function JoyVariant() {
             <Button disabled variant="solid">
               Disabled
             </Button>
-          </Box>
+          </Sheet>
         </Box>
       </CssVarsProvider>
       <CssVarsProvider
@@ -267,7 +269,7 @@ export default function JoyVariant() {
           },
           focus: {
             default: {
-              outline: '2px solid',
+              outlineWidth: '2px',
               outlineOffset: '2px',
             },
           },
@@ -573,7 +575,10 @@ declare module '@mui/joy/styles' {
             Even though, Strapi does not have context override concept, it still work out-of-the
             box.
           </Typography>
-          <Box
+          <Sheet
+            variant="solid"
+            color="primary"
+            enableVariantOverride
             sx={[
               {
                 display: 'flex',
@@ -583,14 +588,12 @@ declare module '@mui/joy/styles' {
                 p: 2,
                 borderRadius: 1,
               },
-              (theme) => theme.variants.solid.primary,
-              (theme) => theme.variants.solidOverrides.primary,
             ]}
           >
             <Button variant="solid">Contained</Button>
             <Button variant="outlined">Outlined</Button>
             <Button disabled>Disabled</Button>
-          </Box>
+          </Sheet>
           <br />
           <Typography component="h3" level="h5" gutterBottom>
             Focus

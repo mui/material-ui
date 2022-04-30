@@ -7,6 +7,7 @@ import {
   useColorScheme,
   styled,
   experimental_sx as sx,
+  VariantOverrideProvider,
 } from '@mui/joy/styles';
 import NextLink from 'next/link';
 import Collapse from '@mui/material/Collapse';
@@ -1025,17 +1026,19 @@ export default function JoyList() {
                 selected
                 variant="solid"
                 color="success"
-                sx={(theme) => theme.variants.solidOverrides.success}
+                sx={(theme) => theme.variantOverrides.solid.success}
               >
-                <ListItemDecorator>
-                  <Circle color="success">
-                    <Favorite />
-                  </Circle>
-                </ListItemDecorator>
-                <ListItemContent>
-                  <Typography>Favorite</Typography>
-                  <Typography level="body2">Jan 9, 2014</Typography>
-                </ListItemContent>
+                <VariantOverrideProvider variant="solid">
+                  <ListItemDecorator>
+                    <Circle color="success">
+                      <Favorite />
+                    </Circle>
+                  </ListItemDecorator>
+                  <ListItemContent>
+                    <Typography>Favorite</Typography>
+                    <Typography level="body2">Jan 9, 2014</Typography>
+                  </ListItemContent>
+                </VariantOverrideProvider>
               </ListItemButton>
             </ListItem>
           </List>
