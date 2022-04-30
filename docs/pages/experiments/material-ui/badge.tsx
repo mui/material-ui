@@ -38,7 +38,7 @@ const ColorSchemePicker = () => {
   );
 };
 
-export default function CssVarsTemplate() {
+export default function BadgeCssVars() {
   return (
     <CssVarsProvider>
       <CssBaseline />
