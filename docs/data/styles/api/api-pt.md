@@ -224,11 +224,11 @@ It should preferably be used at **the root of your component tree**.
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
-} ReactDOM.render(<App />, document.querySelector('#app'));
+}
 ```
 
 ## `ThemeProvider`
@@ -247,13 +247,13 @@ Este componente tem uma propriedade `theme`, e se torna disponível pela árvore
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
-} ReactDOM.render(<App />, document.querySelector('#app'));
+}
 ```
 
 ## `useTheme() => theme`
