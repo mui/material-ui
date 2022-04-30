@@ -37,7 +37,7 @@ const ColorSchemePicker = () => {
   );
 };
 
-export default function CssVarsTemplate() {
+export default function AvatarGroupCssVars() {
   return (
     <CssVarsProvider>
       <CssBaseline />
