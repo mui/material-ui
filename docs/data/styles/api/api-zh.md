@@ -229,8 +229,6 @@ import { StylesProvider } from '@mui/styles';
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `ThemeProvider`
@@ -249,15 +247,13 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@mui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `useTheme() => theme`
