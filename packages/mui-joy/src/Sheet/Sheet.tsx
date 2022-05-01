@@ -132,6 +132,11 @@ Sheet.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * If `true`, the component create CSS variables that can override children with `context` color.
+   * @default false
+   */
+  enableVariantOverride: PropTypes.bool,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
