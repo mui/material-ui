@@ -115,7 +115,7 @@ export default function JoyVariant() {
           </Box>
           <br />
           <Typography level="body2" sx={{ mb: 1 }}>
-            Default context overrides feature
+            Default variant override feature
           </Typography>
           <Sheet
             variant="solid"
@@ -572,7 +572,7 @@ declare module '@mui/joy/styles' {
           </Typography>
           <br />
           <Typography gutterBottom level="body2">
-            Even though, Strapi does not have context override concept, it still work out-of-the
+            Even though, Strapi does not have variant override concept, it still work out-of-the
             box.
           </Typography>
           <Sheet
