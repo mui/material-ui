@@ -619,11 +619,11 @@ If you use a different framework, or already have set up your project, follow th
 **tailwind.config.js**
 
 ```diff
-module.exports = {
+ module.exports = {
 +  corePlugins: {
 +    preflight: false,
-+  }
-}
++  },
+ };
 ```
 
 3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js and `"#root"` for CRA:
