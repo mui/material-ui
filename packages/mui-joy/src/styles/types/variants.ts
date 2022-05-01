@@ -73,3 +73,6 @@ export interface VariantOverrides {
   soft: VariantOverrideSoft;
   solid: VariantOverrideSolid;
 }
+
+export interface VariantOverrideConfig
+  extends Partial<Record<VariantProp, Array<VariantProp> | undefined>> {}

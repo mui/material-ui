@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
-import { ColorPaletteProp, VariantProp } from './types';
-import { DefaultColorPalette, PaletteRange } from './types/colorSystem';
 import { isVariantPalette } from './variantUtils';
+import { useTheme } from './ThemeProvider';
+import { ColorPaletteProp, DefaultColorPalette, PaletteRange, VariantProp } from './types';
 
 const VariantOverride = React.createContext<undefined | Array<VariantProp>>(undefined);
 
@@ -272,27 +272,15 @@ export const useVariantOverride = (childVariant: VariantProp | undefined) => {
   };
 };
 
-interface VariantOverrideMapping
-  extends Partial<Record<VariantProp, Array<VariantProp> | undefined>> {}
-
 interface VariantOverrideProviderProps {
   children: React.ReactNode;
   variant?: VariantProp;
-  variantOverrideMapping?: VariantOverrideMapping;
 }
 
-const defaultVariantOverrideMapping: VariantOverrideMapping = {
-  soft: ['plain', 'outlined', 'soft', 'solid'],
-  solid: ['plain', 'outlined', 'soft', 'solid'],
-};
-
-export const VariantOverrideProvider = ({
-  children,
-  variant,
-  variantOverrideMapping = defaultVariantOverrideMapping,
-}: VariantOverrideProviderProps) => {
+export const VariantOverrideProvider = ({ children, variant }: VariantOverrideProviderProps) => {
+  const theme = useTheme();
   return (
-    <VariantOverride.Provider value={variant ? variantOverrideMapping[variant] : undefined}>
+    <VariantOverride.Provider value={variant ? theme.variantOverrideConfig[variant] : undefined}>
       {children}
     </VariantOverride.Provider>
   );

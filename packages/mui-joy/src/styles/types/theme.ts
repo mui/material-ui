@@ -17,7 +17,7 @@ import {
   LetterSpacing,
   TypographySystem,
 } from './typography';
-import { Variants, VariantOverrides } from './variants';
+import { Variants, VariantOverrides, VariantOverrideConfig } from './variants';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
@@ -62,6 +62,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   typography: TypographySystem;
   variants: Variants;
   variantOverrides: VariantOverrides;
+  variantOverrideConfig: VariantOverrideConfig;
   spacing: Spacing;
   breakpoints: Breakpoints;
   prefix: string;
