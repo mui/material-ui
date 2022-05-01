@@ -47,6 +47,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
   prefix: 'joy',
   resolveTheme: (mergedTheme: Theme) => {
+    // `variants` need to be generated after the theme's palette has been calculated.
     mergedTheme.variants = deepmerge(
       {
         plain: createVariant('plain', mergedTheme),
@@ -69,6 +70,8 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       mergedTheme.variants,
       { clone: false },
     );
+
+    // `variantOverrides` need to be generated after the theme's palette has been calculated.
     mergedTheme.variantOverrides = deepmerge(
       {
         plain: createPlainOverride(mergedTheme),
