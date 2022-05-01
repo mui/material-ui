@@ -293,12 +293,14 @@ export default function JoyVariant() {
                       borderColor: 'var(--strapi-palette-outlinedFocusBorder)',
                     }),
                   },
-                  '&.Mui-disabled': {
-                    backgroundColor: 'var(--strapi-palette-neutral-outlinedDisabledBg)',
-                    color: 'var(--strapi-palette-neutral-outlinedDisabledColor)',
-                    border: '1px solid',
-                    borderColor: 'var(--strapi-palette-neutral-outlinedDisabledBorder)',
-                  },
+                  ...(!ownerState.color?.match(/context/) && {
+                    '&.Mui-disabled': {
+                      backgroundColor: 'var(--strapi-palette-neutral-outlinedDisabledBg)',
+                      color: 'var(--strapi-palette-neutral-outlinedDisabledColor)',
+                      border: '1px solid',
+                      borderColor: 'var(--strapi-palette-neutral-outlinedDisabledBorder)',
+                    },
+                  }),
                 }),
               },
             },
