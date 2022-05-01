@@ -69,6 +69,11 @@ export interface PaletteVariant {
   solidDisabledColor: string;
   solidDisabledBg: string;
   solidDisabledBorder: string;
+
+  // override palette.text
+  overrideTextPrimary: string;
+  overrideTextSecondary: string;
+  overrideTextTertiary: string;
 }
 
 export interface PaletteRangeOverrides {}

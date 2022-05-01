@@ -128,7 +128,7 @@ const InputInput = styled('input', {
   fontSize: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: `rgba(${theme.vars.palette[ownerState.color!]?.darkChannel} / 1)`,
+    WebkitTextFillColor: `rgba(${theme.vars.palette[ownerState.color!]?.overrideTextPrimary} / 1)`,
   },
   '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
   '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
