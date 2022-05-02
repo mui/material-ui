@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
-import { CssVarsProvider, createGetCssVar } from '@mui/joy/styles';
+import { CssVarsProvider, createGetCssVar, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
@@ -161,7 +161,7 @@ declare module '@mui/joy/styles' {
 export default function RadixTailwind() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         colorSchemes: {
           light: {
             palette: {
@@ -282,7 +282,7 @@ export default function RadixTailwind() {
             },
           },
         },
-      }}
+      })}
     >
       <GlobalStyles
         styles={{
