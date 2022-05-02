@@ -4,8 +4,8 @@
 
 ## Topics covered
 
-1. Importing components.
-2. Building a log in page using Joy components.
+1. Importing Joy components.
+2. Building the login page.
 3. What global variants look like.
 4. Toggling dark mode
 
@@ -76,6 +76,7 @@ As you use it with more frequency, you'll get the hang of it. Check the [MUI Sys
 
 The `Typography` component has a `level` prop that allows you to choose between a pre-defined scale of typography values.
 By default, Joy provides 9 typography levels: `h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3`.
+
 If you want to change what HTML tag the `Typography` component renders, you can use the `component` tag.
 
 ```jsx
@@ -94,10 +95,6 @@ import Typography from '@mui/joy/Typography';
   </div>
 </Sheet>;
 ```
-
-The `Typography` lets you change the scale of each instance by using `level` prop (you can control the semantic HTML output by specifying a `component` prop with a proper html tag).
-
-Joy provides 9 built-in typography scale: `h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3`. You can play around with these values to see what they look like.
 
 ### 4. Using `TextField` to create user name and password inputs
 
@@ -170,8 +167,6 @@ import Link from '@mui/joy/Link';
   </Typography>
 </Sheet>;
 ```
-
-Try changing the button's variant between `plain`, `outlined`, `soft` or `solid`, and goes with the one that you like!.
 
 <!-- TODO: Add the result image -->
 
