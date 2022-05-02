@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
-import { CssVarsProvider, JoyThemeInput, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme, extendTheme } from '@mui/joy/styles';
+import type { ThemeInput } from '@mui/joy/styles';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import Avatar from '@mui/joy/Avatar';
@@ -61,7 +62,7 @@ const TaskCard = () => (
       borderRadius: 'md',
       boxShadow: 'lg',
       background: `linear-gradient(to right bottom, ${theme.vars.palette.primary[500]}, ${theme.vars.palette.primary[700]} 120%)`,
-      ...theme.variants.containedOverrides.primary,
+      ...theme.variants.solidOverrides.primary,
     })}
   >
     <Typography
@@ -394,7 +395,7 @@ const ThemeSlider = () => (
           height: 8,
           top: 180 * 0.5 - 2,
           left: '-2px',
-          bgcolor: 'primary.textColor',
+          bgcolor: 'primary.plainColor',
           position: 'absolute',
           borderRadius: '8px',
         }}
@@ -510,7 +511,7 @@ const ColorSchemePicker = () => {
   );
 };
 
-const themeFont: JoyThemeInput = {
+const themeFont: ThemeInput = {
   fontFamily: {
     body: '"IBM Plex Sans"',
     display: '"PlusJakartaSans-ExtraBold"',
@@ -566,7 +567,7 @@ const themeFont: JoyThemeInput = {
   },
 };
 
-const themePalette: JoyThemeInput = {
+const themePalette: ThemeInput = {
   colorSchemes: {
     light: {
       palette: {
@@ -581,9 +582,9 @@ const themePalette: JoyThemeInput = {
           700: '#0059B2',
           800: '#004C99',
           900: '#003A75',
-          textColor: 'var(--joy-palette-primary-500)',
+          plainColor: 'var(--joy-palette-primary-500)',
           outlinedColor: 'var(--joy-palette-primary-500)',
-          containedBg: 'var(--joy-palette-primary-500)',
+          solidBg: 'var(--joy-palette-primary-500)',
         },
         neutral: {
           50: '#F3F6F9',
@@ -676,7 +677,7 @@ const themePalette: JoyThemeInput = {
   },
 };
 
-const themeComponents: JoyThemeInput = {
+const themeComponents: ThemeInput = {
   components: {
     MuiButton: {
       styleOverrides: {
@@ -698,9 +699,9 @@ const themeComponents: JoyThemeInput = {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.variant === 'outlined' &&
             ownerState.color === 'neutral' && {
-              color: theme.vars.palette.primary.textColor,
+              color: theme.vars.palette.primary.plainColor,
               '&:hover': {
-                color: theme.vars.palette.primary.textColor,
+                color: theme.vars.palette.primary.plainColor,
               },
             }),
         }),
@@ -729,10 +730,10 @@ const themeComponents: JoyThemeInput = {
 
 export default function MUI() {
   const [open, setOpen] = React.useState(false);
-  const [font, setFont] = React.useState<undefined | JoyThemeInput>(themeFont);
+  const [font, setFont] = React.useState<undefined | ThemeInput>(themeFont);
   const [spacer, setSpacer] = React.useState<undefined | number>(10);
-  const [palette, setPalette] = React.useState<undefined | JoyThemeInput>(themePalette);
-  const [components, setComponents] = React.useState<undefined | JoyThemeInput>(themeComponents);
+  const [palette, setPalette] = React.useState<undefined | ThemeInput>(themePalette);
+  const [components, setComponents] = React.useState<undefined | ThemeInput>(themeComponents);
   React.useEffect(() => {
     setFont(themeFont);
     setSpacer(10);
@@ -742,12 +743,12 @@ export default function MUI() {
   return (
     <CssVarsProvider
       disableTransitionOnChange
-      theme={{
+      theme={extendTheme({
         ...(font && { ...font }),
         ...(palette && { ...palette }),
         ...(spacer && { spacing: spacer }),
         ...(components && { ...components }),
-      }}
+      })}
     >
       <IconButton
         variant="solid"
@@ -777,7 +778,7 @@ export default function MUI() {
               <ListItem>
                 <ListItemButton
                   selected={!!font}
-                  variant={font ? 'light' : 'text'}
+                  variant={font ? 'soft' : 'plain'}
                   onClick={() => setFont(font ? undefined : themeFont)}
                 >
                   <ListItemDecorator>
@@ -789,7 +790,7 @@ export default function MUI() {
               <ListItem>
                 <ListItemButton
                   selected={!!spacer}
-                  variant={spacer ? 'light' : 'text'}
+                  variant={spacer ? 'soft' : 'plain'}
                   onClick={() => setSpacer(spacer ? undefined : 10)}
                 >
                   <ListItemDecorator>
@@ -801,7 +802,7 @@ export default function MUI() {
               <ListItem>
                 <ListItemButton
                   selected={!!palette}
-                  variant={palette ? 'light' : 'text'}
+                  variant={palette ? 'soft' : 'plain'}
                   onClick={() => setPalette(palette ? undefined : themePalette)}
                 >
                   <ListItemDecorator>
@@ -813,7 +814,7 @@ export default function MUI() {
               <ListItem>
                 <ListItemButton
                   selected={!!components}
-                  variant={components ? 'light' : 'text'}
+                  variant={components ? 'soft' : 'plain'}
                   onClick={() => setComponents(components ? undefined : themeComponents)}
                 >
                   <ListItemDecorator>
@@ -842,7 +843,7 @@ export default function MUI() {
           alignItems: 'center',
           p: '12px',
           textAlign: 'center',
-          ...theme.variants.containedOverrides.primary,
+          ...theme.variants.solidOverrides.primary,
         })}
       >
         <Typography level="body3" color="text.primary">
@@ -934,7 +935,7 @@ export default function MUI() {
               ml: 'auto',
               justifyContent: 'flex-start',
               minWidth: 200,
-              '--Icon-color': 'primary.textColor',
+              '--Icon-color': 'primary.plainColor',
             }}
           >
             <Box component="span" sx={{ mr: 'auto' }}>
@@ -979,7 +980,7 @@ export default function MUI() {
               <Typography level="h1" sx={{ my: 2 }}>
                 The React{' '}
                 <Typography
-                  sx={{ color: 'primary.textColor', fontFamily: 'display', whiteSpace: 'nowrap' }}
+                  sx={{ color: 'primary.plainColor', fontFamily: 'display', whiteSpace: 'nowrap' }}
                 >
                   UI library
                 </Typography>{' '}
@@ -1124,7 +1125,7 @@ export default function MUI() {
           }}
         >
           <Box>
-            <Typography level="body2" sx={{ color: 'primary.textColor', fontWeight: 'md', mb: 1 }}>
+            <Typography level="body2" sx={{ color: 'primary.plainColor', fontWeight: 'md', mb: 1 }}>
               Go live!
             </Typography>
             <Typography level="h2" sx={{ maxWidth: 460 }}>
@@ -1198,7 +1199,7 @@ export default function MUI() {
               color: 'text.secondary',
               typography: 'body2',
               '&:hover': {
-                color: 'primary.textColor',
+                color: 'primary.plainColor',
                 textDecoration: 'underline',
               },
             },
@@ -1310,7 +1311,7 @@ export default function MUI() {
                         fontSize: 'xs',
                         fontWeight: 700,
                         textTransform: 'uppercase',
-                        ...theme.variants.contained.danger,
+                        ...theme.variants.solid.danger,
                       })}
                     >
                       Hiring

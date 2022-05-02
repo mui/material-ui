@@ -12,7 +12,7 @@ import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
-import { TypographySystem } from './types/typography';
+import { TypographySystem, FontSize } from './types/typography';
 import { Variants } from './types/variants';
 import { Theme, ThemeCSSVar, ThemeScales } from './types';
 import { Components } from './components';
@@ -415,21 +415,21 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
             fontSize: 'xl',
           },
           styleOverrides: {
-            root: ({ ownerState, theme }) => {
+            root: ({ ownerState, theme: runtimeTheme }) => {
               const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
               return {
                 color: 'var(--Icon-color)',
                 ...(ownerState.fontSize &&
                   ownerState.fontSize !== 'inherit' && {
-                    fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
+                    fontSize: `var(--Icon-fontSize, ${runtimeTheme.fontSize[ownerState.fontSize]})`,
                   }),
                 ...(ownerState.color &&
                   ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].plainColor,
+                    color: runtimeTheme.vars.palette[ownerState.color].plainColor,
                   }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
-                    '--Icon-fontSize': theme.vars.fontSize[instanceFontSize],
+                    '--Icon-fontSize': runtimeTheme.vars.fontSize[instanceFontSize],
                   }),
               };
             },

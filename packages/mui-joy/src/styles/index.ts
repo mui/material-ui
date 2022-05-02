@@ -59,3 +59,4 @@ export * from './ThemeProvider';
 export { default as useThemeProps } from './useThemeProps';
 export { sx as experimental_sx } from './styleFunctionSx';
 export { default as extendTheme } from './extendTheme';
+export type { ThemeInput } from './extendTheme';
