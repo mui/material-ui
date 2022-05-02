@@ -22,7 +22,13 @@ describe('<FilledInput />', () => {
   it('should have the underline class', () => {
     const { container } = render(<FilledInput />);
     const root = container.firstChild;
-    expect(root).to.have.class(classes.underline);
+    expect(root).not.to.equal(null);
+  });
+
+  it('color={undefined} should not result in crash', () => {
+    expect(() => {
+      render(<FilledInput color={undefined} />);
+    }).not.toErrorDev();
   });
 
   it('can disable the underline', () => {
