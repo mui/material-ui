@@ -13,5 +13,9 @@ export default function ThemeProvider({
 }: React.PropsWithChildren<{
   theme?: ThemeInput;
 }>) {
-  return <SystemThemeProvider theme={getThemeWithVars(themeInput)}>{children}</SystemThemeProvider>;
+  return (
+    <SystemThemeProvider theme={themeInput ? getThemeWithVars(themeInput) : defaultTheme}>
+      {children}
+    </SystemThemeProvider>
+  );
 }

@@ -30,6 +30,13 @@ export const getThemeWithVars = (
   } = colorSchemePalette as RuntimeColorSystem['palette'];
 
   const defaultTheme = {
+    fontFamily,
+    fontSize,
+    fontWeight,
+    letterSpacing,
+    lineHeight,
+    radius,
+    shadow,
     ...restTheme,
     colorSchemes: {
       ...colorSchemes,
