@@ -305,7 +305,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
     focus: {
       selector: '&.Mui-focusVisible, &:focus-visible',
       default: {
-        outlineOffset: 0, // reset user agent stylesheet
+        outlineOffset: 'var(--joy-focus-outlineOffset, 0px)', // reset user agent stylesheet
         outline: '4px solid var(--joy-palette-focusVisible)',
       },
     },
