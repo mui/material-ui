@@ -409,6 +409,8 @@ function reduceChildRoutes(context) {
       firstChild = firstChild.children[0];
     }
 
+    const subheader = Boolean(page.subheader);
+
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
@@ -419,11 +421,17 @@ function reduceChildRoutes(context) {
         legacy={page.legacy}
         plan={page.plan}
         icon={page.icon}
-        subheader={Boolean(page.subheader)}
+        subheader={subheader}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || Boolean(page.subheader)}
+        openImmediately={topLevel || subheader}
       >
-        {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
+        {renderNavItems({
+          onClose,
+          pages: page.children,
+          activePage,
+          depth: subheader ? depth : depth + 1,
+          t,
+        })}
       </AppNavDrawerItem>,
     );
   } else {

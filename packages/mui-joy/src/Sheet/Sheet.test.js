@@ -16,18 +16,18 @@ describe('<Sheet />', () => {
     muiName: 'MuiSheet',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
-    it('text by default', () => {
+    it('plain by default', () => {
       const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantText);
+      expect(getByTestId('root')).to.have.class(classes.variantPlain);
     });
 
-    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Sheet data-testid="root" variant={variant}>

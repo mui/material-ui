@@ -71,7 +71,7 @@ const Item = styled(
     }),
     fontSize: theme.typography.pxToRem(14),
     textDecoration: 'none',
-    paddingLeft: 31 + (depth > 2 ? (depth - 2) * 10 : 0),
+    paddingLeft: 31 + (depth > 1 ? (depth - 1) * 10 : 0),
     ...color,
     ...(subheader && {
       marginTop: theme.spacing(1),
@@ -210,10 +210,10 @@ export default function AppNavDrawerItem(props) {
     linkProps,
     onClick,
     openImmediately,
+    plan = 'community',
     subheader,
     title,
     topLevel = false,
-    plan,
     ...other
   } = props;
   const expandable = openImmediately != null;

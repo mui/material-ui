@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { RadioProps } from '../Radio/RadioProps';
-import { SxProps } from '../styles/defaultTheme';
+import { SxProps } from '../styles/types';
 
 export type RadioGroupSlot = 'root';
 

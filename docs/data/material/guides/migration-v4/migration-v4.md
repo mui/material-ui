@@ -53,7 +53,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 
 ## `ThemeProvider` setup
 
-Before upgrading to v5, please make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`.
+Before upgrading to v5, please make sure that `ThemeProvider` is defined at the root of your application and in tests—even if you are using the default theme—and `useStyles` is _not_ called before `ThemeProvider`.
 This is because we are going to use `@mui/styles` (JSS) **temporarily**, which requires `ThemeProvider`.
 
 ```js
