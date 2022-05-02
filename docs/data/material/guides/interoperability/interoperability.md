@@ -614,7 +614,7 @@ If you are used to Tailwind CSS and want to use it together with the MUI compone
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
-2. Remove Tailwind CSS's preflight style as it applies global changes that break MUI components. If you want to retrain the notion of preflight, you can use the [`CssBaseline` component](/material-ui/react-css-baseline/) that better isolates global resets. More details on [Tailwind CSS preflight styles](https://tailwindcss.com/docs/preflight).
+2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the MUI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
 
 **tailwind.config.js**
 
