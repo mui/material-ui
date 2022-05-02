@@ -41,7 +41,7 @@ function App() {
 export default App;
 ```
 
-Try changing the sheet's variant between `text`, `outlined`, `light` or `contained` to see what they look like.
+Try changing the sheet's variant between `plain`, `outlined`, `soft` or `solid` to see what they look like.
 
 ### 2. Using the `sx` prop for quick styling
 
@@ -69,12 +69,12 @@ Every Joy component accepts the `sx` prop, which allows a shorthand syntax for w
 </Sheet>
 ```
 
-Don't worry if you're confused about the `sx` prop's syntax at this moment. 
+Don't worry if you're confused about the `sx` prop's syntax at this moment.
 As you use it with more frequency, you'll get the hang of it. Check the [MUI System documentation](/system/the-sx-prop/) to learn the foundation for it.
 
 ### 3. Using `Typography` to create a welcome text
 
-The `Typography` component has a `level` prop that allows you to choose between a pre-defined scale of typography values. 
+The `Typography` component has a `level` prop that allows you to choose between a pre-defined scale of typography values.
 By default, Joy provides 9 typography levels: `h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3`.
 If you want to change what HTML tag the `Typography` component renders, you can use the `component` tag.
 
@@ -101,7 +101,7 @@ Joy provides 9 built-in typography scale: `h1 | h2 | h3 | h4 | h5 | h6 | body1 |
 
 ### 4. Using `TextField` to create user name and password inputs
 
-The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperText` components. 
+The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperText` components.
 
 ```jsx
 // ...other imports
@@ -135,8 +135,8 @@ import TextField from '@mui/joy/TextField';
 
 ### 5. Using `Button` and `Link` for actions
 
-The `Button` comes with `contained` and `primary` set as its default variant and color. 
-You can play around with changing their values to see how each variant differs from one another. Try `text`, `outlined`,  or `light`. 
+The `Button` comes with `solid` and `primary` set as its default variant and color.
+You can play around with changing their values to see how each variant differs from one another. Try `plain`, `outlined`, or `soft`.
 
 We'll also use a `Link` component inside the `endDecorator` prop of the `Typography` component.
 
@@ -171,7 +171,7 @@ import Link from '@mui/joy/Link';
 </Sheet>;
 ```
 
-Try changing the button's variant between `text`, `outlined`, `light` or `contained`, and goes with the one that you like!.
+Try changing the button's variant between `plain`, `outlined`, `soft` or `solid`, and goes with the one that you like!.
 
 <!-- TODO: Add the result image -->
 
