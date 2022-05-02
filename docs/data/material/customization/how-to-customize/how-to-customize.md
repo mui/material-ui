@@ -45,7 +45,7 @@ In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you 
 ### Overriding styles with class names
 
 If you want to override a component's styles using custom classes, you can use the `className` prop, available on each component.
-To override the styles of a specific part of the component, use the global classes provided by Material UI, as described in the previous section—[Overriding nested component styles](#overriding-nested-component-styles).
+To override the styles of a specific part of the component, use the global classes provided by Material UI, as described in the previous section **"Overriding nested component styles"** under the [`sx` prop section](#the-sx-prop).
 
 Visit the [Style library interoperability](/material-ui/guides/interoperability/) guide to find examples of this approach using different styling libraries.
 
