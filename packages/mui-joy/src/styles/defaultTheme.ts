@@ -2,17 +2,22 @@ import { deepmerge } from '@mui/utils';
 import extendTheme from './extendTheme';
 import type { ThemeInput, ColorSystemInput } from './extendTheme';
 import type { Theme, RuntimeColorSystem } from './types';
+import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
 
 export const getThemeWithVars = (
   themeInput?: Omit<ThemeInput, 'colorSchemes'> & ColorSystemInput,
-): Theme => {
+) => {
   const {
     colorSchemes,
-    breakpoints,
-    spacing,
-    getCssVar,
+    fontFamily,
+    fontSize,
+    fontWeight,
+    letterSpacing,
+    lineHeight,
+    radius,
+    shadow,
     palette: paletteInput,
-    ...scales
+    ...restTheme
   } = extendTheme(themeInput);
   const colorSchemePalette = deepmerge(
     colorSchemes[paletteInput?.colorScheme || 'light'].palette,
@@ -25,7 +30,7 @@ export const getThemeWithVars = (
   } = colorSchemePalette as RuntimeColorSystem['palette'];
 
   const defaultTheme = {
-    ...scales,
+    ...restTheme,
     colorSchemes: {
       ...colorSchemes,
       [colorScheme]: palette,
@@ -35,11 +40,36 @@ export const getThemeWithVars = (
       mode,
       colorScheme,
     },
-    breakpoints,
-    spacing,
-    getCssVar,
-    vars: { ...scales, palette },
-  };
+    vars: { fontFamily, fontSize, fontWeight, letterSpacing, lineHeight, radius, shadow, palette },
+  } as unknown as Theme;
+
+  defaultTheme.variants = deepmerge(
+    {
+      plain: createVariant('plain', defaultTheme),
+      plainHover: createVariant('plainHover', defaultTheme),
+      plainActive: createVariant('plainActive', defaultTheme),
+      plainDisabled: createVariant('plainDisabled', defaultTheme),
+      outlined: createVariant('outlined', defaultTheme),
+      outlinedHover: createVariant('outlinedHover', defaultTheme),
+      outlinedActive: createVariant('outlinedActive', defaultTheme),
+      outlinedDisabled: createVariant('outlinedDisabled', defaultTheme),
+      soft: createVariant('soft', defaultTheme),
+      softHover: createVariant('softHover', defaultTheme),
+      softActive: createVariant('softActive', defaultTheme),
+      softDisabled: createVariant('softDisabled', defaultTheme),
+      solid: createVariant('solid', defaultTheme),
+      solidHover: createVariant('solidHover', defaultTheme),
+      solidActive: createVariant('solidActive', defaultTheme),
+      solidDisabled: createVariant('solidDisabled', defaultTheme),
+
+      // variant overrides
+      plainOverrides: createTextOverrides(defaultTheme),
+      outlinedOverrides: createTextOverrides(defaultTheme),
+      softOverrides: createTextOverrides(defaultTheme),
+      solidOverrides: createContainedOverrides(defaultTheme),
+    },
+    defaultTheme.variants,
+  );
   return defaultTheme;
 };
 
