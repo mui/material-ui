@@ -20,7 +20,7 @@ describe('extendTheme', () => {
         'radius',
         'shadow',
         'typography',
-        'variants',
+        'variantOverrideConfig',
       ]).to.includes(field);
     });
   });

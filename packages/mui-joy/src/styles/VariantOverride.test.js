@@ -4,7 +4,8 @@ import sinon from 'sinon';
 import { createRenderer } from 'test/utils';
 import useThemeProps from './useThemeProps';
 import ThemeProvider from './ThemeProvider';
-import VariantOverride, { useVariantOverride, createSolidOverride } from './VariantOverride';
+import VariantOverride, { useVariantOverride } from './VariantOverride';
+import { createSolidOverride } from './variantUtils';
 
 const Parent = ({ children, enableVariantOverride }) => (
   <VariantOverride.Provider
