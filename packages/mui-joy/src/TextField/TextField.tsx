@@ -263,10 +263,6 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * @ignore
-   */
-  inputRef: PropTypes.any.isRequired,
-  /**
    * The label content.
    */
   label: PropTypes.node,
