@@ -67,7 +67,7 @@ const LinkRoot = styled(Typography, {
     }),
     ...(ownerState.underline === 'always' && {
       textDecoration: 'underline',
-      textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
+      textDecorationColor: color !== 'inherit' && color !== null ? alpha(color, 0.4) : undefined,
       '&:hover': {
         textDecorationColor: 'inherit',
       },
