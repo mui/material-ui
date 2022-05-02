@@ -145,18 +145,21 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
   }
 }
 
+function addCommentsToDeclaration(declaration, commentsToAdd) {
+  let commentsPath = declaration;
+  if (declaration.parentPath.node.type === 'ExportNamedDeclaration') {
+    commentsPath = declaration.parentPath;
+  }
+  if (!commentsPath.node.comments) {
+    commentsPath.node.comments = [];
+  }
+  commentsPath.node.comments.push(...commentsToAdd);
+}
 function addComments(j, path, commentsToAdd) {
   j(path)
     .closest(j.VariableDeclaration)
     .forEach((declaration) => {
-      let commentsPath = declaration;
-      if (declaration.parentPath.node.type === 'ExportNamedDeclaration') {
-        commentsPath = declaration.parentPath;
-      }
-      if (!commentsPath.node.comments) {
-        commentsPath.node.comments = [];
-      }
-      commentsPath.node.comments.push(...commentsToAdd);
+      addCommentsToDeclaration(declaration, commentsToAdd);
     });
 }
 
@@ -391,6 +394,15 @@ export default function transformer(file, api, options) {
             path.node.id.name = `{ ${classesAssign} }`;
           }
         });
+      root.find(j.ExportDefaultDeclaration, { declaration: { name: hookName } }).forEach((path) => {
+        const comments = [
+          j.commentLine(
+            ` TODO jss-to-tss-react codemod: usages of this hook outside of this file will not be converted.`,
+            true,
+          ),
+        ];
+        addCommentsToDeclaration(path, comments);
+      });
     });
   }
   if (foundWithStyles) {

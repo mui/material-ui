@@ -45,7 +45,7 @@ function InnerComponent() {
   const { classes } = useStyles2();
   return <div className={classes.test2}>Inner Test</div>;
 }
-export default function ComponentUsingStyles(props) {
+function ComponentUsingStyles(props) {
   const { classes, cx } = useStyles(props, {
     props: props
   });
@@ -54,3 +54,6 @@ export default function ComponentUsingStyles(props) {
     <div className={cx(classes.test, classes.qualifier)}>Qualifier Test</div>
     </>;
 }
+
+// TODO jss-to-tss-react codemod: usages of this hook outside of this file will not be converted.
+export default useStyles3;

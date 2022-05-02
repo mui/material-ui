@@ -40,10 +40,12 @@ function InnerComponent() {
   const classes = useStyles2();
   return <div className={classes.test2}>Inner Test</div>;
 }
-export default function ComponentUsingStyles(props) {
+function ComponentUsingStyles(props) {
   const classes = useStyles(props);
   return <>
     <div className={classes.test}>Test<InnerComponent/></div>
     <div className={clsx(classes.test, classes.qualifier)}>Qualifier Test</div>
     </>;
 }
+
+export default useStyles3;
