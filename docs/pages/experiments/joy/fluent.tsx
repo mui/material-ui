@@ -95,28 +95,28 @@ export default function Strapi() {
             <Button variant="outlined" color="neutral" endIcon={<KeyboardArrowDown />}>
               Rest
             </Button>
-            <Button variant="light" color="neutral">
+            <Button variant="soft" color="neutral">
               Rest
             </Button>
-            <Button variant="light" color="neutral" disabled>
+            <Button variant="soft" color="neutral" disabled>
               Rest
             </Button>
-            <Button variant="light" color="neutral" startIcon={<RadioButtonUnchecked />}>
+            <Button variant="soft" color="neutral" startIcon={<RadioButtonUnchecked />}>
               Rest
             </Button>
-            <Button variant="light" color="neutral" endIcon={<KeyboardArrowDown />}>
+            <Button variant="soft" color="neutral" endIcon={<KeyboardArrowDown />}>
               Rest
             </Button>
-            <Button variant="text" color="neutral">
+            <Button variant="plain" color="neutral">
               Rest
             </Button>
-            <Button variant="text" color="neutral" disabled>
+            <Button variant="plain" color="neutral" disabled>
               Rest
             </Button>
-            <Button variant="text" color="neutral" startIcon={<RadioButtonUnchecked />}>
+            <Button variant="plain" color="neutral" startIcon={<RadioButtonUnchecked />}>
               Rest
             </Button>
-            <Button variant="text" color="neutral" endIcon={<KeyboardArrowDown />}>
+            <Button variant="plain" color="neutral" endIcon={<KeyboardArrowDown />}>
               Rest
             </Button>
           </div>
@@ -145,7 +145,7 @@ export default function Strapi() {
             <Input
               placeholder="Search"
               endDecorator={
-                <IconButton variant="text" color="neutral" sx={{ '--IconButton-size': '30px' }}>
+                <IconButton variant="plain" color="neutral" sx={{ '--IconButton-size': '30px' }}>
                   <Close />
                 </IconButton>
               }
@@ -334,7 +334,7 @@ export default function Strapi() {
                         }}
                         aria-hidden="true"
                       >
-                        <Avatar variant="contained">M</Avatar>
+                        <Avatar variant="solid">M</Avatar>
                         <Typography>Martha KA</Typography>
                       </Box>
                     </Sheet>

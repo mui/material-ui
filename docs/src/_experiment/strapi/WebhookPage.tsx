@@ -81,7 +81,7 @@ export default function WebhookPage() {
               <Checkbox />
             </Box>
             <Box>
-              <Link component="button" variant="light" level="tableLabel">
+              <Link component="button" variant="soft" level="tableLabel">
                 Name <ArrowDropDown />
               </Link>
             </Box>
@@ -121,10 +121,10 @@ export default function WebhookPage() {
               </Typography>
             </Box>
             <Box>
-              <Button variant="text" color="neutral">
+              <Button variant="plain" color="neutral">
                 <Edit fontSize="md" />
               </Button>
-              <Button variant="text" color="neutral">
+              <Button variant="plain" color="neutral">
                 <Delete fontSize="md" />
               </Button>
             </Box>
@@ -153,10 +153,10 @@ export default function WebhookPage() {
               </Typography>
             </Box>
             <Box>
-              <Button variant="text" color="neutral">
+              <Button variant="plain" color="neutral">
                 <Edit fontSize="md" />
               </Button>
-              <Button variant="text" color="neutral">
+              <Button variant="plain" color="neutral">
                 <Delete fontSize="md" />
               </Button>
             </Box>
@@ -185,10 +185,10 @@ export default function WebhookPage() {
               </Typography>
             </Box>
             <Box>
-              <Button variant="text" color="neutral">
+              <Button variant="plain" color="neutral">
                 <Edit fontSize="md" />
               </Button>
-              <Button variant="text" color="neutral">
+              <Button variant="plain" color="neutral">
                 <Delete fontSize="md" />
               </Button>
             </Box>
@@ -202,7 +202,7 @@ export default function WebhookPage() {
               }}
             />
             <Button
-              variant="light"
+              variant="soft"
               startIcon={
                 <Box
                   sx={{

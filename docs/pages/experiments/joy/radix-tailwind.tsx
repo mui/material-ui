@@ -47,7 +47,7 @@ const Dialog = () => {
         <Button variant="outlined" color="neutral">
           Cancel
         </Button>
-        <Button variant="contained">Yes, Delete Account</Button>
+        <Button variant="solid">Yes, Delete Account</Button>
       </Box>
     </Box>
   );

@@ -69,7 +69,7 @@ export default function WebhookCreationPage() {
               Headers
             </Typography>
             <Sheet
-              variant="light"
+              variant="soft"
               sx={{
                 py: 3,
                 px: 4,

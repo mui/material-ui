@@ -313,7 +313,7 @@ export default function HomePage() {
                 Discuss with team members, contributors and developers on different channels.
               </Typography>
               <Button
-                variant="text"
+                variant="plain"
                 size="sm"
                 endIcon={<ArrowForward fontSize="md" />}
                 sx={{ alignSelf: 'flex-start' }}
@@ -334,7 +334,7 @@ export default function HomePage() {
                 }}
               >
                 <Button
-                  variant="text"
+                  variant="plain"
                   color="neutral"
                   startIcon={
                     <Box
@@ -347,7 +347,7 @@ export default function HomePage() {
                   Github
                 </Button>
                 <Button
-                  variant="text"
+                  variant="plain"
                   color="neutral"
                   startIcon={
                     <Box
@@ -360,7 +360,7 @@ export default function HomePage() {
                   Slack
                 </Button>
                 <Button
-                  variant="text"
+                  variant="plain"
                   color="neutral"
                   startIcon={
                     <Box
@@ -373,7 +373,7 @@ export default function HomePage() {
                   Reddit
                 </Button>
                 <Button
-                  variant="text"
+                  variant="plain"
                   color="neutral"
                   startIcon={
                     <Box
@@ -386,7 +386,7 @@ export default function HomePage() {
                   Twitter
                 </Button>
                 <Button
-                  variant="text"
+                  variant="plain"
                   color="neutral"
                   startIcon={
                     <Box
@@ -399,7 +399,7 @@ export default function HomePage() {
                   Medium
                 </Button>
                 <Button
-                  variant="text"
+                  variant="plain"
                   color="neutral"
                   startIcon={
                     <Box

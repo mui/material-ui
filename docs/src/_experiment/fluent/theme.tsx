@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { JoyThemeInput } from '@mui/joy/styles';
+import { extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Done from '@mui/icons-material/Done';
 
@@ -59,23 +59,23 @@ const primary = {
   darker: '#004578',
 };
 
-const fluentTheme: JoyThemeInput = {
+const fluentTheme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
         primary: {
           500: primary.main,
-          textColor: primary.main,
-          textDisabledColor: 'var(--joy-palette-grey-90)',
-          containedBg: primary.main,
-          containedHoverBg: primary.darkAlt,
-          containedActiveBg: primary.dark,
-          containedDisabledBg: 'var(--joy-palette-grey-20)',
-          containedDisabledColor: 'var(--joy-palette-grey-90)',
-          lightColor: primary.main,
-          lightBg: undefined,
-          lightHoverBg: 'var(--joy-palette-grey-20)',
-          lightActiveBg: 'var(--joy-palette-grey-30)',
+          plainColor: primary.main,
+          plainDisabledColor: 'var(--joy-palette-grey-90)',
+          solidBg: primary.main,
+          solidHoverBg: primary.darkAlt,
+          solidActiveBg: primary.dark,
+          solidDisabledBg: 'var(--joy-palette-grey-20)',
+          solidDisabledColor: 'var(--joy-palette-grey-90)',
+          softColor: primary.main,
+          softBg: undefined,
+          softHoverBg: 'var(--joy-palette-grey-20)',
+          softActiveBg: 'var(--joy-palette-grey-30)',
         },
         danger: {
           500: '#A4262C',
@@ -83,18 +83,18 @@ const fluentTheme: JoyThemeInput = {
           outlinedHoverBorder: undefined,
         },
         neutral: {
-          textColor: 'var(--joy-palette-grey-190)',
-          textHoverColor: primary.main,
-          textHoverBg: undefined,
-          textActiveBg: undefined,
-          textDisabledColor: 'var(--joy-palette-grey-90)',
-          textActiveColor: 'var(--joy-palette-grey-190)',
-          lightColor: 'var(--joy-palette-grey-190)',
-          lightBg: undefined,
-          lightHoverColor: undefined,
-          lightDisabledColor: 'var(--joy-palette-grey-90)',
-          lightHoverBg: 'var(--joy-palette-grey-20)',
-          lightActiveBg: 'var(--joy-palette-grey-30)',
+          plainColor: 'var(--joy-palette-grey-190)',
+          plainHoverColor: primary.main,
+          plainHoverBg: undefined,
+          plainActiveBg: undefined,
+          plainDisabledColor: 'var(--joy-palette-grey-90)',
+          plainActiveColor: 'var(--joy-palette-grey-190)',
+          softColor: 'var(--joy-palette-grey-190)',
+          softBg: undefined,
+          softHoverColor: undefined,
+          softDisabledColor: 'var(--joy-palette-grey-90)',
+          softHoverBg: 'var(--joy-palette-grey-20)',
+          softActiveBg: 'var(--joy-palette-grey-30)',
           outlinedBg: '#fff',
           outlinedColor: 'var(--joy-palette-grey-190)',
           outlinedDisabledBg: 'var(--joy-palette-grey-20)',
@@ -179,7 +179,7 @@ const fluentTheme: JoyThemeInput = {
           '&.Mui-disabled': {
             border: 'none',
           },
-          ...(ownerState.variant === 'contained' && {
+          ...(ownerState.variant === 'solid' && {
             '&.Mui-focusVisible, &:focus-visible': {
               outlineOffset: '-3px',
               outlineColor: '#fff',
@@ -206,11 +206,11 @@ const fluentTheme: JoyThemeInput = {
               },
             }),
           }),
-          ...((ownerState.variant === 'light' || ownerState.variant === 'text') && {
+          ...((ownerState.variant === 'soft' || ownerState.variant === 'plain') && {
             borderRadius: 0,
             fontWeight: 400,
           }),
-          ...(ownerState.variant === 'light' && {
+          ...(ownerState.variant === 'soft' && {
             ...(ownerState.size === 'md' && {
               ...((ownerState.startIcon || ownerState.endIcon) && {
                 paddingLeft: '8px',
@@ -218,7 +218,7 @@ const fluentTheme: JoyThemeInput = {
               }),
             }),
           }),
-          ...(ownerState.variant === 'text' && {
+          ...(ownerState.variant === 'plain' && {
             ...(ownerState.size === 'md' && {
               paddingLeft: '6px',
               paddingRight: '6px',
@@ -231,24 +231,24 @@ const fluentTheme: JoyThemeInput = {
           }),
         }),
         startIcon: ({ ownerState }) => ({
-          ...(ownerState.variant === 'light' && {
+          ...(ownerState.variant === 'soft' && {
             ...(ownerState.color === 'neutral' && {
               color: primary.main,
             }),
           }),
-          ...(ownerState.variant === 'text' && {
+          ...(ownerState.variant === 'plain' && {
             ...(ownerState.color === 'neutral' && {
               color: primary.dark,
             }),
           }),
         }),
         endIcon: ({ ownerState, theme }) => ({
-          ...(ownerState.variant === 'light' && {
+          ...(ownerState.variant === 'soft' && {
             ...(ownerState.color === 'neutral' && {
               '--Icon-color': theme.vars.palette.grey[130],
             }),
           }),
-          ...(ownerState.variant === 'text' && {
+          ...(ownerState.variant === 'plain' && {
             ...(ownerState.color === 'neutral' && {
               '--Icon-color': theme.vars.palette.grey[130],
             }),
@@ -258,7 +258,7 @@ const fluentTheme: JoyThemeInput = {
     },
     MuiIconButton: {
       defaultProps: {
-        variant: 'light',
+        variant: 'soft',
         color: 'primary',
       },
       styleOverrides: {
@@ -275,7 +275,7 @@ const fluentTheme: JoyThemeInput = {
             '--IconButton-size': '44px',
             '--Icon-fontSize': '20px',
           }),
-          ...(ownerState.variant !== 'contained' &&
+          ...(ownerState.variant !== 'solid' &&
             ownerState.color === 'neutral' && {
               color: theme.vars.palette.grey[130],
             }),
@@ -325,7 +325,7 @@ const fluentTheme: JoyThemeInput = {
         }),
         startDecorator: ({ theme, ownerState }) => ({
           ...(!ownerState.disabled && {
-            color: theme.vars.palette.primary.textColor,
+            color: theme.vars.palette.primary.plainColor,
           }),
         }),
         endDecorator: ({ ownerState }) => ({
@@ -374,10 +374,10 @@ const fluentTheme: JoyThemeInput = {
           }),
           '&.Mui-checked': {
             '--variant-outlinedBorderWidth': '0px',
-            '--Switch-track-background': theme.vars.palette.primary.containedBg,
+            '--Switch-track-background': theme.vars.palette.primary.solidBg,
             '--Switch-thumb-background': '#fff',
             '&:hover': {
-              '--Switch-track-background': theme.vars.palette.primary.containedHoverBg,
+              '--Switch-track-background': theme.vars.palette.primary.solidHoverBg,
               '--Switch-thumb-background': '#fff',
             },
             '&.Mui-disabled': {
@@ -407,7 +407,7 @@ const fluentTheme: JoyThemeInput = {
           ...(ownerState.variant === 'outlined' && {
             backgroundColor: 'initial',
           }),
-          ...(ownerState.variant === 'contained' &&
+          ...(ownerState.variant === 'solid' &&
             ownerState.color === 'primary' && {
               '&.Mui-disabled': {
                 color: '#fff',
@@ -449,6 +449,6 @@ const fluentTheme: JoyThemeInput = {
       },
     },
   },
-};
+});
 
 export default fluentTheme;

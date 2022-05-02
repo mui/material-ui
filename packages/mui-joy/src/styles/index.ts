@@ -27,31 +27,32 @@ export type {
   TypographySystem,
 } from './types/typography';
 export type { Radius } from './types/radius';
+export type { Focus } from './types/focus';
 export type { Shadow } from './types/shadow';
 export type {
   VariantProp,
   VariantPropOverrides,
   ContextualOverrides,
-  VariantText,
-  VariantTextHover,
-  VariantTextActive,
-  VariantTextDisabled,
-  VariantLight,
-  VariantLightHover,
-  VariantLightActive,
-  VariantLightDisabled,
+  VariantPlain,
+  VariantPlainHover,
+  VariantPlainActive,
+  VariantPlainDisabled,
+  VariantSoft,
+  VariantSoftHover,
+  VariantSoftActive,
+  VariantSoftDisabled,
   VariantOutlined,
   VariantOutlinedHover,
   VariantOutlinedActive,
   VariantOutlinedDisabled,
-  VariantContained,
-  VariantContainedHover,
-  VariantContainedActive,
-  VariantContainedDisabled,
+  VariantSolid,
+  VariantSolidHover,
+  VariantSolidActive,
+  VariantSolidDisabled,
   Variants,
 } from './types/variants';
+export type { Theme } from './types/theme';
 export * from './CssVarsProvider';
-export * from './extendTheme';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';

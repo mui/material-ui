@@ -118,7 +118,7 @@ export default function MainNav({ activeIndex }: { activeIndex?: number }) {
         <ListItem>
           <ListItemButton {...activate(6)} sx={{ position: 'relative' }}>
             <Badge
-              variant="contained"
+              variant="solid"
               sx={{
                 position: 'absolute',
                 top: '-6px',

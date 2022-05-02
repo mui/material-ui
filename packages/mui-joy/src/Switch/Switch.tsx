@@ -212,11 +212,7 @@ const SwitchEndDecorator = styled('span', {
 });
 
 const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(inProps, ref) {
-  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
-    props: inProps,
-    name: 'MuiSwitch',
-  });
-
+  const props = inProps;
   const {
     checked: checkedProp,
     className,
@@ -282,6 +278,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
           {typeof startDecorator === 'function' ? startDecorator(ownerState) : startDecorator}
         </SwitchStartDecorator>
       )}
+
       <SwitchTrack
         {...componentsProps.track}
         ownerState={ownerState}

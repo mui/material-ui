@@ -63,7 +63,7 @@ export default function Page() {
             <ColorSchemePicker />
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="inherit" variant="contained">
+            <Button color="inherit" variant="solid">
               Text
             </Button>
             <Button color="inherit" variant="outlined">
@@ -72,12 +72,12 @@ export default function Page() {
             <Button color="inherit">Text</Button>
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button variant="contained">Text</Button>
+            <Button variant="solid">Text</Button>
             <Button variant="outlined">Text</Button>
             <Button>Text</Button>
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="secondary" variant="contained">
+            <Button color="secondary" variant="solid">
               Text
             </Button>
             <Button color="secondary" variant="outlined">
@@ -86,7 +86,7 @@ export default function Page() {
             <Button color="secondary">Text</Button>
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="error" variant="contained">
+            <Button color="error" variant="solid">
               Text
             </Button>
             <Button color="error" variant="outlined">
@@ -95,7 +95,7 @@ export default function Page() {
             <Button color="error">Text</Button>
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="info" variant="contained">
+            <Button color="info" variant="solid">
               Text
             </Button>
             <Button color="info" variant="outlined">
@@ -104,7 +104,7 @@ export default function Page() {
             <Button color="info">Text</Button>
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="warning" variant="contained">
+            <Button color="warning" variant="solid">
               Text
             </Button>
             <Button color="warning" variant="outlined">
@@ -113,7 +113,7 @@ export default function Page() {
             <Button color="warning">Text</Button>
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="success" variant="contained">
+            <Button color="success" variant="solid">
               Text
             </Button>
             <Button color="success" variant="outlined">
@@ -128,7 +128,7 @@ export default function Page() {
                 '--md-palette-primary-mainChannel': '255 0 0',
                 '--md-palette-primary-dark': '#8b0000',
               }}
-              variant="contained"
+              variant="solid"
             >
               Text
             </Button>

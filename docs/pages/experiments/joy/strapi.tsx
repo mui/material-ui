@@ -215,7 +215,7 @@ export default function Strapi() {
         <Typography level="header2">TextField</Typography>
         {(() => {
           const eye = (
-            <IconButton variant="text" color="neutral" size="sm" sx={{ pointerEvents: 'visible' }}>
+            <IconButton variant="plain" color="neutral" size="sm" sx={{ pointerEvents: 'visible' }}>
               <Visibility fontSize="lg" />
             </IconButton>
           ) as any;

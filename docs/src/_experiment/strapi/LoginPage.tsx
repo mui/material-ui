@@ -56,7 +56,7 @@ export default function LoginPage() {
           type="password"
           fullWidth
           endDecorator={
-            <IconButton variant="text" color="neutral" size="sm" sx={{ pointerEvents: 'visible' }}>
+            <IconButton variant="plain" color="neutral" size="sm" sx={{ pointerEvents: 'visible' }}>
               <Visibility fontSize="lg" />
             </IconButton>
           }

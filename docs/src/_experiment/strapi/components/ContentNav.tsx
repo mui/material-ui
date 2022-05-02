@@ -88,14 +88,14 @@ export default function ContentNav({ activeIndex }: { activeIndex?: number }) {
             <ListItem id="collection-types" component="div" sx={{ mb: 0.5 }}>
               <Link
                 component="button"
-                variant="text"
+                variant="plain"
                 color="neutral"
                 underline="none"
                 sx={{ typography: 'tableLabel', color: 'text.secondary' }}
               >
                 Collection types <ArrowDropDown />
               </Link>
-              <Badge variant="light" color="neutral" sx={{ ml: 'auto', mr: 1.5 }}>
+              <Badge variant="soft" color="neutral" sx={{ ml: 'auto', mr: 1.5 }}>
                 6
               </Badge>
             </ListItem>
@@ -134,14 +134,14 @@ export default function ContentNav({ activeIndex }: { activeIndex?: number }) {
             >
               <Link
                 component="button"
-                variant="text"
+                variant="plain"
                 color="neutral"
                 underline="none"
                 sx={{ typography: 'tableLabel', color: 'text.secondary' }}
               >
                 Single types <ArrowDropDown />
               </Link>
-              <Badge variant="light" color="neutral" sx={{ ml: 'auto', mr: 1.5 }}>
+              <Badge variant="soft" color="neutral" sx={{ ml: 'auto', mr: 1.5 }}>
                 6
               </Badge>
             </ListItem>

@@ -63,7 +63,7 @@ export default function RegisterPage() {
           id="password"
           fullWidth
           endDecorator={
-            <IconButton variant="text" size="sm" color="neutral">
+            <IconButton variant="plain" size="sm" color="neutral">
               <Visibility fontSize="lg" />
             </IconButton>
           }
@@ -73,7 +73,7 @@ export default function RegisterPage() {
           id="password"
           fullWidth
           endDecorator={
-            <IconButton variant="text" size="sm" color="neutral">
+            <IconButton variant="plain" size="sm" color="neutral">
               <Visibility fontSize="lg" />
             </IconButton>
           }

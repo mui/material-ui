@@ -131,7 +131,7 @@ const StatusBar = () => (
 
 const Step = ({ number }: { number: number }) => (
   <Sheet
-    variant="contained"
+    variant="solid"
     color="primary"
     sx={[
       {
@@ -1188,14 +1188,14 @@ export default function IosMinimalPage() {
                 <ListItemDecorator>
                   <Typography>Email</Typography>
                 </ListItemDecorator>
-                <Input variant="text" defaultValue="your@business.com" fullWidth />
+                <Input variant="plain" defaultValue="your@business.com" fullWidth />
               </ListItem>
               <ListDivider inset="startDecorator" />
               <ListItem>
                 <ListItemDecorator>
                   <Typography>Password</Typography>
                 </ListItemDecorator>
-                <Input variant="text" placeholder="96 symbols left" fullWidth />
+                <Input variant="plain" placeholder="96 symbols left" fullWidth />
                 <HelpOutline sx={{ color: 'text.secondary', ml: 1 }} />
               </ListItem>
               <ListDivider inset="startDecorator" />
@@ -1223,7 +1223,7 @@ export default function IosMinimalPage() {
             Forgot Password?
           </Link>
           <Box sx={{ px: '20px' }}>
-            <Button size="lg" variant="light" color="neutral" fullWidth startIcon={<Person />}>
+            <Button size="lg" variant="soft" color="neutral" fullWidth startIcon={<Person />}>
               Sign Up with Apple
             </Button>
           </Box>

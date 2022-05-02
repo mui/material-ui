@@ -33,7 +33,7 @@ export default function MediaEditAsset() {
         }}
       >
         <Sheet
-          variant="light"
+          variant="soft"
           sx={{
             borderWidth: '0 0 1px 0',
             borderStyle: 'solid',
@@ -95,7 +95,7 @@ export default function MediaEditAsset() {
           </Sheet>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Sheet
-              variant="light"
+              variant="soft"
               sx={{ py: 2, px: 3, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}
             >
               <div>
@@ -132,7 +132,7 @@ export default function MediaEditAsset() {
           </Box>
         </Box>
         <Sheet
-          variant="light"
+          variant="soft"
           sx={{
             borderWidth: '1px 0 0 0',
             borderStyle: 'solid',

@@ -49,7 +49,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const TaskCard = () => (
   <Sheet
-    variant="contained"
+    variant="solid"
     color="primary"
     sx={(theme) => ({
       p: 2.5,
@@ -74,7 +74,7 @@ const TaskCard = () => (
     </Typography>
     <Box sx={{ my: 'auto' }}>
       <Sheet
-        variant="contained"
+        variant="solid"
         // @ts-expect-error fix color type to include `context`
         color="context"
         sx={{
@@ -111,13 +111,13 @@ const TaskCard = () => (
     </Box>
     <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 0.5 }}>
       <Sheet
-        variant="light"
+        variant="soft"
         // @ts-expect-error fix the color type to support context
         color="context"
         sx={{ borderRadius: '20px', height: 4, position: 'relative', flex: 1 }}
       >
         <Sheet
-          variant="contained"
+          variant="solid"
           sx={{
             borderRadius: '20px',
             height: '100%',
@@ -240,14 +240,14 @@ const DatePicker = () => (
     }}
   >
     <Box sx={{ gridColumn: '1 / 6', pl: 1 }}>
-      <Link component="button" underline="none" variant="text" endDecorator={<ArrowDropDown />}>
+      <Link component="button" underline="none" variant="plain" endDecorator={<ArrowDropDown />}>
         March 2022
       </Link>
     </Box>
-    <IconButton size="sm" variant="text" color="primary">
+    <IconButton size="sm" variant="plain" color="primary">
       <KeyboardArrowLeft />
     </IconButton>
-    <IconButton size="sm" variant="text" color="primary">
+    <IconButton size="sm" variant="plain" color="primary">
       <KeyboardArrowRight />
     </IconButton>
     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, index) => (
@@ -262,7 +262,7 @@ const DatePicker = () => (
         return (
           <Box key={index} sx={{ justifySelf: 'center' }}>
             <IconButton
-              variant="contained"
+              variant="solid"
               color="primary"
               sx={{ '--IconButton-size': '24px', borderRadius: '20px', my: '-3px' }}
             >
@@ -336,7 +336,7 @@ function GetStartedButtons() {
 
 const Tabs = () => (
   <Sheet
-    variant="contained"
+    variant="solid"
     color="primary"
     sx={{
       borderRadius: 'md',
@@ -346,7 +346,7 @@ const Tabs = () => (
       boxShadow: 'md',
     }}
   >
-    <Button variant="contained">
+    <Button variant="solid">
       Yesterday
       <Box
         sx={(theme) => ({
@@ -358,8 +358,8 @@ const Tabs = () => (
         })}
       />
     </Button>
-    <Button variant="contained">Today</Button>
-    <Button variant="contained">Tomorrow</Button>
+    <Button variant="solid">Today</Button>
+    <Button variant="solid">Tomorrow</Button>
   </Sheet>
 );
 
@@ -370,7 +370,7 @@ const ThemeSlider = () => (
     sx={{ bgcolor: 'background.body', p: 2, borderRadius: 'sm' }}
   >
     <Sheet
-      variant="light"
+      variant="soft"
       color="neutral"
       sx={{ position: 'relative', width: 4, mx: 'auto', height: 180, borderRadius: '4px' }}
     >
@@ -750,7 +750,7 @@ export default function MUI() {
       }}
     >
       <IconButton
-        variant="contained"
+        variant="solid"
         color="neutral"
         size="lg"
         onClick={() => setOpen(!open)}
@@ -833,7 +833,7 @@ export default function MUI() {
         }}
       />
       <Sheet
-        variant="contained"
+        variant="solid"
         color="primary"
         sx={(theme) => ({
           minHeight: 40,
@@ -1039,7 +1039,7 @@ export default function MUI() {
                   <Box sx={{ width: 40 }} />
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
                     <Sheet
-                      variant="light"
+                      variant="soft"
                       color="primary"
                       sx={{
                         fontFamily: 'body',
@@ -1054,7 +1054,7 @@ export default function MUI() {
                     >
                       React
                       <IconButton
-                        variant="contained"
+                        variant="solid"
                         color="primary"
                         sx={{ borderRadius: '20px', '--IconButton-size': '18px' }}
                       >
@@ -1062,7 +1062,7 @@ export default function MUI() {
                       </IconButton>
                     </Sheet>
                     <Sheet
-                      variant="light"
+                      variant="soft"
                       color="neutral"
                       sx={{
                         fontFamily: 'body',
@@ -1077,7 +1077,7 @@ export default function MUI() {
                     >
                       React
                       <IconButton
-                        variant="contained"
+                        variant="solid"
                         color="neutral"
                         sx={{ borderRadius: '20px', '--IconButton-size': '18px' }}
                       >
@@ -1098,7 +1098,7 @@ export default function MUI() {
                   </Box>
                   <Box sx={{ ml: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <ViewToggleButton />
-                    <Button variant="contained" sx={{ flexGrow: 1 }}>
+                    <Button variant="solid" sx={{ flexGrow: 1 }}>
                       Buy now
                     </Button>
                     <Button variant="outlined" sx={{ flexGrow: 1 }}>
@@ -1225,7 +1225,7 @@ export default function MUI() {
               <Box sx={{ display: 'flex', minHeight: 44 }}>
                 <Input
                   id="email-subscribe"
-                  variant="light"
+                  variant="soft"
                   placeholder="example@email.com"
                   sx={{
                     minHeight: 44,
@@ -1237,7 +1237,7 @@ export default function MUI() {
                   }}
                 />
                 <Button
-                  variant="light"
+                  variant="soft"
                   color="neutral"
                   sx={{
                     bgcolor: 'neutral.300',
@@ -1348,7 +1348,7 @@ export default function MUI() {
                 aria-label="github"
                 title="GitHub"
                 size="sm"
-                variant="text"
+                variant="plain"
               >
                 <GitHubIcon />
               </IconButton>
@@ -1359,7 +1359,7 @@ export default function MUI() {
                 aria-label="Stack Overflow"
                 title="Stack Overflow"
                 size="sm"
-                variant="text"
+                variant="plain"
               >
                 <SvgStackOverflow />
               </IconButton>
@@ -1370,7 +1370,7 @@ export default function MUI() {
                 aria-label="twitter"
                 title="Twitter"
                 size="sm"
-                variant="text"
+                variant="plain"
               >
                 <TwitterIcon />
               </IconButton>
@@ -1381,7 +1381,7 @@ export default function MUI() {
                 aria-label="linkedin"
                 title="LinkedIn"
                 size="sm"
-                variant="text"
+                variant="plain"
               >
                 <LinkedInIcon />
               </IconButton>

@@ -202,7 +202,7 @@ export default function ContentEditView() {
 
         <Box sx={{ textAlign: 'center', my: 2, mr: '227px' }}>
           <Button
-            variant="text"
+            variant="plain"
             color="neutral"
             size="lg"
             startIcon={

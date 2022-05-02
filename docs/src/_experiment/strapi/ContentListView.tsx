@@ -133,10 +133,10 @@ export default function ContentListView() {
                 <Typography>{name}</Typography>
                 <Typography>{description}</Typography>
                 <Box>
-                  <IconButton variant="text" color="neutral" size="sm">
+                  <IconButton variant="plain" color="neutral" size="sm">
                     <Edit />
                   </IconButton>
-                  <IconButton variant="text" color="neutral" size="sm" sx={{ ml: 1 }}>
+                  <IconButton variant="plain" color="neutral" size="sm" sx={{ ml: 1 }}>
                     <Delete />
                   </IconButton>
                 </Box>
@@ -163,30 +163,30 @@ export default function ContentListView() {
             Entries per page
           </Typography>
           <Box sx={{ mx: 'auto' }} />
-          <IconButton size="sm" variant="text" color="neutral" sx={{ color: 'text.tertiary' }}>
+          <IconButton size="sm" variant="plain" color="neutral" sx={{ color: 'text.tertiary' }}>
             <KeyboardArrowLeft />
           </IconButton>
           <IconButton
             size="sm"
-            variant="text"
+            variant="plain"
             color="primary"
             sx={{ bgcolor: 'background.body', boxShadow: 'sm' }}
           >
             1
           </IconButton>
-          <IconButton size="sm" variant="text" color="neutral">
+          <IconButton size="sm" variant="plain" color="neutral">
             2
           </IconButton>
-          <IconButton size="sm" variant="text" color="neutral">
+          <IconButton size="sm" variant="plain" color="neutral">
             3
           </IconButton>
-          <IconButton size="sm" variant="text" color="neutral">
+          <IconButton size="sm" variant="plain" color="neutral">
             ...
           </IconButton>
-          <IconButton size="sm" variant="text" color="neutral">
+          <IconButton size="sm" variant="plain" color="neutral">
             10
           </IconButton>
-          <IconButton size="sm" variant="text" color="neutral" sx={{ color: 'text.tertiary' }}>
+          <IconButton size="sm" variant="plain" color="neutral" sx={{ color: 'text.tertiary' }}>
             <KeyboardArrowRight />
           </IconButton>
         </Box>
