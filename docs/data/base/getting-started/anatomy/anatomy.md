@@ -34,4 +34,3 @@ These two examples are equivalent:
 ```jsx
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
-

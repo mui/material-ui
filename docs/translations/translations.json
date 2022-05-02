@@ -185,6 +185,8 @@
     "/base/getting-started/overview": "Overview",
     "/base/getting-started/installation": "Installation",
     "/base/getting-started/anatomy": "Anatomy",
+    "/base/getting-started/components-vs-hooks": "Components vs. hooks",
+    "/base/getting-started/styling": "Styling",
     "/base/react-": "Components",
     "inputs": "Inputs",
     "/base/react-button": "Button",
