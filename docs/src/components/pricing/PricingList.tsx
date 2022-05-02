@@ -129,7 +129,7 @@ export default function PricingList() {
       {planIndex === 2 && (
         <Fade in>
           <div>
-            <Plan plan="premium" unavailable />
+            <Plan plan="premium" />
             <PricingTable columnHeaderHidden plans={['premium']} />
           </div>
         </Fade>
