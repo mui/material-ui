@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { GlobalStyles, CSSObject } from '@mui/system';
-import { CssVarsProvider, useColorScheme, styled } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme, styled, extendTheme } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -177,7 +177,7 @@ const Check = ({
   color?: 'danger' | 'success';
 }) => (
   <Checkbox
-    variant={checked ? 'contained' : 'outlined'}
+    variant={checked ? 'solid' : 'outlined'}
     color={checked ? color : 'neutral'}
     checked={checked}
   />
@@ -213,367 +213,370 @@ const Tab = styled('button')<{ selected?: boolean }>(({ theme, selected }) => ({
   },
 }));
 
+const iosMinimalTheme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          50: '#F6FAFF',
+          100: '#E1EFFF',
+          200: '#B4D8FF',
+          300: '#86C0FF',
+          400: '#57A8FF',
+          500: '#1E8AFF',
+          600: '#006EE4',
+          700: '#005CBF',
+          800: '#004997',
+          900: '#003A78',
+          plainColor: 'hsla(211, 100%, 50%, 1)',
+          solidBg: 'hsla(211, 100%, 50%, 1)',
+          solidHoverBg: undefined,
+          solidActiveBg: 'hsla(211, 100%, 40%, 1)',
+        },
+        warning: {
+          50: '#FFF9F1',
+          100: '#FFEBCE',
+          200: '#FFCC84',
+          300: '#FFAA32',
+          400: '#EF8C00',
+          500: '#CB7700',
+          600: '#A76100',
+          700: '#8B5100',
+          800: '#6E4000',
+          900: '#573300',
+          plainColor: 'hsla(35, 100%, 50%, 1)',
+          solidBg: 'hsla(35, 100%, 50%, 1)',
+          solidHoverBg: undefined,
+          solidActiveBg: 'hsla(35, 100%, 40%, 1)',
+        },
+        danger: {
+          50: '#FFF8FA',
+          100: '#FFE8ED',
+          200: '#FEC6D2',
+          300: '#FEA2B7',
+          400: '#FE799A',
+          500: '#FF3B6F',
+          600: '#DB2056',
+          700: '#B81A49',
+          800: '#92153C',
+          900: '#751131',
+          plainColor: 'hsla(349, 100%, 59%, 1)',
+          solidBg: 'hsla(349, 100%, 59%, 1)',
+          solidHoverBg: undefined,
+        },
+        success: {
+          50: '#F4FCF5',
+          100: '#D9F5DC',
+          200: '#9DE5AD',
+          300: '#52D380',
+          400: '#00BE63',
+          500: '#00A158',
+          600: '#00844B',
+          700: '#006D41',
+          800: '#045636',
+          900: '#0A442C',
+          plainColor: 'hsla(135, 59%, 49%, 1)',
+          solidBg: 'hsla(135, 59%, 49%, 1)',
+          solidHoverBg: undefined,
+        },
+        neutral: {
+          100: 'hsla(240, 24%, 96%, 1)',
+          200: 'hsla(240, 11%, 91%, 1)',
+          300: 'hsla(240, 6%, 83%, 1)',
+          400: 'hsla(240, 5%, 79%, 1)',
+          500: 'hsla(240, 3%, 69%, 1)',
+          600: 'hsla(240, 2%, 57%, 1)',
+          plainColor: 'var(--joy-palette-neutral-800)',
+          outlinedColor: 'var(--joy-palette-primary-plainColor)',
+          outlinedBorder: 'var(--joy-palette-neutral-200)',
+          outlinedHoverBorder: 'var(--joy-palette-neutral-400)',
+          softBg: 'rgba(116, 116, 128, 0.08)',
+          softColor: 'var(--joy-palette-text-primary)',
+        },
+        background: {
+          level1: 'hsla(0, 0%, 100%, 1)',
+          level2: 'hsla(240, 24%, 96%, 1)',
+          level3: 'hsla(0, 0%, 0%, 0.02)',
+        },
+        text: {
+          primary: 'hsla(0, 0%, 0%, 1)',
+          secondary: 'hsla(240, 6%, 25%, 0.6)',
+          tertiary: 'hsla(240, 6%, 25%, 0.33)',
+          quarternary: 'hsla(240, 6%, 25%, 0.18)',
+        },
+        separator: {
+          opaque: 'hsla(240, 2%, 88%, 1)',
+          nonOpaque: 'hsla(240, 6%, 25%, 0.33)',
+        },
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          50: '#F6FAFF',
+          100: '#E0EFFF',
+          200: '#B2D8FF',
+          300: '#83C1FF',
+          400: '#51A8FF',
+          500: '#158BFF',
+          600: '#0871D8',
+          700: '#075EB4',
+          800: '#064B8F',
+          900: '#043B72',
+          plainColor: 'hsla(210, 100%, 52%, 1)',
+          solidBg: 'hsla(210, 100%, 52%, 1)',
+          solidHoverBg: undefined,
+          solidActiveBg: 'hsla(210, 100%, 60%, 1)',
+        },
+        warning: {
+          50: '#FFF9F0',
+          100: '#FFEBCD',
+          200: '#FFCC80',
+          300: '#FFAA2B',
+          400: '#E99009',
+          500: '#C57A08',
+          600: '#A26406',
+          700: '#875305',
+          800: '#6B4204',
+          900: '#553403',
+          plainColor: 'hsla(36, 100%, 52%, 1)',
+          solidBg: 'hsla(36, 100%, 52%, 1)',
+          solidHoverBg: undefined,
+          solidActiveBg: 'hsla(36, 100%, 60%, 1)',
+          solidColor: 'hsla(0, 0%, 0%, 1)',
+        },
+        danger: {
+          50: '#FFF8FA',
+          100: '#FFE8ED',
+          200: '#FEC5D3',
+          300: '#FEA1B9',
+          400: '#FE799C',
+          500: '#FF3B73',
+          600: '#D62A5D',
+          700: '#B32350',
+          800: '#8E1C41',
+          900: '#711735',
+          plainColor: 'hsla(348, 100%, 61%, 1)',
+          solidBg: 'hsla(348, 100%, 61%, 1)',
+          solidColor: 'hsla(0, 0%, 0%, 1)',
+        },
+        success: {
+          50: '#F2FDF4',
+          100: '#D3F6D8',
+          200: '#8DE99A',
+          300: '#36D84E',
+          400: '#2DBD42',
+          500: '#26A038',
+          600: '#1F832E',
+          700: '#1A6D26',
+          800: '#15571E',
+          900: '#104518',
+          plainColor: 'hsla(129, 67%, 52%, 1)',
+          solidBg: 'hsla(129, 67%, 52%, 1)',
+          solidHoverBg: undefined,
+          solidColor: 'hsla(0, 0%, 0%, 1)',
+        },
+        neutral: {
+          100: 'hsla(240, 3%, 11%, 1)',
+          200: 'hsla(240, 2%, 18%, 1)',
+          300: 'hsla(240, 2%, 23%, 1)',
+          400: 'hsla(240, 1%, 29%, 1)',
+          500: 'hsla(240, 1%, 39%, 1)',
+          600: 'hsla(240, 2%, 57%, 1)',
+          outlinedColor: 'var(--joy-palette-primary-plainColor)',
+          outlinedBg: 'rgba(111, 114, 120, 0.24)',
+          outlinedBorder: 'var(--joy-palette-neutral-200)',
+          outlinedHoverBg: undefined,
+          outlinedActiveBg: 'rgba(111, 114, 120, 0.16)',
+          softBg: 'rgba(111, 114, 120, 0.08)',
+          softColor: 'var(--joy-palette-text-primary)',
+        },
+        background: {
+          level1: 'hsla(0, 0%, 0%, 1)',
+          level2: 'hsla(240, 3%, 11%, 1)',
+          level3: 'hsla(240, 2%, 18%, 1)',
+        },
+        text: {
+          primary: 'hsla(0, 0%, 100%, 1)',
+          secondary: 'hsla(240, 33%, 94%, 0.6)',
+          tertiary: 'hsla(240, 33%, 94%, 0.3)',
+          quarternary: 'hsla(240, 33%, 94%, 0.18)',
+        },
+        separator: {
+          opaque: 'hsla(210, 3%, 15%, 1)',
+          nonOpaque: 'hsla(240, 2%, 34%, 0.7)',
+        },
+      },
+    },
+  },
+  fontFamily: {
+    display: 'SF Pro Display, var(--joy-fontFamily-fallback)',
+    body: 'SF Pro Text, var(--joy-fontFamily-fallback)',
+  },
+  fontSize: {
+    md: '17px',
+  },
+  typography: {
+    h1: {
+      fontSize: 60,
+      lineHeight: '70px',
+      letterSpacing: '0.25px',
+      fontWeight: 'bold',
+    },
+    h2: {
+      fontSize: 34,
+      lineHeight: '41px',
+      letterSpacing: '0.37px',
+      fontWeight: 'bold',
+    },
+    h3: {
+      fontSize: 28,
+      lineHeight: '34px',
+      letterSpacing: '0.36px',
+      fontWeight: 'bold',
+    },
+    h4: {
+      fontSize: 22,
+      lineHeight: '28px',
+      letterSpacing: '0.35px',
+      fontWeight: 'bold',
+    },
+    h5: {
+      fontSize: 20,
+      lineHeight: '24px',
+      letterSpacing: '0.38px',
+      fontWeight: 600,
+    },
+    h6: {
+      fontSize: 17,
+      lineHeight: '22px',
+      fontWeight: 600,
+    },
+    body1: {
+      fontSize: 17,
+      lineHeight: '22px',
+    },
+    body2: {
+      fontSize: 16,
+      lineHeight: '21px',
+    },
+    body3: {
+      fontSize: 15,
+      lineHeight: '20px',
+      color: 'var(--joy-palette-text-secondary)',
+    },
+    footnote: {
+      fontSize: 13,
+      lineHeight: '16px',
+      fontFamily: 'var(--joy-fontFamily-body)',
+      color: 'var(--joy-palette-text-secondary)',
+    },
+    caption1: {
+      fontSize: 12,
+      lineHeight: '16px',
+      fontFamily: 'var(--joy-fontFamily-body)',
+    },
+    caption2: {
+      fontSize: 11,
+      lineHeight: '12px',
+      fontFamily: 'var(--joy-fontFamily-body)',
+    },
+    caption3: {
+      fontSize: 10,
+      lineHeight: '12px',
+      fontFamily: 'var(--joy-fontFamily-body)',
+    },
+    rubric1: {
+      fontSize: 15,
+      lineHeight: '22px',
+      textTransform: 'uppercase',
+      fontFamily: 'var(--joy-fontFamily-body)',
+    },
+    rubric2: {
+      fontSize: 13,
+      lineHeight: '18px',
+      textTransform: 'uppercase',
+      color: 'var(--joy-palette-text-secondary)',
+      fontFamily: 'var(--joy-fontFamily-body)',
+    },
+    rubric3: {
+      fontSize: 17,
+      lineHeight: '22px',
+      textTransform: 'uppercase',
+      fontFamily: 'var(--joy-fontFamily-body)',
+    },
+    rubric4: {
+      fontSize: 11,
+      lineHeight: '16px',
+      textTransform: 'uppercase',
+      fontFamily: 'var(--joy-fontFamily-body)',
+    },
+    rubric5: {
+      fontSize: 9,
+      lineHeight: '22px',
+      textTransform: 'uppercase',
+      fontFamily: 'var(--joy-fontFamily-body)',
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          fontWeight: 500,
+          borderRadius: '14px',
+          '--Button-minHeight': '45px',
+          ...(ownerState.size === 'sm' && {
+            '--Button-minHeight': '26px',
+            borderRadius: '4px',
+            fontSize: 13,
+            lineHeight: '16px',
+          }),
+          ...(ownerState.size === 'lg' && {
+            '--Button-minHeight': '50px',
+          }),
+        }),
+      },
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          borderRadius: '24px',
+          ...(ownerState.size === 'md' && {
+            '--Icon-fontSize': '20px',
+            '--Checkbox-size': '24px',
+          }),
+          ...(ownerState.variant === 'outlined' && {
+            '--variant-outlinedBorderWidth': '2px',
+          }),
+        }),
+        checkbox: {
+          borderRadius: 'var(--Checkbox-size)',
+        },
+      },
+    },
+    MuiLink: {
+      defaultProps: {
+        underline: 'none',
+      },
+    },
+    MuiAvatar: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.size === 'lg' && {
+            '--Avatar-size': '60px',
+          }),
+        }),
+        fallback: {
+          '--Icon-color': 'var(--joy-palette-text-tertiary)',
+        },
+      },
+    },
+  },
+});
+
 export default function IosMinimalPage() {
   return (
-    <CssVarsProvider
-      theme={{
-        colorSchemes: {
-          light: {
-            palette: {
-              primary: {
-                50: '#F6FAFF',
-                100: '#E1EFFF',
-                200: '#B4D8FF',
-                300: '#86C0FF',
-                400: '#57A8FF',
-                500: '#1E8AFF',
-                600: '#006EE4',
-                700: '#005CBF',
-                800: '#004997',
-                900: '#003A78',
-                textColor: 'hsla(211, 100%, 50%, 1)',
-                containedBg: 'hsla(211, 100%, 50%, 1)',
-                containedHoverBg: undefined,
-                containedActiveBg: 'hsla(211, 100%, 40%, 1)',
-              },
-              warning: {
-                50: '#FFF9F1',
-                100: '#FFEBCE',
-                200: '#FFCC84',
-                300: '#FFAA32',
-                400: '#EF8C00',
-                500: '#CB7700',
-                600: '#A76100',
-                700: '#8B5100',
-                800: '#6E4000',
-                900: '#573300',
-                textColor: 'hsla(35, 100%, 50%, 1)',
-                containedBg: 'hsla(35, 100%, 50%, 1)',
-                containedHoverBg: undefined,
-                containedActiveBg: 'hsla(35, 100%, 40%, 1)',
-              },
-              danger: {
-                50: '#FFF8FA',
-                100: '#FFE8ED',
-                200: '#FEC6D2',
-                300: '#FEA2B7',
-                400: '#FE799A',
-                500: '#FF3B6F',
-                600: '#DB2056',
-                700: '#B81A49',
-                800: '#92153C',
-                900: '#751131',
-                textColor: 'hsla(349, 100%, 59%, 1)',
-                containedBg: 'hsla(349, 100%, 59%, 1)',
-                containedHoverBg: undefined,
-              },
-              success: {
-                50: '#F4FCF5',
-                100: '#D9F5DC',
-                200: '#9DE5AD',
-                300: '#52D380',
-                400: '#00BE63',
-                500: '#00A158',
-                600: '#00844B',
-                700: '#006D41',
-                800: '#045636',
-                900: '#0A442C',
-                textColor: 'hsla(135, 59%, 49%, 1)',
-                containedBg: 'hsla(135, 59%, 49%, 1)',
-                containedHoverBg: undefined,
-              },
-              neutral: {
-                100: 'hsla(240, 24%, 96%, 1)',
-                200: 'hsla(240, 11%, 91%, 1)',
-                300: 'hsla(240, 6%, 83%, 1)',
-                400: 'hsla(240, 5%, 79%, 1)',
-                500: 'hsla(240, 3%, 69%, 1)',
-                600: 'hsla(240, 2%, 57%, 1)',
-                textColor: 'var(--joy-palette-neutral-800)',
-                outlinedColor: 'var(--joy-palette-primary-textColor)',
-                outlinedBorder: 'var(--joy-palette-neutral-200)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-400)',
-                lightBg: 'rgba(116, 116, 128, 0.08)',
-                lightColor: 'var(--joy-palette-text-primary)',
-              },
-              background: {
-                level1: 'hsla(0, 0%, 100%, 1)',
-                level2: 'hsla(240, 24%, 96%, 1)',
-                level3: 'hsla(0, 0%, 0%, 0.02)',
-              },
-              text: {
-                primary: 'hsla(0, 0%, 0%, 1)',
-                secondary: 'hsla(240, 6%, 25%, 0.6)',
-                tertiary: 'hsla(240, 6%, 25%, 0.33)',
-                quarternary: 'hsla(240, 6%, 25%, 0.18)',
-              },
-              separator: {
-                opaque: 'hsla(240, 2%, 88%, 1)',
-                nonOpaque: 'hsla(240, 6%, 25%, 0.33)',
-              },
-            },
-          },
-          dark: {
-            palette: {
-              primary: {
-                50: '#F6FAFF',
-                100: '#E0EFFF',
-                200: '#B2D8FF',
-                300: '#83C1FF',
-                400: '#51A8FF',
-                500: '#158BFF',
-                600: '#0871D8',
-                700: '#075EB4',
-                800: '#064B8F',
-                900: '#043B72',
-                textColor: 'hsla(210, 100%, 52%, 1)',
-                containedBg: 'hsla(210, 100%, 52%, 1)',
-                containedHoverBg: undefined,
-                containedActiveBg: 'hsla(210, 100%, 60%, 1)',
-              },
-              warning: {
-                50: '#FFF9F0',
-                100: '#FFEBCD',
-                200: '#FFCC80',
-                300: '#FFAA2B',
-                400: '#E99009',
-                500: '#C57A08',
-                600: '#A26406',
-                700: '#875305',
-                800: '#6B4204',
-                900: '#553403',
-                textColor: 'hsla(36, 100%, 52%, 1)',
-                containedBg: 'hsla(36, 100%, 52%, 1)',
-                containedHoverBg: undefined,
-                containedActiveBg: 'hsla(36, 100%, 60%, 1)',
-                containedColor: 'hsla(0, 0%, 0%, 1)',
-              },
-              danger: {
-                50: '#FFF8FA',
-                100: '#FFE8ED',
-                200: '#FEC5D3',
-                300: '#FEA1B9',
-                400: '#FE799C',
-                500: '#FF3B73',
-                600: '#D62A5D',
-                700: '#B32350',
-                800: '#8E1C41',
-                900: '#711735',
-                textColor: 'hsla(348, 100%, 61%, 1)',
-                containedBg: 'hsla(348, 100%, 61%, 1)',
-                containedColor: 'hsla(0, 0%, 0%, 1)',
-              },
-              success: {
-                50: '#F2FDF4',
-                100: '#D3F6D8',
-                200: '#8DE99A',
-                300: '#36D84E',
-                400: '#2DBD42',
-                500: '#26A038',
-                600: '#1F832E',
-                700: '#1A6D26',
-                800: '#15571E',
-                900: '#104518',
-                textColor: 'hsla(129, 67%, 52%, 1)',
-                containedBg: 'hsla(129, 67%, 52%, 1)',
-                containedHoverBg: undefined,
-                containedColor: 'hsla(0, 0%, 0%, 1)',
-              },
-              neutral: {
-                100: 'hsla(240, 3%, 11%, 1)',
-                200: 'hsla(240, 2%, 18%, 1)',
-                300: 'hsla(240, 2%, 23%, 1)',
-                400: 'hsla(240, 1%, 29%, 1)',
-                500: 'hsla(240, 1%, 39%, 1)',
-                600: 'hsla(240, 2%, 57%, 1)',
-                outlinedColor: 'var(--joy-palette-primary-textColor)',
-                outlinedBg: 'rgba(111, 114, 120, 0.24)',
-                outlinedBorder: 'var(--joy-palette-neutral-200)',
-                outlinedHoverBg: undefined,
-                outlinedActiveBg: 'rgba(111, 114, 120, 0.16)',
-                lightBg: 'rgba(111, 114, 120, 0.08)',
-                lightColor: 'var(--joy-palette-text-primary)',
-              },
-              background: {
-                level1: 'hsla(0, 0%, 0%, 1)',
-                level2: 'hsla(240, 3%, 11%, 1)',
-                level3: 'hsla(240, 2%, 18%, 1)',
-              },
-              text: {
-                primary: 'hsla(0, 0%, 100%, 1)',
-                secondary: 'hsla(240, 33%, 94%, 0.6)',
-                tertiary: 'hsla(240, 33%, 94%, 0.3)',
-                quarternary: 'hsla(240, 33%, 94%, 0.18)',
-              },
-              separator: {
-                opaque: 'hsla(210, 3%, 15%, 1)',
-                nonOpaque: 'hsla(240, 2%, 34%, 0.7)',
-              },
-            },
-          },
-        },
-        fontFamily: {
-          display: 'SF Pro Display, var(--joy-fontFamily-fallback)',
-          body: 'SF Pro Text, var(--joy-fontFamily-fallback)',
-        },
-        fontSize: {
-          md: '17px',
-        },
-        typography: {
-          h1: {
-            fontSize: 60,
-            lineHeight: '70px',
-            letterSpacing: '0.25px',
-            fontWeight: 'bold',
-          },
-          h2: {
-            fontSize: 34,
-            lineHeight: '41px',
-            letterSpacing: '0.37px',
-            fontWeight: 'bold',
-          },
-          h3: {
-            fontSize: 28,
-            lineHeight: '34px',
-            letterSpacing: '0.36px',
-            fontWeight: 'bold',
-          },
-          h4: {
-            fontSize: 22,
-            lineHeight: '28px',
-            letterSpacing: '0.35px',
-            fontWeight: 'bold',
-          },
-          h5: {
-            fontSize: 20,
-            lineHeight: '24px',
-            letterSpacing: '0.38px',
-            fontWeight: 600,
-          },
-          h6: {
-            fontSize: 17,
-            lineHeight: '22px',
-            fontWeight: 600,
-          },
-          body1: {
-            fontSize: 17,
-            lineHeight: '22px',
-          },
-          body2: {
-            fontSize: 16,
-            lineHeight: '21px',
-          },
-          body3: {
-            fontSize: 15,
-            lineHeight: '20px',
-            color: 'var(--joy-palette-text-secondary)',
-          },
-          footnote: {
-            fontSize: 13,
-            lineHeight: '16px',
-            fontFamily: 'var(--joy-fontFamily-body)',
-            color: 'var(--joy-palette-text-secondary)',
-          },
-          caption1: {
-            fontSize: 12,
-            lineHeight: '16px',
-            fontFamily: 'var(--joy-fontFamily-body)',
-          },
-          caption2: {
-            fontSize: 11,
-            lineHeight: '12px',
-            fontFamily: 'var(--joy-fontFamily-body)',
-          },
-          caption3: {
-            fontSize: 10,
-            lineHeight: '12px',
-            fontFamily: 'var(--joy-fontFamily-body)',
-          },
-          rubric1: {
-            fontSize: 15,
-            lineHeight: '22px',
-            textTransform: 'uppercase',
-            fontFamily: 'var(--joy-fontFamily-body)',
-          },
-          rubric2: {
-            fontSize: 13,
-            lineHeight: '18px',
-            textTransform: 'uppercase',
-            color: 'var(--joy-palette-text-secondary)',
-            fontFamily: 'var(--joy-fontFamily-body)',
-          },
-          rubric3: {
-            fontSize: 17,
-            lineHeight: '22px',
-            textTransform: 'uppercase',
-            fontFamily: 'var(--joy-fontFamily-body)',
-          },
-          rubric4: {
-            fontSize: 11,
-            lineHeight: '16px',
-            textTransform: 'uppercase',
-            fontFamily: 'var(--joy-fontFamily-body)',
-          },
-          rubric5: {
-            fontSize: 9,
-            lineHeight: '22px',
-            textTransform: 'uppercase',
-            fontFamily: 'var(--joy-fontFamily-body)',
-          },
-        },
-        components: {
-          MuiButton: {
-            styleOverrides: {
-              root: ({ ownerState }) => ({
-                fontWeight: 500,
-                borderRadius: '14px',
-                '--Button-minHeight': '45px',
-                ...(ownerState.size === 'sm' && {
-                  '--Button-minHeight': '26px',
-                  borderRadius: '4px',
-                  fontSize: 13,
-                  lineHeight: '16px',
-                }),
-                ...(ownerState.size === 'lg' && {
-                  '--Button-minHeight': '50px',
-                }),
-              }),
-            },
-          },
-          MuiCheckbox: {
-            styleOverrides: {
-              root: ({ ownerState }) => ({
-                borderRadius: '24px',
-                ...(ownerState.size === 'md' && {
-                  '--Icon-fontSize': '20px',
-                  '--Checkbox-size': '24px',
-                }),
-                ...(ownerState.variant === 'outlined' && {
-                  '--variant-outlinedBorderWidth': '2px',
-                }),
-              }),
-            },
-          },
-          MuiLink: {
-            defaultProps: {
-              underline: 'none',
-            },
-          },
-          MuiAvatar: {
-            styleOverrides: {
-              root: ({ ownerState }) => ({
-                ...(ownerState.size === 'lg' && {
-                  '--Avatar-size': '60px',
-                }),
-              }),
-              fallback: {
-                '--Icon-color': 'var(--joy-palette-text-tertiary)',
-              },
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider theme={iosMinimalTheme}>
       <GlobalStyles styles={{ body: { margin: 0 }, '*': { boxSizing: 'border-box' } }} />
       <Box
         sx={{
@@ -594,7 +597,7 @@ export default function IosMinimalPage() {
             <Box
               sx={[
                 (theme) => theme.typography.body2,
-                (theme) => theme.variants.contained.warning,
+                (theme) => theme.variants.solid.warning,
                 {
                   borderRadius: '8px',
                   display: 'inline-flex',
@@ -837,7 +840,7 @@ export default function IosMinimalPage() {
                         borderRadius: '30px',
                         display: 'inline-flex',
                       },
-                      (theme) => theme.variants.contained.warning,
+                      (theme) => theme.variants.solid.warning,
                     ]}
                   >
                     <CurrencyYen />
