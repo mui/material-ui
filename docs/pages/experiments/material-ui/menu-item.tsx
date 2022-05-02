@@ -9,7 +9,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import {
-    Experimental_CssVarsProvider as CssVarsProvider, useColorScheme
+  Experimental_CssVarsProvider as CssVarsProvider,
+  useColorScheme,
 } from '@mui/material/styles';
 
 const ColorSchemePicker = () => {
