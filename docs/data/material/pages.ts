@@ -178,7 +178,6 @@ const pages = [
       },
       { pathname: '/material-ui/customization/how-to-customize' },
       { pathname: '/material-ui/customization/color' },
-      { pathname: '/material-ui/customization/unstyled-components' },
     ],
   },
   {
