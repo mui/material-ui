@@ -6,3 +6,6 @@ export * from './generateUtilityClass';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 export * from './generateUtilityClasses';
+
+export { default as unstable_ClassNameGenerator } from './ClassNameGenerator';
+export * from './ClassNameGenerator';
