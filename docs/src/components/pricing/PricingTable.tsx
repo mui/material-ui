@@ -900,9 +900,6 @@ export default function PricingTable({
             >
               Buy now
             </Button>
-            <Typography variant="body2" textAlign="center" color="text.secondary">
-              Flat price at 10 devs / application
-            </Typography>
           </ColumnHeadHighlight>
           <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
             <PlanName plan="premium" />
@@ -918,9 +915,6 @@ export default function PricingTable({
             >
               Buy now
             </Button>
-            <Typography variant="body2" textAlign="center" color="text.secondary">
-              Flat price at 10 devs / application
-            </Typography>
           </Box>
         </Box>
       )}
