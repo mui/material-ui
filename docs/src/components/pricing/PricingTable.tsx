@@ -99,7 +99,7 @@ export function PlanPrice(props: PlanPriceProps) {
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
           <Box sx={{ width: 10 }} />
           <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
-            $19
+            $15
           </Typography>
           <Box sx={{ width: 5 }} />
           <Typography variant="body2" color="text.secondary">
@@ -107,7 +107,7 @@ export function PlanPrice(props: PlanPriceProps) {
           </Typography>
         </Box>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
-          Billed annually at $228.
+          Billed annually at $180.
         </Typography>
       </div>
     );
