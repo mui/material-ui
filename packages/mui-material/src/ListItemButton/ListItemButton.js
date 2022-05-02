@@ -242,6 +242,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * @ignore
+   */
+  href: PropTypes.string,
+  /**
    * Use to apply selected styling.
    * @default false
    */
