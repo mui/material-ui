@@ -6,25 +6,28 @@
 
 ### 1. HTML
 
-Make sure the `dir` attribute is set on the body, otherwise native components will break:
+Make sure the `dir` attribute is set on the `html` tag, otherwise native components will break:
 
 ```html
-<body dir="rtl"></body>
+<html dir="rtl"></html>
 ```
 
-As an alternative to the above, you can also wrap your application in an element with the `dir` attribute:
+If you need to change the direction of the text at runtime, but React does not control the root HTML element, you may use the JS API:
+
+```js
+document.dir = 'rtl';
+```
+
+As an alternative to the above, you can also wrap your application (or part of it) in an element with the `dir` attribute.
+This, however, will not work correctly with portaled elements, such as Dialogs, as they will render outside of the element with the `dir` attribute.
+
+To fix the portaled components, add an explicit `dir` attribute to them:
 
 ```jsx
-function App() {
-  return (
-    <div dir="rtl">
-      <MyComponent />
-    </div>
-  );
-}
+<Dialog dir="rtl">
+  <MyComponent />
+</Dialog>
 ```
-
-This can be helpful for creating components to toggle language settings in the live application.
 
 ### 2. Theme
 

@@ -117,6 +117,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     sx,
     ...other
   } = props;
+  const sxColor = typeof sx === 'function' ? sx(theme).color : sx?.color;
 
   const {
     isFocusVisibleRef,
@@ -149,7 +150,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ...props,
     // It is too complex to support any types of `sx`.
     // Need to find a better way to get rid of the color manipulation for `textDecorationColor`.
-    color: (typeof sx === 'function' ? sx(theme).color : sx?.color) || color,
+    color: (typeof sxColor === 'function' ? sxColor(theme) : sxColor) || color,
     component,
     focusVisible,
     underline,
@@ -160,6 +161,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   return (
     <LinkRoot
+      color={color}
       className={clsx(classes.root, className)}
       classes={TypographyClasses}
       component={component}
@@ -168,7 +170,10 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       ref={handlerRef}
       ownerState={ownerState}
       variant={variant}
-      sx={[{ color: colorTransformations[color] || color }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[
+        ...(inProps.color ? [{ color: colorTransformations[color] || color }] : []),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...other}
     />
   );

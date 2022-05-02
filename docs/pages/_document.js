@@ -127,6 +127,22 @@ export default class MyDocument extends Document {
               '.mode-dark .only-dark-mode': {
                 display: 'block',
               },
+              '.plan-pro, .plan-premium': {
+                display: 'inline-block',
+                height: '1em',
+                width: '1em',
+                verticalAlign: 'middle',
+                marginLeft: '0.3em',
+                marginBottom: '0.08em',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+              },
+              '.plan-pro': {
+                backgroundImage: 'url(/static/x/pro.svg)',
+              },
+              '.plan-premium': {
+                backgroundImage: 'url(/static/x/premium.svg)',
+              },
             }}
           />
         </Head>

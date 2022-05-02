@@ -37,11 +37,11 @@ The Material Design team at Google has made the customization of their design sy
 
 ![Demo1](/static/blog/material-ui-v4-is-out/demo1.png)
 
-<p class="blog-description"><a href="https://mui.com/components/text-fields/#customized-inputs">live demo</a></p>
+<p class="blog-description"><a href="https://v4.mui.com/components/text-fields/#customized-inputs">live demo</a></p>
 
 ![Demo2](/static/blog/material-ui-v4-is-out/demo2.png)
 
-<p class="blog-description"><a href="https://mui.com/components/tabs/#customized-tabs">live demo</a></p>
+<p class="blog-description"><a href="https://v4.mui.com/components/tabs/#customized-tabs">live demo</a></p>
 
 ![Demo3](/static/blog/material-ui-v4-is-out/demo3.png)
 

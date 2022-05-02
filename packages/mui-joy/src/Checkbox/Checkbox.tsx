@@ -10,9 +10,10 @@ import { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxProps, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
+import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }) => {
-  const { checked, disabled, focusVisible, color, variant, size } = ownerState;
+  const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
 
   const slots = {
     root: [
@@ -24,8 +25,8 @@ const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    checkbox: ['checkbox', checked && 'checked', disabled && 'disabled'],
-    action: ['action', focusVisible && 'focusVisible'],
+    checkbox: ['checkbox', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    action: ['action', disableIcon && disabled && 'disabled', focusVisible && 'focusVisible'], // add disabled class to action element for displaying global variant
     input: ['input'],
     label: ['label'],
   };
@@ -54,16 +55,24 @@ const CheckboxRoot = styled('span', {
     '--Checkbox-gap': '0.625rem',
     fontSize: theme.vars.fontSize.lg,
   }),
-  position: 'relative',
+  ...(ownerState.label &&
+    !ownerState.disableIcon && {
+      // add some space at the end to not have focus overlapping the label
+      paddingInlineEnd: 'var(--Checkbox-gap)',
+    }),
+  position: ownerState.overlay ? 'initial' : 'relative',
   display: 'inline-flex',
-  justifyContent: 'center',
-  verticalAlign: 'middle',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
-  color: theme.vars.palette.text.primary,
   '&.Mui-disabled': {
-    color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+    color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
   },
+  ...(ownerState.disableIcon && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    '&.Mui-disabled': {
+      color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+    },
+  }),
 }));
 
 const CheckboxCheckbox = styled('span', {
@@ -80,26 +89,52 @@ const CheckboxCheckbox = styled('span', {
     justifyContent: 'center',
     alignItems: 'center',
     flexShrink: 0,
+    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    ...(ownerState.disableIcon && {
+      display: 'contents',
+    }),
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  ...(!ownerState.disableIcon
+    ? [
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ]
+    : []),
 ]);
 
 const CheckboxAction = styled('span', {
   name: 'MuiCheckbox',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: CheckboxProps }>(({ theme }) => ({
-  borderRadius: theme.vars.radius.xs,
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  bottom: 0,
-  right: 0,
-  ...theme.focus.default,
-}));
+})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
+  {
+    borderRadius: `var(--Checkbox-action-radius, ${
+      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+    })`,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    zIndex: 1, // The action element usually cover the area of nearest positioned parent
+    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    [theme.focus.selector]: theme.focus.default,
+  },
+  ...(ownerState.disableIcon
+    ? [
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ]
+    : []),
+]);
 
 const CheckboxInput = styled('input', {
   name: 'MuiCheckbox',
@@ -118,9 +153,18 @@ const CheckboxLabel = styled('label', {
   name: 'MuiCheckbox',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: CheckboxProps }>({
-  marginLeft: 'var(--Checkbox-gap)',
-});
+})<{ ownerState: CheckboxProps }>(({ ownerState }) => ({
+  flex: 1,
+  minWidth: 0,
+  ...(ownerState.disableIcon
+    ? {
+        zIndex: 1, // label should stay on top of the action.
+        pointerEvents: 'none', // makes hover ineffect.
+      }
+    : {
+        marginInlineStart: 'var(--Checkbox-gap)',
+      }),
+}));
 
 const defaultCheckedIcon = <CheckIcon />;
 const defaultIndeterminateIcon = <IndeterminateIcon />;
@@ -141,6 +185,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
+    disableIcon = false,
+    overlay,
     id: idOverride,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
@@ -172,13 +218,15 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const isCheckboxActive = checked || indeterminate;
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
-  const activeVariant = variant || 'contained';
+  const activeVariant = variant || 'solid';
   const inactiveVariant = variant || 'outlined';
 
   const ownerState = {
     ...props,
     checked,
     disabled,
+    disableIcon,
+    overlay,
     focusVisible,
     color: isCheckboxActive ? activeColor : inactiveColor,
     variant: isCheckboxActive ? activeVariant : inactiveVariant,
@@ -214,19 +262,21 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
             className={clsx(classes.input, componentsProps.input?.className)}
           />
         </CheckboxAction>
-        {indeterminate && !checked && indeterminateIcon}
-        {checked && checkedIcon}
-        {!checked && !indeterminate && uncheckedIcon}
+        {indeterminate && !checked && !disableIcon && indeterminateIcon}
+        {checked && !disableIcon && checkedIcon}
+        {!checked && !disableIcon && !indeterminate && uncheckedIcon}
       </CheckboxCheckbox>
       {label && (
-        <CheckboxLabel
-          {...componentsProps?.label}
-          htmlFor={id}
-          ownerState={ownerState}
-          className={clsx(classes.label, componentsProps.label?.className)}
-        >
-          {label}
-        </CheckboxLabel>
+        <TypographyContext.Provider value>
+          <CheckboxLabel
+            {...componentsProps?.label}
+            htmlFor={id}
+            ownerState={ownerState}
+            className={clsx(classes.label, componentsProps.label?.className)}
+          >
+            {label}
+          </CheckboxLabel>
+        </TypographyContext.Provider>
       )}
     </CheckboxRoot>
   );
@@ -268,20 +318,14 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    action: PropTypes.object,
+    checkbox: PropTypes.object,
     input: PropTypes.object,
+    label: PropTypes.object,
     root: PropTypes.object,
   }),
   /**
@@ -292,6 +336,11 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the checked icon is removed and the selected variant is applied on the `action` element instead.
+   * @default false
+   */
+  disableIcon: PropTypes.bool,
   /**
    * @ignore
    */
@@ -309,6 +358,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon: PropTypes.node,
+  /**
+   * The label element next to the checkbox.
+   */
+  label: PropTypes.node,
   /**
    * The `name` attribute of the input.
    */
@@ -334,6 +387,12 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   onFocusVisible: PropTypes.func,
   /**
+   * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
+   * This prop is useful for composing Checkbox with ListItem component.
+   * @default false
+   */
+  overlay: PropTypes.bool,
+  /**
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
@@ -346,8 +405,20 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The icon when `checked` is false.
+   */
+  uncheckedIcon: PropTypes.node,
+  /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined']),

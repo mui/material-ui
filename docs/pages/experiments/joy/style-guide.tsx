@@ -46,7 +46,7 @@ const ColorSchemePicker = () => {
             <Button
               key={modeId}
               size="sm"
-              variant={mode === modeId ? 'contained' : 'text'}
+              variant={mode === modeId ? 'solid' : 'plain'}
               onClick={() => {
                 setMode(modeId);
               }}
@@ -114,17 +114,19 @@ const PaletteTokens = () => {
                 {key}
               </summary>
 
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-                  gap: 2,
-                }}
-              >
-                {Object.entries(nestedObj).map(([nestedKey, value]) => (
-                  <ColorToken key={nestedKey} name={nestedKey} value={value as string} />
-                ))}
-              </Box>
+              {key !== 'mode' && key !== 'colorScheme' && (
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+                    gap: 2,
+                  }}
+                >
+                  {Object.entries(nestedObj).map(([nestedKey, value]) => (
+                    <ColorToken key={nestedKey} name={nestedKey} value={value as string} />
+                  ))}
+                </Box>
+              )}
             </details>
           );
         })}
