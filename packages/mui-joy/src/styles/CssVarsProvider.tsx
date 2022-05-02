@@ -61,6 +61,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     keys[0] === 'typography' ||
     keys[0] === 'variants' ||
     keys[0] === 'variantOverrides' ||
+    keys[0] === 'variantOverrideConfig' ||
     keys[0] === 'focus' ||
     keys[0] === 'breakpoints',
 });
