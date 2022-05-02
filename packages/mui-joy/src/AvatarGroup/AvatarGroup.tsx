@@ -47,15 +47,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     name: 'MuiAvatarGroup',
   });
 
-  const {
-    className,
-    color = 'neutral',
-    component = 'div',
-    size = 'md',
-    variant = 'light',
-    children,
-    ...other
-  } = props;
+  const { className, color, component = 'div', size = 'md', variant, children, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -111,7 +103,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -119,8 +111,16 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

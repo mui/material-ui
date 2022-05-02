@@ -161,7 +161,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     max,
     badgeContent: badgeContentProp = '',
     showZero = false,
-    variant: variantProp = 'contained',
+    variant: variantProp = 'solid',
     ...other
   } = props;
 
@@ -333,8 +333,16 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

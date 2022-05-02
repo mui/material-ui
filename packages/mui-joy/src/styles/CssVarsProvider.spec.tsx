@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CSSObject } from '@mui/system';
-import { CssVarsProvider, PaletteRange, PaletteVariant } from '@mui/joy/styles';
+import { CssVarsProvider, PaletteRange, extendTheme } from '@mui/joy/styles';
 
 // -----------------------------------
 // Extending palete
@@ -25,14 +25,14 @@ function App() {
 }
 
 function App2() {
-  // theme can be empty
+  // @ts-expect-error theme can't be empty
   return <CssVarsProvider theme={{}} />;
 }
 
 function App3() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         colorSchemes: {
           // `trueDark` is extended
           trueDark: {
@@ -43,7 +43,7 @@ function App3() {
             },
           },
         },
-      }}
+      })}
     />
   );
 }
@@ -51,12 +51,12 @@ function App3() {
 function App4() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         colorSchemes: {
           // @ts-expect-error `yellow` is not listed in ExtendedColorSchemes
           yellow: {},
         },
-      }}
+      })}
     />
   );
 }
@@ -64,7 +64,7 @@ function App4() {
 function App5() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         colorSchemes: {
           light: {
             palette: {
@@ -76,7 +76,7 @@ function App5() {
             },
           },
         },
-      }}
+      })}
     />
   );
 }
@@ -93,11 +93,11 @@ declare module '@mui/joy/styles' {
 function App6() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         radius: {
           xl2: '20px',
         },
-      }}
+      })}
     />
   );
 }
@@ -114,11 +114,11 @@ declare module '@mui/joy/styles' {
 function App7() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         shadow: {
           xl2: '0 0 20px 1px rgba(0,0,0,0.12)',
         },
-      }}
+      })}
     />
   );
 }
@@ -135,7 +135,7 @@ declare module '@mui/joy/styles' {
 function App8() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         focus: {
           bordered: {
             '&:after': {
@@ -146,7 +146,7 @@ function App8() {
             },
           },
         },
-      }}
+      })}
     />
   );
 }
@@ -165,23 +165,23 @@ function App9() {
   return (
     <React.Fragment>
       <CssVarsProvider
-        theme={{
+        theme={extendTheme({
           typography: {
             callout: {
               fontSize: '12px',
             },
           },
-        }}
+        })}
       />
       <CssVarsProvider
-        theme={{
+        theme={extendTheme({
           typography: {
             // @ts-expect-error 'h1' is removed
             h1: {
               fontSize: '12px',
             },
           },
-        }}
+        })}
       />
     </React.Fragment>
   );

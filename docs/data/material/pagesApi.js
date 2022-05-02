@@ -13,6 +13,7 @@ module.exports = [
   { pathname: '/material-ui/api/badge' },
   { pathname: '/material-ui/api/bottom-navigation' },
   { pathname: '/material-ui/api/bottom-navigation-action' },
+  { pathname: '/material-ui/api/box' },
   { pathname: '/material-ui/api/breadcrumbs' },
   { pathname: '/material-ui/api/button' },
   { pathname: '/material-ui/api/button-base' },
