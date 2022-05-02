@@ -18,17 +18,20 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description: 'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
+    description:
+      'Get all the MUI component libraries, MIT-licensed, open source/open core, and free forever.',
   },
   pro: {
     color: 'blue',
     title: 'Pro',
-    description: 'Best for developers building data-rich applications with essential features for handling a high volume of data.',
+    description:
+      'Unlock essential features for building data-rich applications with complex use cases.',
   },
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Best for developers building data-rich applications with the most advanced UX use cases.',
+    description:
+      'Access the most advanced features necessary for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
@@ -102,7 +105,6 @@ export function PlanPrice(props: PlanPriceProps) {
           <Typography variant="body2" color="text.secondary">
             / dev / month.
           </Typography>
-          
         </Box>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
           Billed annually at $228.
@@ -145,8 +147,8 @@ export function PlanPrice(props: PlanPriceProps) {
         </Typography>
       </Box>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
-      <Typography variant="body2" color="text.secondary">
-            Billed annually at $444.
+        <Typography variant="body2" color="text.secondary">
+          Billed annually at $444.
         </Typography>
         <Link href="#early-bird">* Early bird special.</Link>
         <br />
@@ -876,14 +878,14 @@ export default function PricingTable({
               variant="outlined"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 'auto', mb:2 }}
+              sx={{ py: 1, mt: 'auto', mb: 2 }}
             >
               Get started
             </Button>
           </Box>
           <ColumnHeadHighlight>
             <Recommended />
-            <Box >
+            <Box>
               <PlanName plan="pro" />
               <PlanPrice plan="pro" />
             </Box>
