@@ -88,7 +88,7 @@ export default function PricingList() {
         sx={{
           mb: 2,
           position: 'sticky',
-          top: 63,
+          top: 55,
           bgcolor: 'background.paper',
           zIndex: 1,
           mx: { xs: -2, sm: -3 },

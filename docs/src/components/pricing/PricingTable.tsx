@@ -65,7 +65,7 @@ export function PlanName({
         </Typography>
       )}
       {!disableDescription && (
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1, minHeight: { md: 63 } }}>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, minHeight: { md: 63 } }}>
           {description}
         </Typography>
       )}
@@ -82,7 +82,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   if (plan === 'community') {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
         <Typography variant="h4" component="div" fontWeight="bold" color="success.600">
           $0
         </Typography>
@@ -97,7 +97,6 @@ export function PlanPrice(props: PlanPriceProps) {
     return (
       <div>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-          <Box sx={{ width: 10 }} />
           <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
             $15
           </Typography>
@@ -151,7 +150,6 @@ export function PlanPrice(props: PlanPriceProps) {
           Billed annually at $444.
         </Typography>
         <Link href="#early-bird">* Early bird special.</Link>
-        <br />
       </Typography>
     </div>
   );
@@ -249,7 +247,7 @@ const ColumnHeadHighlight = (props: BoxProps) => (
       borderRadius: '10px 10px 0 0',
       borderWidth: '1px 1px 0 1px',
       borderStyle: 'solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
       bgcolor: (theme) =>
         theme.palette.mode === 'dark'
           ? alpha(theme.palette.primaryDark[900], 0.5)
@@ -268,8 +266,8 @@ const Recommended = (props: BoxProps) => (
       p: '2px 8px',
       border: '1px solid',
       borderRadius: 2,
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'primary.200'),
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.50'),
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100'),
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'primary.50'),
       position: 'absolute',
       top: 0,
       left: 20,
@@ -294,7 +292,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       ...(highlighted && {
         borderWidth: '0 1px 0 1px',
         borderStyle: 'solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
         bgcolor: (theme) =>
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[900], 0.5)
@@ -878,7 +876,7 @@ export default function PricingTable({
               variant="outlined"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 'auto', mb: 2 }}
+              sx={{ py: 1, mt: 'auto' }}
             >
               Get started
             </Button>
@@ -896,7 +894,7 @@ export default function PricingTable({
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 3 }}
+              sx={{ py: 1, mt: 2 }}
             >
               Buy now
             </Button>
