@@ -1,5 +1,5 @@
 import { CSSObject } from '@mui/system';
-import { createGetCssVar, JoyThemeInput } from '@mui/joy/styles';
+import { createGetCssVar, extendTheme } from '@mui/joy/styles';
 
 declare module '@mui/joy/styles' {
   interface PaletteRange {
@@ -24,12 +24,12 @@ declare module '@mui/joy/styles' {
     tableLabel: React.CSSProperties;
   }
 
-  interface VariantLight {
+  interface VariantSoft {
     secondary: CSSObject;
     alternate: CSSObject;
   }
 
-  interface VariantContained {
+  interface VariantSolid {
     secondary: CSSObject;
     alternate: CSSObject;
   }
@@ -37,7 +37,7 @@ declare module '@mui/joy/styles' {
 
 const getCssVar = createGetCssVar();
 
-const strapiTheme: JoyThemeInput = {
+const strapiTheme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
@@ -47,10 +47,10 @@ const strapiTheme: JoyThemeInput = {
           500: '#7B79FF',
           200: '#D9D8FF',
           100: '#F0F0FF',
-          lightColor: getCssVar('palette-primary-600'),
-          lightActiveBg: getCssVar('palette-primary-200'),
-          containedHoverBg: getCssVar('palette-primary-500'),
-          containedActiveBg: getCssVar('palette-primary-700'),
+          softColor: getCssVar('palette-primary-600'),
+          softActiveBg: getCssVar('palette-primary-200'),
+          solidHoverBg: getCssVar('palette-primary-500'),
+          solidActiveBg: getCssVar('palette-primary-700'),
           outlinedColor: getCssVar('palette-primary-600'),
           outlinedBorder: getCssVar('palette-primary-200'),
           outlinedBg: getCssVar('palette-primary-100'),
@@ -65,8 +65,8 @@ const strapiTheme: JoyThemeInput = {
           500: '#5CB176',
           200: '#C6F0C2',
           100: '#EAFBE7',
-          containedHoverBg: getCssVar('palette-success-500'),
-          containedActiveBg: getCssVar('palette-success-700'),
+          solidHoverBg: getCssVar('palette-success-500'),
+          solidActiveBg: getCssVar('palette-success-700'),
           outlinedColor: getCssVar('palette-success-600'),
           outlinedBorder: getCssVar('palette-success-200'),
           outlinedBg: getCssVar('palette-success-100'),
@@ -81,8 +81,8 @@ const strapiTheme: JoyThemeInput = {
           500: '#EE5E52',
           200: '#F5C0B8',
           100: '#FCECEA',
-          containedHoverBg: getCssVar('palette-danger-500'),
-          containedActiveBg: getCssVar('palette-danger-700'),
+          solidHoverBg: getCssVar('palette-danger-500'),
+          solidActiveBg: getCssVar('palette-danger-700'),
           outlinedColor: getCssVar('palette-danger-600'),
           outlinedBorder: getCssVar('palette-danger-200'),
           outlinedBg: getCssVar('palette-danger-100'),
@@ -105,10 +105,10 @@ const strapiTheme: JoyThemeInput = {
           500: '#66B7F1',
           200: '#B8E1FF',
           100: '#EAF5FF',
-          lightBg: 'var(--joy-palette-secondary-100)',
-          lightColor: 'var(--joy-palette-secondary-700)',
-          containedBg: 'var(--joy-palette-secondary-500)',
-          containedColor: '#fff',
+          softBg: 'var(--joy-palette-secondary-100)',
+          softColor: 'var(--joy-palette-secondary-700)',
+          solidBg: 'var(--joy-palette-secondary-500)',
+          solidColor: '#fff',
         },
         // 💡 custom palette, it is not required to add all tokens
         alternate: {
@@ -117,10 +117,10 @@ const strapiTheme: JoyThemeInput = {
           500: '#AC73E6',
           200: '#E0C1F4',
           100: '#F6ECFC',
-          lightBg: 'var(--joy-palette-alternate-100)',
-          lightColor: 'var(--joy-palette-alternate-700)',
-          containedBg: 'var(--joy-palette-alternate-500)',
-          containedColor: '#fff',
+          softBg: 'var(--joy-palette-alternate-100)',
+          softColor: 'var(--joy-palette-alternate-700)',
+          solidBg: 'var(--joy-palette-alternate-500)',
+          solidColor: '#fff',
         },
         neutral: {
           900: '#212134',
@@ -196,24 +196,24 @@ const strapiTheme: JoyThemeInput = {
     },
     // 💡 Able to use variant with custom color
     // use case: IconFrame
-    light: {
+    soft: {
       secondary: {
-        color: 'var(--joy-palette-secondary-lightColor)',
-        backgroundColor: 'var(--joy-palette-secondary-lightBg)',
+        color: 'var(--joy-palette-secondary-softColor)',
+        backgroundColor: 'var(--joy-palette-secondary-softBg)',
       },
       alternate: {
-        color: 'var(--joy-palette-alternate-lightColor)',
-        backgroundColor: 'var(--joy-palette-alternate-lightBg)',
+        color: 'var(--joy-palette-alternate-softColor)',
+        backgroundColor: 'var(--joy-palette-alternate-softBg)',
       },
     },
-    contained: {
+    solid: {
       secondary: {
-        color: 'var(--joy-palette-secondary-containedColor)',
-        backgroundColor: 'var(--joy-palette-secondary-containedBg)',
+        color: 'var(--joy-palette-secondary-solidColor)',
+        backgroundColor: 'var(--joy-palette-secondary-solidBg)',
       },
       alternate: {
-        color: 'var(--joy-palette-alternate-containedColor)',
-        backgroundColor: 'var(--joy-palette-alternate-containedBg)',
+        color: 'var(--joy-palette-alternate-solidColor)',
+        backgroundColor: 'var(--joy-palette-alternate-solidBg)',
       },
     },
   },
@@ -298,11 +298,11 @@ const strapiTheme: JoyThemeInput = {
   components: {
     MuiCheckbox: {
       styleOverrides: {
-        root: {
+        checkbox: {
           borderColor: getCssVar('palette-neutral-300'),
           '&.Mui-checked': {
             '&:hover': {
-              backgroundColor: getCssVar('palette-primary-containedBg'),
+              backgroundColor: getCssVar('palette-primary-solidBg'),
             },
           },
           '&.Mui-disabled': {
@@ -396,7 +396,7 @@ const strapiTheme: JoyThemeInput = {
             ...(ownerState.variant === 'outlined' && {
               '&:hover': {
                 borderColor: theme.vars.palette.danger[600],
-                backgroundColor: theme.vars.palette.danger.textHoverBg,
+                backgroundColor: theme.vars.palette.danger.plainHoverBg,
               },
             }),
           }),
@@ -459,6 +459,6 @@ const strapiTheme: JoyThemeInput = {
       },
     },
   },
-};
+});
 
 export default strapiTheme;

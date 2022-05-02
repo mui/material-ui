@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import Chip from '@mui/joy/Chip';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
@@ -19,7 +20,6 @@ import Code from '@mui/icons-material/Code';
 import PlayArrow from '@mui/icons-material/PlayArrowRounded';
 import HistoryEdu from '@mui/icons-material/HistoryEdu';
 // experiment components
-import Badge from 'docs/src/_experiment/joy/Badge';
 import { IconFrame } from 'docs/src/_experiment/joy/Sheet';
 import { ToggleButton, ToggleButtonGroup } from 'docs/src/_experiment/joy/Toggle';
 import SelectField from 'docs/src/_experiment/joy/SelectField';
@@ -183,10 +183,14 @@ export default function Strapi() {
           <Switch defaultChecked />
           <Switch />
         </Box>
-        <Typography level="header2">Badge (custom)</Typography>
+        <Typography level="header2">Chip (custom)</Typography>
         <Box>
-          <Badge color="neutral">Text</Badge>
-          <Badge>Text</Badge>
+          <Chip variant="soft" color="neutral" size="sm">
+            Text
+          </Chip>
+          <Chip variant="soft" size="sm">
+            Text
+          </Chip>
         </Box>
         <Typography level="header2">ToggleButton (custom)</Typography>
         <Box>

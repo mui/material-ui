@@ -26,9 +26,9 @@ const ToggleButtonRoot = styled('button')(({ theme, ownerState }) => [
     borderColor: theme.vars.palette.neutral.outlinedBorder,
     ...theme.typography.smallButtonText,
     ...(!ownerState.pressed && {
-      color: theme.vars.palette.neutral.textColor,
+      color: theme.vars.palette.neutral.plainColor,
       backgroundColor: theme.vars.palette.background.body,
-      ...theme.variants.lightHover.neutral,
+      ...theme.variants.softHover.neutral,
     }),
   },
   ownerState.pressed && {
@@ -44,8 +44,8 @@ const ToggleButtonRoot = styled('button')(({ theme, ownerState }) => [
       borderLeftColor: theme.vars.palette[ownerState.color].outlinedBorder,
     },
   },
-  ownerState.pressed && theme.variants.light[ownerState.color],
-  ownerState.pressed && theme.variants.lightHover[ownerState.color],
+  ownerState.pressed && theme.variants.soft[ownerState.color],
+  ownerState.pressed && theme.variants.softHover[ownerState.color],
 ]);
 
 export const ToggleButton = ({ color = 'primary', pressed = false, ...props }) => {

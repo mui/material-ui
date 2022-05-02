@@ -20,7 +20,7 @@ export default function SettingNav({ activeIndex }: { activeIndex?: number }) {
     }
     return {
       selected: true,
-      variant: 'light' as const,
+      variant: 'soft' as const,
     };
   };
   return (

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
+import Badge from '@mui/joy/Badge';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
@@ -16,7 +17,6 @@ import PermMedia from '@mui/icons-material/PermMedia';
 import Extension from '@mui/icons-material/Extension';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import Settings from '@mui/icons-material/Settings';
-import Badge from 'docs/src/_experiment/joy/Badge';
 
 export default function MainNav({ activeIndex }: { activeIndex?: number }) {
   const activate = (index: number) => {
@@ -26,7 +26,7 @@ export default function MainNav({ activeIndex }: { activeIndex?: number }) {
     }
     return {
       selected: true,
-      variant: 'light' as const,
+      variant: 'soft' as const,
     };
   };
   return (
@@ -117,19 +117,11 @@ export default function MainNav({ activeIndex }: { activeIndex?: number }) {
         </ListItem>
         <ListItem>
           <ListItemButton {...activate(6)} sx={{ position: 'relative' }}>
-            <Badge
-              variant="solid"
-              sx={{
-                position: 'absolute',
-                top: '-6px',
-                right: '-8px',
-              }}
-            >
-              2
+            <Badge size="sm" variant="solid" badgeContent={2} sx={{ '--Badge-radius': '4px' }}>
+              <ListItemDecorator>
+                <Settings />
+              </ListItemDecorator>
             </Badge>
-            <ListItemDecorator>
-              <Settings />
-            </ListItemDecorator>
           </ListItemButton>
         </ListItem>
       </List>

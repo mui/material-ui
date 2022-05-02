@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import Box from '@mui/joy/Box';
+import Chip from '@mui/joy/Chip';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
@@ -10,7 +11,6 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 import Search from '@mui/icons-material/Search';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
-import Badge from '../../joy/Badge';
 
 export default function ContentNav({ activeIndex }: { activeIndex?: number }) {
   const activate = (index: number) => {
@@ -20,7 +20,7 @@ export default function ContentNav({ activeIndex }: { activeIndex?: number }) {
     }
     return {
       selected: true,
-      variant: 'light' as const,
+      variant: 'soft' as const,
     };
   };
   const dot = (
@@ -95,9 +95,14 @@ export default function ContentNav({ activeIndex }: { activeIndex?: number }) {
               >
                 Collection types <ArrowDropDown />
               </Link>
-              <Badge variant="soft" color="neutral" sx={{ ml: 'auto', mr: 1.5 }}>
+              <Chip
+                size="sm"
+                variant="soft"
+                color="neutral"
+                sx={{ ml: 'auto', mr: 1.5, alignSelf: 'center' }}
+              >
                 6
-              </Badge>
+              </Chip>
             </ListItem>
             <List aria-labelledby="collection-types" sx={{ '--List-gap': '0px' }}>
               <ListItem>
@@ -141,9 +146,14 @@ export default function ContentNav({ activeIndex }: { activeIndex?: number }) {
               >
                 Single types <ArrowDropDown />
               </Link>
-              <Badge variant="soft" color="neutral" sx={{ ml: 'auto', mr: 1.5 }}>
+              <Chip
+                size="sm"
+                variant="soft"
+                color="neutral"
+                sx={{ ml: 'auto', mr: 1.5, alignSelf: 'center' }}
+              >
                 6
-              </Badge>
+              </Chip>
             </ListItem>
             <List aria-labelledby="single-types" sx={{ '--List-gap': '0px' }}>
               <ListItem>
