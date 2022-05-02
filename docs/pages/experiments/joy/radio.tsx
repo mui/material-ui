@@ -50,7 +50,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
-  variant: ['outlined', 'light', 'contained'],
+  variant: ['outlined', 'soft', 'solid'],
 } as const;
 
 export default function JoyRadio() {
@@ -273,7 +273,7 @@ export default function JoyRadio() {
               Display
             </Typography>
             <Sheet
-              variant="light"
+              variant="soft"
               sx={{ p: 2, display: 'flex', gap: 2, my: 2, borderRadius: '18px' }}
             >
               <Typography level="body3" color="text.primary">
@@ -581,7 +581,7 @@ export default function JoyRadio() {
         >
           <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="website" value="website" checkedIcon={<CheckCircle />} />
-            <Avatar variant="light" size="lg" />
+            <Avatar variant="soft" size="lg" />
             <Typography
               htmlFor="website"
               component="label"
@@ -594,7 +594,7 @@ export default function JoyRadio() {
           </Sheet>
           <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="documents" value="documents" checkedIcon={<CheckCircle />} />
-            <Avatar variant="light" size="lg" />
+            <Avatar variant="soft" size="lg" />
             <Typography
               htmlFor="documents"
               component="label"
@@ -607,7 +607,7 @@ export default function JoyRadio() {
           </Sheet>
           <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="social-account" value="social-account" checkedIcon={<CheckCircle />} />
-            <Avatar variant="light" size="lg" />
+            <Avatar variant="soft" size="lg" />
             <Typography
               htmlFor="social-account"
               component="label"

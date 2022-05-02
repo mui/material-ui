@@ -69,7 +69,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'solid'
      */
     variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
   };

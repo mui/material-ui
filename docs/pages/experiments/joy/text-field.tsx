@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, extendTheme, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -39,29 +39,7 @@ const ColorSchemePicker = () => {
 
 export default function JoyTypography() {
   return (
-    <CssVarsProvider
-      theme={extendTheme({
-        components: {
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'xl',
-            },
-            styleOverrides: {
-              root: ({ ownerState, theme }) => ({
-                ...(ownerState.fontSize &&
-                  ownerState.fontSize !== 'inherit' && {
-                    fontSize: theme.vars.fontSize[ownerState.fontSize],
-                  }),
-                ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: theme.vars.palette[ownerState.color].textColor,
-                  }),
-              }),
-            },
-          },
-        },
-      })}
-    >
+    <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 2 }}>
@@ -86,7 +64,7 @@ export default function JoyTypography() {
           />
 
           <TextField
-            variant="light"
+            variant="soft"
             color="primary"
             label="Label"
             placeholder="Placeholder"
@@ -136,7 +114,7 @@ export default function JoyTypography() {
             label="Label"
             required
             error
-            variant="light"
+            variant="soft"
             size="sm"
             placeholder="Placeholder"
             defaultValue="Hello world"

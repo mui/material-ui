@@ -134,7 +134,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     action,
     component = 'button',
     color = 'primary',
-    variant = 'contained',
+    variant = 'solid',
     size = 'md',
     fullWidth = false,
     startIcon: startIconProp,
@@ -283,7 +283,7 @@ Button.propTypes /* remove-proptypes */ = {
   tabIndex: PropTypes.number,
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

@@ -16,7 +16,7 @@ describe('<ChipDelete />', () => {
     muiName: 'MuiChipDelete',
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'light' },
+    testVariantProps: { variant: 'soft' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
@@ -32,16 +32,16 @@ describe('<ChipDelete />', () => {
 
     it('change variant according to the Chip', () => {
       const { getByRole } = render(
-        <Chip variant="light">
+        <Chip variant="soft">
           <ChipDelete />
         </Chip>,
       );
-      expect(getByRole('button')).to.have.class(classes.variantContained);
+      expect(getByRole('button')).to.have.class(classes.variantSolid);
     });
 
     it('use variant prop if provided', () => {
       const { getByRole } = render(
-        <Chip variant="light">
+        <Chip variant="soft">
           <ChipDelete variant="outlined" />
         </Chip>,
       );
