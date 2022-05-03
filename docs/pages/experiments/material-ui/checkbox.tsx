@@ -61,7 +61,8 @@ export default function CssVarsTemplate() {
 
           <Box>
             <FormGroup>
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+              <FormControlLabel control={<Checkbox />} label="Default" />
+              <FormControlLabel control={<Checkbox defaultChecked />} label="Auto Checked" />
               <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
             </FormGroup>
           </Box>
