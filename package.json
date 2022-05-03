@@ -122,7 +122,7 @@
     "cpy-cli": "^4.1.0",
     "cross-env": "^7.0.3",
     "danger": "^11.0.2",
-    "dom-accessibility-api": "^0.5.13",
+    "dom-accessibility-api": "^0.5.14",
     "dtslint": "^4.2.1",
     "enzyme": "^3.11.0",
     "eslint": "^7.32.0",
