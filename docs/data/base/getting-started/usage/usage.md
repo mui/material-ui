@@ -23,7 +23,7 @@ function App() {
 ```
 
 You can play around with this code in the interactive Code Sandbox demo below.
-Try adding an `InputUnstyled` component inside of the `<div>`:
+Try importing an `InputUnstyled` component and adding it to the `<div>`:
 
 {{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
 
