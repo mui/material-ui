@@ -1,5 +1,70 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.6.4
+
+<!-- generated comparing v5.6.3..master -->
+
+_May 2, 2022_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 💅 5 Material UI components were updated to support CSS variables by @ZeeshanTamboli & @vicasas
+- And more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.6.4`
+
+- &#8203;<!-- 37 -->[Accordion] Add support for CSS variables (#32542) @ZeeshanTamboli
+- &#8203;<!-- 36 -->[AvatarGroup] Add support for CSS variables (#32507) @vicasas
+- &#8203;<!-- 35 -->[Badge] Add support for CSS variables (#32516) @vicasas
+- &#8203;<!-- 34 -->[BottomNavigation] Add support for CSS variables (#32517) @vicasas
+- &#8203;<!-- 33 -->[CircularProgress] Add support for CSS variables (#32543) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[FilledInput] Fix type error from undefined `color` (#32258) @hbjORbj
+- &#8203;<!-- 02 -->[l10n] Fix typo in csCZ translation of Pagination component (#32509) @Martin005
+- &#8203;<!-- 01 -->[Tabs] Fix `TabIndicatorProps` prop missing `sx` prop (#32503) @b-novikov-ipersonality
+
+### `@mui/codemod@5.6.4`
+
+- &#8203;<!-- 32 -->[codemod] Leave numeric arguments to breakpoints functions unchanged (#32426) @ryancogswell
+- &#8203;<!-- 31 -->[codemod] Allow for line breaks within theme.spacing parentheses (#32432) @ryancogswell
+
+### `@mui/joy@5.0.0-alpha.26`
+
+- &#8203;<!-- 06 -->[Joy] Miscellaneous fixes (#32541) @siriwatknp
+- &#8203;<!-- 05 -->[Joy] Add `extendSxProp` to Link (#32505) @siriwatknp
+- &#8203;<!-- 04 -->[Joy] Rename variants (#32489) @siriwatknp
+- &#8203;<!-- 03 -->[Joy] Add `extendTheme` (#32450) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 30 -->[docs] SEO fixes (#32515) @oliviertassinari
+- &#8203;<!-- 29 -->[docs] Replace `Overriding nested component styles` anchor link with text (#32487) @ZeeshanTamboli
+- &#8203;<!-- 28 -->[docs] Update the list of external domains (#32514) @oliviertassinari
+- &#8203;<!-- 27 -->[docs] Update Material UI code snippets for React 18 (#32361) @samuelsycamore
+- &#8203;<!-- 26 -->[docs] Base TextareaAutosize style revisions and final review (#32481) @samuelsycamore
+- &#8203;<!-- 25 -->[docs] Base ClickAwayListener style revisions and final review (#32156) @samuelsycamore
+- &#8203;<!-- 24 -->[docs] Base Button style revisions and final review (#32380) @samuelsycamore
+- &#8203;<!-- 23 -->[docs] Base NoSsr style revisions and final review (#32254) @samuelsycamore
+- &#8203;<!-- 22 -->[docs] Correctly capitalize Ctrl @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Fix styling in `Basic Popper` demo on the MUI Base docs (#32488) @ZeeshanTamboli
+- &#8203;<!-- 20 -->[docs] Add "Overview" page to Base docs (#32310) @samuelsycamore
+- &#8203;<!-- 19 -->[docs] Add copy button to code block (#32390) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Base Tabs style revisions and final review (#32423) @samuelsycamore
+- &#8203;<!-- 17 -->[docs] Base Popper style revisions and final review (#32412) @samuelsycamore
+- &#8203;<!-- 16 -->[docs] Improve sidenav for MUI X (#32435) @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Don't redirect on deploy preview (#32399) @m4theushw
+- &#8203;<!-- 14 -->[docs] A few SEO fixes (#32431) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Update links to the new Group & Pivot pages (#32410) @flaviendelangle
+- &#8203;<!-- 12 -->[docs] Support callouts (#32402) @siriwatknp
+- &#8203;<!-- 11 -->[docs] Fix import path in the Snackbar article #32462 @mongolyy
+- &#8203;<!-- 10 -->[docs] Fix grammar mistake in shadows.md (#32454) @HexM7
+- &#8203;<!-- 09 -->[docs] Improve unstyled button docs (#32429) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 08 -->[experiment] Add template for testing Material UI components with CSS variables (#32500) @siriwatknp
+
+All contributors of this release in alphabetical order: @b-novikov-ipersonality, @flaviendelangle, @hbjORbj, @HexM7, @m4theushw, @Martin005, @mongolyy, @oliviertassinari, @ryancogswell, @samuelsycamore, @siriwatknp, @vicasas, @ZeeshanTamboli
+
 ## 5.6.3
 
 <!-- generated comparing v5.6.2..master -->

@@ -456,20 +456,22 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   'data-grid/tree-data': (
-    <ColumnHead label="Tree data" nested href="/x/react-data-grid/group-pivot/#tree-data" />
+    <ColumnHead label="Tree data" nested href="/x/react-data-grid/tree-data/" />
   ),
   'data-grid/master-detail': (
-    <ColumnHead label="Master detail" nested href="/x/react-data-grid/group-pivot/#master-detail" />
+    <ColumnHead label="Master detail" nested href="/x/react-data-grid/master-detail/" />
   ),
   'data-grid/grouping': (
-    <ColumnHead label="Grouping" nested href="/x/react-data-grid/group-pivot/#grouping" />
+    <ColumnHead
+      label="Row grouping"
+      nested
+      href="https://mui.com/x/react-data-grid/row-grouping/"
+    />
   ),
   'data-grid/aggregation': (
-    <ColumnHead label="Aggregation" nested href="/x/react-data-grid/group-pivot/#aggregation" />
+    <ColumnHead label="Aggregation" nested href="/x/react-data-grid/aggregation/" />
   ),
-  'data-grid/pivoting': (
-    <ColumnHead label="Pivoting" nested href="/x/react-data-grid/group-pivot/#pivoting" />
-  ),
+  'data-grid/pivoting': <ColumnHead label="Pivoting" nested href="/x/react-data-grid/pivoting/" />,
   'data-grid/accessibility': (
     <ColumnHead label="Accessibility" nested href="/x/react-data-grid/accessibility/" />
   ),
