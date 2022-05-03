@@ -114,6 +114,7 @@ import '@mui/material/Grid';
 import '@mui/material/styles';
 import '@mui/lab/AdapterDateFns';
 import '@mui/lab';
+import 'exceljs';
 `;
 
     expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
@@ -125,6 +126,7 @@ import '@mui/lab';
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
       'date-fns': 'latest',
+      exceljs: 'latest',
     });
   });
 
