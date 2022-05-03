@@ -19,13 +19,13 @@ _(Resize the window to see the responsive breakpoints)_
 
 With npm:
 
-```jsx
+```sh
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
 With yarn:
 
-```jsx
+```sh
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
