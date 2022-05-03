@@ -1,27 +1,26 @@
-# Styling MUI Base components
+# Customizing MUI Base components
 
-<p class="description">Styling</p>
+<p class="description"></p>
 
-There are several levels of customization available:
 
-## Applying custom CSS rules to unstyled components
+## Applying custom CSS rules
 
-If you're happy with the structure of the HTML rendered by the unstyled component by default, you can apply custom styles to the classes used by the component.
+If you're happy with the default structure of a component's rendered HTML, you can apply custom styles to the component's classes.
+
 Each component has its own set of classes.
-Some are static - present on different parts of the component all the time, and some are applied conditionally (like `Mui-disabled`, applied when a component is disabled).
+Some classes are **static**, which is to say that they are always present on the component. 
+Others are applied **conditionally**—like `Mui-disabled`, for example. which is only present when a component is disabled.
 
 Each component's API documentation lists all classes that the component uses.
-Additionally, you can import a `[componentName]Classes` object that describes all the classes a given component uses (see the demo below for an example).
+Additionally, you can import a `[componentName]Classes` object that describes all the classes a given component uses, as the following demo illustrates:
 
 {{"demo": "StylingCustomCss.js"}}
 
-### Overriding the unstyled components' slots
+## Overriding subcomponent slots
 
-If you don't want to rely on default components, you can override them with your own.
-This makes it possible to provide a styled component.
-Each unstyled component has a specific set of "slots" - that is subcomponents that you can override.
+If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `components` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
 
-Let's take a [SwitchUnstyled](/base/api/switch-unstyled/) as an example.
+The following demo uses the [SwitchUnstyled](/base/api/switch-unstyled/) component to .
 It has three slots: `Root`, `Thumb`, and `Input`.
 The demo below shows how to create a styled component (using [System](/system/styled/) in this case, but it could well be any other solution)
 

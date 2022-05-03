@@ -8,7 +8,7 @@ const pages = [
       { pathname: '/base/getting-started/overview', title: 'Overview' },
       { pathname: '/base/getting-started/installation', title: 'Installation' },
       { pathname: '/base/getting-started/usage', title: 'Usage' },
-      { pathname: '/base/getting-started/styling', title: 'Styling' },
+      { pathname: '/base/getting-started/customization', title: 'Customization' },
     ],
   },
   {
