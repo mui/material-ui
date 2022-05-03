@@ -1,10 +1,10 @@
-# Anatomy
+# MUI Base - Component anatomy
 
-<p class="description">Anatomy</p>
+<p class="description">MUI Base components each have their own API, but all share a few common props.</p>
 
-## Anatomy of an unstyled component
+## Shared props
 
-While each component has its own API, there are a few props common to all of them:
+The following props can be passed to all Base components:
 
 - `components` - an object that allows you to override subcomponents (slots) used by the unstyled "host" component. Each host component will at least have the `Root` slot. Many complex components have more slots. You can either provide a custom component or an HTML tag there.
 

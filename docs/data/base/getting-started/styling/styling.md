@@ -1,4 +1,4 @@
-# Styling the unstyled
+# Styling MUI Base components
 
 <p class="description">Styling</p>
 
