@@ -106,7 +106,7 @@ const Circle = ({
         display: 'inline-flex',
         borderRadius: '40px',
         p: '0.5rem',
-        ...theme.variants.light[color],
+        ...theme.variants.soft[color],
       }),
       ...(Array.isArray(sxProp) ? sxProp : [sxProp]),
     ]}
@@ -179,7 +179,7 @@ function Gmail() {
       <ListItem>
         <ListItemButton
           selected={index === 0}
-          variant={index === 0 ? 'light' : 'text'}
+          variant={index === 0 ? 'soft' : 'plain'}
           color={index === 0 ? 'danger' : undefined}
           onClick={() => setIndex(0)}
         >
@@ -195,7 +195,7 @@ function Gmail() {
       <ListItem nested>
         <ListItemButton
           selected={index === 1}
-          variant={index === 1 ? 'light' : 'text'}
+          variant={index === 1 ? 'soft' : 'plain'}
           color={index === 1 ? 'info' : undefined}
           onClick={() => setIndex(1)}
         >
@@ -209,7 +209,7 @@ function Gmail() {
           <ListItem>
             <ListItemButton
               selected={index === 2}
-              variant={index === 2 ? 'light' : 'text'}
+              variant={index === 2 ? 'soft' : 'plain'}
               color={index === 2 ? 'primary' : undefined}
               onClick={() => setIndex(2)}
             >
@@ -223,7 +223,7 @@ function Gmail() {
           <ListItem>
             <ListItemButton
               selected={index === 3}
-              variant={index === 3 ? 'light' : 'text'}
+              variant={index === 3 ? 'soft' : 'plain'}
               color={index === 3 ? 'warning' : undefined}
               onClick={() => setIndex(3)}
             >
@@ -311,23 +311,23 @@ function MuiNav() {
         '--joy-palette-text-primary': theme.vars.palette.neutral[900],
         '--joy-palette-text-secondary': theme.vars.palette.neutral[700],
         '--joy-palette-text-tertiary': theme.vars.palette.neutral[600],
-        '--joy-palette-neutral-textHoverBg': theme.vars.palette.neutral[50],
-        '--joy-palette-neutral-textActiveBg': theme.vars.palette.neutral[50],
-        '--joy-palette-primary-textColor': theme.vars.palette.primary[500],
-        '--joy-palette-primary-lightColor': theme.vars.palette.primary[500],
-        '--joy-palette-primary-lightBg': theme.vars.palette.primary[50],
-        '--joy-palette-primary-lightHoverBg': 'rgba(0, 127, 255, 0.12)',
-        '--joy-palette-primary-lightActiveBg': 'rgba(0, 127, 255, 0.12)',
+        '--joy-palette-neutral-plainHoverBg': theme.vars.palette.neutral[50],
+        '--joy-palette-neutral-plainActiveBg': theme.vars.palette.neutral[50],
+        '--joy-palette-primary-plainColor': theme.vars.palette.primary[500],
+        '--joy-palette-primary-softColor': theme.vars.palette.primary[500],
+        '--joy-palette-primary-softBg': theme.vars.palette.primary[50],
+        '--joy-palette-primary-softHoverBg': 'rgba(0, 127, 255, 0.12)',
+        '--joy-palette-primary-softActiveBg': 'rgba(0, 127, 255, 0.12)',
         '[data-mui-color-scheme="dark"] &': {
           '--joy-palette-text-primary': '#fff',
           '--joy-palette-text-secondary': theme.vars.palette.neutral[400],
-          '--joy-palette-neutral-textHoverBg': 'rgba(19, 47, 76, 0.4)',
-          '--joy-palette-neutral-textActiveBg': 'rgba(19, 47, 76, 0.4)',
-          '--joy-palette-primary-textColor': theme.vars.palette.primary[400],
-          '--joy-palette-primary-lightColor': theme.vars.palette.primary[300],
-          '--joy-palette-primary-lightBg': '#132f4c',
-          '--joy-palette-primary-lightHoverBg': 'rgba(51, 153, 255, 0.24)',
-          '--joy-palette-primary-lightActiveBg': 'rgba(51, 153, 255, 0.24)',
+          '--joy-palette-neutral-plainHoverBg': 'rgba(19, 47, 76, 0.4)',
+          '--joy-palette-neutral-plainActiveBg': 'rgba(19, 47, 76, 0.4)',
+          '--joy-palette-primary-plainColor': theme.vars.palette.primary[400],
+          '--joy-palette-primary-softColor': theme.vars.palette.primary[300],
+          '--joy-palette-primary-softBg': '#132f4c',
+          '--joy-palette-primary-softHoverBg': 'rgba(51, 153, 255, 0.24)',
+          '--joy-palette-primary-softActiveBg': 'rgba(51, 153, 255, 0.24)',
           '--List-item-stickyBackground': 'rgb(10, 25, 41)',
         },
         '& *': {
@@ -348,7 +348,7 @@ function MuiNav() {
         '--List-item-paddingRight': '2px',
         '--List-item-paddingY': '0px',
         '--List-nestedInsetStart': '28px',
-        '--List-decorator-color': theme.vars.palette.primary.textColor,
+        '--List-decorator-color': theme.vars.palette.primary.plainColor,
       })}
     >
       {(pages as MuiPage[]).map((aPage, index) => {
@@ -378,7 +378,7 @@ function MuiNav() {
                 fontSize="md"
                 sx={{
                   transform: open[index] ? 'unset' : 'rotate(-90deg)',
-                  color: 'var(--joy-palette-primary-textColor)',
+                  color: 'var(--joy-palette-primary-plainColor)',
                 }}
               />
             </ListItemButton>
@@ -396,7 +396,7 @@ function MuiNav() {
                         <ListItemButton
                           color={nestedIndex === 0 ? 'primary' : undefined}
                           selected={nestedIndex === 0}
-                          variant={nestedIndex === 0 ? 'light' : 'text'}
+                          variant={nestedIndex === 0 ? 'soft' : 'plain'}
                         >
                           {pageToTitleI18n(nestedPage, t) || ''}
                         </ListItemButton>
@@ -436,15 +436,15 @@ const Firebash = () => {
     { icon: <Public />, label: 'Hosting' },
   ];
   return (
-    <Box data-mui-color-scheme="dark">
+    <Sheet data-mui-color-scheme="dark" sx={{ bgcolor: 'rgb(5, 30, 52)' }}>
       <List
         sx={{
           '& *': {
             fontFamily: 'Roboto',
           },
 
-          '--joy-palette-neutral-textHoverBg': 'rgba(255, 255, 255, 0.08)',
-          '--joy-palette-neutral-textActiveBg': 'rgba(255, 255, 255, 0.08)',
+          '--joy-palette-neutral-plainHoverBg': 'rgba(255, 255, 255, 0.08)',
+          '--joy-palette-neutral-plainActiveBg': 'rgba(255, 255, 255, 0.08)',
           '--joy-palette-text-primary': '#fff',
           '--joy-palette-text-secondary': 'rgba(255,255,255,0.8)',
           '--joy-palette-text-tertiary': 'rgba(255,255,255,0.5)',
@@ -457,7 +457,6 @@ const Firebash = () => {
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
           '--List-divider-gap': '0px',
-          '--List-item-stickyBackground': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
           '--List-decorator-color': 'rgba(255, 255, 255, 0.8)',
           '& .MuiListItemButton-root, & .MuiListItemContent-root': {
@@ -478,7 +477,7 @@ const Firebash = () => {
           }}
           endAction={
             <IconButton
-              variant="text"
+              variant="plain"
               color="neutral"
               sx={{
                 '--IconButton-padding': '12px',
@@ -579,7 +578,7 @@ const Firebash = () => {
           </List>
         </ListItem>
       </List>
-    </Box>
+    </Sheet>
   );
 };
 
@@ -590,14 +589,14 @@ const Gatsby = () => {
       <List
         size="sm"
         sx={{
-          '--joy-palette-primary-textColor': '#8a4baf',
-          '--joy-palette-neutral-textHoverBg': 'transparent',
-          '--joy-palette-neutral-textActiveBg': 'transparent',
-          '--joy-palette-primary-textHoverBg': 'transparent',
-          '--joy-palette-primary-textActiveBg': 'transparent',
+          '--joy-palette-primary-plainColor': '#8a4baf',
+          '--joy-palette-neutral-plainHoverBg': 'transparent',
+          '--joy-palette-neutral-plainActiveBg': 'transparent',
+          '--joy-palette-primary-plainHoverBg': 'transparent',
+          '--joy-palette-primary-plainActiveBg': 'transparent',
           '[data-mui-color-scheme="dark"] &': {
             '--joy-palette-text-secondary': '#635e69',
-            '--joy-palette-primary-textColor': '#d48cff',
+            '--joy-palette-primary-plainColor': '#d48cff',
           },
 
           '--List-radius': '0px',
@@ -643,7 +642,7 @@ const Gatsby = () => {
           nested
           sx={{ my: 1 }}
           startAction={
-            <IconButton variant="text" size="sm" color="neutral" onClick={() => setOpen(!open)}>
+            <IconButton variant="plain" size="sm" color="neutral" onClick={() => setOpen(!open)}>
               <KeyboardArrowDown sx={{ transform: open ? 'initial' : 'rotate(-90deg)' }} />
             </IconButton>
           }
@@ -683,7 +682,7 @@ const Gatsby = () => {
           nested
           sx={{ my: 1 }}
           startAction={
-            <IconButton variant="text" size="sm" color="neutral">
+            <IconButton variant="plain" size="sm" color="neutral">
               <KeyboardArrowDown />
             </IconButton>
           }
@@ -939,7 +938,7 @@ export default function JoyList() {
               '--List-item-minHeight': '3rem',
             }}
           >
-            <ListItemButton selected variant="contained">
+            <ListItemButton selected variant="solid">
               <ListItemDecorator>
                 <InboxIcon />
               </ListItemDecorator>
@@ -968,12 +967,12 @@ export default function JoyList() {
           >
             <ListItem
               endAction={
-                <Button variant="light" size="sm">
+                <Button variant="soft" size="sm">
                   Clear
                 </Button>
               }
             >
-              <ListItemButton selected variant="light">
+              <ListItemButton selected variant="soft">
                 <ListItemDecorator>
                   <Circle color="primary">
                     <InboxIcon />
@@ -988,7 +987,7 @@ export default function JoyList() {
             <ListDivider component="hr" />
             <ListItem
               endAction={
-                <Button variant="light" color="danger" size="sm">
+                <Button variant="soft" color="danger" size="sm">
                   Clear
                 </Button>
               }
@@ -1024,9 +1023,9 @@ export default function JoyList() {
             >
               <ListItemButton
                 selected
-                variant="contained"
+                variant="solid"
                 color="success"
-                sx={(theme) => theme.variants.containedOverrides.success}
+                sx={(theme) => theme.variants.solidOverrides.success}
               >
                 <ListItemDecorator>
                   <Circle color="success">
@@ -1196,7 +1195,7 @@ export default function JoyList() {
             }}
           >
             <ListItem>
-              <ListItemButton selected variant="light">
+              <ListItemButton selected variant="soft">
                 <ListItemDecorator>
                   <InboxIcon />
                 </ListItemDecorator>{' '}

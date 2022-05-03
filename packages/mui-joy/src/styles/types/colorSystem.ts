@@ -6,21 +6,21 @@ import { OverridableStringUnion } from '@mui/types';
  * ====================================================
  */
 export interface PaletteVariant {
-  textColor: string;
-  textBg: string;
-  textBorder: string;
+  plainColor: string;
+  plainBg: string;
+  plainBorder: string;
   // hover state
-  textHoverColor: string;
-  textHoverBorder: string;
-  textHoverBg: string;
+  plainHoverColor: string;
+  plainHoverBorder: string;
+  plainHoverBg: string;
   // active state
-  textActiveColor: string;
-  textActiveBorder: string;
-  textActiveBg: string;
+  plainActiveColor: string;
+  plainActiveBorder: string;
+  plainActiveBg: string;
   // disabled state
-  textDisabledColor: string;
-  textDisabledBorder: string;
-  textDisabledBg: string;
+  plainDisabledColor: string;
+  plainDisabledBorder: string;
+  plainDisabledBg: string;
 
   outlinedColor: string;
   outlinedBorder: string;
@@ -38,37 +38,37 @@ export interface PaletteVariant {
   outlinedDisabledBorder: string;
   outlinedDisabledBg: string;
 
-  lightColor: string;
-  lightBorder: string;
-  lightBg: string;
+  softColor: string;
+  softBorder: string;
+  softBg: string;
   // hover state
-  lightHoverColor: string;
-  lightHoverBorder: string;
-  lightHoverBg: string;
+  softHoverColor: string;
+  softHoverBorder: string;
+  softHoverBg: string;
   // active state
-  lightActiveColor: string;
-  lightActiveBorder: string;
-  lightActiveBg: string;
+  softActiveColor: string;
+  softActiveBorder: string;
+  softActiveBg: string;
   // disabled state
-  lightDisabledColor: string;
-  lightDisabledBorder: string;
-  lightDisabledBg: string;
+  softDisabledColor: string;
+  softDisabledBorder: string;
+  softDisabledBg: string;
 
-  containedColor: string;
-  containedBg: string;
-  containedBorder: string;
+  solidColor: string;
+  solidBg: string;
+  solidBorder: string;
   // hover state
-  containedHoverColor: string;
-  containedHoverBg: string;
-  containedHoverBorder: string;
+  solidHoverColor: string;
+  solidHoverBg: string;
+  solidHoverBorder: string;
   // active state
-  containedActiveColor: string;
-  containedActiveBg: string;
-  containedActiveBorder: string;
+  solidActiveColor: string;
+  solidActiveBg: string;
+  solidActiveBorder: string;
   // disabled state
-  containedDisabledColor: string;
-  containedDisabledBg: string;
-  containedDisabledBorder: string;
+  solidDisabledColor: string;
+  solidDisabledBg: string;
+  solidDisabledBorder: string;
 
   // override palette.text
   overrideTextPrimary: string;
@@ -110,14 +110,7 @@ export interface PaletteBackground {
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette =
-  | 'primary'
-  | 'neutral'
-  | 'danger'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'context';
+export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
 
 export type ColorPaletteProp = OverridableStringUnion<
   DefaultColorPalette,

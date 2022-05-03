@@ -24,10 +24,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
      * @default 'inherit'
      */
-    color?: OverridableStringUnion<
-      'inherit' | Exclude<ColorPaletteProp, 'context'>,
-      SvgIconPropsSizeOverrides
-    >;
+    color?: OverridableStringUnion<'inherit' | ColorPaletteProp, SvgIconPropsSizeOverrides>;
     /**
      * The fontSize applied to the icon. Defaults to 1rem, but can be configure to inherit font size.
      * @default 'xl'

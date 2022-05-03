@@ -6,9 +6,9 @@ import * as React from 'react';
 <Badge component="div" />;
 
 // `variant`
-<Badge variant="light" />;
+<Badge variant="soft" />;
 <Badge variant="outlined" />;
-<Badge variant="contained" />;
+<Badge variant="solid" />;
 
 // `color`
 <Badge color="primary" />;

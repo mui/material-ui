@@ -117,7 +117,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component = 'div',
     selected = false,
     color = selected ? 'primary' : 'neutral',
-    variant = 'text',
+    variant = 'plain',
     ...other
   } = props;
 
@@ -259,7 +259,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   tabIndex: PropTypes.number,
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

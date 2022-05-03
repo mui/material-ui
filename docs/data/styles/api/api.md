@@ -247,8 +247,6 @@ import { StylesProvider } from '@mui/styles';
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `ThemeProvider`
@@ -275,8 +273,6 @@ const theme = {};
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `useTheme() => theme`
