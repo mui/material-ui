@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import RadioGroup from '@mui/joy/RadioGroup';
@@ -11,8 +12,16 @@ export default function ButtonColors() {
     <Box
       sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}
     >
-      <Box sx={{ mb: 2, width: '100%', display: 'flex', justifyContent: 'center' }}>
-        <Typography level="body2" fontWeight="md" id="variant-label">
+      <Box
+        sx={{
+          mb: 2,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Typography fontWeight="lg" mr={2} id="variant-label">
           Variant:
         </Typography>
         <RadioGroup
