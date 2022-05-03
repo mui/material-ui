@@ -66,7 +66,7 @@ export default function CssVarsTemplate() {
             </IconButton>
           </Box>
           <Box>
-            <IconButton aria-label="shopping cart" color="primary" >
+            <IconButton aria-label="shopping cart" color="primary">
               <AddShoppingCartIcon />
             </IconButton>
           </Box>
