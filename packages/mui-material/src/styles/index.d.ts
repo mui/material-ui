@@ -77,15 +77,6 @@ export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
 export { Components } from './components';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 
-export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
-
-export interface StyledComponentProps<ClassKey extends string = string> {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<ClassNameMap<ClassKey>>;
-}
-
 export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
@@ -94,3 +85,4 @@ export * from './CssVarsProvider';
 
 export { default as experimental_extendTheme } from './experimental_extendTheme';
 export * from './experimental_extendTheme';
+export { ClassNameMap, StyledComponentProps } from './StyledComponentProps.types';
