@@ -44,19 +44,21 @@ const Plan = React.forwardRef<
         </Button>
       ) : (
         <Button
-          variant={plan === 'pro' ? 'contained' : 'outlined'}
+          variant={plan.match(/(pro|premium)/) ? 'contained' : 'outlined'}
           fullWidth
           component={Link}
           noLinkStyle
           href={
-            plan === 'community'
-              ? '/material-ui/getting-started/usage/'
-              : 'https://mui.com/store/items/material-ui-pro/'
+            {
+              community: '/material-ui/getting-started/usage/',
+              pro: 'https://mui.com/store/items/material-ui-pro/',
+              premium: 'https://mui.com/store/items/material-ui-premium/',
+            }[plan]
           }
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
         >
-          {plan === 'pro' ? 'Buy now' : 'Get started'}
+          {plan.match(/(pro|premium)/) ? 'Buy now' : 'Get started'}
         </Button>
       )}
       {benefits &&

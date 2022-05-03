@@ -243,6 +243,8 @@ const ColumnHeadHighlight = (props: BoxProps) => (
     {...props}
     sx={{
       p: 2,
+      display: 'flex',
+      flexDirection: 'column',
       position: 'relative',
       borderRadius: '10px 10px 0 0',
       borderWidth: '1px 1px 0 1px',
@@ -896,7 +898,7 @@ export default function PricingTable({
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 2 }}
+              sx={{ py: 1, mt: 'auto' }}
             >
               Buy now
             </Button>
