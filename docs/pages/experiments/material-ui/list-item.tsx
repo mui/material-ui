@@ -60,7 +60,7 @@ export default function CssVarsTemplate() {
         >
           <List>
             <ListItem>
-              <ListItemText primary="Test"/>
+              <ListItemText primary="Test" />
             </ListItem>
           </List>
         </Box>
