@@ -4,12 +4,12 @@
 
 ## Getting started
 
-The following code snippet demonstrates a simple app that uses the MUI Base `ButtonUnstyled` component:
+The following code snippet demonstrates a simple app that uses the MUI Base [`ButtonUnstyled`](/base/react-button) component:
 
 ```jsx
-import * as React from "react";
-import ReactDOM from "react-dom";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 function App() {
   return (
@@ -30,27 +30,47 @@ Try adding an `InputUnstyled` component inside of the `<div>`:
 ## Shared props
 
 Base components are self-supporting and fully functional in isolation.
-Each component has its own unique API, but all components accept the following common props:
+Each component has its own unique API, but all components accept the following shared props:
 
-- `components` - an object that allows you to override subcomponents (slots) used by the unstyled "host" component. Each host component will at least have the `Root` slot. Many complex components have more slots. You can either provide a custom component or an HTML tag there.
+### components
 
-  ```jsx
-  <BadgeUnstyled components={{ Root: 'div', Badge: MyCustomBadge }} />
-  ```
+The `components` prop is an object that lets you override any interior elements/subcomponents ("slots") of the base component itself.
 
-- `component` - a shortcut to `components.Root`. Note that if both `components.Root` and `component` are specified, `component` takes precedence.
+> Each component contains a `Root` slot, and many complex components (such as [`BadgeUnstyled`](/base/react-badge)) are composed of additional subcomponents that can be customized.
 
-  ```jsx
-  <BadgeUnstyled component="div" />
-  ```
+You can use the `components` prop to replace subcomponents with either custom components or HTML elements.
 
-- `componentsProps` - an object with each slot's props. Even if you don't override a specific slot (with `components` or `component`), you can provide additional props for the default components. For example, if you want to add a custom CSS class to one of the slots' components, specify it in the `componentsProps`.
+For example, the [`BadgeUnstyled`](/base/react-badge) component renders a `<span>` by default.
+The code snippet below shows how to override this by assigning a `<div>` to the `Root` element:
 
-  ```jsx
-  <BadgeUnstyled componentsProps={{ input: { className: 'my-badge' } }} />
-  ```
+```jsx
+<BadgeUnstyled components={{ Root: 'div' }} />
+```
 
-Additionally, all the extra props placed on the host component are propagated into the root component (just as if they were placed in `componentsProps.root`).
+### component
+
+The (singular) `component` prop provides a shortcut to `components.Root`.
+This is useful if you are only overriding the `Root` element of the component.
+
+The code snippet below shows how to override the `Root` element of the [`BadgeUnstyled`](/base/react-badge) component using the `component` prop:
+
+```jsx
+<BadgeUnstyled component="div" />
+```
+
+### componentsProps
+
+The `componentsProps` prop is an object that contains the props for all slots within a component.
+You can use it to define additional custom props for a component's interior elements.
+
+For example, the code snippet below shows how to add a custom CSS class to the `input` slot of the `BadgeUnstyled` component:
+
+```jsx
+<BadgeUnstyled componentsProps={{ input: { className: 'my-badge' } }} />
+```
+
+All additional props placed on the primary component are also propagated into the `Root` slot (just as if they were placed in `componentsProps.root`).
+
 These two examples are equivalent:
 
 ```jsx
