@@ -80,3 +80,15 @@ These two examples are equivalent:
 ```jsx
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
+
+# Components vs. hooks
+
+MUI Base includes two kinds of building blocks: _components_ and _hooks_.
+
+Most of the unstyled components are implemented with the help of a hook (where it makes sense). Hooks encapsulate logic, while components provide structure.
+
+When creating custom components based on the unstyled ones, you can use either unstyled components or hooks.
+
+With components, you will usually be able to write less code, but with hooks you have the ultimate control over the structure of the rendered HTML.
+However, to make the resulting component accessible, you need to create the components the hook expects and apply props returned by the hook.
+Concrete examples are provided in each hook's documentation.
