@@ -81,14 +81,37 @@ These two examples are equivalent:
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
 
-# Components vs. hooks
+## Components vs. hooks
 
-MUI Base includes two kinds of building blocks: _components_ and _hooks_.
+MUI Base includes two kinds of building blocks: **components** and **hooks**.
 
-Most of the unstyled components are implemented with the help of a hook (where it makes sense). Hooks encapsulate logic, while components provide structure.
+> 💡 Hooks encapsulate _logic_; components provide _structure_.
 
-When creating custom components based on the unstyled ones, you can use either unstyled components or hooks.
+Many Base components are implemented with the help of hooks.
 
-With components, you will usually be able to write less code, but with hooks you have the ultimate control over the structure of the rendered HTML.
-However, to make the resulting component accessible, you need to create the components the hook expects and apply props returned by the hook.
-Concrete examples are provided in each hook's documentation.
+You can use components or hooks—or a combination thereof—when building custom components.
+Each option has its own trade-offs:
+
+### Components
+
+#### Pros
+
+- Usually require less code to implement
+- Equipped with accessibility features by default
+
+#### Cons
+
+- Less control over the structure of the rendered HTML
+
+### Hooks
+
+#### Pros
+
+- Complete control over rendered HTML structure
+
+#### Cons
+
+- Usually require more code to implement
+- Extra steps necessary to make the resulting component accessible
+
+Details on usage of hooks can be found in their corresponding component docs.
