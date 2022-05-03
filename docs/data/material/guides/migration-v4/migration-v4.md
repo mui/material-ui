@@ -2858,7 +2858,7 @@ the transformation would look like this:
 
 Now, a comprehensive example using the `$` syntax, `useStyles()` parameters,
 merging in classes from a `classes` prop ([see doc](https://docs.tss-react.dev/your-own-classes-prop)),
-and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
+and [an explicit name for the stylesheet](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
 ```diff
 -import clsx from 'clsx';
@@ -2937,10 +2937,10 @@ Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com
 
 #### `withStyles()`
 
-`tss-react` also features a [type-safe implementation](https://github.com/garronej/tss-react#withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).
+`tss-react` also features a [type-safe implementation](https://docs.tss-react.dev/page-1/withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).
 
 > **Note:** The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
-> [See doc](https://github.com/garronej/tss-react#nested-selector-with-the-withstyles-api).
+> [See doc](https://docs.tss-react.dev/nested-selectors#withstyles).
 
 ```diff
 -import Button from '@material-ui/core/Button';
@@ -2981,7 +2981,7 @@ the theme. If you want to provide the props and the `ownerState` [please refer t
 **Note:** `tss-react` is **not maintained** by MUI.
 If you have any question about how to setup SSR (Next.js) or if you are wondering
 how to customize the `theme` object please refer to `tss-react`'s documentation,
-the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.
+the [Mui integration section](https://docs.tss-react.dev/readme-1) in particular.
 You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or
 feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 
