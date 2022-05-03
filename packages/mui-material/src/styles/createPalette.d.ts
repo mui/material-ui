@@ -33,7 +33,6 @@ export interface TypeAction {
 export interface TypeBackground {
   default: string;
   paper: string;
-  invertChannel: string;
 }
 
 export type TypeDivider = string;

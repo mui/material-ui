@@ -48,6 +48,7 @@ describe('[Material UI] CssVarsProvider', () => {
             </div>
             <div data-testid="palette-divider">{JSON.stringify(theme.vars.palette.divider)}</div>
             <div data-testid="palette-action">{JSON.stringify(theme.vars.palette.action)}</div>
+            <div data-testid="palette-common">{JSON.stringify(theme.vars.palette.common)}</div>
           </div>
         );
       };
@@ -148,7 +149,6 @@ describe('[Material UI] CssVarsProvider', () => {
         JSON.stringify({
           paper: 'var(--md-palette-background-paper)',
           default: 'var(--md-palette-background-default)',
-          invertChannel: 'var(--md-palette-background-invertChannel)',
         }),
       );
       expect(screen.getByTestId('palette-action').textContent).to.equal(
@@ -164,6 +164,16 @@ describe('[Material UI] CssVarsProvider', () => {
           focus: 'var(--md-palette-action-focus)',
           focusOpacity: 'var(--md-palette-action-focusOpacity)',
           activatedOpacity: 'var(--md-palette-action-activatedOpacity)',
+        }),
+      );
+      expect(screen.getByTestId('palette-common').textContent).to.equal(
+        JSON.stringify({
+          black: 'var(--md-palette-common-black)',
+          white: 'var(--md-palette-common-white)',
+          background: 'var(--md-palette-common-background)',
+          onBackground: 'var(--md-palette-common-onBackground)',
+          backgroundChannel: 'var(--md-palette-common-backgroundChannel)',
+          onBackgroundChannel: 'var(--md-palette-common-onBackgroundChannel)',
         }),
       );
     });
@@ -186,11 +196,6 @@ describe('[Material UI] CssVarsProvider', () => {
 
       expect(screen.getByTestId('opacity').textContent).to.equal(
         JSON.stringify({
-          active: 'var(--md-opacity-active)',
-          hover: 'var(--md-opacity-hover)',
-          selected: 'var(--md-opacity-selected)',
-          disabled: 'var(--md-opacity-disabled)',
-          focus: 'var(--md-opacity-focus)',
           placeholder: 'var(--md-opacity-placeholder)',
           inputTouchBottomLine: 'var(--md-opacity-inputTouchBottomLine)',
         }),

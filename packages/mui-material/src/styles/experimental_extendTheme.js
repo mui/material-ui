@@ -2,14 +2,6 @@ import { deepmerge } from '@mui/utils';
 import { colorChannel } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 
-export const defaultOpacity = {
-  active: 0.54,
-  hover: 0.04,
-  selected: 0.08,
-  disabled: 0.26,
-  focus: 0.12,
-};
-
 export default function extendTheme(options = {}, ...args) {
   const { colorSchemes: colorSchemesInput = {}, ...input } = options;
 
@@ -22,13 +14,13 @@ export default function extendTheme(options = {}, ...args) {
   });
 
   let theme = {
+    ...muiTheme,
     colorSchemes: {
       ...colorSchemesInput,
       light: {
         ...colorSchemesInput.light,
         palette: lightPalette,
         opacity: {
-          ...defaultOpacity,
           placeholder: 0.42,
           inputTouchBottomLine: 0.42,
           ...colorSchemesInput.light?.opacity,
@@ -38,25 +30,29 @@ export default function extendTheme(options = {}, ...args) {
         ...colorSchemesInput.dark,
         palette: darkPalette,
         opacity: {
-          ...defaultOpacity,
           placeholder: 0.5,
           inputTouchBottomLine: 0.7,
           ...colorSchemesInput.dark?.opacity,
         },
       },
     },
-    ...muiTheme,
   };
 
   Object.keys(theme.colorSchemes).forEach((key) => {
     const palette = theme.colorSchemes[key].palette;
-    if (palette.background && !palette.background.invertChannel) {
-      if (key === 'dark') {
-        palette.background.invertChannel = '255 255 255';
-      } else {
-        palette.background.invertChannel = '0 0 0';
-      }
+
+    // attach black & white channels to common node
+    if (key === 'dark') {
+      palette.common.background = palette.common.background || '#000';
+      palette.common.onBackground = palette.common.onBackground || '#fff';
+      // console.log(palette.common);
+    } else {
+      palette.common.background = palette.common.background || '#fff';
+      palette.common.onBackground = palette.common.onBackground || '#000';
     }
+    palette.common.backgroundChannel = colorChannel(palette.common.background);
+    palette.common.onBackgroundChannel = colorChannel(palette.common.onBackground);
+
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
 

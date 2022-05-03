@@ -80,20 +80,34 @@ describe('experimental_extendTheme', () => {
     expect(theme.colorSchemes.light.palette.text.secondaryChannel).to.equal('0 0 0');
   });
 
-  it('should generate background invertChannel', () => {
+  it('should generate common background, onBackground channels', () => {
     const theme = extendTheme({
       colorSchemes: {
         dark: {
           palette: {
-            background: {
-              invertChannel: '248 248 248', // this should not be overridden
+            common: {
+              onBackground: '#f9f9f9', // this should not be overridden
+            },
+          },
+        },
+        light: {
+          palette: {
+            common: {
+              background: '#f9f9f9',
             },
           },
         },
       },
     });
-    expect(theme.colorSchemes.light.palette.background.invertChannel).to.equal('0 0 0');
-    expect(theme.colorSchemes.dark.palette.background.invertChannel).to.equal('248 248 248');
+    expect(theme.colorSchemes.light.palette.common.background).to.equal('#f9f9f9');
+    expect(theme.colorSchemes.light.palette.common.backgroundChannel).to.equal('249 249 249');
+    expect(theme.colorSchemes.light.palette.common.onBackground).to.equal('#000');
+    expect(theme.colorSchemes.light.palette.common.onBackgroundChannel).to.equal('0 0 0');
+
+    expect(theme.colorSchemes.dark.palette.common.background).to.equal('#000');
+    expect(theme.colorSchemes.dark.palette.common.backgroundChannel).to.equal('0 0 0');
+    expect(theme.colorSchemes.dark.palette.common.onBackground).to.equal('#f9f9f9');
+    expect(theme.colorSchemes.dark.palette.common.onBackgroundChannel).to.equal('249 249 249');
   });
 
   it('should generate color channels for custom colors', () => {
@@ -178,20 +192,10 @@ describe('experimental_extendTheme', () => {
     it('should provide the default opacities', () => {
       const theme = extendTheme();
       expect(theme.colorSchemes.light.opacity).to.deep.equal({
-        active: 0.54,
-        hover: 0.04,
-        selected: 0.08,
-        disabled: 0.26,
-        focus: 0.12,
         placeholder: 0.42,
         inputTouchBottomLine: 0.42,
       });
       expect(theme.colorSchemes.dark.opacity).to.deep.equal({
-        active: 0.54,
-        hover: 0.04,
-        selected: 0.08,
-        disabled: 0.26,
-        focus: 0.12,
         placeholder: 0.5,
         inputTouchBottomLine: 0.7,
       });
@@ -202,32 +206,22 @@ describe('experimental_extendTheme', () => {
         colorSchemes: {
           light: {
             opacity: {
-              active: 1,
+              placeholder: 1,
             },
           },
           dark: {
             opacity: {
-              active: 0.2,
+              placeholder: 0.2,
             },
           },
         },
       });
       expect(theme.colorSchemes.light.opacity).to.deep.equal({
-        active: 1,
-        hover: 0.04,
-        selected: 0.08,
-        disabled: 0.26,
-        focus: 0.12,
-        placeholder: 0.42,
+        placeholder: 1,
         inputTouchBottomLine: 0.42,
       });
       expect(theme.colorSchemes.dark.opacity).to.deep.equal({
-        active: 0.2,
-        hover: 0.04,
-        selected: 0.08,
-        disabled: 0.26,
-        focus: 0.12,
-        placeholder: 0.5,
+        placeholder: 0.2,
         inputTouchBottomLine: 0.7,
       });
     });
