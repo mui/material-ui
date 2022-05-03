@@ -35,11 +35,6 @@ export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverr
 export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 
 export interface Opacity {
-  active: number;
-  hover: number;
-  selected: number;
-  disabled: number;
-  focus: number;
   placeholder: number;
   inputTouchBottomLine: number;
 }
