@@ -8,6 +8,7 @@ import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   const {
+    copyButtonHidden = false,
     copyButtonProps,
     code,
     language,
@@ -50,21 +51,23 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
             dangerouslySetInnerHTML={{ __html: renderedCode }}
           />
         </pre>
-        <button
-          {...copyButtonProps}
-          aria-label="Copy the code"
-          type="button"
-          className="MuiCode-copy"
-          onClick={async () => {
-            setCopied(true);
-            await copy(code);
-          }}
-        >
-          {copied ? 'Copied' : 'Copy'}
-          <span className="MuiCode-copyKeypress">
-            <span>or</span> {key} + C
-          </span>
-        </button>
+        {!copyButtonHidden && (
+          <button
+            {...copyButtonProps}
+            aria-label="Copy the code"
+            type="button"
+            className="MuiCode-copy"
+            onClick={async () => {
+              setCopied(true);
+              await copy(code);
+            }}
+          >
+            {copied ? 'Copied' : 'Copy'}
+            <span className="MuiCode-copyKeypress">
+              <span>or</span> {key} + C
+            </span>
+          </button>
+        )}
       </div>
     </Component>
   );
@@ -73,6 +76,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
 HighlightedCode.propTypes = {
   code: PropTypes.string.isRequired,
   component: PropTypes.elementType,
+  copyButtonHidden: PropTypes.bool,
   copyButtonProps: PropTypes.object,
   language: PropTypes.string.isRequired,
 };
