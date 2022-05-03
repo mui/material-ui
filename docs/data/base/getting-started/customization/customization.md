@@ -2,13 +2,12 @@
 
 <p class="description"></p>
 
-
 ## Applying custom CSS rules
 
 If you're happy with the default structure of a component's rendered HTML, you can apply custom styles to the component's classes.
 
 Each component has its own set of classes.
-Some classes are **static**, which is to say that they are always present on the component. 
+Some classes are **static**, which is to say that they are always present on the component.
 Others are applied **conditionally**—like `Mui-disabled`, for example. which is only present when a component is disabled.
 
 Each component's API documentation lists all classes that the component uses.
@@ -20,14 +19,14 @@ Additionally, you can import a `[componentName]Classes` object that describes al
 
 If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `components` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
 
-The following demo uses the [SwitchUnstyled](/base/api/switch-unstyled/) component to .
-It has three slots: `Root`, `Thumb`, and `Input`.
-The demo below shows how to create a styled component (using [System](/system/styled/) in this case, but it could well be any other solution)
+The following demo uses [SwitchUnstyled](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `Root`, `Thumb`, and `Input`.
+
+Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
 
 {{"demo": "StylingSlots.js"}}
 
-The components you pass in the `components` prop receive the `ownerState` prop from the top-level component (host).
-By convention, it contains all props passed to the host, merged with its rendering "state".
+The components you pass in the `components` prop receive the `ownerState` prop from the top-level component (the "host").
+By convention, it contains all props passed to the host, merged with its rendering state.
 
 For example:
 
@@ -35,7 +34,7 @@ For example:
 <SwitchUnstyled components={{ Thumb: MyCustomThumb }} data-foo="42" />
 ```
 
-In this case, `MyCustomThumb` component will receive the `ownerState` object with the following data:
+In this case, `MyCustomThumb` component receives the `ownerState` object with the following data:
 
 ```ts
 {
@@ -49,14 +48,17 @@ In this case, `MyCustomThumb` component will receive the `ownerState` object wit
 
 You can use this object to style your component.
 
-### Creating custom components using hooks
+## Creating custom components using hooks
 
-If you need to create your own component structure, you can use the provided hooks.
-They encapsulate the logic of the components while not enforcing structure.
+If you need complete control over a component's rendered HTML structure, you can build it with hooks.
 
-Hooks return the current state of the component (`checked`, `disabled`, `open`, etc., depending on the component) and provide functions that return props you can apply to your components.
+Hooks give you access to the _logic_ that a component uses, but without any default structure.
+See ["Components vs. hooks" on the Base Usage page](http://localhost:3000/base/getting-started/usage/#components-vs-hooks) for more details.
 
-Again, let's take a Switch as an example. The corresponding hook is called `useSwitch`.
+Hooks return the current state of the component (e.g. `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
+
+In the case of [SwitchUnstyled](/base/react-switch), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
+
 It returns the following object:
 
 ```ts
@@ -67,10 +69,11 @@ It returns the following object:
   focusVisible: Readonly<boolean>;
   getInputProps: (otherProps?: object) => SwitchInputProps;
 }
-
 ```
 
-The `checked`, `disabled`, `readOnly`, and `focusVisible` fields represent the state of the switch. Use them to apply styling to your HTML elements.
-The `getInputProps` function can be used to get the props to place on an HTML `input` to make the switch accessible.
+The `checked`, `disabled`, `readOnly`, and `focusVisible` fields represent the state of the switch.
+Use them to apply styling to your HTML elements.
+
+The `getInputProps` function can be used to get the props to place on an HTML `<input>` to make the switch accessible.
 
 {{"demo": "StylingHooks.js"}}
