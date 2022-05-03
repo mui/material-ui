@@ -6,9 +6,13 @@
 
 To install and save in your `package.json` dependencies, run:
 
+With npm:
+
 ```sh
 npm install @mui/base
 ```
+
+With yarn:
 
 ```sh
 yarn add @mui/base

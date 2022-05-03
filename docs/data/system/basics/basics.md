@@ -17,9 +17,13 @@ _(Resize the window to see the responsive breakpoints)_
 
 <!-- #default-branch-switch -->
 
+With npm:
+
 ```jsx
 npm install @mui/system @emotion/react @emotion/styled
 ```
+
+With yarn:
 
 ```jsx
 yarn add @mui/system @emotion/react @emotion/styled
