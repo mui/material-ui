@@ -18,10 +18,10 @@ _(Resize the window to see the responsive breakpoints)_
 <!-- #default-branch-switch -->
 
 ```jsx
-// with npm
 npm install @mui/system @emotion/react @emotion/styled
+```
 
-// with yarn
+```jsx
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -30,10 +30,10 @@ Or if you want to use `styled-components` as a styling engine:
 <!-- #default-branch-switch -->
 
 ```sh
-// with npm
 npm install @mui/system @mui/styled-engine-sc styled-components
+```
 
-// with yarn
+```sh
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 

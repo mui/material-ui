@@ -8,11 +8,15 @@ MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material
 
 To install and save in your `package.json` dependencies, run:
 
-```sh
-// with npm
-npm install @mui/material @emotion/react @emotion/styled
+With npm:
 
-// with yarn
+```sh
+npm install @mui/material @emotion/react @emotion/styled
+```
+
+With yarn:
+
+```sh
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -23,10 +27,10 @@ Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [rea
 MUI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
 
 ```sh
-// with npm
 npm install @mui/material @mui/styled-engine-sc styled-components
+```
 
-// with yarn
+```sh
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -67,10 +71,10 @@ you must first install the [@mui/icons-material](https://www.npmjs.com/package/@
 <!-- #default-branch-switch -->
 
 ```sh
-// with npm
 npm install @mui/icons-material
+```
 
-// with yarn
+```sh
 yarn add @mui/icons-material
 ```
 
