@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { TableSortLabelClasses } from './tableSortLabelClasses';
@@ -38,10 +36,6 @@ export type TableSortLabelTypeMap<
      * @default ArrowDownwardIcon
      */
     IconComponent?: React.JSXElementConstructor<{ className: string }>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;
