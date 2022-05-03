@@ -50,16 +50,16 @@ const PaperRoot = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   backgroundColor: theme.palette.background.paper,
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   transition: theme.transitions.create('box-shadow'),
   ...(!ownerState.square && {
     borderRadius: theme.shape.borderRadius,
   }),
   ...(ownerState.variant === 'outlined' && {
-    border: `1px solid ${theme.palette.divider}`,
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
   }),
   ...(ownerState.variant === 'elevation' && {
-    boxShadow: theme.shadows[ownerState.elevation],
+    boxShadow: (theme.vars || theme).shadows[ownerState.elevation],
     ...(theme.palette.mode === 'dark' && {
       backgroundImage: `linear-gradient(${alpha(
         '#fff',
