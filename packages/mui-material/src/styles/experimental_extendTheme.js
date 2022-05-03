@@ -54,7 +54,7 @@ export default function extendTheme(options = {}, ...args) {
     palette.common.backgroundChannel = colorChannel(palette.common.background);
     palette.common.onBackgroundChannel = colorChannel(palette.common.onBackground);
 
-    palette.dividerChannel = colorChannel(palette.divider)
+    palette.dividerChannel = colorChannel(palette.divider);
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
