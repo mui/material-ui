@@ -1,22 +1,36 @@
-# MUI Base - Component anatomy
+# MUI Base - Usage
 
-<p class="description">MUI Base components each have their own API, but all share a few common props.</p>
+<p class="description">Learn the basics of working with MUI Base components.</p>
 
 ## Getting started
 
+The following code snippet demonstrates a simple app that uses the MUI Base `ButtonUnstyled` component:
+
 ```jsx
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import Button from '@mui/base/Button';
+import * as React from "react";
+import ReactDOM from "react-dom";
+import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 
 function App() {
-  return <Button>Hello World</Button>;
+  return (
+    <div>
+      <ButtonUnstyled variant="contained" color="primary">
+        Hello World
+      </ButtonUnstyled>
+    </div>
+  );
 }
 ```
 
+You can play around with this code in the interactive Code Sandbox demo below.
+Try adding an `InputUnstyled` component inside of the `<div>`:
+
+{{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
+
 ## Shared props
 
-The following props can be passed to all Base components:
+Base components are self-supporting and fully functional in isolation.
+Each component has its own unique API, but all components accept the following common props:
 
 - `components` - an object that allows you to override subcomponents (slots) used by the unstyled "host" component. Each host component will at least have the `Root` slot. Many complex components have more slots. You can either provide a custom component or an HTML tag there.
 

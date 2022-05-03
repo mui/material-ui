@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/base/getting-started/anatomy/anatomy.md?@mui/markdown';
+} from 'docs/data/base/getting-started/usage/usage.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
