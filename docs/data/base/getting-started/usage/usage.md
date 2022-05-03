@@ -60,7 +60,9 @@ The code snippet below shows how to override the `Root` element of the [`BadgeUn
 <BadgeUnstyled component="div" />
 ```
 
-> **Note**: if both `components.Root` and `component` are specified, `component` takes precedence.
+:::warning
+**Note**: if both `components.Root` and `component` are specified, `component` takes precedence.
+:::
 
 ### componentsProps
 
