@@ -8,9 +8,9 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 # Ícones
 
-<p class="description">Orientação e sugestões para usar ícones com o Material-UI.</p>
+<p class="description">Orientação e sugestões para usar ícones com o Material UI.</p>
 
-Material-UI fornece suporte de ícones de três maneiras:
+Material UI fornece suporte de ícones de três maneiras:
 
 1. Padronizados como [ícones do Material Design](#material-icons) e exportados como componentes do React (ícones SVG).
 1. Com o componente [SvgIcon](#svgicon), um wrapper React para ícones SVG customizados.
@@ -18,7 +18,7 @@ Material-UI fornece suporte de ícones de três maneiras:
 
 ## Ícones Material
 
-Google has created over 2,000 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/components/material-icons/).
+Google has created over 2,000 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/material-ui/material-icons/).
 
 ### Instalação
 
@@ -32,17 +32,9 @@ npm install @mui/icons-material
 yarn add @mui/icons-material
 ```
 
-Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
+Esses componentes usam o componente `SvgIcon` do Material UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
 
-Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
-
-```sh
-// utilizando o npm
-npm install @material-ui/core
-
-// utilizando o yarn
-yarn add @material-ui/core
-```
+Se você ainda não estiver usando Material UI no seu projeto, você pode adicioná-lo com:
 
 ### Uso
 
@@ -61,7 +53,7 @@ Importe ícones usando uma destas duas opções:
   import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
-O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
+O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/material-ui/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
 
 Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded, Two-tone, e Sharp. Para importar o componente de ícone com um tema diferente do padrão, acrescente o nome do tema ao nome do ícone. Por exemplo, para usar o ícone `@material-ui/icons/Delete`, temos:
 
@@ -91,10 +83,10 @@ tem o seguinte atributo assim que montado:
 
 ## SvgIcon
 
-Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/components/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
+If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper. Este componente estende o elemento nativo `<svg>`:
 
 - Ele vem internamente com a acessibilidade.
-- Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material-UI que usam ícones. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
+- Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material UI que usam ícones. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - Por padrão, o componente herda a cor atual. Opcionalmente, você pode aplicar uma das cores do tema usando a propriedade `color`.
 
 ```jsx
@@ -123,11 +115,11 @@ Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes esteja
 // webpack.config.js
 {
   test: /\.svg$/,
-  use: ['@svgr/webpack'],
+  use: ['@svgr/webpack', 'url-loader'],
 }
 
 // ---
-import StarIcon from './star.svg';
+import { ReactComponent as StarIcon } from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
@@ -138,18 +130,18 @@ Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a aborda
 // webpack.config.js
 {
   test: /\.svg$/,
-  use: ['@svgr/webpack', 'url-loader'],
+  use: ['@svgr/webpack'],
 }
 
 // ---
-import { ReactComponent as StarIcon } from './star.svg';
+import StarIcon from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
 ### createSvgIcon
 
-O site [materialdesignicons.com](https://materialdesignicons.com/) fornece mais de 2.000 ícones. Para o ícone desejado, copie o SVG `path` que eles fornecem, e use-o como elemento filho no componente `SvgIcon`, ou com `createSvgIcon()`.
+Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/material-ui/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -174,7 +166,7 @@ A propriedade `fullWidth` de FontAwesomeIcon também pode ser usada para aproxim
 
 #### MDI
 
-[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. Ele pode ser usado para encapsular um caminho SVG com um componente SvgIcon. Este componente estende o elemento nativo `<svg>`:
+O site [materialdesignicons.com](https://materialdesignicons.com/) fornece mais de 2.000 ícones. Para o ícone desejado, copie o SVG `path` que eles fornecem, e use-o como elemento filho no componente `SvgIcon`, ou com `createSvgIcon()`.
 
 Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
 

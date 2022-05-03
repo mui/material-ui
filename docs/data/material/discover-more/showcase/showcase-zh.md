@@ -1,6 +1,6 @@
 # 项目展示
 
-<p class="description">以下列表展示了使用 Material-UI 的一些公共的应用程序。</p>
+<p class="description">以下列表展示了使用 Material UI 的一些公共的应用程序。</p>
 
 您正在使用 MUI 吗？ [分享你的产品](https://github.com/mui/material-ui/issues/22426)。
 

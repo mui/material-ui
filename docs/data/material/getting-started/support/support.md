@@ -42,7 +42,7 @@ Stay up to date with the development of the library by following the blog.
 
 New to MUI? It's easy to learn if you know where to start!
 
-[Learn MUI](/getting-started/learn/)
+[Learn MUI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
@@ -58,7 +58,7 @@ Find details on the [supported versions](/versions/#supported-versions).
 
 ### Pro/Premium plans
 
-MUI comes in [three plans](/pricing/).
+MUI X comes in [three plans](https://mui.com/pricing/).
 The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space.

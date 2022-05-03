@@ -10,15 +10,20 @@ export interface MuiPage {
    */
   legacy?: boolean;
   /**
+   * Indicates if the pages are only available in some plan.
+   * @default 'community'
+   */
+  plan?: 'community' | 'pro' | 'premium';
+  /**
    * In case the children have pathnames out of pathname value, use this field to scope other pathnames
    */
   scopePathnames?: string[];
   /**
    * Pages are considered to be ordered depth-first.
    * If a page should be excluded from this order, set `order: false`.
-   * You want to set `ordered: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
+   * You want to set `inSideNav: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
    */
-  ordered?: boolean;
+  inSideNav?: boolean;
   /**
    * Props spread to the Link component
    */
@@ -43,7 +48,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/getting-started/usage' },
       { pathname: '/getting-started/example-projects' },
       { pathname: '/getting-started/templates' },
-      { pathname: '/getting-started/learn' },
+      { pathname: '/getting-started/learn', title: 'Learning resources' },
       { pathname: '/getting-started/faq', title: 'FAQs' },
       { pathname: '/getting-started/supported-components' },
       { pathname: '/getting-started/supported-platforms' },
@@ -188,21 +193,9 @@ const pages: readonly MuiPage[] = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
-          {
-            pathname: '/components',
-            subheader: '/components/lab-pickers',
-            title: 'Date / Time',
-            children: [
-              { pathname: '/components/pickers', title: 'Introduction' },
-              { pathname: '/components/date-picker' },
-              { pathname: '/components/date-range-picker', title: 'Date Range Picker ⚡️' },
-              { pathname: '/components/date-time-picker' },
-              { pathname: '/components/time-picker' },
-            ],
-          },
+          { pathname: '/components/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/components/masonry' },
           { pathname: '/components/timeline' },
-          { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
         ],
       },
@@ -305,11 +298,10 @@ const pages: readonly MuiPage[] = [
     title: 'How To Guides',
     icon: 'VisibilityIcon',
     children: [
-      { pathname: '/guides/api', title: 'API Design Approach' },
-      { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/guides/api', title: 'API design approach' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
-      { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
+      { pathname: '/guides/interoperability', title: 'Style library interoperability' },
       { pathname: '/guides/styled-engine' },
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },
@@ -317,14 +309,23 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/server-rendering' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
       { pathname: '/guides/pickers-migration', title: 'Migration from @material-ui/pickers' },
-      { pathname: '/guides/migration-v4', title: 'Migration From v4' },
-      { pathname: '/guides/migration-v3', title: 'Migration From v3' },
-      { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
+      { pathname: '/guides/migration-v4', title: 'Migration from v4' },
+      { pathname: '/guides/migration-v3', title: 'Migration from v3' },
+      { pathname: '/guides/migration-v0x', title: 'Migration from v0.x' },
       { pathname: '/guides/testing' },
       { pathname: '/guides/localization' },
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/guides/flow' },
+    ],
+  },
+  {
+    pathname: '/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      { pathname: '/experimental-api/classname-generator', title: 'ClassName generator' },
+      { pathname: '/experimental-api/css-variables', title: 'CSS variables' },
     ],
   },
   {
@@ -362,8 +363,8 @@ const pages: readonly MuiPage[] = [
       'data-ga-event-label': 'sidenav',
     },
   },
-  { pathname: '/versions', ordered: false },
-  { pathname: '/', ordered: false, disableDrawer: true },
+  { pathname: '/versions', inSideNav: false },
+  { pathname: '/', inSideNav: false, disableDrawer: true },
   { pathname: '/blog', title: 'Blog', icon: 'BookIcon' },
 ];
 

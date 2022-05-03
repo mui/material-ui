@@ -56,11 +56,10 @@ const ProductSuite = () => {
                 overline="Products"
                 title={
                   <Typography variant="h2" sx={{ my: 1 }}>
-                    Extensive library of components, ready for{' '}
-                    <GradientText>production</GradientText>
+                    Every component you need is <GradientText>ready for production</GradientText>
                   </Typography>
                 }
-                description="A suite of products integrated to make your life easier when it comes to setting up design systems."
+                description="Build at an accelerated pace without sacrificing flexibility or control."
               />
             </Box>
             <Box sx={{ mt: 4 }} />

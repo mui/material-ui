@@ -41,18 +41,19 @@ const ColorSchemePicker = () => {
 // how to add more color and use with variants
 const Tile = ({
   children,
-  variant = 'light',
+  variant = 'soft',
   color = 'primary',
   sx = [],
   ...props
 }: {
-  variant?: 'light' | 'contained';
+  variant?: 'soft' | 'solid';
   color?: ColorPaletteProp | 'secondary' | 'alternate';
 } & Omit<BoxProps, 'color'>) => {
   return (
     <Box
       sx={[
         { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
+        // @ts-ignore
         (theme) => theme.variants[variant][color],
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -74,10 +75,10 @@ export default function JoyVariant() {
       </Box>
       <Box sx={{ my: 'auto' }}>
         <Tile
-          variant={variant.match(/(contained)/) ? 'light' : 'contained'}
+          variant={variant.match(/(solid)/) ? 'soft' : 'solid'}
           color={color}
           sx={{
-            ...(variant.match(/(contained)/) && {
+            ...(variant.match(/(solid)/) && {
               bgcolor: 'background.body',
             }),
             boxShadow: 'md',
@@ -104,10 +105,10 @@ export default function JoyVariant() {
             Michael Scott
           </Typography>
         </Box>
-        <Button color={variant === 'contained' ? 'context' : color} sx={{ ml: 'auto' }}>
+        <Button color={variant === 'solid' ? undefined : color} sx={{ ml: 'auto' }}>
           Check
         </Button>
-        <IconButton color={variant.match(/(contained)/) ? 'context' : color}>
+        <IconButton color={variant.match(/(solid)/) ? undefined : color}>
           <DeleteForeverRounded />
         </IconButton>
       </Box>
@@ -140,11 +141,11 @@ export default function JoyVariant() {
             p: 2.5,
             boxShadow: 'md',
             borderRadius: 'sm',
-            ...theme.variants.contained.primary,
-            ...theme.variants.containedOverrides.primary,
+            ...theme.variants.solid.primary,
+            ...theme.variants.solidOverrides.primary,
           })}
         >
-          {renderContent('contained', 'primary')}
+          {renderContent('solid', 'primary')}
         </Box>
         <Box
           sx={(theme) => ({
@@ -156,11 +157,11 @@ export default function JoyVariant() {
             p: 2.5,
             boxShadow: 'md',
             borderRadius: 'sm',
-            ...theme.variants.text.info,
-            ...theme.variants.textOverrides.info,
+            ...theme.variants.plain.info,
+            ...theme.variants.plainOverrides.info,
           })}
         >
-          {renderContent('text', 'info')}
+          {renderContent('plain', 'info')}
         </Box>
         <Box
           sx={(theme) => ({
@@ -188,11 +189,11 @@ export default function JoyVariant() {
             p: 2.5,
             boxShadow: 'md',
             borderRadius: 'sm',
-            ...theme.variants.light.success,
-            ...theme.variants.lightOverrides.success,
+            ...theme.variants.soft.success,
+            ...theme.variants.softOverrides.success,
           })}
         >
-          {renderContent('light', 'success')}
+          {renderContent('soft', 'success')}
         </Box>
       </Box>
     </CssVarsProvider>

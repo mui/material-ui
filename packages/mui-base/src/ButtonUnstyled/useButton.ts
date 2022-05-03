@@ -9,7 +9,16 @@ import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
 export default function useButton(parameters: UseButtonParameters) {
-  const { component = 'button', disabled = false, href, ref, tabIndex = 0, to, type } = parameters;
+  const {
+    component = 'button',
+    disabled = false,
+    focusableWhenDisabled,
+    href,
+    ref,
+    tabIndex,
+    to,
+    type,
+  } = parameters;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -23,7 +32,7 @@ export default function useButton(parameters: UseButtonParameters) {
   } = useIsFocusVisible();
 
   const [focusVisible, setFocusVisible] = React.useState(false);
-  if (disabled && focusVisible) {
+  if (disabled && !focusableWhenDisabled && focusVisible) {
     setFocusVisible(false);
   }
 
@@ -158,19 +167,26 @@ export default function useButton(parameters: UseButtonParameters) {
     disabled?: boolean;
     role?: React.AriaRole;
     'aria-disabled'?: React.AriaAttributes['aria-disabled'];
+    tabIndex?: number;
   }
 
   const buttonProps: AdditionalButtonProps = {};
 
   if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
-    buttonProps.disabled = disabled;
+    if (focusableWhenDisabled) {
+      buttonProps['aria-disabled'] = disabled;
+    } else {
+      buttonProps.disabled = disabled;
+    }
   } else if (hostElementName !== '') {
     if (!href && !to) {
       buttonProps.role = 'button';
+      buttonProps.tabIndex = tabIndex ?? 0;
     }
     if (disabled) {
       buttonProps['aria-disabled'] = disabled as boolean;
+      buttonProps.tabIndex = focusableWhenDisabled ? tabIndex ?? 0 : -1;
     }
   }
 
@@ -188,7 +204,6 @@ export default function useButton(parameters: UseButtonParameters) {
     delete externalEventHandlers.onFocusVisible;
 
     return {
-      tabIndex: disabled ? -1 : tabIndex,
       type,
       ...externalEventHandlers,
       ...buttonProps,
