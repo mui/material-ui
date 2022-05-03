@@ -28,6 +28,7 @@ Try importing an `InputUnstyled` component and adding it to the `<div>`:
 ## Shared props
 
 Base components are self-supporting and fully functional in isolation.
+
 Each component has its own unique API, but all components accept the following shared props:
 
 ### components
@@ -93,7 +94,8 @@ MUI Base includes two kinds of building blocks: **components** and **hooks**.
 💡 Hooks encapsulate _logic_; components provide _structure_.
 :::
 
-Many Base components are implemented with the help of hooks.
+Many Base components are implemented with the help of hooks. 
+(Visit the [React documentation on hooks](https://reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
 
 You can use components or hooks—or a combination thereof—when building custom components.
 Each option has its own trade-offs:
