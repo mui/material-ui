@@ -238,40 +238,6 @@ Tab.propTypes /* remove-proptypes */ = {
    */
   label: PropTypes.node,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.func,
-    PropTypes.object,
-    PropTypes.shape({
-      '__@iterator@91': PropTypes.func.isRequired,
-      concat: PropTypes.func.isRequired,
-      entries: PropTypes.func.isRequired,
-      every: PropTypes.func.isRequired,
-      filter: PropTypes.func.isRequired,
-      find: PropTypes.func.isRequired,
-      findIndex: PropTypes.func.isRequired,
-      flat: PropTypes.func.isRequired,
-      flatMap: PropTypes.func.isRequired,
-      forEach: PropTypes.func.isRequired,
-      includes: PropTypes.func.isRequired,
-      indexOf: PropTypes.func.isRequired,
-      join: PropTypes.func.isRequired,
-      keys: PropTypes.func.isRequired,
-      lastIndexOf: PropTypes.func.isRequired,
-      length: PropTypes.number.isRequired,
-      map: PropTypes.func.isRequired,
-      reduce: PropTypes.func.isRequired,
-      reduceRight: PropTypes.func.isRequired,
-      slice: PropTypes.func.isRequired,
-      some: PropTypes.func.isRequired,
-      toLocaleString: PropTypes.func.isRequired,
-      toString: PropTypes.func.isRequired,
-      values: PropTypes.func.isRequired,
-    }),
-  ]),
-  /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
   value: PropTypes.any,

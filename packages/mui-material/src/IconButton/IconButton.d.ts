@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { IconButtonClasses } from './iconButtonClasses';
@@ -57,10 +55,6 @@ export type IconButtonTypeMap<
      * @default 'medium'
      */
     size?: OverridableStringUnion<'small' | 'medium' | 'large', IconButtonPropsSizeOverrides>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;

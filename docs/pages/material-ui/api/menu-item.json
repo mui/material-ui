@@ -7,13 +7,7 @@
     "dense": { "type": { "name": "bool" } },
     "disableGutters": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
-    "focusVisibleClassName": { "type": { "name": "string" } },
-    "sx": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;func<br>&#124;&nbsp;object<br>&#124;&nbsp;{ __@iterator@91: func, concat: func, entries: func, every: func, filter: func, find: func, findIndex: func, flat: func, flatMap: func, forEach: func, includes: func, indexOf: func, join: func, keys: func, lastIndexOf: func, length: number, map: func, reduce: func, reduceRight: func, slice: func, some: func, toLocaleString: func, toString: func, values: func }"
-      }
-    }
+    "focusVisibleClassName": { "type": { "name": "string" } }
   },
   "name": "MenuItem",
   "styles": {

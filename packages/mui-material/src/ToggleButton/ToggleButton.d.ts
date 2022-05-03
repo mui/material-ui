@@ -1,7 +1,5 @@
-import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import * as React from 'react';
-import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { ToggleButtonClasses } from './toggleButtonClasses';
@@ -72,10 +70,6 @@ export type ToggleButtonTypeMap<
      * @default 'medium'
      */
     size?: OverridableStringUnion<'small' | 'medium' | 'large', ToggleButtonPropsSizeOverrides>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
     /**
      * The value to associate with the button when selected in a
      * ToggleButtonGroup.

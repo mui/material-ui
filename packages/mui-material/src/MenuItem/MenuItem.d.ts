@@ -1,5 +1,3 @@
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { MenuItemClasses } from './menuItemClasses';
@@ -42,10 +40,6 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      * @default false
      */
     selected?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;

@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { BaseTheme as Theme } from '../styles/BaseTheme.types';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonClasses } from './buttonClasses';
@@ -74,10 +72,6 @@ export type ButtonTypeMap<
      * Element placed before the children.
      */
     startIcon?: React.ReactNode;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
     /**
      * The variant to use.
      * @default 'text'

@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { ListItemButtonClasses } from './listItemButtonClasses';
@@ -52,10 +50,6 @@ export interface ListItemButtonBaseProps {
    * @default false
    */
   selected?: boolean;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
 }
 
 export type ListItemButtonTypeMap<
