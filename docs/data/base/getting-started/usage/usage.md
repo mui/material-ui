@@ -14,9 +14,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 function App() {
   return (
     <div>
-      <ButtonUnstyled>
-        Hello World
-      </ButtonUnstyled>
+      <ButtonUnstyled>Hello World</ButtonUnstyled>
     </div>
   );
 }
