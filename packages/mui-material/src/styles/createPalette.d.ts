@@ -102,10 +102,16 @@ export interface Channels {
   mainChannel: string;
   lightChannel: string;
   darkChannel: string;
+  contrastTextChannel: string;
 }
 
 export interface PaletteWithChannels {
-  common: CommonColors;
+  common: CommonColors & {
+    background: string;
+    onBackground: string;
+    backgroundChannel: string;
+    onBackgroundChannel: string;
+  };
   mode: PaletteMode;
   contrastThreshold: number;
   tonalOffset: PaletteTonalOffset;
