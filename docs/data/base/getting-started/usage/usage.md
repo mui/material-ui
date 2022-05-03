@@ -89,7 +89,9 @@ These two examples are equivalent:
 
 MUI Base includes two kinds of building blocks: **components** and **hooks**.
 
-> 💡 Hooks encapsulate _logic_; components provide _structure_.
+:::info
+💡 Hooks encapsulate _logic_; components provide _structure_.
+:::
 
 Many Base components are implemented with the help of hooks.
 
