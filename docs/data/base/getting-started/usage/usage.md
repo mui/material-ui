@@ -2,6 +2,18 @@
 
 <p class="description">MUI Base components each have their own API, but all share a few common props.</p>
 
+## Getting started
+
+```jsx
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import Button from '@mui/base/Button';
+
+function App() {
+  return <Button>Hello World</Button>;
+}
+```
+
 ## Shared props
 
 The following props can be passed to all Base components:
