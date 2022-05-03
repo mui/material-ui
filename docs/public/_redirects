@@ -294,9 +294,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/badge-unstyled/ /base/api/badge-unstyled/ 301
 /pt/api/badge-unstyled/ /pt/base/api/badge-unstyled/ 301
 /zh/api/badge-unstyled/ /zh/base/api/badge-unstyled/ 301
-/api/backdrop-unstyled/ /base/api/backdrop-unstyled/ 301
-/pt/api/backdrop-unstyled/ /pt/base/api/backdrop-unstyled/ 301
-/zh/api/backdrop-unstyled/ /zh/base/api/backdrop-unstyled/ 301
+/api/backdrop-unstyled/ /base/react-modal/ 301
+/pt/api/backdrop-unstyled/ /pt/base/react-modal/ 301
+/zh/api/backdrop-unstyled/ /zh/base/react-modal/ 301
 /api/switch-unstyled/ /base/api/switch-unstyled/ 301
 /pt/api/switch-unstyled/ /pt/base/api/switch-unstyled/ 301
 /zh/api/switch-unstyled/ /zh/base/api/switch-unstyled/ 301
