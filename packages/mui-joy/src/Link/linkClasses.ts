@@ -19,14 +19,14 @@ export interface LinkClasses {
   disabled: string;
   /** State class applied to the root element if the link is keyboard focused. */
   focusVisible: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
   /** Styles applied to the root element if `underline="none"`. */
   underlineNone: string;
   /** Styles applied to the root element if `underline="hover"`. */
@@ -74,10 +74,10 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'colorSuccess',
   'colorWarning',
   'focusVisible',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
   'underlineNone',
   'underlineHover',
   'underlineAlways',

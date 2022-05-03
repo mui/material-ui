@@ -5,8 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
 export type ListItemButtonSlot = 'root';
@@ -67,7 +66,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
     selected?: boolean;
     /**
      * The variant to use.
-     * @default 'text'
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListItemButtonPropsVariantOverrides>;
     /**

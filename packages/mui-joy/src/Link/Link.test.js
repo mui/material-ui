@@ -24,7 +24,7 @@ describe('<Link />', () => {
     ThemeProvider,
     muiName: 'MuiLink',
     refInstanceof: window.HTMLAnchorElement,
-    testVariantProps: { color: 'primary', variant: 'text' },
+    testVariantProps: { color: 'primary', variant: 'plain' },
     testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
     skip: [
       'classesRoot',
@@ -92,13 +92,13 @@ describe('<Link />', () => {
         </Link>,
       );
 
-      expect(getByTestId('root')).not.to.have.class(classes.variantText);
+      expect(getByTestId('root')).not.to.have.class(classes.variantPlain);
       expect(getByTestId('root')).not.to.have.class(classes.variantOutlined);
-      expect(getByTestId('root')).not.to.have.class(classes.variantLight);
-      expect(getByTestId('root')).not.to.have.class(classes.variantContained);
+      expect(getByTestId('root')).not.to.have.class(classes.variantSoft);
+      expect(getByTestId('root')).not.to.have.class(classes.variantSolid);
     });
 
-    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" variant={variant}>

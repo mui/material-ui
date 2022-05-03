@@ -39,10 +39,10 @@ export interface BadgeClasses {
   sizeLg: string;
   /** Styles applied to the badge `span` element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the badge `span` element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the badge `span` element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the badge `span` element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the badge `span` element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type BadgeClassKey = keyof BadgeClasses;
@@ -71,8 +71,8 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'sizeMd',
   'sizeLg',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default badgeClasses;
