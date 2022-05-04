@@ -448,6 +448,10 @@ Grid.propTypes /* remove-proptypes */ = {
    */
   item: PropTypes.bool,
   /**
+   * @ignore
+   */
+  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
    * If 'auto', the grid item's width matches its content.
@@ -456,10 +460,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * The value is applied for the `lg` breakpoint and wider screens if not overridden.
    * @default false
    */
-  lg: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -469,10 +470,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * The value is applied for the `md` breakpoint and wider screens if not overridden.
    * @default false
    */
-  md: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
@@ -492,10 +490,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * The value is applied for the `sm` breakpoint and wider screens if not overridden.
    * @default false
    */
-  sm: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  sm: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
@@ -530,10 +525,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * The value is applied for the `xl` breakpoint and wider screens if not overridden.
    * @default false
    */
-  xl: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -543,10 +535,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * The value is applied for all the screen sizes with the lowest priority.
    * @default false
    */
-  xs: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * If `true`, it sets `min-width: 0` on the item.
    * Refer to the limitations section of the documentation to better understand the use case.
