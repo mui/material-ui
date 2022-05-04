@@ -83,7 +83,9 @@ export default function CssVarsTemplate() {
                 <TableRow>Hello, I'am a row</TableRow>
               </TableHead>
               <TableBody>
-                <TableRow selected hover>Hello, I am a selected and hover row</TableRow>
+                <TableRow selected hover>
+                  Hello, I am a selected and hover row
+                </TableRow>
               </TableBody>
             </Table>
           </Box>
