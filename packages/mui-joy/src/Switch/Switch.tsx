@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled, JoyTheme } from '../styles';
+import { styled, Theme } from '../styles';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchProps } from './SwitchProps';
 
@@ -31,14 +31,14 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
 };
 
 const switchColorVariables =
-  ({ theme, ownerState }: { theme: JoyTheme; ownerState: SwitchProps }) =>
+  ({ theme, ownerState }: { theme: Theme; ownerState: SwitchProps }) =>
   (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
     const variant = ownerState.variant;
     const color = ownerState.color;
     return {
       '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
       '--Switch-track-color':
-        ownerState.variant === 'contained' ? '#fff' : theme.vars.palette[color!]?.textColor,
+        ownerState.variant === 'solid' ? '#fff' : theme.vars.palette[color!]?.plainColor,
       '--Switch-track-borderColor':
         variant === 'outlined'
           ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
@@ -46,7 +46,7 @@ const switchColorVariables =
       '--Switch-thumb-background':
         theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
       '--Switch-thumb-color':
-        ownerState.variant === 'contained' ? theme.vars.palette[color!]?.textColor : '#fff',
+        ownerState.variant === 'solid' ? theme.vars.palette[color!]?.plainColor : '#fff',
     };
   };
 
@@ -60,7 +60,7 @@ const SwitchRoot = styled('span', {
     ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
     '--Switch-track-radius': theme.vars.radius.lg,
     '--Switch-thumb-shadow':
-      ownerState.variant === 'light' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
+      ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
     ...(ownerState.size === 'sm' && {
       '--Switch-track-width': '40px',
       '--Switch-track-height': '20px',
@@ -227,7 +227,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     readOnly: readOnlyProp,
     required,
     color,
-    variant = 'contained',
+    variant = 'solid',
     size = 'md',
     startDecorator,
     endDecorator,
@@ -431,7 +431,7 @@ Switch.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined']),

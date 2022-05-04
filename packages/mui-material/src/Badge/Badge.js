@@ -87,8 +87,8 @@ const BadgeBadge = styled('span', {
     duration: theme.transitions.duration.enteringScreen,
   }),
   ...(ownerState.color !== 'default' && {
-    backgroundColor: theme.palette[ownerState.color].main,
-    color: theme.palette[ownerState.color].contrastText,
+    backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+    color: (theme.vars || theme).palette[ownerState.color].contrastText,
   }),
   ...(ownerState.variant === 'dot' && {
     borderRadius: RADIUS_DOT,

@@ -1,6 +1,6 @@
 import { OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { SxProps } from '../styles/defaultTheme';
+import { SxProps } from '../styles/types';
 
 export type CardCoverSlot = 'root';
 
