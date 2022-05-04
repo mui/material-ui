@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
-import Icon from '@mui/material/Icon';
+import Icon, { IconProps } from '@mui/material/Icon';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -37,6 +37,8 @@ const ColorSchemePicker = () => {
   );
 };
 
+const COLORS = ['primary', 'secondary', 'error', 'info', 'warning', 'success'];
+
 export default function CssVarsTemplate() {
   return (
     <CssVarsProvider>
@@ -55,8 +57,10 @@ export default function CssVarsTemplate() {
               placeSelf: 'center',
             },
           }}
-        >
-          <Icon>Star</Icon>
+        >   
+        {COLORS.map((color: string) => (
+          <Icon color={color as IconProps['color']}>star</Icon>
+        ))}
         </Box>
       </Container>
     </CssVarsProvider>

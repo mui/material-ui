@@ -223,8 +223,5 @@
     "docs",
     "docs/packages/*",
     "test"
-  ],
-  "dependencies": {
-    "next": "^12.1.6"
-  }
+  ]
 }
