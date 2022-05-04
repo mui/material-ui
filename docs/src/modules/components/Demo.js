@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRunner } from 'react-runner';
+import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
+import FormHelperText from '@mui/material/FormHelperText';
 import NoSsr from '@mui/material/NoSsr';
-import Typography from '@mui/material/Typography';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import CodeEditor from 'docs/src/modules/components/CodeEditor';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
@@ -214,6 +215,11 @@ export default function Demo(props) {
       : code,
     scope: demo.scope,
   });
+  const [debouncedError, setError] = React.useState(error);
+  const debouncedSetError = React.useMemo(() => debounce(setError, 300), []);
+  React.useEffect(() => {
+    debouncedSetError(error);
+  }, [error, debouncedSetError]);
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -271,10 +277,15 @@ export default function Demo(props) {
             onChange={setCode}
             language={demoData.sourceLanguage}
           />
-          {error && (
-            <Typography color="error" component="pre" sx={{ whiteSpace: 'pre-wrap' }}>
-              {error}
-            </Typography>
+          {debouncedError && error && (
+            <FormHelperText
+              variant="outlined"
+              error
+              component="pre"
+              sx={{ whiteSpace: 'pre-wrap' }}
+            >
+              {debouncedError}
+            </FormHelperText>
           )}
         </div>
       </Collapse>
