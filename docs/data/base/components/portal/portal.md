@@ -13,7 +13,9 @@ packageName: '@mui/base'
 `Portal` is a utility component built around [React's `createPortal()` API](https://reactjs.org/docs/portals.html).
 It gives you the functionality of `createPortal()` in a convenient component form.
 
-> 💡 According to [the React docs](https://reactjs.org/docs/portals.html), portals are useful when "you need the child element to visually 'break out' of its container."
+:::info
+💡 According to [the React docs](https://reactjs.org/docs/portals.html), portals are useful when "you need the child element to visually 'break out' of its container."
+:::
 
 The `Portal` component is used internally by Material UI's [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
 
@@ -28,4 +30,6 @@ The following demo shows how a `<span>` nested within a `Portal` can be appended
 
 {{"demo": "SimplePortal.js"}}
 
-> ⚠️ **Note:** React [does not support](https://github.com/facebook/react/issues/13097) the [`createPortal()` API on the server](https://reactjs.org/docs/portals.html)—client-side hydration is necessary to render the child elements.
+:::warning
+⚠️ **Note:** React [does not support](https://github.com/facebook/react/issues/13097) the [`createPortal()` API on the server](https://reactjs.org/docs/portals.html)—client-side hydration is necessary to render the child elements.
+:::
