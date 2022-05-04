@@ -63,7 +63,7 @@ export const styles = (theme) => ({
     minWidth: RADIUS_DOT * 2,
     padding: 0,
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`. */
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
   anchorOriginTopRightRectangle: {
     top: 0,
     right: 0,
@@ -83,7 +83,7 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, -50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`. */
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
   anchorOriginBottomRightRectangle: {
     bottom: 0,
     right: 0,
@@ -103,7 +103,7 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, 50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`. */
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
   anchorOriginTopLeftRectangle: {
     top: 0,
     left: 0,
@@ -123,7 +123,7 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(-50%, -50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`. */
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
   anchorOriginBottomLeftRectangle: {
     bottom: 0,
     left: 0,
@@ -246,7 +246,7 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     component: ComponentProp = 'span',
     invisible: invisibleProp,
     max = 99,
-    overlap = 'rectangle',
+    overlap = 'rectangular',
     showZero = false,
     variant = 'standard',
     ...other
@@ -371,7 +371,7 @@ Badge.propTypes = {
   overlap: chainPropTypes(
     PropTypes.oneOf(['circle', 'rectangle', 'circular', 'rectangular']),
     (props) => {
-      const { overlap = 'rectangle' } = props;
+      const { overlap = 'rectangular' } = props;
 
       if (overlap === 'rectangle') {
         throw new Error(
