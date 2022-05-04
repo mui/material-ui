@@ -19,13 +19,13 @@ For a component to be ready to move to the core, the following criteria are cons
 
 Install the package in your project directory with:
 
-With npm:
+With **npm**:
 
 ```sh
 npm install @mui/lab
 ```
 
-With yarn:
+With **yarn**:
 
 ```sh
 yarn add @mui/lab

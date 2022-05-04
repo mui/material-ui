@@ -17,13 +17,13 @@ _(Resize the window to see the responsive breakpoints)_
 
 <!-- #default-branch-switch -->
 
-With npm:
+With **npm**:
 
 ```sh
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
-With yarn:
+With **yarn**:
 
 ```sh
 yarn add @mui/system @emotion/react @emotion/styled

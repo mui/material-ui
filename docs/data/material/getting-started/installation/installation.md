@@ -8,13 +8,13 @@ Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/
 
 To install and save in your `package.json` dependencies, run:
 
-With npm:
+With **npm**:
 
 ```sh
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
-With yarn:
+With **yarn**:
 
 ```sh
 yarn add @mui/material @emotion/react @emotion/styled
@@ -70,9 +70,13 @@ you must first install the [@mui/icons-material](https://www.npmjs.com/package/@
 
 <!-- #default-branch-switch -->
 
+With **npm**:
+
 ```sh
 npm install @mui/icons-material
 ```
+
+With **yarn**:
 
 ```sh
 yarn add @mui/icons-material
