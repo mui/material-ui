@@ -120,7 +120,7 @@ const TooltipTooltip = styled('div', {
 })(({ theme, ownerState }) => ({
   backgroundColor: theme.vars
     ? `rgba(${theme.vars.palette.grey.darkChannel} / 0.92)`
-    : alpha(theme.vars.palette.grey.darkChannel, 0.92),
+    : alpha(theme.palette.grey.darkChannel, 0.92),
   borderRadius: theme.shape.borderRadius,
   color: (theme.vars || theme).palette.common.white,
   fontFamily: theme.typography.fontFamily,
@@ -200,7 +200,7 @@ const TooltipArrow = styled('span', {
   boxSizing: 'border-box',
   color: theme.vars
     ? `rgba(${theme.vars.palette.grey.darkChannel} / 0.9)`
-    : alpha(theme.vars.palette.grey.darkChannel, 0.9),
+    : alpha(theme.palette.grey.darkChannel, 0.9),
   '&::before': {
     content: '""',
     margin: 'auto',
