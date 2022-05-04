@@ -57,10 +57,12 @@ export default function CssVarsTemplate() {
               placeSelf: 'center',
             },
           }}
-        >   
-        {COLORS.map((color: string) => (
-          <Icon color={color as IconProps['color']}>star</Icon>
-        ))}
+        >
+          {COLORS.map((color: string) => (
+            <Icon key={`color-${color}`} color={color as IconProps['color']}>
+              star
+            </Icon>
+          ))}
         </Box>
       </Container>
     </CssVarsProvider>

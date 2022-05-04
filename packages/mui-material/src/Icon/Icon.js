@@ -52,7 +52,7 @@ const IconRoot = styled('span', {
   // TODO v5 deprecate, v6 remove for sx
   color: {
     primary: (theme.vars || theme).palette.primary.main,
-    secondary:(theme.vars || theme).palette.secondary.main,
+    secondary: (theme.vars || theme).palette.secondary.main,
     info: (theme.vars || theme).palette.info.main,
     success: (theme.vars || theme).palette.success.main,
     warning: (theme.vars || theme).palette.warning.main,
