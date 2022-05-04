@@ -22,25 +22,16 @@ Install the package in your project directory with:
 With **npm**:
 
 ```sh
-npm install @mui/lab
+npm install @mui/lab @mui/material
 ```
 
 With **yarn**:
 
 ```sh
-yarn add @mui/lab
+yarn add @mui/lab @mui/material
 ```
 
-The lab has a peer dependency on the core components.
-If you are not already using MUI in your project, you can install it with:
-
-```sh
-npm install @mui/material
-```
-
-```sh
-yarn add @mui/material
-```
+Note that the lab has a peer dependency on the Material UI components.
 
 ## TypeScript
 
