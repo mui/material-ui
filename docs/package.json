@@ -80,7 +80,7 @@
     "doctrine": "^3.0.0",
     "express": "^4.17.3",
     "fg-loadcss": "^3.1.0",
-    "final-form": "^4.20.6",
+    "final-form": "^4.20.7",
     "flexsearch": "^0.7.21",
     "fs-extra": "^10.1.0",
     "json2mq": "^0.2.0",
