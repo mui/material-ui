@@ -62,6 +62,6 @@ You're now ready to go on exploring Joy and build amazing UIs.
 
 ## Where to go from here?
 
-- 👨‍💻👩‍💻 [See more tutorials](/joy-ui/getting-started/tutorial/) to learn how to use other components
+- 👨‍💻👩‍💻 [See more tutorials](/joy-ui/getting-started/tutorial/) to learn how to use other Joy components
 - 💎 Learn about Joy's main features.
 - 📖 Learn about Joy's guiding principles and core concepts.
