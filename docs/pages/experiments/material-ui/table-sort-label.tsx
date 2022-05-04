@@ -417,7 +417,6 @@ function EnhancedTable() {
   );
 }
 
-
 export default function CssVarsTemplate() {
   return (
     <CssVarsProvider>
