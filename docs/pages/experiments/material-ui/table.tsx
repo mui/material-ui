@@ -60,17 +60,17 @@ export default function CssVarsTemplate() {
           <Box sx={{ width: '100%' }}>
             <Table aria-label="simple table">
               <TableHead>
-                <TableRow>Hi, I'm a row</TableRow>
+                <TableRow>Hi, I am a row</TableRow>
               </TableHead>
               <TableBody>
-                <TableRow>Hi, I'm a row</TableRow>
+                <TableRow>Hi, I am a row</TableRow>
               </TableBody>
             </Table>
           </Box>
           <Box sx={{ width: '100%' }}>
             <Table aria-label="simple table">
               <TableHead>
-                <TableRow>Hello, I'am row</TableRow>
+                <TableRow>Hello, I am row</TableRow>
               </TableHead>
               <TableBody>
                 <TableRow selected>Hello, I am a selected row</TableRow>
@@ -80,7 +80,7 @@ export default function CssVarsTemplate() {
           <Box sx={{ width: '100%' }}>
             <Table aria-label="simple table">
               <TableHead>
-                <TableRow>Hello, I'am a row</TableRow>
+                <TableRow>Hello, I am a row</TableRow>
               </TableHead>
               <TableBody>
                 <TableRow selected hover>
