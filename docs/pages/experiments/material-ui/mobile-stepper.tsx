@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   useColorScheme,
-  useTheme
+  useTheme,
 } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -88,7 +88,6 @@ function TextMobileStepper() {
     </Box>
   );
 }
-
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
