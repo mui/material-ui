@@ -10,6 +10,7 @@ import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
+import ComponentListContext from '../List/ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListItemProps) => {
   const { sticky, nested, variant, color } = ownerState;
@@ -126,6 +127,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'MuiListItem',
   });
 
+  const listComponent = React.useContext(ComponentListContext);
   const row = React.useContext(RowListContext);
 
   const {
@@ -134,7 +136,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     children,
     nested = false,
     sticky = false,
-    variant = 'text',
+    variant = 'plain',
     color = 'neutral',
     startAction,
     endAction,
@@ -157,7 +159,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     <NestedListContext.Provider value={nested}>
       <ListItemRoot
         ref={ref}
-        as={component}
+        as={
+          component || (listComponent && !listComponent.match(/^(ul|ol|menu)$/) ? 'div' : undefined)
+        }
         className={clsx(classes.root, className)}
         ownerState={ownerState}
         {...other}
@@ -189,6 +193,10 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -196,7 +204,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -221,10 +229,18 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   sticky: PropTypes.bool,
   /**
-   * The variant to use.
-   * @default 'text'
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default ListItem;

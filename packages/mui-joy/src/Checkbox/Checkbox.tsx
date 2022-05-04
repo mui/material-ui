@@ -65,7 +65,7 @@ const CheckboxRoot = styled('span', {
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
   '&.Mui-disabled': {
-    color: theme.vars.palette[ownerState.color!]?.textDisabledColor,
+    color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
   },
   ...(ownerState.disableIcon && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
@@ -124,7 +124,7 @@ const CheckboxAction = styled('span', {
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
       'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    ...theme.focus.default,
+    [theme.focus.selector]: theme.focus.default,
   },
   ...(ownerState.disableIcon
     ? [
@@ -218,7 +218,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const isCheckboxActive = checked || indeterminate;
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
-  const activeVariant = variant || 'contained';
+  const activeVariant = variant || 'solid';
   const inactiveVariant = variant || 'outlined';
 
   const ownerState = {
@@ -405,12 +405,20 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The icon when `checked` is false.
    */
   uncheckedIcon: PropTypes.node,
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined']),

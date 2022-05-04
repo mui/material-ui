@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, createTheme, alpha } from '@mui/material/styles';
-import { withStyles } from '@mui/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Head from 'docs/src/modules/components/Head';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -81,23 +80,27 @@ export const authors = {
   },
 };
 
-const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-    background:
-      theme.palette.mode === 'dark'
-        ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
-        : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
-    backgroundSize: 'auto 250px ',
-    backgroundRepeat: 'no-repeat',
-  },
-  back: {
+const classes = {
+  back: 'TopLayoutBlog-back',
+  time: 'TopLayoutBlog-time',
+  container: 'TopLayoutBlog-container',
+};
+
+const styles = ({ theme }) => ({
+  flexGrow: 1,
+  background:
+    theme.palette.mode === 'dark'
+      ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
+      : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
+  backgroundSize: 'auto 250px ',
+  backgroundRepeat: 'no-repeat',
+  [`& .${classes.back}`]: {
     display: 'flex',
     alignItems: 'center',
     marginBottom: theme.spacing(2),
     marginLeft: theme.spacing(-1),
   },
-  container: {
+  [`& .${classes.container}`]: {
     paddingTop: 60 + 20,
     marginBottom: theme.spacing(8),
     maxWidth: `calc(740px + ${theme.spacing(12)})`,
@@ -162,7 +165,7 @@ const styles = (theme) => ({
       },
     },
   },
-  time: {
+  [`& .${classes.time}`]: {
     color: theme.palette.text.secondary,
     ...theme.typography.caption,
     fontWeight: 500,
@@ -185,7 +188,7 @@ const AuthorsContainer = styled('div')(({ theme }) => ({
 }));
 
 function TopLayoutBlog(props) {
-  const { classes, docs } = props;
+  const { className, docs } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
@@ -202,7 +205,7 @@ function TopLayoutBlog(props) {
           headers.card === 'true' ? `https://mui.com/static${router.pathname}/card.png` : undefined
         }
       />
-      <div className={classes.root}>
+      <div className={className}>
         <AppContainer component="main" className={classes.container}>
           <Link
             href={ROUTES.blog}
@@ -272,7 +275,7 @@ function TopLayoutBlog(props) {
 }
 
 TopLayoutBlog.propTypes = {
-  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
   docs: PropTypes.object.isRequired,
 };
 
@@ -280,5 +283,4 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-const defaultTheme = createTheme();
-export default withStyles(styles, { defaultTheme })(TopLayoutBlog);
+export default styled(TopLayoutBlog)(styles);

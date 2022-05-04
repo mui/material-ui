@@ -53,7 +53,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
-  variant: ['contained', 'outlined', 'light'],
+  variant: ['solid', 'outlined', 'soft'],
 } as const;
 
 const InvisibleBadgeButton = () => {
@@ -91,7 +91,7 @@ export default function JoyBadge() {
             (color) => (
               <Badge key={color} badgeContent={100} size="lg" color={color}>
                 <Sheet
-                  variant="contained"
+                  variant="solid"
                   color={color}
                   sx={{ width: 70, height: 70, borderRadius: 35, opacity: 0.8 }}
                 />
@@ -109,7 +109,7 @@ export default function JoyBadge() {
         >
           <Sheet
             color="success"
-            variant="contained"
+            variant="solid"
             sx={{
               borderRadius: 20,
               display: 'flex',
@@ -122,6 +122,7 @@ export default function JoyBadge() {
           >
             {[{ badgeContent: '1', name: 'Jon Doe' }].map(({ badgeContent, name }) => (
               <Badge
+                key={name}
                 badgeContent={badgeContent}
                 size="lg"
                 color={'success'}
@@ -149,14 +150,14 @@ export default function JoyBadge() {
                     {name}
                   </Typography>
                   <Badge max={1000} badgeContent={200} color="danger" sx={{ ml: 'auto', mr: 1 }}>
-                    <IconButton size="sm" variant="text" color="danger" sx={{ mx: 1 }}>
+                    <IconButton size="sm" variant="plain" color="danger" sx={{ mx: 1 }}>
                       <Favorite />
                     </IconButton>
                   </Badge>
-                  <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
+                  <IconButton size="sm" variant="plain" color="neutral" sx={{ mx: 1 }}>
                     <Share />
                   </IconButton>
-                  <IconButton size="sm" variant="text" color="neutral" sx={{ mx: 1 }}>
+                  <IconButton size="sm" variant="plain" color="neutral" sx={{ mx: 1 }}>
                     <MoreHoriz />
                   </IconButton>
                 </Sheet>
@@ -171,14 +172,14 @@ export default function JoyBadge() {
           >
             <List row sx={{ '--List-gap': '0px' }} size="sm">
               <ListItem>
-                <IconButton variant="text" color="neutral">
+                <IconButton variant="plain" color="neutral">
                   <Badge color="danger" size="sm">
                     <Redeem />
                   </Badge>
                 </IconButton>
               </ListItem>
               <ListItem>
-                <IconButton variant="text" color="neutral">
+                <IconButton variant="plain" color="neutral">
                   <Badge badgeContent="23" color="danger" size="sm">
                     <Notifications />
                   </Badge>

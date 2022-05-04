@@ -75,7 +75,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     max,
     objectFit = 'cover',
     color = 'neutral',
-    variant = 'light',
+    variant = 'soft',
     ...other
   } = props;
 
@@ -163,10 +163,18 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   ratio: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * The variant to use.
-   * @default 'light'
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'soft'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default AspectRatio;
