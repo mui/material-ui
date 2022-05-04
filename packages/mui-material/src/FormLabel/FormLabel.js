@@ -44,13 +44,13 @@ export const FormLabelRoot = styled('label', {
   padding: 0,
   position: 'relative',
   [`&.${formLabelClasses.focused}`]: {
-    color: theme.palette[ownerState.color].main,
+    color: (theme.vars || theme).palette[ownerState.color].main,
   },
   [`&.${formLabelClasses.disabled}`]: {
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
   },
   [`&.${formLabelClasses.error}`]: {
-    color: theme.palette.error.main,
+    color: (theme.vars || theme).palette.error.main,
   },
 }));
 
