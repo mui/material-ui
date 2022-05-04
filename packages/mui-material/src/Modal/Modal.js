@@ -23,7 +23,7 @@ const ModalRoot = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   position: 'fixed',
-  zIndex: theme.zIndex.modal,
+  zIndex: (theme.vars || theme).zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
