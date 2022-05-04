@@ -124,7 +124,12 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.selected}`]: {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
-        backgroundColor: (theme.vars || theme).palette.action.hover,
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.action.selected} / ${theme.vars.palette.action.selectedOpacity}) + ${theme.vars.palette.action.hoverOpacity}`
+          : alpha(
+              theme.palette.action.selected,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: (theme.vars || theme).palette.action.selected,
