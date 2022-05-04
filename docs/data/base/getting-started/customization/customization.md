@@ -30,7 +30,7 @@ Note that although this demo uses [MUI System](/system/styled/) as a styling sol
 {{"demo": "StylingSlots.js"}}
 
 The components you pass in the `components` prop receive the `ownerState` prop from the top-level component (the "owner").
-By convention, it contains all props passed to the host, merged with its rendering state.
+By convention, it contains all props passed to the owner, merged with its rendering state.
 
 For example:
 
