@@ -39,7 +39,7 @@ const ColorSchemePicker = () => {
   );
 };
 
-export default function CssVarsTemplate() {
+export default function TooltipCssVars() {
   return (
     <CssVarsProvider>
       <CssBaseline />
