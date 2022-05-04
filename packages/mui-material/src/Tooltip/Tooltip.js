@@ -120,7 +120,7 @@ const TooltipTooltip = styled('div', {
 })(({ theme, ownerState }) => ({
   backgroundColor: alpha(theme.palette.grey[700], 0.92),
   borderRadius: theme.shape.borderRadius,
-  color: theme.palette.common.white,
+  color: (theme.vars || theme).palette.common.white,
   fontFamily: theme.typography.fontFamily,
   padding: '4px 8px',
   fontSize: theme.typography.pxToRem(11),
