@@ -11,7 +11,7 @@ export const html = (theme, enableColorScheme) => ({
   boxSizing: 'border-box',
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
-  ...(enableColorScheme && { colorScheme: (theme.vars || theme).palette.mode }),
+  ...(enableColorScheme && { colorScheme: theme.palette.mode }),
 });
 
 export const body = (theme) => ({
