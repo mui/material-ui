@@ -44,11 +44,9 @@ const ColorSchemePicker = () => {
 export default function CssVarsTemplate() {
   const [alignment, setAlignment] = React.useState<string | null>('left');
 
-  const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null,
-  ) => setAlignment(newAlignment);
-    
+  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) =>
+    setAlignment(newAlignment);
+
   return (
     <CssVarsProvider>
       <CssBaseline />
