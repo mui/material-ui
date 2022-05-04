@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import AirlineSeatReclineNormalIcon from '@mui/icons-material/AirlineSeatReclineNormal';
 import AirlineSeatIndividualSuiteIcon from '@mui/icons-material/AirlineSeatIndividualSuite';
@@ -41,7 +42,12 @@ const ColorSchemePicker = () => {
 };
 
 export default function CssVarsTemplate() {
-  const [selected, setSelected] = React.useState(true);
+  const [selected, setSelected] = React.useState<string | null>('lying');
+
+  const handleChange = (event: React.MouseEvent<HTMLElement>, value: string) => {
+    setSelected(value);
+  };
+
   return (
     <CssVarsProvider>
       <CssBaseline />
@@ -60,27 +66,17 @@ export default function CssVarsTemplate() {
             },
           }}
         >
-          <Box>
+          <ToggleButtonGroup value={selected} exclusive onChange={handleChange}>
             <ToggleButton value="sitting">
               <AirlineSeatReclineNormalIcon sx={{ fontSize: 40 }} />
             </ToggleButton>
-          </Box>
-          <Box>
-            <ToggleButton
-              value="lying"
-              selected={selected}
-              onChange={() => {
-                setSelected(!selected);
-              }}
-            >
+            <ToggleButton value="lying">
               <AirlineSeatReclineExtraIcon sx={{ fontSize: 40 }} />
             </ToggleButton>
-          </Box>
-          <Box>
             <ToggleButton value="sleeping" disabled>
               <AirlineSeatIndividualSuiteIcon sx={{ fontSize: 40 }} />
             </ToggleButton>
-          </Box>
+          </ToggleButtonGroup>
         </Box>
       </Container>
     </CssVarsProvider>
