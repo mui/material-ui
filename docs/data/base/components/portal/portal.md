@@ -31,5 +31,5 @@ The following demo shows how a `<span>` nested within a `Portal` can be appended
 {{"demo": "SimplePortal.js"}}
 
 :::warning
-⚠️ **Note:** React [does not support](https://github.com/facebook/react/issues/13097) the [`createPortal()` API on the server](https://reactjs.org/docs/portals.html)—client-side hydration is necessary to render the child elements.
+⚠️ **Note:** React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()` API on the server](https://reactjs.org/docs/portals.html)—client-side hydration is necessary to render the child elements.
 :::
