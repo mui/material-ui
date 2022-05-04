@@ -66,17 +66,17 @@ export default function TooltipCssVars() {
             </Tooltip>
           </Box>
           <Box>
-            <Tooltip title="Add" placement="top-start">
+            <Tooltip title="Top Start" placement="top-start">
               <Button>top-start</Button>
             </Tooltip>
           </Box>
           <Box>
-            <Tooltip title="Add" placement="top">
+            <Tooltip title="Top" placement="top" open>
               <Button>top</Button>
             </Tooltip>
           </Box>
           <Box>
-            <Tooltip title="Add" placement="top-end">
+            <Tooltip title="Top End" placement="top-end" open>
               <Button>top-end</Button>
             </Tooltip>
           </Box>
