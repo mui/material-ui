@@ -538,38 +538,40 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
-            endAdornment: (
-              <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
-                {hasClearIcon ? (
-                  <AutocompleteClearIndicator
-                    {...getClearProps()}
-                    aria-label={clearText}
-                    title={clearText}
-                    ownerState={ownerState}
-                    {...componentsProps.clearIndicator}
-                    className={clsx(
-                      classes.clearIndicator,
-                      componentsProps.clearIndicator?.className,
-                    )}
-                  >
-                    {clearIcon}
-                  </AutocompleteClearIndicator>
-                ) : null}
+            ...((hasClearIcon || hasPopupIcon) && {
+              endAdornment: (
+                <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
+                  {hasClearIcon ? (
+                    <AutocompleteClearIndicator
+                      {...getClearProps()}
+                      aria-label={clearText}
+                      title={clearText}
+                      ownerState={ownerState}
+                      {...componentsProps.clearIndicator}
+                      className={clsx(
+                        classes.clearIndicator,
+                        componentsProps.clearIndicator?.className,
+                      )}
+                    >
+                      {clearIcon}
+                    </AutocompleteClearIndicator>
+                  ) : null}
 
-                {hasPopupIcon ? (
-                  <AutocompletePopupIndicator
-                    {...getPopupIndicatorProps()}
-                    disabled={disabled}
-                    aria-label={popupOpen ? closeText : openText}
-                    title={popupOpen ? closeText : openText}
-                    className={clsx(classes.popupIndicator)}
-                    ownerState={ownerState}
-                  >
-                    {popupIcon}
-                  </AutocompletePopupIndicator>
-                ) : null}
-              </AutocompleteEndAdornment>
-            ),
+                  {hasPopupIcon ? (
+                    <AutocompletePopupIndicator
+                      {...getPopupIndicatorProps()}
+                      disabled={disabled}
+                      aria-label={popupOpen ? closeText : openText}
+                      title={popupOpen ? closeText : openText}
+                      className={clsx(classes.popupIndicator)}
+                      ownerState={ownerState}
+                    >
+                      {popupIcon}
+                    </AutocompletePopupIndicator>
+                  ) : null}
+                </AutocompleteEndAdornment>
+              ),
+            }),
           },
           inputProps: {
             className: clsx(classes.input),
