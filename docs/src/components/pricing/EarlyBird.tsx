@@ -35,16 +35,15 @@ export default function EarlyBird() {
             🐦&nbsp;&nbsp;Early bird special!
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 700 }}>
-            Buy now at a reduced price (~25% off), and get early access to MUI X Pro, with the added
-            opportunity to influence its development. This perpetual license gives access to support
-            and updates for one year. The early bird special is available for a limited time, so
+            Buy now at a reduced price (~25% off), and get early access to MUI X Premium, with the added
+            opportunity to influence its development. The early bird special is available for a limited time, so
             don&apos;t miss this opportunity!
           </Typography>
         </Box>
         <Button
           component={Link}
           noLinkStyle
-          href="https://mui.com/store/items/material-ui-pro/"
+          href="https://mui.com/store/items/mui-x-premium/"
           variant="contained"
           fullWidth
           endIcon={<KeyboardArrowRightRounded />}
