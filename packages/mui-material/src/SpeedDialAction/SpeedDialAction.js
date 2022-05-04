@@ -39,8 +39,8 @@ const SpeedDialActionFab = styled(Fab, {
   },
 })(({ theme, ownerState }) => ({
   margin: 8,
-  color: theme.palette.text.secondary,
-  backgroundColor: theme.palette.background.paper,
+  color: (theme.vars || theme).palette.text.secondary,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
   '&:hover': {
     backgroundColor: emphasize(theme.palette.background.paper, 0.15),
   },
@@ -99,10 +99,10 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
 })(({ theme }) => ({
   position: 'absolute',
   ...theme.typography.body1,
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[1],
-  color: theme.palette.text.secondary,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
+  boxShadow: (theme.vars || theme).shadows[1],
+  color: (theme.vars || theme).palette.text.secondary,
   padding: '4px 16px',
   wordBreak: 'keep-all',
 }));
