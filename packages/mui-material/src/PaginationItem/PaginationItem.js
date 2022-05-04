@@ -191,7 +191,7 @@ const PaginationItemPage = styled(ButtonBase, {
       [`&.${paginationItemClasses.selected}`]: {
         ...(ownerState.color !== 'standard' && {
           color: (theme.vars || theme).palette[ownerState.color].main,
-          border: `1px solid ${alpha((theme.vars || theme).palette[ownerState.color].main, 0.5)}`,
+          border: `1px solid ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`}` : alpha(theme.palette[ownerState.color].main, 0.5)},
           backgroundColor: theme.vars
             ? `rgba(${
                 theme.vars.palette[ownerState.color].main /
