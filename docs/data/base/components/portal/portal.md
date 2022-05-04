@@ -22,7 +22,7 @@ The `Portal` component is used internally by Material UI's [`Modal`](material-ui
 ## Basic usage
 
 Normally, children of a component are rendered within that component's DOM tree.
-But sometimes it's necessary to mount a child to a different location in the DOM.
+But sometimes it's necessary to mount a child at a different location in the DOM.
 
 The `Portal` component accepts a `container` prop that passes a `ref` to the DOM node where its children will be mounted.
 
