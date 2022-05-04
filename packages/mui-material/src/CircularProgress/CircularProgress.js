@@ -69,7 +69,7 @@ const CircularProgressRoot = styled('span', {
       transition: theme.transitions.create('transform'),
     }),
     ...(ownerState.color !== 'inherit' && {
-      color: theme.palette[ownerState.color].main,
+      color: (theme.vars || theme).palette[ownerState.color].main,
     }),
   }),
   ({ ownerState }) =>

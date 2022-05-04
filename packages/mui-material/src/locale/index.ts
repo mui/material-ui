@@ -594,7 +594,7 @@ export const csCZ: Localization = {
         'aria-label': 'Navigace stránkováním',
         getItemAriaLabel: (type, page, selected) => {
           if (type === 'page') {
-            return `${selected ? '' : 'Jít na '}${page} stránku`;
+            return `${selected ? '' : 'Jít na '}${page}. stránku`;
           }
           if (type === 'first') {
             return 'Jít na první stránku';

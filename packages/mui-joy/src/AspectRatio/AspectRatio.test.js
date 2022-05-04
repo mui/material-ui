@@ -16,18 +16,18 @@ describe('<AspectRatio />', () => {
     muiName: 'MuiAspectRatio',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
-    it('text by default', () => {
+    it('plain by default', () => {
       const { getByTestId } = render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantLight);
+      expect(getByTestId('root')).to.have.class(classes.variantSoft);
     });
 
-    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <AspectRatio data-testid="root" variant={variant}>

@@ -7,9 +7,9 @@ import * as React from 'react';
 
 // `variant`
 <Chip />;
-<Chip variant="light" />;
+<Chip variant="soft" />;
 <Chip variant="outlined" />;
-<Chip variant="contained" />;
+<Chip variant="solid" />;
 
 // `color`
 <Chip color="primary" />;

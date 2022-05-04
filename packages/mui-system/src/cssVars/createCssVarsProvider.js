@@ -1,10 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { GlobalStyles } from '@mui/styled-engine';
 import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import createSpacing from '../createTheme/createSpacing';
-import createBreakpoints from '../createTheme/createBreakpoints';
+import { GlobalStyles } from '@mui/styled-engine';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
 import getInitColorSchemeScript, {
@@ -19,7 +17,7 @@ export const DISABLE_CSS_TRANSITION =
 
 export default function createCssVarsProvider(options) {
   const {
-    theme: baseTheme = {},
+    theme: defaultTheme = {},
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
@@ -29,17 +27,14 @@ export default function createCssVarsProvider(options) {
     resolveTheme,
   } = options;
 
-  const systemSpacing = createSpacing(baseTheme.spacing);
-  const systemBreakpoints = createBreakpoints(baseTheme.breakpoints ?? {});
-
   if (
-    !baseTheme.colorSchemes ||
+    !defaultTheme.colorSchemes ||
     (typeof designSystemColorScheme === 'string' &&
-      !baseTheme.colorSchemes[designSystemColorScheme]) ||
+      !defaultTheme.colorSchemes[designSystemColorScheme]) ||
     (typeof designSystemColorScheme === 'object' &&
-      !baseTheme.colorSchemes[designSystemColorScheme?.light]) ||
+      !defaultTheme.colorSchemes[designSystemColorScheme?.light]) ||
     (typeof designSystemColorScheme === 'object' &&
-      !baseTheme.colorSchemes[designSystemColorScheme?.dark])
+      !defaultTheme.colorSchemes[designSystemColorScheme?.dark])
   ) {
     console.error(`MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
   }
@@ -55,7 +50,7 @@ export default function createCssVarsProvider(options) {
 
   function CssVarsProvider({
     children,
-    theme: themeProp = {},
+    theme: themeProp = defaultTheme,
     prefix = designSystemPrefix,
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     attribute = DEFAULT_ATTRIBUTE,
@@ -64,16 +59,10 @@ export default function createCssVarsProvider(options) {
     disableTransitionOnChange = designSystemTransitionOnChange,
     enableColorScheme = designSystemEnableColorScheme,
   }) {
-    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
-    const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
     const hasMounted = React.useRef(false);
 
-    // eslint-disable-next-line prefer-const
-    let { components = {}, ...mergedTheme } = deepmerge(restBaseTheme, restThemeProp);
-    const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
-
+    const { colorSchemes = {}, components = {}, ...restThemeProp } = themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
-
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
@@ -105,26 +94,23 @@ export default function createCssVarsProvider(options) {
       return colorScheme;
     })();
 
+    let theme = restThemeProp;
     const {
       css: rootCss,
       vars: rootVars,
       parsedTheme,
-    } = cssVarsParser(mergedTheme, {
+    } = cssVarsParser(theme, {
       prefix,
       basePrefix: designSystemPrefix,
       shouldSkipGeneratingVar,
     });
 
-    mergedTheme = {
+    theme = {
       ...parsedTheme,
       components,
       colorSchemes,
       prefix,
       vars: rootVars,
-      spacing: themeProp.spacing ? createSpacing(themeProp.spacing) : systemSpacing,
-      breakpoints: themeProp.breakpoints
-        ? createBreakpoints(themeProp.breakpoints)
-        : systemBreakpoints,
       getCssVar: createGetCssVar(prefix),
     };
 
@@ -140,12 +126,17 @@ export default function createCssVarsProvider(options) {
         basePrefix: designSystemPrefix,
         shouldSkipGeneratingVar,
       });
-      mergedTheme.vars = deepmerge(mergedTheme.vars, vars);
+      theme.vars = deepmerge(theme.vars, vars);
       if (key === resolvedColorScheme) {
-        mergedTheme = {
-          ...mergedTheme,
+        theme = {
+          ...theme,
           ...parsedScheme,
         };
+        if (theme.palette) {
+          // assign runtime mode & colorScheme
+          theme.palette.mode = mode;
+          theme.palette.colorScheme = resolvedColorScheme;
+        }
       }
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
@@ -228,9 +219,7 @@ export default function createCssVarsProvider(options) {
       >
         <GlobalStyles styles={{ ':root': rootCss }} />
         <GlobalStyles styles={styleSheet} />
-        <ThemeProvider theme={resolveTheme ? resolveTheme(mergedTheme) : mergedTheme}>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
     );
   }
