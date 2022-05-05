@@ -17,7 +17,7 @@ Others are applied **conditionally**—like `Mui-disabled`, for example, which i
 Each component's API documentation lists all classes that the component uses.
 Additionally, you can import a `[componentName]Classes` object that describes all the classes a given component uses, as the following demo illustrates:
 
-{{"demo": "StylingCustomCss.js"}}
+{{"demo": "StylingCustomCss.js", "defaultCodeOpen": true}}
 
 ## Overriding subcomponent slots
 
