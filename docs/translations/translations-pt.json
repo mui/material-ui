@@ -186,6 +186,7 @@
     "/base/getting-started/installation": "Installation",
     "/base/react-": "Components",
     "inputs": "Inputs",
+    "/base/react-badge": "Badge",
     "/base/react-button": "Button",
     "/base/react-input": "Input",
     "/base/react-select": "Select",
