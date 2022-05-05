@@ -473,7 +473,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     });
 
     if (renderTags) {
-      startAdornment = renderTags(value, getCustomizedTagProps);
+      startAdornment = renderTags(value, getCustomizedTagProps, props);
     } else {
       startAdornment = value.map((option, index) => (
         <Chip
@@ -1024,6 +1024,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
+   * @param {object} autocompleteProps The props of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
