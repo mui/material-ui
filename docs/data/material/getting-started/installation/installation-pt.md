@@ -1,32 +1,34 @@
 # Instalação
 
-<p class="description">Instale MUI, o framework de componentes React UI mais popular do mundo.</p>
+<p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
-MUI está disponível como um [pacote npm](https://www.npmjs.com/package/@mui/material).
+Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
 ## npm
 
-Para instalar e salvar em suas dependências do `package.json`, execute:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
-// usando npm
 npm install @mui/material @emotion/react @emotion/styled
+```
 
-// usando yarn
+Or **yarn**:
+
+```sh
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
 
-Note que o pacote possui 2 dependências obrigatórias: [react](https://www.npmjs.com/package/react) >= 17.0.0 e [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0.
+Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
-MUI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. Ou se você quiser utilizar `styled-components` como um motor de estilização:
+Material UI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
 
 ```sh
-// usando npm
 npm install @mui/material @mui/styled-engine-sc styled-components
+```
 
-// usando yarn
+```sh
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -34,7 +36,7 @@ yarn add @mui/material @mui/styled-engine-sc styled-components
 
 ## Fonte Roboto
 
-MUI foi desenvolvida com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). So be sure to follow [these instructions](/material-ui/react-typography/#general). Como alternativa, carregue através do Google Web Fonts:
+Material UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto) font in mind. So be sure to follow [these instructions](/material-ui/react-typography/#general). Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link
@@ -45,7 +47,7 @@ MUI foi desenvolvida com base na fonte [Roboto](https://fonts.google.com/specime
 
 ## Ícones de fonte
 
-Para usar o componente de fonte `Icon`, você deve primeiramente adiciona a fonte de [ícones Material](https://fonts.google.com/icons). Here are [some instructions](/material-ui/icons/#font-icons) on how to do so. Como alternativa, carregue através do Google Web Fonts:
+To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. Here are [some instructions](/material-ui/icons/#font-icons) on how to do so. For instance, via Google Web Fonts:
 
 ```html
 <link
@@ -60,28 +62,32 @@ In order to use prebuilt SVG Material icons, such as those found in the [icons d
 
 <!-- #default-branch-switch -->
 
-```sh
-// usando npm
-npm install @mui/icons-material
+With **npm**:
 
-// usando yarn
+```sh
+npm install @mui/icons-material
+```
+
+With **yarn**:
+
+```sh
 yarn add @mui/icons-material
 ```
 
 ## CDN
 
-Você pode começar a utilizar o MUI com o mínimo de infraestrutura de frontend, o que é bom para prototipação.
+You can start using Material UI with minimal Front-end infrastructure, which is great for prototyping.
 
-Dois arquivos Universal Module Definition (**UMD**) são fornecidos:
+Two Universal Module Definition (**UMD**) files are provided:
 
 - um para desenvolvimento: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
 - um para produção: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
-Você pode seguir [esse exemplo CDN](https://github.com/mui/material-ui/tree/master/examples/cdn) para dar um pontapé inicial.
+You can follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/cdn) to quickly get started.
 
-⚠️ Usar essa abordagem em **produção** não é **recomendada** devido que - o cliente tem que baixar toda a biblioteca, independentemente de quais os componentes que são realmente utilizados, o que afeta o desempenho e a utilização da largura de banda.
+⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
 
-⚠️ Os links UMD estão usando a tag `latest` para apontar para a versão mais recente da biblioteca. Esse apontamento é **instável**, muda à medida que lançamos novas versões. Você deve considerar apontar para uma versão específica, tal como [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js).
+⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is **unstable**, it shifts as we release new versions. You should consider pointing to a specific version, such as [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js).
 
 ## Recursos de design
 
@@ -89,9 +95,9 @@ Você pode seguir [esse exemplo CDN](https://github.com/mui/material-ui/tree/mas
 <a href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
 <a href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
 
-Um conjunto de componentes reutilizáveis para ferramentas de design está disponível, desenvolvido para enquadrar os componentes React e te ajudar a criar ótimos produtos:
+A set of reusable components for design tools is available, designed to match the React components and to help you craft great products:
 
-- [Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted MUI components.
-- [Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
-- [Sketch](https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted MUI symbols.
-- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
+- [Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted Material UI components.
+- [Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted Material UI components.
+- [Sketch](https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted Material UI symbols.
+- [UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
