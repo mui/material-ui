@@ -33,7 +33,7 @@ const DarkMode = () => {
 
 export default function DarkModeSpecificity() {
   return (
-    <CssVarsProvider>
+    <CssVarsProvider modeStorageKey="dark-mode-specificity">
       <DarkMode />
       <div style={{ background: 'var(--background-default)', color: '#888', padding: '1rem' }}>
         Background should be #000.
