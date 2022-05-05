@@ -214,9 +214,7 @@ const PaginationItemPage = styled(ButtonBase, {
           },
           [`&.${paginationItemClasses.focusVisible}`]: {
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[ownerState.color].main} / ${
-                  theme.vars.palette.action.activatedOpacity
-                }) + ${theme.vars.palette.action.focusOpacity}`
+              ? `rgba(${theme.vars.palette[ownerState.color].main} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
               : alpha(
                   theme.palette[ownerState.color].main,
                   theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
