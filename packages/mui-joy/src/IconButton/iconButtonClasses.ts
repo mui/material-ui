@@ -15,14 +15,14 @@ export interface IconButtonClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
   /** State class applied to the root element if the button is keyboard focused. */
   focusVisible: string;
   /** State class applied to the root element if `disabled={true}`. */
@@ -49,10 +49,10 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'colorInfo',
   'colorSuccess',
   'colorWarning',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
   'focusVisible',
   'disabled',
   'sizeSm',

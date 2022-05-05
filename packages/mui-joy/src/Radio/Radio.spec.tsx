@@ -25,8 +25,8 @@ import Radio from '@mui/joy/Radio';
 <Radio color="neutral" />;
 
 <Radio variant="outlined" />;
-<Radio variant="light" />;
-<Radio variant="contained" />;
+<Radio variant="soft" />;
+<Radio variant="solid" />;
 
 <Radio size="sm" />;
 <Radio size="md" />;

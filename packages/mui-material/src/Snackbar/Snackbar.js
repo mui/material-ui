@@ -55,7 +55,7 @@ const SnackbarRoot = styled('div', {
   };
 
   return {
-    zIndex: theme.zIndex.snackbar,
+    zIndex: (theme.vars || theme).zIndex.snackbar,
     position: 'fixed',
     display: 'flex',
     left: 8,

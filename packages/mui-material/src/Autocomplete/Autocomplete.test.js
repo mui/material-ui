@@ -1870,6 +1870,14 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('あ');
     });
+
+    it('should render endAdornment only when clear icon or popup icon is available', () => {
+      const { container } = render(
+        <Autocomplete freeSolo options={[]} renderInput={(params) => <TextField {...params} />} />,
+      );
+
+      expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
+    });
   });
 
   describe('prop: onChange', () => {

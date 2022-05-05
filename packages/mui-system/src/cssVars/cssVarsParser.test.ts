@@ -47,6 +47,16 @@ describe('cssVarsParser', () => {
         },
       });
     });
+
+    it('create array given by `arrayKeys`', () => {
+      const result = {};
+      assignNestedKeys(result, ['keys', '0'], 'xs', ['keys']);
+      assignNestedKeys(result, ['keys', '2'], 'md', ['keys']);
+      assignNestedKeys(result, ['keys', '1'], 'sm', ['keys']);
+      expect(result).to.deep.equal({
+        keys: ['xs', 'sm', 'md'],
+      });
+    });
   });
   describe('walkObjectDeep', () => {
     it('run callback at each key', () => {
@@ -304,6 +314,17 @@ describe('cssVarsParser', () => {
         '--palette-primary-100': '#ffffff',
       });
     });
+
+    it('css can be produced from array', () => {
+      const { css } = cssVarsParser({
+        shadows: ['sm', 'md', 'lg'],
+      });
+      expect(css).to.deep.equal({
+        '--shadows-0': 'sm',
+        '--shadows-1': 'md',
+        '--shadows-2': 'lg',
+      });
+    });
   });
 
   describe('vars', () => {
@@ -380,6 +401,15 @@ describe('cssVarsParser', () => {
         },
       });
     });
+
+    it('vars can be produced from array', () => {
+      const { vars } = cssVarsParser({
+        shadows: ['sm', 'md', 'lg'],
+      });
+      expect(vars).to.deep.equal({
+        shadows: ['var(--shadows-0)', 'var(--shadows-1)', 'var(--shadows-2)'],
+      });
+    });
   });
 
   describe('parsedObject', () => {
@@ -406,6 +436,18 @@ describe('cssVarsParser', () => {
         },
       });
       expect(parsedTheme).not.to.deep.equal(parsedTheme2);
+    });
+
+    it('preserve array even if the key is listed in `shouldSkipGeneratingVar`', () => {
+      const theme = {
+        breakpoints: {
+          keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+      };
+      const { parsedTheme } = cssVarsParser(theme, {
+        shouldSkipGeneratingVar: (keys) => keys[0] === 'breakpoints',
+      });
+      expect(parsedTheme.breakpoints.keys).to.deep.equal(['xs', 'sm', 'md', 'lg', 'xl']);
     });
 
     it('preserve function value', () => {

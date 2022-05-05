@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type ChipSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
 
@@ -34,7 +33,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, ChipPropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, ChipPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -60,7 +59,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'solid'
      */
     variant?: OverridableStringUnion<VariantProp, ChipPropsVariantOverrides>;
   };

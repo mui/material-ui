@@ -88,7 +88,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     action,
     component = 'button',
     color = 'primary',
-    variant = 'light',
+    variant = 'soft',
     size = 'md',
     ...other
   } = props;
@@ -100,7 +100,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ComponentProp,
     ref: handleRef,
   });
 
@@ -211,7 +210,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   tabIndex: PropTypes.number,
   /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
