@@ -36,7 +36,7 @@ Because the CSS variables API is an experimental feature, it is currently only s
 
 Play around with the demo below!
 
-{{"demo": "CssVariablesCustomization.js", "iframe": true }}
+{{"demo": "CssVariablesCustomization.js" }}
 
 If you are using TypeScript you should use module augmentation to update the `Theme` structure:
 
@@ -76,7 +76,7 @@ const theme = experimental_extendTheme({
 });
 ```
 
-{{"demo": "CssVarsCustomTheme.js", "iframe": true }}
+{{"demo": "CssVarsCustomTheme.js" }}
 
 If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
 
