@@ -121,7 +121,7 @@ export interface PaletteWithChannels {
   warning: PaletteColor & Channels;
   info: PaletteColor & Channels;
   success: PaletteColor & Channels;
-  grey: Color;
+  grey: Color & { darkChannel: string };
   text: TypeText & { primaryChannel: string; secondaryChannel: string; disabledChannel: string };
   divider: TypeDivider;
   dividerChannel: TypeDivider;

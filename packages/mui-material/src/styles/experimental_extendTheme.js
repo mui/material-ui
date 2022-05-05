@@ -45,7 +45,6 @@ export default function extendTheme(options = {}, ...args) {
     if (key === 'dark') {
       palette.common.background = palette.common.background || '#000';
       palette.common.onBackground = palette.common.onBackground || '#fff';
-      // console.log(palette.common);
     } else {
       palette.common.background = palette.common.background || '#fff';
       palette.common.onBackground = palette.common.onBackground || '#000';
@@ -55,6 +54,12 @@ export default function extendTheme(options = {}, ...args) {
     palette.common.onBackgroundChannel = colorChannel(palette.common.onBackground);
 
     palette.dividerChannel = colorChannel(palette.divider);
+
+    // special token for Tooltip
+    // TODO: consider adding `main`, and `light` to palette.grey to make it consistent.
+    if (!palette.grey.dark) {
+      palette.grey.dark = palette.grey[700];
+    }
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
