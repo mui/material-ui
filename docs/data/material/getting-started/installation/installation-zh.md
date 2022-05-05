@@ -1,32 +1,34 @@
 # 安装
 
-<p class="description">安装 MUI —— 世界上最受欢迎的 React UI 框架。</p>
+<p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
-MUI 可以通过 [npm package](https://www.npmjs.com/package/@mui/material) 来安装。
+Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
 ## npm
 
-若想安装并写入您的 `package.json` 依赖包，请运行以下命令：
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
-// 使用 npm 安装
 npm install @mui/material @emotion/react @emotion/styled
+```
 
-// 使用 yarn 安装
+Or **yarn**:
+
+```sh
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
 
-请注意，安装依赖于 [react](https://www.npmjs.com/package/react) 的 17.0.0 及以上版本，和 [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 及以上版本。
+Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
-MUI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. 或者你想使用 `styled-components` 来作为样式引擎：
+Material UI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
 
 ```sh
-// 使用 npm 安装
 npm install @mui/material @mui/styled-engine-sc styled-components
+```
 
-// 使用 yarn 安装
+```sh
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
@@ -34,7 +36,7 @@ yarn add @mui/material @mui/styled-engine-sc styled-components
 
 ## Roboto 字体
 
-MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计的。 So be sure to follow [these instructions](/material-ui/react-typography/#general). 例如，通过 Google Web Fonts 引入：
+Material UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto) font in mind. So be sure to follow [these instructions](/material-ui/react-typography/#general). For instance, via Google Web Fonts:
 
 ```html
 <link
@@ -45,7 +47,7 @@ MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计
 
 ## 字体图标
 
-To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 我们提供了安装字体的[一些说明](/components/icons/#font-icons)。 Here are [some instructions](/material-ui/icons/#font-icons) on how to do so. For instance, via Google Web Fonts:
+To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. Here are [some instructions](/material-ui/icons/#font-icons) on how to do so. For instance, via Google Web Fonts:
 
 ```html
 <link
@@ -60,28 +62,32 @@ In order to use prebuilt SVG Material icons, such as those found in the [icons d
 
 <!-- #default-branch-switch -->
 
-```sh
-// 使用 npm 安装
-npm install @mui/icons-material
+With **npm**:
 
-// 使用 yarn 安装
+```sh
+npm install @mui/icons-material
+```
+
+With **yarn**:
+
+```sh
 yarn add @mui/icons-material
 ```
 
 ## CDN
 
-如果您已经开始将 Material-UI 融入一些最基本的前端基础架构，您的原型开发就如虎添翼。
+You can start using Material UI with minimal Front-end infrastructure, which is great for prototyping.
 
-我们提供了两个通用模块定义（**UMD**）的文件：
+Two Universal Module Definition (**UMD**) files are provided:
 
 - 您可以在开发环境调试：https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
 - 也可放心地在生产环境使用: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
-您可以按照[此 CDN 示例](https://github.com/mui/material-ui/tree/master/examples/cdn)快速开始。
+You can follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/cdn) to quickly get started.
 
-尽管我们**不赞成**在**生产环境**中使用这种方式 —— 无论实际使用哪些组件，客户端必须下载整个库，而这将会影响到整体性能和带宽利用率。
+⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
 
-⚠️ UMD 链接使用 `latest` 标签指向最新版本的库。 这个指向是**不稳定的**，它随着我们发布的新版本而改变。 您应该考虑使用一个具体的版本，如 [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js)。
+⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is **unstable**, it shifts as we release new versions. You should consider pointing to a specific version, such as [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js).
 
 ## 设计资源
 
@@ -91,7 +97,7 @@ yarn add @mui/icons-material
 
 A set of reusable components for design tools is available, designed to match the React components and to help you craft great products:
 
-- [Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted MUI components.
-- [Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
-- [Sketch](https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted MUI symbols.
-- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
+- [Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted Material UI components.
+- [Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted Material UI components.
+- [Sketch](https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted Material UI symbols.
+- [UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
