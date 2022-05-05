@@ -164,12 +164,7 @@ export type SystemStyleObject<Theme extends object = {}> =
 /**
  * The `SxProps` can be either object or function
  */
-export type SxProps<Theme extends object = {}> =
-  | SystemStyleObject<Theme>
-  | ((theme: Theme) => SystemStyleObject<Theme>)
-  | ReadonlyArray<
-      boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)
-    >;
+export type SxProps<Theme extends object = {}> = any;
 
 export interface StyleFunctionSx {
   (props: object): object;
