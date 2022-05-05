@@ -68,7 +68,7 @@ const PaperRoot = styled('div', {
         )}, ${alpha('#fff', getOverlayAlpha(ownerState.elevation))})`,
       }),
     ...(theme.vars && {
-      backgroundImage: theme.vars.overlays[ownerState.elevation],
+      backgroundImage: theme.vars.overlays?.[ownerState.elevation],
     }),
   }),
 }));

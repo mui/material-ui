@@ -235,10 +235,10 @@ describe('experimental_extendTheme', () => {
     it('should provide the default array', () => {
       const theme = extendTheme();
       expect(theme.colorSchemes.light.overlays).to.have.length(0);
-      expect(theme.colorSchemes.dark.overlays).to.have.length(24);
+      expect(theme.colorSchemes.dark.overlays).to.have.length(25);
 
-      expect(theme.colorSchemes.dark.overlays[2]).to.equal(
-        'linear-gradient(rgba(255 255 255 / 0.07), rgba(255 255 255 / 0.07))',
+      expect(theme.colorSchemes.dark.overlays[24]).to.equal(
+        'linear-gradient(rgba(255 255 255 / 0.16), rgba(255 255 255 / 0.16))',
       );
     });
 

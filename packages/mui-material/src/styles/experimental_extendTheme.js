@@ -3,7 +3,10 @@ import { colorChannel } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import { getOverlayAlpha } from '../Paper/Paper';
 
-const defaultDarkOverlays = [...Array(24)].map((_, index) => {
+const defaultDarkOverlays = [...Array(25)].map((_, index) => {
+  if (index === 0) {
+    return undefined;
+  }
   const overlay = getOverlayAlpha(index);
   return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
 });
