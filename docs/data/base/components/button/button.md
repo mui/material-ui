@@ -71,3 +71,8 @@ The `useButton` hook requires the `ref` of the element it's used on.
 Additionally, you need to provide the `component` prop (unless you intend to use the native HTML `<button>`).
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
+
+## Limitations
+
+If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
+Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.

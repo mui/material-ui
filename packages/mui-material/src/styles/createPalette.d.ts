@@ -124,6 +124,7 @@ export interface PaletteWithChannels {
   grey: Color;
   text: TypeText & { primaryChannel: string; secondaryChannel: string; disabledChannel: string };
   divider: TypeDivider;
+  dividerChannel: TypeDivider;
   action: TypeAction & { disabledChannel: string };
   background: TypeBackground;
   getContrastText: (background: string) => string;
