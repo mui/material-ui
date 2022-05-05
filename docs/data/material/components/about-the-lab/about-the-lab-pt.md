@@ -17,25 +17,19 @@ Para que um componente esteja pronto para ir para o core, são considerados os s
 
 ## Instalação
 
-Instale o pacote no diretório do seu projeto com:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
-// usando npm
-npm install @mui/lab
-
-// usando yarn
-yarn add @mui/lab
+npm install @mui/lab @mui/material
 ```
 
-O lab tem dependências com os componentes do core. Se você ainda não está utilizando o MUI em seu projeto, poderá instalá-lo com:
+Or **yarn**:
 
 ```sh
-// usando npm
-npm install @mui/material
-
-// usando yarn
-yarn add @mui/material
+yarn add @mui/lab @mui/material
 ```
+
+Note that the lab has a peer dependency on the Material UI components.
 
 ## TypeScript
 
