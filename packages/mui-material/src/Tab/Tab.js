@@ -85,25 +85,25 @@ const TabRoot = styled(ButtonBase, {
       opacity: 1,
     },
     [`&.${tabClasses.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
   }),
   ...(ownerState.textColor === 'primary' && {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     [`&.${tabClasses.selected}`]: {
-      color: theme.palette.primary.main,
+      color: (theme.vars || theme).palette.primary.main,
     },
     [`&.${tabClasses.disabled}`]: {
-      color: theme.palette.text.disabled,
+      color: (theme.vars || theme).palette.text.disabled,
     },
   }),
   ...(ownerState.textColor === 'secondary' && {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     [`&.${tabClasses.selected}`]: {
-      color: theme.palette.secondary.main,
+      color: (theme.vars || theme).palette.secondary.main,
     },
     [`&.${tabClasses.disabled}`]: {
-      color: theme.palette.text.disabled,
+      color: (theme.vars || theme).palette.text.disabled,
     },
   }),
   ...(ownerState.fullWidth && {

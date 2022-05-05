@@ -72,7 +72,7 @@ const ImageListItemBarTitleWrap = styled('div', {
   return {
     flexGrow: 1,
     padding: '12px 16px',
-    color: theme.palette.common.white,
+    color: (theme.vars || theme).palette.common.white,
     overflow: 'hidden',
     ...(ownerState.position === 'below' && {
       padding: '6px 0 12px',
