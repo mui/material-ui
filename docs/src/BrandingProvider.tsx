@@ -23,7 +23,7 @@ export default function BrandingProvider({ children, mode: modeProp }: BrandingP
     return newTheme;
   }, [mode]);
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={modeProp ? () => theme : theme}>
       {!modeProp && <NextNProgressBar />}
       {!modeProp && <CssBaseline />}
       {children}
