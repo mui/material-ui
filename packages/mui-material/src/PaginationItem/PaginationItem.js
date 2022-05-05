@@ -125,7 +125,7 @@ const PaginationItemPage = styled(ButtonBase, {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / ${theme.vars.palette.action.selectedOpacity}) + ${theme.vars.palette.action.hoverOpacity}`
+          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -137,7 +137,7 @@ const PaginationItemPage = styled(ButtonBase, {
       },
       [`&.${paginationItemClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / ${theme.vars.palette.action.selectedOpacity}) + ${theme.vars.palette.action.focusOpacity}`
+          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -190,28 +190,29 @@ const PaginationItemPage = styled(ButtonBase, {
       },
     }),
     ...(ownerState.variant === 'outlined' && {
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
+      border: theme.vars
+        ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+        : `1px solid ${
+            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+          }`,
       [`&.${paginationItemClasses.selected}`]: {
         ...(ownerState.color !== 'standard' && {
           color: (theme.vars || theme).palette[ownerState.color].main,
           border: `1px solid ${
             theme.vars
-              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)}`
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
               : alpha(theme.palette[ownerState.color].main, 0.5)
           }`,
           backgroundColor: theme.vars
-            ? `rgba(${
-                theme.vars.palette[ownerState.color].main /
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
                 theme.vars.palette.action.activatedOpacity
               })`
             : alpha(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity),
           '&:hover': {
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[ownerState.color].main} / ${
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / calc(${
                   theme.vars.palette.action.activatedOpacity
-                }) + ${theme.vars.palette.action.focusOpacity}`
+                } + ${theme.vars.palette.action.focusOpacity}))`
               : alpha(
                   theme.palette[ownerState.color].main,
                   theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
@@ -223,7 +224,7 @@ const PaginationItemPage = styled(ButtonBase, {
           },
           [`&.${paginationItemClasses.focusVisible}`]: {
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[ownerState.color].main} / calc(${
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / calc(${
                   theme.vars.palette.action.activatedOpacity
                 } + ${theme.vars.palette.action.focusOpacity}))`
               : alpha(
