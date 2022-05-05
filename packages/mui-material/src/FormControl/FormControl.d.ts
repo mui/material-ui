@@ -30,6 +30,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     >;
     /**
      * If `true`, the label, input and helper text should be displayed in a disabled state.
+     * Even if onClick prop is defined, the event will not be fired.
      * @default false
      */
     disabled?: boolean;

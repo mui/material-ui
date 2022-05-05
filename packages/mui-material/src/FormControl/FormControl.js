@@ -264,6 +264,7 @@ FormControl.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
+   * Even if onClick prop is defined, the event will not be fired.
    * @default false
    */
   disabled: PropTypes.bool,
