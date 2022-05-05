@@ -24,13 +24,15 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### Installation
 
-Install the package in your project directory with:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
-// with npm
 npm install @mui/icons-material
+```
 
-// with yarn
+Or **yarn**:
+
+```sh
 yarn add @mui/icons-material
 ```
 

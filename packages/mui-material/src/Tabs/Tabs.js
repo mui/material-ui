@@ -200,10 +200,10 @@ const TabsIndicator = styled('span', {
   width: '100%',
   transition: theme.transitions.create(),
   ...(ownerState.indicatorColor === 'primary' && {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: (theme.vars || theme).palette.primary.main,
   }),
   ...(ownerState.indicatorColor === 'secondary' && {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: (theme.vars || theme).palette.secondary.main,
   }),
   ...(ownerState.vertical && {
     height: '100%',
