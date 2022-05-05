@@ -10,12 +10,104 @@ import { OverwriteCSSProperties } from './OverwriteCSSProperties';
  */
 export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
+type CssVariableType = string | number;
+
+type LVL2CSSPseudoSelectorPropsValue<Theme extends object = {}> =
+  | ((theme: Theme) =>
+      | SystemCssProperties<Theme>
+      | {
+          [K in CSS.Pseudos]?:
+            | ((theme: Theme) => SystemCssProperties<Theme>)
+            | SystemCssProperties<Theme>;
+        }
+      | {
+          [cssSelector: string]:
+            | ((theme: Theme) => SystemCssProperties<Theme> | CssVariableType)
+            | SystemCssProperties<Theme>
+            | CssVariableType;
+        })
+  | SystemCssProperties<Theme>
+  | {
+      [K in CSS.Pseudos]?:
+        | ((theme: Theme) => SystemCssProperties<Theme>)
+        | SystemCssProperties<Theme>;
+    }
+  | {
+      [cssSelector: string]:
+        | ((theme: Theme) => SystemCssProperties<Theme> | CssVariableType)
+        | SystemCssProperties<Theme>
+        | CssVariableType;
+    };
+
+type LVL2CSSSelectorObjectValue<Theme extends object = {}> =
+  | ((theme: Theme) =>
+      | SystemCssProperties<Theme>
+      | {
+          [K in CSS.Pseudos]?:
+            | ((theme: Theme) => SystemCssProperties<Theme>)
+            | SystemCssProperties<Theme>;
+        }
+      | {
+          [cssSelector: string]:
+            | ((theme: Theme) => SystemCssProperties<Theme> | CssVariableType)
+            | SystemCssProperties<Theme>
+            | CssVariableType;
+        }
+      | CssVariableType)
+  | SystemCssProperties<Theme>
+  | {
+      [K in CSS.Pseudos]?:
+        | ((theme: Theme) => SystemCssProperties<Theme>)
+        | SystemCssProperties<Theme>;
+    }
+  | {
+      [cssSelector: string]:
+        | ((theme: Theme) => SystemCssProperties<Theme> | CssVariableType)
+        | SystemCssProperties<Theme>
+        | CssVariableType;
+    }
+  | CssVariableType;
+
+type LVL1CSSPseudoSelectorPropsValue<Theme extends object = {}> =
+  | ((theme: Theme) =>
+      | SystemCssProperties<Theme>
+      | {
+          [K in CSS.Pseudos]?: LVL2CSSPseudoSelectorPropsValue<Theme>;
+        }
+      | {
+          [cssSelector: string]: LVL2CSSSelectorObjectValue<Theme>;
+        })
+  | SystemCssProperties<Theme>
+  | {
+      [K in CSS.Pseudos]?: LVL2CSSPseudoSelectorPropsValue<Theme>;
+    }
+  | {
+      [cssSelector: string]: LVL2CSSSelectorObjectValue<Theme>;
+    };
+
+type LVL1CSSSelectorObjectValue<Theme extends object = {}> =
+  | LVL1CSSPseudoSelectorPropsValue<Theme>
+  | ((theme: Theme) => CssVariableType)
+  | CssVariableType;
+
 /**
  * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...).
+ */
+export type PseudoSelectorProps<Theme extends object = {}> = {
+  [K in CSS.Pseudos]?: LVL1CSSPseudoSelectorPropsValue<Theme>;
+};
+
+/**
+ * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...).
+ * TODO: v6 remove this type
  */
 export type CSSPseudoSelectorProps<Theme extends object = {}> = {
   [K in CSS.Pseudos]?: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme>;
 };
+
+interface CSSSelectorProps<Theme extends object = {}> {
+  [cssSelector: string]: LVL1CSSSelectorObjectValue<Theme>;
+}
 
 /**
  * Map all nested selectors.
@@ -23,10 +115,8 @@ export type CSSPseudoSelectorProps<Theme extends object = {}> = {
 export interface CSSSelectorObject<Theme extends object = {}> {
   [cssSelector: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme>;
 }
-
-type CssVariableType = string | number;
-
 /**
+ * TODO: v6 remove this type
  * Map all nested selectors and CSS variables.
  */
 export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
@@ -46,6 +136,14 @@ export interface AllSystemCSSProperties
     OverwriteCSSProperties,
     AliasesCSSProperties {}
 
+export type SystemCssProps<Theme extends object = {}> = {
+  [K in keyof AllSystemCSSProperties]:
+    | ResponsiveStyleValue<AllSystemCSSProperties[K]>
+    | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
+    | null;
+};
+
+// TODO: v6 remove this type
 export type SystemCssProperties<Theme extends object = {}> = {
   [K in keyof AllSystemCSSProperties]:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
@@ -58,9 +156,9 @@ export type SystemCssProperties<Theme extends object = {}> = {
  * their corresponding values from the `Theme`. Other valid CSS properties are also allowed.
  */
 export type SystemStyleObject<Theme extends object = {}> =
-  | SystemCssProperties<Theme>
-  | CSSPseudoSelectorProps<Theme>
-  | CSSSelectorObjectOrCssVariables<Theme>
+  | SystemCssProps<Theme>
+  | PseudoSelectorProps<Theme>
+  | CSSSelectorProps<Theme>
   | null;
 
 /**
