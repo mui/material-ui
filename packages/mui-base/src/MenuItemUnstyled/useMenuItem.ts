@@ -5,7 +5,7 @@ import { useButton } from '../ButtonUnstyled';
 import { UseMenuItemParameters } from './useMenuItem.types';
 
 export default function useMenuItem(props: UseMenuItemParameters) {
-  const { component, disabled = false, ref, label } = props;
+  const { disabled = false, ref, label } = props;
 
   const id = useId();
   const menuContext = React.useContext(MenuUnstyledContext);
@@ -30,7 +30,6 @@ export default function useMenuItem(props: UseMenuItemParameters) {
   }, [id, registerItem, unregisterItem, disabled, ref, label]);
 
   const { getRootProps: getButtonProps, focusVisible } = useButton({
-    component,
     disabled,
     focusableWhenDisabled: true,
     ref: handleRef,

@@ -6,7 +6,7 @@
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
       }
     },
-    "component": { "type": { "name": "elementType" }, "default": "'button'" },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
       "default": "{}"
