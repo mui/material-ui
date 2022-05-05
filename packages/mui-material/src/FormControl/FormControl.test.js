@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import FormControl, { formControlClasses as classes } from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import Select from '@mui/material/Select';
@@ -100,6 +100,18 @@ describe('<FormControl />', () => {
 
       setProps({ disabled: true });
       expect(readContext.lastCall.args[0]).to.have.property('focused', false);
+    });
+
+    it('do not fire `onClick` event when `disabled` is `true`', () => {
+      const handleClick = spy();
+      const { container } = render(<FormControl disabled onClick={handleClick} />);
+      const root = container.firstChild;
+
+      act(() => {
+        root.click();
+      });
+
+      expect(handleClick.callCount).to.equal(0);
     });
   });
 
