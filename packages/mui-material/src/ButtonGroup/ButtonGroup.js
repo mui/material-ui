@@ -109,15 +109,19 @@ const ButtonGroupRoot = styled('div', {
       }),
       ...(ownerState.variant === 'text' &&
         ownerState.orientation === 'horizontal' && {
-          borderRight: `1px solid ${
-            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-          }`,
+          borderRight: theme.vars
+            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            : `1px solid ${
+                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+              }`,
         }),
       ...(ownerState.variant === 'text' &&
         ownerState.orientation === 'vertical' && {
-          borderBottom: `1px solid ${
-            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-          }`,
+          borderBottom: theme.vars
+            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            : `1px solid ${
+                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+              }`,
         }),
       ...(ownerState.variant === 'text' &&
         ownerState.color !== 'inherit' && {
