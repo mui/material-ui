@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 
-const { CssVarsProvider } = createCssVarsProvider({
+const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
   theme: {
     colorSchemes: {
-      light: {
-        background: {
-          default: '#e5e5e5',
-        },
-      },
+      // test that styles order injection does not matter (dark comes before light).
       dark: {
         background: {
           default: '#000',
+        },
+      },
+      light: {
+        background: {
+          default: '#e5e5e5',
         },
       },
     },
@@ -22,24 +23,20 @@ const { CssVarsProvider } = createCssVarsProvider({
   },
 });
 
+const DarkMode = () => {
+  const { setMode } = useColorScheme();
+  React.useEffect(() => {
+    setMode('dark');
+  }, [setMode]);
+  return null;
+};
+
 export default function DarkModeSpecificity() {
   return (
-    <CssVarsProvider
-      defaultMode="dark"
-      theme={{
-        colorSchemes: {
-          dark: {
-            background: {
-              default: '#121212',
-            },
-          },
-        },
-      }}
-    >
-      <div
-        style={{ background: 'var(--palette-background-default)', color: '#888', padding: '1rem' }}
-      >
-        Background should be #121212.
+    <CssVarsProvider>
+      <DarkMode />
+      <div style={{ background: 'var(--background-default)', color: '#888', padding: '1rem' }}>
+        Background should be #000.
       </div>
     </CssVarsProvider>
   );
