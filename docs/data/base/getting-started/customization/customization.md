@@ -80,4 +80,4 @@ Use them to apply styling to your HTML elements.
 
 The `getInputProps` function can be used to get the props to place on an HTML `<input>` to make the switch accessible.
 
-{{"demo": "StylingHooks.js"}}
+{{"demo": "StylingHooks.js", "defaultCodeOpen": true}}
