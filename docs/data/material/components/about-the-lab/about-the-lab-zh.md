@@ -17,25 +17,19 @@
 
 ## 安装
 
-请在您的项目目录中用以下方式安装依赖包：
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
-// 用 npm 安装
-npm install @mui/lab
-
-// 用 yarn 安装
-yarn add @mui/lab
+npm install @mui/lab @mui/material
 ```
 
-该 lab 和那些核心组件是对等依赖的。 若您还未在项目中使用 MUI，那可以按照如下方式安装它：
+Or **yarn**:
 
 ```sh
-// 用 npm 安装
-npm install @mui/material
-
-// 用 yarn 安装
-yarn add @mui/material
+yarn add @mui/lab @mui/material
 ```
+
+Note that the lab has a peer dependency on the Material UI components.
 
 ## TypeScript
 
