@@ -92,6 +92,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     required = false,
     size = 'medium',
     variant = 'outlined',
+    onClick: onClickProp,
     ...other
   } = props;
 
@@ -109,6 +110,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     variant,
   };
 
+  const onClick = disabled ? null : onClickProp;
   const classes = useUtilityClasses(ownerState);
 
   const [adornedStart, setAdornedStart] = React.useState(() => {
@@ -219,6 +221,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
+        onClick={onClick}
         {...other}
       >
         {children}
@@ -290,6 +293,10 @@ FormControl.propTypes /* remove-proptypes */ = {
    * @default 'none'
    */
   margin: PropTypes.oneOf(['dense', 'none', 'normal']),
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * If `true`, the label will indicate that the `input` is required.
    * @default false
