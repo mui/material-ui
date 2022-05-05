@@ -56,8 +56,10 @@ export default function extendTheme(options = {}, ...args) {
     palette.dividerChannel = colorChannel(palette.divider);
 
     // special token for Tooltip
-    // TODO: consider adding `main`, `light`, and `dark` to palette.grey to make it consistent.
-    palette.grey.darkChannel = colorChannel(palette.grey[700]);
+    // TODO: consider adding `main`, and `light` to palette.grey to make it consistent.
+    if (!palette.grey.dark) {
+      palette.grey.dark = palette.grey[700];
+    }
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
