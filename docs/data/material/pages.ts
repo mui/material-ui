@@ -5,6 +5,7 @@ const pages = [
     pathname: '/material-ui/getting-started',
     icon: 'DescriptionIcon',
     children: [
+      { pathname: '/material-ui/getting-started/overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
       { pathname: '/material-ui/getting-started/example-projects' },
