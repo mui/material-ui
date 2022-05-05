@@ -17,15 +17,13 @@ For a component to be ready to move to the core, the following criteria are cons
 
 ## Installation
 
-Install the package in your project directory with:
-
-With **npm**:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
 npm install @mui/lab @mui/material
 ```
 
-With **yarn**:
+Or **yarn**:
 
 ```sh
 yarn add @mui/lab @mui/material

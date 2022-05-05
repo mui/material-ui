@@ -17,13 +17,13 @@ _(Resize the window to see the responsive breakpoints)_
 
 <!-- #default-branch-switch -->
 
-With **npm**:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
-With **yarn**:
+Or **yarn**:
 
 ```sh
 yarn add @mui/system @emotion/react @emotion/styled

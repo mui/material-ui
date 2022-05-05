@@ -6,15 +6,13 @@ Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/
 
 ## npm
 
-To install and save in your `package.json` dependencies, run:
-
-With **npm**:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
-With **yarn**:
+Or **yarn**:
 
 ```sh
 yarn add @mui/material @emotion/react @emotion/styled
