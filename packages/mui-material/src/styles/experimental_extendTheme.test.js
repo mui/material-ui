@@ -82,6 +82,9 @@ describe('experimental_extendTheme', () => {
     expect(theme.colorSchemes.dark.palette.dividerChannel).to.equal('255 255 255');
 
     expect(theme.colorSchemes.light.palette.dividerChannel).to.equal('0 0 0');
+
+    expect(theme.colorSchemes.light.palette.grey.darkChannel).to.equal('97 97 97');
+    expect(theme.colorSchemes.dark.palette.grey.darkChannel).to.equal('97 97 97');
   });
 
   it('should generate common background, onBackground channels', () => {
