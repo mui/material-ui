@@ -34,13 +34,15 @@ The following demo uses [`Portal`](/material-ui/react-portal/) to render the dro
 
 {{"demo": "LeadingClickAway.js"}}
 
-> ⚠️ 在此模式下，仅有文档对象滚动条上的交互被忽略。
+:::warning
+⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+:::
 
 ## 无障碍设计
 
-默认情况下 `<ClickAwayListener />` 将添加一个 `onClick` 处理程序到其子项。 这可能会导致例如屏幕阅读器宣布其子元素可以点击。 然而， `onClick` 处理程序的目的不是要让 `子元素` 可交互。
+By default `<ClickAwayListener />` will add an `onClick` handler to its children. This can result in e.g. screen readers announcing the children as clickable. However, the purpose of the `onClick` handler is not to make `children` interactive.
 
-为了防止屏幕阅读器将非交互式子元素标记为“可点击（clickable）”，请添加 `role="presentation"` 到其直接子元素：
+In order to prevent screen readers from marking non-interactive children as "clickable" add `role="presentation"` to the immediate children:
 
 ```tsx
 <ClickAwayListener>
@@ -50,13 +52,13 @@ The following demo uses [`Portal`](/material-ui/react-portal/) to render the dro
 </ClickAwayListern>
 ```
 
-当使用 Firefox 阻止通知消息时，修复NVDA中的一个奇怪的行为也是必需的(见 [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080))。
+This is also required to fix a quirk in NVDA when using Firefox that prevents announcement of alert messages (see [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080)).
 
 ## 素颜模式
 
 - 📦 [981 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-由于组件没有任何样式，它也有一个基本包。
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import ClickAwayListener from '@mui/base/ClickAwayListener';
