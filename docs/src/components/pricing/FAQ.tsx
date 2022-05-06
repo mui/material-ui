@@ -96,7 +96,7 @@ const faqData = [
         updates, as well as technical support.
         <br />
         <br />
-        If you wish to renew your license, please{' '}
+        To renew your license, please{' '}
         <Link href="mailto:sales@mui.com">contact sales</Link>.
       </React.Fragment>
     ),
