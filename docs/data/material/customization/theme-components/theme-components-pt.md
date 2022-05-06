@@ -95,7 +95,7 @@ The `sx` prop acts as a shortcut for defining custom styles that access the them
 
 You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation. This is especially handy if you're already using the `sx` prop with your components, because you can use the same syntax in your theme and quickly transfer styles between the two.
 
-> **Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
+:::info **Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object. :::
 
 {{"demo": "GlobalThemeOverrideSx.js", "defaultCodeOpen": false}}
 
@@ -130,7 +130,7 @@ If you use the theming approach to customize the components, you'll still be abl
 
 You can use the `variants` key in the theme's `components` section to create new variants to Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
 
-As definições são especificadas em um array, sob o nome do componente. For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
+The definitions are specified in an array, under the component's name. For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
 
 ```js
 const theme = createTheme({
