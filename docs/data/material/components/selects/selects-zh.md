@@ -36,7 +36,7 @@ The Select component is implemented as a custom `<input>` element of the [InputB
 
 {{"demo": "SelectLabels.js"}}
 
-> ⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+:::warning ⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo). :::
 
 ### 自动宽度
 
