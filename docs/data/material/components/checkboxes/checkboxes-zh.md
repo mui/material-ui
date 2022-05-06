@@ -53,7 +53,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
-> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. It has no accessibility or UX implications. It has no accessibility or UX implications.
+:::warning ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. :::
 
 ## 表单组
 
@@ -63,13 +63,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 ## 标签放置
 
-你可以更改标签的位置:
+You can change the placement of the label:
 
 {{"demo": "FormControlLabelPosition.js"}}
 
 ## 自定义的多选框
 
-以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedCheckbox.js"}}
 
