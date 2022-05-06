@@ -111,10 +111,11 @@ export default function AppFooter() {
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   color: '#fff',
+                  letterSpacing: '0.1rem',
                   backgroundColor: (theme) =>
                     theme.palette.mode === 'dark'
-                      ? theme.palette.error[800]
-                      : theme.palette.error.main,
+                      ? theme.palette.success[900]
+                      : theme.palette.success.main,
                 }}
               >
                 Hiring
