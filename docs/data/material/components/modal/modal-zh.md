@@ -21,9 +21,11 @@ unstyled: /base/react-modal/
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-> **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 模态框的窗口描述了 UI 的一部分。 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
+:::info **Terminology note**.
 
-If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/react-dialog/) component rather than directly using Modal. 以下的组件将将模态框作为一个低级别的组件运用：
+The term "modal" is sometimes used to mean "dialog", but this is a misnomer. A modal window describes parts of a UI. An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window). :::
+
+If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/react-dialog/) component rather than directly using Modal. Modal is a lower-level construct that is leveraged by the following components:
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer（抽屉）](/material-ui/react-drawer/)
@@ -34,7 +36,7 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/mater
 
 {{"demo": "BasicModal.js"}}
 
-请注意，您可以通过 `outline: 0` 属性来禁用模态框的边缘（通常为蓝色或金色）。
+Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
 ## Nested modal
 
