@@ -21,9 +21,11 @@ O componente renderiza o conteúdo de seu `children` sobre um componente backdro
 
 [A paleta](/system/palette/) com funções de estilo.
 
-> **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
+:::info **Terminology note**.
 
-If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/react-dialog/) component rather than directly using Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
+The term "modal" is sometimes used to mean "dialog", but this is a misnomer. A modal window describes parts of a UI. An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window). :::
+
+If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/react-dialog/) component rather than directly using Modal. Modal is a lower-level construct that is leveraged by the following components:
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer](/material-ui/react-drawer/)
@@ -34,7 +36,7 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/mater
 
 {{"demo": "BasicModal.js"}}
 
-Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CSS `outline: 0`.
+Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
 ## Nested modal
 
