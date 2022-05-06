@@ -6,10 +6,19 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Link from 'docs/src/modules/components/Link';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import styled from '@emotion/styled';
 
+const AnchorableContainer = styled(Container)`
+  &:before {
+    content: '';
+    display: block;
+    margin-top: 40px;
+    visibility: hidden;
+  }
+`;
 export default function EarlyBird() {
   return (
-    <Container sx={{ pt: 2, pb: { xs: 2, sm: 4, md: 8 } }} id="early-bird">
+    <AnchorableContainer sx={{ pt: 2, pb: { xs: 2, sm: 4, md: 8 } }} id="early-bird">
       <Stack
         sx={{
           borderRadius: 1,
@@ -57,6 +66,6 @@ export default function EarlyBird() {
           Buy now
         </Button>
       </Stack>
-    </Container>
+    </AnchorableContainer>
   );
 }
