@@ -24,6 +24,10 @@ import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { ChipProps, ChipSlot } from '../Chip/ChipProps';
+import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
+import { RadioProps, RadioSlot } from '../Radio/RadioProps';
+import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -117,6 +121,14 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<CheckboxProps>;
     styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
   };
+  MuiChip?: {
+    defaultProps?: Partial<ChipProps>;
+    styleOverrides?: OverridesStyleRules<ChipSlot, ChipProps, Theme>;
+  };
+  MuiChipDelete?: {
+    defaultProps?: Partial<ChipDeleteProps>;
+    styleOverrides?: OverridesStyleRules<ChipDeleteSlot, ChipDeleteProps, Theme>;
+  };
   MuiFormLabel?: {
     defaultProps?: Partial<FormLabelProps>;
     styleOverrides?: OverridesStyleRules<FormLabelSlot, FormLabelProps, Theme>;
@@ -128,5 +140,13 @@ export interface Components<Theme = unknown> {
   MuiTextField?: {
     defaultProps?: Partial<TextFieldProps>;
     styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldProps, Theme>;
+  };
+  MuiRadio?: {
+    defaultProps?: Partial<RadioProps>;
+    styleOverrides?: OverridesStyleRules<RadioSlot, RadioProps, Theme>;
+  };
+  MuiRadioGroup?: {
+    defaultProps?: Partial<RadioGroupProps>;
+    styleOverrides?: OverridesStyleRules<RadioGroupSlot, RadioGroupProps, Theme>;
   };
 }

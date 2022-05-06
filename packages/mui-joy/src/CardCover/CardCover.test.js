@@ -15,7 +15,7 @@ describe('<CardCover />', () => {
     muiName: 'MuiCardCover',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

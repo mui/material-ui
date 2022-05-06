@@ -47,13 +47,15 @@ const IconButtonRoot = styled(ButtonBase, {
     padding: 8,
     borderRadius: '50%',
     overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
-    color: theme.palette.action.active,
+    color: (theme.vars || theme).palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     ...(!ownerState.disableRipple && {
       '&:hover': {
-        backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.action.active} / ${theme.vars.palette.action.hoverOpacity})`
+          : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
@@ -73,13 +75,14 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     ...(ownerState.color !== 'inherit' &&
       ownerState.color !== 'default' && {
-        color: theme.palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color].main,
         ...(!ownerState.disableRipple && {
           '&:hover': {
-            backgroundColor: alpha(
-              theme.palette[ownerState.color].main,
-              theme.palette.action.hoverOpacity,
-            ),
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                  theme.vars.palette.action.hoverOpacity
+                })`
+              : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: 'transparent',
@@ -97,7 +100,7 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
-      color: theme.palette.action.disabled,
+      color: (theme.vars || theme).palette.action.disabled,
     },
   }),
 );
