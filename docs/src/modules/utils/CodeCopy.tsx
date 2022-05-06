@@ -77,6 +77,10 @@ const InitCodeCopy = () => {
         const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
         if (btn) {
           const keyNode = btn.childNodes[1]?.childNodes[1];
+          if (!keyNode) {
+            // skip the logic if the btn is not generated from the markdown.
+            return;
+          }
           keyNode.textContent = keyNode?.textContent?.replace('$key', key) || null;
           btn.addEventListener('click', async function handleClick(event) {
             const trigger = event.currentTarget as HTMLButtonElement;
