@@ -44,15 +44,15 @@ const theme = createTheme({
 
 {{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
-> ⚠️ Esta abordagem tem limitações com TypeScript. A propriedade `href` só aceita uma string. No caso de você precisar fornecer uma estrutura mais rica, consulte a próxima seção.
+:::warning ⚠️ This approach has limitations with TypeScript. The `href` prop only accepts a string. In the event you need to provide a richer structure, see the next section. :::
 
 ## Propriedade `component`
 
-Você pode conseguir a integração com bibliotecas de roteamento de terceiros com a propriedade `component`. You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop).
+You can achieve the integration with third-party routing libraries with the `component` prop. You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop).
 
 ### Link
 
-Here are a few demos with [react-router](https://github.com/remix-run/react-router). Você pode aplicar a mesma estratégia com todos os componentes: BottomNavigation, Card, etc.
+Here are a few demos with [react-router](https://github.com/remix-run/react-router). You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 {{"demo": "LinkRouter.js"}}
 
@@ -60,7 +60,7 @@ Here are a few demos with [react-router](https://github.com/remix-run/react-rout
 
 {{"demo": "ButtonRouter.js"}}
 
-**Nota**: O componente base do botão adiciona o atributo `role=""button"` quando identifica a intenção de renderizar um botão sem um `<button>` elemento nativo. Isso pode criar problemas ao renderizar um link. Se você não estiver usando um das propriedades `href`, `to`, ou `component="a` você precisa substituir o atributo `role`. A demonstração acima consegue isso definindo `role={undefined}` **after** os "spread" "props".
+**Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element. This can create issues when rendering a link. If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute. The above demo achieves this by setting `role={undefined}` **after** the spread props.
 
 ```jsx
 const LinkBehavior = React.forwardRef((props, ref) => (
@@ -80,7 +80,7 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Next.js
 
-O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
+Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
 
 - The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. Este componente não tem estilo e é o único responsável pelo manuseio da navegação. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
@@ -124,4 +124,4 @@ O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-ref
 
 ### Gatsby
 
-O componente [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) do Gatsby é construído em `@reach/router`. Você pode usar a mesma documentação anterior para react-router. Ao contrário do Next.js, ele não exige que você faça uma "gambiarra".
+The [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) component of Gatsby is built on `@reach/router`. You can use the same previous documentation for react-router. Unlike Next.js, it doesn't require you to create an adapter.
