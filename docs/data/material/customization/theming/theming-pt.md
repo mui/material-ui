@@ -96,7 +96,7 @@ Gere uma base de temas sobre as opções recebidas. Then, pass it as a prop to [
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-> Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+:::warning Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function. :::
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -130,7 +130,7 @@ theme = responsiveFontSizes(theme);
 
 #### Argumentos
 
-Gere uma base de temas sobre as opções recebidas.
+When the value for a theme option is dependent on another theme option, you should compose the theme in steps.
 
 ```js
 -function TabPanel(props) {
@@ -144,11 +144,11 @@ function Tabs() {
 }
 ```
 
-Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
+Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
 ### `responsiveFontSizes(theme, options) => theme`
 
-Gera configurações de tipografia responsivas com base nas opções recebidas.
+Generate responsive typography settings based on the options received.
 
 #### Retornos
 
@@ -175,13 +175,13 @@ theme = responsiveFontSizes(theme);
 
 ### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
 
-Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos componentes.
+**WARNING**: Do not use this method in production.
 
-Gera um tema que reduz a quantidade de avisos dentro de [`React. StrictMode`](https://pt-br.reactjs.org/docs/strict-mode.html) como por exemplo, `Warning: findDOMNode is deprecated in StrictMode`.
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode`.
 
 #### Argumentos
 
-Atualmente `unstable_createMuiStrictModeTheme` não adiciona requisitos adicionais.
+Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 
 #### Retornos
 
@@ -219,7 +219,7 @@ theme = createTheme(theme, {
 
 ### `ThemeProvider`
 
-This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at **the root of your component tree**.
 
 #### Props
 
