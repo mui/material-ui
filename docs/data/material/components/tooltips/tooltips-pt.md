@@ -86,11 +86,13 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. Para acomodar elementos desabilitados, adicione um elemento encapsulador simples, como um `span`.
 
-> ⚠️ Para trabalhar com o Safari, você precisa de pelo menos um display block ou flex item abaixo do elemento que encapsula a dica.
+:::warning
+⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+:::
 
 {{"demo": "DisabledTooltips.js"}}
 
-> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS _pointer-events: none;_ ao seu elemento quando desabilitado:
+:::warning If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled: :::
 
 ```jsx
 <Tooltip title="You don't have permission to do this">
@@ -122,9 +124,9 @@ In the event you need to implement a custom placement, you can use the `anchorEl
 
 ## Exibindo e ocultando
 
-A dica normalmente é mostrada imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
+The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
 
-No celular, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. You can disable this feature with the `disableTouchListener` prop.
+On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` prop.
 
 {{"demo": "DelayTooltips.js"}}
 
