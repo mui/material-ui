@@ -65,9 +65,9 @@ export default function MyApp() {
 
 ### 滚动条
 
-> This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+:::error This API is deprecated, consider using [color-scheme](#color-scheme) instead. :::
 
-The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode).
+The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
 import darkScrollbar from '@mui/core/darkScrollbar';
@@ -91,11 +91,11 @@ const theme = createTheme({
 });
 ```
 
-This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
 ### 文字铸排
 
-This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows: To enable it, you can set `enableColorScheme=true` as follows:
+This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows:
 
 ```jsx
 <CssBaseline enableColorScheme />
