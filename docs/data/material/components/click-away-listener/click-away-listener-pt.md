@@ -34,7 +34,9 @@ Por padrão, o componente responde aos eventos de clique e de toque final (click
 
 {{"demo": "LeadingClickAway.js"}}
 
-> ⚠️ Neste modo, apenas as interações na barra de rolagem do documento são ignoradas.
+:::warning
+⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+:::
 
 ## Accessibility
 
@@ -50,7 +52,7 @@ In order to prevent screen readers from marking non-interactive children as "cli
 </ClickAwayListern>
 ```
 
-Isso também é necessário para corrigir um estranho no NVDA ao usar o Firefox que impede o anúncio de mensagens de alerta (consulte [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080)).
+This is also required to fix a quirk in NVDA when using Firefox that prevents announcement of alert messages (see [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080)).
 
 ## Unstyled
 
