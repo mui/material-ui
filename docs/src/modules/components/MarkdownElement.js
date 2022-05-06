@@ -294,7 +294,7 @@ const Root = styled('div')(({ theme }) => ({
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.success[600] ?? theme.palette.success.dark
-          : theme.palette.success[500] ?? theme.palette.success.light,
+          : theme.palette.success[600] ?? theme.palette.success.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'
