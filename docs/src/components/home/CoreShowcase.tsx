@@ -275,7 +275,12 @@ export default function CoreShowcase() {
               {startLine !== undefined && (
                 <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -2 }} />
               )}
-              <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
+              <HighlightedCode
+                copyButtonHidden
+                component={MarkdownElement}
+                code={componentCode}
+                language="jsx"
+              />
               <StylingInfo appeared={customized} sx={{ mb: -2, mx: -2 }} />
             </Box>
           </Box>
