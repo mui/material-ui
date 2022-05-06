@@ -19,9 +19,9 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Variants
+## Basic button
 
-The button applies theme global variants which are `plain`, `outlined`, `soft` and `solid` (default).
+The `Button` comes with four global variants: `plain`, `outlined`, `soft` and `solid` (default).
 
 {{"demo": "ButtonVariants.js"}}
 
@@ -33,7 +33,7 @@ All theme palettes are available via the `color` prop which can be combined with
 
 ## Sizes
 
-The button has 3 sizes, `sm`, `md` (default) and `lg`.
+The `Button` has three sizes: `sm`, `md` (default) and `lg`.
 
 {{"demo": "ButtonSizes.js"}}
 
