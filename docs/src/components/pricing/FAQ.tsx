@@ -44,8 +44,9 @@ const faqData = [
     summary: 'How many developer seats do I need?',
     detail: (
       <React.Fragment>
-        The number of seats purchased on your license must correspond to the number of concurrent developers
-        contributing changes to the front-end code of a project that uses MUI X Pro or Premium.
+        The number of seats purchased on your license must correspond to the number of concurrent
+        developers contributing changes to the front-end code of a project that uses MUI X Pro or
+        Premium.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
@@ -89,9 +90,10 @@ const faqData = [
     summary: 'Am I allowed to use the product after the update entitlement expires?',
     detail: (
       <React.Fragment>
-        Yes. You're allowed to continue using any version of the product in production environments, even after
-        the entitlement expires. However, you will be required to renew your license if you wish to continue development, and 
-        to access subsequently released functionality and updates, as well as technical support.
+        Yes. You're allowed to continue using any version of the product in production environments,
+        even after the entitlement expires. However, you will be required to renew your license if
+        you wish to continue development, and to access subsequently released functionality and
+        updates, as well as technical support.
         <br />
         <br />
         If you wish to renew your license, please{' '}
