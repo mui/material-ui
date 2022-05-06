@@ -1,6 +1,6 @@
 # Material UI - Overview
 
-<p class="description">Material UI is library of React UI components that implements Google's Material Design system.</p>
+<p class="description">Material UI is library of React UI components that implements Google's Material Design.</p>
 
 ## Introduction
 
