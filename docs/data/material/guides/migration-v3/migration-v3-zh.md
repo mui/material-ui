@@ -4,19 +4,19 @@
 
 您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/guides/migration-v3/migration-v3.md).
+:::info This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/guides/migration-v3/migration-v3.md). :::
 
 ## 简介
 
-This is a reference for upgrading your site from Material UI v3 to v4. While there's a lot covered here, you probably won't need to do everything for your site. 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
+This is a reference for upgrading your site from Material UI v3 to v4. While there's a lot covered here, you probably won't need to do everything for your site. We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
 
 ## 为什么您需要迁移呢
 
-此文档介绍了**如何**从 v3 版本迁移到 v4 版本。 关于迁移的**原因**，我们则在 [Medium 上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)来详细解说。
+This documentation page covers the **how** of migrating from v3 to v4. The **why** is covered in the [release blog post on Medium](https://mui.com/blog/material-ui-v4-is-out/).
 
 ## 更新您的依赖包
 
-您需要做的第一件事，就是更新您的依赖包。
+The very first thing you will need to do is to update your dependencies.
 
 ### Update Material UI version
 
@@ -28,7 +28,7 @@ You need to update your `package.json` to use the latest version of Material UI.
 }
 ```
 
-或者运行
+Or run
 
 ```sh
 npm install @material-ui/core
@@ -40,7 +40,7 @@ yarn add @material-ui/core
 
 ### 更新 React 的版本
 
-对于 React 版本的最低要求是从 `react@^16.3.0` 升级到 `react@^16.8.0`。 这样一来我们能够依赖 [Hooks](https://reactjs.org/docs/hooks-intro.html) 的功能（我们已经不再使用 class API）。
+The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`. This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
 ### Update Material UI Styles version
 
@@ -52,7 +52,7 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 }
 ```
 
-或者运行
+Or run
 
 ```sh
 npm install @material-ui/styles
@@ -166,7 +166,7 @@ yarn add @material-ui/styles
 
 #### `value` 类型
 
-将 input 组件的 `value` 属性的类型正常化，这样可以使用 `unknown`了。 这会影响 `InputBase`，`NativeSelect`，`OutlinedInput`，`Radio`，`RadioGroup`，`Select`，`SelectInput`，`TextArea` 和 `TextField`。
+Normalized `value` prop type for input components to use `unknown`. This affects `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
 
 ```diff
 function MySelect({ children }) {
