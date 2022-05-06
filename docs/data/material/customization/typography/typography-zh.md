@@ -173,7 +173,9 @@ theme = responsiveFontSizes(theme);
 
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+:::warning
+⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+:::
 
 The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
@@ -198,7 +200,7 @@ html {
 }
 ```
 
-_您需要在此页面的 html 元素上应用上述的 CSS 才能看到以下演示正确的渲染了。_
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "FontSizeTheme.js"}}
 
@@ -220,7 +222,7 @@ The typography object comes with [13 variants](/material-ui/react-typography/#co
 - caption 字幕
 - overline
 
-每个变体都可以被单独地定制：
+Each of these variants can be customized individually:
 
 ```js
 const theme = createTheme({
@@ -242,9 +244,9 @@ const theme = createTheme({
 
 ## 添加 & 禁用变体
 
-除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 Here is what you need to do:
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
 
-**Step 1. Step 1. Step 1. Step 1. Step 1. Update the theme's typography object**
+**Step 1. Update the theme's typography object**
 
 ```js
 const theme = createTheme({
@@ -258,9 +260,11 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Step 2. Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. Update the necessary typings (if you are using TypeScript)**
 
-> If you aren't using TypeScript you should skip this step.
+:::info
+If you aren't using TypeScript you should skip this step.
+:::
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
