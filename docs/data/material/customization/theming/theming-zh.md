@@ -96,7 +96,7 @@ You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) th
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-> Note: Only the first argument (`options`) is being processed by the `createTheme` function. Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+:::warning Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function. :::
 
 ```js
 import { createTheme } from '@mui/core/styles';
@@ -130,7 +130,7 @@ theme = responsiveFontSizes(theme);
 
 #### 参数
 
-通过接收的选项生成一个主题基础。
+When the value for a theme option is dependent on another theme option, you should compose the theme in steps.
 
 ```js
 import { unstable_createMuiStrictModeTheme } from '@mui/core/styles';
@@ -148,11 +148,11 @@ function App() {
 }
 ```
 
-Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
+Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
 ### `responsiveFontSizes(theme, options) => theme`
 
-根据接收到的选项生成响应式的文字铸排设置。
+Generate responsive typography settings based on the options received.
 
 #### 返回结果
 
@@ -181,11 +181,11 @@ theme = responsiveFontSizes(theme);
 
 **WARNING**: Do not use this method in production.
 
-生成一个减少 [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) 内的警告数量的主题，类似于 `Warning: findDOMNode is deprecated in StrictMode`。
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode`.
 
 #### 参数
 
-目前 `unstable_createMuiStrictModeTheme` 没有添加额外的要求。
+Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 
 #### 返回结果
 
@@ -216,7 +216,7 @@ function App() {
 
 ### `ThemeProvider`
 
-This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. 最好在**您的组件树的根目录**中使用它。 It should preferably be used at **the root of your component tree**.
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at **the root of your component tree**.
 
 #### 属性
 
