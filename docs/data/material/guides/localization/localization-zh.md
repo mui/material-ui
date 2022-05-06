@@ -30,7 +30,7 @@ const theme = createTheme(
 
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
-> ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+:::warning ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/). :::
 
 ### 支持的地区
 
@@ -87,12 +87,12 @@ const theme = createTheme(
 
 <!-- #default-branch-switch -->
 
-您可以在 GitHub 库中找到 [源文件](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts)。
+You can [find the source](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 
-要创建自己的翻译，或自定义英文文本，请将此文件复制到您的项目中，进行所需的任何更改并从那里导入语言环境。
+To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-请考虑创建一个拉取请求（pull request）来为 Material-UI 贡献新的译文。 然而，Material-UI 的目标是支持 [100 个最常见的](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [本地化语言](https://www.ethnologue.com/guides/ethnologue200)，我们可能不接受不常用的本地化语言的贡献，例如 `gl-ES`，它“只有”250 万母语使用者。
+Please do consider contributing new translations back to MUI by opening a pull request. However, MUI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## RTL 支持
 
-支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 Follow [this guide](/material-ui/guides/right-to-left/) to use them.
+Right-to-left languages such as Arabic, Persian, or Hebrew are supported. Follow [this guide](/material-ui/guides/right-to-left/) to use them.
