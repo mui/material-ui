@@ -172,13 +172,15 @@ Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era poss�
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 
-> Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::info
+Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::
 
-Note que você ainda receberá este aviso para componentes `lazy` ou `memo` se eles forem encapsulados por um componente que não contém ref. Em alguns casos, um aviso adicional é emitido para ajudar na depuração, semelhante a:
+Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref. In some instances, an additional warning is issued to help with debugging, similar to:
 
-> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::warning Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref. :::
 
-Só as duas formas de utilização mais comuns são cobertas aqui. Para mais informações, consulte [esta seção na documentação oficial do React](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 -const MyButton = () => <div role="button" />;
@@ -196,11 +198,11 @@ Só as duas formas de utilização mais comuns são cobertas aqui. Para mais inf
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-Para descobrir se o componente de Material-UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
+To find out if the MUI component you're using has this requirement, check out the props API documentation for that component. If you need to forward refs the description will link to this section.
 
 ### Advertência com StrictMode
 
-Se você usar componentes de classe para os casos descritos acima, ainda verá avisos em `React. StrictMode`. `ReactDOM.findDOMNode` é usado internamente para compatibilidade com versões anteriores. Você pode usar `React.forwardRef` e uma propriedade designada em seu componente de classe para encaminhar o `ref` para um componente DOM. Fazendo isso não deve acionar mais nenhum aviso relacionado à depreciação de uso de `ReactDOM.findDOMNode`.
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
  class Component extends React. Component {
