@@ -9,6 +9,8 @@ declare module 'docs/src/modules/components/HighlightedCode' {
      * plain string
      */
     code: string;
+    copyButtonHidden?: boolean;
+    copyButtonProps?: JSX.IntrinsicElements['button'];
     /**
      * short identifier of the code language
      * see @mui/markdown/prism for possible languages
