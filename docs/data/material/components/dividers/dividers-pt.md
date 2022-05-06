@@ -48,7 +48,7 @@ Você pode renderizar um divisor vertical usando a propriedade `orientation`.
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 
-> Observe o uso da propriedade `flexItem` para acomodar em um contêiner flexível.
+:::info Note the use of the `flexItem` prop to accommodate for the flex container. :::
 
 ### Vertical with variant middle
 
@@ -58,6 +58,6 @@ You can also render a vertical divider with `variant="middle"`.
 
 ### Vertical com texto
 
-Você também pode renderizar um divisor vertical com conteúdo.
+You can also render a vertical divider with content.
 
 {{"demo": "VerticalDividerText.js"}}
