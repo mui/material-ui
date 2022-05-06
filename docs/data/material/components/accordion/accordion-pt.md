@@ -15,7 +15,7 @@ Um acordeão é um contêiner leve que pode estar sozinho ou conectado em uma su
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Nota:** Os acordeões não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas MUI continuará a suportá-los. Anteriormente, ele era formalmente conhecido como "painel de expansão".
+:::info **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel". :::
 
 ## Acordeão básico
 
@@ -23,28 +23,28 @@ Um acordeão é um contêiner leve que pode estar sozinho ou conectado em uma su
 
 ## Acordeão controlado
 
-Estenda o comportamento padrão para criar um acordeão customizado com o componente `Accordion`.
+Extend the default behavior to create an accordion with the `Accordion` component.
 
 {{"demo": "ControlledAccordions.js", "bg": true}}
 
 ## Painéis de Expansão Customizados
 
-Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedAccordions.js"}}
 
 ## Performance
 
-O conteúdo dos acordeões é montado por padrão, mesmo que o acordeão não esteja expandido. Esse comportamento padrão tem em mente a renderização do lado do servidor e o SEO. Se você renderizar grandes árvores de componentes dentro de seu acordeão ou simplesmente renderizar muitos acordeões, pode ser uma boa ideia desabilitar esse comportamento padrão habilitando `unmountOnExit` em `TransitionProps`:
+The content of Accordions is mounted by default even if the accordion is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your accordion details or simply render many accordions it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
+As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
 
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-Para melhor acessibilidade recomendamos a definição do `id` e `aria-controls` no `AccordionSummary`. O `Accordion` irá derivar os valores de `aria-labelledby` e `id` para a região de conteúdo do acordeão.
+For optimal accessibility we recommend setting `id` and `aria-controls` on the `AccordionSummary`. The `Accordion` will derive the necessary `aria-labelledby` and `id` for the content region of the accordion.
