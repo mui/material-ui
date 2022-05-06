@@ -30,7 +30,7 @@ Adding `mode: 'dark'` to the `createTheme` helper modifies several palette value
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-> Note: setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). Note: The colors are modified only if you use the default palette. If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The following section explains how you can do it. The next section explain how to do this.
+:::info Note: setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The next section explain how to do this. :::
 
 ## Dark mode with a custom palette
 
@@ -67,7 +67,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
 });
 ```
 
-You can see on the example that there are different colors used based on whether the mode is light or dark. The next step is to use this function when creating the theme. The next step is to use this function when creating the theme.
+You can see on the example that there are different colors used based on whether the mode is light or dark. The next step is to use this function when creating the theme.
 
 ```tsx
 export default function App() {
