@@ -149,7 +149,9 @@ Para ser feito: [#15251](https://github.com/mui/material-ui/issues/15251).
 
 Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por exemplo, quando usando a [simplificação de 10px](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Alterar o tamanho da fonte pode prejudicar a acessibilidade ♿️. A maioria dos navegadores concordou com o tamanho padrão de 16 pixels, mas o usuário pode alterá-lo. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+:::warning
+⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+:::
 
 The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
@@ -168,7 +170,7 @@ html {
 }
 ```
 
-_Você precisa aplicar o CSS acima no elemento html desta página para ver a demonstração abaixo renderizada corretamente_
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "FontSizeTheme.js"}}
 
@@ -190,7 +192,7 @@ The typography object comes with [13 variants](/material-ui/react-typography/#co
 - caption
 - overline
 
-Cada uma dessas variantes pode ser customizada individualmente:
+Each of these variants can be customized individually:
 
 ```js
 const theme = createTheme({
@@ -230,9 +232,11 @@ const theme = createTheme({
 
 **Step 2. Update the necessary typings (if you are using TypeScript)**
 
-> If you aren't using TypeScript you should skip this step.
+:::info
+If you aren't using TypeScript you should skip this step.
+:::
 
-Você precisa ter certeza de que as tipagens para as variantes da propriedade `typography` e a `variant` `Typography`'s reflete o novo conjunto de variantes.
+You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
 <!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 
