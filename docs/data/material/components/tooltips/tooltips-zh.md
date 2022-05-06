@@ -86,11 +86,13 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 默认情况下，`<Button>`等 disabled 的元素不会触发用户交互，因此`Tooltip`不会在 hover 等正常事件上激活显示。 若想容纳已禁用的元素激活工具提示，请添加一个简单的包装元素，如 `span`。
 
-> ⚠️ 为了在 Safari 中正常显示，在文字提示的包装组件中，您至少需要一个 display 为 block 或 flex 的元素。
+:::warning
+⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+:::
 
 {{"demo": "DisabledTooltips.js"}}
 
-> 如果你没有包装从 `ButtonBase` 继承的 Material-UI 组件，譬如一个原生的 `<button>` 元素，当禁用元素的时候，你应该将 _pointer-events: none;_ 这个 CSS 属性添加到您的元素中：
+:::warning If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled: :::
 
 ```jsx
 <Tooltip title="您没有足够的操作权限">
@@ -122,9 +124,9 @@ In the event you need to implement a custom placement, you can use the `anchorEl
 
 ## 显示和隐藏组件
 
-当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
+The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
 
-在移动设备上使用时，用户长按元素就会显示出文字提示，并且持续 1500ms 之后就会自动隐藏。 You can disable this feature with the `disableTouchListener` prop.
+On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` prop.
 
 {{"demo": "DelayTooltips.js"}}
 
