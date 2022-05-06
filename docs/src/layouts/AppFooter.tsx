@@ -86,6 +86,7 @@ export default function AppFooter() {
               Explore
             </Typography>
             <Link href={ROUTES.documentation}>Documentation</Link>
+            <Link href={ROUTES.store}>Store</Link>
             <Link href={ROUTES.blog}>Blog</Link>
             <Link href={ROUTES.showcase}>Showcase</Link>
             <Link href={ROUTES.roadmap}>Roadmap</Link>
