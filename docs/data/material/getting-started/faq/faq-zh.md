@@ -125,19 +125,21 @@ const element = ref.current;
 
 If you're not sure if the MUI component in question forwards its ref you can check the API documentation under "Props" e.g. the [Button API](/material-ui/api/button/#props) includes
 
-> 如果你正使用的 webpack 带有 [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 插件 ，请尝试在设置里的 [`optimizations` 下配置 `runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) 。
+:::info
+The ref is forwarded to the root element.
+:::
 
-这就表明您可以使用一个 ref 来访问这个 DOM 元素。
+indicating that you can access the DOM element with a ref.
 
 ## 我应该怎么访问 DOM 元素？
 
-在我们的指南中详细介绍了如何与 react-router、Gatsby 或 Next.js 这样的 [第三方路由库](/guides/routing/) 整合。
+If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
 
-> 看起来在这个应用程序中初始化了多个 `@mui/styles` 实例。 这可能会导致主题传播问题、类名称损坏、专一性问题，并使你的应用程序尺寸无端变大。
+:::warning It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason. :::
 
 ### 可能的原因
 
-出现这些问题通常有几个常见的原因：
+There are several common reasons for this to happen:
 
 - 自动前缀
 - 更好地调试
@@ -145,15 +147,15 @@ If you're not sure if the MUI component in question forwards its ref you can che
 
 ### 在 node_modules 中重复的模块
 
-如果您认为问题可能出现在您的依赖关系中的 @mui/styles 模块的重复，那么有几种方法可以检查。 您可以在应用程序文件夹中使用 `npm ls @mui/styles`、`yarn list @mui/styles` 或 `find -L ./node_modules | grep /@mui/styles/package.json` 这些命令行来检查。
+If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this. You can use `npm ls @mui/styles`, `yarn list @mui/styles` or `find -L ./node_modules | grep /@mui/styles/package.json` commands in your application folder.
 
-如果使用了这些命令之后都没有发现重复的依赖，请尝试分析您的捆绑包中是否有多个 @mui/styles 实例。 您可以直接去检查捆绑包的源代码，或者使用 [source-map-explorer](https://github.com/danvk/source-map-explorer) 或 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 这样的工具来帮助检查。
+If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @mui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
-如果您在控制台中看到类似下面的警告消息，那么您可能已经在页面上初始化了多个 `@mui/styles` 实例。
+If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
 
-如果您正在使用的是 npm，那么您可以尝试运行 `npm dedupe` 命令。 这条命令将会搜索本地的依赖关系，并试图通过将共同的依赖包移到树的更上层，这样来简化结构。
+If you are using npm you can try running `npm dedupe`. This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
 
-如果您使用的是 webpack，您可以更改 [解析](https://webpack.js.org/configuration/resolve/#resolve-modules) @mui/styles 模块的方式。 您可以使用覆盖 webpack 查找依赖项的默认顺序这个方法，这样应用程序中的 node_modules 比默认的 node module 解析顺序更优先地进行渲染。
+If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
   resolve: {
@@ -165,15 +167,15 @@ If you're not sure if the MUI component in question forwards its ref you can che
 
 ### 与 Lerna 一起使用
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. 您可以尝试使用 --hoist 标识运行引导的选项。 Try running the bootstrap option with the --hoist flag.
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-如果您确定当前遇到的问题是模块重复，那么您可以尝试这样解决：
+Alternatively, you can remove @mui/styles from your package.json file and hoist it manually to your top-level package.json file.
 
-Lerna 根目录下的 package.json 文件示例：
+Example of a package.json file in a Lerna root folder
 
 ```json
 {
@@ -195,7 +197,7 @@ Lerna 根目录下的 package.json 文件示例：
 
 ### 在一个页面上运行多个应用程序
 
-如果您在一个页面上需要运行多个程序，那么请考虑在所有程序中使用一个 @mui/styles 模块。 如果您正在使用 webpack，那么您可以使用 [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) 来创建一个显式的 [第三方代码块（vendor chunk）](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk)，其中将包含 @mui/styles 模块：
+If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @mui/styles module:
 
 ```diff
   module.exports = {
@@ -217,15 +219,15 @@ Lerna 根目录下的 package.json 文件示例：
 
 If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration.
 
-找出所在问题的最佳方法是将你的项目与 **已经在正常工作的设置** 进行比较。 Check out the [reference implementations](/material-ui/guides/server-rendering/#reference-implementations), bit by bit.
+The best way to find out what's wrong is to compare your project to an **already working setup**. Check out the [reference implementations](/material-ui/guides/server-rendering/#reference-implementations), bit by bit.
 
 ## 我的应用没有在服务器上正确的渲染。
 
-这是因为文档网站使用了一个自定义的主题。 因此，调色板和 Material-UI 的默认的主题所展示的效果是截然不同的。 Please refer to [this page](/material-ui/customization/theming/) to learn about theme customization.
+The documentation site is using a custom theme. Hence, the color palette is different from the default theme that MUI ships. Please refer to [this page](/material-ui/customization/theming/) to learn about theme customization.
 
 ## 为什么我看到的颜色和文档这里的颜色大相径庭？
 
-Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. 若需在这些属性中传递一个 ref 对象，并让 Material-UI 访问当前值，这看起来更加简洁有效。 这在一个简单的方案中就可以实现：
+Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
 
 ```jsx
 function App() {
@@ -242,7 +244,7 @@ function App() {
 }
 ```
 
-其中，`Portal` 仅在 `container.current` 可用时才会将其子项挂载到容器中。 下面是一个简单的 Portal 实现例子：
+where `Portal` would only mount the children into the container when `container.current` is available. Here is a naive implementation of Portal:
 
 ```jsx
 function Portal({ children, container }) {
@@ -259,9 +261,9 @@ function Portal({ children, container }) {
 }
 ```
 
-这个简单的方法可能会启发您，`Portal` 可能会在挂载后重新渲染，因为在任何效果运行之前，refs 都是最新的。 然而，仅仅因为 ref 是最新的并不意味着它会指向一个定义好的实例。 如果 ref 是附着在一个 ref 所转发组件上的话，那么 DOM 节点何时可用是不明确的。 在上面的例子中，`Portal` 将产生一次效果，但可能不会重新渲染，因为 `ref.current` 的值仍然是 `null`。 而 Suspense 中的 React.lazy 组件中，这一点尤为明显。 上述实现也并不能代表 DOM 节点的一个变化。
+With this simple heuristic `Portal` might re-render after it mounts because refs are up-to-date before any effects run. However, just because a ref is up-to-date doesn't mean it points to a defined instance. If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. The above implementation could also not account for a change in the DOM node.
 
-综上所述，这就是为什么我们需要一个具有实际 DOM 节点的属性，这样 React 就可以负责确定 `Portal` 何时应该重新渲染。
+This is why we require a prop with the actual DOM node so that React can take care of determining when the `Portal` should re-render:
 
 ```jsx
 function App() {
@@ -284,9 +286,9 @@ function App() {
 
 ## 为什么组件 X 需要属性中的 DOM 节点而不是一个 ref 对象？
 
-[clsx](https://github.com/lukeed/clsx)是一个小型工具集，用于有条件地从一个对象中构造 `className` 字符串，此对象的键是类字符串（class strings），而值是布尔值（booleans）。
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
 
-修复示例：
+Instead of writing:
 
 ```jsx
 // let disabled = false, selected = true;
@@ -300,7 +302,7 @@ return (
 );
 ```
 
-您可以这样做：
+you can do:
 
 ```jsx
 import clsx from 'clsx';
@@ -321,29 +323,29 @@ If you are getting the error: `TypeError: Cannot convert a Symbol value to a str
 
 ## I cannot use components as selectors in the styled() utility. What should I do?
 
-发生这种情况的首要原因，很有可能是您的代码在生产环境中的捆绑包中出现了类名冲突。 For MUI to work, the `className` values of all components on a page must be generated by a single instance of the [class name generator](/system/styles/advanced/#class-names).
+The #1 reason this happens is likely due to class name conflicts once your code is in a production bundle. For MUI to work, the `className` values of all components on a page must be generated by a single instance of the [class name generator](/system/styles/advanced/#class-names).
 
-要纠正这个问题，您需要对页面上的所有组件进行初始化，使它们之间永远只有**一个类名生成器**。
+To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
-在很多情况下，您可能最终会意外地使用两个类名生成器：
+You could end up accidentally using two class name generators in a variety of scenarios:
 
 - 比如你一不小心 **打包**了 两个版本的 Material-UI。 您没有正确设置某个和 material-ui 的同等依赖的依赖包。
 - 您的项目是 monorepo 结构（例如，lerna，yarn workspaces），并且有多个包依赖着 `@mui/styles` 模块（这与前一个包或多或少相同）。
 - 您有几个使用 `@mui/styles` 的应用程序在同一页面上运行（例如，webpack 中的几个入口点被加载在同一页面上）。
 
-> If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+:::info 💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk). :::
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
 ### CSS 仅在第一次加载时生效，然后就消失了
 
-CSS 只在页面第一次加载时生成。 那么，若连续地请求服务器，就会导致 CSS 的丢失。
+The CSS is only generated on the first load of the page. Then, the CSS is missing on the server for consecutive requests.
 
 #### 要运行的操作
 
-样式解决方案依赖于缓存，即 _sheets manager_，来为每个组件类只注入一次 CSS（如果您使用了两个按钮，则只需要应用一次按钮的 CSS）。 您需要为每个请求创建 **一个新的 `sheet` 实例**。
+The styling solution relies on a cache, the _sheets manager_, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
 
-请不要这样写：
+Example of fix:
 
 ```diff
 -// Create a sheets instance.
@@ -365,13 +367,15 @@ function handleRender(req, res) {
 
 ### React 类名渲染不匹配
 
-> Warning: Prop className did not match.
+:::warning **⚠️ Warning**
 
-您会遇到客户端和服务端之间存在类名不匹配的情况。 可能在第一次请求时会出现这种情况。 另一个征兆是，在初始页面加载和下载客户端脚本之间，样式会发生变化。
+Prop className did not match. :::
+
+There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
 #### 要运行的操作
 
-The class names value relies on the concept of [class name generator](/system/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. 这个生成器需要在服务端和客户端上的行为一致。 就像这样：
+The class names value relies on the concept of [class name generator](/system/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
 
 - 您需要为每个请求提供一个新的类名生成器。 但是您不应该在不同的请求之间共享 `createGenerateClassName()`：
 
