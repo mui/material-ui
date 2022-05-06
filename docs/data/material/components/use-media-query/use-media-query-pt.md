@@ -111,24 +111,27 @@ const theme = createTheme({
 
 ## Renderização do lado servidor
 
-> ⚠️ Renderização do lado servidor e consultas de mídia do lado cliente são fundamentalmente conflitantes. Esteja ciente da escolha. O suporte só pode ser parcial.
+:::warning
+⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
+Be aware of the tradeoff. The support can only be partial.
+:::
 
-Tente confiar em consultas de mídia CSS do lado do cliente primeiro. Por exemplo, você poderia usar:
+Try relying on client-side CSS media queries first. For instance, you could use:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/material-ui/customization/breakpoints/#css-media-queries)
 - or [`sx prop`](/system/basics/#heading-the-sx-prop)
 
-Se nenhuma das alternativas acima for uma opção, você poderá continuar lendo esta seção da documentação.
+If none of the above alternatives are an option, you can proceed reading this section of the documentation.
 
-Primeiro, você precisa adivinhar as características da solicitação do cliente, no servidor. Você tem a opção entre usar:
+First, you need to guess the characteristics of the client request, from the server. You have the choice between using:
 
 - **User agent**. Analise a string do user agent do cliente para extrair informações. É recomendável usar [ua-parser-js](https://github.com/faisalman/ua-parser-js) para analisar o user agent.
 - **Client hints**. Leia as dicas que o cliente está enviando para o servidor. Esteja ciente de que esse recurso [não é suportado em qualquer lugar](https://caniuse.com/#search=client%20hint).
 
-Por fim, você precisa fornecer uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) para o `useMediaQuery` com as características adivinhadas anteriormente. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular o matchMedia.
+Finally, you need to provide an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to the `useMediaQuery` with the previously guessed characteristics. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.
 
-Por exemplo, no lado do servidor:
+For instance on the server-side:
 
 ```js
 import ReactDOMServer from 'react-dom/server';
@@ -168,11 +171,11 @@ function handleRender(req, res) {
 
 {{"demo": "ServerSide.js", "defaultCodeOpen": false}}
 
-Certifique-se de fornecer a mesma implementação de mídia de correspondência customizada para o lado do cliente para garantir uma correspondência de hidratação.
+Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
 
 ## Migrando de `withWidth()`
 
-O componente de ordem superior `withWidth()` injeta a largura da tela da página. Você pode reproduzir o mesmo comportamento com o hook `useWidth`:
+The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
 
 {{"demo": "UseWidth.js"}}
 
@@ -194,7 +197,7 @@ Note: You can change the default options using the [`default props`](/material-u
 
 #### Retornos
 
-`matches`: Matches é `true` se o documento coincidir com a consulta de mídia, e `false` quando isso não ocorrer.
+`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
 
 #### Exemplos
 
