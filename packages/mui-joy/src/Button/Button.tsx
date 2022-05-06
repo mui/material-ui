@@ -149,7 +149,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ComponentProp,
     ref: handleRef,
   });
 
