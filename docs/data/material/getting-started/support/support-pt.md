@@ -12,11 +12,15 @@ For crowdsourced answers from expert MUI developers in our community. StackOverf
 
 [Poste uma pergunta](https://stackoverflow.com/questions/tagged/mui)
 
-> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+:::info 💡 **Tip**:
+
+If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
+:::
 
 ### GitHub
 
-Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de recursos. Se você acha que encontrou um bug ou tem uma nova idéia de recurso, comece certificando-se de que ele ainda não foi [relatado ou corrigido](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Você pode pesquisar nas issues existentes e pull requests para ver se alguém relatou algo semelhante ao seu.
+MUI uses GitHub issues as a bug and feature request tracker. If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
 
 - [Abra uma issue](https://github.com/mui/material-ui/issues/new/choose)
 - [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose)
@@ -32,21 +36,21 @@ Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de re
 
 ### Blog 📝
 
-Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
+Stay up to date with the development of the library by following the blog.
 
-[Leia as últimas postagens](https://mui.com/blog/)
+[Read the latest posts](https://mui.com/blog/)
 
 ### Recursos 📖
 
-Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
+New to MUI? It's easy to learn if you know where to start!
 
-[Aprenda Material-UI](/material-ui/getting-started/learn/)
+[Learn MUI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
-Receba as últimas notícias sobre Material-UI.
+Receive the latest news on MUI.
 
-[Siga-nos](https://twitter.com/MUI_hq)
+[Follow us](https://twitter.com/MUI_hq)
 
 ### Versões suportadas
 
