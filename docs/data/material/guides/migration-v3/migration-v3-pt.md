@@ -4,19 +4,19 @@
 
 Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/guides/migration-v3/migration-v3.md).
+:::info This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/guides/migration-v3/migration-v3.md). :::
 
 ## Introdução
 
-This is a reference for upgrading your site from Material UI v3 to v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
+This is a reference for upgrading your site from Material UI v3 to v4. While there's a lot covered here, you probably won't need to do everything for your site. We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
 
 ## Por que você deve migrar
 
-Esta página de documentação cobre o **como** migrar da v3 para a v4. O **porque** é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+This documentation page covers the **how** of migrating from v3 to v4. The **why** is covered in the [release blog post on Medium](https://mui.com/blog/material-ui-v4-is-out/).
 
 ## Atualizando suas dependências
 
-A primeira coisa que você precisa fazer é atualizar suas dependências.
+The very first thing you will need to do is to update your dependencies.
 
 ### Update Material UI version
 
@@ -28,7 +28,7 @@ You need to update your `package.json` to use the latest version of Material UI.
 }
 ```
 
-Ou execute
+Or run
 
 ```sh
 npm install @material-ui/core
@@ -40,7 +40,7 @@ yarn add @material-ui/core
 
 ### Atualize a versão do React
 
-A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
+The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`. This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
 ### Update Material UI Styles version
 
@@ -52,7 +52,7 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 }
 ```
 
-Ou execute
+Or run
 
 ```sh
 npm install @material-ui/styles
@@ -166,7 +166,7 @@ yarn add @material-ui/styles
 
 #### Tipo `value`
 
-Tipo da propriedade `value` normalizado para os componentes de entrada utilizarem `unknown`. Isso afeta `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
+Normalized `value` prop type for input components to use `unknown`. This affects `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
 
 ```diff
 function MySelect({ children }) {
