@@ -1091,8 +1091,6 @@ export default function PricingTable({
       {divider}
       {renderRow('bugs/features')}
       {divider}
-      {renderRow('tech-advisory')}
-      {divider}
       {renderRow('support-duration')}
       {divider}
       {renderRow('response-time')}
