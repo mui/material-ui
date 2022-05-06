@@ -65,7 +65,7 @@ Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-
 - 导出为 Twotone 主题：`@mui/icons/DeleteTwoTone`，
 - 导出为 Sharp 主题：`@mui/icons/DeleteSharp`，
 
-> 注意：Material Design 指南使用“snake_case”命名方式（例如，`delete_forever`，`add_a_photo`），而 `@mui/icons-materials` 使用“PascalCase”命名方式导出相应的图标（例如，`DeleteForever`，`AddAPhoto`）。 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
+:::info Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`. :::
 
 {{"demo": "SvgMaterialIcons.js"}}
 
