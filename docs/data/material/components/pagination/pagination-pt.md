@@ -71,7 +71,7 @@ Para a paginação de um conjunto grande de dados tabulares, você deve usar o c
 
 {{"demo": "TablePagination.js"}}
 
-> ⚠️ Observe que a propriedade `Pagination` da página começa em 1 para corresponder ao requisito de incluir o valor na URL, enquanto a propriedade `TablePagination` da página começa em 0 para corresponder ao requisito de zero-based array do JavaScript arrays, que tem com renderização muitos dados tabulares.
+:::info ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data. :::
 
 You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.
 
@@ -79,8 +79,8 @@ You can learn more about this use case in the [table section](/material-ui/react
 
 ### ARIA
 
-O nó raiz tem uma role de "navigation" e o rótulo aria-label "pagination navigation" por padrão. Os itens da página têm um rótulo aria-label que identifica a finalidade do item ("go to first page", "go to previous page", "go to page 1" etc.). Você pode substituir estes padrões usando a propriedade `getItemAriaLabel`.
+The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
 
 ### Teclado
 
-Os itens de paginação estão em ordem de tabulação, com um índice de tabulação iniciando em "0".
+The pagination items are in tab order, with a tabindex of "0".
