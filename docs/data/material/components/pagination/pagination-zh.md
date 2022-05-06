@@ -71,7 +71,7 @@ import { usePagination } from '@mui/core/Pagination';
 
 {{"demo": "TablePagination.js"}}
 
-> ⚠️ 注意，`Pagination` 页面的属性从 1 开始，以满足在 URL 中包含当前页面参数值的要求，而 `TablePagination` 页面的属性则从 0 开始，以满足渲染大量表格数据时基于零开始的 JavaScript 数组的要求。
+:::info ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data. :::
 
 You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.
 
@@ -79,8 +79,8 @@ You can learn more about this use case in the [table section](/material-ui/react
 
 ### ARIA
 
-默认情况下，根节点具有 "导航（navigation）" 和 aria-label 的“分页导航” 的作用。 页面的项目带有一个 aria-label，用于标识项目的用途（“转到首页”，“转到上一页”，“转到第一页”等）。 你可以使用 `getItemAriaLabel` 属性来覆盖它们。
+The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
 
 ### 键盘输入
 
-分页项目按标签顺序排列，标签索引为“0”。
+The pagination items are in tab order, with a tabindex of "0".
