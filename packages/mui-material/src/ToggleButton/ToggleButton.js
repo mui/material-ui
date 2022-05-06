@@ -66,7 +66,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
       textDecoration: 'none',
       // Reset on mouse devices
       backgroundColor: theme.vars
-        ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.hoverOpacity})`
+        ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
         : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
