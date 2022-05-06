@@ -52,7 +52,7 @@ Você deve passar o nonce na tag `<style>` no servidor.
 
 Então, você deve passar este nonce para o JSS para que ele possa adicioná-lo às tags `<style>` subsequentes.
 
-> Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option.
+:::warning Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option. :::
 
 ```js
 <head>
@@ -62,9 +62,9 @@ Então, você deve passar este nonce para o JSS para que ele possa adicioná-lo 
 
 ### Create React App (CRA)
 
-De acordo com [a documentação de Create React App](https://create-react-app.dev/docs/advanced-configuration/), uma aplicação de Create React App incorporará dinamicamente o script de tempo de execução em index.html durante a compilação de produção por padrão. Isto exigirá que um novo hash seja definido em seu CSP durante cada implantação.
+According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
 
-Para usar um CSP com um projeto inicializado como um Create React App, você precisará definir a variável `INLINE_RUNTIME_CHUNK=false` no arquivo `.env` usado para sua compilação de produção. Isto irá importar o script de execução como de costume em vez de incorporá-lo, evitando a necessidade de definir um novo hash durante cada implantação.
+To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
 
 ### global-css
 
