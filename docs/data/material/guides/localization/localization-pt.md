@@ -30,7 +30,7 @@ const theme = createTheme(
 
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
-> ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+:::warning ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/). :::
 
 ### Localidades suportadas
 
@@ -87,12 +87,12 @@ const theme = createTheme(
 
 <!-- #default-branch-switch -->
 
-Você pode [encontrar o fonte](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
+You can [find the source](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 
-Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
+To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, Material-UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
+Please do consider contributing new translations back to MUI by opening a pull request. However, MUI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## Suporte RTL
 
-Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Follow [this guide](/material-ui/guides/right-to-left/) to use them.
+Right-to-left languages such as Arabic, Persian, or Hebrew are supported. Follow [this guide](/material-ui/guides/right-to-left/) to use them.
