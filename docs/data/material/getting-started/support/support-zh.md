@@ -12,11 +12,15 @@ For crowdsourced answers from expert MUI developers in our community. For crowds
 
 [发布一个问题](https://stackoverflow.com/questions/tagged/mui)
 
-> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/). To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+:::info 💡 **Tip**:
+
+If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
+:::
 
 ### GitHub
 
-我们用 GitHub issues 作为唯一的记录 BUG 或特性需求的跟踪方式。 如果你认为发现了一个 bug，或有一个新功能的想法，在您提交之前，请先确保它没有被 [报告过或解决过](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。 您可以搜索已有的 Issues 或者 Pull Requests，这样可以知晓是否有人已报告过类似的问题。
+MUI uses GitHub issues as a bug and feature request tracker. If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
 
 - [开一个 issue](https://github.com/mui/material-ui/issues/new/choose)
 - [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose)
@@ -32,13 +36,13 @@ For crowdsourced answers from expert MUI developers in our community. For crowds
 
 ### 博客 📝
 
-请订阅我们的博客来了解我们库的开发的最新情况。
+Stay up to date with the development of the library by following the blog.
 
-[阅读最新的博文](https://mui.com/blog/)
+[Read the latest posts](https://mui.com/blog/)
 
 ### 资源 📖
 
-New to MUI? It's easy to learn if you know where to start! It's easy to learn if you know where to start!
+New to MUI? It's easy to learn if you know where to start!
 
 [Learn MUI](/material-ui/getting-started/learn/)
 
@@ -46,7 +50,7 @@ New to MUI? It's easy to learn if you know where to start! It's easy to learn if
 
 Receive the latest news on MUI.
 
-[关注我们](https://twitter.com/MUI_hq)
+[Follow us](https://twitter.com/MUI_hq)
 
 ### 支持的版本
 
