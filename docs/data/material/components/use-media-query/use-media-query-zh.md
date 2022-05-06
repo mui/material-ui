@@ -113,24 +113,27 @@ const theme = createTheme({
 
 ## 服务端渲染
 
-> ⚠️ 从根本上来看，服务端渲染和客户端的媒体查询是矛盾的。 所以你需要在其中取舍。 支持只能是部分的。
+:::warning
+⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
+Be aware of the tradeoff. The support can only be partial.
+:::
 
-你可以先尝试依赖于客户端的 CSS 媒体查询。 例如，你可以使用：
+Try relying on client-side CSS media queries first. For instance, you could use:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/material-ui/customization/breakpoints/#css-media-queries)
 - or [`sx prop`](/system/basics/#heading-the-sx-prop)
 
-如果上述的方案都不可用，那么你也可以继续阅读本节文档的其余内容。
+If none of the above alternatives are an option, you can proceed reading this section of the documentation.
 
-首先，你需要从服务端上猜测客户端请求的特征。 你可以选择使用：
+First, you need to guess the characteristics of the client request, from the server. You have the choice between using:
 
 - **用户代理（User agent）**。 解析客户端上用户代理的字符串来提取信息。 我们推荐使用 [ua-parser-js](https://github.com/faisalman/ua-parser-js) 来解析用户代理信息。
 - **客户端提示（Client hints）**。 读取客户端向服务器发送的提示。 请注意，[并不是所有浏览器都会支持](https://caniuse.com/#search=client%20hint) 此功能。
 
-最后，你需要为 `useMediaQuery` 提供一个具有预先猜测特征的 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 来实现。 我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery) 来模拟 matchMedia 环境。
+Finally, you need to provide an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to the `useMediaQuery` with the previously guessed characteristics. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.
 
-例如，在服务端上：
+For instance on the server-side:
 
 ```js
 import ReactDOMServer from 'react-dom/server';
@@ -212,11 +215,11 @@ function handleRender(req, res) {
 
 {{"demo": "ServerSide.js", "defaultCodeOpen": false}}
 
-确保您提供相同的自定义匹配媒体实现到客户端，这样能够保证注水渲染的匹配。
+Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
 
 ## 从 `withWidth()` 迁移
 
-`withWidth()` 高阶组件注入了页面的屏幕宽度。 您可以使用 `useWidth` hook 来实现相同的操作：
+The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
 
 {{"demo": "UseWidth.js"}}
 
@@ -238,7 +241,7 @@ Note: You can change the default options using the [`default props`](/material-u
 
 #### 返回结果
 
-`matches`：如果文档当前能够匹配这个媒体查询，Matches 则为 `true` ，否则为 `false` 。
+`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
 
 #### 例子
 
