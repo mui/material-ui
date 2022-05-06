@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { colorChannel } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
@@ -41,12 +40,16 @@ const ToggleButtonRoot = styled(ButtonBase, {
     ownerState.color === 'standard'
       ? theme.palette.text.primary
       : theme.palette[ownerState.color].main;
-  const selectedColorChannel = colorChannel(selectedColor);
+  let selectedColorChannel;
   if (theme.vars) {
     selectedColor =
       ownerState.color === 'standard'
         ? theme.vars.palette.text.primary
         : theme.vars.palette[ownerState.color].main;
+    selectedColorChannel =
+      ownerState.color === 'standard'
+        ? theme.vars.palette.text.primaryChannel
+        : theme.vars.palette[ownerState.color].mainChannel;
   }
 
   return {
