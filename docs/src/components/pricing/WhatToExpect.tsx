@@ -4,9 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
-import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 export default function WhatToExpect() {
@@ -34,12 +32,13 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase, you are granted a license to use a version of the product forever in a production environment. 
-              There are no further charges unless you choose to renew support and
-              maintenance to cover newer versions. Please note that while the use of the software is
-              perpetual in production, it's not perpetual for development, so if you'd like to keep making changes to your product, you'll need to renew your license.
-              We roll bug fixes, performance enhancements, and other improvements into new releases; we don&apos;t patch, fix, or
-              in any way alter older versions.
+              With your purchase, you are granted a license to use a version of the product forever
+              in a production environment. There are no further charges unless you choose to renew
+              support and maintenance to cover newer versions. Please note that while the use of the
+              software is perpetual in production, it&apos;s not perpetual for development, so if
+              you&apos;d like to keep making changes to your product, you&apos;ll need to renew your
+              license. We roll bug fixes, performance enhancements, and other improvements into new
+              releases; we don&apos;t patch, fix, or in any way alter older versions.
             </Typography>
           </Paper>
         </Grid>
@@ -58,9 +57,9 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase, you receive support and maintenance for one year.
-              After this time, you can continue to use your licensed versions in production,
-              but will no longer be licensed to update to newer versions.
+              With your purchase, you receive support and maintenance for one year. After this time,
+              you can continue to use your licensed versions in production, but will no longer be
+              licensed to update to newer versions.
             </Typography>
           </Paper>
         </Grid>
