@@ -52,7 +52,7 @@ header('Content-Security-Policy').set(
 
 然后，您必须将此随机数传递给 JSS ，以便将其添加到后续 `<style>` 标记中。
 
-> Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option.
+:::warning Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option. :::
 
 ```js
 <head>
@@ -62,9 +62,9 @@ header('Content-Security-Policy').set(
 
 ### Create React App (CRA)
 
-根据 [Create React App 文档](https://create-react-app.dev/docs/advanced-configuration/)，Create React App 会在生产构建过程中默认将运行时脚本动态嵌入到 index.html 中。 这需要在你的每次部署时都要在 CSP 中设置一个新的哈希值。
+According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
 
-要将 CSP 与 Create React App 的项目一起使用，你需要在用于生产构建的 `.env` 文件中设置 `INLINE_RUNTIME_CHUNK=false`。 这将像往常一样导入运行时脚本，而不是直接嵌入它，就可以避免在每次部署时都需要设置一个新的哈希值的情况了。
+To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
 
 ### styled-components
 
