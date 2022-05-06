@@ -703,9 +703,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value="2 business days" metadata="1 business day (priority only)" />,
-  'pre-screening': <Info value="4 hours" metadata="priority only" />,
-  'issue-escalation': <Info value={pending} metadata="priority only" />,
+  'response-time': <Info value={<>{pending}</>} metadata="Enterprise support Add-on" />,
+  'pre-screening': <Info value={pending} metadata="Enterprise support Add-on" />,
+  'issue-escalation': <Info value={pending} metadata="Enterprise support Add-on" />,
 };
 
 const RowCategory = (props: BoxProps) => (
