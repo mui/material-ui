@@ -1,11 +1,11 @@
 {
-  "componentDescription": "The Collapse transition is used by the\n[Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "componentDescription": "The Collapse transition is used by the\n[Vertical Stepper](/material-ui/react-stepper/#vertical-stepper) StepContent component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "propDescriptions": {
     "addEndListener": "Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided.",
     "children": "The content node to be collapsed.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
     "collapsedSize": "The width (horizontal) or height (vertical) of the container when collapsed.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "easing": "The transition timing function. You may specify a single easing or a object containing enter and exit values.",
     "in": "If <code>true</code>, the component will transition in.",
     "orientation": "The collapse transition orientation.",

@@ -69,7 +69,7 @@ async function main(argv) {
   const lastRelease = lastReleaseInput !== undefined ? lastReleaseInput : latestTaggedVersion;
   if (lastRelease !== latestTaggedVersion) {
     console.warn(
-      `Creating changelog for ${latestTaggedVersion}..${release} when latest tagged version is '${latestTaggedVersion}'.`,
+      `Creating changelog for ${lastRelease}..${release} when latest tagged version is '${latestTaggedVersion}'.`,
     );
   }
 
@@ -126,7 +126,7 @@ async function main(argv) {
       .toString()
       // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
       // i.e. we can sort the lines alphanumerically
-      .padStart(Math.ceil(Math.log10(commitsItemsByDateDesc.length)), '0')} -->`;
+      .padStart(Math.floor(Math.log10(commitsItemsByDateDesc.length)) + 1, '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
     return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
   });

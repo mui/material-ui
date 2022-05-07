@@ -327,176 +327,167 @@ const RowHead = ({
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  '@mui/base': <ColumnHead label="@mui/base" tooltip="The unstyled components and react hooks." />,
-  '@mui/material': (
-    <ColumnHead label="@mui/material" tooltip="Core components following Material Design" />
-  ),
-  '@mui/system': (
+  'MUI Base': (
     <ColumnHead
-      label="@mui/system"
-      tooltip="CSS utilities for rapidly laying out custom designs."
+      label="MUI Base"
+      tooltip="The unstyled components and react hooks available at @mui/base."
+    />
+  ),
+  'MUI System': (
+    <ColumnHead
+      label="MUI System"
+      tooltip="CSS utilities for rapidly laying out custom designs available at @mui/system."
+    />
+  ),
+  'Material UI': (
+    <ColumnHead
+      label="Material UI"
+      tooltip="Core components following Material Design available at @mui/material."
     />
   ),
   // Advanced
   'data-grid/column-groups': (
-    <ColumnHead label="Column groups" nested href="/components/data-grid/columns/#column-groups" />
+    <ColumnHead label="Column groups" nested href="/x/react-data-grid/columns/#column-groups" />
   ),
   'data-grid/column-spanning': (
-    <ColumnHead
-      label="Column spanning"
-      nested
-      href="/components/data-grid/columns/#column-spanning"
-    />
+    <ColumnHead label="Column spanning" nested href="/x/react-data-grid/columns/#column-spanning" />
   ),
   'data-grid/column-resizing': (
-    <ColumnHead label="Column resizing" nested href="/components/data-grid/columns/#resizing" />
+    <ColumnHead label="Column resizing" nested href="/x/react-data-grid/columns/#resizing" />
   ),
   'data-grid/column-reorder': (
-    <ColumnHead
-      label="Column reorder"
-      nested
-      href="/components/data-grid/columns/#column-reorder"
-    />
+    <ColumnHead label="Column reorder" nested href="/x/react-data-grid/columns/#column-reorder" />
   ),
   'data-grid/column-pinning': (
-    <ColumnHead
-      label="Column pinning"
-      nested
-      href="/components/data-grid/columns/#column-pinning"
-    />
+    <ColumnHead label="Column pinning" nested href="/x/react-data-grid/columns/#column-pinning" />
   ),
   'data-grid/column-sorting': (
-    <ColumnHead label="Column sorting" nested href="/components/data-grid/sorting/" />
+    <ColumnHead label="Column sorting" nested href="/x/react-data-grid/sorting/" />
   ),
   'data-grid/multi-column-sorting': (
     <ColumnHead
       label="Multi-column sorting"
       nested
-      href="/components/data-grid/sorting/#multi-sorting"
+      href="/x/react-data-grid/sorting/#multi-sorting"
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/components/data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/components/data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/components/data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
   ),
   'data-grid/row-selection': (
-    <ColumnHead
-      label="Row selection"
-      nested
-      href="/components/data-grid/selection/#row-selection"
-    />
+    <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
   ),
   'data-grid/row-multiselection': (
     <ColumnHead
       label="Multi-row selection"
       nested
-      href="/components/data-grid/selection/#multiple-row-selection"
+      href="/x/react-data-grid/selection/#multiple-row-selection"
     />
   ),
   'data-grid/row-rangeselection': (
     <ColumnHead
       label="Range selection"
       nested
-      href="/components/data-grid/selection/#range-selection"
+      href="/x/react-data-grid/selection/#range-selection"
     />
   ),
   'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" nested href="/components/data-grid/filtering/#quick-filter" />
+    <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/#quick-filter" />
   ),
   'data-grid/filter-column': (
-    <ColumnHead label="Column filters" nested href="/components/data-grid/filtering/" />
+    <ColumnHead label="Column filters" nested href="/x/react-data-grid/filtering/" />
   ),
   'data-grid/filter-multicolumn': (
     <ColumnHead
       label="Multi-column filtering"
       nested
-      href="/components/data-grid/filtering/#single-and-multi-filtering"
+      href="/x/react-data-grid/filtering/#single-and-multi-filtering"
     />
   ),
   'data-grid/pagination': (
-    <ColumnHead label="Pagination" nested href="/components/data-grid/pagination/" />
+    <ColumnHead label="Pagination" nested href="/x/react-data-grid/pagination/" />
   ),
   'data-grid/pagination-large': (
     <ColumnHead
       label="Pagination > 100 rows per page"
       nested
-      href="/components/data-grid/pagination/#size-of-the-page"
+      href="/x/react-data-grid/pagination/#size-of-the-page"
     />
   ),
   'data-grid/edit-row': (
-    <ColumnHead label="Row editing" nested href="/components/data-grid/editing/#row-editing" />
+    <ColumnHead label="Row editing" nested href="/x/react-data-grid/editing/#row-editing" />
   ),
   'data-grid/edit-cell': (
-    <ColumnHead label="Cell editing" nested href="/components/data-grid/editing/#cell-editing" />
+    <ColumnHead label="Cell editing" nested href="/x/react-data-grid/editing/#cell-editing" />
   ),
   'data-grid/file-csv': (
-    <ColumnHead label="CSV export" nested href="/components/data-grid/export/#csv-export" />
+    <ColumnHead label="CSV export" nested href="/x/react-data-grid/export/#csv-export" />
   ),
   'data-grid/file-print': (
-    <ColumnHead label="Print" nested href="/components/data-grid/export/#print-export" />
+    <ColumnHead label="Print" nested href="/x/react-data-grid/export/#print-export" />
   ),
   'data-grid/file-clipboard': (
-    <ColumnHead label="Clipboard" nested href="/components/data-grid/export/#clipboard" />
+    <ColumnHead label="Clipboard" nested href="/x/react-data-grid/export/#clipboard" />
   ),
   'data-grid/file-excel': (
-    <ColumnHead label="Excel export" nested href="/components/data-grid/export/#excel-export" />
+    <ColumnHead label="Excel export" nested href="/x/react-data-grid/export/#excel-export" />
   ),
   'data-grid/customizable-components': (
-    <ColumnHead label="Customizable components" nested href="/components/data-grid/components/" />
+    <ColumnHead label="Customizable components" nested href="/x/react-data-grid/components/" />
   ),
   'data-grid/virtualize-column': (
     <ColumnHead
       label="Column virtualization"
       nested
-      href="/components/data-grid/virtualization/#column-virtualization"
+      href="/x/react-data-grid/virtualization/#column-virtualization"
     />
   ),
   'data-grid/virtualize-row': (
     <ColumnHead
       label="Row virtualization > 100 rows"
       nested
-      href="/components/data-grid/virtualization/#row-virtualization"
+      href="/x/react-data-grid/virtualization/#row-virtualization"
     />
   ),
   'data-grid/tree-data': (
-    <ColumnHead label="Tree data" nested href="/components/data-grid/group-pivot/#tree-data" />
+    <ColumnHead label="Tree data" nested href="/x/react-data-grid/tree-data/" />
   ),
   'data-grid/master-detail': (
-    <ColumnHead
-      label="Master detail"
-      nested
-      href="/components/data-grid/group-pivot/#master-detail"
-    />
+    <ColumnHead label="Master detail" nested href="/x/react-data-grid/master-detail/" />
   ),
   'data-grid/grouping': (
-    <ColumnHead label="Grouping" nested href="/components/data-grid/group-pivot/#grouping" />
+    <ColumnHead
+      label="Row grouping"
+      nested
+      href="https://mui.com/x/react-data-grid/row-grouping/"
+    />
   ),
   'data-grid/aggregation': (
-    <ColumnHead label="Aggregation" nested href="/components/data-grid/group-pivot/#aggregation" />
+    <ColumnHead label="Aggregation" nested href="/x/react-data-grid/aggregation/" />
   ),
-  'data-grid/pivoting': (
-    <ColumnHead label="Pivoting" nested href="/components/data-grid/group-pivot/#pivoting" />
-  ),
+  'data-grid/pivoting': <ColumnHead label="Pivoting" nested href="/x/react-data-grid/pivoting/" />,
   'data-grid/accessibility': (
-    <ColumnHead label="Accessibility" nested href="/components/data-grid/accessibility/" />
+    <ColumnHead label="Accessibility" nested href="/x/react-data-grid/accessibility/" />
   ),
   'data-grid/keyboard-nav': (
     <ColumnHead
       label="Keyboard navigation"
       nested
-      href="/components/data-grid/accessibility/#keyboard-navigation"
+      href="/x/react-data-grid/accessibility/#keyboard-navigation"
     />
   ),
   'data-grid/localization': (
-    <ColumnHead label="Localization" nested href="/components/data-grid/localization/" />
+    <ColumnHead label="Localization" nested href="/x/react-data-grid/localization/" />
   ),
-  'data-grid-pro': <ColumnHead label="Data Grid Pro Updates" />,
-  'date-range-picker': <ColumnHead label="Date Range Picker" />,
+  'date-picker/simple': <ColumnHead label="Date picker" />,
+  'date-picker/range': <ColumnHead label="Date range picker" />,
+  'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
   community: <ColumnHead {...{ label: 'Community' }} />,
   'bugs/features': (
@@ -552,12 +543,12 @@ const no = <IconImage name="no" title="Not included" />;
 
 const communityData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/base': yes,
-  '@mui/material': yes,
-  '@mui/system': yes,
+  'MUI Base': yes,
+  'MUI System': yes,
+  'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
-  'data-grid/column-spanning': pending,
+  'data-grid/column-spanning': yes,
   'data-grid/column-resizing': no,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
@@ -591,8 +582,9 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
-  'data-grid-pro': no,
-  'date-range-picker': no,
+  'date-picker/simple': yes,
+  'date-picker/range': no,
+  'mui-x-updates': yes,
   // Support
   community: yes,
   'bugs/features': yes,
@@ -605,18 +597,18 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/base': yes,
-  '@mui/material': yes,
-  '@mui/system': yes,
+  'MUI Base': yes,
+  'MUI System': yes,
+  'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
-  'data-grid/column-spanning': pending,
+  'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
-  'data-grid/row-reordering': pending,
+  'data-grid/row-reordering': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': no,
@@ -644,8 +636,9 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
-  'data-grid-pro': <Info value="1 year" />,
-  'date-range-picker': pending,
+  'date-picker/simple': yes,
+  'date-picker/range': pending,
+  'mui-x-updates': <Info value="1 year" />,
   // Support
   community: yes,
   'bugs/features': <Info value={yes} metadata="Priority over Community" />,
@@ -658,18 +651,18 @@ const proData: Record<string, React.ReactNode> = {
 
 const premiumData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/base': yes,
-  '@mui/material': yes,
-  '@mui/system': yes,
+  'MUI Base': yes,
+  'MUI System': yes,
+  'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
-  'data-grid/column-spanning': pending,
+  'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
-  'data-grid/row-reordering': pending,
+  'data-grid/row-reordering': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': pending,
@@ -697,8 +690,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
-  'data-grid-pro': <Info value="1 year" />,
-  'date-range-picker': pending,
+  'date-picker/simple': yes,
+  'date-picker/range': pending,
+  'mui-x-updates': <Info value="1 year" />,
   // Support
   community: yes,
   'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
@@ -805,6 +799,9 @@ const StickyHead = ({
   );
 };
 
+const divider = <Divider />;
+const nestedDivider = <Divider sx={{ ml: 1 }} />;
+
 export default function PricingTable({
   columnHeaderHidden,
   plans = ['community', 'pro', 'premium'],
@@ -848,8 +845,6 @@ export default function PricingTable({
       </Box>
     );
   }
-  const divider = <Divider />;
-  const nestedDivider = <Divider sx={{ ml: 1 }} />;
   return (
     <Box
       ref={tableRef}
@@ -876,7 +871,7 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
-              href="/getting-started/usage/"
+              href="/material-ui/getting-started/usage/"
               variant="outlined"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
@@ -920,12 +915,11 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
         MUI Core (open-source)
       </RowHead>
-      {renderRow('@mui/base')}
+      {renderRow('MUI Base')}
       {divider}
-      {renderRow('@mui/material')}
+      {renderRow('MUI System')}
       {divider}
-      {renderRow('@mui/system')}
-
+      {renderRow('Material UI')}
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         MUI X (open-core)
       </RowHead>
@@ -983,7 +977,7 @@ export default function PricingTable({
             },
           }}
         >
-          Data Grid
+          Data grid
         </Button>
       </Box>
       <Collapse in={dataGridCollapsed} timeout={700} sx={{ position: 'relative' }}>
@@ -1079,10 +1073,11 @@ export default function PricingTable({
         {renderRow('data-grid/localization')}
       </Collapse>
       {divider}
-      {renderRow('data-grid-pro')}
+      {renderRow('date-picker/simple')}
       {divider}
-      {renderRow('date-range-picker')}
-
+      {renderRow('date-picker/range')}
+      {divider}
+      {renderRow('mui-x-updates')}
       <RowHead>Support</RowHead>
       {renderRow('community')}
       {divider}

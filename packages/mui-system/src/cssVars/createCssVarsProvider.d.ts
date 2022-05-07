@@ -36,6 +36,53 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
   prefix?: string;
 }
 
+export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeInput> {
+  CssVarsProvider: (
+    props: React.PropsWithChildren<
+      Partial<CssVarsProviderConfig<ColorScheme>> & {
+        theme?: ThemeInput;
+        /**
+         * localStorage key used to store application `mode`
+         * @default 'mui-mode'
+         */
+        modeStorageKey?: string;
+        /**
+         * DOM attribute for applying color scheme
+         * @default 'data-mui-color-scheme'
+         */
+        attribute?: string;
+        /**
+         * The document used to perform `disableTransitionOnChange` feature
+         * @default document
+         */
+        documentNode?: Document | null;
+        /**
+         * The node used to attach the color-scheme attribute
+         * @default document
+         */
+        colorSchemeNode?: Document | HTMLElement | null;
+        /**
+         * The CSS selector for attaching the generated custom properties
+         * @default ':root'
+         */
+        colorSchemeSelector?: string;
+        /**
+         * localStorage key used to store `colorScheme`
+         * @default 'mui-color-scheme'
+         */
+        colorSchemeStorageKey?: string;
+        /**
+         * The window that attaches the 'storage' event listener
+         * @default window
+         */
+        storageWindow?: Window | null;
+      }
+    >,
+  ) => React.ReactElement;
+  useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
+  getInitColorSchemeScript: typeof getInitColorSchemeScript;
+}
+
 export default function createCssVarsProvider<
   ColorScheme extends string,
   ThemeInput extends { colorSchemes?: Partial<Record<ColorScheme, any>> },
@@ -83,27 +130,7 @@ export default function createCssVarsProvider<
      */
     resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
   },
-): {
-  CssVarsProvider: (
-    props: React.PropsWithChildren<
-      Partial<CssVarsProviderConfig<ColorScheme>> & {
-        theme?: ThemeInput;
-        /**
-         * localStorage key used to store application `mode`
-         * @default 'mui-mode'
-         */
-        modeStorageKey?: string;
-        /**
-         * DOM attribute for applying color scheme
-         * @default 'data-mui-color-scheme'
-         */
-        attribute?: string;
-      }
-    >,
-  ) => React.ReactElement;
-  useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  getInitColorSchemeScript: typeof getInitColorSchemeScript;
-};
+): CreateCssVarsProviderResult<ColorScheme, ThemeInput>;
 
 // disable automatic export
 export {};

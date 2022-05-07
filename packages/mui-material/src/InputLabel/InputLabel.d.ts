@@ -59,11 +59,11 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Text fields](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputLabel API](https://mui.com/api/input-label/)
- * - inherits [FormLabel API](https://mui.com/api/form-label/)
+ * - [InputLabel API](https://mui.com/material-ui/api/input-label/)
+ * - inherits [FormLabel API](https://mui.com/material-ui/api/form-label/)
  */
 export default function InputLabel(props: InputLabelProps): JSX.Element;

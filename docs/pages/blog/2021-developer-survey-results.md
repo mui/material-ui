@@ -4,6 +4,7 @@ description: Your feedback helps us to build better products. Here's what we lea
 date: 2022-03-15T00:00:00.000Z
 authors: ['danilo-leal', 'samuelsycamore', 'oliviertassinari']
 tags: ['Developer survey']
+card: true
 ---
 
 Keeping up with tradition, a few months ago we opened the 2021 MUI Developer Survey.
@@ -490,7 +491,7 @@ A large chunk of you didn't know what MUI X is prior to the survey, which makes 
 <p class="blog-description">1584 out of 1589 answered.</p>
 
 The results are not very different from last year, aside from a slight increase of respondents saying yes.
-The majority of respondents don’t use any paid libraries, but those who do are mostly using MUI X. This demonstrates that some of our assumptions and execution might be correct! Developers' needs appears to not be completely fulfilled by the OSS ecosystem.
+The majority of respondents don't use any paid libraries, but those who do are mostly using MUI X. This demonstrates that some of our assumptions and execution might be correct! Developers' needs appears to not be completely fulfilled by the OSS ecosystem.
 
 ### How can we improve the Data Grid for you?
 
@@ -553,7 +554,7 @@ The majority of respondents don’t use any paid libraries, but those who do are
 
 <p class="blog-description">75 out of 1589 answered.</p>
 
-- **More features:** [Grouping](/components/data-grid/group-pivot/#row-grouping) was the most requested feature for the Data Grid Pro, followed by [master detail](/components/data-grid/group-pivot/#master-detail), aggregation, search, [tree data](/components/data-grid/group-pivot/#tree-data), and [column pinning](/components/data-grid/columns/#column-pinning).
+- **More features:** [Grouping](/x/react-data-grid/row-grouping/) was the most requested feature for the Data Grid Pro, followed by [master detail](/x/react-data-grid/master-detail/), aggregation, search, [tree data](/x/react-data-grid/tree-data/), and [column pinning](/x/react-data-grid/columns/#column-pinning).
   We've already released some of these in the time it took us to analyze the survey results.
   Check the links to see their docs and demos.
   Alternatively, you can follow [the public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
@@ -804,9 +805,9 @@ Thanks again and until the next survey!
 
 Here is some additional content related to the topics covered throughout this post:
 
-- [How to migrate from v4 to v5](/guides/migration-v4/)
-- [Style Library Interoperability](/guides/interoperability/)
-- [Approaches to customizing Material-UI components](/customization/how-to-customize/)
+- [How to migrate from v4 to v5](/material-ui/guides/migration-v4/)
+- [Style library interoperability](/material-ui/guides/interoperability/)
+- [Approaches to customizing Material UI components](/material-ui/customization/how-to-customize/)
 
 Lastly, check out the last two iterations on the MUI Developer Survey:
 

@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { Theme } from '@mui/material/styles';
-import { withStyles, WithStyles } from '@mui/styles';
+import { Theme, styled } from '@mui/material/styles';
 import MuiSnackbar, { SnackbarProps } from '@mui/material/Snackbar';
+import { snackbarContentClasses } from '@mui/material/SnackbarContent';
 import Slide from '@mui/material/Slide';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import IconButton from '@mui/material/IconButton';
 import { TransitionProps } from '@mui/material/transitions/transition';
 
-const styles = (theme: Theme) =>
+const styles = ({ theme }: { theme: Theme }) =>
   ({
-    content: {
+    [`& .${snackbarContentClasses.root}`]: {
       backgroundColor: theme.palette.secondary.light,
       color: theme.palette.text.primary,
       flexWrap: 'inherit',
@@ -21,19 +21,19 @@ const styles = (theme: Theme) =>
         borderBottomLeftRadius: 4,
       },
     },
-    contentMessage: {
+    [`& .${snackbarContentClasses.message}`]: {
       fontSize: 16,
       display: 'flex',
       alignItems: 'center',
     },
-    contentAction: {
+    [`& .${snackbarContentClasses.action}`]: {
       paddingLeft: theme.spacing(2),
     },
-    info: {
+    '& .MuiSnackbarContent-info': {
       flexShrink: 0,
       marginRight: theme.spacing(2),
     },
-    close: {
+    '& .MuiSnackbarContent-close': {
       padding: theme.spacing(1),
     },
   } as const);
@@ -48,23 +48,18 @@ interface ExtraSnackbarProps {
   closeFunc?: () => void;
 }
 
-function Snackbar(
-  props: WithStyles<typeof styles> & SnackbarProps & ExtraSnackbarProps,
-) {
-  const { classes, message, closeFunc, ...other } = props;
+function Snackbar(props: SnackbarProps & ExtraSnackbarProps) {
+  const { message, closeFunc, ...other } = props;
+  const classes = {
+    info: 'MuiSnackbarContent-info',
+    close: 'MuiSnackbarContent-close',
+  };
 
   return (
     <MuiSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       autoHideDuration={6000}
       TransitionComponent={Transition}
-      ContentProps={{
-        classes: {
-          root: classes.content,
-          message: classes.contentMessage,
-          action: classes.contentAction,
-        },
-      }}
       message={
         <React.Fragment>
           <InfoIcon className={classes.info} />
@@ -87,4 +82,4 @@ function Snackbar(
   );
 }
 
-export default withStyles(styles)(Snackbar);
+export default styled(Snackbar)(styles);

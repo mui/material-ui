@@ -12,6 +12,6 @@
   "forwardsRefTo": "HTMLTextAreaElement",
   "filename": "/packages/mui-base/src/TextareaAutosize/TextareaAutosize.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-textarea-autosize/\">Textarea Autosize</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-textarea-autosize/\">Textarea autosize</a></li>\n<li><a href=\"/material-ui/react-textarea-autosize/\">Textarea autosize</a></li></ul>",
   "cssComponent": false
 }

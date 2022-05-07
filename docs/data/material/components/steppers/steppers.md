@@ -18,7 +18,9 @@ Steppers may display a transient feedback message after a step is saved.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them.
+:::warning
+**Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material UI will continue to support them.
+:::
 
 ## Horizontal stepper
 
@@ -61,7 +63,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 ### Customized horizontal stepper
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSteppers.js"}}
 

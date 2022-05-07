@@ -13,11 +13,12 @@ const dateAdapterPackageMapping: Record<string, string> = {
   AdapterMoment: 'moment',
 };
 
+function pascalCase(str: string) {
+  return upperFirst(camelCase(str));
+}
+
 function titleize(hyphenedString: string): string {
-  return hyphenedString
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+  return upperFirst(hyphenedString.split('-').join(' '));
 }
 
 export interface Page {
@@ -38,8 +39,14 @@ export function pageToTitle(page: Page): string | null {
   const path = page.subheader || page.pathname;
   const name = path.replace(/.*\//, '').replace('react-', '').replace(/\..*/, '');
 
-  if (path.indexOf('/api') === 0) {
-    return upperFirst(camelCase(name));
+  // TODO remove post migration
+  if (path.indexOf('/api-docs/') !== -1) {
+    return pascalCase(name);
+  }
+
+  // TODO support more than React component API (PascalCase)
+  if (path.indexOf('/api/') !== -1) {
+    return pascalCase(name);
   }
 
   return titleize(name);
@@ -147,7 +154,7 @@ export function getDependencies(
     muiCommitRef?: string;
   } = {},
 ) {
-  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef } = options;
+  const { codeLanguage, muiCommitRef } = options;
 
   let deps: Record<string, string> = {};
   let versions: Record<string, string> = {
@@ -177,22 +184,17 @@ export function getDependencies(
   let m: RegExpExecArray | null = null;
   // eslint-disable-next-line no-cond-assign
   while ((m = re.exec(raw))) {
-    let name;
-
-    if (m[2]) {
-      // full import
-      // handle scope names
-      name = m[2].charAt(0) === '@' ? m[2].split('/', 2).join('/') : m[2].split('/', 1)[0];
-    } else {
-      name = m[1];
-    }
+    const fullName = m[2] ?? m[1];
+    // handle scope names
+    const name =
+      fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
     if (!deps[name]) {
       deps[name] = versions[name] ? versions[name] : 'latest';
     }
 
     // e.g date-fns
-    const dateAdapterMatch = m[2].match(/^@mui\/lab\/(Adapter.*)/);
+    const dateAdapterMatch = fullName.match(/^@mui\/lab\/(Adapter.*)/);
     if (dateAdapterMatch !== null) {
       const packageName = dateAdapterPackageMapping[dateAdapterMatch[1]];
       if (packageName === undefined) {

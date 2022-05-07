@@ -145,23 +145,12 @@ const faqData = [
 
 const openRolesData = [
   {
-    title: 'Product',
-    roles: [
-      {
-        title: 'Designer',
-        description:
-          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-        url: '/careers/designer/',
-      },
-    ],
-  },
-  {
     title: 'Engineering',
     roles: [
       {
-        title: 'Full-stack Engineer - Studio',
+        title: 'Full-stack Engineer - Toolpad',
         description:
-          'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
+          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
       {

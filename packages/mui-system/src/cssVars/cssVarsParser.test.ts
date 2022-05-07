@@ -47,6 +47,16 @@ describe('cssVarsParser', () => {
         },
       });
     });
+
+    it('create array given by `arrayKeys`', () => {
+      const result = {};
+      assignNestedKeys(result, ['keys', '0'], 'xs', ['keys']);
+      assignNestedKeys(result, ['keys', '2'], 'md', ['keys']);
+      assignNestedKeys(result, ['keys', '1'], 'sm', ['keys']);
+      expect(result).to.deep.equal({
+        keys: ['xs', 'sm', 'md'],
+      });
+    });
   });
   describe('walkObjectDeep', () => {
     it('run callback at each key', () => {
@@ -225,6 +235,36 @@ describe('cssVarsParser', () => {
       });
     });
 
+    it('does not attach px to color channel values', () => {
+      const { css } = cssVarsParser({
+        primary: {
+          mainChannel: '144 202 249',
+          darkChannel: '66 165 245',
+          lightChannel: '0 100% 50%',
+        },
+      });
+      expect(css).to.deep.equal({
+        '--primary-mainChannel': '144 202 249',
+        '--primary-darkChannel': '66 165 245',
+        '--primary-lightChannel': '0 100% 50%',
+      });
+    });
+
+    it('does not attach px to opacity values', () => {
+      const { css } = cssVarsParser({
+        primary: {
+          hoverOpacity: 0.02,
+          disabledOpacity: 0.5,
+          opacity: 1,
+        },
+      });
+      expect(css).to.deep.equal({
+        '--primary-hoverOpacity': 0.02,
+        '--primary-disabledOpacity': 0.5,
+        '--primary-opacity': 1,
+      });
+    });
+
     it('does not add px to unitless properties', () => {
       const { css } = cssVarsParser({
         lineHeight: {
@@ -272,6 +312,17 @@ describe('cssVarsParser', () => {
       );
       expect(css).to.deep.equal({
         '--palette-primary-100': '#ffffff',
+      });
+    });
+
+    it('css can be produced from array', () => {
+      const { css } = cssVarsParser({
+        shadows: ['sm', 'md', 'lg'],
+      });
+      expect(css).to.deep.equal({
+        '--shadows-0': 'sm',
+        '--shadows-1': 'md',
+        '--shadows-2': 'lg',
       });
     });
   });
@@ -350,6 +401,15 @@ describe('cssVarsParser', () => {
         },
       });
     });
+
+    it('vars can be produced from array', () => {
+      const { vars } = cssVarsParser({
+        shadows: ['sm', 'md', 'lg'],
+      });
+      expect(vars).to.deep.equal({
+        shadows: ['var(--shadows-0)', 'var(--shadows-1)', 'var(--shadows-2)'],
+      });
+    });
   });
 
   describe('parsedObject', () => {
@@ -376,6 +436,18 @@ describe('cssVarsParser', () => {
         },
       });
       expect(parsedTheme).not.to.deep.equal(parsedTheme2);
+    });
+
+    it('preserve array even if the key is listed in `shouldSkipGeneratingVar`', () => {
+      const theme = {
+        breakpoints: {
+          keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+      };
+      const { parsedTheme } = cssVarsParser(theme, {
+        shouldSkipGeneratingVar: (keys) => keys[0] === 'breakpoints',
+      });
+      expect(parsedTheme.breakpoints.keys).to.deep.equal(['xs', 'sm', 'md', 'lg', 'xl']);
     });
 
     it('preserve function value', () => {

@@ -43,13 +43,14 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
 >(props: ButtonUnstyledProps<D>, forwardedRef: React.ForwardedRef<any>) {
   const {
+    action,
+    children,
     className,
     component,
     components = {},
     componentsProps = {},
-    children,
     disabled,
-    action,
+    focusableWhenDisabled = false,
     onBlur,
     onClick,
     onFocus,
@@ -68,6 +69,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     component: ButtonRoot,
+    focusableWhenDisabled,
     ref: handleRef,
   });
 
@@ -85,6 +87,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const ownerState: ButtonUnstyledOwnerState = {
     ...props,
     active,
+    focusableWhenDisabled,
     focusVisible,
   };
 
@@ -131,9 +134,9 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
-   * @default 'button'
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The components used for each slot inside the Button.
    * Either a string to use a HTML element or a component.
@@ -154,6 +157,11 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, allows a disabled button to receive focus.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */

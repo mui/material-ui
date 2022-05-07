@@ -47,8 +47,8 @@ const SvgIconRoot = styled('svg', {
         }),
       color:
         ownerState.color !== 'inherit' && theme.vars.palette[ownerState.color!]
-          ? theme.vars.palette[ownerState.color!].textColor
-          : 'inherit',
+          ? theme.vars.palette[ownerState.color!].plainColor
+          : 'var(--Icon-color)',
     };
   },
 );
@@ -113,6 +113,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -121,7 +125,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'inherit', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -129,7 +136,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 1rem, but can be configure to inherit font size.
-   * @default 'md'
+   * @default 'xl'
    */
   fontSize: PropTypes.oneOf([
     'inherit',
@@ -156,6 +163,20 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * @default false
    */
   inheritViewBox: PropTypes.bool,
+  /**
+   * The shape-rendering attribute. The behavior of the different options is described on the
+   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+   * If you are having issues with blurry icons you should investigate this prop.
+   */
+  shapeRendering: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent
