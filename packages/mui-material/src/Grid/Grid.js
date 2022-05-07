@@ -339,8 +339,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     breakpointsDefaultValues[key] = false;
   });
 
-
-  Object.keys(propsRest).forEach(key => {
+  Object.keys(propsRest).forEach((key) => {
     const value = propsRest[key];
 
     if (key in breakpoints.values) {
@@ -348,7 +347,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     } else {
       propsRestFiltered[key] = value;
     }
-  })
+  });
 
   const breakpointsValues = {
     ...breakpointsDefaultValues,
