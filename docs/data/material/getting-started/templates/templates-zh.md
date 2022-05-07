@@ -21,6 +21,6 @@ title: 超过 9 个免费的 React 模板
 
 ## Premium templates
 
-你还在寻找更多主题吗？ You can find complete templates & themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
+你还在寻找更多主题吗？ You can find complete templates & themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a>.
 
-<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
+<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
