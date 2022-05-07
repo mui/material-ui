@@ -1,4 +1,4 @@
 {
   "extends": "../../../../../tsconfig",
-  "files": ["gridCustomBreakpoints.spec.ts"]
+  "files": ["gridCustomBreakpoints.spec.tsx"]
 }
