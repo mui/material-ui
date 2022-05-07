@@ -306,7 +306,7 @@ describe('useAutocomplete', () => {
     });
   });
 
-  it('should allow single value tuples or arrays', () => {
+  it('should allow tuples or arrays as value when multiple=false', () => {
     const Test = () => {
       const defaultValue = ['bar'];
 
