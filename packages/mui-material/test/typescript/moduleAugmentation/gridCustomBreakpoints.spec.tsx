@@ -32,6 +32,6 @@ const theme = createTheme({
 </ThemeProvider>;
 
 <ThemeProvider theme={theme}>
-  // @ts-expect-error desk
+  {/* @ts-expect-error unknow desk */}
   <Grid item mobile={1} tablet={2} laptop={3} desk={4} />
 </ThemeProvider>;
