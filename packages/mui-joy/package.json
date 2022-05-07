@@ -38,20 +38,12 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
-      "optional": true
-    },
-    "@emotion/react": {
-      "optional": true
-    },
-    "@emotion/styled": {
       "optional": true
     }
   },
