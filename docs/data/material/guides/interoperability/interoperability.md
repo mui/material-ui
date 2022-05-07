@@ -844,6 +844,10 @@ const useStyles = makeStyles<{ color: 'red' | 'blue' }>()((theme, { color }) => 
 
 For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).
 
+:::info
+There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes) for detecting unused classes.
+:::
+
 :::warning
 ⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
 it's a peer dependency of `@mui/material`.
