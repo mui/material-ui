@@ -104,6 +104,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
     keepMounted?: boolean;
     /**
      * Callback fired when the backdrop is clicked.
+     * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
      */
     onBackdropClick?: React.ReactEventHandler<{}>;
     /**
@@ -139,12 +140,12 @@ export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableCompo
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * *   [Dialog](https://mui.com/api/dialog/)
- * *   [Drawer](https://mui.com/api/drawer/)
- * *   [Menu](https://mui.com/api/menu/)
- * *   [Popover](https://mui.com/api/popover/)
+ * *   [Dialog](https://mui.com/material-ui/api/dialog/)
+ * *   [Drawer](https://mui.com/material-ui/api/drawer/)
+ * *   [Menu](https://mui.com/material-ui/api/menu/)
+ * *   [Popover](https://mui.com/material-ui/api/popover/)
  *
- * If you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/api/dialog/) component
+ * If you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/material-ui/api/dialog/) component
  * rather than directly using Modal.
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).

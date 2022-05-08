@@ -71,7 +71,7 @@ function useUniqueId(prefix) {
 }
 
 const Root = styled('div')(({ theme }) => ({
-  marginBottom: 40,
+  marginBottom: 24,
   marginLeft: theme.spacing(-2),
   marginRight: theme.spacing(-2),
   [theme.breakpoints.up('sm')]: {
@@ -250,13 +250,16 @@ export default function Demo(props) {
         </NoSsr>
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <div>
-          <Code
-            id={demoSourceId}
-            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
-            language={demoData.sourceLanguage}
-          />
-        </div>
+        <Code
+          id={demoSourceId}
+          code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
+          language={demoData.sourceLanguage}
+          copyButtonProps={{
+            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+            'data-ga-event-label': demoOptions.demo,
+            'data-ga-event-action': 'copy-click',
+          }}
+        />
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
     </Root>

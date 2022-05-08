@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.5.3",
+  "version": "5.6.1",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -39,13 +39,13 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "react": "^17.0.0"
+    "react": "^17.0.0 || ^18.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@types/prop-types": "^15.7.4",
+    "@types/prop-types": "^15.7.5",
     "@types/react-is": "^16.7.1 || ^17.0.0",
-    "prop-types": "^15.7.2",
+    "prop-types": "^15.8.1",
     "react-is": "^17.0.2"
   },
   "devDependencies": {

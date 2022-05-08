@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { TypographyClasses } from './typographyClasses';
-import { SxProps, SystemProps } from '../styles/defaultTheme';
-import { TypographySystem } from '../styles/types';
+import { TypographySystem, SxProps, SystemProps } from '../styles/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 

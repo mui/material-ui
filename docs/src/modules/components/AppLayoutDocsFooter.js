@@ -85,7 +85,7 @@ function orderedPages(pages, current = []) {
     }, current)
     .filter((page) => {
       return (
-        page.ordered !== false &&
+        page.inSideNav !== false &&
         // ignore external pages
         page.pathname.startsWith('/')
       );

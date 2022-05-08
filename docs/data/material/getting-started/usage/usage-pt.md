@@ -4,7 +4,7 @@
 
 Componentes MUI funcionam isoladamente. **Eles são auto-suficientes**, e só irão injetar os estilos que eles precisam para exibir. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
 
-Você pode usar qualquer um dos componentes conforme demonstrado na documentação. Por favor, consulte a [página de demonstração](/components/buttons/) de cada componente para ver como eles devem ser importados.
+Você pode usar qualquer um dos componentes conforme demonstrado na documentação. Por favor, consulte a [página de demonstração](/material-ui/react-button/) de cada componente para ver como eles devem ser importados.
 
 ## Vamos começar!
 
@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 
 function App() {
   return <Button variant="contained"> Olá Mundo</Button>;
-} ReactDOM.render(<App />, document.querySelector('#app'));
+}
 ```
 
 Sim, isso é tudo o que você precisa para começar, como você pode ver nesta demonstração ao vivo e interativa:
@@ -38,7 +38,7 @@ MUI é desenvolvida com a estratégia mobile-first, uma estratégia na qual prim
 
 ### CssBaseline
 
-MUI fornece um componente opcional [CssBaseline](/components/css-baseline/). Ele corrige algumas inconsistências nos navegadores e dispositivos, ao mesmo tempo em que fornece redefinições ligeiramente mais opinativas para elementos HTML comuns.
+MUI fornece um componente opcional [CssBaseline](/material-ui/react-css-baseline/). Ele corrige algumas inconsistências nos navegadores e dispositivos, ao mesmo tempo em que fornece redefinições ligeiramente mais opinativas para elementos HTML comuns.
 
 ## Versões da documentação
 
@@ -48,6 +48,6 @@ Esta documentação sempre reflete a última versão estável de MUI. Você pode
 
 Agora que você tem uma ideia da configuração básica, é hora de aprender mais sobre:
 
-- Como aplicar [a fonte e a tipografia do Material Design](/components/typography/).
-- Como tirar proveito da [solução de tema](/customization/theming/).
-- Como [customizar](/customization/how-to-customize/) o visual e a aparência dos componentes.
+- Como aplicar [a fonte e a tipografia do Material Design](/material-ui/react-typography/).
+- Como tirar proveito da [solução de tema](/material-ui/customization/theming/).
+- Como [customizar](/material-ui/customization/how-to-customize/) o visual e a aparência dos componentes.

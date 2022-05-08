@@ -24,7 +24,9 @@ export const replaceComponentLinks = (markdown: string) => {
       '(/material-ui/$1)',
     )
     .replace(/react-trap-focu/gm, 'react-trap-focus')
+    .replace(/react-trap-focuss/gm, 'react-trap-focus')
     .replace(/react-progres/gm, 'react-progress')
+    .replace(/react-progresss/gm, 'react-progress')
     .replace(/\(\/components\/(tabs|breadcrumbs)([^)]*)\)/gm, '(/material-ui/react-$1$2)');
 };
 

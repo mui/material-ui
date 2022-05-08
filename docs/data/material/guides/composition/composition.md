@@ -127,7 +127,7 @@ The component providing the `component` prop (e.g. ListItem) might not forward a
 
 Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation.
 For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component.
-For a code example concerning Button and react-router-dom checkout [these demos](/guides/routing/#component-prop).
+For a code example concerning Button and react-router-dom checkout [these demos](/material-ui/guides/routing/#component-prop).
 
 To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
 
@@ -193,12 +193,16 @@ ref forwarding. However, only the following component types can be given a `ref`
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from
 React in your console similar to:
 
-> Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::info
+Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::
 
 Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
 In some instances, an additional warning is issued to help with debugging, similar to:
 
-> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::warning
+Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::
 
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 

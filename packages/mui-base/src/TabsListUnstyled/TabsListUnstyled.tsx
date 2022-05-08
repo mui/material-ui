@@ -23,7 +23,6 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  * Demos:
  *
  * - [Tabs](https://mui.com/base/react-tabs/)
- * - [Tabs](https://mui.com/material/react-tabs/)
  *
  * API:
  *

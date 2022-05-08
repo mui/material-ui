@@ -8,7 +8,7 @@ import systemPages from 'docs/data/system/pages';
 import basePages from 'docs/data/base/pages';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
-const EXCLUDES = ['/api', '/blog'];
+const EXCLUDES = ['/api', '/blog', '/x/react-'];
 
 async function run() {
   const translationsFilename = path.join(__dirname, '../translations/translations.json');

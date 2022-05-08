@@ -58,7 +58,7 @@ const SpeedDialRoot = styled('div', {
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
 })(({ theme, ownerState }) => ({
-  zIndex: theme.zIndex.speedDial,
+  zIndex: (theme.vars || theme).zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
   pointerEvents: 'none',
@@ -446,7 +446,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * Props applied to the [`Fab`](/api/fab/) element.
+   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -512,7 +512,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
   TransitionComponent: PropTypes.elementType,

@@ -20,7 +20,7 @@ const TablePaginationRoot = styled(TableCell, {
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
   overflow: 'auto',
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   fontSize: theme.typography.pxToRem(14),
   // Increase the specificity to override TableCell.
   '&:last-child': {
@@ -266,7 +266,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   ActionsComponent: PropTypes.elementType,
   /**
-   * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
+   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -296,7 +296,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    * @default function defaultGetAriaLabel(type) {
@@ -308,7 +308,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
    * object.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }) {
    *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
@@ -317,12 +317,12 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * Customize the rows per page label.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Rows per page:'
    */
   labelRowsPerPage: PropTypes.node,
   /**
-   * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
+   * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
   /**
@@ -379,7 +379,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
     ]).isRequired,
   ),
   /**
-   * Props applied to the rows per page [`Select`](/api/select/) element.
+   * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
    * @default {}
    */
   SelectProps: PropTypes.object,

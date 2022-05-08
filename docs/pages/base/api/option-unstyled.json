@@ -10,7 +10,8 @@
       "type": { "name": "shape", "description": "{ root?: object }" },
       "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" } }
+    "disabled": { "type": { "name": "bool" } },
+    "label": { "type": { "name": "string" } }
   },
   "name": "OptionUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

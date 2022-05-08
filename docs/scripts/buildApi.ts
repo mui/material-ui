@@ -4,12 +4,12 @@ import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
 import * as ttp from 'typescript-to-proptypes';
-import { findPages, findComponents } from 'docs/src/modules/utils/find';
+import { findComponents } from 'docs/src/modules/utils/find';
 import {
   ComponentInfo,
-  getGenericComponentInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
+  getSystemComponentInfo,
   extractApiPage,
 } from 'docs/scripts/buildApiUtils';
 import buildComponentApi, {
@@ -139,25 +139,15 @@ const SETTINGS: Settings[] = [
     getApiPages: () => findApiPages('docs/pages/base/api'),
     getComponentInfo: getBaseComponentInfo,
   },
-  // add other products, eg. joy, data-grid, ...etc
   {
-    // use old config so that component type definition does not change by `annotateComponentDefinition`
-    // TODO: remove this setting at cleanup phase
     input: {
-      libDirectory: [
-        path.join(process.cwd(), 'packages/mui-base/src'),
-        path.join(process.cwd(), 'packages/mui-material/src'),
-        path.join(process.cwd(), 'packages/mui-lab/src'),
-      ],
+      libDirectory: [path.join(process.cwd(), 'packages/mui-system/src')],
     },
     output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
+      apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
     },
-    getApiPages: () => {
-      const pages = findPages({ front: true }, path.join(process.cwd(), 'docs/pages'));
-      return pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children ?? [];
-    },
-    getComponentInfo: getGenericComponentInfo,
+    getApiPages: () => findApiPages('docs/pages/system/api'),
+    getComponentInfo: getSystemComponentInfo,
   },
 ];
 

@@ -34,48 +34,45 @@ export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverr
  */
 export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 
+export interface Opacity {
+  placeholder: number;
+  inputTouchBottomLine: number;
+}
+
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
   components?: Components<BaseTheme>;
-  // palette?: PaletteOptions;
-  colorSchemes?: Record<SupportedColorScheme, { palette: PaletteOptions }>;
+  colorSchemes?: Record<
+    SupportedColorScheme,
+    {
+      palette?: PaletteOptions;
+      opacity?: Partial<Opacity>;
+    }
+  >;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
-  opacity?: {
-    active?: number;
-    hover?: number;
-    selected?: number;
-    disabled?: number;
-    focus?: number;
-  };
 }
 
 interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette;
+  opacity: Opacity;
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
   colorSchemes: Record<string, { palette: Palette }>;
-  opacity: {
-    active: number;
-    hover: number;
-    selected: number;
-    disabled: number;
-    focus: number;
-  };
 }
 
 // shut off automatic exporting for the `BaseTheme` above
 export {};
 
 /**
- * Our [TypeScript guide on theme customization](https://mui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
+ * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme {
   components?: Components<BaseTheme>;
