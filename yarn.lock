@@ -10745,10 +10745,10 @@ marked@^4.0.14:
   resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.14.tgz#7a3a5fa5c80580bac78c1ed2e3b84d7bd6fc3870"
   integrity sha512-HL5sSPE/LP6U9qKgngIIPTthuxC0jrfxpYMZ3LdGDD3vTnLs59m2Z7r6+LNDR3ToqEQdkKd6YaaEfJhodJmijQ==
 
-material-ui-popup-state@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-2.0.0.tgz#8050421a9d00df67d7f63e7b2b73ab5b331051ff"
-  integrity sha512-1sbb9xpMs7OxG0SOGfGO0ZnwiLtqZSoXda0/AqqJkpouT4e0nADXutQtDJFMa9GUMNAODVDlYnNmfqM+MhFjsg==
+material-ui-popup-state@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-2.0.1.tgz#5e045489b8150393072eebb6ae52369cb7e34f58"
+  integrity sha512-YZQdYxO1AtaIJyX24yrHMCqIC7UHpGOSuK16RLnA+MBterKhum1aMiTomEsfHxZKyGADbZ7M56THj1xPDsr0PQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@mui/icons-material" "^5.0.0"
