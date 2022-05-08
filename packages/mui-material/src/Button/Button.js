@@ -322,6 +322,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const { root: classes_root, ...classes } = useUtilityClasses(ownerState);
 
   const startIcon = startIconProp && (
@@ -336,7 +337,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
-  const { cx } = useCx();
+  const cx = useCx();
 
   return (
     <ButtonRoot

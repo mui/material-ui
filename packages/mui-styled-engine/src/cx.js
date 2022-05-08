@@ -33,31 +33,11 @@ const { createCx } = (() => {
       insertStyles(cache, serialized, false);
       const className = `${cache.key}-${serialized.name}`;
 
-      scope: {
-        const arg = args[0];
-
-        if (!matchCSSObject(arg)) {
-          break scope;
-        }
-
-        increaseSpecificityToTakePrecedenceOverMediaQueries.saveClassNameCSSObjectMapping(
-          cache,
-          className,
-          arg,
-        );
-      }
-
       return className;
     };
 
-    const cx = (...args) => {
-      const className = classnames(args);
-
-      const feat27FixedClassnames =
-        increaseSpecificityToTakePrecedenceOverMediaQueries.fixClassName(cache, className, css);
-
-      return merge(cache.registered, css, feat27FixedClassnames);
-    };
+    const cx = (...args) => 
+       merge(cache.registered, css, classnames(args));
 
     return { cx };
   }
@@ -74,76 +54,5 @@ export function useCx() {
     [cache],
   );
 
-  return { cx };
-}
-
-// https://github.com/garronej/tss-react/issues/27
-const increaseSpecificityToTakePrecedenceOverMediaQueries = (() => {
-  const cssObjectMapByCache = new WeakMap();
-
-  return {
-    saveClassNameCSSObjectMapping: (cache, className, cssObject) => {
-      let cssObjectMap = cssObjectMapByCache.get(cache);
-
-      if (cssObjectMap === undefined) {
-        cssObjectMap = new Map();
-        cssObjectMapByCache.set(cache, cssObjectMap);
-      }
-
-      cssObjectMap.set(className, cssObject);
-    },
-    fixClassName: (() => {
-      function fix(classNameCSSObjects) {
-        let isThereAnyMediaQueriesInPreviousClasses = false;
-
-        return classNameCSSObjects.map(([className, cssObject]) => {
-          if (cssObject === undefined) {
-            return className;
-          }
-
-          let out;
-
-          if (!isThereAnyMediaQueriesInPreviousClasses) {
-            out = className;
-
-            for (const key in cssObject) {
-              if (key.startsWith('@media')) {
-                isThereAnyMediaQueriesInPreviousClasses = true;
-                break;
-              }
-            }
-          } else {
-            out = {
-              '&&': cssObject,
-            };
-          }
-
-          return out;
-        });
-      }
-
-      return (cache, className, css) => {
-        const cssObjectMap = cssObjectMapByCache.get(cache);
-
-        return classnames(
-          fix(
-            className.split(' ').map((className) => [className, cssObjectMap?.get(className)]),
-          ).map((classNameOrCSSObject) =>
-            typeof classNameOrCSSObject === 'string'
-              ? classNameOrCSSObject
-              : css(classNameOrCSSObject),
-          ),
-        );
-      };
-    })(),
-  };
-})();
-
-function matchCSSObject(arg) {
-  return (
-    arg instanceof Object &&
-    !('styles' in arg) &&
-    !('length' in arg) &&
-    !('__emotion_styles' in arg)
-  );
+  return cx;
 }

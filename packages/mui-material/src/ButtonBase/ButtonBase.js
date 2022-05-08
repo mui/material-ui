@@ -338,7 +338,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const { cx } = useCx();
+  const cx = useCx();
 
   return (
     <ButtonBaseRoot

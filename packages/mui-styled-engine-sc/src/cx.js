@@ -4,5 +4,5 @@ import { classnames } from './tools/classnames';
 const cx = (...args) => classnames(args);
 
 export function useCx() {
-  return { cx };
+  return cx;
 }
