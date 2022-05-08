@@ -83,4 +83,4 @@ If you want to start with a more complete and real-world example, you could take
 - [Divjoy](https://divjoy.com?via=material-ui):
 
   - Create your Material-UI app in minutes.
-  - You'll get a nice template, authentication, database integration, subscription payments, and more.
+  - Você irá ter um oótimo modelo, autenticação, integração com banco de dados, incrições de pagamentos, e mais
