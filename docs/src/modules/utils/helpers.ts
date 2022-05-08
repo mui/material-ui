@@ -184,22 +184,17 @@ export function getDependencies(
   let m: RegExpExecArray | null = null;
   // eslint-disable-next-line no-cond-assign
   while ((m = re.exec(raw))) {
-    let name;
-
-    if (m[2]) {
-      // full import
-      // handle scope names
-      name = m[2].charAt(0) === '@' ? m[2].split('/', 2).join('/') : m[2].split('/', 1)[0];
-    } else {
-      name = m[1];
-    }
+    const fullName = m[2] ?? m[1];
+    // handle scope names
+    const name =
+      fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
     if (!deps[name]) {
       deps[name] = versions[name] ? versions[name] : 'latest';
     }
 
     // e.g date-fns
-    const dateAdapterMatch = m[2].match(/^@mui\/lab\/(Adapter.*)/);
+    const dateAdapterMatch = fullName.match(/^@mui\/lab\/(Adapter.*)/);
     if (dateAdapterMatch !== null) {
       const packageName = dateAdapterPackageMapping[dateAdapterMatch[1]];
       if (packageName === undefined) {

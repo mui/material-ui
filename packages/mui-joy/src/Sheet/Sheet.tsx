@@ -37,7 +37,7 @@ const SheetRoot = styled('div', {
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
         theme.vars.palette.background.body, // for sticky List
-      '--Link-overlayRadius': resolveSxValue({ theme, ownerState }, 'borderRadius'),
+      '--internal-action-radius': resolveSxValue({ theme, ownerState }, 'borderRadius'),
       // TODO: discuss the theme transition.
       // This value is copied from mui-material Sheet.
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
@@ -59,7 +59,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     className,
     color = 'neutral',
     component = 'div',
-    variant = 'text',
+    variant = 'plain',
     elevation,
     ...other
   } = props;
@@ -120,8 +120,16 @@ Sheet.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

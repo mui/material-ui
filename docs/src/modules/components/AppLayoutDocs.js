@@ -95,6 +95,12 @@ function AppLayoutDocs(props) {
   if (asPathWithoutLang.startsWith('/x')) {
     productName = 'MUI X';
   }
+  if (asPathWithoutLang.startsWith('/system')) {
+    productName = 'MUI System';
+  }
+  if (asPathWithoutLang.startsWith('/toolpad')) {
+    productName = 'MUI Toolpad';
+  }
 
   return (
     // TODO: remove the condition after post-migration (This is to prevent the new urls from being indexed by the old docsearch app)

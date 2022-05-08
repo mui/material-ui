@@ -41,7 +41,7 @@ const Loader = () => (
         height: '1.25em',
         borderRadius: '50%',
         border: '4px solid',
-        borderColor: (theme) => `${theme.vars.palette.primary.lightColor} transparent transparent`,
+        borderColor: (theme) => `${theme.vars.palette.primary.softColor} transparent transparent`,
         animation: `${circulate} 1s ease infinite`,
         boxSizing: 'inherit',
       }}

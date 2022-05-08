@@ -1,6 +1,6 @@
-import { OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { SxProps } from '../styles/defaultTheme';
+import { OverrideProps } from '@mui/types';
+import { SxProps } from '../styles/types';
 import { AvatarProps } from '../Avatar/AvatarProps';
 
 export type AvatarGroupSlot = 'root';

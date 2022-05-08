@@ -28,16 +28,22 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
+import joyPkgJson from '../../../../packages/mui-joy/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
+const shouldShowJoy =
+  process.env.NODE_ENV === 'development' ||
+  process.env.PULL_REQUEST ||
+  FEATURE_TOGGLE.enable_joy_scope;
+
 const LinksWrapper = styled('div')(({ theme }) => {
   return {
     paddingLeft: theme.spacing(5.5),
     paddingTop: theme.spacing(1.5),
-    height: 124,
+    height: shouldShowJoy ? 162 : 124,
     '& > a': {
       position: 'relative',
       display: 'flex',
@@ -212,6 +218,14 @@ function ProductDrawerButton(props) {
                 {"React components that implement Google's Material Design."}
               </Typography>
             </Link>
+            {shouldShowJoy && (
+              <Link href={ROUTES.joyDocs} sx={{ my: -0.5 }}>
+                <ProductLabel>Joy UI</ProductLabel>
+                <Typography color="text.secondary" variant="body2">
+                  React components for building your design system.
+                </Typography>
+              </Link>
+            )}
             <Link href={ROUTES.baseDocs} sx={{ mb: -0.5 }}>
               <ProductLabel>MUI Base</ProductLabel>
               <Typography color="text.secondary" variant="body2">
@@ -395,6 +409,8 @@ function reduceChildRoutes(context) {
       firstChild = firstChild.children[0];
     }
 
+    const subheader = Boolean(page.subheader);
+
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
@@ -403,12 +419,19 @@ function reduceChildRoutes(context) {
         title={title}
         href={firstChild.pathname}
         legacy={page.legacy}
+        plan={page.plan}
         icon={page.icon}
-        subheader={Boolean(page.subheader)}
+        subheader={subheader}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || Boolean(page.subheader)}
+        openImmediately={topLevel || subheader}
       >
-        {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
+        {renderNavItems({
+          onClose,
+          pages: page.children,
+          activePage,
+          depth: subheader ? depth : depth + 1,
+          t,
+        })}
       </AppNavDrawerItem>,
     );
   } else {
@@ -422,6 +445,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         legacy={page.legacy}
+        plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
         onClick={onClose}
@@ -597,6 +621,15 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
+          {asPathWithoutLang.startsWith('/joy-ui/') && (
+            <ProductIdentifier
+              name="Joy UI"
+              metadata="MUI Core"
+              versionSelector={renderVersionSelector([
+                { text: `v${joyPkgJson.version}`, current: true },
+              ])}
+            />
+          )}
           {asPathWithoutLang.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
             <ProductIdentifier
               name="MUI System"
@@ -620,9 +653,13 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/x/advanced-components') && (
-            <ProductIdentifier name="Advanced components" metadata="MUI X" />
-          )}
+          {
+            // TODO: remove first condition when https://github.com/mui/mui-x/pull/4692 is released
+            (asPathWithoutLang.startsWith('/x/advanced-components') ||
+              asPathWithoutLang.startsWith('/x/getting-started')) && (
+              <ProductIdentifier name="Advanced components" metadata="MUI X" />
+            )
+          }
           {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
             asPathWithoutLang.startsWith('/x/api/data-grid')) && (
             <ProductIdentifier

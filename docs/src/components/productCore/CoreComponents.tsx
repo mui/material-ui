@@ -310,7 +310,12 @@ export default function CoreComponents() {
               }}
             >
               <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2 }}>
-                <HighlightedCode component={MarkdownElement} code={CODES[demo]} language="jsx" />
+                <HighlightedCode
+                  copyButtonHidden
+                  component={MarkdownElement}
+                  code={CODES[demo]}
+                  language="jsx"
+                />
               </Box>
               <Box
                 sx={{
