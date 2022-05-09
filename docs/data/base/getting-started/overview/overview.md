@@ -9,7 +9,7 @@ It features the same robust engineering as [Material UI](/material-ui/getting-st
 
 It includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
-With MUI Base, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engines or settings.
+With MUI Base, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engine or theme.
 
 :::info
 **Note:** _as of Q2 2022, Base is currently still in alpha._
