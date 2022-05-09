@@ -16,7 +16,7 @@ With MUI Base, you can rapidly build on top of our foundational components using
 
 We're adding new components regularly, and you're welcome to contribute!
 
-Look for the [`package: base` label](https://github.com/mui/material-ui/labels/package%3A%20base) on open [issues](https://github.com/mui/material-ui/issues) and [pull requests](https://github.com/mui/material-ui/pulls) in the `@mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
+Look for the [`package: base` label](https://github.com/mui/material-ui/labels/package%3A%20base) on open [issues](https://github.com/mui/material-ui/issues) and [pull requests](https://github.com/mui/material-ui/pulls) in the `@mui/material-ui` GitHub repository to see what other community members are working on, and feel free to submit your own.
 :::
 
 ## Advantages of MUI Base
