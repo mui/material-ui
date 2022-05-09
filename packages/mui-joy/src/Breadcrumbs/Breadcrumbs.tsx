@@ -195,7 +195,6 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   return (
     <BreadcrumbsRoot
       ref={ref}
-      as={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}
