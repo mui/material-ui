@@ -1,2 +1,2 @@
-export { default } from './generateUtilityClass';
-export * from './generateUtilityClass';
+export { generateUtilityClass as default } from '@mui/private-classnames';
+export type { GlobalStateSlot } from '@mui/private-classnames';
