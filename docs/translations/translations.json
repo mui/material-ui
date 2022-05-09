@@ -182,9 +182,13 @@
     "/system/styles/basics": "Basics",
     "/system/styles/advanced": "Advanced",
     "/base/getting-started": "Getting started",
+    "/base/getting-started/overview": "Overview",
     "/base/getting-started/installation": "Installation",
+    "/base/getting-started/usage": "Usage",
+    "/base/getting-started/customization": "Customization",
     "/base/react-": "Components",
     "inputs": "Inputs",
+    "/base/react-badge": "Badge",
     "/base/react-button": "Button",
     "/base/react-input": "Input",
     "/base/react-select": "Select",
@@ -298,7 +302,6 @@
     "/material-ui/customization/default-theme": "Default Theme",
     "/material-ui/customization/how-to-customize": "How to customize",
     "/material-ui/customization/color": "Color",
-    "/material-ui/customization/unstyled-components": "Unstyled components",
     "/material-ui/guides": "How To Guides",
     "/material-ui/guides/understand-mui-packages": "Understand MUI packages",
     "/material-ui/guides/typescript": "TypeScript",
@@ -329,6 +332,7 @@
     "/material-ui/discover-more/backers": "Sponsors & Backers",
     "/material-ui/discover-more/vision": "Vision",
     "/material-ui/discover-more/changelog": "Changelog",
-    "/material-ui/discover-more/languages": "Languages"
+    "/material-ui/discover-more/languages": "Languages",
+    "https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav": "Templates"
   }
 }

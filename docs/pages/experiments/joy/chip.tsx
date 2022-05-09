@@ -50,7 +50,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
-  variant: ['contained', 'outlined', 'light'],
+  variant: ['solid', 'outlined', 'soft'],
   disabled: [true, false],
 } as const;
 
@@ -81,7 +81,7 @@ const FavoriteMovies = () => {
           return (
             <Chip
               key={name}
-              variant={checked ? 'light' : 'text'}
+              variant={checked ? 'soft' : 'plain'}
               color={checked ? 'primary' : 'neutral'}
               startDecorator={checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />}
               sx={{ '--Chip-radius': '4px' }}
@@ -135,7 +135,7 @@ const BestMovie = () => {
           return (
             <Chip
               key={name}
-              variant={checked ? 'light' : 'text'}
+              variant={checked ? 'soft' : 'plain'}
               color={checked ? 'primary' : 'neutral'}
               startDecorator={checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />}
               sx={{ '--Chip-radius': '4px' }}
@@ -171,24 +171,24 @@ export default function JoyChip() {
         </Box>
         {/* Examples */}
         <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 5, mt: 5 }}>
-          <Chip variant="text" endDecorator={<ChipDelete />}>
+          <Chip variant="plain" endDecorator={<ChipDelete />}>
             Benny
           </Chip>
           <Chip endDecorator={<ChipDelete />}>Benny</Chip>
           <Chip disabled onClick={() => {}} endDecorator={<ChipDelete />}>
             Benny
           </Chip>
-          <Chip variant="light" startDecorator={<ChipDelete />}>
+          <Chip variant="soft" startDecorator={<ChipDelete />}>
             Benny
           </Chip>
-          <Chip variant="light" onClick={() => alert('hey')}>
+          <Chip variant="soft" onClick={() => alert('hey')}>
             Benny
           </Chip>
-          <Chip variant="light" startDecorator={<ChipDelete />} onClick={() => alert('hey')}>
+          <Chip variant="soft" startDecorator={<ChipDelete />} onClick={() => alert('hey')}>
             Benny
           </Chip>
           <Chip
-            variant="light"
+            variant="soft"
             endDecorator={<ChipDelete />}
             componentsProps={{
               action: {
@@ -200,7 +200,7 @@ export default function JoyChip() {
             Benny
           </Chip>
           <Chip
-            variant="contained"
+            variant="solid"
             color="success"
             size="sm"
             startDecorator={
@@ -230,7 +230,7 @@ export default function JoyChip() {
             color="neutral"
             size="lg"
             startDecorator={<Avatar src={`/static/images/avatar/1.jpg`} size="sm" />}
-            endDecorator={<ChipDelete variant="text" />}
+            endDecorator={<ChipDelete variant="plain" />}
             sx={{ '--Chip-radius': '8px' }}
           >
             Benny
@@ -240,7 +240,7 @@ export default function JoyChip() {
             color="danger"
             size="sm"
             endDecorator={
-              <ChipDelete color="danger" variant="text">
+              <ChipDelete color="danger" variant="plain">
                 <DeleteForever />
               </ChipDelete>
             }
@@ -303,7 +303,7 @@ export default function JoyChip() {
                   key={item}
                   color="neutral"
                   variant="outlined"
-                  endDecorator={<ChipDelete variant="text" />}
+                  endDecorator={<ChipDelete variant="plain" />}
                   sx={{ '--Chip-radius': '10px' }}
                 >
                   {item}
@@ -312,7 +312,7 @@ export default function JoyChip() {
             </Box>
           </Box>
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-            {(['light', 'outlined'] as const).map((variant) => (
+            {(['soft', 'outlined'] as const).map((variant) => (
               <React.Fragment key={variant}>
                 <Chip
                   color="neutral"
@@ -336,10 +336,10 @@ export default function JoyChip() {
             ))}
           </Box>
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-            <Chip variant="light" startDecorator={<Sun />}>
+            <Chip variant="soft" startDecorator={<Sun />}>
               Turn on lights
             </Chip>
-            <Chip variant="light" startDecorator={<AlarmOn />}>
+            <Chip variant="soft" startDecorator={<AlarmOn />}>
               Set alarm
             </Chip>
           </Box>

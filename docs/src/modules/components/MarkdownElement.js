@@ -246,10 +246,11 @@ const Root = styled('div')(({ theme }) => ({
           ? // Support Material Design theme
             alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.35)
           : theme.palette.error[50] ?? theme.palette.error.light,
+      borderLeft: '6px solid',
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.error[700] ?? theme.palette.error.dark
-          : theme.palette.error[500] ?? theme.palette.error.light,
+          : theme.palette.error[400] ?? theme.palette.error.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'
@@ -266,11 +267,12 @@ const Root = styled('div')(({ theme }) => ({
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
             alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.3)
-          : theme.palette.primary[50] ?? theme.palette.primary.light,
+          : alpha(theme.palette.primary[50] ?? theme.palette.primary.dark, 0.8),
+      borderLeft: '6px solid',
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.primary[700] ?? theme.palette.primary.dark
-          : theme.palette.primary[500] ?? theme.palette.primary.light,
+          : theme.palette.primary[300] ?? theme.palette.primary.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'
@@ -288,10 +290,11 @@ const Root = styled('div')(({ theme }) => ({
           ? // Support Material Design theme
             alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.35)
           : theme.palette.success[50] ?? theme.palette.success.light,
+      borderLeft: '6px solid',
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.success[600] ?? theme.palette.success.dark
-          : theme.palette.success[500] ?? theme.palette.success.light,
+          : theme.palette.success[600] ?? theme.palette.success.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'
@@ -303,16 +306,17 @@ const Root = styled('div')(({ theme }) => ({
       color:
         theme.palette.mode === 'dark'
           ? theme.palette.warning[50] ?? '#fff'
-          : theme.palette.warning[900] ?? theme.palette.text.primary,
+          : theme.palette.grey[900] ?? theme.palette.text.primary,
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
             alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.35)
-          : theme.palette.warning[50] ?? theme.palette.warning.light,
+          : alpha(theme.palette.warning[50] ?? theme.palette.warning.light, 0.6),
+      borderLeft: '6px solid',
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
           ? theme.palette.warning[600] ?? theme.palette.warning.dark
-          : theme.palette.warning[500] ?? theme.palette.warning.light,
+          : theme.palette.warning[400] ?? theme.palette.warning.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'
@@ -374,6 +378,66 @@ const Root = styled('div')(({ theme }) => ({
     },
     '& pre': {
       marginTop: theme.spacing(1),
+    },
+  },
+  '& .MuiCode-root': {
+    position: 'relative',
+    '&:hover': {
+      '& .MuiCode-copy': {
+        opacity: 1,
+      },
+    },
+  },
+  '& .MuiCode-copy': {
+    minWidth: 64,
+    opacity: 0,
+    backgroundColor: alpha(blueDark[600], 0.5),
+    cursor: 'pointer',
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+    fontFamily: 'inherit',
+    fontSize: '0.813rem',
+    fontWeight: 500,
+    padding: theme.spacing(0.5, 1),
+    borderRadius: 4,
+    border: `1px solid`,
+    borderColor: blueDark[500],
+    color: blueDark[50],
+    '&:hover, &:focus': {
+      opacity: 1,
+      color: '#fff',
+      backgroundColor: alpha(blueDark[600], 0.7),
+      borderColor: blueDark[500],
+      '& .MuiCode-copyKeypress': {
+        opacity: 1,
+      },
+    },
+    '&[data-copied]': {
+      // style of the button when it is in copied state.
+      borderColor: blue[700],
+      color: '#fff',
+      backgroundColor: blueDark[600],
+    },
+    '&:focus-visible': {
+      outline: '2px solid',
+      outlineOffset: 2,
+      outlineColor: blueDark[500],
+    },
+  },
+  '& .MuiCode-copyKeypress': {
+    pointerEvents: 'none',
+    userSelect: 'none',
+    opacity: 0,
+    position: 'absolute',
+    left: '50%',
+    top: '100%',
+    minWidth: '100%',
+    marginTop: theme.spacing(0.5),
+    whiteSpace: 'nowrap',
+    transform: 'translateX(-50%)',
+    '& > span': {
+      opacity: 0.72,
     },
   },
   '& li': {

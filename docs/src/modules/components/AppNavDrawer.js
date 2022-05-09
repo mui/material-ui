@@ -409,6 +409,8 @@ function reduceChildRoutes(context) {
       firstChild = firstChild.children[0];
     }
 
+    const subheader = Boolean(page.subheader);
+
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
@@ -419,11 +421,17 @@ function reduceChildRoutes(context) {
         legacy={page.legacy}
         plan={page.plan}
         icon={page.icon}
-        subheader={Boolean(page.subheader)}
+        subheader={subheader}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || Boolean(page.subheader)}
+        openImmediately={topLevel || subheader}
       >
-        {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
+        {renderNavItems({
+          onClose,
+          pages: page.children,
+          activePage,
+          depth: subheader ? depth : depth + 1,
+          t,
+        })}
       </AppNavDrawerItem>,
     );
   } else {
@@ -645,9 +653,13 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/x/advanced-components') && (
-            <ProductIdentifier name="Advanced components" metadata="MUI X" />
-          )}
+          {
+            // TODO: remove first condition when https://github.com/mui/mui-x/pull/4692 is released
+            (asPathWithoutLang.startsWith('/x/advanced-components') ||
+              asPathWithoutLang.startsWith('/x/getting-started')) && (
+              <ProductIdentifier name="Advanced components" metadata="MUI X" />
+            )
+          }
           {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
             asPathWithoutLang.startsWith('/x/api/data-grid')) && (
             <ProductIdentifier

@@ -152,7 +152,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     color: colorProp = 'neutral',
     component = 'div',
     size: sizeProp = 'md',
-    variant: variantProp = 'light',
+    variant: variantProp = 'soft',
     imgProps,
     src,
     srcSet,
@@ -277,7 +277,7 @@ Avatar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

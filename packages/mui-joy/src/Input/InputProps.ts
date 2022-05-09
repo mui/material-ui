@@ -2,8 +2,7 @@ import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { UseInputParameters } from '@mui/base/InputUnstyled';
 import { InputClasses } from './inputClasses';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
@@ -41,10 +40,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
-      color?: OverridableStringUnion<
-        Exclude<ColorPaletteProp, 'context'>,
-        InputPropsColorOverrides
-      >;
+      color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
       /**
        * The components used for each slot inside the InputBase.
        * Either a string to use a HTML element or a component.
@@ -108,7 +104,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       sx?: SxProps;
       /**
        * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-       * @default 'text'
+       * @default 'plain'
        */
       type?: string;
       /**

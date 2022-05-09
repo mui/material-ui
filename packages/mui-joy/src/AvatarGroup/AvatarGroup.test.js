@@ -16,20 +16,20 @@ describe('<AvatarGroup />', () => {
     muiName: 'MuiAvatarGroup',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   it('provide context to Avatar', () => {
     const { container } = render(
-      <AvatarGroup variant="contained" color="primary" size="sm">
+      <AvatarGroup variant="solid" color="primary" size="sm">
         <Avatar src="/" />
       </AvatarGroup>,
     );
 
     const avatar = container.firstChild.firstChild;
     expect(avatar).to.have.class(avatarClasses.colorPrimary);
-    expect(avatar).to.have.class(avatarClasses.variantContained);
+    expect(avatar).to.have.class(avatarClasses.variantSolid);
     expect(avatar).to.have.class(avatarClasses.sizeSm);
   });
 });
