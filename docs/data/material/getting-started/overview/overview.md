@@ -19,7 +19,7 @@ Material UI is beautiful by design, and features a suite of customization option
 
 ## Material UI vs. MUI Base
 
-Material UI and [MUI Base](/base/getting-started/overview/) feature many of the same UI components, but MUI Base does not come with any default styles or styling solutions.
+Material UI and [MUI Base](/base/getting-started/overview/) feature many of the same UI components, but MUI Base comes without any default styles or styling solution.
 
 Material UI is _comprehensive_ in that it comes packaged with default styles, and is optimized to work with [Emotion](https://emotion.sh/docs/introduction) (or [styled-components](https://styled-components.com/)) as a styling engine.
 
