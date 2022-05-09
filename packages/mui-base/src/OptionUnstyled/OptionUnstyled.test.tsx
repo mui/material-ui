@@ -52,6 +52,9 @@ describe('OptionUnstyled', () => {
         expectedClassName: optionUnstyledClasses.root,
       },
     },
-    skip: ['reactTestRenderer'], // Need to be wrapped in SelectUnstyledContext
+    skip: [
+      'reactTestRenderer', // Need to be wrapped in SelectUnstyledContext
+      'componentsPropsCallbacks', // not implemented yet
+    ],
   }));
 });

@@ -249,6 +249,37 @@ function testComponentsPropsProp(
   });
 }
 
+function testComponentsPropsCallbacks(
+  element: React.ReactElement,
+  getOptions: () => UnstyledConformanceOptions,
+) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  if (!slots) {
+    throwMissingPropError('slots');
+  }
+
+  forEachSlot(slots, (slotName, slotOptions) => {
+    it(`sets custom properties on ${capitalize(
+      slotName,
+    )} slot's element with a callback function`, () => {
+      const componentsProps = {
+        [slotName]: () => ({
+          'data-testid': 'custom',
+        }),
+      };
+
+      const { getByTestId } = render(React.cloneElement(element, { componentsProps }));
+
+      expect(getByTestId('custom')).to.have.class(slotOptions.expectedClassName);
+    });
+  });
+}
+
 function testOwnerStatePropagation(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
@@ -295,6 +326,7 @@ const fullSuite = {
   componentProp: testComponentProp,
   componentsProp: testComponentsProp,
   componentsPropsProp: testComponentsPropsProp,
+  componentsPropsCallbacks: testComponentsPropsCallbacks,
   mergeClassName: testClassName,
   propsSpread: testPropForwarding,
   reactTestRenderer: testReactTestRenderer,
