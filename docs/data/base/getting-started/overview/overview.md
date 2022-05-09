@@ -27,7 +27,7 @@ Look for the [`package: base` label](https://github.com/mui/material-ui/labels/p
 - **Accessibility:** MUI Base components are built with accessibility in mind.
   We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
 
-### MUI Base vs. Material UI
+## MUI Base vs. Material UI
 
 MUI Base features many of the same components as [Material UI](/material-ui/getting-started/overview), but _without the Material Design implementation_.
 
