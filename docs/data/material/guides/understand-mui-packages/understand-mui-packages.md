@@ -5,14 +5,14 @@
 ## TL;DR
 
 - Use `@mui/material` if you want to use the components following the Material Design guidelines.
-  > 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
+  :::info
+  💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
+  :::
 - Use `@mui/base` if you want to style the components from scratch using your preferred styling method.
-  > 💡 This package can be imported alongside `@mui/material` without an installation.
+  :::info
+  💡 This package can be imported alongside `@mui/material` without an installation.
+  :::
 - Use `@mui/system` if you want APIs that enable building your own design system from scratch.
-
----
-
-product: material-ui
 
 ## MUI packages
 

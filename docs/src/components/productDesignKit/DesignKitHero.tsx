@@ -8,7 +8,6 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 import {
   DesignKitImagesSet1,
   DesignKitImagesSet2,
@@ -44,7 +43,7 @@ export default function TemplateHero() {
           <Button
             component={Link}
             noLinkStyle
-            href={ROUTES.storeDesign}
+            href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta#design"
             size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}

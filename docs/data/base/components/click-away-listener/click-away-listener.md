@@ -40,7 +40,9 @@ You can set the component to listen for **leading events** (the start of a click
 
 {{"demo": "LeadingClickAway.js"}}
 
-> ⚠️ **Note:** when the component is set to listen for leading events, interactions with the scrollbar are ignored.
+:::warning
+⚠️ **Note:** when the component is set to listen for leading events, interactions with the scrollbar are ignored.
+:::
 
 ## Accessibility
 

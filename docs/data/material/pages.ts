@@ -236,6 +236,11 @@ const pages = [
       { pathname: '/material-ui/discover-more/languages' },
     ],
   },
+  {
+    pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
+    title: 'Templates',
+    icon: 'ReaderIcon',
+  },
 ];
 
 export default pages;

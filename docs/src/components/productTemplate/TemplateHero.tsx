@@ -7,7 +7,6 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 import {
   StoreTemplatesSet1,
   StoreTemplatesSet2,
@@ -43,7 +42,7 @@ export default function TemplateHero() {
           <Button
             component={Link}
             noLinkStyle
-            href={ROUTES.storePopular}
+            href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta#populars"
             size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
