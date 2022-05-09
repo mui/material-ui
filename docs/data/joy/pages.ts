@@ -7,6 +7,11 @@ const pages = [
       { pathname: '/joy-ui/getting-started/tutorial' },
     ],
   },
+  {
+    pathname: '/joy-ui/core-features',
+    icon: 'ReaderIcon',
+    children: [{ pathname: '/joy-ui/core-features/global-variant' }],
+  },
 ];
 
 export default pages;
