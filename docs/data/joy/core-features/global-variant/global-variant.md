@@ -4,21 +4,19 @@
 
 <!-- The intention of the page is to describe the overall feature like "what is it?", "what it looks like?", other topics like "The why", "How to customize" etc. should be in another page.  -->
 
-Joy's Global variants are sets of styles that live inside the theme. Built-in or custom components can access to those styles to create consistent user interfaces that represent your branding.
+Joy's Global variants are sets of styles that live inside the theme. Built-in or custom components can access to those styles to create consistent user interfaces that represent your brand.
 
-However, updating the global variants can be a nightmare if it is not strict enough, that's why the global variants by default contain three CSS properties, the `color`, `background`, and `border`. These properties represent most of the visual colors of the interfaces so when any component wants to use a global variant it has to always specify a color from the theme palette.
+However, updating the global variants can be a nightmare if it is not strict enough, that's why the global variants by default contain three CSS properties, the `color`, `background`, and `border`. These properties represent most of the visual colors of the interfaces so the global variants always come with a color from the theme palette.
 
 <!-- Add a link to read more detail why we limit to these 3 properties -->
 
 ## Types of variants
 
-Since the global variants include only a few properties, there are 4 values that we believe they cover most of the modern design nowadays.
+We believe that these 4 global variants cover most of the modern design nowadays. We name them in a way that it is easy to guest the appearance without looking at the screen.
 
 <!-- A demo of buttons with all variants -->
 
 {{"demo": "GlobalVariantComponents.js"}}
-
-We name them in a way that it is easy to guest the appearance without looking at the screen.
 
 ## Level of importancy
 
@@ -28,11 +26,11 @@ The global variants convey the level of importancy when they are used together. 
 
 {{"demo": "LevelOfImportancy.js"}}
 
-As you can see from the demo above that global variants let you create meaningful user intefaces with least effort. As a side benefit, dark mode will just work without any modification (click the setting icon at the top-right of the page and turn on dark mode).
+As you can see from the demo above, the global variants let you create meaningful user intefaces with least effort. As a side benefit, dark mode will just work without any modification (click the setting icon at the top-right of the page and turn on dark mode).
 
 ## Atomic tokens
 
-Joy generates a global variant style by looking at the theme palette tokens. The tokens are atomic as if they are translated from the design tool to make customization easier. Developers can customize a specific CSS property of a given color scheme, variant, palette and state at a global level.
+Joy generates the global variants by looking at the theme palette tokens. The tokens are atomic as if they are translated from the design tool to make customization easier. Developers can customize a specific CSS property of a given color scheme, variant, palette and state at a global level.
 
 Here are some of the theme's default `solid` variant tokens:
 
