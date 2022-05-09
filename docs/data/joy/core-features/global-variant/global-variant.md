@@ -16,6 +16,8 @@ Since the global variants include only a few properties, there are 4 values that
 
 <!-- A demo of buttons, chips, and links with all variants -->
 
+{{"demo": "GlobalVariantComponents.js"}}
+
 We name them in a way that it is easy to guest the appearance without looking at the screen.
 
 ## Level of importancy
@@ -24,7 +26,9 @@ The global variants convey the level of importancy when they are used together. 
 
 <!-- A demo of small UIs that use different components with variants to showcase -->
 
-As you can see from the demo above that global variants let you create meaningful user intefaces with least effort.
+{{"demo": "LevelOfImportancy.js"}}
+
+As you can see from the demo above that global variants let you create meaningful user intefaces with least effort. As a side benefit, dark mode will just work without any modification (click the setting icon at the top-right of the page and turn on dark mode).
 
 ## Atomic tokens
 
