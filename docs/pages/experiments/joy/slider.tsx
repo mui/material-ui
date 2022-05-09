@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Box from '@mui/joy/Box';

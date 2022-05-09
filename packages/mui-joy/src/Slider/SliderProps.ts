@@ -48,11 +48,15 @@ export type SliderTypeMap<
 
 export type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 export type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
-export type SliderMarkLabelProps = NonNullable<SliderTypeMap['props']['componentsProps']>['markLabel'];
+export type SliderMarkLabelProps = NonNullable<
+  SliderTypeMap['props']['componentsProps']
+>['markLabel'];
 export type SliderRailProps = NonNullable<SliderTypeMap['props']['componentsProps']>['rail'];
 export type SliderTrackProps = NonNullable<SliderTypeMap['props']['componentsProps']>['track'];
 export type SliderThumbProps = NonNullable<SliderTypeMap['props']['componentsProps']>['thumb'];
-export type SliderValueLabelProps = NonNullable<SliderTypeMap['props']['componentsProps']>['valueLabel'];
+export type SliderValueLabelProps = NonNullable<
+  SliderTypeMap['props']['componentsProps']
+>['valueLabel'];
 export type SliderInputProps = NonNullable<SliderTypeMap['props']['componentsProps']>['input'];
 
 export type SliderProps<
