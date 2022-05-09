@@ -29,7 +29,7 @@ Look for the [`package: base` label](https://github.com/mui/material-ui/labels/p
 
 ## MUI Base vs. Material UI
 
-MUI Base features many of the same components as [Material UI](/material-ui/getting-started/overview), but _without the Material Design implementation_.
+MUI Base features many of the same components as [Material UI](/material-ui/getting-started/overview/), but _without the Material Design implementation_.
 
 Base is not packaged with any default theme or built-in style engine.
 This makes it a great choice if you need complete control over how your app's CSS is implemented.
