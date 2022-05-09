@@ -37,7 +37,7 @@ describe('<InputUnstyled />', () => {
   describe('componentsProps', () => {
     it('allows to pass in a callback function', () => {
       const componentProps = (ownerState: InputUnstyledOwnerState) => ({
-        className: ownerState ? 'test-focused' : '',
+        className: ownerState.focused ? 'test-focused' : '',
       });
 
       const { getByRole, container } = render(

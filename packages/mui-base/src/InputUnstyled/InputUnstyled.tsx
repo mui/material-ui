@@ -130,7 +130,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = appendOwnerState(
     Root,
     {
-      ...getRootProps({ ...other, ...componentsProps.root }),
+      ...getRootProps({ ...other, ...rootComponentsProps }),
       className: clsx(classes.root, rootStateClasses, className, rootComponentsProps?.className),
     },
     ownerState,
@@ -144,7 +144,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   let inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = appendOwnerState(
     Input,
     {
-      ...getInputProps({ ...componentsProps.input, ...propsToForward }),
+      ...getInputProps({ ...inputComponentsProps, ...propsToForward }),
       className: clsx(classes.input, inputStateClasses, inputComponentsProps?.className),
     },
     ownerState,

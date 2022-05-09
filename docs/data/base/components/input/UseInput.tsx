@@ -54,6 +54,8 @@ const CustomInput = React.forwardRef(function CustomInput(
   const { getRootProps, getInputProps } = useInput(props);
 
   const inputProps = getInputProps();
+
+  // Make sure that both the forwarded ref and the ref returned from the are applied on the input element
   inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
