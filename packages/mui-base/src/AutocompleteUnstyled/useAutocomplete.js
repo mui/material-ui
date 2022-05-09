@@ -682,7 +682,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    handleClose(event, 'toggleInput');
+    if (inputValue === '') {
+      handleClose(event, 'toggleInput');
+    }
 
     let nextTag = focusedTag;
 
