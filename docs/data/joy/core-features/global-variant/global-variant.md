@@ -14,7 +14,7 @@ However, updating the global variants can be a nightmare if it is not strict eno
 
 Since the global variants include only a few properties, there are 4 values that we believe they cover most of the modern design nowadays.
 
-<!-- A demo of buttons, chips, and links with all variants -->
+<!-- A demo of buttons with all variants -->
 
 {{"demo": "GlobalVariantComponents.js"}}
 
@@ -34,19 +34,18 @@ As you can see from the demo above that global variants let you create meaningfu
 
 Joy generates a global variant style by looking at the theme palette tokens. The tokens are atomic as if they are translated from the design tool to make customization easier. Developers can customize a specific CSS property of a given color scheme, variant, palette and state at a global level.
 
-Here is an example of the default `solid` variant tokens:
+Here are some of the theme's default `solid` variant tokens:
 
 ```js
-// the defaul theme
 {
   colorSchemes: {
     light: {
       palette: {
         primary: {
-          solidBg: 'var(--joy-palette-primary-600)',
-          solidColor: '#fff',
-          solidHoverBg: 'var(--joy-palette-primary-700)',
-          solidActiveBg: 'var(--joy-palette-primary-800)',
+          solidBg: 'var(--joy-palette-primary-600)',       // the initial background
+          solidColor: '#fff',                              // the initial color
+          solidHoverBg: 'var(--joy-palette-primary-700)',  // the :hover background
+          solidActiveBg: 'var(--joy-palette-primary-800)', // the :active background
           // ...other tokens
         },
         neutral: {
