@@ -1,6 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { alpha, styled } from '@mui/material/styles';
+import { styled as joyStyled } from '@mui/joy/styles';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
@@ -10,6 +12,7 @@ import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
@@ -80,7 +83,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const DemoRoot = styled('div', {
+const DemoRootMaterial = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
 })(({ theme, hiddenToolbar, bg }) => ({
   position: 'relative',
@@ -121,6 +124,47 @@ const DemoRoot = styled('div', {
   }),
 }));
 
+const DemoRootJoy = joyStyled('div', {
+  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
+})(({ theme, hiddenToolbar, bg }) => ({
+  position: 'relative',
+  outline: 0,
+  margin: 'auto',
+  display: 'flex',
+  justifyContent: 'center',
+  [theme.breakpoints.up('sm')]: {
+    borderRadius: 10,
+    ...(bg === 'outlined' && {
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    }),
+    /* Make no difference between the demo and the markdown. */
+    ...(bg === 'inline' && {
+      padding: theme.spacing(0),
+    }),
+    ...(hiddenToolbar && {
+      paddingTop: theme.spacing(1),
+    }),
+  },
+  /* Isolate the demo with an outline. */
+  ...(bg === 'outlined' && {
+    padding: theme.spacing(3),
+    backgroundColor: theme.vars.palette.background.body,
+    border: `1px solid`,
+    borderColor: theme.vars.palette.divider,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+  }),
+  /* Prepare the background to display an inner elevation. */
+  ...(bg === true && {
+    padding: theme.spacing(3),
+    backgroundColor: theme.vars.palette.background.level1,
+  }),
+  ...(hiddenToolbar && {
+    paddingTop: theme.spacing(2),
+  }),
+}));
+
 const Code = styled(HighlightedCode)(({ theme }) => ({
   padding: 0,
   marginBottom: theme.spacing(1),
@@ -148,7 +192,9 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   pointerEvents: 'none',
 }));
 export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation } = props;
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  const { demo, demoOptions, disableAd, githubLocation, mode } = props;
   const t = useTranslate();
   const codeVariant = useCodeVariant();
   const demoData = useDemoData(codeVariant, demo, githubLocation);
@@ -202,6 +248,9 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
 
+  const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
+  const Wrapper = asPathWithoutLang.startsWith('/joy-ui') ? BrandingProvider : React.Fragment;
+
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -212,7 +261,13 @@ export default function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
+        <Wrapper mode={mode}>
+          <InitialFocus
+            aria-label={t('initialFocusLabel')}
+            action={initialFocusRef}
+            tabIndex={-1}
+          />
+        </Wrapper>
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
@@ -224,44 +279,46 @@ export default function Demo(props) {
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      {demoOptions.hideToolbar ? null : (
-        <NoSsr defer fallback={<DemoToolbarFallback />}>
-          <React.Suspense fallback={<DemoToolbarFallback />}>
-            <DemoToolbar
-              codeOpen={codeOpen}
-              codeVariant={codeVariant}
-              demo={demo}
-              demoData={demoData}
-              demoHovered={demoHovered}
-              demoId={demoId}
-              demoName={demoName}
-              demoOptions={demoOptions}
-              demoSourceId={demoSourceId}
-              initialFocusRef={initialFocusRef}
-              onCodeOpenChange={() => {
-                setCodeOpen((open) => !open);
-                setShowAd(true);
-              }}
-              onResetDemoClick={resetDemo}
-              openDemoSource={openDemoSource}
-              showPreview={showPreview}
-            />
-          </React.Suspense>
-        </NoSsr>
-      )}
-      <Collapse in={openDemoSource} unmountOnExit>
-        <Code
-          id={demoSourceId}
-          code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
-          language={demoData.sourceLanguage}
-          copyButtonProps={{
-            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-            'data-ga-event-label': demoOptions.demo,
-            'data-ga-event-action': 'copy-click',
-          }}
-        />
-      </Collapse>
-      {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
+      <Wrapper mode={mode}>
+        {demoOptions.hideToolbar ? null : (
+          <NoSsr defer fallback={<DemoToolbarFallback />}>
+            <React.Suspense fallback={<DemoToolbarFallback />}>
+              <DemoToolbar
+                codeOpen={codeOpen}
+                codeVariant={codeVariant}
+                demo={demo}
+                demoData={demoData}
+                demoHovered={demoHovered}
+                demoId={demoId}
+                demoName={demoName}
+                demoOptions={demoOptions}
+                demoSourceId={demoSourceId}
+                initialFocusRef={initialFocusRef}
+                onCodeOpenChange={() => {
+                  setCodeOpen((open) => !open);
+                  setShowAd(true);
+                }}
+                onResetDemoClick={resetDemo}
+                openDemoSource={openDemoSource}
+                showPreview={showPreview}
+              />
+            </React.Suspense>
+          </NoSsr>
+        )}
+        <Collapse in={openDemoSource} unmountOnExit>
+          <Code
+            id={demoSourceId}
+            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
+            language={demoData.sourceLanguage}
+            copyButtonProps={{
+              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+              'data-ga-event-label': demoOptions.demo,
+              'data-ga-event-action': 'copy-click',
+            }}
+          />
+        </Collapse>
+        {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
+      </Wrapper>
     </Root>
   );
 }
@@ -271,4 +328,5 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
+  mode: PropTypes.string, // temporary, just to make Joy docs work.
 };
