@@ -8,7 +8,7 @@ _May 9, 2022_
 
 A big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
-🛠 This release is all about supporting CSS variables in many Material UI components.
+🛠 This release is all about supporting CSS variables in many Material UI.
 Kudos to all contributors!
 
 ### `@mui/material@5.7.0`
@@ -70,6 +70,8 @@ Kudos to all contributors!
 
 ### Docs
 
+- [docs] Correct links to prevent 301 redirects (#32692) @michaldudak
+- [docs] Move, split, and revise "Unstyled components" page (#32562) @samuelsycamore
 - [docs] Nest `ListItemButton` in `ListItem` in the Drawer examples (#31987) @stefanprobst
 - [docs] Apply callouts in the Material UI docs (#32567) @danilo-leal
 - [docs] Show product identifier on new X pages (#32657) @cherniavskii
@@ -85,6 +87,7 @@ Kudos to all contributors!
 - [Joy] Add principles page (#32648) @siriwatknp
 - [Joy] Add Button page (#32576) @siriwatknp
 - [Joy] Add "Quick start" and "Tutorial" pages (#32383) @siriwatknp
+- [website] Add store to the footer and "hiring" chip adjustment (#32650) @danilo-leal
 - [website] Optimize conversion to store (#32646) @oliviertassinari
 - [website] Remove copy button on marketing pages (#32649) @siriwatknp
 - [website] Add missing space in copy label (#32638) @flaviendelangle
