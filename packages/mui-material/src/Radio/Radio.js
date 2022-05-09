@@ -40,7 +40,7 @@ const RadioRoot = styled(SwitchBase, {
     backgroundColor: theme.vars
       ? `rgba(${
           ownerState.color === 'default'
-            ? theme.vars.palette.action.active
+            ? theme.vars.palette.action.activeChannel
             : theme.vars.palette[ownerState.color].mainChannel
         } / ${theme.vars.palette.action.hoverOpacity})`
       : alpha(
