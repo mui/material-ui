@@ -1,5 +1,5 @@
-import { Simplify } from '@mui/types';
 import React from 'react';
+import { Simplify } from '@mui/types';
 import { OptionState } from '../ListboxUnstyled';
 import { UseSelectOptionSlotProps } from '../SelectUnstyled';
 

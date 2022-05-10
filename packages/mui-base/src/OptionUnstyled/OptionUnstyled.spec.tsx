@@ -1,6 +1,5 @@
 import * as React from 'react';
-import OptionUnstyled from './OptionUnstyled';
-import { OptionUnstyledRootSlotProps } from './OptionUnstyled.types';
+import OptionUnstyled, { OptionUnstyledRootSlotProps } from '@mui/base/OptionUnstyled';
 
 const Root = React.forwardRef(function Root<TValue>(
   props: OptionUnstyledRootSlotProps<TValue>,
