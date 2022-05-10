@@ -243,13 +243,13 @@ export interface AutocompleteProps<
    *
    * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
-   * @param {object} state The state of the Autocomplete component.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderTags?: (
     value: T[],
     getTagProps: AutocompleteRenderGetTagProps,
-    state: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
    * The size of the component.

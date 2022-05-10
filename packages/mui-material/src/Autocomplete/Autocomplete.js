@@ -1025,7 +1025,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
-   * @param {object} state The state of the Autocomplete component.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
