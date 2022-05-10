@@ -50,6 +50,14 @@ Use `AvatarGroup` component to group multiple avatars together.
 
 {{"demo": "GroupedAvatars.js"}}
 
+### Max and total avatars
+
+The `AvatarGroup` does not provide built-in props to control the maximum and the total avatars. We believe that it will make the customization easier if you have full control of the logic.
+
+Here is a common example of the you will find in most application:
+
+{{"demo": "MaxAndTotalAvatars.js"}}
+
 ### Overlapping order
 
 By default, the first avatar in the group stays behind the second and so on. You can reverse the overlapping order by reversing avatars position and providing CSS `flex-direction: row-reverse` to the `AvatarGroup`.
