@@ -13,7 +13,8 @@ export interface MuiPage {
    */
   plan?: 'community' | 'pro' | 'premium';
   /**
-   * In case the children have pathnames out of pathname value, use this field to scope other pathnames
+   * In case the children have pathnames out of pathname value, use this field to scope other pathnames.
+   * Pathname can be partial, e.g. '/components/' will cover '/components/button/' and '/components/link/'.
    */
   scopePathnames?: string[];
   /**
