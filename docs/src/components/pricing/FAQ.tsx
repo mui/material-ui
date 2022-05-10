@@ -90,13 +90,12 @@ const faqData = [
     summary: 'Am I allowed to use the product after the update entitlement expires?',
     detail: (
       <React.Fragment>
-        Yes. You're allowed to continue using any version of the product in production environments,
-        even after the entitlement expires. However, you will be required to renew your license if
-        you wish to continue development, and to access subsequently released functionality and
-        updates, as well as technical support.
+        Yes. 
+        You can continue to use the product in production environments after the entitlement expires.
+        But you will need to renew your license to continue development, update for new features, or gain access to technical support.
         <br />
         <br />
-        If you wish to renew your license, please{' '}
+        To renew your license, please{' '}
         <Link href="mailto:sales@mui.com">contact sales</Link>.
       </React.Fragment>
     ),
