@@ -2,15 +2,38 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import composeClasses from './composeClasses';
-import useThemeProps from './useThemeProps';
-import createTheme from './createTheme';
-import systemStyled from './styled';
-import { getContainerUtilityClass as defaultGetContainerUtilityClasses } from './Container/containerClasses';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+} from '@mui/private-classnames';
+import useThemeProps from '../useThemeProps';
+import systemStyled from '../styled';
+import createTheme from '../createTheme';
 
-const systemDefaultTheme = createTheme();
+const defaultTheme = createTheme();
 
-const useUtilityClasses = (ownerState, getContainerUtilityClass) => {
+const defaultCreateStyledComponent = systemStyled('div', {
+  name: 'MuiContainer',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
+      ownerState.fixed && styles.fixed,
+      ownerState.disableGutters && styles.disableGutters,
+    ];
+  },
+});
+
+const useThemePropsDefault = (inProps) =>
+  useThemeProps({ props: inProps, name: 'MuiContainer', defaultTheme });
+
+const useUtilityClasses = (ownerState, componentName) => {
+  const getContainerUtilityClass = (slot) => {
+    return generateUtilityClass(componentName, slot);
+  };
   const { classes, fixed, disableGutters, maxWidth } = ownerState;
 
   const slots = {
@@ -27,26 +50,13 @@ const useUtilityClasses = (ownerState, getContainerUtilityClass) => {
 
 export default function createContainer(options = {}) {
   const {
-    defaultTheme = systemDefaultTheme,
     // This will allow adding custom styled fn (for example for custom sx style function)
-    styled = systemStyled,
-    getContainerUtilityClass = defaultGetContainerUtilityClasses,
+    createStyledComponent = defaultCreateStyledComponent,
+    useThemeProps = useThemePropsDefault,
+    componentName = 'MuiContainer',
   } = options;
 
-  const ContainerRoot = styled('div', {
-    name: 'MuiContainer',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { ownerState } = props;
-
-      return [
-        styles.root,
-        styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
-        ownerState.fixed && styles.fixed,
-        ownerState.disableGutters && styles.disableGutters,
-      ];
-    },
-  })(
+  const ContainerRoot = createStyledComponent(
     ({ theme, ownerState }) => ({
       width: '100%',
       marginLeft: 'auto',
@@ -64,10 +74,12 @@ export default function createContainer(options = {}) {
     }),
     ({ theme, ownerState }) =>
       ownerState.fixed &&
-      Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
+      Object.keys(theme.breakpoints.values).reduce((acc, breakpointValueKey) => {
+        const breakpoint = breakpointValueKey;
         const value = theme.breakpoints.values[breakpoint];
 
         if (value !== 0) {
+          // @ts-ignore
           acc[theme.breakpoints.up(breakpoint)] = {
             maxWidth: `${value}${theme.breakpoints.unit}`,
           };
@@ -90,7 +102,7 @@ export default function createContainer(options = {}) {
   );
 
   const Container = React.forwardRef(function Container(inProps, ref) {
-    const props = useThemeProps({ props: inProps, name: 'MuiContainer', defaultTheme });
+    const props = useThemeProps(inProps);
     const {
       className,
       component = 'div',
@@ -109,7 +121,7 @@ export default function createContainer(options = {}) {
       maxWidth,
     };
 
-    const classes = useUtilityClasses(ownerState, getContainerUtilityClass);
+    const classes = useUtilityClasses(ownerState, componentName);
 
     return (
       <ContainerRoot

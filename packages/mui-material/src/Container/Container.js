@@ -1,13 +1,25 @@
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
-import defaultTheme from '../styles/defaultTheme';
+import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import { getContainerUtilityClass } from './containerClasses';
+import useThemeProps from '../styles/useThemeProps';
 
 const Container = createContainer({
-  defaultTheme,
-  styled,
-  getContainerUtilityClass,
+  createStyledComponent: styled('div', {
+    name: 'MuiContainer',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { ownerState } = props;
+
+      return [
+        styles.root,
+        styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
+        ownerState.fixed && styles.fixed,
+        ownerState.disableGutters && styles.disableGutters,
+      ];
+    },
+  }),
+  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
 });
 
 Container.propTypes /* remove-proptypes */ = {

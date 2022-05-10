@@ -1,5 +1,4 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/private-classnames';
 
 export interface ContainerClasses {
   /** Styles applied to the root element. */

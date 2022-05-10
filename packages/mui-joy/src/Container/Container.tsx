@@ -1,15 +1,19 @@
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { getContainerUtilityClass } from './containerClasses';
 import { ContainerTypeMap } from './ContainerProps';
-import defaultTheme, { JoyTheme } from '../styles/defaultTheme';
+import { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';
+import { useThemeProps } from '../styles';
 
-const Container = createContainer<JoyTheme>({
-  defaultTheme,
-  getContainerUtilityClass,
-  styled,
+const Container = createContainer<Theme>({
+  // @ts-ignore there is some type mismatch on the sx prop
+  createStyledComponent: styled('div', {
+    name: 'MuiContainer',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  }),
+  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
 }) as OverridableComponent<ContainerTypeMap>;
 
 Container.propTypes /* remove-proptypes */ = {
@@ -56,11 +60,7 @@ Container.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
+  sx: PropTypes.any,
 } as any;
 
 export default Container;
