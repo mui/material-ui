@@ -9,7 +9,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import styled from '@emotion/styled';
 
 const AnchorableContainer = styled(Container)`
-  &:before {
+  &::before {
     content: '';
     display: block;
     margin-top: 40px;
