@@ -8,7 +8,7 @@ _May 9, 2022_
 
 A big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
-🛠 This release is all about supporting CSS variables in many Material UI.
+🛠 This release is all about supporting CSS variables in many Material UI components.
 Kudos to all contributors!
 
 ### `@mui/material@5.7.0`
