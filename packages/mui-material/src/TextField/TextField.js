@@ -12,6 +12,8 @@ import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
+import formControlState from '../FormControl/formControlState';
+import useFormControl from '../FormControl/useFormControl';
 import { getTextFieldUtilityClass } from './textFieldClasses';
 
 const variantComponent = {
@@ -102,9 +104,18 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     SelectProps,
     type,
     value,
-    variant = 'outlined',
+    variant: variantProp = 'outlined',
     ...other
   } = props;
+
+  const muiFormControl = useFormControl();
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['variant'],
+  });
+
+  const variant = fcs.variant || variantProp;
 
   const ownerState = {
     ...props,
