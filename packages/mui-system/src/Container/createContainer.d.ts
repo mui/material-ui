@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { CreateStyledComponent } from '@mui/styled-engine';
 import { MUIStyledCommonProps } from '../createStyled';
 import Container, { ContainerProps } from './Container';
