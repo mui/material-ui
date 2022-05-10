@@ -38,7 +38,7 @@ Lastly, the `plain` variant, as it only contains text and no background, is usua
 
 Global variants are an easy and effortless way to create meaningful user interfaces.
 Additionally, as a benefit, dark mode works without any modification to them.
-Click on the Settings icon at the upper right corner and turn dark mode on if you haven't yet!
+Click on the Settings icon at the upper right hand corner and turn dark mode on if you haven't yet!
 
 ## Atomic tokens
 
