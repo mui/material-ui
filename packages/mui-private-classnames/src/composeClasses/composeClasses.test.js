@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import composeClasses from './composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/private-classnames';
 
 describe('composeClasses', () => {
   it('should generate the classes based on the slots', () => {

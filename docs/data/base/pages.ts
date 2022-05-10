@@ -7,6 +7,8 @@ const pages = [
     children: [
       { pathname: '/base/getting-started/overview', title: 'Overview' },
       { pathname: '/base/getting-started/installation', title: 'Installation' },
+      { pathname: '/base/getting-started/usage', title: 'Usage' },
+      { pathname: '/base/getting-started/customization', title: 'Customization' },
     ],
   },
   {

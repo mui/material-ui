@@ -1,1 +1,1 @@
-export { default } from './generateUtilityClasses';
+export { generateUtilityClasses as default } from '@mui/private-classnames';
