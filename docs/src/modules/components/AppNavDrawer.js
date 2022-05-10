@@ -7,6 +7,8 @@ import Divider from '@mui/material/Divider';
 import { styled, alpha } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
@@ -41,46 +43,9 @@ const shouldShowJoy =
 
 const LinksWrapper = styled('div')(({ theme }) => {
   return {
-    paddingLeft: theme.spacing(5.5),
+    paddingLeft: theme.spacing(6.5),
     paddingTop: theme.spacing(1.5),
-    height: shouldShowJoy ? 162 : 124,
-    '& > a': {
-      position: 'relative',
-      display: 'flex',
-      minHeight: 40,
-      flexDirection: 'column',
-      alignItems: 'initial',
-      padding: theme.spacing(0, 1),
-      paddingTop: theme.spacing(1),
-      borderRadius: theme.shape.borderRadius,
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-      transition: theme.transitions.create(),
-      '&:hover': {
-        paddingBottom: theme.spacing(3.5),
-        backgroundColor:
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[700], 0.4)
-            : theme.palette.grey[50],
-        '& .MuiTypography-body2': {
-          opacity: 1,
-          transform: 'translateY(0px)',
-        },
-      },
-      '& .MuiTypography-body1': {
-        zIndex: 1,
-      },
-      '& .MuiTypography-body2': {
-        opacity: 0,
-        position: 'absolute',
-        top: '28px',
-        transition: theme.transitions.create(),
-      },
-      '& svg': {
-        width: 18,
-        height: 18,
-      },
-    },
+    height: shouldShowJoy ? 68 : 60,
   };
 });
 
@@ -194,7 +159,6 @@ function ProductDrawerButton(props) {
                   ? alpha(theme.palette.primary[100], 0.08)
                   : theme.palette.grey[100],
             },
-            '& a': { textDecoration: 'none' },
             '& li': {
               p: 2,
             },
@@ -212,32 +176,42 @@ function ProductDrawerButton(props) {
             description="Ready-to-use foundational components, free forever."
           />
           <LinksWrapper>
-            <Link href={ROUTES.materialDocs} sx={{ my: -0.5 }}>
-              <ProductLabel>Material UI</ProductLabel>
-              <Typography color="text.secondary" variant="body2">
-                {"React components that implement Google's Material Design."}
-              </Typography>
-            </Link>
-            {shouldShowJoy && (
-              <Link href={ROUTES.joyDocs} sx={{ my: -0.5 }}>
-                <ProductLabel>Joy UI</ProductLabel>
-                <Typography color="text.secondary" variant="body2">
-                  React components for building your design system.
-                </Typography>
-              </Link>
-            )}
-            <Link href={ROUTES.baseDocs} sx={{ mb: -0.5 }}>
-              <ProductLabel>MUI Base</ProductLabel>
-              <Typography color="text.secondary" variant="body2">
-                Unstyled React components and low-level hooks.
-              </Typography>
-            </Link>
-            <Link href={ROUTES.systemDocs}>
-              <ProductLabel>MUI System</ProductLabel>
-              <Typography color="text.secondary" variant="body2">
-                CSS utilities for rapidly laying out custom designs.
-              </Typography>
-            </Link>
+            <Stack direction="row" spacing={1}>
+              <Chip
+                href={ROUTES.materialDocs}
+                label="Material UI"
+                variant="outlined"
+                clickable="true"
+                component="a"
+                size="small"
+              />
+              {shouldShowJoy && (
+                <Chip
+                  href={ROUTES.joyDocs}
+                  label="Joy UI"
+                  variant="outlined"
+                  clickable="true"
+                  component="a"
+                  size="small"
+                />
+              )}
+              <Chip
+                href={ROUTES.baseDocs}
+                label="MUI Base"
+                variant="outlined"
+                clickable="true"
+                component="a"
+                size="small"
+              />
+              <Chip
+                href={ROUTES.systemDocs}
+                label="MUI System"
+                variant="outlined"
+                clickable="true"
+                component="a"
+                size="small"
+              />
+            </Stack>
           </LinksWrapper>
         </li>
         <li role="none">
