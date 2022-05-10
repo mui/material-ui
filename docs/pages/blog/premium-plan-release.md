@@ -136,5 +136,5 @@ This feature will continue to be enhanced. We would love to hear your feedback, 
 
 # Share your feedback 🗣
 
-We hope you find the new features useful and pleasant to use, both as a developer and user. 
+We hope you find the new features useful and pleasant to use, both as a developer and user.
 Please don't hesitate to open [issues](https://github.com/mui/mui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
