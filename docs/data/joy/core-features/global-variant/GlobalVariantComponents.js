@@ -27,7 +27,7 @@ export default function GlobalVariantComponents() {
           textAlign: 'center',
         }}
       >
-        An example of Joy buttons that apply the global variants.
+        Example of Joy buttons applying the global variants.
       </Sheet>
     </Box>
   );
