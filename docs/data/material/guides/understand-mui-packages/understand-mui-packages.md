@@ -115,7 +115,7 @@ Check out [the guide to migrating from v4 to v5](https://mui.com/material-ui/gui
 MUI System is a collection of CSS utilities to help you rapidly lay out custom designs.
 It uses the emotion adapter (`@mui/styled-engine`) as the default style engine to create the CSS utilities.
 
-#### Advantages of MUI System:
+#### Advantages of MUI System
 
 - You have full control of the `theme` object.
 - You can use `sx` prop normally as the `styled` API supports it by default.
