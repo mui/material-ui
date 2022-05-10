@@ -27,7 +27,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const DEMOS = ['Data grid', 'Date range picker', 'Tree view', 'Sparkline', 'Charts'];
-const WIP = DEMOS.slice(3);
+const WIP = DEMOS.slice(2);
 
 const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
