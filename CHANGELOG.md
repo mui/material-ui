@@ -4,9 +4,9 @@
 
 <!-- generated comparing v5.6.4..master -->
 
-_May 9, 2022_
+_May 10, 2022_
 
-A big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 27 contributors who made this release possible. Here are some highlights ✨:
 
 🛠 This release is all about supporting CSS variables in many Material UI components.
 Kudos to all contributors!
@@ -16,6 +16,7 @@ Kudos to all contributors!
 - [StepLabel, StepIcon] Add support for CSS variables (#32609) @vicasas
 - [Table, TableRow] Add support for CSS variables (#32614) @vicasas
 - [AppBar] Add a logo component for the responsive app bar demo (#32374) @ameetmadan
+- [Autocomplete] Fix clearing single array values (#32626) @mikepricedev
 - [Autocomplete] Fix keep listbox open on left/right keys when inputValue is not empty (#31407) @alisasanib
 - [Autocomplete] Add support for CSS variables (#32598) @ZeeshanTamboli
 - [Autocomplete] Render `endAdornment` only when necessary (#32386) @g1eny0ung
@@ -98,7 +99,7 @@ Kudos to all contributors!
 - [core] Fix `docs:dev` not working after upgrading `next` to 12.1.0 (#32552) @cherniavskii
 - [core] Update minimist to fix security vulnerability (#32575) @michaldudak
 
-All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @ameetmadan, @Ariyapong, @cherniavskii, @dan-mba, @danilo-leal, @elliefoote, @flaviendelangle, @g1eny0ung, @gin1314, @haneenmahd, @ivan-ngchakming, @Jamaalwbrown, @jcvidiri, @michaldudak, @mnajdova, @nghiamvt, @oliviertassinari, @pzi, @samuelsycamore, @siriwatknp, @stefanprobst, @vicasas, @vladjerca, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @ameetmadan, @Ariyapong, @cherniavskii, @dan-mba, @danilo-leal, @elliefoote, @flaviendelangle, @g1eny0ung, @gin1314, @haneenmahd, @ivan-ngchakming, @Jamaalwbrown, @jcvidiri, @michaldudak, @mikepricedev, @mnajdova, @nghiamvt, @oliviertassinari, @pzi, @samuelsycamore, @siriwatknp, @stefanprobst, @vicasas, @vladjerca, @ZeeshanTamboli
 
 ## 5.6.4
 
