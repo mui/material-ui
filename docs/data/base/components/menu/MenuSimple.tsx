@@ -51,6 +51,7 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   padding: 8px;
   border-radius: 0.45em;
   cursor: default;
+  user-select: none;
 
   &:last-of-type {
     border-bottom: none;

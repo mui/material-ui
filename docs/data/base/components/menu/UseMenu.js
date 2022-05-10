@@ -44,6 +44,7 @@ const styles = `
     padding: 8px;
     border-radius: 0.45em;
     cursor: default;
+    user-select: none;
   }
 
   .menu-item:last-of-type {
