@@ -15,51 +15,55 @@ export default function LevelOfImportancy() {
   return (
     <Box
       sx={{
-        bgcolor: 'background.level3',
         display: 'flex',
         width: '100%',
-        py: 5,
+        py: 2,
         borderRadius: 'xs',
       }}
     >
       <Box
         sx={{
           bgcolor: 'background.body',
+          border: '1px solid',
+          borderColor: 'background.level2',
           alignSelf: 'center',
           maxWidth: '100%',
           minWidth: 373,
           mx: 'auto',
-          boxShadow: 'md',
-          borderRadius: 'xs',
+          boxShadow: 'sm',
+          borderRadius: 'md',
+          overflow: 'auto',
         }}
       >
         <Sheet
-          variant="outlined"
           sx={{
             borderWidth: '0 0 1px 0',
-            bgcolor: 'background.level1',
             display: 'flex',
             alignItems: 'center',
             p: 2,
-            borderRadius: '4px 4px 0 0',
+            borderRadius: 'md',
           }}
         >
           <Typography level="h2" fontSize="lg">
-            <b>Details</b>
+            Photo upload
           </Typography>
           <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: 'auto' }}>
             <Close />
           </IconButton>
         </Sheet>
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ px: 2, pt: 1, pb: 2 }}>
           <Sheet
             variant="outlined"
             sx={{
-              borderRadius: 'xs',
-              bgcolor: 'background.level1',
+              borderRadius: 'md',
+              overflow: 'auto',
+              borderColor: 'background.level2',
             }}
           >
-            <Box sx={{ display: 'flex', p: 1, gap: 0.5 }}>
+            <AspectRatio>
+              <img alt="" src="/static/images/cards/yosemite.jpeg" />
+            </AspectRatio>
+            <Box sx={{ display: 'flex', p: 1, gap: 1 }}>
               <IconButton
                 color="danger"
                 variant="plain"
@@ -78,34 +82,20 @@ export default function LevelOfImportancy() {
                 <Crop />
               </IconButton>
             </Box>
-            <AspectRatio>
-              <img alt="" src="/static/images/cards/yosemite.jpeg" />
-            </AspectRatio>
           </Sheet>
         </Box>
         <Sheet
-          variant="outlined"
           sx={{
-            borderWidth: '1px 0 0 0',
             bgcolor: 'background.level1',
             display: 'flex',
             p: 2,
             gap: 1,
-            borderRadius: '0 0 4px 4px',
           }}
         >
-          <Button
-            size="sm"
-            variant="outlined"
-            color="neutral"
-            sx={{ bgcolor: 'background.body' }}
-          >
-            Cancel
-          </Button>
-          <Button size="sm" variant="soft" sx={{ ml: 'auto' }}>
+          <Button size="md" variant="plain" sx={{ ml: 'auto' }}>
             Replace media
           </Button>
-          <Button size="sm">Finish</Button>
+          <Button size="md">Finish</Button>
         </Sheet>
       </Box>
     </Box>
