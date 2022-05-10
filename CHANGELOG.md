@@ -61,7 +61,7 @@ Kudos to all contributors!
 
 - [System] Support CSS variables for iframes & custom nodes (#32496) @siriwatknp
 
-### `@mui/base@5.0.0-alpha.79`
+### `@mui/base@5.0.0-alpha.80`
 
 - [ButtonUnstyled] Fix keyboard navigation on customized elements (#32204) @michaldudak
 
