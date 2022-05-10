@@ -6,7 +6,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
 } from '@mui/private-classnames';
-import useThemeProps from '../useThemeProps';
+import useThemePropsSystem from '../useThemeProps';
 import systemStyled from '../styled';
 import createTheme from '../createTheme';
 
@@ -28,7 +28,7 @@ const defaultCreateStyledComponent = systemStyled('div', {
 });
 
 const useThemePropsDefault = (inProps) =>
-  useThemeProps({ props: inProps, name: 'MuiContainer', defaultTheme });
+  useThemePropsSystem({ props: inProps, name: 'MuiContainer', defaultTheme });
 
 const useUtilityClasses = (ownerState, componentName) => {
   const getContainerUtilityClass = (slot) => {
