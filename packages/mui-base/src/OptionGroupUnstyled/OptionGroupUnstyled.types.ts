@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface OptionGroupUnstyledComponentsPropsOverrides {}
 
-export default interface OptionGroupUnstyledProps {
+export interface OptionGroupUnstyledProps {
   /**
    * The human-readable description of the group.
    */

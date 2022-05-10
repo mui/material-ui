@@ -9,7 +9,14 @@ const dummyGetOptionState = () => ({
   selected: false,
 });
 
-const dummyGetOptionProps = () => ({});
+const dummyGetOptionProps = () => ({
+  'aria-disabled': false,
+  'aria-selected': false,
+  label: '',
+  onClick: () => {},
+  role: 'option',
+  value: '',
+});
 
 describe('OptionUnstyled', () => {
   const mount = createMount();
