@@ -28,6 +28,11 @@ const vars = [
     type: 'number',
   },
   {
+    var: '--Avatar-size',
+    defaultValue: '40px',
+    type: 'number',
+  },
+  {
     var: '--Avatar-ringSize',
     defaultValue: '4px',
     type: 'number',
@@ -43,6 +48,7 @@ export default function GroupedAvatars() {
         mt: 2,
         display: 'grid',
         gridTemplateColumns: '1fr auto',
+        gridTemplateRows: '1fr auto',
         gap: 2,
         '& .markdown-body pre': {
           margin: 0,
@@ -54,10 +60,8 @@ export default function GroupedAvatars() {
         sx={{
           alignSelf: 'center',
           mx: 'auto',
-          minHeight: 120,
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          placeSelf: 'center',
         }}
       >
         <AvatarGroup sx={sx}>

@@ -36,15 +36,18 @@ const AvatarRoot = styled('div', {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Avatar-size': '2rem',
+        width: `var(--Avatar-size, 2rem)`,
+        height: `var(--Avatar-size, 2rem)`,
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
-        '--Avatar-size': '2.5rem',
+        width: `var(--Avatar-size, 2.5rem)`,
+        height: `var(--Avatar-size, 2.5rem)`,
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Avatar-size': '3rem',
+        width: `var(--Avatar-size, 3rem)`,
+        height: `var(--Avatar-size, 3rem)`,
         fontSize: theme.vars.fontSize.lg,
       }),
       marginInlineStart: 'var(--Avatar-marginInlineStart)',
@@ -56,8 +59,6 @@ const AvatarRoot = styled('div', {
       alignItems: 'center',
       justifyContent: 'center',
       flexShrink: 0,
-      width: 'var(--Avatar-size)',
-      height: 'var(--Avatar-size)',
       lineHeight: 1,
       borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
@@ -176,6 +177,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     component,
     size,
     variant,
+    grouped: !!groupContext,
   };
 
   const classes = useUtilityClasses(ownerState);
