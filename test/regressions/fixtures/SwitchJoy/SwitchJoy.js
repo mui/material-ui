@@ -12,8 +12,8 @@ export default function SwitchJoy() {
         <Switch defaultChecked color="success" />
         <Switch variant="outlined" />
         <Switch variant="outlined" defaultChecked />
-        <Switch variant="light" />
-        <Switch variant="light" defaultChecked />
+        <Switch variant="soft" />
+        <Switch variant="soft" defaultChecked />
       </Box>
     </CssVarsProvider>
   );

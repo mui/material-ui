@@ -1,11 +1,11 @@
-import { JoyTheme, SxProps } from './defaultTheme';
+import { Theme, SxProps } from './types';
 
 /**
  * internal utility
  */
 // eslint-disable-next-line import/prefer-default-export
 export const resolveSxValue = (
-  { theme, ownerState }: { theme: JoyTheme; ownerState: { sx?: SxProps } },
+  { theme, ownerState }: { theme: Theme; ownerState: { sx?: SxProps } },
   key: string,
   defaultValue?: string | number,
 ) => {
@@ -33,7 +33,7 @@ export const resolveSxValue = (
         if (typeof value === 'number') {
           return `${value}px`;
         }
-        parsedValue = theme.vars.radius[value as keyof typeof theme.vars.radius] || value;
+        parsedValue = theme.vars?.radius[value as keyof typeof theme.vars.radius] || value;
       }
     }
   }

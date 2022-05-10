@@ -189,7 +189,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onClick,
     disabled = false,
     size = 'md',
-    variant = 'contained',
+    variant = 'solid',
     startDecorator,
     endDecorator,
     ...other
@@ -203,7 +203,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     disabled,
     ...actionProps,
-    component: actionComponent,
     ref: handleActionRef,
   });
 
@@ -348,7 +347,7 @@ Chip.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

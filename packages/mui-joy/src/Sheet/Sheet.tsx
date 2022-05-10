@@ -59,7 +59,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     className,
     color = 'neutral',
     component = 'div',
-    variant = 'text',
+    variant = 'plain',
     elevation,
     ...other
   } = props;
@@ -129,7 +129,7 @@ Sheet.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

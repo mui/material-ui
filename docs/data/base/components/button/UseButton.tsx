@@ -1,8 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Stack from '@mui/material/Stack';
 import { ButtonUnstyledProps, useButton } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
+import Stack from '@mui/material/Stack';
 
 const blue = {
   500: '#007FFF',
@@ -49,7 +49,6 @@ const CustomButton = React.forwardRef(function CustomButton(
   const { active, disabled, focusVisible, getRootProps } = useButton({
     ...props,
     ref,
-    component: CustomButtonRoot,
   });
 
   const classes = {

@@ -106,6 +106,30 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
     });
   });
 
+  it('should support import for side effect', () => {
+    const source = `
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import '@mui/material/Grid';
+import '@mui/material/styles';
+import '@mui/lab/AdapterDateFns';
+import '@mui/lab';
+import 'exceljs';
+`;
+
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      'prop-types': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
+      'date-fns': 'latest',
+      exceljs: 'latest',
+    });
+  });
+
   it('can collect required @types packages', () => {
     expect(getDependencies(s1, { codeLanguage: 'TS' })).to.deep.equal({
       react: 'latest',

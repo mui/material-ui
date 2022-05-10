@@ -122,10 +122,7 @@ const MenuItem = React.forwardRef(function MenuItem(
 ) {
   const { children, ...other } = props;
 
-  const { getRootProps, itemState } = useMenuItem({
-    component: 'li',
-    ref,
-  });
+  const { getRootProps, itemState } = useMenuItem({ ref });
 
   const classes = {
     'menu-item': true,

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { create } from 'jss';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -162,6 +163,8 @@ const jss = create({
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandboxed(props) {
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
   const Sandbox = iframe ? DemoFrame : React.Fragment;
   const sandboxProps = iframe ? { name, ...other } : {};
@@ -170,14 +173,21 @@ function DemoSandboxed(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      <StylesProvider jss={jss}>
-        <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
-          <Sandbox {...sandboxProps}>
-            {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-            <Component />
-          </Sandbox>
-        </ThemeProvider>
-      </StylesProvider>
+      {asPathWithoutLang.startsWith('/joy-ui') ? (
+        <Sandbox {...sandboxProps}>
+          {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+          <Component />
+        </Sandbox>
+      ) : (
+        <StylesProvider jss={jss}>
+          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
+            <Sandbox {...sandboxProps}>
+              {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+              <Component />
+            </Sandbox>
+          </ThemeProvider>
+        </StylesProvider>
+      )}
     </DemoErrorBoundary>
   );
 }

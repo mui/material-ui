@@ -102,10 +102,16 @@ export interface Channels {
   mainChannel: string;
   lightChannel: string;
   darkChannel: string;
+  contrastTextChannel: string;
 }
 
 export interface PaletteWithChannels {
-  common: CommonColors;
+  common: CommonColors & {
+    background: string;
+    onBackground: string;
+    backgroundChannel: string;
+    onBackgroundChannel: string;
+  };
   mode: PaletteMode;
   contrastThreshold: number;
   tonalOffset: PaletteTonalOffset;
@@ -115,9 +121,10 @@ export interface PaletteWithChannels {
   warning: PaletteColor & Channels;
   info: PaletteColor & Channels;
   success: PaletteColor & Channels;
-  grey: Color;
+  grey: Color & { darkChannel: string };
   text: TypeText & { primaryChannel: string; secondaryChannel: string; disabledChannel: string };
   divider: TypeDivider;
+  dividerChannel: TypeDivider;
   action: TypeAction & { disabledChannel: string };
   background: TypeBackground;
   getContrastText: (background: string) => string;
