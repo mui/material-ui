@@ -78,6 +78,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/71297412',
     github: 'samuelsycamore',
   },
+  josefreitas: {
+    name: 'José Freitas',
+    avatar: 'https://avatars.githubusercontent.com/u/550141',
+    github: 'joserodolfofreitas',
+  },
 };
 
 const classes = {
