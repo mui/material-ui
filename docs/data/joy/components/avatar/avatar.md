@@ -58,6 +58,14 @@ Here is a common example of the you will find in most application:
 
 {{"demo": "MaxAndTotalAvatars.js"}}
 
+### Ellipsis action
+
+The `Avatar` exposes meaningful CSS variables to communicate with the `AvatarGroup`. You can apply those variables to other components to mimic the avatar appearance inside the group. This customization technique makes your interface resilient to changes.
+
+Here is an example of using `IconButton` component to create an ellipsis action:
+
+{{"demo": "EllipsisAvatarAction.js"}}
+
 ### Overlapping order
 
 By default, the first avatar in the group stays behind the second and so on. You can reverse the overlapping order by reversing avatars position and providing CSS `flex-direction: row-reverse` to the `AvatarGroup`.
