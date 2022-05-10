@@ -25,6 +25,7 @@ import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import Frame from 'docs/src/components/action/Frame';
 import IconImage from 'docs/src/components/icon/IconImage';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
+import Tooltip from '@mui/material/Tooltip';
 
 const DEMOS = ['Data grid', 'Date range picker', 'Tree view', 'Sparkline', 'Charts'];
 const WIP = DEMOS.slice(2);
@@ -106,7 +107,11 @@ export default function XComponents() {
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
-                {WIP.includes(name) && <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />}
+                {WIP.includes(name) && (
+                  <Tooltip disableFocusListener disableTouchListener title="Work in progress">
+                    <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />
+                  </Tooltip>
+                )}
               </Highlighter>
             ))}
             <More href={ROUTES.roadmap} />
