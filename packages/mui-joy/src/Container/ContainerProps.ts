@@ -7,10 +7,6 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ContainerClasses>;
-    /**
      * If `true`, the left and right padding is removed.
      * @default false
      */

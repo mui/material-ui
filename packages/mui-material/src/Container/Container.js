@@ -1,6 +1,6 @@
 /* eslint-disable material-ui/mui-name-matches-component-name */
-import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
+import { createContainer } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
