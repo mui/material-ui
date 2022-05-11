@@ -36,22 +36,6 @@ const InputRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => [
   {
-    ...(ownerState.size === 'sm' && {
-      '--Input-gutter': '0.5rem',
-      '--Input-minHeight': '32px',
-      '--Icon-fontSize': '1.25rem',
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Input-gutter': '0.75rem', // gutter is the padding-x
-      '--Input-minHeight': '40px',
-      '--Icon-fontSize': '1.5rem',
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Input-gutter': '1rem',
-      '--Input-minHeight': '48px',
-      '--Input-gap': '0.75rem',
-      '--Icon-fontSize': '1.75rem',
-    }),
     '--Input-radius': theme.vars.radius.sm, // radius is used by
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
@@ -59,8 +43,23 @@ const InputRoot = styled('div', {
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
       theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+    ...(ownerState.size === 'sm' && {
+      '--Input-gutter': '0.5rem',
+      '--Icon-fontSize': '1.25rem',
+      minHeight: '32px',
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Input-gutter': '0.75rem', // gutter is the padding-x
+      '--Icon-fontSize': '1.5rem',
+      minHeight: '40px',
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Input-gutter': '1rem',
+      '--Input-gap': '0.75rem',
+      '--Icon-fontSize': '1.75rem',
+      minHeight: '48px',
+    }),
     boxSizing: 'border-box',
-    minHeight: `var(--Input-minHeight)`,
     minWidth: 0, // forces the Input to stay inside a container by default
     ...(ownerState.fullWidth && {
       width: '100%',

@@ -209,7 +209,12 @@ export default function XDataGrid() {
           >
             <Box sx={{ position: 'relative' }}>
               <Box sx={{ position: 'relative', zIndex: 1 }}>
-                <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+                <HighlightedCode
+                  copyButtonHidden
+                  component={MarkdownElement}
+                  code={code}
+                  language="jsx"
+                />
               </Box>
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
               <StylingInfo

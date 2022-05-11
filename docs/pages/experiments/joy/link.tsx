@@ -165,7 +165,7 @@ export default function JoyButton() {
             </li>
           </ul>
           <Box sx={{ my: 2 }}>
-            <Link startDecorator={<Loader />} disabled sx={{ my: 2 }}>
+            <Link startDecorator={<Loader />} disabled my={2}>
               Processing...
             </Link>
             <Link
@@ -185,6 +185,7 @@ export default function JoyButton() {
                   HIRING!
                 </Box>
               }
+              sx={{ ml: 1, color: 'primary.500' }}
             >
               Careers
             </Link>

@@ -1,5 +1,171 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.7.0
+
+<!-- generated comparing v5.6.4..master -->
+
+_May 10, 2022_
+
+A big thanks to the 27 contributors who made this release possible. Here are some highlights ✨:
+
+🛠 This release is all about supporting CSS variables in many Material UI components.
+Kudos to all contributors!
+
+### `@mui/material@5.7.0`
+
+- [StepLabel, StepIcon] Add support for CSS variables (#32609) @vicasas
+- [Table, TableRow] Add support for CSS variables (#32614) @vicasas
+- [AppBar] Add a logo component for the responsive app bar demo (#32374) @ameetmadan
+- [Autocomplete] Fix clearing single array values (#32626) @mikepricedev
+- [Autocomplete] Fix keep listbox open on left/right keys when inputValue is not empty (#31407) @alisasanib
+- [Autocomplete] Add support for CSS variables (#32598) @ZeeshanTamboli
+- [Autocomplete] Render `endAdornment` only when necessary (#32386) @g1eny0ung
+- [ButtonGroup] Add support for CSS variables (#32498) @vicasas
+- [CardActionArea] Add support for CSS variables (#32554) @vicasas
+- [ClickAwayListener] Allow pointer up/down events to event handler (#32264) @vladjerca
+- [CssBaseline] Add support for CSS vars (#32618) @haneenmahd
+- [Dialog] Add support for CSS variables (#32555) @vicasas
+- [Divider] Add support for CSS variables (#32519) @vicasas
+- [Drawer] Add support for CSS variables (#32565) @nghiamvt
+- [Fab] Add support for CSS variables (#32564) @alisasanib
+- [FormControlLabel] Add support for CSS variables (#32588) @elliefoote
+- [FormHelperText] Add support for CSS variables (#32596) @ZeeshanTamboli
+- [FormLabel] Add support for CSS variables (#32602) @ZeeshanTamboli
+- [Icon] Add support for CSS variables (#32595) @Jamaalwbrown
+- [IconButton] Add support for CSS variables (#32590) @Ariyapong
+- [ImageListItemBar] Add support for CSS variables (#32578) @vicasas
+- [Input] Support CSS variables (#32128) @ivan-ngchakming
+- [InputAdornment] Add support CSS variables (#32607) @vicasas
+- [Link] Fix style overrides color prop (#32653) @siriwatknp
+- [ListItem] Add support for CSS variables (#32580) @dan-mba
+- [ListItemButton] Add support for CSS variables (#32582) @dan-mba
+- [ListItemIcon] Add support for CSS variables (#32583) @dan-mba
+- [ListSubheader] Add support for CSS variables (#32584) @dan-mba
+- [MenuItem] Add support for CSS variables (#32561) @nghiamvt
+- [MobileStepper] Add support for CSS vars (#32606) @haneenmahd
+- [Modal] Add support for CSS variables (#32605) @haneenmahd
+- [PaginationItem] Add support for CSS vars (#32612) @haneenmahd
+- [Rating] Add support for CSS variables (#32556) @vicasas
+- [Snackbar] Add support for CSS variables (#32603) @gin1314
+- [SpeedDial] Add support for CSS variables (#32613) @alisasanib
+- [Stepper] Export useStepperContext (#31398) @pzi
+- [SvgIcon] Add support for CSS variables (#32610) @vicasas
+- [TablePagination] Add support for CSS variables (#32615) @haneenmahd
+- [TableSortLabel]: Add support for CSS vars (#32616) @haneenmahd
+- [Tabs] Add support for CSS variables (#32547) @ZeeshanTamboli
+- [ToggleButton] Add support for CSS variables (#32600) @Ariyapong
+- [ToggleButtonGroup] Add support for CSS variables (#32617) @haneenmahd
+- [Tooltip] Add support for CSS variables (#32594) @gin1314
+
+### `@mui/system@5.7.0`
+
+- [System] Support CSS variables for iframes & custom nodes (#32496) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.80`
+
+- [ButtonUnstyled] Fix keyboard navigation on customized elements (#32204) @michaldudak
+
+### `@mui/private-classnames@5.7.0`
+
+- [classnames] Add new package for classnames utils (#32502) @mnajdova
+
+### Docs
+
+- [docs] Correct links to prevent 301 redirects (#32692) @michaldudak
+- [docs] Move, split, and revise "Unstyled components" page (#32562) @samuelsycamore
+- [docs] Nest `ListItemButton` in `ListItem` in the Drawer examples (#31987) @stefanprobst
+- [docs] Apply callouts in the Material UI docs (#32567) @danilo-leal
+- [docs] Show product identifier on new X pages (#32657) @cherniavskii
+- [docs] Fix copy button childNode not found (#32652) @siriwatknp
+- [docs] Split install commands in isolated code blocks (#32566) @danilo-leal
+- [docs] Base Switch style revisions and final review (#32376) @samuelsycamore
+- [docs] Adds Badge link to Base doc nav (#32619) @samuelsycamore
+- [docs] Base Installation style revisions and final review (#32483) @samuelsycamore
+- [docs] Fix broken redirection (#32581) @oliviertassinari
+- [docs] Allows to use `import '<library name>'` in demonstrations (#32492) @alexfauquette
+- [docs] Hide copy button on search icon dialog (#32577) @siriwatknp
+- [docs] Use full API link for ThemeProvider (#32549) @jcvidiri
+- [Joy] Add principles page (#32648) @siriwatknp
+- [Joy] Add Button page (#32576) @siriwatknp
+- [Joy] Add "Quick start" and "Tutorial" pages (#32383) @siriwatknp
+- [website] Add store to the footer and "hiring" chip adjustment (#32650) @danilo-leal
+- [website] Optimize conversion to store (#32646) @oliviertassinari
+- [website] Remove copy button on marketing pages (#32649) @siriwatknp
+- [website] Add missing space in copy label (#32638) @flaviendelangle
+
+### Core
+
+- [core] Security updates (#32636) @michaldudak
+- [core] Fix `docs:dev` not working after upgrading `next` to 12.1.0 (#32552) @cherniavskii
+- [core] Update minimist to fix security vulnerability (#32575) @michaldudak
+
+All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @ameetmadan, @Ariyapong, @cherniavskii, @dan-mba, @danilo-leal, @elliefoote, @flaviendelangle, @g1eny0ung, @gin1314, @haneenmahd, @ivan-ngchakming, @Jamaalwbrown, @jcvidiri, @michaldudak, @mikepricedev, @mnajdova, @nghiamvt, @oliviertassinari, @pzi, @samuelsycamore, @siriwatknp, @stefanprobst, @vicasas, @vladjerca, @ZeeshanTamboli
+
+## 5.6.4
+
+<!-- generated comparing v5.6.3..master -->
+
+_May 2, 2022_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 💅 5 Material UI components were updated to support CSS variables by @ZeeshanTamboli & @vicasas
+- And more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.6.4`
+
+- &#8203;<!-- 37 -->[Accordion] Add support for CSS variables (#32542) @ZeeshanTamboli
+- &#8203;<!-- 36 -->[AvatarGroup] Add support for CSS variables (#32507) @vicasas
+- &#8203;<!-- 35 -->[Badge] Add support for CSS variables (#32516) @vicasas
+- &#8203;<!-- 34 -->[BottomNavigation] Add support for CSS variables (#32517) @vicasas
+- &#8203;<!-- 33 -->[CircularProgress] Add support for CSS variables (#32543) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[FilledInput] Fix type error from undefined `color` (#32258) @hbjORbj
+- &#8203;<!-- 02 -->[l10n] Fix typo in csCZ translation of Pagination component (#32509) @Martin005
+- &#8203;<!-- 01 -->[Tabs] Fix `TabIndicatorProps` prop missing `sx` prop (#32503) @b-novikov-ipersonality
+
+### `@mui/codemod@5.6.4`
+
+- &#8203;<!-- 32 -->[codemod] Leave numeric arguments to breakpoints functions unchanged (#32426) @ryancogswell
+- &#8203;<!-- 31 -->[codemod] Allow for line breaks within theme.spacing parentheses (#32432) @ryancogswell
+
+### `@mui/joy@5.0.0-alpha.26`
+
+- &#8203;<!-- 06 -->[Joy] Miscellaneous fixes (#32541) @siriwatknp
+- &#8203;<!-- 05 -->[Joy] Add `extendSxProp` to Link (#32505) @siriwatknp
+- &#8203;<!-- 04 -->[Joy] Rename variants (#32489) @siriwatknp
+- &#8203;<!-- 03 -->[Joy] Add `extendTheme` (#32450) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 30 -->[docs] SEO fixes (#32515) @oliviertassinari
+- &#8203;<!-- 29 -->[docs] Replace `Overriding nested component styles` anchor link with text (#32487) @ZeeshanTamboli
+- &#8203;<!-- 28 -->[docs] Update the list of external domains (#32514) @oliviertassinari
+- &#8203;<!-- 27 -->[docs] Update Material UI code snippets for React 18 (#32361) @samuelsycamore
+- &#8203;<!-- 26 -->[docs] Base TextareaAutosize style revisions and final review (#32481) @samuelsycamore
+- &#8203;<!-- 25 -->[docs] Base ClickAwayListener style revisions and final review (#32156) @samuelsycamore
+- &#8203;<!-- 24 -->[docs] Base Button style revisions and final review (#32380) @samuelsycamore
+- &#8203;<!-- 23 -->[docs] Base NoSsr style revisions and final review (#32254) @samuelsycamore
+- &#8203;<!-- 22 -->[docs] Correctly capitalize Ctrl @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Fix styling in `Basic Popper` demo on the MUI Base docs (#32488) @ZeeshanTamboli
+- &#8203;<!-- 20 -->[docs] Add "Overview" page to Base docs (#32310) @samuelsycamore
+- &#8203;<!-- 19 -->[docs] Add copy button to code block (#32390) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Base Tabs style revisions and final review (#32423) @samuelsycamore
+- &#8203;<!-- 17 -->[docs] Base Popper style revisions and final review (#32412) @samuelsycamore
+- &#8203;<!-- 16 -->[docs] Improve sidenav for MUI X (#32435) @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Don't redirect on deploy preview (#32399) @m4theushw
+- &#8203;<!-- 14 -->[docs] A few SEO fixes (#32431) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Update links to the new Group & Pivot pages (#32410) @flaviendelangle
+- &#8203;<!-- 12 -->[docs] Support callouts (#32402) @siriwatknp
+- &#8203;<!-- 11 -->[docs] Fix import path in the Snackbar article #32462 @mongolyy
+- &#8203;<!-- 10 -->[docs] Fix grammar mistake in shadows.md (#32454) @HexM7
+- &#8203;<!-- 09 -->[docs] Improve unstyled button docs (#32429) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 08 -->[experiment] Add template for testing Material UI components with CSS variables (#32500) @siriwatknp
+
+All contributors of this release in alphabetical order: @b-novikov-ipersonality, @flaviendelangle, @hbjORbj, @HexM7, @m4theushw, @Martin005, @mongolyy, @oliviertassinari, @ryancogswell, @samuelsycamore, @siriwatknp, @vicasas, @ZeeshanTamboli
+
 ## 5.6.3
 
 <!-- generated comparing v5.6.2..master -->

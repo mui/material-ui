@@ -45,7 +45,6 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
   const Root = component ?? components.Root ?? 'li';
 
   const { getRootProps, itemState, focusVisible } = useMenuItem({
-    component: Root,
     disabled,
     ref,
     label,
