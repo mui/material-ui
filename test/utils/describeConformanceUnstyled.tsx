@@ -249,6 +249,10 @@ function testComponentsPropsProp(
   });
 }
 
+interface TestOwnerState {
+  'data-testid'?: string;
+}
+
 function testComponentsPropsCallbacks(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
@@ -267,15 +271,19 @@ function testComponentsPropsCallbacks(
     it(`sets custom properties on ${capitalize(
       slotName,
     )} slot's element with a callback function`, () => {
+      const testId = randomStringValue();
+
       const componentsProps = {
-        [slotName]: () => ({
-          'data-testid': 'custom',
+        [slotName]: (ownerState: TestOwnerState) => ({
+          'data-testid': `${ownerState['data-testid']}-${slotName}`,
         }),
       };
 
-      const { getByTestId } = render(React.cloneElement(element, { componentsProps }));
+      const { getByTestId } = render(
+        React.cloneElement(element, { componentsProps, 'data-testid': testId }),
+      );
 
-      expect(getByTestId('custom')).to.have.class(slotOptions.expectedClassName);
+      expect(getByTestId(`${testId}-${slotName}`)).to.have.class(slotOptions.expectedClassName);
     });
   });
 }

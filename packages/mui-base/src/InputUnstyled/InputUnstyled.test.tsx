@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { act, createMount, createRenderer, describeConformanceUnstyled, screen } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled, screen } from 'test/utils';
 import { expect } from 'chai';
-import InputUnstyled, {
-  inputUnstyledClasses,
-  InputUnstyledOwnerState,
-} from '@mui/base/InputUnstyled';
+import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 
 describe('<InputUnstyled />', () => {
   const mount = createMount();
@@ -32,27 +29,5 @@ describe('<InputUnstyled />', () => {
     render(<InputUnstyled multiline />);
 
     expect(screen.getByRole('textbox')).to.have.tagName('textarea');
-  });
-
-  describe('componentsProps', () => {
-    it('allows to pass in a callback function', () => {
-      const componentProps = (ownerState: InputUnstyledOwnerState) => ({
-        className: ownerState.focused ? 'test-focused' : '',
-      });
-
-      const { getByRole, container } = render(
-        <InputUnstyled componentsProps={{ root: componentProps, input: componentProps }} />,
-      );
-
-      const input = getByRole('textbox');
-      const wrapper = container.firstChild as HTMLElement;
-
-      act(() => {
-        input.focus();
-      });
-
-      expect(input).to.have.class('test-focused');
-      expect(wrapper).to.have.class('test-focused');
-    });
   });
 });
