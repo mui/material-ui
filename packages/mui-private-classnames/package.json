@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-classnames",
-  "version": "5.6.4",
+  "version": "5.7.0",
   "private": false,
   "author": "MUI Team",
   "description": "Private - React classnames utils used internally in the other MUI component libraries packages.",
