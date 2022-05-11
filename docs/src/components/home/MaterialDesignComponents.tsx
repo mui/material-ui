@@ -261,7 +261,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
           },
           contained: {
             color: theme.palette.primaryDark[50],
-            bgColor:
+            backgroundColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[400]
                 : theme.palette.primaryDark[600],

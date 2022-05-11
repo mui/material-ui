@@ -51,6 +51,31 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
          * @default 'data-mui-color-scheme'
          */
         attribute?: string;
+        /**
+         * The document used to perform `disableTransitionOnChange` feature
+         * @default document
+         */
+        documentNode?: Document | null;
+        /**
+         * The node used to attach the color-scheme attribute
+         * @default document
+         */
+        colorSchemeNode?: Document | HTMLElement | null;
+        /**
+         * The CSS selector for attaching the generated custom properties
+         * @default ':root'
+         */
+        colorSchemeSelector?: string;
+        /**
+         * localStorage key used to store `colorScheme`
+         * @default 'mui-color-scheme'
+         */
+        colorSchemeStorageKey?: string;
+        /**
+         * The window that attaches the 'storage' event listener
+         * @default window
+         */
+        storageWindow?: Window | null;
       }
     >,
   ) => React.ReactElement;

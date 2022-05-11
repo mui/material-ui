@@ -68,7 +68,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
     },
     ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
+        borderBottom: `2px solid ${theme.palette[ownerState.color || 'primary']?.main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -83,7 +83,9 @@ const FilledInputRoot = styled(InputBaseRoot, {
         pointerEvents: 'none', // Transparent to the hover style.
       },
       [`&.${filledInputClasses.focused}:after`]: {
-        transform: 'scaleX(1)',
+        // translateX(0) is a workaround for Safari transform scale bug
+        // See https://github.com/mui/material-ui/issues/31766
+        transform: 'scaleX(1) translateX(0)',
       },
       [`&.${filledInputClasses.error}:after`]: {
         borderBottomColor: theme.palette.error.main,

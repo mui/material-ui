@@ -1,13 +1,13 @@
 import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import useFormControl from '../FormControlUnstyled/useFormControl';
+import { useFormControlUnstyledContext } from '../FormControlUnstyled';
 import extractEventHandlers from '../utils/extractEventHandlers';
 import { UseInputProps } from './InputUnstyledProps';
 
 export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTMLInputElement>) {
   const {
-    defaultValue,
+    defaultValue: defaultValueProp,
     disabled: disabledProp = false,
     error: errorProp = false,
     onBlur,
@@ -17,23 +17,42 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     value: valueProp,
   } = props;
 
-  const formControlContext = useFormControl();
+  const formControlContext = useFormControlUnstyledContext();
 
-  let value: unknown;
-  let required: boolean;
+  let defaultValue: unknown;
   let disabled: boolean;
   let error: boolean;
+  let required: boolean;
+  let value: unknown;
 
   if (formControlContext) {
-    value = formControlContext.value;
+    defaultValue = undefined;
     disabled = formControlContext.disabled ?? false;
-    required = formControlContext.required ?? false;
     error = formControlContext.error ?? false;
+    required = formControlContext.required ?? false;
+    value = formControlContext.value;
+
+    if (process.env.NODE_ENV !== 'production') {
+      const definedLocalProps = (
+        ['defaultValue', 'disabled', 'error', 'required', 'value'] as const
+      ).filter((prop) => props[prop] !== undefined);
+
+      if (definedLocalProps.length > 0) {
+        console.warn(
+          [
+            'MUI: You have set props on an input that is inside a FormControlUnstyled.',
+            'Set these props on a FormControlUnstyled instead. Otherwise they will be ignored.',
+            `Ignored props: ${definedLocalProps.join(', ')}`,
+          ].join('\n'),
+        );
+      }
+    }
   } else {
-    value = valueProp;
+    defaultValue = defaultValueProp;
     disabled = disabledProp;
-    required = requiredProp;
     error = errorProp;
+    required = requiredProp;
+    value = valueProp;
   }
 
   const { current: isControlled } = React.useRef(value != null);

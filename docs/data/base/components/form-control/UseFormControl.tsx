@@ -1,10 +1,10 @@
 import * as React from 'react';
 import FormControlUnstyled, {
-  useFormControlUnstyled,
+  useFormControlUnstyledContext,
 } from '@mui/base/FormControlUnstyled';
 
 function CustomInput() {
-  const formControlContext = useFormControlUnstyled();
+  const formControlContext = useFormControlUnstyledContext();
 
   if (formControlContext === undefined) {
     return null;
@@ -26,7 +26,7 @@ function CustomInput() {
 }
 
 function ControlStateDisplay() {
-  const formControlContext = useFormControlUnstyled();
+  const formControlContext = useFormControlUnstyledContext();
   if (formControlContext === undefined) {
     return null;
   }

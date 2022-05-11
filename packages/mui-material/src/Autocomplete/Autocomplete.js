@@ -233,7 +233,7 @@ const AutocompletePopper = styled(Popper, {
     ];
   },
 })(({ theme, ownerState }) => ({
-  zIndex: theme.zIndex.modal,
+  zIndex: (theme.vars || theme).zIndex.modal,
   ...(ownerState.disablePortal && {
     position: 'absolute',
   }),
@@ -253,7 +253,7 @@ const AutocompleteLoading = styled('div', {
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
 })(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
 }));
 
@@ -262,7 +262,7 @@ const AutocompleteNoOptions = styled('div', {
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
 })(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
 }));
 
@@ -294,36 +294,42 @@ const AutocompleteListbox = styled('div', {
       minHeight: 'auto',
     },
     [`&.${autocompleteClasses.focused}`]: {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
     '&[aria-disabled="true"]': {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
     [`&.${autocompleteClasses.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus,
+      backgroundColor: (theme.vars || theme).palette.action.focus,
     },
     '&[aria-selected="true"]': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${autocompleteClasses.focused}`]: {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: theme.palette.action.selected,
+          backgroundColor: (theme.vars || theme).palette.action.selected,
         },
       },
       [`&.${autocompleteClasses.focusVisible}`]: {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+            ),
       },
     },
   },
@@ -334,7 +340,7 @@ const AutocompleteGroupLabel = styled(ListSubheader, {
   slot: 'GroupLabel',
   overridesResolver: (props, styles) => styles.groupLabel,
 })(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
   top: -8,
 }));
 
@@ -538,38 +544,40 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
-            endAdornment: (
-              <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
-                {hasClearIcon ? (
-                  <AutocompleteClearIndicator
-                    {...getClearProps()}
-                    aria-label={clearText}
-                    title={clearText}
-                    ownerState={ownerState}
-                    {...componentsProps.clearIndicator}
-                    className={clsx(
-                      classes.clearIndicator,
-                      componentsProps.clearIndicator?.className,
-                    )}
-                  >
-                    {clearIcon}
-                  </AutocompleteClearIndicator>
-                ) : null}
+            ...((hasClearIcon || hasPopupIcon) && {
+              endAdornment: (
+                <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
+                  {hasClearIcon ? (
+                    <AutocompleteClearIndicator
+                      {...getClearProps()}
+                      aria-label={clearText}
+                      title={clearText}
+                      ownerState={ownerState}
+                      {...componentsProps.clearIndicator}
+                      className={clsx(
+                        classes.clearIndicator,
+                        componentsProps.clearIndicator?.className,
+                      )}
+                    >
+                      {clearIcon}
+                    </AutocompleteClearIndicator>
+                  ) : null}
 
-                {hasPopupIcon ? (
-                  <AutocompletePopupIndicator
-                    {...getPopupIndicatorProps()}
-                    disabled={disabled}
-                    aria-label={popupOpen ? closeText : openText}
-                    title={popupOpen ? closeText : openText}
-                    className={clsx(classes.popupIndicator)}
-                    ownerState={ownerState}
-                  >
-                    {popupIcon}
-                  </AutocompletePopupIndicator>
-                ) : null}
-              </AutocompleteEndAdornment>
-            ),
+                  {hasPopupIcon ? (
+                    <AutocompletePopupIndicator
+                      {...getPopupIndicatorProps()}
+                      disabled={disabled}
+                      aria-label={popupOpen ? closeText : openText}
+                      title={popupOpen ? closeText : openText}
+                      className={clsx(classes.popupIndicator)}
+                      ownerState={ownerState}
+                    >
+                      {popupIcon}
+                    </AutocompletePopupIndicator>
+                  ) : null}
+                </AutocompleteEndAdornment>
+              ),
+            }),
           },
           inputProps: {
             className: clsx(classes.input),
@@ -822,6 +830,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
+   *
+   * If used in free solo mode, it must accept both the type of the options and a string.
    *
    * @param {T} option
    * @returns {string}

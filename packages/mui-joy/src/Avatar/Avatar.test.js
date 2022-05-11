@@ -19,18 +19,18 @@ describe('<Avatar />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
-    it('light by default', () => {
+    it('soft by default', () => {
       const { getByTestId } = render(<Avatar data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantLight);
+      expect(getByTestId('root')).to.have.class(classes.variantSoft);
     });
 
-    ['outlined', 'light', 'contained'].forEach((variant) => {
+    ['outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" variant={variant} />);
 

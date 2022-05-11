@@ -156,6 +156,7 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/styles': './packages/mui-styles/src',
                         '@mui/system': './packages/mui-system/src',
                         '@mui/private-theming': './packages/mui-private-theming/src',
+                        '@mui/private-classnames': './packages/mui-private-classnames/src',
                         '@mui/utils': './packages/mui-utils/src',
                         '@mui/base': './packages/mui-base/src',
                         '@mui/material-next': './packages/mui-material-next/src',
@@ -187,6 +188,8 @@ module.exports = function setKarmaConfig(config) {
           path: false,
           // needed by enzyme > cheerio
           stream: false,
+          // required by enzyme > cheerio > parse5
+          util: require.resolve('util/'),
         },
       },
       // TODO: 'browserslist:modern'

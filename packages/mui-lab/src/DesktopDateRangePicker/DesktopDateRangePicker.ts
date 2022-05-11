@@ -13,7 +13,7 @@ const warn = () => {
         "You should use `import { DesktopDateRangePicker } from '@mui/x-date-pickers-pro'`",
         "or `import { DesktopDateRangePicker } from '@mui/x-date-pickers-pro/DesktopDateRangePicker'`",
         '',
-        'More information about this migration on our [blog](https://mui.com/blog/lab-pickers-to-mui-x/)',
+        'More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.',
       ].join('\n'),
     );
 

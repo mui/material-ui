@@ -46,7 +46,7 @@ const Loader = () => (
         height: '1.25em',
         borderRadius: '50%',
         border: '4px solid',
-        borderColor: (theme) => `${theme.vars.palette.primary.lightColor} transparent transparent`,
+        borderColor: (theme) => `${theme.vars.palette.primary.softColor} transparent transparent`,
         animation: `${circulate} 1s ease infinite`,
         boxSizing: 'inherit',
       }}
@@ -82,7 +82,7 @@ const ColorSchemePicker = () => {
 
 export default function JoyButton() {
   const buttonProps = {
-    variant: ['text', 'outlined', 'light', 'contained'],
+    variant: ['plain', 'outlined', 'soft', 'solid'],
     color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
     level: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'],
     underline: ['hover', 'always', 'none'],
@@ -165,7 +165,7 @@ export default function JoyButton() {
             </li>
           </ul>
           <Box sx={{ my: 2 }}>
-            <Link startDecorator={<Loader />} disabled sx={{ my: 2 }}>
+            <Link startDecorator={<Loader />} disabled my={2}>
               Processing...
             </Link>
             <Link
@@ -185,6 +185,7 @@ export default function JoyButton() {
                   HIRING!
                 </Box>
               }
+              sx={{ ml: 1, color: 'primary.500' }}
             >
               Careers
             </Link>
