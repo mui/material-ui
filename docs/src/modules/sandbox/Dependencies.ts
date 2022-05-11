@@ -10,9 +10,18 @@ export default function SandboxDependencies(
 ) {
   const { commitRef } = options || {};
 
+  /**
+   * WARNING: Always uses `latest` typings.
+   *
+   * Adds dependencies to @types packages only for packages that are not listed
+   * in packagesWithBundledTypes
+   *
+   * @param deps - list of dependency as `name => version`
+   */
   function addTypeDeps(deps: Record<string, string>): void {
+    const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled'];
     const packagesWithDTPackage = Object.keys(deps)
-      .filter((name) => ['date-fns', '@emotion/react', '@emotion/styled'].indexOf(name) === -1)
+      .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
       // All the MUI packages come with bundled types
       .filter((name) => name.indexOf('@mui/') !== 0);
 
@@ -28,6 +37,10 @@ export default function SandboxDependencies(
     });
   }
 
+  /**
+   * @param packageName - The name of a package living inside this repository.
+   * @return string - A valid version for a dependency entry in a package.json
+   */
   function getMuiPackageVersion(packageName: string): string {
     if (
       commitRef === undefined ||
@@ -111,6 +124,10 @@ export default function SandboxDependencies(
       // e.g date-fns
       const dateAdapterMatch = fullName.match(/^@mui\/lab\/(Adapter.*)/);
       if (dateAdapterMatch !== null) {
+        /**
+         * Mapping from the date adapter sub-packages to the npm packages they require.
+         * @example `@mui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
+         */
         const packageName = {
           AdapterDateFns: 'date-fns',
           AdapterDayjs: 'dayjs',
