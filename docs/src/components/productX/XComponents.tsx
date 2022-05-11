@@ -108,7 +108,7 @@ export default function XComponents() {
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
                 {WIP.includes(name) && (
-                  <Tooltip disableFocusListener disableTouchListener title="Work in progress">
+                  <Tooltip title="Work in progress" describeChild>
                     <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />
                   </Tooltip>
                 )}
