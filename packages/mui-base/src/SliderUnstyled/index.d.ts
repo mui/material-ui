@@ -7,6 +7,8 @@ export * from './SliderValueLabelUnstyled';
 export { default as useSlider } from './useSlider';
 export * from './useSlider';
 
+export * from './useSlider.types';
+
 export { default as SliderUnstyledProps } from './SliderUnstyledProps';
 export * from './SliderUnstyledProps';
 
