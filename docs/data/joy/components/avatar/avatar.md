@@ -36,11 +36,11 @@ The avatar has three standard sizes: `sm`, `md` (default) and `lg`.
 
 ## Fallbacks
 
-If there is an error loading the avatar image, the component falls back to an alternative in the following order:
+If an error occurs while loading the avatar image, the component will fall back to alternatives in the following order:
 
-- the provided children
-- the first letter of the `alt` text
-- a generic avatar icon
+1. The provided children
+2. The first letter of the `alt` text
+3. A generic avatar icon
 
 {{"demo": "FallbackAvatars.js"}}
 
@@ -52,9 +52,10 @@ Use `AvatarGroup` component to group multiple avatars together.
 
 ### Max and total avatars
 
-The `AvatarGroup` does not provide built-in props to control the maximum and the total avatars. We believe that it will make the customization easier if you have full control of the logic.
+The `AvatarGroup` does not provide built-in props to control the maximum and the total avatars.
+This is because customization is broader if you have full control of the logic.
 
-Here is a common example of the you will find in most application:
+Here's a common example of what you'll find most applications out there:
 
 {{"demo": "MaxAndTotalAvatars.js"}}
 
@@ -74,7 +75,7 @@ By default, the first avatar in the group stays behind the second and so on. You
 
 ### Vertical
 
-If you need to render the avatar group in vertical axis, provides CSS `writing-mode: vertical-rl` to the `AvatarGroup` and rotate the extra element by -90 degree.
+If you need to render the avatar grouped vertically, add the CSS `writing-mode: vertical-rl` property to the `AvatarGroup` and rotate the extra element, if existent, by -90 degrees.
 
 :::info
 This approach preserves the overlapping offset between avatars whereas `flex-direction: column` does not.
