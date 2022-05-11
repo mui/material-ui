@@ -60,6 +60,13 @@ function MyAutocomplete<
   freeSolo
 />;
 
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={({ inputProps, ...restParams }) => (
+    <TextField value={inputProps.value} {...restParams} />
+  )}
+/>;
+
 interface Tag {
   color: string;
   label: string;
