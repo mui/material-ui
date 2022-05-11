@@ -18,7 +18,7 @@ const rule = {
     const { customHooks = [] } = options;
 
     function resolveUseThemePropsNameLiteral(node) {
-      if(!node.arguments[0].properties) {
+      if (!node.arguments[0].properties) {
         return null;
       }
       const nameProperty = node.arguments[0].properties.find(

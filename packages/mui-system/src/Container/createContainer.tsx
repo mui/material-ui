@@ -1,14 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { Interpolation, StyledComponent } from '@mui/styled-engine';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
 } from '@mui/private-classnames';
+import { Breakpoint } from '../createTheme';
+import { ContainerProps, ContainerTypeMap } from './Container';
 import useThemePropsSystem from '../useThemeProps';
 import systemStyled from '../styled';
 import createTheme from '../createTheme';
+import { Theme as DefaultTheme } from '../createTheme';
+
+interface StyleFnProps<Theme> extends ContainerProps {
+  theme: Theme;
+  ownerState: ContainerProps;
+}
 
 const defaultTheme = createTheme();
 
@@ -27,11 +37,11 @@ const defaultCreateStyledComponent = systemStyled('div', {
   },
 });
 
-const useThemePropsDefault = (inProps) =>
+const useThemePropsDefault = (inProps: ContainerProps) =>
   useThemePropsSystem({ props: inProps, name: 'MuiContainer', defaultTheme });
 
-const useUtilityClasses = (ownerState, componentName) => {
-  const getContainerUtilityClass = (slot) => {
+const useUtilityClasses = (ownerState: ContainerProps, componentName: string) => {
+  const getContainerUtilityClass = (slot: string) => {
     return generateUtilityClass(componentName, slot);
   };
   const { classes, fixed, disableGutters, maxWidth } = ownerState;
@@ -48,7 +58,17 @@ const useUtilityClasses = (ownerState, componentName) => {
   return composeClasses(slots, getContainerUtilityClass, classes);
 };
 
-export default function createContainer(options = {}) {
+type RequiredThemeStructure = Pick<DefaultTheme, 'breakpoints' | 'spacing'>;
+
+export default function createContainer<Theme extends RequiredThemeStructure = DefaultTheme>(
+  options: {
+    createStyledComponent?: (
+      ...styles: Array<Interpolation<StyleFnProps<Theme>>>
+    ) => StyledComponent<ContainerProps>;
+    useThemeProps?: (inProps: ContainerProps) => ContainerProps & { component?: React.ElementType };
+    componentName?: string;
+  } = {},
+) {
   const {
     // This will allow adding custom styled fn (for example for custom sx style function)
     createStyledComponent = defaultCreateStyledComponent,
@@ -57,26 +77,27 @@ export default function createContainer(options = {}) {
   } = options;
 
   const ContainerRoot = createStyledComponent(
-    ({ theme, ownerState }) => ({
-      width: '100%',
-      marginLeft: 'auto',
-      boxSizing: 'border-box',
-      marginRight: 'auto',
-      display: 'block', // Fix IE11 layout when used with main.
-      ...(!ownerState.disableGutters && {
-        paddingLeft: theme.spacing(2),
-        paddingRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-          paddingLeft: theme.spacing(3),
-          paddingRight: theme.spacing(3),
-        },
-      }),
-    }),
-    ({ theme, ownerState }) =>
+    ({ theme, ownerState }: StyleFnProps<Theme>) =>
+      ({
+        width: '100%',
+        marginLeft: 'auto',
+        boxSizing: 'border-box',
+        marginRight: 'auto',
+        display: 'block', // Fix IE11 layout when used with main.
+        ...(!ownerState.disableGutters && {
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
+          [theme.breakpoints.up('sm')]: {
+            paddingLeft: theme.spacing(3),
+            paddingRight: theme.spacing(3),
+          },
+        }),
+      } as Interpolation<StyleFnProps<Theme>>),
+    ({ theme, ownerState }: StyleFnProps<Theme>) =>
       ownerState.fixed &&
       Object.keys(theme.breakpoints.values).reduce((acc, breakpointValueKey) => {
         const breakpoint = breakpointValueKey;
-        const value = theme.breakpoints.values[breakpoint];
+        const value = theme.breakpoints.values[breakpoint as Breakpoint];
 
         if (value !== 0) {
           // @ts-ignore
@@ -86,7 +107,7 @@ export default function createContainer(options = {}) {
         }
         return acc;
       }, {}),
-    ({ theme, ownerState }) => ({
+    ({ theme, ownerState }: StyleFnProps<Theme>) => ({
       ...(ownerState.maxWidth === 'xs' && {
         [theme.breakpoints.up('xs')]: {
           maxWidth: Math.max(theme.breakpoints.values.xs, 444),
@@ -102,7 +123,7 @@ export default function createContainer(options = {}) {
   );
 
   const Container = React.forwardRef(function Container(inProps, ref) {
-    const props = useThemeProps(inProps);
+    const props: ContainerProps & { component?: React.ElementType } = useThemeProps(inProps);
     const {
       className,
       component = 'div',
@@ -124,6 +145,7 @@ export default function createContainer(options = {}) {
     const classes = useUtilityClasses(ownerState, componentName);
 
     return (
+      // @ts-ignore theme is injected by the styled util
       <ContainerRoot
         as={component}
         ownerState={ownerState}
@@ -132,7 +154,7 @@ export default function createContainer(options = {}) {
         {...other}
       />
     );
-  });
+  }) as OverridableComponent<ContainerTypeMap>;
 
   Container.propTypes /* remove-proptypes */ = {
     children: PropTypes.node,
