@@ -79,6 +79,10 @@ export default function Notifications() {
     setOpen((prevOpen) => !prevOpen);
     setTooltipOpen(false);
 
+    if (process.env.NODE_ENV !== 'development') {
+      // Skip last seen logic in dev to make editing noti easier.
+      return;
+    }
     if (messageList && messageList.length > 0) {
       const newLastSeen = messageList[0].id;
       setNotifications((notifications) => {
