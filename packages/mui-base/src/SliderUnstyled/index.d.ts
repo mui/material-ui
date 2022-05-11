@@ -9,8 +9,7 @@ export * from './useSlider';
 
 export * from './useSlider.types';
 
-export { default as SliderUnstyledProps } from './SliderUnstyledProps';
-export * from './SliderUnstyledProps';
+export * from './SliderUnstyled.types';
 
 export { default as sliderUnstyledClasses } from './sliderUnstyledClasses';
 export * from './sliderUnstyledClasses';

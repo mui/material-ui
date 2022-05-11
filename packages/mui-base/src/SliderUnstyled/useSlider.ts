@@ -9,17 +9,13 @@ import {
   visuallyHidden,
 } from '@mui/utils';
 import {
+  Mark,
   UseSliderHiddenInputProps,
   UseSliderParameters,
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
 import { EventHandlers } from '../utils';
-
-interface Mark {
-  value: number;
-  label?: React.ReactNode;
-}
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
