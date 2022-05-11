@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { Breakpoint, ContainerClasses } from '@mui/system';
+import { Breakpoint } from '@mui/system';
 import { SxProps } from '../styles/types';
 
 export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
