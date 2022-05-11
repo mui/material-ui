@@ -18,8 +18,7 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get all the MUI component libraries, MIT-licensed, open source/open core, and free forever.',
+    description: 'Get all the MUI component libraries, MIT-licensed, open source, and open core.',
   },
   pro: {
     color: 'blue',
