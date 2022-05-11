@@ -1,13 +1,9 @@
 # Showcase
 
-<p class="description">The following is a list of some of the public apps using MUI.</p>
+<p class="description">Check out these public apps using Material UI to get inspired for your next project.</p>
 
-Are you using MUI? [Share your product](https://github.com/mui/material-ui/issues/22426).
+Are you working with MUI's component libraries? [Show us what you're building](https://github.com/mui/material-ui/issues/22426)! We'd love to see it.
 
-The websites we include rank well in at least one of these dimensions:
-
-- Non Material Design customization
-- High traffic
-- Open source
+This is a curated list of some of the best apps we've seen that show off what's possible with MUI's products.
 
 {{"demo": "Showcase.js", "hideToolbar": true, "bg": "inline"}}

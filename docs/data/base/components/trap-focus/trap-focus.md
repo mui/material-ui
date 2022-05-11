@@ -10,7 +10,7 @@ packageName: '@mui/base'
 
 <p class="description">The <code>TrapFocus</code> component prevents the user's focus from escaping its children components.</p>
 
-`TrapFocus` is a utility component that is useful when implementing an overlay such as a [modal dialog](/base/react-modal), which should block all interactions outside of it while open.
+`TrapFocus` is a utility component that is useful when implementing an overlay such as a [modal dialog](/base/react-modal/), which should block all interactions outside of it while open.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
