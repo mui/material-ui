@@ -1,32 +1,23 @@
-/* eslint-disable material-ui/mui-name-matches-component-name */
 import PropTypes from 'prop-types';
-import { createContainer } from '@mui/system';
-import capitalize from '../utils/capitalize';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import createContainer from './createContainer';
 
-const Container = createContainer({
-  createStyledComponent: styled('div', {
-    name: 'MuiContainer',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { ownerState } = props;
-
-      return [
-        styles.root,
-        styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
-        ownerState.fixed && styles.fixed,
-        ownerState.disableGutters && styles.disableGutters,
-      ];
-    },
-  }),
-  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
-});
+/**
+ *
+ * Demos:
+ *
+ * - [Container (Material UI)](https://mui.com/material-ui/react-container/)
+ * - [Container (MUI System)](https://mui.com/system/react-container/)
+ *
+ * API:
+ *
+ * - [Container API](https://mui.com/system/api/container/)
+ */
+const Container = createContainer();
 
 Container.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -72,6 +63,6 @@ Container.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default Container;

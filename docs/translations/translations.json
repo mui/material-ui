@@ -178,6 +178,7 @@
     "/system/styled": "styled",
     "/system/react-": "Components",
     "/system/react-box": "Box",
+    "/system/react-container": "Container",
     "/system/styles": "Styles",
     "/system/styles/basics": "Basics",
     "/system/styles/advanced": "Advanced",

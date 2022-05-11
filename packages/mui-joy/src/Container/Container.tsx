@@ -1,41 +1,30 @@
 /* eslint-disable material-ui/mui-name-matches-component-name */
-import PropTypes from 'prop-types';
 import { createContainer } from '@mui/system';
-import capitalize from '../utils/capitalize';
+import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
+import { ContainerTypeMap } from './ContainerProps';
+import { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useThemeProps } from '../styles';
 
-const Container = createContainer({
+const Container = createContainer<Theme>({
   createStyledComponent: styled('div', {
     name: 'MuiContainer',
     slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { ownerState } = props;
-
-      return [
-        styles.root,
-        styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
-        ownerState.fixed && styles.fixed,
-        ownerState.disableGutters && styles.disableGutters,
-      ];
-    },
+    overridesResolver: (props, styles) => styles.root,
   }),
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
-});
+}) as OverridableComponent<ContainerTypeMap>;
 
 Container.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -72,6 +61,6 @@ Container.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default Container;
