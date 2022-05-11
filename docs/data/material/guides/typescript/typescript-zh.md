@@ -35,6 +35,22 @@ MUI requires a minimum version of TypeScript 3.5. Material-UI requires a minimum
 
 Moved to [/customization/theming/#custom-variables](/material-ui/customization/theming/#custom-variables).
 
-## `component` 属性的用法
+## Complications with the `component` prop
 
-Moved to [/guides/composition/#with-typescript](/material-ui/guides/composition/#with-typescript).
+Because of some TypeScript limitations, using the `component` prop can be problematic if you are creating your custom component based on the Material UI's components. For the composition of the components, you will likely need to use one of these two options:
+
+1. Wrap the Material UI component in order to enhance it
+2. Use the `styled()` utility in order to customize the styles of the component
+
+If you are using the first option, take a look at the [composition guide](/material-ui/guides/composition/#with-typescript) for more details.
+
+If you are using the `styled()` utility (regardless of whether it comes from `@mui/material` or `@emotion/styled`), you will need to cast the resulting component as shown below:
+
+```tsx
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+
+const CustomButton = styled(Button)({
+  // your custom styles go here
+}) as typeof Button;
+```
