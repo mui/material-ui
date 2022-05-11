@@ -269,7 +269,7 @@ const Root = styled('div')(({ theme }) => ({
           : alpha(theme.palette.primary[50] ?? theme.palette.primary.dark, 0.8),
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
-          ? theme.palette.primary[900] ?? theme.palette.primary.dark
+          ? theme.palette.primary[800] ?? theme.palette.primary.dark
           : theme.palette.primary[100] ?? theme.palette.primary.light,
       '& strong': {
         color:
