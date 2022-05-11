@@ -307,6 +307,8 @@
     "Upgrade to v5": "Upgrade to v5",
     "/material-ui/migration/migration-v4": "Migration from v4 to v5",
     "/material-ui/migration/v5-breaking-changes": "Breaking changes in v5",
+    "/material-ui/migration/migrating-from-jss": "Migrating from JSS",
+    "/material-ui/migration/troubleshooting": "Troubleshooting",
     "Earlier versions": "Earlier versions",
     "/material-ui/migration/migration-v3": "Migration from v3 to v4",
     "/material-ui/migration/migration-v0x": "Migration from v0.x to v1",

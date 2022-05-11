@@ -330,4 +330,3 @@ The following will not correctly apply the style to the delete icon:
   color: green;
 }
 ```
-
