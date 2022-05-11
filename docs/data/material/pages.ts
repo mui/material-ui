@@ -181,6 +181,29 @@ const pages = [
     ],
   },
   {
+    pathname: '/material-ui/migration',
+    title: 'Migration',
+    icon: 'BookIcon',
+    children: [
+      {
+        pathname: '/material-ui/migration',
+        subheader: 'Upgrade to v5',
+        children: [
+          { pathname: '/material-ui/migration/migration-v4', title: 'Migration from v4 to v5' },
+          { pathname: '/material-ui/migration/v5-breaking-changes', title: 'Breaking changes in v5' },
+        ],
+      },
+      {
+        pathname: '/material-ui/migration',
+        subheader: 'Earlier versions',
+        children: [
+          { pathname: '/material-ui/migration/migration-v3', title: 'Migration from v3 to v4' },
+          { pathname: '/material-ui/migration/migration-v0x', title: 'Migration from v0.x to v1' },
+        ],
+      },
+    ],
+  },
+  {
     pathname: '/material-ui/guides',
     title: 'How To Guides',
     icon: 'VisibilityIcon',
@@ -199,9 +222,6 @@ const pages = [
         pathname: '/material-ui/guides/pickers-migration',
         title: 'Migration from @material-ui/pickers',
       },
-      { pathname: '/material-ui/guides/migration-v4', title: 'Migration from v4' },
-      { pathname: '/material-ui/guides/migration-v3', title: 'Migration from v3' },
-      { pathname: '/material-ui/guides/migration-v0x', title: 'Migration from v0.x' },
       { pathname: '/material-ui/guides/testing' },
       { pathname: '/material-ui/guides/localization' },
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
