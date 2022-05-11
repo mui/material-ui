@@ -28,7 +28,7 @@ import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import Tooltip from '@mui/material/Tooltip';
 
 const DEMOS = ['Data grid', 'Date range picker', 'Tree view', 'Sparkline', 'Charts'];
-const WIP = DEMOS.slice(2);
+const WIP = DEMOS.slice(1);
 
 const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
