@@ -1,14 +1,20 @@
 # Migration from v4 to v5
 
-<p class="description">Yeah, v5 has been released!</p>
-
-If you're looking for the v4 docs, you can [find them here](https://v4.mui.com/versions/).
+<p class="description">This guide explains how and why to migrate from Material UI v4 to v5.</p>
 
 ## Introduction
 
-This is a reference for upgrading your site from MUI Core v4 to v5.
-While there's a lot covered here, you probably won't need to do everything.
-We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
+This guide will walk you through the steps to upgrade your site from Material UI v4 to v5.
+
+We highly recommend running our codemods for efficiency—these will automatically address many of the breaking changes introduced in v5.
+
+One of the biggest changes in v5 is the swapping of JSS for Emotion.
+Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new style engine, you can refactor your components progressively.
+
+
+:::info
+If you need to refer back to the older version of the docs, [you can find v4 documentation here](https://v4.mui.com/versions/).
+:::
 
 ## Why you should migrate
 
