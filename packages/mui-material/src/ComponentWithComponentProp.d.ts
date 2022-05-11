@@ -15,10 +15,10 @@ export type PropsWithComponentProp<Props = {}, Type extends Component = Componen
 // type Example = PropsWithComponentProp<{ prop: string }, "a">["component"];
 // type Example = PropsWithComponentProp<{ prop: string }, "a">["href"];
 
-export type ComponentWithComponentProp<Props, DefaultType extends Component> = {
+export interface ComponentWithComponentProp<Props, DefaultType extends Component> {
   <Type extends Component>(
     props: PropsWithComponentProp<Props, Type> & { component: Type },
   ): JSX.Element;
   (props: PropsWithComponentProp<Props, DefaultType>): JSX.Element;
-};
+}
 // type Example = ComponentWithComponentProp<{ prop: string }, "button">;

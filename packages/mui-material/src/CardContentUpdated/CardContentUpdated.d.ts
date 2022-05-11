@@ -4,7 +4,7 @@ import { ComponentWithComponentProp, PropsWithComponentProp } from '../Component
 import { Theme } from '..';
 import { CardContentUpdatedClasses } from './cardContentUpdatedClasses';
 
-export type CardContentUpdatedOwnProps = {
+export interface CardContentUpdatedOwnProps {
   /**
    * The content of the component.
    */
@@ -17,8 +17,17 @@ export type CardContentUpdatedOwnProps = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-};
-
+}
+/**
+ *
+ * Demos:
+ *
+ * - [Cards](https://mui.com/material-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardContentUpdated API](https://mui.com/material-ui/api/card-content-updated/)
+ */
 declare const CardContentUpdated: ComponentWithComponentProp<CardContentUpdatedOwnProps, 'div'>;
 
 export type CardContentUpdatedProps<

@@ -22,6 +22,7 @@ module.exports = [
   { pathname: '/material-ui/api/card-action-area' },
   { pathname: '/material-ui/api/card-actions' },
   { pathname: '/material-ui/api/card-content' },
+  { pathname: '/material-ui/api/card-content-updated' },
   { pathname: '/material-ui/api/card-header' },
   { pathname: '/material-ui/api/card-media' },
   { pathname: '/material-ui/api/checkbox' },

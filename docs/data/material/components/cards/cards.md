@@ -1,7 +1,7 @@
 ---
 product: material-ui
 title: React Card component
-components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper, CardContentUpdated
 githubLabel: 'component: card'
 materialDesign: https://material.io/components/cards
 ---
