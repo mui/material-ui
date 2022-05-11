@@ -9,18 +9,21 @@ This guide will walk you through the steps to upgrade your site from Material UI
 We highly recommend running our codemods for efficiency—these will automatically address many of the breaking changes introduced in v5.
 
 One of the biggest changes in v5 is the swapping of JSS for Emotion.
-Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new style engine, you can refactor your components progressively.
-
+Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new styling engine, you can refactor your components progressively.
 
 :::info
-If you need to refer back to the older version of the docs, [you can find v4 documentation here](https://v4.mui.com/versions/).
+Need to refer back to an older version of the docs? Check out [the v4 documentation here](https://v4.mui.com/).
 :::
 
 ## Why you should migrate
 
-To get the benefits of bug fixes and a lot of improvements such as the new styling engine.
-This documentation page covers the **how** of migrating from v4 to v5.
-The **why** is covered in the [release blog post](/blog/mui-core-v5/).
+Material UI v5 includes many bug fixes and improvements over v4.
+
+Chief among these improvements is the new styling engine, which offers significant advancements in performance as well as a more enjoyable developer experience.
+
+Additionally, v5 is the only version that supports React 18, so you will need to migrate to take advantage of the latest React features.
+
+To learn more, check out [the blog post about the release of v5](/blog/mui-core-v5/).
 
 ## Migration steps
 
@@ -31,11 +34,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
   - [preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)
-- [Handling Breaking Changes](#handling-breaking-changes)
-- [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
-- [Migrate from JSS](#migrate-from-jss)
 - [CSS specificity](#css-specificity)
-- [Troubleshooting](#troubleshooting)
 
 :::info
 💡 Aim to create small commits on any changes to help the migration go more smoothly.
@@ -234,74 +233,6 @@ npx @mui/codemod v5.0.0/link-underline-hover <path>
 For more details, checkout [link-underline-hover codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover).
 
 Once you have finished setting up with the codemods, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
-
-## Migrate theme's `styleOverrides` to emotion
-
-Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled.
-The `$` syntax used with JSS will not work with Emotion.
-You need to replace those selectors with a valid class selector.
-
-### Replace state class names
-
-```diff
- const theme = createTheme({
-   components: {
-     MuiOutlinedInput: {
-       styleOverrides: {
-         root: {
--          '&$focused': {
-+          '&.Mui-focused': {
-             borderWidth: 1,
-           }
-         }
-       }
-     }
-   }
- });
-```
-
-### Replace nested classes selectors with global class names
-
-```diff
-const theme = createTheme({
-  components: {
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
--         '& $notchedOutline': {
-+         '& .MuiOutlinedInput-notchedOutline': {
-            borderWidth: 1,
-          }
-        }
-      }
-    }
-  }
-});
-```
-
-> Note: For each component we export a `[component]Classes` constant that contains all nested classes for that component.
-> You can rely on this instead of hardcoding the classes.
-
-```diff
-+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-
- const theme = createTheme({
-   components: {
-     MuiOutlinedInput: {
-       styleOverrides: {
-         root: {
--          '& $notchedOutline': {
-+          [`& .${outlinedInputClasses['notchedOutline']}`]: {
-             borderWidth: 1,
-           }
-         }
-       }
-     }
-   }
- });
-```
-
-Take a look at the whole [list of global state classnames](/material-ui/customization/how-to-customize/#state-classes) available.
 
 ## CSS Specificity
 
