@@ -2917,7 +2917,7 @@ Note: This API will not work if you are [using `styled-components` as underlying
 :::
 
 The API is similar to JSS `makeStyles` but, under the hood, it uses `@emotion/react`.
-It is also features a much better TypeScript support than v4's `makeStyles`.
+It also features much better TypeScript support than v4's `makeStyles`.
 
 In order to use it, you'll need to add it to your project's dependencies:
 
@@ -2951,7 +2951,15 @@ yarn add tss-react
  );
 ```
 
-Then here is one example:
+#### Codemod
+
+We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react) to help migrate JSS styles to the `tss-react` API.
+
+```sh
+npx @mui/codemod v5.0.0/jss-to-tss-react <path>
+```
+
+**Example transformation**:
 
 ```diff
  import React from 'react';
@@ -2988,15 +2996,17 @@ Then here is one example:
  export default Apply;
 ```
 
-If you were using the `$` syntax, the transformation would look like this:
+If you were using the `$` syntax and `clsx` to combine multiple CSS classes,
+the transformation would look like this:
 
 ```diff
  import * as React from 'react';
--import makeStyles from '@material-ui/styles/makeStyles';
+-import { makeStyles } from '@material-ui/core/styles';
+-import clsx from 'clsx';
 +import { makeStyles } from 'tss-react/mui';
 
--const useStyles = makeStyles((theme) => {
-+const useStyles = makeStyles<void, 'child'>()((_theme, _params, classes) => ({
+-const useStyles = makeStyles((theme) => ({
++const useStyles = makeStyles<void, 'child' | 'small'>()((theme, _params, classes) => ({
    parent: {
      padding: 30,
 -    '&:hover $child': {
@@ -3004,19 +3014,30 @@ If you were using the `$` syntax, the transformation would look like this:
        backgroundColor: 'red',
      },
    },
+   small: {},
    child: {
      backgroundColor: 'blue',
+     height: 50,
+-    '&$small': {
++    [`&.${classes.small}`]: {
+       backgroundColor: 'lightblue',
+       height: 30
+     }
    },
- });
+ }));
 
  function App() {
 -  const classes = useStyles();
-+  const { classes } = useStyles();
-
++  const { classes, cx } = useStyles();
    return (
      <div className={classes.parent}>
-       <div className={classes.children}>
-         Background turns red when the mouse is hover the parent
+       <div className={classes.child}>
+         Background turns red when the mouse hovers over the parent.
+       </div>
+-      <div className={clsx(classes.child, classes.small)}>
++      <div className={cx(classes.child, classes.small)}>
+         Background turns red when the mouse hovers over the parent.
+         I am smaller than the other child.
        </div>
      </div>
    );
@@ -3026,11 +3047,12 @@ If you were using the `$` syntax, the transformation would look like this:
 ```
 
 :::warning
-**Note:** In plain JS projects (not using TypeScript), remove `<void, 'child'>`.
+**Note:** In plain JS projects (not using TypeScript), remove `<void, 'child' | 'small'>`.
 :::
 
-Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters
-and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
+Now, a comprehensive example using the `$` syntax, `useStyles()` parameters,
+merging in classes from a `classes` prop ([see doc](https://docs.tss-react.dev/your-own-classes-prop)),
+and [an explicit name for the stylesheet](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
 ```diff
 -import clsx from 'clsx';
@@ -3038,35 +3060,41 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 +import { makeStyles } from 'tss-react/mui';
 
 -const useStyles = makeStyles((theme) => createStyles<
--  'root' | 'small' | 'child', { color: 'primary' | 'secondary' }
-->({
-+const useStyles = makeStyles<
-+  { color: 'primary' | 'secondary' }, 'child' | 'small'
-+>({ name: 'App' })((theme, { color }, classes) => ({
--  root: ({ color })=> ({
+-  'root' | 'small' | 'child', {color: 'primary' | 'secondary', padding: number}
+->
+-({
+-  root: ({color, padding}) => ({
++const useStyles = makeStyles<{color: 'primary' | 'secondary', padding: number}, 'child' | 'small'>({name: 'App'})((theme, { color, padding }, classes) => ({
 +  root: {
-     padding: 30,
--    '&:hover .child': {
+     padding: padding,
+-    '&:hover $child': {
 +    [`&:hover .${classes.child}`]: {
        backgroundColor: theme.palette[color].main,
      }
 -  }),
 +  },
-  small: {},
-  child: {
-    border: '1px solid black',
-    height: 50,
--    '&.small': {
+   small: {},
+   child: {
+     border: '1px solid black',
+     height: 50,
+-    '&$small': {
 +    [`&.${classes.small}`]: {
-        height: 30
-    }
-  }
--}, { name: 'App' });
+       height: 30
+     }
+   }
+-}), {name: 'App'});
 +}));
 
- function App() {
--  const classes = useStyles({ color: 'primary' });
-+  const { classes, cx } = useStyles({ color: 'primary' });
+ function App({classes: classesProp}: {classes?: any}) {
+-  const classes = useStyles({color: 'primary', padding: 30, classes: classesProp});
++  const { classes, cx } = useStyles({
++    color: 'primary',
++    padding: 30
++  }, {
++    props: {
++      classes: classesProp
++    }
++  });
 
    return (
      <div className={classes.root}>
@@ -3078,30 +3106,40 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
          The Background take the primary theme color when the mouse hovers the parent.
          I am smaller than the other child.
        </div>
-     </div>
-   );
- }
+    </div>
+  );
+}
 
- export default App;
+export default App;
 ```
+
+After running the codemod, search your code for "TODO jss-to-tss-react codemod" to find cases that
+the codemod could not handle reliably; though there may be cases beyond those with TODO comments that
+are not handled fully by the codemod particularly if parts of the styles are returned by functions.
+If the styles buried within a function use the `$` syntax or `useStyles` params, then those styles won't
+be migrated appropriately.
 
 :::error
 **WARNING**: You should drop [`clsx`](https://www.npmjs.com/package/clsx) in favor of [`cx`](https://emotion.sh/docs/@emotion/css#cx).
 The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order.
+The default precedence of styles from multiple CSS classes is different between JSS and tss-react and some manual re-ordering of `cx` parameters
+may be necessary (see [this issue comment](https://github.com/mui/material-ui/pull/31802#issuecomment-1093478971) for more details).
 :::
 
 :::warning
 **Note**: To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`).
 [See doc](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
+You may end up with eslint warnings [like this one](https://user-images.githubusercontent.com/6702424/148657837-eae48942-fb86-4516-abe4-5dc10f44f0be.png) if you deconstruct more than one item.  
+Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com/thieryw/gitlanding/blob/b2b0c71d95cfd353979c86dfcfa1646ef1665043/.eslintrc.js#L17) in a regular project, or [like this](https://github.com/InseeFrLab/onyxia-web/blob/a264ec6a6a7110cb1a17b2e22cc0605901db6793/package.json#L133) in a CRA.
 :::
 
 #### `withStyles()`
 
-`tss-react` also features a [type-safe implementation](https://github.com/garronej/tss-react#withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).
+`tss-react` also features a [type-safe implementation](https://docs.tss-react.dev/page-1/withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).
 
 :::info
 **Note:** The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
-[See doc](https://github.com/garronej/tss-react#nested-selector-with-the-withstyles-api).
+[See doc](https://docs.tss-react.dev/nested-selectors#withstyles).
 :::
 
 ```diff
@@ -3129,40 +3167,6 @@ The key advantage of `cx` is that it detects emotion generated class names ensur
 +);
 
  export default MyCustomButton;
-```
-
-#### Overriding styles - `classes` prop
-
-[Documentation of the feature in v4](https://v4.mui.com/styles/advanced/#makestyles) - [Equivalent in `tss-react`](https://docs.tss-react.dev/your-own-classes-prop)
-
-```diff
--import { makeStyles } from '@material-ui/core/styles';
-+import { makeStyles } from 'tss-react/mui';
-
--const useStyles = makeStyles({
-+const useStyles = makeStyles()({
-  root: {}, // a style rule
-  label: {}, // a nested style rule
-});
-
-function Nested(props) {
-- const classes = useStyles(props);
-+ const { classes } = useStyles(undefined, { props });
-//NOTE: Only the classes will be read from props, you could write { props: { classes: props.classes } }
-//Example with types: https://docs.tss-react.dev/your-own-classes-prop
-
-  return (
-    <button className={classes.root}>
-      <span className={classes.label}> // 'tss-xxxx-label my-label'
-        nested
-      </span>
-    </button>
-  );
-}
-
-function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
-}
 ```
 
 #### Theme style overrides
