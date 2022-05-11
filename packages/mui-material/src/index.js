@@ -75,6 +75,9 @@ export * from './CardActions';
 export { default as CardContent } from './CardContent';
 export * from './CardContent';
 
+export { default as CardContentUpdated } from './CardContentUpdated';
+export * from './CardContentUpdated';
+
 export { default as CardHeader } from './CardHeader';
 export * from './CardHeader';
 
