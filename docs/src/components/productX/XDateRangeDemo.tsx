@@ -9,7 +9,6 @@ import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Frame from 'docs/src/components/action/Frame';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
