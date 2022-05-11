@@ -16,7 +16,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getCardContentUpdatedUtilityClass, classes);
 };
 
-const CardContentRoot = styled('div', {
+const CardContentUpdatedRoot = styled('div', {
   name: 'MuiCardContentUpdated',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -29,7 +29,7 @@ const CardContentRoot = styled('div', {
   };
 });
 
-const CardContentUpdated = React.forwardRef(function CardContent(inProps, ref) {
+const CardContentUpdated = React.forwardRef(function CardContentUpdated(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiCardContentUpdated',
@@ -42,7 +42,7 @@ const CardContentUpdated = React.forwardRef(function CardContent(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <CardContentRoot
+    <CardContentUpdatedRoot
       as={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
