@@ -6,7 +6,7 @@
 
 Joy's Global variants are sets of styles that live inside the theme.
 Both native and custom-created components can access those styles.
-It mainly consists of three CSS propers, `color`, `background`, and `border`.
+It mainly consists of three CSS properties, `color`, `background`, and `border`.
 These are basically the properties where color is mostly applied and variants pull shades from the multiple palettes of the theme.
 
 :::info
