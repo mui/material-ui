@@ -19,16 +19,16 @@ The new Premium features are intended to support end-users with the most sophist
 We started development with [row grouping](https://mui.com/x/react-data-grid/row-grouping/), which enables users to group data based on repeating values in the grid.
 For example, users can now group orders by buyers, movies by directors, or cities by the governing parties.
 
-These kinds of use cases would usually be dealt with using a different query on the database, perhaps requiring a new service end-point, maybe even a new front-end, with all the UX challenges this would entail.
+These kinds of use cases would usually be dealt with using a new query on the database, perhaps requiring a new service end-point, maybe even a new front-end, with all the UX challenges this would entail.
 
-Now it’s available at the end-user's fingertip, directly in the data grid.
+Now it’s available at the end-user's fingertips, directly in the data grid.
 Users are encouraged to explore the data and create combinations with multiple grouping criteria,
-and are then able to export these new views to Excel, with the latest Premium feature: Excel export.
+and are then able to export these new views to Excel, with the next Premium feature: Excel export.
 
 ## Excel export
 
 One of the most requested features,
-the [“Excel export”](https://mui.com/x/react-data-grid/export/#excel-export) enables users to bring the data from the grid into Excel, while mirroring the existing visualization in the data grid based on filters, sorting, and row grouping.
+[Excel export](https://mui.com/x/react-data-grid/export/#excel-export) enables users to save the data from the grid as an Excel spreadsheet that mirrors the existing visualization in the data grid based on filters, sorting, and row grouping.
 
 In the future we intend to support all of the features impacting visualization of the data grid, but we’d love to hear from you if there’s anything in particular you’d like to see in future releases.
 
@@ -37,16 +37,16 @@ In the future we intend to support all of the features impacting visualization o
 Speaking of future releases, [aggregation functions](https://mui.com/x/react-data-grid/aggregation/#) are coming next, in a further step to improving tools to analyze data.
 Combined with row grouping, the aggregation functions help users dive deeper to get data insights.
 
-Expanding on the use cases for the previous examples, users will be able to dynamically get the sum of orders for each user, the minimum rating of each director, or the average crime rate for each governing party.
+Expanding on the use cases in the previous examples, users will be able to dynamically get the sum of orders for each user, the minimum rating of each director, or the average crime rate for each governing party.
 
-That and much more just a few clicks away.
+That and much more, just a few clicks away.
 
 # The new licensing model
 
-As we release the Premium plan, we’d also like to announce its new price and MUI X licensing model.
+As we release the Premium plan, we’d also like to announce the new pricing and licensing model for MUI X Premium and Pro.
 
-We’re going for simplicity, restructuring our model to be as clear as possible, based on the recurrent questions we have had on our sales and other channels.
-We’d also like to keep it viable for individual and small teams, while still capturing more of the value we generate for larger companies.
+We’re aiming for simplicity, restructuring the model to be as clear as possible, based on the recurrent questions we've had in our sales and other channels.
+We’d also like to keep it within reach of individuals and small teams, while still capturing more of the value we generate for larger companies.
 
 Here is a list of everything that has changed:
 
@@ -68,11 +68,11 @@ Here is a list of everything that has changed:
 
   Customers can use any licensed version perpetually in a production environment (deployed/published applications).
   But an active license will always be required during development.
-  We roll bug fixes, performance enhancements and other improvements into new releases, so we want to encourage projects in active development to use current versions.
+  We roll bug fixes, performance enhancements and other improvements into new releases, so we want to encourage projects in active development to use a current version.
 
 - **Price cap for Premium plan**
 
-  The price for Pro is still capped at 10 seats, but we’re removing the concept of price cap for Premium. We kindly ask you to [contact sales](mailto:sales@mui.com) if you wish to license more than 50 developers.
+  The price for Pro is still capped at 10 seats, but we’re removing the concept of price cap for Premium. We kindly ask you to [contact sales](mailto:sales@mui.com) if you wish to purchase a license for more than 50 developers.
 
 Please, feel free to read the new [license agreement](https://mui.com/store/legal/mui-x-eula/) in detail.
 
@@ -80,7 +80,7 @@ Please, feel free to read the new [license agreement](https://mui.com/store/lega
 
 We mentioned the aggregation functions already,
 but there’s a [lot more coming](https://github.com/mui/mui-x/projects/1), and certainly not only for Premium users.
-We’ll continually enhance all of the components and are increasingly
+We’ll continue to enhance all of the components and are
 putting more effort into usability and overall user and developer experience.
 A product designer is soon joining the team, and we aim to keep exploring the most advanced use cases for data-rich applications,
 while working on bringing the best UX and DX in the market.
@@ -107,13 +107,13 @@ yarn add @mui/x-data-grid-premium
 
 All the features from Community and Pro plan are available in the Premium package. You can remove your previous data grid package without any concern.
 
-The new package exports the component `<DataGridPremium />` which has basically the same API as `<DataGridPro />`. To use this package in a production environment and remove the watermark, you must acquire a Premium license. If you wish to upgrade your existing Pro license, please [contact sales](mailto:sales@mui.com).
+The new package exports the component `<DataGridPremium />` which has basically the same API as `<DataGridPro />`. To use this package for development of a production product, and to remove the watermark, you must acquire a Premium license. If you wish to upgrade your existing Pro license, please [contact sales](mailto:sales@mui.com).
 
 ## Should I update my code?
 
-Unless you want to migrate to Premium, or if you’re already using row-grouping in your project, you don’t have to do anything.
+Unless you want to upgrade to Premium, or if you’re already using row-grouping in your project, you don’t have to do anything.
 
-If you're using the row-grouping, it has been removed from the experimental features of the Pro Plan to be a Premium feature, as [previously announced](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature). To continue using it, please migrate to the Premium plan.
+If you're using row-grouping, it has been removed from the experimental features of the Pro Plan to be a Premium feature, [as planned](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature). To continue using it, please upgrade to the Premium plan.
 
 ## Excel export features
 
@@ -123,7 +123,7 @@ To export data, the free version of the data grid implements both a print export
 
 By setting a column type you prevent users from making errors, such as entering an invalid date, or using letters in a number column. The exported file will reflect those type constraints.
 
-A special case is the ‘singleSelect’ column type which provides an array of options. This constraint is also reflected in the exported file, meaning the singleSelect options will be available as field value options in the excel file.
+A special case is the ‘singleSelect’ column type which provides an array of options. This constraint is also reflected in the exported file, meaning the singleSelect options will be available as field value options in the Excel spreadsheet.
 
 ### Hierarchical structure
 
@@ -131,7 +131,7 @@ With tree data and row grouping, users can create a hierarchical structure betwe
 
 ### Brand customization
 
-If you want to generate spreadsheets to share, you may be interested in adding some headers, using brand colors, or adding instructions to the document. For this purpose, we allow developers to access the excel file content before and after the data is added. This allows you to fully customize the content of the file.
+If you want to generate spreadsheets to share, you may be interested in adding some headers, using brand colors, or adding instructions to the document. For this purpose, we allow developers to access the Excel file's content before and after the data is added. This allows you to fully customize the content of the file.
 
 ### Ongoing development
 
@@ -140,4 +140,4 @@ This feature will continue to be enhanced. We would love to hear your feedback, 
 # Share your feedback 🗣
 
 We hope you find the new features useful and pleasant to use, both as a developer and user.
-Please don't hesitate to open [issues](https://github.com/mui/mui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
+Please don't hesitate to [open an issue](https://github.com/mui/mui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
