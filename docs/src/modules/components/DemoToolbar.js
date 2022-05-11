@@ -268,6 +268,7 @@ export default function DemoToolbar(props) {
     const { files } = CodeSandbox.createReactApp(demoData);
     const parameters = compress({ files });
 
+    // ref: https://codesandbox.io/docs/api/#define-api
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
@@ -285,6 +286,8 @@ export default function DemoToolbar(props) {
 
   const handleStackBlitzClick = () => {
     const demoConfig = StackBlitz.createReactApp(demoData);
+
+    // ref: https://developer.stackblitz.com/docs/platform/post-api/
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
