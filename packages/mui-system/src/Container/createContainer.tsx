@@ -8,12 +8,10 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
 } from '@mui/private-classnames';
-import { Breakpoint } from '../createTheme';
-import { ContainerProps, ContainerTypeMap } from './Container';
+import { ContainerProps, ContainerTypeMap } from './ContainerProps';
 import useThemePropsSystem from '../useThemeProps';
 import systemStyled from '../styled';
-import createTheme from '../createTheme';
-import { Theme as DefaultTheme } from '../createTheme';
+import createTheme, { Theme as DefaultTheme, Breakpoint } from '../createTheme';
 
 interface StyleFnProps<Theme> extends ContainerProps {
   theme: Theme;

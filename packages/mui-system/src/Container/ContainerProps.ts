@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@mui/types';
+import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styleFunctionSx';
 import { Theme, Breakpoint } from '../createTheme';
 import { ContainerClasses } from './containerClasses';
@@ -38,22 +38,8 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   };
   defaultComponent: D;
 }
-/**
- *
- * Demos:
- *
- * - [Container (Material UI)](https://mui.com/material-ui/react-container/)
- * - [Container (MUI System)](https://mui.com/system/react-container/)
- *
- * API:
- *
- * - [Container API](https://mui.com/system/api/container/)
- */
-declare const Container: OverridableComponent<ContainerTypeMap>;
 
 export type ContainerProps<
   D extends React.ElementType = ContainerTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<ContainerTypeMap<P, D>, D>;
-
-export default Container;
