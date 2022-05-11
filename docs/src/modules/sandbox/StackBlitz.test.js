@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import { expect } from 'chai';
 import StackBlitz from './StackBlitz';
 
