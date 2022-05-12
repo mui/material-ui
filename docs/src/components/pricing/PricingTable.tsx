@@ -147,12 +147,12 @@ export function PlanPrice(props: PlanPriceProps) {
           / dev / month.
         </Typography>
       </Box>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 2 }}>
-        <Typography variant="body2" color="text.secondary">
-          Billed annually at $444.
-        </Typography>
-        <Link href="#early-bird">* Early bird special.</Link>
+      <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+        Billed annually at $444.
       </Typography>
+      <Link variant="body2" href="#early-bird" sx={{ mb: 2 }}>
+        * Early bird special.
+      </Link>
     </div>
   );
 }
