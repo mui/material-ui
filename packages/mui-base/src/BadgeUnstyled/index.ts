@@ -1,5 +1,4 @@
 export { default } from './BadgeUnstyled';
-export * from './BadgeUnstyled';
 
 export { default as useBadge } from './useBadge';
 export * from './useBadge';
