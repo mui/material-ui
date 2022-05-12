@@ -2,6 +2,9 @@ import React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
 import { FormControlUnstyledState } from '../FormControlUnstyled';
 import { UseInputParameters, UseInputRootSlotProps } from './useInput.types';
+import { SlotComponentProps } from '../utils';
+
+export interface InputUnstyledComponentsPropsOverrides {}
 
 export interface InputUnstyledOwnProps extends UseInputParameters {
   'aria-describedby'?: string;
@@ -36,8 +39,16 @@ export interface InputUnstyledOwnProps extends UseInputParameters {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'>;
-    input?: React.ComponentPropsWithRef<'input'>;
+    root?: SlotComponentProps<
+      'div',
+      InputUnstyledComponentsPropsOverrides,
+      InputUnstyledOwnerState
+    >;
+    input?: SlotComponentProps<
+      'input',
+      InputUnstyledComponentsPropsOverrides,
+      InputUnstyledOwnerState
+    >;
   };
   /**
    * Trailing adornment for this input.
@@ -123,6 +134,7 @@ export type InputUnstyledRootSlotProps = Simplify<
     ownerState: InputUnstyledOwnerState;
     className: string;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
   }
 >;
 
@@ -141,6 +153,7 @@ export type InputUnstyledInputSlotProps = Simplify<
     ownerState: InputUnstyledOwnerState;
     placeholder: string | undefined;
     readOnly: boolean | undefined;
+    ref: React.Ref<HTMLInputElement>;
     type: React.HTMLInputTypeAttribute | undefined;
   }
 >;

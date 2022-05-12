@@ -17,7 +17,6 @@ export default function useInput(parameters: UseInputParameters) {
     onBlur,
     onChange,
     onFocus,
-    inputRef,
     required: requiredProp = false,
     value: valueProp,
   } = parameters;
@@ -76,9 +75,8 @@ export default function useInput(parameters: UseInputParameters) {
     }
   }, []);
 
-  const internalInputRef = React.useRef<HTMLInputElement>(null);
-  const handleIncomingRef = useForkRef(inputRef, handleInputRefWarning);
-  const handleInputRef = useForkRef(internalInputRef, handleIncomingRef);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const handleInputRef = useForkRef(inputRef, handleInputRefWarning);
 
   const [focused, setFocused] = React.useState(false);
 
@@ -128,7 +126,7 @@ export default function useInput(parameters: UseInputParameters) {
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.ChangeEvent<HTMLInputElement>, ...args: unknown[]) => {
       if (!isControlled) {
-        const element = event.target || internalInputRef.current;
+        const element = event.target || inputRef.current;
         if (element == null) {
           throw new MuiError(
             'MUI: Expected valid input target. ' +
@@ -147,8 +145,8 @@ export default function useInput(parameters: UseInputParameters) {
   const handleClick =
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent<HTMLInputElement>) => {
-      if (internalInputRef.current && event.currentTarget === event.target) {
-        internalInputRef.current.focus();
+      if (inputRef.current && event.currentTarget === event.target) {
+        inputRef.current.focus();
       }
 
       otherHandlers.onClick?.(event);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { appendOwnerState } from '@mui/base/utils';
@@ -184,7 +184,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     fullWidth = false,
     error,
     id,
-    inputRef,
     name,
     onClick,
     onChange,
@@ -218,7 +217,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     onClick,
     onChange,
     onFocus,
-    inputRef,
     required,
     value,
   });
@@ -274,6 +272,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ownerState,
   );
 
+  rootProps.ref = useForkRef(ref, useForkRef(rootProps.ref, componentsProps.root?.ref));
+
   const InputComponent = components.Input ?? InputInput;
   const inputProps = appendOwnerState(
     InputComponent,
@@ -284,8 +284,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ownerState,
   );
 
+  inputProps.ref = useForkRef(componentsProps.input?.ref, inputProps.ref);
+
   return (
-    <Root ref={ref} {...rootProps}>
+    <Root {...rootProps}>
       {startDecorator && (
         <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
           {startDecorator}
@@ -397,15 +399,6 @@ Input.propTypes /* remove-proptypes */ = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
   /**
    * Name attribute of the `input` element.
    */

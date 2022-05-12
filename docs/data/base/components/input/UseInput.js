@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useInput } from '@mui/base';
 import { styled } from '@mui/system';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
 const blue = {
   100: '#DAECFF',
@@ -47,11 +48,16 @@ const StyledInputElement = styled('input')(
 );
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  const { getRootProps, getInputProps } = useInput({ ...props, inputRef: ref });
+  const { getRootProps, getInputProps } = useInput(props);
+
+  const inputProps = getInputProps();
+
+  // Make sure that both the forwarded ref and the ref returned from the are applied on the input element
+  inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
     <div {...getRootProps()}>
-      <StyledInputElement {...props} {...getInputProps()} />
+      <StyledInputElement {...props} {...inputProps} />
     </div>
   );
 });

@@ -13,7 +13,6 @@ type InputRootKeys =
   | 'error'
   | 'required'
   | 'fullWidth'
-  | 'inputRef'
   | 'placeholder'
   | 'defaultValue'
   | 'value'
