@@ -859,10 +859,7 @@ export default function PricingTable({
       sx={{
         width: '100%',
         overflow: 'auto',
-        py: { xs: 2, md: 2 },
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
+        py: { xs: 2, md: 4 },
         ...props.sx,
       }}
     >
