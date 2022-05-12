@@ -682,7 +682,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard': pending,
-  'data-grid/file-excel': pending,
+  'data-grid/file-excel': yes,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
   'data-grid/virtualize-row': yes,
@@ -1050,9 +1050,9 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-print')}
         {nestedDivider}
-        {renderRow('data-grid/file-clipboard')}
-        {nestedDivider}
         {renderRow('data-grid/file-excel')}
+        {nestedDivider}
+        {renderRow('data-grid/file-clipboard')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
         {renderRow('data-grid/customizable-components')}
