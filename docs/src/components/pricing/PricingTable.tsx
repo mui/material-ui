@@ -107,7 +107,7 @@ export function PlanPrice(props: PlanPriceProps) {
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
           Billed annually at $180.
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 3}}>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           Price capped at 10 developers.
         </Typography>
       </div>
