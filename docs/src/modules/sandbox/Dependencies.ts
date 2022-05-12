@@ -66,13 +66,12 @@ export default function SandboxDependencies(
         '@emotion/styled': versions['@emotion/styled'],
       };
 
-      if (newDeps['@mui/lab']) {
+      if (newDeps['@mui/lab'] || newDeps['@mui/icons-material']) {
         newDeps['@mui/material'] = versions['@mui/material'];
       }
 
-      if (newDeps['@material-ui/data-grid']) {
+      if (newDeps['@mui/x-data-grid']) {
         newDeps['@mui/material'] = versions['@mui/material'];
-        newDeps['@mui/styles'] = versions['@mui/styles'];
       }
 
       // TODO: Where is this coming from and why does it need to be injected this way.

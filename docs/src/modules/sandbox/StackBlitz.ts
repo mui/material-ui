@@ -25,7 +25,6 @@ const createReactApp = (demo: {
   const { dependencies } = SandboxDependencies(demo);
 
   dependencies['@babel/runtime'] = 'latest';
-  dependencies['@babel/core'] = 'latest';
 
   return {
     title,

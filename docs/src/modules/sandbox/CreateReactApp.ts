@@ -28,9 +28,11 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
-  <CssVarsProvider>
-    <Demo />
-  </CssVarsProvider>
+  <React.StrictMode>
+    <CssVarsProvider>
+      <Demo />
+    </CssVarsProvider>
+  </React.StrictMode>
 );`;
   }
   if (product === 'base') {
@@ -39,7 +41,9 @@ import ReactDOM from 'react-dom/client';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
-  <Demo />
+  <React.StrictMode>
+    <Demo />
+  </React.StrictMode>
 );`;
   }
   return `import * as React from 'react';
@@ -48,9 +52,11 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
-  <StyledEngineProvider injectFirst>
-    <Demo />
-  </StyledEngineProvider>
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <Demo />
+    </StyledEngineProvider>
+  </React.StrictMode>
 );`;
 };
 
