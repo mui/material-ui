@@ -12,7 +12,7 @@ With it, MUI X officially steps up to the next level, supporting the most advanc
 
 <img src="/static/blog/premium-plan-release/card.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Promotional image of MUI X Premium plan release showcasing Data Grid's new features (such as Download data as an Excel file) and Date Range Picker" />
 
-The new Premium features are intended to support end-users with the most sophisticated tools to navigate and draw insights from vast amounts of data.
+You can use the new Premium features to provide your end users with the most sophisticated tools necessary to navigate and interpret massive amounts of data.
 
 ## The new features
 
@@ -21,31 +21,32 @@ The new Premium features are intended to support end-users with the most sophist
 We started development with [Row grouping](https://mui.com/x/react-data-grid/row-grouping/), which enables users to group data based on repeating values in the grid.
 For example, users can now group orders by buyers, movies by directors, or cities by the governing parties.
 
-These kinds of use cases would usually be dealt with using a new query on the database, perhaps requiring a new service end-point, maybe even a new front-end, with all the UX challenges this would entail.
+These kinds of use cases would usually be dealt with using a new query on the database—which might require a new service end-point, and maybe even a new front-end, along with all the UX challenges this would entail.
 
-Now it’s available at the end-user's fingertips, directly in the data grid.
+Now this functionality is available to your users with a single click.
 Users are encouraged to explore the data and create combinations with multiple grouping criteria,
 and are then able to export these new views to Excel, with the next Premium feature: Excel export.
 
 ### Excel export
 
-One of the most requested features,
 [Excel export](https://mui.com/x/react-data-grid/export/#excel-export) enables users to save the data from the grid as an Excel spreadsheet that mirrors the existing visualization in the data grid based on filters, sorting, and row grouping.
+
+This is one of the most requested features to date, so we're excited to finally deliver.
 
 In the future we intend to support all of the features impacting visualization of the data grid, but we’d love to hear from you if there’s anything in particular you’d like to see in future releases.
 
 ### Aggregation (coming in late Q2)
 
-Speaking of future releases, [aggregation functions](https://mui.com/x/react-data-grid/aggregation/) are coming next, in a further step to improving tools to analyze data.
-Combined with row grouping, the aggregation functions help users dive deeper to get data insights.
+Speaking of future releases: [aggregation functions](https://mui.com/x/react-data-grid/aggregation/) are coming next, as part of our ongoing efforts to build better tools for analyzing data.
+Combined with row grouping, aggregation functions help users dive even deeper into their data for more granular insight.
 
-Expanding on the use cases in the previous examples, users will be able to dynamically get the sum of orders for each user, the minimum rating of each director, or the average crime rate for each governing party.
+Expanding on the use cases in the previous examples, users will be able to dynamically get the sum of orders for each customer, the minimum rating of each director, or the average crime rate for each governing party.
 
-That and much more, just a few clicks away.
+Aggregation functions open up an exponential number of new possibilities for organizing data—all with just a few clicks.
 
 ## The new licensing model
 
-As we release the Premium plan, we’d also like to announce a revised pricing and licensing model for MUI X Premium and Pro.
+With the release of the Premium plan, we’re also announcing a revised pricing and licensing model for MUI X Premium and Pro.
 
 We’re aiming for simplicity, restructuring the model to be as clear as possible, based on the recurrent questions we've had in our sales and other channels.
 We’d also like to keep it within reach of individuals and small teams, while still capturing more of the value we generate for larger companies.
@@ -69,13 +70,12 @@ Here is a list of everything that has changed:
 - **Removing volume and renewal discounts**
 
   We aim to give a more transparent price based on the number of developer seats while providing more predictable revenue for MUI X in the long term.
-  We believe that’s meaningful for both our long-standing customers, and MUI as a company.
+  We believe that’s best for both our long-standing customers and us as a company.
 
 - **Perpetual in production**
 
-  Customers can use any licensed version perpetually in a production environment (deployed/published applications).
-  But an active license will always be required during development.
-  We roll bug fixes, performance enhancements and other improvements into new releases, so we want to encourage projects in active development to use a current version.
+  Customers can use any licensed version perpetually in a production environment (deployed/published applications), but an active license will always be required during development.
+  We roll bug fixes, performance enhancements, and other improvements into new releases, so we want to encourage projects in active development to use the latest version.
 
 - **Price cap for Premium plan**
 
@@ -87,8 +87,7 @@ Please, feel free to read the new [license agreement](https://mui.com/store/lega
 
 We mentioned the aggregation functions already,
 but there’s a [lot more coming](https://github.com/mui/mui-x/projects/1), and certainly not only for Premium users.
-We’ll continue to enhance all of the components and are
-putting more effort into usability and overall user and developer experience.
+We’re making continuous improvements to all X components, placing more emphasis on the overall experience for both the developer and the user.
 A product designer is soon joining the team, and we aim to keep exploring the most advanced use cases for data-rich applications,
 while working on bringing the best UX and DX in the market.
 
@@ -96,7 +95,7 @@ We’re very excited about the possibilities the new Premium features will enabl
 
 ## FAQ 🔧
 
-### How to migrate?
+### How do I migrate?
 
 To migrate to the premium version in your codebase, install the dedicated package `@mui/x-data-grid-premium` as follows:
 
@@ -118,29 +117,33 @@ The new package exports the component `<DataGridPremium />` which has basically 
 
 ### Should I update my code?
 
-Unless you want to upgrade to Premium, or if you’re already using row-grouping in your project, you don’t have to do anything.
+You don't have to take any action here as a Community or Pro user, unless you’re already using row grouping in your project.
 
-If you're using Row grouping with the Pro plan, it's now officially deprecated and will be removed from the experimental features [as planned](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature). To continue using it, please upgrade to the Premium plan.
+Row grouping is now officially deprecated in the Pro package and will be removed from the experimental features [as planned](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature). 
 
-### What are the initial Excel export features?
+You must upgrade to the Premium plan to continue to use the row grouping feature.
 
-To export data, the free version of the data grid implements both a print export which provides a printable visualization for users, and a CSV export allowing data migration to another application. However CSV exports are basic and limited when the exported file is consumed by users instead of other applications. The Excel format provides more room for flexibility and customization.
+### What can I do with the Excel export feature?
+
+The free version of the data grid features a print export to give users a printable visualization, as well as a CSV export for migrating data to another application. 
+But CSV exports are basic and limited when the exported file is consumed by users instead of other applications. The Excel format provides more room for flexibility and customization.
 
 #### Cell constraints
 
 By setting a column type you prevent users from making errors, such as entering an invalid date, or using letters in a number column. The exported file will reflect those type constraints.
 
-A special case is the ‘singleSelect’ column type which provides an array of options. This constraint is also reflected in the exported file, meaning the singleSelect options will be available as field value options in the Excel spreadsheet.
+A special case is the `singleSelect` column type which provides an array of options. This constraint is also reflected in the exported file, meaning the singleSelect options will be available as field value options in the Excel spreadsheet.
 
 #### Hierarchical structure
 
-With tree data and row grouping, users can create a hierarchical structure between rows. This structure is also available in the exported file, and in Excel you can toggle a row’s children visibility.
+With tree data and row grouping, users can create a hierarchical structure between rows. This structure is also available in the exported file, and in Excel you can toggle the visibility of a row’s children.
 
 #### Brand customization
 
-If you want to generate spreadsheets to share, you may be interested in adding some headers, using brand colors, or adding instructions to the document. For this purpose, we allow developers to access the Excel file's content before and after the data is added. This allows you to fully customize the content of the file.
+If you plan to generate spreadsheets to share, you may want to add headers, apply brand colors, or add extra details to the document. 
+To fully customize your Excel files, you can access their content before _and_ after the data is inserted.
 
 ## Share your feedback 🗣
 
-We hope you find the new features useful and pleasant to use, both as a developer and user.
+We hope you find these new features useful and enjoyable to work with, both as a developer and a user.
 Please don't hesitate to [open an issue](https://github.com/mui/mui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
