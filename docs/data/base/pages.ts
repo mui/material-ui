@@ -4,7 +4,12 @@ const pages = [
   {
     pathname: '/base/getting-started',
     icon: 'DescriptionIcon',
-    children: [{ pathname: '/base/getting-started/installation' }],
+    children: [
+      { pathname: '/base/getting-started/overview', title: 'Overview' },
+      { pathname: '/base/getting-started/installation', title: 'Installation' },
+      { pathname: '/base/getting-started/usage', title: 'Usage' },
+      { pathname: '/base/getting-started/customization', title: 'Customization' },
+    ],
   },
   {
     pathname: '/base/react-',
@@ -15,6 +20,7 @@ const pages = [
         pathname: '/base/components/inputs',
         subheader: 'inputs',
         children: [
+          { pathname: '/base/react-badge', title: 'Badge' },
           { pathname: '/base/react-button', title: 'Button' },
           { pathname: '/base/react-input', title: 'Input' },
           { pathname: '/base/react-select', title: 'Select' },

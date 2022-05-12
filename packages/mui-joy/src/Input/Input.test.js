@@ -15,7 +15,7 @@ describe('Joy <Input />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInput',
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
-    testVariantProps: { variant: 'contained', fullWidth: true },
+    testVariantProps: { variant: 'solid', fullWidth: true },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 

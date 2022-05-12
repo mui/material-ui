@@ -11,12 +11,12 @@ describe('docs getDependencies helpers', () => {
   });
 
   it('should return correct title', () => {
-    expect(pageToTitle({ pathname: '/docs/src/pages/components/buttons/buttons.md' })).to.equal(
-      'Buttons',
+    expect(pageToTitle({ pathname: '/docs/src/pages/components/button/button.md' })).to.equal(
+      'Button',
     );
     expect(pageToTitle({ pathname: '/components' })).to.equal('Components');
     expect(pageToTitle({ pathname: '/customization/how-to-customize' })).to.equal(
-      'How To Customize',
+      'How to customize',
     );
   });
 
@@ -103,6 +103,30 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
       'date-fns': 'latest',
+    });
+  });
+
+  it('should support import for side effect', () => {
+    const source = `
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import '@mui/material/Grid';
+import '@mui/material/styles';
+import '@mui/lab/AdapterDateFns';
+import '@mui/lab';
+import 'exceljs';
+`;
+
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      'prop-types': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
+      'date-fns': 'latest',
+      exceljs: 'latest',
     });
   });
 

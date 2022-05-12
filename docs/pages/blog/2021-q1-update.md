@@ -44,7 +44,7 @@ Here are the most significant improvements since December 2020.
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
-  You can find [more details](https://mui.com/components/stack/) in the documentation.
+  You can find [more details](https://mui.com/material-ui/react-stack/) in the documentation.
 
 - 🎨 We have improved the support for custom colors and variants.
   This is [one](https://github.com/mui/material-ui/issues/13875) of the most upvoted issues in the GitHub issue tracker.

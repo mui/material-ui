@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import ROUTES from 'docs/src/route';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
@@ -43,12 +42,12 @@ const Anchor = styled('a')({
 });
 
 const linkMapping = {
-  'minimal-dashboard': ROUTES.storeTemplateMinimalDashboard,
-  theFront: ROUTES.storeTheFront,
-  'material-app': ROUTES.storeTemplateMaterialApp,
-  flexy: ROUTES.storeFlexy,
-  berry: ROUTES.storeTemplateBerry,
-  webbee: ROUTES.storeTemplateWebbee,
+  minimal: 'https://mui.com/store/items/minimal-dashboard/',
+  theFront: 'https://mui.com/store/items/the-front-landing-page/',
+  miro: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
+  flexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
+  berry: 'https://mui.com/store/items/berry-react-material-admin/',
+  webbee: 'https://mui.com/store/items/webbee-landing-page/',
 };
 const brands = Object.keys(linkMapping) as Array<keyof typeof linkMapping>;
 
@@ -64,7 +63,7 @@ const StoreTemplateLink = React.forwardRef<
     <Anchor
       ref={ref}
       aria-label="Go to MUI Store"
-      href={linkMapping[brand]}
+      href={`${linkMapping[brand]}?utm_source=marketing&utm_medium=referral&utm_campaign=home-cta`}
       target="_blank"
       {...props}
     >

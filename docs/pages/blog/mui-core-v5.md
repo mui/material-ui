@@ -105,7 +105,7 @@ const StyledDiv = styled.div`
 <p class="blog-description"><a href="https://codesandbox.io/s/elastic-yonath-uedfv?file=/src/App.js">Codesandbox</a></p>
 
 You can find it in [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
-While MUI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/styles/basics/#hook-api) API.
+While MUI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
 
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
    The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/s/nb05w?file=/src/App.js) than emotion,
@@ -400,7 +400,7 @@ We have moved all the prop descriptions to TypeScript, so IntelliSense in your e
 
 <p class="blog-description">The popup explains what the <code>forcePopupIcon</code> prop is for.</p>
 
-These TypeScript prop descriptions are also used to generate the [API pages](https://mui.com/api/autocomplete/#props) of the documentation, so there is a single source of truth.
+These TypeScript prop descriptions are also used to generate the [API pages](https://mui.com/material-ui/api/autocomplete/#props) of the documentation, so there is a single source of truth.
 
 ### Migration from Enzyme to Testing Library
 
@@ -480,7 +480,7 @@ MUI Core has a positive cash flow thanks to its paid templates, design assets, a
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
 It's why we are using an [open core license model](https://en.m.wikipedia.org/wiki/Open-core_model) for this new product.
-The X components come in [three different plans](/pricing/):
+The X components come in [three different plans](https://mui.com/pricing/):
 
 - **Community.** This plan contains the MIT components that are sustainable by the contributions of the open-source community. Free forever.
 - **Pro.** This plan contains the features that are at the limit of what the open-source model can sustain. For instance, providing a very comprehensive set of components. From a price perspective, the plan is designed to be accessible to most professionals.
@@ -583,7 +583,7 @@ We have moved six components from the lab to the main component package, after o
 - [Rating](/material-ui/react-rating/)
 - [Skeleton](/material-ui/react-skeleton/)
 - [Speed Dial](/material-ui/react-speed-dial/)
-- [Toggle Buttons](/material-ui/react-toggle-button/)
+- [Toggle button](/material-ui/react-toggle-button/)
 
 ### New in the lab
 

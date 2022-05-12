@@ -23,7 +23,7 @@ const ModalRoot = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   position: 'fixed',
-  zIndex: theme.zIndex.modal,
+  zIndex: (theme.vars || theme).zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
@@ -239,6 +239,7 @@ Modal.propTypes /* remove-proptypes */ = {
   keepMounted: PropTypes.bool,
   /**
    * Callback fired when the backdrop is clicked.
+   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
    */
   onBackdropClick: PropTypes.func,
   /**

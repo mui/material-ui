@@ -51,31 +51,33 @@ Here are the components we will work on being supported in the MUI ecosystem:
 | Advanced layout            | MUI X    | ⏳     |
 | Carousel                   | MUI X    | ⏳     |
 | Charts                     | MUI X    | ⏳     |
-| Data Grid                  | MUI X    | 🧪     |
-| Date Picker                | MUI X    | 🧪     |
-| Date Range Picker          | MUI X    | 🧪     |
+| Data grid                  | MUI X    | 🧪     |
+| Date picker                | MUI X    | 🧪     |
+| Date range picker          | MUI X    | 🧪     |
 | Dropdown                   | MUI Core | ⏳     |
 | Dropzone                   | MUI X    | ⏳     |
-| File Upload                | MUI X    | ⏳     |
-| Gantt Chart                | MUI X    | ⏳     |
+| File upload                | MUI X    | ⏳     |
+| Gantt chart                | MUI X    | ⏳     |
 | Gauge                      | MUI X    | ⏳     |
 | Image                      | MUI Core | ⏳     |
 | Masonry                    | MUI Core | 🧪     |
 | Navbar                     | MUI Core | ⏳     |
-| Nested Menu                | MUI X    | ⏳     |
+| Nested menu                | MUI X    | ⏳     |
 | NProgress                  | MUI Core | ⏳     |
-| Numeric Input              | MUI Core | ⏳     |
-| Rich Text Editor           | MUI X    | ⏳     |
+| Numeric input              | MUI Core | ⏳     |
+| Rich text editor           | MUI X    | ⏳     |
 | Scheduler                  | MUI X    | ⏳     |
 | Scrollspy                  | MUI Core | ⏳     |
 | Sparkline                  | MUI X    | ⏳     |
 | Timeline                   | MUI Core | 🧪     |
-| Tree Select                | MUI X    | ⏳     |
-| Tree View                  | MUI X    | 🧪     |
-| Tree View - Checkbox       | MUI X    | ⏳     |
-| Tree View - Drag & Drop    | MUI X    | ⏳     |
-| Tree View - Multiselect    | MUI X    | 🧪     |
-| Tree View - Virtualization | MUI X    | ⏳     |
-| Window Splitter            | MUI X    | ⏳     |
+| Tree select                | MUI X    | ⏳     |
+| Tree view                  | MUI X    | 🧪     |
+| Tree view - Checkbox       | MUI X    | ⏳     |
+| Tree view - Drag & Drop    | MUI X    | ⏳     |
+| Tree view - Multiselect    | MUI X    | 🧪     |
+| Tree view - Virtualization | MUI X    | ⏳     |
+| Window splitter            | MUI X    | ⏳     |
 
-> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
+:::warning
+⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
+:::

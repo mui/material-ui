@@ -16,7 +16,7 @@ Here are the most significant improvements since March 2020:
   The last 14 months have been spent focusing on improving the library under the v4.x development branch, while not introducing any breaking changes. During this period we have identified several important areas for improvement. While the absence of breaking changes is a significant time-saver for developers, it also limits the scope of the problems that can be solved and the quality of the solutions. We're excited about what comes next!<br /><br />
   You can find the documentation for the next version at https://mui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui/material-ui/issues/20012) and [milestone](https://github.com/mui/material-ui/milestone/35).
 
-- 📍 The icons package has been updated with changes made by Google, leading to [200+ new icons](https://mui.com/components/material-icons/).
+- 📍 The icons package has been updated with changes made by Google, leading to [200+ new icons](https://mui.com/material-ui/material-icons/).
 
   <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="width: 615px; margin-bottom: 24px;" />
 
@@ -26,7 +26,7 @@ Here are the most significant improvements since March 2020:
 
   Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 
-- 🔄 `LoadingButton` – [a new component in the lab](https://mui.com/components/buttons/#loading-buttons). This work is influenced by the [concurrent UI patterns](https://reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
+- 🔄 `LoadingButton` – [a new component in the lab](https://mui.com/material-ui/react-button/#loading-button). This work is influenced by the [concurrent UI patterns](https://reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
 
   <img src="/static/blog/2020-q2-update/loading.gif" alt="loading" style="margin-bottom: 24px;" />
 

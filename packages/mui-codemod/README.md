@@ -605,6 +605,88 @@ You can find more details about this breaking change in [the migration guide](ht
 > **Note:** This approach converts the first element in the return statement into styled component but also increases CSS specificity to override nested children.
 > This codemod should be adopted after handling all breaking changes, [check out the migration documentation](https://mui.com/material-ui/guides/migration-v4/)
 
+#### `jss-to-tss-react`
+
+Migrate JSS styling with `makeStyles` or `withStyles` to the corresponding `tss-react` API.
+
+```diff
+-import clsx from 'clsx';
+-import {makeStyles, createStyles} from '@material-ui/core/styles';
++import { makeStyles } from 'tss-react/mui';
+
+-const useStyles = makeStyles((theme) => createStyles<
+-  'root' | 'small' | 'child', {color: 'primary' | 'secondary', padding: number}
+->
+-({
+-  root: ({color, padding}) => ({
++const useStyles = makeStyles<{color: 'primary' | 'secondary', padding: number}, 'child' | 'small'>({name: 'App'})((theme, { color, padding }, classes) => ({
++  root: {
+     padding: padding,
+-    '&:hover $child': {
++    [`&:hover .${classes.child}`]: {
+       backgroundColor: theme.palette[color].main,
+     }
+-  }),
++  },
+   small: {},
+   child: {
+     border: '1px solid black',
+     height: 50,
+-    '&$small': {
++    [`&.${classes.small}`]: {
+       height: 30
+     }
+   }
+-}), {name: 'App'});
++}));
+
+ function App({classes: classesProp}: {classes?: any}) {
+-  const classes = useStyles({color: 'primary', padding: 30, classes: classesProp});
++  const { classes, cx } = useStyles({
++    color: 'primary',
++    padding: 30
++  }, {
++    props: {
++      classes: classesProp
++    }
++  });
+
+   return (
+     <div className={classes.root}>
+       <div className={classes.child}>
+         The Background take the primary theme color when the mouse hovers the parent.
+       </div>
+-      <div className={clsx(classes.child, classes.small)}>
++      <div className={cx(classes.child, classes.small)}>
+         The Background take the primary theme color when the mouse hovers the parent.
+         I am smaller than the other child.
+       </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
+```sh
+npx @mui/codemod v5.0.0/jss-to-tss-react <path>
+```
+
+The following scenarios are not currently handled by this codemod and will be marked with a
+"TODO jss-to-tss-react codemod" comment:
+
+- If the hook returned by `makeStyles` (e.g. `useStyles`) is exported and used in another file,
+  the usages in other files will not be converted.
+- Arrow functions as the value for a CSS prop will not be converted. Arrow functions **are**
+  supported at the rule level, though with some caveats listed below.
+- In order for arrow functions at the rule level to be converted, the parameter must use object
+  destructuring (e.g. `root: ({color, padding}) => (...)`). If the parameter is not destructured
+  (e.g. `root: (props) => (...)`), it will not be converted.
+- If an arrow function at the rule level contains a code block (i.e. contains an explicit `return`
+  statement) rather than just an object expression, it will not be converted.
+
+You can find more details about migrating from JSS to tss-react in [the migration guide](https://mui.com/guides/migration-v4/#2-use-tss-react).
+
 #### `link-underline-hover`
 
 Apply `underline="hover"` to `<Link />` that does not define `underline` prop (to get the same behavior as in v4).

@@ -5,7 +5,7 @@ components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
 ---
 
-# Click away listener
+# Click-away listener
 
 <p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
 
@@ -36,7 +36,9 @@ However, you can configure it to respond to the leading events (mouse down + tou
 
 {{"demo": "LeadingClickAway.js"}}
 
-> ⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+:::warning
+⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+:::
 
 ## Accessibility
 
