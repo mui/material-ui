@@ -72,3 +72,16 @@ export type BadgeUnstyledProps<
   D extends React.ElementType = BadgeUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<BadgeUnstyledTypeMap<P, D>, D>;
+
+export type BadgeUnstyledRootSlotProps = {
+  children?: React.ReactNode;
+  className?: string;
+  ownerState: BadgeUnstyledOwnerState;
+  ref: React.Ref<HTMLSpanElement>;
+};
+
+export type BadgeUnstyledBadgeSlotProps = {
+  className?: string;
+  children?: React.ReactNode;
+  ownerState: BadgeUnstyledOwnerState;
+};

@@ -10,7 +10,10 @@ import {
   BadgeUnstyledProps,
   BadgeUnstyledOwnerState,
   BadgeUnstyledTypeMap,
+  BadgeUnstyledRootSlotProps,
+  BadgeUnstyledBadgeSlotProps,
 } from './BadgeUnstyled.types';
+import { WithOptionalOwnerState } from '../utils';
 
 const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
   const { invisible } = ownerState;
@@ -56,22 +59,28 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(
   const classes = useUtilityClasses(ownerState);
 
   const Root = component || components.Root || 'span';
-  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
+  const rootProps: WithOptionalOwnerState<BadgeUnstyledRootSlotProps> = appendOwnerState(
+    Root,
+    {
+      ...other,
+      ...componentsProps.root,
+      ref,
+      className: clsx(classes.root, componentsProps.root?.className, className),
+    },
+    ownerState,
+  );
 
   const Badge = components.Badge || 'span';
-  const badgeProps = appendOwnerState(Badge, componentsProps.badge, ownerState);
+  const badgeProps: WithOptionalOwnerState<BadgeUnstyledBadgeSlotProps> = appendOwnerState(
+    Badge,
+    { ...componentsProps.badge, className: clsx(classes.badge, componentsProps.badge?.className) },
+    ownerState,
+  );
 
   return (
-    <Root
-      {...rootProps}
-      ref={ref}
-      {...other}
-      className={clsx(classes.root, rootProps.className, className)}
-    >
+    <Root {...rootProps}>
       {children}
-      <Badge {...badgeProps} className={clsx(classes.badge, badgeProps.className)}>
-        {displayValue}
-      </Badge>
+      <Badge {...badgeProps}>{displayValue}</Badge>
     </Root>
   );
 }) as OverridableComponent<BadgeUnstyledTypeMap>;
