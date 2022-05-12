@@ -14,9 +14,11 @@ With it, MUI X officially steps up to the next level, supporting the most advanc
 
 The new Premium features are intended to support end-users with the most sophisticated tools to navigate and draw insights from vast amounts of data.
 
-## Row grouping
+## The new features
 
-We started development with [row grouping](https://mui.com/x/react-data-grid/row-grouping/), which enables users to group data based on repeating values in the grid.
+### Row grouping
+
+We started development with [Row grouping](https://mui.com/x/react-data-grid/row-grouping/), which enables users to group data based on repeating values in the grid.
 For example, users can now group orders by buyers, movies by directors, or cities by the governing parties.
 
 These kinds of use cases would usually be dealt with using a new query on the database, perhaps requiring a new service end-point, maybe even a new front-end, with all the UX challenges this would entail.
@@ -25,25 +27,25 @@ Now it’s available at the end-user's fingertips, directly in the data grid.
 Users are encouraged to explore the data and create combinations with multiple grouping criteria,
 and are then able to export these new views to Excel, with the next Premium feature: Excel export.
 
-## Excel export
+### Excel export
 
 One of the most requested features,
 [Excel export](https://mui.com/x/react-data-grid/export/#excel-export) enables users to save the data from the grid as an Excel spreadsheet that mirrors the existing visualization in the data grid based on filters, sorting, and row grouping.
 
 In the future we intend to support all of the features impacting visualization of the data grid, but we’d love to hear from you if there’s anything in particular you’d like to see in future releases.
 
-## Aggregation (Coming in late Q2)
+### Aggregation (coming in late Q2)
 
-Speaking of future releases, [aggregation functions](https://mui.com/x/react-data-grid/aggregation/#) are coming next, in a further step to improving tools to analyze data.
+Speaking of future releases, [aggregation functions](https://mui.com/x/react-data-grid/aggregation/) are coming next, in a further step to improving tools to analyze data.
 Combined with row grouping, the aggregation functions help users dive deeper to get data insights.
 
 Expanding on the use cases in the previous examples, users will be able to dynamically get the sum of orders for each user, the minimum rating of each director, or the average crime rate for each governing party.
 
 That and much more, just a few clicks away.
 
-# The new licensing model
+## The new licensing model
 
-As we release the Premium plan, we’d also like to announce the new pricing and licensing model for MUI X Premium and Pro.
+As we release the Premium plan, we’d also like to announce a revised pricing and licensing model for MUI X Premium and Pro.
 
 We’re aiming for simplicity, restructuring the model to be as clear as possible, based on the recurrent questions we've had in our sales and other channels.
 We’d also like to keep it within reach of individuals and small teams, while still capturing more of the value we generate for larger companies.
@@ -94,7 +96,7 @@ We’re very excited about the possibilities the new Premium features will enabl
 
 # FAQ 🔧
 
-## How to migrate
+## How to migrate?
 
 To migrate to the premium version in your codebase, install the dedicated package `@mui/x-data-grid-premium` as follows:
 
