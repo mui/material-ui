@@ -41,8 +41,9 @@ function MarkdownDocs(props) {
 
   const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
 
-  const Provider = asPathWithoutLang.startsWith('/joy-ui') ? CssVarsProvider : React.Fragment;
-  const Wrapper = asPathWithoutLang.startsWith('/joy-ui') ? BrandingProvider : React.Fragment;
+  const isJoy = asPathWithoutLang.startsWith('/joy-ui');
+  const Provider = isJoy ? CssVarsProvider : React.Fragment;
+  const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
   return (
     <AppLayoutDocs
@@ -54,11 +55,11 @@ function MarkdownDocs(props) {
       toc={toc}
     >
       <Provider>
-        {asPathWithoutLang.startsWith('/joy-ui') && <JoyModeObserver mode={theme.palette.mode} />}
+        {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
             return (
-              <Wrapper key={index} mode={theme.palette.mode}>
+              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
                 <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />
               </Wrapper>
             );
@@ -67,7 +68,7 @@ function MarkdownDocs(props) {
           if (renderedMarkdownOrDemo.component) {
             const Component = markdownComponents[renderedMarkdownOrDemo.component];
             return (
-              <Wrapper key={index} mode={theme.palette.mode}>
+              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
                 <Component headers={headers} options={renderedMarkdownOrDemo} />
               </Wrapper>
             );
